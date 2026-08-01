@@ -1,0 +1,8 @@
+node_modules/
+.wrangler/
+.dev.vars
+.DS_Store
+*.log
+
+# Claude Code machine-local settings
+.claude/settings.local.json
