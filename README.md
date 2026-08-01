@@ -63,9 +63,14 @@ python3 -m http.server -d public 8000
 
 Then open <http://localhost:8000>.
 
+## Live sites
+
+- <https://lewishsiung-creator.github.io/english-exercises/>
+- <https://english-exercises-6e4.pages.dev>
+
 ## Deployment
 
-Pushing to `main` publishes to both:
+Pushing to `main` publishes to both, with no further steps:
 
 - **GitHub Pages** — via [`.github/workflows/pages.yml`](.github/workflows/pages.yml)
 - **Cloudflare Pages** — via its GitHub integration (build command: none,
