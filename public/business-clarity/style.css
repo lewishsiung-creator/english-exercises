@@ -1,0 +1,679 @@
+/* Business Clarity and Communication Worksheet.
+
+   A reading document, not an exercise — an adult client works through it in a
+   one-to-one session while the teacher talks. Design notes:
+
+   - Every line is bilingual, so the pairing carries the whole layout. English
+     leads in a serif at full contrast; Traditional Chinese sits directly
+     beneath in a smaller sans at lower contrast. The eye can follow either
+     language down the page without the other becoming noise.
+   - Blanks, checkboxes and answer rules are drawn rather than typed into, so
+     screen and paper look the same.
+   - Light theme only. It is read side by side on one laptop in a lit room,
+     and the printed worksheet is the reference. */
+
+:root {
+  --paper: #fbfaf7;
+  --card: #ffffff;
+  --ink: #23282d;
+  --ink-soft: #5d6670;
+  --ink-faint: #8b939c;
+
+  --accent: #0f5c5c;
+  --accent-soft: #e8f1ef;
+  --accent-line: #bcd6d1;
+
+  --line: #e5e1d8;
+  --rule: #cfcabe;
+
+  --font-en: "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, "Times New Roman", serif;
+  --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+
+  --bar-h: 52px;
+  --measure: 44rem;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 16px); }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-en);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Chinese runs at a smaller size and lower contrast throughout — it is the
+   support line, never the headline. */
+.zh {
+  display: block;
+  font-family: var(--font-zh);
+  font-size: 0.84em;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  letter-spacing: 0.01em;
+}
+.en { display: block; }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus {
+  left: 12px; top: 12px; z-index: 40;
+  background: var(--card); padding: 10px 16px; border-radius: 8px;
+}
+
+/* ---------------- top bar ---------------- */
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  background: rgba(251, 250, 247, .92);
+  backdrop-filter: saturate(1.6) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.bar-title {
+  flex: 1;
+  margin: 0;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bar-title span {
+  font-family: var(--font-zh);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-faint);
+  margin-left: 8px;
+}
+
+.bar-btn {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent-line);
+  border-radius: 7px;
+  padding: 6px 11px;
+  cursor: pointer;
+}
+.bar-btn:hover { background: var(--accent-soft); }
+.bar-btn-quiet { color: var(--ink-soft); border-color: var(--line); }
+
+/* The contents button is only needed once the sidebar is gone. */
+@media (min-width: 900px) { #navToggle { display: none; } }
+
+/* ---------------- shell + contents ---------------- */
+
+.shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 74rem;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (min-width: 900px) {
+  .shell {
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: 40px;
+    padding: 0 28px;
+  }
+}
+
+.toc { font-family: var(--font-ui); }
+
+@media (min-width: 900px) {
+  .toc {
+    position: sticky;
+    top: var(--bar-h);
+    max-height: calc(100vh - var(--bar-h));
+    overflow-y: auto;
+    padding: 28px 0 40px;
+    scrollbar-width: thin;
+  }
+}
+
+.toc-head {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.toc ul { list-style: none; margin: 0; padding: 0; }
+
+.toc a {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  gap: 8px;
+  padding: 7px 10px 7px 6px;
+  border-radius: 7px;
+  text-decoration: none;
+  color: var(--ink-soft);
+  border-left: 2px solid transparent;
+}
+.toc a:hover { background: var(--accent-soft); color: var(--ink); }
+
+.toc a .n {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+  text-align: right;
+  padding-top: 2px;
+}
+.toc a .t .en { font-size: 13.5px; line-height: 1.35; }
+.toc a .t .zh { font-size: 11.5px; color: var(--ink-faint); }
+
+.toc a.here {
+  background: var(--accent-soft);
+  border-left-color: var(--accent);
+  color: var(--accent);
+}
+.toc a.here .n, .toc a.here .t .zh { color: var(--accent); }
+.toc a.here .t .en { font-weight: 600; }
+
+/* Below 900px the list drops down from the bar instead of sitting beside. */
+@media (max-width: 899px) {
+  #nav {
+    position: fixed;
+    top: var(--bar-h);
+    left: 0;
+    right: 0;
+    z-index: 25;
+    max-height: min(70vh, 30rem);
+    overflow-y: auto;
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 24px rgba(35, 40, 45, .12);
+    padding: 14px 18px 18px;
+    display: none;
+  }
+  body.nav-open #nav { display: block; }
+  body.nav-open .nav-scrim {
+    display: block;
+    position: fixed;
+    inset: var(--bar-h) 0 0;
+    z-index: 20;
+    background: rgba(35, 40, 45, .25);
+  }
+}
+
+/* ---------------- cover ---------------- */
+
+main { max-width: var(--measure); padding-bottom: 5rem; }
+
+.cover { padding: 40px 0 8px; }
+
+.kicker {
+  margin: 0 0 14px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.cover h1 { margin: 0 0 26px; font-size: 2.1rem; line-height: 1.18; font-weight: 600; }
+.cover h1 .zh { font-size: 1.05rem; font-weight: 400; margin-top: 8px; }
+
+.fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  margin: 0 0 30px;
+  padding: 16px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.field { display: flex; align-items: baseline; gap: 10px; }
+.field dt {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+.field dt .zh { display: inline; font-size: 12px; }
+.field dd { margin: 0; font-size: 1rem; font-weight: 600; }
+
+.purpose h2 { margin: 0 0 12px; font-size: 1.15rem; font-weight: 600; }
+.purpose h2 .en, .purpose h2 .zh { display: inline; }
+.purpose h2 .zh { font-size: .85rem; margin-left: 8px; }
+
+.goals { margin: 10px 0 0; padding-left: 1.15rem; }
+.goals li { margin-bottom: 9px; }
+
+/* ---------------- section ---------------- */
+
+.section {
+  padding-top: 40px;
+  margin-top: 40px;
+  border-top: 1px solid var(--line);
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr;
+  gap: 4px;
+  align-items: start;
+  margin: 0 0 24px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.section-head .n {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent);
+  padding-top: .38rem;
+}
+.section-head .zh { font-size: .95rem; font-weight: 400; margin-top: 5px; }
+
+.sub {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 10px;
+  align-items: baseline;
+  margin: 34px 0 14px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.sub .zh { grid-column: 2; font-size: .85rem; margin-top: 2px; }
+.sub-letter {
+  grid-row: span 2;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 5px;
+  width: 1.45rem;
+  height: 1.45rem;
+  display: grid;
+  place-items: center;
+  align-self: start;
+}
+
+.label {
+  margin: 28px 0 12px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.label .zh {
+  font-size: 11.5px;
+  letter-spacing: .02em;
+  text-transform: none;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}
+/* Only the lettered groups in section 12 need the badge beside the heading
+   rather than above it. */
+.label:has(.sub-letter) {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 9px;
+}
+.label:has(.sub-letter) .sub-letter { grid-row: span 2; align-self: center; }
+.label:has(.sub-letter) .en { align-self: center; }
+.label:has(.sub-letter) .zh { grid-column: 2; }
+
+/* ---------------- prose bits ---------------- */
+
+.pair { margin: 0 0 14px; }
+
+.lead {
+  margin: 0 0 24px;
+  padding-left: 16px;
+  border-left: 3px solid var(--accent-line);
+}
+.lead .en { font-style: italic; font-size: 1.05rem; }
+.lead .pair { margin: 0; }
+
+.tiny {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 6px;
+}
+
+.tag {
+  margin: 0 0 4px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.tag .zh { display: inline; font-size: 12px; color: var(--ink-faint); margin-left: 6px; }
+
+.eg {
+  margin: -6px 0 22px;
+  padding: 12px 14px;
+  background: var(--card);
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+}
+.eg .pair { margin: 0; }
+.eg .en { font-size: .95rem; }
+.eg p:first-child { margin: 0; }
+
+.hint { margin: 2px 0 10px; font-size: .9rem; color: var(--ink-soft); }
+.hint .zh { font-size: .82rem; }
+
+/* ---------------- questions with answer space ---------------- */
+
+.ask { margin: 0 0 26px; }
+.ask .q { margin: 0 0 10px; font-weight: 500; }
+
+.rule {
+  height: 1.9rem;
+  border-bottom: 1px solid var(--rule);
+}
+.rule + .rule { margin-top: 0; }
+
+/* ---------------- checkboxes and ranking ---------------- */
+
+.check { margin: 0 0 26px; }
+.check .q { margin: 0 0 10px; font-weight: 500; }
+
+.opts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px 22px;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+.opts li {
+  display: grid;
+  grid-template-columns: 1.15rem 1fr;
+  gap: 0 9px;
+  align-items: start;
+  font-size: .97rem;
+}
+.opts li .zh { grid-column: 2; font-size: .8rem; }
+
+.box {
+  grid-row: span 2;
+  width: 1rem;
+  height: 1rem;
+  margin-top: .2rem;
+  border: 1.5px solid var(--rule);
+  border-radius: 3px;
+  background: var(--card);
+}
+
+.slot {
+  grid-row: span 2;
+  width: 1.5rem;
+  height: 1.1rem;
+  margin-top: .1rem;
+  border-bottom: 1.5px solid var(--rule);
+}
+.opts-rank li { grid-template-columns: 1.5rem 1fr; }
+
+/* ---------------- phrase lists ---------------- */
+
+.phrases { margin: 0 0 28px; }
+
+.phrase-list {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--card);
+}
+
+.phrase {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 4px 20px;
+  padding: 9px 15px;
+  border-top: 1px solid var(--line);
+}
+.phrase:first-child { border-top: 0; }
+.phrase:nth-child(odd) { background: #fcfbf8; }
+
+.phrase dt { font-size: .97rem; }
+.phrase dd {
+  margin: 0;
+  font-family: var(--font-zh);
+  font-size: .84rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+@media (max-width: 560px) {
+  .phrase { grid-template-columns: 1fr; gap: 1px; }
+}
+
+/* ---------------- sentence frames ---------------- */
+
+.fill { margin: 0 0 28px; }
+
+.fill-list {
+  list-style: none;
+  margin: 0;
+  padding: 16px 18px;
+  background: var(--accent-soft);
+  border-radius: 10px;
+}
+.fill-list li {
+  margin-bottom: 12px;
+  padding-left: 14px;
+  text-indent: -14px;
+  line-height: 1.9;
+}
+.fill-list li:last-child { margin-bottom: 0; }
+.fill-list li::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 9px;
+  border-radius: 50%;
+  background: var(--accent-line);
+  vertical-align: .3em;
+}
+
+/* A blank is drawn at the width written in the source, so a longer run of
+   underscores really does leave more room. */
+.blank {
+  display: inline-block;
+  width: calc(var(--w, 6) * 1ch);
+  max-width: 100%;
+  height: 1.1em;
+  margin: 0 2px;
+  vertical-align: -.2em;
+  border-bottom: 1.5px solid var(--rule);
+}
+
+/* ---------------- comparison table ---------------- */
+
+.table-wrap {
+  margin: 0 0 28px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+}
+
+table { border-collapse: collapse; width: 100%; min-width: 34rem; }
+
+thead th {
+  text-align: left;
+  padding: 11px 14px;
+  background: var(--accent-soft);
+  font-size: .92rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--accent-line);
+}
+thead th .zh { font-size: .76rem; margin-top: 1px; }
+
+tbody th {
+  text-align: left;
+  padding: 12px 14px;
+  font-size: .93rem;
+  font-weight: 500;
+  width: 34%;
+  border-right: 1px solid var(--line);
+}
+tbody th .zh { font-size: .78rem; }
+tbody td { border-right: 1px solid var(--line); }
+tbody td:last-child { border-right: 0; }
+tbody tr { border-top: 1px solid var(--line); }
+tbody tr:first-child { border-top: 0; }
+tbody td { height: 3.1rem; }
+
+/* ---------------- callout ---------------- */
+
+.note {
+  margin: 4px 0 28px;
+  padding: 16px 18px;
+  background: var(--card);
+  border: 1px solid var(--accent-line);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+}
+.note h4 {
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.note h4 .zh { font-size: 11.5px; letter-spacing: 0; text-transform: none; margin-top: 2px; }
+.note .pair { margin: 0; }
+.note .en { font-size: .98rem; }
+
+/* ---------------- lists and numbered structures ---------------- */
+
+.bullets { margin: 0 0 26px; }
+.bullets-intro { margin-bottom: 10px; font-weight: 500; }
+.bullets ol, .bullets ul { margin: 0; padding-left: 1.3rem; }
+.bullets li { margin-bottom: 9px; }
+.bullets li .zh { font-size: .82rem; }
+
+.steps { margin: 0 0 28px; }
+.steps ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding: 0 0 16px 2.5rem;
+  border-left: 1px solid var(--line);
+  margin-left: .8rem;
+}
+.steps li:last-child { border-left-color: transparent; padding-bottom: 0; }
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: -.8rem;
+  top: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  border-radius: 50%;
+}
+.step-name { margin: .1rem 0 6px; font-weight: 600; font-size: 1rem; }
+.step-name .zh { font-size: .8rem; font-weight: 400; }
+.step-line { margin: 0; line-height: 1.9; color: var(--ink-soft); }
+
+/* ---------------- writing spaces ---------------- */
+
+.write { margin: 0 0 30px; }
+
+/* Ruled paper drawn with a repeating gradient — 2rem per line. */
+.ruled {
+  height: 8rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(2rem - 1px),
+      var(--rule) calc(2rem - 1px),
+      var(--rule) 2rem
+    ),
+    var(--card);
+  background-clip: padding-box;
+}
+.write-big .ruled { height: 14rem; }
+.write-goal .ruled { height: 6rem; }
+
+/* ---------------- teacher feedback ---------------- */
+
+.feedback .band {
+  margin-bottom: 26px;
+  padding-bottom: 22px;
+  border-bottom: 1px dotted var(--line);
+}
+.feedback .band:last-of-type { border-bottom: 0; }
+.feedback .band .label { margin-top: 0; }
+.feedback .band .opts { margin-bottom: 14px; }
+.feedback .tiny { margin-bottom: 4px; }
+
+/* ---------------- print ---------------- */
+
+@media print {
+  :root { --paper: #fff; }
+
+  .bar, #nav, .nav-scrim, .skip { display: none !important; }
+
+  body { font-size: 11pt; }
+  .shell { display: block; max-width: none; padding: 0; }
+  main { max-width: none; padding: 0; }
+
+  /* Each numbered section starts a fresh page, matching the original
+     worksheet's structure; smaller blocks are kept whole. */
+  .section { break-before: page; border-top: 0; margin-top: 0; padding-top: 0; }
+  .ask, .check, .note, .eg, .write, .fill, .steps li, .phrase, .table-wrap {
+    break-inside: avoid;
+  }
+  .sub, .label, .section-head { break-after: avoid; }
+
+  .phrase-list, .fill-list, .ruled, .note, .eg, .fields {
+    background: #fff !important;
+  }
+  .phrase:nth-child(odd) { background: #fff; }
+  .fill-list { border: 1px solid var(--line); }
+}

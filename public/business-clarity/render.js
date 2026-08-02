@@ -1,0 +1,344 @@
+/* Renders WORKSHEET (content.js) into the page.
+
+   The worksheet is read on screen rather than filled in, so nothing here is a
+   form control: blanks, checkboxes and answer spaces are drawn, not typed
+   into. That keeps the page identical on screen and on paper, and means a
+   half-finished session can never be lost by a stray refresh. */
+
+const $ = (sel) => document.querySelector(sel);
+
+/* Escape first, then turn runs of underscores — ASCII "______" or the
+   fullwidth "＿＿" used in the Chinese lines — into a drawn blank whose width
+   follows the length written in content.js. */
+function text(s) {
+  const escaped = String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+
+  return escaped.replace(/_{2,}|＿{1,}/g, (run) => {
+    const width = Math.max(4, Math.round(run.length * 0.9));
+    return `<span class="blank" style="--w:${width}"></span>`;
+  });
+}
+
+/* Every visible string is a bilingual pair, so this is the workhorse. */
+function pair(en, zh, cls = '') {
+  return `<p class="pair ${cls}"><span class="en">${text(en)}</span>` +
+         (zh ? `<span class="zh">${text(zh)}</span>` : '') + '</p>';
+}
+
+function el(html) {
+  const t = document.createElement('template');
+  t.innerHTML = html.trim();
+  return t.content.firstElementChild;
+}
+
+// ---------------------------------------------------------------- blocks
+
+const BLOCKS = {
+  sub: (b) => `
+    <h3 class="sub">
+      ${b.letter ? `<span class="sub-letter">${b.letter}</span>` : ''}
+      <span class="en">${text(b.en)}</span>
+      <span class="zh">${text(b.zh)}</span>
+    </h3>`,
+
+  label: (b) => `
+    <h4 class="label"><span class="en">${text(b.en)}</span>
+    <span class="zh">${text(b.zh)}</span></h4>`,
+
+  lead: (b) => `<div class="lead">${pair(b.en, b.zh)}</div>`,
+
+  ask: (b) => `
+    <div class="ask">
+      ${b.tagEn ? `<p class="tag"><span class="en">${text(b.tagEn)}</span>
+        <span class="zh">${text(b.tagZh)}</span></p>` : ''}
+      <p class="q"><span class="en">${text(b.en)}</span>
+      <span class="zh">${text(b.zh)}</span></p>
+      <div class="rule"></div>
+      <div class="rule"></div>
+    </div>`,
+
+  eg: (b) => `
+    <div class="eg">
+      <p><span class="tiny">Examples 例如</span></p>
+      ${pair(b.en, b.zh)}
+    </div>`,
+
+  write: (b) => `
+    <div class="write ${b.big ? 'write-big' : ''}">
+      <h4 class="label"><span class="en">${text(b.en)}</span>
+      <span class="zh">${text(b.zh)}</span></h4>
+      <div class="ruled"></div>
+    </div>`,
+
+  fill: (b) => `
+    <div class="fill">
+      <h4 class="label"><span class="en">${text(b.en)}</span>
+      <span class="zh">${text(b.zh)}</span></h4>
+      <ul class="fill-list">
+        ${b.lines.map((l) => `<li>${text(l)}</li>`).join('')}
+      </ul>
+    </div>`,
+
+  check: (b) => `
+    <div class="check">
+      ${b.tagEn ? `<p class="tag"><span class="en">${text(b.tagEn)}</span>
+        <span class="zh">${text(b.tagZh)}</span></p>` : ''}
+      <p class="q"><span class="en">${text(b.en)}</span>
+      <span class="zh">${text(b.zh)}</span></p>
+      <ul class="opts">
+        ${b.items.map((i) => `
+          <li><span class="box"></span>
+            <span class="en">${text(i.en)}</span>
+            <span class="zh">${text(i.zh)}</span></li>`).join('')}
+      </ul>
+    </div>`,
+
+  rank: (b) => `
+    <div class="check">
+      <p class="q"><span class="en">${text(b.en)}</span>
+      <span class="zh">${text(b.zh)}</span></p>
+      <p class="hint"><span class="en">${text(b.hintEn)}</span>
+      <span class="zh">${text(b.hintZh)}</span></p>
+      <ul class="opts opts-rank">
+        ${b.items.map((i) => `
+          <li><span class="slot"></span>
+            <span class="en">${text(i.en)}</span>
+            <span class="zh">${text(i.zh)}</span></li>`).join('')}
+      </ul>
+    </div>`,
+
+  phrases: (b) => `
+    <div class="phrases">
+      <h4 class="label">
+        ${b.letter ? `<span class="sub-letter">${b.letter}</span>` : ''}
+        <span class="en">${text(b.en)}</span>
+        <span class="zh">${text(b.zh)}</span></h4>
+      <dl class="phrase-list">
+        ${b.items.map((i) => `
+          <div class="phrase">
+            <dt>${text(i.en)}</dt>
+            <dd>${text(i.zh)}</dd>
+          </div>`).join('')}
+      </dl>
+    </div>`,
+
+  table: (b) => `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>${b.cols.map((c) => `
+            <th><span class="en">${text(c.en)}</span>
+            <span class="zh">${text(c.zh)}</span></th>`).join('')}</tr>
+        </thead>
+        <tbody>
+          ${b.rows.map((r) => `
+            <tr>
+              <th scope="row"><span class="en">${text(r.en)}</span>
+              <span class="zh">${text(r.zh)}</span></th>
+              <td></td><td></td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`,
+
+  note: (b) => `
+    <aside class="note">
+      <h4><span class="en">${text(b.en)}</span>
+      <span class="zh">${text(b.zh)}</span></h4>
+      ${pair(b.bodyEn, b.bodyZh)}
+    </aside>`,
+
+  bullets: (b) => `
+    <div class="bullets">
+      ${pair(b.en, b.zh, 'bullets-intro')}
+      <${b.ordered ? 'ol' : 'ul'}>
+        ${b.items.map((i) => `
+          <li><span class="en">${text(i.en)}</span>
+          <span class="zh">${text(i.zh)}</span></li>`).join('')}
+      </${b.ordered ? 'ol' : 'ul'}>
+    </div>`,
+
+  steps: (b) => `
+    <div class="steps">
+      <h4 class="label"><span class="en">${text(b.en)}</span>
+      <span class="zh">${text(b.zh)}</span></h4>
+      <ol>
+        ${b.items.map((i) => `
+          <li>
+            <p class="step-name"><span class="en">${text(i.en)}</span>
+            <span class="zh">${text(i.zh)}</span></p>
+            <p class="step-line">${text(i.line)}</p>
+          </li>`).join('')}
+      </ol>
+    </div>`,
+};
+
+// ---------------------------------------------------------------- build
+
+function buildCover() {
+  const p = WORKSHEET.purpose;
+  return `
+    <header class="cover" id="top">
+      <p class="kicker">1-on-1 Business English · 一對一商業英文</p>
+      <h1>
+        <span class="en">${text(WORKSHEET.title)}</span>
+        <span class="zh">${text(WORKSHEET.titleZh)}</span>
+      </h1>
+
+      <dl class="fields">
+        ${WORKSHEET.fields.map((f) => `
+          <div class="field">
+            <dt>${text(f.en)} <span class="zh">${text(f.zh)}</span></dt>
+            <dd>${f.value ? text(f.value) : '<span class="blank" style="--w:14"></span>'}</dd>
+          </div>`).join('')}
+      </dl>
+
+      <div class="purpose">
+        <h2><span class="en">Purpose</span> <span class="zh">使用目的</span></h2>
+        ${pair(p.en, p.zh)}
+        ${pair(p.introEn, p.introZh, 'bullets-intro')}
+        <ul class="goals">
+          ${p.items.map((i) => `
+            <li><span class="en">${text(i.en)}</span>
+            <span class="zh">${text(i.zh)}</span></li>`).join('')}
+        </ul>
+      </div>
+    </header>`;
+}
+
+function buildSection(s) {
+  const blocks = s.blocks.map((b) => {
+    const fn = BLOCKS[b.t];
+    if (!fn) throw new Error(`Unknown block type "${b.t}" in section ${s.id}`);
+    return fn(b);
+  }).join('');
+
+  return `
+    <section class="section" id="${s.id}" aria-labelledby="h-${s.id}">
+      <h2 class="section-head" id="h-${s.id}">
+        <span class="n">${s.n}</span>
+        <span class="titles">
+          <span class="en">${text(s.en)}</span>
+          <span class="zh">${text(s.zh)}</span>
+        </span>
+      </h2>
+      ${blocks}
+    </section>`;
+}
+
+function buildFeedback() {
+  const f = WORKSHEET.feedback;
+  return `
+    <section class="section feedback" id="feedback" aria-labelledby="h-feedback">
+      <h2 class="section-head" id="h-feedback">
+        <span class="n">✓</span>
+        <span class="titles">
+          <span class="en">${text(f.en)}</span>
+          <span class="zh">${text(f.zh)}</span>
+        </span>
+      </h2>
+      ${f.bands.map((b) => `
+        <div class="band">
+          <h4 class="label"><span class="en">${text(b.en)}</span>
+          <span class="zh">${text(b.zh)}</span></h4>
+          <ul class="opts">
+            ${b.items.map((i) => `
+              <li><span class="box"></span>
+                <span class="en">${text(i.en)}</span>
+                <span class="zh">${text(i.zh)}</span></li>`).join('')}
+          </ul>
+          <p class="tiny">Comments 評語</p>
+          <div class="rule"></div>
+          <div class="rule"></div>
+        </div>`).join('')}
+
+      <div class="write write-goal">
+        <h4 class="label"><span class="en">${text(f.goal.en)}</span>
+        <span class="zh">${text(f.goal.zh)}</span></h4>
+        <div class="ruled"></div>
+      </div>
+    </section>`;
+}
+
+function buildNav() {
+  const links = WORKSHEET.sections.map((s) => `
+    <li><a href="#${s.id}" data-target="${s.id}">
+      <span class="n">${s.n}</span>
+      <span class="t"><span class="en">${text(s.en)}</span>
+      <span class="zh">${text(s.zh)}</span></span>
+    </a></li>`).join('');
+
+  return `
+    <nav class="toc" aria-label="Sections">
+      <p class="toc-head">Contents 目錄</p>
+      <ul>
+        <li><a href="#top" data-target="top">
+          <span class="n">·</span>
+          <span class="t"><span class="en">Purpose</span>
+          <span class="zh">使用目的</span></span>
+        </a></li>
+        ${links}
+        <li><a href="#feedback" data-target="feedback">
+          <span class="n">✓</span>
+          <span class="t"><span class="en">Teacher Feedback</span>
+          <span class="zh">教師回饋</span></span>
+        </a></li>
+      </ul>
+    </nav>`;
+}
+
+// ---------------------------------------------------------------- mount
+
+document.title = `${WORKSHEET.title} · ${WORKSHEET.titleZh}`;
+
+$('#nav').appendChild(el(buildNav()));
+
+const doc = $('#doc');
+doc.appendChild(el(buildCover()));
+WORKSHEET.sections.forEach((s) => doc.appendChild(el(buildSection(s))));
+doc.appendChild(el(buildFeedback()));
+
+/* Highlight the section being read. rootMargin pulls the trip-line up to just
+   below the sticky header so a heading counts as "current" once it reaches
+   the top of the screen, not when it first peeks in from the bottom. */
+const links = new Map(
+  [...document.querySelectorAll('.toc a')].map((a) => [a.dataset.target, a])
+);
+
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (!e.isIntersecting) return;
+    links.forEach((a) => a.classList.remove('here'));
+    const a = links.get(e.target.id);
+    if (a) {
+      a.classList.add('here');
+      // Keep the active link visible when the list is longer than the sidebar.
+      a.scrollIntoView({ block: 'nearest' });
+    }
+  });
+}, { rootMargin: '-72px 0px -70% 0px' });
+
+[$('#top'), ...document.querySelectorAll('.section')].forEach((s) => spy.observe(s));
+
+// Mobile: the contents list collapses into a button in the header.
+const navToggle = $('#navToggle');
+navToggle.addEventListener('click', () => {
+  const open = document.body.classList.toggle('nav-open');
+  navToggle.setAttribute('aria-expanded', String(open));
+});
+
+function closeNav() {
+  document.body.classList.remove('nav-open');
+  navToggle.setAttribute('aria-expanded', 'false');
+}
+
+$('#nav').addEventListener('click', (e) => {
+  if (e.target.closest('a')) closeNav();
+});
+$('.nav-scrim').addEventListener('click', closeNav);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeNav();
+});
