@@ -339,7 +339,7 @@ function playSection(btn) {
 $('#voicePick').addEventListener('change', (e) => {
   voice = voices.find((v) => v.name === e.target.value) || voice;
   store.set('voice', e.target.value);
-  speak('Build dreams and bring greater honor to Great Harbor.');
+  speak('Build dreams and bring greater honor to The Port.');
 });
 
 const rate = $('#rate');

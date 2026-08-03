@@ -1,7 +1,7 @@
 /* A Five-Minute Campaign Speech — reading practice for adults.
 
    The text is the candidate's own bilingual speech for the 52nd President of
-   JCI Great Harbor, kept exactly as written: this page is reading practice,
+   JCI The Port, kept exactly as written: this page is reading practice,
    not an edit of his words. Only the line breaks are ours, one sentence group
    per line so each is a comfortable unit to read aloud.
 
@@ -23,7 +23,7 @@ const SPEECH = {
   kicker: '巨港國際青年商會 · 第52屆理事長候選人',
 
   source: {
-    en: 'Practice text: the candidate’s own five-minute campaign speech for the 52nd President of JCI Great Harbor. The Chinese and the English are reproduced as written.',
+    en: 'Practice text: the candidate’s own five-minute campaign speech for the 52nd President of JCI The Port. The Chinese and the English are reproduced as written.',
     zh: '練習文本：第52屆巨港國際青年商會理事長候選人五分鐘政見發表稿，中英文均依原稿，未經改寫。',
   },
 
@@ -52,11 +52,11 @@ const SPEECH = {
           t: 'lines',
           items: [
             {
-              en: 'Chairperson, past presidents, members of the Great Harbor family, and honored guests, good evening.',
+              en: 'Chairperson, past presidents, members of The Port family, and honored guests, good evening.',
               zh: '大會主席、各位前會長、各位巨港家人、各位貴賓，大家晚安。',
             },
             {
-              en: 'I am Chen Jianhong, a candidate for the 52nd President of JCI Great Harbor.',
+              en: 'I am Chen Jianhong, a candidate for the 52nd President of JCI The Port.',
               zh: '我是第52屆理事長候選人陳建宏。',
             },
             {
@@ -72,7 +72,7 @@ const SPEECH = {
               zh: '因此，我這次參選的核心理念是：',
             },
             {
-              en: 'Build Dreams and Bring Greater Honor to Great Harbor.',
+              en: 'Build Dreams and Bring Greater Honor to The Port.',
               zh: '建築夢想，宏揚巨港。',
               k: 1,
             },
@@ -104,7 +104,7 @@ const SPEECH = {
           t: 'lines',
           items: [
             {
-              en: 'In June 2024, a friend introduced me to JCI Great Harbor.',
+              en: 'In June 2024, a friend introduced me to JCI The Port.',
               zh: '2024年6月，透過朋友引薦，我第一次接觸巨港青商。',
             },
             {
@@ -112,7 +112,7 @@ const SPEECH = {
               zh: '第一次參加理事會，我看見了兩件事。',
             },
             {
-              en: 'The first was passion. Every member was thinking about how to make Great Harbor better and how to invite more young people to join.',
+              en: 'The first was passion. Every member was thinking about how to make The Port better and how to invite more young people to join.',
               zh: '第一，是熱情。每位會員都在思考，如何讓巨港更好，如何吸引更多青年加入。',
             },
             {
@@ -120,7 +120,7 @@ const SPEECH = {
               zh: '第二，是專業。議案討論嚴謹、制度完整、分工清楚、責任明確。',
             },
             {
-              en: 'At that moment, I knew that Great Harbor was not only a place to make friends. It was also a place to develop leaders.',
+              en: 'At that moment, I knew that The Port was not only a place to make friends. It was also a place to develop leaders.',
               zh: '那一刻，我知道巨港不只是交朋友的地方，更是一個培養領導者的平台。',
               k: 1,
             },
@@ -133,7 +133,7 @@ const SPEECH = {
               zh: '這份「傳承、不藏私」的文化，讓我非常感動。',
             },
             {
-              en: 'I am not running because I think I am the best. I am running because I believe in Great Harbor, and I am ready to take responsibility and serve everyone.',
+              en: 'I am not running because I think I am the best. I am running because I believe in The Port, and I am ready to take responsibility and serve everyone.',
               zh: '所以，我參選不是因為我覺得自己最厲害，而是因為我認同巨港，也願意承擔責任，為大家服務。',
               k: 1,
             },
@@ -163,7 +163,7 @@ const SPEECH = {
       blocks: [
         {
           t: 'subhead',
-          en: 'First, Build an Influential Great Harbor',
+          en: 'First, Make The Port Influential',
           zh: '第一，打造有影響力的巨港',
         },
         {
@@ -187,11 +187,11 @@ const SPEECH = {
               zh: '每一場課程，都要讓青年學到真正能使用的能力。',
             },
             {
-              en: 'Every partnership should help more people learn about Great Harbor.',
+              en: 'Every partnership should help more people learn about The Port.',
               zh: '每一次合作，都要讓更多人看見巨港。',
             },
             {
-              en: 'In the future, when people talk about Great Harbor, I hope they will say:',
+              en: 'In the future, when people talk about The Port, I hope they will say:',
               zh: '我希望未來當別人提到巨港，他們會想到：',
             },
             {
@@ -234,11 +234,11 @@ const SPEECH = {
               zh: '我也會建立跨產業合作平台，整合會員的專業、資源與行業經驗。',
             },
             {
-              en: 'Great Harbor should offer more than personal connections. It should create real opportunities.',
+              en: 'The Port should offer more than personal connections. It should create real opportunities.',
               zh: '讓巨港不只是人脈，更能創造真正的機會。',
             },
             {
-              en: 'I will also start a professional sharing program. Members can share their knowledge, and more young people can learn about Great Harbor.',
+              en: 'I will also start a professional sharing program. Members can share their knowledge, and more young people can learn about The Port.',
               zh: '同時，我會推動職人分享計畫，讓會員分享專業，也讓更多優秀青年認識巨港。',
             },
             {
@@ -246,7 +246,7 @@ const SPEECH = {
               zh: '我希望未來每位會員都能說：',
             },
             {
-              en: '“Joining Great Harbor was one of the most valuable investments in my life.”',
+              en: '“Joining The Port was one of the most valuable investments in my life.”',
               zh: '「加入巨港，是我人生最有價值的投資之一。」',
               k: 1,
             },
@@ -255,14 +255,14 @@ const SPEECH = {
 
         {
           t: 'subhead',
-          en: 'Third, Strengthen the Culture of Great Harbor',
+          en: 'Third, Strengthen the Culture of The Port',
           zh: '第三，深化巨港文化',
         },
         {
           t: 'lines',
           items: [
             {
-              en: 'The most valuable part of Great Harbor is not only our ability to organize events. It is our culture.',
+              en: 'The most valuable part of The Port is not only our ability to organize events. It is our culture.',
               zh: '巨港最珍貴的，不只是辦活動的能力，而是我們的文化。',
             },
             {
@@ -275,7 +275,7 @@ const SPEECH = {
               zh: '在友誼上，我們會持續舉辦聯誼、旅遊與運動活動，讓會員不只是認識，更能建立信任。',
             },
             {
-              en: 'For service, I hope Great Harbor will continue to support local communities, students in need, homeless animals, and others who need help.',
+              en: 'For service, I hope The Port will continue to support local communities, students in need, homeless animals, and others who need help.',
               zh: '在服務上，我希望巨港持續深入社區，關懷弱勢學生、流浪動物與其他需要協助的人。',
             },
             { en: 'I believe:', zh: '我相信：' },
@@ -319,14 +319,14 @@ const SPEECH = {
     {
       id: 'hope',
       n: 3,
-      en: 'The Great Harbor I Hope to Build',
+      en: 'The Port I Hope to Build',
       zh: '我期待的巨港',
       blocks: [
         {
           t: 'lines',
           items: [
             {
-              en: 'I hope Great Harbor will not only become bigger. I hope it will become warmer.',
+              en: 'I hope The Port will not only become bigger. I hope it will become warmer.',
               zh: '我期待的巨港，不只是更大，而是更有溫度。',
               k: 1,
             },
@@ -352,7 +352,7 @@ const SPEECH = {
               zh: '我非常重視一句話：',
             },
             {
-              en: 'The president should not stand in front of the Great Harbor family. The president should stand beside every member.',
+              en: 'The president should not stand in front of The Port family. The president should stand beside every member.',
               zh: '理事長不是站在巨港的前面，而是站在巨港家人的身邊。',
               k: 1,
             },
@@ -383,7 +383,7 @@ const SPEECH = {
           t: 'lines',
           items: [
             {
-              en: 'Dear Great Harbor family members, one person can have a dream, but a group of people can give that dream a better chance to come true.',
+              en: 'Dear members of The Port family, one person can have a dream, but a group of people can give that dream a better chance to come true.',
               zh: '各位巨港家人，夢想，一個人可以擁有；但一群人，可以讓夢想更有機會實現。',
               k: 1,
             },
@@ -422,33 +422,33 @@ const SPEECH = {
           t: 'lines',
           items: [
             {
-              en: 'Let us build dreams for young people, create influence in Kaohsiung, and continue the honor of Great Harbor.',
+              en: 'Let us build dreams for young people, create influence in Kaohsiung, and continue the honor of The Port.',
               zh: '讓我們一起為青年建築夢想，在高雄創造影響，為巨港延續榮耀。',
               k: 1,
             },
             {
-              en: 'Let more people grow because of Great Harbor.',
+              en: 'Let more people grow because of The Port.',
               zh: '讓更多人因巨港而成長。',
             },
             {
-              en: 'Let more families connect because of Great Harbor.',
+              en: 'Let more families connect because of The Port.',
               zh: '讓更多家庭因巨港而連結。',
             },
             {
-              en: 'Let more parts of society become better because of Great Harbor.',
+              en: 'Let more parts of society become better because of The Port.',
               zh: '讓更多社會角落因巨港而變得更美好。',
             },
             {
-              en: 'I am Chen Jianhong, a candidate for the 52nd President of JCI Great Harbor.',
+              en: 'I am Chen Jianhong, a candidate for the 52nd President of JCI The Port.',
               zh: '我是第52屆理事長候選人陳建宏。',
             },
             {
-              en: 'I sincerely ask every member of the Great Harbor family to give me an opportunity to serve.',
+              en: 'I sincerely ask every member of The Port family to give me an opportunity to serve.',
               zh: '懇請各位巨港家人，給建宏一個服務的機會。',
             },
             { en: 'Let us move forward together:', zh: '讓我們攜手同行：' },
             {
-              en: 'Build Dreams and Bring Greater Honor to Great Harbor.',
+              en: 'Build Dreams and Bring Greater Honor to The Port.',
               zh: '建築夢想，宏揚巨港。',
               k: 1,
             },

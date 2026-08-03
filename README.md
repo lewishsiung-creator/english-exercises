@@ -108,7 +108,7 @@ changing the framing is an `object-position` edit, not a re-export.
 ## A Five-Minute Campaign Speech — adult, reading aloud
 
 Reading practice built on a bilingual speech: the candidate's own five-minute
-address for the 52nd President of JCI Great Harbor, 62 sentences long. The text
+address for the 52nd President of JCI The Port, 62 sentences long. The text
 is reproduced as written — this page is practice, not an edit of his words.
 
 The two jobs the page does are a switch in the top bar:
