@@ -1,0 +1,1031 @@
+/* TOEIC Part 5 & 6 Grammar — exam practice for adult learners.
+
+   A teacher drives this in a one-to-one or small-group session, usually on one
+   laptop turned sideways or a shared screen. Design notes:
+
+   - English leads and is the only thing on screen by default. Traditional
+     Chinese sits behind a small 中 chip, so the learner tries the English
+     first and the safety net is one tap away. Headings, instructions, table
+     headers and the contents list stay bilingual — those are scaffolding, not
+     comprehension practice.
+   - Questions look like the test. Four options lettered A to D, one blank per
+     sentence, and in Part 6 the questions sit under the passage exactly as
+     they do on the paper.
+   - A wrong option dims and stays put; only the right one fills the blank, and
+     filling it opens the explanation. There is no score and no streak — the
+     count under a set is how many blanks are filled, nothing more.
+   - Light theme only. It is read side by side in a lit room, and the source
+     handouts are the reference.
+   - Text sizes are set for adults reading at arm's length on a shared screen,
+     a size up from a personal document. */
+
+:root {
+  --paper: #f7f6f2;
+  --card: #ffffff;
+  --ink: #1c2430;
+  --ink-soft: #566171;
+  --ink-faint: #8b95a3;
+
+  --navy: #1d3f6e;
+  --navy-soft: #eaf0f8;
+  --navy-line: #c2d3e7;
+
+  --gold: #a1741a;
+  --gold-soft: #fbf1da;
+  --gold-line: #f2c14e;
+
+  --good: #2c7a58;
+  --good-soft: #e4f2ea;
+  --good-line: #a8d6be;
+
+  --bad: #a6402f;
+  --bad-soft: #fbeae6;
+
+  --line: #e3e0d8;
+  --rule: #cdc8bc;
+
+  --font-en: "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, "Times New Roman", serif;
+  --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --bar-h: 54px;
+  --measure: 46rem;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 16px); }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-en);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---------------- the Chinese layer ----------------
+
+   Hidden everywhere by default. A line opens on its own when tapped; the 中文
+   switch in the bar opens all of them at once, at which point the individual
+   chips are just clutter and go away. */
+
+.zh {
+  display: none;
+  font-family: var(--font-zh);
+  font-size: 0.82em;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  letter-spacing: .01em;
+}
+
+.open .zh,
+body.zh-all .zh { display: block; }
+
+.zh-chip {
+  font-family: var(--font-zh);
+  font-size: 11px;
+  line-height: 1;
+  vertical-align: 2px;
+  margin-left: 6px;
+  padding: 3px 5px;
+  color: var(--ink-faint);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color .12s, border-color .12s, background .12s;
+}
+.zh-chip:hover { color: var(--navy); border-color: var(--navy-line); background: var(--navy-soft); }
+.open > .zh-chip,
+.open .en > .zh-chip { opacity: .35; }
+body.zh-all .zh-chip { display: none; }
+
+/* Scaffolding stays bilingual at all times: it tells you what to do rather
+   than asking you to understand it. */
+.hint-zh,
+.source .zh,
+.toc .t .zh,
+.label .zh,
+.step-head .zh,
+.why .zh,
+.steps .zh,
+.tier-head .zh,
+.tiers li .zh,
+.kind .zh,
+.table-wrap th .zh { display: block; }
+
+[data-zh] { cursor: pointer; }
+.pair p { margin: 0; }
+.pair .zh { margin-top: 4px; }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus {
+  left: 12px; top: 12px; z-index: 40;
+  background: var(--card); padding: 10px 16px; border-radius: 8px;
+}
+
+:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+
+/* ---------------- top bar ---------------- */
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  background: rgba(247, 246, 242, .93);
+  backdrop-filter: saturate(1.6) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.bar-title {
+  flex: 1;
+  margin: 0;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bar-title span {
+  font-family: var(--font-zh);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-faint);
+  margin-left: 8px;
+}
+
+.bar-btn {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--navy);
+  background: transparent;
+  border: 1px solid var(--navy-line);
+  border-radius: 7px;
+  padding: 6px 11px;
+  cursor: pointer;
+}
+.bar-btn:hover { background: var(--navy-soft); }
+.bar-btn-quiet { color: var(--ink-soft); border-color: var(--line); font-size: 15px; padding: 4px 9px; }
+.bar-btn-zh { font-family: var(--font-zh); }
+.bar-btn-zh[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+#clock {
+  font-family: var(--font-ui);
+  font-variant-numeric: tabular-nums;
+  min-width: 42px;
+  text-align: center;
+}
+#clock.running { color: var(--navy); border-color: var(--navy-line); background: var(--navy-soft); }
+
+@media (min-width: 900px) { #navToggle { display: none; } }
+
+/* ---------------- shell + contents ---------------- */
+
+.shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (min-width: 900px) {
+  .shell { grid-template-columns: 15rem minmax(0, 1fr); gap: 44px; padding: 0 28px; }
+}
+
+.toc { font-family: var(--font-ui); }
+
+@media (min-width: 900px) {
+  .toc {
+    position: sticky;
+    top: var(--bar-h);
+    max-height: calc(100vh - var(--bar-h));
+    overflow-y: auto;
+    padding: 30px 0 40px;
+    scrollbar-width: thin;
+  }
+}
+
+.toc-head {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.toc ul { list-style: none; margin: 0; padding: 0; }
+
+.toc a {
+  display: grid;
+  grid-template-columns: 1.4rem 1fr;
+  gap: 8px;
+  padding: 8px 10px 8px 6px;
+  border-radius: 7px;
+  text-decoration: none;
+  color: var(--ink-soft);
+  border-left: 2px solid transparent;
+}
+.toc a:hover { background: var(--navy-soft); color: var(--ink); }
+.toc a .n {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+  text-align: right;
+  padding-top: 3px;
+}
+.toc a .t .en { display: block; font-size: 13.5px; line-height: 1.35; }
+.toc a .t .zh { font-size: 11.5px; color: var(--ink-faint); }
+.toc a.here {
+  background: var(--navy-soft);
+  border-left-color: var(--navy);
+  color: var(--navy);
+}
+.toc a.here .n, .toc a.here .t .zh { color: var(--navy); }
+.toc a.here .t .en { font-weight: 600; }
+
+@media (max-width: 899px) {
+  #nav {
+    position: fixed;
+    top: var(--bar-h);
+    left: 0; right: 0;
+    z-index: 25;
+    max-height: min(70vh, 30rem);
+    overflow-y: auto;
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 24px rgba(28, 36, 48, .12);
+    padding: 14px 18px 18px;
+    display: none;
+  }
+  body.nav-open #nav { display: block; }
+  body.nav-open .nav-scrim {
+    display: block;
+    position: fixed;
+    inset: var(--bar-h) 0 0;
+    z-index: 24;
+    background: rgba(28, 36, 48, .25);
+  }
+}
+
+main { max-width: var(--measure); padding-bottom: 6rem; }
+
+/* ---------------- cover ---------------- */
+
+.cover { padding: 40px 0 26px; }
+
+.kicker {
+  margin: 0 0 10px;
+  font-family: var(--font-zh);
+  font-size: 13px;
+  letter-spacing: .16em;
+  color: var(--gold);
+}
+
+.cover h1 {
+  margin: 0 0 18px;
+  font-size: clamp(28px, 5vw, 40px);
+  line-height: 1.18;
+  letter-spacing: -.01em;
+}
+.cover h1 .zh { font-size: 19px; font-weight: 400; margin-top: 6px; }
+
+.cover-intro .en { font-size: 21px; line-height: 1.55; }
+
+.goals {
+  margin: 22px 0;
+  padding: 18px 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.goals-intro .en { font-size: 15px; font-weight: 600; }
+.goals-intro { margin-bottom: 8px; }
+.goals ol { margin: 0; padding-left: 1.3rem; }
+.goals li { margin: 7px 0; font-size: 16.5px; }
+.goals li::marker { color: var(--ink-faint); font-size: 14px; }
+
+.format .en { font-size: 15.5px; color: var(--ink-soft); }
+.format {
+  padding: 14px 18px;
+  border-left: 3px solid var(--gold-line);
+  background: var(--gold-soft);
+  border-radius: 0 8px 8px 0;
+}
+
+.source {
+  margin: 26px 0 0;
+  font-size: 12.5px;
+  color: var(--ink-faint);
+  line-height: 1.5;
+}
+.source .zh { font-size: 12px; }
+
+/* ---------------- section ---------------- */
+
+.step {
+  padding-top: 34px;
+  margin-top: 34px;
+  border-top: 1px solid var(--rule);
+}
+
+.step-head {
+  display: grid;
+  grid-template-columns: 2.1rem 1fr auto;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 20px;
+  font-size: 26px;
+  line-height: 1.25;
+}
+.step-head .n {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+  border: 1px solid var(--gold-line);
+  border-radius: 6px;
+  text-align: center;
+  padding: 2px 0;
+}
+.step-head .zh { font-size: 16px; font-weight: 400; margin-top: 2px; }
+.step-head .p6 {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  color: var(--navy);
+  background: var(--navy-soft);
+  border: 1px solid var(--navy-line);
+  border-radius: 20px;
+  padding: 3px 10px;
+}
+
+.lead { margin: 0 0 20px; }
+.lead .en { font-size: 18.5px; font-style: italic; color: var(--ink-soft); }
+
+.rule { margin: 18px 0; }
+.rule .en { font-size: 17.5px; }
+
+.label {
+  margin: 0 0 10px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.label .zh {
+  font-size: 12px;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-top: 1px;
+}
+
+.hint {
+  margin: 0 0 12px;
+  font-family: var(--font-ui);
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+.hint-zh { font-family: var(--font-zh); font-size: 12.5px; color: var(--ink-faint); }
+
+/* ---------------- speak buttons ---------------- */
+
+.say {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  padding: 2px 4px;
+  margin-left: 4px;
+  opacity: .5;
+  transition: opacity .12s;
+}
+.say:hover { opacity: 1; }
+.say-quiet { font-size: 13px; opacity: .3; }
+.say-quiet:hover { opacity: .9; }
+
+/* ---------------- formula ---------------- */
+
+.formula {
+  margin: 16px 0;
+  padding: 16px 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold-line);
+  border-radius: 0 12px 12px 0;
+}
+
+.f-head { margin: 0 0 8px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.f-n {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  color: var(--gold);
+  background: var(--gold-soft);
+  border-radius: 20px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+.f-pattern {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: -.01em;
+}
+
+.f-rule .en { font-size: 15.5px; color: var(--ink-soft); }
+
+.reveal {
+  margin-top: 10px;
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  color: var(--navy);
+  background: transparent;
+  border: 1px solid var(--navy-line);
+  border-radius: 20px;
+  padding: 4px 12px;
+  cursor: pointer;
+}
+.reveal:hover { background: var(--navy-soft); }
+
+.f-egs { list-style: none; margin: 12px 0 0; padding: 0; }
+.f-egs li {
+  padding: 8px 0;
+  border-top: 1px dotted var(--line);
+  font-size: 16px;
+}
+
+/* ---------------- tables ---------------- */
+
+.table-wrap { margin: 20px 0; overflow-x: auto; }
+
+.table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 15.5px;
+}
+
+.table-wrap th {
+  text-align: left;
+  padding: 9px 14px;
+  background: var(--navy-soft);
+  border-bottom: 1px solid var(--navy-line);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.table-wrap th .zh {
+  font-size: 11.5px;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--navy);
+  opacity: .75;
+}
+
+.table-wrap td {
+  padding: 9px 14px;
+  border-top: 1px solid var(--line);
+  vertical-align: top;
+}
+.table-wrap tbody tr:first-child td { border-top: none; }
+.table-wrap tbody tr[data-zh]:hover { background: var(--navy-soft); }
+.table-wrap td .en { display: block; }
+
+/* A phrase table is a self-test: the meaning column stays covered until the
+   row is tapped, and shows as a rule until then. */
+.td-zh { min-width: 7rem; }
+.td-zh::after {
+  content: "";
+  display: block;
+  width: 4.5rem;
+  border-bottom: 1px solid var(--rule);
+  margin-top: .7em;
+}
+tr.open .td-zh::after,
+body.zh-all .td-zh::after { display: none; }
+
+.t-family table { font-family: var(--font-ui); font-size: 14.5px; }
+.t-family td { white-space: nowrap; }
+
+/* ---------------- example sentences ---------------- */
+
+.egs { margin: 20px 0; }
+.egs ol { margin: 0; padding-left: 1.6rem; }
+.egs li { margin: 10px 0; font-size: 17px; }
+.egs li::marker { font-family: var(--font-ui); font-size: 13px; color: var(--ink-faint); }
+
+/* ---------------- collocation chips ---------------- */
+
+.phrases { margin: 22px 0; }
+
+.chip-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  align-items: start;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+}
+
+.pchip {
+  padding: 9px 13px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+}
+.pchip:hover { border-color: var(--navy-line); }
+.pchip .en { font-size: 16px; }
+.pchip .zh { font-size: 13px; }
+
+/* ---------------- contrast ---------------- */
+
+.contrast ul { list-style: none; margin: 0; padding: 0; }
+.contrast li {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px dotted var(--line);
+}
+.contrast li:first-child { border-top: none; }
+.contrast .side { padding: 8px 12px; background: var(--card); border: 1px solid var(--line); border-radius: 9px; }
+.contrast .side .en { font-size: 16px; }
+.contrast .vs { color: var(--ink-faint); font-size: 15px; }
+
+@media (max-width: 560px) {
+  .contrast li { grid-template-columns: 1fr; }
+  .contrast .vs { display: none; }
+}
+
+/* ---------------- note ---------------- */
+
+.note {
+  margin: 20px 0;
+  padding: 16px 20px;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-line);
+  border-radius: 12px;
+}
+.note h4 {
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold);
+}
+.note h4 .zh { font-size: 12.5px; font-weight: 400; margin-top: 1px; }
+.note .en { font-size: 16px; }
+
+.ex {
+  margin: 10px 0 0;
+  padding: 7px 12px 7px 30px;
+  background: rgba(255, 255, 255, .7);
+  border-radius: 8px;
+  font-size: 15.5px;
+  position: relative;
+}
+.ex::before {
+  position: absolute;
+  left: 11px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+}
+.ex-good { color: var(--good); }
+.ex-good::before { content: "✓"; }
+.ex-bad { color: var(--bad); text-decoration: line-through; text-decoration-color: rgba(166, 64, 47, .35); }
+.ex-bad::before { content: "✕"; text-decoration: none; }
+
+/* ---------------- steps ---------------- */
+
+.steps { margin: 20px 0; }
+.steps ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: s;
+}
+.steps li {
+  counter-increment: s;
+  position: relative;
+  padding: 9px 0 9px 2.4rem;
+  border-top: 1px dotted var(--line);
+  font-size: 16.5px;
+}
+.steps li:first-child { border-top: none; }
+.steps li::before {
+  content: counter(s);
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 1.6rem;
+  height: 1.6rem;
+  line-height: 1.55rem;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--navy-soft);
+  border-radius: 50%;
+}
+.steps .zh { font-size: 13.5px; }
+
+/* ---------------- questions ---------------- */
+
+.activity { margin: 26px 0; }
+
+.q {
+  padding: 14px 0;
+  border-top: 1px dotted var(--line);
+}
+.q:first-of-type { border-top: none; }
+
+.q-line {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  margin: 0 0 10px;
+  font-size: 17px;
+  line-height: 1.6;
+}
+.q-n {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+  min-width: 1.1rem;
+}
+.q-text { flex: 1; }
+
+/* The blank. It is drawn rather than typed into, and the answer lands in it. */
+.slot {
+  display: inline-block;
+  min-width: 6.5rem;
+  padding: 0 .35em;
+  border-bottom: 1.5px solid var(--rule);
+  text-align: center;
+  font-weight: 600;
+  color: var(--navy);
+  vertical-align: baseline;
+}
+.q.solved .slot { border-bottom-color: var(--good-line); color: var(--good); }
+
+/* Four options in a 2 × 2 block. An even grid reads faster than a ragged one,
+   and the four never end up as three and a stray. */
+.opts {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 1.9rem;
+  display: grid;
+  gap: 7px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 520px) {
+  .opts { grid-template-columns: 1fr; }
+}
+
+.opt {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-en);
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: border-color .12s, background .12s, opacity .12s;
+}
+.opt:hover { border-color: var(--navy-line); background: var(--navy-soft); }
+
+.lab {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-faint);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+.opt.out {
+  opacity: .4;
+  background: var(--paper);
+  cursor: default;
+}
+.opt.out:hover { border-color: var(--line); background: var(--paper); }
+
+.opt.right {
+  background: var(--good-soft);
+  border-color: var(--good-line);
+  color: var(--good);
+  font-weight: 600;
+}
+.opt.right .lab { color: var(--good); border-color: var(--good-line); }
+.q.solved .opt { cursor: default; }
+.q.solved .opt:not(.right):not(.out) { opacity: .55; }
+
+/* The explanation is written for after the answer, so it waits. */
+.why {
+  display: none;
+  margin: 10px 0 0 1.9rem;
+  padding: 9px 14px;
+  background: var(--good-soft);
+  border-left: 3px solid var(--good-line);
+  border-radius: 0 8px 8px 0;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+.q.solved .why { display: block; }
+.why .zh { font-size: 13.5px; margin-top: 3px; }
+
+.tally {
+  margin: 14px 0 0;
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+.tally .done { font-weight: 700; color: var(--ink-soft); }
+.all-done .tally .done { color: var(--good); }
+.pace {
+  font-family: var(--font-zh);
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 1px solid var(--line);
+}
+
+@keyframes nope {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
+.no { animation: nope .38s ease; }
+
+/* ---------------- Part 6 ---------------- */
+
+.letter {
+  margin: 0 0 18px;
+  padding: 18px 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.kind {
+  margin: 0 0 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-faint);
+}
+.kind .zh { font-size: 11.5px; font-weight: 400; }
+
+.passage p { margin: 0 0 .9em; font-size: 17px; line-height: 1.75; }
+.passage p:last-child { margin-bottom: 0; }
+
+.b6 { white-space: nowrap; }
+.b6-long { white-space: normal; }
+.b6-n {
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--navy);
+  background: var(--navy-soft);
+  border-radius: 4px;
+  padding: 1px 4px;
+  vertical-align: 2px;
+  margin-right: 3px;
+}
+.b6 .slot { min-width: 5.5rem; }
+.b6-long .slot { min-width: 12rem; white-space: normal; }
+.b6.filled .slot { border-bottom-color: transparent; }
+.b6.filled .b6-n { opacity: .45; }
+
+.q6-qs { list-style: none; margin: 0; padding: 0; counter-reset: b; }
+.q6-qs .q { counter-increment: b; }
+.q6-qs .opts { padding-left: 1.9rem; }
+.q6-qs .q::before {
+  content: counter(b);
+  float: left;
+  width: 1.1rem;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-faint);
+  padding-top: 10px;
+}
+
+.q-kind {
+  margin: 0 0 8px 1.9rem;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+/* A whole-sentence option needs a row of its own to stay readable. */
+.q-long .opts { grid-template-columns: 1fr; }
+.q-long .opt { font-size: 15.5px; }
+
+/* ---------------- formula cards ---------------- */
+
+/* align-items: start, so opening one card does not inflate the closed one
+   sitting beside it into a large empty box. */
+.fcards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  align-items: start;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+}
+
+.fcard {
+  padding: 12px 15px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  cursor: pointer;
+  transition: border-color .12s, box-shadow .12s;
+}
+.fcard:hover { border-color: var(--gold-line); box-shadow: 0 2px 10px rgba(28, 36, 48, .06); }
+
+.fcard-head { display: flex; align-items: baseline; gap: 9px; margin: 0; }
+.fcard-n {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  background: var(--gold-soft);
+  border-radius: 5px;
+  padding: 2px 6px;
+  font-variant-numeric: tabular-nums;
+}
+.fcard-head code {
+  font-family: var(--font-mono);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.4;
+}
+
+.fcard-back { display: none; margin-top: 10px; padding-top: 10px; border-top: 1px dotted var(--line); }
+.fcard.open .fcard-back { display: block; }
+.fcard-eg { margin: 0; font-size: 15.5px; color: var(--ink); }
+.fcard-zh { margin: 3px 0 0; font-family: var(--font-zh); font-size: 13px; color: var(--ink-soft); }
+.fcard-to {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--navy);
+  text-decoration: none;
+}
+.fcard-to:hover { text-decoration: underline; }
+
+/* ---------------- tiers ---------------- */
+
+.tiers { margin: 22px 0; }
+.tiers-lead { margin-bottom: 14px; }
+.tiers-lead .en { font-size: 16.5px; color: var(--ink-soft); }
+
+.tier {
+  margin: 12px 0;
+  padding: 14px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+}
+.tier-head {
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+}
+.tier-head .zh { font-size: 12px; font-weight: 400; color: var(--ink-faint); }
+
+.tier ol { margin: 0; padding-left: 1.4rem; }
+.tier li { margin: 5px 0; font-size: 16px; }
+.tier li::marker { font-family: var(--font-ui); font-size: 12.5px; color: var(--ink-faint); }
+.tier li a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--navy-line); }
+.tier li a:hover { color: var(--navy); background: var(--navy-soft); }
+.tier li .zh { font-size: 13px; }
+
+/* ---------------- teacher panel ---------------- */
+
+.panel {
+  position: fixed;
+  top: calc(var(--bar-h) + 8px);
+  right: 12px;
+  z-index: 35;
+  width: min(22rem, calc(100vw - 24px));
+  max-height: calc(100vh - var(--bar-h) - 24px);
+  overflow-y: auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(28, 36, 48, .18);
+  padding: 16px 18px 20px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+}
+
+.panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.panel-head h2 { margin: 0 0 6px; font-family: var(--font-ui); font-size: 15px; }
+.panel-head h2 span { font-family: var(--font-zh); font-size: 12px; font-weight: 400; color: var(--ink-faint); margin-left: 6px; }
+.panel-x { border: none; background: transparent; font-size: 15px; color: var(--ink-faint); cursor: pointer; padding: 2px 4px; }
+
+.panel .row { padding: 12px 0; border-top: 1px solid var(--line); }
+.panel .row label { display: block; font-size: 12px; font-weight: 600; color: var(--ink-soft); margin-bottom: 5px; }
+.panel select { width: 100%; font-family: var(--font-ui); font-size: 13px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); }
+.row-note { margin: 6px 0 0; font-size: 11.5px; line-height: 1.45; color: var(--ink-faint); }
+
+.row-check { display: flex; align-items: center; gap: 9px; padding: 6px 0 12px; cursor: pointer; }
+.row-check span { font-size: 13.5px; }
+.row-check em { font-family: var(--font-zh); font-style: normal; font-size: 12px; color: var(--ink-faint); margin-left: 6px; }
+
+.panel-btn {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: #fff;
+  background: var(--navy);
+  border: 1px solid var(--navy);
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.panel-btn:hover { filter: brightness(1.12); }
+.panel-btn-quiet { color: var(--ink-soft); background: transparent; border-color: var(--line); }
+.panel-btn-quiet:hover { background: var(--paper); filter: none; }
+
+.panel-clock {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--navy);
+  margin-left: 6px;
+}
+
+/* ---------------- print ----------------
+
+   The handout: every answer filled, every explanation open, and everything
+   that needs a mouse gone. */
+
+@media print {
+  .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .reveal, .tally, .hint,
+  .fcard-to { display: none !important; }
+  body { font-size: 11pt; background: #fff; }
+  .shell { display: block; padding: 0; }
+  main { max-width: none; }
+  .zh, .f-egs, .fcard-back, .why { display: block !important; }
+  .td-zh::after { display: none; }
+  .step { break-before: page; padding-top: 0; }
+  .fcards, .chip-list { grid-template-columns: repeat(2, 1fr); }
+  .q, .fcard, .pchip, .note, .formula, .goals, .letter, .tier,
+  .table-wrap { break-inside: avoid; }
+  .opts { display: flex; flex-wrap: wrap; gap: 6px; }
+  .opt.out, .q.solved .opt:not(.right) { opacity: 1; }
+  .slot { min-width: 8rem; }
+}

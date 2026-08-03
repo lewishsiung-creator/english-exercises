@@ -1,10 +1,11 @@
 # English Exercises
 
 English teaching material, built for classroom, homework and one-to-one use.
-Four independent pages live here — a game for young learners at the site
+Five independent pages live here — a game for young learners at the site
 root, a bilingual business worksheet at `/business-clarity/`, an interactive
-lesson for working adults at `/wealth-habits/`, and reading-aloud practice
-built on a bilingual speech at `/campaign-speech/`.
+lesson for working adults at `/wealth-habits/`, reading-aloud practice
+built on a bilingual speech at `/campaign-speech/`, and TOEIC grammar
+practice at `/toeic-grammar/`.
 
 ## Word Play — CEFR A1, ages 7–10
 
@@ -144,6 +145,48 @@ The two jobs the page does are a switch in the top bar:
 - **Print** gives a handout: both languages open, the machinery gone, line
   numbers kept for marking up.
 
+## TOEIC Part 5 & 6 Grammar — adult, exam preparation
+
+The fifteen grammar points most often tested in Parts 5 and 6, and the fifteen
+patterns worth memorising, built from two handouts into one page. Seventeen
+sections: fifteen topics from word forms to conditionals, then all fifteen
+formulas gathered for revision, then what to study first.
+
+Everything the handouts state is here. What they did not contain is the
+practice, so their example sentences have been turned into 79 Part 5 items and
+their three model paragraphs into 3 Part 6 passages — 91 questions in all, each
+with a bilingual explanation.
+
+| Activity | Skill |
+| --- | --- |
+| 📝 Part 5 | One blank, four options — the real question format |
+| 📄 Part 6 | A business text with four blanks, one of them a whole sentence |
+| 🧮 Formula cards | The pattern face up, an example behind a tap |
+| 📊 Reference tables | Word families, time clues, fixed phrases |
+| 🔀 Contrast pairs | `an interesting presentation` against `interested employees` |
+| ⏱ Timer | Because Part 5 is a test of pace |
+
+### Design notes
+
+- **The questions look like the test.** Four options lettered A to D, and in
+  Part 6 the questions sit under the passage as they do on the paper. Answering
+  a Part 6 blank writes into the passage above it, so the text fills in as the
+  set is worked through — including the inserted sentence.
+- **A wrong option dims and stays put.** Only the right one fills the blank,
+  and filling it opens the explanation in both languages. Nothing is lost by
+  guessing, which is the point: the explanation is the lesson.
+- **Nothing is scored.** A set counts how many blanks are filled and prints
+  what it should cost at twenty seconds a question. That, and the clock, are
+  the only numbers on the page.
+- **English leads, Chinese waits**, as in the other adult pages. The phrase
+  tables go further: the meaning column is covered by a drawn rule until the
+  row is tapped, so the table doubles as a self-test.
+- **Each formula sits inside the topic it belongs to**, and all fifteen are
+  gathered again in section 16 with a mixed drill — because mixed practice,
+  with no topic heading to help, is what the test actually asks for.
+- **Print** gives a handout: every answer filled, every explanation open, and
+  anything that needs a mouse gone.
+
 ## Layout
 
 ```
@@ -152,10 +195,11 @@ public/business-clarity/  the business worksheet
 public/wealth-habits/     the three-habits lesson
 public/wealth-habits/img/ its four photographs
 public/campaign-speech/   the speech reading practice
+public/toeic-grammar/     the TOEIC Part 5 & 6 practice
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
-All four are plain HTML, CSS and JS with no build step.
+All five are plain HTML, CSS and JS with no build step.
 
 ## Editing the content
 
@@ -203,6 +247,22 @@ in each section and come from the renderer, so inserting a sentence needs no
 renumbering. Any other bilingual text works here unchanged — swap the content
 file and the page is reading practice for that instead.
 
+**TOEIC Grammar.** The page lives in
+[`public/toeic-grammar/content.js`](public/toeic-grammar/content.js), one entry
+per section. The block types — lead, rule, formula, table, egs, chips,
+contrast, note, steps, q5, q6, cards, tiers — are listed in a comment at the
+top of the file, and each is one function in
+[`render.js`](public/toeic-grammar/render.js).
+
+A `q5` item marks its blank with `___`, gives four `options` and the index of
+the right one in `answer`; the `why` pair is what opens once the blank is
+filled. A `q6` `body` is an array read in order: a plain string is passage
+text (`\n\n` starts a new paragraph) and an object is a blank, with `long: true`
+marking the whole-sentence insertion item. Blanks are numbered by the renderer,
+so adding one needs no renumbering. A `table` takes bilingual `head` cells and
+either a parallel `rowsZh`, or `zhCol` naming a column that is Chinese in its
+own right and should therefore stay covered.
+
 ## Running it locally
 
 No build step and no dependencies:
@@ -213,8 +273,9 @@ python3 -m http.server -d public 8000
 
 Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/business-clarity/> for the business worksheet,
-<http://localhost:8000/wealth-habits/> for the three-habits lesson, or
-<http://localhost:8000/campaign-speech/> for the speech.
+<http://localhost:8000/wealth-habits/> for the three-habits lesson,
+<http://localhost:8000/campaign-speech/> for the speech, or
+<http://localhost:8000/toeic-grammar/> for the TOEIC practice.
 
 ## Live sites
 
