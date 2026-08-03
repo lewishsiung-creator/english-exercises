@@ -92,8 +92,17 @@ a summary written for the lesson, and then the language work.
 - The faint 👩‍🏫 button opens the teacher panel over the lesson (not a new
   screen): show all Chinese, reveal every answer at once for going over an
   exercise together, pick a voice, or reset for the next student.
+- **One photograph opens the lesson and each habit**, and no more. They are
+  illustration, not content, so they carry no lesson text and are dropped from
+  the print handout.
 - **Print** gives a handout: everything behind a tap is opened, and anything
   that needs a mouse is dropped.
+
+Photographs are from [Pexels](https://www.pexels.com/license/), whose licence
+allows commercial use and requires no attribution; the photographers — Lara
+Jameson, Polina Tankilevitch, Ron Lach and William Fortunato — are credited on
+the page anyway. Each file is stored at 1600×900 and cropped by CSS, so
+changing the framing is an `object-position` edit, not a re-export.
 
 ## Layout
 
@@ -101,6 +110,7 @@ a summary written for the lesson, and then the language work.
 public/                   Word Play — the site root
 public/business-clarity/  the business worksheet
 public/wealth-habits/     the three-habits lesson
+public/wealth-habits/img/ its four photographs
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
@@ -134,8 +144,10 @@ a comment at the top of the file, and each is one function in
 
 A gap sentence marks its blank with `___` and gives the index of the right
 option in `answer`; a phrase card wants an `eg` sentence, because that is what
-gets read aloud. To build a lesson from a different article, replace the
-content file — nothing in the renderer knows about this one.
+gets read aloud. A `photo` on the lesson or on any step adds a picture — give
+it a `src`, an `alt`, the photographer in `by`, and a `pos` if the default
+centre crop cuts the wrong thing. To build a lesson from a different article,
+replace the content file — nothing in the renderer knows about this one.
 
 ## Running it locally
 

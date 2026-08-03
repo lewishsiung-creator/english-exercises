@@ -43,6 +43,20 @@ function pair(en, zh, cls = '') {
     </div>`;
 }
 
+/* Photographs carry no lesson content, so they are decorative rather than
+   load-bearing: the alt text describes them for a screen reader and stops
+   there, and width/height are fixed so nothing jumps as they arrive. */
+function photo(p, cls = '') {
+  if (!p) return '';
+  return `
+    <figure class="photo ${cls}">
+      <img src="${text(p.src)}" alt="${text(p.alt)}" width="1600" height="900"
+           loading="lazy" decoding="async"
+           style="object-position:${text(p.pos || '50% 50%')}">
+      <figcaption>${text(p.by)} · Pexels</figcaption>
+    </figure>`;
+}
+
 function speakBtn(sentence, cls = 'say') {
   return `<button class="${cls}" data-say="${text(sentence)}" title="Listen"
     aria-label="Listen">🔊</button>`;
@@ -268,6 +282,7 @@ function buildCover() {
       <h1><span class="en">${text(LESSON.title)}</span>
         <button class="zh-chip" title="顯示中文">中</button>
         <span class="zh">${text(LESSON.titleZh)}</span></h1>
+      ${photo(LESSON.photo, 'photo-hero')}
       ${pair(i.en, i.zh, 'cover-intro')}
       <div class="goals">
         ${pair(i.goalsEn, i.goalsZh, 'goals-intro')}
@@ -299,6 +314,7 @@ function buildStep(s) {
           <button class="zh-chip" title="顯示中文">中</button>
           <span class="zh">${text(s.zh)}</span></span>
       </h2>
+      ${photo(s.photo)}
       ${blocks}
     </section>`;
 }

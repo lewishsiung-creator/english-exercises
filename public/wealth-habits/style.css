@@ -262,13 +262,14 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 
 .cover { padding: 40px 0 10px; }
 
+/* Set for the Chinese kicker: the tracking that flatters small uppercase Latin
+   crowds Chinese glyphs, which need a size up and a little more air. */
 .kicker {
   margin: 0 0 14px;
-  font-family: var(--font-ui);
-  font-size: 11px;
+  font-family: var(--font-zh);
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: .12em;
-  text-transform: uppercase;
+  letter-spacing: .16em;
   color: var(--gold);
 }
 
@@ -298,6 +299,47 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   color: var(--ink-faint);
 }
 .source .zh { font-size: .95em; color: var(--ink-faint); margin-top: 2px; }
+
+/* ---------------- photographs ----------------
+
+   One picture opens the lesson and one opens each habit. They are illustration,
+   not content, so they stay quiet: a fixed 16:9 band the text column can sit
+   against, no shadow, and a hairline that matches every other card on the page.
+   Each file is 16:9 already; `object-position` (set per photo in content.js)
+   decides what survives the tighter crop on a narrow screen. */
+
+.photo { margin: 0 0 26px; }
+
+.photo img {
+  display: block;
+  width: 100%;
+  /* The width/height attributes reserve the space before the file arrives, but
+     they also set a used height — `auto` hands control back to aspect-ratio. */
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--navy-soft);   /* holds the space while the file loads */
+}
+
+.photo figcaption {
+  margin-top: 7px;
+  font-family: var(--font-ui);
+  font-size: .7rem;
+  letter-spacing: .02em;
+  color: var(--ink-faint);
+  text-align: right;
+}
+
+/* On the cover the picture sits between the title and the standfirst, and can
+   run a little shallower — the goals card below it is the thing to reach. */
+.photo-hero { margin: 0 0 24px; }
+.photo-hero img { aspect-ratio: 21 / 9; }
+
+@media (max-width: 620px) {
+  .photo img, .photo-hero img { aspect-ratio: 3 / 2; }
+}
 
 /* ---------------- steps ---------------- */
 
@@ -791,7 +833,10 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
    is opened, and anything that only works with a mouse is dropped. */
 
 @media print {
-  .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .reveal, .tally, .hint { display: none !important; }
+  /* Photographs are dropped: the handout is for the language, and a classroom
+     printer should not spend its toner on stock photography. */
+  .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .reveal, .tally, .hint,
+  .photo { display: none !important; }
   body { font-size: 11pt; background: #fff; }
   .shell { display: block; padding: 0; }
   main { max-width: none; }

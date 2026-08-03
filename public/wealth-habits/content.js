@@ -28,7 +28,18 @@
 const LESSON = {
   title: 'Three Habits That Build Wealth',
   titleZh: '累積財富的三個習慣',
-  kicker: '1-on-1 Business English · 一對一商業英文',
+  kicker: '國際商業期刊導讀',
+
+  /* Photographs are from Pexels, whose licence allows commercial use and asks
+     for no attribution; the photographers are credited anyway. `pos` is the
+     CSS object-position used when the 16:9 file is cropped further on narrow
+     screens — set it to whatever must stay in frame. */
+  photo: {
+    src: 'img/hero.jpg',
+    alt: 'A man climbing an outdoor staircase between office towers',
+    by: 'Lara Jameson',
+    pos: '50% 45%',
+  },
 
   source: {
     en: 'Adapted for class from “The Wealth-Building Secrets No One Talks About: Scott Galloway’s Three Highest-Return Habits”, HBR CC Book Digest, 23 July 2025.',
@@ -196,6 +207,12 @@ const LESSON = {
       n: 2,
       en: 'Habit One: Exercise More',
       zh: '習慣一：多運動',
+      photo: {
+        src: 'img/exercise.jpg',
+        alt: 'Two women power walking along a path in a city park',
+        by: 'Polina Tankilevitch',
+        pos: '50% 40%',
+      },
       blocks: [
         {
           t: 'lead',
@@ -398,6 +415,12 @@ const LESSON = {
       n: 3,
       en: 'Habit Two: Build a Kitchen Cabinet',
       zh: '習慣二：打造你的廚房內閣',
+      photo: {
+        src: 'img/cabinet.jpg',
+        alt: 'Four adults around a small table, one speaking while the others listen',
+        by: 'Ron Lach',
+        pos: '50% 40%',
+      },
       blocks: [
         {
           t: 'lead',
@@ -616,6 +639,12 @@ const LESSON = {
       n: 4,
       en: 'Habit Three: Learn to Talk About Money',
       zh: '習慣三：學會談論金錢',
+      photo: {
+        src: 'img/money.jpg',
+        alt: 'Two colleagues talking on a city street, holding takeaway coffee',
+        by: 'William Fortunato',
+        pos: '50% 45%',
+      },
       blocks: [
         {
           t: 'lead',
