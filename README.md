@@ -1,9 +1,10 @@
 # English Exercises
 
 English teaching material, built for classroom, homework and one-to-one use.
-Three independent pages live here — a game for young learners at the site
-root, a bilingual business worksheet at `/business-clarity/`, and an
-interactive lesson for working adults at `/wealth-habits/`.
+Four independent pages live here — a game for young learners at the site
+root, a bilingual business worksheet at `/business-clarity/`, an interactive
+lesson for working adults at `/wealth-habits/`, and reading-aloud practice
+built on a bilingual speech at `/campaign-speech/`.
 
 ## Word Play — CEFR A1, ages 7–10
 
@@ -104,6 +105,45 @@ Jameson, Polina Tankilevitch, Ron Lach and William Fortunato — are credited on
 the page anyway. Each file is stored at 1600×900 and cropped by CSS, so
 changing the framing is an `object-position` edit, not a re-export.
 
+## A Five-Minute Campaign Speech — adult, reading aloud
+
+Reading practice built on a bilingual speech: the candidate's own five-minute
+address for the 52nd President of JCI Great Harbor, 62 sentences long. The text
+is reproduced as written — this page is practice, not an edit of his words.
+
+The two jobs the page does are a switch in the top bar:
+
+| Mode | What the learner does |
+| --- | --- |
+| 讀 Read | English leads. Read each line aloud, tap 🔊 to compare, 中 if the Chinese is needed |
+| 記 Recall | Chinese leads. Say the English before tapping EN to check it |
+
+### Design notes
+
+- **The line is the unit.** Every sentence is its own numbered row, sized for
+  reading aloud at arm's length rather than skimming, so "line 4" means
+  something and nobody loses their place mid-paragraph. Seventeen lines worth
+  memorising — the slogans and the one-sentence arguments — carry a gold rule.
+- **Switching mode never rebuilds the page.** Both languages are always in the
+  DOM and CSS decides which leads, so a switch mid-section keeps your place and
+  costs nothing.
+- **▶ Read this section** speaks a whole section one sentence at a time,
+  highlighting each line and scrolling it to the middle, so the learner can
+  shadow it. In 記 Recall it also opens each line as it reaches it, which turns
+  the play-through into the answer key. A watchdog moves the run along if the
+  browser never reports that a sentence finished — otherwise a machine with no
+  audio output strands it on line one.
+- **Words to watch.** Each section ends with the words most likely to trip up a
+  Mandarin speaker, given as a plain respelling (`ri-spon-suh-BIL-uh-tee`)
+  rather than IPA, because these are read off a shared screen mid-sentence.
+- **A clock, because it is a five-minute speech.** ⏱ in the bar counts up and
+  turns amber at five minutes. It is the only number on the page — nothing is
+  scored.
+- Headings, instructions and the contents list stay bilingual throughout; only
+  the speech lines ever hide a language.
+- **Print** gives a handout: both languages open, the machinery gone, line
+  numbers kept for marking up.
+
 ## Layout
 
 ```
@@ -111,10 +151,11 @@ public/                   Word Play — the site root
 public/business-clarity/  the business worksheet
 public/wealth-habits/     the three-habits lesson
 public/wealth-habits/img/ its four photographs
+public/campaign-speech/   the speech reading practice
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
-All three are plain HTML, CSS and JS with no build step.
+All four are plain HTML, CSS and JS with no build step.
 
 ## Editing the content
 
@@ -149,6 +190,19 @@ it a `src`, an `alt`, the photographer in `by`, and a `pos` if the default
 centre crop cuts the wrong thing. To build a lesson from a different article,
 replace the content file — nothing in the renderer knows about this one.
 
+**Campaign Speech.** The speech lives in
+[`public/campaign-speech/content.js`](public/campaign-speech/content.js), one
+entry per section. Every string is an `en`/`zh` pair. There are only three
+block types — `lines`, `subhead` and `say` — listed in a comment at the top of
+the file, and each is one function in
+[`render.js`](public/campaign-speech/render.js).
+
+A line takes `k: 1` if it is worth memorising. A `say` item wants the word, a
+respelling in `say`, and a short Chinese tip in `zh`. Line numbers restart at 1
+in each section and come from the renderer, so inserting a sentence needs no
+renumbering. Any other bilingual text works here unchanged — swap the content
+file and the page is reading practice for that instead.
+
 ## Running it locally
 
 No build step and no dependencies:
@@ -158,8 +212,9 @@ python3 -m http.server -d public 8000
 ```
 
 Then open <http://localhost:8000> for Word Play,
-<http://localhost:8000/business-clarity/> for the business worksheet, or
-<http://localhost:8000/wealth-habits/> for the three-habits lesson.
+<http://localhost:8000/business-clarity/> for the business worksheet,
+<http://localhost:8000/wealth-habits/> for the three-habits lesson, or
+<http://localhost:8000/campaign-speech/> for the speech.
 
 ## Live sites
 

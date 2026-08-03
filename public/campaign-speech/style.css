@@ -1,0 +1,651 @@
+/* A Five-Minute Campaign Speech — reading practice for adults.
+
+   A teacher drives this in a one-to-one session on a shared screen, and the
+   learner reads out loud from it. Design notes:
+
+   - The line is the unit. Every sentence of the speech is its own numbered
+     row, sized for reading aloud at arm's length rather than for skimming, so
+     "line 4" means something and nobody loses their place mid-paragraph.
+   - Which language leads is a mode, not a rebuild. Both are always in the DOM
+     and CSS decides; switching between 讀 Read and 記 Recall therefore never
+     moves the page or forgets what has been opened.
+   - Headings, instructions and the contents list stay bilingual throughout.
+     They are scaffolding, not the thing being practised — only the speech
+     lines themselves ever hide a language.
+   - Nothing is scored. The only number on the page is the clock, and it counts
+     up towards the five minutes the speech is allowed.
+   - Light theme only: it is read side by side in a lit room. */
+
+:root {
+  --paper: #f7f6f2;
+  --card: #ffffff;
+  --ink: #1c2430;
+  --ink-soft: #566171;
+  --ink-faint: #8b95a3;
+
+  --navy: #1d3f6e;
+  --navy-soft: #eaf0f8;
+  --navy-line: #c2d3e7;
+
+  --gold: #a1741a;
+  --gold-soft: #fbf1da;
+  --gold-line: #f2c14e;
+
+  --line: #e3e0d8;
+  --rule: #cdc8bc;
+
+  --font-en: "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, "Times New Roman", serif;
+  --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+
+  --bar-h: 54px;
+  --measure: 46rem;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 16px); }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-en);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---------------- the two languages ----------------
+
+   Chinese is set smaller and softer wherever it appears, because it is either
+   support for an English line or a label on something. Headings, instructions
+   and tips show both at all times; the rules that hide one of them are further
+   down, and apply only to `.line`. */
+
+.zh {
+  font-family: var(--font-zh);
+  font-size: 0.82em;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  letter-spacing: .01em;
+}
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus {
+  left: 12px; top: 12px; z-index: 40;
+  background: var(--card); padding: 10px 16px; border-radius: 8px;
+}
+
+:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+
+/* ---------------- top bar ---------------- */
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  background: rgba(247, 246, 242, .93);
+  backdrop-filter: saturate(1.6) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.bar-title {
+  flex: 1;
+  margin: 0;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bar-title span {
+  font-family: var(--font-zh);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-faint);
+  margin-left: 8px;
+}
+
+.bar-btn {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--navy);
+  background: transparent;
+  border: 1px solid var(--navy-line);
+  border-radius: 7px;
+  padding: 6px 11px;
+  cursor: pointer;
+}
+.bar-btn:hover { background: var(--navy-soft); }
+.bar-btn-quiet { color: var(--ink-soft); border-color: var(--line); font-size: 15px; padding: 4px 9px; }
+.bar-btn-zh { font-family: var(--font-zh); }
+.bar-btn-zh[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+/* In 記 Recall the Chinese is showing anyway, so the switch has nothing to
+   say and gets out of the way. */
+body.mode-recall #zhToggle { display: none; }
+
+/* The mode switch: the two things this page is for, side by side. */
+.modes { flex: none; display: flex; }
+
+.mode {
+  font-family: var(--font-zh);
+  font-size: 14px;
+  line-height: 1;
+  color: var(--ink-soft);
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 5px 10px 6px;
+  cursor: pointer;
+}
+.mode:first-child { border-radius: 7px 0 0 7px; }
+.mode:last-child { border-radius: 0 7px 7px 0; margin-left: -1px; }
+.mode em {
+  font-family: var(--font-ui);
+  font-style: normal;
+  font-size: 11px;
+  color: var(--ink-faint);
+  margin-left: 4px;
+}
+.mode:hover { background: var(--navy-soft); }
+.mode[aria-pressed="true"] {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+  font-weight: 600;
+  z-index: 1;
+}
+.mode[aria-pressed="true"] em { color: rgba(255, 255, 255, .7); }
+
+/* The clock. Wide enough for "10:00" so the bar does not shuffle every second
+   the digits change width. */
+#clock { min-width: 3.1rem; text-align: center; font-variant-numeric: tabular-nums; }
+#clock.running { color: var(--navy); border-color: var(--navy-line); font-weight: 600; }
+#clock.over { color: var(--gold); border-color: var(--gold-line); background: var(--gold-soft); }
+
+@media (min-width: 900px) { #navToggle { display: none; } }
+
+/* ---------------- shell + contents ---------------- */
+
+.shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (min-width: 900px) {
+  .shell { grid-template-columns: 15rem minmax(0, 1fr); gap: 44px; padding: 0 28px; }
+}
+
+.toc { font-family: var(--font-ui); }
+
+@media (min-width: 900px) {
+  .toc {
+    position: sticky;
+    top: var(--bar-h);
+    max-height: calc(100vh - var(--bar-h));
+    overflow-y: auto;
+    padding: 30px 0 40px;
+    scrollbar-width: thin;
+  }
+}
+
+.toc-head {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.toc ul { list-style: none; margin: 0; padding: 0; }
+
+.toc a {
+  display: grid;
+  grid-template-columns: 1.4rem 1fr;
+  gap: 8px;
+  padding: 8px 10px 8px 6px;
+  border-radius: 7px;
+  text-decoration: none;
+  color: var(--ink-soft);
+  border-left: 2px solid transparent;
+}
+.toc a:hover { background: var(--navy-soft); color: var(--ink); }
+.toc a .n {
+  font-family: var(--font-zh);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+  text-align: right;
+  padding-top: 3px;
+}
+.toc a .t .en { display: block; font-size: 13.5px; line-height: 1.35; }
+.toc a .t .zh { display: block; font-size: 11.5px; color: var(--ink-faint); }
+.toc a.here {
+  background: var(--navy-soft);
+  border-left-color: var(--navy);
+  color: var(--navy);
+}
+.toc a.here .n, .toc a.here .t .zh { color: var(--navy); }
+.toc a.here .t .en { font-weight: 600; }
+
+@media (max-width: 899px) {
+  #nav {
+    position: fixed;
+    top: var(--bar-h);
+    left: 0; right: 0;
+    z-index: 25;
+    max-height: min(70vh, 30rem);
+    overflow-y: auto;
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 24px rgba(28, 36, 48, .12);
+    padding: 14px 18px 18px;
+    display: none;
+  }
+  body.nav-open #nav { display: block; }
+  body.nav-open .nav-scrim {
+    display: block;
+    position: fixed;
+    inset: var(--bar-h) 0 0;
+    z-index: 20;
+    background: rgba(28, 36, 48, .25);
+  }
+}
+
+/* ---------------- cover ---------------- */
+
+main { max-width: var(--measure); padding-bottom: 6rem; }
+
+.cover { padding: 40px 0 10px; }
+
+/* Set for the Chinese kicker: the tracking that flatters small uppercase Latin
+   crowds Chinese glyphs, which need a size up and a little more air. */
+.kicker {
+  margin: 0 0 14px;
+  font-family: var(--font-zh);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  color: var(--gold);
+}
+
+.cover h1 { margin: 0 0 22px; font-size: 2.2rem; line-height: 1.18; font-weight: 600; }
+.cover h1 .en { display: block; }
+.cover h1 .zh { display: block; font-size: .95rem; font-weight: 400; margin-top: 8px; }
+
+.cover-intro { margin-bottom: 24px; }
+.cover-intro p { margin: 0; }
+.cover-intro .en { font-size: 1.04rem; }
+.cover-intro .zh { margin-top: 6px; }
+
+.goals {
+  padding: 20px 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.goals > .en { margin: 0; font-family: var(--font-ui); font-size: .88rem; color: var(--ink-soft); }
+.goals > .zh { margin: 3px 0 0; }
+.goals ul { margin: 12px 0 0; padding-left: 1.1rem; }
+.goals li { margin: 0 0 8px; font-size: .98rem; }
+.goals li .zh { display: block; font-size: .8rem; margin-top: 2px; }
+
+.source {
+  margin: 22px 0 0;
+  font-family: var(--font-ui);
+  font-size: .76rem;
+  line-height: 1.6;
+  color: var(--ink-faint);
+}
+.source .zh { display: block; font-size: .95em; color: var(--ink-faint); margin-top: 2px; }
+
+/* ---------------- sections ---------------- */
+
+.section { padding-top: 46px; }
+
+.section-head {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  gap: 14px;
+  align-items: start;
+  margin: 0 0 16px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--gold-line);
+  font-size: 1.55rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.section-head .n {
+  font-family: var(--font-zh);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--navy);
+  border-radius: 8px;
+  text-align: center;
+  padding: 4px 0;
+  margin-top: 5px;
+}
+.section-head .titles .en { display: block; }
+.section-head .titles .zh { display: block; font-size: .95rem; font-weight: 400; margin-top: 4px; }
+
+/* Play the whole section through, one sentence at a time, so the learner can
+   shadow it rather than stopping after every line. */
+.play {
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  letter-spacing: .02em;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px dashed var(--rule);
+  border-radius: 7px;
+  padding: 6px 12px;
+  margin-bottom: 22px;
+  cursor: pointer;
+}
+.play:hover { color: var(--navy); border-color: var(--navy-line); }
+.play em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  color: var(--ink-faint);
+  margin-left: 6px;
+}
+.play .lb-stop { display: none; }
+.play.on {
+  color: var(--navy);
+  border-style: solid;
+  border-color: var(--navy);
+  background: var(--navy-soft);
+  font-weight: 600;
+}
+.play.on .lb-play { display: none; }
+.play.on .lb-stop { display: inline; }
+.play.on em { color: var(--navy); }
+
+.subhead {
+  margin: 34px 0 16px;
+  font-size: 1.12rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--navy);
+}
+.subhead .en { display: inline; }
+.subhead .zh { display: block; font-size: .82rem; font-weight: 400; margin-top: 3px; }
+
+/* ---------------- the speech, line by line ---------------- */
+
+.lines { list-style: none; margin: 0; padding: 0; }
+
+.line {
+  display: grid;
+  grid-template-columns: 1.8rem minmax(0, 1fr) auto;
+  gap: 4px 12px;
+  align-items: start;
+  padding: 13px 14px 13px 8px;
+  margin-bottom: 8px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color .12s, background .12s;
+}
+.line:hover { border-color: var(--navy-line); }
+
+.line-n {
+  font-family: var(--font-ui);
+  font-size: .72rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+  text-align: right;
+  padding-top: .45rem;
+}
+
+/* A flex column so 記 Recall can put the Chinese above the English it is
+   prompting for, without either mode needing its own markup. */
+.line-body { display: flex; flex-direction: column; }
+.line-body p { margin: 0; }
+/* Set a size up from body copy: this is the text being spoken aloud, and the
+   reader's eye has to find the start of the next line without hunting. */
+.line-body .en { font-size: 1.16rem; line-height: 1.55; text-wrap: pretty; }
+.line-body .zh { margin-top: 6px; }
+
+.line-btns { display: flex; gap: 4px; align-items: center; padding-top: .2rem; }
+
+/* A line worth memorising — the slogans and the one-sentence arguments. */
+.line.key { border-left-color: var(--gold-line); background: #fffdf7; }
+.line.key .en { font-weight: 600; }
+
+/* The line currently being spoken by ▶. */
+.line.now { border-color: var(--navy); border-left-color: var(--navy); background: var(--navy-soft); }
+
+/* ---------------- which language leads ----------------
+
+   讀 Read: English on show, Chinese one tap away.
+   記 Recall: Chinese on show, English behind a dashed rule until asked for. */
+
+.line .zh { display: none; }
+.line.open .zh,
+body.zh-all .line .zh { display: block; }
+
+body.mode-recall .line .zh { display: block; }
+body.mode-recall .line .en { display: none; }
+body.mode-recall .line.open .en { display: block; }
+
+/* Something has to sit where the English will go, or a closed line in Recall
+   reads as a Chinese sentence with nothing missing. */
+body.mode-recall .line:not(.open) .line-body::after {
+  content: "";
+  order: 3;
+  display: block;
+  margin-top: 10px;
+  border-bottom: 1px dashed var(--rule);
+}
+
+/* The Chinese is the prompt and the English is the answer, so the answer has
+   to arrive underneath it rather than above. */
+body.mode-recall .line-body .zh { order: 1; margin-top: 0; }
+body.mode-recall .line-body .en { order: 2; }
+
+/* Chinese-first is a different reading job, so the sizes swap with it. */
+body.mode-recall .line .zh { font-size: 1.02rem; color: var(--ink); }
+body.mode-recall .line .en { font-size: 1.05rem; color: var(--ink-soft); margin-top: 10px; }
+
+.say, .peek {
+  font-size: .78rem;
+  line-height: 1;
+  padding: 5px 6px;
+  color: var(--ink-faint);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color .12s, border-color .12s, background .12s, opacity .12s;
+}
+.say { opacity: .55; }
+.say:hover { opacity: 1; border-color: var(--navy-line); }
+.say-quiet { border-color: transparent; }
+
+.peek { font-family: var(--font-zh); font-size: 11px; padding: 4px 6px; }
+.peek:hover { color: var(--navy); border-color: var(--navy-line); background: var(--navy-soft); }
+.line.open .peek { opacity: .35; }
+
+.lb-recall { display: none; }
+body.mode-recall .lb-read { display: none; }
+body.mode-recall .lb-recall { display: inline; font-family: var(--font-ui); }
+/* With everything already showing, the per-line chip is just clutter. */
+body:not(.mode-recall).zh-all .peek { display: none; }
+
+/* ---------------- words to watch ---------------- */
+
+.label {
+  margin: 34px 0 12px;
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.label .en { display: inline; }
+.label .zh {
+  display: block;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: .82rem;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+.words {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 10px;
+  align-items: start;
+}
+
+.word {
+  padding: 12px 14px;
+  background: var(--gold-soft);
+  border: 1px solid #ecdcb4;
+  border-radius: 10px;
+}
+.word p { margin: 0; }
+.word-w { font-size: 1rem; font-weight: 600; }
+/* The respelling is the point of the card, so it gets the monospace treatment
+   that stops CAPS being read as shouting. */
+.word-say {
+  margin-top: 4px !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .82rem;
+  letter-spacing: .01em;
+  color: var(--gold);
+}
+.word-zh {
+  margin-top: 6px !important;
+  font-family: var(--font-zh);
+  font-size: .8rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* ---------------- teacher panel ---------------- */
+
+.panel {
+  position: fixed;
+  z-index: 40;
+  top: calc(var(--bar-h) + 8px);
+  right: 14px;
+  width: min(22rem, calc(100vw - 28px));
+  max-height: calc(100vh - var(--bar-h) - 24px);
+  overflow-y: auto;
+  padding: 18px 20px 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(28, 36, 48, .18);
+  font-family: var(--font-ui);
+}
+.panel[hidden] { display: none; }
+
+.panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.panel-head h2 { margin: 0 0 4px; font-family: var(--font-ui); font-size: .95rem; }
+.panel-head h2 span { font-family: var(--font-zh); font-size: .8rem; font-weight: 400; color: var(--ink-faint); margin-left: 6px; }
+.panel-x { background: transparent; border: 0; color: var(--ink-faint); font-size: 15px; cursor: pointer; padding: 2px 4px; }
+
+.panel .row { margin-top: 18px; }
+.panel label { display: block; font-size: .78rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 6px; }
+.row-check { display: flex; align-items: center; gap: 9px; cursor: pointer; margin-top: 16px; }
+.row-check span { font-size: .88rem; font-weight: 600; color: var(--ink); }
+.row-check em { font-family: var(--font-zh); font-style: normal; font-weight: 400; font-size: .8rem; color: var(--ink-faint); margin-left: 5px; }
+.row-check input { width: 17px; height: 17px; accent-color: var(--navy); }
+
+.panel-clock {
+  float: right;
+  font-size: .95rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--navy);
+}
+.panel-clock.over { color: var(--gold); }
+
+.panel select {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: .85rem;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.panel-btn {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: .87rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--navy);
+  border: 1px solid var(--navy);
+  border-radius: 8px;
+  padding: 9px 12px;
+  cursor: pointer;
+}
+.panel-btn:hover { filter: brightness(1.12); }
+.panel-btn-quiet { color: var(--ink-soft); background: var(--paper); border-color: var(--line); }
+.panel-btn-quiet:hover { filter: none; border-color: var(--rule); }
+
+.row-note { margin: 7px 0 0; font-size: .74rem; line-height: 1.5; color: var(--ink-faint); }
+
+/* ---------------- small screens ---------------- */
+
+@media (max-width: 760px) {
+  /* The title is the first thing to go: the mode switch is the control that
+     has to survive, and the tab already says what page this is. */
+  .bar-title { display: none; }
+}
+
+@media (max-width: 620px) {
+  body { font-size: 17px; }
+  .bar { gap: 6px; padding: 0 10px; }
+  .mode em { display: none; }
+  .cover h1 { font-size: 1.75rem; }
+  .section-head { font-size: 1.3rem; grid-template-columns: 2rem 1fr; gap: 10px; }
+  .line { grid-template-columns: 1.4rem minmax(0, 1fr) auto; padding: 12px 10px 12px 6px; gap: 4px 8px; }
+  .line-body .en { font-size: 1.08rem; }
+  .line-btns { flex-direction: column; }
+}
+
+/* ---------------- print ----------------
+
+   A handout: the speech with both languages open and none of the machinery.
+   Line numbers survive, because the point of printing this is to mark it up. */
+
+@media print {
+  .bar, #nav, .nav-scrim, .panel, .say, .peek, .play { display: none !important; }
+  body { font-size: 11pt; background: #fff; }
+  .shell { display: block; padding: 0; }
+  main { max-width: none; }
+  .line .en, .line .zh { display: block !important; font-size: 1em !important; color: #000 !important; }
+  .line { break-inside: avoid; margin-bottom: 4pt; padding: 6pt 8pt; }
+  .line-body::after { display: none !important; }
+  .section { break-before: page; padding-top: 0; }
+  .word, .goals { break-inside: avoid; }
+  .words { grid-template-columns: repeat(3, 1fr); }
+}
