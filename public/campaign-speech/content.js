@@ -56,7 +56,7 @@ const SPEECH = {
               zh: '大會主席、各位前會長、各位巨港家人、各位貴賓，大家晚安。',
             },
             {
-              en: 'I am Chen Jianhong, a candidate for the 52nd President of JCI The Port.',
+              en: 'I am James Chen, a candidate for the 52nd President of JCI The Port.',
               zh: '我是第52屆理事長候選人陳建宏。',
             },
             {
@@ -439,7 +439,7 @@ const SPEECH = {
               zh: '讓更多社會角落因巨港而變得更美好。',
             },
             {
-              en: 'I am Chen Jianhong, a candidate for the 52nd President of JCI The Port.',
+              en: 'I am James Chen, a candidate for the 52nd President of JCI The Port.',
               zh: '我是第52屆理事長候選人陳建宏。',
             },
             {
