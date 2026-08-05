@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>自然發音學習手冊 — Phonics Handbook</title>
+<meta name="description" content="給中高年級學生的英語自然發音互動手冊：聲音總表、單字檢測、音節切分、字首字尾。每個英文字都念給你聽。">
+
+<!-- Inline SVG mark: a word with a syllable cut in it. The colours must be
+     percent-encoded — a bare "#" would be read as the URL fragment. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2322a06b'/%3E%3Ctext x='32' y='45' font-family='Helvetica,Arial,sans-serif' font-size='30' font-weight='bold' text-anchor='middle' fill='%23ffffff'%3Ea%C2%B7b%3C/text%3E%3C/svg%3E">
+<meta name="apple-mobile-web-app-title" content="發音手冊">
+<meta name="theme-color" content="#fff8ef">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#doc">跳到內容</a>
+
+<header class="bar">
+  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
+    <span aria-hidden="true">☰</span> 目錄
+  </button>
+
+  <p class="bar-title">自然發音學習手冊 <span>Phonics Handbook</span></p>
+
+  <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
+          aria-controls="panel" title="教師面板" aria-label="教師面板">👩‍🏫</button>
+  <button class="bar-btn" id="soundBtn" aria-label="關掉聲音" aria-pressed="true">🔊</button>
+</header>
+
+<div class="shell">
+  <nav id="nav" aria-label="目錄"></nav>
+  <main id="doc"></main>
+</div>
+
+<div class="nav-scrim" hidden></div>
+
+<!-- Teacher panel. Opens over the page rather than replacing it, so a lesson
+     in progress is never lost. -->
+<div class="panel" id="panel" role="dialog" aria-label="教師面板" hidden>
+  <div class="panel-head">
+    <h2>教師面板</h2>
+    <button class="panel-x" id="panelClose" aria-label="關閉">✕</button>
+  </div>
+
+  <label class="row row-check">
+    <input type="checkbox" id="markMode">
+    <span>檢測模式
+      <em>學生朗讀時打開。點單字不會發出聲音，只會做記號——先聽到答案，檢測就不準了。再點一下可以取消記號。</em>
+    </span>
+  </label>
+
+  <div class="row">
+    <label>需要加強的字</label>
+    <p class="muted" id="markEmpty">還沒有記號。</p>
+    <ul class="mark-list" id="markList"></ul>
+    <p class="row-note">記號會留在這台裝置上，下次上課還在。點單字可以再聽一次。</p>
+    <button class="panel-btn panel-btn-quiet" id="markClear">清除全部記號</button>
+  </div>
+
+  <div class="row">
+    <button class="panel-btn" id="showAll">把答案全部打開</button>
+    <p class="row-note">切開所有的字、打開所有的拆解——一起對答案用。</p>
+  </div>
+
+  <div class="row">
+    <label for="voicePick">英語語音</label>
+    <select id="voicePick"></select>
+    <p class="row-note">選一個就會念一句試聽。瀏覽器的語音念不出單獨的音，所以點
+      sh 這類聲音時，念的是接近的近似音——底下的例字才是可靠的示範。</p>
+  </div>
+
+  <div class="row">
+    <label for="rate">速度</label>
+    <select id="rate">
+      <option value="0.7">慢</option>
+      <option value="0.85">正常</option>
+      <option value="1">快</option>
+    </select>
+  </div>
+</div>
+
+<script src="content.js"></script>
+<script src="render.js"></script>
+</body>
+</html>

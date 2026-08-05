@@ -1,0 +1,817 @@
+/* 自然發音學習手冊 — Phonics Handbook, 中高年級.
+   Shares Sound Lab's warm palette and chunky-button language so the two
+   phonics pages read as one family, but laid out as a book with a contents
+   sidebar, because this one is a handbook to look things up in, not a game
+   to play through. Light theme only — classroom projectors and school
+   tablets are almost always in light mode. */
+
+:root {
+  --bg: #fff8ef;
+  --bg-2: #ffeedd;
+  --ink: #2c2440;
+  --ink-soft: #6b6180;
+  --card: #ffffff;
+  --line: #e8ddd0;
+
+  --green: #22a06b;
+  --green-soft: #d8f5e8;
+  --orange: #f08c2e;
+  --orange-soft: #ffead4;
+  --blue: #3b82d6;
+  --blue-soft: #ddeafc;
+  --purple: #8b5cf6;
+  --purple-soft: #ece5fe;
+
+  --good: #22a06b;
+  --oops: #e8734a;
+  --mark: #e05252;
+  --mark-soft: #ffe0e0;
+
+  --radius: 18px;
+  --shadow: 0 3px 0 rgba(44, 36, 64, .12);
+
+  --sans: "Nunito", "Quicksand", "Trebuchet MS", "Avenir Next",
+          "PingFang TC", "Microsoft JhengHei", system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+html, body { margin: 0; padding: 0; min-height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* The warm gradient sits on a fixed layer of its own. Painting it with
+   background-attachment: fixed instead would force the browser to repaint
+   the whole page on every scroll — and this is a long page. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(170deg, var(--bg) 0%, var(--bg-2) 100%);
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+}
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus {
+  left: 12px; top: 12px; z-index: 30;
+  background: var(--card); padding: 10px 16px; border-radius: 12px;
+}
+
+/* ---------------- top bar ---------------- */
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  padding-top: max(10px, env(safe-area-inset-top, 0px));
+  background: rgba(255, 248, 239, .92);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--line);
+}
+
+.bar-title {
+  flex: 1;
+  margin: 0;
+  font-size: 1.12rem;
+  font-weight: 800;
+  letter-spacing: .02em;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bar-title span {
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+  margin-left: 6px;
+}
+
+.bar-btn {
+  border: 2px solid var(--line);
+  background: var(--card);
+  border-radius: 14px;
+  padding: 7px 12px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.bar-btn:active { transform: translateY(2px); box-shadow: none; }
+.bar-btn-quiet { opacity: .75; }
+
+/* ---------------- shell: contents + book ---------------- */
+
+.shell {
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr);
+  gap: 26px;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 22px 18px 80px;
+}
+
+#nav {
+  position: sticky;
+  top: 76px;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: calc(100vh - 100px);
+  overflow: auto;
+}
+
+.nav-item {
+  display: block;
+  padding: 9px 13px;
+  border-radius: 13px;
+  border: 2px solid transparent;
+  color: var(--ink-soft);
+  font-weight: 700;
+  font-size: .95rem;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.nav-item:hover { background: var(--card); }
+
+.nav-item.is-here {
+  background: var(--card);
+  border-color: var(--line);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.nav-num {
+  display: block;
+  font-size: .72rem;
+  font-weight: 800;
+  color: var(--purple);
+  letter-spacing: .08em;
+}
+
+.nav-ico { margin-right: 6px; }
+
+.nav-scrim {
+  display: none;
+}
+
+/* ---------------- sections ---------------- */
+
+.sec {
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px 28px 30px;
+  margin-bottom: 26px;
+}
+
+.sec-head { margin-bottom: 14px; }
+
+.sec-num {
+  margin: 0;
+  color: var(--purple);
+  font-weight: 800;
+  font-size: .85rem;
+  letter-spacing: .14em;
+}
+
+.sec-head h2 {
+  margin: 2px 0 0;
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: .01em;
+}
+
+.sec-ico { margin-right: 10px; }
+
+/* A word's small picture. Emoji sit a touch large against our type, so they
+   are scaled down and must never take the dotted tap-underline. */
+.pic { font-size: .95em; }
+.tok .pic, .pword .pic { border-bottom: 0; }
+
+.h3 {
+  margin: 30px 0 10px;
+  font-size: 1.18rem;
+  font-weight: 800;
+  padding-left: 12px;
+  border-left: 5px solid var(--orange);
+}
+
+.h4 {
+  margin: 24px 0 8px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.para { margin: 10px 0; }
+
+.demo {
+  margin: 12px 0;
+  padding: 12px 16px;
+  background: var(--purple-soft);
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.kicker {
+  margin: 26px 0 6px;
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--purple);
+}
+
+/* 學習目標 */
+
+.goals {
+  background: var(--blue-soft);
+  border-radius: 14px;
+  padding: 12px 18px;
+  margin: 6px 0 16px;
+}
+
+.goals-head { margin: 0; font-weight: 800; color: var(--blue); font-size: .95rem; }
+.goals ol { margin: 6px 0 2px; padding-left: 24px; }
+.goals li { margin: 2px 0; }
+
+.biglist { padding-left: 26px; }
+.biglist li { margin: 8px 0; }
+
+/* English words inside running text: tappable, but drawn as text with a
+   quiet underline so a paragraph does not become a wall of buttons. */
+.tok {
+  display: inline;
+  border: 0;
+  background: none;
+  padding: 0 1px;
+  font: inherit;
+  font-weight: 700;
+  color: var(--blue);
+  cursor: pointer;
+  border-bottom: 2px dotted color-mix(in srgb, var(--blue) 45%, transparent);
+}
+
+.tok:active { color: var(--purple); }
+
+/* ---------------- callouts ---------------- */
+
+.note {
+  margin: 16px 0;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: var(--orange-soft);
+}
+
+.note-think { background: var(--purple-soft); }
+.note-try { background: var(--green-soft); }
+
+.note-head {
+  margin: 0 0 4px;
+  font-weight: 800;
+  font-size: .98rem;
+}
+
+.note-icon { margin-right: 6px; }
+.note-line { margin: 4px 0; }
+
+/* ---------------- word chips ---------------- */
+
+.chips { margin: 12px 0; }
+
+.chips-label {
+  margin: 0 0 6px;
+  font-weight: 800;
+  color: var(--ink-soft);
+  font-size: .95rem;
+}
+
+.chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 8px 14px;
+  min-height: 44px;
+  justify-content: center;
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.chip:active { transform: translateY(2px); box-shadow: none; }
+
+.chip.is-speaking { border-color: var(--blue); background: var(--blue-soft); }
+
+.chip-eg { font-size: .8rem; font-weight: 700; color: var(--ink-soft); }
+.chip-note { font-size: .72rem; font-weight: 700; color: var(--orange); }
+
+/* 檢測模式: chips stop speaking and start taking marks. */
+
+body.mark-mode .chip { cursor: crosshair; }
+
+.chip.is-marked {
+  border-color: var(--mark);
+  background: var(--mark-soft);
+  position: relative;
+}
+
+.chip.is-marked::after {
+  content: '✗';
+  position: absolute;
+  top: -9px;
+  right: -7px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--mark);
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 800;
+  line-height: 20px;
+  text-align: center;
+}
+
+/* ---------------- before → after pairs ---------------- */
+
+.pairs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin: 12px 0;
+}
+
+.pairline { display: flex; align-items: center; gap: 8px; }
+
+.pword {
+  border: 2px solid var(--line);
+  background: var(--card);
+  border-radius: 12px;
+  padding: 6px 13px;
+  font-size: 1.02rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.pword:active { transform: translateY(2px); box-shadow: none; }
+.pword-after { border-color: var(--green); background: var(--green-soft); }
+.pair-arrow { font-weight: 800; color: var(--ink-soft); }
+
+/* ---------------- tables ---------------- */
+
+.table-wrap { overflow-x: auto; margin: 12px 0; }
+
+.tbl {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 480px;
+  font-size: .98rem;
+}
+
+.tbl th {
+  text-align: left;
+  padding: 8px 12px;
+  background: var(--bg);
+  border-bottom: 2px solid var(--line);
+  font-size: .88rem;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+
+.tbl td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.tbl td:first-child { white-space: nowrap; font-size: 1.02rem; }
+
+/* ---------------- worked example ---------------- */
+
+.ex {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 12px 0;
+  padding: 12px 16px;
+  background: var(--bg);
+  border-radius: 14px;
+}
+
+.ex-word {
+  border: 0;
+  background: none;
+  font-size: 1.3rem;
+  font-weight: 800;
+  cursor: pointer;
+  color: var(--ink);
+  border-bottom: 2px dotted color-mix(in srgb, var(--ink) 35%, transparent);
+  padding: 0 2px;
+}
+
+.ex-arrow { font-weight: 800; color: var(--ink-soft); }
+
+.ex-syll {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--purple);
+  padding: 0;
+}
+
+.ex-syll i { font-style: normal; color: var(--orange); padding: 0 2px; }
+
+/* ---------------- the cutting game ---------------- */
+
+.cuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.cut {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.cut.is-wrong { animation: wobble .4s; }
+
+@keyframes wobble {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-3px); }
+}
+
+.cut-say {
+  border: 0;
+  background: none;
+  font-size: .95rem;
+  cursor: pointer;
+  opacity: .6;
+  padding: 2px 4px;
+  flex: none;
+}
+
+.cut-word {
+  display: inline-flex;
+  align-items: center;
+}
+
+.lt {
+  font-size: 1.35rem;
+  font-weight: 800;
+  padding: 2px 1px;
+}
+
+/* The gap between two letters: an invisible knife slot, tall enough for a
+   finger. A placed cut widens and shows the blade line. */
+.gap {
+  border: 0;
+  background: none;
+  width: 9px;
+  align-self: stretch;
+  min-height: 40px;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  flex: none;
+}
+
+.gap::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  bottom: 15%;
+  width: 3px;
+  margin-left: -1.5px;
+  border-radius: 2px;
+  background: transparent;
+}
+
+.gap:hover::after { background: var(--line); }
+
+.gap.is-cut { width: 18px; }
+.gap.is-cut::after { background: var(--orange); }
+
+.cut.is-done { border-color: var(--good); background: var(--green-soft); }
+.cut.is-done .gap.is-cut::after { background: var(--good); }
+.cut.is-done .gap { cursor: default; }
+
+.cut-tick {
+  display: none;
+  color: var(--good);
+  font-weight: 800;
+  margin-left: 2px;
+}
+
+.cut.is-done .cut-tick { display: inline; }
+
+/* ---------------- 字首＋字根＋字尾 ---------------- */
+
+.morphs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.morph {
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.morph-word {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border: 0;
+  background: none;
+  padding: 11px 16px;
+  font-size: 1.12rem;
+  font-weight: 800;
+  cursor: pointer;
+  text-align: left;
+}
+
+.morph-hint {
+  font-size: .78rem;
+  font-weight: 800;
+  color: var(--purple);
+  background: var(--purple-soft);
+  border-radius: 10px;
+  padding: 2px 10px;
+}
+
+.morph.is-open .morph-hint { display: none; }
+
+.morph-body { padding: 0 16px 13px; }
+
+.morph-parts {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.mp {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 6px 14px;
+}
+
+.mp b { font-size: 1.08rem; }
+.mp i { font-style: normal; font-size: .78rem; color: var(--ink-soft); font-weight: 700; }
+
+.mp:first-child { background: var(--orange-soft); }
+.mp:last-child { background: var(--blue-soft); }
+
+.mp-plus { font-weight: 800; color: var(--ink-soft); }
+
+.morph-zh { margin: 8px 0 0; font-weight: 700; color: var(--ink-soft); }
+
+/* ---------------- word families ---------------- */
+
+.families {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 12px 0;
+}
+
+.fam-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 7px;
+}
+
+.fam-root {
+  border: 0;
+  cursor: pointer;
+  background: var(--purple);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 800;
+  border-radius: 12px;
+  padding: 4px 16px;
+  box-shadow: var(--shadow);
+}
+
+.fam-root:active { transform: translateY(2px); box-shadow: none; }
+.fam-gloss { font-weight: 800; color: var(--ink-soft); }
+
+/* ---------------- teacher panel ---------------- */
+
+.panel {
+  position: fixed;
+  top: 66px;
+  right: 12px;
+  z-index: 20;
+  width: min(360px, calc(100vw - 24px));
+  max-height: calc(100vh - 90px);
+  overflow: auto;
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(44, 36, 64, .18);
+  padding: 16px 18px;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.panel-head h2 { margin: 0; font-size: 1.1rem; }
+
+.panel-x {
+  border: 0; background: none; font-size: 1rem; cursor: pointer;
+  padding: 4px 8px; opacity: .7;
+}
+
+.row { margin: 14px 0; }
+.row label { display: block; font-weight: 800; font-size: .92rem; margin-bottom: 4px; }
+
+.row-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.row-check input { width: 20px; height: 20px; margin-top: 3px; accent-color: var(--mark); }
+.row-check em { display: block; font-style: normal; font-weight: 600; font-size: .85rem; color: var(--ink-soft); }
+
+.row-note { margin: 6px 0 0; font-size: .84rem; color: var(--ink-soft); line-height: 1.55; }
+
+.panel-btn {
+  border: 2px solid var(--line);
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.panel-btn:active { transform: translateY(2px); }
+.panel-btn-quiet { opacity: .8; }
+
+.panel select {
+  width: 100%;
+  font: inherit;
+  padding: 7px 10px;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.mark-list {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+.mark-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px dashed var(--line);
+}
+
+.mark-say {
+  border: 0; background: none; cursor: pointer;
+  font-weight: 800; font-size: 1rem; color: var(--mark);
+  padding: 2px 0;
+}
+
+.mark-label { flex: 1; font-size: .78rem; color: var(--ink-soft); }
+
+.mark-x {
+  border: 0; background: none; cursor: pointer;
+  opacity: .55; font-size: .85rem; padding: 3px 6px;
+}
+
+.muted { color: var(--ink-soft); font-size: .88rem; }
+
+/* ---------------- phones ---------------- */
+
+@media (max-width: 780px) {
+  /* minmax(0, …), not a bare 1fr: the widest cut word must squeeze the
+     column, not stretch it past the screen. */
+  .shell { grid-template-columns: minmax(0, 1fr); padding: 14px 10px 60px; }
+
+  #nav {
+    position: fixed;
+    inset: 0 auto 0 0;
+    top: 0;
+    z-index: 25;
+    width: min(300px, 84vw);
+    max-height: none;
+    background: var(--card);
+    padding: 18px 14px;
+    padding-top: max(18px, env(safe-area-inset-top, 0px));
+    box-shadow: 8px 0 30px rgba(44, 36, 64, .2);
+    transform: translateX(-105%);
+    transition: transform .2s ease;
+  }
+
+  body.nav-open #nav { transform: translateX(0); }
+
+  .nav-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 24;
+    background: rgba(44, 36, 64, .35);
+  }
+
+  .nav-scrim[hidden] { display: none; }
+
+  .sec { padding: 18px 16px 22px; }
+  .bar-title span { display: none; }
+  .lt { font-size: 1.22rem; }
+}
+
+/* ---------------- print: the handbook as a handout ---------------- */
+
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .bar, #nav, .nav-scrim, .panel,
+  .cut-say, .morph-hint { display: none !important; }
+  .shell { display: block; padding: 0; }
+  .sec {
+    box-shadow: none;
+    border: 0;
+    padding: 0 0 18px;
+    margin: 0 0 18px;
+    break-inside: auto;
+  }
+  .sec-head { break-after: avoid; }
+  .note, .chips, .goals, .ex, .pairline, .morph, .fam, .cut { break-inside: avoid; }
+  .tok { color: inherit; border-bottom: 0; font-weight: inherit; }
+  .chip, .cut, .pword, .morph { box-shadow: none; }
+  .gap { min-height: auto; }
+  .morph-body { display: block !important; }
+  .morph-body[hidden] { display: block !important; }
+}

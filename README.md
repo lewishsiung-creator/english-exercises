@@ -1,8 +1,9 @@
 # English Exercises
 
 English teaching material, built for classroom, homework and one-to-one use.
-Six independent pages live here — a game for young learners at the site
-root, phonics practice for slightly older children at `/phonics/`, a
+Seven independent pages live here — a game for young learners at the site
+root, phonics practice for slightly older children at `/phonics/`, an
+interactive phonics handbook for the same age at `/phonics-handbook/`, a
 bilingual business worksheet at `/business-clarity/`, an interactive
 lesson for working adults at `/wealth-habits/`, reading-aloud practice
 built on a bilingual speech at `/campaign-speech/`, and TOEIC grammar
@@ -85,6 +86,54 @@ same six activities, in the order a lesson would use them.
 
 Records live in the browser's `localStorage` under `phonics.*`, separate from
 Word Play's, so the two pages never mix their session logs.
+
+## 自然發音學習手冊 — phonics handbook, 中高年級
+
+The full phonics handbook — 給小朋友的話 through 結語 — as one interactive
+page: the 44-sounds reference, the diagnostic word lists, syllable cutting,
+prefixes, suffixes and the combined exercises. Where Sound Lab is a set of
+games, this is the book the games sit beside: Chinese is the instruction
+language, and the child looks things up rather than playing through.
+
+| Piece | What a tap does |
+| --- | --- |
+| 🔤 Sound cards | Speaks the sound, then its example words |
+| 📖 Word lists | Speaks the word — the diagnostic lists of Unit 2 |
+| ✂️ Cutting game | A tap between two letters places a syllable cut |
+| 🧩 拆 cards | Splits a word into 字首＋字根＋字尾 with glosses |
+| 🔗 Pairs | hop → hope, hop → hopping — each side speaks |
+| 🌱 Word families | A root and the eight words that grow from it |
+
+### Design notes
+
+- **Every English word on the page speaks** — in a chip, in a table cell, in
+  the middle of a Chinese sentence. A bare written sound (`sh`, `bl`,
+  `-tion`) speaks its cue from the `CUES` table rather than its letter names.
+- **檢測模式 makes taps silent.** The handbook's method is 先檢測、再教學 —
+  and a diagnostic read-aloud is spoiled if the child hears the word first.
+  With the switch on (in the 👩‍🏫 panel), tapping a word marks it for
+  reteaching instead of speaking it; the marks collect in the panel and
+  persist in `localStorage` until cleared.
+- **The cutting game has no failure state.** A wrong cut wobbles and waits; a
+  right cut stays; a fully cut word pulls apart, turns green and says itself.
+  The correct cuts are the hyphens in the content file — 104 words, all
+  hand-checked against dictionary syllabification.
+- **Chinese leads.** The reverse of the adult pages: the handbook teaches
+  Taiwanese children to decode English, so instructions are Chinese and only
+  the target words are English. There is no 中 chip anywhere.
+- Unit 1's sound inventory carries example words the handout implied but did
+  not print (`ai` — *rain*); they are data in `content.js`, one line each.
+- **Pictures are emoji, and only where they cannot mislead.** The `PICS`
+  table in `content.js` maps a word to one emoji (`cat: '🐱'`), shown beside
+  the word everywhere it appears. Abstract words deliberately have no entry —
+  on a decoding page a wrong picture is worse than none. Each proposed
+  pairing was separately verified for instant recognisability to a Taiwanese
+  ten-year-old before being kept. One line adds a picture; deleting the line
+  removes it.
+- **Print** hides the machinery and keeps the handbook.
+
+The voice logic is Sound Lab's — same young-American-female wishlist, its own
+`phonicsGuide.*` keys in `localStorage`, so the two pages never mix settings.
 
 ## Business Clarity — adult, one-to-one
 
@@ -238,6 +287,7 @@ with a bilingual explanation.
 ```
 public/                   Word Play — the site root
 public/phonics/           Sound Lab, the phonics practice
+public/phonics-handbook/  自然發音學習手冊, the interactive handbook
 public/business-clarity/  the business worksheet
 public/wealth-habits/     the three-habits lesson
 public/wealth-habits/img/ its four photographs
@@ -246,7 +296,7 @@ public/toeic-grammar/     the TOEIC Part 5 & 6 practice
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
-All six are plain HTML, CSS and JS with no build step.
+All seven are plain HTML, CSS and JS with no build step.
 
 ## Editing the content
 
@@ -281,6 +331,20 @@ drops it from the two listening activities, and an optional `vs` list of
 Sentences mark the words worth pointing at with `*asterisks*`. Each block type
 is one function in [`app.js`](public/phonics/app.js), so a new activity is a
 render function and one entry in `ACTIVITIES`.
+
+**自然發音學習手冊.** The whole handbook lives in
+[`public/phonics-handbook/content.js`](public/phonics-handbook/content.js),
+one entry per section, and the block types — paragraphs, callouts, chips,
+pairs, tables, the cutting game, the 拆 cards, word families — are listed in
+a comment at the top of the file. Each is one function in
+[`render.js`](public/phonics-handbook/render.js).
+
+A cutting-game word is written with its cuts as hyphens (`nap-kin`) — the
+hyphens must spell the word back exactly, and digraphs (sh, ch, th, ck, ph,
+tch) stay inside one chunk, as the handbook itself teaches. A chip is a bare
+string, or `{ w, say, eg, note }` when the sound needs its own cue or an
+example word. The `CUES` table at the top of the file is how a written sound
+is spoken on its own; tune a line there if a device's voice mangles one.
 
 **Business Clarity.** All the text lives in
 [`public/business-clarity/content.js`](public/business-clarity/content.js), one
@@ -344,6 +408,7 @@ python3 -m http.server -d public 8000
 
 Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/phonics/> for Sound Lab,
+<http://localhost:8000/phonics-handbook/> for the handbook,
 <http://localhost:8000/business-clarity/> for the business worksheet,
 <http://localhost:8000/wealth-habits/> for the three-habits lesson,
 <http://localhost:8000/campaign-speech/> for the speech, or
