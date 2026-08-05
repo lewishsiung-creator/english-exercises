@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sound Lab — English Phonics</title>
+<meta name="description" content="Interactive English phonics practice for young learners, ages 9–11.">
+<!-- Inline SVG icon. The colours must be percent-encoded: a bare "#" would be
+     read as the URL fragment and the icon would silently fail to load. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%238b5cf6'/%3E%3Ctext x='32' y='46' font-family='Helvetica,Arial,sans-serif' font-size='36' font-weight='bold' text-anchor='middle' fill='%23ffffff'%3Eab%3C/text%3E%3C/svg%3E">
+<meta name="apple-mobile-web-app-title" content="Sound Lab">
+<meta name="theme-color" content="#fff8ef">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar">
+  <button class="bar-btn" id="backBtn" hidden aria-label="Go back">←</button>
+  <h1 class="bar-title" id="barTitle">Sound Lab</h1>
+  <button class="bar-btn bar-btn-quiet" id="zhBtn" aria-label="Show Chinese" aria-pressed="false">中</button>
+  <button class="bar-btn bar-btn-quiet" id="teacherBtn" aria-label="Teacher panel">👩‍🏫</button>
+  <button class="bar-btn" id="soundBtn" aria-label="Turn sound off" aria-pressed="true">🔊</button>
+</header>
+
+<main id="main">
+
+  <!-- ============ Screen: choose a sound set ============ -->
+  <section class="screen is-active" id="screen-set">
+    <p class="lead">Choose a sound<span class="zh"> 選一組音</span></p>
+    <div class="card-grid" id="setGrid"></div>
+  </section>
+
+  <!-- ============ Screen: choose an activity ============ -->
+  <section class="screen" id="screen-activity">
+    <div class="set-head" id="setHead"></div>
+    <p class="lead">Choose a game<span class="zh"> 選一個活動</span></p>
+    <div class="card-grid" id="activityGrid"></div>
+  </section>
+
+  <!-- ============ Screen: the exercise ============ -->
+  <section class="screen" id="screen-play">
+    <div class="progress" aria-hidden="true">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <p class="progress-text" id="progressText" aria-live="polite"></p>
+
+    <p class="task" id="taskHint"></p>
+    <p class="task-zh zh" id="taskHintZh"></p>
+
+    <div class="stage" id="stage"></div>
+
+    <p class="feedback" id="feedback" role="status" aria-live="assertive"></p>
+  </section>
+
+  <!-- ============ Screen: results ============ -->
+  <section class="screen" id="screen-done">
+    <div class="done-emoji" id="doneEmoji">🎉</div>
+    <p class="done-title" id="doneTitle">Well done!</p>
+    <p class="done-stars" id="doneStars"></p>
+    <p class="done-score" id="doneScore"></p>
+    <div class="done-actions">
+      <button class="btn btn-primary" id="againBtn">Go again</button>
+      <button class="btn" id="changeBtn">Choose another game</button>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ Teacher panel (overlay, so a lesson in progress is not lost) ============ -->
+<div class="sheet" id="teacherSheet" hidden>
+  <div class="sheet-box" role="dialog" aria-modal="true" aria-labelledby="teacherHeading">
+    <div class="sheet-head">
+      <h2 id="teacherHeading">Teacher</h2>
+      <button class="bar-btn" id="teacherClose" aria-label="Close teacher panel">✕</button>
+    </div>
+
+    <div class="sheet-body">
+      <section class="block">
+        <h3>This session</h3>
+        <p class="stat-row" id="teacherStats">Nothing yet.</p>
+      </section>
+
+      <section class="block">
+        <h3>Sounds to reteach</h3>
+        <p class="muted" id="teacherSoundsEmpty">Nothing missed yet.</p>
+        <ul class="weak-list" id="teacherSounds"></ul>
+      </section>
+
+      <section class="block">
+        <h3>Words missed</h3>
+        <p class="muted" id="teacherWeakEmpty">Nothing missed yet.</p>
+        <ul class="weak-list" id="teacherWeak"></ul>
+      </section>
+
+      <section class="block">
+        <h3>Every answer</h3>
+        <div class="log-wrap">
+          <table class="log" id="teacherLog">
+            <thead>
+              <tr><th>Item</th><th>Sound</th><th>Game</th><th>Tries</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="block">
+        <h3>Voice</h3>
+        <label class="muted" for="voiceSelect">Pick the English voice for this device.</label>
+        <select id="voiceSelect"></select>
+        <div class="block-actions">
+          <button class="btn btn-small" id="voiceTest">Test voice</button>
+          <button class="btn btn-small" id="voiceReset">Use default</button>
+        </div>
+        <p class="muted note">
+          A browser voice cannot say a bare phoneme, so the 🔊 <b>Sound</b>
+          button is an approximation — <b>b</b> comes out as “buh”. The key
+          words underneath it are the reliable model. If a sound comes out
+          badly on this machine, its spelling can be tuned in
+          <code>content.js</code>.
+        </p>
+      </section>
+
+      <section class="block">
+        <div class="block-actions">
+          <button class="btn btn-small" id="logClear">Clear session record</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

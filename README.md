@@ -1,8 +1,9 @@
 # English Exercises
 
 English teaching material, built for classroom, homework and one-to-one use.
-Five independent pages live here — a game for young learners at the site
-root, a bilingual business worksheet at `/business-clarity/`, an interactive
+Six independent pages live here — a game for young learners at the site
+root, phonics practice for slightly older children at `/phonics/`, a
+bilingual business worksheet at `/business-clarity/`, an interactive
 lesson for working adults at `/wealth-habits/`, reading-aloud practice
 built on a bilingual speech at `/campaign-speech/`, and TOEIC grammar
 practice at `/toeic-grammar/`.
@@ -39,6 +40,51 @@ repeatedly across games, a full answer log, and a voice picker.
 
 Records are kept in the browser's `localStorage`, so they stay on the device
 the child used and are never uploaded.
+
+## Sound Lab — phonics, ages 9–11
+
+The English spelling system in eight sound sets — short vowels, magic e,
+digraphs, blends, vowel teams, bossy r, the pairs that get confused, and the
+letters that go quiet — 34 sounds and 170 words in all. Every set runs the
+same six activities, in the order a lesson would use them.
+
+| Activity | Skill |
+| --- | --- |
+| 🔤 Meet the Sounds | The sound, its letters, and a word cut into chunks |
+| 👂 Which Sound? | Hearing a sound inside a spoken word |
+| 🗂 Sort the Words | Seeing which sound a written word belongs to |
+| 🧱 Build the Word | Blending — the chunks in the right order |
+| 🔍 Odd One Out | Telling three words that share a sound from one that does not |
+| 📖 Read It Out Loud | Reading a sentence built from the set |
+
+### Design notes
+
+- **Same house rules as Word Play.** Audio first, no timers, no failure
+  states — a wrong answer wobbles and invites another go, only a correct one
+  advances, and first-try accuracy goes to the teacher panel rather than to
+  the child. The two activities with nothing to get wrong are not scored.
+- **The chunk carries its own sound.** A word is stored as
+  `c-a:ay-k-e:` — cake, where the `a` says its name and the `e` says nothing.
+  That is why a child can tap any single letter and hear what it does *in
+  this word*, and why the silent e is drawn dashed and grey and answers a tap
+  with a flash and no sound.
+- **A browser voice cannot say a bare phoneme.** The 🔊 sound button is an
+  approximation spelled to get close (`b` comes out as "buh", `sh` as
+  "shhh"), and the honest model is the key word underneath it and the ▶
+  **Sound it out** button, which walks a word's chunks and then says it
+  whole. The teacher panel says so, and every cue is one line in
+  `content.js` if a device's voice mangles one.
+- **No word carries two answers.** A word belongs to exactly one sound in its
+  set — *nest* and *plant* were dropped from the blends set for having a
+  blend at each end. The one deliberate exception is the long and short `oo`,
+  which is the whole point of that pair and is labelled `oo (moon)` against
+  `oo (book)`.
+- **Chinese waits behind the 中 chip**, as on the adult pages, and covers
+  instructions, sound descriptions and sentence meanings — never the target
+  words, which have to stay decodable English.
+
+Records live in the browser's `localStorage` under `phonics.*`, separate from
+Word Play's, so the two pages never mix their session logs.
 
 ## Business Clarity — adult, one-to-one
 
@@ -191,6 +237,7 @@ with a bilingual explanation.
 
 ```
 public/                   Word Play — the site root
+public/phonics/           Sound Lab, the phonics practice
 public/business-clarity/  the business worksheet
 public/wealth-habits/     the three-habits lesson
 public/wealth-habits/img/ its four photographs
@@ -199,7 +246,7 @@ public/toeic-grammar/     the TOEIC Part 5 & 6 practice
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
-All five are plain HTML, CSS and JS with no build step.
+All six are plain HTML, CSS and JS with no build step.
 
 ## Editing the content
 
@@ -210,6 +257,30 @@ each word needs a `word`, an `emoji` and an `article`.
 The "Missing Letter" activity automatically skips words whose first vowel sits
 in a digraph (*bread*, *book*, *paint*) — those have more than one defensible
 answer.
+
+**Sound Lab.** The sounds live in
+[`public/phonics/content.js`](public/phonics/content.js), one entry per set,
+each holding its sounds and each sound its five words and the sentences that
+use them.
+
+A word is `{ w: 'ship', p: 'sh-i-p', e: '🚢' }`, where `p` cuts the word into
+the chunks a child sounds out — that split is what the building tiles are made
+from and what gets highlighted once a sound has been named. A chunk is
+normally just its letters and takes its sound from the `CUES` table at the top
+of the file; add a colon to give one chunk its own sound (`b-oo:uu-k`, the
+short oo in *book*), and nothing after the colon to make it silent
+(`c-a:ay-k-e:`). That is the entire notation.
+
+Two rules to keep when adding words. The chunks must spell the word back
+exactly, and a word must belong to only one sound in its set — otherwise the
+sorting and odd-one-out questions get a second defensible answer. A sound
+takes `ear: false` when it cannot be heard on its own (silent letters), which
+drops it from the two listening activities, and an optional `vs` list of
+`[before, after]` pairs to compare — `cap → cape`.
+
+Sentences mark the words worth pointing at with `*asterisks*`. Each block type
+is one function in [`app.js`](public/phonics/app.js), so a new activity is a
+render function and one entry in `ACTIVITIES`.
 
 **Business Clarity.** All the text lives in
 [`public/business-clarity/content.js`](public/business-clarity/content.js), one
@@ -272,6 +343,7 @@ python3 -m http.server -d public 8000
 ```
 
 Then open <http://localhost:8000> for Word Play,
+<http://localhost:8000/phonics/> for Sound Lab,
 <http://localhost:8000/business-clarity/> for the business worksheet,
 <http://localhost:8000/wealth-habits/> for the three-habits lesson,
 <http://localhost:8000/campaign-speech/> for the speech, or
