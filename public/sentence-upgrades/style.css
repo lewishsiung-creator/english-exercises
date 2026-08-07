@@ -1,0 +1,745 @@
+/* Sentence Upgrades — the 2026/07/25 homework as a lesson for one adult.
+
+   The teacher drives this in a one-to-one session, usually on one laptop
+   turned sideways or a shared screen. Design notes:
+
+   - The two sentences are the page. Everything else — the note, the phrase
+     cards, the contents list — is set smaller and quieter so the eye goes to
+     the line being worked on.
+   - What changed is shown in colour, not in red pen. The original's changed
+     words sit in gold and the revision's in green, numbered so the pair can be
+     matched at a glance; tapping either lights up both. Nothing is crossed
+     out, because the original is the student's own writing and this is a
+     lesson, not a marked script.
+   - English leads and is the only thing on screen by default. Traditional
+     Chinese sits behind a small 中 chip, so the learner tries the English
+     first and the safety net is one tap away. Instructions, buttons and the
+     contents list stay bilingual — those are scaffolding, not comprehension
+     practice.
+   - Nothing is scored, nothing is saved, and a reload is a clean lesson.
+   - Light theme only. It is read side by side in a lit room, and the source
+     handout is the reference.
+   - Text sizes are set for adults reading at arm's length on a shared screen,
+     a size up from a personal document. */
+
+:root {
+  --paper: #f7f6f2;
+  --card: #ffffff;
+  --ink: #1c2430;
+  --ink-soft: #566171;
+  --ink-faint: #8b95a3;
+
+  --navy: #1d3f6e;
+  --navy-soft: #eaf0f8;
+  --navy-line: #c2d3e7;
+
+  --gold: #a1741a;
+  --gold-soft: #fbf1da;
+  --gold-mid: #f4e2b6;
+  --gold-line: #f2c14e;
+
+  --good: #2c7a58;
+  --good-soft: #e4f2ea;
+  --good-mid: #cfe8db;
+  --good-line: #a8d6be;
+
+  --line: #e3e0d8;
+  --rule: #cdc8bc;
+
+  --font-en: "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, "Times New Roman", serif;
+  --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+
+  --bar-h: 54px;
+  --measure: 46rem;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 16px); }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-en);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---------------- the Chinese layer ----------------
+
+   Hidden everywhere by default. A line opens on its own when tapped; the 中文
+   switch in the bar opens all of them at once, at which point the individual
+   chips are just clutter and go away. */
+
+.zh {
+  display: none;
+  font-family: var(--font-zh);
+  font-size: 0.82em;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  letter-spacing: .01em;
+}
+
+.open .zh,
+body.zh-all .zh { display: block; }
+
+.zh-chip {
+  font-family: var(--font-zh);
+  font-size: 11px;
+  line-height: 1;
+  vertical-align: 2px;
+  margin-left: 6px;
+  padding: 3px 5px;
+  color: var(--ink-faint);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color .12s, border-color .12s, background .12s;
+}
+.zh-chip:hover { color: var(--navy); border-color: var(--navy-line); background: var(--navy-soft); }
+.open > .zh-chip,
+.open .en > .zh-chip { opacity: .35; }
+body.zh-all .zh-chip { display: none; }
+
+/* Lines the learner is not being tested on stay bilingual at all times. */
+.hint-zh, .source .zh, .toc .t .zh, .zh-fixed { display: block; }
+.zh-fixed { font-family: var(--font-zh); }
+
+.pair[data-zh] { cursor: pointer; }
+.pair p { margin: 0; }
+.pair .zh { margin-top: 4px; }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus {
+  left: 12px; top: 12px; z-index: 40;
+  background: var(--card); padding: 10px 16px; border-radius: 8px;
+}
+
+:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+
+/* ---------------- top bar ---------------- */
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  background: rgba(247, 246, 242, .93);
+  backdrop-filter: saturate(1.6) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.bar-title {
+  flex: 1;
+  margin: 0;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bar-title span {
+  font-family: var(--font-zh);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-faint);
+  margin-left: 8px;
+}
+
+.bar-btn {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--navy);
+  background: transparent;
+  border: 1px solid var(--navy-line);
+  border-radius: 7px;
+  padding: 6px 11px;
+  cursor: pointer;
+}
+.bar-btn:hover { background: var(--navy-soft); }
+.bar-btn-quiet { color: var(--ink-soft); border-color: var(--line); font-size: 15px; padding: 4px 9px; }
+.bar-btn-zh { font-family: var(--font-zh); }
+.bar-btn-zh[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+@media (min-width: 900px) { #navToggle { display: none; } }
+
+/* ---------------- shell + contents ---------------- */
+
+.shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (min-width: 900px) {
+  .shell { grid-template-columns: 15rem minmax(0, 1fr); gap: 44px; padding: 0 28px; }
+}
+
+.toc { font-family: var(--font-ui); }
+
+@media (min-width: 900px) {
+  .toc {
+    position: sticky;
+    top: var(--bar-h);
+    max-height: calc(100vh - var(--bar-h));
+    overflow-y: auto;
+    padding: 30px 0 40px;
+    scrollbar-width: thin;
+  }
+}
+
+.toc-head {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.toc ul { list-style: none; margin: 0; padding: 0; }
+
+.toc a {
+  display: grid;
+  grid-template-columns: 1.4rem 1fr;
+  gap: 8px;
+  padding: 8px 10px 8px 6px;
+  border-radius: 7px;
+  text-decoration: none;
+  color: var(--ink-soft);
+  border-left: 2px solid transparent;
+}
+.toc a:hover { background: var(--navy-soft); color: var(--ink); }
+.toc a .n {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+  text-align: right;
+  padding-top: 3px;
+}
+.toc a .t .en { display: block; font-size: 13.5px; line-height: 1.35; }
+.toc a .t .zh { font-size: 11.5px; color: var(--ink-faint); }
+.toc a.here {
+  background: var(--navy-soft);
+  border-left-color: var(--navy);
+  color: var(--navy);
+}
+.toc a.here .n, .toc a.here .t .zh { color: var(--navy); }
+.toc a.here .t .en { font-weight: 600; }
+
+@media (max-width: 899px) {
+  #nav {
+    position: fixed;
+    top: var(--bar-h);
+    left: 0; right: 0;
+    z-index: 25;
+    max-height: min(70vh, 30rem);
+    overflow-y: auto;
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 24px rgba(28, 36, 48, .12);
+    padding: 14px 18px 18px;
+    display: none;
+  }
+  body.nav-open #nav { display: block; }
+  body.nav-open .nav-scrim {
+    display: block;
+    position: fixed;
+    inset: var(--bar-h) 0 0;
+    z-index: 20;
+    background: rgba(28, 36, 48, .25);
+  }
+}
+
+/* ---------------- cover ---------------- */
+
+main { max-width: var(--measure); padding-bottom: 6rem; }
+
+.cover { padding: 40px 0 10px; }
+
+/* Set for the Chinese kicker: the tracking that flatters small uppercase Latin
+   crowds Chinese glyphs, which need a size up and a little more air. */
+.kicker {
+  margin: 0 0 14px;
+  font-family: var(--font-zh);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  color: var(--gold);
+}
+
+.cover h1 { margin: 0 0 24px; font-size: 2.2rem; line-height: 1.18; font-weight: 600; }
+/* Inline so the 中 chip trails the last word rather than dropping a line. */
+.cover h1 .en { display: inline; }
+.cover h1 .zh { font-size: .95rem; font-weight: 400; margin-top: 8px; }
+
+.cover-intro { margin-bottom: 26px; font-size: 1.06rem; }
+
+.goals {
+  padding: 20px 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.goals-intro { font-family: var(--font-ui); font-size: .88rem; color: var(--ink-soft); }
+.goals ul { margin: 12px 0 0; padding-left: 1.1rem; }
+.goals li { margin: 0 0 8px; font-size: .98rem; }
+.goals li .zh { font-size: .8rem; }
+
+.source {
+  margin: 22px 0 0;
+  font-family: var(--font-ui);
+  font-size: .76rem;
+  line-height: 1.6;
+  color: var(--ink-faint);
+}
+.source .zh { font-size: .95em; color: var(--ink-faint); margin-top: 2px; }
+
+/* ---------------- one sentence ---------------- */
+
+.item { padding-top: 46px; }
+
+.item-head {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  gap: 14px;
+  align-items: start;
+  margin: 0 0 22px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--gold-line);
+  font-size: 1.55rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.item-head .n {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--navy);
+  border-radius: 8px;
+  text-align: center;
+  padding: 4px 0;
+  margin-top: 5px;
+}
+.item-head .titles .en { display: inline; }
+.item-head .titles .zh { font-size: .95rem; font-weight: 400; margin-top: 4px; }
+
+/* The two versions of the sentence. Same card, different border colour, so the
+   revision reads as the same thing again rather than as a new idea. */
+
+.sent {
+  padding: 16px 20px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--rule);
+  border-radius: 10px;
+}
+
+.sent-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.sent-label span {
+  font-family: var(--font-zh);
+  font-size: .78rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.sent-text { margin: 0; font-size: 1.14rem; line-height: 1.75; }
+
+.sent-now {
+  display: none;
+  margin-top: 14px;
+  border-left-color: var(--good-line);
+}
+.item.fixed .sent-now { display: block; }
+.item.fixed .sent-now .sent-label { color: var(--good); }
+
+/* ---------------- the marked changes ----------------
+
+   Invisible until someone asks for them: a <mark> with everything switched off
+   reads as ordinary running text, which is what the first pass needs. */
+
+.ch {
+  background: none;
+  color: inherit;
+  border-radius: 4px;
+  /* Keeps the padding and the rounded ends on both fragments when a marked
+     phrase wraps across two lines. */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.ch-n { display: none; }
+
+.item.marks .ch,
+.item.fixed .ch {
+  padding: 1px 4px;
+  margin: 0 -1px;
+  cursor: pointer;
+  transition: background .12s, box-shadow .12s;
+}
+
+.item.marks .ch-was, .item.fixed .ch-was {
+  background: var(--gold-soft);
+  box-shadow: inset 0 -2px 0 var(--gold-line);
+}
+.item.marks .ch-was:hover, .item.fixed .ch-was:hover { background: var(--gold-mid); }
+.ch-was.lit { background: var(--gold-mid); box-shadow: inset 0 -2px 0 var(--gold), 0 0 0 2px var(--gold); }
+
+.item.fixed .ch-now {
+  background: var(--good-soft);
+  box-shadow: inset 0 -2px 0 var(--good-line);
+}
+.item.fixed .ch-now:hover { background: var(--good-mid); }
+.ch-now.lit { background: var(--good-mid); box-shadow: inset 0 -2px 0 var(--good), 0 0 0 2px var(--good); }
+
+/* A ring alone is not enough at reading distance, so lighting one change also
+   pushes the others back. Browsers without :has() just skip this and keep the
+   ring, which still works. */
+.item:has(.ch.lit) .ch:not(.lit) { opacity: .4; }
+.ch.lit .ch-n { font-size: .68em; }
+
+/* The pairing number. Small, raised, and in the colour of its half, so change
+   3 in gold and change 3 in green are obviously the same change. */
+.item.marks .ch-n,
+.item.fixed .ch-n {
+  display: inline;
+  font-family: var(--font-ui);
+  font-size: .58em;
+  font-weight: 700;
+  vertical-align: super;
+  line-height: 0;
+  margin-left: 3px;
+}
+.ch-was .ch-n { color: var(--gold); }
+.ch-now .ch-n { color: var(--good); }
+
+/* ---------------- the two reveal buttons ---------------- */
+
+.steps { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 0; }
+
+.step-btn {
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  text-align: left;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px dashed var(--rule);
+  border-radius: 8px;
+  padding: 7px 13px;
+  cursor: pointer;
+  transition: color .12s, border-color .12s, background .12s;
+}
+.step-btn .zh-fixed { font-size: .78rem; color: var(--ink-faint); margin-top: 1px; }
+.step-btn:hover { color: var(--navy); border-color: var(--navy-line); background: var(--navy-soft); }
+.step-btn.on {
+  border-style: solid;
+  border-color: var(--gold-line);
+  background: var(--gold-soft);
+  color: var(--gold);
+}
+.step-btn.on .zh-fixed { color: var(--gold); opacity: .8; }
+
+.step-btn-go { color: var(--navy); border-color: var(--navy-line); }
+.step-btn-go.on { border-color: var(--good-line); background: var(--good-soft); color: var(--good); }
+.step-btn-go.on .zh-fixed { color: var(--good); opacity: .8; }
+
+/* ---------------- what changed, and why ---------------- */
+
+/* Both wait for the revision. The note obviously has to, but so does the phrase
+   list: "a strong sense of self-efficacy" sitting on screen answers the
+   question before it is asked. The handout puts them after the revision too. */
+.whybox, .item .phrases { display: none; }
+.item.fixed .whybox, .item.fixed .phrases { display: block; }
+
+.label {
+  margin: 30px 0 10px;
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.label .en { display: inline; }
+.label .zh {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: .82rem;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+.why-text {
+  padding: 16px 20px;
+  background: var(--gold-soft);
+  border: 1px solid #ecdcb4;
+  border-radius: 12px;
+  font-size: .98rem;
+}
+.why-text .zh { font-size: .86rem; }
+
+.hint {
+  margin: 0 0 14px;
+  font-family: var(--font-ui);
+  font-size: .84rem;
+  color: var(--ink-faint);
+}
+.hint-zh { font-family: var(--font-zh); font-size: .95em; margin-top: 2px; }
+
+/* ---------------- speak buttons ---------------- */
+
+.say {
+  font-size: .78em;
+  line-height: 1;
+  margin-left: 7px;
+  padding: 3px 5px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: .55;
+  transition: opacity .12s, border-color .12s;
+}
+.say:hover { opacity: 1; border-color: var(--navy-line); }
+.say-quiet { border-color: transparent; }
+.sent-label .say { margin-left: auto; }
+
+/* ---------------- collocation cards ---------------- */
+
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 10px;
+  /* Opening one card should not stretch the others sharing its row. */
+  align-items: start;
+}
+
+.card {
+  padding: 12px 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color .12s, box-shadow .12s;
+}
+.card:hover { border-color: var(--navy-line); box-shadow: 0 2px 8px rgba(28, 36, 48, .06); }
+.card-en { margin: 0; font-size: 1rem; font-weight: 600; }
+.card-zh {
+  display: none;
+  margin: 8px 0 0;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+  font-family: var(--font-zh);
+  font-size: .84rem;
+  color: var(--ink-soft);
+}
+.card.open { border-color: var(--navy-line); background: var(--navy-soft); }
+.card.open .card-zh, body.zh-all .card-zh { display: block; }
+
+/* ---------------- the closing review ---------------- */
+
+.review .item-head { border-bottom-color: var(--navy-line); }
+.review .item-head .n { background: var(--gold-line); color: var(--ink); }
+
+.lead {
+  margin: 0 0 6px;
+  font-size: 1.06rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.lead .zh { font-style: normal; }
+
+.finals { list-style: none; margin: 0; padding: 0; counter-reset: none; }
+.finals li {
+  display: grid;
+  grid-template-columns: 1.9rem 1fr;
+  gap: 10px;
+  padding: 11px 0;
+  border-top: 1px solid var(--line);
+}
+.finals li:first-child { border-top: none; }
+.finals-n {
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  color: var(--ink-faint);
+  text-decoration: none;
+  text-align: right;
+  padding-top: 6px;
+}
+.finals-n:hover { color: var(--navy); }
+.finals-t { font-size: 1.02rem; line-height: 1.65; }
+
+/* The phrase table is a self-test: the meaning column stays covered until the
+   row is tapped, and shows as a rule until then. */
+
+.table-wrap { overflow-x: auto; margin: 0 0 10px; }
+.table-wrap table { width: 100%; border-collapse: collapse; }
+.table-wrap th {
+  text-align: left;
+  padding: 0 14px 8px;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-ui);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.table-wrap th .zh {
+  display: block;
+  font-size: .7rem;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--navy);
+  opacity: .75;
+}
+.table-wrap td { padding: 9px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+.table-wrap tbody tr:first-child td { border-top: none; }
+.table-wrap tbody tr { cursor: pointer; }
+.table-wrap tbody tr:hover { background: var(--navy-soft); }
+
+.td-n {
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+.td-en { font-size: .98rem; }
+.td-zh { min-width: 8rem; }
+.td-zh::after {
+  content: "";
+  display: block;
+  width: 4.5rem;
+  border-bottom: 1px solid var(--rule);
+  margin-top: .7em;
+}
+tr.open .td-zh::after,
+body.zh-all .td-zh::after { display: none; }
+
+/* ---------------- teacher panel ---------------- */
+
+.panel {
+  position: fixed;
+  z-index: 40;
+  top: calc(var(--bar-h) + 8px);
+  right: 14px;
+  width: min(22rem, calc(100vw - 28px));
+  max-height: calc(100vh - var(--bar-h) - 24px);
+  overflow-y: auto;
+  padding: 18px 20px 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(28, 36, 48, .18);
+  font-family: var(--font-ui);
+}
+.panel[hidden] { display: none; }
+
+.panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.panel-head h2 { margin: 0 0 4px; font-family: var(--font-ui); font-size: .95rem; }
+.panel-head h2 span { font-family: var(--font-zh); font-size: .8rem; font-weight: 400; color: var(--ink-faint); margin-left: 6px; }
+.panel-x { background: transparent; border: 0; color: var(--ink-faint); font-size: 15px; cursor: pointer; padding: 2px 4px; }
+
+.panel .row { margin-top: 18px; }
+.panel label { display: block; font-size: .78rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 6px; }
+.row-check { display: flex; align-items: center; gap: 9px; cursor: pointer; margin-top: 16px; }
+.row-check span { font-size: .88rem; font-weight: 600; color: var(--ink); }
+.row-check em { font-family: var(--font-zh); font-style: normal; font-weight: 400; font-size: .8rem; color: var(--ink-faint); margin-left: 5px; }
+.row-check input { width: 17px; height: 17px; accent-color: var(--navy); }
+
+.panel select {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: .85rem;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.panel-btn {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: .87rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--navy);
+  border: 1px solid var(--navy);
+  border-radius: 8px;
+  padding: 9px 12px;
+  cursor: pointer;
+}
+.panel-btn:hover { filter: brightness(1.12); }
+.panel-btn-quiet { color: var(--ink-soft); background: var(--paper); border-color: var(--line); }
+.panel-btn-quiet:hover { filter: none; border-color: var(--rule); }
+
+.row-note { margin: 7px 0 0; font-size: .74rem; line-height: 1.5; color: var(--ink-faint); }
+
+/* ---------------- small screens ---------------- */
+
+@media (max-width: 620px) {
+  body { font-size: 17px; }
+  .cover h1 { font-size: 1.8rem; }
+  .item-head { font-size: 1.3rem; grid-template-columns: 2rem 1fr; gap: 10px; }
+  .sent { padding: 14px 16px 16px; }
+  .sent-text { font-size: 1.08rem; }
+  .steps { flex-direction: column; align-items: stretch; }
+  .bar-title span { display: none; }
+}
+
+/* ---------------- print ----------------
+
+   A handout: the lesson without the machinery. Both versions of every sentence
+   are open with the changes marked, every note and every Chinese line is
+   showing, and anything that only works with a mouse is dropped. */
+
+@media print {
+  .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .steps, .hint { display: none !important; }
+  body { font-size: 11pt; background: #fff; }
+  .shell { display: block; padding: 0; }
+  main { max-width: none; }
+
+  .zh, .card-zh, .whybox, .sent-now, .item .phrases { display: block !important; }
+  .ch-n { display: inline !important; }
+  .td-zh::after { display: none; }
+
+  /* The state classes are what the marks hang off, and print cannot add them —
+     so print styles the marks directly. */
+  .ch { padding: 1px 3px; }
+  .ch-was { background: var(--gold-soft) !important; box-shadow: inset 0 -2px 0 var(--gold-line); }
+  .ch-now { background: var(--good-soft) !important; box-shadow: inset 0 -2px 0 var(--good-line); }
+  .ch, .card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .item { break-before: page; padding-top: 0; }
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .card, .sent, .why-text, .goals, .finals li { break-inside: avoid; }
+}

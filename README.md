@@ -1,13 +1,14 @@
 # English Exercises
 
 English teaching material, built for classroom, homework and one-to-one use.
-Seven independent pages live here — a game for young learners at the site
+Eight independent pages live here — a game for young learners at the site
 root, phonics practice for slightly older children at `/phonics/`, an
 interactive phonics handbook for the same age at `/phonics-handbook/`, a
 bilingual business worksheet at `/business-clarity/`, an interactive
 lesson for working adults at `/wealth-habits/`, reading-aloud practice
-built on a bilingual speech at `/campaign-speech/`, and TOEIC grammar
-practice at `/toeic-grammar/`.
+built on a bilingual speech at `/campaign-speech/`, TOEIC grammar
+practice at `/toeic-grammar/`, and a homework review of one student's own
+sentences at `/sentence-upgrades/`.
 
 ## Word Play — CEFR A1, ages 7–10
 
@@ -282,6 +283,46 @@ with a bilingual explanation.
 - **Print** gives a handout: every answer filled, every explanation open, and
   anything that needs a mouse gone.
 
+## Sentence Upgrades — adult, one-to-one homework review
+
+The seven sentences one student wrote in the class of 25 July 2026, each with
+the revision from the handout, a note on what changed and why, and the
+collocations that came with it — 37 in all. Where the other adult pages teach a
+text, this one is the student's own writing handed back.
+
+| Piece | What a tap does |
+| --- | --- |
+| ✏️ Your sentence | Speaks it — the original, reproduced as written |
+| 🔍 Where would you change it? | Marks the spans that changed, and stops there |
+| ✅ Show the revision | Opens the revised sentence, the note, and the phrases |
+| ①② Numbered changes | Tapping one lights it *and* its counterpart in the other version |
+| 🗂 Phrase cards | The Chinese behind a tap |
+| 📋 All 37 collocations | One list with the meanings covered, for self-testing |
+
+### Design notes
+
+- **The two sentences are the page.** Everything else is set smaller and
+  quieter, so the eye goes to the line being worked on.
+- **Two reveals, not one.** Marking the changes is the hint and showing the
+  revision is the answer, which leaves room for the student to say what he
+  would change before being told. Both toggle, so a sentence can be shut again.
+- **The phrase list waits for the revision**, as it does in the handout. Left
+  on screen it answers the question before it is asked — *a strong sense of
+  self-efficacy* is change 2.
+- **Colour, not red pen.** The original's changed words sit in gold and the
+  revision's in green, numbered so the pair matches at a glance; lighting one
+  pushes the others back. Nothing is crossed out — the original is the
+  student's own writing, and this is a lesson, not a marked script.
+- **What the handout did not contain is said so on the page.** The two
+  sentences and the phrase lists are the handout's; the note under each
+  revision explaining what changed and why was written for this page, because
+  on a page nobody is standing there to explain it.
+- **The sentences carry no Chinese.** He wrote them, so he knows what he meant.
+  Chinese waits behind the 中 chip everywhere else, as on the other adult pages.
+- **Nothing is scored and nothing is saved**, and **print** gives a handout:
+  both versions open with the changes marked, every note showing, the machinery
+  gone.
+
 ## Layout
 
 ```
@@ -293,10 +334,11 @@ public/wealth-habits/     the three-habits lesson
 public/wealth-habits/img/ its four photographs
 public/campaign-speech/   the speech reading practice
 public/toeic-grammar/     the TOEIC Part 5 & 6 practice
+public/sentence-upgrades/ the 2026/07/25 homework review
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
-All seven are plain HTML, CSS and JS with no build step.
+All eight are plain HTML, CSS and JS with no build step.
 
 ## Editing the content
 
@@ -398,6 +440,26 @@ so adding one needs no renumbering. A `table` takes bilingual `head` cells and
 either a parallel `rowsZh`, or `zhCol` naming a column that is Chinese in its
 own right and should therefore stay covered.
 
+**Sentence Upgrades.** The set lives in
+[`public/sentence-upgrades/content.js`](public/sentence-upgrades/content.js),
+one entry per sentence. There are no block types — every item has the same four
+parts, so an entry is `original`, `revised`, a `why` pair and a `phrases` list.
+
+What changed is marked with `[[double brackets]]` in both sentences:
+
+```js
+original: 'It is [[a difficult task to train]] our employees [[with high]] …',
+revised:  'It is [[challenging to help]] our employees [[develop a strong sense of]] …',
+```
+
+The two strings must carry the same number of marks, in the same order — mark 1
+in the original became mark 1 in the revision, which is what lets a tap light
+both. The renderer throws on a mismatch rather than pairing them wrongly.
+Everything outside the brackets is text the two versions share, so keep it
+identical or the sentences stop lining up. The closing review section is built
+from the items, so adding a sentence adds its phrases to the table and its
+revision to the read-aloud list with no second edit.
+
 ## Running it locally
 
 No build step and no dependencies:
@@ -411,8 +473,9 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/phonics-handbook/> for the handbook,
 <http://localhost:8000/business-clarity/> for the business worksheet,
 <http://localhost:8000/wealth-habits/> for the three-habits lesson,
-<http://localhost:8000/campaign-speech/> for the speech, or
-<http://localhost:8000/toeic-grammar/> for the TOEIC practice.
+<http://localhost:8000/campaign-speech/> for the speech,
+<http://localhost:8000/toeic-grammar/> for the TOEIC practice, or
+<http://localhost:8000/sentence-upgrades/> for the homework review.
 
 ## Live sites
 

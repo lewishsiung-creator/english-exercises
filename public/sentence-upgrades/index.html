@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sentence Upgrades</title>
+<meta name="description" content="Seven sentences from a business English class, each with the revision, what changed and why, and the collocations that came with it.">
+
+<!-- Inline SVG mark: the first line struck through, the second one gold — the
+     before and after. The colours must be percent-encoded, since a bare "#"
+     would be read as the start of the URL fragment. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d3f6e'/%3E%3Cpath d='M15 24h34' stroke='%23ffffff' stroke-opacity='.45' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M15 42h26' stroke='%23f2c14e' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f6f2">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#doc">Skip to the sentences</a>
+
+<header class="bar">
+  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
+    <span aria-hidden="true">☰</span> Sentences
+  </button>
+
+  <p class="bar-title">Sentence Upgrades <span>句子升級 · 2026/07/25</span></p>
+
+  <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="false">中文</button>
+  <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
+          aria-controls="panel" title="Teacher panel" aria-label="Teacher panel">👩‍🏫</button>
+</header>
+
+<div class="shell">
+  <div id="nav"></div>
+  <main id="doc"></main>
+</div>
+
+<div class="nav-scrim" hidden></div>
+
+<!-- Teacher panel. Opens over the lesson rather than replacing it, so a
+     discussion in progress is never lost. -->
+<div class="panel" id="panel" role="dialog" aria-label="Teacher panel" hidden>
+  <div class="panel-head">
+    <h2>Teacher panel <span>教師面板</span></h2>
+    <button class="panel-x" id="panelClose" aria-label="Close">✕</button>
+  </div>
+
+  <label class="row row-check">
+    <input type="checkbox" id="zhAll">
+    <span>Show all Chinese <em>顯示全部中文</em></span>
+  </label>
+
+  <div class="row">
+    <button class="panel-btn" id="showAll">Open every revision</button>
+    <p class="row-note">Shows all seven revisions, their notes and every phrase
+      card — for going back over the set together.</p>
+  </div>
+
+  <div class="row">
+    <label for="voicePick">Voice</label>
+    <select id="voicePick"></select>
+    <p class="row-note">Used by the 🔊 buttons. Choosing one plays a sample.</p>
+  </div>
+
+  <div class="row">
+    <label for="rate">Speed</label>
+    <select id="rate">
+      <option value="0.75">Slow</option>
+      <option value="0.95">Normal</option>
+      <option value="1.1">Brisk</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <button class="panel-btn panel-btn-quiet" id="reset">Reset for the next student</button>
+    <p class="row-note">Nothing is saved between sessions — this just clears the
+      screen. Your voice and Chinese settings stay.</p>
+  </div>
+</div>
+
+<script src="content.js"></script>
+<script src="render.js"></script>
+</body>
+</html>
