@@ -265,10 +265,18 @@ a summary written for the lesson, and then the language work.
 
 ### Design notes
 
-- **English leads, Chinese waits.** Every line is a pair, but the Chinese is
-  hidden behind a small 中 chip; the 中文 switch in the bar reveals the lot.
-  Instructions, task prompts and the contents list stay bilingual — those are
-  scaffolding, not comprehension practice.
+- **English leads, Chinese waits.** Every English sentence on the page has a
+  Traditional Chinese counterpart — the reading, the 56 example sentences, all
+  17 gap-fill sentences, every discussion starter and sentence frame, the
+  tick-list, and the teacher panel itself. It is hidden behind a small 中 chip;
+  the 中文 switch in the bar reveals the lot. Instructions, task prompts, the
+  contents list and anything already sitting behind a deliberate reveal stay
+  bilingual — those are scaffolding, not comprehension practice.
+- **The gap-fill Chinese keeps its blank.** A translated gap sentence renders
+  the missing phrase as ＿＿ and never paraphrases it, so the Chinese explains
+  the situation without handing over the answer. The matching halves and the
+  answer chips are left in English for the same reason — each is glossed on its
+  own phrase card anyway.
 - **Nothing is scored and nothing is saved.** A fresh load is a fresh lesson,
   which is what you want between two clients on the same laptop. Only the
   voice and Chinese settings persist. Wrong answers wobble, explain themselves

@@ -62,6 +62,13 @@ function speakBtn(sentence, cls = 'say') {
     aria-label="Listen">🔊</button>`;
 }
 
+/* Lists that used to hold bare English strings — sentence starters, sentence
+   frames, tick-list phrases — now hold `{ en, zh }`. Accept either, so the page
+   never depends on both files being edited in the same breath. */
+function bilingual(x) {
+  return typeof x === 'string' ? { en: x, zh: '' } : x;
+}
+
 /* Fisher–Yates, used only to scramble the right-hand column of a matching
    exercise so the pairs are not sitting on the same row. */
 function shuffled(list) {
@@ -122,6 +129,7 @@ const BLOCKS = {
             <div class="card-back">
               <p class="card-zh">${text(i.zh)}</p>
               <p class="card-eg">${text(i.eg)}${speakBtn(i.eg, 'say say-quiet')}</p>
+              ${i.egZh ? `<p class="card-eg-zh">${text(i.egZh)}</p>` : ''}
             </div>
           </li>`).join('')}
       </ul>
@@ -159,8 +167,12 @@ const BLOCKS = {
         const [before, after] = text(it.text).split('___');
         return `
           <div class="gap" data-answer="${it.answer}">
-            <p class="gap-line"><span class="gap-n">${n + 1}</span>
-              <span class="gap-text">${before}<span class="slot"></span>${after || ''}</span></p>
+            <div class="gap-line pair" ${it.textZh ? 'data-zh' : ''}>
+              <p class="en"><span class="gap-n">${n + 1}</span>
+                <span class="gap-text">${before}<span class="slot"></span>${after || ''}${
+                  it.textZh ? '<button class="zh-chip" title="顯示中文">中</button>' : ''}</span></p>
+              ${it.textZh ? `<p class="zh">${text(it.textZh)}</p>` : ''}
+            </div>
             <ul class="opts">
               ${it.options.map((o, i) => `
                 <li><button class="chip" data-i="${i}">${text(o)}</button></li>`).join('')}
@@ -184,9 +196,9 @@ const BLOCKS = {
             <p class="zh">${text(i.zh)}</p>
           </div>
           <div class="poll-btns" role="group">
-            <button class="chip" data-v="agree">Agree</button>
-            <button class="chip" data-v="unsure">Not sure</button>
-            <button class="chip" data-v="disagree">Disagree</button>
+            <button class="chip" data-v="agree">Agree<em>同意</em></button>
+            <button class="chip" data-v="unsure">Not sure<em>不確定</em></button>
+            <button class="chip" data-v="disagree">Disagree<em>不同意</em></button>
           </div>
         </div>`).join('')}
     </div>`,
@@ -211,8 +223,8 @@ const BLOCKS = {
               <p class="zh">${text(i.descZh)}</p>
             </div>
             <div class="role-btns" role="group">
-              <button class="chip" data-v="have">I have this</button>
-              <button class="chip" data-v="need">I need this</button>
+              <button class="chip" data-v="have">I have this<em>我有這樣的人</em></button>
+              <button class="chip" data-v="need">I need this<em>我需要一位</em></button>
             </div>
           </li>`).join('')}
       </ul>
@@ -232,7 +244,9 @@ const BLOCKS = {
           </div>
           <button class="reveal" aria-expanded="false">Useful language 可用句型</button>
           <ul class="starters" hidden>
-            ${i.starters.map((s) => `<li>${text(s)}${speakBtn(s, 'say say-quiet')}</li>`).join('')}
+            ${i.starters.map(bilingual).map((s) => `
+              <li><span class="en">${text(s.en)}${speakBtn(s.en, 'say say-quiet')}</span>
+                ${s.zh ? `<span class="zh">${text(s.zh)}</span>` : ''}</li>`).join('')}
           </ul>
         </div>`).join('')}
     </div>`,
@@ -255,18 +269,22 @@ const BLOCKS = {
       </ul>
       ${b.checklist ? `
         <div class="checklist">
-          <p class="checklist-head">Target phrases
-            <span class="count"><span class="n">0</span> used</span></p>
+          <p class="checklist-head">Target phrases <em>目標片語</em>
+            <span class="count"><span class="n">0</span> used 已使用</span></p>
           <ul>
-            ${b.checklist.map((c) => `
-              <li><button class="tick"><span class="box"></span>${text(c)}</button></li>`).join('')}
+            ${b.checklist.map(bilingual).map((c) => `
+              <li><button class="tick"><span class="box"></span>
+                <span class="tick-t"><span class="en">${text(c.en)}</span>
+                ${c.zh ? `<span class="zh">${text(c.zh)}</span>` : ''}</span></button></li>`).join('')}
           </ul>
         </div>` : ''}
       ${b.frames ? `
         <div class="frames">
-          <p class="checklist-head">Sentence frames 句型</p>
+          <p class="checklist-head">Sentence frames <em>句型</em></p>
           <ul>
-            ${b.frames.map((f) => `<li>${text(f)}${speakBtn(f, 'say say-quiet')}</li>`).join('')}
+            ${b.frames.map(bilingual).map((f) => `
+              <li><span class="en">${text(f.en)}${speakBtn(f.en, 'say say-quiet')}</span>
+                ${f.zh ? `<span class="zh">${text(f.zh)}</span>` : ''}</li>`).join('')}
           </ul>
         </div>` : ''}
     </div>`,

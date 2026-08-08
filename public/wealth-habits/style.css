@@ -99,8 +99,13 @@ body.zh-all .zh { display: block; }
 .open .en > .zh-chip { opacity: .35; }
 body.zh-all .zh-chip { display: none; }
 
-/* Lines the learner is not being tested on stay bilingual at all times. */
-.hint-zh, .source .zh, .prompt .zh, .toc .t .zh, .why .zh { display: block; }
+/* Lines the learner is not being tested on stay bilingual at all times. Two
+   groups qualify: scaffolding that only helps if it is understood (hints, task
+   prompts, navigation), and anything already sitting behind a deliberate reveal
+   — a flipped phrase card, an opened "useful language" list — where a second
+   tap would only be in the way. */
+.hint-zh, .source .zh, .prompt .zh, .toc .t .zh, .why .zh,
+.starters .zh, .frames .zh, .tick-t .zh { display: block; }
 
 .pair[data-zh] { cursor: pointer; }
 .pair p { margin: 0; }
@@ -493,6 +498,13 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 .card.open .card-back { display: block; }
 .card-zh { margin: 0; font-family: var(--font-zh); font-size: .84rem; color: var(--ink-soft); }
 .card-eg { margin: 6px 0 0; font-size: .9rem; font-style: italic; color: var(--ink-soft); }
+.card-eg-zh {
+  margin: 3px 0 0;
+  font-family: var(--font-zh);
+  font-size: .78rem;
+  line-height: 1.65;
+  color: var(--ink-faint);
+}
 
 /* ---------------- activities ---------------- */
 
@@ -553,7 +565,11 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   border: 1px solid var(--line);
   border-radius: 10px;
 }
-.gap-line { display: grid; grid-template-columns: 1.6rem 1fr; margin: 0 0 10px; }
+/* The number sits in its own narrow column so the sentence, and the Chinese
+   under it, share one left edge. */
+.gap-line { margin: 0 0 10px; }
+.gap-line .en { display: grid; grid-template-columns: 1.6rem 1fr; }
+.gap-line .zh { margin-top: 5px; padding-left: 1.6rem; }
 .gap-n {
   font-family: var(--font-ui);
   font-size: .8rem;
@@ -599,8 +615,24 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 }
 .poll-row .pair { flex: 1 1 18rem; }
 .poll-btns { display: flex; gap: 6px; flex: none; }
-.poll-btns .chip, .role-btns .chip { font-family: var(--font-ui); font-size: .82rem; padding: 6px 11px; }
+.poll-btns .chip, .role-btns .chip {
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  padding: 5px 11px;
+  text-align: center;
+}
+/* The Chinese rides under the label inside the button, so a two-word answer
+   does not become two buttons wide. */
+.chip em {
+  display: block;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-size: .72rem;
+  line-height: 1.4;
+  color: var(--ink-faint);
+}
 .chip.on { border-color: var(--navy); background: var(--navy); color: #fff; font-weight: 600; }
+.chip.on em { color: rgba(255, 255, 255, .8); }
 
 /* kitchen cabinet audit */
 
@@ -661,6 +693,13 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   font-style: italic;
   color: var(--ink-soft);
 }
+.starters li .en, .frames li .en { display: block; }
+.starters li .zh, .frames li .zh {
+  margin-top: 4px;
+  font-style: normal;
+  font-size: .78rem;
+  color: var(--ink-faint);
+}
 
 /* tasks */
 
@@ -707,6 +746,16 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   text-transform: uppercase;
   color: var(--ink-faint);
 }
+/* The Chinese belongs beside its English label, so it takes the free space and
+   leaves the counter pinned to the right. */
+.checklist-head em {
+  margin-right: auto;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
 .count { font-weight: 400; letter-spacing: 0; text-transform: none; font-variant-numeric: tabular-nums; }
 
 .checklist ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
@@ -714,6 +763,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  text-align: left;
   font-family: var(--font-en);
   font-size: .92rem;
   color: var(--ink-soft);
@@ -780,6 +830,17 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 
 .panel .row { margin-top: 18px; }
 .panel label { display: block; font-size: .78rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 6px; }
+/* Chinese inside a panel label, button or note: same line where it fits, its
+   own line where it does not, always a shade quieter than the English. */
+.panel label em, .panel-btn em, .row-note em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+.panel-btn em { margin-left: 5px; font-size: .82em; }
+.panel-btn:not(.panel-btn-quiet) em { color: rgba(255, 255, 255, .78); }
+.row-note em { display: block; margin-top: 3px; }
 .row-check { display: flex; align-items: center; gap: 9px; cursor: pointer; margin-top: 16px; }
 .row-check span { font-size: .88rem; font-weight: 600; color: var(--ink); }
 .row-check em { font-family: var(--font-zh); font-style: normal; font-weight: 400; font-size: .8rem; color: var(--ink-faint); margin-left: 5px; }
