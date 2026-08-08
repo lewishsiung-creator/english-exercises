@@ -515,6 +515,51 @@ because they work whatever the topic is.
 - **Cross-linked with Robot Helper** from the 113 essay, since that year has a
   whole page of practice on this site.
 
+## Sort Before You Speak — adult, IELTS Speaking Part 3
+
+Structure practice for a one-to-one IELTS candidate whose problem is not ideas
+but order. Built from a recorded Part 3 answer in a real lesson: the organised
+answer is taken apart into cards, and he has to put it back together into two
+or three buckets before he is allowed to speak.
+
+The student is not named. Both worked questions came out of the same recording,
+and no idea has been added to either — the page rearranges his material, it does
+not improve it.
+
+| Step | What happens |
+| --- | --- |
+| 1 開口前的十秒鐘 | Why order beats quantity, and five sentences that buy thinking time |
+| 2 四種結構 | Four answer shapes, each with its buckets and the line that announces them |
+| 3 第一題 | Fourteen of his own points, sorted into concede / argue / solve |
+| 4 第二題 | Twelve points into the three categories his answer already had |
+| 5 換你來 | Three unseen questions: pick a shape, fill the pad, speak |
+
+### Design notes
+
+- **The sort is the exercise.** Tap a point, tap a bucket. A point that fits
+  lands and shows why; a point that does not wobbles, shows why anyway, and
+  stays in the pool. The reason line is the teaching — it says what the bucket
+  is *for*, not just which one is right.
+- **One card in Question 2 takes two buckets.** "Every review uses the same
+  handful of words" is a pattern in the writing and a sign of one person behind
+  several accounts, so `bucket` accepts an array and either answer lands. Its
+  reason line says so, which is the point: the sort has a defensible edge case
+  to argue about.
+- **The model answers are his own sentences reordered.** Each is split into
+  parts carrying their bucket name, spoken whole or part by part, and sits
+  behind a reveal so the sort happens first.
+- **Two clocks, neither a score.** Thirty seconds counting down to cap the
+  planning, then a count-up that turns green at 0:40 and amber at 1:15 — the
+  band a Part 3 answer should land in.
+- **The planning pads are plain inputs that nothing reads.** No storage, no
+  restore; a reload is a clean lesson, which is what you want between two
+  clients on one laptop. Only the voice, speed and Chinese settings persist.
+- **Bucket names stay bilingual.** Unlike the other adult pages, section
+  labels are not behind the 中 chip — a bucket you cannot read is not a bucket.
+  Everything the learner is actually being asked to understand still is.
+- **Print** gives a handout: every reason, model answer and idea list opened,
+  the clocks dropped, and the planning pads reduced to ruled lines to write on.
+
 ## Layout
 
 ```
@@ -529,10 +574,11 @@ public/toeic-grammar/     the TOEIC Part 5 & 6 practice
 public/sentence-upgrades/ the 2026/07/25 homework review
 public/robot-helper/      the 113 學年度 writing worksheet
 public/exam-writing/      the 109–115 學測 essay survey
+public/ielts-part3/       the IELTS Part 3 structure practice
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
-All ten are plain HTML, CSS and JS with no build step.
+All eleven are plain HTML, CSS and JS with no build step.
 
 Every page ends with the same `<footer class="site-foot">` linking to
 <https://lewistoeic.com>, so a reader who lands on any one sheet can find the
@@ -722,9 +768,10 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/wealth-habits/> for the three-habits lesson,
 <http://localhost:8000/campaign-speech/> for the speech,
 <http://localhost:8000/toeic-grammar/> for the TOEIC practice,
-<http://localhost:8000/sentence-upgrades/> for the homework review, or
-<http://localhost:8000/robot-helper/> for the writing worksheet, or
-<http://localhost:8000/exam-writing/> for the 學測 essay survey.
+<http://localhost:8000/sentence-upgrades/> for the homework review,
+<http://localhost:8000/robot-helper/> for the writing worksheet,
+<http://localhost:8000/exam-writing/> for the 學測 essay survey, or
+<http://localhost:8000/ielts-part3/> for the IELTS Part 3 practice.
 
 ## Live sites
 
