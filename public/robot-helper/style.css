@@ -1,0 +1,991 @@
+/* Teenage Problems and a Robot Helper — the 113 學年度 writing task as a
+   worksheet a high-school student can actually work through.
+
+   Design notes:
+
+   - The Chinese prompt is the exercise, so it is set large and always visible.
+     The model English is the answer and stays behind a button. That is the
+     reverse of the reading pages in this repo, where English leads — here the
+     English is the thing being produced, and showing it for free would delete
+     the task.
+   - Where a student writes, the page gets out of the way: the box is plain
+     lined paper, it grows as it fills, and nothing turns red. There are no
+     scores anywhere. The two numbers on the page — how many sentences have
+     been written, and how long the essay is — are counts of work done and of
+     the exam's own length requirement, not marks.
+   - The essay's structure is a switch rather than permanent colour. Read it
+     first as English; turn the structure on and it becomes a plan.
+   - Gold is the problem half of the essay, green is the solution half, and
+     they stay that way everywhere on the page.
+   - Light theme only. It gets read in a classroom, at a desk, or on a phone on
+     the bus, and printed as a paper worksheet.
+   - Text sizes are set for a teenager reading at arm's length, and every touch
+     target clears 40px so the page survives a phone. */
+
+:root {
+  --paper: #f7f6f2;
+  --card: #ffffff;
+  --ink: #1c2430;
+  --ink-soft: #566171;
+  --ink-faint: #8b95a3;
+
+  --navy: #1d3f6e;
+  --navy-soft: #eaf0f8;
+  --navy-line: #c2d3e7;
+
+  --gold: #a1741a;
+  --gold-soft: #fbf1da;
+  --gold-mid: #f4e2b6;
+  --gold-line: #f2c14e;
+
+  --good: #2c7a58;
+  --good-soft: #e4f2ea;
+  --good-mid: #cfe8db;
+  --good-line: #a8d6be;
+
+  --line: #e3e0d8;
+  --rule: #cdc8bc;
+
+  --font-en: "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, "Times New Roman", serif;
+  --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+
+  --bar-h: 54px;
+  --measure: 46rem;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 16px); }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-en);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---------------- the Chinese layer ----------------
+
+   This is the *explanatory* Chinese — notes, leads, sample translations — and
+   it is hidden by default. The Chinese being translated in Parts A, B and E is
+   the prompt, carries its own classes, and is always on screen. */
+
+.zh {
+  display: none;
+  font-family: var(--font-zh);
+  font-size: 0.82em;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  letter-spacing: .01em;
+}
+
+.open .zh,
+body.zh-all .zh { display: block; }
+
+.zh-chip {
+  font-family: var(--font-zh);
+  font-size: 11px;
+  line-height: 1;
+  vertical-align: 2px;
+  margin-left: 6px;
+  padding: 3px 5px;
+  color: var(--ink-faint);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color .12s, border-color .12s, background .12s;
+}
+.zh-chip:hover { color: var(--navy); border-color: var(--navy-line); background: var(--navy-soft); }
+.open > .zh-chip,
+.open .en > .zh-chip { opacity: .35; }
+body.zh-all .zh-chip { display: none; }
+
+/* Lines the learner is not being tested on stay bilingual at all times. */
+.hint-zh, .source .zh, .toc .t .zh, .zh-fixed { display: block; }
+.zh-fixed { font-family: var(--font-zh); }
+
+.pair[data-zh] { cursor: pointer; }
+.pair p { margin: 0; }
+.pair .zh { margin-top: 4px; }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus {
+  left: 12px; top: 12px; z-index: 40;
+  background: var(--card); padding: 10px 16px; border-radius: 8px;
+}
+
+:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+
+/* ---------------- top bar ---------------- */
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  background: rgba(247, 246, 242, .93);
+  backdrop-filter: saturate(1.6) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.bar-title {
+  flex: 1;
+  margin: 0;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bar-title span {
+  font-family: var(--font-zh);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-faint);
+  margin-left: 8px;
+}
+
+.bar-btn {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--navy);
+  background: transparent;
+  border: 1px solid var(--navy-line);
+  border-radius: 7px;
+  padding: 6px 11px;
+  cursor: pointer;
+}
+.bar-btn:hover { background: var(--navy-soft); }
+.bar-btn-quiet { color: var(--ink-soft); border-color: var(--line); font-size: 15px; padding: 4px 9px; }
+.bar-btn-zh { font-family: var(--font-zh); }
+.bar-btn-zh[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+@media (min-width: 900px) { #navToggle { display: none; } }
+
+/* ---------------- shell + contents ---------------- */
+
+.shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (min-width: 900px) {
+  .shell { grid-template-columns: 15rem minmax(0, 1fr); gap: 44px; padding: 0 28px; }
+}
+
+.toc { font-family: var(--font-ui); }
+
+@media (min-width: 900px) {
+  .toc {
+    position: sticky;
+    top: var(--bar-h);
+    max-height: calc(100vh - var(--bar-h));
+    overflow-y: auto;
+    padding: 30px 0 40px;
+    scrollbar-width: thin;
+  }
+}
+
+.toc-head {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.toc ul { list-style: none; margin: 0; padding: 0; }
+
+.toc a {
+  display: grid;
+  grid-template-columns: 1.4rem 1fr;
+  gap: 8px;
+  padding: 8px 10px 8px 6px;
+  border-radius: 7px;
+  text-decoration: none;
+  color: var(--ink-soft);
+  border-left: 2px solid transparent;
+}
+.toc a:hover { background: var(--navy-soft); color: var(--ink); }
+.toc a .n {
+  font-family: var(--font-zh);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-faint);
+  text-align: right;
+  padding-top: 3px;
+}
+.toc a .t .en { display: block; font-size: 13.5px; line-height: 1.35; }
+.toc a .t .zh { font-size: 11.5px; color: var(--ink-faint); }
+.toc a.here {
+  background: var(--navy-soft);
+  border-left-color: var(--navy);
+  color: var(--navy);
+}
+.toc a.here .n, .toc a.here .t .zh { color: var(--navy); }
+.toc a.here .t .en { font-weight: 600; }
+
+@media (max-width: 899px) {
+  #nav {
+    position: fixed;
+    top: var(--bar-h);
+    left: 0; right: 0;
+    z-index: 25;
+    max-height: min(70vh, 30rem);
+    overflow-y: auto;
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 24px rgba(28, 36, 48, .12);
+    padding: 14px 18px 18px;
+    display: none;
+  }
+  body.nav-open #nav { display: block; }
+  body.nav-open .nav-scrim {
+    display: block;
+    position: fixed;
+    inset: var(--bar-h) 0 0;
+    z-index: 20;
+    background: rgba(28, 36, 48, .25);
+  }
+}
+
+/* ---------------- cover ---------------- */
+
+main { max-width: var(--measure); padding-bottom: 6rem; }
+
+.cover { padding: 40px 0 10px; }
+
+/* Set for the Chinese kicker: the tracking that flatters small uppercase Latin
+   crowds Chinese glyphs, which need a size up and a little more air. */
+.kicker {
+  margin: 0 0 14px;
+  font-family: var(--font-zh);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  color: var(--gold);
+}
+
+.cover h1 { margin: 0 0 24px; font-size: 2.2rem; line-height: 1.18; font-weight: 600; }
+/* Inline so the 中 chip trails the last word rather than dropping a line. */
+.cover h1 .en { display: inline; }
+.cover h1 .zh { font-size: .95rem; font-weight: 400; margin-top: 8px; }
+
+.cover-intro { margin-bottom: 26px; font-size: 1.06rem; }
+
+/* The exam question itself, given the weight it has in the room. */
+.taskbox {
+  margin: 0 0 24px;
+  padding: 18px 22px 20px;
+  background: var(--navy-soft);
+  border: 1px solid var(--navy-line);
+  border-radius: 12px;
+}
+.taskbox-label {
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.taskbox-label span {
+  font-family: var(--font-zh);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: .8rem;
+  margin-left: 6px;
+}
+.task-text { font-size: 1.02rem; }
+.taskbox-note {
+  margin: 12px 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed var(--navy-line);
+  font-family: var(--font-zh);
+  font-size: .82rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.goals {
+  padding: 20px 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.goals-intro { font-family: var(--font-ui); font-size: .88rem; color: var(--ink-soft); }
+.goals ul { margin: 12px 0 0; padding-left: 1.1rem; }
+.goals li { margin: 0 0 8px; font-size: .98rem; }
+.goals li .zh { font-size: .8rem; }
+
+.source {
+  margin: 22px 0 0;
+  font-family: var(--font-ui);
+  font-size: .76rem;
+  line-height: 1.6;
+  color: var(--ink-faint);
+}
+.source .zh { font-size: .95em; color: var(--ink-faint); margin-top: 2px; }
+
+/* ---------------- one part ---------------- */
+
+.part { padding-top: 50px; }
+
+.part-head {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  gap: 14px;
+  align-items: start;
+  margin: 0 0 18px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--gold-line);
+  font-size: 1.55rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.part-head .n {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--navy);
+  border-radius: 8px;
+  text-align: center;
+  padding: 4px 0;
+  margin-top: 5px;
+}
+/* The two non-lettered parts get the Chinese face for their marker. */
+.essay .part-head .n, .write-part .part-head .n { font-family: var(--font-zh); font-size: .9rem; }
+.part-head .titles .en { display: inline; }
+.part-head .titles .zh { font-size: .95rem; font-weight: 400; margin-top: 4px; }
+
+.lead {
+  margin: 0 0 22px;
+  font-size: 1.02rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.lead .zh { font-style: normal; }
+
+.label {
+  margin: 34px 0 10px;
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.label .en { display: inline; }
+.label .zh {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: .82rem;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+.hint {
+  margin: 0 0 14px;
+  font-family: var(--font-ui);
+  font-size: .84rem;
+  color: var(--ink-faint);
+}
+.hint-zh { font-family: var(--font-zh); font-size: .95em; margin-top: 2px; }
+
+/* ---------------- speak buttons ---------------- */
+
+.say {
+  font-size: .78em;
+  line-height: 1;
+  margin-left: 7px;
+  padding: 3px 5px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: .55;
+  transition: opacity .12s, border-color .12s;
+}
+.say:hover { opacity: 1; border-color: var(--navy-line); }
+.say-quiet { border-color: transparent; }
+.say-loud {
+  font-size: 1rem;
+  opacity: .9;
+  margin: 0 10px 0 0;
+  padding: 8px 12px;
+  border-color: var(--navy-line);
+  background: var(--card);
+}
+
+/* ---------------- the sample essay ---------------- */
+
+.para {
+  margin: 0 0 8px;
+  padding: 16px 20px 8px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold-line);
+  border-radius: 10px;
+}
+.para-2 { border-left-color: var(--good-line); }
+
+.para-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 4px;
+}
+.para-label .tag {
+  font-family: var(--font-ui);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-mid);
+  border-radius: 5px;
+  padding: 3px 8px;
+}
+.para-2 .para-label .tag { color: var(--good); background: var(--good-soft); border-color: var(--good-mid); }
+.para-label .zh-fixed { font-size: .8rem; color: var(--ink-faint); }
+.para-label .say { margin-left: auto; }
+
+/* The paragraph's plan in one line. Always on — it is the thing the student is
+   meant to steal, and hiding it would just make the section a reading text. */
+.para-note {
+  margin: 0 0 12px;
+  font-family: var(--font-zh);
+  font-size: .82rem;
+  color: var(--ink-soft);
+}
+
+.es-list { list-style: none; margin: 0; padding: 0; counter-reset: es; }
+
+/* One sentence per line, which is how a model essay gets studied — every
+   sentence its own object, and its own tap target for the Chinese. */
+.es {
+  padding: 9px 0;
+  border-top: 1px solid var(--line);
+  cursor: pointer;
+}
+.es:first-child { border-top: none; }
+.es:hover { background: rgba(29, 63, 110, .03); }
+.es-en { margin: 0; font-size: 1.04rem; line-height: 1.7; }
+.es .zh { margin-top: 5px; }
+
+/* The job each sentence does. Off until the structure switch is thrown. */
+.es-job { display: none; }
+.essay.structure .es-job {
+  display: block;
+  margin: 6px 0 0;
+  padding-left: 11px;
+  border-left: 2px solid var(--gold-line);
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  color: var(--gold);
+}
+.essay.structure .para-2 .es-job { border-left-color: var(--good-line); color: var(--good); }
+.es-job .zh-fixed { font-size: .95em; opacity: .85; margin-top: 1px; }
+
+/* The essay as prose, so the length of a full answer is a visible fact rather
+   than a number in the rubric. */
+.prose {
+  padding: 20px 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.prose p { margin: 0 0 14px; font-size: 1.02rem; line-height: 1.75; text-indent: 1.4rem; }
+.prose p:first-child { text-indent: 0; }
+.prose-say {
+  display: flex;
+  align-items: center;
+  margin: 4px 0 0 !important;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  text-indent: 0 !important;
+}
+.prose-say .say { margin-left: 0; }
+.prose-say-t {
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  color: var(--ink-faint);
+  margin-left: 10px;
+}
+.prose-say-t .zh-fixed { font-size: .95em; }
+
+/* ---------------- an item with an answer behind it ---------------- */
+
+.tally {
+  margin: -8px 0 20px;
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+.tally-done { color: var(--good); }
+
+.tr-list, .pat-list { list-style: none; margin: 0; padding: 0; }
+
+.tr, .pat {
+  padding: 20px 22px;
+  margin: 0 0 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.tr.answered, .pat.answered { border-color: var(--good-line); }
+
+.tr-q, .pat-q { display: grid; grid-template-columns: 1.9rem 1fr; gap: 12px; align-items: start; }
+
+.tr-n {
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--ink-faint);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-align: center;
+  padding: 3px 0;
+  margin-top: 4px;
+}
+
+/* The prompt. Chinese, large, always visible — this is the exercise. */
+.tr-zh, .pat-zh {
+  margin: 0;
+  font-family: var(--font-zh);
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+.tr-en {
+  margin: 6px 0 0;
+  font-size: .96rem;
+  color: var(--ink-soft);
+}
+
+.zh-block {
+  margin: 0 0 18px;
+  padding: 16px 18px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-family: var(--font-zh);
+  font-size: 1.04rem;
+  line-height: 2;
+  text-align: justify;
+}
+
+/* ---------------- where the student writes ----------------
+
+   Lined paper, not a form field: no heavy border, no focus glow that says
+   "input", and it grows rather than scrolling. */
+
+.write {
+  display: block;
+  width: 100%;
+  margin: 14px 0 0;
+  padding: 11px 13px;
+  font-family: var(--font-en);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-bottom: 2px solid var(--rule);
+  border-radius: 8px;
+  resize: none;
+  overflow: hidden;
+  min-height: 3.2rem;
+}
+.write::placeholder { color: var(--ink-faint); font-style: italic; }
+.write:focus {
+  outline: none;
+  background: var(--card);
+  border-color: var(--navy-line);
+  border-bottom-color: var(--navy);
+}
+
+.count {
+  margin: 6px 0 0;
+  font-family: var(--font-ui);
+  font-size: .74rem;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+.count-big { font-size: .86rem; }
+.count-near { color: var(--good); font-weight: 600; }
+
+/* ---------------- the two reveal buttons ---------------- */
+
+.steps { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 0; }
+.steps-wide { margin: 0 0 22px; }
+
+.step-btn {
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  text-align: left;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px dashed var(--rule);
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: color .12s, border-color .12s, background .12s;
+}
+.step-btn .zh-fixed { font-size: .78rem; color: var(--ink-faint); margin-top: 1px; }
+.step-btn:hover { color: var(--navy); border-color: var(--navy-line); background: var(--navy-soft); }
+.step-btn.on {
+  border-style: solid;
+  border-color: var(--gold-line);
+  background: var(--gold-soft);
+  color: var(--gold);
+}
+.step-btn.on .zh-fixed { color: var(--gold); opacity: .8; }
+
+.step-btn-go { color: var(--navy); border-color: var(--navy-line); }
+.step-btn-go.on { border-color: var(--good-line); background: var(--good-soft); color: var(--good); }
+.step-btn-go.on .zh-fixed { color: var(--good); opacity: .8; }
+
+/* ---------------- hint, then answer ---------------- */
+
+.hintbox, .ansbox { display: none; }
+.hinted .hintbox, .answered .ansbox { display: block; }
+
+.hintbox {
+  margin: 14px 0 0;
+  padding: 14px 16px;
+  background: var(--gold-soft);
+  border: 1px solid #ecdcb4;
+  border-radius: 10px;
+}
+
+.keys { margin: 0 0 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+.key {
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  color: var(--gold);
+  background: var(--card);
+  border: 1px solid var(--gold-mid);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+
+.hint-text {
+  margin: 0;
+  font-family: var(--font-zh);
+  font-size: .86rem;
+  line-height: 1.85;
+  color: var(--ink-soft);
+}
+
+.ansbox {
+  margin: 14px 0 0;
+  padding: 14px 16px 16px;
+  background: var(--good-soft);
+  border: 1px solid var(--good-mid);
+  border-radius: 10px;
+}
+
+.ans-label {
+  margin: 0 0 6px;
+  font-family: var(--font-ui);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--good);
+}
+.ans-label span {
+  font-family: var(--font-zh);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: .8rem;
+  margin-left: 6px;
+}
+
+.ans { margin: 0; font-size: 1.06rem; line-height: 1.7; }
+.ans-para { font-size: 1rem; line-height: 1.8; text-align: justify; }
+.ans-label .say { margin-left: 6px; vertical-align: -1px; }
+.ansbox .label { margin-top: 20px; color: var(--good); }
+
+/* What the answer used and the student's version did not. A list to read, not
+   a mark — so it sits under the answer in the same green, with no count. */
+.notice {
+  margin: 12px 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed var(--good-line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: baseline;
+}
+.notice[hidden] { display: none; }
+.notice-t {
+  flex: 1 0 100%;
+  font-family: var(--font-ui);
+  font-size: .76rem;
+  color: var(--ink-soft);
+  margin-bottom: 3px;
+}
+.notice-t .zh-fixed { font-size: .95em; color: var(--ink-faint); margin-top: 1px; }
+.notice-ok { color: var(--good); }
+.notice .key { color: var(--good); border-color: var(--good-line); }
+
+/* ---------------- sentence patterns ---------------- */
+
+.pat-en {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 1.06rem;
+  font-weight: 600;
+  color: var(--good);
+}
+.pat-eg {
+  margin: 10px 0 0;
+  padding-top: 10px;
+  border-top: 1px dashed var(--good-line);
+  font-size: .98rem;
+}
+.pat-eg .zh { font-size: .84rem; }
+
+/* ---------------- vocabulary cards ----------------
+
+   Chinese on the front, English behind — the direction the exam asks for. */
+
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 10px;
+  /* Opening one card should not stretch the others sharing its row. */
+  align-items: start;
+}
+
+.card {
+  padding: 12px 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color .12s, box-shadow .12s;
+}
+.card:hover { border-color: var(--navy-line); box-shadow: 0 2px 8px rgba(28, 36, 48, .06); }
+.card-zh { margin: 0; font-family: var(--font-zh); font-size: .98rem; font-weight: 600; }
+.card-en {
+  display: none;
+  margin: 8px 0 0;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+  font-size: .98rem;
+  color: var(--good);
+}
+/* A rule where the answer will be, so a shut card reads as a question. */
+.card-zh::after {
+  content: "";
+  display: block;
+  width: 3.6rem;
+  border-bottom: 1px solid var(--rule);
+  margin-top: .8em;
+}
+.card.open { border-color: var(--good-line); background: var(--good-soft); }
+.card.open .card-zh::after { display: none; }
+.card.open .card-en { display: block; }
+
+/* ---------------- the open questions ---------------- */
+
+.starters-label {
+  margin: 16px 0 6px;
+  font-family: var(--font-ui);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.starters-label span {
+  font-family: var(--font-zh);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: .8rem;
+  margin-left: 6px;
+}
+.starters { list-style: none; margin: 0; padding: 0; }
+.starters li {
+  margin: 0 0 6px;
+  padding: 7px 12px;
+  background: var(--paper);
+  border-left: 2px solid var(--navy-line);
+  border-radius: 0 7px 7px 0;
+  font-size: .95rem;
+  color: var(--ink-soft);
+}
+
+/* ---------------- write your own ---------------- */
+
+.write-part .write { min-height: 16rem; background: var(--card); }
+
+.write-tools { display: flex; align-items: center; margin: 16px 0 0; }
+.write-tools-t {
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  color: var(--ink-soft);
+}
+.write-tools-t .zh-fixed { font-size: .95em; color: var(--ink-faint); margin-top: 1px; }
+
+.checks { list-style: none; margin: 0; padding: 0; }
+.checks li { margin: 0 0 2px; }
+.checks label {
+  display: grid;
+  grid-template-columns: 1.3rem 1fr;
+  gap: 11px;
+  align-items: start;
+  padding: 9px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.checks label:hover { background: var(--navy-soft); }
+.checks input {
+  width: 18px;
+  height: 18px;
+  margin: 3px 0 0;
+  accent-color: var(--good);
+}
+.chk-t .en { font-size: .96rem; }
+.chk-t .zh-fixed { font-size: .82rem; color: var(--ink-faint); margin-top: 1px; }
+.checks input:checked + .chk-t { color: var(--ink-faint); }
+.checks input:checked + .chk-t .en { text-decoration: line-through; }
+
+/* ---------------- teacher panel ---------------- */
+
+.panel {
+  position: fixed;
+  z-index: 40;
+  top: calc(var(--bar-h) + 8px);
+  right: 14px;
+  width: min(22rem, calc(100vw - 28px));
+  max-height: calc(100vh - var(--bar-h) - 24px);
+  overflow-y: auto;
+  padding: 18px 20px 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(28, 36, 48, .18);
+  font-family: var(--font-ui);
+}
+.panel[hidden] { display: none; }
+
+.panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.panel-head h2 { margin: 0 0 4px; font-family: var(--font-ui); font-size: .95rem; }
+.panel-head h2 span { font-family: var(--font-zh); font-size: .8rem; font-weight: 400; color: var(--ink-faint); margin-left: 6px; }
+.panel-x { background: transparent; border: 0; color: var(--ink-faint); font-size: 15px; cursor: pointer; padding: 2px 4px; }
+
+.panel .row { margin-top: 18px; }
+.panel label { display: block; font-size: .78rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 6px; }
+.row-check { display: flex; align-items: center; gap: 9px; cursor: pointer; margin-top: 16px; }
+.row-check span { font-size: .88rem; font-weight: 600; color: var(--ink); }
+.row-check em { font-family: var(--font-zh); font-style: normal; font-weight: 400; font-size: .8rem; color: var(--ink-faint); margin-left: 5px; }
+.row-check input { width: 17px; height: 17px; accent-color: var(--navy); }
+
+.panel select {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: .85rem;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.panel-btn {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: .87rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--navy);
+  border: 1px solid var(--navy);
+  border-radius: 8px;
+  padding: 9px 12px;
+  cursor: pointer;
+}
+.panel-btn:hover { filter: brightness(1.12); }
+.panel-btn-quiet { color: var(--ink-soft); background: var(--paper); border-color: var(--line); }
+.panel-btn-quiet:hover { filter: none; border-color: var(--rule); }
+
+.row-note { margin: 7px 0 0; font-size: .74rem; line-height: 1.5; color: var(--ink-faint); }
+
+/* ---------------- small screens ---------------- */
+
+@media (max-width: 620px) {
+  body { font-size: 17px; }
+  .cover h1 { font-size: 1.8rem; }
+  .part-head { font-size: 1.3rem; grid-template-columns: 2rem 1fr; gap: 10px; }
+  .tr, .pat { padding: 16px 15px; }
+  .taskbox, .goals, .prose, .para { padding-left: 16px; padding-right: 16px; }
+  .tr-q, .pat-q { grid-template-columns: 1.6rem 1fr; gap: 9px; }
+  .tr-zh, .pat-zh { font-size: 1.02rem; }
+  .steps { flex-direction: column; align-items: stretch; }
+  .cards { grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); }
+  .bar-title span { display: none; }
+}
+
+/* ---------------- print ----------------
+
+   Two useful ways to print this page, and the same stylesheet has to serve
+   both: a blank worksheet (print it before anything is opened) and a marked-up
+   answer key (open everything from the teacher panel first, then print). So
+   print does not force the answers open — it prints whatever state the screen
+   is in, and only drops the machinery. */
+
+@media print {
+  .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .steps, .prose-say { display: none !important; }
+  body { font-size: 11pt; background: #fff; }
+  .shell { display: block; padding: 0; }
+  main { max-width: none; }
+
+  .zh, .hintbox { display: block !important; }
+
+  /* A printed worksheet needs room to write on, and a screen textarea prints as
+     an empty grey slab. Give it ruled height instead. */
+  .write {
+    background: #fff;
+    border: 0;
+    border-bottom: 1px solid var(--rule);
+    min-height: 3.5rem;
+    height: auto !important;
+  }
+  .write-part .write { min-height: 18rem; }
+  .count, .tally { display: none; }
+
+  .part { break-before: page; padding-top: 0; }
+  .tr, .pat, .card, .para, .prose, .goals, .taskbox, .checks li { break-inside: avoid; }
+  .tr, .pat, .card, .ansbox, .hintbox, .para, .prose {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Robot Helper</title>
+<meta name="description" content="The 113 學年度 writing task, made practicable: the sample essay and its structure, eighteen sentences to translate, the patterns behind them, the vocabulary, and your own essay.">
+
+<!-- Inline SVG mark: a robot's face, the antenna lit. The colours must be
+     percent-encoded, since a bare "#" would be read as the start of the URL
+     fragment. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d3f6e'/%3E%3Cpath d='M32 12v7' stroke='%23f2c14e' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='10' r='3.5' fill='%23f2c14e'/%3E%3Crect x='16' y='20' width='32' height='26' rx='8' fill='none' stroke='%23ffffff' stroke-width='3.5'/%3E%3Ccircle cx='25' cy='31' r='3.2' fill='%23ffffff'/%3E%3Ccircle cx='39' cy='31' r='3.2' fill='%23ffffff'/%3E%3Cpath d='M25 39h14' stroke='%2372c9a2' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f6f2">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#doc">Skip to the practice</a>
+
+<header class="bar">
+  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
+    <span aria-hidden="true">☰</span> Parts
+  </button>
+
+  <p class="bar-title">Robot Helper <span>機器人小幫手 · 113 學年度寫作</span></p>
+
+  <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="false">中文</button>
+  <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
+          aria-controls="panel" title="Teacher panel" aria-label="Teacher panel">👩‍🏫</button>
+</header>
+
+<div class="shell">
+  <div id="nav"></div>
+  <main id="doc"></main>
+</div>
+
+<div class="nav-scrim" hidden></div>
+
+<!-- Teacher panel. Opens over the lesson rather than replacing it, so a
+     discussion in progress is never lost. -->
+<div class="panel" id="panel" role="dialog" aria-label="Teacher panel" hidden>
+  <div class="panel-head">
+    <h2>Teacher panel <span>教師面板</span></h2>
+    <button class="panel-x" id="panelClose" aria-label="Close">✕</button>
+  </div>
+
+  <label class="row row-check">
+    <input type="checkbox" id="zhAll">
+    <span>Show all Chinese <em>顯示全部中文</em></span>
+  </label>
+
+  <div class="row">
+    <button class="panel-btn" id="showAll">Open every answer</button>
+    <p class="row-note">Opens all eighteen translations, the paragraph, the
+      patterns, the vocabulary and the sample answers — for going back over the
+      set together, or for marking.</p>
+  </div>
+
+  <div class="row">
+    <button class="panel-btn panel-btn-quiet" id="hideAll">Close them again</button>
+    <p class="row-note">Puts every answer back out of sight. Anything typed on
+      the page is left alone.</p>
+  </div>
+
+  <div class="row">
+    <label for="voicePick">Voice</label>
+    <select id="voicePick"></select>
+    <p class="row-note">Used by the 🔊 buttons. Choosing one plays a sample.</p>
+  </div>
+
+  <div class="row">
+    <label for="rate">Speed</label>
+    <select id="rate">
+      <option value="0.75">Slow</option>
+      <option value="0.95">Normal</option>
+      <option value="1.1">Brisk</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <button class="panel-btn panel-btn-quiet" id="clearWork">Clear everything typed</button>
+    <p class="row-note">Wipes this student's writing from this device — the
+      translations, the paragraph, the bonus answers and the essay. Asks first.
+      Voice and Chinese settings stay.</p>
+  </div>
+</div>
+
+<script src="content.js"></script>
+<script src="render.js"></script>
+</body>
+</html>

@@ -1,14 +1,15 @@
 # English Exercises
 
 English teaching material, built for classroom, homework and one-to-one use.
-Eight independent pages live here — a game for young learners at the site
+Nine independent pages live here — a game for young learners at the site
 root, phonics practice for slightly older children at `/phonics/`, an
 interactive phonics handbook for the same age at `/phonics-handbook/`, a
 bilingual business worksheet at `/business-clarity/`, an interactive
 lesson for working adults at `/wealth-habits/`, reading-aloud practice
 built on a bilingual speech at `/campaign-speech/`, TOEIC grammar
-practice at `/toeic-grammar/`, and a homework review of one student's own
-sentences at `/sentence-upgrades/`.
+practice at `/toeic-grammar/`, a homework review of one student's own
+sentences at `/sentence-upgrades/`, and a high-school writing worksheet
+at `/robot-helper/`.
 
 ## Word Play — CEFR A1, ages 7–10
 
@@ -323,6 +324,53 @@ text, this one is the student's own writing handed back.
   both versions open with the changes marked, every note showing, the machinery
   gone.
 
+## Robot Helper — high school, exam writing
+
+The 113 學年度 writing task — *choose one of three teenage problems and describe
+the robot helper you would design* — taken apart into the six things a student
+has to be able to do. The handout it comes from is five parts and one sample
+essay; this adds the two the paper could not have, which are seeing the essay's
+structure and writing your own.
+
+| Part | What it asks for |
+| --- | --- |
+| 範 The sample essay | Read it, then switch the structure on and see each sentence's job |
+| A Translate the sentences | 18 sentences 中→英, with a hint before the answer |
+| B Challenge translation | The same content as one paragraph — the joins are the task |
+| C Sentence patterns | The 10 frames behind the essay, each with a fresh example |
+| D Key vocabulary | 25 words, Chinese on the front, grouped as the essay uses them |
+| E Bonus challenge | Three open questions, sentence starters, one possible answer |
+| ✍ Write your own | A 120-word answer, a live word count and a seven-point check |
+
+### Design notes
+
+- **The Chinese is the prompt and the English is the answer**, which is the
+  reverse of every other page here. So the Chinese sentence is set large and
+  always on screen, and the model English stays behind a button — showing it
+  for free would delete the task. Explanatory Chinese still hides behind the
+  中 chips.
+- **Two steps before the answer.** The hint is what a teacher says when someone
+  is stuck: the word to reach for, the trap the sentence sets (*among* not
+  *between*, `such as` wanting three matching `-ing` forms). Getting there on
+  the hint alone is worth more than reading the answer.
+- **Nothing is scored.** Once an answer opens, the page lists the words the
+  model sentence used and the student's version did not — a reading list, not a
+  mark, with no percentage and no red. When nothing is missing it says so.
+  Endings are forgiven in the student's favour, so *picture* counts as
+  *pictures* and *taking* as *take*.
+- **The two numbers are not marks either**: how many of the eighteen have been
+  written, and how long the essay is. The second is the exam's own requirement.
+- **What is typed is kept**, in this browser only, and survives a reload — a
+  student who has written eighteen sentences should not lose them to a stray
+  tap. Nothing is uploaded, there is no account, and the teacher panel's one
+  destructive button asks before it wipes.
+- **Structure is a switch, not permanent colour.** Read the essay as English
+  first; turn the structure on and it becomes a plan. Gold is the problem half,
+  green the solution half, everywhere on the page.
+- **Print gives two documents from one stylesheet**: print it untouched for a
+  blank worksheet with ruled space to write in, or open everything from the
+  teacher panel first for an answer key.
+
 ## Layout
 
 ```
@@ -335,10 +383,11 @@ public/wealth-habits/img/ its four photographs
 public/campaign-speech/   the speech reading practice
 public/toeic-grammar/     the TOEIC Part 5 & 6 practice
 public/sentence-upgrades/ the 2026/07/25 homework review
+public/robot-helper/      the 113 學年度 writing worksheet
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
-All eight are plain HTML, CSS and JS with no build step.
+All nine are plain HTML, CSS and JS with no build step.
 
 ## Editing the content
 
@@ -460,6 +509,23 @@ identical or the sentences stop lining up. The closing review section is built
 from the items, so adding a sentence adds its phrases to the table and its
 revision to the read-aloud list with no second edit.
 
+**Robot Helper.** The page lives in
+[`public/robot-helper/content.js`](public/robot-helper/content.js) as a `parts`
+array, each part naming its `kind` — `essay`, `translate`, `paragraph`,
+`patterns`, `vocab`, `open`, `write`. Each kind is one function in
+[`render.js`](public/robot-helper/render.js), and the renderer throws on a kind
+it has no builder for, so a typo fails loudly rather than dropping a section.
+Reordering the array reorders the page and its contents list.
+
+A `translate` item is a `zh` prompt, the model `en`, a few `keys` to show as
+chips, and a `hint` — the hint is what a teacher would say before giving the
+answer away, not a translation of the note. An `essay` sentence carries a
+`jobEn`/`jobZh` pair, which is what the structure switch reveals; the prose
+version and its word count are derived from the same sentences, so there is no
+second copy of the essay to keep in step. Swapping the whole content file makes
+the page a worksheet for a different year's task with no change to the
+renderer.
+
 ## Running it locally
 
 No build step and no dependencies:
@@ -474,8 +540,9 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/business-clarity/> for the business worksheet,
 <http://localhost:8000/wealth-habits/> for the three-habits lesson,
 <http://localhost:8000/campaign-speech/> for the speech,
-<http://localhost:8000/toeic-grammar/> for the TOEIC practice, or
-<http://localhost:8000/sentence-upgrades/> for the homework review.
+<http://localhost:8000/toeic-grammar/> for the TOEIC practice,
+<http://localhost:8000/sentence-upgrades/> for the homework review, or
+<http://localhost:8000/robot-helper/> for the writing worksheet.
 
 ## Live sites
 
