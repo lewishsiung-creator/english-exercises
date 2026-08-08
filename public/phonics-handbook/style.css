@@ -32,6 +32,7 @@
 
   --sans: "Nunito", "Quicksand", "Trebuchet MS", "Avenir Next",
           "PingFang TC", "Microsoft JhengHei", system-ui, -apple-system, sans-serif;
+  --mono: "Menlo", "Consolas", "Courier New", monospace;
 }
 
 * { box-sizing: border-box; }
@@ -753,6 +754,72 @@ body.mark-mode .chip { cursor: crosshair; }
 }
 
 .muted { color: var(--ink-soft); font-size: .88rem; }
+
+/* ---------------- 發音檢查 ---------------- */
+
+.cue-wrap {
+  max-height: 220px;
+  overflow: auto;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  margin-top: 8px;
+}
+
+.cue-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.cue-row:last-child { border-bottom: 0; }
+.cue-row.is-playing { background: var(--blue-soft); }
+.cue-row.is-bad { background: var(--mark-soft); }
+
+.cue-play, .cue-bad-btn {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-size: .8rem;
+  padding: 3px 5px;
+  border-radius: 8px;
+  flex: none;
+}
+
+.cue-play { color: var(--blue); font-weight: 800; }
+.cue-bad-btn { opacity: .35; margin-left: auto; }
+.cue-bad-btn[aria-pressed="true"] { opacity: 1; }
+
+.cue-head {
+  margin: 0;
+  padding: 6px 10px 4px;
+  font-size: .76rem;
+  font-weight: 800;
+  color: var(--ink-soft);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  /* Above the rows, or a scrolled row's 👎 shows through the header. */
+  z-index: 1;
+}
+
+.cue-key { font-weight: 800; min-width: 46px; font-size: .92rem; }
+.cue-row-word .cue-key { min-width: 74px; }
+.cue-row-word .cue-say { font-family: var(--sans); font-size: .78rem; }
+.cue-say { color: var(--ink-soft); font-size: .84rem; font-family: var(--mono, monospace); }
+
+.cue-bad {
+  width: 100%;
+  font: inherit;
+  font-size: .82rem;
+  padding: 7px 10px;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  resize: vertical;
+}
 
 /* ---------------- phones ---------------- */
 

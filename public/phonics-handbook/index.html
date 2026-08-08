@@ -79,10 +79,56 @@
       <option value="0.85">正常</option>
       <option value="1">快</option>
     </select>
+    <p class="row-note">單獨的「音」會再放慢一點，因為一個音只有零點幾秒，
+      用念單字的速度放過去，孩子還沒聽清楚就結束了。</p>
+  </div>
+
+  <div class="row">
+    <label>發音檢查</label>
+    <p class="row-note">每台電腦的語音不一樣，同一個拼法在這台念得準，在另一台
+      可能就走音。這裡可以一個一個聽過去，把念錯的標起來。</p>
+    <div class="block-actions">
+      <button class="panel-btn" id="cuePlayAll">▶ 逐一試聽</button>
+      <button class="panel-btn panel-btn-quiet" id="cueStop">停</button>
+    </div>
+    <div class="cue-wrap"><div class="cue-list" id="cueList"></div></div>
+    <div id="cueBadBox" hidden>
+      <p class="row-note">標起來的：把下面這行複製給我，我來調整拼法。</p>
+      <textarea class="cue-bad" id="cueBad" rows="2" readonly></textarea>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>真人錄音</label>
+    <p class="row-note" id="audioStat">—</p>
+    <p class="row-note">有錄音的字會直接播真人的聲音，沒有的才用電腦語音念。
+      單獨的「音」（sh、bl…）沒有人錄，所以一律是電腦語音。</p>
+    <p class="row-note">錄音來自
+      <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a>，
+      主要錄音者 Dvortygirl／Dvortybot，授權為
+      <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA</a>
+      等；已裁掉頭尾靜音並統一音量。完整名單見
+      <a href="audio/CREDITS.md" target="_blank" rel="noopener">audio/CREDITS.md</a>。</p>
+  </div>
+
+  <div class="row">
+    <label>換更好的語音</label>
+    <p class="row-note">影響最大的一步，而且只要做一次。系統內建的「精簡版」
+      語音本來就比較扁；下載加強版之後，同一個網頁會立刻變好聽。</p>
+    <p class="row-note"><b>Mac</b>：系統設定 → 輔助使用 → 朗讀內容 → 系統語音
+      旁的 <b>ⓘ</b> → 管理語音 → 英文（美國），下載 <b>Ava</b>、<b>Allison</b>
+      或 <b>Samantha</b> 的「加強」或「進階」版本，再回來這裡選它。</p>
+    <p class="row-note"><b>Windows</b>：設定 → 時間與語言 → 語音 → 新增語音，
+      裝英文（美國）；名稱有 <b>Natural</b> 的最好。</p>
+    <p class="row-note"><b>Chrome</b> 另外有一個 <b>Google US English</b>，
+      通常比系統內建的清楚，清單裡有就直接選它。</p>
   </div>
 </div>
 
 <script src="content.js"></script>
+<!-- Which words have a human recording in audio/. Generated — see the
+     "Recorded words" note in the README. -->
+<script src="audio/manifest.js"></script>
 <script src="render.js"></script>
 </body>
 </html>

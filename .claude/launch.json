@@ -4,7 +4,7 @@
     {
       "name": "english-exercises",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "-d", "public", "8000"],
+      "runtimeArgs": ["serve.py", "8000"],
       "port": 8000
     }
   ]

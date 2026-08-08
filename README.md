@@ -134,8 +134,95 @@ language, and the child looks things up rather than playing through.
   removes it.
 - **Print** hides the machinery and keeps the handbook.
 
-The voice logic is Sound Lab's — same young-American-female wishlist, its own
-`phonicsGuide.*` keys in `localStorage`, so the two pages never mix settings.
+### Recorded words
+
+Most of the practice words are **not** synthesised: 700 of them are human
+recordings from [Wikimedia Commons](https://commons.wikimedia.org/), sitting
+in `public/phonics-handbook/audio/` and played instead of the voice. That
+covers about three quarters of the words a child can tap. Anything without a
+recording — and every bare sound, which nobody records in isolation — falls
+back to speech synthesis, so nothing is ever silent.
+
+Coverage is good because the same two Commons accounts (Dvortygirl and its
+bot) recorded 640 of the 700, so the set sounds like one speaker rather than a
+crowd. The originals are Ogg Vorbis, which Safari cannot play, so each was
+taken from Wikimedia's own mp3 transcode, trimmed of leading and trailing
+silence, normalised to a common loudness (the raw clips vary about fourfold —
+in a classroom that means half the words are inaudible and the rest make
+everyone jump) and encoded to AAC at 48 kbps mono. That is ~9 kB a word,
+6.2 MB in total. The whole pipeline uses only macOS built-ins (`curl`,
+`afconvert`) and the Python standard library, because there is no ffmpeg on
+the machine this was built on.
+
+`audio/manifest.js` is the generated list of which words have a recording;
+`render.js` consults it and takes the audio path only for whole words, never
+for a bare sound. A missing file, a codec failure or a refused autoplay all
+fall through to the voice rather than going quiet.
+
+**These recordings carry their own licence** — mostly CC BY-SA 3.0, some
+CC BY-SA 4.0, the rest public domain or CC0 — which stays with them and does
+not extend to the rest of the site. Attribution and the modification note are in
+[`audio/CREDITS.md`](public/phonics-handbook/audio/CREDITS.md) and summarised
+in the teacher panel. Removing the `audio/` folder and its `<script>` tag
+reverts the page to pure synthesis with no other change.
+
+### Speech quality
+
+For everything not covered by a recording, a browser voice cannot be given a
+phoneme, only text — so every bare sound on this page is an English
+pseudo-word chosen to make the engine's letter-to-sound rules land on the
+right noise (`b` → "buh", `sh` → "shhh").
+
+**Which spellings work is measurable, not a matter of taste.** macOS `say`
+drives the same system voices the browser exposes, so a cue can be
+synthesised and compared against its letter-name reading:
+
+```bash
+say -v Samantha -o a.aiff "sss"; say -v Samantha -o b.aiff "ess ess ess"
+md5 a.aiff b.aiff        # identical hash = the cue is being spelled out
+```
+
+Run against the original table, that test failed on eight entries: `sss`,
+`lll`, `mmm`, `rrr` and `vvv` were byte-identical to "ess ess ess", "el el
+el" and so on; `ng` and `ks` to "en gee" and "kay ess"; and `aah` was
+byte-identical to `ah`, so short `a` and short `o` were literally one sound.
+`thhh` ran 1.22s against 0.43s for `thuh` — trailing h's become segments
+rather than stretch. All are fixed. The teacherly stretched spelling is
+therefore wrong *here* even though it is right on a whiteboard, and
+continuants take the schwa form. Two stretched cues survived the test and
+are deliberately kept: `fff`, and `shhh` (bare `sh` spells out as "ess
+aitch").
+
+Four more things follow, and together they are why the page sounds better
+than a naive `speechSynthesis.speak(word)`:
+
+- **Voices are ranked, not just wished for.** `VOICE_TIERS` puts neural
+  voices (Siri, Microsoft *Natural*, Google US English) first and Apple's
+  recorded-speaker voices second; macOS character voices sit below them, and
+  the novelty shelf — Zarvox, Bad News, Bubbles — is excluded from automatic
+  choice and labelled 不建議 in the picker. Without this the fallback was
+  alphabetical, so a machine without a favourite installed could open the
+  lesson in Albert.
+- **A sound is spoken slower than a word** (`SOUND_SLOWER`), with a longer
+  pause after it, because a phoneme is a fraction of a second and the silence
+  afterwards is when the child repeats it. Pitch is flat: raising it thins
+  the formants, which is the information a vowel carries.
+- **Chrome drops an utterance queued in the same tick as `cancel()`**, which
+  presents as a tap that makes no sound. The first utterance of each run is
+  therefore deferred a frame.
+- **A cue that is wrong on your machine is a data fix, not a code fix.** The
+  measurements above are from one Mac; another machine's voices will differ.
+  The teacher panel's 發音檢查 plays every cue and every at-risk word in turn
+  and collects the bad ones into a copyable list; each is one line in `CUES`
+  or `WATCH` in `content.js`.
+
+`WATCH` is the short list of words whose lesson depends on which reading the
+voice picks — *refuse* sits in the long-`u` list, and the noun (rubbish,
+`REF-yoos`) has no long `u` at all, so a voice choosing it teaches the
+opposite of the point.
+
+Settings live under `phonicsGuide.*` in `localStorage`, separate from Sound
+Lab's, so the two pages never mix voice or speed.
 
 ## Business Clarity — adult, one-to-one
 
@@ -531,8 +618,17 @@ renderer.
 No build step and no dependencies:
 
 ```bash
-python3 -m http.server -d public 8000
+python3 serve.py
 ```
+
+[`serve.py`](serve.py) is a plain static server for `public/`. It exists
+rather than a bare `python3 -m http.server -d public 8000` because macOS's
+mime table labels `.m4a` as `audio/mp4a-latm`, which Safari refuses to play —
+so the handbook's recorded words would appear broken in Safari and fine in
+Chrome, for reasons having nothing to do with the files. It also sends
+`Cache-Control: no-store`, so an edit shows on reload instead of serving a
+stale copy. Both hosts already serve `.m4a` correctly, so this is a
+local-only concern.
 
 Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/phonics/> for Sound Lab,

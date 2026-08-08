@@ -33,20 +33,43 @@
 
 /* ==================== how to speak a sound on its own ==================== */
 
-/* Browser voices cannot say a bare phoneme, so a stop consonant gets the
-   schwa a phonics teacher would add anyway ("buh") and a continuant gets
-   stretched ("sss"). Anything not listed is spoken as written. Tune a line
-   if this machine's voice mangles it — nothing else depends on these. */
+/* Browser voices cannot say a bare phoneme, so each sound is an English
+   pseudo-word chosen to make the engine's letter-to-sound rules land on it.
+
+   THE ONE HARD RULE, and it beats phonics theory: a cue must look like a
+   pronounceable word, or the engine reads it out as LETTER NAMES. This is
+   not a guess — every entry below was synthesised with macOS `say` (the
+   same system voices the browser uses) and compared against the letter-name
+   reading. The results were blunt:
+
+     'sss' produced audio byte-identical to "ess ess ess"
+     'lll' → "el el el",  'mmm' → "em em em",  'rrr' → "ar ar ar",
+     'vvv' → "vee vee vee",  'ng' → "en gee",  'ks' → "kay ess"
+     'aah' was byte-identical to 'ah', so short a and short o were one sound
+     'thhh' ran 1.22s against 0.43s — the h's become segments, not stretch
+
+   So the teacherly stretched spelling ("sss" for /s/) is wrong here even
+   though it is right on a whiteboard: the engine spells it. Continuants take
+   the schwa form too. Two survived the test and are deliberately left alone —
+   'fff' (0.72s, genuinely stretched) and 'shhh' (0.20s, hits the shush
+   lexicon); bare 'sh' would spell out as "ess aitch".
+
+   Re-measure with:
+     say -v Samantha -o a.aiff "sss"; say -v Samantha -o b.aiff "ess ess ess"
+     md5 a.aiff b.aiff       # same hash = the cue is being spelled out
+
+   Voices differ, so a cue that is clean here can fail elsewhere. The teacher
+   panel's 發音檢查 plays them all in turn for exactly that. */
 const CUES = {
   b: 'buh', c: 'kuh', d: 'duh', f: 'fff', g: 'guh', h: 'huh', j: 'juh',
-  k: 'kuh', l: 'lll', m: 'mmm', n: 'nnn', p: 'puh', qu: 'kwuh', r: 'rrr',
-  s: 'sss', t: 'tuh', v: 'vvv', w: 'wuh', x: 'ks', y: 'yuh', z: 'zzz',
+  k: 'kuh', l: 'luh', m: 'muh', n: 'nnn', p: 'puh', qu: 'kwuh', r: 'ruh',
+  s: 'suh', t: 'tuh', v: 'vuh', w: 'wuh', x: 'uks', y: 'yuh', z: 'zuh',
 
-  a: 'aah', e: 'ehh', i: 'ih', o: 'ah', u: 'uh',
+  a: 'ack', e: 'eh', i: 'ih', o: 'ah', u: 'uh',
 
-  sh: 'shhh', ch: 'chuh', tch: 'chuh', th: 'thhh', wh: 'wuh', ph: 'fff',
-  ck: 'kuh', ng: 'ng', gh: 'fff',
-  kn: 'nnn', wr: 'rrr', gn: 'nnn', mb: 'mmm',
+  sh: 'shhh', ch: 'chuh', tch: 'chuh', th: 'thuh', wh: 'wuh', ph: 'fff',
+  ck: 'kuh', ng: 'ung', gh: 'fff',
+  kn: 'nnn', wr: 'ruh', gn: 'nnn', mb: 'muh',
 
   bl: 'bluh', cl: 'cluh', fl: 'fluh', gl: 'gluh', pl: 'pluh', sl: 'sluh',
   br: 'bruh', cr: 'cruh', dr: 'druh', fr: 'fruh', gr: 'gruh', pr: 'pruh',
@@ -57,9 +80,9 @@ const CUES = {
   shr: 'shruh', thr: 'thruh',
 
   ai: 'ay', ay: 'ay', ee: 'eee', ea: 'eee', ei: 'ay', ey: 'ee', ie: 'eye',
-  oa: 'oh', oe: 'oh', ow: 'oh', ue: 'oo', ui: 'oo', igh: 'eye', eigh: 'ay',
+  oa: 'oh', oe: 'oh', ow: 'oh', ue: 'ooh', ui: 'ooh', igh: 'eye', eigh: 'ay',
   ar: 'ar', or: 'or', er: 'er', ir: 'er', ur: 'er', ore: 'or', air: 'air',
-  oi: 'oy', oy: 'oy', ou: 'ow', oo: 'oo', aw: 'aw', au: 'aw',
+  oi: 'oy', oy: 'oy', ou: 'ow', oo: 'ooh', aw: 'aw', au: 'aw',
   al: 'awl', all: 'awl', ough: 'aw', augh: 'aw',
   tion: 'shun', sion: 'shun', ture: 'cher', le: 'ull',
   ed: 'ed', ing: 'ing', ment: 'ment', ness: 'ness', ful: 'full',
@@ -99,6 +122,26 @@ const PICS = {
   /* 第五、第六單元 */
   walked: '🚶', laughed: '😂', television: '📺', robot: '🤖', lion: '🦁',
 };
+
+/* ==================== 容易念錯的字 ====================
+
+   Words whose lesson depends on the voice picking one particular reading.
+   A browser voice choosing the other one does not merely sound odd — it
+   teaches the opposite of the point the list is making, so these are worth
+   hearing once on any machine you teach from. They are listed in the
+   teacher panel's 發音檢查 for exactly that. `zh` says what to listen for. */
+const WATCH = [
+  { w: 'refuse', zh: '要念動詞 ri-FYOOZ（長 u）。名詞 REF-yoos 是「垃圾」，那就沒有長 u 了' },
+  { w: 'produce', zh: '要念動詞 pruh-DOOS，不是名詞 PRO-doos' },
+  { w: 'subtle', zh: 'b 不出聲，念 SUT-l。念成 SUB-tle 就破壞了這一課' },
+  { w: 'gnaw', zh: 'g 不出聲，念 NAW。念成 guh-naw 就錯了' },
+  { w: 'thorough', zh: '念 THUR-oh，不是 through' },
+  { w: 'rhythm', zh: '念 RITH-um' },
+  { w: 'wharf', zh: 'wh 的音' },
+  { w: 'python', zh: '念 PIE-thon' },
+  { w: 'portrait', zh: '念 POR-trit' },
+  { w: 'brookside', zh: '短 oo，像 book' },
+];
 
 /* ==================== the handbook ==================== */
 
@@ -182,7 +225,7 @@ const SECTIONS = [
       { t: 'h3', text: '四、子音組合（兩個字母，只發一個音）' },
       { t: 'chips', words: [
         { w: 'sh', eg: 'shop' }, { w: 'ch', eg: 'chat' },
-        { w: 'th', say: 'thhh', egs: ['this', 'thin'], note: 'this 有震動／thin 沒有震動' },
+        { w: 'th', say: 'thuh', egs: ['this', 'thin'], note: 'this 有震動／thin 沒有震動' },
         { w: 'wh', eg: 'when' }, { w: 'ph', eg: 'phone' },
         { w: 'ck', eg: 'rock' }, { w: 'ng', eg: 'song' },
         { w: 'gh', say: 'fff', eg: 'laugh', note: '在 laugh 裡念 /f/' },
@@ -191,7 +234,7 @@ const SECTIONS = [
         { w: 'kn-', eg: 'know', note: 'k 不出聲' },
         { w: 'wr-', eg: 'write', note: 'w 不出聲' },
         { w: 'gn-', eg: 'gnaw', note: 'g 不出聲' },
-        { w: '-mb', say: 'mmm', eg: 'climb', note: 'b 不出聲' },
+        { w: '-mb', say: 'muh', eg: 'climb', note: 'b 不出聲' },
       ] },
       { t: 'note', kind: 'try', lines: [
         '把手指輕輕放在喉嚨上，念念看 this，喉嚨會震動；再念念看 thin，喉嚨不會震動。',
@@ -220,7 +263,7 @@ const SECTIONS = [
       ] },
       { t: 'chips', label: '放在字尾', words: [
         { w: '-nd', eg: 'hand' }, { w: '-nt', eg: 'tent' }, { w: '-mp', eg: 'jump' },
-        { w: '-st', say: 'st', eg: 'last' }, { w: '-sk', say: 'sk', eg: 'desk' },
+        { w: '-st', say: 'est', eg: 'last' }, { w: '-sk', say: 'esk', eg: 'desk' },
         { w: '-lt', eg: 'salt' }, { w: '-lp', eg: 'help' }, { w: '-ft', eg: 'gift' },
         { w: '-ct', eg: 'fact' },
       ] },

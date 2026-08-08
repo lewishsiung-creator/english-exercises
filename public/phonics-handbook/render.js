@@ -243,14 +243,45 @@ let voice = null;
 /* Young American female, in order of preference — the same wishlist as Sound
    Lab, because the same children hear both pages. The set differs per device,
    so the teacher panel can override it. */
-const VOICE_WISHLIST = [
-  'Flo', 'Shelley', 'Samantha', 'Ava', 'Allison', 'Susan', 'Nicky', 'Zoe',
-  'Google US English', 'Microsoft Aria Online (Natural) - English (United States)',
-  'Microsoft Zira - English (United States)',
+/* Voices are ranked, not just wished for, because the fallback matters as
+   much as the favourite: macOS ships a shelf of novelty voices (Bad News,
+   Zarvox, Bubbles…) that are alphabetically early and would otherwise be
+   picked when no favourite is installed. Read as tiers, best first. */
+const VOICE_TIERS = [
+  /* Neural. A different class of clarity to everything below. */
+  [/\bnatural\b/i, /\bsiri\b/i, /^Google US English/i],
+  /* Apple's recorded-speaker voices — the ones with an "enhanced" or
+     "premium" download behind them — and Windows' equivalents. Samantha is
+     the one almost every Mac already has. */
+  [/^(Samantha|Ava|Allison|Susan|Zoe|Nicky|Joelle|Evan|Tom|Alex|Victoria)\b/i,
+   /^Microsoft (Zira|Aria|Jenny|Michelle|Guy)\b/i],
+  /* Character and regional voices: intelligible, but stylised or not
+     American. Usable, never the automatic choice for phonics. */
+  [/^(Flo|Shelley|Eddy|Reed|Rocko|Sandy|Grandma|Grandpa|Karen|Moira|Tessa|Fiona|Daniel|Rishi|Serena)\b/i],
 ];
+
+/* Jokes, singing and robots. Still selectable — a child who wants to hear a
+   word in Zarvox should get to — but never picked automatically, and the
+   picker says so. */
+const NOVELTY = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Good News|Hysterical|Jester|Junior|Kathy|Organ|Ralph|Superstar|Trinoids|Whisper|Wobble|Zarvox|Bruce|Agnes|Princess|Fred)\b/i;
 
 const englishVoices = () =>
   (window.speechSynthesis?.getVoices() || []).filter((v) => /^en(-|_|$)/i.test(v.lang));
+
+/* Lower is better. Tier first, then a nudge for en-US over other Englishes,
+   and a small penalty for novelty so they sort last but stay selectable. */
+function voiceScore(v) {
+  let tier = VOICE_TIERS.length;
+  for (let i = 0; i < VOICE_TIERS.length; i++) {
+    if (VOICE_TIERS[i].some((re) => re.test(v.name))) { tier = i; break; }
+  }
+  const us = /en[-_]US/i.test(v.lang) ? 0 : 1;
+  const junk = NOVELTY.test(v.name) ? 10 : 0;
+  return junk * 100 + tier * 10 + us;
+}
+
+/* The ranked list, best first — also what the teacher panel shows. */
+const rankedVoices = () => englishVoices().slice().sort((a, b) => voiceScore(a) - voiceScore(b));
 
 function pickVoice() {
   const all = englishVoices();
@@ -262,13 +293,7 @@ function pickVoice() {
     if (match) { voice = match; return; }
   }
 
-  const us = all.filter((v) => /en[-_]US/i.test(v.lang));
-  // Match on prefix: macOS localises the name as "Flo (英文（美國）)".
-  for (const want of VOICE_WISHLIST) {
-    const hit = us.find((v) => v.name === want || v.name.startsWith(want + ' ('));
-    if (hit) { voice = hit; return; }
-  }
-  voice = us[0] || all[0];
+  voice = rankedVoices()[0] || all[0];
 }
 
 if ('speechSynthesis' in window) {
@@ -286,41 +311,114 @@ let speakToken = 0;
 function stopSpeaking() {
   speakToken++;
   window.speechSynthesis?.cancel();
+  /* The recording has to be stopped too, or tapping a second word leaves the
+     first one still talking underneath it. */
+  try { player.pause(); player.currentTime = 0; } catch { /* not loaded yet */ }
 }
 
-/* Speak a list of strings one after another, with a watchdog per item — a
-   machine with no audio output never fires 'end'. */
+/* ==================== recorded words ====================
+
+   A synthesised voice is a compromise; a human saying the word is not. Most
+   of the practice words have an American recording from Wikimedia Commons,
+   trimmed and level-matched, sitting in audio/. Those play instead of the
+   voice. The rest — and every bare sound, which no one records in isolation
+   — fall back to speech synthesis, so nothing ever goes silent.
+
+   AUDIO is generated, not hand-written: see audio/manifest.js. */
+
+const recorded = (word) => (typeof AUDIO === 'object' && AUDIO)
+  ? Object.prototype.hasOwnProperty.call(AUDIO, String(word).toLowerCase())
+  : false;
+
+/* One element, reused. Creating an Audio per tap leaks them on iOS. */
+const player = new Audio();
+player.preload = 'none';
+
+/* A bare phoneme is a fraction of a second long; at word speed it is gone
+   before a child has focused on it. So a sound is spoken slower than a word,
+   and the pause after it is longer — that silence is when the child repeats
+   it back. */
+const SOUND_SLOWER = 0.72;
+const GAP_AFTER_SOUND = 480;
+const GAP_AFTER_WORD = 240;
+
+/* Speak a list one after another, with a watchdog per item — a machine with
+   no audio output never fires 'end'. An item is a string, or
+   { text, sound: true } to mark it as a bare sound rather than a word. */
 function sayEach(list, { onEnd } = {}) {
-  if (!soundOn || !('speechSynthesis' in window) || !list.length) { onEnd?.(); return; }
+  const items = list
+    .map((it) => (typeof it === 'string' ? { text: it } : it))
+    .filter((it) => it && String(it.text).trim());
+
+  if (!soundOn || !items.length) { onEnd?.(); return; }
 
   stopSpeaking();
   const mine = speakToken;
   let i = 0;
+  /* Chrome drops an utterance queued in the same tick as cancel(), which
+     shows up as a tap that makes no sound at all. Let the cancel land
+     first. */
+  let first = true;
 
   const step = () => {
     if (mine !== speakToken) return;
-    if (i >= list.length) { onEnd?.(); return; }
+    if (i >= items.length) { onEnd?.(); return; }
 
-    const text = String(list[i]);
+    const item = items[i];
+    const text = String(item.text);
     i++;
-
-    const u = new SpeechSynthesisUtterance(text);
-    if (voice) u.voice = voice;
-    u.lang = voice?.lang || 'en-US';
-    u.rate = rate;
-    u.pitch = 1.1;
 
     let moved = false;
     const go = () => {
       if (moved || mine !== speakToken) return;
       moved = true;
-      setTimeout(step, 240);
+      setTimeout(step, item.sound ? GAP_AFTER_SOUND : GAP_AFTER_WORD);
     };
-    u.addEventListener('end', go);
-    u.addEventListener('error', go);
-    setTimeout(go, 1400 + text.length * 110);
 
-    speechSynthesis.speak(u);
+    const speak = () => {
+      if (!('speechSynthesis' in window)) { go(); return; }
+      const u = new SpeechSynthesisUtterance(text);
+      if (voice) u.voice = voice;
+      u.lang = voice?.lang || 'en-US';
+      u.rate = item.sound ? Math.max(0.4, rate * SOUND_SLOWER) : rate;
+      /* Flat pitch: raising it thins the formants, which is exactly the
+         information a child is listening for in a vowel. */
+      u.pitch = 1;
+      u.addEventListener('end', go);
+      u.addEventListener('error', go);
+      setTimeout(go, 1400 + text.length * 110);
+
+      if (first) { first = false; setTimeout(() => { if (mine === speakToken) speechSynthesis.speak(u); }, 70); }
+      else speechSynthesis.speak(u);
+    };
+
+    /* A human recording, where we have one and this is a word rather than a
+       bare sound. Any failure — missing file, codec, autoplay refusal —
+       falls through to the voice rather than going quiet. */
+    if (!item.sound && recorded(text)) {
+      first = false;
+      /* A failure can arrive twice — once as the element's error event and
+         once as the play() rejection — and without this guard the word gets
+         spoken twice on top of itself. */
+      let fell = false;
+      const fallback = () => {
+        if (fell || moved || mine !== speakToken) return;
+        fell = true;
+        speak();
+      };
+      player.onended = go;
+      player.onerror = fallback;
+      /* Recordings are already at a natural pace; only the teacher's "slow"
+         setting actually slows one down. */
+      player.playbackRate = Math.min(1, rate + 0.15);
+      player.src = 'audio/' + encodeURIComponent(text.toLowerCase()) + '.m4a';
+      const p = player.play();
+      if (p && p.catch) p.catch(fallback);
+      setTimeout(go, 3000);
+      return;
+    }
+
+    speak();
   };
 
   step();
@@ -402,7 +500,10 @@ document.addEventListener('click', (e) => {
     if (marking) { toggleMark(chip); return; }
     const list = [];
     const say = chip.dataset.say || speechFor(chip.dataset.w);
-    if (say) list.push(say);
+    /* A chip with example words is a sound card — the cue is a bare sound
+       and gets the slower voice. A chip without them is a whole word. */
+    const isSound = !!chip.dataset.egs;
+    if (say) list.push({ text: say, sound: isSound });
     if (chip.dataset.egs) list.push(...chip.dataset.egs.split('|'));
     chip.classList.add('is-speaking');
     sayEach(list, { onEnd: () => chip.classList.remove('is-speaking') });
@@ -548,11 +649,121 @@ $('#showAll').addEventListener('click', () => {
   setPanel(false);
 });
 
+/* ==================== 發音檢查 (sound check) ====================
+
+   The page's cues are approximations, and which ones survive depends on the
+   voice installed on the machine you teach from — so the honest tool is not
+   a promise that they are right, but a way to hear all of them quickly and
+   mark the ones that are not. A marked list can be pasted back and the
+   spellings fixed in CUES. */
+
+const cueList = $('#cueList');
+const cueBadBox = $('#cueBadBox');
+const cueBadOut = $('#cueBad');
+let cueBad = [];
+try { cueBad = JSON.parse(localStorage.getItem('phonicsGuide.badCues') || '[]'); } catch { cueBad = []; }
+
+/* Two things need an ear: the bare sounds, and the handful of words whose
+   lesson depends on which reading the voice picks. */
+const CUE_ROWS = [
+  ...Object.entries(CUES).map(([key, say]) => ({ key, say, sound: true })),
+  ...WATCH.map((it) => ({ key: it.w, say: it.w, sound: false, zh: it.zh })),
+];
+
+function renderBadCues() {
+  cueBadBox.hidden = !cueBad.length;
+  cueBadOut.value = cueBad
+    .map((k) => (CUES[k] ? `${k} → "${CUES[k]}"` : `${k}（單字）`))
+    .join('、');
+}
+
+cueList.insertAdjacentHTML('beforeend', '<p class="cue-head">聲音</p>');
+let wroteWatchHead = false;
+for (const row of CUE_ROWS) {
+  if (!row.sound && !wroteWatchHead) {
+    cueList.insertAdjacentHTML('beforeend', '<p class="cue-head">容易念錯的字</p>');
+    wroteWatchHead = true;
+  }
+  cueList.insertAdjacentHTML('beforeend', `
+    <div class="cue-row${row.sound ? '' : ' cue-row-word'}" data-key="${esc(row.key)}"
+         ${row.sound ? 'data-sound="1"' : ''}>
+      <button class="cue-play" type="button" data-say="${esc(row.say)}" aria-label="聽 ${esc(row.key)}">▶</button>
+      <span class="cue-key">${esc(row.key)}</span>
+      <span class="cue-say">${esc(row.zh || row.say)}</span>
+      <button class="cue-bad-btn" type="button" aria-pressed="false" aria-label="標記念錯">👎</button>
+    </div>`);
+}
+
+function markBadCue(row) {
+  const key = row.dataset.key;
+  const at = cueBad.indexOf(key);
+  if (at >= 0) cueBad.splice(at, 1); else cueBad.push(key);
+  row.classList.toggle('is-bad', at < 0);
+  $('.cue-bad-btn', row).setAttribute('aria-pressed', String(at < 0));
+  try { localStorage.setItem('phonicsGuide.badCues', JSON.stringify(cueBad)); } catch { /* private mode */ }
+  renderBadCues();
+}
+
+for (const row of $$('.cue-row', cueList)) {
+  if (cueBad.includes(row.dataset.key)) {
+    row.classList.add('is-bad');
+    $('.cue-bad-btn', row).setAttribute('aria-pressed', 'true');
+  }
+}
+renderBadCues();
+
+cueList.addEventListener('click', (e) => {
+  const play = e.target.closest('.cue-play');
+  if (play) {
+    const row = play.closest('.cue-row');
+    sayEach([{ text: play.dataset.say, sound: !!row.dataset.sound }]);
+    return;
+  }
+  const bad = e.target.closest('.cue-bad-btn');
+  if (bad) markBadCue(bad.closest('.cue-row'));
+});
+
+/* Walk every cue, highlighting the one being spoken. */
+$('#cuePlayAll').addEventListener('click', () => {
+  const rows = $$('.cue-row', cueList);
+  let i = 0;
+  const next = () => {
+    rows.forEach((r) => r.classList.remove('is-playing'));
+    if (i >= rows.length) return;
+    const row = rows[i];
+    const mine = ++i;
+    row.classList.add('is-playing');
+    row.scrollIntoView({ block: 'nearest' });
+    sayEach([{ text: $('.cue-play', row).dataset.say, sound: !!row.dataset.sound }], {
+      onEnd: () => { if (mine === i) next(); },
+    });
+  };
+  next();
+});
+
+$('#cueStop').addEventListener('click', () => {
+  stopSpeaking();
+  $$('.cue-row', cueList).forEach((r) => r.classList.remove('is-playing'));
+});
+
+/* How much of the page is real human speech rather than synthesis. */
+{
+  const words = new Set();
+  for (const c of $$('.chip')) if (!c.dataset.egs) words.add(c.dataset.w.toLowerCase());
+  for (const c of $$('.cut')) words.add(c.dataset.w.toLowerCase());
+  const real = [...words].filter(recorded).length;
+  $('#audioStat').textContent = words.size
+    ? `這一頁 ${words.size} 個單字，其中 ${real} 個是真人錄音（${Math.round(100 * real / words.size)}%）。`
+    : '—';
+}
+
 /* Voice and speed. */
 const voiceSel = $('#voicePick');
 
+/* Best first, and say so — otherwise the list is alphabetical and the worst
+   voice on the machine is often the one sitting at the top. */
 function fillVoices() {
-  const all = englishVoices();
+  const all = rankedVoices();
   voiceSel.innerHTML = '';
   if (!all.length) {
     voiceSel.innerHTML = '<option>這台裝置沒有英語語音</option>';
@@ -561,7 +772,11 @@ function fillVoices() {
   for (const v of all) {
     const o = document.createElement('option');
     o.value = v.name;
-    o.textContent = v.name.replace(/ \(.*\)$/, '') + (v.lang ? ` — ${v.lang}` : '');
+    const score = voiceScore(v);
+    const hint = NOVELTY.test(v.name) ? '（不建議）'
+      : score < 10 ? '（最清楚）'
+      : score < 20 ? '（不錯）' : '';
+    o.textContent = v.name.replace(/ \(.*\)$/, '') + (v.lang ? ` — ${v.lang}` : '') + hint;
     o.selected = voice && v.name === voice.name;
     voiceSel.append(o);
   }
