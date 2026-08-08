@@ -526,6 +526,15 @@ make-icon.py              regenerates public/apple-touch-icon.png
 
 All ten are plain HTML, CSS and JS with no build step.
 
+Every page ends with the same `<footer class="site-foot">` linking to
+<https://lewistoeic.com>, so a reader who lands on any one sheet can find the
+rest. It is copied into each `index.html` rather than injected by script, since
+four of the pages have no shared renderer. Its stylesheet block is copied too,
+and every colour goes through a fallback chain — `var(--ink-faint,
+var(--ink-soft, #7a8290))` — because the children's pages and the adult pages
+name their tokens differently. Each page therefore renders the footer in its
+own palette, and a page missing a token still shows a readable link.
+
 ## Editing the content
 
 **Word Play.** Vocabulary and sentences live in
