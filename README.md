@@ -1,15 +1,16 @@
 # English Exercises
 
 English teaching material, built for classroom, homework and one-to-one use.
-Nine independent pages live here — a game for young learners at the site
+Ten independent pages live here — a game for young learners at the site
 root, phonics practice for slightly older children at `/phonics/`, an
 interactive phonics handbook for the same age at `/phonics-handbook/`, a
 bilingual business worksheet at `/business-clarity/`, an interactive
 lesson for working adults at `/wealth-habits/`, reading-aloud practice
 built on a bilingual speech at `/campaign-speech/`, TOEIC grammar
 practice at `/toeic-grammar/`, a homework review of one student's own
-sentences at `/sentence-upgrades/`, and a high-school writing worksheet
-at `/robot-helper/`.
+sentences at `/sentence-upgrades/`, a high-school writing worksheet
+at `/robot-helper/`, and a survey of seven years of the 學測 essay at
+`/exam-writing/`.
 
 ## Word Play — CEFR A1, ages 7–10
 
@@ -458,6 +459,54 @@ structure and writing your own.
   blank worksheet with ruled space to write in, or open everything from the
   teacher panel first for an answer key.
 
+## 學測英文寫作 — high school, seven years of the exam essay
+
+Where Robot Helper drills one year, this is the map: 109 to 115 學年度 side by
+side. The seven questions with what each actually asked, the trends, the five
+question types, all seven model answers annotated sentence by sentence, the
+patterns that recur across every year, and the sentences worth memorising
+because they work whatever the topic is.
+
+| Section | What it holds |
+| --- | --- |
+| 一 七年題目一覽 | The seven questions, their type, how many pictures, and the real task |
+| 二 題型趨勢 | What is being tested behind the friendly topics |
+| 三 五大作文類型 | Five types, each linked to the years that used it |
+| 四 七篇範文 | Seven essays, each with a switch showing what every sentence does |
+| 五 跨年共通模式 | The moves that recur, counted out of seven |
+| 六 四種必練句型 | Four frames, Chinese on the front |
+| 七 共用句庫 | Opening, position and closing sentences as practice cards |
+| 八 怎麼練 | The five-step practice order |
+
+### Design notes
+
+- **Chinese is the body text, not a gloss.** The reader is a Taiwanese
+  student, so the explanation language is Chinese at full size and the English
+  is the specimen being examined. That is the reverse of the adult pages and
+  the same direction as the phonics handbook.
+- **The page disagrees with its own source in four places, and says so.** The
+  handout implies the model essays are 大考中心 佳作 — they are not, and a red
+  box says so and points to the real ones. Its `(ceec.edu.tw)` markers appeared
+  on four of seven rows, implying the other three were less sourced when the
+  opposite is true, so they are gone and a picture count took their place. Its
+  112 summary dropped the constraint that made that year hard (pick one or two
+  of the four emoji printed on the paper), which is restored as a ⚠ trap note.
+  Its stated 130–170 word range is wrong; the essays run 162–180.
+- **跨年共通模式 is not in the handout at all.** It comes from labelling all 80
+  sentences and counting: 轉折, 說明影響 and 結論收尾 appear in all seven
+  essays; 結論收尾 is the last sentence every single time; and
+  排除錯誤想法 → 轉折 is adjacent in all four essays that use it. Every count on
+  that section is out of the same seven essays, so a student can check it.
+- **One shared vocabulary of fifteen moves**, used identically across all seven
+  years — that is the whole point, and it needed a consistency pass to hold.
+  Each paragraph's plan (`定調開場 → 描述圖片 → …`) is one-to-one with its
+  sentence cards, so the chain is a real map rather than a summary.
+- **115 carries a warning its structure does not deserve.** Its birth-rate
+  argument was the most common answer that year; the note tells students to
+  steal the skeleton and bring their own content.
+- **Cross-linked with Robot Helper** from the 113 essay, since that year has a
+  whole page of practice on this site.
+
 ## Layout
 
 ```
@@ -471,10 +520,11 @@ public/campaign-speech/   the speech reading practice
 public/toeic-grammar/     the TOEIC Part 5 & 6 practice
 public/sentence-upgrades/ the 2026/07/25 homework review
 public/robot-helper/      the 113 學年度 writing worksheet
+public/exam-writing/      the 109–115 學測 essay survey
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
-All nine are plain HTML, CSS and JS with no build step.
+All ten are plain HTML, CSS and JS with no build step.
 
 ## Editing the content
 
@@ -613,6 +663,24 @@ second copy of the essay to keep in step. Swapping the whole content file makes
 the page a worksheet for a different year's task with no change to the
 renderer.
 
+**學測英文寫作.** Same shape as Robot Helper — a `parts` array in
+[`public/exam-writing/content.js`](public/exam-writing/content.js), each part
+naming its `kind` (`years`, `trends`, `types`, `essays`, `patterns`, `frames`,
+`toolkit`, `method`), one builder each in
+[`render.js`](public/exam-writing/render.js), and a throw on an unknown kind.
+The seven annotated essays sit in a separate `ESSAYS` const at the top of the
+file so the year data and the page furniture stay apart.
+
+Adding a year means one row in the `years` part and one entry in `ESSAYS`. The
+important constraint is inside an essay: every sentence's `jobZh` must begin
+with a move name from the shared fifteen, and each paragraph's `noteZh` chain
+must list those moves in order, one per sentence. Break either and the page
+still renders, but the section that counts moves across years starts lying —
+so check the chain against the cards when editing. `pictures` is how many
+images the real paper supplied, `caution` adds a red warning under 中文重點,
+and the cross-link to another page on this site is `LESSON.practice`, matched
+by year.
+
 ## Running it locally
 
 No build step and no dependencies:
@@ -638,7 +706,8 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/campaign-speech/> for the speech,
 <http://localhost:8000/toeic-grammar/> for the TOEIC practice,
 <http://localhost:8000/sentence-upgrades/> for the homework review, or
-<http://localhost:8000/robot-helper/> for the writing worksheet.
+<http://localhost:8000/robot-helper/> for the writing worksheet, or
+<http://localhost:8000/exam-writing/> for the 學測 essay survey.
 
 ## Live sites
 

@@ -1,0 +1,869 @@
+/* 學測英文寫作 — 七年的作文題目與範文。
+
+   設計筆記：
+
+   - 中文是本文，不是註解。這一頁的讀者是準備學測的高中生，說明語言是中文，
+     所以中文用正文級的字級與行高，英文才是被觀察的標本。這和站上的成人頁面
+     （英文領銜、中文躲在 中 chip 後面）剛好相反，和 /phonics-handbook/ 同向。
+   - 範文一句一行。這是研究範文的方式：每一句都是一個獨立的物件，也才有地方
+     掛「這句在做什麼」。整段連讀交給段落標題旁的 🔊。
+   - 「每句在做什麼」是開關，不是常駐顏色。先當英文讀一次，打開之後才變成
+     一張結構圖。
+   - 金色是第一段（描述／問題），綠色是第二段（看法／解法），整頁一致——和
+     /robot-helper/ 用同一組顏色語彙，因為那是同一套教學。
+   - 七年用同一個色票，但年份徽章不分色：分色會讓人以為年份之間有分類關係，
+     實際上該分類的是題型，那個資訊在「五大作文類型」裡。
+   - 只有淺色主題。教室、書桌、公車上的手機都在亮處看，而且會被印成講義。 */
+
+:root {
+  --paper: #f7f6f2;
+  --card: #ffffff;
+  --ink: #1c2430;
+  --ink-soft: #566171;
+  --ink-faint: #8b95a3;
+
+  --navy: #1d3f6e;
+  --navy-soft: #eaf0f8;
+  --navy-line: #c2d3e7;
+
+  --gold: #a1741a;
+  --gold-soft: #fbf1da;
+  --gold-mid: #f4e2b6;
+  --gold-line: #f2c14e;
+
+  --good: #2c7a58;
+  --good-soft: #e4f2ea;
+  --good-mid: #cfe8db;
+  --good-line: #a8d6be;
+
+  --warn: #a33a2a;
+  --warn-soft: #fbeae6;
+  --warn-line: #eabfb5;
+
+  --line: #e3e0d8;
+  --rule: #cdc8bc;
+
+  --font-en: "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, "Times New Roman", serif;
+  --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+
+  --bar-h: 54px;
+  --measure: 48rem;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 16px); }
+
+/* 中文是本文，所以 body 的預設字體是中文字體，英文再各自指定。 */
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-zh);
+  font-size: 17px;
+  line-height: 1.85;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---------------- 中譯層 ----------------
+
+   只有「範文英文句子的中譯」用 .zh。頁面上其他中文都是本文，不受這個開關
+   影響。 */
+
+.zh {
+  display: none;
+  font-size: .92em;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  padding-left: 11px;
+  border-left: 2px solid var(--line);
+  margin-top: 6px;
+}
+.open > .zh,
+body.zh-all .zh { display: block; }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus {
+  left: 12px; top: 12px; z-index: 40;
+  background: var(--card); padding: 10px 16px; border-radius: 8px;
+}
+
+:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+
+/* ---------------- 頂端列 ---------------- */
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  background: rgba(247, 246, 242, .93);
+  backdrop-filter: saturate(1.6) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.bar-title {
+  flex: 1;
+  margin: 0;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bar-title span {
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--ink-faint);
+  margin-left: 8px;
+}
+
+.bar-btn {
+  flex: none;
+  font-family: var(--font-zh);
+  font-size: 13px;
+  color: var(--navy);
+  background: transparent;
+  border: 1px solid var(--navy-line);
+  border-radius: 7px;
+  padding: 6px 11px;
+  cursor: pointer;
+}
+.bar-btn:hover { background: var(--navy-soft); }
+.bar-btn-quiet { color: var(--ink-soft); border-color: var(--line); font-size: 15px; padding: 4px 9px; }
+.bar-btn-zh[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+@media (min-width: 900px) { #navToggle { display: none; } }
+
+/* ---------------- 版面與目錄 ---------------- */
+
+.shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 78rem;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (min-width: 900px) {
+  .shell { grid-template-columns: 13rem minmax(0, 1fr); gap: 44px; padding: 0 28px; }
+}
+
+@media (min-width: 900px) {
+  .toc {
+    position: sticky;
+    top: var(--bar-h);
+    max-height: calc(100vh - var(--bar-h));
+    overflow-y: auto;
+    padding: 30px 0 40px;
+    scrollbar-width: thin;
+  }
+}
+
+.toc-head {
+  margin: 0 0 10px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.toc ul { list-style: none; margin: 0; padding: 0; }
+
+.toc a {
+  display: grid;
+  grid-template-columns: 1.3rem 1fr;
+  gap: 8px;
+  align-items: baseline;
+  padding: 8px 10px 8px 6px;
+  border-radius: 7px;
+  text-decoration: none;
+  color: var(--ink-soft);
+  border-left: 2px solid transparent;
+  line-height: 1.4;
+}
+.toc a:hover { background: var(--navy-soft); color: var(--ink); }
+.toc a .n { font-size: 12px; color: var(--ink-faint); text-align: right; }
+.toc a .t { font-size: 14px; }
+.toc a.here {
+  background: var(--navy-soft);
+  border-left-color: var(--navy);
+  color: var(--navy);
+  font-weight: 600;
+}
+.toc a.here .n { color: var(--navy); }
+
+@media (max-width: 899px) {
+  #nav {
+    position: fixed;
+    top: var(--bar-h);
+    left: 0; right: 0;
+    z-index: 25;
+    max-height: min(70vh, 30rem);
+    overflow-y: auto;
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 24px rgba(28, 36, 48, .12);
+    padding: 14px 18px 18px;
+    display: none;
+  }
+  body.nav-open #nav { display: block; }
+  body.nav-open .nav-scrim {
+    display: block;
+    position: fixed;
+    inset: var(--bar-h) 0 0;
+    z-index: 20;
+    background: rgba(28, 36, 48, .25);
+  }
+}
+
+/* ---------------- 封面 ---------------- */
+
+/* min-width: 0 是必要的，不是保險。main 是 grid item，預設 min-width: auto，
+   會被題目表格那幾欄的 min-width 撐開，整頁就跟著橫向捲動。歸零之後表格才會
+   乖乖在自己的 .table-wrap 裡捲。 */
+main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
+
+.cover { padding: 40px 0 10px; }
+
+.kicker {
+  margin: 0 0 12px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  color: var(--gold);
+}
+
+.cover h1 { margin: 0; font-size: 2.3rem; line-height: 1.25; font-weight: 700; letter-spacing: .02em; }
+.cover-en {
+  margin: 4px 0 24px;
+  font-family: var(--font-en);
+  font-size: 1.02rem;
+  font-style: italic;
+  color: var(--ink-faint);
+}
+.cover-intro { margin: 0 0 26px; font-size: 1.05rem; }
+
+.goals {
+  padding: 20px 24px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.goals-h { margin: 0; font-size: .95rem; font-weight: 600; color: var(--ink-soft); }
+.goals ul { margin: 10px 0 0; padding-left: 1.2rem; }
+.goals li { margin: 0 0 6px; font-size: .97rem; }
+
+.source {
+  margin: 22px 0 0;
+  font-size: .8rem;
+  line-height: 1.8;
+  color: var(--ink-faint);
+}
+
+/* ---------------- 每一節 ---------------- */
+
+.part { padding-top: 54px; }
+
+.part-head {
+  display: grid;
+  grid-template-columns: 2.1rem 1fr;
+  gap: 14px;
+  align-items: baseline;
+  margin: 0 0 16px;
+  padding-bottom: 13px;
+  border-bottom: 2px solid var(--gold-line);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.part-head .n {
+  font-size: .95rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--navy);
+  border-radius: 8px;
+  text-align: center;
+  padding: 3px 0;
+}
+.part-head .te {
+  display: block;
+  font-family: var(--font-en);
+  font-size: .88rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}
+
+.lead { margin: 0 0 24px; font-size: 1rem; color: var(--ink-soft); }
+
+.sub {
+  margin: 30px 0 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  padding-left: 11px;
+  border-left: 3px solid var(--navy-line);
+}
+
+.note {
+  margin: 16px 0 0;
+  padding: 12px 15px;
+  background: var(--navy-soft);
+  border-radius: 9px;
+  font-size: .87rem;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+
+.close {
+  margin: 24px 0 0;
+  padding: 16px 19px;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-mid);
+  border-radius: 11px;
+  font-size: .98rem;
+  font-weight: 600;
+}
+
+.say {
+  font-family: var(--font-ui);
+  font-size: .72em;
+  line-height: 1;
+  margin-left: 7px;
+  padding: 3px 5px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: .5;
+  transition: opacity .12s, border-color .12s;
+}
+.say:hover { opacity: 1; border-color: var(--navy-line); }
+.say-quiet { border-color: transparent; }
+
+/* ---------------- 一、題目一覽 ---------------- */
+
+.table-wrap { overflow-x: auto; }
+.table-wrap table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.table-wrap th {
+  text-align: left;
+  padding: 0 12px 8px;
+  border-bottom: 1px solid var(--rule);
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.table-wrap td { padding: 12px; border-top: 1px solid var(--line); vertical-align: top; }
+.table-wrap tbody tr:hover { background: var(--navy-soft); }
+
+.td-y a {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: .92rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+  padding: 2px 7px;
+  border: 1px solid var(--navy-line);
+  border-radius: 6px;
+}
+.td-y a:hover { background: var(--navy); color: #fff; }
+.td-topic { min-width: 7rem; font-weight: 600; }
+.td-form { min-width: 6rem; color: var(--ink-soft); font-size: .85rem; }
+.td-pics { text-align: center; }
+.pics { color: var(--gold-line); letter-spacing: -1px; font-size: .8rem; }
+.td-task { min-width: 15rem; color: var(--ink-soft); font-size: .87rem; line-height: 1.75; }
+
+.trap {
+  display: block;
+  margin-top: 8px;
+  padding: 8px 11px;
+  background: var(--warn-soft);
+  border: 1px solid var(--warn-line);
+  border-radius: 8px;
+  color: var(--warn);
+  font-size: .84rem;
+  line-height: 1.7;
+}
+
+/* ---------------- 二、趨勢 ---------------- */
+
+.trends { list-style: none; margin: 0; padding: 0; }
+.trend {
+  padding: 18px 22px;
+  margin: 0 0 12px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.trend-h { display: flex; align-items: baseline; gap: 11px; margin: 0 0 8px; font-size: 1.08rem; font-weight: 700; }
+.trend-n {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  color: #fff;
+  background: var(--gold-line);
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  border-radius: 50%;
+}
+.trend-b { margin: 0; font-size: .95rem; color: var(--ink-soft); }
+.trend-x {
+  margin: 10px 0 0;
+  padding: 10px 13px;
+  background: var(--navy-soft);
+  border-radius: 8px;
+  font-size: .87rem;
+  color: var(--navy);
+}
+
+/* 這一句是整節的重點，所以給它英文的正文字體和一個引用的位置。 */
+.punch {
+  margin: 12px 0 0;
+  padding: 13px 17px;
+  background: var(--gold-soft);
+  border-left: 3px solid var(--gold-line);
+  border-radius: 0 9px 9px 0;
+  font-family: var(--font-en);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--gold);
+}
+.punch-zh {
+  display: block;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-size: .84rem;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+/* ---------------- 三、五大類型 ---------------- */
+
+.types {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 11px;
+  align-items: start;
+}
+.type {
+  padding: 15px 17px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+}
+.type-n { margin: 0; font-size: 1rem; font-weight: 700; }
+.type-y { margin: 8px 0; display: flex; flex-wrap: wrap; gap: 5px; }
+.ychip {
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--gold);
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-mid);
+  border-radius: 5px;
+  padding: 2px 7px;
+  text-decoration: none;
+}
+.ychip:hover { background: var(--gold-line); color: #fff; border-color: var(--gold-line); }
+.type-s { margin: 0; font-size: .87rem; color: var(--ink-soft); }
+
+/* ---------------- 四、範文 ---------------- */
+
+.prov {
+  margin: 0 0 30px;
+  padding: 16px 20px;
+  background: var(--warn-soft);
+  border: 1px solid var(--warn-line);
+  border-radius: 11px;
+}
+.prov-h { margin: 0 0 6px; font-size: .95rem; font-weight: 700; color: var(--warn); }
+.prov-b { margin: 0; font-size: .89rem; line-height: 1.8; color: var(--ink-soft); }
+.prov-l { font-family: var(--font-ui); font-size: .84rem; color: var(--warn); }
+
+.essay { padding-top: 34px; }
+.essay + .essay { margin-top: 20px; border-top: 1px solid var(--line); }
+
+.essay-head { display: grid; grid-template-columns: 3.1rem 1fr; gap: 14px; align-items: center; }
+.yr {
+  font-family: var(--font-ui);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--navy);
+  border-radius: 9px;
+  text-align: center;
+  padding: 7px 0;
+}
+.essay-en { margin: 0; font-family: var(--font-en); font-size: 1.32rem; font-weight: 600; line-height: 1.25; }
+.essay-aim { margin: 3px 0 0; font-size: .87rem; color: var(--ink-soft); }
+
+.essay-meta { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 14px; }
+.chip {
+  font-size: .78rem;
+  color: var(--good);
+  background: var(--good-soft);
+  border: 1px solid var(--good-mid);
+  border-radius: 5px;
+  padding: 3px 9px;
+}
+.chip-q { font-family: var(--font-ui); color: var(--ink-faint); background: transparent; border-color: var(--line); }
+
+/* 結構開關 */
+.steps { margin: 0 0 16px; }
+.step-btn {
+  font-family: var(--font-zh);
+  font-size: .87rem;
+  text-align: left;
+  color: var(--navy);
+  background: transparent;
+  border: 1px dashed var(--navy-line);
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: color .12s, border-color .12s, background .12s;
+}
+.step-btn .s2 {
+  display: block;
+  font-family: var(--font-en);
+  font-size: .76rem;
+  font-style: italic;
+  color: var(--ink-faint);
+}
+.step-btn:hover { background: var(--navy-soft); }
+.step-btn.on { border-style: solid; border-color: var(--good-line); background: var(--good-soft); color: var(--good); }
+.step-btn.on .s2 { color: var(--good); opacity: .75; }
+
+.para {
+  margin: 0 0 10px;
+  padding: 15px 19px 7px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold-line);
+  border-radius: 10px;
+}
+.para-2 { border-left-color: var(--good-line); }
+
+.para-label { display: flex; align-items: center; gap: 9px; margin: 0 0 3px; }
+.para-label .tag {
+  font-family: var(--font-ui);
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-mid);
+  border-radius: 5px;
+  padding: 3px 8px;
+}
+.para-2 .para-label .tag { color: var(--good); background: var(--good-soft); border-color: var(--good-mid); }
+.para-zh { font-size: .84rem; font-weight: 600; color: var(--ink-soft); }
+.para-label .say { margin-left: auto; }
+
+/* 段落計畫。永遠顯示——這正是要學生偷走的東西。 */
+.para-note { margin: 0 0 11px; font-size: .83rem; color: var(--ink-faint); }
+
+.es-list { list-style: none; margin: 0; padding: 0; }
+.es { padding: 9px 0; border-top: 1px solid var(--line); cursor: pointer; }
+.es:first-child { border-top: none; }
+.es:hover { background: rgba(29, 63, 110, .03); }
+.es-en { margin: 0; font-family: var(--font-en); font-size: 1.05rem; line-height: 1.7; }
+
+/* 每句在做什麼：開關打開才出現。 */
+.es-job { display: none; }
+.essay.structure .es-job {
+  display: block;
+  margin: 7px 0 0;
+  padding-left: 11px;
+  border-left: 2px solid var(--gold-line);
+  font-size: .83rem;
+  color: var(--gold);
+  line-height: 1.75;
+}
+.essay.structure .para-2 .es-job { border-left-color: var(--good-line); color: var(--good); }
+.es-job .je {
+  display: block;
+  font-family: var(--font-en);
+  font-size: .95em;
+  font-style: italic;
+  opacity: .75;
+}
+
+.keybox {
+  margin: 16px 0 0;
+  padding: 14px 18px;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-mid);
+  border-radius: 10px;
+}
+.keybox-h { margin: 0 0 5px; font-size: .72rem; font-weight: 700; letter-spacing: .08em; color: var(--gold); }
+.keybox-b { margin: 0; font-size: .9rem; color: var(--ink-soft); }
+
+.caution {
+  margin: 11px 0 0;
+  padding-top: 11px;
+  border-top: 1px dashed var(--gold-line);
+  font-size: .86rem;
+  line-height: 1.8;
+  color: var(--warn);
+}
+
+.takeaway {
+  margin: 11px 0 0;
+  padding: 14px 18px;
+  background: var(--good-soft);
+  border: 1px solid var(--good-mid);
+  border-radius: 10px;
+}
+.takeaway-h { margin: 0 0 5px; font-size: .72rem; font-weight: 700; letter-spacing: .08em; color: var(--good); }
+.takeaway-b { margin: 0; font-size: .92rem; font-weight: 600; }
+.takeaway-en {
+  margin: 8px 0 0;
+  padding-top: 8px;
+  border-top: 1px dashed var(--good-line);
+  font-family: var(--font-en);
+  font-size: .92rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* 113 那一年在本站有整頁的練習，從範文直接接過去。 */
+.practice {
+  display: block;
+  margin: 11px 0 0;
+  padding: 14px 18px;
+  background: var(--navy-soft);
+  border: 1px solid var(--navy-line);
+  border-radius: 10px;
+  text-decoration: none;
+}
+.practice:hover { background: #dfe9f5; }
+.practice-h { display: block; font-size: .95rem; font-weight: 700; color: var(--navy); }
+.practice-b { display: block; margin-top: 4px; font-size: .85rem; color: var(--ink-soft); }
+
+/* ---------------- 五、跨年共通模式 ---------------- */
+
+.pat { list-style: none; margin: 0; padding: 0; }
+.pat > li {
+  padding: 15px 19px;
+  margin: 0 0 10px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+}
+.pat-all > li { border-left: 3px solid var(--good-line); }
+.pat-often > li { border-left: 3px solid var(--gold-line); }
+.pat-pairs > li { border-left: 3px solid var(--navy); }
+
+.pat-n { display: flex; align-items: baseline; gap: 9px; margin: 0 0 6px; font-size: 1.02rem; font-weight: 700; }
+.hit {
+  font-family: var(--font-ui);
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--gold);
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-mid);
+  border-radius: 20px;
+  padding: 2px 9px;
+}
+.hit-all { color: var(--good); background: var(--good-soft); border-color: var(--good-mid); }
+.pat-b { margin: 0; font-size: .91rem; color: var(--ink-soft); }
+
+.egs { list-style: none; margin: 11px 0 0; padding: 11px 0 0; border-top: 1px dashed var(--line); }
+.egs li { display: grid; grid-template-columns: 2.3rem 1fr; gap: 9px; margin: 0 0 7px; align-items: baseline; }
+.egy {
+  font-family: var(--font-ui);
+  font-size: .74rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+  text-align: right;
+}
+.egy:hover { text-decoration: underline; }
+.egt { font-family: var(--font-en); font-size: .93rem; line-height: 1.6; }
+
+/* ---------------- 六、七：卡片 ----------------
+
+   中文在正面，英文翻開才看得到——因為這兩節要練的是「產出」。 */
+
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 11px;
+  align-items: start;
+}
+.cards-wide { grid-template-columns: repeat(auto-fill, minmax(21rem, 1fr)); }
+
+.card {
+  padding: 15px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  cursor: pointer;
+  transition: border-color .12s, box-shadow .12s;
+}
+.card:hover { border-color: var(--navy-line); box-shadow: 0 2px 8px rgba(28, 36, 48, .06); }
+.card-name { margin: 0 0 7px; font-size: .74rem; font-weight: 700; letter-spacing: .06em; color: var(--navy); }
+.card-zh { margin: 0; font-size: .98rem; font-weight: 600; line-height: 1.75; }
+
+/* 蓋起來的地方畫一條線，讓關著的卡片看起來像一道題。 */
+.card-zh::after {
+  content: "";
+  display: block;
+  width: 4.5rem;
+  border-bottom: 1px solid var(--rule);
+  margin-top: .85em;
+}
+.card.open .card-zh::after { display: none; }
+
+.card-back { display: none; }
+.card.open .card-back { display: block; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--good-line); }
+.card.open { border-color: var(--good-line); background: var(--good-soft); }
+.card-en { margin: 0; font-family: var(--font-en); font-size: 1rem; line-height: 1.6; color: var(--good); }
+.card-note { margin: 8px 0 0; font-size: .84rem; line-height: 1.8; color: var(--ink-soft); }
+
+/* ---------------- 八、怎麼練 ---------------- */
+
+.steps-chain { list-style: none; margin: 0; padding: 0; }
+.steps-chain li {
+  display: grid;
+  grid-template-columns: 1.9rem 1fr;
+  gap: 13px;
+  padding: 13px 0;
+  border-top: 1px solid var(--line);
+  align-items: baseline;
+}
+.steps-chain li:first-child { border-top: none; }
+.sc-n {
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--navy);
+  width: 1.9rem;
+  height: 1.9rem;
+  line-height: 1.9rem;
+  text-align: center;
+  border-radius: 50%;
+}
+.sc-name { display: block; font-size: 1rem; font-weight: 700; }
+.sc-note { display: block; font-size: .88rem; color: var(--ink-soft); }
+
+/* ---------------- 教師面板 ---------------- */
+
+.panel {
+  position: fixed;
+  z-index: 40;
+  top: calc(var(--bar-h) + 8px);
+  right: 14px;
+  width: min(22rem, calc(100vw - 28px));
+  max-height: calc(100vh - var(--bar-h) - 24px);
+  overflow-y: auto;
+  padding: 18px 20px 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(28, 36, 48, .18);
+}
+.panel[hidden] { display: none; }
+
+.panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.panel-head h2 { margin: 0 0 4px; font-size: .95rem; }
+.panel-head h2 span { font-family: var(--font-en); font-size: .8rem; font-weight: 400; color: var(--ink-faint); margin-left: 6px; }
+.panel-x { background: transparent; border: 0; color: var(--ink-faint); font-size: 15px; cursor: pointer; padding: 2px 4px; }
+
+.panel .row { margin-top: 18px; }
+.panel label { display: block; font-size: .8rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 6px; }
+.row-check { display: flex; align-items: center; gap: 9px; cursor: pointer; margin-top: 16px; }
+.row-check span { font-size: .9rem; font-weight: 600; color: var(--ink); }
+.row-check em { font-family: var(--font-en); font-style: normal; font-weight: 400; font-size: .78rem; color: var(--ink-faint); margin-left: 5px; }
+.row-check input { width: 17px; height: 17px; accent-color: var(--navy); }
+
+.panel select {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: .85rem;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.panel-btn {
+  width: 100%;
+  font-family: var(--font-zh);
+  font-size: .89rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--navy);
+  border: 1px solid var(--navy);
+  border-radius: 8px;
+  padding: 9px 12px;
+  cursor: pointer;
+}
+.panel-btn:hover { filter: brightness(1.12); }
+.panel-btn-quiet { color: var(--ink-soft); background: var(--paper); border-color: var(--line); }
+.panel-btn-quiet:hover { filter: none; border-color: var(--rule); }
+
+.row-note { margin: 7px 0 0; font-size: .77rem; line-height: 1.75; color: var(--ink-faint); }
+
+/* ---------------- 小螢幕 ---------------- */
+
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .cover h1 { font-size: 1.85rem; }
+  .part-head { font-size: 1.3rem; grid-template-columns: 1.8rem 1fr; gap: 10px; }
+  .trend, .type, .pat > li, .card { padding-left: 15px; padding-right: 15px; }
+  .para { padding-left: 15px; padding-right: 15px; }
+  .essay-head { grid-template-columns: 2.7rem 1fr; gap: 11px; }
+  .essay-en { font-size: 1.15rem; }
+  .cards, .cards-wide, .types { grid-template-columns: 1fr; }
+  .table-wrap table { font-size: .85rem; }
+  .bar-title span { display: none; }
+}
+
+/* ---------------- 列印 ----------------
+
+   兩種印法共用一份樣式：直接印是「乾淨的講義」，先在教師面板按「全部展開」
+   再印就是「附結構與答案的解答本」。所以列印不強制展開，只把機關拿掉。 */
+
+@media print {
+  .bar, #nav, .nav-scrim, .panel, .say, .steps { display: none !important; }
+  body { font-size: 10.5pt; background: #fff; }
+  .shell { display: block; padding: 0; }
+  main { max-width: none; }
+
+  .zh { display: block !important; }
+  .card-zh::after { display: none; }
+
+  .part { break-before: page; padding-top: 0; }
+  .essay, .trend, .type, .card, .para, .pat > li, .goals, .prov { break-inside: avoid; }
+  .trend, .type, .card, .para, .keybox, .takeaway, .punch, .close, .prov, .trap, .pat > li {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .cards, .cards-wide, .types { grid-template-columns: repeat(2, 1fr); }
+}

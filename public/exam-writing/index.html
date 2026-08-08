@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>學測英文寫作</title>
+<meta name="description" content="七年學測英文作文，攤開來看：題目一覽、題型趨勢、五大類型、必練句型，以及七篇範文的逐句結構。">
+
+<!-- Inline SVG mark: a pen nib over a ruled line — writing, measured. The
+     colours must be percent-encoded, since a bare "#" would be read as the
+     start of the URL fragment. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d3f6e'/%3E%3Cpath d='M22 40 L38 16 L46 22 L30 46 L20 48 Z' fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linejoin='round'/%3E%3Cpath d='M14 55h36' stroke='%23f2c14e' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f6f2">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#doc">跳到內容</a>
+
+<header class="bar">
+  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
+    <span aria-hidden="true">☰</span> 目錄
+  </button>
+
+  <p class="bar-title">學測英文寫作 <span>109–115 學年度</span></p>
+
+  <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="false">中譯</button>
+  <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
+          aria-controls="panel" title="教師面板" aria-label="教師面板">👩‍🏫</button>
+</header>
+
+<div class="shell">
+  <div id="nav"></div>
+  <main id="doc"></main>
+</div>
+
+<div class="nav-scrim" hidden></div>
+
+<!-- Teacher panel. Opens over the page rather than replacing it, so a
+     discussion in progress is never lost. -->
+<div class="panel" id="panel" role="dialog" aria-label="教師面板" hidden>
+  <div class="panel-head">
+    <h2>教師面板 <span>Teacher panel</span></h2>
+    <button class="panel-x" id="panelClose" aria-label="關閉">✕</button>
+  </div>
+
+  <label class="row row-check">
+    <input type="checkbox" id="zhAll">
+    <span>顯示全部中譯 <em>Show all Chinese</em></span>
+  </label>
+
+  <div class="row">
+    <button class="panel-btn" id="showAll">全部展開</button>
+    <p class="row-note">打開七篇範文的逐句結構、所有句型與句庫的英文。上課一起回顧、
+      或印成解答本時使用。</p>
+  </div>
+
+  <div class="row">
+    <button class="panel-btn panel-btn-quiet" id="hideAll">全部收起</button>
+    <p class="row-note">把答案收回去，回到只有中文提示的狀態。</p>
+  </div>
+
+  <div class="row">
+    <label for="voicePick">朗讀聲音</label>
+    <select id="voicePick"></select>
+    <p class="row-note">🔊 按鈕使用的聲音。選一個會立刻試聽。</p>
+  </div>
+
+  <div class="row">
+    <label for="rate">語速</label>
+    <select id="rate">
+      <option value="0.75">慢</option>
+      <option value="0.95">正常</option>
+      <option value="1.1">快</option>
+    </select>
+  </div>
+</div>
+
+<script src="content.js"></script>
+<script src="render.js"></script>
+</body>
+</html>
