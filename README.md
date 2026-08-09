@@ -1,16 +1,18 @@
 # English Exercises
 
 English teaching material, built for classroom, homework and one-to-one use.
-Ten independent pages live here — a game for young learners at the site
+Thirteen independent pages live here — a game for young learners at the site
 root, phonics practice for slightly older children at `/phonics/`, an
 interactive phonics handbook for the same age at `/phonics-handbook/`, a
 bilingual business worksheet at `/business-clarity/`, an interactive
-lesson for working adults at `/wealth-habits/`, reading-aloud practice
+lesson for working adults at `/wealth-habits/`, a business-English reading
+lesson at `/happy-sexy-millionaire/`, a four-book discussion guide at
+`/book-club/`, reading-aloud practice
 built on a bilingual speech at `/campaign-speech/`, TOEIC grammar
 practice at `/toeic-grammar/`, a homework review of one student's own
 sentences at `/sentence-upgrades/`, a high-school writing worksheet
-at `/robot-helper/`, and a survey of seven years of the 學測 essay at
-`/exam-writing/`.
+at `/robot-helper/`, a survey of seven years of the 學測 essay at
+`/exam-writing/`, and an IELTS Speaking Part 3 practice at `/ielts-part3/`.
 
 ## Word Play — CEFR A1, ages 7–10
 
@@ -304,6 +306,95 @@ Jameson, Polina Tankilevitch, Ron Lach and William Fortunato — are credited on
 the page anyway. Each file is stored at 1600×900 and cropped by CSS, so
 changing the framing is an `object-position` edit, not a re-export.
 
+## Happy Sexy Millionaire — adult, teacher-led reading
+
+A business-English reading lesson for working adults, built around the story
+behind Steven Bartlett's book: a bedroom start-up taken public at
+twenty-seven, and the admission that followed. Four steps — the passage, the
+money vocabulary, the language for having been wrong, and a two-minute talk.
+
+The book is not reproduced. The passage is a five-paragraph summary written
+for this lesson, and it is the vocabulary that carries the page.
+
+| Activity | Skill |
+| --- | --- |
+| 📖 Reading with glosses | Meeting a target word inside real prose, not on a list |
+| ❓ Comprehension | Reading for the point, not just the facts |
+| 🗂 Phrase cards | Meaning and an example sentence, behind a tap |
+| 🔗 Matching | Pairing the Chinese with the English collocation |
+| ✏️ Gap fill | Choosing the phrase that fits a new context |
+| 🗣 Opinion poll | Taking a side and defending it |
+| 💬 Discussion | Talking through a question, with language to reveal |
+| ⏱ Two minutes | Speaking to a prompt, ticking target phrases as they land |
+
+### Design notes
+
+Same house rules as [Three Habits That Build Wealth](#three-habits-that-build-wealth--adult-teacher-led),
+whose renderer this page's is a copy of — English leads with Chinese behind a
+中 chip, nothing is scored, nothing is saved between students, wrong answers
+wobble and stay open, 🔊 on every English sentence, and the same faint 👩‍🏫
+panel. Two things are specific to this page:
+
+- **The gloss opens where the word is standing.** A target word in the passage
+  is underlined, and tapping it opens its Chinese and an English usage note
+  directly under that paragraph — never a floating card, which cannot be read
+  from the back of a room. In `content.js` a target word is written
+  `{{like this}}` inside the paragraph and matched by name against that
+  block's `glossary`; a word with no entry falls back to ordinary text, so a
+  typo costs you a highlight rather than the page.
+- **A comprehension question keeps its wrong answers on screen.** Picking one
+  dims it and leaves it legible, because *why was that one tempting?* is
+  usually the more useful question. The right answer unlocks a short note on
+  the point of grammar or usage underneath.
+
+The notes deliberately separate the pairs that adult learners mix: *broke*
+against *bankrupt*, *worth* against *valuation* against *revenue*, and *raise*
+against *rise*.
+
+The last step links across to [the book discussion guide](#book-discussion-guide--adult-four-books),
+which takes the same book somewhere this lesson does not go.
+
+## Book Discussion Guide — adult, four books
+
+The 雙語讀書討論手冊 as a page: four books, three discussion questions each, and
+the concept vocabulary behind them. Built for a book club or a one-to-one
+session where the talking is the point.
+
+| # | Book | The argument |
+| --- | --- | --- |
+| 01 | Happy Sexy Millionaire · Steven Bartlett | The cost of chasing the wrong goals |
+| 02 | The Wealth Ladder · Nick Maggiulli | Different wealth levels demand different strategies |
+| 03 | Less Is More · 本田直之 | Subtraction as a path to genuine freedom |
+| 04 | Rewire · Nicole Vignola | Change begins with understanding your brain |
+
+A fifth section, The Common Thread, puts the four in one line each and closes
+with two questions across the whole set. Book 01 links across to
+[the full lesson](#happy-sexy-millionaire--adult-teacher-led-reading), which
+takes that book through a reading passage and the language work; the two pages
+point at each other.
+
+### Design notes
+
+Same house rules as the other adult pages — English leads with Chinese behind a
+中 chip, nothing saved between students, 🔊 on every English sentence, the same
+faint 👩‍🏫 panel. What is different is that there is **nothing to answer**: no
+gaps, no matching, no right answers anywhere on the page. The only three things
+that move are a glossary card, a list of useful language, and the Chinese.
+
+- **The questions are the guide's, the sentence starters are not.** Each of the
+  fourteen questions comes from the handbook; the three starters under each one
+  are written for this page, because a good question with no way into English
+  stalls a session.
+- **A glossary card carries both languages.** The English term is face up; the
+  Chinese term and both definitions are behind the tap. Once a card is open it
+  stays bilingual — it is already behind a deliberate reveal, and a second tap
+  there would only be in the way.
+- **The teacher panel has one action instead of an answer key**: *Open
+  everything* turns over every card and opens every list of useful language, for
+  going over a book together or picking a session up in the middle.
+- **Print** gives one book per page, with every card and starter list opened and
+  the cross-page links dropped.
+
 ## A Five-Minute Campaign Speech — adult, reading aloud
 
 Reading practice built on a bilingual speech: the candidate's own five-minute
@@ -574,6 +665,8 @@ public/phonics-handbook/  自然發音學習手冊, the interactive handbook
 public/business-clarity/  the business worksheet
 public/wealth-habits/     the three-habits lesson
 public/wealth-habits/img/ its four photographs
+public/happy-sexy-millionaire/  the business-English reading lesson
+public/book-club/         the four-book discussion guide
 public/campaign-speech/   the speech reading practice
 public/toeic-grammar/     the TOEIC Part 5 & 6 practice
 public/sentence-upgrades/ the 2026/07/25 homework review
@@ -583,7 +676,7 @@ public/ielts-part3/       the IELTS Part 3 structure practice
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
-All eleven are plain HTML, CSS and JS with no build step.
+All thirteen are plain HTML, CSS and JS with no build step.
 
 Every page ends with the same `<footer class="site-foot">` linking to
 <https://lewistoeic.com>, so a reader who lands on any one sheet can find the
@@ -664,6 +757,37 @@ gets read aloud. A `photo` on the lesson or on any step adds a picture — give
 it a `src`, an `alt`, the photographer in `by`, and a `pos` if the default
 centre crop cuts the wrong thing. To build a lesson from a different article,
 replace the content file — nothing in the renderer knows about this one.
+
+**Happy Sexy Millionaire.** The lesson lives in
+[`public/happy-sexy-millionaire/content.js`](public/happy-sexy-millionaire/content.js),
+one entry per step, and its renderer is a copy of the Three Habits one with two
+block types added. Everything above applies, plus:
+
+A `passage` block holds `paras` and a `glossary`. Mark a target word inside a
+paragraph as `{{market valuation}}`; the text between the braces must match a
+`term` in that block's `glossary` exactly, or it renders as plain text. A
+glossary entry wants a `zh` and a `def`, and `def` may use `<em>` and
+`<strong>` — a usage note is unreadable without them. The same three fields
+take HTML in a `note` body and in the `why` line under a gap or a quiz answer;
+every other string is escaped.
+
+A `quiz` block is the gap fill with the blank taken out: an `en`/`zh` question,
+a list of `options`, the index of the right one in `answer`, and a `why` that
+appears once it is found.
+
+**Book Discussion Guide.** The four books live in
+[`public/book-club/content.js`](public/book-club/content.js), one entry per
+book in `GUIDE.books`. Every string is an `en`/`zh` pair, and there are no
+answers to key in — the block types are `book` (author, tagline, summary
+paragraphs, who it is for), `discuss` (a question plus the `starters` to reveal
+under it), `terms` (a glossary card: `en`, `zh`, `defEn`, `defZh`), `strands`
+(the closing one-liners, each pointing at a book by `id`) and `link`.
+
+Adding a fifth book is one entry in `GUIDE.books` and one line in the closing
+`strands` list. A `link` block wants an `href`, an `en`/`zh` label and an
+`noteEn`/`noteZh` line; it is signage, so it never hides behind a 中 chip. The
+same block type exists on the Happy Sexy Millionaire page, which is how the two
+pages point at each other.
 
 **Campaign Speech.** The speech lives in
 [`public/campaign-speech/content.js`](public/campaign-speech/content.js), one
@@ -771,6 +895,8 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/phonics-handbook/> for the handbook,
 <http://localhost:8000/business-clarity/> for the business worksheet,
 <http://localhost:8000/wealth-habits/> for the three-habits lesson,
+<http://localhost:8000/happy-sexy-millionaire/> for the reading lesson,
+<http://localhost:8000/book-club/> for the book discussion guide,
 <http://localhost:8000/campaign-speech/> for the speech,
 <http://localhost:8000/toeic-grammar/> for the TOEIC practice,
 <http://localhost:8000/sentence-upgrades/> for the homework review,
