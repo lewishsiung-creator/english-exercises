@@ -243,6 +243,11 @@ pricing, cash flow and recruitment to a two-minute executive introduction.
   print therefore look the same, and a stray refresh cannot lose a session.
 - A contents sidebar tracks the section being read; on a phone it collapses
   into the top bar. **Print** puts each numbered section on its own page.
+- **Lesson notes live alongside the worksheet.** What was actually said in a
+  session — vocabulary that came up, corrections, polished versions of the
+  client's own sentences — goes into the relevant section behind a `part`
+  divider, so the printed worksheet and the record of the discussion stay
+  visibly separate. Section 1 carries the first lesson's notes.
 
 ## Three Habits That Build Wealth — adult, teacher-led
 

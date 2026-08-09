@@ -307,7 +307,9 @@ main { max-width: var(--measure); padding-bottom: 5rem; }
   color: var(--accent);
   background: var(--accent-soft);
   border-radius: 5px;
-  width: 1.45rem;
+  /* Wide enough for a letter, and it grows for the two-digit class notes. */
+  min-width: 1.45rem;
+  padding: 0 .3rem;
   height: 1.45rem;
   display: grid;
   place-items: center;
@@ -617,6 +619,73 @@ tbody td { height: 3.1rem; }
 .step-name .zh { font-size: .8rem; font-weight: 400; }
 .step-line { margin: 0; line-height: 1.9; color: var(--ink-soft); }
 
+.points li { padding-bottom: 20px; }
+.point-body { margin: 0; font-size: .95rem; color: var(--ink-soft); }
+.point-body .zh { font-size: .82rem; }
+
+/* ---------------- class notes ---------------- */
+
+/* A part divider. Heavier than a subsection heading and lighter than a
+   numbered section, because that is exactly where it sits. */
+.part {
+  margin: 48px 0 28px;
+  padding: 18px 20px;
+  background: var(--accent-soft);
+  border-radius: 10px;
+}
+.part h3 { margin: 0; font-size: 1.2rem; font-weight: 600; color: var(--accent); }
+.part h3 .zh { font-size: .88rem; font-weight: 400; color: var(--accent); margin-top: 3px; }
+.part-sub {
+  margin: 8px 0 0;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+.part-sub .zh { font-size: 11.5px; margin-top: 1px; }
+
+/* Finished sentences — meant to be read aloud, so they get the widest
+   measure and the least decoration on the page. */
+.statements { margin: 0 0 28px; }
+
+.stmt-list { list-style: none; margin: 0; padding: 0; }
+.stmt-list li {
+  margin-bottom: 14px;
+  padding: 12px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent-line);
+  border-radius: 8px;
+}
+.stmt-list li:last-child { margin-bottom: 0; }
+.stmt-list .en { font-size: 1rem; line-height: 1.6; }
+.stmt-list .zh { margin-top: 4px; }
+
+/* A correction from the lesson. Deliberately quiet — it is a footnote about
+   the English, not part of the material being learned. */
+.item-tip {
+  display: block;
+  margin-top: 5px;
+  padding-left: 11px;
+  border-left: 2px solid var(--accent-line);
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--ink-faint);
+}
+
+/* The review list is the one phrase list that is numbered. */
+.phrase-list.numbered { counter-reset: term; }
+.phrase-list.numbered .phrase { counter-increment: term; }
+.phrase-list.numbered dt::before {
+  content: counter(term) ".";
+  display: inline-block;
+  min-width: 1.6rem;
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
 /* ---------------- writing spaces ---------------- */
 
 .write { margin: 0 0 30px; }
@@ -666,12 +735,16 @@ tbody td { height: 3.1rem; }
   /* Each numbered section starts a fresh page, matching the original
      worksheet's structure; smaller blocks are kept whole. */
   .section { break-before: page; border-top: 0; margin-top: 0; padding-top: 0; }
-  .ask, .check, .note, .eg, .write, .fill, .steps li, .phrase, .table-wrap {
+  .ask, .check, .note, .eg, .write, .fill, .steps li, .phrase, .table-wrap,
+  .stmt-list li, .part {
     break-inside: avoid;
   }
-  .sub, .label, .section-head { break-after: avoid; }
+  .sub, .label, .section-head, .part { break-after: avoid; }
+  /* The class notes are a part of their own, not a continuation of the
+     worksheet page above them. */
+  .part { break-before: page; }
 
-  .phrase-list, .fill-list, .ruled, .note, .eg, .fields {
+  .phrase-list, .fill-list, .ruled, .note, .eg, .fields, .part, .stmt-list li {
     background: #fff !important;
   }
   .phrase:nth-child(odd) { background: #fff; }

@@ -28,6 +28,12 @@ function pair(en, zh, cls = '') {
          (zh ? `<span class="zh">${text(zh)}</span>` : '') + '</p>';
 }
 
+/* A correction or "more natural version" from the lesson. Optional
+   everywhere it appears, hence the empty string for the common case. */
+function tip(t) {
+  return t ? `<span class="item-tip">${text(t)}</span>` : '';
+}
+
 function el(html) {
   const t = document.createElement('template');
   t.innerHTML = html.trim();
@@ -116,10 +122,10 @@ const BLOCKS = {
         ${b.letter ? `<span class="sub-letter">${b.letter}</span>` : ''}
         <span class="en">${text(b.en)}</span>
         <span class="zh">${text(b.zh)}</span></h4>
-      <dl class="phrase-list">
+      <dl class="phrase-list ${b.numbered ? 'numbered' : ''}">
         ${b.items.map((i) => `
           <div class="phrase">
-            <dt>${text(i.en)}</dt>
+            <dt>${text(i.en)}${tip(i.tip)}</dt>
             <dd>${text(i.zh)}</dd>
           </div>`).join('')}
       </dl>
@@ -153,12 +159,52 @@ const BLOCKS = {
 
   bullets: (b) => `
     <div class="bullets">
-      ${pair(b.en, b.zh, 'bullets-intro')}
+      ${b.label ? `<h4 class="label"><span class="en">${text(b.label)}</span>
+        <span class="zh">${text(b.labelZh)}</span></h4>` : ''}
+      ${b.en ? pair(b.en, b.zh, 'bullets-intro') : ''}
       <${b.ordered ? 'ol' : 'ul'}>
         ${b.items.map((i) => `
           <li><span class="en">${text(i.en)}</span>
-          <span class="zh">${text(i.zh)}</span></li>`).join('')}
+          <span class="zh">${text(i.zh)}</span>${tip(i.tip)}</li>`).join('')}
       </${b.ordered ? 'ol' : 'ul'}>
+    </div>`,
+
+  /* The class notes hang off their own divider so the printed worksheet and
+     the record of what was actually said stay visibly separate. */
+  part: (b) => `
+    <div class="part">
+      <h3>
+        <span class="en">${text(b.en)}</span>
+        <span class="zh">${text(b.zh)}</span>
+      </h3>
+      <p class="part-sub"><span class="en">${text(b.subEn)}</span>
+      <span class="zh">${text(b.subZh)}</span></p>
+    </div>`,
+
+  statements: (b) => `
+    <div class="statements">
+      <h4 class="label"><span class="en">${text(b.en)}</span>
+      <span class="zh">${text(b.zh)}</span></h4>
+      <ul class="stmt-list">
+        ${b.items.map((i) => `
+          <li><span class="en">${text(i.en)}</span>
+          ${i.zh ? `<span class="zh">${text(i.zh)}</span>` : ''}${tip(i.tip)}</li>`).join('')}
+      </ul>
+    </div>`,
+
+  points: (b) => `
+    <div class="steps points">
+      <h4 class="label"><span class="en">${text(b.en)}</span>
+      <span class="zh">${text(b.zh)}</span></h4>
+      <ol>
+        ${b.items.map((i) => `
+          <li>
+            <p class="step-name"><span class="en">${text(i.en)}</span>
+            <span class="zh">${text(i.zh)}</span></p>
+            ${i.bodyEn ? `<p class="point-body"><span class="en">${text(i.bodyEn)}</span>
+              ${i.bodyZh ? `<span class="zh">${text(i.bodyZh)}</span>` : ''}</p>` : ''}
+          </li>`).join('')}
+      </ol>
     </div>`,
 
   steps: (b) => `
