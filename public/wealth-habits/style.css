@@ -912,13 +912,23 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 /* ---------------- 站尾 / site footer ----------------
 
    同一段樣式複製到每一頁。各頁的色票變數名稱不一樣（兒童頁沒有 --ink-faint、
-   成人頁沒有 --blue），所以每個顏色都串一條 fallback，缺哪一個都還是看得到。 */
+   成人頁沒有 --blue），所以每個顏色都串一條 fallback，缺哪一個都還是看得到。
+
+   標誌是全站唯一的共用圖檔，放在 public/logo.png，子頁用 ../logo.png 取用。
+   它本身就是連結，所以要把文字連結那條底線和左邊距擋掉——文字連結的樣式因此
+   收窄成 .site-foot p a，不再套用到整個站尾裡的每個 a。 */
 
 .site-foot {
   max-width: 46rem;
   margin: 0 auto;
   padding: 26px 20px 40px;
   border-top: 1px solid var(--line, #e3e0d8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  /* 換行之後（手機）文字會落到標誌下面一整行，置中才不會左右不對稱。 */
   text-align: center;
   font-family: var(--font-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif);
   font-size: .8rem;
@@ -926,7 +936,20 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   color: var(--ink-faint, var(--ink-soft, #7a8290));
 }
 .site-foot p { margin: 0; }
-.site-foot a {
+
+.site-foot .site-mark {
+  flex: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  line-height: 0;
+  border-radius: 50%;
+  transition: opacity .12s;
+}
+.site-foot .site-mark img { display: block; width: 34px; height: 34px; }
+.site-foot .site-mark:hover { opacity: .78; }
+
+.site-foot p a {
   margin-left: 7px;
   padding-bottom: 1px;
   color: var(--navy, var(--blue, #1d3f6e));
@@ -934,6 +957,6 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   text-decoration: none;
   border-bottom: 1px solid currentColor;
 }
-.site-foot a:hover { opacity: .7; }
+.site-foot p a:hover { opacity: .7; }
 
 @media print { .site-foot { display: none; } }
