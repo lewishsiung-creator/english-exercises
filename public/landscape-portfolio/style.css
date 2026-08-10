@@ -1,0 +1,527 @@
+/* Landscape Architecture Portfolio — a student's own portfolio, English only.
+
+   This page is not a lesson, so none of the teaching machinery from the rest
+   of the site is here: no Chinese layer, no teacher panel, no answers, nothing
+   scored and nothing saved. What it borrows is the house structure — a content
+   file, a renderer, no build step — and the shared site footer.
+
+   Design notes:
+
+   - It is read two ways: scrolled on a laptop by someone deciding whether to
+     reply, and printed to PDF as the thing actually attached to an
+     application. Both come out of one stylesheet, and the print half is not an
+     afterthought — see the block at the bottom.
+   - Hairlines do the work. Architecture portfolios are held together by thin
+     rules and letter-spaced labels rather than by boxes and shadows, so there
+     is exactly one shadow on the page and it belongs to the lightbox.
+   - The drawings are the content and everything else gets out of their way.
+     Text sits at a 34rem measure; images are allowed the full width.
+   - Light theme only, because it is printed.
+
+   The palette is the house one turned from navy to a deep green. The token
+   names are kept — the shared site footer reads --navy, --line, --ink-faint
+   and --ink-soft by name. */
+
+:root {
+  --paper: #f6f5f1;
+  --card: #ffffff;
+  --ink: #1e2622;
+  --ink-soft: #55605a;
+  --ink-faint: #8b948d;
+
+  --navy: #2e4636;          /* the house accent slot — deep green here */
+  --navy-soft: #e9efe9;
+  --navy-line: #bdd0be;
+
+  --clay: #9a5a38;          /* the second accent — numbers, the current section */
+  --clay-soft: #f6ece5;
+
+  --line: #e2dfd7;
+  --rule: #c9c4b8;
+
+  /* The CJK families at the end are for project names that carry their own
+     Japanese or Chinese — 百段苑, 貝の浜. A mincho beside the Latin serif keeps
+     the two reading as one typeface rather than as a paste. */
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, "Times New Roman",
+                  "Hiragino Mincho ProN", "Yu Mincho", "Songti TC", "Noto Serif TC", serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Helvetica Neue", sans-serif;
+
+  --bar-h: 54px;
+  --measure: 34rem;
+  --gap: 22px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--bar-h) + 20px);
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 1.62;
+  -webkit-text-size-adjust: 100%;
+}
+
+img { max-width: 100%; display: block; }
+
+.skip {
+  position: absolute; left: -9999px;
+  background: var(--navy); color: #fff; padding: 10px 16px; z-index: 100;
+}
+.skip:focus { left: 8px; top: 8px; }
+
+:focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; }
+
+/* A label: small, uppercase, letter-spaced sans. Used for every piece of
+   furniture on the page — section names, spec keys, captions, the bar. */
+.lab,
+.spec-k,
+.bar-link,
+.kicker,
+.shot-cap,
+.pnum,
+.chip,
+.blk h3,
+.contact-k {
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  font-size: .68rem;
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------------- bar */
+
+.bar {
+  position: sticky; top: 0; z-index: 40;
+  height: var(--bar-h);
+  display: flex; align-items: center; gap: 14px;
+  padding: 0 clamp(14px, 4vw, 34px);
+  background: rgba(246, 245, 241, .93);
+  backdrop-filter: saturate(1.4) blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.bar-name {
+  font-family: var(--font-ui);
+  font-size: .82rem; font-weight: 700; letter-spacing: .04em;
+  margin: 0; white-space: nowrap;
+}
+
+.bar-nav {
+  display: flex; gap: 4px; margin-left: auto;
+  overflow-x: auto; scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  /* A flex item refuses to shrink below its content unless told to, so without
+     this the bar pushes the whole page sideways as soon as the project names
+     are long. Its own overflow-x is what should absorb them. */
+  min-width: 0;
+}
+.bar-nav::-webkit-scrollbar { display: none; }
+
+.bar-link {
+  color: var(--ink-soft); text-decoration: none;
+  padding: 7px 10px; border-radius: 6px; white-space: nowrap;
+}
+.bar-link:hover { background: var(--navy-soft); color: var(--navy); }
+.bar-link[aria-current="true"] { color: var(--clay); background: var(--clay-soft); }
+
+.bar-btn {
+  font-family: var(--font-ui); font-size: .74rem; letter-spacing: .04em;
+  background: none; border: 1px solid var(--line); border-radius: 7px;
+  color: var(--ink-soft); padding: 7px 11px; cursor: pointer;
+}
+.bar-btn:hover { border-color: var(--navy-line); color: var(--navy); }
+.bar-btn-quiet { border-color: transparent; opacity: .6; font-size: .95rem; padding: 5px 8px; }
+.bar-btn-quiet:hover { opacity: 1; }
+
+/* ---------------------------------------------------------------- layout */
+
+.sheet {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 5vw, 40px);
+}
+
+section { scroll-margin-top: calc(var(--bar-h) + 20px); }
+
+.banner {
+  background: var(--clay-soft);
+  border-bottom: 1px solid #e6cdbc;
+  color: #6d3d22;
+  font-family: var(--font-ui); font-size: .78rem; letter-spacing: .02em;
+  text-align: center; padding: 9px 16px;
+}
+.banner code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: #fff; padding: 1px 5px; border-radius: 4px; font-size: .95em;
+}
+
+/* ----------------------------------------------------------------- cover */
+
+.cover {
+  min-height: calc(100svh - var(--bar-h));
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 60px 0 40px;
+}
+
+.cover-art { margin: 0 auto 44px; width: min(100%, 620px); }
+.cover-art svg { width: 100%; height: auto; display: block; }
+
+.cover h1 {
+  font-size: clamp(2.6rem, 8vw, 4.6rem);
+  line-height: 1.02;
+  font-weight: 400;
+  letter-spacing: -.015em;
+  margin: 0;
+  text-align: center;
+}
+
+.cover .kicker {
+  text-align: center; color: var(--clay);
+  margin: 0 0 18px;
+}
+
+.cover-disc {
+  text-align: center;
+  font-family: var(--font-ui);
+  text-transform: uppercase; letter-spacing: .3em; font-size: .78rem;
+  color: var(--ink-soft);
+  margin: 20px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  max-width: 30rem; margin-inline: auto;
+}
+
+.cover-tag {
+  text-align: center; font-size: 1.16rem; color: var(--ink-soft);
+  font-style: italic; margin: 26px 0 0;
+}
+
+.contact {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 40px;
+  margin: 52px 0 0; padding: 0; list-style: none;
+}
+.contact li { text-align: center; }
+.contact-k { display: block; color: var(--ink-faint); margin-bottom: 2px; }
+.contact-v { font-size: .95rem; }
+.contact a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--navy-line); }
+
+/* -------------------------------------------------------------- headings */
+
+.sec-head {
+  display: flex; align-items: baseline; gap: 16px;
+  border-top: 2px solid var(--ink);
+  padding-top: 12px;
+  margin: 0 0 34px;
+}
+.sec-head h2 {
+  font-size: 1.5rem; font-weight: 400; margin: 0; letter-spacing: -.01em;
+}
+.sec-head .lab { color: var(--ink-faint); margin-left: auto; }
+
+section + section { margin-top: clamp(64px, 10vw, 108px); }
+
+/* --------------------------------------------------------------- profile */
+
+.statement { max-width: var(--measure); margin: 0 0 46px; }
+.statement p { margin: 0 0 1em; font-size: 1.08rem; }
+
+.blocks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 34px var(--gap);
+}
+
+.blk h3 {
+  color: var(--navy);
+  margin: 0 0 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+.blk ul { list-style: none; margin: 0; padding: 0; }
+.blk li + li { margin-top: 14px; }
+
+.term { font-weight: 600; font-size: .98rem; display: block; }
+.when {
+  font-family: var(--font-ui); font-size: .72rem; letter-spacing: .04em;
+  color: var(--clay); display: block; margin-top: 1px;
+}
+.note { font-size: .9rem; color: var(--ink-soft); display: block; margin-top: 3px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  background: var(--navy-soft); color: var(--navy);
+  border-radius: 4px; padding: 5px 9px; letter-spacing: .08em;
+}
+
+/* -------------------------------------------------------------- contents */
+
+.toc {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--gap);
+}
+
+.toc-card {
+  display: block; text-decoration: none; color: inherit;
+  border: 1px solid var(--line); background: var(--card);
+  border-radius: 3px; overflow: hidden;
+  transition: border-color .15s, transform .15s;
+}
+.toc-card:hover { border-color: var(--navy); transform: translateY(-2px); }
+
+.toc-thumb { aspect-ratio: 4 / 3; overflow: hidden; background: var(--navy-soft); }
+.toc-thumb > * { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.toc-body { padding: 13px 15px 16px; }
+.toc-body .pnum { color: var(--clay); display: block; }
+.toc-body h3 { margin: 4px 0 3px; font-size: 1.06rem; font-weight: 500; }
+.toc-body p { margin: 0; font-size: .84rem; color: var(--ink-soft); }
+
+/* -------------------------------------------------------------- projects */
+
+.proj-head { margin-bottom: 30px; }
+.proj-head .pnum { color: var(--clay); }
+.proj-head h2 {
+  font-size: clamp(1.9rem, 5vw, 2.9rem); font-weight: 400;
+  margin: 4px 0 6px; letter-spacing: -.02em; line-height: 1.08;
+}
+.proj-type {
+  font-family: var(--font-ui); font-size: .78rem;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft);
+  margin: 0;
+}
+.proj-lead {
+  font-size: 1.28rem; font-style: italic; color: var(--navy);
+  max-width: var(--measure); margin: 22px 0 0; line-height: 1.45;
+}
+
+.proj-body {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 40px;
+  margin-bottom: 34px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}
+
+.specs { margin: 0; }
+.specs > div { padding: 7px 0; border-bottom: 1px solid var(--line); }
+.spec-k { display: block; color: var(--ink-faint); }
+.spec-v { font-size: .92rem; margin-top: 2px; }
+
+.prose { max-width: var(--measure); }
+.prose p { margin: 0 0 1.05em; }
+.prose p:last-child { margin-bottom: 0; }
+
+/* ---------------------------------------------------------------- images */
+
+.shots { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+.shot { margin: 0; }
+.shot.wide { grid-column: 1 / -1; }
+
+.shot-frame {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--card);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  cursor: zoom-in;
+  width: 100%; padding: 0; display: block;
+  transition: border-color .15s;
+}
+.shot.wide .shot-frame { aspect-ratio: 16 / 9; }
+.shot-frame:hover { border-color: var(--navy); }
+.shot-frame > * { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.shot-cap {
+  color: var(--ink-soft); margin: 9px 0 0;
+  display: flex; gap: 8px; align-items: baseline;
+}
+.shot-cap b { color: var(--clay); font-weight: 600; }
+
+/* The drawn stand-in for a picture that is not in img/ yet. It is deliberately
+   pale and deliberately says which file it is waiting for — this page is
+   handed over as a template, and a grey box teaches nobody anything. */
+.ph { background: var(--card); }
+.ph .ph-ink   { stroke: var(--navy); }
+.ph .ph-faint { stroke: var(--navy-line); }
+.ph .ph-fill  { fill: var(--navy-soft); }
+.ph .ph-clay  { stroke: var(--clay); }
+.ph text {
+  font-family: var(--font-ui); text-transform: uppercase;
+  letter-spacing: .18em; fill: var(--ink-faint);
+}
+.ph .ph-file { letter-spacing: .04em; text-transform: none; fill: var(--clay); }
+
+/* -------------------------------------------------------------- lightbox */
+
+.lb {
+  position: fixed; inset: 0; z-index: 90;
+  background: rgba(20, 26, 22, .94);
+  display: flex; flex-direction: column;
+  padding: 16px;
+}
+.lb[hidden] { display: none; }
+
+.lb-stage {
+  flex: 1; min-height: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.lb-stage > * {
+  max-width: 100%; max-height: 100%;
+  width: auto; height: auto;
+  object-fit: contain;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, .5);
+  background: var(--paper);
+}
+.lb-stage svg { width: min(100%, 900px); height: auto; }
+
+.lb-bar {
+  display: flex; align-items: center; gap: 14px;
+  color: #e7eae7; font-family: var(--font-ui); font-size: .8rem;
+  padding: 12px 4px 2px;
+}
+.lb-cap { flex: 1; min-width: 0; }
+.lb-cap b { display: block; font-size: .68rem; letter-spacing: .14em;
+            text-transform: uppercase; color: #9db09f; font-weight: 600; }
+
+.lb-btn {
+  background: none; border: 1px solid rgba(255, 255, 255, .3); color: #fff;
+  border-radius: 6px; padding: 7px 13px; cursor: pointer;
+  font-family: var(--font-ui); font-size: .9rem; line-height: 1;
+}
+.lb-btn:hover { background: rgba(255, 255, 255, .12); }
+.lb-count { color: #9db09f; font-variant-numeric: tabular-nums; }
+
+/* ----------------------------------------------------------------- guide */
+
+/* The ⓘ panel. It explains the template to the student who inherits this
+   page; once real content is in, deleting the button and this panel from
+   index.html removes it with no other change. */
+.guide {
+  position: fixed; z-index: 60;
+  right: 14px; top: calc(var(--bar-h) + 10px);
+  width: min(380px, calc(100vw - 28px));
+  max-height: calc(100svh - var(--bar-h) - 24px); overflow-y: auto;
+  background: var(--card); border: 1px solid var(--rule); border-radius: 8px;
+  box-shadow: 0 16px 44px rgba(30, 38, 34, .18);
+  padding: 18px 20px 22px;
+  font-size: .88rem;
+}
+.guide[hidden] { display: none; }
+.guide h2 { margin: 0; font-size: 1.05rem; font-weight: 500; }
+.guide-head { display: flex; align-items: center; margin-bottom: 12px; }
+.guide-x {
+  margin-left: auto; background: none; border: 0; cursor: pointer;
+  font-size: 1rem; color: var(--ink-faint);
+}
+.guide ol { margin: 0 0 14px; padding-left: 1.2em; }
+.guide li { margin-bottom: 8px; }
+.guide p { margin: 0 0 10px; color: var(--ink-soft); }
+.guide code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: var(--navy-soft); color: var(--navy);
+  padding: 1px 5px; border-radius: 4px; font-size: .88em;
+}
+
+/* --------------------------------------------------------------- closing */
+
+.closing { text-align: center; padding: 20px 0 10px; }
+.closing h2 { font-size: 2rem; font-weight: 400; margin: 0 0 14px; }
+.closing p { max-width: 30rem; margin: 0 auto; color: var(--ink-soft); font-size: .95rem; }
+
+/* ---------------------------------------------------------------- footer */
+
+.site-foot {
+  margin-top: clamp(60px, 9vw, 100px);
+  border-top: 1px solid var(--line, #e3e0d8);
+  padding: 22px 16px 30px; text-align: center;
+}
+.site-foot p {
+  margin: 0; font-family: var(--font-ui);
+  font-size: .8rem; color: var(--ink-faint, var(--ink-soft, #7a8290));
+}
+.site-foot a {
+  margin-left: 10px; color: var(--navy, #2e4636); font-weight: 600;
+  text-decoration: none; border-bottom: 1px solid currentColor;
+}
+
+/* 標誌本身是連結，所以要蓋掉上面那條底線和左邊距。兩個 class 的選擇器贏過
+   .site-foot a（一個 class + 一個 element），不必動到原本的規則。 */
+.site-foot {
+  display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 6px 14px;
+}
+.site-foot .site-mark {
+  flex: none; margin: 0; padding: 0; border: 0;
+  line-height: 0; border-radius: 50%; transition: opacity .12s;
+}
+.site-foot .site-mark img { display: block; width: 34px; height: 34px; }
+.site-foot .site-mark:hover { opacity: .78; }
+
+/* ----------------------------------------------------------------- small */
+
+@media (max-width: 760px) {
+  body { font-size: 16px; }
+  .proj-body { grid-template-columns: 1fr; gap: 24px; }
+  .specs { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+  .shots { grid-template-columns: 1fr; }
+  .shot .shot-frame { aspect-ratio: 4 / 3; }
+  .contact { gap: 14px 26px; }
+  .bar-name { font-size: .74rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .toc-card { transition: none; }
+}
+
+/* ----------------------------------------------------------------- print
+
+   The printed PDF is the version that gets attached to an application, so it
+   is the real deliverable and not a courtesy. Every piece of machinery goes,
+   the cover and the profile take a page each, and each project starts on a
+   fresh one. Backgrounds are forced on — without it the drawn placeholders
+   and the tinted chips come out blank. */
+
+@page { size: A4 portrait; margin: 16mm 14mm; }
+
+@media print {
+  :root { --gap: 12px; }
+
+  html, body { background: #fff; font-size: 10.5pt; }
+
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .bar, .guide, .lb, .skip, .site-foot { display: none !important; }
+
+  .sheet { max-width: none; padding: 0; }
+
+  .banner { border: 1px solid #e6cdbc; margin-bottom: 8mm; }
+
+  .cover { min-height: auto; padding: 10mm 0 0; break-after: page; }
+  .cover-art { width: 105mm; margin-bottom: 14mm; }
+  .cover h1 { font-size: 34pt; }
+  .contact { margin-top: 20mm; }
+
+  section + section { margin-top: 0; }
+  #profile { break-after: page; }
+  #contents { display: none; }        /* a clickable index is no use on paper */
+
+  .proj { break-before: page; }
+  .proj-head h2 { font-size: 22pt; }
+  .proj-lead { font-size: 12pt; }
+  .proj-body { break-after: avoid; padding-top: 4mm; }
+
+  .shot { break-inside: avoid; }
+  .shot-frame { cursor: default; }
+
+  .closing { break-before: page; padding-top: 40mm; }
+}

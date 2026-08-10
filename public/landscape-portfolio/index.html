@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Landscape Architecture Portfolio</title>
+<meta name="description" content="A landscape architecture student's portfolio — profile, four projects, drawings and renders, and a print stylesheet that turns the page into a PDF.">
+
+<!-- Inline SVG mark: three contour lines. The colours must be percent-encoded —
+     a bare "#" would be read as the URL fragment and the icon would silently
+     fail to load. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232e4636'/%3E%3Cg fill='none' stroke='%23bdd0be' stroke-width='3.5' stroke-linejoin='round'%3E%3Cpath d='M12 40c4-12 14-18 22-16s18 10 18 18'/%3E%3Cpath d='M20 46c3-8 9-12 15-10s12 7 12 13'/%3E%3C/g%3E%3Cpath fill='none' stroke='%239a5a38' stroke-width='3' d='M28 54c2-8 8-12 12-20'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f6f5f1">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#doc">Skip to the portfolio</a>
+
+<header class="bar">
+  <p class="bar-name" id="barName">Portfolio</p>
+
+  <nav class="bar-nav" id="barNav" aria-label="Projects"></nav>
+
+  <button class="bar-btn" id="printBtn" title="Print, or save as PDF">⎙ PDF</button>
+  <button class="bar-btn bar-btn-quiet" id="guideToggle" aria-expanded="false"
+          aria-controls="guide" title="How to use this template"
+          aria-label="How to use this template">ⓘ</button>
+</header>
+
+<main class="sheet" id="doc"></main>
+
+<!-- How to use the template. Once the student's own work is in, deleting this
+     panel and the ⓘ button above removes it with no other change. -->
+<aside class="guide" id="guide" role="dialog" aria-label="How to use this template" hidden>
+  <div class="guide-head">
+    <h2>Using this template</h2>
+    <button class="guide-x" id="guideClose" aria-label="Close">✕</button>
+  </div>
+
+  <p>What you are looking at is a <b>worked example</b>: a study of Tadao Ando's
+    Awaji Yumebutai, so you can see a finished portfolio before writing your
+    own. To start yours from empty, copy the starter over the content file:
+    <code>cp content.starter.js content.js</code></p>
+
+  <ol>
+    <li>Open <code>content.js</code>. Everything on this page — your name, your
+      profile, every project and every caption — is in that one file, and the
+      notes at the top say what to write in each part.</li>
+    <li>Put your drawings in the <code>img/</code> folder, using the file names
+      written in each project's <code>images</code> list. Any picture still
+      missing is drawn as a labelled placeholder saying which file it wants.</li>
+    <li>Delete the <code>sample</code> line at the top of the file to remove the
+      banner.</li>
+    <li>Press <b>⎙ PDF</b> and choose <i>Save as PDF</i>. The cover, the profile
+      and each project come out on their own page.</li>
+  </ol>
+
+  <p>Click any drawing to see it full size; ← and → move through a project's
+    images, Esc closes.</p>
+  <p>Nothing here is saved, uploaded or tracked — it is one folder of files
+    that works offline and on any web host.</p>
+</aside>
+
+<!-- Lightbox. Holds a copy of whichever picture was clicked, so it works the
+     same for a real drawing and for a placeholder. -->
+<div class="lb" id="lb" role="dialog" aria-label="Enlarged drawing" hidden>
+  <div class="lb-stage" id="lbStage"></div>
+  <div class="lb-bar">
+    <button class="lb-btn" id="lbPrev" aria-label="Previous">←</button>
+    <button class="lb-btn" id="lbNext" aria-label="Next">→</button>
+    <p class="lb-cap"><b id="lbWho"></b><span id="lbCap"></span></p>
+    <span class="lb-count" id="lbCount"></span>
+    <button class="lb-btn" id="lbClose">✕ Close</button>
+  </div>
+</div>
+
+
+<!-- Site footer. Identical on every page, so a reader who lands on any one
+     sheet can find the rest. -->
+<footer class="site-foot">
+  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
+     aria-label="Lewis Biz English"><img src="../logo.png" alt="" width="34" height="34"></a>
+  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
+    target="_blank" rel="noopener">lewistoeic.com</a></p>
+</footer>
+<script src="content.js"></script>
+<script src="render.js"></script>
+</body>
+</html>

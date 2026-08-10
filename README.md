@@ -14,6 +14,9 @@ sentences at `/sentence-upgrades/`, a high-school writing worksheet
 at `/robot-helper/`, a survey of seven years of the 學測 essay at
 `/exam-writing/`, and an IELTS Speaking Part 3 practice at `/ielts-part3/`.
 
+A fourteenth page is not a lesson: `/landscape-portfolio/` is a portfolio
+template for a student to fill in with their own work.
+
 ## Word Play — CEFR A1, ages 7–10
 
 Four activities across three vocabulary topics (Animals, Food, School),
@@ -656,6 +659,81 @@ not improve it.
 - **Print** gives a handout: every reason, model answer and idea list opened,
   the clocks dropped, and the planning pads reduced to ruled lines to write on.
 
+## Landscape Architecture Portfolio — a student's own work
+
+The odd one out. Not a lesson and not bilingual: a portfolio a landscape
+architecture student fills in with their own projects, in English, and prints
+to PDF to attach to an application.
+
+It ships **filled in**, as a study of Tadao Ando's Awaji Yumebutai (2000) — a
+hillside quarried away for Osaka Bay landfill, hit by the 1995 earthquake, and
+rebuilt as terraced gardens and water. Four parts: the cut hill, the Hundred
+Step Garden, the Shell Garden, and the route up from the sea. A student reads
+that first and then starts their own from
+[`content.starter.js`](public/landscape-portfolio/content.starter.js), the same
+page with the words taken out.
+
+| Piece | What it does |
+| --- | --- |
+| 📐 Cover | Name, discipline, contact, and a drawn contour composition |
+| 👤 Profile | A short statement, then dated blocks — education, experience, awards, software |
+| 🗂 Contents | One card per project, each opening at its section |
+| 🏞 Project | Specs down the left, three paragraphs beside them, then the drawings |
+| 🔍 Lightbox | Any drawing full size; ← → move through that project, Esc closes |
+| ⎙ PDF | Cover, profile and each project on their own page |
+
+### Design notes
+
+- **A missing picture draws itself.** Every image is `img/<name>.jpg` first; if
+  the file is not there the `error` handler swaps in a drawn SVG placeholder
+  naming the kind of drawing and the file it is waiting for — `plan`,
+  `section`, `render`, `diagram`, `detail`, `photo` or `model`, each with its
+  own schematic. So the template reads as a portfolio from the first minute,
+  each real drawing appears simply by being dropped into `img/`, and nobody has
+  to be told which file goes where. It is also why the images are **not**
+  `loading="lazy"`: a lazy image below the fold is never requested, so it never
+  fails, so it never becomes its placeholder — and the printed PDF would be a
+  document of empty frames.
+- **The PDF is the deliverable, not a courtesy.** What gets attached to an
+  application is the print output, so it comes out of the same stylesheet: the
+  bar, the guide and the lightbox go, the clickable contents grid is dropped as
+  useless on paper, backgrounds are forced on so the drawings survive, and
+  `break-before` puts each project on a fresh page.
+- **A banner says the words are not yet the student's.** While `sample` is set
+  in the content file, a line across the top says so — on screen *and* in print,
+  so a half-finished draft cannot be sent by accident. `sample: true` gets the
+  stock wording; a string replaces it, which the Ando study needs, because there
+  the warning that matters is not "unfinished" but "this design is not mine".
+- **The example is a case study, and says so everywhere.** The architect is
+  named on the cover, in the banner, in every specification list and in the
+  closing credits, and each part's `My role` says what was actually done —
+  redrawing and reading, not designing. Presenting someone else's built work as
+  your own is the one mistake a portfolio cannot survive, so the sample models
+  the opposite. No drawings of the real building are included for the same
+  reason; the placeholders stand in.
+- **Where the sources disagree, the page says so.** The beds of the Hundred Step
+  Garden are 4.5 m square in Japanese sources and 5 m in English ones, published
+  site areas run from 21.4 ha to about 28 ha, and quoted tree counts for the
+  replanting were too inconsistent to use, so none is given. All of that is on
+  the page, under "A note on the figures" — which is the habit worth teaching.
+- **The text is a shape to copy, not filler.** Each description is three
+  paragraphs doing three jobs — the site, the problem, the move — and the notes
+  at the top of the content file say so, ask for verbs rather than "the design
+  features…", and ask for one number per paragraph. That is the part a student
+  actually finds hard, and lorem ipsum would have taught it nothing.
+- **A study of one work numbers its sections Part, not Project.** `unit: 'Part'`
+  in the content file changes the section headings, the contents cards and the
+  count together; `profile.head` renames the profile section, which is how the
+  same three-column block layout carries a CV in one portfolio and the project's
+  own history in the other.
+- **The bar marks the section being read** by measuring, not with an
+  `IntersectionObserver`: a project here is two or three screens tall, so
+  several straddle any sensible trigger band at once and the observer reports
+  whichever fired last.
+- No Chinese layer and no teacher panel — the quiet ⓘ button explains the
+  template to whoever inherits it, and deleting it and its panel from
+  `index.html` is the last step before sending the portfolio out.
+
 ## Layout
 
 ```
@@ -673,10 +751,13 @@ public/sentence-upgrades/ the 2026/07/25 homework review
 public/robot-helper/      the 113 學年度 writing worksheet
 public/exam-writing/      the 109–115 學測 essay survey
 public/ielts-part3/       the IELTS Part 3 structure practice
+public/landscape-portfolio/      the portfolio — filled in as the Ando study
+public/landscape-portfolio/content.starter.js  the same page, emptied
+public/landscape-portfolio/img/  where the student's drawings go
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
-All thirteen are plain HTML, CSS and JS with no build step.
+All fourteen are plain HTML, CSS and JS with no build step.
 
 Every page ends with the same `<footer class="site-foot">` linking to
 <https://lewistoeic.com>, so a reader who lands on any one sheet can find the
@@ -873,6 +954,37 @@ images the real paper supplied, `caution` adds a red warning under 中文重點,
 and the cross-link to another page on this site is `LESSON.practice`, matched
 by year.
 
+**Landscape Portfolio.** Everything is in
+[`public/landscape-portfolio/content.js`](public/landscape-portfolio/content.js)
+— name, contact, profile and projects — and the notes at the top of that file
+are written for the student rather than for a developer. There are no block
+types to learn: a project is a `name`, a `type`, a one-line `lead`, a `specs`
+list of label-and-value pairs, a `text` array of paragraphs, and an `images`
+list. Copy a whole project block to add a fifth; delete one to drop it.
+
+That file currently holds the Awaji Yumebutai study. To start an empty one:
+
+```bash
+cp public/landscape-portfolio/content.starter.js public/landscape-portfolio/content.js
+```
+
+Three optional keys change the page's framing rather than its contents:
+`unit` renames Project to Part throughout, `profile.head` renames the profile
+section, and `sample` takes a string to replace the stock banner wording.
+
+An image is `{ file, kind, caption }` plus `wide: true` to span the full width.
+`file` is the name to save into `img/`, and `kind` only decides which
+placeholder is drawn until that file exists — the seven kinds are one function
+each in the `ART` table in
+[`render.js`](public/landscape-portfolio/render.js), so adding an eighth is one
+entry. Wide pictures are cropped to 16:9 and the rest to 4:3;
+[`img/README.md`](public/landscape-portfolio/img/README.md) is the note the
+student reads about export formats and sizes.
+
+Nothing in the renderer knows anything about riverbanks or courtyards, so
+replacing the content file replaces the portfolio — it would serve a different
+discipline unchanged.
+
 ## Running it locally
 
 No build step and no dependencies:
@@ -902,7 +1014,8 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/sentence-upgrades/> for the homework review,
 <http://localhost:8000/robot-helper/> for the writing worksheet,
 <http://localhost:8000/exam-writing/> for the 學測 essay survey, or
-<http://localhost:8000/ielts-part3/> for the IELTS Part 3 practice.
+<http://localhost:8000/ielts-part3/> for the IELTS Part 3 practice, or
+<http://localhost:8000/landscape-portfolio/> for the portfolio template.
 
 ## Live sites
 
