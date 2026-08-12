@@ -103,13 +103,17 @@ const BLOCKS = {
       <p class="zh">${text(b.zh)}</p>
     </div>`,
 
+  /* The body needs its own 中 chip, not just the heading's. Tapping the
+     paragraph has always opened it — `.pair[data-zh]` handles that — but with
+     no chip on the passage there was nothing to say a translation existed, and
+     an invisible affordance is the same as an absent one. */
   note: (b) => `
     <aside class="note">
       <h4><span class="en">${text(b.en)}</span>
         <button class="zh-chip" title="顯示中文">中</button>
         <span class="zh">${text(b.zh)}</span></h4>
       <div class="pair" data-zh>
-        <p class="en">${text(b.bodyEn)}</p>
+        <p class="en">${text(b.bodyEn)}<button class="zh-chip" title="顯示中文">中</button></p>
         <p class="zh">${text(b.bodyZh)}</p>
       </div>
     </aside>`,
