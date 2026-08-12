@@ -23,10 +23,17 @@
    and anything already behind a deliberate reveal stay bilingual — those are
    scaffolding, not comprehension practice.
 
-   A gap-fill translation keeps its ＿＿ blank and never paraphrases the missing
-   phrase, or the Chinese hands over the answer. Matching halves and answer
-   chips stay in English for the same reason; each is glossed on its own phrase
-   card anyway.
+   A gap-fill translation is a COMPLETE Chinese sentence — the blank is filled
+   in, and only the English keeps its ___. The other pages in this repo do the
+   opposite and leave ＿＿ in the Chinese so it cannot hand over the answer;
+   Lewis asked for the full sentence here (2026-08-12). The reasoning is that
+   this page is teacher-led and nothing is scored, so the Chinese is there to
+   make the situation clear rather than to be a second puzzle — and it is still
+   one tap away rather than on screen. Write the Chinese to read naturally as a
+   finished sentence, not as a translation with a word dropped into a hole.
+
+   Matching halves and answer chips stay in English; each is glossed on its own
+   phrase card anyway.
 
    BLOCK TYPES
    -----------
@@ -372,7 +379,7 @@ const NOTEBOOK = {
           items: [
             {
               text: 'My aim in the conversation is to ___, not to tell her she is wrong.',
-              textZh: '這場對話我的目的是＿＿，而不是告訴她她錯了。',
+              textZh: '這場對話我的目的是建立她的覺察，而不是告訴她她錯了。',
               options: ['create awareness', 'prove myself', 'speak up'],
               answer: 0,
               why: {
@@ -382,7 +389,7 @@ const NOTEBOOK = {
             },
             {
               text: 'She’s extremely ___, which is why she gets results and why she won’t let go of old habits.',
-              textZh: '她非常＿＿，這既是她拿得出成績的原因，也是她放不下舊習慣的原因。',
+              textZh: '她非常堅持，這既是她拿得出成績的原因，也是她放不下舊習慣的原因。',
               options: ['strategic', 'persistent', 'insecure'],
               answer: 1,
               why: {
@@ -392,7 +399,7 @@ const NOTEBOOK = {
             },
             {
               text: 'She doesn’t need to ___ — twelve years of experience is worth keeping. She needs to evolve.',
-              textZh: '她不需要＿＿——十二年的經驗是值得保留的。她需要的是持續進化。',
+              textZh: '她不需要重新塑造自己——十二年的經驗是值得保留的。她需要的是持續進化。',
               options: ['speak up', 'empower people', 'reinvent herself'],
               answer: 2,
               why: {
@@ -402,7 +409,7 @@ const NOTEBOOK = {
             },
             {
               text: 'If the training only ever points out errors, the surgeon’s stress rises and you stop ___.',
-              textZh: '如果訓練從頭到尾只指出錯誤，醫師的壓力會升高，你也就不再＿＿。',
+              textZh: '如果訓練從頭到尾只指出錯誤，醫師的壓力會升高，你也就不再讓人產生主動改善的意願了。',
               options: ['making people want to improve', 'being result-oriented', 'giving feedback'],
               answer: 0,
               why: {
