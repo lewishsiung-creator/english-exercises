@@ -709,8 +709,24 @@ page with the words taken out.
   closing credits, and each part's `My role` says what was actually done —
   redrawing and reading, not designing. Presenting someone else's built work as
   your own is the one mistake a portfolio cannot survive, so the sample models
-  the opposite. No drawings of the real building are included for the same
-  reason; the placeholders stand in.
+  the opposite.
+- **The pictures divide the same way the credit does.** Four photographs come
+  from Wikimedia Commons — all by 663highland, all CC BY 2.5 — and are credited
+  under each picture *and* in the lightbox, because a CC BY image shown
+  full-screen with its attribution left behind on the page underneath is not
+  attributed. Twelve drawings are the study's own: schematic plans, sections and
+  details authored as SVG, drawn to explain the landscape and never traced from
+  anyone's drawings. None of Ando's own drawings, and no professional
+  photography of the complex, is reproduced. Commons works here because Japan's
+  freedom-of-panorama rule allows photographs of architecture in public places
+  to be published freely, so these are properly licensed rather than merely
+  available. [`img/CREDITS.md`](public/landscape-portfolio/img/CREDITS.md) holds
+  the originals, the licence and the changes made.
+- **A caption says what the photograph shows, not what the argument wants.** The
+  stair photograph sits in the part about circulation, and its Commons
+  description places it in Hyakudan-en — so it is captioned as Hyakudan-en. A
+  caption that quietly moves a picture to where the text needs it is where a
+  dishonest portfolio starts.
 - **Where the sources disagree, the page says so.** The beds of the Hundred Step
   Garden are 4.5 m square in Japanese sources and 5 m in English ones, published
   site areas run from 21.4 ha to about 28 ha, and quoted tree counts for the
@@ -753,7 +769,7 @@ public/exam-writing/      the 109–115 學測 essay survey
 public/ielts-part3/       the IELTS Part 3 structure practice
 public/landscape-portfolio/      the portfolio — filled in as the Ando study
 public/landscape-portfolio/content.starter.js  the same page, emptied
-public/landscape-portfolio/img/  where the student's drawings go
+public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS.md
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
@@ -972,7 +988,9 @@ Three optional keys change the page's framing rather than its contents:
 `unit` renames Project to Part throughout, `profile.head` renames the profile
 section, and `sample` takes a string to replace the stock banner wording.
 
-An image is `{ file, kind, caption }` plus `wide: true` to span the full width.
+An image is `{ file, kind, caption }` plus `wide: true` to span the full width,
+and `credit` for a picture that is somebody else's — the credit prints under the
+caption and travels with the picture into the lightbox.
 `file` is the name to save into `img/`, and `kind` only decides which
 placeholder is drawn until that file exists — the seven kinds are one function
 each in the `ART` table in

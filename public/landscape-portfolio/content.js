@@ -30,8 +30,9 @@ const PORTFOLIO = {
   /* A string here replaces the stock "sample content" banner. On this page the
      warning that matters is not "unfinished" but "this design is not mine". */
   sample: 'Worked example — a study of Tadao Ando\'s Awaji Yumebutai (2000). ' +
-          'The landscape is his; only the reading and the drawings are the author\'s. ' +
-          'The drawings are placeholders. Start your own from content.starter.js.',
+          'The landscape is his; the reading and the twelve drawings are the ' +
+          'author\'s; the four photographs are other people\'s and are credited ' +
+          'where they appear. Start your own from content.starter.js.',
 
   /* Each entry in `projects` below is one part of a single work, not a
      separate project — so they are numbered Part 01, Part 02. Delete this line
@@ -116,6 +117,9 @@ const PORTFOLIO = {
           { term: 'Hyōgo Tourism / Oniwa garden archive',
             note: 'hyogo-tourism.jp · oniwa.garden — Japanese-language descriptions ' +
                   'of 百段苑 and 貝の浜' },
+          { term: 'Photographs — Wikimedia Commons',
+            note: 'All four by 663highland, CC BY 2.5, credited under each picture. ' +
+                  'The drawings are mine; none of Ando\'s are reproduced.' },
         ],
       },
       {
@@ -178,15 +182,21 @@ const PORTFOLIO = {
         'of ground that admits what happened to it.',
       ],
 
+      /* A photograph opens each part and the drawings follow. The photographs
+         are other people's work and carry a `credit`, which the page prints
+         under the picture and again in the lightbox — that is where CC BY
+         wants attribution, not in a file nobody reading this will open. The
+         drawings are mine and carry none. */
       images: [
-        { file: 'yumebutai-masterplan.jpg', kind: 'plan', wide: true,
-          caption: 'Masterplan of the complex, redrawn, 1:2000' },
-        { file: 'yumebutai-location.jpg', kind: 'diagram',
+        { file: 'yumebutai-view.jpg', kind: 'photo', wide: true,
+          caption: 'The complex from above — terraces, conference centre and the strait',
+          credit: 'Photograph 663highland · CC BY 2.5' },
+        { file: 'yumebutai-masterplan.svg', kind: 'plan', wide: true,
+          caption: 'Masterplan, schematic' },
+        { file: 'yumebutai-location.svg', kind: 'diagram',
           caption: 'Osaka Bay — where the soil from this hill went' },
-        { file: 'yumebutai-cut-profile.jpg', kind: 'section',
-          caption: 'The quarried profile against the assumed original hill, 1:1000' },
-        { file: 'yumebutai-terrace-diagram.jpg', kind: 'diagram',
-          caption: 'The platforms, read as one stepped section' },
+        { file: 'yumebutai-cut-profile.svg', kind: 'section',
+          caption: 'The quarried profile against the hill it was cut from' },
       ],
     },
 
@@ -201,7 +211,7 @@ const PORTFOLIO = {
         { k: 'Beds', v: '100, each about 4.5 m square' },
         { k: 'Planting', v: 'Chrysanthemum-family species, one hundred kinds' },
         { k: 'Commemorates', v: 'The Great Hanshin earthquake, 17 January 1995' },
-        { k: 'My role', v: 'Measured study · plan, section and one bed detail' },
+        { k: 'My role', v: 'Study · schematic plan, section and one bed detail' },
       ],
 
       text: [
@@ -228,14 +238,15 @@ const PORTFOLIO = {
       ],
 
       images: [
-        { file: 'hyakudan-en-plan.jpg', kind: 'plan', wide: true,
-          caption: 'Hundred Step Garden, plan, 1:500' },
-        { file: 'hyakudan-en-section.jpg', kind: 'section',
-          caption: 'Section up the slope through the beds and stairs, 1:200' },
-        { file: 'hyakudan-en-bed.jpg', kind: 'detail',
-          caption: 'One bed — wall, soil depth and drainage, 1:20' },
-        { file: 'hyakudan-en-view.jpg', kind: 'photo',
-          caption: 'Looking up the grid from the lowest row' },
+        { file: 'hyakudan-en-view.jpg', kind: 'photo', wide: true,
+          caption: 'The hundred beds, stepping up the slope',
+          credit: 'Photograph 663highland · CC BY 2.5' },
+        { file: 'hyakudan-en-plan.svg', kind: 'plan', wide: true,
+          caption: 'The grid of beds and the stairs between them, schematic' },
+        { file: 'hyakudan-en-section.svg', kind: 'section',
+          caption: 'Section up the slope through beds and stairs' },
+        { file: 'hyakudan-en-bed.svg', kind: 'detail',
+          caption: 'One bed — wall, soil depth and drainage, schematic' },
       ],
     },
 
@@ -274,14 +285,15 @@ const PORTFOLIO = {
       ],
 
       images: [
-        { file: 'kai-no-hama-plan.jpg', kind: 'plan', wide: true,
-          caption: 'Shell Garden, plan, 1:500' },
-        { file: 'kai-no-hama-section.jpg', kind: 'section',
-          caption: 'Water depth, edge and overflow, 1:50' },
-        { file: 'kai-no-hama-detail.jpg', kind: 'detail',
-          caption: 'Shell bed over the concrete base, 1:10' },
-        { file: 'kai-no-hama-view.jpg', kind: 'photo',
-          caption: 'The pool from the lower terrace, late afternoon' },
+        { file: 'kai-no-hama-view.jpg', kind: 'photo', wide: true,
+          caption: 'Scallop shells under a few centimetres of water',
+          credit: 'Photograph 663highland · CC BY 2.5' },
+        { file: 'kai-no-hama-plan.svg', kind: 'plan', wide: true,
+          caption: 'The water courts and their overflow edges, schematic' },
+        { file: 'kai-no-hama-section.svg', kind: 'section',
+          caption: 'Water depth, edge and overflow, schematic' },
+        { file: 'kai-no-hama-detail.svg', kind: 'detail',
+          caption: 'Shell bed over the concrete base, schematic' },
       ],
     },
 
@@ -320,15 +332,20 @@ const PORTFOLIO = {
         'is a fair criticism of the place and is clearly also the intention.',
       ],
 
+      /* The stair photograph is captioned for what it actually shows. Its
+         Commons description places it in Hyakudan-en, not among the water
+         courts, and a caption that quietly moves a photograph to where the
+         argument wants it is the beginning of a dishonest portfolio. */
       images: [
-        { file: 'yumebutai-route.jpg', kind: 'diagram', wide: true,
-          caption: 'Circulation — the route from the entrance to the upper gardens' },
-        { file: 'yumebutai-long-section.jpg', kind: 'section', wide: true,
-          caption: 'Long section from the sea to the Hundred Step Garden, 1:1000' },
-        { file: 'yumebutai-oval-forum.jpg', kind: 'plan',
-          caption: 'The oval forum, plan, 1:500' },
-        { file: 'yumebutai-stairs.jpg', kind: 'photo',
-          caption: 'The stair between the water courts' },
+        { file: 'yumebutai-stairs.jpg', kind: 'photo', wide: true,
+          caption: 'Stair flights between the terraces of Hyakudan-en',
+          credit: 'Photograph 663highland · CC BY 2.5' },
+        { file: 'yumebutai-long-section.svg', kind: 'section', wide: true,
+          caption: 'Long section from the sea to the upper gardens' },
+        { file: 'yumebutai-route.svg', kind: 'diagram',
+          caption: 'Circulation — the climb delivered in instalments' },
+        { file: 'yumebutai-oval-forum.svg', kind: 'plan',
+          caption: 'The oval forum, schematic plan' },
       ],
     },
 
@@ -338,8 +355,10 @@ const PORTFOLIO = {
     head: 'Credits',
     text: 'Awaji Yumebutai was designed by Tadao Ando Architect & Associates and ' +
           'completed in March 2000. Nothing in this study is my design. The ' +
-          'drawings are my own redrawing from published plans, photographs and ' +
-          'site notes, the readings are mine, and the sources are listed under ' +
-          '"The project" above. Where published figures disagree, both are given.',
+          'drawings are my own, made to explain the landscape rather than traced ' +
+          'from anyone else\'s; the four photographs are by 663highland and are ' +
+          'used under CC BY 2.5, credited where they appear. The readings are ' +
+          'mine and the sources are listed under "The project" above. Where ' +
+          'published figures disagree, both are given.',
   },
 };

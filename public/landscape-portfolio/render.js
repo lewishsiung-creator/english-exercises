@@ -263,7 +263,8 @@ function shot(proj, pi, img, i) {
         <img src="img/${text(img.file)}" alt="${text(img.caption)}" decoding="async"
              data-kind="${text(img.kind || 'plan')}" data-file="${text(img.file)}">
       </button>
-      <figcaption class="shot-cap"><b>${pad(i + 1)}</b><span>${text(img.caption)}</span></figcaption>
+      <figcaption class="shot-cap"><b>${pad(i + 1)}</b><span>${text(img.caption)}${
+        img.credit ? `<em class="credit">${text(img.credit)}</em>` : ''}</span></figcaption>
     </figure>`;
 }
 
@@ -397,7 +398,11 @@ function show(p, i) {
   lbStage.replaceChildren(node ? node.cloneNode(true) : '');
 
   lbWho.textContent = proj.name;
-  lbCap.textContent = imgs[at.i].caption;
+  /* The credit rides with the picture into the lightbox. A CC BY photograph
+     shown full-screen with its attribution left behind on the page underneath
+     is not attributed. */
+  lbCap.textContent = imgs[at.i].caption +
+    (imgs[at.i].credit ? ` — ${imgs[at.i].credit}` : '');
   lbCount.textContent = `${at.i + 1} / ${imgs.length}`;
 }
 

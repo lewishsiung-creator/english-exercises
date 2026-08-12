@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-labelledby="ttl">
+<title id="ttl">Schematic section across the Awaji Yumebutai slope: a dashed line describes the inferred profile of the hill before it was quarried, a solid line the terraced ground the quarry left behind, and the volume carried away is tinted between the two.</title>
+<rect width="1200" height="900" fill="#ffffff"/>
+<g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif">
+<path d="M78 600L340 600L78 688Z" fill="#dbe8ea"/>
+<path d="M78 600L1122 600" fill="none" stroke="#7fa3ac" stroke-width="1.5" stroke-dasharray="14 9"/>
+<text x="1122" y="634" fill="#7fa3ac" font-size="25" letter-spacing="3" text-anchor="end">SEA LEVEL</text>
+<path d="M340 600L344.8 595.7L349.6 591.5L354.4 587.2L359.3 582.8L364.2 578.5L369.1 574.1L374 569.7L379 565.3L384 560.9L389.1 556.5L394.1 552.1L399.2 547.6L404.4 543.2L409.5 538.7L414.7 534.2L419.9 529.7L425.1 525.2L430.3 520.7L435.6 516.2L440.9 511.7L446.2 507.1L451.5 502.6L456.9 498.1L462.3 493.6L467.7 489L473.1 484.5L478.5 480L484 475.4L489.4 470.9L494.9 466.4L500.4 461.9L505.9 457.4L511.5 452.9L517 448.4L522.6 443.9L528.1 439.4L533.7 435L539.3 430.5L544.9 426.1L550.6 421.7L556.2 417.3L561.8 412.9L567.5 408.5L573.1 404.1L578.8 399.8L584.5 395.5L590.2 391.2L595.8 386.9L601.5 382.6L607.2 378.4L612.9 374.2L618.6 370L624.4 365.8L630.1 361.7L635.8 357.6L641.5 353.5L647.2 349.5L652.9 345.4L658.7 341.5L664.4 337.5L670.1 333.6L675.8 329.7L681.5 325.8L687.2 322L692.9 318.2L698.6 314.5L704.3 310.8L710 307.1L715.7 303.5L721.4 299.9L727.1 296.4L732.8 292.9L738.4 289.5L744.1 286.1L749.7 282.7L755.4 279.4L761 276.1L766.6 272.9L772.2 269.8L777.8 266.7L783.4 263.6L788.9 260.6L794.5 257.7L800 254.8L805.5 251.9L811 249.1L816.5 246.4L822 243.7L827.5 241.1L832.9 238.6L838.3 236.1L843.7 233.7L849.1 231.3L854.5 229L859.8 226.8L865.1 224.6L870.4 222.5L875.7 220.5L880.9 218.6L886.2 216.7L891.4 214.8L896.6 213.1L901.7 211.4L906.9 209.8L912 208.3L917 206.9L922.1 205.5L927.1 204.2L932.1 203L937.1 201.8L942 200.8L946.9 199.8L951.8 198.9L956.6 198.1L961.4 197.4L966.2 196.7L971 196.1L975.7 195.7L980.4 195.3L985 195L1030 195L1030 368L946 368L930 406L825 406L808 448L694 448L676 494L567 494L548 548L438 548L420 600L340 600Z" fill="#9a5a38" opacity=".12"/>
+<path d="M78 692.3L84.5 685.8" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M78 706.3L105.6 678.7" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M78 720.3L126.7 671.7" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M78 734.3L147.7 664.6" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M84.5 741.8L168.8 657.5" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M105.6 734.7L189.9 650.4" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M126.7 727.7L211 643.3" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M147.7 720.6L232.1 636.3" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M168.8 713.5L253.1 629.2" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M189.9 706.4L274.2 622.1" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M211 699.3L295.3 615" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M232.1 692.3L316.4 607.9" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M253.1 685.2L337.5 600.9" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M274.2 678.1L352.3 600" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M295.3 671L366.3 600" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M316.4 663.9L380.3 600" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M337.5 656.9L394.3 600" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M433.6 560.7L446.3 548" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M352.3 656L408.3 600" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M426.2 582.1L460.3 548" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M366.3 656L474.3 548" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M380.3 656L488.3 548" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M394.3 656L433.6 616.7" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M446.3 604L502.3 548" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M408.3 656L426.2 638.1" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M460.3 604L516.3 548" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M565.2 499.1L570.3 494" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M474.3 604L530.3 548" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M557.6 520.7L584.3 494" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M488.3 604L544.3 548" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M550 542.3L598.3 494" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M502.3 604L612.3 494" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M516.3 604L565.2 555.1" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M570.3 550L626.3 494" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M530.3 604L557.6 576.7" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M584.3 550L640.3 494" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M544.3 604L550 598.3" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M598.3 550L654.3 494" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M689.9 458.4L700.3 448" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M612.3 550L668.3 494" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M680.9 481.4L714.3 448" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M626.3 550L728.3 448" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M640.3 550L742.3 448" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M654.3 550L689.9 514.4" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M700.3 504L756.3 448" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M668.3 550L680.9 537.4" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M714.3 504L770.3 448" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M728.3 504L784.3 448" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M824.1 408.2L826.3 406" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M742.3 504L798.3 448" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M814.6 431.7L840.3 406" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M756.3 504L854.3 406" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M770.3 504L868.3 406" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M784.3 504L824.1 464.2" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M826.3 462L882.3 406" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M798.3 504L814.6 487.7" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M840.3 462L896.3 406" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M854.3 462L910.3 406" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M944.3 372L948.3 368" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M868.3 462L924.3 406" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M934.1 396.2L962.3 368" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M882.3 462L976.3 368" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M896.3 462L990.3 368" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M910.3 462L944.3 428" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M948.3 424L1004.3 368" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M924.3 462L934.1 452.2" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M962.3 424L1018.3 368" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M976.3 424L1030 370.3" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M990.3 424L1030 384.3" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M1004.3 424L1030 398.3" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M1018.3 424L1030 412.3" fill="none" stroke="#8b948d" stroke-width="0.8"/>
+<path d="M78 688L340 600L420 600L438 548L548 548L567 494L676 494L694 448L808 448L825 406L930 406L946 368L1030 368" fill="none" stroke="#1e2622" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M78 688L78 744" fill="none" stroke="#1e2622" stroke-width="2.5"/>
+<path d="M1030 368L1030 424" fill="none" stroke="#1e2622" stroke-width="2.5"/>
+<path d="M340 600 C530 430 800 205 985 195 L1030 195" fill="none" stroke="#9a5a38" stroke-width="2.5" stroke-dasharray="10 8" stroke-linecap="round"/>
+<path d="M78 600L1122 600" fill="none" stroke="#7fa3ac" stroke-width="1.5" stroke-dasharray="14 9"/>
+<path d="M1030 195L1090 195" fill="none" stroke="#8b948d" stroke-width="1"/>
+<path d="M1072 195L1072 600" fill="none" stroke="#9a5a38" stroke-width="1.2"/>
+<path d="M1062 195L1082 195" fill="none" stroke="#9a5a38" stroke-width="1.2"/>
+<path d="M1062 600L1082 600" fill="none" stroke="#9a5a38" stroke-width="1.2"/>
+<text x="1110" y="397.5" fill="#9a5a38" font-size="26" letter-spacing="3" text-anchor="middle" transform="rotate(-90 1110 397.5)">ORIGINAL HEIGHT</text>
+<text x="78" y="118" fill="#1e2622" font-size="36" letter-spacing="3" text-anchor="start">THE CUT</text>
+<text x="78" y="156" fill="#55605a" font-size="25" letter-spacing="1.2" text-anchor="start">A section taken across the slope.</text>
+<text x="78" y="188" fill="#55605a" font-size="25" letter-spacing="1.2" text-anchor="start">The dashed line is the hill as it</text>
+<text x="78" y="220" fill="#55605a" font-size="25" letter-spacing="1.2" text-anchor="start">stood; the solid line is the ground</text>
+<text x="78" y="252" fill="#55605a" font-size="25" letter-spacing="1.2" text-anchor="start">the quarry left behind.</text>
+<text x="78" y="352" fill="#9a5a38" font-size="28" letter-spacing="2.5" text-anchor="start">REMOVED  1950s–1980s</text>
+<path d="M462 344 C580 328 680 330 798 356" fill="none" stroke="#9a5a38" stroke-width="1.2"/>
+<circle cx="798" cy="356" r="4" fill="#9a5a38"/>
+<text x="1030" y="104" fill="#1e2622" font-size="30" letter-spacing="3" text-anchor="end">WHERE IT WENT</text>
+<text x="1030" y="142" fill="#55605a" font-size="25" letter-spacing="1.2" text-anchor="end">Earth cut from this coast went</text>
+<text x="1030" y="174" fill="#55605a" font-size="25" letter-spacing="1.2" text-anchor="end">away by sea, as landfill.</text>
+<path d="M760 686L830 686" fill="none" stroke="#9a5a38" stroke-width="2.5" stroke-dasharray="10 8"/>
+<text x="846" y="695" fill="#55605a" font-size="25" letter-spacing="2" text-anchor="start">BEFORE QUARRYING</text>
+<path d="M760 726L830 726" fill="none" stroke="#1e2622" stroke-width="2.5"/>
+<text x="846" y="735" fill="#55605a" font-size="25" letter-spacing="2" text-anchor="start">AFTER QUARRYING</text>
+<text x="78" y="776" fill="#8b948d" font-size="22" letter-spacing="1.2" text-anchor="start">SCHEMATIC — the profile before quarrying is inferred from published</text>
+<text x="78" y="804" fill="#8b948d" font-size="22" letter-spacing="1.2" text-anchor="start">descriptions and from the shape of the ground that remains. It is not</text>
+<text x="78" y="832" fill="#8b948d" font-size="22" letter-spacing="1.2" text-anchor="start">surveyed, and no measured drawing was consulted.</text>
+</g></svg>

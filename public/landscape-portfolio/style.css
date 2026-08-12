@@ -346,6 +346,14 @@ section + section { margin-top: clamp(64px, 10vw, 108px); }
 }
 .shot-cap b { color: var(--clay); font-weight: 600; }
 
+/* Attribution under a photograph. Quiet, but present wherever the picture is —
+   a CC BY image needs its credit next to it, not filed in a repository. */
+.shot-cap .credit {
+  display: block; margin-top: 2px;
+  font-style: normal; letter-spacing: .1em; font-size: .92em;
+  color: var(--ink-faint);
+}
+
 /* The drawn stand-in for a picture that is not in img/ yet. It is deliberately
    pale and deliberately says which file it is waiting for — this page is
    handed over as a template, and a grey box teaches nobody anything. */

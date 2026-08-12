@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-labelledby="ttl">
+<title id="ttl">Schematic map of Osaka Bay showing Awaji Island, the Akashi Strait and the Honshu shore, with clay arrows carrying soil from the Yumebutai site to the two reclaimed islands, Port Island and Kansai International Airport.</title>
+<rect width="1200" height="900" fill="#ffffff"/>
+<g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif">
+<text x="70" y="128" fill="#1e2622" font-size="36" letter-spacing="4" text-anchor="start">WHERE THE HILL WENT</text>
+<text x="70" y="168" fill="#55605a" font-size="25" letter-spacing="1.2" text-anchor="start">Soil cut from these hills was barged across Osaka Bay</text>
+<text x="70" y="198" fill="#55605a" font-size="25" letter-spacing="1.2" text-anchor="start">to make two reclaimed islands. What was left is the site.</text>
+<rect x="70" y="225" width="1060" height="550" fill="#dbe8ea" stroke="#8b948d" stroke-width="1"/>
+<path d="M268.0 225.0C271.2 229.9,293.8 264.3,300.0 274.0C306.2 283.7,321.8 316.4,330.0 322.0C338.2 327.6,370.0 328.8,382.0 330.0C394.0 331.2,434.2 333.0,450.0 334.0C465.8 335.0,522.0 338.8,540.0 340.0C558.0 341.2,612.0 344.8,630.0 346.0C648.0 347.2,703.0 350.6,720.0 352.0C737.0 353.4,786.0 357.0,800.0 360.0C814.0 363.0,849.8 375.6,860.0 382.0C870.2 388.4,896.0 414.6,902.0 424.0C908.0 433.4,919.0 465.2,920.0 476.0C921.0 486.8,916.0 521.0,912.0 532.0C908.0 543.0,888.2 575.6,880.0 586.0C871.8 596.4,840.8 626.2,830.0 636.0C819.2 645.8,784.6 674.6,772.0 684.0C759.4 693.4,716.4 720.9,704.0 730.0C691.6 739.1,653.6 770.5,648.0 775.0 L1130 775 L1130 225 Z" fill="#d8d5cc"/>
+<path d="M268.0 225.0C271.2 229.9,293.8 264.3,300.0 274.0C306.2 283.7,321.8 316.4,330.0 322.0C338.2 327.6,370.0 328.8,382.0 330.0C394.0 331.2,434.2 333.0,450.0 334.0C465.8 335.0,522.0 338.8,540.0 340.0C558.0 341.2,612.0 344.8,630.0 346.0C648.0 347.2,703.0 350.6,720.0 352.0C737.0 353.4,786.0 357.0,800.0 360.0C814.0 363.0,849.8 375.6,860.0 382.0C870.2 388.4,896.0 414.6,902.0 424.0C908.0 433.4,919.0 465.2,920.0 476.0C921.0 486.8,916.0 521.0,912.0 532.0C908.0 543.0,888.2 575.6,880.0 586.0C871.8 596.4,840.8 626.2,830.0 636.0C819.2 645.8,784.6 674.6,772.0 684.0C759.4 693.4,716.4 720.9,704.0 730.0C691.6 739.1,653.6 770.5,648.0 775.0" fill="none" stroke="#55605a" stroke-width="1.5"/>
+<path d="M404.0 352.0C405.6 353.0,408.0 356.6,408.0 365.0C408.0 373.4,406.4 422.7,404.0 436.0C401.6 449.3,389.0 486.2,384.0 498.0C379.0 509.8,360.6 543.2,354.0 554.0C347.4 564.8,325.4 595.7,318.0 606.0C310.6 616.3,288.6 647.6,280.0 657.0C271.4 666.4,242.0 692.9,232.0 700.0C222.0 707.1,186.4 727.6,180.0 728.0C173.6 728.4,169.0 710.3,168.0 704.0C167.0 697.7,167.8 675.1,170.0 665.0C172.2 654.9,185.2 614.9,190.0 603.0C194.8 591.1,212.2 557.3,218.0 546.0C223.8 534.7,241.4 500.8,248.0 490.0C254.6 479.2,275.8 447.8,284.0 438.0C292.2 428.2,319.2 400.3,330.0 392.0C340.8 383.7,384.6 359.0,392.0 355.0C399.4 351.0,402.4 351.0,404.0 352.0Z" fill="#d8d5cc" stroke="#55605a" stroke-width="1.5"/>
+<polygon points="570.2,393.3 634.0,398.9 629.8,446.7 566.0,441.1" fill="#d8d5cc" stroke="#1e2622" stroke-width="2.5"/>
+<polygon points="718.8,618.5 775.5,570.9 801.2,601.5 744.5,649.1" fill="#d8d5cc" stroke="#1e2622" stroke-width="2.5"/>
+<text x="700" y="270" fill="#1e2622" font-size="30" letter-spacing="5" text-anchor="middle">HONSHU</text>
+<text x="540" y="300" fill="#55605a" font-size="24" letter-spacing="3" text-anchor="middle">KOBE</text>
+<text x="940" y="350" fill="#55605a" font-size="24" letter-spacing="3" text-anchor="middle">OSAKA</text>
+<text x="800" y="500" fill="#7fa3ac" font-size="28" letter-spacing="6" text-anchor="middle">OSAKA BAY</text>
+<text x="250" y="596" fill="#55605a" font-size="24" letter-spacing="4" text-anchor="middle" transform="rotate(-58.6 250 596)">AWAJI ISLAND</text>
+<text x="262" y="248" fill="#1e2622" font-size="24" letter-spacing="3" text-anchor="end">AKASHI</text>
+<text x="262" y="280" fill="#1e2622" font-size="24" letter-spacing="3" text-anchor="end">STRAIT</text>
+<path d="M266 292 C302 314,352 330,397 340" fill="none" stroke="#8b948d" stroke-width="1"/>
+<circle cx="402" cy="341" r="4" fill="#8b948d"/>
+<text x="648" y="428" fill="#1e2622" font-size="24" letter-spacing="3" text-anchor="start">PORT ISLAND</text>
+<text x="660" y="700" fill="#1e2622" font-size="24" letter-spacing="3" text-anchor="end">KANSAI INTERNATIONAL</text>
+<text x="660" y="732" fill="#1e2622" font-size="24" letter-spacing="3" text-anchor="end">AIRPORT</text>
+<path d="M674 686 C700 672,716 662,742 652" fill="none" stroke="#8b948d" stroke-width="1"/>
+<circle cx="744" cy="650" r="4" fill="#8b948d"/>
+<circle cx="406" cy="398" r="18" fill="none" stroke="#9a5a38" stroke-width="1.5"/>
+<circle cx="406" cy="398" r="9" fill="#9a5a38"/>
+<text x="448" y="372" fill="#9a5a38" font-size="26" letter-spacing="3" text-anchor="start">THE SITE</text>
+<path d="M442 378 L423 390" stroke="#9a5a38" stroke-width="1"/>
+<path d="M424 406 C462 448,500 452,552 428" fill="none" stroke="#9a5a38" stroke-width="2.5"/>
+<path d="M556.0 426.0 L532.2 426.8 L539.9 443.6 Z" fill="#9a5a38"/>
+<path d="M416 418 C452 500,540 560,700 600" fill="none" stroke="#9a5a38" stroke-width="2.5"/>
+<path d="M704.0 601.0 L684.9 586.7 L680.4 604.6 Z" fill="#9a5a38"/>
+<text x="496" y="414" fill="#9a5a38" font-size="24" letter-spacing="4" text-anchor="middle">SOIL</text>
+<text x="566" y="512" fill="#9a5a38" font-size="24" letter-spacing="4" text-anchor="middle">SOIL</text>
+<circle cx="1060" cy="290" r="34" fill="#ffffff" stroke="#8b948d" stroke-width="1.2"/>
+<path d="M1060 264 L1072 310 L1060 299 L1048 310 Z" fill="#1e2622"/>
+<text x="1060" y="348" fill="#8b948d" font-size="24" letter-spacing="3" text-anchor="middle">N</text>
+<rect x="930" y="795" width="75" height="10" fill="#55605a"/>
+<rect x="1005" y="795" width="75" height="10" fill="#ffffff" stroke="#55605a" stroke-width="1.2"/>
+<path d="M930 795 v-9" stroke="#55605a" stroke-width="1.2"/>
+<path d="M1005 795 v-9" stroke="#55605a" stroke-width="1.2"/>
+<path d="M1080 795 v-9" stroke="#55605a" stroke-width="1.2"/>
+<text x="930" y="832" fill="#8b948d" font-size="22" letter-spacing="1.2" text-anchor="middle">0</text>
+<text x="1005" y="832" fill="#8b948d" font-size="22" letter-spacing="1.2" text-anchor="middle">10</text>
+<text x="1080" y="832" fill="#8b948d" font-size="22" letter-spacing="1.2" text-anchor="middle">20 km</text>
+<text x="70" y="806" fill="#8b948d" font-size="22" letter-spacing="1.2" text-anchor="start">SCHEMATIC — coastlines simplified, not a survey. Distances, island</text>
+<text x="70" y="834" fill="#8b948d" font-size="22" letter-spacing="1.2" text-anchor="start">sizes and positions are approximate.</text>
+</g></svg>
