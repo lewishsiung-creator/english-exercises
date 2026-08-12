@@ -549,6 +549,20 @@ body.zh-all .session-btn .titles .zh { display: block; }
 .card-back { display: none; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line); }
 .card.open { border-color: var(--navy-line); background: var(--navy-soft); }
 .card.open .card-back { display: block; }
+
+/* The 中文 switch opens the cards too.
+
+   It did not, and that was a bug rather than a decision: the cover promises
+   that the switch "opens all of them at once", every ordinary line obeyed it,
+   and the one place the Chinese is most wanted — two dozen phrase cards whose
+   whole point is the gloss — quietly sat shut. The reason was that the back of
+   a card holds `.card-zh`, not `.zh`, so the global rule never reached it.
+
+   The card face stays a self-test while the switch is off, which is the mode it
+   is normally read in. The border is deliberately left alone: a card she has
+   actually tapped keeps its highlight, so opening everything does not erase
+   where she had got to. */
+body.zh-all .card-back { display: block; }
 .card-zh { margin: 0; font-family: var(--font-zh); font-size: .84rem; color: var(--ink-soft); }
 .card-eg { margin: 6px 0 0; font-size: .9rem; font-style: italic; color: var(--ink-soft); }
 .card-eg-zh {
