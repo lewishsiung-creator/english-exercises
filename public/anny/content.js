@@ -9,9 +9,8 @@
    Copy the last entry in `sessions`, change `id`, `n`, `date` and the titles,
    and rewrite the blocks. Put it at the BOTTOM of the array — the page is
    chronological, oldest first, and opens with the newest session expanded and
-   the earlier ones folded away. The contents list, the numbering and the count
-   on the cover all come from the array, so there is nothing else to keep in
-   step.
+   the earlier ones folded away. The contents list, the numbering and the
+   anchors all come from the array, so there is nothing else to keep in step.
 
    `id` must be unique and URL-safe: it becomes the anchor, so
    /anny/#s3 opens session 3 with the rest folded.
@@ -65,7 +64,7 @@ const NOTEBOOK = {
   student: 'Anny',
   title: 'Anny’s English Notebook',
   titleZh: 'Anny 的英文筆記',
-  kicker: '一對一英文課 · 課堂筆記',
+  kicker: '中高階管理者英文溝通 · 課堂筆記',
 
   intro: {
     en: 'This page is where our sessions are kept. Everything we work through together stays here, so you can come back to it between lessons — the language, the ideas, and the sentences worth keeping.',

@@ -757,8 +757,8 @@ page with the words taken out.
 The other adult pages are lessons: built once, taught, done. This one is a
 record of a client that grows. Each discussion adds one entry to the `sessions`
 array in [`content.js`](public/anny/content.js) — no new folder, no new files,
-no renderer edit — and the contents list, the numbering, the anchors and the
-count on the cover all follow from the array.
+no renderer edit — and the contents list, the numbering and the anchors all
+follow from the array.
 
 Session 1 is a one-hour discussion about leadership and coaching: a newly
 promoted clinical sales manager whose technical strength is not in question and

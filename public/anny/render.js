@@ -359,15 +359,12 @@ function buildBanner() {
 
 function buildCover() {
   const i = NOTEBOOK.intro;
-  const n = sessions.length;
   return `
     <header class="cover" id="top">
       <p class="kicker">${text(NOTEBOOK.kicker)}</p>
       <h1><span class="en">${text(NOTEBOOK.title)}</span>
         <button class="zh-chip" title="顯示中文">中</button>
         <span class="zh">${text(NOTEBOOK.titleZh)}</span></h1>
-      <p class="count-line">${n} session${n === 1 ? '' : 's'} so far
-        <span>目前共 ${n} 堂</span></p>
       ${pair(i.en, i.zh, 'cover-intro')}
       <div class="goals">
         ${pair(i.goalsEn, i.goalsZh, 'goals-intro')}

@@ -301,17 +301,6 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 .goals li { margin: 0 0 8px; font-size: .98rem; }
 .goals li .zh { font-size: .8rem; }
 
-/* How many lessons are in here — the one number on the page, and the reason a
-   notebook feels like it is accumulating rather than just sitting there. */
-.count-line {
-  margin: -14px 0 24px;
-  font-family: var(--font-ui);
-  font-size: .8rem;
-  letter-spacing: .02em;
-  color: var(--ink-faint);
-}
-.count-line span { font-family: var(--font-zh); margin-left: .5em; }
-
 /* ---------------- the sample banner ----------------
 
    Shown while content.js still has `sample` set. It is deliberately the
