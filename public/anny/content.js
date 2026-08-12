@@ -424,8 +424,8 @@ const NOTEBOOK = {
           t: 'poll',
           en: 'What do you think?',
           zh: '你怎麼看？',
-          hintEn: 'There is no right answer — pick one and tell me why.',
-          hintZh: '沒有標準答案——選一個，然後告訴我原因。',
+          hintEn: 'There is no right answer — pick one and think about why.',
+          hintZh: '沒有標準答案——選一個，然後想想原因。',
           items: [
             {
               en: 'Stepping into her presentation was the right call, even though she felt undermined.',
