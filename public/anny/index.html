@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anny’s English Notebook</title>
+<meta name="description" content="A running notebook of one-to-one English sessions — phrases, corrections and speaking tasks, kept in one place and added to after every lesson.">
+
+<!-- This page carries a named student and her own sentences, so it is kept out
+     of search results. It stays reachable by its URL for her. -->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Inline SVG mark: an open notebook with a ribbon. The colours must be
+     percent-encoded — a bare "#" would be read as the URL fragment. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d3f6e'/%3E%3Crect x='16' y='13' width='32' height='38' rx='4' fill='%23f7f6f2'/%3E%3Cpath d='M32 13v38' stroke='%23c2d3e7' stroke-width='2'/%3E%3Cpath d='M40 13v16l4-4 4 4V13z' fill='%23f2c14e'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f6f2">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#doc">Skip to the notebook 跳到筆記</a>
+
+<header class="bar">
+  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
+    <span aria-hidden="true">☰</span> Sessions 課程
+  </button>
+
+  <p class="bar-title">Anny’s English Notebook <span>Anny 的英文筆記</span></p>
+
+  <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="false">中文</button>
+  <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
+          aria-controls="panel" title="Teacher panel" aria-label="Teacher panel">👩‍🏫</button>
+</header>
+
+<div class="shell">
+  <div id="nav"></div>
+  <main id="doc"></main>
+</div>
+
+<div class="nav-scrim" hidden></div>
+
+<!-- Teacher panel. Opens over the notebook rather than replacing it, so a
+     discussion in progress is never lost. -->
+<div class="panel" id="panel" role="dialog" aria-label="Teacher panel" hidden>
+  <div class="panel-head">
+    <h2>Teacher panel <span>教師面板</span></h2>
+    <button class="panel-x" id="panelClose" aria-label="Close">✕</button>
+  </div>
+
+  <label class="row row-check">
+    <input type="checkbox" id="zhAll">
+    <span>Show all Chinese <em>顯示全部中文</em></span>
+  </label>
+
+  <div class="row">
+    <button class="panel-btn" id="openAll">Open every session <em>展開所有課程</em></button>
+    <p class="row-note">Unfolds the whole notebook — for looking back over
+      several lessons at once, or for printing.
+      <em>展開整本筆記，方便一次回顧多堂課，或列印。</em></p>
+  </div>
+
+  <div class="row">
+    <button class="panel-btn" id="showAll">Reveal every answer <em>顯示所有答案</em></button>
+    <p class="row-note">Fills in the gaps, matches every pair and opens the
+      phrase cards and corrections — for going over an exercise together.
+      <em>填入所有空格、配對所有片語，並展開字卡與訂正，方便一起檢討練習。</em></p>
+  </div>
+
+  <div class="row">
+    <label for="voicePick">Voice <em>語音</em></label>
+    <select id="voicePick"></select>
+    <p class="row-note">Used by the 🔊 buttons. Choosing one plays a sample.
+      <em>供 🔊 按鈕使用。選擇後會播放一段範例。</em></p>
+  </div>
+
+  <div class="row">
+    <label for="rate">Speed <em>速度</em></label>
+    <select id="rate">
+      <option value="0.75">Slow 慢</option>
+      <option value="0.95">Normal 正常</option>
+      <option value="1.1">Brisk 快</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <button class="panel-btn panel-btn-quiet" id="reset">Reset the page <em>重設頁面</em></button>
+    <p class="row-note">Nothing is saved between lessons — this just clears the
+      screen. Your voice and Chinese settings stay.
+      <em>課程之間不會儲存任何紀錄，這只是清空畫面。你的語音與中文設定會保留。</em></p>
+  </div>
+</div>
+
+
+<!-- Site footer. Identical on every page, so a reader who lands on any one
+     sheet can find the rest. -->
+<footer class="site-foot">
+  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
+     aria-label="Lewis Biz English"><img src="../logo.png" alt="" width="34" height="34"></a>
+  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
+    target="_blank" rel="noopener">lewistoeic.com</a></p>
+</footer>
+<script src="content.js"></script>
+<script src="render.js"></script>
+</body>
+</html>

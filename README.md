@@ -14,8 +14,10 @@ sentences at `/sentence-upgrades/`, a high-school writing worksheet
 at `/robot-helper/`, a survey of seven years of the 學測 essay at
 `/exam-writing/`, and an IELTS Speaking Part 3 practice at `/ielts-part3/`.
 
-A fourteenth page is not a lesson: `/landscape-portfolio/` is a portfolio
-template for a student to fill in with their own work.
+Two more pages are not lessons. `/landscape-portfolio/` is a portfolio
+template for a student to fill in with their own work, and `/anny/` is a
+notebook kept for one adult client, which grows by one session after each
+discussion rather than being finished and left alone.
 
 ## Word Play — CEFR A1, ages 7–10
 
@@ -750,6 +752,68 @@ page with the words taken out.
   template to whoever inherits it, and deleting it and its panel from
   `index.html` is the last step before sending the portfolio out.
 
+## Anny's Notebook — adult, one-to-one, kept over time
+
+The other adult pages are lessons: built once, taught, done. This one is a
+record of a client that grows. Each discussion adds one entry to the `sessions`
+array in [`content.js`](public/anny/content.js) — no new folder, no new files,
+no renderer edit — and the contents list, the numbering, the anchors and the
+count on the cover all follow from the array.
+
+Session 1 is a one-hour discussion about leadership and coaching: a newly
+promoted clinical sales manager whose technical strength is not in question and
+whose communication has not moved with the job. It carries the twenty-four
+expressions that came out of that hour.
+
+| Piece | What it does |
+| --- | --- |
+| 🗂 Sessions | One folded section per discussion, newest open |
+| ⚖️ Contrast | The same message said two ways — how it landed, how it could |
+| 🗂 Phrase cards | Meaning and an example sentence, behind a tap |
+| ✕✓ Corrections | Her own sentence, with the upgrade and the reason behind a tap |
+| 🔗 Matching, ✏️ gap fill | The usual collocation work |
+| 🗣 Poll, 💬 Discussion, ⏱ Two minutes | Reasons to talk |
+
+### Design notes
+
+- **Sessions fold, and that is the whole architecture.** A lesson page is read
+  once; this one is read in December looking for something from August. So the
+  newest session opens and the rest close, and a folded heading carries its
+  number, its date and its title — enough to find a lesson without opening it.
+  Which sessions are open is deliberately **not** remembered between loads: a
+  reload is a clean start here exactly as it is everywhere else in this repo.
+- **Two ways to open a session, meaning two different things.** A contents link
+  or a URL hash means *take me to this one*, and folds the others, so
+  `/anny/#s3` lands on session 3 rather than session 3 plus whatever was
+  already open. Tapping a heading is additive and closes nothing, so a phrase
+  from October can sit open beside one from August. The distinction is the
+  reason `openSession` takes a `sole` flag.
+- **The contrast block is the lesson, not decoration.** The whole hour turned
+  on the difference between "Here is your problem" and "Here is what we're
+  observing — help us understand." Both halves are correct English, so neither
+  gets the red-pen treatment: the left is edged in the neutral rule, the right
+  in green, and both are spoken aloud, because hearing the blunt version is
+  half the point.
+- **The corrections block holds her sentences, and only her sentences.**
+  Session 1 does not use it. The source for that lesson was a cleaned summary
+  with the speech-recognition noise already stripped out, so there is no
+  reliable record of what she actually said, and inventing plausible mistakes
+  to fill the block would have made the most trustworthy part of the page the
+  least. It waits for real ones. When they arrive, the 🔊 sits on the corrected
+  sentence only — the wrong version should not be the model going into her ear.
+- **A mistake is a grey ✕, never red.** This page has no score and no failure
+  state, and a page of red pen would be one.
+- **`noindex, nofollow`.** The page carries a named client and, through her, a
+  named-by-description report and a customer. It stays reachable by its URL for
+  her and out of search results for everyone else. That is a mitigation, not a
+  guarantee — see the note under *Live sites*.
+- **Print unfolds everything**, from both a `beforeprint` handler and a CSS
+  rule, because a handout of folded headings is blank paper and only one of
+  those two fires in every browser.
+- The sample banner is borrowed from the portfolio: setting `sample` in the
+  content file puts a line across the top, on screen and in print, so a draft
+  cannot be handed over by accident.
+
 ## Layout
 
 ```
@@ -767,13 +831,14 @@ public/sentence-upgrades/ the 2026/07/25 homework review
 public/robot-helper/      the 113 學年度 writing worksheet
 public/exam-writing/      the 109–115 學測 essay survey
 public/ielts-part3/       the IELTS Part 3 structure practice
+public/anny/              Anny's notebook — one entry per discussion
 public/landscape-portfolio/      the portfolio — filled in as the Ando study
 public/landscape-portfolio/content.starter.js  the same page, emptied
 public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS.md
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
-All fourteen are plain HTML, CSS and JS with no build step.
+All fifteen are plain HTML, CSS and JS with no build step.
 
 Every page ends with the same `<footer class="site-foot">` linking to
 <https://lewistoeic.com>, so a reader who lands on any one sheet can find the
@@ -1003,6 +1068,14 @@ Nothing in the renderer knows anything about riverbanks or courtyards, so
 replacing the content file replaces the portfolio — it would serve a different
 discipline unchanged.
 
+**Anny's Notebook.** Adding a discussion is one entry appended to the
+`sessions` array in [`public/anny/content.js`](public/anny/content.js). Copy
+the last one, change `id`, `n`, `date`/`dateEn`/`dateZh` and the titles, and
+rewrite the blocks; put it at the bottom, since the page is chronological. `id`
+becomes the anchor, so keep it unique and URL-safe. The block types are listed
+at the top of that file; eleven of the thirteen are the same ones the other
+adult pages use, and `fix` and `contrast` are the two this page adds.
+
 ## Running it locally
 
 No build step and no dependencies:
@@ -1039,6 +1112,14 @@ Then open <http://localhost:8000> for Word Play,
 
 - <https://lewishsiung-creator.github.io/english-exercises/>
 - <https://english-exercises-6e4.pages.dev>
+
+Everything under `public/` is reachable at both URLs on the next push. Nothing
+here is behind a login, and no page is linked from the site root unless it is
+listed there, so an unlisted page is unlisted rather than private. Pages built
+around a named client — `/business-clarity/`, `/anny/` — carry
+`noindex, nofollow`, which keeps them out of search results; it does not make
+the URL secret. Anything that must not be publishable should not go in
+`public/` at all.
 
 ## Deployment
 
