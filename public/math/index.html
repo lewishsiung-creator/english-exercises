@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Number Lab — Math for Grades 1–3</title>
+<meta name="description" content="Interactive math practice for Grades 1 to 3: addition, place value, time, money, times tables, fractions, area.">
+<!-- Inline SVG icon. The colours must be percent-encoded: a bare "#" would be
+     read as the URL fragment and the icon would silently fail to load. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233b82d6'/%3E%3Ctext x='32' y='47' font-family='Helvetica,Arial,sans-serif' font-size='38' font-weight='bold' text-anchor='middle' fill='%23ffffff'%3E12%3C/text%3E%3C/svg%3E">
+<meta name="apple-mobile-web-app-title" content="Number Lab">
+<meta name="theme-color" content="#fff8ef">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar">
+  <button class="bar-btn" id="backBtn" hidden aria-label="Go back">←</button>
+  <h1 class="bar-title" id="barTitle">Number Lab</h1>
+  <button class="bar-btn bar-btn-quiet" id="teacherBtn" aria-label="Grown-up panel">👨‍🏫</button>
+  <button class="bar-btn" id="soundBtn" aria-label="Turn sound off" aria-pressed="true">🔊</button>
+</header>
+
+<main id="main">
+
+  <!-- ============ Screen: choose a grade ============ -->
+  <section class="screen is-active" id="screen-grade">
+    <p class="lead">Choose a level</p>
+    <div class="card-grid" id="gradeGrid"></div>
+  </section>
+
+  <!-- ============ Screen: choose a topic ============ -->
+  <section class="screen" id="screen-topic">
+    <p class="lead" id="topicLead">Choose what to practise</p>
+    <div class="card-grid" id="topicGrid"></div>
+  </section>
+
+  <!-- ============ Screen: the questions ============ -->
+  <section class="screen" id="screen-play">
+    <div class="progress" aria-hidden="true">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <p class="progress-text" id="progressText" aria-live="polite"></p>
+
+    <div class="q-card">
+      <div class="fig-wrap" id="figWrap" aria-hidden="true"></div>
+      <p class="ask" id="ask"></p>
+      <button class="replay" id="replayBtn" aria-label="Say it again">🔊 Say it again</button>
+    </div>
+
+    <div class="answer" id="answer"></div>
+
+    <p class="hint" id="hint" hidden></p>
+    <p class="feedback" id="feedback" role="status" aria-live="assertive"></p>
+  </section>
+
+  <!-- ============ Screen: finished ============ -->
+  <section class="screen" id="screen-done">
+    <div class="done-emoji" id="doneEmoji">🎉</div>
+    <p class="done-title" id="doneTitle">All done!</p>
+    <p class="done-stars" id="doneStars"></p>
+    <p class="done-score" id="doneScore"></p>
+    <div class="done-actions">
+      <button class="btn btn-primary" id="againBtn">Go again</button>
+      <button class="btn" id="changeBtn">Practise something else</button>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ Grown-up panel (an overlay, so a round in progress survives) ============ -->
+<div class="sheet" id="teacherSheet" hidden>
+  <div class="sheet-box" role="dialog" aria-modal="true" aria-labelledby="teacherHeading">
+    <div class="sheet-head">
+      <h2 id="teacherHeading">Grown-ups</h2>
+      <button class="bar-btn" id="teacherClose" aria-label="Close panel">✕</button>
+    </div>
+
+    <div class="sheet-body">
+      <section class="block">
+        <h3>This session</h3>
+        <p class="stat-row" id="teacherStats">Nothing yet.</p>
+      </section>
+
+      <section class="block">
+        <h3>Needs practice</h3>
+        <p class="muted" id="teacherWeakEmpty">Nothing missed yet.</p>
+        <ul class="weak-list" id="teacherWeak"></ul>
+      </section>
+
+      <section class="block">
+        <h3>Every answer</h3>
+        <div class="log-wrap">
+          <table class="log" id="teacherLog">
+            <thead>
+              <tr><th>Question</th><th>Topic</th><th>Tries</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="block">
+        <h3>Voice</h3>
+        <label class="muted" for="voiceSelect">Pick the English voice for this device.</label>
+        <select id="voiceSelect"></select>
+        <div class="block-actions">
+          <button class="btn btn-small" id="voiceTest">Test voice</button>
+          <button class="btn btn-small" id="voiceReset">Use default</button>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="block-actions">
+          <button class="btn btn-small" id="logClear">Clear session record</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- Site footer. Identical on every page, so a reader who lands on any one
+     sheet can find the rest. -->
+<footer class="site-foot">
+  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
+     aria-label="Lewis Biz English"><img src="../logo.png" alt="" width="34" height="34"></a>
+  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
+    target="_blank" rel="noopener">lewistoeic.com</a></p>
+</footer>
+
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

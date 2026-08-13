@@ -1,0 +1,511 @@
+/* Number Lab — math, Grades 1–3.
+   Shares Word Play's palette and chunky-button language so the pages read as
+   one family. Numbers are set in a tabular face at a large size: at six or
+   seven the digits themselves are still being read, and a 6 that could be a 5
+   is a maths error that was never about maths. Light theme only — school
+   tablets and projectors are almost always in light mode. */
+
+:root {
+  --bg: #fff8ef;
+  --bg-2: #ffeedd;
+  --ink: #2c2440;
+  --ink-soft: #6b6180;
+  --card: #ffffff;
+  --line: #e8ddd0;
+  --line-strong: #bfae99;
+
+  --green: #22a06b;
+  --green-soft: #d8f5e8;
+  --orange: #f08c2e;
+  --orange-soft: #ffead4;
+  --blue: #3b82d6;
+  --blue-soft: #ddeafc;
+  --purple: #8b5cf6;
+  --purple-soft: #ece5fe;
+  --purple-deep: #5b21b6;
+
+  --good: #22a06b;
+  --good-soft: #d8f5e8;
+  --oops: #e8734a;
+  --oops-soft: #ffe4da;
+
+  --radius: 22px;
+  --shadow: 0 4px 0 rgba(44, 36, 64, .12);
+  --shadow-lift: 0 8px 0 rgba(44, 36, 64, .12);
+
+  --num: "SF Mono", "Menlo", "Consolas", "Roboto Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; min-height: 100%; }
+
+body {
+  background: linear-gradient(170deg, var(--bg) 0%, var(--bg-2) 100%);
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: "Nunito", "Quicksand", "Trebuchet MS", "Avenir Next", system-ui, -apple-system, sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus {
+  left: 12px; top: 12px; z-index: 20;
+  background: var(--card); padding: 10px 16px; border-radius: 12px;
+}
+
+/* ---------------- top bar ---------------- */
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  padding-top: max(14px, env(safe-area-inset-top, 0px));
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.bar-title {
+  flex: 1;
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  text-align: center;
+}
+
+/* On a phone the longer topic names ("Area and perimeter") wrap to two lines
+   and push the bar down over the question. */
+@media (max-width: 430px) {
+  .bar-title { font-size: 1.05rem; }
+  .bar { gap: 6px; padding: 12px 12px; }
+}
+
+.bar-btn {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+  color: var(--ink);
+  font-size: 1.25rem;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.bar-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(44, 36, 64, .12); }
+
+/* Anything bright sitting in a child's eyeline all lesson becomes one more
+   thing to tap. The grown-up's buttons stay faint until they are wanted. */
+.bar-btn-quiet {
+  opacity: .38;
+  box-shadow: none;
+  border-color: transparent;
+  background: transparent;
+}
+.bar-btn-quiet:hover, .bar-btn-quiet:focus-visible { opacity: 1; }
+
+/* ---------------- screens ---------------- */
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 4px 16px 40px;
+}
+
+.screen { display: none; }
+.screen.is-active { display: block; animation: rise .22s ease-out; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.lead {
+  margin: 6px 0 18px;
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+/* ---------------- choosing cards ---------------- */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 148px;
+  padding: 18px 14px;
+  border: 3px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--ink);
+  font-family: inherit;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.card:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(44, 36, 64, .12); }
+
+.card-icon { font-size: 2.1rem; line-height: 1; }
+.card-name { font-size: 1.15rem; font-weight: 800; }
+.card-blurb { font-size: .9rem; color: var(--ink-soft); }
+
+.tint-green  { border-color: var(--green);  background: var(--green-soft); }
+.tint-blue   { border-color: var(--blue);   background: var(--blue-soft); }
+.tint-purple { border-color: var(--purple); background: var(--purple-soft); }
+
+/* ---------------- progress ---------------- */
+
+.progress {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(44, 36, 64, .09);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: var(--green);
+  transition: width .3s ease-out;
+}
+
+.progress-text {
+  margin: 8px 0 14px;
+  text-align: center;
+  font-size: .92rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+/* ---------------- the question ---------------- */
+
+.q-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 16px 14px;
+  border: 3px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.fig-wrap { display: flex; justify-content: center; width: 100%; }
+.fig-wrap[hidden] { display: none; }
+
+/* Scaled down to fit a narrow phone, never blown up past its drawn size —
+   a clock face stretched to fill a laptop is not easier to read. */
+.fig {
+  max-width: 100%;
+  max-height: 210px;
+  height: auto;
+}
+
+.ask {
+  margin: 0;
+  font-family: var(--num);
+  font-size: clamp(1.9rem, 7vw, 2.7rem);
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* A worded question ("Round 480 to the nearest hundred") is a sentence, not a
+   sum: the monospaced digit face is there to keep 6 from reading as 5, and it
+   only makes prose harder. app.js sets this class when the prompt is mostly
+   words. */
+.ask.is-words {
+  font-family: inherit;
+  font-size: clamp(1.4rem, 5vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+.replay {
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: var(--bg);
+  color: var(--ink-soft);
+  font-family: inherit;
+  font-size: .9rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+.replay:active { transform: translateY(2px); }
+
+/* ---------------- answering ---------------- */
+
+.answer { margin-top: 18px; }
+
+.answer-choices { display: grid; gap: 12px; }
+.answer-choices.grid-up { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.answer-choices.two-up { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+
+.opt {
+  min-height: 96px;
+  border: 3px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--ink);
+  font-family: var(--num);
+  font-size: 1.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+.opt:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(44, 36, 64, .12); }
+
+.opt.is-on { border-color: var(--good); background: var(--good-soft); }
+/* A wrong option dims rather than disappears: he can see what he already
+   ruled out, and nothing is taken away as a punishment. */
+.opt.is-off { opacity: .4; }
+
+/* ---------------- the number pad ---------------- */
+
+.answer-pad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.readout {
+  display: block;
+  width: min(100%, 320px);
+  padding: 10px 16px;
+  border: 3px dashed var(--line-strong);
+  border-radius: 18px;
+  background: var(--card);
+  font-family: var(--num);
+  font-size: 2.2rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.pad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: min(100%, 340px);
+}
+
+.key {
+  height: 74px;
+  border: 3px solid var(--line);
+  border-radius: 18px;
+  background: var(--card);
+  color: var(--ink);
+  font-family: var(--num);
+  font-size: 1.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+.key:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(44, 36, 64, .12); }
+
+.key-soft { background: var(--bg-2); font-size: 1.4rem; }
+.key-go { background: var(--good-soft); border-color: var(--good); color: var(--good); font-size: 1.6rem; }
+
+/* ---------------- feedback ---------------- */
+
+.hint {
+  margin: 16px auto 0;
+  max-width: 520px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: var(--orange-soft);
+  border: 2px solid var(--orange);
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.feedback {
+  margin: 14px 0 0;
+  min-height: 1.7em;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+.feedback.is-good { color: var(--good); }
+.feedback.is-oops { color: var(--oops); }
+
+/* A wrong answer wobbles and invites another try. Nothing is locked, nothing
+   is scored on screen, and the round never moves on without a right answer. */
+.is-wobble { animation: wobble .42s ease-in-out; }
+
+@keyframes wobble {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-9px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-wobble { animation: none; outline: 3px solid var(--oops); }
+  .screen.is-active { animation: none; }
+}
+
+/* ---------------- finished ---------------- */
+
+#screen-done { text-align: center; padding-top: 24px; }
+
+.done-emoji { font-size: 4.5rem; line-height: 1; }
+.done-title { margin: 10px 0 4px; font-size: 1.6rem; font-weight: 800; }
+.done-stars { margin: 0; font-size: 2rem; letter-spacing: .1em; }
+.done-score { margin: 4px 0 22px; color: var(--ink-soft); font-weight: 700; }
+
+.done-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+.btn {
+  min-height: 56px;
+  padding: 0 22px;
+  border: 3px solid var(--line);
+  border-radius: 18px;
+  background: var(--card);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+.btn:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(44, 36, 64, .12); }
+.btn-primary { background: var(--green-soft); border-color: var(--green); color: var(--green); }
+.btn-small { min-height: 44px; font-size: .9rem; padding: 0 14px; }
+
+/* ---------------- grown-up panel ---------------- */
+
+.sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(28, 22, 40, .45);
+}
+
+/* `display: flex` above beats the `hidden` attribute's own `display: none`,
+   so the panel needs telling explicitly — without this it is open on load. */
+.sheet[hidden] { display: none; }
+
+.sheet-box {
+  width: min(680px, 100%);
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 26px 26px 0 0;
+  background: var(--bg);
+  box-shadow: 0 -8px 30px rgba(28, 22, 40, .2);
+}
+
+.sheet-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-bottom: 2px solid var(--line);
+}
+.sheet-head h2 { flex: 1; margin: 0; font-size: 1.2rem; }
+
+.sheet-body {
+  overflow-y: auto;
+  padding: 6px 18px calc(20px + env(safe-area-inset-bottom, 0px));
+  -webkit-overflow-scrolling: touch;
+}
+
+.block { padding: 16px 0; border-bottom: 1px solid var(--line); }
+.block:last-child { border-bottom: 0; }
+.block h3 { margin: 0 0 8px; font-size: 1rem; }
+.block-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+
+.muted { color: var(--ink-soft); font-size: .92rem; margin: 0 0 8px; }
+.stat-row { margin: 0; font-weight: 700; }
+
+.weak-list { list-style: none; margin: 0; padding: 0; }
+.weak-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--line);
+  font-weight: 600;
+}
+.weak-list li span:first-child { flex: 1; }
+
+.tag {
+  flex: none;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--oops-soft);
+  color: var(--oops);
+  font-size: .8rem;
+  font-weight: 800;
+}
+
+.log-wrap { max-height: 300px; overflow: auto; border: 2px solid var(--line); border-radius: 14px; }
+
+.log { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.log th, .log td { padding: 7px 10px; text-align: left; border-bottom: 1px solid var(--line); }
+.log th { position: sticky; top: 0; background: var(--bg-2); font-size: .82rem; }
+.log td:first-child { font-family: var(--num); }
+.log .ans { color: var(--good); font-weight: 700; }
+.log .ans::before { content: "→ "; color: var(--ink-soft); font-weight: 400; }
+.log tr.is-missed td { background: var(--oops-soft); }
+
+select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 12px;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* ---------------- site footer ---------------- */
+
+.site-foot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 26px 16px calc(30px + env(safe-area-inset-bottom, 0px));
+  border-top: 2px solid var(--line);
+  color: var(--ink-soft);
+  font-size: .9rem;
+}
+.site-foot p { margin: 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.site-foot a { color: var(--blue); font-weight: 700; }
+.site-mark { display: flex; }
+.site-mark img { border-radius: 9px; }

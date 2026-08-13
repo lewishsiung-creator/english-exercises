@@ -1,7 +1,7 @@
 # English Exercises
 
 English teaching material, built for classroom, homework and one-to-one use.
-Thirteen independent pages live here — a game for young learners at the site
+Fourteen independent pages live here — a game for young learners at the site
 root, phonics practice for slightly older children at `/phonics/`, an
 interactive phonics handbook for the same age at `/phonics-handbook/`, a
 bilingual business worksheet at `/business-clarity/`, an interactive
@@ -13,6 +13,9 @@ practice at `/toeic-grammar/`, a homework review of one student's own
 sentences at `/sentence-upgrades/`, a high-school writing worksheet
 at `/robot-helper/`, a survey of seven years of the 學測 essay at
 `/exam-writing/`, and an IELTS Speaking Part 3 practice at `/ielts-part3/`.
+
+One page is not English at all: `/math/` is math practice for Grades 1 to 3,
+built for a child in an American school.
 
 Two more pages are not lessons. `/landscape-portfolio/` is a portfolio
 template for a student to fill in with their own work, and `/anny/` is a
@@ -231,6 +234,50 @@ opposite of the point.
 
 Settings live under `phonicsGuide.*` in `localStorage`, separate from Sound
 Lab's, so the two pages never mix voice or speed.
+
+## Number Lab — math, Grades 1–3
+
+The one page here that is not English. Eighteen topics across three American
+grade levels, for a child in Grade 1 working up through Grade 3.
+
+| Grade 1 | Grade 2 | Grade 3 |
+| --- | --- | --- |
+| Add to 20 | Add two digits | Times tables |
+| Take away | Subtract two digits | Sharing out |
+| Missing number | Hundreds, tens, ones | Fractions |
+| Tens and ones | Count the money | Add and subtract to 1000 |
+| Bigger or smaller | Time to five minutes | Area and perimeter |
+| What time is it? | Equal groups | Rounding |
+
+### Design notes
+
+- **Questions are generated, not written.** Each topic is a `make()` in
+  `content.js` that builds a fresh question every time, so the bank never runs
+  out and nothing can be learned by position. Difficulty lives in the numbers
+  inside that one function and nowhere else.
+- **Same house rules as Word Play and Sound Lab.** Every prompt is spoken and
+  replayable, there are no timers, and there is no failure state — a wrong
+  answer wobbles and invites another go, only a correct one advances. After
+  two wrong tries the topic's hint appears and is read aloud; it points at the
+  method (*"Start at 24 and count on 8"*), never at the answer.
+- **A wrong option dims rather than vanishes**, so he can see what he has
+  already ruled out and nothing is taken away as a punishment.
+- **Half the topics are tapped, half are typed** on a number pad — the pad
+  keys are the same size and shape as the option buttons, so the switch is not
+  felt. A physical keyboard works too, for a grown-up sitting alongside.
+- **Numbers are set in a monospaced face, prose is not.** At six a 6 that
+  could be a 5 is a maths error that was never about maths; a sentence in the
+  same face is just harder to read, so `app.js` picks per prompt.
+- **The pictures are drawn, not photographed.** Clocks, base-ten blocks,
+  arrays, fraction bars, coins at true relative size, grid rectangles and
+  number lines are all SVG built in `content.js`, in the page's own palette.
+- **English only**, unlike the rest of the site: he is in an American school,
+  and the vocabulary in the prompts is the vocabulary his teacher uses.
+
+Records live under `math.*` in `localStorage`, separate from the English
+pages, and the 👨‍🏫 panel groups misses by topic rather than by question —
+with generated numbers no single sum repeats often enough to mean anything,
+but "Grade 3 · Times tables, 6 missed" does.
 
 ## Business Clarity — adult, one-to-one
 
@@ -820,6 +867,7 @@ expressions that came out of that hour.
 public/                   Word Play — the site root
 public/phonics/           Sound Lab, the phonics practice
 public/phonics-handbook/  自然發音學習手冊, the interactive handbook
+public/math/              Number Lab, the Grades 1–3 math practice
 public/business-clarity/  the business worksheet
 public/wealth-habits/     the three-habits lesson
 public/wealth-habits/img/ its four photographs
@@ -838,7 +886,7 @@ public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
-All fifteen are plain HTML, CSS and JS with no build step.
+All sixteen are plain HTML, CSS and JS with no build step.
 
 Every page ends with the same `<footer class="site-foot">` linking to
 <https://lewistoeic.com>, so a reader who lands on any one sheet can find the
@@ -896,6 +944,24 @@ tch) stay inside one chunk, as the handbook itself teaches. A chip is a bare
 string, or `{ w, say, eg, note }` when the sound needs its own cue or an
 example word. The `CUES` table at the top of the file is how a written sound
 is spoken on its own; tune a line there if a device's voice mangles one.
+
+**Number Lab.** There is no question list to edit — every topic is a `make()`
+in [`public/math/content.js`](public/math/content.js) that builds a question
+each time it is called, and the numbers inside that one function are the
+difficulty. Widening Grade 1's addition to twenty-five is one `rnd(1, 9)`.
+
+A question is `{ ask, speak, figure, answer, choices, hint }`. `speak` is
+compulsory and separate from `ask`, because the browser voice reads `24 + 8`
+as "twenty four eight" — the operator is silent, so it has to be written out.
+Leave `choices` off and the number pad is used instead; the answer must then
+be something the pad can type. `hint` appears only after two wrong tries and
+should point at the method, not the answer. The drawings — clocks, blocks,
+arrays, fraction bars, coins, grid rectangles, number lines — are functions in
+the same file; each returns an SVG string sized in its own units, and `svg()`
+puts the width and height on it, without which it collapses to nothing.
+
+Adding a topic is one object in `G1`, `G2` or `G3`; the grade screens build
+themselves from those arrays.
 
 **Business Clarity.** All the text lives in
 [`public/business-clarity/content.js`](public/business-clarity/content.js), one
@@ -1096,6 +1162,7 @@ local-only concern.
 Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/phonics/> for Sound Lab,
 <http://localhost:8000/phonics-handbook/> for the handbook,
+<http://localhost:8000/math/> for Number Lab,
 <http://localhost:8000/business-clarity/> for the business worksheet,
 <http://localhost:8000/wealth-habits/> for the three-habits lesson,
 <http://localhost:8000/happy-sexy-millionaire/> for the reading lesson,
