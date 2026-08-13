@@ -191,6 +191,67 @@ function rectFig(w, h) {
   return svg(w * u + 34, h * u + 34, body);
 }
 
+/* --- counters, used only by the explanations ---
+   Two groups side by side with a plus between them, or one group with the
+   last few crossed out. This is what "add" and "take away" actually mean,
+   before either becomes a sum on a page. */
+function countersFig(a, b, { takeAway = false } = {}) {
+  const s = 34, pad = 8, signW = takeAway ? 0 : 34;
+  const dot = (x, faded) => `<circle cx="${x + s / 2}" cy="${pad + s / 2}" r="${s / 2 - 5}"
+    fill="${faded ? 'var(--card)' : 'var(--green-soft)'}"
+    stroke="${faded ? 'var(--line-strong)' : 'var(--green)'}" stroke-width="3"
+    ${faded ? 'stroke-dasharray="4 4"' : ''}/>`;
+  const cross = (x) => `<path d="M${x + 9} ${pad + 9} L${x + s - 9} ${pad + s - 9}
+    M${x + s - 9} ${pad + 9} L${x + 9} ${pad + s - 9}"
+    stroke="var(--oops)" stroke-width="3.5" stroke-linecap="round"/>`;
+
+  let x = pad, body = '';
+  for (let i = 0; i < a; i++) { body += dot(x, false); x += s; }
+
+  if (takeAway) {
+    for (let i = 0; i < b; i++) { body += dot(x, true) + cross(x); x += s; }
+  } else {
+    body += `<text x="${x + signW / 2}" y="${pad + s / 2 + 9}" text-anchor="middle"
+      font-size="28" font-weight="800" fill="var(--ink-soft)">+</text>`;
+    x += signW;
+    for (let i = 0; i < b; i++) {
+      body += `<circle cx="${x + s / 2}" cy="${pad + s / 2}" r="${s / 2 - 5}"
+        fill="var(--orange-soft)" stroke="var(--orange)" stroke-width="3"/>`;
+      x += s;
+    }
+  }
+  return svg(x + pad, s + pad * 2, body);
+}
+
+/* --- hops along a number line, for counting on and counting back ---
+   One arc per hop, because "count on 3" is three jumps and drawing it as one
+   long arrow is the thing children get wrong. */
+function hopsFig(from, to) {
+  const lo = Math.min(from, to) - 1, hi = Math.max(from, to) + 1;
+  const step = Math.min(38, Math.floor(300 / (hi - lo)));
+  const pad = 18, y = 78;
+  const at = (v) => pad + (v - lo) * step;
+
+  let body = `<line x1="${pad}" y1="${y}" x2="${at(hi)}" y2="${y}"
+    stroke="var(--line-strong)" stroke-width="3"/>`;
+  for (let v = lo; v <= hi; v++) {
+    const on = v >= Math.min(from, to) && v <= Math.max(from, to);
+    body += `<line x1="${at(v)}" y1="${y - 7}" x2="${at(v)}" y2="${y + 7}"
+        stroke="var(--line-strong)" stroke-width="2.5"/>
+      <text x="${at(v)}" y="${y + 28}" text-anchor="middle" font-size="15"
+        font-weight="${on ? 800 : 600}" fill="${on ? 'var(--ink)' : 'var(--ink-soft)'}">${v}</text>`;
+  }
+  const dir = to > from ? 1 : -1;
+  for (let v = from; v !== to; v += dir) {
+    const x1 = at(v), x2 = at(v + dir);
+    body += `<path d="M${x1} ${y - 10} Q${(x1 + x2) / 2} ${y - 48} ${x2} ${y - 10}"
+      fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round"/>`;
+  }
+  body += `<circle cx="${at(from)}" cy="${y}" r="7" fill="var(--orange)"/>
+    <circle cx="${at(to)}" cy="${y}" r="7" fill="var(--green)"/>`;
+  return svg(at(hi) + pad, y + 36, body);
+}
+
 /* --- a number line with one point marked, for rounding --- */
 function lineFig(lo, hi, mark) {
   const w = 320, pad = 20;
@@ -662,3 +723,185 @@ const GRADES = [
   { id: 'g2', name: 'Grade 2', tint: 'blue',   blurb: 'Numbers to 1000', topics: G2 },
   { id: 'g3', name: 'Grade 3', tint: 'purple', blurb: 'Times, share, measure', topics: G3 },
 ];
+
+/* ==================== the explanations ====================
+
+   One entry per topic, offered by the "Show me how" button before a round
+   and skippable. Three or four steps, shown one at a time.
+
+   Rules these follow, and that a new one should follow too:
+
+   - **Written for a Grade 1 reader, every grade.** Short sentences, common
+     words, one idea per step. The maths gets harder up the grades; the
+     English does not. He is six and reading them himself.
+   - **A picture carries the idea, the words name it** — the meaning of the
+     thing comes first, the notation second. "Adding puts two groups
+     together" before `5 + 3`.
+   - **Worked with real numbers, not letters.** The last step is always a
+     whole example finished, so he has seen one done before he is asked.
+   - `say` is only needed where the text has symbols in it, because the voice
+     reads `5 + 3` as "five three". Plain sentences say themselves. */
+
+const TEACH = {
+  /* ---- Grade 1 ---- */
+  add20: [
+    { text: 'Adding means putting two groups together.', figure: countersFig(5, 3) },
+    { text: 'Here are 5 and 3. Count them all. You get 8.',
+      say: 'Here are five and three. Count them all. You get eight.' },
+    { text: 'There is a faster way. Start at 5, then count on 3.',
+      say: 'There is a faster way. Start at five, then count on three.', figure: hopsFig(5, 8) },
+    { text: '6, 7, 8. So 5 + 3 = 8.', say: 'Six, seven, eight. So five plus three equals eight.' },
+  ],
+  sub20: [
+    { text: 'Taking away means some of them go.', figure: countersFig(5, 4, { takeAway: true }) },
+    { text: 'There were 9. Four are crossed out. 5 are left.',
+      say: 'There were nine. Four are crossed out. Five are left.' },
+    { text: 'You can count back instead. Start at 9 and hop back 4.',
+      say: 'You can count back instead. Start at nine and hop back four.', figure: hopsFig(9, 5) },
+    { text: '8, 7, 6, 5. So 9 − 4 = 5.', say: 'Eight, seven, six, five. So nine minus four equals five.' },
+  ],
+  missing1: [
+    { text: 'Sometimes one number is hidden.' },
+    { text: '3 + ? = 7. Three, and how many more makes seven?',
+      say: 'Three plus something equals seven. Three, and how many more makes seven?' },
+    { text: 'Start at 3 and count up to 7. Count the hops.',
+      say: 'Start at three and count up to seven. Count the hops.', figure: hopsFig(3, 7) },
+    { text: 'Four hops. So the hidden number is 4.', say: 'Four hops. So the hidden number is four.' },
+  ],
+  tensones: [
+    { text: 'Ten ones make one ten. This rod is ten.', figure: blocksFig(10) },
+    { text: 'A tall rod is 10. A little block is 1.',
+      say: 'A tall rod is ten. A little block is one.', figure: blocksFig(23) },
+    { text: 'Two rods is 20. Three blocks is 3.', say: 'Two rods is twenty. Three blocks is three.' },
+    { text: 'Twenty and three is 23. That is 2 tens and 3 ones.',
+      say: 'Twenty and three is twenty three. That is two tens and three ones.' },
+  ],
+  compare1: [
+    { text: 'One number can be bigger, smaller, or the same.' },
+    { text: 'The sign is a hungry mouth. It always opens to the bigger number.' },
+    { text: '8 > 5. The mouth opens at the 8, so 8 is bigger.',
+      say: 'Eight is greater than five. The mouth opens at the eight, so eight is bigger.' },
+    { text: '5 < 8 says the same thing the other way round.',
+      say: 'Five is less than eight says the same thing the other way round.' },
+  ],
+  clock1: [
+    { text: 'A clock has a short hand and a long hand.', figure: clockFig(3, 0) },
+    { text: 'The short hand tells the hour. It points at 3.',
+      say: 'The short hand tells the hour. It points at three.' },
+    { text: 'The long hand points straight up. That means o’clock. It is 3:00.',
+      say: 'The long hand points straight up. That means o clock. It is three o clock.' },
+    { text: 'When the long hand points straight down, it is half past.',
+      figure: clockFig(3, 30), say: 'When the long hand points straight down, it is half past. This is half past three.' },
+  ],
+
+  /* ---- Grade 2 ---- */
+  add100: [
+    { text: 'Big numbers are easier in two parts. Tens first, then ones.' },
+    { text: 'Try 34 + 25.', say: 'Try thirty four plus twenty five.', figure: blocksFig(34) },
+    { text: 'Tens first. 30 and 20 makes 50.', say: 'Tens first. Thirty and twenty makes fifty.' },
+    { text: 'Now ones. 4 and 5 makes 9. So 50 and 9 is 59.',
+      say: 'Now ones. Four and five makes nine. So fifty and nine is fifty nine.' },
+  ],
+  sub100: [
+    { text: 'Take away the tens first, then the ones.' },
+    { text: 'Try 57 − 23.', say: 'Try fifty seven minus twenty three.', figure: blocksFig(57) },
+    { text: 'Tens first. 50 take away 20 is 30.', say: 'Tens first. Fifty take away twenty is thirty.' },
+    { text: 'Now ones. 7 take away 3 is 4. So the answer is 34.',
+      say: 'Now ones. Seven take away three is four. So the answer is thirty four.' },
+  ],
+  place1000: [
+    { text: 'Where a digit sits is what it is worth.', figure: blocksFig(243) },
+    { text: 'This is 243. The big squares are hundreds.',
+      say: 'This is two hundred and forty three. The big squares are hundreds.' },
+    { text: 'The 2 means 2 hundreds. That is worth 200.',
+      say: 'The two means two hundreds. That is worth two hundred.' },
+    { text: 'The 4 means 4 tens, worth 40. The 3 means 3 ones, worth 3.',
+      say: 'The four means four tens, worth forty. The three means three ones, worth three.' },
+  ],
+  money: [
+    { text: 'Coins are not all worth the same.',
+      figure: coinsFig(['penny', 'nickel', 'dime', 'quarter']) },
+    { text: 'A penny is 1. A nickel is 5. A dime is 10. A quarter is 25.',
+      say: 'A penny is one cent. A nickel is five. A dime is ten. A quarter is twenty five.' },
+    { text: 'A dime is smaller than a nickel but worth more. Look at the number, not the size.' },
+    { text: 'Start with the biggest coin: 25, then 35, then 40, then 41 cents.',
+      figure: coinsFig(['quarter', 'dime', 'nickel', 'penny']),
+      say: 'Start with the biggest coin. Twenty five, then thirty five, then forty, then forty one cents.' },
+  ],
+  clock5: [
+    { text: 'Every number on the clock is 5 minutes.',
+      say: 'Every number on the clock is five minutes.', figure: clockFig(2, 0) },
+    { text: 'Count round in fives: 5, 10, 15, 20.',
+      say: 'Count round in fives. Five, ten, fifteen, twenty.', figure: clockFig(2, 20) },
+    { text: 'The long hand is on the 4. Four fives is 20 minutes.',
+      say: 'The long hand is on the four. Four fives is twenty minutes.' },
+    { text: 'The short hand is just past 2. So it is 2:20.',
+      say: 'The short hand is just past two. So it is two twenty.' },
+  ],
+  groups: [
+    { text: 'Equal groups all hold the same number.', figure: arrayFig(3, 4) },
+    { text: 'Here are 3 rows. Each row has 4.', say: 'Here are three rows. Each row has four.' },
+    { text: 'You could add: 4 and 4 and 4 makes 12.',
+      say: 'You could add. Four and four and four makes twelve.' },
+    { text: 'Soon you will say it the short way: 3 times 4 is 12.',
+      say: 'Soon you will say it the short way. Three times four is twelve.' },
+  ],
+
+  /* ---- Grade 3 ---- */
+  times: [
+    { text: 'Times means lots of equal groups.', figure: arrayFig(4, 5) },
+    { text: 'Here are 4 rows of 5. That is 4 × 5.',
+      say: 'Here are four rows of five. That is four times five.' },
+    { text: 'Count in fives: 5, 10, 15, 20.', say: 'Count in fives. Five, ten, fifteen, twenty.' },
+    { text: 'So 4 × 5 = 20. And 5 × 4 is 20 too. It works both ways.',
+      say: 'So four times five equals twenty. And five times four is twenty too. It works both ways.' },
+  ],
+  divide: [
+    { text: 'Dividing shares things out evenly.', figure: arrayFig(3, 4) },
+    { text: 'Here are 12 counters shared into 3 rows.',
+      say: 'Here are twelve counters shared into three rows.' },
+    { text: 'Each row got 4. So 12 ÷ 3 = 4.',
+      say: 'Each row got four. So twelve divided by three equals four.' },
+    { text: 'Ask yourself: how many 3s make 12? That is the answer.',
+      say: 'Ask yourself, how many threes make twelve? That is the answer.' },
+  ],
+  fractions: [
+    { text: 'A fraction is equal parts of one whole thing.', figure: fractionFig(0, 4) },
+    { text: 'This bar is cut into 4 equal parts. The bottom number is 4.',
+      say: 'This bar is cut into four equal parts. The bottom number is four.' },
+    { text: 'Shade one part. That is 1/4. The top number is how many are shaded.',
+      figure: fractionFig(1, 4), say: 'Shade one part. That is one quarter. The top number is how many are shaded.' },
+    { text: 'More parts means each part is smaller. 1/8 is smaller than 1/4.',
+      figure: fractionFig(1, 8), say: 'More parts means each part is smaller. One eighth is smaller than one quarter.' },
+  ],
+  add1000: [
+    { text: 'Three-digit numbers work just the same. Hundreds, tens, ones.' },
+    { text: 'Try 245 + 132.', say: 'Try two hundred and forty five plus one hundred and thirty two.' },
+    { text: 'Hundreds: 200 and 100 is 300. Tens: 40 and 30 is 70.',
+      say: 'Hundreds. Two hundred and one hundred is three hundred. Tens. Forty and thirty is seventy.' },
+    { text: 'Ones: 5 and 2 is 7. Put them together: 377.',
+      say: 'Ones. Five and two is seven. Put them together. Three hundred and seventy seven.' },
+  ],
+  area: [
+    { text: 'Area is the space inside a shape.', figure: rectFig(4, 3) },
+    { text: 'Count the squares inside. 4 across and 3 down is 12 squares.',
+      say: 'Count the squares inside. Four across and three down is twelve squares.' },
+    { text: 'Perimeter is different. It is the walk all the way round the edge.' },
+    { text: 'Add all four sides: 4 and 3 and 4 and 3 is 14.',
+      say: 'Add all four sides. Four and three and four and three is fourteen.' },
+  ],
+  round: [
+    { text: 'Rounding finds the closest ten.', figure: lineFig(20, 30, 23) },
+    { text: '23 sits between 20 and 30. It is nearer to 20.',
+      say: 'Twenty three sits between twenty and thirty. It is nearer to twenty.' },
+    { text: 'So 23 rounds down to 20.', say: 'So twenty three rounds down to twenty.' },
+    { text: 'If the last digit is 5 or more, go up. 27 rounds up to 30.',
+      figure: lineFig(20, 30, 27), say: 'If the last digit is five or more, go up. Twenty seven rounds up to thirty.' },
+  ],
+};
+
+/* Hung on the topics rather than written inside them, so a generator stays
+   one job and the explanations can be read together, in order, as a course. */
+for (const grade of GRADES) {
+  for (const topic of grade.topics) topic.teach = TEACH[topic.id];
+}

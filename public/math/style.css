@@ -170,6 +170,87 @@ main {
 .tint-blue   { border-color: var(--blue);   background: var(--blue-soft); }
 .tint-purple { border-color: var(--purple); background: var(--purple-soft); }
 
+/* ---------------- show me how, or just practise ---------------- */
+
+.intro-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 26px 18px;
+  border: 3px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.intro-icon { font-size: 3.2rem; line-height: 1; }
+.intro-name { margin: 4px 0 0; font-size: 1.5rem; font-weight: 800; }
+.intro-blurb { margin: 0; color: var(--ink-soft); font-weight: 600; }
+
+.intro-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+/* ---------------- the explanation ---------------- */
+
+/* One dot per step. A child who cannot yet read "3 of 4" can still see how
+   much is left, which is the difference between waiting and giving up. */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 6px 0 16px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(44, 36, 64, .16);
+}
+.dot.is-on { background: var(--green); transform: scale(1.25); }
+
+/* Bigger and airier than a question: this is being read, not answered. */
+.teach-text {
+  margin: 4px 0;
+  max-width: 30ch;
+  font-size: clamp(1.3rem, 4.6vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.35;
+  text-align: center;
+}
+
+/* Driven from the height rather than the width, so a tall clock and a wide
+   row of coins both come out a sensible size from one rule. A figure too wide
+   to fit is scaled down by the viewBox, never squashed. */
+#teachFig .fig {
+  width: auto;
+  height: clamp(96px, 19vh, 170px);
+  max-width: 100%;
+}
+
+.teach-actions { display: flex; justify-content: center; margin-top: 18px; }
+
+.link-quiet {
+  display: block;
+  margin: 16px auto 0;
+  padding: 8px 14px;
+  border: 0;
+  background: none;
+  color: var(--ink-soft);
+  font-family: inherit;
+  font-size: .92rem;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.link-quiet[hidden] { display: none; }
+
 /* ---------------- progress ---------------- */
 
 .progress {
@@ -399,6 +480,10 @@ main {
 .btn:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(44, 36, 64, .12); }
 .btn-primary { background: var(--green-soft); border-color: var(--green); color: var(--green); }
 .btn-small { min-height: 44px; font-size: .9rem; padding: 0 14px; }
+/* The two choices before a round, and Next through the explanation — a tablet
+   target, in the same family as the answer buttons. */
+.btn-big { min-height: 74px; font-size: 1.15rem; padding: 0 30px; }
+.btn[hidden] { display: none; }
 
 /* ---------------- grown-up panel ---------------- */
 

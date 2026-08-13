@@ -37,6 +37,35 @@
     <div class="card-grid" id="topicGrid"></div>
   </section>
 
+  <!-- ============ Screen: show me how, or just practise ============ -->
+  <section class="screen" id="screen-intro">
+    <div class="intro-card">
+      <span class="intro-icon" id="introIcon" aria-hidden="true"></span>
+      <h2 class="intro-name" id="introName"></h2>
+      <p class="intro-blurb" id="introBlurb"></p>
+    </div>
+    <div class="intro-actions">
+      <button class="btn btn-big btn-primary" id="showMeBtn">👀 Show me how</button>
+      <button class="btn btn-big" id="practiseBtn">▶️ Just practise</button>
+    </div>
+  </section>
+
+  <!-- ============ Screen: the explanation ============ -->
+  <section class="screen" id="screen-teach">
+    <p class="dots" id="teachDots" aria-hidden="true"></p>
+
+    <div class="q-card">
+      <div class="fig-wrap" id="teachFig" aria-hidden="true"></div>
+      <p class="teach-text" id="teachText" aria-live="polite"></p>
+      <button class="replay" id="teachReplay" aria-label="Say it again">🔊 Say it again</button>
+    </div>
+
+    <div class="teach-actions">
+      <button class="btn btn-big btn-primary" id="teachNext">Next</button>
+    </div>
+    <button class="link-quiet" id="teachSkip">Skip to the questions</button>
+  </section>
+
   <!-- ============ Screen: the questions ============ -->
   <section class="screen" id="screen-play">
     <div class="progress" aria-hidden="true">

@@ -251,6 +251,16 @@ grade levels, for a child in Grade 1 working up through Grade 3.
 
 ### Design notes
 
+- **Every topic can teach itself first.** Tapping a topic offers **Show me
+  how** or **Just practise**. The explanation is three or four steps, one idea
+  each, spoken aloud and shown with a picture — counters being pushed
+  together, hops along a number line, blocks, coins, a shaded bar — and ends
+  with one whole example worked through, so he has seen one done before he is
+  asked. It is skippable at any step and never forced, because the tenth run
+  at times tables should not start with a lesson.
+- **The explanations are written for a Grade 1 reader at every grade.** The
+  maths gets harder up the levels; the English does not. He is six and reading
+  them himself.
 - **Questions are generated, not written.** Each topic is a `make()` in
   `content.js` that builds a fresh question every time, so the bank never runs
   out and nothing can be learned by position. Difficulty lives in the numbers
@@ -960,8 +970,17 @@ arrays, fraction bars, coins, grid rectangles, number lines — are functions in
 the same file; each returns an SVG string sized in its own units, and `svg()`
 puts the width and height on it, without which it collapses to nothing.
 
-Adding a topic is one object in `G1`, `G2` or `G3`; the grade screens build
-themselves from those arrays.
+The explanations are separate, in the `TEACH` block at the foot of the same
+file — one array per topic id, hung onto the topics at the end so a generator
+stays one job and the explanations can be read together, in order, as a
+course. A step is `{ text, figure, say }`, and `say` is only needed when the
+text has a symbol in it, for the same reason. The rules a new one should
+follow are written above the block; the important one is that the reading
+level stays at Grade 1 even where the maths does not.
+
+Adding a topic is one object in `G1`, `G2` or `G3` plus its `TEACH` entry; the
+grade screens build themselves from those arrays, and a topic with no
+explanation simply doesn't offer the button.
 
 **Business Clarity.** All the text lives in
 [`public/business-clarity/content.js`](public/business-clarity/content.js), one

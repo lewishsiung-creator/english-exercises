@@ -19,6 +19,7 @@ const state = {
   topic: null,
   queue: [],
   index: 0,
+  step: 0,          // which explanation step is on screen
   firstTry: 0,
   answered: false,   // current question already answered correctly
   attempts: 0,       // tries on the current question, including the right one
@@ -130,7 +131,13 @@ function say(text, { rate = 0.85, pitch = 1.1, onEnd } = {}) {
 
 /* ==================== screens ==================== */
 
-const SCREENS = ['grade', 'topic', 'play', 'done'];
+const SCREENS = ['grade', 'topic', 'intro', 'teach', 'play', 'done'];
+
+/* Where the ← button goes from each screen. The explanation steps back out to
+   the choice that opened them, everything else to the list it came from. */
+const BACK_TO = { topic: 'grade', intro: 'topic', teach: 'intro', play: 'topic', done: 'topic' };
+
+const currentScreen = () => SCREENS.find((s) => el(`screen-${s}`).classList.contains('is-active'));
 
 function show(name) {
   for (const s of SCREENS) el(`screen-${s}`).classList.toggle('is-active', s === name);
@@ -140,14 +147,13 @@ function show(name) {
 
 el('backBtn').addEventListener('click', () => {
   stopSpeaking();
-  if (el('screen-topic').classList.contains('is-active')) {
-    state.grade = null;
-    el('barTitle').textContent = 'Number Lab';
-    show('grade');
-  } else {
-    el('barTitle').textContent = state.grade.name;
-    show('topic');
-  }
+  const to = BACK_TO[currentScreen()] || 'grade';
+  // state.grade and state.topic are deliberately left set when backing out.
+  // Nothing reads them on the way out, and clearing them turns a later back
+  // into a crash the moment one of these titles asks for a name.
+  el('barTitle').textContent =
+    to === 'grade' ? 'Number Lab' : to === 'topic' ? state.grade.name : state.topic.name;
+  show(to);
 });
 
 /* ==================== choosing ==================== */
@@ -179,11 +185,66 @@ function openGrade(grade) {
     b.innerHTML = `<span class="card-icon">${t.icon}</span>
       <span class="card-name">${t.name}</span>
       <span class="card-blurb">${t.blurb}</span>`;
-    b.addEventListener('click', () => startRound(t));
+    b.addEventListener('click', () => openTopic(t));
     grid.appendChild(b);
   }
   show('topic');
 }
+
+/* ==================== show me how, or just practise ==================== */
+
+function openTopic(topic) {
+  state.topic = topic;
+  el('barTitle').textContent = topic.name;
+  el('introIcon').textContent = topic.icon;
+  el('introName').textContent = topic.name;
+  el('introBlurb').textContent = topic.blurb;
+  // A topic with no explanation written yet still works: the offer just isn't
+  // made, rather than opening an empty screen.
+  el('showMeBtn').hidden = !topic.teach?.length;
+  show('intro');
+}
+
+el('showMeBtn').addEventListener('click', () => {
+  state.step = 0;
+  show('teach');
+  renderStep();
+});
+
+el('practiseBtn').addEventListener('click', () => startRound(state.topic));
+el('teachSkip').addEventListener('click', () => startRound(state.topic));
+
+function renderStep() {
+  const steps = state.topic.teach;
+  const step = steps[state.step];
+  const last = state.step === steps.length - 1;
+
+  el('teachFig').innerHTML = step.figure || '';
+  el('teachFig').hidden = !step.figure;
+  el('teachText').textContent = step.text;
+
+  el('teachDots').innerHTML = steps
+    .map((_, i) => `<span class="dot${i === state.step ? ' is-on' : ''}"></span>`).join('');
+  el('teachNext').textContent = last ? 'Let’s try it →' : 'Next';
+  el('teachSkip').hidden = last;
+
+  sayStep();
+}
+
+/* The voice reads "5 + 3" as "five three", so a step with symbols in it
+   carries its own spoken line. A plain sentence says itself. */
+function sayStep() {
+  const step = state.topic.teach[state.step];
+  say(step.say || step.text, { rate: 0.82 });
+}
+
+el('teachReplay').addEventListener('click', sayStep);
+
+el('teachNext').addEventListener('click', () => {
+  if (state.step === state.topic.teach.length - 1) { startRound(state.topic); return; }
+  state.step++;
+  renderStep();
+});
 
 /* ==================== a round ==================== */
 
