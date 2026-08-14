@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Confidence and Everyday Life</title>
+<meta name="description" content="One lesson's vocabulary, collocations and discussion questions for a learner of 10 to 12 — reviewed out loud, with Traditional Chinese one tap away.">
+
+<!-- Inline SVG mark: a speech bubble with a rising line inside it — talking,
+     and getting better at it. The colours must be percent-encoded, since a
+     bare "#" would be read as the start of the URL fragment. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23256b5e'/%3E%3Cpath d='M14 18h36v24H32l-11 9v-9h-7z' fill='%23ffffff' fill-opacity='.92'/%3E%3Cpath d='M22 35l7-8 6 5 8-11' stroke='%23f0932b' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f6f4ee">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#doc">Skip to the lesson</a>
+
+<header class="bar">
+  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
+    <span aria-hidden="true">☰</span> Parts
+  </button>
+
+  <p class="bar-title">Confidence and Everyday Life <span>自信與日常生活 · 2026/07/11</span></p>
+
+  <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="false">中文</button>
+  <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
+          aria-controls="panel" title="Teacher panel" aria-label="Teacher panel">👩‍🏫</button>
+</header>
+
+<div class="shell">
+  <div id="nav"></div>
+  <main id="doc"></main>
+</div>
+
+<div class="nav-scrim" hidden></div>
+
+<!-- Teacher panel. Opens over the lesson rather than replacing it, so a
+     discussion in progress is never lost. -->
+<div class="panel" id="panel" role="dialog" aria-label="Teacher panel" hidden>
+  <div class="panel-head">
+    <h2>Teacher panel <span>教師面板</span></h2>
+    <button class="panel-x" id="panelClose" aria-label="Close">✕</button>
+  </div>
+
+  <label class="row row-check">
+    <input type="checkbox" id="zhAll">
+    <span>Show all Chinese <em>顯示全部中文</em></span>
+  </label>
+
+  <div class="row">
+    <button class="panel-btn" id="showAll">Open everything</button>
+    <p class="row-note">Opens every Chinese line, example answer, follow-up
+      question and recall row — for going back over the lesson together.</p>
+  </div>
+
+  <div class="row">
+    <button class="panel-btn panel-btn-quiet" id="closeAll">Close everything</button>
+    <p class="row-note">Hides it all again, ready to hand the screen back.</p>
+  </div>
+
+  <div class="row">
+    <label for="voicePick">Voice</label>
+    <select id="voicePick"></select>
+    <p class="row-note">Used by the 🔊 buttons. Best first — choosing one plays
+      a sample.</p>
+  </div>
+
+  <div class="row">
+    <label for="rate">Speed</label>
+    <select id="rate">
+      <option value="0.75">Slow</option>
+      <option value="0.9">Normal</option>
+      <option value="1.05">Brisk</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <button class="panel-btn panel-btn-quiet" id="reset">Reset for the next lesson</button>
+    <p class="row-note">Nothing is saved between sessions — this just clears the
+      screen. Your voice and Chinese settings stay.</p>
+  </div>
+</div>
+
+
+<!-- Site footer. Identical on every page, so a reader who lands on any one
+     sheet can find the rest. -->
+<footer class="site-foot">
+  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
+     aria-label="Lewis Biz English"><img src="../logo.png" alt="" width="34" height="34"></a>
+  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
+    target="_blank" rel="noopener">lewistoeic.com</a></p>
+</footer>
+<script src="content.js"></script>
+<script src="render.js"></script>
+</body>
+</html>

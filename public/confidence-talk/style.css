@@ -1,0 +1,870 @@
+/* Confidence and Everyday Life — the 2026/07/11 class notes as a review
+   lesson for one learner of ten to twelve.
+
+   Design notes:
+
+   - Ten to twelve is between the two house styles. The seven-to-ten pages are
+     picture-led with huge touch targets; the adult pages are dense documents.
+     This one keeps the adult layout — a scrolling document with a contents
+     list — but at a larger size, with more air between blocks and a warmer
+     palette, because it is read across a table with the teacher.
+   - English leads and is the only thing on screen by default. Traditional
+     Chinese sits behind a small 中 chip. Instructions, labels and the contents
+     list stay bilingual: those are scaffolding, not comprehension practice.
+   - Green is the lesson's own colour and marks what the learner is meant to
+     produce — the frames and the discussion questions. Orange marks the two
+     things that are held back until asked for: the natural version of a
+     sentence, and the hidden English in the recall table.
+   - Nothing is scored, nothing is saved, and a reload is a clean lesson.
+   - Light theme only. It is read in a lit room beside the printed notes.
+   - Everything works down to a phone and up to a classroom projector. */
+
+:root {
+  --paper: #f6f4ee;
+  --card: #ffffff;
+  --ink: #1d2a2a;
+  --ink-soft: #4f6260;
+  --ink-faint: #869593;
+
+  --green: #256b5e;
+  --green-soft: #e7f1ee;
+  --green-mid: #d0e5df;
+  --green-line: #a7cdc3;
+
+  --orange: #b45f10;
+  --orange-soft: #fdf1e2;
+  --orange-mid: #f8e2c6;
+  --orange-line: #f0932b;
+
+  --blue: #2a5b86;
+  --blue-soft: #e8f0f7;
+
+  --line: #e2ded4;
+  --rule: #cbc6b9;
+
+  --font-en: "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, "Times New Roman", serif;
+  --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+
+  --bar-h: 54px;
+  --measure: 46rem;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 16px); }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-en);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 60;
+  background: var(--green);
+  color: #fff;
+  padding: 10px 16px;
+  font-family: var(--font-ui);
+}
+.skip:focus { left: 8px; top: 8px; }
+
+:focus-visible { outline: 3px solid var(--orange-line); outline-offset: 2px; }
+
+/* ---------------- the Chinese layer ----------------
+
+   Hidden everywhere by default. A line opens on its own when tapped; the 中文
+   switch in the bar opens all of them at once, at which point the individual
+   chips are just clutter and go away. */
+
+.zh {
+  display: none;
+  font-family: var(--font-zh);
+  font-size: 0.82em;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  letter-spacing: .01em;
+}
+
+.open > .zh,
+.open .zh,
+body.zh-all .zh { display: block; }
+
+.zh-chip {
+  font-family: var(--font-zh);
+  font-size: 12px;
+  line-height: 1;
+  margin-left: 8px;
+  padding: 3px 6px 4px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+  color: var(--ink-faint);
+  cursor: pointer;
+  vertical-align: 2px;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.zh-chip:hover { background: var(--green-soft); color: var(--green); border-color: var(--green-line); }
+.open > .zh-chip,
+.open .zh-chip,
+body.zh-all .zh-chip { display: none; }
+
+/* Fixed Chinese: labels and buttons that are bilingual all the time. */
+.zh-fixed {
+  font-family: var(--font-zh);
+  font-size: .78em;
+  color: var(--ink-faint);
+  margin-left: .5em;
+}
+
+/* ---------------- the bar ---------------- */
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  background: rgba(246, 244, 238, .94);
+  backdrop-filter: saturate(160%) blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.bar-title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bar-title span {
+  font-family: var(--font-zh);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-faint);
+  margin-left: 8px;
+}
+
+.bar-btn {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink-soft);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.bar-btn:hover { border-color: var(--green-line); color: var(--green); }
+
+.bar-btn-zh { font-family: var(--font-zh); }
+.bar-btn-zh[aria-pressed="true"] {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+
+.bar-btn-quiet { border-color: transparent; background: transparent; font-size: 17px; padding: 6px 8px; }
+.bar-btn-quiet:hover { background: var(--card); border-color: var(--line); }
+
+/* ---------------- layout ---------------- */
+
+.shell {
+  display: grid;
+  grid-template-columns: 15.5rem minmax(0, 1fr);
+  gap: 24px;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+#doc { max-width: var(--measure); padding: 8px 0 64px; }
+
+/* ---------------- contents ---------------- */
+
+.toc {
+  position: sticky;
+  top: calc(var(--bar-h) + 16px);
+  max-height: calc(100vh - var(--bar-h) - 40px);
+  overflow: auto;
+  padding: 16px 0 24px;
+  font-family: var(--font-ui);
+}
+
+.toc-head {
+  margin: 0 0 8px;
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.toc ul { list-style: none; margin: 0; padding: 0; }
+
+.toc a {
+  display: flex;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border-left: 3px solid transparent;
+  text-decoration: none;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.35;
+}
+.toc a:hover { background: var(--green-soft); }
+.toc a.here {
+  background: var(--green-soft);
+  border-left-color: var(--green);
+  color: var(--green);
+  font-weight: 600;
+}
+.toc .n { flex: none; width: 1.1em; text-align: right; color: var(--ink-faint); }
+.toc .t { display: block; min-width: 0; }
+.toc .t .zh { display: block; font-size: 12px; }
+
+/* ---------------- cover ---------------- */
+
+.cover {
+  padding: 32px 0 8px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 8px;
+}
+
+.kicker {
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+
+.cover h1 {
+  margin: 0 0 16px;
+  font-size: 2.15rem;
+  line-height: 1.2;
+  letter-spacing: -.01em;
+}
+.cover h1 .zh { font-size: 1.1rem; margin-top: 6px; font-weight: 500; }
+
+.cover-intro .en { font-size: 1.05rem; color: var(--ink-soft); }
+
+.goals {
+  margin: 20px 0 8px;
+  padding: 16px 18px;
+  background: var(--green-soft);
+  border: 1px solid var(--green-mid);
+  border-radius: 12px;
+}
+.goals-intro .en {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.goals ul { margin: 10px 0 0; padding-left: 1.2em; }
+.goals li { margin: 6px 0; }
+.goals li .en { margin: 0; }
+.goals li .zh { margin: 2px 0 0; }
+
+.source {
+  margin: 18px 0 24px;
+  font-size: .85rem;
+  color: var(--ink-faint);
+}
+.source .zh { display: inline; margin-left: .6em; font-size: .95em; }
+body.zh-all .source .zh { display: inline; }
+
+/* ---------------- a part ---------------- */
+
+.item {
+  padding: 32px 0;
+  border-top: 1px solid var(--line);
+}
+.item:first-of-type { border-top: 0; }
+
+.item-head {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  margin: 0 0 12px;
+  font-size: 1.45rem;
+  line-height: 1.25;
+}
+.item-head .n {
+  flex: none;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  font-weight: 700;
+  transform: translateY(2px);
+}
+.item-head .titles { min-width: 0; }
+.item-head .zh { font-size: .95rem; font-weight: 500; margin-top: 2px; }
+
+.lead { margin: 0 0 18px; }
+.lead .en { margin: 0; color: var(--ink-soft); }
+.lead .zh { margin: 4px 0 0; }
+
+.hint {
+  margin: -8px 0 18px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+.hint-zh { font-family: var(--font-zh); margin-left: .7em; }
+
+.label {
+  margin: 26px 0 10px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--green);
+  font-weight: 700;
+}
+.label .zh { display: none; font-size: 12px; letter-spacing: 0; text-transform: none; }
+.label.open .zh, body.zh-all .label .zh { display: block; margin-top: 3px; color: var(--ink-faint); }
+
+/* ---------------- the 🔊 buttons ---------------- */
+
+.say {
+  margin-left: 8px;
+  padding: 2px 6px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--card);
+  font-size: 14px;
+  line-height: 1.2;
+  cursor: pointer;
+  vertical-align: 1px;
+  transition: background .15s, border-color .15s;
+}
+.say:hover { background: var(--green-soft); border-color: var(--green-line); }
+.say:active { background: var(--green-mid); }
+.say-quiet { border-color: transparent; background: transparent; opacity: .55; }
+.say-quiet:hover { opacity: 1; background: var(--green-soft); border-color: var(--green-line); }
+
+/* ---------------- word cards ---------------- */
+
+.words { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+
+.word {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 18px;
+  cursor: pointer;
+}
+.word:hover { border-color: var(--green-line); }
+
+.word-top { margin: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 2px; }
+.word-en {
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  color: var(--green);
+}
+.word-zh { margin: 4px 0 0; font-size: 1rem; color: var(--ink); }
+.word-meaning {
+  margin: 6px 0 0;
+  color: var(--ink-soft);
+  font-size: .95rem;
+}
+
+.egs {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 12px 0 0;
+  border-top: 1px dashed var(--line);
+  display: grid;
+  gap: 8px;
+}
+.eg .en { margin: 0; }
+.eg .zh { margin: 3px 0 0; }
+
+.word-note {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: var(--blue-soft);
+  border-radius: 9px;
+  font-size: .9rem;
+}
+.word-note .en { margin: 0; color: var(--blue); }
+.word-note .zh { margin: 3px 0 0; }
+.note-mark { margin-right: 8px; opacity: .7; }
+
+/* ---------------- collocation cards ---------------- */
+
+.pset { margin-bottom: 8px; }
+
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 10px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.card:hover { border-color: var(--green-line); background: var(--green-soft); }
+.card-en { margin: 0; font-weight: 600; font-size: 1.02rem; }
+.card-zh {
+  display: none;
+  margin: 4px 0 0;
+  font-family: var(--font-zh);
+  font-size: .85rem;
+  color: var(--ink-soft);
+}
+.card.open .card-zh, body.zh-all .card-zh { display: block; }
+
+/* ---------------- classroom expressions ---------------- */
+
+.exprs { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+
+.expr {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--green-line);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.expr-en { margin: 0; font-size: 1.08rem; }
+.expr .pair { cursor: pointer; }
+.expr-when { margin-top: 10px; font-size: .9rem; }
+.expr-when .en { margin: 0; color: var(--ink-soft); }
+.expr-when .zh { margin: 3px 0 0; }
+.when-mark {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-right: 8px;
+}
+
+/* ---------------- say it more naturally ---------------- */
+
+.upgs { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+
+.upg {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+
+.upg-label {
+  margin: 0 0 4px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.upg-label .zh-fixed { text-transform: none; letter-spacing: 0; }
+
+.upg-was { margin: 0 0 14px; font-size: 1.1rem; }
+
+.step-btn {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  padding: 9px 14px;
+  border: 1px solid var(--orange-line);
+  border-radius: 9px;
+  background: var(--orange-soft);
+  color: var(--orange);
+  cursor: pointer;
+}
+.step-btn:hover { background: var(--orange-mid); }
+.step-btn.on { background: var(--orange-line); border-color: var(--orange-line); color: #fff; }
+.step-btn.on .zh-fixed { color: rgba(255, 255, 255, .8); }
+
+.upg-open { display: none; margin-top: 14px; }
+.upg.shown .upg-open { display: block; }
+.upg.shown .upg-label { color: var(--orange); }
+
+.upg-now {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--orange);
+}
+.upg-why {
+  padding: 12px 14px;
+  background: var(--paper);
+  border-radius: 9px;
+  cursor: pointer;
+}
+.upg-why .en { margin: 0; font-size: .92rem; color: var(--ink-soft); }
+.upg-why .zh { margin: 4px 0 0; }
+
+/* ---------------- sentence frames ---------------- */
+
+.frames { list-style: none; margin: 0 0 8px; padding: 0; display: grid; gap: 10px; }
+
+.frame {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--green);
+  border-radius: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+}
+.frame:hover { border-color: var(--green-line); border-left-color: var(--green); }
+.frame-en { margin: 0; font-size: 1.12rem; font-weight: 600; }
+.frame-zh {
+  display: none;
+  margin: 4px 0 0;
+  font-family: var(--font-zh);
+  font-size: .85rem;
+  color: var(--ink-soft);
+}
+.frame.open .frame-zh, body.zh-all .frame-zh { display: block; }
+
+.frame-eg {
+  display: none;
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: var(--green-soft);
+  border-radius: 9px;
+}
+.frame.open .frame-eg { display: block; }
+.frame-eg-label {
+  margin: 0 0 4px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.frame-eg-label .zh-fixed { text-transform: none; letter-spacing: 0; }
+.frame-eg-en { margin: 0; }
+.frame-eg-zh {
+  margin: 3px 0 0;
+  font-family: var(--font-zh);
+  font-size: .85rem;
+  color: var(--ink-soft);
+}
+
+/* ---------------- the word bank ---------------- */
+
+.bank { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.bank .chip {
+  font-family: var(--font-en);
+  font-size: 1rem;
+  padding: 7px 13px;
+  border: 1px solid var(--green-line);
+  border-radius: 999px;
+  background: var(--green-soft);
+  color: var(--green);
+  cursor: pointer;
+  margin-left: 0;
+}
+.bank .chip:hover { background: var(--green-mid); }
+
+/* ---------------- discussion ---------------- */
+
+.qs { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: none; }
+
+.q {
+  display: flex;
+  gap: 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 15px 17px;
+  cursor: pointer;
+}
+.q:hover { border-color: var(--green-line); }
+.q-n {
+  flex: none;
+  width: 1.7rem;
+  height: 1.7rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--green-soft);
+  color: var(--green);
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  font-weight: 700;
+}
+.q-body { min-width: 0; flex: 1; }
+.q-en { margin: 0; font-size: 1.08rem; }
+.q-zh {
+  display: none;
+  margin: 4px 0 0;
+  font-family: var(--font-zh);
+  font-size: .85rem;
+  color: var(--ink-soft);
+}
+.q.open .q-zh, body.zh-all .q-zh { display: block; }
+
+.q-follow {
+  display: none;
+  margin-top: 12px;
+  padding: 11px 13px;
+  background: var(--paper);
+  border-left: 3px solid var(--green-line);
+  border-radius: 0 8px 8px 0;
+}
+.q.open .q-follow { display: block; }
+.q-follow-label {
+  margin: 0 0 3px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.q-follow-label .zh-fixed { text-transform: none; letter-spacing: 0; }
+.q-follow-en { margin: 0; font-size: .98rem; }
+.q-follow-zh {
+  margin: 3px 0 0;
+  font-family: var(--font-zh);
+  font-size: .83rem;
+  color: var(--ink-soft);
+}
+
+/* ---------------- the recall table ----------------
+
+   The one part of the page that runs the other way round: Chinese showing,
+   English hidden behind a tap. The 🔊 is hidden with the English, or the
+   answer could be had without reading it. */
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+
+.recall table { width: 100%; border-collapse: collapse; font-size: .98rem; }
+.recall th {
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 700;
+}
+.recall th .zh { font-size: 11px; letter-spacing: 0; text-transform: none; }
+.recall td { padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.recall tbody tr:last-child td { border-bottom: 0; }
+
+.rrow { cursor: pointer; }
+.rrow:hover { background: var(--green-soft); }
+.rrow .td-zh { font-family: var(--font-zh); width: 40%; }
+.rrow .td-en { width: 45%; }
+.rrow .td-from { width: 15%; text-align: right; }
+.rrow .td-from a {
+  color: var(--ink-faint);
+  text-decoration: none;
+  font-family: var(--font-ui);
+  font-size: 12px;
+}
+.rrow .td-from a:hover { color: var(--green); text-decoration: underline; }
+
+/* Hidden until tapped. The English keeps its space rather than being removed,
+   so the column does not change width row by row and give the length of the
+   word away; the dots sit on top of it. */
+.rrow .td-en { position: relative; }
+.hidden-en { visibility: hidden; font-weight: 600; color: var(--orange); }
+.rrow .td-en .say { visibility: hidden; }
+.rrow.open .hidden-en,
+.rrow.open .td-en .say { visibility: visible; }
+
+.rrow:not(.open) .td-en::after {
+  content: "· · · · ·";
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-faint);
+  letter-spacing: .05em;
+}
+
+/* ---------------- footer ---------------- */
+
+.site-foot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 20px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+.site-foot p { margin: 0; font-family: var(--font-zh); }
+.site-foot a { color: var(--green); text-decoration: none; margin-left: 10px; }
+.site-foot a:hover { text-decoration: underline; }
+.site-mark img { display: block; border-radius: 8px; }
+
+/* ---------------- teacher panel ---------------- */
+
+.panel {
+  position: fixed;
+  right: 16px;
+  top: calc(var(--bar-h) + 10px);
+  z-index: 50;
+  width: min(23rem, calc(100vw - 32px));
+  max-height: calc(100vh - var(--bar-h) - 30px);
+  overflow: auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 18px 44px rgba(29, 42, 42, .17);
+  padding: 16px 18px 20px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+}
+
+.panel-head { display: flex; align-items: center; justify-content: space-between; }
+.panel-head h2 { margin: 0; font-size: 1rem; }
+.panel-head span { font-family: var(--font-zh); font-weight: 400; color: var(--ink-faint); font-size: 13px; margin-left: 6px; }
+.panel-x {
+  border: 0; background: transparent; cursor: pointer;
+  font-size: 16px; color: var(--ink-faint); padding: 4px 6px;
+}
+.panel-x:hover { color: var(--ink); }
+
+.panel .row { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.panel .row label { display: block; margin-bottom: 6px; color: var(--ink-soft); }
+.panel select {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+}
+.row-note { margin: 7px 0 0; font-size: 12px; line-height: 1.5; color: var(--ink-faint); }
+
+.row-check { display: flex; align-items: center; gap: 9px; margin-top: 14px; cursor: pointer; }
+.row-check input { width: 17px; height: 17px; accent-color: var(--green); }
+.row-check em { font-family: var(--font-zh); font-style: normal; color: var(--ink-faint); margin-left: 6px; }
+
+.panel-btn {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  padding: 9px 12px;
+  border: 1px solid var(--green);
+  border-radius: 9px;
+  background: var(--green);
+  color: #fff;
+  cursor: pointer;
+}
+.panel-btn:hover { filter: brightness(1.08); }
+.panel-btn-quiet { background: var(--card); color: var(--ink-soft); border-color: var(--line); }
+.panel-btn-quiet:hover { border-color: var(--green-line); color: var(--green); filter: none; }
+
+/* ---------------- narrow screens ---------------- */
+
+.nav-scrim { display: none; }
+
+@media (max-width: 60rem) {
+  body { font-size: 17px; }
+
+  .shell { grid-template-columns: minmax(0, 1fr); padding: 0 16px; }
+
+  /* The contents list becomes a drawer rather than a column. */
+  #nav {
+    position: fixed;
+    z-index: 45;
+    top: var(--bar-h);
+    left: 0;
+    bottom: 0;
+    width: min(17rem, 80vw);
+    background: var(--card);
+    border-right: 1px solid var(--line);
+    padding: 0 12px;
+    overflow: auto;
+    transform: translateX(-102%);
+    transition: transform .2s ease;
+  }
+  body.nav-open #nav { transform: translateX(0); }
+  .toc { position: static; max-height: none; }
+
+  .nav-scrim {
+    display: block;
+    position: fixed;
+    inset: var(--bar-h) 0 0;
+    z-index: 44;
+    background: rgba(29, 42, 42, .3);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s;
+  }
+  body.nav-open .nav-scrim { opacity: 1; pointer-events: auto; }
+
+  .cover h1 { font-size: 1.8rem; }
+  .item-head { font-size: 1.25rem; }
+  .bar-title span { display: none; }
+  .panel { right: 8px; left: 8px; width: auto; }
+}
+
+@media (max-width: 30rem) {
+  .bar-btn { padding: 7px 9px; font-size: 13px; }
+  .cards { grid-template-columns: minmax(0, 1fr); }
+  .word, .expr, .upg, .q, .frame { padding: 13px 14px; }
+}
+
+/* A classroom projector is far away: everything comes up a size. */
+@media (min-width: 100rem) {
+  body { font-size: 21px; }
+  .shell { max-width: 82rem; }
+  #doc { max-width: 54rem; }
+}
+
+/* The printed version is the notes again — everything open, nothing clickable
+   left on the page. */
+@media print {
+  .bar, #nav, .panel, .nav-scrim, .say, .zh-chip, .step-btn, .site-foot, .skip { display: none !important; }
+  body { font-size: 11pt; background: #fff; }
+  .shell { display: block; padding: 0; }
+  .zh, .card-zh, .frame-zh, .frame-eg, .q-zh, .q-follow, .upg-open, .label .zh { display: block !important; }
+  .hidden-en, .rrow .td-en .say { visibility: visible !important; }
+  .rrow:not(.open) .td-en::after { content: ""; }
+  .item { break-inside: avoid; }
+}

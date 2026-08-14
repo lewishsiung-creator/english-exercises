@@ -1,9 +1,10 @@
 # English Exercises
 
 English teaching material, built for classroom, homework and one-to-one use.
-Fourteen independent pages live here — a game for young learners at the site
+Fifteen independent pages live here — a game for young learners at the site
 root, phonics practice for slightly older children at `/phonics/`, an
 interactive phonics handbook for the same age at `/phonics-handbook/`, a
+review lesson for a ten-to-twelve-year-old at `/confidence-talk/`, a
 bilingual business worksheet at `/business-clarity/`, an interactive
 lesson for working adults at `/wealth-habits/`, a business-English reading
 lesson at `/happy-sexy-millionaire/`, a four-book discussion guide at
@@ -333,6 +334,55 @@ Records live under `math.*` in `localStorage`, separate from the English
 pages, and the 👨‍🏫 panel groups misses by topic rather than by question —
 with generated numbers no single sum repeats often enough to mean anything,
 but "Grade 3 · Times tables, 6 missed" does.
+
+## Confidence and Everyday Life — ages 10–12, teacher-led
+
+The class notes of 11 July 2026 turned into a review lesson for one learner:
+22 words in six groups, 19 collocations, three classroom sentences, eight
+sentence frames and eight discussion questions. The notes' own grouping is
+kept — confidence, communication, frequency, breakfast, interests,
+achievements — and what was added is the collocations pulled out of the
+example sentences, the frames those examples are built on, and the questions
+the vocabulary was learnt in order to answer.
+
+| Part | What a tap does |
+| --- | --- |
+| 🗣 Word cards | 🔊 says the word; 中 opens the gloss, the meaning and the examples |
+| 🧩 Words that go together | The Chinese behind a tap, three sets of collocations |
+| 💬 Say this in class | Three whole sentences, each with *when* to use it |
+| ✨ Say it more naturally | Holds the natural version back behind a button |
+| 🎯 Make a sentence | Frames with the example answer hidden, plus a word bank |
+| 🙋 Talk about it | Eight questions, each with a follow-up behind a tap |
+| 🔒 Cover the English | The whole word list run backwards: Chinese showing, English hidden |
+
+### Design notes
+
+- **Ten to twelve is between the two house styles.** The 7–10 pages are
+  picture-led with huge touch targets; the adult pages are dense documents.
+  This one keeps the adult layout — a scrolling document with a contents list —
+  at a larger size, with more air, because it is read across a table.
+- **No input fields anywhere.** The productive halves are spoken, so what the
+  page hides is an *example* answer and a follow-up question — both for the
+  teacher to hand over once the learner has had a real go, not a box to type
+  into and not an answer key.
+- **The recall table is the only part that tests**, and it runs the other way
+  round from the whole page: Chinese showing, English hidden, the 🔊 hidden
+  with it so the answer cannot be had without reading it. It comes last on
+  purpose. The English keeps its space rather than being removed, so the
+  column width does not give the length of the word away.
+- **Green marks what the learner produces** — the frames and the questions.
+  **Orange marks what is held back**: the natural version of a sentence, and
+  the hidden English in the recall table.
+- **"Say it more naturally" is the notes' own lesson.** *Boys always talk about
+  robots* and *soybean milk* were both corrected in class; the page keeps the
+  first version on screen and makes you ask for the second, because noticing
+  what is odd about a sentence is the exercise.
+- **Voices are ranked, not wished for** — the same ranking as Number Lab, minus
+  its preference for a young voice: a clear adult American voice suits a
+  twelve-year-old better than the one the seven-year-olds get.
+- **Nothing is scored and nothing is saved.** Only the voice, the speed and the
+  Chinese setting persist, under `ct.*` in `localStorage`. **Print** gives the
+  notes back: everything open, the machinery gone.
 
 ## Business Clarity — adult, one-to-one
 
@@ -923,6 +973,7 @@ public/                   Word Play — the site root
 public/phonics/           Sound Lab, the phonics practice
 public/phonics-handbook/  自然發音學習手冊, the interactive handbook
 public/math/              Number Lab, the Grades 1–3 math practice
+public/confidence-talk/   the 2026/07/11 class notes, ages 10–12
 public/business-clarity/  the business worksheet
 public/wealth-habits/     the three-habits lesson
 public/wealth-habits/img/ its four photographs
@@ -941,7 +992,7 @@ public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
-All sixteen are plain HTML, CSS and JS with no build step.
+All seventeen are plain HTML, CSS and JS with no build step.
 
 Every page ends with the same `<footer class="site-foot">` linking to
 <https://lewistoeic.com>, so a reader who lands on any one sheet can find the
@@ -1026,6 +1077,23 @@ level stays at Grade 1 even where the maths does not.
 Adding a topic is one object in `G1`, `G2` or `G3` plus its `TEACH` entry; the
 grade screens build themselves from those arrays, and a topic with no
 explanation simply doesn't offer the button.
+
+**Confidence and Everyday Life.** The whole lesson is
+[`public/confidence-talk/content.js`](public/confidence-talk/content.js): a
+`groups` array for the vocabulary, then one object each for the collocations,
+the classroom sentences, the naturalness pairs, the sentence frames, the
+discussion questions and the recall drill. Every English string that carries
+meaning takes a `zh`; labels and instructions are `en`/`zh` pairs too.
+
+The recall table is built from `groups`, so a word added above appears in the
+drill automatically — there is no second list to keep in step. The contents
+list is built from a `PARTS` array in `render.js`, which is the only place the
+order of the page is written down. In a sentence frame, runs of underscores
+are drawn as gaps and spoken as *something*, so write them the length they
+should appear.
+
+Next month's notes are a new folder, not a new section here — the page is one
+lesson, and its title, date and contents list all assume that.
 
 **Business Clarity.** All the text lives in
 [`public/business-clarity/content.js`](public/business-clarity/content.js), one
@@ -1227,6 +1295,7 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/phonics/> for Sound Lab,
 <http://localhost:8000/phonics-handbook/> for the handbook,
 <http://localhost:8000/math/> for Number Lab,
+<http://localhost:8000/confidence-talk/> for the 10–12 review lesson,
 <http://localhost:8000/business-clarity/> for the business worksheet,
 <http://localhost:8000/wealth-habits/> for the three-habits lesson,
 <http://localhost:8000/happy-sexy-millionaire/> for the reading lesson,
