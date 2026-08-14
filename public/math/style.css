@@ -565,6 +565,13 @@ main {
 .log .ans::before { content: "→ "; color: var(--ink-soft); font-weight: 400; }
 .log tr.is-missed td { background: var(--oops-soft); }
 
+input[type="range"] {
+  width: 100%;
+  margin: 6px 0 0;
+  accent-color: var(--green);
+  height: 34px;
+}
+
 select {
   width: 100%;
   min-height: 46px;

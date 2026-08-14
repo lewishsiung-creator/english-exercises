@@ -281,6 +281,17 @@ const times = (a, b) => `${a} times ${b}`;
 const over = (a, b) => `${a} divided by ${b}`;
 const equalsWhat = (s) => `${s} equals what?`;
 
+/* "3/4" is read by the engine as "three fourths" at best and "three slash
+   four" at worst, so a fraction that is worth hearing named is written out.
+   The bar is the word he needs: he sees 2/3 and hears "two thirds". */
+const PART_NAMES = { 2: 'half', 3: 'third', 4: 'quarter', 5: 'fifth', 6: 'sixth', 8: 'eighth' };
+
+function fractionWords(k, n) {
+  const one = PART_NAMES[n] || `${n}th`;
+  const many = one === 'half' ? 'halves' : `${one}s`;
+  return `${k === 1 ? 'one' : k} ${k === 1 ? one : many}`;
+}
+
 const clockWords = (h, m) =>
   m === 0 ? `${h} o'clock` : m === 30 ? `half past ${h}` : `${h} ${m < 10 ? 'oh ' + m : m}`;
 
@@ -614,6 +625,7 @@ const G3 = [
           // drops it.
           choices: options(`${k}/${n}`, `${n - k}/${n}`, `${k + 1}/${n}`, `${k}/${n + 1}`),
           answer: `${k}/${n}`,
+          say: fractionWords(k, n),
           hint: `The bottom number is how many equal parts there are: ${n}.`,
         };
       }
@@ -622,7 +634,7 @@ const G3 = [
       const bigger = k / n > k2 / n2 ? `${k}/${n}` : `${k2}/${n2}`;
       return {
         ask: `Which is bigger, ${k}/${n} or ${k2}/${n2}?`,
-        speak: `Which is bigger? ${k} over ${n}, or ${k2} over ${n2}?`,
+        speak: `Which is bigger? ${fractionWords(k, n)}, or ${fractionWords(k2, n2)}?`,
         choices: shuffle([`${k}/${n}`, `${k2}/${n2}`]),
         answer: bigger,
         hint: 'Picture each one as a bar. Which bar has more shaded in?',

@@ -284,6 +284,51 @@ grade levels, for a child in Grade 1 working up through Grade 3.
 - **English only**, unlike the rest of the site: he is in an American school,
   and the vocabulary in the prompts is the vocabulary his teacher uses.
 
+### Voice
+
+Every prompt, hint and explanation is spoken, so the voice is not a detail.
+This page uses the ranking approach the handbook arrived at, with the same
+reasoning and two findings of its own.
+
+- **Voices are ranked, not wished for.** The en-US list this Mac reports is
+  alphabetical and begins *Albert, Ava, Bad News, Bahh, Bells, Boing,
+  Bubbles* — so "take the first American voice" is one missing download away
+  from teaching maths in Albert. `VOICE_TIERS` puts the young American female
+  voices this page was asked for first, then neural, then Apple's
+  recorded-speaker voices, then character and regional ones; the novelty shelf
+  is excluded from automatic choice and labelled *not recommended* in the
+  picker.
+- **American beats the tiers.** Several voices ship in a British and an
+  American cut under one name, and on a page built around an American
+  classroom the wrong Flo is worse than the right Ava, so locale outranks
+  everything except novelty.
+- **A voice name cannot be matched literally.** macOS localises it and does
+  not agree with itself about how: `Flo (英文（美國）)` uses a Latin
+  parenthesis after a space, `Ava（增強音質）` a fullwidth one with none.
+  Matching the raw name missed the enhanced Ava completely — the best voice
+  installed on this machine was unreachable. Names are compared with the
+  parenthetical stripped, and an enhanced download is preferred over the
+  standard cut of the same speaker.
+- **Chrome drops an utterance queued in the same tick as `cancel()`**, which
+  presents as a tap that makes no sound. Every utterance is deferred 70ms.
+- **Pitch is flat and speed is a setting.** A raised pitch reading numbers for
+  a whole session is wearing rather than friendly. Speed lives in the panel
+  and is saved, because a six-year-old meeting a topic and a grown-up
+  re-reading a hint do not want the same pace.
+- **The operator is silent, so every question carries its own spoken line.**
+  Measured with the repo's `say` test, `24 + 8` and `24 8` synthesise the
+  same: the `+` contributes nothing. `speak` is therefore written out in
+  words and never derived from what is on screen. The same test showed digits
+  and clock times are read correctly — `2 20` is byte-identical to *two
+  twenty* — so those need no special handling.
+- **Fractions are named, not spelled.** `3/4` is read as "three fourths" at
+  best, so a fraction that is spoken is written out: he sees `2/3` and hears
+  *two thirds*.
+- **Nothing waits on a fixed timer that speech could outlive.** A correct
+  answer moves on when the voice finishes, with a backstop — cancelling an
+  utterance takes its `end` event with it, and tapping *Say it again* while
+  the answer was being read used to strand the round for good.
+
 Records live under `math.*` in `localStorage`, separate from the English
 pages, and the 👨‍🏫 panel groups misses by topic rather than by question —
 with generated numbers no single sum repeats often enough to mean anything,

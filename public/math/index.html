@@ -133,12 +133,25 @@
 
       <section class="block">
         <h3>Voice</h3>
-        <label class="muted" for="voiceSelect">Pick the English voice for this device.</label>
+        <label class="muted" for="voiceSelect">Best first for this device. Voices marked
+          <em>not recommended</em> are the joke ones macOS ships.</label>
         <select id="voiceSelect"></select>
         <div class="block-actions">
           <button class="btn btn-small" id="voiceTest">Test voice</button>
-          <button class="btn btn-small" id="voiceReset">Use default</button>
+          <button class="btn btn-small" id="voiceReset">Use best</button>
         </div>
+      </section>
+
+      <section class="block">
+        <h3>Speed</h3>
+        <label class="muted" for="rateRange">How fast everything is read.
+          <span id="rateLabel"></span></label>
+        <input type="range" id="rateRange" min="0.6" max="1.15" step="0.05" list="rateTicks">
+        <datalist id="rateTicks">
+          <option value="0.6" label="Slow"></option>
+          <option value="0.85" label="Normal"></option>
+          <option value="1.15" label="Fast"></option>
+        </datalist>
       </section>
 
       <section class="block">
