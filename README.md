@@ -421,7 +421,8 @@ public/business-clarity/2026-08-10/
 
 The page shares the worksheet's `style.css` and `render.js` and supplies only
 its own `content.js`. That file leaves out `fields`, `purpose` and `feedback`
-and adds a `parent` link instead — the renderer takes the absence of `purpose`
+and adds `crumbs` instead — a breadcrumb back to the worksheet and to the
+section the session hangs under. The renderer takes the absence of `purpose`
 as the signal to draw a session cover rather than a worksheet cover. Sessions
 are listed from the parent section with a `sessions` block.
 

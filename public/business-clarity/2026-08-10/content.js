@@ -15,7 +15,13 @@ const WORKSHEET = {
   title: '2026/08/10',
   titleZh: '課堂筆記',
 
-  parent: { href: '../#overview', en: '1. Business Overview', zh: '事業概述' },
+  /* Breadcrumb: the worksheet itself, then the section this session hangs
+     under. Two links rather than one, because "back" from a session page can
+     mean either the whole worksheet or the place it is listed. */
+  crumbs: [
+    { href: '../', en: 'Business Clarity', zh: '商業策略與英文表達' },
+    { href: '../#overview', en: '1. Business Overview', zh: '事業概述' },
+  ],
 
   sections: [
     // ------------------------------------------------------------------

@@ -266,13 +266,13 @@ const BLOCKS = {
    worksheet only in having no name fields, no purpose and no feedback band,
    and in carrying a way back to the section it hangs under. */
 function buildNotesCover() {
-  const p = WORKSHEET.parent;
   return `
     <header class="cover cover-notes" id="top">
-      <p class="kicker">
-        <a class="back" href="${p.href}">← <span class="en">${text(p.en)}</span>
-        <span class="zh">${text(p.zh)}</span></a>
-      </p>
+      <nav class="crumbs" aria-label="Breadcrumb">
+        ${WORKSHEET.crumbs.map((c) => `
+          <a class="back" href="${c.href}"><span class="en">${text(c.en)}</span>
+          <span class="zh">${text(c.zh)}</span></a>`).join('<span class="crumb-sep" aria-hidden="true">/</span>')}
+      </nav>
       <h1>
         <span class="en">${text(WORKSHEET.title)}</span>
         <span class="zh">${text(WORKSHEET.titleZh)}</span>

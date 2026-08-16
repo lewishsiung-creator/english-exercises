@@ -756,6 +756,20 @@ tbody td { height: 3.1rem; }
 /* The cover of a session page: a way back, and the date as the title. */
 .cover-notes h1 .en { font-variant-numeric: tabular-nums; }
 
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  margin: 0 0 14px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.crumb-sep { color: var(--ink-faint); }
+
 .back {
   color: var(--accent);
   text-decoration: none;
@@ -763,7 +777,14 @@ tbody td { height: 3.1rem; }
 }
 .back:hover { text-decoration: underline; }
 .back .en, .back .zh { display: inline; }
-.back .zh { font-size: .9em; font-weight: 400; margin-left: 5px; }
+.back .zh {
+  font-size: .92em;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-faint);
+  margin-left: 5px;
+}
 
 .empty {
   margin: 40px 0;
