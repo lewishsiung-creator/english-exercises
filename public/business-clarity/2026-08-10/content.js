@@ -718,13 +718,6 @@ const WORKSHEET = {
             { en: 'emotional manipulation', zh: '情緒操控' },
           ],
         },
-        {
-          t: 'note',
-          en: 'Incomplete Recording',
-          zh: '錄音不完整',
-          bodyEn: 'This part of the recording is fragmented, so no further content has been inferred from it.',
-          bodyZh: '這一段錄音不完整，因此未再從中推測更多內容。',
-        },
       ],
     },
 
