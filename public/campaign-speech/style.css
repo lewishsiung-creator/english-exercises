@@ -488,6 +488,158 @@ body.mode-recall .lb-recall { display: inline; font-family: var(--font-ui); }
 /* With everything already showing, the per-line chip is just clutter. */
 body:not(.mode-recall).zh-all .peek { display: none; }
 
+/* ---------------- Q&A ----------------
+
+   The question is asked *to* him, so it is context and stays bilingual in both
+   modes — only the answer below it behaves like a speech line. Each question
+   is a card with its own ▶, because ten answers back to back is not a unit
+   anyone needs to hear. */
+
+.sec-lead { margin: 0 0 24px; }
+.sec-lead p { margin: 0; }
+.sec-lead .en { font-size: 1.02rem; font-style: italic; color: var(--ink-soft); }
+.sec-lead .zh { margin-top: 6px; font-style: normal; }
+
+.qa-index {
+  margin: 0 0 40px;
+  padding: 18px 22px 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.qa-index-head {
+  margin: 0 0 12px;
+  font-family: var(--font-ui);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.qa-index-head span {
+  font-family: var(--font-zh);
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 400;
+  margin-left: 6px;
+}
+.qa-index ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px 20px;
+}
+@media (min-width: 700px) { .qa-index ol { grid-template-columns: 1fr 1fr; } }
+
+.qa-index a {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  gap: 8px;
+  padding: 5px 8px 6px 4px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--ink);
+}
+.qa-index a:hover { background: var(--navy-soft); }
+.qa-index .n {
+  font-family: var(--font-ui);
+  font-size: .74rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+  text-align: right;
+  padding-top: .3rem;
+}
+.qa-index .t .en { display: block; font-size: .92rem; line-height: 1.3; }
+.qa-index .t .zh { display: block; font-size: .75rem; }
+/* Unanswered questions are dimmed and ruled, so the list doubles as his
+   to-do rather than looking like nineteen finished answers. */
+.qa-index li.pending a { color: var(--ink-faint); }
+.qa-index li.pending .t .en { text-decoration: line-through; text-decoration-color: var(--rule); }
+.qa-index-note {
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+  font-family: var(--font-ui);
+  font-size: .74rem;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}
+.qa-index-note span { font-family: var(--font-zh); margin-left: 4px; }
+
+.qa { margin: 0 0 44px; scroll-margin-top: calc(var(--bar-h) + 20px); }
+
+.qa-head {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 12px;
+  align-items: start;
+  margin: 0 0 14px;
+  font-size: 1.18rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.qa-n {
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--navy);
+  background: var(--navy-soft);
+  border: 1px solid var(--navy-line);
+  border-radius: 7px;
+  text-align: center;
+  padding: 3px 0;
+  margin-top: 4px;
+}
+.qa-t .en { display: block; }
+.qa-t .zh { display: block; font-size: .84rem; font-weight: 400; margin-top: 3px; }
+
+.qa-q {
+  padding: 15px 18px 16px;
+  background: var(--navy-soft);
+  border: 1px solid var(--navy-line);
+  border-radius: 10px;
+}
+.qa-q p { margin: 0; }
+.qa-q .en { font-size: 1rem; line-height: 1.55; }
+.qa-q .en + .en { margin-top: 8px; }
+.qa-q .zh { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--navy-line); }
+.qa-q .zh + .zh { border-top: 0; padding-top: 0; margin-top: 5px; }
+
+.qa-label {
+  font-family: var(--font-ui);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin: 0 0 8px !important;
+}
+.qa-label span {
+  font-family: var(--font-zh);
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 400;
+  margin-left: 5px;
+}
+
+.qa-a { margin-top: 16px; }
+.qa-a .qa-label { color: var(--gold); }
+.play-a { margin-bottom: 12px; }
+
+.qa-todo {
+  margin: 14px 0 0;
+  padding: 12px 16px;
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  color: var(--ink-faint);
+  background: repeating-linear-gradient(-45deg, transparent, transparent 7px,
+              rgba(139, 149, 163, .06) 7px, rgba(139, 149, 163, .06) 14px);
+  border: 1px dashed var(--rule);
+  border-radius: 10px;
+}
+.qa-todo span { font-family: var(--font-zh); margin-left: 6px; }
+
 /* ---------------- words to watch ---------------- */
 
 .label {
@@ -648,6 +800,13 @@ body:not(.mode-recall).zh-all .peek { display: none; }
   .section { break-before: page; padding-top: 0; }
   .word, .goals { break-inside: avoid; }
   .words { grid-template-columns: repeat(3, 1fr); }
+  /* The Q&A prints as a question sheet: the index is navigation, so it goes,
+     but a question and the first of its answer lines should not be split. */
+  .qa-index { display: none !important; }
+  .qa { break-inside: auto; margin-bottom: 16pt; }
+  .qa-head, .qa-q { break-inside: avoid; }
+  .qa-head { break-after: avoid; }
+  .qa-q { background: none; border: 1px solid #999; }
 }
 
 /* ---------------- 站尾 / site footer ----------------

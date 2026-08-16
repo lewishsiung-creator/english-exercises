@@ -42,6 +42,16 @@ function speakBtn(sentence, cls = 'say') {
     aria-label="Listen">🔊</button>`;
 }
 
+/* ▶ / ■ on one button. The run is scoped to the nearest container holding
+   lines, so the same markup drives a whole section of the speech and a single
+   Q&A answer. */
+function playBtn(en, zh, cls = 'play') {
+  return `<button class="${cls}">
+      <span class="lb-play">▶ ${text(en)} <em>${text(zh)}</em></span>
+      <span class="lb-stop">■ Stop <em>停止</em></span>
+    </button>`;
+}
+
 // ---------------------------------------------------------------- blocks
 
 /* One sentence of the speech: the unit the learner reads aloud. Both languages
@@ -93,7 +103,59 @@ const BLOCKS = {
           </li>`).join('')}
       </ul>
     </div>`,
+
+  /* One question from the election floor. The question itself stays bilingual
+     in both modes — it is asked *to* him, so it is context rather than
+     something to practise; the answer below it is ordinary practice lines and
+     numbers from 1 again. Nine questions have no answer yet and say so. */
+  qa: (b) => {
+    const ctx = { n: 1 };
+    return `
+      <article class="qa${b.pending ? ' pending' : ''}" id="q${b.n}">
+        <h3 class="qa-head">
+          <span class="qa-n">${b.n}</span>
+          <span class="qa-t"><span class="en">${text(b.en)}</span>
+            <span class="zh">${text(b.zh)}</span></span>
+        </h3>
+        <div class="qa-q">
+          <p class="qa-label">Question <span>問題</span>
+            ${speakBtn(b.qEn.join(' '), 'say say-quiet')}</p>
+          ${b.qEn.map((p) => `<p class="en">${text(p)}</p>`).join('')}
+          ${b.qZh.map((p) => `<p class="zh">${text(p)}</p>`).join('')}
+        </div>
+        ${b.pending ? `
+          <p class="qa-todo">Answer still to be written <span>回答待補</span></p>
+        ` : `
+          <div class="qa-a">
+            <p class="qa-label">Answer <span>回答</span></p>
+            ${playBtn('Read this answer', '朗讀回答', 'play play-a')}
+            <ol class="lines">${b.items.map((i) => line(i, ctx.n++)).join('')}</ol>
+          </div>`}
+      </article>`;
+  },
 };
+
+/* A contents list for the nineteen, at the top of the Q&A section. The
+   sidebar carries one entry for the whole section — putting nineteen more in
+   it would bury the speech. */
+function qaIndex(blocks) {
+  const pending = blocks.filter((b) => b.pending).length;
+  return `
+    <nav class="qa-index" aria-label="The nineteen questions">
+      <p class="qa-index-head">${blocks.length} questions <span>共 ${blocks.length} 題</span></p>
+      <ol>
+        ${blocks.map((b) => `
+          <li${b.pending ? ' class="pending"' : ''}>
+            <a href="#q${b.n}"><span class="n">${b.n}</span>
+              <span class="t"><span class="en">${text(b.en)}</span>
+                <span class="zh">${text(b.zh)}</span></span></a>
+          </li>`).join('')}
+      </ol>
+      ${pending ? `<p class="qa-index-note">${pending} answers are still to be
+        written — those show the question only.
+        <span>其中 ${pending} 題尚未作答，僅顯示題目。</span></p>` : ''}
+    </nav>`;
+}
 
 // ---------------------------------------------------------------- build
 
@@ -133,6 +195,8 @@ function buildSection(s) {
     return fn(b, ctx);
   }).join('');
 
+  const qas = s.blocks.filter((b) => b.t === 'qa');
+
   return `
     <section class="section" id="${s.id}" aria-labelledby="h-${s.id}">
       <h2 class="section-head" id="h-${s.id}">
@@ -140,10 +204,13 @@ function buildSection(s) {
         <span class="titles"><span class="en">${text(s.en)}</span>
           <span class="zh">${text(s.zh)}</span></span>
       </h2>
-      <button class="play">
-        <span class="lb-play">▶ Read this section <em>整段朗讀</em></span>
-        <span class="lb-stop">■ Stop <em>停止</em></span>
-      </button>
+      ${s.lead ? `
+        <div class="sec-lead">
+          <p class="en">${text(s.lead.en)}</p>
+          <p class="zh">${text(s.lead.zh)}</p>
+        </div>` : ''}
+      ${s.noPlay ? '' : playBtn('Read this section', '整段朗讀')}
+      ${qas.length ? qaIndex(qas) : ''}
       ${blocks}
     </section>`;
 }
@@ -279,12 +346,12 @@ function speak(sentence) {
    Recall the line also opens as it is reached, which turns the play-through
    into the answer key. */
 let runToken = 0;
-let playBtn = null;
+let running = null;
 
 function stopPlay() {
   runToken++;
   if ('speechSynthesis' in window) speechSynthesis.cancel();
-  if (playBtn) { playBtn.classList.remove('on'); playBtn = null; }
+  if (running) { running.classList.remove('on'); running = null; }
   $$('.line.now').forEach((l) => l.classList.remove('now'));
 }
 
@@ -292,9 +359,11 @@ function playSection(btn) {
   if (!('speechSynthesis' in window)) return;
   stopPlay();
 
-  const lines = $$('.line', btn.closest('.section'));
+  // Nearest container holding lines: a single Q&A answer if the button is
+  // inside one, otherwise the whole section.
+  const lines = $$('.line', btn.closest('.qa, .section'));
   const token = ++runToken;
-  playBtn = btn;
+  running = btn;
   btn.classList.add('on');
 
   let i = 0;

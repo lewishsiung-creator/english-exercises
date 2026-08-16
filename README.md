@@ -9,7 +9,8 @@ bilingual business worksheet at `/business-clarity/`, an interactive
 lesson for working adults at `/wealth-habits/`, a business-English reading
 lesson at `/happy-sexy-millionaire/`, a four-book discussion guide at
 `/book-club/`, reading-aloud practice
-built on a bilingual speech at `/campaign-speech/`, TOEIC grammar
+built on a bilingual speech and its election Q&A at `/campaign-speech/`,
+TOEIC grammar
 practice at `/toeic-grammar/`, a homework review of one student's own
 sentences at `/sentence-upgrades/`, a high-school writing worksheet
 at `/robot-helper/`, a survey of seven years of the 學測 essay at
@@ -555,8 +556,9 @@ that move are a glossary card, a list of useful language, and the Chinese.
 ## A Five-Minute Campaign Speech — adult, reading aloud
 
 Reading practice built on a bilingual speech: the candidate's own five-minute
-address for the 52nd President of JCI The Port, 62 sentences long. The text
-is reproduced as written — this page is practice, not an edit of his words.
+address for the 52nd President of JCI The Port, 62 sentences long, followed by
+the nineteen questions from the election floor. The text is reproduced as
+written — this page is practice, not an edit of his words.
 
 The two jobs the page does are a switch in the top bar:
 
@@ -590,6 +592,25 @@ The two jobs the page does are a switch in the top bar:
   the speech lines ever hide a language.
 - **Print** gives a handout: both languages open, the machinery gone, line
   numbers kept for marking up.
+
+### The Q&A
+
+Nineteen questions, each a card: the question, then the answer as ordinary
+practice lines. Ten are answered — 42 lines in all; **nine are still to be
+written** and say so on the card, so the section doubles as his to-do list.
+
+- **The question is context, not practice.** It is asked *to* him, so it stays
+  bilingual in both modes. Only the answer beneath it hides a language.
+- **Each answer has its own ▶**, and the Q&A section has no section-wide one:
+  ten answers back to back is not a unit anyone needs to hear. The run is
+  scoped to the nearest container holding lines, so one button drives both.
+- **A contents list opens the section**, two columns, with the nine unanswered
+  questions dimmed and struck through. The sidebar keeps one entry for the
+  whole section — nineteen more would bury the speech.
+- The English is a free adaptation of the Chinese rather than a translation,
+  so a few lines pair one Chinese paragraph with two English sentences. Three
+  English sentences have no Chinese counterpart at all and are carried on the
+  end of the neighbouring line.
 
 ## TOEIC Part 5 & 6 Grammar — adult, exam preparation
 
@@ -979,7 +1000,7 @@ public/wealth-habits/     the three-habits lesson
 public/wealth-habits/img/ its four photographs
 public/happy-sexy-millionaire/  the business-English reading lesson
 public/book-club/         the four-book discussion guide
-public/campaign-speech/   the speech reading practice
+public/campaign-speech/   the speech and election Q&A
 public/toeic-grammar/     the TOEIC Part 5 & 6 practice
 public/sentence-upgrades/ the 2026/07/25 homework review
 public/robot-helper/      the 113 學年度 writing worksheet
@@ -1151,16 +1172,24 @@ pages point at each other.
 
 **Campaign Speech.** The speech lives in
 [`public/campaign-speech/content.js`](public/campaign-speech/content.js), one
-entry per section. Every string is an `en`/`zh` pair. There are only three
-block types — `lines`, `subhead` and `say` — listed in a comment at the top of
-the file, and each is one function in
+entry per section. Every string is an `en`/`zh` pair. There are only four
+block types — `lines`, `subhead`, `say` and `qa` — listed in a comment at the
+top of the file, and each is one function in
 [`render.js`](public/campaign-speech/render.js).
 
 A line takes `k: 1` if it is worth memorising. A `say` item wants the word, a
 respelling in `say`, and a short Chinese tip in `zh`. Line numbers restart at 1
-in each section and come from the renderer, so inserting a sentence needs no
-renumbering. Any other bilingual text works here unchanged — swap the content
-file and the page is reading practice for that instead.
+in each section — and at 1 again inside each `qa` answer — and come from the
+renderer, so inserting a sentence needs no renumbering. Any other bilingual
+text works here unchanged — swap the content file and the page is reading
+practice for that instead.
+
+**Answering the nine open questions.** A `qa` block with `pending: 1` renders
+the question and a "回答待補" note. To fill one in, delete `pending: 1` and add
+an `items` array of `en`/`zh` pairs — one per paragraph of the answer. Nothing
+else changes: the index stops striking it through, the ▶ appears, and the
+lines join both practice modes. A section takes `noPlay: 1` to suppress its
+section-wide ▶, and a `lead` for the italic standfirst under its heading.
 
 **TOEIC Grammar.** The page lives in
 [`public/toeic-grammar/content.js`](public/toeic-grammar/content.js), one entry
