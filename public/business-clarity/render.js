@@ -277,7 +277,6 @@ function buildNotesCover() {
         <span class="en">${text(WORKSHEET.title)}</span>
         <span class="zh">${text(WORKSHEET.titleZh)}</span>
       </h1>
-      ${WORKSHEET.intro ? BLOCKS.note(WORKSHEET.intro) : ''}
     </header>`;
 }
 

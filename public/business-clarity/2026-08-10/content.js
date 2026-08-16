@@ -17,13 +17,6 @@ const WORKSHEET = {
 
   parent: { href: '../#overview', en: '1. Business Overview', zh: '事業概述' },
 
-  intro: {
-    en: 'About these notes',
-    zh: '關於這份筆記',
-    bodyEn: 'The usable parts of the transcript are organized into themes below. The recording becomes heavily garbled after roughly 41 minutes, so nothing beyond that point has been reconstructed.',
-    bodyZh: '以下依主題整理逐字稿中可用的部分。錄音在約 41 分鐘後嚴重失真，該時間點之後的內容未加以推測或補寫。',
-  },
-
   sections: [
     // ------------------------------------------------------------------
     {
