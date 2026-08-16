@@ -355,6 +355,10 @@ main { max-width: var(--measure); padding-bottom: 5rem; }
 .lead .en { font-style: italic; font-size: 1.05rem; }
 .lead .pair { margin: 0; }
 
+.para { margin: 0 0 20px; }
+.para .pair { margin: 0; }
+.para .en { font-size: 1rem; }
+
 .tiny {
   font-family: var(--font-ui);
   font-size: 11px;
@@ -671,6 +675,104 @@ tbody td { height: 3.1rem; }
   font-size: 11.5px;
   line-height: 1.55;
   color: var(--ink-faint);
+}
+
+/* A before/after correction. The original is not wrong-looking on purpose —
+   it is what was said, and it needs to stay readable to be recognised. */
+.fixes { margin: 0 0 28px; }
+
+.fix-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--card);
+}
+.fix {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1.6rem minmax(0, 1fr);
+  gap: 0 10px;
+  align-items: baseline;
+  padding: 10px 15px;
+  border-top: 1px solid var(--line);
+}
+.fix:first-child { border-top: 0; }
+.fix:nth-child(odd) { background: #fcfbf8; }
+
+.fix-from { color: var(--ink-faint); font-size: .95rem; }
+.fix-arrow {
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  color: var(--accent-line);
+  text-align: center;
+}
+.fix-to { font-size: .97rem; font-weight: 600; }
+.fix-to .zh { font-weight: 400; margin-top: 2px; }
+
+@media (max-width: 560px) {
+  .fix { grid-template-columns: 1fr; gap: 2px; }
+  .fix-arrow { text-align: left; }
+}
+
+/* ---------------- dated session pages ---------------- */
+
+.sessions { margin: 0 0 28px; }
+
+.session-list { list-style: none; margin: 0; padding: 0; }
+.session-list li { margin-bottom: 10px; }
+.session-list a {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0 16px;
+  align-items: center;
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+.session-list a:hover { background: var(--accent-soft); }
+
+.session-date {
+  font-family: var(--font-ui);
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.session-t .en { font-size: .97rem; }
+.session-t .zh { font-size: .8rem; }
+.session-go { color: var(--accent); font-size: 1rem; }
+
+@media (max-width: 560px) {
+  .session-list a { grid-template-columns: 1fr auto; }
+  .session-t { grid-column: 1 / -1; }
+}
+
+/* The cover of a session page: a way back, and the date as the title. */
+.cover-notes h1 .en { font-variant-numeric: tabular-nums; }
+
+.back {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+.back:hover { text-decoration: underline; }
+.back .en, .back .zh { display: inline; }
+.back .zh { font-size: .9em; font-weight: 400; margin-left: 5px; }
+
+.empty {
+  margin: 40px 0;
+  padding: 22px;
+  text-align: center;
+  color: var(--ink-faint);
+  background: var(--card);
+  border: 1px dashed var(--line);
+  border-radius: 10px;
 }
 
 /* The review list is the one phrase list that is numbered. */

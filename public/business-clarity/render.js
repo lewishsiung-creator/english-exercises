@@ -56,6 +56,26 @@ const BLOCKS = {
 
   lead: (b) => `<div class="lead">${pair(b.en, b.zh)}</div>`,
 
+  /* Plain narration — what was said in the lesson, as opposed to language to
+     learn. Often English only, because that is how the notes were taken. */
+  para: (b) => `<div class="para">${pair(b.en, b.zh)}</div>`,
+
+  fixes: (b) => `
+    <div class="fixes">
+      <h4 class="label"><span class="en">${text(b.en)}</span>
+      <span class="zh">${text(b.zh)}</span></h4>
+      <ul class="fix-list">
+        ${b.items.map((i) => `
+          <li class="fix">
+            <span class="fix-from">${text(i.from)}</span>
+            <span class="fix-arrow" aria-hidden="true">→</span>
+            <span class="fix-to"><span class="en">${text(i.to)}</span>
+            ${i.also ? `<span class="en">${text(i.also)}</span>` : ''}
+            ${i.zh ? `<span class="zh">${text(i.zh)}</span>` : ''}</span>
+          </li>`).join('')}
+      </ul>
+    </div>`,
+
   ask: (b) => `
     <div class="ask">
       ${b.tagEn ? `<p class="tag"><span class="en">${text(b.tagEn)}</span>
@@ -220,9 +240,46 @@ const BLOCKS = {
           </li>`).join('')}
       </ol>
     </div>`,
+
+  /* Dated session pages hanging under this section. One lesson's write-up can
+     run longer than the worksheet section itself, so each gets its own page
+     rather than being stacked inline. */
+  sessions: (b) => `
+    <div class="sessions">
+      <h4 class="label"><span class="en">${text(b.en)}</span>
+      <span class="zh">${text(b.zh)}</span></h4>
+      <ul class="session-list">
+        ${b.items.map((i) => `
+          <li><a href="${i.href}">
+            <span class="session-date">${text(i.date)}</span>
+            <span class="session-t"><span class="en">${text(i.en)}</span>
+            <span class="zh">${text(i.zh)}</span></span>
+            <span class="session-go" aria-hidden="true">→</span>
+          </a></li>`).join('')}
+      </ul>
+    </div>`,
 };
 
 // ---------------------------------------------------------------- build
+
+/* A dated session page. Same renderer, same stylesheet — it differs from the
+   worksheet only in having no name fields, no purpose and no feedback band,
+   and in carrying a way back to the section it hangs under. */
+function buildNotesCover() {
+  const p = WORKSHEET.parent;
+  return `
+    <header class="cover cover-notes" id="top">
+      <p class="kicker">
+        <a class="back" href="${p.href}">← <span class="en">${text(p.en)}</span>
+        <span class="zh">${text(p.zh)}</span></a>
+      </p>
+      <h1>
+        <span class="en">${text(WORKSHEET.title)}</span>
+        <span class="zh">${text(WORKSHEET.titleZh)}</span>
+      </h1>
+      ${WORKSHEET.intro ? BLOCKS.note(WORKSHEET.intro) : ''}
+    </header>`;
+}
 
 function buildCover() {
   const p = WORKSHEET.purpose;
@@ -317,22 +374,30 @@ function buildNav() {
       <span class="zh">${text(s.zh)}</span></span>
     </a></li>`).join('');
 
+  const top = WORKSHEET.purpose
+    ? `<li><a href="#top" data-target="top">
+         <span class="n">·</span>
+         <span class="t"><span class="en">Purpose</span>
+         <span class="zh">使用目的</span></span>
+       </a></li>`
+    : `<li><a href="#top" data-target="top">
+         <span class="n">·</span>
+         <span class="t"><span class="en">${text(WORKSHEET.title)}</span>
+         <span class="zh">${text(WORKSHEET.titleZh)}</span></span>
+       </a></li>`;
+
+  const feedback = WORKSHEET.feedback
+    ? `<li><a href="#feedback" data-target="feedback">
+         <span class="n">✓</span>
+         <span class="t"><span class="en">Teacher Feedback</span>
+         <span class="zh">教師回饋</span></span>
+       </a></li>`
+    : '';
+
   return `
     <nav class="toc" aria-label="Sections">
       <p class="toc-head">Contents 目錄</p>
-      <ul>
-        <li><a href="#top" data-target="top">
-          <span class="n">·</span>
-          <span class="t"><span class="en">Purpose</span>
-          <span class="zh">使用目的</span></span>
-        </a></li>
-        ${links}
-        <li><a href="#feedback" data-target="feedback">
-          <span class="n">✓</span>
-          <span class="t"><span class="en">Teacher Feedback</span>
-          <span class="zh">教師回饋</span></span>
-        </a></li>
-      </ul>
+      <ul>${top}${links}${feedback}</ul>
     </nav>`;
 }
 
@@ -343,9 +408,17 @@ document.title = `${WORKSHEET.title} · ${WORKSHEET.titleZh}`;
 $('#nav').appendChild(el(buildNav()));
 
 const doc = $('#doc');
-doc.appendChild(el(buildCover()));
+doc.appendChild(el(WORKSHEET.purpose ? buildCover() : buildNotesCover()));
 WORKSHEET.sections.forEach((s) => doc.appendChild(el(buildSection(s))));
-doc.appendChild(el(buildFeedback()));
+if (WORKSHEET.feedback) doc.appendChild(el(buildFeedback()));
+
+/* A session page starts life empty and is filled in after the lesson. Saying
+   so beats an unexplained blank. */
+if (!WORKSHEET.sections.length) {
+  doc.appendChild(el(`
+    <p class="empty"><span class="en">No notes written up yet.</span>
+    <span class="zh">本次課堂筆記尚未整理。</span></p>`));
+}
 
 /* Highlight the section being read. rootMargin pulls the trip-line up to just
    below the sticky header so a heading counts as "current" once it reaches

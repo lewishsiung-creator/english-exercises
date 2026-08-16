@@ -405,9 +405,25 @@ pricing, cash flow and recruitment to a two-minute executive introduction.
   into the top bar. **Print** puts each numbered section on its own page.
 - **Lesson notes live alongside the worksheet.** What was actually said in a
   session — vocabulary that came up, corrections, polished versions of the
-  client's own sentences — goes into the relevant section behind a `part`
-  divider, so the printed worksheet and the record of the discussion stay
-  visibly separate. Section 1 carries the first lesson's notes.
+  client's own sentences — belongs with the section it relates to. Short
+  write-ups go inline behind a `part` divider; a full session gets its own
+  dated page. Either way the printed worksheet and the record of the
+  discussion stay visibly separate.
+
+### Session pages
+
+A session write-up can run longer than the worksheet section it hangs under,
+so each one gets a dated directory:
+
+```
+public/business-clarity/2026-08-10/
+```
+
+The page shares the worksheet's `style.css` and `render.js` and supplies only
+its own `content.js`. That file leaves out `fields`, `purpose` and `feedback`
+and adds a `parent` link instead — the renderer takes the absence of `purpose`
+as the signal to draw a session cover rather than a worksheet cover. Sessions
+are listed from the parent section with a `sessions` block.
 
 ## Three Habits That Build Wealth — adult, teacher-led
 
@@ -996,6 +1012,7 @@ public/phonics-handbook/  自然發音學習手冊, the interactive handbook
 public/math/              Number Lab, the Grades 1–3 math practice
 public/confidence-talk/   the 2026/07/11 class notes, ages 10–12
 public/business-clarity/  the business worksheet
+public/business-clarity/2026-08-10/  one session's notes
 public/wealth-habits/     the three-habits lesson
 public/wealth-habits/img/ its four photographs
 public/happy-sexy-millionaire/  the business-English reading lesson

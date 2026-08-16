@@ -590,6 +590,20 @@ const WORKSHEET = {
             { en: 'unique value', zh: '獨特價值' },
           ],
         },
+
+        {
+          t: 'sessions',
+          en: 'Session Notes',
+          zh: '各次課堂筆記',
+          items: [
+            {
+              href: '2026-08-10/',
+              date: '2026/08/10',
+              en: 'Education, autonomy and responsibility',
+              zh: '教育、自主與責任',
+            },
+          ],
+        },
       ],
     },
 
