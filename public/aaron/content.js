@@ -492,7 +492,7 @@ const NOTEBOOK = {
 
         {
           t: 'link',
-          href: '../book-club/#ladder',
+          href: 'book-club/#ladder',
           en: 'The book behind today’s homework',
           zh: '今天作業出處的那本書',
           noteEn: 'The homework question comes from The Wealth Ladder in the book discussion guide — Nick Maggiulli’s argument that your financial strategy should match your wealth level rather than your income. The guide has the full summary and the vocabulary that goes with it.',

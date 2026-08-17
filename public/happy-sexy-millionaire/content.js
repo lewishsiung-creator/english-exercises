@@ -618,7 +618,7 @@ const LESSON = {
         },
         {
           t: 'link',
-          href: '../book-club/',
+          href: '../aaron/book-club/',
           en: 'Take it further: the book discussion guide',
           zh: '再往下談：雙語讀書討論手冊',
           noteEn: 'This book is one of four. The guide has three discussion questions and the concept vocabulary for each — including the social-media and self-worth questions this lesson does not reach.',

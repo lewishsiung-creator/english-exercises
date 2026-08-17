@@ -9,7 +9,7 @@ bilingual business worksheet at `/business-clarity/`, a fifteen-chapter
 basic grammar course for adults at `/grammar/`, an interactive
 lesson for working adults at `/wealth-habits/`, a business-English reading
 lesson at `/happy-sexy-millionaire/`, a four-book discussion guide at
-`/book-club/`, reading-aloud practice
+`/aaron/book-club/`, reading-aloud practice
 built on a bilingual speech and its election Q&A at `/campaign-speech/`,
 TOEIC grammar
 practice at `/toeic-grammar/`, a homework review of one student's own
@@ -613,6 +613,18 @@ The 雙語讀書討論手冊 as a page: four books, three discussion questions e
 the concept vocabulary behind them. Built for a book club or a one-to-one
 session where the talking is the point.
 
+It lives at `/aaron/book-club/`, under
+[Aaron's notebook](#aarons-notebook--adult-one-to-one-kept-over-time), because
+that is the client it is being used with. Two consequences worth knowing. It
+carries `noindex, nofollow` even though nothing on it names anyone: a page
+indexed at `/aaron/book-club/` would advertise that `/aaron/` exists, which is
+the one thing the notebook's own `noindex` is there to prevent. And its cover
+carries a breadcrumb back up to the notebook, the same pattern
+`/business-clarity/2026-08-10/` uses. If the guide is ever wanted as general
+material again, moving the folder back to `public/book-club/` means fixing four
+relative paths — the logo in `index.html`, the `link` block in `content.js`, and
+the two blocks that point at it from `/happy-sexy-millionaire/` and `/aaron/`.
+
 | # | Book | The argument |
 | --- | --- | --- |
 | 01 | Happy Sexy Millionaire · Steven Bartlett | The cost of chasing the wrong goals |
@@ -1115,7 +1127,7 @@ Two things are new in this copy of the renderer:
   whole hour kept making. The defaults are unchanged, so nothing else breaks.
 - **A `link` block**, the same one the two Happy Sexy Millionaire pages use.
   Session 1's homework question comes from *The Wealth Ladder*, so the block
-  points at [`/book-club/#ladder`](public/book-club/) for the summary and the
+  points at [`book-club/#ladder`](public/aaron/book-club/) for the summary and the
   vocabulary behind it — and because that page folds, the anchor opens the right
   book rather than landing on a closed heading.
 
@@ -1140,7 +1152,6 @@ public/grammar/ch14/      Nouns and Modifiers — the third
 public/wealth-habits/     the three-habits lesson
 public/wealth-habits/img/ its four photographs
 public/happy-sexy-millionaire/  the business-English reading lesson
-public/book-club/         the four-book discussion guide
 public/campaign-speech/   the speech and election Q&A
 public/toeic-grammar/     the TOEIC Part 5 & 6 practice
 public/sentence-upgrades/ the 2026/07/25 homework review
@@ -1149,6 +1160,7 @@ public/exam-writing/      the 109–115 學測 essay survey
 public/ielts-part3/       the IELTS Part 3 structure practice
 public/anny/              Anny's notebook — one entry per discussion
 public/aaron/             Aaron's notebook — same machinery, its own sessions
+public/aaron/book-club/   the four-book discussion guide, under that notebook
 public/landscape-portfolio/      the portfolio — filled in as the Ando study
 public/landscape-portfolio/content.starter.js  the same page, emptied
 public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS.md
@@ -1299,7 +1311,7 @@ a list of `options`, the index of the right one in `answer`, and a `why` that
 appears once it is found.
 
 **Book Discussion Guide.** The four books live in
-[`public/book-club/content.js`](public/book-club/content.js), one entry per
+[`public/aaron/book-club/content.js`](public/aaron/book-club/content.js), one entry per
 book in `GUIDE.books`. Every string is an `en`/`zh` pair, and there are no
 answers to key in — the block types are `book` (author, tagline, summary
 paragraphs, who it is for), `discuss` (a question plus the `starters` to reveal
@@ -1481,7 +1493,6 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/business-clarity/> for the business worksheet,
 <http://localhost:8000/wealth-habits/> for the three-habits lesson,
 <http://localhost:8000/happy-sexy-millionaire/> for the reading lesson,
-<http://localhost:8000/book-club/> for the book discussion guide,
 <http://localhost:8000/campaign-speech/> for the speech,
 <http://localhost:8000/toeic-grammar/> for the TOEIC practice,
 <http://localhost:8000/sentence-upgrades/> for the homework review,
@@ -1490,7 +1501,8 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/ielts-part3/> for the IELTS Part 3 practice, or
 <http://localhost:8000/landscape-portfolio/> for the portfolio template.
 The two notebooks are <http://localhost:8000/anny/> and
-<http://localhost:8000/aaron/>.
+<http://localhost:8000/aaron/>, and the book discussion guide is under the
+second of those, at <http://localhost:8000/aaron/book-club/>.
 
 ## Live sites
 

@@ -263,6 +263,38 @@ body.zh-all .zh-chip { display: none; }
 
 /* ---------------- cover ---------------- */
 
+/* A way back up to the notebook this guide hangs under. Signage, so both
+   languages show at once and there is no 中 chip to tap. */
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  margin: 0 0 16px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  letter-spacing: .04em;
+}
+.crumb-sep { color: var(--ink-faint); }
+
+.back {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  color: var(--navy);
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.back:hover { text-decoration: underline; }
+.crumb-zh {
+  font-family: var(--font-zh);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-faint);
+}
+
 main { max-width: var(--measure); padding-bottom: 6rem; }
 
 .cover { padding: 40px 0 10px; }
@@ -816,7 +848,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
    paper rather than a list of headings. */
 
 @media print {
-  .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .reveal, .hint,
+  .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .reveal, .hint, .crumbs,
   .fold { display: none !important; }
   body { font-size: 11pt; background: #fff; }
   .shell { display: block; padding: 0; }
@@ -836,7 +868,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
    同一段樣式複製到每一頁。各頁的色票變數名稱不一樣（兒童頁沒有 --ink-faint、
    成人頁沒有 --blue），所以每個顏色都串一條 fallback，缺哪一個都還是看得到。
 
-   標誌是全站唯一的共用圖檔，放在 public/logo.png，子頁用 ../logo.png 取用。
+   標誌是全站唯一的共用圖檔，放在 public/logo.png；這一頁在 /aaron/ 底下再一層，所以用 ../../logo.png 取用。
    它本身就是連結，所以要把文字連結那條底線和左邊距擋掉——文字連結的樣式因此
    收窄成 .site-foot p a，不再套用到整個站尾裡的每個 a。 */
 

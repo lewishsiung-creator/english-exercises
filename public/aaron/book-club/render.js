@@ -157,10 +157,25 @@ const BLOCKS = {
 
 // ---------------------------------------------------------------- build
 
+/* The breadcrumb is signage, so it is bilingual at all times and never hides
+   behind a chip — the same reason the `link` block does not. */
+function buildCrumbs() {
+  if (!GUIDE.crumbs || !GUIDE.crumbs.length) return '';
+  return `
+    <nav class="crumbs" aria-label="Breadcrumb">
+      ${GUIDE.crumbs.map((c) => `
+        <a class="back" href="${text(c.href)}"><span class="crumb-go" aria-hidden="true">←</span>
+          <span class="crumb-en">${text(c.en)}</span>
+          <span class="crumb-zh">${text(c.zh)}</span></a>`)
+        .join('<span class="crumb-sep" aria-hidden="true">/</span>')}
+    </nav>`;
+}
+
 function buildCover() {
   const i = GUIDE.intro;
   return `
     <header class="cover" id="top">
+      ${buildCrumbs()}
       <p class="kicker">${text(GUIDE.kicker)}</p>
       <h1><span class="en">${text(GUIDE.title)}</span>
         <button class="zh-chip" title="顯示中文">中</button>

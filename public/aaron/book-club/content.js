@@ -39,6 +39,12 @@ const GUIDE = {
   titleZh: '雙語讀書討論手冊',
   kicker: '四本改變人生視角的好書',
 
+  /* This guide sits under Aaron's notebook, so it carries a way back up to it.
+     One link rather than two: there is no intermediate section to return to. */
+  crumbs: [
+    { href: '../', en: 'Aaron’s Notebook', zh: 'Aaron 的英文筆記' },
+  ],
+
   source: {
     en: 'Four Books That Reframe How You See Life. Each entry is a summary written for discussion, not an extract from the book.',
     zh: '四本改變人生視角的好書。每一則書介皆為供討論使用的摘要，並非書中原文。',
@@ -90,7 +96,7 @@ const GUIDE = {
         },
         {
           t: 'link',
-          href: '../happy-sexy-millionaire/',
+          href: '../../happy-sexy-millionaire/',
           en: 'A full lesson on this book',
           zh: '這本書的完整課程',
           noteEn: 'The same story as a reading passage, with the money vocabulary, gap fill and a two-minute speaking task.',
