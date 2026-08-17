@@ -12,10 +12,11 @@
 
    Every English sentence on the page has a Chinese counterpart:
      eg    → egZh     the example sentence on a collocation card
-     text  → textZh   a gap-fill sentence. The Chinese keeps the ＿＿ blank and
-                      deliberately does NOT paraphrase the missing phrase — the
-                      learner still has to choose the English. Translating these
-                      in full would hand over the answer.
+     text  → textZh   a gap-fill sentence, translated as a complete Chinese
+                      sentence with the missing phrase expressed in full. That
+                      means the Chinese carries the answer, so on these items
+                      the 中 tap is a hint the teacher chooses to give rather
+                      than something the learner opens for comprehension.
      starters, frames, checklist are lists of `{ en, zh }` rather than bare
      strings, since each line needs its own translation.
 
@@ -168,28 +169,28 @@ const LESSON = {
           items: [
             {
               text: 'We ___ opinions in that meeting. What we lacked was a decision.',
-              textZh: '那場會議上，我們＿＿意見。我們缺的是決定。',
+              textZh: '那場會議上，我們不缺意見。我們缺的是決定。',
               options: ['had no shortage of', 'had little value in', 'translated into'],
               answer: 0,
               why: { en: '“no shortage of” + a noun = there was plenty of it.', zh: '「no shortage of」＋名詞＝某樣東西很多。' },
             },
             {
               text: 'His CV is impressive, but ___ what he claims and what he can show is wide.',
-              textZh: '他的履歷很亮眼，但他所聲稱的和他能拿出來的，＿＿很大。',
+              textZh: '他的履歷很亮眼，但他所聲稱的和他能拿出來的，兩者之間的落差很大。',
               options: ['a clear indicator of', 'the gap between', 'there is no shortage of'],
               answer: 1,
               why: { en: 'The frame is “the gap between A and B”.', zh: '句型是「the gap between A and B」。' },
             },
             {
               text: 'A report nobody reads ___, however carefully it was written.',
-              textZh: '一份沒有人讀的報告，不管寫得多仔細，都＿＿。',
+              textZh: '一份沒有人讀的報告，不管寫得多仔細，價值都不大。',
               options: ['builds wealth', 'has little value', 'translates advice'],
               answer: 1,
               why: { en: '“have little value” = it is not worth much.', zh: '「have little value」＝價值不大。' },
             },
             {
               text: 'Checking your account balance at midnight is ___ financial anxiety.',
-              textZh: '半夜還在查帳戶餘額，是財務焦慮的＿＿。',
+              textZh: '半夜還在查帳戶餘額，是財務焦慮的明確指標。',
               options: ['a clear indicator of', 'no shortage of', 'personal finance'],
               answer: 0,
               why: { en: '“a clear indicator of” + a noun = it is strong evidence of it.', zh: '「a clear indicator of」＋名詞＝某事的明確證據。' },
@@ -388,28 +389,28 @@ const LESSON = {
           items: [
             {
               text: 'The promotion ___ my results. It was about who my manager trusted.',
-              textZh: '那次升遷和我的績效＿＿。重點在於我的主管信任誰。',
+              textZh: '那次升遷和我的績效關係不大。重點在於我的主管信任誰。',
               options: ['had little to do with', 'paid dividends on', 'took seriously'],
               answer: 0,
               why: { en: '“have little to do with” = it was not really the reason.', zh: '「have little to do with」＝那並不是真正的原因。' },
             },
             {
               text: 'She’s ___, so we moved the review to eight in the morning.',
-              textZh: '她是＿＿，所以我們把檢討會議改到早上八點。',
+              textZh: '她是早起的人，所以我們把檢討會議改到早上八點。',
               options: ['a night owl', 'an early riser', 'thriving amid disorder'],
               answer: 1,
               why: { en: 'An early riser gets up early; a night owl works late.', zh: 'early riser 是早起的人；night owl 則晚上工作。' },
             },
             {
               text: 'Learning to write clean email early in your career ___ for thirty years.',
-              textZh: '在職涯早期就學會把 email 寫得乾淨清楚，接下來三十年都會＿＿。',
+              textZh: '在職涯早期就學會把 email 寫得乾淨清楚，接下來三十年都會持續帶來回報。',
               options: ['raises your heart rate', 'pays dividends', 'has little value'],
               answer: 1,
               why: { en: '“pay dividends” = keep returning value long afterwards.', zh: '「pay dividends」＝長期持續帶來回報。' },
             },
             {
               text: 'You don’t need a gym. Walk fast enough to ___.',
-              textZh: '你不需要上健身房。走路的速度只要快到足以＿＿就行了。',
+              textZh: '你不需要上健身房。走路的速度只要快到足以提高心率就行了。',
               options: ['produce a brisk walk', 'raise your heart rate', 'invest your mood'],
               answer: 1,
               why: { en: 'Heart rate goes up: “raise your heart rate”.', zh: '心率提高：「raise your heart rate」。' },
@@ -631,28 +632,28 @@ const LESSON = {
           items: [
             {
               text: 'I asked three people to read the proposal. I wanted to know whether it would ___.',
-              textZh: '我請三個人看過那份提案，我想知道它是否＿＿。',
+              textZh: '我請三個人看過那份提案，我想知道它是否經得起檢驗。',
               options: ['withstand scrutiny', 'have my interests at heart', 'keep me grounded'],
               answer: 0,
               why: { en: 'Something that survives hard questions “withstands scrutiny”.', zh: '經得起嚴格提問，就是「withstand scrutiny」。' },
             },
             {
               text: 'Listening to advice is not the same as ___.',
-              textZh: '聽取建議不等於＿＿。',
+              textZh: '聽取建議不等於放棄自己的判斷。',
               options: ['seeking career advice', 'surrendering your judgment', 'getting a second opinion'],
               answer: 1,
               why: { en: '“surrender your judgment” = give up deciding for yourself.', zh: '「surrender your judgment」＝放棄自己做判斷。' },
             },
             {
               text: 'He said no to the deal a week before it collapsed. That call ___.',
-              textZh: '那筆交易破局的前一週，他就拒絕了。那個判斷＿＿。',
+              textZh: '那筆交易破局的前一週，他就拒絕了。那個判斷讓我免於一場災難。',
               options: ['pressure-tested me', 'spared me from disaster', 'held me back'],
               answer: 1,
               why: { en: '“spare someone from disaster” = save them from something very bad.', zh: '「spare someone from disaster」＝使某人免於重大災難。' },
             },
             {
               text: 'She is not the most senior person I know, but she ___, and she says so.',
-              textZh: '她不是我認識的人裡職位最高的，但她＿＿，而且她會直說。',
+              textZh: '她不是我認識的人裡職位最高的，但她真心為我著想，而且她會直說。',
               options: ['has my interests at heart', 'withstands scrutiny', 'invests time in me'],
               answer: 0,
               why: { en: '“have someone’s interests at heart” = genuinely want good things for them.', zh: '「have someone’s interests at heart」＝真心為某人著想。' },
@@ -862,35 +863,35 @@ const LESSON = {
           items: [
             {
               text: 'He only ever mentions the two funds that went up. That’s ___.',
-              textZh: '他每次只提那兩檔上漲的基金。這就是＿＿。',
+              textZh: '他每次只提那兩檔上漲的基金。這就是倖存者偏誤。',
               options: ['survivorship bias', 'a taboo subject', 'compensation'],
               answer: 0,
               why: { en: 'Only the winners are visible — the losses left the story.', zh: '只看得到贏家，虧損從故事裡消失了。' },
             },
             {
               text: 'Nobody here discusses salary. It’s ___.',
-              textZh: '這裡沒有人談薪水，這是＿＿。',
+              textZh: '這裡沒有人談薪水，這是禁忌話題。',
               options: ['a model worth imitating', 'a taboo subject', 'financial habits'],
               answer: 1,
               why: { en: 'A subject people avoid is “a taboo subject”.', zh: '大家避而不談的主題就是「a taboo subject」。' },
             },
             {
               text: 'I never decided to spend like that. I just ___ of the people I worked with.',
-              textZh: '我從來沒有決定要那樣花錢。我只是＿＿跟我共事的那些人。',
+              textZh: '我從來沒有決定要那樣花錢。我只是吸收了那些跟我共事的人的行為模式。',
               options: ['remained skeptical', 'benchmarked the budget', 'absorbed the behaviour'],
               answer: 2,
               why: { en: '“absorb someone’s behaviour” = pick it up without deciding to.', zh: '「absorb someone’s behaviour」＝不知不覺就學了過來。' },
             },
             {
               text: 'Comparing numbers with a friend let me ___ against something real.',
-              textZh: '和朋友對照彼此的數字，讓我能拿一個真實的參考點來＿＿。',
+              textZh: '和朋友對照彼此的數字，讓我能拿一個真實的參考點來比較並評估自己的預算。',
               options: ['benchmark my budget', 'expose a taboo', 'copy consciously'],
               answer: 0,
               why: { en: '“benchmark” = compare against a reference point.', zh: '「benchmark」＝拿來與參考基準比較。' },
             },
             {
               text: 'Talk about money often and calmly — ___ rather than an event.',
-              textZh: '常常談錢，而且平靜地談——＿＿，而不是把它當成一件特別的事。',
+              textZh: '常常談錢，而且平靜地談——讓它成為日常，而不是把它當成一件特別的事。',
               options: ['remain skeptical', 'make it routine', 'step away'],
               answer: 1,
               why: { en: '“make something routine” = turn it into a normal, regular thing.', zh: '「make something routine」＝讓它變成平常、固定的事。' },
