@@ -63,10 +63,6 @@ const BLOCKS = {
   book: (b) => `
     <div class="book">
       <p class="book-by"><span class="book-by-label">Author</span> ${text(b.author)}</p>
-      <div class="pair book-tag" data-zh>
-        <p class="en">${text(b.taglineEn)}<button class="zh-chip" title="顯示中文">中</button></p>
-        <p class="zh">${text(b.taglineZh)}</p>
-      </div>
       <h4 class="label"><span class="en">Summary</span>
         <button class="zh-chip" title="顯示中文">中</button>
         <span class="zh">書籍介紹</span></h4>
@@ -185,22 +181,35 @@ function buildCover() {
     </header>`;
 }
 
-function buildBook(s) {
+/* A book. The heading is a button, so the fold works from the keyboard and
+   announces itself; the body carries `.step-body` and is hidden by the `folded`
+   class rather than the `hidden` attribute, so print can override it and unfold
+   everything. The tagline sits outside the body, so a folded book still says
+   what it argues. */
+function buildBook(s, open) {
   const blocks = s.blocks.map((b) => {
     const fn = BLOCKS[b.t];
     if (!fn) throw new Error(`Unknown block type "${b.t}" in ${s.id}`);
     return fn(b);
   }).join('');
 
+  const tag = s.tagEn ? `
+    <p class="step-tag">${text(s.tagEn)}<span class="zh">${text(s.tagZh)}</span></p>` : '';
+
   return `
-    <section class="step" id="${s.id}" aria-labelledby="h-${s.id}">
-      <h2 class="step-head" id="h-${s.id}">
-        <span class="n">${text(s.n)}</span>
-        <span class="titles"><span class="en">${text(s.en)}</span>
-          <button class="zh-chip" title="顯示中文">中</button>
-          <span class="zh">${text(s.zh)}</span></span>
+    <section class="step ${open ? '' : 'folded'}" id="${s.id}">
+      <h2 class="step-head">
+        <button class="step-btn" aria-expanded="${open}" aria-controls="body-${s.id}">
+          <span class="n">${text(s.n)}</span>
+          <span class="titles"><span class="en">${text(s.en)}</span>
+            <span class="zh">${text(s.zh)}</span></span>
+          <span class="fold" aria-hidden="true"></span>
+        </button>
       </h2>
-      ${blocks}
+      ${tag}
+      <div class="step-body" id="body-${s.id}">
+        ${blocks}
+      </div>
     </section>`;
 }
 
@@ -225,7 +234,45 @@ $('#nav').appendChild(el(buildNav()));
 
 const doc = $('#doc');
 doc.appendChild(el(buildCover()));
-GUIDE.books.forEach((s) => doc.appendChild(el(buildBook(s))));
+
+/* Open the book named in the URL, or the first one. Unlike the notebook page,
+   which opens its newest session, this guide is not in date order — the way in
+   is book 01. A hash that matches nothing falls back to the same place, so an
+   old link cannot land on a page with everything shut. */
+const wanted = decodeURIComponent(location.hash.slice(1));
+const books = GUIDE.books;
+const openId = books.some((s) => s.id === wanted)
+  ? wanted
+  : (books.length ? books[0].id : '');
+
+books.forEach((s) => doc.appendChild(el(buildBook(s, s.id === openId))));
+
+// ---------------------------------------------------------------- folding
+
+function setFold(section, open) {
+  section.classList.toggle('folded', !open);
+  $('.step-btn', section).setAttribute('aria-expanded', String(open));
+}
+
+/* Two ways to open a book, and they mean different things.
+
+   `openBook` is "take me to this one" — the contents list, the URL hash, and
+   the four links in The Common Thread. It folds the others, so following a link
+   lands on one book rather than on that book plus whatever happened to be open
+   already.
+
+   Tapping a heading is the other way, and it is deliberately additive: nothing
+   else closes, so two books can sit open side by side when a question from one
+   is worth putting next to a question from another. */
+function openBook(id, sole = true) {
+  const section = document.getElementById(id);
+  // "#top" is the cover, and an unknown id is an old link — neither is a book,
+  // and neither should fold the page down on its way past.
+  if (!section || !section.classList.contains('step')) return null;
+  if (sole) $$('.step').forEach((s) => { if (s !== section) setFold(s, false); });
+  setFold(section, true);
+  return section;
+}
 
 // ---------------------------------------------------------------- Chinese
 
@@ -259,8 +306,22 @@ doc.addEventListener('click', (e) => {
   const say = t.closest('.say');
   if (say) { e.stopPropagation(); speak(say.dataset.say); return; }
 
-  // ---- a link out of the page keeps its ordinary behaviour
-  if (t.closest('a')) return;
+  // ---- a link keeps its ordinary behaviour; one pointing at a book on this
+  //      page opens it first, or the jump lands on a folded heading
+  const a = t.closest('a');
+  if (a) {
+    const to = a.getAttribute('href') || '';
+    if (to.startsWith('#')) openBook(decodeURIComponent(to.slice(1)));
+    return;
+  }
+
+  // ---- fold / unfold a book
+  const head = t.closest('.step-btn');
+  if (head) {
+    const section = head.closest('.step');
+    setFold(section, section.classList.contains('folded'));
+    return;
+  }
 
   // ---- reveal Chinese for one line
   const chip = t.closest('.zh-chip');
@@ -360,9 +421,17 @@ $('#panelClose').addEventListener('click', () => setPanel(false));
 
 $('#zhAll').addEventListener('change', (e) => setAllZh(e.target.checked));
 
-// Open every glossary card and every list of useful language at once — for
-// going over a book together, or for picking a session up in the middle.
+// Unfold the whole guide — for looking across the four books, or for printing.
+$('#openAll').addEventListener('click', () => {
+  $$('.step').forEach((s) => setFold(s, true));
+  setPanel(false);
+});
+
+/* Open every glossary card and every list of useful language at once — for
+   going over a book together, or for picking a session up in the middle. Books
+   are unfolded first, or the cards would be turned over behind a closed lid. */
 $('#showAll').addEventListener('click', () => {
+  $$('.step').forEach((s) => setFold(s, true));
   $$('.card').forEach((c) => { c.classList.add('open'); c.setAttribute('aria-expanded', 'true'); });
   $$('.starters').forEach((s) => { s.hidden = false; });
   $$('.reveal').forEach((r) => r.setAttribute('aria-expanded', 'true'));
@@ -376,16 +445,34 @@ $('#reset').addEventListener('click', () => location.reload());
 
 const links = new Map($$('.toc a').map((a) => [a.dataset.target, a]));
 
-const spy = new IntersectionObserver((entries) => {
-  entries.forEach((e) => {
-    if (!e.isIntersecting) return;
-    links.forEach((a) => a.classList.remove('here'));
-    const a = links.get(e.target.id);
-    if (a) { a.classList.add('here'); a.scrollIntoView({ block: 'nearest' }); }
-  });
-}, { rootMargin: '-72px 0px -70% 0px' });
+/* A contents link opens its book before the browser jumps to it — otherwise the
+   anchor lands on a folded heading and nothing appears to happen. The
+   hashchange handler below would do it too, but only if the hash actually
+   changes: clicking the link for the book already showing does not fire one. */
+$('#nav').addEventListener('click', (e) => {
+  const a = e.target.closest('a');
+  if (!a) return;
+  openBook(a.dataset.target);
+  closeNav();
+});
 
-[$('#top'), ...$$('.step')].forEach((s) => spy.observe(s));
+/* The bar marks the book being read by measuring rather than with an
+   IntersectionObserver: an open book is several screens tall while the folded
+   ones are a heading each, so at any moment several straddle a sensible trigger
+   band and the observer reports whichever fired last. */
+const marks = [$('#top'), ...$$('.step')];
+
+function markHere() {
+  const line = 90;
+  let here = marks[0];
+  marks.forEach((m) => { if (m.getBoundingClientRect().top <= line) here = m; });
+  links.forEach((a) => a.classList.remove('here'));
+  const a = links.get(here.id);
+  if (a) { a.classList.add('here'); a.scrollIntoView({ block: 'nearest' }); }
+}
+
+markHere();
+addEventListener('scroll', markHere, { passive: true });
 
 const navToggle = $('#navToggle');
 navToggle.addEventListener('click', () => {
@@ -398,7 +485,6 @@ function closeNav() {
   navToggle.setAttribute('aria-expanded', 'false');
 }
 
-$('#nav').addEventListener('click', (e) => { if (e.target.closest('a')) closeNav(); });
 $('.nav-scrim').addEventListener('click', closeNav);
 document.addEventListener('keydown', (e) => {
   if (e.key !== 'Escape') return;
@@ -406,3 +492,12 @@ document.addEventListener('keydown', (e) => {
   setPanel(false);
   speechSynthesis.cancel();
 });
+
+// Arriving on an anchor from outside, or editing the hash by hand.
+addEventListener('hashchange', () => {
+  const section = openBook(decodeURIComponent(location.hash.slice(1)));
+  if (section) section.scrollIntoView();
+});
+
+/* Print is the handout, and a handout with folded books is blank paper. */
+addEventListener('beforeprint', () => $$('.step').forEach((s) => setFold(s, true)));

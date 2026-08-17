@@ -304,23 +304,35 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   color: var(--ink-faint);
 }
 .source .zh { font-size: .95em; color: var(--ink-faint); margin-top: 2px; }
-/* ---------------- steps ---------------- */
+/* ---------------- books ----------------
 
-.step { padding-top: 46px; }
+   Each book is a folded section, the same way a session folds on the notebook
+   page. The heading is the control, so it has to read as one: the whole bar is
+   a button, it lights up on hover, and the chevron on the right turns. */
 
-.step-head {
+.step { padding-top: 40px; }
+
+.step-head { margin: 0; font-size: 1rem; font-weight: 400; }
+
+.step-btn {
   display: grid;
-  grid-template-columns: 2.4rem 1fr;
+  grid-template-columns: 2.4rem 1fr 1.6rem;
   gap: 14px;
   align-items: start;
-  margin: 0 0 22px;
-  padding-bottom: 14px;
+  width: 100%;
+  margin: 0;
+  padding: 0 0 14px;
+  background: none;
+  border: 0;
   border-bottom: 2px solid var(--gold-line);
-  font-size: 1.55rem;
-  font-weight: 600;
-  line-height: 1.25;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
 }
-.step-head .n {
+.step-btn:hover .titles .en { color: var(--navy); }
+
+.step-btn .n {
   font-family: var(--font-ui);
   font-size: 1rem;
   font-weight: 700;
@@ -329,10 +341,54 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   border-radius: 8px;
   text-align: center;
   padding: 4px 0;
-  margin-top: 5px;
+  margin-top: 6px;
 }
-.step-head .titles .en { display: inline; }
-.step-head .titles .zh { font-size: .95rem; font-weight: 400; margin-top: 4px; }
+.step-btn .titles .en {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+/* A book's Chinese title stays visible at all times, unlike every other line on
+   the page. It is the book's name — how it is asked for and looked up — not a
+   translation the reader is meant to try without. There is no 中 chip either,
+   because the heading is already a button and a button inside a button is not
+   a thing. */
+.step-btn .titles .zh {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  margin-top: 3px;
+}
+
+/* A chevron drawn in CSS: two borders on a rotated square. Down when the book
+   is open, right when it is folded. */
+.step-btn .fold {
+  width: .6rem;
+  height: .6rem;
+  margin: 1rem auto 0;
+  border-right: 2px solid var(--ink-faint);
+  border-bottom: 2px solid var(--ink-faint);
+  transform: rotate(45deg);
+  transition: transform .18s ease;
+}
+.step.folded .step-btn .fold { transform: rotate(-45deg); }
+.step.folded .step-btn { border-bottom-color: var(--line); }
+.step.folded .step-body { display: none; }
+
+.step-body { padding-top: 22px; }
+
+/* The tagline sits under a folded heading, so a book can be recognised without
+   opening it. */
+.step-tag {
+  margin: 12px 0 0;
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  line-height: 1.6;
+  color: var(--ink-faint);
+}
+.step-tag .zh { display: block; font-family: var(--font-zh); font-size: .95em; }
 
 .lead {
   margin: 0 0 24px;
@@ -374,17 +430,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   margin-bottom: 2px;
 }
 
-.book-tag {
-  margin: 12px 0 0;
-  padding-left: 12px;
-  border-left: 3px solid var(--gold-line);
-  font-size: 1.02rem;
-  font-style: italic;
-  color: var(--ink-soft);
-}
-.book-tag .zh { font-style: normal; }
-
-.book .label { margin-top: 24px; }
+.book .label { margin-top: 0; }
 .book-p { margin: 0 0 12px; }
 .book-p:last-of-type { margin-bottom: 0; }
 
@@ -751,7 +797,9 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 @media (max-width: 620px) {
   body { font-size: 17px; }
   .cover h1 { font-size: 1.8rem; }
-  .step-head { font-size: 1.3rem; grid-template-columns: 2rem 1fr; gap: 10px; }
+  .step-btn { grid-template-columns: 2rem 1fr 1.2rem; gap: 10px; }
+  .step-btn .titles .en { font-size: 1.25rem; }
+  .step-btn .titles .zh { font-size: .95rem; }
   /* Stacked, the two halves need a visible seam or they read as one list. */
   .match-grid { grid-template-columns: 1fr; }
   .match .col-b { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--rule); }
@@ -762,15 +810,20 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 /* ---------------- print ----------------
 
    A handout: the guide without the machinery. Everything hidden behind a tap
-   is opened, and anything that only works with a mouse is dropped. */
+   is opened, and anything that only works with a mouse is dropped. A
+   `beforeprint` handler in render.js unfolds every book first — the rules below
+   repeat that, so a browser that prints without firing the event still produces
+   paper rather than a list of headings. */
 
 @media print {
-  .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .reveal,
-  .hint { display: none !important; }
+  .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .reveal, .hint,
+  .fold { display: none !important; }
   body { font-size: 11pt; background: #fff; }
   .shell { display: block; padding: 0; }
   main { max-width: none; }
   .zh, .card-back, .starters { display: block !important; }
+  .step.folded .step-body { display: block; }
+  .step-btn { grid-template-columns: 2.4rem 1fr; }
   /* One book to a page — the guide is used a book at a time. */
   .step { break-before: page; padding-top: 0; }
   .cards { grid-template-columns: repeat(2, 1fr); }

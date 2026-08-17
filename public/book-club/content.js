@@ -16,6 +16,10 @@
    starters — stays bilingual, since a second tap there would only be in the
    way.
 
+   Each book folds. `tagEn` / `tagZh` sit on the book itself rather than in a
+   block, because they are the one line that has to stay readable while the book
+   is shut — a closed section is a title, a Chinese title and that line.
+
    Book 01 has a companion page: /happy-sexy-millionaire/ takes the same book
    through a reading passage and the language work. The `link` block is what
    points at it.
@@ -61,12 +65,12 @@ const GUIDE = {
       n: '01',
       en: 'Happy Sexy Millionaire',
       zh: '《快樂性感的百萬富翁》',
+      tagEn: 'The cost of chasing the wrong goals',
+      tagZh: '追求錯誤目標的代價',
       blocks: [
         {
           t: 'book',
           author: 'Steven Bartlett',
-          taglineEn: 'The cost of chasing the wrong goals',
-          taglineZh: '追求錯誤目標的代價',
           summary: [
             {
               en: 'Steven Bartlett is the founder of Social Chain. Starting from a bedroom in Manchester, he built the company at 21 and took it public at 27, with a market valuation of nearly £200 million.',
@@ -174,12 +178,12 @@ const GUIDE = {
       n: '02',
       en: 'The Wealth Ladder',
       zh: '《財富階梯》',
+      tagEn: 'Different wealth levels demand different strategies',
+      tagZh: '不同財富水準，需要不同策略',
       blocks: [
         {
           t: 'book',
           author: 'Nick Maggiulli',
-          taglineEn: 'Different wealth levels demand different strategies',
-          taglineZh: '不同財富水準，需要不同策略',
           summary: [
             {
               en: 'This is the 2025 follow-up to Just Keep Buying by Nick Maggiulli, focusing on defining distinct levels of wealth and providing tailored strategies to climb each one.',
@@ -279,12 +283,12 @@ const GUIDE = {
       n: '03',
       en: 'Less Is More',
       zh: '《北歐式的自由生活提案》',
+      tagEn: 'Subtraction as a path to genuine freedom',
+      tagZh: '減法哲學，找回真正的自由',
       blocks: [
         {
           t: 'book',
           author: '本田直之 Honda Naoyuki',
-          taglineEn: 'Subtraction as a path to genuine freedom',
-          taglineZh: '減法哲學，找回真正的自由',
           summary: [
             {
               en: 'The author spent 15 years achieving his vision of a nomadic lifestyle — abandoning a fixed office, moving around the world, living and working simultaneously. He travelled to Nordic countries to interview locals about their views on happiness.',
@@ -384,12 +388,12 @@ const GUIDE = {
       n: '04',
       en: 'Rewire',
       zh: '《神經可塑性》',
+      tagEn: 'Change begins with understanding your brain',
+      tagZh: '改變，從理解大腦開始',
       blocks: [
         {
           t: 'book',
           author: 'Nicole Vignola',
-          taglineEn: 'Change begins with understanding your brain',
-          taglineZh: '改變，從理解大腦開始',
           summary: [
             {
               en: 'Neuroscientist Nicole Vignola uses clear language to demystify the science of breaking bad habits, building good ones, and neurohack methods for changing behavioural patterns.',

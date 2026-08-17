@@ -370,7 +370,11 @@ function buildCover() {
     </header>`;
 }
 
-function buildStep(s) {
+/* A step. The heading is a button, so the fold works from the keyboard and
+   announces itself; the body carries `.step-body` and is hidden by the `folded`
+   class rather than the `hidden` attribute, so print can override it and unfold
+   everything. */
+function buildStep(s, open) {
   const blocks = s.blocks.map((b) => {
     const fn = BLOCKS[b.t];
     if (!fn) throw new Error(`Unknown block type "${b.t}" in step ${s.id}`);
@@ -378,14 +382,18 @@ function buildStep(s) {
   }).join('');
 
   return `
-    <section class="step" id="${s.id}" aria-labelledby="h-${s.id}">
-      <h2 class="step-head" id="h-${s.id}">
-        <span class="n">${s.n}</span>
-        <span class="titles"><span class="en">${text(s.en)}</span>
-          <button class="zh-chip" title="顯示中文">中</button>
-          <span class="zh">${text(s.zh)}</span></span>
+    <section class="step ${open ? '' : 'folded'}" id="${s.id}">
+      <h2 class="step-head">
+        <button class="step-btn" aria-expanded="${open}" aria-controls="body-${s.id}">
+          <span class="n">${s.n}</span>
+          <span class="titles"><span class="en">${text(s.en)}</span>
+            <span class="zh">${text(s.zh)}</span></span>
+          <span class="fold" aria-hidden="true"></span>
+        </button>
       </h2>
-      ${blocks}
+      <div class="step-body" id="body-${s.id}">
+        ${blocks}
+      </div>
     </section>`;
 }
 
@@ -410,7 +418,44 @@ $('#nav').appendChild(el(buildNav()));
 
 const doc = $('#doc');
 doc.appendChild(el(buildCover()));
-LESSON.steps.forEach((s) => doc.appendChild(el(buildStep(s))));
+
+/* Open the step named in the URL, or the first one. Unlike the notebook page,
+   which opens its newest session, a lesson is worked through front to back — so
+   the way in is step 1. A hash that matches nothing falls back to the same
+   place, so an old link cannot land on a page with everything shut. */
+const wanted = decodeURIComponent(location.hash.slice(1));
+const steps = LESSON.steps;
+const openId = steps.some((s) => s.id === wanted)
+  ? wanted
+  : (steps.length ? steps[0].id : '');
+
+steps.forEach((s) => doc.appendChild(el(buildStep(s, s.id === openId))));
+
+// ---------------------------------------------------------------- folding
+
+function setFold(section, open) {
+  section.classList.toggle('folded', !open);
+  $('.step-btn', section).setAttribute('aria-expanded', String(open));
+}
+
+/* Two ways to open a step, and they mean different things.
+
+   `openStep` is "take me to this one" — the contents list, the URL hash, and
+   the link at the end of the lesson. It folds the others, so following a link
+   lands on one step rather than on that step plus whatever happened to be open
+   already.
+
+   Tapping a heading is the other way, and it is deliberately additive: nothing
+   else closes, so the passage can sit open above the gap fill that uses it. */
+function openStep(id, sole = true) {
+  const section = document.getElementById(id);
+  // "#top" is the cover, and an unknown id is an old link — neither is a step,
+  // and neither should fold the page down on its way past.
+  if (!section || !section.classList.contains('step')) return null;
+  if (sole) $$('.step').forEach((s) => { if (s !== section) setFold(s, false); });
+  setFold(section, true);
+  return section;
+}
 
 // ---------------------------------------------------------------- Chinese
 
@@ -444,8 +489,22 @@ doc.addEventListener('click', (e) => {
   const say = t.closest('.say');
   if (say) { e.stopPropagation(); speak(say.dataset.say); return; }
 
-  // ---- a link out of the page keeps its ordinary behaviour
-  if (t.closest('a')) return;
+  // ---- a link keeps its ordinary behaviour; one pointing at a step on this
+  //      page opens it first, or the jump lands on a folded heading
+  const a = t.closest('a');
+  if (a) {
+    const to = a.getAttribute('href') || '';
+    if (to.startsWith('#')) openStep(decodeURIComponent(to.slice(1)));
+    return;
+  }
+
+  // ---- fold / unfold a step
+  const head = t.closest('.step-btn');
+  if (head) {
+    const section = head.closest('.step');
+    setFold(section, section.classList.contains('folded'));
+    return;
+  }
 
   // ---- a target word in the reading passage
   const term = t.closest('.term');
@@ -664,9 +723,18 @@ $('#panelClose').addEventListener('click', () => setPanel(false));
 
 $('#zhAll').addEventListener('change', (e) => setAllZh(e.target.checked));
 
+// Unfold the whole lesson — for scanning it before a session, or for printing.
+$('#openAll').addEventListener('click', () => {
+  $$('.step').forEach((s) => setFold(s, true));
+  setPanel(false);
+});
+
 /* Reveal every answer at once — for going over an exercise together, or for
-   picking the lesson up in the middle. */
+   picking the lesson up in the middle. Steps are unfolded first, or the answers
+   would be filled in behind a closed lid. */
 $('#showAll').addEventListener('click', () => {
+  $$('.step').forEach((s) => setFold(s, true));
+
   $$('.gap:not(.solved)').forEach((gap) => {
     const right = $$('.opts .chip', gap)[Number(gap.dataset.answer)];
     $('.slot', gap).textContent = right.textContent;
@@ -699,16 +767,34 @@ $('#reset').addEventListener('click', () => location.reload());
 
 const links = new Map($$('.toc a').map((a) => [a.dataset.target, a]));
 
-const spy = new IntersectionObserver((entries) => {
-  entries.forEach((e) => {
-    if (!e.isIntersecting) return;
-    links.forEach((a) => a.classList.remove('here'));
-    const a = links.get(e.target.id);
-    if (a) { a.classList.add('here'); a.scrollIntoView({ block: 'nearest' }); }
-  });
-}, { rootMargin: '-72px 0px -70% 0px' });
+/* A contents link opens its step before the browser jumps to it — otherwise the
+   anchor lands on a folded heading and nothing appears to happen. The
+   hashchange handler below would do it too, but only if the hash actually
+   changes: clicking the link for the step already showing does not fire one. */
+$('#nav').addEventListener('click', (e) => {
+  const a = e.target.closest('a');
+  if (!a) return;
+  openStep(a.dataset.target);
+  closeNav();
+});
 
-[$('#top'), ...$$('.step')].forEach((s) => spy.observe(s));
+/* The bar marks the step being read by measuring rather than with an
+   IntersectionObserver: an open step is several screens tall while the folded
+   ones are a heading each, so at any moment several straddle a sensible trigger
+   band and the observer reports whichever fired last. */
+const marks = [$('#top'), ...$$('.step')];
+
+function markHere() {
+  const line = 90;
+  let here = marks[0];
+  marks.forEach((m) => { if (m.getBoundingClientRect().top <= line) here = m; });
+  links.forEach((a) => a.classList.remove('here'));
+  const a = links.get(here.id);
+  if (a) { a.classList.add('here'); a.scrollIntoView({ block: 'nearest' }); }
+}
+
+markHere();
+addEventListener('scroll', markHere, { passive: true });
 
 const navToggle = $('#navToggle');
 navToggle.addEventListener('click', () => {
@@ -721,7 +807,6 @@ function closeNav() {
   navToggle.setAttribute('aria-expanded', 'false');
 }
 
-$('#nav').addEventListener('click', (e) => { if (e.target.closest('a')) closeNav(); });
 $('.nav-scrim').addEventListener('click', closeNav);
 document.addEventListener('keydown', (e) => {
   if (e.key !== 'Escape') return;
@@ -729,3 +814,12 @@ document.addEventListener('keydown', (e) => {
   setPanel(false);
   speechSynthesis.cancel();
 });
+
+// Arriving on an anchor from outside, or editing the hash by hand.
+addEventListener('hashchange', () => {
+  const section = openStep(decodeURIComponent(location.hash.slice(1)));
+  if (section) section.scrollIntoView();
+});
+
+/* Print is the handout, and a handout with folded steps is blank paper. */
+addEventListener('beforeprint', () => $$('.step').forEach((s) => setFold(s, true)));

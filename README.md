@@ -523,11 +523,12 @@ a summary written for the lesson, and then the language work.
   the 中文 switch in the bar reveals the lot. Instructions, task prompts, the
   contents list and anything already sitting behind a deliberate reveal stay
   bilingual — those are scaffolding, not comprehension practice.
-- **The gap-fill Chinese keeps its blank.** A translated gap sentence renders
-  the missing phrase as ＿＿ and never paraphrases it, so the Chinese explains
-  the situation without handing over the answer. The matching halves and the
-  answer chips are left in English for the same reason — each is glossed on its
-  own phrase card anyway.
+- **The gap-fill Chinese is a complete sentence.** A translated gap sentence
+  expresses the missing phrase in full rather than leaving a blank, so it reads
+  as Chinese rather than as a puzzle. It therefore carries the answer: on those
+  items the 中 tap is a hint the teacher chooses to give, not something the
+  learner opens for comprehension. The matching halves and the answer chips are
+  still left in English, since each is glossed on its own phrase card.
 - **Nothing is scored and nothing is saved.** A fresh load is a fresh lesson,
   which is what you want between two clients on the same laptop. Only the
   voice and Chinese settings persist. Wrong answers wobble, explain themselves
@@ -590,6 +591,14 @@ panel. Two things are specific to this page:
   dims it and leaves it legible, because *why was that one tempting?* is
   usually the more useful question. The right answer unlocks a short note on
   the point of grammar or usage underneath.
+- **The steps fold**, the same way sessions fold on
+  [Anny's Notebook](#annys-notebook--adult-one-to-one-kept-over-time). Step 1 is open
+  on arrival and the rest are headings, so the whole lesson is one screen
+  before it is one scroll. Tapping a heading is additive — the passage can sit
+  open above the gap fill that uses it — while the contents list and a `#step`
+  link are exclusive, so following a link lands on one step rather than on that
+  step plus whatever was already open. Nothing about the fold is remembered
+  between loads.
 
 The notes deliberately separate the pairs that adult learners mix: *broke*
 against *bankrupt*, *worth* against *valuation* against *revenue*, and *raise*
@@ -633,11 +642,22 @@ that move are a glossary card, a list of useful language, and the Chinese.
   Chinese term and both definitions are behind the tap. Once a card is open it
   stays bilingual — it is already behind a deliberate reveal, and a second tap
   there would only be in the way.
-- **The teacher panel has one action instead of an answer key**: *Open
-  everything* turns over every card and opens every list of useful language, for
-  going over a book together or picking a session up in the middle.
-- **Print** gives one book per page, with every card and starter list opened and
-  the cross-page links dropped.
+- **The books fold**, the same way sessions fold on
+  [Anny's Notebook](#annys-notebook--adult-one-to-one-kept-over-time). Book 01
+  is open on arrival and the other four are headings, so the guide is a book
+  list before it is a scroll. A closed book still shows its English title, its
+  Chinese title and its one-line argument — enough to choose from. Tapping a
+  heading is additive, so two books can sit open side by side; the contents
+  list, the URL hash and the four links in The Common Thread are exclusive.
+  Nothing about the fold is remembered between loads.
+- **A book's Chinese title never hides.** Unlike every other line on the page it
+  ignores the 中 chip, because it is the book's name — how it is asked for and
+  looked up — not a translation the reader is meant to try without.
+- **The teacher panel has two actions instead of an answer key**: *Open every
+  book* unfolds the guide, and *Open everything* also turns over every card and
+  opens every list of useful language.
+- **Print** gives one book per page, with every book unfolded, every card and
+  starter list opened and the cross-page links dropped.
 
 ## A Five-Minute Campaign Speech — adult, reading aloud
 
@@ -1254,6 +1274,9 @@ answers to key in — the block types are `book` (author, tagline, summary
 paragraphs, who it is for), `discuss` (a question plus the `starters` to reveal
 under it), `terms` (a glossary card: `en`, `zh`, `defEn`, `defZh`), `strands`
 (the closing one-liners, each pointing at a book by `id`) and `link`.
+
+A book's `tagEn`/`tagZh` sit on the book itself rather than in a block, because
+they are the one line that has to stay readable while the book is folded shut.
 
 Adding a fifth book is one entry in `GUIDE.books` and one line in the closing
 `strands` list. A `link` block wants an `href`, an `en`/`zh` label and an
