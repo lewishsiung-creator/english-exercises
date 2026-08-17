@@ -5,7 +5,8 @@ Fifteen independent pages live here — a game for young learners at the site
 root, phonics practice for slightly older children at `/phonics/`, an
 interactive phonics handbook for the same age at `/phonics-handbook/`, a
 review lesson for a ten-to-twelve-year-old at `/confidence-talk/`, a
-bilingual business worksheet at `/business-clarity/`, an interactive
+bilingual business worksheet at `/business-clarity/`, a fifteen-chapter
+basic grammar course for adults at `/grammar/`, an interactive
 lesson for working adults at `/wealth-habits/`, a business-English reading
 lesson at `/happy-sexy-millionaire/`, a four-book discussion guide at
 `/book-club/`, reading-aloud practice
@@ -425,6 +426,67 @@ and adds `crumbs` instead — a breadcrumb back to the worksheet and to the
 section the session hangs under. The renderer takes the absence of `purpose`
 as the signal to draw a session cover rather than a worksheet cover. Sessions
 are listed from the parent section with a `sessions` block.
+
+## Basic English Grammar — adult, fifteen chapters
+
+The one page here built to grow rather than to be finished. Fifteen chapters
+and 133 numbered sections, following the syllabus of *Basic English Grammar*
+(Azar & Hagen, 4th edition) — the order Lewis teaches in — from the forms of
+*be* through to making comparisons.
+
+**The book is not reproduced.** Chapter and section headings follow its
+syllabus, because that is the map; the explanations, examples and practice on
+each page are written for this site, which also lets the examples be about a
+Taiwanese adult's working week rather than Azar's.
+
+### The shape
+
+```
+public/grammar/
+  book.js       the whole map: 15 chapters, 133 section titles, what is built
+  style.css     shared by the hub and every chapter
+  render.js     the chapter renderer
+  hub.js        the contents page
+  ch01/         one folder per chapter: a thin index.html and a content.js
+```
+
+Adding a chapter is three steps: write `chNN/content.js`, copy any existing
+chapter's `index.html` unchanged, and flip `built` in `book.js`. Nothing else
+moves — the contents page, the sidebar, the anchors and the prev/next links all
+read the map.
+
+- **A chapter's content file holds blocks and nothing else.** Titles live once,
+  in `book.js`. A section listed there with no blocks written renders with its
+  real heading and a line saying so, and is struck through in the sidebar — so
+  the page always matches the book's contents and the site doubles as the
+  to-do list, the way the campaign speech does with its unanswered questions.
+  A section number in a content file that the map has never heard of throws
+  rather than silently rendering nothing.
+- **Two ways to be wrong, because four options cannot test word order.**
+  `mcq` is a sentence with one blank; `order` gives the Chinese and a pool of
+  words to tap into place. Word order is what actually goes wrong for a
+  Mandarin speaker, and *I busy* is not a question with four choices.
+- **The form chart is the block that carries the page.** Subject, the form of
+  the verb, the rest of the sentence — three columns, so the eye runs down the
+  middle one and sees the single thing that changes. The odd row out (*am*
+  with *I*) is marked in gold, because that is the row learners get wrong.
+
+### Design notes
+
+Same house rules as the other adult pages — English leads with Chinese behind a
+中 chip, nothing scored, nothing saved between students, wrong answers wobble
+and stay open, 🔊 on every English sentence, the same faint 👩‍🏫 panel, and
+**print** gives a handout with every answer filled and the machinery gone.
+Three things are specific here:
+
+- **The palette is teal rather than the TOEIC page's navy.** Two grammar pages
+  on one laptop should not be told apart by their titles alone.
+- **The Chinese setting is shared across the whole course**, under `beg.*` in
+  `localStorage` — a teacher who turns it on for a client should not turn it on
+  again in every chapter. It is a device setting; no lesson state is kept.
+- **A word taken back takes the words after it.** They were only correct in the
+  order they were placed, so restoring them would be a lie about what the
+  learner had got right.
 
 ## Three Habits That Build Wealth — adult, teacher-led
 
@@ -1014,6 +1076,8 @@ public/math/              Number Lab, the Grades 1–3 math practice
 public/confidence-talk/   the 2026/07/11 class notes, ages 10–12
 public/business-clarity/  the business worksheet
 public/business-clarity/2026-08-10/  one session's notes
+public/grammar/           Basic English Grammar — the hub and book.js
+public/grammar/ch01/      one folder per chapter, a content file each
 public/wealth-habits/     the three-habits lesson
 public/wealth-habits/img/ its four photographs
 public/happy-sexy-millionaire/  the business-English reading lesson
@@ -1031,7 +1095,7 @@ public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
-All seventeen are plain HTML, CSS and JS with no build step.
+All eighteen are plain HTML, CSS and JS with no build step.
 
 Every page ends with the same `<footer class="site-foot">` linking to
 <https://lewistoeic.com>, so a reader who lands on any one sheet can find the

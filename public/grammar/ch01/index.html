@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Basic English Grammar</title>
+<meta name="description" content="Using be — singular and plural subjects, contractions, negatives, be + adjective and be + a place. Basic English grammar for adult learners, with Traditional Chinese one tap away.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d5a6e'/%3E%3Crect x='14' y='19' width='13' height='5' rx='2.5' fill='%23ffffff' opacity='.55'/%3E%3Crect x='31' y='19' width='9' height='5' rx='2.5' fill='%23f2c14e'/%3E%3Crect x='44' y='19' width='6' height='5' rx='2.5' fill='%23ffffff' opacity='.55'/%3E%3Crect x='14' y='30' width='36' height='5' rx='2.5' fill='%23ffffff' opacity='.4'/%3E%3Crect x='14' y='41' width='23' height='5' rx='2.5' fill='%23ffffff' opacity='.28'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f6f2">
+
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<a class="skip" href="#doc">Skip to the chapter</a>
+
+<header class="bar">
+  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
+    <span aria-hidden="true">☰</span> Sections
+  </button>
+
+  <!-- Filled by render.js from book.js, so the chapter shell is identical in
+       every chapter folder and carries no chapter-specific text. -->
+  <p class="bar-title" id="barTitle"></p>
+
+  <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="false">中文</button>
+  <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
+          aria-controls="panel" title="Teacher panel" aria-label="Teacher panel">👩‍🏫</button>
+</header>
+
+<div class="shell">
+  <div id="nav"></div>
+  <main id="doc"></main>
+</div>
+
+<div class="nav-scrim" hidden></div>
+
+<!-- Teacher panel. Opens over the page rather than replacing it, so an
+     exercise in progress is never lost. -->
+<div class="panel" id="panel" role="dialog" aria-label="Teacher panel" hidden>
+  <div class="panel-head">
+    <h2>Teacher panel <span>教師面板</span></h2>
+    <button class="panel-x" id="panelClose" aria-label="Close">✕</button>
+  </div>
+
+  <label class="row row-check">
+    <input type="checkbox" id="zhAll">
+    <span>Show all Chinese <em>顯示全部中文</em></span>
+  </label>
+
+  <div class="row">
+    <button class="panel-btn" id="showAll">Reveal every answer</button>
+    <p class="row-note">Fills every blank and builds every sentence, with the
+      explanations open — for going over a section together.</p>
+  </div>
+
+  <div class="row">
+    <label for="voicePick">Voice</label>
+    <select id="voicePick"></select>
+    <p class="row-note">Used by the 🔊 buttons. Choosing one plays a sample.</p>
+  </div>
+
+  <div class="row">
+    <label for="rate">Speed</label>
+    <select id="rate">
+      <option value="0.75">Slow</option>
+      <option value="0.9">Normal</option>
+      <option value="1.05">Brisk</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <button class="panel-btn panel-btn-quiet" id="reset">Reset for the next student</button>
+    <p class="row-note">Nothing is saved between sessions — this just clears the
+      screen. Your voice and Chinese settings stay.</p>
+  </div>
+</div>
+
+<!-- Site footer. Identical on every page, so a reader who lands on any one
+     sheet can find the rest. -->
+<footer class="site-foot">
+  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
+     aria-label="Lewis Biz English"><img src="../../logo.png" alt="" width="34" height="34"></a>
+  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
+    target="_blank" rel="noopener">lewistoeic.com</a></p>
+</footer>
+
+<script src="../book.js"></script>
+<script src="content.js"></script>
+<script src="../render.js"></script>
+</body>
+</html>
