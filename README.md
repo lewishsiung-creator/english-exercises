@@ -448,6 +448,7 @@ public/grammar/
   render.js     the chapter renderer
   hub.js        the contents page
   ch01/         one folder per chapter: a thin index.html and a content.js
+  ch13/         Modals, Part 2 — all nine sections written
 ```
 
 Adding a chapter is three steps: write `chNN/content.js`, copy any existing
@@ -479,8 +480,13 @@ and stay open, 🔊 on every English sentence, the same faint 👩‍🏫 panel,
 **print** gives a handout with every answer filled and the machinery gone.
 Three things are specific here:
 
-- **The palette is teal rather than the TOEIC page's navy.** Two grammar pages
-  on one laptop should not be told apart by their titles alone.
+- **The palette is the book's own brick red**, sampled from its chapter banners
+  and chart headers, rather than the TOEIC page's navy — two grammar pages on
+  one laptop should not be told apart by their titles alone. Red being the page
+  colour has a consequence: an incorrect example can no longer be red, because
+  red now means "heading". So a ✕ example is grey and struck through, which is
+  the decision Anny's notebook already made for its corrections. Green still
+  means right, which is unambiguous against red.
 - **The Chinese setting is shared across the whole course**, under `beg.*` in
   `localStorage` — a teacher who turns it on for a client should not turn it on
   again in every chapter. It is a device setting; no lesson state is kept.
@@ -1078,6 +1084,7 @@ public/business-clarity/  the business worksheet
 public/business-clarity/2026-08-10/  one session's notes
 public/grammar/           Basic English Grammar — the hub and book.js
 public/grammar/ch01/      one folder per chapter, a content file each
+public/grammar/ch13/      Modals, Part 2 — the second chapter written
 public/wealth-habits/     the three-habits lesson
 public/wealth-habits/img/ its four photographs
 public/happy-sexy-millionaire/  the business-English reading lesson

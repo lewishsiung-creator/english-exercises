@@ -18,8 +18,15 @@
    - Text is set for adults reading at arm's length on a shared screen, a size
      up from a personal document.
 
-   The palette is teal rather than the TOEIC page's navy, so the two grammar
-   pages are not mistaken for each other on a shared screen. */
+   The palette is the book's own brick red rather than the TOEIC page's navy,
+   so the two grammar pages are not mistaken for each other on a shared screen.
+
+   Red being the page colour has one consequence worth stating: an incorrect
+   example can no longer be red, because red now means "this is the heading of
+   the thing you are reading". So a ✕ example is grey and struck through — the
+   same decision Anny's notebook made for its corrections, for the same reason
+   a page of red pen is a page nobody wants to read. Green still means right,
+   which is unambiguous against red. */
 
 :root {
   --paper: #f7f6f2;
@@ -28,9 +35,10 @@
   --ink-soft: #566171;
   --ink-faint: #8b95a3;
 
-  --teal: #1d5a6e;
-  --teal-soft: #e7f1f4;
-  --teal-line: #b6d4dd;
+  /* Sampled from the chapter banners and chart headers of the book. */
+  --red: #a82f3c;
+  --red-soft: #fbeef0;
+  --red-line: #e3b6bd;
 
   --gold: #a1741a;
   --gold-soft: #fbf1da;
@@ -40,8 +48,8 @@
   --good-soft: #e4f2ea;
   --good-line: #a8d6be;
 
-  --bad: #a6402f;
-  --bad-soft: #fbeae6;
+  /* Grey, not red — see the note at the top of this file. */
+  --bad: #6f7580;
 
   --line: #e3e0d8;
   --rule: #cdc8bc;
@@ -101,7 +109,7 @@ body.zh-all .zh { display: block; }
   cursor: pointer;
   transition: color .12s, border-color .12s, background .12s;
 }
-.zh-chip:hover { color: var(--teal); border-color: var(--teal-line); background: var(--teal-soft); }
+.zh-chip:hover { color: var(--red); border-color: var(--red-line); background: var(--red-soft); }
 .open > .zh-chip,
 .open .en > .zh-chip { opacity: .35; }
 body.zh-all .zh-chip { display: none; }
@@ -132,7 +140,7 @@ body.zh-all .zh-chip { display: none; }
   background: var(--card); padding: 10px 16px; border-radius: 8px;
 }
 
-:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
 
 /* ---------------- top bar ---------------- */
 
@@ -169,24 +177,24 @@ body.zh-all .zh-chip { display: none; }
 }
 /* On a chapter page the title is a link home to the contents. */
 .bar-title a { color: inherit; text-decoration: none; }
-.bar-title a:hover { color: var(--teal); }
+.bar-title a:hover { color: var(--red); }
 
 .bar-btn {
   flex: none;
   font-family: var(--font-ui);
   font-size: 13px;
-  color: var(--teal);
+  color: var(--red);
   background: transparent;
-  border: 1px solid var(--teal-line);
+  border: 1px solid var(--red-line);
   border-radius: 7px;
   padding: 6px 11px;
   cursor: pointer;
   text-decoration: none;
 }
-.bar-btn:hover { background: var(--teal-soft); }
+.bar-btn:hover { background: var(--red-soft); }
 .bar-btn-quiet { color: var(--ink-soft); border-color: var(--line); font-size: 15px; padding: 4px 9px; }
 .bar-btn-zh { font-family: var(--font-zh); }
-.bar-btn-zh[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: #fff; }
+.bar-btn-zh[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: #fff; }
 
 @media (min-width: 900px) { #navToggle { display: none; } }
 
@@ -238,7 +246,7 @@ body.zh-all .zh-chip { display: none; }
   letter-spacing: 0;
   text-transform: none;
   font-weight: 400;
-  color: var(--teal);
+  color: var(--red);
   text-decoration: none;
 }
 .toc-head a:hover { text-decoration: underline; }
@@ -255,7 +263,7 @@ body.zh-all .zh-chip { display: none; }
   color: var(--ink-soft);
   border-left: 2px solid transparent;
 }
-.toc a:hover { background: var(--teal-soft); color: var(--ink); }
+.toc a:hover { background: var(--red-soft); color: var(--ink); }
 .toc a .n {
   font-family: var(--font-ui);
   font-size: 11.5px;
@@ -267,11 +275,11 @@ body.zh-all .zh-chip { display: none; }
 .toc a .t .en { display: block; font-size: 13.5px; line-height: 1.35; }
 .toc a .t .zh { font-size: 11.5px; color: var(--ink-faint); }
 .toc a.here {
-  background: var(--teal-soft);
-  border-left-color: var(--teal);
-  color: var(--teal);
+  background: var(--red-soft);
+  border-left-color: var(--red);
+  color: var(--red);
 }
-.toc a.here .n, .toc a.here .t .zh { color: var(--teal); }
+.toc a.here .n, .toc a.here .t .zh { color: var(--red); }
 .toc a.here .t .en { font-weight: 600; }
 
 /* A section with no content yet is listed but not pretended about. */
@@ -314,7 +322,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   font-family: var(--font-zh);
   font-size: 13px;
   letter-spacing: .16em;
-  color: var(--gold);
+  color: var(--red);
 }
 
 .cover h1 {
@@ -357,7 +365,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   padding: 16px 18px 14px;
   transition: border-color .12s, box-shadow .12s;
 }
-.chap-card:hover { border-color: var(--teal-line); box-shadow: 0 2px 12px rgba(28, 36, 48, .06); }
+.chap-card:hover { border-color: var(--red-line); box-shadow: 0 2px 12px rgba(28, 36, 48, .06); }
 
 .chap-head { display: flex; align-items: baseline; gap: 10px; margin: 0 0 4px; }
 .chap-n {
@@ -366,8 +374,8 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   font-size: 11px;
   font-weight: 700;
   letter-spacing: .05em;
-  color: var(--teal);
-  background: var(--teal-soft);
+  color: var(--red);
+  background: var(--red-soft);
   border-radius: 5px;
   padding: 2px 7px;
   font-variant-numeric: tabular-nums;
@@ -375,7 +383,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 .chap-head h2 { margin: 0; font-size: 19px; line-height: 1.25; }
 .chap-head .zh { font-size: 13px; font-weight: 400; color: var(--ink-soft); margin-top: 2px; }
 .chap-head a { color: inherit; text-decoration: none; }
-.chap-head a:hover { color: var(--teal); }
+.chap-head a:hover { color: var(--red); }
 
 /* The section list inside a card is the map, not a menu — a chapter page is
    one document, so every section is an anchor into the same page. */
@@ -398,7 +406,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   text-decoration: none;
 }
 .chap-secs .n { color: var(--ink-faint); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.chap-secs a.row:hover { color: var(--teal); }
+.chap-secs a.row:hover { color: var(--red); }
 .chap-secs a.row:hover .t { text-decoration: underline; }
 
 /* A chapter whose content has not been written yet says so rather than
@@ -449,7 +457,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 .shelf-card p { margin: 6px 0 0; font-size: 14.5px; color: var(--ink-soft); }
 .shelf-card p .zh { font-size: 13px; }
 .shelf-card a { color: inherit; text-decoration: none; }
-.shelf-card a:hover { color: var(--teal); }
+.shelf-card a:hover { color: var(--red); }
 
 /* ---------------- chapter cover ---------------- */
 
@@ -459,7 +467,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   margin-bottom: 12px;
   font-family: var(--font-ui);
   font-size: 12.5px;
-  color: var(--teal);
+  color: var(--red);
   text-decoration: none;
 }
 .chapter-cover .up:hover { text-decoration: underline; }
@@ -476,7 +484,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   font-weight: 700;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--red);
   margin-bottom: 6px;
 }
 .chapter-cover h1 .zh { font-size: 18px; font-weight: 400; margin-top: 6px; }
@@ -498,12 +506,15 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   font-size: 25px;
   line-height: 1.25;
 }
+/* The book numbers each chart in a solid red header bar. This is the quiet
+   version of that: the number keeps the red, the heading keeps its contrast. */
 .step-head .n {
   font-family: var(--font-ui);
   font-size: 12.5px;
   font-weight: 700;
-  color: var(--gold);
-  border: 1px solid var(--gold-line);
+  color: #fff;
+  background: var(--red);
+  border: 1px solid var(--red);
   border-radius: 6px;
   text-align: center;
   padding: 2px 0;
@@ -593,21 +604,21 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   caption-side: top;
   text-align: left;
   padding: 11px 18px;
-  background: var(--teal-soft);
-  border-bottom: 1px solid var(--teal-line);
+  background: var(--red-soft);
+  border-bottom: 1px solid var(--red-line);
   font-family: var(--font-ui);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: .04em;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--red);
 }
 .forms caption .zh {
   font-size: 11.5px;
   text-transform: none;
   letter-spacing: 0;
   opacity: .8;
-  color: var(--teal);
+  color: var(--red);
 }
 
 .forms table { width: 100%; border-collapse: collapse; }
@@ -618,10 +629,10 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   vertical-align: baseline;
 }
 .forms tbody tr:first-child td { border-top: none; }
-.forms tr[data-zh]:hover { background: var(--teal-soft); }
+.forms tr[data-zh]:hover { background: var(--red-soft); }
 
 .f-sub { width: 34%; color: var(--ink-soft); }
-.f-verb { width: 5.5rem; font-weight: 700; color: var(--teal); white-space: nowrap; }
+.f-verb { width: 5.5rem; font-weight: 700; color: var(--red); white-space: nowrap; }
 .f-rest { width: auto; }
 .forms .zh { font-size: 13.5px; }
 .forms .say { vertical-align: baseline; }
@@ -648,20 +659,20 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 .table-wrap th {
   text-align: left;
   padding: 9px 14px;
-  background: var(--teal-soft);
-  border-bottom: 1px solid var(--teal-line);
+  background: var(--red-soft);
+  border-bottom: 1px solid var(--red-line);
   font-family: var(--font-ui);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: .04em;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--red);
 }
 .table-wrap th .zh {
   font-size: 11.5px;
   text-transform: none;
   letter-spacing: 0;
-  color: var(--teal);
+  color: var(--red);
   opacity: .75;
 }
 
@@ -671,7 +682,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   vertical-align: top;
 }
 .table-wrap tbody tr:first-child td { border-top: none; }
-.table-wrap tbody tr[data-zh]:hover { background: var(--teal-soft); }
+.table-wrap tbody tr[data-zh]:hover { background: var(--red-soft); }
 .table-wrap td .en { display: block; }
 
 /* A meaning column is the answer, so it stays covered until the row is tapped
@@ -750,7 +761,7 @@ body.zh-all .td-zh::after { display: none; }
 }
 .ex-good { color: var(--good); }
 .ex-good::before { content: "✓"; }
-.ex-bad { color: var(--bad); text-decoration: line-through; text-decoration-color: rgba(166, 64, 47, .35); }
+.ex-bad { color: var(--bad); text-decoration: line-through; text-decoration-color: rgba(111, 117, 128, .45); }
 .ex-bad::before { content: "✕"; text-decoration: none; }
 
 /* ---------------- steps ---------------- */
@@ -777,8 +788,8 @@ body.zh-all .td-zh::after { display: none; }
   font-family: var(--font-ui);
   font-size: 12px;
   font-weight: 600;
-  color: var(--teal);
-  background: var(--teal-soft);
+  color: var(--red);
+  background: var(--red-soft);
   border-radius: 50%;
 }
 .steps .zh { font-size: 13.5px; }
@@ -817,7 +828,7 @@ body.zh-all .td-zh::after { display: none; }
   border-bottom: 1.5px solid var(--rule);
   text-align: center;
   font-weight: 600;
-  color: var(--teal);
+  color: var(--red);
   vertical-align: baseline;
 }
 .q.solved .slot { border-bottom-color: var(--good-line); color: var(--good); }
@@ -848,7 +859,7 @@ body.zh-all .td-zh::after { display: none; }
   cursor: pointer;
   transition: border-color .12s, background .12s, opacity .12s;
 }
-.opt:hover { border-color: var(--teal-line); background: var(--teal-soft); }
+.opt:hover { border-color: var(--red-line); background: var(--red-soft); }
 
 .opt.out { opacity: .4; background: var(--paper); cursor: default; }
 .opt.out:hover { border-color: var(--line); background: var(--paper); }
@@ -956,7 +967,7 @@ body.zh-all .td-zh::after { display: none; }
   cursor: pointer;
   transition: border-color .12s, background .12s, opacity .12s;
 }
-.word:hover { border-color: var(--teal-line); background: var(--teal-soft); }
+.word:hover { border-color: var(--red-line); background: var(--red-soft); }
 .word.used { opacity: 0; pointer-events: none; }
 .order-q.solved .why { display: block; }
 
@@ -982,7 +993,7 @@ body.zh-all .td-zh::after { display: none; }
   text-decoration: none;
   color: var(--ink);
 }
-.pager a:hover { border-color: var(--teal-line); background: var(--teal-soft); }
+.pager a:hover { border-color: var(--red-line); background: var(--red-soft); }
 .pager .dir { display: block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 3px; }
 .pager .t { font-size: 14.5px; font-weight: 600; }
 .pager .zh { font-size: 12.5px; font-weight: 400; }
@@ -1028,8 +1039,8 @@ body.zh-all .td-zh::after { display: none; }
   font-family: var(--font-ui);
   font-size: 13px;
   color: #fff;
-  background: var(--teal);
-  border: 1px solid var(--teal);
+  background: var(--red);
+  border: 1px solid var(--red);
   border-radius: 8px;
   padding: 8px 12px;
   cursor: pointer;
@@ -1102,7 +1113,7 @@ body.zh-all .td-zh::after { display: none; }
 .site-foot p a {
   margin-left: 7px;
   padding-bottom: 1px;
-  color: var(--teal, var(--navy, var(--blue, #1d5a6e)));
+  color: var(--red, var(--navy, var(--blue, #1d5a6e)));
   font-weight: 600;
   text-decoration: none;
   border-bottom: 1px solid currentColor;

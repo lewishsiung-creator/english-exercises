@@ -251,7 +251,7 @@ const BOOK = {
       id: 'ch13',
       en: 'Modals, Part 2: Advice, Necessity, Requests, Suggestions',
       zh: '助動詞（二）：建議、必要、請求、提議',
-      built: false,
+      built: true,
       sections: [
         { n: '13-1', en: 'Using should', zh: 'should 的用法' },
         { n: '13-2', en: 'Using have + infinitive (have to/has to/had to)', zh: 'have to / has to / had to' },
