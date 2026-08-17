@@ -20,10 +20,10 @@ at `/robot-helper/`, a survey of seven years of the 學測 essay at
 One page is not English at all: `/math/` is math practice for Grades 1 to 3,
 built for a child in an American school.
 
-Two more pages are not lessons. `/landscape-portfolio/` is a portfolio
-template for a student to fill in with their own work, and `/anny/` is a
-notebook kept for one adult client, which grows by one session after each
-discussion rather than being finished and left alone.
+Three more pages are not lessons. `/landscape-portfolio/` is a portfolio
+template for a student to fill in with their own work, and `/anny/` and
+`/aaron/` are notebooks kept for one adult client each, which grow by one
+session after every discussion rather than being finished and left alone.
 
 ## Word Play — CEFR A1, ages 7–10
 
@@ -1093,6 +1093,36 @@ expressions that came out of that hour.
   content file puts a line across the top, on screen and in print, so a draft
   cannot be handed over by accident.
 
+## Aaron's Notebook — adult, one-to-one, kept over time
+
+The second notebook, on the same machinery as
+[Anny's](#annys-notebook--adult-one-to-one-kept-over-time): a copied renderer
+and stylesheet, a new content file, and one entry per discussion in `sessions`.
+Everything in the design notes above applies here too.
+
+Session 1 (17 August 2026) is a discussion of the book *Retire Often* that ran
+from careers into sleep, training loads and side projects, and converged on one
+question — how to design a life rather than maximise output. It carries twenty
+expressions from that hour, six gap-fill sentences, and the homework the session
+ended on.
+
+Two things are new in this copy of the renderer:
+
+- **The contrast block took two optional labels.** Anny's version hard-codes its
+  columns as *As it landed* / *As it could land*, which is right for a message
+  and wrong for anything else. `coldEn`/`coldZh` and `warmEn`/`warmZh` override
+  them — here to *The instinct* against *The reframe*, which is the move the
+  whole hour kept making. The defaults are unchanged, so nothing else breaks.
+- **A `link` block**, the same one the two Happy Sexy Millionaire pages use.
+  Session 1's homework question comes from *The Wealth Ladder*, so the block
+  points at [`/book-club/#ladder`](public/book-club/) for the summary and the
+  vocabulary behind it — and because that page folds, the anchor opens the right
+  book rather than landing on a closed heading.
+
+The AMPK/mTOR note is written as *what was said in class*, with a line saying
+the physiology was not checked afterwards. A notebook is a record; a record that
+quietly upgrades a half-remembered claim into a fact is worse than no record.
+
 ## Layout
 
 ```
@@ -1118,13 +1148,14 @@ public/robot-helper/      the 113 學年度 writing worksheet
 public/exam-writing/      the 109–115 學測 essay survey
 public/ielts-part3/       the IELTS Part 3 structure practice
 public/anny/              Anny's notebook — one entry per discussion
+public/aaron/             Aaron's notebook — same machinery, its own sessions
 public/landscape-portfolio/      the portfolio — filled in as the Ando study
 public/landscape-portfolio/content.starter.js  the same page, emptied
 public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS.md
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
-All eighteen are plain HTML, CSS and JS with no build step.
+All nineteen are plain HTML, CSS and JS with no build step.
 
 Every page ends with the same `<footer class="site-foot">` linking to
 <https://lewistoeic.com>, so a reader who lands on any one sheet can find the
@@ -1417,6 +1448,14 @@ becomes the anchor, so keep it unique and URL-safe. The block types are listed
 at the top of that file; eleven of the thirteen are the same ones the other
 adult pages use, and `fix` and `contrast` are the two this page adds.
 
+**Aaron's Notebook.** The same, in
+[`public/aaron/content.js`](public/aaron/content.js). Its renderer is a copy of
+Anny's with two additions: a `link` block, and two optional labels on `contrast`
+(`coldEn`/`coldZh`, `warmEn`/`warmZh`) for when the two columns are not a
+message said twice. Leaving them out keeps Anny's wording. Changes that belong
+in both notebooks have to be made twice — the copy is deliberate, since a
+student's page should not change because someone edited another student's.
+
 ## Running it locally
 
 No build step and no dependencies:
@@ -1450,6 +1489,8 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/exam-writing/> for the 學測 essay survey, or
 <http://localhost:8000/ielts-part3/> for the IELTS Part 3 practice, or
 <http://localhost:8000/landscape-portfolio/> for the portfolio template.
+The two notebooks are <http://localhost:8000/anny/> and
+<http://localhost:8000/aaron/>.
 
 ## Live sites
 
