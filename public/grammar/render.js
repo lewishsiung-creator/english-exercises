@@ -234,10 +234,13 @@ const BLOCKS = {
       ${(b.bad || []).map((x) => `<p class="ex ex-bad">${text(x)}</p>`).join('')}
     </aside>`,
 
-  // A procedure is an instruction, so it stays bilingual throughout.
+  // A procedure is an instruction, so it stays bilingual throughout. The hint
+  // is where a note about the procedure goes — where it came from, when to
+  // reach for it — so that such a note is not numbered as if it were a step.
   steps: (b) => `
     <div class="steps">
       ${label(b)}
+      ${hint(b)}
       <ol>
         ${b.items.map((i) => `
           <li><span class="en">${text(i.en)}</span>

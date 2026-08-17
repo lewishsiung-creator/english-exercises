@@ -449,6 +449,7 @@ public/grammar/
   hub.js        the contents page
   ch01/         one folder per chapter: a thin index.html and a content.js
   ch13/         Modals, Part 2 — all nine sections written
+  ch14/         Nouns and Modifiers — all eight sections written
 ```
 
 Adding a chapter is three steps: write `chNN/content.js`, copy any existing
@@ -1085,6 +1086,7 @@ public/business-clarity/2026-08-10/  one session's notes
 public/grammar/           Basic English Grammar — the hub and book.js
 public/grammar/ch01/      one folder per chapter, a content file each
 public/grammar/ch13/      Modals, Part 2 — the second chapter written
+public/grammar/ch14/      Nouns and Modifiers — the third
 public/wealth-habits/     the three-habits lesson
 public/wealth-habits/img/ its four photographs
 public/happy-sexy-millionaire/  the business-English reading lesson

@@ -269,7 +269,7 @@ const BOOK = {
       id: 'ch14',
       en: 'Nouns and Modifiers',
       zh: '名詞與修飾語',
-      built: false,
+      built: true,
       sections: [
         { n: '14-1', en: 'Modifying nouns with adjectives and nouns', zh: '用形容詞與名詞修飾名詞' },
         { n: '14-2', en: 'Word order of adjectives', zh: '形容詞的順序' },
