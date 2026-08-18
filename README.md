@@ -1,7 +1,7 @@
 # English Exercises
 
 English teaching material, built for classroom, homework and one-to-one use.
-Fifteen independent pages live here — a game for young learners at the site
+Sixteen independent pages live here — a game for young learners at the site
 root, phonics practice for slightly older children at `/phonics/`, an
 interactive phonics handbook for the same age at `/phonics-handbook/`, a
 review lesson for a ten-to-twelve-year-old at `/confidence-talk/`, a
@@ -15,7 +15,8 @@ TOEIC grammar
 practice at `/toeic-grammar/`, a homework review of one student's own
 sentences at `/sentence-upgrades/`, a high-school writing worksheet
 at `/robot-helper/`, a survey of seven years of the 學測 essay at
-`/exam-writing/`, and an IELTS Speaking Part 3 practice at `/ielts-part3/`.
+`/exam-writing/`, an IELTS Speaking Part 3 practice at `/ielts-part3/`, and a
+growing IELTS Speaking course covering all three parts at `/ielts-speaking/`.
 
 One page is not English at all: `/math/` is math practice for Grades 1 to 3,
 built for a child in an American school.
@@ -951,6 +952,76 @@ not improve it.
   Everything the learner is actually being asked to understand still is.
 - **Print** gives a handout: every reason, model answer and idea list opened,
   the clocks dropped, and the planning pads reduced to ruled lines to write on.
+
+## IELTS Speaking — adult, all three parts
+
+The second page here built to grow rather than to be finished. The Speaking
+test is three conversations, not one, so the course is three parts with their
+own lessons under each — and the contents page shows the lessons that are not
+written yet, dimmed and dashed, the way the grammar book does.
+
+Separate from `/ielts-part3/`, which stays where it is: that page is one
+lesson built from one student's recording, and nothing links the two.
+
+### The shape
+
+```
+public/ielts-speaking/
+  course.js      the whole map: three parts, every lesson, what is built
+  style.css      shared by the contents page and every lesson
+  render.js      the lesson renderer — eleven block types
+  hub.js         the contents page
+  _template/     a working page showing every block type, linked from nowhere
+  answer-shapes/ one folder per lesson: a thin index.html and a content.js
+```
+
+Adding a lesson is three steps: `cp -r _template <id>`, write its
+`content.js`, and flip `built` in `course.js`. Lesson folders are flat rather
+than nested under a part, so ids are unique across the whole course.
+
+- **The part is data, not markup.** A lesson names its id; the renderer looks
+  it up in `course.js` and takes the part from there. That is where the
+  `Part 2` kicker on question and cue cards comes from, and both clocks: Part 2
+  gets a full minute of preparation and a 1:30–2:00 band, Part 3 gets thirty
+  seconds and 0:40–1:15, and Part 1 — which has no thinking time — drops the
+  planning clock entirely. No lesson file states a timing. An id the map has
+  never heard of throws on load rather than rendering something quietly wrong.
+- **The palette is the IELTS red**, so the course is recognisable at a glance
+  and is not mistaken for the grammar book's brick red or the business-English
+  navy. `--brand` is the mark itself; `--navy` keeps its house name and holds
+  the same red deepened enough to stay readable as body text on the warm paper.
+- **Three block types were added for question-bank material.** `qbank` is a
+  topic's questions with a button that pulls one at random and will not pull it
+  again until the bank is empty — a button that can hand you the same question
+  twice is worse than no button. `bank` is the two-column phrase table, with
+  the Chinese behind a tap like every other line. `sentences` is a numbered
+  spoken list. `cue` draws a Part 2 candidate task card.
+
+### Part 3 — commerce and trust
+
+Five lessons from one set of practice material: a structures lesson holding the
+four answer shapes, the six universal frames and ten high-value sentences, then
+four topic lessons — Online Reviews (15 questions), Customer Service (15),
+Consumer Behaviour (10) and Business Reputation (10), each with its own
+collocations, useful sentences and a worked speaking pattern. Teach the
+structures lesson first; the four topics then rehearse the same shapes four
+times rather than explaining them once.
+
+**The question translations are the site's, not the source's.** The material
+gives Chinese for the phrase banks and the frames but the questions in English
+only, so the Chinese for all fifty questions was written here. Each lesson
+cover says so.
+
+Parts 1 and 2 are mapped but not written — nine lesson cards sitting dimmed on
+the contents page.
+
+### Design notes
+
+Same house rules as the other adult pages — English leads with Chinese behind a
+中 chip, nothing scored, nothing saved between clients, 🔊 on every English
+sentence, and the same faint 👩‍🏫 panel. Settings live under `ielts.*` in
+`localStorage` and are shared across the whole course, so a teacher who turns
+the Chinese on for a client does not turn it on again in every lesson.
 
 ## Landscape Architecture Portfolio — a student's own work
 

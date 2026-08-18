@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>IELTS Speaking</title>
+<meta name="description" content="IELTS Speaking Part 3 — fifteen practice questions on online reviews, with a phrase bank and model answer patterns for adult learners.">
+
+<!-- Inline SVG mark: three speech marks of increasing weight, the three parts
+     of the test. The colours must be percent-encoded — a bare "#" would be
+     read as the URL fragment and the icon would silently fail to load. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e1223b'/%3E%3Ccircle cx='20' cy='32' r='4' fill='%23ffffff' opacity='.5'/%3E%3Ccircle cx='32' cy='32' r='5.5' fill='%23ffffff' opacity='.75'/%3E%3Ccircle cx='46' cy='32' r='7' fill='%23ffffff'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f6f2">
+
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<a class="skip" href="#doc">Skip to lesson 跳到課程</a>
+
+<header class="bar">
+  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
+    <span aria-hidden="true">☰</span> Lesson 課程
+  </button>
+
+  <p class="bar-title">IELTS Speaking <span>雅思口說</span></p>
+
+  <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="false">中文</button>
+  <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
+          aria-controls="panel" title="Teacher panel" aria-label="Teacher panel">👩‍🏫</button>
+</header>
+
+<div class="shell">
+  <div id="nav"></div>
+  <main id="doc"></main>
+</div>
+
+<div class="nav-scrim" hidden></div>
+
+<!-- Teacher panel. Opens over the lesson rather than replacing it, so a
+     discussion in progress is never lost. -->
+<div class="panel" id="panel" role="dialog" aria-label="Teacher panel" hidden>
+  <div class="panel-head">
+    <h2>Teacher panel <span>教師面板</span></h2>
+    <button class="panel-x" id="panelClose" aria-label="Close">✕</button>
+  </div>
+
+  <label class="row row-check">
+    <input type="checkbox" id="zhAll">
+    <span>Show all Chinese <em>顯示全部中文</em></span>
+  </label>
+
+  <div class="row">
+    <button class="panel-btn" id="showAll">Reveal every answer <em>顯示所有答案</em></button>
+    <p class="row-note">Files every point into its bucket, opens the reasons, the
+      model answers and the shape cards — for going over a lesson together.
+      <em>把所有想法歸入籃子，並展開理由、範例答案與結構卡，方便一起檢討。</em></p>
+  </div>
+
+  <div class="row">
+    <label for="voicePick">Voice <em>語音</em></label>
+    <select id="voicePick"></select>
+    <p class="row-note">Used by the 🔊 buttons. Choosing one plays a sample.
+      <em>供 🔊 按鈕使用。選擇後會播放一段範例。</em></p>
+  </div>
+
+  <div class="row">
+    <label for="rate">Speed <em>速度</em></label>
+    <select id="rate">
+      <option value="0.75">Slow 慢</option>
+      <option value="0.95">Normal 正常</option>
+      <option value="1.1">Brisk 快</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <button class="panel-btn panel-btn-quiet" id="reset">Reset for the next student <em>為下一位學生重設</em></button>
+    <p class="row-note">Nothing is saved between sessions — this just clears the
+      screen, including the planning pads. Your voice and Chinese settings stay.
+      <em>課程之間不會儲存任何紀錄，這只是清空畫面（含計畫表）。你的語音與中文設定會保留。</em></p>
+  </div>
+</div>
+
+
+<!-- Site footer. Identical on every page, so a reader who lands on any one
+     sheet can find the rest. -->
+<footer class="site-foot">
+  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
+     aria-label="Lewis Biz English"><img src="../../logo.png" alt="" width="34" height="34"></a>
+  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
+    target="_blank" rel="noopener">lewistoeic.com</a></p>
+</footer>
+
+<!-- Order matters: the map, then this lesson, then the renderer. -->
+<script src="../course.js"></script>
+<script src="content.js"></script>
+<script src="../render.js"></script>
+</body>
+</html>
