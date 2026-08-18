@@ -22,8 +22,8 @@ One page is not English at all: `/math/` is math practice for Grades 1 to 3,
 built for a child in an American school.
 
 Three more pages are not lessons. `/landscape-portfolio/` is a portfolio
-template for a student to fill in with their own work, and `/anny/` and
-`/aaron/` are notebooks kept for one adult client each, which grow by one
+template for a student to fill in with their own work, and `/anny/`, `/aaron/`
+and `/anita/` are notebooks kept for one adult client each, which grow by one
 session after every discussion rather than being finished and left alone.
 
 ## Word Play — CEFR A1, ages 7–10
@@ -1206,6 +1206,39 @@ The AMPK/mTOR note is written as *what was said in class*, with a line saying
 the physiology was not checked afterwards. A notebook is a record; a record that
 quietly upgrades a half-remembered claim into a fact is worse than no record.
 
+## Anita's Notebook — adult, one-to-one, kept over time
+
+The third notebook, copied from
+[Aaron's](#aarons-notebook--adult-one-to-one-kept-over-time) rather than from
+Anny's, so it starts with the `link` block and the optional contrast labels
+already in place. Everything in the design notes above applies here too. The
+renderer is otherwise untouched; only the `localStorage` prefix changed, to
+`anita.`, so the two notebooks do not share a voice or a Chinese setting.
+
+Session 1 (7 August 2026) is a discussion of a new running specialty store her
+company is opening — why a retailer would want its own brand influence rather
+than the brands', what a niche position asks of the person on the shop floor,
+and the unresolved question underneath it: how to run a store with fewer staff
+without the layout quietly telling customers the stock is cheap. It ends on the
+company's internal AI agent and a workshop on AI literacy.
+
+Session 2 (14 August 2026) is the same shape three times over — using AI,
+planning a group trip, and handing a training programme to a colleague. It
+converges on delegation: more autonomy requires more clarity, and how much
+freedom to give is decided by what happens if you do not step in.
+
+The `fix` block carries **one** correction, and that is deliberate. The source
+for both sessions is an organised write-up rather than a transcript, so there is
+no reliable record of the exact wording of anything except the phrase the notes
+explicitly rework. The rule from Anny's notebook holds: do not reconstruct a
+student's sentence from memory, or the most trustworthy part of the page becomes
+the least. There is a comment saying so above the block.
+
+One line on the cover is not boilerplate. Anita's feedback on the homework page
+was that the generated voice lacks intonation, which is true, so the 🔊 line
+says what the audio is good for — pronunciation — and points intonation back at
+the lesson.
+
 ## Layout
 
 ```
@@ -1232,6 +1265,7 @@ public/ielts-part3/       the IELTS Part 3 structure practice
 public/anny/              Anny's notebook — one entry per discussion
 public/aaron/             Aaron's notebook — same machinery, its own sessions
 public/aaron/book-club/   the four-book discussion guide, under that notebook
+public/anita/             Anita's notebook — same machinery again, two sessions
 public/landscape-portfolio/      the portfolio — filled in as the Ando study
 public/landscape-portfolio/content.starter.js  the same page, emptied
 public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS.md
@@ -1539,6 +1573,11 @@ message said twice. Leaving them out keeps Anny's wording. Changes that belong
 in both notebooks have to be made twice — the copy is deliberate, since a
 student's page should not change because someone edited another student's.
 
+**Anita's Notebook.** The same again, in
+[`public/anita/content.js`](public/anita/content.js), from a copy of Aaron's
+renderer. Three copies now means a renderer fix lands three times; that is the
+price of one student's page never moving because another student's did.
+
 ## Running it locally
 
 No build step and no dependencies:
@@ -1571,9 +1610,10 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/exam-writing/> for the 學測 essay survey, or
 <http://localhost:8000/ielts-part3/> for the IELTS Part 3 practice, or
 <http://localhost:8000/landscape-portfolio/> for the portfolio template.
-The two notebooks are <http://localhost:8000/anny/> and
-<http://localhost:8000/aaron/>, and the book discussion guide is under the
-second of those, at <http://localhost:8000/aaron/book-club/>.
+The three notebooks are <http://localhost:8000/anny/>,
+<http://localhost:8000/aaron/> and <http://localhost:8000/anita/>, and the book
+discussion guide is under the second of those, at
+<http://localhost:8000/aaron/book-club/>.
 
 ## Live sites
 
@@ -1583,7 +1623,7 @@ second of those, at <http://localhost:8000/aaron/book-club/>.
 Everything under `public/` is reachable at both URLs on the next push. Nothing
 here is behind a login, and no page is linked from the site root unless it is
 listed there, so an unlisted page is unlisted rather than private. Pages built
-around a named client — `/business-clarity/`, `/anny/` — carry
+around a named client — `/business-clarity/`, `/anny/`, `/aaron/`, `/anita/` — carry
 `noindex, nofollow`, which keeps them out of search results; it does not make
 the URL secret. Anything that must not be publishable should not go in
 `public/` at all.
