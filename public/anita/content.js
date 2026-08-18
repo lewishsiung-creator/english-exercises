@@ -59,12 +59,14 @@
    corrected. Put real sentences in as they come up; do not reconstruct them
    from memory, or the most trustworthy part of the page becomes the least.
 
-   Session 1 came from an organised write-up and so has no `fix` block at all.
-   Session 2 has one because the recording of that hour was available: work
-   from the Zoom transcript when there is one. It is machine-generated and
-   mishears freely, so take only the lines where the error is unmistakably hers
-   — a tense, a pronoun, a singular for a plural — and leave the garbled ones
-   out rather than tidying them into a sentence she may not have said.
+   Both sessions were written first from an organised summary, which is cleaned
+   up and so carries no record of anyone's wording; the Zoom transcripts arrived
+   afterwards and the corrections came from those. Work from the transcript
+   whenever there is one. It is machine-generated and mishears freely, so take
+   only the lines where the error is unmistakably hers — a missing verb, a
+   tense, a preposition, a comparative — and leave the garbled ones out rather
+   than tidying them into a sentence she may not have said. Roughly ten survive
+   that filter per hour.
 
    SAMPLE BANNER
    -------------
@@ -445,6 +447,87 @@ const NOTEBOOK = {
             {
               en: 'A child should be given a laptop before a smartphone.',
               zh: '孩子應該先拿到筆電，再拿到智慧型手機。',
+            },
+          ],
+        },
+
+        /* From the recording of this hour. The transcript is machine-generated
+           and mishears freely, so only lines where the error is unmistakably
+           hers are used — a missing verb, a preposition, a comparative. The
+           garbled ones were left out rather than tidied into a sentence she may
+           not have said. */
+        {
+          t: 'fix',
+          en: 'Your own sentences, from this session',
+          zh: '這堂課裡，你自己的句子',
+          hintEn: 'The sentence as it came out, and the version to keep. Read the first line and see if you can spot it before you tap.',
+          hintZh: '當下說出口的版本，以及值得留下的版本。先讀第一行，看看能不能自己找出問題，再點開。',
+          items: [
+            {
+              wrong: 'My coworkers told me, your lucky day has gone.',
+              right: 'My coworkers told me my lucky days were over.',
+              whyEn: 'Two things. Reporting what someone said moves the words into your own sentence — my, not your. And “has gone” means it went somewhere; a period of time that has finished is over.',
+              whyZh: '兩件事。轉述別人的話時，那些字會變成你自己句子的一部分——要用 my，不是 your。另外，has gone 的意思是「去了某個地方」；一段時間結束了，要用 over。',
+            },
+            {
+              wrong: 'The employees are almost newcomers.',
+              right: 'Most of the employees are newcomers.',
+              whyEn: 'This one is worth circling — “almost” for “most” came up three or four times in the hour. Almost means nearly, and it sits next to the thing it limits: almost all of them. When you mean the majority, it is most.',
+              whyZh: '這一句值得圈起來——用 almost 代替 most，這個小時裡出現了三四次。almost 的意思是「幾乎、差一點」，而且要緊貼著它修飾的東西：almost all of them。你要表達「大多數」時，要用 most。',
+            },
+            {
+              wrong: 'Which shoes suitable for beginners?',
+              right: 'Which shoes are suitable for beginners?',
+              whyEn: 'Chinese can put an adjective straight after the noun; English cannot. Between the thing and its description there has to be a verb — are.',
+              whyZh: '中文可以把形容詞直接接在名詞後面，英文不行。名詞和描述之間一定要有一個動詞——are。',
+            },
+            {
+              wrong: 'This new store type is very popular in abroad.',
+              right: 'This kind of store is very popular overseas.',
+              whyEn: 'Abroad and overseas already mean “in another country”, so the preposition is built in — no “in”. You can also say “in other countries”, but not both at once.',
+              whyZh: 'abroad 和 overseas 本身就含有「在其他國家」的意思，介系詞已經內建，不需要再加 in。你也可以說 in other countries，但兩種說法不能疊在一起。',
+            },
+            {
+              wrong: 'We just only one NBA store in Taipei.',
+              right: 'We only have one NBA store in Taipei.',
+              whyEn: 'The verb went missing. Chinese can leave “有” implied in a sentence like this; English always needs have.',
+              whyZh: '動詞不見了。中文在這樣的句子裡可以省略「有」，英文則一定要把 have 說出來。',
+            },
+            {
+              wrong: 'Even though the manpower is weak.',
+              right: 'Even when we are short-staffed.',
+              whyEn: 'Manpower is not weak or strong — there is either enough of it or not. Short-staffed is the word the industry actually uses, and it is what you will hear in a meeting.',
+              whyZh: 'manpower 沒有「強弱」之分，只有「夠不夠」。short-staffed 才是這個產業實際在用的字，也是你在會議上會聽到的說法。',
+            },
+            {
+              wrong: 'Did you went to the outlet store?',
+              right: 'Have you ever been to an outlet store?',
+              whyEn: 'You started this one right and then changed it — the first version was correct. After did, the verb stays plain: did you go. And for an experience at some point in your life, English prefers have you ever been.',
+              whyZh: '這一句你本來說對了，後來又改掉——第一個版本才是對的。did 後面的動詞維持原形：did you go。另外，問「這輩子有沒有過這種經驗」，英文偏好用 have you ever been。',
+            },
+            {
+              wrong: 'A lot of shoes just put on the ground.',
+              right: 'A lot of the shoes are just left on the floor.',
+              whyEn: 'The shoes did not put themselves anywhere — someone put them there, so the sentence needs the passive: are left, are placed, are stacked. Inside a building it is the floor; the ground is outdoors.',
+              whyZh: '鞋子不會自己放到某個地方——是有人放的，所以句子要用被動：are left、are placed、are stacked。另外，室內是 floor，ground 指的是戶外的地面。',
+            },
+            {
+              wrong: 'The customer will think it is very lower.',
+              right: 'Customers will assume the product is cheap.',
+              whyEn: 'Lower is a comparison and needs something to compare with, so “very lower” cannot stand. Here you meant the impression the layout gives — cheap, or worth less than it is.',
+              whyZh: 'lower 是比較級，必須有比較的對象，所以 very lower 站不住。你這裡要說的是那種陳列給人的印象——cheap，或者 worth less than it is。',
+            },
+            {
+              wrong: 'We want to use the AI to let our employees’ knowledge stay in the company.',
+              right: 'We want AI to keep our employees’ knowledge inside the company.',
+              whyEn: 'The idea is a good one and worth saying cleanly. “Let something stay” is permission — you are allowing it. What you mean is active: keep it, hold on to it. Also AI takes no “the” when you mean the technology in general.',
+              whyZh: '這個想法很好，值得說得乾淨一點。let something stay 是「允許它留下」的意思。你要表達的是主動的：keep it、hold on to it。另外，泛指這項技術時，AI 前面不加 the。',
+            },
+            {
+              wrong: 'I’m very frustrated in this week.',
+              right: 'I’ve been frustrated this week.',
+              whyEn: 'This week has not finished, so English uses have been — the feeling started earlier and is still going. And this week takes no preposition, the same as today and last month.',
+              whyZh: '這一週還沒結束，所以英文用 have been——這個感覺從之前開始，到現在還在持續。另外，this week 前面不加介系詞，跟 today、last month 一樣。',
             },
           ],
         },

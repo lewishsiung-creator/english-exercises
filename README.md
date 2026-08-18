@@ -1227,19 +1227,25 @@ planning a group trip, and handing a training programme to a colleague. It
 converges on delegation: more autonomy requires more clarity, and how much
 freedom to give is decided by what happens if you do not step in.
 
-The `fix` block is where the two sessions differ, and the difference is the
-whole argument for working from a recording. Session 1 was written from an
-organised summary, so it has no corrections at all — a cleaned write-up carries
-no reliable record of anyone's exact wording, and the rule from Anny's notebook
-holds: do not reconstruct a student's sentence from memory, or the most
-trustworthy part of the page becomes the least. Session 2 had the Zoom
-transcript, so it carries nine of her own sentences, corrected.
+The `fix` block is the argument for working from a recording. Both sessions
+were written first from an organised summary, which is cleaned up and so carries
+no record of anyone's exact wording — the rule from Anny's notebook holds: do
+not reconstruct a student's sentence from memory, or the most trustworthy part
+of the page becomes the least. Written that way, session 1 had no corrections at
+all and session 2 had one. The Zoom transcripts of both hours arrived
+afterwards, and the block now carries eleven of her own sentences in session 1
+and nine in session 2.
 
 The transcript is machine-generated and mishears freely, which sets the
 selection rule: take only the lines where the error is unmistakably hers — a
-tense, a pronoun, a singular for a plural — and leave the garbled ones out
-rather than tidying them into a sentence she may not have said. Nine survived
-that filter out of an hour. There is a comment above the block saying so.
+missing verb, a tense, a preposition, a comparative — and leave the garbled ones
+out rather than tidying them into a sentence she may not have said. Roughly ten
+survive that filter per hour. There is a comment above each block saying so.
+
+What the two hours have in common is the point of keeping a notebook per
+student: `almost` for `most` in session 1, and `I am pass on` for `I have passed
+on` in session 2, each recurring three or four times inside the same hour. A
+summary shows neither.
 
 One line on the cover is not boilerplate. Anita's feedback on the homework page
 was that the generated voice lacks intonation, which is true, so the 🔊 line
