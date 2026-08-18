@@ -59,6 +59,13 @@
    corrected. Put real sentences in as they come up; do not reconstruct them
    from memory, or the most trustworthy part of the page becomes the least.
 
+   Session 1 came from an organised write-up and so has no `fix` block at all.
+   Session 2 has one because the recording of that hour was available: work
+   from the Zoom transcript when there is one. It is machine-generated and
+   mishears freely, so take only the lines where the error is unmistakably hers
+   — a tense, a pronoun, a singular for a plural — and leave the garbled ones
+   out rather than tidying them into a sentence she may not have said.
+
    SAMPLE BANNER
    -------------
    Setting `sample` puts a line across the top saying the content is a
@@ -671,26 +678,6 @@ const NOTEBOOK = {
           ],
         },
 
-        /* One correction only. The write-up records this phrase being reworked
-           in the discussion; the rest of the hour was summarised rather than
-           transcribed, so there is no reliable record of the exact wording of
-           anything else. Add more as they come up, live. */
-        {
-          t: 'fix',
-          en: 'From the discussion',
-          zh: '課堂上的訂正',
-          hintEn: 'The sentence as it came out, and the version to keep. Tap to see it.',
-          hintZh: '當下說出口的版本，以及值得留下的版本。點一下就會出現。',
-          items: [
-            {
-              wrong: 'Some people will overly depend on AI.',
-              right: 'Some people become overly dependent on AI.',
-              whyEn: 'English prefers the adjective here: be or become dependent on something. “Depend on” is the verb, but “overly depend on” sits awkwardly — the adverb wants an adjective to lean on.',
-              whyZh: '英文在這裡偏好用形容詞：be／become dependent on something。depend on 是動詞沒錯，但 overly depend on 讀起來卡卡的——這個副詞需要一個形容詞可以修飾。',
-            },
-          ],
-        },
-
         {
           t: 'note',
           en: 'Security did not start with AI — but it did get bigger',
@@ -787,6 +774,76 @@ const NOTEBOOK = {
           zh: '要給多少自由——你提出的判準',
           bodyEn: 'Complete freedom sounds generous, and sometimes it is not. The parenting example we used — a family who would not make their children brush their teeth, out of respect for the children’s choices, and the dental problems that followed — is not an argument against freedom. It is an argument for looking at what happens if you do not step in. Your own test is the cleanest thing to come out of the hour: ask what the consequences are if I leave this alone. If they are manageable, give more freedom. If they are serious or hard to recover from, give more guidance. Low risk, more autonomy; high risk, more oversight. And when the cost of a mistake would be unbearable, stepping in is not micromanaging — it is taking precautions. Control and risk management look alike from the outside and are not the same thing.',
           bodyZh: '完全的自由聽起來很大方，有時候卻不是。我們用的那個親子例子——一個家庭出於尊重孩子的選擇，不強迫孩子刷牙，後來出現了嚴重的牙齒問題——並不是在反對自由。它是在主張：要去看「如果你不介入，會發生什麼」。你自己提出的判準是這一小時裡最乾淨的東西：先問，如果我放著不管，後果是什麼？如果後果是可以承受的，就給更多自由；如果後果很嚴重、很難挽回，就給更多指導。風險低，自主權多；風險高，監督多。而當犯錯的代價無法承受時，介入就不是過度管理，而是預防措施。控制和風險管理從外面看起來很像，但它們不是同一件事。',
+        },
+
+        /* Anita's own sentences, from the recording of this hour.
+           The transcript is machine-generated and mishears a good deal, so
+           only lines where the error is unmistakably hers are used here — a
+           tense, a pronoun, a singular for a plural. Anything the recogniser
+           garbled was left out rather than tidied into a sentence she may not
+           have said. Every one of these is a real slip from 14 August. */
+        {
+          t: 'fix',
+          en: 'Your own sentences, from this session',
+          zh: '這堂課裡，你自己的句子',
+          hintEn: 'The sentence as it came out, and the version to keep. Read the first one and see if you can spot it before you tap.',
+          hintZh: '當下說出口的版本，以及值得留下的版本。先讀第一行，看看能不能自己找出問題，再點開。',
+          items: [
+            {
+              wrong: 'He did not depends on AI overly.',
+              right: 'He is not overly dependent on AI.',
+              whyEn: 'Two things. After “did not” the verb goes back to its plain form — did not depend. And English prefers the adjective here: be or become dependent on something. “Overly” wants an adjective to lean on.',
+              whyZh: '兩件事。did not 後面的動詞要回到原形——did not depend。另外，英文在這裡偏好用形容詞：be／become dependent on something。overly 需要一個形容詞可以修飾。',
+            },
+            {
+              wrong: 'I am already pass on all the classes to my co-workers.',
+              right: 'I have already passed all the classes on to my coworkers.',
+              whyEn: 'This is the one to watch — it came up three or four times in the hour. “I am” makes it a description of you; what you mean is a thing you did and that is still true, which is have + the past form: I have passed it on.',
+              whyZh: '這一句要特別注意——這個小時裡出現了三四次。用 I am 會變成在描述「你這個人」；你要說的是一件已經做了、而且到現在仍然成立的事，那就是 have + 過去分詞：I have passed it on。',
+            },
+            {
+              wrong: 'The training leader asked me. He would like to ask for duty leave.',
+              right: 'The training leader asked me. She wanted to apply for duty leave.',
+              whyEn: 'You corrected this one yourself mid-sentence, which is the right instinct. English forces the choice every time the person comes up again, so it is worth deciding at the start of the story: she.',
+              whyZh: '你自己在句子中間就改過來了，這個直覺是對的。英文每次再提到這個人時都會逼你做選擇，所以在故事一開始就先決定好：she。',
+            },
+            {
+              wrong: 'She say, why you ask me so many question?',
+              right: 'She said, “Why are you asking me so many questions?”',
+              whyEn: 'Three small things at once: said for the past, the question word order inside the quotation, and questions in the plural. Quoting someone is where all three tend to slip together.',
+              whyZh: '三個小地方同時出現：過去式 said、引號裡面的疑問句語序，以及複數 questions。引述別人說的話時，這三個地方最容易一起出錯。',
+            },
+            {
+              wrong: 'You need to give them the space to contribute their skill and their ideal.',
+              right: 'You need to give them space to contribute their skills and their ideas.',
+              whyEn: 'The sentence itself is excellent — it was the best line of the hour. Only three details: no “the” before space here, and both skills and ideas are plural. Ideal is a different word: a standard you aim at.',
+              whyZh: '這個句子本身非常好——是這一小時裡最漂亮的一句。只有三個細節：這裡的 space 前面不加 the，skills 和 ideas 都要用複數。ideal 是另一個字，指的是你追求的理想標準。',
+            },
+            {
+              wrong: 'If the consequence I can control, I will respect them to do.',
+              right: 'If I can live with the consequences, I let them decide.',
+              whyEn: 'Your idea was clear and the English was fighting it. English will not move the object to the front like Chinese does, so the condition has to be rebuilt around I. “Respect them to do” is not a pattern English has — let them decide is.',
+              whyZh: '你的想法很清楚，是英文在跟它作對。英文不像中文可以把受詞提到前面，所以這個條件句必須用 I 重新組起來。respect somebody to do 不是英文的句型——let them decide 才是。',
+            },
+            {
+              wrong: 'Their speaking is the totally the same.',
+              right: 'They all sound exactly the same.',
+              whyEn: 'The point you were making about the generated voice was a fair one. English says it with a verb rather than a noun: they sound the same, not their speaking is the same.',
+              whyZh: '你對那個 AI 語音的評論是對的。英文會用動詞而不是名詞來說這件事：they sound the same，而不是 their speaking is the same。',
+            },
+            {
+              wrong: 'I have watched and listened twice. And then I forgot I need to what I need to do.',
+              right: 'I watched and listened to it twice, and then I forgot what I was supposed to do.',
+              whyEn: 'Once the sentence has moved into the past with forgot, what follows moves with it: what I was supposed to do. Keeping “need” in the present makes it sound like you still do not know.',
+              whyZh: '一旦句子用 forgot 進入過去，後面也要跟著走：what I was supposed to do。把 need 留在現在式，聽起來會像你到現在還不知道。',
+            },
+            {
+              wrong: 'When we getting older, we cannot remember a lot of things.',
+              right: 'As we get older, we can’t remember as much.',
+              whyEn: 'A general truth takes the plain present: as we get older. And “cannot remember a lot of things” says you remember almost nothing — as much is the smaller, truer claim you meant.',
+              whyZh: '講一個普遍的道理要用現在簡單式：as we get older。另外，cannot remember a lot of things 的意思是「幾乎什麼都記不住」；你要表達的是程度上的減少，用 as much 才準確。',
+            },
+          ],
         },
 
         {
@@ -933,6 +990,7 @@ const NOTEBOOK = {
           prompts: [
             { en: 'Pick sentences you could use at work next week, not ones you admire from a distance.', zh: '挑你下週在工作上用得到的句子，而不是遠遠看著覺得漂亮的那種。' },
             { en: 'At least two should be about people — trust, autonomy, handing something over.', zh: '其中至少兩句要跟「人」有關——信任、自主權、把事情交出去。' },
+            { en: 'Take at least one from the corrections — those are your own sentences, so they are the ones you will need again.', zh: '至少從訂正區挑一句——那些是你自己的句子，所以也是你之後最會再用到的。' },
             { en: 'Write each one out by hand. Reading a good sentence is not the same as owning it.', zh: '每一句都用手抄。讀過一個好句子，跟擁有它，是兩回事。' },
           ],
           frames: [

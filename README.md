@@ -1227,12 +1227,19 @@ planning a group trip, and handing a training programme to a colleague. It
 converges on delegation: more autonomy requires more clarity, and how much
 freedom to give is decided by what happens if you do not step in.
 
-The `fix` block carries **one** correction, and that is deliberate. The source
-for both sessions is an organised write-up rather than a transcript, so there is
-no reliable record of the exact wording of anything except the phrase the notes
-explicitly rework. The rule from Anny's notebook holds: do not reconstruct a
-student's sentence from memory, or the most trustworthy part of the page becomes
-the least. There is a comment saying so above the block.
+The `fix` block is where the two sessions differ, and the difference is the
+whole argument for working from a recording. Session 1 was written from an
+organised summary, so it has no corrections at all — a cleaned write-up carries
+no reliable record of anyone's exact wording, and the rule from Anny's notebook
+holds: do not reconstruct a student's sentence from memory, or the most
+trustworthy part of the page becomes the least. Session 2 had the Zoom
+transcript, so it carries nine of her own sentences, corrected.
+
+The transcript is machine-generated and mishears freely, which sets the
+selection rule: take only the lines where the error is unmistakably hers — a
+tense, a pronoun, a singular for a plural — and leave the garbled ones out
+rather than tidying them into a sentence she may not have said. Nine survived
+that filter out of an hour. There is a comment above the block saying so.
 
 One line on the cover is not boilerplate. Anita's feedback on the homework page
 was that the generated voice lacks intonation, which is true, so the 🔊 line
