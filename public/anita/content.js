@@ -70,7 +70,7 @@ const NOTEBOOK = {
   student: 'Anita',
   title: 'Anita’s English Notebook',
   titleZh: 'Anita 的英文筆記',
-  kicker: '一對一英語課 · 課堂筆記',
+  kicker: '職場英語 · 課堂筆記',
 
   intro: {
     en: 'This page is where our sessions are kept. Everything we work through together stays here, so you can come back to it between lessons — the language, the ideas, and the sentences worth keeping.',
