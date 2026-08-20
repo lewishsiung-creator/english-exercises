@@ -26,15 +26,15 @@
 :root {
   --paper: #f6f4ee;
   --card: #ffffff;
-  --ink: #1d2a2a;
-  --ink-soft: #4f6260;
-  --ink-faint: #869593;
+  --ink: #16211f;
+  --ink-soft: #445452;
+  --ink-faint: #636e6c;
 
   --navy: #256b5e;
   --navy-soft: #e7f1ee;
   --navy-line: #a7cdc3;
 
-  --gold: #b45f10;
+  --gold: #a9590f;
   --gold-soft: #fdf1e2;
   --gold-line: #f0932b;
 
@@ -1391,11 +1391,56 @@ body.zh-all .card-back { display: block; }
    table), but the reader is eleven, the sentences are shorter, and short
    sentences need more room around them or the page reads as a wall. */
 
-body { font-size: 19px; line-height: 1.68; }
+/* SIZE, in two moves rather than one.
 
-/* A slightly narrower measure at a larger size, so a line still lands near
-   the 60–70 characters that stays easy to track back from. */
-:root { --measure: 44rem; }
+   The body was already 19px, but almost nothing on this page was reading at
+   19px. Every piece of supporting text — the hints, the Chinese glosses, the
+   backs of the phrase cards, the explanations under a gap — is sized in `rem`,
+   which is anchored to the ROOT font size and not to the body. The root was
+   the browser default of 16px, so the page was really 19px of prose sitting in
+   a 16px page, and the small print was small for an eleven-year-old.
+
+   So: raise the root, which lifts every rem-sized rule at once, and raise the
+   body on top of it for the prose itself. Chasing the forty-odd individual
+   rules instead would have left the next one added out of step. */
+html { font-size: 17px; }
+body { font-size: 20px; line-height: 1.7; }
+
+/* The measure is in rem, so it grew with the root. 44rem × 16px was 704px;
+   41.5rem × 17px is 706px — the same column, so a line still lands near the
+   60–70 characters that stays easy to track back from. Without this the page
+   would have quietly got wider as well as bigger. */
+:root { --measure: 41.5rem; }
+
+/* The Chinese sits at 0.82em of whatever it hangs under, which is fine beside
+   English prose and too small beside a label. Traditional characters need more
+   room than Latin at the same nominal size — there is simply more ink in the
+   glyph — so the whole layer comes up. */
+.zh { font-size: .9em; line-height: 1.75; }
+
+/* The floor. These are the rules that were still under 13px after the root
+   change, and every one of them is text a child actually reads rather than a
+   micro-label: the date on a folded heading, the instruction above an
+   exercise, the example on the back of a phrase card. */
+.session-btn .date { font-size: .8rem; }
+.hint { font-size: .88rem; }
+.hint-zh { font-size: .84rem; }
+.card-eg-zh, .cross-note-zh, .quote figcaption { font-size: .84rem; }
+.why { font-size: .9rem; }
+.why .zh { font-size: .86rem; }
+.goals li .zh, .cx-why .zh, .fix-why .zh, .prompt .zh { font-size: .86rem; }
+.cx-tag, .cx-case { font-size: .8rem; }
+.tally, .gap-n, .mcq-n { font-size: .86rem; }
+
+/* A word-box blank is a <button>, and an empty one has no line box — so before
+   a word is dropped into it, it was drawing at 6px tall. Visible as a rule and
+   very nearly untappable, which on a phone made the exercise the page's worst
+   interaction rather than its best. Give it the height of a line of text
+   whether or not it is holding a word yet.
+
+   Scoped to .blank, not .slot: a gap-fill's slot is a <span> that nobody taps,
+   and it is supposed to sit thin and inline inside a sentence. */
+.blank { min-height: 1.9em; min-width: 7rem; vertical-align: middle; }
 
 .session-body { padding-top: 28px; }
 .lead { margin-bottom: 26px; }
