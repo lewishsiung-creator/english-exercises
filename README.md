@@ -1632,6 +1632,116 @@ student's page should not change because someone edited another student's.
 renderer. Three copies now means a renderer fix lands three times; that is the
 price of one student's page never moving because another student's did.
 
+## Riva & Rex's Notebook — a pair class, ages 10–12, kept over time
+
+The fifth notebook and the first for **two students at once**. Riva and Rex are
+ten to twelve and are taught together, so this is one page rather than two —
+where the source notes name who said what the page names them too, and where
+they do not, it does not guess.
+
+The machinery is a copy of Eason's, unchanged. What differs is the age band. Ten
+to twelve sits between the two house styles used everywhere else here: too old
+for the picture-led seven-to-ten pages, too young for the adult document. So the
+page keeps the adult skeleton — a scrolling document, a contents list, a teacher
+panel, 中 chips on every line — and re-sets it one step larger with more air
+between blocks, in the warmer palette
+[Confidence and Everyday Life](#confidence-and-everyday-life--ages-1012-teacher-led)
+established for this age. Those rules are collected in one block at the bottom of
+[`style.css`](public/riva-rex/style.css) rather than edited through the sheet, so
+the difference between this notebook and the adult ones stays legible and a
+future session could be moved either way by touching one block.
+
+Discussion is spoken only. There is no input field anywhere on the page and
+nothing persists between lessons — at this age the writing belongs in their
+paper notebooks.
+
+Twelve sessions, 21 March to 14 August 2026, built from a Notion page of weekly
+class notes. Carrying brooms up three floors and being paid in candy; a page flip
+animation finished after dinner; twelve turns on an inflatable slide on April
+Fool's Day; a cold, a dinosaur exhibition and a balloon caught for a stranger;
+camping and a catchy melody; grades and a Mother's Day card; a writing contest
+and an idea Rex had for Riva; Kevin running to a closed office on a Saturday;
+the junior mayor poster he drew and does not want the job from; which subject
+takes the most time; speaking up in class; and how far, how many steps and who
+snores.
+
+### Design notes
+
+The `fix` block is the whole argument for a per-student page, and here it has a
+better source than a transcript. Where a class note reads **"More natural: …"**,
+that is a sentence one of them actually produced with the upgrade written beside
+it — already selected, already correct. Session 5 carries five in a row and is
+the strongest page in the notebook. Sessions whose notes carry no such line have
+no `fix` block; do not invent them.
+
+Session 11 is the same 2026-07-11 material as
+[Confidence and Everyday Life](#confidence-and-everyday-life--ages-1012-teacher-led),
+so the two pages cross-link.
+
+One attribution is an inference rather than a record. The 8 May notes label only
+the Mother's Day half "Riva"; the grades half carries no name and is given to Rex
+because the following week he says he remembered Riva "had written a Mother's Day
+card before". There is a comment above it saying so.
+
+**On the handwritten pages.** The Notion source has `Handwritten Notes (date)`
+pages of photographed notebooks, which look like the children's own writing and
+are not: they are the two of them copying out the *previous* week's class notes
+by hand. Handwritten (2026-03-28) is Class Notes (2026-03-21) word for word.
+Transcribing them reprints the typed notes twice, so they are left out — except
+Handwritten (2026-03-21), whose content appears in no Class Notes page at all and
+is otherwise unrecorded. It is in session 1 as "From the week before".
+
+## Riva & Rex — Practice
+
+The companion to the notebook above, and the first page here to separate the two:
+the notebook is the **record** of what happened in each lesson, this is the
+material worked **through**. Five Cambridge Movers reading papers, a present
+simple vs present progressive worksheet, and one topic reading about the escape
+room at Taipei Children's Amusement Park. Seventy-five multiple-choice questions,
+133 word-box blanks, twenty grammar gaps.
+
+Same machinery again, with four block types added in
+[`render.js`](public/riva-rex-practice/render.js) for the shapes a test paper
+needs:
+
+| Block | What it is |
+| --- | --- |
+| `passage` | a reading text, each paragraph with its own 🔊 |
+| `mcq` | a question with three options; the right one locks, wrong ones fade but stay |
+| `wordbox` | the Cambridge Part 5 shape — pick a word, then pick its blank |
+| `answers` | a prompt with the answer held behind a tap |
+
+### Design notes
+
+**The reading passages have no Chinese, and that is the point.** Everywhere else
+on this site an English line has its Traditional Chinese one tap away. Here the
+questions underneath are comprehension practice, so a translation would answer
+them before they are asked. The Chinese on this page lives in the instructions,
+the labels, the word-box notes and the contents list — scaffolding, never the
+text being tested. The one exception is the last exercise, a topic reading rather
+than a test, which is bilingual throughout because it came that way.
+
+A solved `mcq` does not hide its options, where a `gap` does. A gap hides them
+because the filled sentence replaces them; here there is nothing to fill, and
+leaving the row as it was played — the right one green, the tried ones faded —
+lets the teacher see what was guessed before it was known.
+
+A word placed into a blank stays in the box, struck through rather than removed.
+Seeing which words have gone is most of how the last two blanks get worked out.
+
+Two things in the source needed correcting rather than copying. The Part 5 word
+boxes do **not** all leave exactly one word spare — across the five papers it
+ranges from one to three — so the page counts and says how many, because a note
+reading "one" when three are left over turns a finished exercise into a puzzle
+about the page. And one box offers `brush` where the blank needs `brushes`; on
+paper a child writes the right form, but a word placed by tapping arrives
+verbatim, so the box word was changed.
+
+This page opens on the **first** exercise where the notebooks open on the newest
+session. A notebook has a newest lesson worth opening; a set of exercises has a
+first, and opening anywhere else makes the page look as though it starts in the
+middle.
+
 ## Running it locally
 
 No build step and no dependencies:
@@ -1664,9 +1774,11 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/exam-writing/> for the 學測 essay survey, or
 <http://localhost:8000/ielts-part3/> for the IELTS Part 3 practice, or
 <http://localhost:8000/landscape-portfolio/> for the portfolio template.
-The three notebooks are <http://localhost:8000/anny/>,
-<http://localhost:8000/aaron/> and <http://localhost:8000/anita/>, and the book
-discussion guide is under the second of those, at
+The notebooks are <http://localhost:8000/anny/>,
+<http://localhost:8000/aaron/>, <http://localhost:8000/anita/>,
+<http://localhost:8000/eason/> and <http://localhost:8000/riva-rex/>, whose
+practice papers are at <http://localhost:8000/riva-rex-practice/>. The book
+discussion guide is under Aaron's, at
 <http://localhost:8000/aaron/book-club/>.
 
 ## Live sites
@@ -1677,7 +1789,8 @@ discussion guide is under the second of those, at
 Everything under `public/` is reachable at both URLs on the next push. Nothing
 here is behind a login, and no page is linked from the site root unless it is
 listed there, so an unlisted page is unlisted rather than private. Pages built
-around a named client — `/business-clarity/`, `/anny/`, `/aaron/`, `/anita/` — carry
+around a named client or student — `/business-clarity/`, `/anny/`, `/aaron/`,
+`/anita/`, `/eason/`, `/riva-rex/` and `/riva-rex-practice/` — carry
 `noindex, nofollow`, which keeps them out of search results; it does not make
 the URL secret. Anything that must not be publishable should not go in
 `public/` at all.
