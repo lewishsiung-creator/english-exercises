@@ -21,10 +21,12 @@ growing IELTS Speaking course covering all three parts at `/ielts-speaking/`.
 One page is not English at all: `/math/` is math practice for Grades 1 to 3,
 built for a child in an American school.
 
-Three more pages are not lessons. `/landscape-portfolio/` is a portfolio
-template for a student to fill in with their own work, and `/anny/`, `/aaron/`
-and `/anita/` are notebooks kept for one adult client each, which grow by one
-session after every discussion rather than being finished and left alone.
+Five more pages are not lessons. `/landscape-portfolio/` is a portfolio
+template for a student to fill in with their own work, and `/anny/`, `/aaron/`,
+`/anita/` and `/eason/` are notebooks kept for one student each, which grow by
+one session after every discussion rather than being finished and left alone.
+The first three are adult clients; `/eason/` is a teenager moving up to senior
+high school.
 
 ## Word Play — CEFR A1, ages 7–10
 
@@ -1252,6 +1254,44 @@ was that the generated voice lacks intonation, which is true, so the 🔊 line
 says what the audio is good for — pronunciation — and points intonation back at
 the lesson.
 
+## Eason's Notebook — teenager, one-to-one, kept over time
+
+The fourth notebook, and the first one that is not for a working adult. Eason is
+finishing junior high and starting senior high school. The machinery is copied
+from [Anita's](#anitas-notebook--adult-one-to-one-kept-over-time), which is
+where the comments already use *they* rather than *he* or *she*; only the
+`localStorage` prefix changed, to `eason.`, so no notebook shares a voice or a
+Chinese setting with another.
+
+Nothing on the page is written down to him. What changed is the register — the
+summaries run in shorter sentences, and the examples come from his own life
+rather than from an office — and that is recorded at the top of
+[`content.js`](public/eason/content.js) so the next session does not drift back
+into the adult voice.
+
+Session 1 (20 August 2026) is a diving trip to the Philippines that turns into
+something else. The certificate came with ten units of theory to get through
+online, and because the subject was safety it was the first course he could
+neither skim nor hand to AI. Underwater he found a strength he had not gone
+looking for. Then the hour moves to the 學習歷程 — why the entries are worth
+writing one a month from year one rather than reconstructed from memory in year
+three — and lands on the distinction he made himself: his blog records what he
+saw, and a portfolio records what changed in him. The homework is the second
+article, written next to the first rather than over it.
+
+The session ends somewhere neither of us started: his diving instructor praised
+something specific before mentioning what to fix, and he recognised that he does
+the opposite when teaching a friend a game he is much better at. The `contrast`
+block carries both — the travel diary against the portfolio entry, and the way
+he coaches now against the way his instructor coached him.
+
+The `fix` block is empty, and the comment in the file says why: the source was
+an organised write-up, cleaned of repetition and transcription noise, so it
+carries no reliable record of his own wording. The rule from Anny's notebook
+holds — do not reconstruct a student's sentence from memory. A transcript would
+fill it.
+
+
 ## Layout
 
 ```
@@ -1279,13 +1319,14 @@ public/anny/              Anny's notebook — one entry per discussion
 public/aaron/             Aaron's notebook — same machinery, its own sessions
 public/aaron/book-club/   the four-book discussion guide, under that notebook
 public/anita/             Anita's notebook — same machinery again, two sessions
+public/eason/             Eason's notebook — the same, for a teenager
 public/landscape-portfolio/      the portfolio — filled in as the Ando study
 public/landscape-portfolio/content.starter.js  the same page, emptied
 public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS.md
 make-icon.py              regenerates public/apple-touch-icon.png
 ```
 
-All nineteen are plain HTML, CSS and JS with no build step.
+All twenty-one are plain HTML, CSS and JS with no build step.
 
 Every page ends with the same `<footer class="site-foot">` linking to
 <https://lewistoeic.com>, so a reader who lands on any one sheet can find the
