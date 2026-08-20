@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Riva &amp; Rex’s English Notebook</title>
-<meta name="description" content="A running notebook of Riva and Rex’s pair sessions — the words, sentences and speaking tasks from each lesson, kept in one place and added to every week.">
+<meta name="description" content="Riva and Rex’s pair sessions and their practice papers in one place — the words and sentences from each lesson, plus Cambridge Movers reading, grammar and a topic reading.">
 
 <!-- This page carries a named student and their own sessions, so it is kept out
      of search results. It stays reachable by its URL for them. -->
@@ -23,7 +23,7 @@
 
 <header class="bar">
   <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
-    <span aria-hidden="true">☰</span> Sessions 課程
+    <span aria-hidden="true">☰</span> Contents 目錄
   </button>
 
   <p class="bar-title">Riva &amp; Rex’s Notebook <span>Riva 與 Rex 的英文筆記</span></p>
@@ -54,17 +54,18 @@
   </label>
 
   <div class="row">
-    <button class="panel-btn" id="openAll">Open every session <em>展開所有課程</em></button>
-    <p class="row-note">Unfolds the whole notebook — for looking back over
-      several lessons at once, or for printing.
-      <em>展開整本筆記，方便一次回顧多堂課，或列印。</em></p>
+    <button class="panel-btn" id="openAll">Open everything <em>展開全部</em></button>
+    <p class="row-note">Unfolds every lesson and every exercise — for looking
+      back over a term at once, or for printing.
+      <em>展開所有課程與練習，方便一次回顧整個學期，或列印。</em></p>
   </div>
 
   <div class="row">
     <button class="panel-btn" id="showAll">Reveal every answer <em>顯示所有答案</em></button>
-    <p class="row-note">Fills in the gaps, matches every pair and opens the
-      phrase cards and corrections — for going over an exercise together.
-      <em>填入所有空格、配對所有片語，並展開字卡與訂正，方便一起檢討練習。</em></p>
+    <p class="row-note">Fills in every blank, ticks the right option in each
+      question, matches every pair and opens the phrase cards, corrections and
+      held-back answers — for marking together afterwards.
+      <em>填入所有空格、標出每題的正確選項、配對所有片語，並展開字卡、訂正與被隱藏的答案，方便寫完後一起檢討。</em></p>
   </div>
 
   <div class="row">
@@ -100,7 +101,10 @@
   <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
     target="_blank" rel="noopener">lewistoeic.com</a></p>
 </footer>
+<!-- content.js declares NOTEBOOK; practice.js pushes the exercises onto the
+     same sessions array, so the order of these two is not optional. -->
 <script src="content.js"></script>
+<script src="practice.js"></script>
 <script src="render.js"></script>
 </body>
 </html>

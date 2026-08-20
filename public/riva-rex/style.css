@@ -17,9 +17,11 @@
      reveals are timed by the teacher, not by the page.
    - Light theme only. It is read across a table with both children.
 
-   This one grows. Sessions fold, so a term's worth still opens as a page
-   rather than a scroll, and the heading of a folded session carries enough —
-   number, date, title — to be found without opening it. */
+   This one grows, and it carries two kinds of entry: twelve dated sessions
+   and then the practice papers, separated by a band. Everything folds, so a
+   term's worth plus five reading papers still opens as a page rather than a
+   scroll, and the heading of a folded entry carries enough — number, date or
+   source tag, title — to be found without opening it. */
 
 :root {
   --paper: #f6f4ee;
@@ -82,6 +84,14 @@ body {
 
 .open .zh,
 body.zh-all .zh { display: block; }
+
+/* Signage is exempt. The contents list, the focus chips and the band that
+   separates the sessions from the practice papers are there to help a reader
+   find their place, not to be understood in English first — so their Chinese
+   is always on screen and carries no 中 chip to tap. */
+.group-head h2 .zh,
+.toc-group .zh { display: inline; }
+.group-note .zh { display: block; }
 
 .zh-chip {
   font-family: var(--font-zh);
@@ -1127,7 +1137,8 @@ body.zh-all .card-back { display: block; }
   .session-btn { grid-template-columns: 2.4rem 1fr; }
   .sample-banner { break-after: avoid; }
   .cards { grid-template-columns: repeat(2, 1fr); }
-  .card, .fix, .gap, .ask, .task, .role, .note, .goals { break-inside: avoid; }
+  .card, .fix, .gap, .ask, .task, .role, .note, .goals,
+  .passage, .mcq, .wordbox, .ans { break-inside: avoid; }
   .gap.solved .opts { display: flex; }
   .slot { min-width: 9rem; border-bottom: 1px solid #999; color: transparent; }
   .cross { display: none; }
@@ -1184,6 +1195,188 @@ body.zh-all .card-back { display: block; }
 .site-foot p a:hover { opacity: .7; }
 
 @media print { .site-foot { display: none; } }
+
+/* ---------------- reading passages ----------------
+
+   English only. Everywhere else on this site an English line has its Chinese
+   one tap away; here it deliberately does not, because the questions
+   underneath are comprehension practice and a translation would answer them
+   in advance. The Chinese on this page lives in the instructions, the labels
+   and the contents list. */
+
+.passage {
+  margin: 0 0 22px;
+  padding: 18px 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.passage-head {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  align-items: baseline;
+  margin: 0 0 12px;
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.passage-n {
+  font-family: var(--font-en);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.passage-p { margin: 0 0 8px; }
+.passage-p:last-child { margin-bottom: 0; }
+
+/* ---------------- reading questions ----------------
+
+   Options are never hidden after the answer is found. A gap-fill hides them
+   because the filled sentence replaces them; here there is no sentence to
+   fill, and leaving the row as it was played — the right one green, the tried
+   ones faded — lets the teacher see what was guessed before it was known. */
+
+.mcq {
+  margin: 0 0 16px;
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.mcq-q { margin: 0 0 10px; display: grid; grid-template-columns: 1.6rem 1fr auto; align-items: baseline; }
+.mcq-n { font-family: var(--font-ui); font-size: .8rem; color: var(--ink-faint); }
+.mcq-t { font-size: 1rem; }
+.mcq .opts { padding-left: 1.6rem; }
+
+/* ---------------- word box ---------------- */
+
+.wordbox {
+  margin: 0 0 18px;
+  padding: 16px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.box { list-style: none; margin: 0 0 10px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* A placed word stays in the box, struck through rather than removed. Seeing
+   which words have gone is most of how the last two blanks get worked out. */
+.word.used { opacity: .38; text-decoration: line-through; cursor: default; }
+.word.used:hover { border-color: var(--line); background: var(--card); }
+
+.box-note { margin: 0 0 14px; font-family: var(--font-ui); font-size: .8rem; color: var(--ink-faint); }
+.box-note em { font-style: normal; font-family: var(--font-zh); margin-left: .5em; }
+
+.wb-text { margin: 0; line-height: 2.2; }
+.blank {
+  display: inline-block;
+  min-width: 6.5rem;
+  padding: 2px 6px;
+  border: none;
+  border-bottom: 2px solid var(--navy-line);
+  background: transparent;
+  font-family: var(--font-en);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.4;
+  cursor: pointer;
+  transition: border-color .12s, background .12s, color .12s;
+}
+.blank:hover { border-bottom-color: var(--navy); background: var(--navy-soft); }
+.blank.done {
+  border-bottom-color: var(--good-line);
+  color: var(--good);
+  background: transparent;
+  cursor: default;
+}
+.wordbox.all-done .tally { color: var(--good); font-weight: 600; }
+
+/* ---------------- held-back answers ---------------- */
+
+.ans-list { list-style: none; margin: 0; padding: 0; }
+.ans {
+  margin: 0 0 10px;
+  padding: 13px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color .12s, box-shadow .12s;
+}
+.ans:hover { border-color: var(--navy-line); box-shadow: 0 2px 8px rgba(28, 36, 48, .06); }
+.ans.open { border-color: var(--good-line); }
+.ans-q { margin: 0; font-size: 1rem; color: var(--ink-soft); }
+.ans-back { display: none; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.ans.open .ans-back { display: block; }
+.ans-a { margin: 0; font-size: 1.02rem; font-weight: 600; color: var(--good); }
+
+/* ---------------- the two halves of the page ----------------
+
+   Twelve dated sessions, then the practice papers. A band across the document
+   and a matching line in the contents list say where one becomes the other,
+   because the entries themselves look identical — an exercise folds, speaks
+   and reveals exactly like a session, and without the band a reader scrolling
+   past session 12 would have no idea the page had changed footing.
+
+   Signage, so both languages show at once and there is no 中 chip to tap. */
+
+.group-head {
+  margin: 54px 0 26px;
+  padding-top: 26px;
+  border-top: 2px solid var(--navy-line);
+}
+.group-head h2 {
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: 1.5rem;
+  color: var(--navy);
+  display: flex;
+  align-items: baseline;
+  gap: .6em;
+  flex-wrap: wrap;
+}
+.group-head h2 .zh {
+  font-family: var(--font-zh);
+  font-size: .95rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+.group-note { margin: 8px 0 0; max-width: 34rem; }
+.group-note .en { color: var(--ink-soft); font-size: .95rem; }
+.group-note .zh {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-zh);
+  font-size: .85rem;
+  color: var(--ink-faint);
+}
+
+.toc-group {
+  margin: 18px 0 6px;
+  padding: 0 10px 0 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.toc-group .zh {
+  font-family: var(--font-zh);
+  letter-spacing: 0;
+  text-transform: none;
+  margin-left: .5em;
+}
+
+/* The band is a section opener, so it should not be left stranded at the
+   bottom of a printed page. */
+@media print {
+  .group-head { break-after: avoid; break-inside: avoid; }
+}
 
 /* ---------------- ten to twelve ----------------
 

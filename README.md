@@ -1639,24 +1639,59 @@ ten to twelve and are taught together, so this is one page rather than two —
 where the source notes name who said what the page names them too, and where
 they do not, it does not guess.
 
-The machinery is a copy of Eason's, unchanged. What differs is the age band. Ten
-to twelve sits between the two house styles used everywhere else here: too old
-for the picture-led seven-to-ten pages, too young for the adult document. So the
-page keeps the adult skeleton — a scrolling document, a contents list, a teacher
+It is also the first page here that carries **two kinds of entry in one
+document**: twelve dated sessions, then a band, then seven practice exercises.
+The sessions are the record of what happened in each lesson; the practice
+papers are worked through rather than looked back on and have no date. They
+share a page because they share a student, a contents list and a teacher panel,
+and because an exercise folds, speaks and reveals exactly like a session.
+
+The machinery is a copy of Eason's. What differs is the age band. Ten to twelve
+sits between the two house styles used everywhere else here: too old for the
+picture-led seven-to-ten pages, too young for the adult document. So the page
+keeps the adult skeleton — a scrolling document, a contents list, a teacher
 panel, 中 chips on every line — and re-sets it one step larger with more air
 between blocks, in the warmer palette
 [Confidence and Everyday Life](#confidence-and-everyday-life--ages-1012-teacher-led)
-established for this age. Those rules are collected in one block at the bottom of
-[`style.css`](public/riva-rex/style.css) rather than edited through the sheet, so
-the difference between this notebook and the adult ones stays legible and a
-future session could be moved either way by touching one block.
+established for this age. Those rules are collected in one block at the bottom
+of [`style.css`](public/riva-rex/style.css) rather than edited through the
+sheet, so the difference between this notebook and the adult ones stays legible
+and a future session could be moved either way by touching one block.
 
 Discussion is spoken only. There is no input field anywhere on the page and
 nothing persists between lessons — at this age the writing belongs in their
 paper notebooks.
 
-Twelve sessions, 21 March to 14 August 2026, built from a Notion page of weekly
-class notes. Carrying brooms up three floors and being paid in candy; a page flip
+### The two files
+
+The page is one document built from two data files, because the halves are
+edited for different reasons and nobody should scroll past a Cambridge reading
+paper to add last week's vocabulary.
+
+| File | Holds |
+| --- | --- |
+| [`content.js`](public/riva-rex/content.js) | `NOTEBOOK` and the twelve dated sessions |
+| [`practice.js`](public/riva-rex/practice.js) | the seven exercises, pushed onto the same `sessions` array |
+
+`index.html` loads `content.js` first — that is where `NOTEBOOK` is declared —
+so the order of the two `<script>` tags is not optional.
+
+Sessions are numbered `1`–`12` and exercises `'P1'`–`'P7'`, a string rather
+than a number, so nothing on the page is numbered 1 twice. The first exercise
+carries a `group` field, which is what draws the **Practice** band across the
+document and the matching line in the contents list; only the first entry of a
+group should have it.
+
+One consequence worth knowing if you edit the renderer: the entry that opens on
+load is **not** the last one in the array. It is the last entry before the first
+grouped one — the newest session — because falling back to the true last entry
+would open the page on a Cambridge reading paper and make the notebook look as
+though it ends there.
+
+### The sessions
+
+Twelve, 21 March to 14 August 2026, built from a Notion page of weekly class
+notes. Carrying brooms up three floors and being paid in candy; a page flip
 animation finished after dinner; twelve turns on an inflatable slide on April
 Fool's Day; a cold, a dinosaur exhibition and a balloon caught for a stranger;
 camping and a catchy melody; grades and a Mother's Day card; a writing contest
@@ -1664,8 +1699,6 @@ and an idea Rex had for Riva; Kevin running to a closed office on a Saturday;
 the junior mayor poster he drew and does not want the job from; which subject
 takes the most time; speaking up in class; and how far, how many steps and who
 snores.
-
-### Design notes
 
 The `fix` block is the whole argument for a per-student page, and here it has a
 better source than a transcript. Where a class note reads **"More natural: …"**,
@@ -1691,18 +1724,15 @@ Transcribing them reprints the typed notes twice, so they are left out — excep
 Handwritten (2026-03-21), whose content appears in no Class Notes page at all and
 is otherwise unrecorded. It is in session 1 as "From the week before".
 
-## Riva & Rex — Practice
+### The practice half
 
-The companion to the notebook above, and the first page here to separate the two:
-the notebook is the **record** of what happened in each lesson, this is the
-material worked **through**. Five Cambridge Movers reading papers, a present
-simple vs present progressive worksheet, and one topic reading about the escape
-room at Taipei Children's Amusement Park. Seventy-five multiple-choice questions,
-133 word-box blanks, twenty grammar gaps.
+Five Cambridge Movers reading papers, a present simple vs present progressive
+worksheet, and one topic reading about the escape room at Taipei Children's
+Amusement Park. Seventy-five multiple-choice questions, 133 word-box blanks,
+twenty grammar gaps.
 
-Same machinery again, with four block types added in
-[`render.js`](public/riva-rex-practice/render.js) for the shapes a test paper
-needs:
+Four block types are defined in [`render.js`](public/riva-rex/render.js) for the
+shapes a test paper needs, on top of everything the notebook already has:
 
 | Block | What it is |
 | --- | --- |
@@ -1711,15 +1741,14 @@ needs:
 | `wordbox` | the Cambridge Part 5 shape — pick a word, then pick its blank |
 | `answers` | a prompt with the answer held behind a tap |
 
-### Design notes
-
 **The reading passages have no Chinese, and that is the point.** Everywhere else
-on this site an English line has its Traditional Chinese one tap away. Here the
+on this page an English line has its Traditional Chinese one tap away. Here the
 questions underneath are comprehension practice, so a translation would answer
-them before they are asked. The Chinese on this page lives in the instructions,
-the labels, the word-box notes and the contents list — scaffolding, never the
-text being tested. The one exception is the last exercise, a topic reading rather
-than a test, which is bilingual throughout because it came that way.
+them before they are asked. The Chinese in `practice.js` lives in the
+instructions, the labels, the word-box notes and the contents list —
+scaffolding, never the text being tested. The one exception is the last
+exercise, a topic reading rather than a test, which is bilingual throughout
+because it came that way.
 
 A solved `mcq` does not hide its options, where a `gap` does. A gap hides them
 because the filled sentence replaces them; here there is nothing to fill, and
@@ -1737,10 +1766,14 @@ about the page. And one box offers `brush` where the blank needs `brushes`; on
 paper a child writes the right form, but a word placed by tapping arrives
 verbatim, so the box word was changed.
 
-This page opens on the **first** exercise where the notebooks open on the newest
-session. A notebook has a newest lesson worth opening; a set of exercises has a
-first, and opening anywhere else makes the page look as though it starts in the
-middle.
+### `/riva-rex-practice/`
+
+The practice papers were briefly a page of their own at this path. They are now
+the second half of the notebook, and all that remains here is a redirect to
+`/riva-rex/#p1` — kept because the URL was handed out before the merge, so it
+should land somewhere rather than 404. It is a meta refresh rather than a 301
+because both hosts serve this directory as static files and neither can issue
+one.
 
 ## Running it locally
 
@@ -1777,9 +1810,9 @@ Then open <http://localhost:8000> for Word Play,
 The notebooks are <http://localhost:8000/anny/>,
 <http://localhost:8000/aaron/>, <http://localhost:8000/anita/>,
 <http://localhost:8000/eason/> and <http://localhost:8000/riva-rex/>, whose
-practice papers are at <http://localhost:8000/riva-rex-practice/>. The book
-discussion guide is under Aaron's, at
-<http://localhost:8000/aaron/book-club/>.
+practice papers are the second half of the same page, at
+<http://localhost:8000/riva-rex/#p1>. The book discussion guide is under
+Aaron's, at <http://localhost:8000/aaron/book-club/>.
 
 ## Live sites
 

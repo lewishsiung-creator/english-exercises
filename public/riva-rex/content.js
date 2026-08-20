@@ -1,4 +1,11 @@
-/* Riva & Rex — a running notebook of their pair sessions.
+/* Riva & Rex — the session half of the page.
+
+   The dated record of what happened in each lesson. The practice papers live
+   in practice.js, which pushes onto the same `NOTEBOOK.sessions` array, so
+   /riva-rex/ is one page with one contents list. Add a session here; add an
+   exercise there.
+
+   A running notebook of their pair sessions.
 
    Like /eason/, /anita/, /aaron/ and /anny/, this is not a lesson. It is a
    notebook that grows: every session adds one entry to `sessions` below and
@@ -85,8 +92,8 @@ const NOTEBOOK = {
   kicker: '國小英語 · 課堂筆記',
 
   intro: {
-    en: 'This page is where our lessons are kept. Every word, sentence and story we work on together stays here, so you can come back to it during the week — and so you can see how much you have already collected.',
-    zh: '這一頁是我們上課的紀錄。每次課堂上練習過的單字、句子和故事都會留在這裡，你們可以在平常回來複習，也可以看看自己已經累積了多少。',
+    en: 'This page is where our lessons are kept. The first part is the record of each lesson — every word, sentence and story we work on together. The second part is the practice: reading papers and grammar, with no date on them, to do in any order and more than once.',
+    zh: '這一頁是我們上課的紀錄。上半部是每一堂課的記錄——課堂上練習過的每個單字、句子和故事。下半部是練習題：閱讀考卷和文法練習，它們沒有日期，可以照任何順序做，也可以重複做。',
     goalsEn: 'How to use it',
     goalsZh: '使用方式',
     goals: [
@@ -107,8 +114,16 @@ const NOTEBOOK = {
         zh: '這裡不會儲存也不會計分。重新整理頁面就會清空，可以重新練一次。',
       },
       {
-        en: 'The newest lesson is open; earlier ones are folded. Tap a lesson heading to open or close it.',
-        zh: '最新的一堂課是展開的，之前的則收合起來。點課程標題就能展開或收合。',
+        en: 'In the practice papers, the reading texts are in English only. That is on purpose — the questions are asking whether you understood, so there is no Chinese to peek at.',
+        zh: '在練習題裡，閱讀短文只有英文。這是故意的——因為題目要問的就是你有沒有看懂，所以沒有中文可以偷看。',
+      },
+      {
+        en: 'In a word box, tap a word first and then tap the blank it belongs in. Some words in every box are spare — the box says how many.',
+        zh: '在單字框裡，先點一個單字，再點它要放進去的空格。每個框裡都有多餘的字用不到——框上會寫明有幾個。',
+      },
+      {
+        en: 'The newest lesson is open; everything else is folded. Tap any heading to open or close it, or use the contents list.',
+        zh: '最新的一堂課是展開的，其他都收合起來。點任何標題就能展開或收合，也可以使用左邊的目錄。',
       },
     ],
   },
@@ -2156,11 +2171,11 @@ const NOTEBOOK = {
 
         {
           t: 'link',
-          href: '../riva-rex-practice/',
+          href: '#p1',
           en: 'Practice — reading papers and grammar',
           zh: '練習題——閱讀考卷與文法',
-          noteEn: 'The five Cambridge Movers reading exercises, the present tense worksheet, and the escape room reading, all on one page.',
-          noteZh: '五份劍橋 Movers 閱讀練習、現在式文法練習，以及密室逃脫閱讀，全部集中在一頁。',
+          noteEn: 'Further down this page: the five Cambridge Movers reading exercises, the present tense worksheet, and the escape room reading.',
+          noteZh: '在這一頁的下半部：五份劍橋 Movers 閱讀練習、現在式文法練習，以及密室逃脫閱讀。',
         },
 
         {

@@ -1,14 +1,23 @@
-/* Renders NOTEBOOK (content.js) and wires up the activities.
+/* Renders NOTEBOOK (content.js + practice.js) and wires up the activities.
+
+   This page carries two kinds of entry in one array. The first twelve are
+   dated SESSIONS — the record of what happened in each lesson. The rest are
+   PRACTICE exercises, which have no date and are worked through rather than
+   looked back on. An entry that starts a new group carries a `group` field,
+   and the renderer draws a heading before it in both the document and the
+   contents list. Nothing else distinguishes them: an exercise folds, speaks
+   and reveals exactly like a session, which is the reason they can share a
+   page at all.
 
    This is the same teacher-led machinery as the other adult pages — English
    leads, Chinese waits behind a 中 chip, nothing is scored and nothing is
    saved — with one difference that comes from the page being a notebook rather
    than a lesson:
 
-   - Sessions fold. The newest is open and the earlier ones are closed, because
+   - Entries fold. The newest SESSION is open and everything else is closed,
      after a term this page is longer than any lesson ever is. A session opens
      by tapping its heading, by following a contents link, or by arriving on its
-     anchor (/riva-rex/#s3). The teacher panel opens the lot.
+     anchor (/riva-rex/#s3 or /riva-rex/#p2). The teacher panel opens the lot.
    - Which sessions are open is NOT remembered between loads. A reload is a
      clean start, the same as every other page here: the newest lesson, open.
 
@@ -78,12 +87,103 @@ function label(b) {
       <span class="zh">${text(b.zh)}</span></h4>`;
 }
 
+/* How many words in a box are never placed. It is not always one — the source
+   papers vary between one and three — and a note that says "one" when three
+   are left over turns a finished exercise into a puzzle about the page. */
+function spare(n) {
+  if (n <= 0) return '';
+  const en = n === 1 ? 'One word is extra and is not used.'
+                     : `${n} of these words are extra and are not used.`;
+  const zh = n === 1 ? '其中有一個字是多餘的，不會用到。'
+                     : `其中有 ${n} 個字是多餘的，不會用到。`;
+  return `<p class="box-note">${en}<em>${zh}</em></p>`;
+}
+
 function hint(b) {
   if (!b.hintEn) return '';
   return `<p class="hint">${text(b.hintEn)}<span class="hint-zh">${text(b.hintZh || '')}</span></p>`;
 }
 
 const BLOCKS = {
+  /* A reading passage. English only, and deliberately so: this is
+     comprehension practice, and a translation sitting one tap away would
+     answer the questions before they are asked. The Chinese on this page lives
+     in the instructions and the labels, never inside the text being tested. */
+  passage: (b) => `
+    <div class="passage">
+      <h4 class="passage-head">
+        <span class="passage-n" aria-hidden="true">${text(b.n || '')}</span>
+        <span class="passage-t">${text(b.en)}</span>
+      </h4>
+      ${b.paras.map((p) => `
+        <p class="passage-p">${text(p)}${speakBtn(p, 'say say-quiet')}</p>`).join('')}
+    </div>`,
+
+  /* Reading-for-meaning questions. The same feel as a gap — a wrong option
+     wobbles and stays where it is, the right one locks — but there is no blank
+     to fill, so the question keeps its own shape and the answer is ticked in
+     place. No explanation behind the answer: unlike the notebook's gaps, these
+     are recall from the passage above, and the passage is the explanation. */
+  mcq: (b) => `
+    <div class="activity mcqs" data-act="mcq">
+      ${label(b)}
+      ${hint(b)}
+      ${b.items.map((it, n) => `
+        <div class="mcq" data-answer="${it.answer}">
+          <p class="mcq-q"><span class="mcq-n">${n + 1}</span>
+            <span class="mcq-t">${text(it.q)}</span>${speakBtn(it.q, 'say say-quiet')}</p>
+          <ul class="opts">
+            ${it.options.map((o, i) => `
+              <li><button class="chip" data-i="${i}">${text(o)}</button></li>`).join('')}
+          </ul>
+        </div>`).join('')}
+    </div>`,
+
+  /* Word-box gap-fill, the Cambridge Part 5 shape. Pick a word, then pick the
+     blank it belongs in. One word in every box is spare and is never placed,
+     which is the whole difficulty of the exercise — so the tally counts blanks
+     filled rather than words used, and a full tally with one word left over is
+     the finished state. A wrong placement wobbles and clears rather than
+     locking, because a child should be able to try the same blank again. */
+  wordbox: (b) => {
+    const parts = text(b.text).split('___');
+    const blanks = parts.length - 1;
+    return `
+      <div class="activity wordbox" data-act="wordbox">
+        ${label(b)}
+        ${hint(b)}
+        <ul class="box">
+          ${shuffled(b.words).map((w) => `
+            <li><button class="chip word" data-w="${text(w)}">${text(w)}</button></li>`).join('')}
+        </ul>
+        ${spare(b.words.length - blanks)}
+        <p class="wb-text">${parts.map((seg, i) => seg + (i < blanks
+          ? `<button class="slot blank" data-answer="${text(b.answers[i])}"
+               aria-label="Blank ${i + 1}"></button>`
+          : '')).join('')}</p>
+        <p class="tally"><span class="done">0</span> / ${blanks}</p>
+      </div>`;
+  },
+
+  /* Sentence transformations — make it negative, make it a question. There is
+     no box to type into: at this age the writing belongs in their paper
+     notebooks, and the page's job is to hold the answer back until they have
+     committed to one, then show it. */
+  answers: (b) => `
+    <div class="answers">
+      ${label(b)}
+      ${hint(b)}
+      <ul class="ans-list">
+        ${b.items.map((i) => `
+          <li class="ans" tabindex="0" role="button" aria-expanded="false">
+            <p class="ans-q">${text(i.q)}</p>
+            <div class="ans-back">
+              <p class="ans-a">${text(i.a)}${speakBtn(i.a, 'say say-quiet')}</p>
+            </div>
+          </li>`).join('')}
+      </ul>
+    </div>`,
+
   lead: (b) => `<div class="lead">${pair(b.en, b.zh)}</div>`,
 
   // A pointer to another page in this site. Signage, so it is bilingual at all
@@ -444,14 +544,28 @@ function buildSession(s, open) {
     </section>`;
 }
 
+/* A band across the document saying a different kind of entry starts here.
+   Signage, like the contents list and the focus chips, so both languages show
+   at once and there is no 中 chip to tap. */
+function buildGroupHead(g) {
+  return `
+    <div class="group-head">
+      <h2><span class="en">${text(g.en)}</span><span class="zh">${text(g.zh)}</span></h2>
+      ${g.noteEn ? `<p class="group-note"><span class="en">${text(g.noteEn)}</span>
+        <span class="zh">${text(g.noteZh || '')}</span></p>` : ''}
+    </div>`;
+}
+
 function buildNav() {
   return `
-    <nav class="toc" aria-label="Sessions">
-      <p class="toc-head">Sessions 課程</p>
+    <nav class="toc" aria-label="Contents">
+      <p class="toc-head">Contents 目錄</p>
       <ul>
         <li><a href="#top" data-target="top"><span class="n">·</span>
           <span class="t"><span class="en">Start</span><span class="zh">開始</span></span></a></li>
         ${sessions.map((s) => `
+          ${s.group ? `<li class="toc-group"><span class="en">${text(s.group.en)}</span>
+            <span class="zh">${text(s.group.zh)}</span></li>` : ''}
           <li><a href="#${s.id}" data-target="${s.id}"><span class="n">${s.n}</span>
             <span class="t"><span class="en">${text(s.en)}</span>
             <span class="zh">${text(s.dateEn)}</span></span></a></li>`).join('')}
@@ -467,15 +581,26 @@ const doc = $('#doc');
 if (NOTEBOOK.sample) doc.appendChild(el(buildBanner()));
 doc.appendChild(el(buildCover()));
 
-/* Open the session named in the URL, or the newest one. A hash that matches
-   nothing falls back to the newest, so an old link cannot land on a page with
-   everything shut. */
+/* Open the entry named in the URL, or the newest SESSION — which is not the
+   same as the last entry in the array, because the practice exercises come
+   after it and have no date. Falling back to the true last entry would open
+   the page on a Cambridge reading paper and make the notebook look as though
+   it ends there. So: the last entry before the first grouped one. A hash that
+   matches nothing falls back to the same place, so an old link cannot land on
+   a page with everything shut. */
+const firstGrouped = sessions.findIndex((s) => s.group);
+const newest = firstGrouped > 0 ? sessions[firstGrouped - 1]
+             : sessions[sessions.length - 1];
+
 const wanted = decodeURIComponent(location.hash.slice(1));
 const openId = sessions.some((s) => s.id === wanted)
   ? wanted
-  : (sessions.length ? sessions[sessions.length - 1].id : '');
+  : (newest ? newest.id : '');
 
-sessions.forEach((s) => doc.appendChild(el(buildSession(s, s.id === openId))));
+sessions.forEach((s) => {
+  if (s.group) doc.appendChild(el(buildGroupHead(s.group)));
+  doc.appendChild(el(buildSession(s, s.id === openId)));
+});
 
 // ---------------------------------------------------------------- folding
 
@@ -574,6 +699,14 @@ doc.addEventListener('click', (e) => {
     return;
   }
 
+  // ---- a held-back answer
+  const ans = t.closest('.ans');
+  if (ans) {
+    const open = ans.classList.toggle('open');
+    ans.setAttribute('aria-expanded', String(open));
+    return;
+  }
+
   // ---- a corrected sentence
   const fix = t.closest('.fix');
   if (fix) {
@@ -601,13 +734,15 @@ doc.addEventListener('click', (e) => {
   const kind = act.dataset.act;
   if (kind === 'match') matchClick(act, btn);
   else if (kind === 'gap') gapClick(btn);
+  else if (kind === 'mcq') mcqClick(btn);
+  else if (kind === 'wordbox') wordboxClick(act, btn);
   else if (kind === 'poll' || kind === 'audit') pickOne(btn);
   else if (kind === 'task') taskClick(act, btn);
 });
 
 // Cards and corrections are focusable, so keep them operable from the keyboard.
 doc.addEventListener('keydown', (e) => {
-  const item = e.target.closest('.card, .fix');
+  const item = e.target.closest('.card, .fix, .ans');
   if (item && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); item.click(); }
 });
 
@@ -661,6 +796,55 @@ function gapClick(btn) {
   } else {
     wobble(btn);
     btn.classList.add('out');
+  }
+}
+
+/* A reading question. There is no blank to fill, so a right answer simply
+   locks the row and ticks the option that was chosen. */
+function mcqClick(btn) {
+  const q = btn.closest('.mcq');
+  if (!q || q.classList.contains('solved')) return;
+
+  if (Number(btn.dataset.i) === Number(q.dataset.answer)) {
+    q.classList.add('solved');
+    btn.classList.add('done');
+  } else {
+    wobble(btn);
+    btn.classList.add('out');
+  }
+}
+
+/* Word box: pick a word, then pick the blank it belongs in. Picking a second
+   word replaces the first, and tapping a picked word again lets it go, so
+   there is no way to reach a state where nothing can be clicked. A word that
+   has been placed is greyed out but stays in the box, because seeing which
+   words are gone is half of how the last blanks get worked out. */
+function wordboxClick(act, btn) {
+  if (btn.classList.contains('word')) {
+    if (btn.classList.contains('used')) return;
+    const was = btn.classList.contains('picked');
+    $$('.word', act).forEach((w) => w.classList.remove('picked'));
+    if (!was) btn.classList.add('picked');
+    return;
+  }
+
+  if (!btn.classList.contains('blank') || btn.classList.contains('done')) return;
+
+  const picked = $('.word.picked', act);
+  if (!picked) { wobble(btn); return; }
+
+  if (picked.dataset.w === btn.dataset.answer) {
+    btn.textContent = picked.dataset.w;
+    btn.classList.add('done');
+    picked.classList.remove('picked');
+    picked.classList.add('used');
+    const done = $$('.blank.done', act).length;
+    $('.tally .done', act).textContent = done;
+    if (done === $$('.blank', act).length) act.classList.add('all-done');
+  } else {
+    wobble(btn);
+    wobble(picked);
+    picked.classList.remove('picked');
   }
 }
 
@@ -771,6 +955,25 @@ $('#showAll').addEventListener('click', () => {
     act.classList.add('all-done');
   });
 
+  $$('.mcq:not(.solved)').forEach((q) => {
+    $$('.opts .chip', q)[Number(q.dataset.answer)].classList.add('done');
+    q.classList.add('solved');
+  });
+
+  $$('.wordbox').forEach((act) => {
+    $$('.blank:not(.done)', act).forEach((b) => {
+      b.textContent = b.dataset.answer;
+      b.classList.add('done');
+    });
+    $$('.word', act).forEach((w) => {
+      w.classList.remove('picked');
+      if ($$('.blank.done', act).some((b) => b.textContent === w.dataset.w)) w.classList.add('used');
+    });
+    $('.tally .done', act).textContent = $$('.blank.done', act).length;
+    act.classList.add('all-done');
+  });
+
+  $$('.ans').forEach((a) => { a.classList.add('open'); a.setAttribute('aria-expanded', 'true'); });
   $$('.card').forEach((c) => { c.classList.add('open'); c.setAttribute('aria-expanded', 'true'); });
   $$('.fix').forEach((f) => { f.classList.add('open'); f.setAttribute('aria-expanded', 'true'); });
   $$('.starters').forEach((s) => { s.hidden = false; });

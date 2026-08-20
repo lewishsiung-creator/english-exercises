@@ -1,90 +1,74 @@
-/* Riva & Rex — practice.
+/* Riva & Rex — the practice half of the page.
 
-   The companion to /riva-rex/. That page is the record of what happened in
-   each lesson; this one holds the material that is worked THROUGH rather than
-   looked back on — the Cambridge Movers reading exercises, a present tense
-   worksheet, and one topic reading.
+   This file appends to the SAME `NOTEBOOK.sessions` array that content.js
+   defines, so /riva-rex/ is one page with one contents list. It is a separate
+   file only because the two halves are edited for different reasons: a session
+   is added after a lesson, an exercise is added when new material arrives, and
+   nobody should have to scroll past a Cambridge reading paper to add last
+   week's vocabulary.
 
-   It runs on the same machinery as the notebook, with the same rules: English
-   leads, Chinese waits behind a 中 chip, nothing is scored and nothing is
-   saved. Two differences follow from it being practice rather than a record:
+   Load order matters. index.html loads content.js first, because that is where
+   NOTEBOOK is declared; this file only pushes onto it.
 
-   1. A "session" here is an EXERCISE, not a date. `dateEn` carries the source
-      tag (e.g. "Cambridge Movers") instead of a day, and the contents list
-      reads as a list of exercises.
+   WHAT IS IN HERE
+   ---------------
+   The material that is worked THROUGH rather than looked back on: five
+   Cambridge Movers reading papers, a present simple vs present progressive
+   worksheet, and one topic reading. Seventy-five multiple-choice questions,
+   133 word-box blanks, twenty grammar gaps.
 
-   2. THE READING PASSAGES HAVE NO CHINESE, and that is deliberate. Everywhere
-      else on this site an English line has its Chinese one tap away. Here the
-      questions underneath are comprehension practice, so a translation would
-      answer them before they are asked. The Chinese on this page lives in the
-      instructions, the labels, the word-box notes and the contents list —
-      scaffolding, never the text being tested. The one exception is the last
-      exercise, which is a topic reading rather than a test, and is bilingual
-      throughout because it came that way.
+   These entries carry no date. `dateEn` holds the source tag ("Cambridge
+   Movers", "Grammar", "Reading") where a session holds a day, and `n` is a
+   string — 'P1' rather than 1 — so the two kinds of entry can share a
+   contents list without two things being numbered 1.
 
-   BLOCK TYPES ADDED HERE
-   ----------------------
-   The notebook's blocks all still work. Four more are defined in render.js
+   The first entry carries `group`, which is what draws the "Practice" band
+   across the document and the contents list. Only the first one should have
+   it; a second `group` would start a second band.
+
+   THE READING PASSAGES HAVE NO CHINESE, and that is deliberate. Everywhere
+   else on this page an English line has its Traditional Chinese one tap away.
+   Here the questions underneath are comprehension practice, so a translation
+   would answer them before they are asked. The Chinese in this file lives in
+   the instructions, the labels, the word-box notes and the contents list —
+   scaffolding, never the text being tested. The one exception is the last
+   exercise, a topic reading rather than a test, which is bilingual throughout
+   because it came that way.
+
+   BLOCK TYPES USED HERE
+   ---------------------
+   All of the notebook's blocks still work. Four more are defined in render.js
    for the shapes a test paper needs:
 
      passage   an English-only reading text, each paragraph with its own 🔊
      mcq       a question with three options; the right one locks, wrong ones
                fade but stay, so the teacher can see what was guessed
      wordbox   the Cambridge Part 5 shape — a text with several blanks and a
-               box of words, ONE OF WHICH IS ALWAYS SPARE. Pick a word, then
-               pick its blank. The tally counts blanks filled, so a full tally
-               with one word left over is the finished state.
+               box of words, SOME OF WHICH ARE SPARE. Pick a word, then pick
+               its blank. The number spare is not always one — across these
+               five papers it ranges from one to three — so the renderer counts
+               and says how many rather than assuming.
      answers   a prompt with the answer held behind a tap, for the "make it
                negative" and "make it a question" drills. There is no box to
-               type into anywhere on this page — at this age the writing
-               belongs in their paper notebooks.
+               type into anywhere on this page.
 
    ADDING AN EXERCISE
    ------------------
    Copy the last entry, change `id`, `n` and the titles, rewrite the blocks,
-   and put it at the bottom. `id` becomes the anchor: /riva-rex-practice/#e3.
+   and put it at the bottom. `id` becomes the anchor: /riva-rex/#p3.
 */
 
-const NOTEBOOK = {
-  student: 'Riva & Rex',
-  title: 'Riva & Rex — Practice',
-  titleZh: 'Riva 與 Rex 的練習題',
-  kicker: '國小英語 · 閱讀與文法練習',
-
-  intro: {
-    en: 'This page holds the exercises — the Cambridge Movers reading papers, a grammar worksheet, and one longer reading. Work through them with me in the lesson, or come back and try one again on your own.',
-    zh: '這一頁放的是練習題——劍橋 Movers 閱讀考卷、一份文法練習，以及一篇比較長的閱讀。可以在課堂上和我一起做，也可以自己回來再練一次。',
-    goalsEn: 'How to use it',
-    goalsZh: '使用方式',
-    goals: [
-      {
-        en: 'The reading texts are in English only. That is on purpose — the questions are asking whether you understood, so there is no Chinese to peek at.',
-        zh: '閱讀短文只有英文，這是故意的——因為題目要問的就是你有沒有看懂，所以這裡沒有中文可以偷看。',
-      },
-      {
-        en: 'In the questions, tap an answer. The right one turns green; a wrong one fades but stays, so you can see what you tried.',
-        zh: '在題目裡點一個答案。答對會變成綠色；答錯的會變淡但留在原地，讓你看得到自己試過什麼。',
-      },
-      {
-        en: 'In a word box, tap a word first and then tap the blank it belongs in. Some words in every box are spare — the box says how many.',
-        zh: '在單字框裡，先點一個單字，再點它要放進去的空格。每個框裡都有多餘的字用不到——框上會寫明有幾個。',
-      },
-      {
-        en: 'Tap 🔊 to hear any sentence read aloud, as many times as you like.',
-        zh: '點 🔊 可以聽任何句子的發音，想聽幾次都可以。',
-      },
-      {
-        en: 'Nothing is saved and nothing is scored. Reloading the page clears it for a fresh run.',
-        zh: '這裡不會儲存也不會計分。重新整理頁面就會清空，可以重新做一次。',
-      },
-    ],
-  },
-
-  sessions: [
-    // ---------------------------------------------------------------- 1
+NOTEBOOK.sessions.push(
+    // ---------------------------------------------------------------- P1
     {
-      id: 'e1',
-      n: 1,
+      id: 'p1',
+      n: 'P1',
+      group: {
+        en: 'Practice',
+        zh: '練習題',
+        noteEn: 'Reading papers and grammar — worked through rather than looked back on. These have no date: do them in any order, more than once.',
+        noteZh: '閱讀考卷與文法練習——這些是用來「做」的，不是用來回顧的。它們沒有日期：可以照任何順序做，也可以重複做。',
+      },
       date: '2025-11-01',
       dateEn: 'Cambridge Movers',
       dateZh: '劍橋 Movers',
@@ -103,15 +87,6 @@ const NOTEBOOK = {
           t: 'lead',
           en: 'Three short texts, five questions each, then five gap-fills. Read the whole text before you look at the questions — all of the answers are in it, and none of them need anything you already know.',
           zh: '三篇短文，每篇五題，接著是五個克漏字。先把整篇讀完再看題目——所有答案都在文章裡，沒有一題需要用到你原本就知道的知識。',
-        },
-
-        {
-          t: 'link',
-          href: '../riva-rex/',
-          en: 'Riva & Rex’s English Notebook',
-          zh: 'Riva 與 Rex 的英文筆記',
-          noteEn: 'The record of what we did in each lesson — the words, the sentences and the corrections, session by session.',
-          noteZh: '每一堂課的紀錄——單字、句子和訂正，一堂一堂記下來。',
         },
 
         {
@@ -240,10 +215,10 @@ const NOTEBOOK = {
       ],
     },
 
-    // ---------------------------------------------------------------- 2
+    // ---------------------------------------------------------------- P2
     {
-      id: 'e2',
-      n: 2,
+      id: 'p2',
+      n: 'P2',
       date: '2025-11-08',
       dateEn: 'Cambridge Movers',
       dateZh: '劍橋 Movers',
@@ -392,10 +367,10 @@ const NOTEBOOK = {
       ],
     },
 
-    // ---------------------------------------------------------------- 3
+    // ---------------------------------------------------------------- P3
     {
-      id: 'e3',
-      n: 3,
+      id: 'p3',
+      n: 'P3',
       date: '2025-11-15',
       dateEn: 'Cambridge Movers',
       dateZh: '劍橋 Movers',
@@ -544,10 +519,10 @@ const NOTEBOOK = {
       ],
     },
 
-    // ---------------------------------------------------------------- 4
+    // ---------------------------------------------------------------- P4
     {
-      id: 'e4',
-      n: 4,
+      id: 'p4',
+      n: 'P4',
       date: '2025-12-27',
       dateEn: 'Cambridge Movers',
       dateZh: '劍橋 Movers',
@@ -696,10 +671,10 @@ const NOTEBOOK = {
       ],
     },
 
-    // ---------------------------------------------------------------- 5
+    // ---------------------------------------------------------------- P5
     {
-      id: 'e5',
-      n: 5,
+      id: 'p5',
+      n: 'P5',
       date: '2026-03-14',
       dateEn: 'Cambridge Movers',
       dateZh: '劍橋 Movers',
@@ -848,10 +823,10 @@ const NOTEBOOK = {
       ],
     },
 
-    // ---------------------------------------------------------------- 6
+    // ---------------------------------------------------------------- P6
     {
-      id: 'e6',
-      n: 6,
+      id: 'p6',
+      n: 'P6',
       date: '2026-07-04',
       dateEn: 'Grammar',
       dateZh: '文法',
@@ -1177,10 +1152,10 @@ const NOTEBOOK = {
       ],
     },
 
-    // ---------------------------------------------------------------- 7
+    // ---------------------------------------------------------------- P7
     {
-      id: 'e7',
-      n: 7,
+      id: 'p7',
+      n: 'P7',
       date: '2026-07-25',
       dateEn: 'Reading',
       dateZh: '閱讀',
@@ -1316,5 +1291,4 @@ const NOTEBOOK = {
         },
       ],
     },
-  ],
-};
+);
