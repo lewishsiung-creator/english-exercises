@@ -14,10 +14,16 @@
    ADDING A SESSION
    ----------------
    Copy the last entry in `sessions`, change `id`, `n`, `date` and the titles,
-   and rewrite the blocks. Put it at the BOTTOM of the array — the page is
-   chronological, oldest first, and opens with the newest session expanded and
-   the earlier ones folded away. The contents list, the numbering and the
-   anchors all come from the array, so there is nothing else to keep in step.
+   and rewrite the blocks. Put it at the BOTTOM of the array.
+
+   The FILE is chronological, oldest first. The PAGE is not: render.js reverses
+   the dated entries at the point of display, so a session added at the bottom
+   here appears at the TOP of the page, which is where you want the newest
+   lesson. Do not reverse anything by hand — if you do, the numbering and the
+   "newest open on load" rule both invert with it.
+
+   The contents list, the numbering and the anchors all come from the array, so
+   there is nothing else to keep in step.
 
    `id` must be unique and URL-safe: it becomes the anchor, so
    /riva-rex/#s3 opens session 3 with the rest folded.

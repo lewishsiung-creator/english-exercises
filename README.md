@@ -1676,6 +1676,18 @@ paper to add last week's vocabulary.
 `index.html` loads `content.js` first — that is where `NOTEBOOK` is declared —
 so the order of the two `<script>` tags is not optional.
 
+**The files are written oldest-first; the page is not.** `render.js` reverses
+the dated entries at the point of display, so the newest session sits at the
+top of the page and the contents list, and session 1 is at the bottom. Add a
+session at the bottom of the array as always — it will appear at the top. The
+practice exercises are deliberately *not* reversed: they carry no dates, so
+there is no newest among them, and P1 is genuinely where a person starts.
+
+Reversing at render rather than in the data keeps three things true at once:
+the authoring rule stays "append at the bottom", session 12 keeps the number 12
+however far down the page it sits, and every anchor already handed out
+(`/riva-rex/#s5`) still points at the same session.
+
 Sessions are numbered `1`–`12` and exercises `'P1'`–`'P7'`, a string rather
 than a number, so nothing on the page is numbered 1 twice. The first exercise
 carries a `group` field, which is what draws the **Practice** band across the
@@ -1683,10 +1695,10 @@ document and the matching line in the contents list; only the first entry of a
 group should have it.
 
 One consequence worth knowing if you edit the renderer: the entry that opens on
-load is **not** the last one in the array. It is the last entry before the first
-grouped one — the newest session — because falling back to the true last entry
-would open the page on a Cambridge reading paper and make the notebook look as
-though it ends there.
+load is the newest **session**, which is the first thing on the page but still
+the *last* of the dated entries in the data. It is not simply the array's last
+element — that is now a Cambridge reading paper, and opening on it would make
+the notebook look as though it ends there.
 
 ### The sessions
 

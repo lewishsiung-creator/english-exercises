@@ -55,7 +55,10 @@
    ADDING AN EXERCISE
    ------------------
    Copy the last entry, change `id`, `n` and the titles, rewrite the blocks,
-   and put it at the bottom. `id` becomes the anchor: /riva-rex/#p3.
+   and put it at the bottom. Unlike the sessions in content.js, these are NOT
+   reversed for display — they have no dates, so there is no newest among them
+   and P1 is genuinely where a person should start. Bottom of the array is
+   bottom of the page. `id` becomes the anchor: /riva-rex/#p3.
 */
 
 NOTEBOOK.sessions.push(

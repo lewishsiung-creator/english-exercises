@@ -14,7 +14,9 @@
    saved — with one difference that comes from the page being a notebook rather
    than a lesson:
 
-   - Entries fold. The newest SESSION is open and everything else is closed,
+   - The dated sessions run newest-first; the practice papers, which have no
+     dates, keep their own order underneath.
+   - Entries fold. The newest session is open and everything else is closed,
      after a term this page is longer than any lesson ever is. A session opens
      by tapping its heading, by following a contents link, or by arriving on its
      anchor (/riva-rex/#s3 or /riva-rex/#p2). The teacher panel opens the lot.
@@ -471,6 +473,26 @@ const BLOCKS = {
 
 const sessions = NOTEBOOK.sessions;
 
+/* The order the page DISPLAYS, which is not the order the data is written in.
+
+   content.js and practice.js are both authored oldest-first, because that is
+   how you add to them: a new session goes at the bottom of the array and
+   inherits the next number. But a notebook a term deep is read newest-first —
+   the lesson you want is almost always the last one — so the dated entries are
+   reversed here, at the point of rendering, and nowhere else.
+
+   Doing it here rather than in the data keeps three things true at once: the
+   authoring rule stays "append at the bottom", session 12 keeps the number 12
+   however far down the page it sits, and every anchor already handed out
+   (/riva-rex/#s5) still points at the same session.
+
+   The practice exercises are NOT reversed. They have no dates, so there is no
+   newest among them, and P1 is genuinely where a person should start. */
+const firstGrouped = sessions.findIndex((s) => s.group);
+const dated   = firstGrouped >= 0 ? sessions.slice(0, firstGrouped) : sessions.slice();
+const grouped = firstGrouped >= 0 ? sessions.slice(firstGrouped) : [];
+const order   = dated.slice().reverse().concat(grouped);
+
 /* While the content is a placeholder, say so across the top — on screen and in
    print, so a demo cannot be handed over by accident. */
 function buildBanner() {
@@ -563,7 +585,7 @@ function buildNav() {
       <ul>
         <li><a href="#top" data-target="top"><span class="n">·</span>
           <span class="t"><span class="en">Start</span><span class="zh">開始</span></span></a></li>
-        ${sessions.map((s) => `
+        ${order.map((s) => `
           ${s.group ? `<li class="toc-group"><span class="en">${text(s.group.en)}</span>
             <span class="zh">${text(s.group.zh)}</span></li>` : ''}
           <li><a href="#${s.id}" data-target="${s.id}"><span class="n">${s.n}</span>
@@ -581,23 +603,18 @@ const doc = $('#doc');
 if (NOTEBOOK.sample) doc.appendChild(el(buildBanner()));
 doc.appendChild(el(buildCover()));
 
-/* Open the entry named in the URL, or the newest SESSION — which is not the
-   same as the last entry in the array, because the practice exercises come
-   after it and have no date. Falling back to the true last entry would open
-   the page on a Cambridge reading paper and make the notebook look as though
-   it ends there. So: the last entry before the first grouped one. A hash that
-   matches nothing falls back to the same place, so an old link cannot land on
-   a page with everything shut. */
-const firstGrouped = sessions.findIndex((s) => s.group);
-const newest = firstGrouped > 0 ? sessions[firstGrouped - 1]
-             : sessions[sessions.length - 1];
+/* Open the entry named in the URL, or the newest session — which is now the
+   first thing on the page, but is still the LAST of the dated entries in the
+   data. A hash that matches nothing falls back to the same place, so an old
+   link cannot land on a page with everything shut. */
+const newest = dated.length ? dated[dated.length - 1] : order[0];
 
 const wanted = decodeURIComponent(location.hash.slice(1));
 const openId = sessions.some((s) => s.id === wanted)
   ? wanted
   : (newest ? newest.id : '');
 
-sessions.forEach((s) => {
+order.forEach((s) => {
   if (s.group) doc.appendChild(el(buildGroupHead(s.group)));
   doc.appendChild(el(buildSession(s, s.id === openId)));
 });
