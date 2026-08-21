@@ -1,17 +1,49 @@
 #!/usr/bin/env python3
-"""parse_kanghsuan_pdf.py output -> the `words` half of a grade in content.js.
+"""parse_kanghsuan_pdf.py output -> the `books` array for one grade in content.js.
 
-Emits the JS for one grade's `books` array; paste or splice it into
-public/junior-high-words/content.js. Kept separate from the parser so a
-re-parse never silently rewrites a file that has been hand-edited since.
+    python3 tools/build_words_content.py words.json
+
+Prints the JS to splice into that grade in public/junior-high-words/content.js,
+where `ready` also has to flip to true. Kept separate from the parser so that a
+re-parse can never quietly rewrite a file that has been hand-corrected since.
 """
 import json
 import re
 import sys
 
-BOOK_ZH = {'B1': ('第一冊', '七上'), 'B2': ('第二冊', '七下'),
-           'B3': ('第三冊', '八上'), 'B4': ('第四冊', '八下'),
-           'B5': ('第五冊', '九上'), 'B6': ('第六冊', '九下')}
+# 目錄 headings seen so far: 「第一冊（七上）」 splits on the bracket, and
+# 「八上文法主軸」 splits after the term. Anything else becomes its own label
+# with no term rather than being guessed at.
+BRACKET = re.compile(r'^(.+?)（(.+?)）$')
+TERM = re.compile(r'^([七八九][上下])(.*)$')
+
+
+def split_heading(heading):
+    m = BRACKET.match(heading)
+    if m:
+        return m.group(1), m.group(2)
+    m = TERM.match(heading)
+    if m:
+        return m.group(1), m.group(2)
+    return heading, ''
+
+
+def book_id(heading, i):
+    m = BRACKET.match(heading)
+    if m and re.match(r'^第[一二三四五六]冊$', m.group(1)):
+        return 'b' + str('一二三四五六'.index(m.group(1)[1]) + 1)
+    m = TERM.match(heading)
+    if m:
+        year = '七八九'.index(m.group(1)[0]) + 7
+        return f'g{year}{"ab"["上下".index(m.group(1)[1])]}'
+    return f'g{i + 1}'
+
+
+def lesson_id(code):
+    m = re.match(r'^主題 (\d+)$', code)
+    if m:
+        return 't' + m.group(1)
+    return code.lower().replace(' ', '-')
 
 
 def js(s):
@@ -19,33 +51,25 @@ def js(s):
 
 
 def main(path):
-    lessons = json.load(open(path))
-    books = []
-    for les in lessons:
-        bk, unit = les['code'].split()
-        if not books or books[-1]['bk'] != bk:
-            books.append({'bk': bk, 'lessons': []})
-        books[-1]['lessons'].append((unit, les))
-
+    books = json.load(open(path))
     out = []
-    for b in books:
-        label, term = BOOK_ZH[b['bk']]
-        out.append(f"    {{\n      id: {js(b['bk'].lower())}, label: {js(label)}, term: {js(term)},")
+    for i, book in enumerate(books):
+        label, term = split_heading(book['heading'])
+        out.append(f"    {{\n      id: {js(book_id(book['heading'], i))}, "
+                   f"label: {js(label)}, term: {js(term)},")
         out.append('      lessons: [')
-        for unit, les in b['lessons']:
-            lid = f"{b['bk']}-{unit}".lower().replace(' ', '')
-            out.append(f"        {{\n          id: {js(lid)}, code: {js(les['code'])},")
+        for les in book['lessons']:
+            out.append(f"        {{\n          id: {js(lesson_id(les['code']))}, "
+                       f"code: {js(les['code'])},")
             out.append(f"          title: {js(les['title'])},")
             out.append(f"          grammar: {js(les['grammar'])},")
             out.append('          words: [')
             for w in les['words']:
-                fields = [f"w: {js(w['word'])}"]
-                if w['kk']:
+                fields = [f"w: {js(w['w'])}"]
+                if w.get('kk'):
                     fields.append(f"kk: {js(w['kk'])}")
-                fields.append(f"pos: {js(w['pos'])}")
-                fields.append(f"zh: {js(w['zh'])}")
-                fields.append(f"en: {js(w['en'])}")
-                fields.append(f"zhEx: {js(w['zhEx'])}")
+                for k in ('pos', 'zh', 'en', 'zhEx'):
+                    fields.append(f"{k}: {js(w[k])}")
                 out.append('            { ' + ', '.join(fields) + ' },')
             out.append('          ],\n        },')
         out.append('      ],\n    },')

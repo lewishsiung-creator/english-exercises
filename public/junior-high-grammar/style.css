@@ -1,35 +1,36 @@
-/* 國中英語單字精熟 — 七到九年級的單字表。
+/* 國中英語文法精熟 — 七到九年級的文法單元。
 
-   這一頁比站上其他頁多一件事：同一份內容要服務兩種人。設計上的取捨：
+   這一頁是 /junior-high-words/ 的姊妹頁：同一批學生、同一份講義家族，所以
+   外殼（頂端列、年級頁籤、側欄、兩個模式、設定面板、列印）刻意跟單字頁
+   一模一樣，只有顏色和內容區塊不同。學生在兩頁之間跳來跳去，不該重新學一次
+   介面。改外殼的時候兩邊要一起改。
 
-   - 兩個模式，不是兩個頁面。〔📖 自學〕是預設：中譯看得到，可以自己遮起來
-     測，打勾的紀錄留在學生自己的瀏覽器。〔👩‍🏫 教學〕照站上成人／中高年級的
-     house style：中譯全部藏在「中」後面，由老師決定什麼時候翻，而且不存任何
-     東西——他一台筆電要帶好幾個學生，重新整理必須是乾淨的一堂課。
-     切換只是 body 上的 class，內容不重畫，所以切過去再切回來位置不會跑掉。
+   設計上的取捨：
 
-   - 遮字用色塊不用 blur。blur 還讀得出字長和形狀，而且一遮一露版面會抖；色塊
-     把文字設成 transparent、背景鋪一條底色，寬度完全一樣，點一下才露出來。
+   - 顏色是紫，不是單字頁的青。站上已經有兩頁文法（成人 /grammar/ 磚紅、
+     /toeic-grammar/ 深藍），加上姊妹頁是青色——同一台筆電上開著的頁不該只能
+     靠標題分辨。挑紫還有一個理由：常見錯誤那一區要用紅表示錯、綠表示對，
+     主色只要靠近紅或綠，那兩個記號就失去意義。
 
-   - 單字表是 grid 不是 table。手機上要能疊成一張一張的卡片，但列印時又要看
-     起來像講義的表格——同一個 grid 換 grid-template-columns 就都成立，
-     table 做不到。
+   - 「藏起來的東西」跟單字頁不一樣。中文說明（核心規則、為什麼）永遠顯示，
+     那是課本本文，不是答案。藏的是學生應該自己想得出來的東西：句型的中譯，
+     以及常見錯誤的正確寫法。
 
-   - 淺色單一主題。這是在亮的地方讀的東西，而且要能印。
+   - 常見錯誤是這頁的主角，所以它是唯一有顏色的區塊。錯的那句灰掉加刪除線，
+     不用紅字——刪除線黑白列印還看得出來，紅字印出來只是深灰。對的那句用綠。
 
-   - 字級照國中生自己拿手機看的距離設，不是投影機。單字本身放大一階，因為那
-     是要看的東西；音標和詞性壓小，它們是註記。 */
+   - 淺色單一主題，可列印。字級照國中生自己拿手機看的距離設。 */
 
 :root {
-  --paper: #f6f7f4;
+  --paper: #f7f6fb;
   --card: #ffffff;
-  --ink: #1b2530;
-  --ink-soft: #58636f;
-  --ink-faint: #8a939d;
+  --ink: #1d1b2b;
+  --ink-soft: #5c5870;
+  --ink-faint: #8d8a9c;
 
-  --brand: #14655c;
-  --brand-soft: #e4f0ed;
-  --brand-line: #a8ccc5;
+  --brand: #4b3a99;
+  --brand-soft: #ece9f8;
+  --brand-line: #b9b0e0;
 
   --gold: #8f6410;
   --gold-soft: #fcf3de;
@@ -42,14 +43,13 @@
   --bad: #a6402f;
   --bad-soft: #fbeae6;
 
-  --line: #e2e2da;
-  --rule: #cbcbc1;
-  --mask: #dfe4e2;
+  --line: #e3e1ec;
+  --rule: #c9c6d6;
+  --mask: #dedbea;
 
   --font-en: "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, "Times New Roman", serif;
   --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
   --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --font-kk: "Lucida Sans Unicode", "Segoe UI", "Doulos SIL", "Charis SIL", sans-serif;
 
   --bar-h: 54px;
   --nav-w: 250px;
@@ -95,7 +95,7 @@ body {
   align-items: center;
   gap: 8px;
   padding: 0 12px;
-  background: rgba(246, 247, 244, .93);
+  background: rgba(247, 246, 251, .93);
   backdrop-filter: saturate(160%) blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -142,7 +142,7 @@ body {
   flex: none;
   display: flex;
   padding: 2px;
-  background: #eceee9;
+  background: #eae8f1;
   border: 1px solid var(--line);
   border-radius: 9px;
 }
@@ -386,20 +386,23 @@ body {
 .soon h1 { margin: 0 0 8px; font-size: 1.2rem; }
 .soon p { margin: 0 auto; max-width: 26rem; font-size: .9rem; color: var(--ink-soft); }
 
-/* ---------------- a lesson ---------------- */
 
-.lesson { margin: 0 0 34px; scroll-margin-top: calc(var(--bar-h) + 64px); }
+/* ---------------- one unit ---------------- */
 
-.lesson-head {
+.unit { margin: 0 0 40px; scroll-margin-top: calc(var(--bar-h) + 64px); }
+.unit.is-hidden { display: none; }
+
+.unit-head {
+  position: relative;
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
   gap: 6px 12px;
-  padding: 0 2px 9px;
+  padding: 0 44px 9px 2px;
   border-bottom: 2px solid var(--brand);
 }
-.lesson-head h2 { margin: 0; font-size: 1.12rem; letter-spacing: .01em; }
-.lesson-code {
+.unit-head h2 { margin: 0; font-size: 1.2rem; letter-spacing: .01em; }
+.unit-code {
   flex: none;
   padding: 3px 9px;
   background: var(--brand);
@@ -410,222 +413,197 @@ body {
   font-weight: 700;
   letter-spacing: .06em;
 }
-.lesson-count {
-  margin-left: auto;
-  margin-right: 2px;
-  font-family: var(--font-ui);
-  font-size: .74rem;
-  color: var(--ink-faint);
-}
 
-/* The link across to the same 課 on the grammar page. The two pages are a
-   pair, and this is the only join on this side — the 課次-to-單元 map lives in
-   the grammar page's content file, so here it is just the lesson's own id. */
-.gram-link {
-  flex: none;
+/* 對應課次 — the link to the same 課 on the word list. */
+.unit-refs { display: flex; gap: 6px; margin-left: auto; }
+.ref {
   padding: 3px 9px;
   background: var(--card);
   border: 1px solid var(--brand-line);
   border-radius: 6px;
   color: var(--brand);
-  font-family: var(--font-zh);
-  font-size: .72rem;
+  font-family: var(--font-ui);
+  font-size: .7rem;
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
 }
-.gram-link:hover { background: var(--brand-soft); }
+.ref:hover { background: var(--brand-soft); }
+.ref::before { content: '📖 '; }
 
-.lesson-gram {
-  margin: 10px 0 14px;
-  padding: 8px 13px;
+/* 一句話重點 — the line the whole unit is trying to leave behind, so it sits
+   at the top under the heading rather than buried at the foot as in the PDF. */
+.unit-key {
+  margin: 12px 0 20px;
+  padding: 12px 16px;
   background: var(--gold-soft);
-  border-left: 3px solid var(--gold-line);
-  border-radius: 3px 8px 8px 3px;
-  font-size: .85rem;
-  color: var(--ink-soft);
+  border-left: 4px solid var(--gold-line);
+  border-radius: 3px 9px 9px 3px;
+  font-size: .96rem;
+  font-weight: 600;
+  line-height: 1.7;
 }
-.lesson-gram b {
-  margin-right: 8px;
+.unit-key b {
+  margin-right: 9px;
   color: var(--gold);
-  font-size: .78rem;
-  letter-spacing: .04em;
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  vertical-align: 1px;
 }
 
-/* ---------------- the word rows ----------------
+.sec-head {
+  margin: 22px 0 10px;
+  font-family: var(--font-ui);
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: var(--ink-faint);
+  text-transform: none;
+}
+.sec-head span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--brand-line);
+  vertical-align: 2px;
+}
 
-   One grid per word. Wide: number / word block / meaning / example. Narrow:
-   everything stacks under the word. The mark button is absolutely placed so
-   neither layout has to reserve a column for it. */
+/* 核心規則 */
+.rules { margin: 0; padding: 0; list-style: none; }
+.rules li {
+  position: relative;
+  padding: 7px 0 7px 20px;
+  font-size: .95rem;
+  line-height: 1.8;
+}
+.rules li::before {
+  content: '';
+  position: absolute;
+  top: 1.05em;
+  left: 3px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--brand);
+}
+/* An English fragment inside a Chinese rule — dog → dogs, I → am. */
+.rules code, .pat-en code {
+  font-family: var(--font-en);
+  font-size: 1.02em;
+  font-weight: 600;
+  color: var(--brand);
+  background: none;
+}
 
-.words {
+/* 句型對照 */
+.pats {
   margin: 0;
   padding: 0;
   list-style: none;
+  background: var(--card);
   border: 1px solid var(--line);
   border-radius: 10px;
   overflow: hidden;
-  background: var(--card);
 }
-
-.word {
+.pat {
   position: relative;
   display: grid;
-  grid-template-columns: 2.3rem minmax(9.5rem, 15rem) minmax(7rem, 12rem) 1fr;
+  grid-template-columns: 6.5rem 1fr 13rem;
   gap: 2px 14px;
-  /* The right padding is the clearance for the ✓ mark / 中 chip, which are
-     absolutely placed there — without it a long example runs under them. */
-  padding: 11px 44px 11px 12px;
+  padding: 11px 14px;
   border-top: 1px solid var(--line);
 }
-.word:first-child { border-top: 0; }
-.word:nth-child(even) { background: #fbfbf9; }
-.word.is-known { background: var(--good-soft); }
-.word.is-hidden { display: none; }
+.pat:first-child { border-top: 0; }
+.pat:nth-child(even) { background: #fbfbfd; }
 
-.w-n {
-  grid-column: 1;
-  padding-top: .18em;
+.pat-label {
   font-family: var(--font-ui);
-  font-size: .74rem;
-  color: var(--ink-faint);
-  text-align: right;
-}
-
-.w-main { grid-column: 2; }
-
-.w-word {
-  font-family: var(--font-en);
-  font-size: 1.24rem;
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: .005em;
-}
-
-.w-kk {
-  font-family: var(--font-kk);
-  font-size: .78rem;
-  color: var(--ink-faint);
-  letter-spacing: .01em;
-}
-
-.w-pos {
-  display: inline-block;
-  margin-left: 7px;
-  padding: 1px 6px;
-  background: var(--brand-soft);
-  border-radius: 4px;
-  font-family: var(--font-ui);
-  font-size: .68rem;
+  font-size: .76rem;
   font-weight: 700;
   color: var(--brand);
-  vertical-align: 2px;
-  white-space: nowrap;
+  padding-top: .22em;
 }
+.pat-en { font-family: var(--font-en); font-size: 1.06rem; line-height: 1.45; }
+.pat-zh { font-size: .88rem; color: var(--ink-soft); padding-top: .12em; }
 
-.w-zh {
-  grid-column: 3;
-  padding-top: .12em;
+/* 常見錯誤 — the block this page exists for. */
+.mistakes { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+
+.mis {
+  padding: 12px 15px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.mis-line { display: flex; align-items: baseline; gap: 9px; padding: 2px 0; }
+.mis-mark {
+  flex: none;
+  width: 1.2em;
+  font-family: var(--font-ui);
   font-size: .95rem;
-  color: var(--ink);
+  font-weight: 700;
+  text-align: center;
 }
+.mis-bad .mis-mark { color: var(--bad); }
+.mis-good .mis-mark { color: var(--good); }
 
-.w-ex { grid-column: 4; padding-top: .1em; }
-.w-en {
-  font-family: var(--font-en);
-  font-size: .98rem;
-  line-height: 1.45;
+.mis-text { font-family: var(--font-en); font-size: 1.06rem; line-height: 1.5; }
+/* Struck through rather than red: the strike survives a black-and-white
+   printout, where red is just dark grey. */
+.mis-bad .mis-text { color: var(--ink-faint); text-decoration: line-through; }
+.mis-good .mis-text { color: var(--good); font-weight: 600; }
+
+.mis-why {
+  margin: 7px 0 0;
+  padding: 7px 0 0 calc(1.2em + 9px);
+  border-top: 1px dashed var(--line);
+  font-size: .85rem;
+  line-height: 1.7;
   color: var(--ink-soft);
 }
-.w-zhex {
-  font-size: .82rem;
-  line-height: 1.6;
-  color: var(--ink-faint);
-}
 
-/* 🔊 — small, quiet, and never in the way of the word itself. */
-.say {
-  margin-left: 6px;
-  padding: 1px 4px;
-  background: none;
-  border: 0;
-  border-radius: 5px;
-  font-size: .82em;
-  line-height: 1;
-  opacity: .42;
-  cursor: pointer;
-  vertical-align: 1px;
-}
-.say:hover { opacity: 1; background: var(--brand-soft); }
-.say.is-on { opacity: 1; }
+/* ---------------- what gets hidden, and how ----------------
 
-/* The 會了 mark. Study mode only. */
-.mark {
-  position: absolute;
-  top: 9px;
-  right: 9px;
-  width: 26px;
-  height: 26px;
-  padding: 0;
-  background: none;
-  border: 1.5px solid var(--line);
-  border-radius: 50%;
-  color: transparent;
-  font-size: .8rem;
-  line-height: 1;
-  cursor: pointer;
-}
-.mark:hover { border-color: var(--good-line); color: var(--good-line); }
-.mark[aria-pressed="true"] {
-  background: var(--good);
-  border-color: var(--good);
-  color: #fff;
-}
-body.mode-class .mark { display: none; }
+   Two mechanisms over the same elements, exactly as on the word list:
+   教學 hides the answers behind a chip, 自學 can blank them for self-testing.
+   Chinese *explanation* — 核心規則, 為什麼 — is never hidden by either: it is
+   the textbook's own voice, not something the student is meant to produce. */
 
-/* ---------------- the Chinese layer, and the masks ----------------
-
-   Two different mechanisms that must not fight each other:
-
-   - 教學模式 hides every .zh behind a 中 chip, the same way the adult pages do.
-   - 自學模式 shows them, but 遮字 can blank either side for self-testing.
-
-   Both end up hiding the same elements, so the reveal is one shared class
-   (.shown) set on the word row. */
-
-/* The chip is taken out of flow for the same reason the ✓ mark is: .word is a
-   grid, so an in-flow child would claim a whole new grid row of its own rather
-   than sitting beside anything. The two share the top-right slot and are never
-   visible at the same time — the mark is study-only, the chip is class-only. */
-.zh-chip {
+.reveal {
   display: none;
-  position: absolute;
-  top: 9px;
-  right: 9px;
-  padding: 2px 7px;
+  margin-left: 8px;
+  padding: 2px 8px;
   background: var(--card);
   border: 1px solid var(--brand-line);
   border-radius: 6px;
   color: var(--brand);
   font-family: var(--font-zh);
-  font-size: .72rem;
+  font-size: .7rem;
   font-weight: 700;
   line-height: 1.5;
   cursor: pointer;
+  vertical-align: 1px;
 }
-.zh-chip:hover { background: var(--brand-soft); }
+.reveal:hover { background: var(--brand-soft); }
 
-body.mode-class .word .w-zh,
-body.mode-class .word .w-zhex { display: none; }
-body.mode-class .zh-chip { display: inline-block; }
-body.mode-class .word.shown .w-zh,
-body.mode-class .word.shown .w-zhex { display: block; }
-body.mode-class .word.shown .zh-chip { display: none; }
-body.zh-all .word .w-zh,
-body.zh-all .word .w-zhex { display: block !important; }
-body.zh-all .zh-chip { display: none !important; }
+body.mode-class .pat .pat-zh,
+body.mode-class .mis .mis-good,
+body.mode-class .mis .mis-why { display: none; }
+body.mode-class .reveal { display: inline-block; }
+body.mode-class .shown .pat-zh,
+body.mode-class .shown .mis-good,
+body.mode-class .shown .mis-why { display: block; }
+body.mode-class .shown .mis-good { display: flex; }
+body.mode-class .shown .reveal { display: none; }
 
-/* The mask: same width, no text. Clicking the row reveals it. */
+body.reveal-all .pat .pat-zh,
+body.reveal-all .mis .mis-why { display: block !important; }
+body.reveal-all .mis .mis-good { display: flex !important; }
+body.reveal-all .reveal { display: none !important; }
+
 .masked {
   background: var(--mask);
   border-radius: 4px;
@@ -634,14 +612,14 @@ body.zh-all .zh-chip { display: none !important; }
   user-select: none;
 }
 .masked * { color: transparent !important; }
-.masked .say, .masked .w-pos { visibility: hidden; }
+.masked .say { visibility: hidden; }
 
-/* ---------------- the quiz ---------------- */
+/* ---------------- the drill ---------------- */
 
-.quiz-open {
+.drill-open {
   display: block;
   width: 100%;
-  margin-top: 12px;
+  margin-top: 18px;
   padding: 11px;
   background: var(--gold-soft);
   border: 1px solid var(--gold-line);
@@ -652,17 +630,16 @@ body.zh-all .zh-chip { display: none !important; }
   font-weight: 700;
   cursor: pointer;
 }
-.quiz-open:hover { background: #fbedcf; }
+.drill-open:hover { background: #fbedcf; }
 
-.quiz {
+.drill {
   margin-top: 12px;
   padding: 18px;
   background: var(--card);
   border: 1px solid var(--gold-line);
   border-radius: 10px;
 }
-
-.quiz-bar {
+.drill-bar {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -671,15 +648,9 @@ body.zh-all .zh-chip { display: none !important; }
   font-size: .76rem;
   color: var(--ink-faint);
 }
-.quiz-bar .track {
-  flex: 1;
-  height: 5px;
-  background: var(--line);
-  border-radius: 3px;
-  overflow: hidden;
-}
-.quiz-bar .fill { height: 100%; background: var(--gold-line); transition: width .25s; }
-.quiz-x {
+.drill-bar .track { flex: 1; height: 5px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.drill-bar .fill { height: 100%; background: var(--gold-line); transition: width .25s; }
+.drill-x {
   padding: 3px 8px;
   background: none;
   border: 1px solid var(--line);
@@ -691,37 +662,22 @@ body.zh-all .zh-chip { display: none !important; }
 }
 
 .q-ask {
-  margin: 0 0 4px;
+  margin: 0 0 6px;
   font-family: var(--font-ui);
   font-size: .76rem;
   font-weight: 700;
   letter-spacing: .05em;
   color: var(--gold);
 }
-.q-prompt {
-  margin: 0 0 15px;
-  font-size: 1.3rem;
-  font-weight: 600;
-  line-height: 1.4;
-}
+.q-prompt { margin: 0 0 15px; font-size: 1.22rem; font-weight: 600; line-height: 1.5; }
 .q-prompt.en { font-family: var(--font-en); }
-.q-prompt .say { font-size: .7em; opacity: .6; }
-
-.q-hear {
-  margin: 4px 0 15px;
-  padding: 14px 20px;
-  background: var(--brand-soft);
-  border: 1px solid var(--brand-line);
-  border-radius: 10px;
-  color: var(--brand);
-  font-family: var(--font-zh);
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
+.q-prompt.bad {
+  color: var(--ink-faint);
+  text-decoration: line-through;
+  text-decoration-color: var(--bad);
 }
 
 .q-opts { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
-
 .opt {
   display: block;
   width: 100%;
@@ -730,25 +686,15 @@ body.zh-all .zh-chip { display: none !important; }
   border: 1px solid var(--rule);
   border-radius: 9px;
   color: var(--ink);
-  font-family: var(--font-zh);
-  font-size: 1rem;
+  font-family: var(--font-en);
+  font-size: 1.02rem;
   text-align: left;
   cursor: pointer;
 }
-.opt.en { font-family: var(--font-en); }
+.opt.zh { font-family: var(--font-zh); }
 .opt:hover { border-color: var(--brand); background: var(--brand-soft); }
-.opt.is-right {
-  background: var(--good-soft);
-  border-color: var(--good);
-  color: var(--good);
-  font-weight: 700;
-}
-.opt.is-wrong {
-  background: var(--bad-soft);
-  border-color: var(--bad);
-  color: var(--bad);
-  animation: wobble .38s;
-}
+.opt.is-right { background: var(--good-soft); border-color: var(--good); color: var(--good); font-weight: 700; }
+.opt.is-wrong { background: var(--bad-soft); border-color: var(--bad); color: var(--bad); animation: wobble .38s; }
 .opt:disabled { cursor: default; }
 
 /* A wrong answer wobbles and invites another go — it never ends the question. */
@@ -759,38 +705,6 @@ body.zh-all .zh-chip { display: none !important; }
   70% { transform: translateX(-3px); }
 }
 
-.q-spell { display: flex; flex-wrap: wrap; gap: 9px; }
-.q-spell input {
-  flex: 1;
-  min-width: 11rem;
-  padding: 11px 14px;
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-radius: 9px;
-  font-family: var(--font-en);
-  font-size: 1.15rem;
-}
-.q-spell input.is-wrong { border-color: var(--bad); background: var(--bad-soft); animation: wobble .38s; }
-.q-spell button {
-  padding: 11px 20px;
-  background: var(--brand);
-  border: 0;
-  border-radius: 9px;
-  color: #fff;
-  font-family: var(--font-zh);
-  font-size: .95rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-.q-hint {
-  width: 100%;
-  margin: 2px 0 0;
-  font-family: var(--font-en);
-  font-size: .88rem;
-  letter-spacing: .28em;
-  color: var(--ink-faint);
-}
-
 .q-after {
   margin: 14px 0 0;
   padding: 11px 14px;
@@ -798,6 +712,7 @@ body.zh-all .zh-chip { display: none !important; }
   border-left: 3px solid var(--good-line);
   border-radius: 3px 8px 8px 3px;
   font-size: .88rem;
+  line-height: 1.7;
   color: var(--ink-soft);
 }
 .q-after b { font-family: var(--font-en); color: var(--good); }
@@ -816,13 +731,7 @@ body.zh-all .zh-chip { display: none !important; }
   font-weight: 700;
   cursor: pointer;
 }
-.q-review {
-  margin: 0 0 16px;
-  padding: 13px 16px;
-  background: var(--gold-soft);
-  border-radius: 9px;
-  text-align: left;
-}
+.q-review { margin: 0 0 16px; padding: 13px 16px; background: var(--gold-soft); border-radius: 9px; text-align: left; }
 .q-review p {
   margin: 0 0 7px;
   font-family: var(--font-ui);
@@ -832,8 +741,44 @@ body.zh-all .zh-chip { display: none !important; }
   color: var(--gold);
 }
 .q-review ul { margin: 0; padding: 0; list-style: none; }
-.q-review li { font-size: .92rem; line-height: 1.75; }
-.q-review b { font-family: var(--font-en); font-size: 1.05rem; margin-right: 8px; }
+.q-review li { font-size: .9rem; line-height: 1.8; }
+.q-review b { font-family: var(--font-en); color: var(--good); }
+.q-review s { color: var(--ink-faint); }
+
+/* 🔊 — small, quiet, and never in the way of the sentence itself. */
+.say {
+  margin-left: 6px;
+  padding: 1px 4px;
+  background: none;
+  border: 0;
+  border-radius: 5px;
+  font-size: .8em;
+  line-height: 1;
+  opacity: .4;
+  cursor: pointer;
+  vertical-align: 1px;
+}
+.say:hover { opacity: 1; background: var(--brand-soft); }
+
+/* The 會了 mark, one per unit. Study mode only. */
+.mark {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: none;
+  border: 1.5px solid var(--line);
+  border-radius: 50%;
+  color: transparent;
+  font-size: .85rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.mark:hover { border-color: var(--good-line); color: var(--good-line); }
+.mark[aria-pressed="true"] { background: var(--good); border-color: var(--good); color: #fff; }
+body.mode-class .mark { display: none; }
 
 /* ---------------- settings panel ---------------- */
 
@@ -930,13 +875,12 @@ body.zh-all .zh-chip { display: none !important; }
 body.mode-study .panel .row[data-mode="class"],
 body.mode-class .panel .row[data-mode="study"] { display: none; }
 
+
 /* ---------------- narrow screens ---------------- */
 
 @media (max-width: 900px) {
-  .word { grid-template-columns: 2.1rem 1fr; gap: 3px 10px; }
-  .w-main, .w-zh, .w-ex { grid-column: 2; }
-  .w-zh { padding-top: 2px; }
-  .w-ex { padding-top: 5px; }
+  .pat { grid-template-columns: 5.5rem 1fr; }
+  .pat-zh { grid-column: 2; padding-top: 3px; }
 }
 
 @media (max-width: 780px) {
@@ -968,16 +912,19 @@ body.mode-class .panel .row[data-mode="study"] { display: none; }
     position: fixed;
     inset: 0;
     z-index: 50;
-    background: rgba(20, 30, 40, .3);
+    background: rgba(20, 20, 40, .3);
   }
 
   .shell { gap: 0; padding: 0 13px; }
   .search { top: calc(var(--bar-h) + 45px); }
+
+  .unit-head { padding-right: 38px; }
+  .unit-refs { margin-left: 0; width: 100%; flex-wrap: wrap; }
 }
 
 /* ---------------- print ----------------
 
-   A handout: everything open, nothing interactive. The masks and the quiz go
+   A handout: everything open, nothing interactive. The masks and the drill go
    away entirely rather than printing blank — a printed sheet with grey bars on
    it is not a study sheet. */
 
@@ -986,23 +933,25 @@ body.mode-class .panel .row[data-mode="study"] { display: none; }
   body { font-size: 10.5pt; }
 
   .bar, .grades, .search, #nav, .nav-scrim, .panel,
-  .say, .mark, .zh-chip, .quiz, .quiz-open, .intro .how { display: none !important; }
+  .say, .mark, .reveal, .drill, .drill-open, .intro .how { display: none !important; }
 
   .shell { display: block; max-width: none; padding: 0; }
   #doc { padding: 0; }
 
   .masked { background: none !important; color: inherit !important; }
   .masked * { color: inherit !important; }
-  .word .w-zh, .word .w-zhex { display: block !important; }
+  .pat .pat-zh, .mis .mis-why { display: block !important; }
+  .mis .mis-good { display: flex !important; }
+  .unit.is-hidden { display: block; }   /* 只看沒打勾的：印的時候要印整份 */
 
-  .lesson { break-inside: auto; margin-bottom: 20pt; }
-  .lesson-head { break-after: avoid; }
-  .word { break-inside: avoid; padding: 5pt 0; }
-  .word.is-hidden { display: grid; }   /* 只看沒打勾的：印的時候要印整課 */
-  .words { border-radius: 0; border-left: 0; border-right: 0; }
-  .word:nth-child(even), .word.is-known { background: none; }
+  .unit { break-inside: auto; margin-bottom: 22pt; }
+  .unit-head, .sec-head { break-after: avoid; }
+  .pat, .mis, .rules li { break-inside: avoid; }
+  .pats { border-radius: 0; border-left: 0; border-right: 0; }
+  .pat:nth-child(even) { background: none; }
   .intro { border-radius: 0; }
 }
+
 
 /* ---------------- shared site footer ----------------
 
@@ -1042,7 +991,7 @@ body.mode-class .panel .row[data-mode="study"] { display: none; }
 .site-foot p a {
   margin-left: 7px;
   padding-bottom: 1px;
-  color: var(--brand, var(--navy, #1d3f6e));
+  color: var(--brand, var(--navy, #4b3a99));
   font-weight: 600;
   text-decoration: none;
   border-bottom: 1px solid currentColor;

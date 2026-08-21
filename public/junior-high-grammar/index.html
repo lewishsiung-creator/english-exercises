@@ -3,33 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>國中英語單字精熟 · 七年級到九年級</title>
-<meta name="description" content="台灣國中英語單字表，含 KK 音標、詞性、中譯與例句。可遮字自測，每課附單字小考。七年級 400 字依康軒課次分課，八年級 289 字依文法主題分組。">
+<title>國中英語文法精熟 · 七年級到九年級</title>
+<meta name="description" content="台灣國中英語文法，一個單元一個文法點：核心規則、句型對照、常見錯誤與一句話重點。可遮字自測，每單元附改錯練習。七年級十四個主題，對應康軒第一冊與第二冊。">
 
-<!-- Inline SVG mark: three stacked cards, one per grade. The colours must be
-     percent-encoded — a bare "#" would be read as the URL fragment. -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314655c'/%3E%3Crect x='13' y='16' width='38' height='8' rx='4' fill='%23edc86a'/%3E%3Crect x='13' y='29' width='38' height='8' rx='4' fill='%23ffffff' opacity='.72'/%3E%3Crect x='13' y='42' width='24' height='8' rx='4' fill='%23ffffff' opacity='.42'/%3E%3C/svg%3E">
-<meta name="theme-color" content="#f6f7f4">
+<!-- Inline SVG mark: a sentence with one word corrected — what this page is.
+     The colours must be percent-encoded; a bare "#" would be read as the URL
+     fragment. Deliberately not the word list's teal: the two are siblings and
+     a teacher has both open at once. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234b3a99'/%3E%3Crect x='13' y='18' width='38' height='6' rx='3' fill='%23ffffff' opacity='.5'/%3E%3Crect x='13' y='29' width='20' height='6' rx='3' fill='%23ff8a7a'/%3E%3Crect x='37' y='29' width='14' height='6' rx='3' fill='%236ee7b7'/%3E%3Crect x='13' y='40' width='30' height='6' rx='3' fill='%23ffffff' opacity='.32'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f6fb">
 
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="mode-study">
 
-<a class="skip" href="#doc">跳到單字表</a>
+<a class="skip" href="#doc">跳到文法單元</a>
 
 <header class="bar">
   <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
-    <span aria-hidden="true">☰</span> 課次
+    <span aria-hidden="true">☰</span> 單元
   </button>
 
-  <p class="bar-title">國中英語單字精熟 <span>Grade 7–9</span></p>
+  <p class="bar-title">國中英語文法精熟 <span>Grade 7–9</span></p>
 
   <button class="bar-btn bar-btn-quiet" id="searchToggle" aria-expanded="false"
-          aria-controls="search" title="搜尋單字" aria-label="搜尋單字">🔍</button>
+          aria-controls="search" title="搜尋文法" aria-label="搜尋文法">🔍</button>
 
-  <!-- The mode switch. Study is the default because most of the time a student
-       is reading this alone; Lewis flips it to 教學 when he drives it in a
-       session, which hides every Chinese line and stops anything being saved. -->
+  <!-- The mode switch, the same pair as the word list. Study is the default
+       because most of the time a student is reading this alone; 教學 hides the
+       answers so the reveal is the teacher's to time, and saves nothing. -->
   <div class="mode" role="group" aria-label="使用模式">
     <button class="mode-btn is-on" id="modeStudy" aria-pressed="true">📖 自學</button>
     <button class="mode-btn" id="modeClass" aria-pressed="false">👩‍🏫 教學</button>
@@ -39,11 +41,9 @@
           aria-controls="panel" title="設定" aria-label="設定">⚙</button>
 </header>
 
-<!-- Search. Sits under the bar rather than in a dialog, so the result you tap
-     scrolls the page behind it and the list stays open for the next word. -->
 <div class="search" id="search" hidden>
-  <input type="search" id="searchInput" placeholder="搜尋單字、中譯或例句…"
-         autocomplete="off" aria-label="搜尋單字">
+  <input type="search" id="searchInput" placeholder="搜尋文法點、句型或錯誤…"
+         autocomplete="off" aria-label="搜尋文法">
   <p class="search-count" id="searchCount"></p>
   <div class="search-hits" id="searchHits"></div>
 </div>
@@ -57,8 +57,6 @@
 
 <div class="nav-scrim" hidden></div>
 
-<!-- Settings. Opens over the page rather than replacing it, so a quiz in
-     progress is never lost. Rows marked data-mode only appear in that mode. -->
 <div class="panel" id="panel" role="dialog" aria-label="設定" hidden>
   <div class="panel-head">
     <h2>設定 <span>Settings</span></h2>
@@ -67,27 +65,28 @@
 
   <div class="row" data-mode="class">
     <label class="row-check">
-      <input type="checkbox" id="zhAll">
-      <span>顯示全部中文 <em>Show all Chinese</em></span>
+      <input type="checkbox" id="revealAll">
+      <span>攤開全部答案 <em>Reveal every answer</em></span>
     </label>
-    <p class="row-note">教學模式預設把中譯和例句翻譯都藏起來，讓學生先看英文。
-      這個開關一次全部打開，用來對答案。</p>
+    <p class="row-note">教學模式預設把句型的中譯和「正確寫法／為什麼」藏起來，
+      讓學生先自己想。這個開關一次全部打開，用來對答案。</p>
   </div>
 
   <div class="row" data-mode="study">
     <label for="maskPick">遮字自測</label>
     <select id="maskPick">
       <option value="none">全部顯示</option>
-      <option value="zh">遮住中譯 — 看英文想意思</option>
-      <option value="en">遮住英文 — 看中譯想單字</option>
+      <option value="zh">遮住句型的中譯 — 看英文想意思</option>
+      <option value="en">遮住句型的英文 — 看中譯造句</option>
+      <option value="fix">遮住正確寫法 — 自己先改改看</option>
     </select>
-    <p class="row-note">被遮住的地方點一下就會露出來，只露那一個，不影響其他字。</p>
+    <p class="row-note">被遮住的地方點一下就會露出來，只露那一個。</p>
   </div>
 
   <div class="row" data-mode="study">
     <label class="row-check">
       <input type="checkbox" id="onlyUnknown">
-      <span>只看還沒打勾的字 <em>Hide the ones marked 會了</em></span>
+      <span>只看還沒打勾的單元 <em>Hide the ones marked 會了</em></span>
     </label>
   </div>
 
@@ -108,7 +107,7 @@
 
   <div class="row">
     <button class="panel-btn panel-btn-quiet" id="printBtn">列印這一個年級</button>
-    <p class="row-note">印出來是一份講義：中譯和例句全部展開，小考不會印出來。</p>
+    <p class="row-note">印出來是一份講義：答案全部展開，練習不會印出來。</p>
   </div>
 
   <div class="row" data-mode="study">
@@ -119,7 +118,7 @@
   <div class="row" data-mode="class">
     <button class="panel-btn panel-btn-quiet" id="resetClass">換下一個學生</button>
     <p class="row-note">教學模式不會存任何紀錄，這個按鈕只是把畫面收乾淨：
-      關掉展開的中譯、收起小考。語音設定會留著。</p>
+      關掉攤開的答案、收起練習。語音設定會留著。</p>
   </div>
 </div>
 

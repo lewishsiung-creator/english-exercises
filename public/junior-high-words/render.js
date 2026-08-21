@@ -134,8 +134,7 @@ function buildDoc() {
     doc.innerHTML = `
       <section class="soon">
         <h1>${text(grade.zh)}還沒進來</h1>
-        <p>${text(grade.note)}的講義 PDF 到了就會出現在這裡，做法和七年級完全一樣，
-           一樣可以遮字自測、一樣每課附小考。</p>
+        <p>${text(grade.note)}的講義 PDF 到了就會出現在這裡，做法和七年級完全一樣，一樣可以遮字自測、一樣每課附小考。</p>
       </section>`;
     return;
   }
@@ -143,10 +142,13 @@ function buildDoc() {
   doc.innerHTML = `
     <section class="intro">
       <h1>${text(grade.zh)}<span>${text(grade.label)}</span></h1>
-      <p>${text(COURSE.source)} · ${text(grade.note)}</p>
-      <p class="how"><b>怎麼用：</b>右上角 ⚙ 裡可以把中譯或英文遮起來自己測，
-        遮住的地方點一下就露出來。背熟的字按右邊的 ✓，之後可以只看還沒打勾的。
-        每一課最後有一個小考。</p>
+      <p>${text(grade.source || COURSE.source)} · ${text(grade.note)}</p>
+      <p class="how"><b>怎麼用：</b>${[
+        '右上角 ⚙ 裡可以把中譯或英文遮起來自己測，遮住的地方點一下就露出來。',
+        '背熟的字按右邊的 ✓，之後可以只看還沒打勾的。',
+        '每一課最後有一個小考。',
+        grade.grammarHref ? '每一課標題旁的「✎ 文法」可以跳到文法頁的同一個主題。' : '',
+      ].join('')}</p>
     </section>
 
     ${grade.books.map((b) => b.lessons.map((l) => `
@@ -155,6 +157,9 @@ function buildDoc() {
           <span class="lesson-code">${text(l.code)}</span>
           <h2>${text(l.title)}</h2>
           <span class="lesson-count">${l.words.length} 字</span>
+          ${grade.grammarHref ? `<a class="gram-link"
+            href="${grade.grammarHref}#for-${l.id}"
+            title="到文法頁看這一課的文法">✎ 文法</a>` : ''}
         </div>
 
         <p class="lesson-gram"><b>文法重點</b>${text(l.grammar)}</p>
@@ -635,7 +640,8 @@ $$('.lesson').forEach((s) => spy.observe(s));
 // 網址帶 #b2-l3 進來時，捲到那一課。
 if (location.hash) {
   const target = document.querySelector(location.hash);
-  if (target) target.scrollIntoView();
+  // 'instant'：進站時的深連結要直接到位，平滑捲動會從頭動好幾千 px 過去。
+  if (target) target.scrollIntoView({ block: 'start', behavior: 'instant' });
 }
 
 // 換年級後要重新觀察新的區塊。
