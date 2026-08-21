@@ -2007,6 +2007,36 @@ else. The grouping machinery is still in the renderer, so a set of papers could
 be appended later without touching it — a new file loaded after `content.js`
 and before `render.js`, pushing onto the same `sessions` array.
 
+### Darker than the rest of the site
+
+Every text colour on this page clears **WCAG AAA (7:1)** against all five of
+its backgrounds — paper, card, and the three soft tints — rather than the 4.5:1
+of AA that the other notebooks meet. The tightest pairing on the whole page is
+7.01:1; before the pass it was 4.51:1. It is read for an hour at a stretch
+across a table by one child, and the Chinese gloss is the smallest, most-set
+thing on it, so the floor was raised rather than merely met.
+
+| Token | Was | Now | Worst ratio on any background |
+| --- | --- | --- | --- |
+| `--ink` | `#16211f` | `#131c1b` | 15.0 |
+| `--ink-soft` | `#445452` | `#333e3d` | 9.6 |
+| `--ink-faint` | `#636e6c` | `#495150` | 7.1 |
+| `--navy` | `#256b5e` | `#1f594e` | 7.0 |
+| `--gold` | `#a9590f` | `#7a400b` | 7.1 |
+| `--good` | `#2c7a58` | `#205940` | 7.1 |
+
+Two things kept it from turning into a flat grey wall. The three greys hold
+**three clearly separate steps** — about 15:1, 9.5:1 and 7:1 — because taking
+them all to the same floor would have flattened `.zh` into `.en` and removed
+the hierarchy along with the paleness. And only *lightness* moved: hue and
+saturation are untouched, and the `-line` and `-soft` values are not changed at
+all, since they are borders and fills rather than text and they are where this
+age band's warmer palette actually lives.
+
+/riva-rex/ shares this palette and was measured to AA, not AAA. It was left
+alone deliberately — a fix lands on one student's page at a time here — so the
+two now differ, and the block at the top of `style.css` says so.
+
 ### Two additions to the renderer
 
 Two things exist in this copy that no other notebook has.

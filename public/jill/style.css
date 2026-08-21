@@ -1,7 +1,7 @@
-/* Riva & Rex's English Notebook — a running record of their pair sessions.
+/* Jill's English Notebook — a running record of her weekly one-to-one lessons.
 
-   Same machinery as the other notebooks here (/eason/, /anita/), re-set for
-   ten to twelve. Design notes:
+   Same machinery as the other notebooks here (/riva-rex/, /eason/, /anita/),
+   re-set for ten to twelve. Design notes:
 
    - Ten to twelve sits between the two house styles. The seven-to-ten pages
      are picture-led with huge touch targets; the adult pages are dense
@@ -15,30 +15,45 @@
      comprehension practice.
    - Nothing is scored, nothing is saved, and a reload is a clean start. The
      reveals are timed by the teacher, not by the page.
-   - Light theme only. It is read across a table with both children.
+   - Light theme only. It is read across a table.
 
-   This one grows, and it carries two kinds of entry: twelve dated sessions
-   and then the practice papers, separated by a band. Everything folds, so a
-   term's worth plus five reading papers still opens as a page rather than a
-   scroll, and the heading of a folded entry carries enough — number, date or
-   source tag, title — to be found without opening it. */
+   This one grows: one dated session per lesson, all of one kind, so there is
+   no band across the document as there is on /riva-rex/. Everything folds, so
+   a term's worth still opens as a page rather than a scroll, and the heading
+   of a folded entry carries enough — number, date, title — to be found
+   without opening it. */
 
 :root {
   --paper: #f6f4ee;
   --card: #ffffff;
-  --ink: #16211f;
-  --ink-soft: #445452;
-  --ink-faint: #636e6c;
+  /* Every text colour on this page clears WCAG **AAA** (7:1) against all five
+     of its backgrounds — paper, card, and the three soft tints — not the 4.5:1
+     of AA. Inherited from /riva-rex/, which was measured to AA; this page is
+     read for a whole hour across a table by one child, and the Chinese gloss
+     is the smallest, most-set thing on it, so the floor was raised rather than
+     met. Measured, not eyeballed: the tightest pairing on the page is 7.00:1
+     where it used to be 4.51:1.
 
-  --navy: #256b5e;
+     The three greys keep three clearly separate steps — roughly 15:1, 9.5:1
+     and 7:1 — because darkening them all to the same floor would have
+     flattened `.zh` into `.en` and taken the hierarchy out with the paleness.
+     Hue and saturation are unchanged throughout; only lightness moved, so the
+     palette is the same palette. The `-line` and `-soft` values are untouched:
+     they are borders and fills, never text, and they are where the warmth of
+     this age band's palette actually lives. */
+  --ink: #131c1b;
+  --ink-soft: #333e3d;
+  --ink-faint: #495150;
+
+  --navy: #1f594e;
   --navy-soft: #e7f1ee;
   --navy-line: #a7cdc3;
 
-  --gold: #a9590f;
+  --gold: #7a400b;
   --gold-soft: #fdf1e2;
   --gold-line: #f0932b;
 
-  --good: #2c7a58;
+  --good: #205940;
   --good-soft: #e4f2ea;
   --good-line: #a8d6be;
 
