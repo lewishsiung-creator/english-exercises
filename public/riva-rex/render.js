@@ -89,6 +89,16 @@ function label(b) {
       <span class="zh">${text(b.zh)}</span></h4>`;
 }
 
+/* The Traditional Chinese for one word-box word, from the shared map in
+   practice.js. Falling back to an empty string rather than throwing is
+   deliberate: a word added to a box without a gloss should cost that one chip
+   its Chinese, not blank the whole page. The check that every word HAS a gloss
+   belongs in a test, not in the render path. */
+function gloss(w) {
+  const g = NOTEBOOK.glossary || {};
+  return g[w] || '';
+}
+
 /* How many words in a box are never placed. It is not always one — the source
    papers vary between one and three — and a note that says "one" when three
    are left over turns a finished exercise into a puzzle about the page. */
@@ -156,8 +166,12 @@ const BLOCKS = {
         ${hint(b)}
         <ul class="box">
           ${shuffled(b.words).map((w) => `
-            <li><button class="chip word" data-w="${text(w)}">${text(w)}</button></li>`).join('')}
+            <li><button class="chip word" data-w="${text(w)}">
+              <span class="w-en">${text(w)}</span>
+              <span class="zh">${text(gloss(w))}</span>
+            </button></li>`).join('')}
         </ul>
+        <button class="reveal gloss" aria-expanded="false">Word meanings 單字中文</button>
         ${spare(b.words.length - blanks)}
         <p class="wb-text">${parts.map((seg, i) => seg + (i < blanks
           ? `<button class="slot blank" data-answer="${text(b.answers[i])}"
@@ -732,6 +746,17 @@ doc.addEventListener('click', (e) => {
     return;
   }
 
+  // ---- the Chinese under one box's words. Its own toggle rather than the
+  //      generic reveal below, because what it opens is a class on the box
+  //      rather than the element that happens to sit next to the button.
+  const gl = t.closest('.gloss');
+  if (gl) {
+    const box = gl.closest('.wordbox');
+    const open = box.classList.toggle('glossed');
+    gl.setAttribute('aria-expanded', String(open));
+    return;
+  }
+
   // ---- useful language
   const reveal = t.closest('.reveal');
   if (reveal) {
@@ -990,6 +1015,8 @@ $('#showAll').addEventListener('click', () => {
     act.classList.add('all-done');
   });
 
+  $$('.wordbox').forEach((b) => b.classList.add('glossed'));
+  $$('.gloss').forEach((g) => g.setAttribute('aria-expanded', 'true'));
   $$('.ans').forEach((a) => { a.classList.add('open'); a.setAttribute('aria-expanded', 'true'); });
   $$('.card').forEach((c) => { c.classList.add('open'); c.setAttribute('aria-expanded', 'true'); });
   $$('.fix').forEach((f) => { f.classList.add('open'); f.setAttribute('aria-expanded', 'true'); });

@@ -61,6 +61,82 @@
    bottom of the page. `id` becomes the anchor: /riva-rex/#p3.
 */
 
+/* Traditional Chinese for every word that appears in a word box.
+
+   The phrase cards on this page carry their own `zh` and `egZh`, so they were
+   never the gap. The word boxes were: 175 word slots, 135 distinct words, and
+   exactly one of them ("broom") appears on a phrase card anywhere on the page.
+   A child meeting "queue", "apron" or "knitting" in a Cambridge paper had
+   nowhere on the page to look it up.
+
+   One shared map rather than a gloss per box, because the same word turns up
+   in several papers — "cold" is in four — and two boxes glossing it two
+   different ways would be worse than not glossing it at all.
+
+   Singular and plural are separate keys where both appear, because the English
+   differs even though the Chinese does not; likewise "lamp" (a small one on a
+   table) and "lamps" (the ones over a street), which are genuinely different
+   things in the two texts they come from.
+
+   These stay hidden until asked for, like every other Chinese line here — the
+   button under each box opens that box, and the 中文 switch in the bar opens
+   the lot. */
+NOTEBOOK.glossary = {
+  // people and places
+  'teacher': '老師', 'driver': '司機', 'cashier': '收銀員', 'friends': '朋友',
+  'school': '學校', 'library': '圖書館', 'market': '市場', 'kitchen': '廚房',
+  'garden': '花園', 'garage': '車庫', 'zoo': '動物園', 'club': '社團',
+  'street': '街道', 'road': '馬路', 'floor': '地板',
+
+  // things in a house
+  'desk': '書桌', 'lamp': '檯燈', 'lamps': '路燈', 'window': '窗戶',
+  'windows': '窗戶', 'mirror': '鏡子', 'blanket': '毯子', 'boxes': '箱子',
+  'broom': '掃把', 'dust': '灰塵', 'fire': '爐火', 'radio': '收音機',
+  'plate': '盤子', 'plates': '盤子', 'glass': '玻璃杯', 'spoon': '湯匙',
+  'tray': '餐盤', 'knife': '刀子', 'basket': '籃子',
+
+  // school things
+  'book': '書', 'books': '書', 'pencil': '鉛筆', 'pencil case': '鉛筆盒',
+  'bag': '書包', 'homework': '功課', 'story': '故事', 'guitar': '吉他',
+  'camera': '相機', 'ticket': '門票',
+
+  // clothes
+  'coat': '外套', 'jacket': '夾克', 'scarf': '圍巾', 'boots': '靴子',
+  'shoes': '鞋子', 'apron': '圍裙', 'helmet': '安全帽', 'raincoat': '雨衣',
+  'umbrella': '雨傘', 'towel': '毛巾',
+
+  // food and drink
+  'breakfast': '早餐', 'lunch': '午餐', 'picnic': '野餐', 'sandwich': '三明治',
+  'cake': '蛋糕', 'cookies': '餅乾', 'banana': '香蕉', 'apple': '蘋果',
+  'apples': '蘋果', 'eggs': '蛋', 'milk': '牛奶', 'juice': '果汁',
+  'water': '水', 'coffee': '咖啡', 'soup': '湯', 'salad': '沙拉',
+  'vegetables': '蔬菜', 'toothpaste': '牙膏',
+
+  // outside
+  'sand': '沙子', 'sky': '天空', 'snow': '雪', 'rainbow': '彩虹',
+  'stars': '星星', 'moon': '月亮', 'puddles': '水窪', 'flowers': '花',
+  'kite': '風箏', 'birds': '鳥', 'animals': '動物', 'lions': '獅子',
+  'cat': '貓', 'dog': '狗', 'noise': '噪音',
+
+  // getting about
+  'bus': '公車', 'train': '火車', 'bicycle': '腳踏車', 'queue': '排隊的隊伍',
+  'money': '錢', 'coins': '硬幣', 'alarm': '鬧鐘', 'Monday': '星期一',
+
+  // how something is
+  'happy': '開心的', 'angry': '生氣的', 'nervous': '緊張的', 'tired': '累的',
+  'sleepy': '想睡的', 'hungry': '餓的', 'quiet': '安靜的', 'ready': '準備好的',
+  'cold': '冷的', 'hot': '熱的', 'wet': '濕的', 'sunny': '晴朗的',
+  'bright': '明亮的', 'purple': '紫色', 'fast': '快的', 'early': '早',
+
+  // things you do
+  'read': '讀', 'write': '寫', 'draw': '畫', 'sing': '唱歌',
+  'play': '玩', 'swim': '游泳', 'run': '跑', 'ride': '騎',
+  'walk': '走路', 'sleep': '睡覺', 'dream': '夢', 'study': '讀書',
+  'practise': '練習', 'clean': '打掃', 'wash': '洗', 'cook': '煮',
+  'buy': '買', 'pay': '付錢', 'find': '找到', 'hurry': '趕快',
+  'brush': '刷', 'brushes': '刷（他／她）', 'paint': '顏料', 'knitting': '織毛線',
+};
+
 NOTEBOOK.sessions.push(
     // ---------------------------------------------------------------- P1
     {

@@ -1263,9 +1263,26 @@ body.zh-all .card-back { display: block; }
 }
 .box { list-style: none; margin: 0 0 10px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 
+/* A word chip carries its Chinese under the English, hidden like every other
+   Chinese line on the page: the button under the box opens that box, and the
+   中文 switch in the bar opens all of them. Centred rather than left-aligned,
+   because the two lines are short and of different lengths, and ragged-left
+   stacks read as a mistake in a wrapping row of chips. */
+.word { text-align: center; }
+.word .w-en { display: block; }
+.word .zh { font-size: .8em; margin-top: 3px; line-height: 1.5; }
+.wordbox.glossed .word .zh { display: block; }
+
+/* The toggle sits under the box rather than above it, so it does not push the
+   words down the moment the exercise opens. */
+.gloss { margin: 2px 0 12px; }
+
 /* A placed word stays in the box, struck through rather than removed. Seeing
-   which words have gone is most of how the last two blanks get worked out. */
-.word.used { opacity: .38; text-decoration: line-through; cursor: default; }
+   which words have gone is most of how the last two blanks get worked out.
+   The rule strikes the English only — a struck-through gloss reads as though
+   the meaning were wrong rather than the word already used. */
+.word.used { opacity: .38; cursor: default; }
+.word.used .w-en { text-decoration: line-through; }
 .word.used:hover { border-color: var(--line); background: var(--card); }
 
 .box-note { margin: 0 0 14px; font-family: var(--font-ui); font-size: .8rem; color: var(--ink-faint); }

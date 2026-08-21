@@ -1769,6 +1769,27 @@ lets the teacher see what was guessed before it was known.
 
 A word placed into a blank stays in the box, struck through rather than removed.
 Seeing which words have gone is most of how the last two blanks get worked out.
+The strike is on the English only — a struck-through gloss reads as though the
+meaning were wrong rather than the word already used.
+
+**Every word-box word carries its Chinese**, from a single shared map at
+`NOTEBOOK.glossary` in [`practice.js`](public/riva-rex/practice.js). The phrase
+cards always had `zh` and `egZh`, so they were never the gap; the word boxes
+were — 175 word slots, 135 distinct words, and exactly one of them (`broom`)
+appears on a phrase card anywhere on the page. A child meeting *queue*, *apron*
+or *knitting* in a Cambridge paper had nowhere to look it up.
+
+One shared map rather than a gloss per box, because the same word turns up in
+several papers — `cold` is in four — and two boxes glossing it differently would
+be worse than not glossing it at all. Singular and plural are separate keys where
+both appear, as are `lamp` (on a table) and `lamps` (over a street), which really
+are different things in the two texts they come from.
+
+The glosses are hidden like every other Chinese line here: **Word meanings 單字
+中文** under a box opens that box, and the 中文 switch in the bar opens all of
+them. The answer chips in `mcq`, `gap` and `match` stay English-only, which is
+the house convention — they are answer choices rather than vocabulary, and each
+is glossed on its own phrase card where it matters.
 
 Two things in the source needed correcting rather than copying. The Part 5 word
 boxes do **not** all leave exactly one word spare — across the five papers it
