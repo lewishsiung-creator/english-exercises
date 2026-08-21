@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>國中英語精熟 · 單字與文法 · 七年級到九年級</title>
+<meta name="description" content="台灣國中英語，單字與文法在同一頁：單字含 KK 音標、詞性、中譯與例句，文法含核心規則、句型對照與常見錯誤。可遮字自測，每課附小考。七、八年級已收錄。">
+
+<!-- Inline SVG mark: a stack of cards with one line corrected — the two halves
+     of this page. The colours must be percent-encoded; a bare "#" would be
+     read as the URL fragment. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314655c'/%3E%3Crect x='13' y='17' width='38' height='7' rx='3.5' fill='%23edc86a'/%3E%3Crect x='13' y='29' width='20' height='7' rx='3.5' fill='%23ffffff' opacity='.75'/%3E%3Crect x='37' y='29' width='14' height='7' rx='3.5' fill='%236ee7b7'/%3E%3Crect x='13' y='41' width='30' height='7' rx='3.5' fill='%23ffffff' opacity='.4'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f6f7f4">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="mode-study" data-section="words">
+
+<a class="skip" href="#doc">跳到內容</a>
+
+<header class="bar">
+  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
+    <span aria-hidden="true">☰</span> <span class="lbl" id="navToggleLabel">課次</span>
+  </button>
+
+  <!-- The two halves. One page, so switching does not reload and does not lose
+       the grade, the mode, or a drill in progress on the other side. -->
+  <div class="section-switch" role="group" aria-label="單字或文法">
+    <button class="section-btn is-on" id="secWords" aria-pressed="true" title="單字" aria-label="單字">📚<span class="lbl"> 單字</span></button>
+    <button class="section-btn" id="secGrammar" aria-pressed="false" title="文法" aria-label="文法">✎<span class="lbl"> 文法</span></button>
+  </div>
+
+  <p class="bar-title" id="barTitle">國中英語精熟 <span>Grade 7–9</span></p>
+
+  <button class="bar-btn bar-btn-quiet" id="searchToggle" aria-expanded="false"
+          aria-controls="search" title="搜尋" aria-label="搜尋">🔍</button>
+
+  <div class="mode" role="group" aria-label="使用模式">
+    <button class="mode-btn is-on" id="modeStudy" aria-pressed="true" title="自學模式" aria-label="自學模式">📖<span class="lbl"> 自學</span></button>
+    <button class="mode-btn" id="modeClass" aria-pressed="false" title="教學模式" aria-label="教學模式">👩‍🏫<span class="lbl"> 教學</span></button>
+  </div>
+
+  <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
+          aria-controls="panel" title="設定" aria-label="設定">⚙</button>
+</header>
+
+<div class="search" id="search" hidden>
+  <input type="search" id="searchInput" placeholder="搜尋…" autocomplete="off"
+         aria-label="搜尋">
+  <p class="search-count" id="searchCount"></p>
+  <div class="search-hits" id="searchHits"></div>
+</div>
+
+<nav class="grades" id="grades" aria-label="年級"></nav>
+
+<div class="shell">
+  <div id="nav"></div>
+  <main id="doc"></main>
+</div>
+
+<div class="nav-scrim" hidden></div>
+
+<!-- Settings. Opens over the page rather than replacing it, so a quiz in
+     progress is never lost. Rows marked data-mode or data-section only appear
+     where they apply. -->
+<div class="panel" id="panel" role="dialog" aria-label="設定" hidden>
+  <div class="panel-head">
+    <h2>設定 <span>Settings</span></h2>
+    <button class="panel-x" id="panelClose" aria-label="關閉">✕</button>
+  </div>
+
+  <div class="row" data-mode="class">
+    <label class="row-check">
+      <input type="checkbox" id="revealAll">
+      <span>攤開全部答案 <em>Reveal every answer</em></span>
+    </label>
+    <p class="row-note">教學模式預設把該由學生想出來的部分藏起來——單字的中譯，
+      文法的句型中譯與正確寫法。這個開關一次全部打開，用來對答案。</p>
+  </div>
+
+  <div class="row" data-mode="study">
+    <label for="maskPick">遮字自測</label>
+    <select id="maskPick"></select>
+    <p class="row-note">被遮住的地方點一下就會露出來，只露那一個。</p>
+  </div>
+
+  <div class="row" data-mode="study">
+    <label class="row-check">
+      <input type="checkbox" id="onlyUnknown">
+      <span>只看還沒打勾的 <em>Hide the ones marked 會了</em></span>
+    </label>
+  </div>
+
+  <div class="row">
+    <label for="voicePick">朗讀語音</label>
+    <select id="voicePick"></select>
+    <p class="row-note">🔊 用的聲音。選一個會先唸一句給你聽。</p>
+  </div>
+
+  <div class="row">
+    <label for="rate">速度</label>
+    <select id="rate">
+      <option value="0.7">慢</option>
+      <option value="0.9">正常</option>
+      <option value="1.05">快</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <button class="panel-btn panel-btn-quiet" id="printBtn">列印目前這一份</button>
+    <p class="row-note" id="printNote"></p>
+  </div>
+
+  <div class="row" data-mode="study">
+    <button class="panel-btn panel-btn-quiet" id="clearMarks">清除「會了」的紀錄</button>
+    <p class="row-note" id="marksNote"></p>
+  </div>
+
+  <div class="row" data-mode="class">
+    <button class="panel-btn panel-btn-quiet" id="resetClass">換下一個學生</button>
+    <p class="row-note">教學模式不會存任何紀錄，這個按鈕只是把畫面收乾淨：
+      關掉攤開的答案、收起小考與練習。語音設定會留著。</p>
+  </div>
+</div>
+
+
+<!-- Site footer. Identical on every page, so a reader who lands on any one
+     sheet can find the rest. -->
+<footer class="site-foot">
+  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
+     aria-label="Lewis Biz English"><img src="../logo.png" alt="" width="34" height="34"></a>
+  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
+    target="_blank" rel="noopener">lewistoeic.com</a></p>
+</footer>
+<script src="words.js"></script>
+<script src="grammar.js"></script>
+<script src="render.js"></script>
+</body>
+</html>

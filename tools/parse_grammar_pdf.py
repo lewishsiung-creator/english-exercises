@@ -140,6 +140,24 @@ def table(region, cols):
     return rows
 
 
+def expand_refs(ref):
+    """'單字主題 1、2' -> ['單字主題 1', '單字主題 2']; 'B1 GR、B1 L1' unchanged.
+
+    Both the 目錄 line and the per-unit 對應 line drop the repeated prefix on
+    everything after the first item, so both go through this before they are
+    compared.
+    """
+    out = []
+    for part in (p.strip() for p in ref.split('、')):
+        if not part:
+            continue
+        if re.fullmatch(r'\d+', part) and out:
+            out.append(re.sub(r'\d+$', '', out[-1]) + part)
+        else:
+            out.append(part)
+    return out
+
+
 def parse_unit(page):
     cells = chunks(page)
     unit = {}
@@ -154,8 +172,9 @@ def parse_unit(page):
     ref = glue([c['t'] for c in sorted(
         [c for c in near(cells, CODE_X) if 128 < c['y'] < 145],
         key=lambda c: c['seq'])])
-    ref = re.sub(r'^對應課次\s*', '', ref)
-    unit['lessons'] = [s.strip() for s in ref.split('、') if s.strip()]
+    # 七年級寫「對應課次 B1 GR」，八年級寫「對應單字主題 單字主題 1」——
+    # 兩本的欄位名稱不同，但指的都是單字頁的哪一課。
+    unit['lessons'] = expand_refs(re.sub(r'^對應(課次|單字主題)\s*', '', ref))
 
     heads = {c['t'].strip(): c['y'] for c in near(cells, HEAD_X) if c['t'].strip() in SECTIONS}
     missing = [s for s in SECTIONS if s not in heads]
@@ -223,10 +242,13 @@ def parse(path):
         if u['code'] not in toc:
             problems.append(f"{u['code']} is not in 目錄")
             continue
+        # The 目錄 line is 'title + 對應', with no separator, so a substring
+        # test on the expanded refs is the check that works for both books.
+        listed = expand_refs(toc[u['code']])
         for lesson in u['lessons']:
-            if lesson not in toc[u['code']]:
+            if not any(lesson in item for item in listed):
                 problems.append(
-                    f"{u['code']}: 對應課次 {lesson} is not in the 目錄 line "
+                    f"{u['code']}: 對應 {lesson} is not in the 目錄 line "
                     f"{toc[u['code']]!r}")
         if not u['rules'] or not u['patterns'] or not u['mistakes'] or not u['key']:
             problems.append(f"{u['code']}: an empty section")

@@ -17,8 +17,7 @@ sentences at `/sentence-upgrades/`, a high-school writing worksheet
 at `/robot-helper/`, a survey of seven years of the 學測 essay at
 `/exam-writing/`, an IELTS Speaking Part 3 practice at `/ielts-part3/`, a
 growing IELTS Speaking course covering all three parts at `/ielts-speaking/`,
-and, for 國中 students, a vocabulary list at `/junior-high-words/` with the
-grammar that goes with it at `/junior-high-grammar/`.
+and, for 國中 students, vocabulary and grammar together at `/junior-high/`.
 
 One page is not English at all: `/math/` is math practice for Grades 1 to 3,
 built for a child in an American school.
@@ -1027,216 +1026,149 @@ sentence, and the same faint 👩‍🏫 panel. Settings live under `ielts.*` in
 `localStorage` and are shared across the whole course, so a teacher who turns
 the Chinese on for a client does not turn it on again in every lesson.
 
-## 國中英語單字精熟 — Grades 7 to 9, the 康軒 word lists
+## 國中英語精熟 — Grades 7 to 9, 單字 and 文法 in one page
 
-The junior-high vocabulary, one page for all three years: 冊 and 課 as the
-講義 has them, each word with its KK 音標, 詞性, 中譯 and an example sentence
-in both languages, each 課 headed by its 文法重點 and closed by a quiz.
+Everything a Taiwanese junior-high student is asked to memorise, from Lewis's
+own 講義: the vocabulary and the grammar that goes with it, as two halves of
+one page at `/junior-high/`.
 
-Two grades are in:
-
-| Grade | Shape | Words |
+| Grade | 單字 | 文法 |
 | --- | --- | --- |
-| 七年級 | 第一冊 + 第二冊, by 課次 — the 康軒 edition | 400 |
-| 八年級 | twelve 文法主題, **not** tied to any edition's 課次 | 289 |
+| 七年級 | 400 words, 第一冊 + 第二冊 by 課次 (康軒) | 14 units |
+| 八年級 | 289 words, by 文法主題, edition-independent | 12 units |
+| 九年級 | — | — |
 
-They are grouped differently because the two 講義 are: the 七年級 book follows
-康軒's lessons, the 八年級 one drops the 課次 entirely and groups by grammar
-topic so it works across editions. The 目錄 heading is what the page reads to
-build its 冊/主軸 grouping, so neither is hard-coded. Grade 9 has its tab
-already and shows a short "還沒進來" note until its PDF arrives, rather than an
-empty table.
+The two grades are grouped differently because the two 講義 are: the 七年級
+books follow 康軒's lessons, the 八年級 ones drop 課次 entirely and group by
+grammar topic so they work across editions. The 目錄 heading is what the page
+reads to build its grouping, so neither is hard-coded. 九年級 has its tab
+already and shows a "還沒進來" note until its PDFs arrive, rather than an empty
+list.
 
-Grade 7 also carries an **✎ 文法** link on every 課, across to the matching
-unit on the grammar page. Grade 8 does not: its words are already grouped by
-grammar topic, so the link would point at what you are already reading.
+### The two halves
 
-| Control | What it does |
-| --- | --- |
-| 📖 自學 / 👩‍🏫 教學 | The two modes — see below |
-| ⚙ → 遮字自測 | Blanks the 中譯 side, or the English side, for self-testing |
-| ✓ on a row | Marks a word 會了; ⚙ can then hide everything already marked |
-| 🔍 | Searches the current grade's words, meanings and examples |
-| 📝 小考這一課 | Ten questions built from that 課 |
-| 🔊 | Speaks the word, or the example |
+It was two pages for one day, and merging them was the right call: a student
+should get one URL, and switching should not reload.
 
-### The two modes
+| | 📚 單字 | ✎ 文法 |
+| --- | --- | --- |
+| An item is | one word: KK 音標, 詞性, 中譯, an example both ways | one grammar point |
+| | | 一句話重點, 核心規則, 句型對照, 常見錯誤 |
+| Practice | 📝 小考 — 10 questions a 課 | 📝 練習 — 8 questions a unit |
+| Question kinds | hear→中譯, 中譯→English, 中譯→spell it | fix it, *why* the fix, 中譯→句型 |
 
-This is the first page in the repo that serves two audiences from one file,
-because the 講義 itself is aimed at both ("在學生 · 升學銜接複習 · 一對一課後
-練習"). The switch in the top bar is the whole difference:
+Switching halves keeps the grade, the mode, the voice, the mask, and **a quiz
+left open on the other side** — both halves' DOM is built at once and `<body
+data-section>` decides which one shows, so switching costs nothing. Only a
+change of *grade* rebuilds.
 
-- **📖 自學** is the default, and is not the house style: the 中譯 is
-  **visible**, the quiz keeps a first-try record, and the ✓ marks persist in
-  the student's own `localStorage` under `jhs.*`. A student working alone
-  needs the meaning in front of them; the 遮字 control is how they take it
-  away again once they want to test themselves.
-- **👩‍🏫 教學** is the house style, the same as the adult and 10–12 pages:
-  every 中譯 hides behind a 中 chip, the reveal is the teacher's to time, and
-  **nothing is written down** — one laptop, several students, and a reload
-  has to be a clean lesson.
+**一句話重點 is moved to the top of a unit.** The PDF puts it last, as a
+summary. On a scrolling page the last line of a unit is the one nobody reads,
+and it is the line most worth reading first — so it sits under the heading and
+the rest of the unit explains it.
 
-Switching is a class on `<body>`, not a re-render, so the page does not jump
-under a teacher who flips it mid-課. The two modes never share a reveal: the
-opened lines and the 中文 switch are cleared on the way across.
+### How the halves join
+
+Per-課, in both directions, and the map exists **once** — as `lessons` on each
+grammar unit:
+
+- ✎ **文法** on a 課 heading → the unit covering it.
+- 📚 **B1 L3** / **單字主題 3** in a unit heading → that 課 in the word list.
+
+The word list carries no copy of the map; it knows its own 課 id and asks. The
+two books name the reference differently (七年級 `B1 L3`, 八年級 `單字主題 3`),
+and one `lessonAnchor()` normalises both to the word list's own ids.
+
+Anchors are `#w/<grade>/<課次>`, `#g/<grade>/<unit>`, and `#g/for-<課次>` for
+"the grammar for this 課". **The grade is part of the anchor** because a unit
+id (`u1`…`u14`) exists in more than one grade. The two old URLs,
+`/junior-high-words/` and `/junior-high-grammar/`, are now redirect pages that
+translate their old hashes into this scheme — they had been handed out, so they
+stay.
 
 ### Design notes
 
+- **The palette follows the half** — teal for 單字, violet for 文法, set on
+  `body[data-section]` so every chip and rule that reads `var(--brand)` follows
+  without an extra selector. When these were two pages the reason was that
+  pages open side by side should not be told apart by their titles; merged, the
+  reason is that a colour change is the fastest signal of which half you are
+  in. Both stay well clear of red and green, which 常見錯誤 needs for ✕ and ✓.
+- **The wrong sentence is struck through and grey, not red.** A strike survives
+  a black-and-white printout; red prints as dark grey and stops meaning
+  "wrong". Same decision Anny's notebook made for its corrections.
 - **The mask is a block of colour, not a blur.** A blur still gives away the
-  length and the shape of the word, and text that blurs and unblurs shifts the
-  line. The mask sets the text transparent and paints a bar behind it, so the
-  width never changes and a tap on it reveals that one cell only.
-- **A word row is a grid, not a table.** It has to stack into a card on a
-  phone and print as a 講義 row on paper, and one `grid-template-columns`
-  swap does both. The ✓ mark and the 中 chip are absolutely placed in the same
-  top-right slot — they are never both visible — because an in-flow child of a
-  grid would claim a whole row of its own.
-- **The quiz has no question bank.** Its ten questions are drawn from that
-  課's words each time it is opened, so adding a word to `content.js` adds it
-  to the quiz too. Three kinds: hear-and-pick-the-中譯, 中譯-and-pick-the-
-  English, and 中譯-and-spell-it. Spelling is only offered for a single word
-  of three to eleven letters; phrases like *Nice to meet you.* are never
-  asked that way.
-- **Distractors come from the same 課 where it has enough words**, and widen
-  to the whole grade where it does not — B1 GR has only four. They are
-  de-duplicated on the field being shown, so two options are never both
-  defensibly right.
-- **A wrong answer wobbles and stays.** No score is shown, nothing is timed,
-  and the only thing kept is which words were missed on the first try — the
-  end screen is a list titled 這幾個字再看一次, not a mark.
-- **Printing gives a handout.** Every 中譯 opens, every mask lifts, the 🔊
-  buttons, the ✓ marks and the quizzes disappear, and 只看還沒打勾的 is
-  ignored so a whole 課 prints.
+  length and shape of a word, and text that blurs and unblurs shifts the line.
+- **A word row is a grid, not a table** — it has to stack into a card on a
+  phone and print as a 講義 row on paper, and one `grid-template-columns` swap
+  does both.
+- **Chinese explanation is never hidden by either mode.** 核心規則 and 為什麼
+  are the textbook's own voice, not something a student is meant to produce.
+  教學 mode hides what they should be able to work out: a 中譯, a 句型's
+  Chinese, a mistake's 正確寫法.
+- **English inside a Chinese rule is set in the English face**, in the page
+  colour — `dog → dogs`, `I → am`. Done by a regex over the rendered string, so
+  the content files stay the plain text the PDFs gave us.
+- **Neither practice block has a question bank.** Questions are drawn from the
+  same data the page displays, so editing a word or a mistake edits the
+  practice too. Grammar distractors always come from the same unit — four
+  reasons about one grammar point is a real question, whereas reasons pulled
+  from across the book can be eliminated on sight. They are de-duplicated,
+  which is necessary and not merely defensive: 八年級 文法 5 has two different
+  wrong sentences with the same correction.
+- **A wrong answer wobbles and invites another go.** Nothing is timed or
+  scored; the end screen lists what to look at again, not a mark. Ticks live in
+  the student's own `localStorage` under `jh.*` — and the old per-page keys are
+  migrated on first load, so nobody lost their progress in the merge.
+- **Deep links jump, they do not animate.** `jumpTo()` turns off
+  `scroll-behavior` and computes an absolute position: a smooth scroll across
+  forty thousand pixels either takes seconds or gets cut short, and right after
+  a re-render the old scroll position can exceed the new document height, which
+  makes `scrollIntoView` land in the wrong place.
+- **Print gives a handout of the half on screen**: every answer open, every
+  mask lifted, the 🔊, ✓ and practice blocks gone, and 只看還沒打勾的 ignored
+  so a 課 prints whole.
 
-### Where the words come from
-
-The 講義 PDF's tables have fixed column positions, so the two scripts in
-`tools/` rebuild each row from **character coordinates** rather than from
-extracted text — a wrapped 中譯 cell and the example sentence beside it are
-genuinely indistinguishable once the PDF is flattened to a string, and text
-extraction interleaves them.
+### Where the content comes from
 
 ```bash
-python3 tools/parse_kanghsuan_pdf.py 九年級講義.pdf > g9.json
-python3 tools/build_words_content.py g9.json
+python3 tools/parse_kanghsuan_pdf.py 九年級單字講義.pdf > w9.json
+python3 tools/build_words_content.py w9.json          # -> words.js
+python3 tools/parse_grammar_pdf.py 九年級文法講義.pdf > g9.json
+python3 tools/build_grammar_content.py g9.json        # -> grammar.js
 ```
 
-The first prints the 冊/主軸 groups and their 課; the second prints the `books`
-array to paste into that grade in
-[`content.js`](public/junior-high-words/content.js), where `ready` also has to
-flip to `true`. They are two steps rather than one so that a re-parse can never
-quietly overwrite a file that has been hand-corrected since.
+Each pair is parse-then-build rather than one step, so that a re-parse can
+never quietly overwrite a file that has been hand-corrected since. Splice the
+output into that grade and flip its `ready` to `true`; nothing else moves,
+because the tabs, the nav, the counts and the practice all read those arrays.
 
-The six columns are **found by clustering x-positions, not hard-coded** — the
-八年級 book pushes 中譯 from x=374 to x=404 to fit `go (went, gone)`, and it is
-the columns' left-to-right order that identifies them. The 目錄 page is parsed
-too, and the parser **raises** if its per-課 word counts disagree with the body,
-because a silently short 課 is the failure that would survive review.
+Both parsers rebuild the pages from **character coordinates**, not from
+extracted text, and both cross-check themselves against the 目錄 and **raise**
+on disagreement — a silently short 課 is the failure that would survive review.
+The reasons text extraction is not enough:
 
-Three repairs it makes, worth knowing if something ever looks off:
+- **Word tables**: a wrapped 中譯 cell and the example sentence beside it land
+  on the same line and are indistinguishable once flattened. The six columns
+  are found by clustering x-positions rather than hard-coded — 八年級 pushes
+  中譯 from x=374 to x=404 to fit `go (went, gone)`.
+- **Grammar pages**: a line's runs do not arrive in reading order — the •
+  glyphs are drawn after the text they belong to, and pypdf reports the
+  *line's* starting x for every run in one show-text operation, so several runs
+  share an x. Sorting a line by `(x, seq)` puts it back.
+
+Four repairs worth knowing about if something ever looks off:
 
 - Kerned capitals arrive split (`T oday` → `Today`).
 - A Latin word butted against CJK loses the space the PDF draws
   (`女人（複數 women）`).
-- Three rows in the 八年級 book emit **one text run spanning two cells**, so the
-  example sentence arrives glued to the tail of the 中譯
-  (`…… Call me as soon as you arrive.`). It is split back off, but only when
-  the example column came up empty — so a row that parsed normally can never be
-  damaged by the repair.
-
-A word with no `kk` is a phrase — that absence is the flag the stylesheet
-reads, so leave the field out rather than setting it to `''`.
-
-## 國中英語文法精熟 — Grades 7 to 9, the grammar half
-
-The sibling of the word list, from the same 講義 family and for the same
-students. Grade 7 is in: **fourteen units**, one per grammar point, covering
-every 課 of 第一冊 and 第二冊 — 70 rules, 69 patterns and 55 mistakes.
-
-Each unit is the 講義's own four parts, reordered:
-
-| Part | What it is |
-| --- | --- |
-| 一句話重點 | The single sentence the unit is trying to leave behind |
-| 核心規則 | The rule, in Chinese, with the English forms picked out |
-| 句型對照 | 肯定 / 否定 / 疑問 … one row each, English and 中文 |
-| 常見錯誤 | ✕ what students write, ✓ what it should be, and why |
-| 📝 練習 | Eight questions built from the two tables above |
-
-**一句話重點 is moved to the top.** The PDF puts it last, as a summary. On a
-scrolling page the last line of a unit is the one nobody reads, and it is the
-line most worth reading first — so it sits under the heading, and the rest of
-the unit explains it.
-
-### The pair
-
-The two pages are deliberately one system: identical shell, same two modes,
-same 📖/✎ chips, different colour. They cross-link per 課 —
-
-- grammar → words: the 📖 **B1 L3** chips in a unit's heading, straight to
-  `/junior-high-words/#b1-l3`.
-- words → grammar: the ✎ **文法** link on a 課 heading, to
-  `/junior-high-grammar/#for-b1-l3`, which the grammar page resolves to
-  whichever unit lists that 課.
-
-**The map exists once**, as `lessons` on each grammar unit. The word list does
-not carry a copy — it only knows its own 課 id and whether a grammar page
-exists for that grade, so the two can never disagree about which unit covers
-what. Both deep links jump rather than animating; a smooth scroll across
-fifteen thousand pixels either takes seconds or gets cut off half way by the
-browser's own scroll restoration.
-
-### Design notes
-
-- **The colour is violet, and that is a constraint, not a preference.** Three
-  other pages here are grammar (`/grammar/` brick red, `/toeic-grammar/` navy)
-  or its sibling (`/junior-high-words/` teal), and pages open side by side on
-  one laptop should not be told apart by their titles. Violet also keeps clear
-  of red and green, which 常見錯誤 needs for ✕ and ✓ to mean anything.
-- **The wrong sentence is struck through and grey, not red.** A strike survives
-  a black-and-white printout; red prints as dark grey and stops meaning
-  "wrong". Same decision Anny's notebook made for its corrections.
-- **What hides in 教學 mode is different from the word list.** Chinese
-  *explanation* — 核心規則, 為什麼 — is never hidden by either mode: it is the
-  textbook's own voice, not something a student is meant to produce. What hides
-  is what they should be able to work out: the 中文 of a 句型, and the 正確寫法
-  of a mistake.
-- **English inside a Chinese rule is set in the English face**, in the page
-  colour — `dog → dogs`, `I → am`. It is done by a regex over the rendered
-  string rather than by markup in the data, so the content file stays the plain
-  text the PDF gave us.
-- **The drill has no question bank.** Its three kinds are all built from the
-  unit's own two tables: pick the correction, pick *the reason for* the
-  correction, and pick the English for a 中文 pattern. Distractors are always
-  from the same unit — four reasons about one grammar point is a real question,
-  whereas reasons pulled from across the book can be eliminated on sight.
-  A unit with only three mistakes (文法 4) asks a three-option question rather
-  than dropping that content, which is the lesser of the two compromises.
-- Same house rules otherwise: a wrong answer wobbles and invites another go,
-  nothing is timed or scored, the end screen lists what to look at again, and
-  **print** gives a handout with every answer open and the machinery gone.
-
-### Where the units come from
-
-```bash
-python3 tools/parse_grammar_pdf.py 八年級文法講義.pdf > g8.json
-python3 tools/build_grammar_content.py g8.json
-```
-
-Same two-step shape, and the same reason for it, as the word list. The grammar
-PDF is harder to read than the tables were, for two reasons worth knowing:
-
-- **A line's runs do not arrive in reading order.** The • glyphs are drawn
-  after the text they belong to, and pypdf reports the *line's* starting x for
-  every run in one show-text operation, so several runs share one x. Sorting a
-  line by `(x, seq)` puts it back — left-to-right between columns, original
-  order within one.
-- **Runs are kept unstripped.** A run often ends with the space before the next
-  one (`'How many '` + `'+'` + `' 複數名詞'`), and stripping it welds them into
-  `How many+複數名詞`.
-
-The parser also checks each unit's 對應課次 against the 目錄 line for that unit
-and raises on disagreement, so a unit can never quietly point at the wrong 課.
+- Grammar runs are kept **unstripped**: a run often ends with the space before
+  the next one (`'How many '` + `'+'` + `' 複數名詞'`), and stripping it welds
+  them into `How many+複數名詞`.
+- Three rows in the 八年級 word book emit **one text run spanning two cells**,
+  so the example arrives glued to the tail of the 中譯 (`…… Call me as soon as
+  you arrive.`). It is split back off, but only when the example column came up
+  empty — so a row that parsed normally can never be damaged by the repair.
 
 ## Landscape Architecture Portfolio — a student's own work
 
@@ -1533,8 +1465,9 @@ public/aaron/             Aaron's notebook — same machinery, its own sessions
 public/aaron/book-club/   the four-book discussion guide, under that notebook
 public/anita/             Anita's notebook — same machinery again, two sessions
 public/eason/             Eason's notebook — the same, for a teenager
-public/junior-high-words/ 國中英語單字精熟 — the Grade 7–9 word lists
-public/junior-high-grammar/  國中英語文法精熟 — its grammar half
+public/junior-high/       國中英語精熟 — 單字 and 文法, one page, Grades 7–9
+public/junior-high-words/    a redirect: the 單字 half's old URL
+public/junior-high-grammar/  a redirect: the 文法 half's old URL
 public/landscape-portfolio/      the portfolio — filled in as the Ando study
 public/landscape-portfolio/content.starter.js  the same page, emptied
 public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS.md
@@ -1542,7 +1475,7 @@ make-icon.py              regenerates public/apple-touch-icon.png
 tools/                    the scripts that turn a 講義 PDF into either of those
 ```
 
-All twenty-three are plain HTML, CSS and JS with no build step.
+All twenty-two are plain HTML, CSS and JS with no build step.
 
 Every page ends with the same `<footer class="site-foot">` linking to
 <https://lewistoeic.com>, so a reader who lands on any one sheet can find the
@@ -1601,24 +1534,21 @@ string, or `{ w, say, eg, note }` when the sound needs its own cue or an
 example word. The `CUES` table at the top of the file is how a written sound
 is spoken on its own; tune a line there if a device's voice mangles one.
 
-**國中英語單字精熟.** The word lists are
-[`public/junior-high-words/content.js`](public/junior-high-words/content.js) —
-one `grades` entry per year, each holding `books`, each book its 課, each 課
-its `words`. A word is `{ w, kk, pos, zh, en, zhEx }`, and a phrase simply
-omits `kk`. Filling in a grade means replacing its empty `books` with the
-output of `tools/build_words_content.py` and setting `ready: true`; nothing
-else in the page has to change, because the year tabs, the side nav, the word
-counts and the quizzes are all built from that array. The quiz has no separate
-question list — see the section above.
+**國中英語精熟.** The two halves are two data files:
+[`words.js`](public/junior-high/words.js) (`WORDS`) and
+[`grammar.js`](public/junior-high/grammar.js) (`GRAMMAR`), each one `grades`
+entry per year. A words grade holds `books` → 課 → `words`, where a word is
+`{ w, kk, pos, zh, en, zhEx }` and a phrase simply omits `kk`. A grammar grade
+holds `units`, each with `lessons` (the 對應課次, which is also the join to the
+word list), `key`, `rules`, `patterns` and `mistakes`. Filling in a grade is
+replacing its empty array with the generator's output and setting
+`ready: true`. Neither practice block has a separate question list — see the
+section above.
 
-**國中英語文法精熟.** The units are
-[`public/junior-high-grammar/content.js`](public/junior-high-grammar/content.js)
-— one `grades` entry per year, each holding `units`, each unit its `lessons`
-(the 對應課次, which is also the link to the word list), `key`, `rules`,
-`patterns` and `mistakes`. Filling in a grade is the same two moves as the word
-list: replace its empty `units` with the output of
-`tools/build_grammar_content.py` and set `ready: true`. The drill has no
-separate question list — see the section above.
+Adding a *third* half would be one more entry in `SECTIONS` in
+[`render.js`](public/junior-high/render.js): a label, its mask options, and the
+three functions that build its nav, its blocks and its search. The shell —
+bar, grade tabs, side nav, panel, speech, ticks, print — is section-agnostic.
 
 **Number Lab.** There is no question list to edit — every topic is a `make()`
 in [`public/math/content.js`](public/math/content.js) that builds a question
@@ -2074,8 +2004,7 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/robot-helper/> for the writing worksheet,
 <http://localhost:8000/exam-writing/> for the 學測 essay survey,
 <http://localhost:8000/ielts-part3/> for the IELTS Part 3 practice,
-<http://localhost:8000/junior-high-words/> for the 國中 word lists,
-<http://localhost:8000/junior-high-grammar/> for its grammar half, or
+<http://localhost:8000/junior-high/> for the 國中 words and grammar, or
 <http://localhost:8000/landscape-portfolio/> for the portfolio template.
 The notebooks are <http://localhost:8000/anny/>,
 <http://localhost:8000/aaron/>, <http://localhost:8000/anita/>,

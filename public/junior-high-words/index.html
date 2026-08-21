@@ -2,137 +2,51 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>國中英語單字精熟 · 七年級到九年級</title>
-<meta name="description" content="台灣國中英語單字表，含 KK 音標、詞性、中譯與例句。可遮字自測，每課附單字小考。七年級 400 字依康軒課次分課，八年級 289 字依文法主題分組。">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>已搬家 · 國中英語精熟</title>
 
-<!-- Inline SVG mark: three stacked cards, one per grade. The colours must be
-     percent-encoded — a bare "#" would be read as the URL fragment. -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314655c'/%3E%3Crect x='13' y='16' width='38' height='8' rx='4' fill='%23edc86a'/%3E%3Crect x='13' y='29' width='38' height='8' rx='4' fill='%23ffffff' opacity='.72'/%3E%3Crect x='13' y='42' width='24' height='8' rx='4' fill='%23ffffff' opacity='.42'/%3E%3C/svg%3E">
-<meta name="theme-color" content="#f6f7f4">
+<!-- This page was the 國中單字 half until 2026-08-21, when 單字 and 文法 were
+     merged into one page at /junior-high/. The URL was already handed out, so
+     it stays as a redirect rather than becoming a 404.
 
-<link rel="stylesheet" href="style.css">
+     The hash has to be translated, not just carried: the merged page namespaces
+     its anchors by half and by grade, because a grammar unit id (u1…u14) exists
+     in more than one grade. This page's own anchors were 七年級's, so that is
+     the grade they map to. -->
+<meta name="robots" content="noindex">
+<link rel="canonical" href="../junior-high/">
+<script>
+  (function () {
+    var h = location.hash.replace(/^#/, '');
+    var to = '../junior-high/';
+    if (h) {
+      // /junior-high-grammar/#for-b1-l5 — the merged page resolves the grade.
+      to += h.indexOf('for-') === 0 ? '#g/' + h : '#w/g7/' + h;
+    } else {
+      to += '#w/';
+    }
+    location.replace(to);
+  }());
+</script>
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f6f7f4;
+    color: #58636f;
+    font-family: "PingFang TC", "Heiti TC", "Noto Sans TC", sans-serif;
+    text-align: center;
+    line-height: 1.9;
+  }
+  a { color: #14655c; font-weight: 700; }
+</style>
 </head>
-<body class="mode-study">
-
-<a class="skip" href="#doc">跳到單字表</a>
-
-<header class="bar">
-  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
-    <span aria-hidden="true">☰</span> 課次
-  </button>
-
-  <p class="bar-title">國中英語單字精熟 <span>Grade 7–9</span></p>
-
-  <button class="bar-btn bar-btn-quiet" id="searchToggle" aria-expanded="false"
-          aria-controls="search" title="搜尋單字" aria-label="搜尋單字">🔍</button>
-
-  <!-- The mode switch. Study is the default because most of the time a student
-       is reading this alone; Lewis flips it to 教學 when he drives it in a
-       session, which hides every Chinese line and stops anything being saved. -->
-  <div class="mode" role="group" aria-label="使用模式">
-    <button class="mode-btn is-on" id="modeStudy" aria-pressed="true">📖 自學</button>
-    <button class="mode-btn" id="modeClass" aria-pressed="false">👩‍🏫 教學</button>
-  </div>
-
-  <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
-          aria-controls="panel" title="設定" aria-label="設定">⚙</button>
-</header>
-
-<!-- Search. Sits under the bar rather than in a dialog, so the result you tap
-     scrolls the page behind it and the list stays open for the next word. -->
-<div class="search" id="search" hidden>
-  <input type="search" id="searchInput" placeholder="搜尋單字、中譯或例句…"
-         autocomplete="off" aria-label="搜尋單字">
-  <p class="search-count" id="searchCount"></p>
-  <div class="search-hits" id="searchHits"></div>
-</div>
-
-<nav class="grades" id="grades" aria-label="年級"></nav>
-
-<div class="shell">
-  <div id="nav"></div>
-  <main id="doc"></main>
-</div>
-
-<div class="nav-scrim" hidden></div>
-
-<!-- Settings. Opens over the page rather than replacing it, so a quiz in
-     progress is never lost. Rows marked data-mode only appear in that mode. -->
-<div class="panel" id="panel" role="dialog" aria-label="設定" hidden>
-  <div class="panel-head">
-    <h2>設定 <span>Settings</span></h2>
-    <button class="panel-x" id="panelClose" aria-label="關閉">✕</button>
-  </div>
-
-  <div class="row" data-mode="class">
-    <label class="row-check">
-      <input type="checkbox" id="zhAll">
-      <span>顯示全部中文 <em>Show all Chinese</em></span>
-    </label>
-    <p class="row-note">教學模式預設把中譯和例句翻譯都藏起來，讓學生先看英文。
-      這個開關一次全部打開，用來對答案。</p>
-  </div>
-
-  <div class="row" data-mode="study">
-    <label for="maskPick">遮字自測</label>
-    <select id="maskPick">
-      <option value="none">全部顯示</option>
-      <option value="zh">遮住中譯 — 看英文想意思</option>
-      <option value="en">遮住英文 — 看中譯想單字</option>
-    </select>
-    <p class="row-note">被遮住的地方點一下就會露出來，只露那一個，不影響其他字。</p>
-  </div>
-
-  <div class="row" data-mode="study">
-    <label class="row-check">
-      <input type="checkbox" id="onlyUnknown">
-      <span>只看還沒打勾的字 <em>Hide the ones marked 會了</em></span>
-    </label>
-  </div>
-
-  <div class="row">
-    <label for="voicePick">朗讀語音</label>
-    <select id="voicePick"></select>
-    <p class="row-note">🔊 用的聲音。選一個會先唸一句給你聽。</p>
-  </div>
-
-  <div class="row">
-    <label for="rate">速度</label>
-    <select id="rate">
-      <option value="0.7">慢</option>
-      <option value="0.9">正常</option>
-      <option value="1.05">快</option>
-    </select>
-  </div>
-
-  <div class="row">
-    <button class="panel-btn panel-btn-quiet" id="printBtn">列印這一個年級</button>
-    <p class="row-note">印出來是一份講義：中譯和例句全部展開，小考不會印出來。</p>
-  </div>
-
-  <div class="row" data-mode="study">
-    <button class="panel-btn panel-btn-quiet" id="clearMarks">清除「會了」的紀錄</button>
-    <p class="row-note" id="marksNote"></p>
-  </div>
-
-  <div class="row" data-mode="class">
-    <button class="panel-btn panel-btn-quiet" id="resetClass">換下一個學生</button>
-    <p class="row-note">教學模式不會存任何紀錄，這個按鈕只是把畫面收乾淨：
-      關掉展開的中譯、收起小考。語音設定會留著。</p>
-  </div>
-</div>
-
-
-<!-- Site footer. Identical on every page, so a reader who lands on any one
-     sheet can find the rest. -->
-<footer class="site-foot">
-  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
-     aria-label="Lewis Biz English"><img src="../logo.png" alt="" width="34" height="34"></a>
-  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
-    target="_blank" rel="noopener">lewistoeic.com</a></p>
-</footer>
-<script src="content.js"></script>
-<script src="render.js"></script>
+<body>
+  <!-- Shown only if the script does not run. -->
+  <p>國中單字已經和文法合併成同一頁了。<br>
+    <a href="../junior-high/">📚 前往新的頁面</a></p>
 </body>
 </html>

@@ -22,9 +22,10 @@
    小考的題目不寫在這裡：它是從該課的 words 現場抽的（render.js 的 makeQuiz），
    所以加一個單字，小考就自動有它，不必再維護第二份清單。 */
 
-const COURSE = {
-  title: '國中英語單字精熟',
-  titleEn: 'Junior High Vocabulary',
+const WORDS = {
+  label: '單字',
+  labelEn: 'Vocabulary',
+  icon: '📚',
   source: '康軒版 · 路老師講義',
 
   grades: [
@@ -35,10 +36,6 @@ const COURSE = {
       ready: true,
       source: '康軒版 · 路老師講義',
       note: '第一冊 + 第二冊，共 400 字（含片語）',
-      // 這個年級有對應的文法頁。每一課的標題旁會多一個「文法」連結，指向
-      // /junior-high-grammar/#for-<課次 id>——對照表存在文法頁那一邊，這裡
-      // 只需要知道有沒有那一頁。八年級的單字本身就是照文法主題編的，所以沒有。
-      grammarHref: '../junior-high-grammar/',
       books: [
     {
       id: 'b1', label: '第一冊', term: '七上',
