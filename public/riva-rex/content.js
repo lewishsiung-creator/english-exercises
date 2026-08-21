@@ -2064,8 +2064,8 @@ const NOTEBOOK = {
           href: '../confidence-talk/',
           en: 'Confidence and Everyday Life',
           zh: '自信與日常生活',
-          noteEn: 'A full review lesson built out of this session — the same phrases, with more practice and a speaking task at the end.',
-          noteZh: '一堂完全用這節課做出來的複習課——同樣的片語，但有更多練習，最後還有一個口說任務。',
+          noteEn: 'A lesson from the same week on the same theme — confidence, explaining, speaking clearly — with more practice and a speaking task at the end. It was built from another student\u2019s notes, so the words overlap without being identical.',
+          noteZh: '同一週、同一個主題的另一堂課——自信、解釋、把話說清楚——有更多練習，最後還有一個口說任務。它是用另一位學生的課堂筆記做的，所以單字有重疊，但不完全相同。',
         },
 
         {

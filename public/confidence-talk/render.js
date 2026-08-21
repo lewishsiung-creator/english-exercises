@@ -319,6 +319,16 @@ function buildCover() {
       </div>
       <p class="source">${text(LESSON.source.en)}
         <span class="zh">${text(LESSON.source.zh)}</span></p>
+      ${LESSON.related ? `
+        <a class="cross" href="${text(LESSON.related.href)}">
+          <span class="cross-go" aria-hidden="true">→</span>
+          <span class="cross-t">
+            <span class="cross-en">${text(LESSON.related.en)}</span>
+            <span class="cross-zh">${text(LESSON.related.zh)}</span>
+            <span class="cross-note">${text(LESSON.related.noteEn)}</span>
+            <span class="cross-note cross-note-zh">${text(LESSON.related.noteZh)}</span>
+          </span>
+        </a>` : ''}
     </header>`;
 }
 

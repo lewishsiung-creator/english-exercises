@@ -297,6 +297,48 @@ body.zh-all .zh-chip { display: none; }
 .source .zh { display: inline; margin-left: .6em; font-size: .95em; }
 body.zh-all .source .zh { display: inline; }
 
+/* A pointer to the other page built from this same hour — Jill's notebook,
+   where these notes are one entry among all her lessons. It sits under the
+   source line on the cover, in the page's green rather than its orange:
+   orange is reserved here for something held back, and a link is the opposite
+   of that. Signage, so both languages show at once with no 中 chip. */
+.cross {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin: 0 0 24px;
+  padding: 14px 16px;
+  background: var(--green-soft);
+  border: 1px solid var(--green-line);
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+.cross:hover { border-color: var(--green); }
+.cross-go {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 1.1rem;
+  line-height: 1.3;
+  color: var(--green);
+}
+.cross-en { display: block; font-weight: 600; color: var(--green); }
+.cross-zh {
+  display: block;
+  font-family: var(--font-zh);
+  font-size: .84rem;
+  color: var(--green);
+}
+.cross-note {
+  display: block;
+  margin-top: 5px;
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.cross-note-zh { font-family: var(--font-zh); font-size: .78rem; color: var(--ink-faint); }
+
 /* ---------------- a part ---------------- */
 
 .item {

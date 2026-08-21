@@ -38,6 +38,18 @@ const LESSON = {
     zh: '取自 2026 年 7 月 11 日的課堂筆記。',
   },
 
+  /* The lesson these notes came from is Jill's, and her notebook keeps the
+     same hour as session 1. The two pages do different jobs with it — this one
+     is the review, hers is the record — so they point at each other rather
+     than one being folded into the other. */
+  related: {
+    href: '../jill/#s1',
+    en: 'Jill’s English Notebook',
+    zh: 'Jill 的英文筆記',
+    noteEn: 'The same hour as it happened, kept as one entry in her notebook — with every lesson since it.',
+    noteZh: '同一堂課的原始紀錄，收在她的筆記本裡，後面還有之後的每一堂課。',
+  },
+
   // ------------------------------------------------------------ the words
 
   groups: [

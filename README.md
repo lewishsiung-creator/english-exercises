@@ -1,7 +1,7 @@
 # English Exercises
 
 English teaching material, built for classroom, homework and one-to-one use.
-Sixteen independent pages live here — a game for young learners at the site
+Seventeen independent pages live here — a game for young learners at the site
 root, phonics practice for slightly older children at `/phonics/`, an
 interactive phonics handbook for the same age at `/phonics-handbook/`, a
 review lesson for a ten-to-twelve-year-old at `/confidence-talk/`, a
@@ -22,12 +22,14 @@ and, for 國中 students, vocabulary and grammar together at `/junior-high/`.
 One page is not English at all: `/math/` is math practice for Grades 1 to 3,
 built for a child in an American school.
 
-Five more pages are not lessons. `/landscape-portfolio/` is a portfolio
+Seven more pages are not lessons. `/landscape-portfolio/` is a portfolio
 template for a student to fill in with their own work, and `/anny/`, `/aaron/`,
-`/anita/` and `/eason/` are notebooks kept for one student each, which grow by
-one session after every discussion rather than being finished and left alone.
-The first three are adult clients; `/eason/` is a teenager moving up to senior
-high school.
+`/anita/`, `/eason/`, `/riva-rex/` and `/jill/` are notebooks kept for one
+student each, which grow by one session after every lesson rather than being
+finished and left alone. The first three are adult clients; `/eason/` is a
+teenager moving up to senior high school; `/riva-rex/` is a pair of ten-to-
+twelve-year-olds taught together, and `/jill/` is one child of the same age
+taught alone.
 
 ## Word Play — CEFR A1, ages 7–10
 
@@ -343,7 +345,10 @@ but "Grade 3 · Times tables, 6 missed" does.
 
 ## Confidence and Everyday Life — ages 10–12, teacher-led
 
-The class notes of 11 July 2026 turned into a review lesson for one learner:
+The class notes of 11 July 2026 turned into a review lesson for one learner —
+**Jill**, whose notebook at `/jill/` keeps the same hour as its session 1. The
+two pages point at each other from their covers: this one is the review, hers
+is the record. What is here is
 22 words in six groups, 19 collocations, three classroom sentences, eight
 sentence frames and eight discussion questions. The notes' own grouping is
 kept — confidence, communication, frequency, breakfast, interests,
@@ -1465,6 +1470,7 @@ public/aaron/             Aaron's notebook — same machinery, its own sessions
 public/aaron/book-club/   the four-book discussion guide, under that notebook
 public/anita/             Anita's notebook — same machinery again, two sessions
 public/eason/             Eason's notebook — the same, for a teenager
+public/jill/              Jill's notebook — one entry per weekly lesson
 public/junior-high/       國中英語精熟 — 單字 and 文法, one page, Grades 7–9
 public/junior-high-words/    a redirect: the 單字 half's old URL
 public/junior-high-grammar/  a redirect: the 文法 half's old URL
@@ -1475,7 +1481,7 @@ make-icon.py              regenerates public/apple-touch-icon.png
 tools/                    the scripts that turn a 講義 PDF into either of those
 ```
 
-All twenty-two are plain HTML, CSS and JS with no build step.
+All twenty-three are plain HTML, CSS and JS with no build step.
 
 Every page ends with the same `<footer class="site-foot">` linking to
 <https://lewistoeic.com>, so a reader who lands on any one sheet can find the
@@ -1884,9 +1890,16 @@ it — already selected, already correct. Session 5 carries five in a row and is
 the strongest page in the notebook. Sessions whose notes carry no such line have
 no `fix` block; do not invent them.
 
-Session 11 is the same 2026-07-11 material as
-[Confidence and Everyday Life](#confidence-and-everyday-life--ages-1012-teacher-led),
-so the two pages cross-link.
+Session 11 was taken to be the same 2026-07-11 material as
+[Confidence and Everyday Life](#confidence-and-everyday-life--ages-1012-teacher-led)
+and the two pages cross-link. **That was a conflation.** Confidence and
+Everyday Life is built from *Jill's* notes of that date — its gymnastics, its
+gymnast idol and its breakfast are hers, and it is
+[session 1 of her notebook](#jills-notebook--ages-1012-one-to-one-kept-over-time).
+Riva & Rex's session 11 is a different lesson taught the same week, on the same
+theme. The link is kept, because the two lessons really do share confidence,
+explaining and speaking clearly, but its wording no longer claims the review
+page was built out of their hour.
 
 One attribution is an inference rather than a record. The 8 May notes label only
 the Mother's Day half "Riva"; the grades half carries no name and is given to Rex
@@ -1973,6 +1986,141 @@ should land somewhere rather than 404. It is a meta refresh rather than a 301
 because both hosts serve this directory as static files and neither can issue
 one.
 
+## Jill's Notebook — ages 10–12, one-to-one, kept over time
+
+The sixth notebook, and the second built for the ten-to-twelve band. Jill is
+taught alone, once a week, and the page grows one entry per lesson for as long
+as the classes run. Three are in: 11 July, 15 August and 22 August 2026.
+
+The machinery is a copy of
+[Riva & Rex's](#riva--rexs-notebook--a-pair-class-ages-1012-kept-over-time),
+which is where the age band was worked out — the adult skeleton (a scrolling
+document, a contents list, a teacher panel, 中 chips on every line) re-set one
+step larger with more air between blocks, in the same warmer palette. Only the
+`localStorage` prefix changed, to `jill.`, so no notebook shares a voice or a
+Chinese setting with another. Discussion is spoken only; there is no input
+field anywhere on the page and nothing persists between lessons.
+
+Unlike Riva & Rex's, this is **one data file**. There are no undated practice
+papers yet, so `index.html` loads `content.js` and `render.js` and nothing
+else. The grouping machinery is still in the renderer, so a set of papers could
+be appended later without touching it — a new file loaded after `content.js`
+and before `render.js`, pushing onto the same `sessions` array.
+
+### Two additions to the renderer
+
+Two things exist in this copy that no other notebook has.
+
+**The `part` block** draws a divider *inside* one session:
+
+```js
+{ t: 'part', n: 'Part 2', en: 'What Can You Do?', zh: '你會做哪些動作？' }
+```
+
+It is a level below the `group` band, which separates one *kind* of entry from
+another across the whole document. This separates Part 2 from Part 3 within a
+single lesson, and is deliberately quieter than the band — it has to read as a
+turn in the same lesson, not as the start of a new one. Signage, like the
+contents list and the focus chips, so both languages show at once and there is
+no 中 chip to tap.
+
+It exists because of where Jill's material comes from: notes and worksheets
+that arrive already cut into numbered groups. A session built from a
+conversation does not need it and should not use it.
+
+**An optional `meaning` on a phrase card.** Her class notes give an English
+definition under every word, and dropping it to keep the card shape would lose
+the better half of the teaching:
+
+```js
+{ en: 'nervous', zh: '緊張的；不放鬆的', meaning: 'worried or not relaxed',
+  eg: 'I feel nervous when I speak in front of the class.', egZh: '…' }
+```
+
+It sits *above* the Chinese on the back of the card, so the English
+explanation is what she meets first and the gloss is the safety net under it.
+It is set upright where the example below it is italic, so the two are not
+mistaken for each other. Cards written without one — a collocation, a whole
+sentence — render exactly as before.
+
+The page opens on the newest session, which is at the top; the contents list
+runs the same way. Sessions are written oldest-first in the file and reversed
+at the point of display, so a lesson taught *between* two that are already
+there goes in its date order, not at the bottom — which is what happened when
+the horses lesson arrived after the gymnastics one.
+
+### Session 1 — confidence and daily life
+
+11 July 2026, from the class notes of that hour, in the notes' own seven
+groups: how you feel, words for talking to people, three whole sentences to
+say in class, `usually`, breakfast, interests and idols, and something she was
+proud of. It ends on her own three sentences about waking up at 7:20 on a
+Saturday, kept as a `quote` with her name on it.
+
+The same hour is also
+[Confidence and Everyday Life](#confidence-and-everyday-life--ages-1012-teacher-led),
+the review version built from the same notes, and the session's `link` block
+points at it.
+
+**This session is where her own English is.** The notes carry three lines she
+produced with a better version beside them, and they are not all the same kind
+of thing, so they are not all rendered the same way:
+
+| Her line | Better | Block | Why |
+| --- | --- | --- | --- |
+| *Let me tell you a truth.* | *…the truth.* | `fix` | A real mistake |
+| *soybean milk* | *soy milk* | `contrast` | Correct, but not what people say |
+| *Boys always talk about robots.* | *Many boys like talking about robots.* | `contrast` | Correct, but absolute |
+
+The two `contrast` blocks re-tag their columns as **As you said it** against
+**What people say** / **Less absolute**. Putting a ✕ beside a sentence that is
+not wrong teaches the wrong thing, and both of these are sentences a careful
+learner could defend.
+
+### Session 2 — horses
+
+15 August 2026, and the only session built around a **text**: six paragraphs
+about horses, fourteen words, five sentences and five questions. It is
+therefore the only one using `passage` and `mcq`, the two block types the
+renderer already carried for reading papers.
+
+The passage is **English only**, as every reading on this site is. That is not
+the tween rule being broken — the Chinese support for this text sits underneath
+it, on fourteen word cards and five glossed sentences. What is withheld is a
+translation of the paragraphs, because the five comprehension questions are
+asking whether she read them.
+
+Added: the comprehension questions, a matching pair, a `has`/`have` gap-fill,
+a note on `hoof → hooves` and a closing task that runs the same five sentence
+shapes over an animal of her own choosing. None of them invents a fact — every
+answer is in the reading as it stands.
+
+**It has no `part` blocks**, and that is the rule for the block working:
+its source is not cut into numbered parts, and a divider every two blocks would
+make a short lesson look long.
+
+### Session 3 — gymnastics
+
+22 August 2026's worksheet, "Let's Talk About Gymnastics!", written for her at
+CEFR A1–A2 in five parts, each running vocabulary → sentence structures →
+discussion questions, then a final speaking challenge. All of it is on the
+page: fifty phrase cards, thirty-five discussion questions, every sentence
+pattern and both ⭐ notes from the sheet.
+
+What the sheet did not have, and the page adds: the framing sentences, an
+example sentence on every phrase card, three gap-fills on the patterns being
+taught (`yet`, `couldn't … before`, `keep + V-ing`, `learn how to`, `get better
+at`), a matching pair on the six skills, an opinion poll on the feelings, a
+`contrast` block setting *I can't do a handstand* against *I can't do a
+handstand yet*, and two sentence starters under every one of the thirty-five
+questions.
+
+**It has no `fix` block, on purpose.** Its source is a worksheet written
+*before* the lesson, so it carries no record of her own wording, and the rule
+from Anny's notebook holds: do not reconstruct a student's sentence from
+memory. A class note reading "More natural: …", or a line lifted from a
+transcript, is what fills it later.
+
 ## Running it locally
 
 No build step and no dependencies:
@@ -2008,7 +2156,8 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/landscape-portfolio/> for the portfolio template.
 The notebooks are <http://localhost:8000/anny/>,
 <http://localhost:8000/aaron/>, <http://localhost:8000/anita/>,
-<http://localhost:8000/eason/> and <http://localhost:8000/riva-rex/>, whose
+<http://localhost:8000/eason/>, <http://localhost:8000/jill/> and
+<http://localhost:8000/riva-rex/>, whose
 practice papers are the second half of the same page, at
 <http://localhost:8000/riva-rex/#p1>. The book discussion guide is under
 Aaron's, at <http://localhost:8000/aaron/book-club/>.
@@ -2021,8 +2170,9 @@ Aaron's, at <http://localhost:8000/aaron/book-club/>.
 Everything under `public/` is reachable at both URLs on the next push. Nothing
 here is behind a login, and no page is linked from the site root unless it is
 listed there, so an unlisted page is unlisted rather than private. Pages built
-around a named client or student — `/business-clarity/`, `/anny/`, `/aaron/`,
-`/anita/`, `/eason/`, `/riva-rex/` and `/riva-rex-practice/` — carry
+around a named client or student, or from a client's own internal document —
+`/business-clarity/`, `/anny/`, `/aaron/`, `/anita/`, `/eason/`, `/riva-rex/`,
+`/riva-rex-practice/` and `/jill/` — carry
 `noindex, nofollow`, which keeps them out of search results; it does not make
 the URL secret. Anything that must not be publishable should not go in
 `public/` at all.
