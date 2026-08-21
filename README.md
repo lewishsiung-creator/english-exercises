@@ -15,8 +15,9 @@ TOEIC grammar
 practice at `/toeic-grammar/`, a homework review of one student's own
 sentences at `/sentence-upgrades/`, a high-school writing worksheet
 at `/robot-helper/`, a survey of seven years of the 學測 essay at
-`/exam-writing/`, an IELTS Speaking Part 3 practice at `/ielts-part3/`, and a
-growing IELTS Speaking course covering all three parts at `/ielts-speaking/`.
+`/exam-writing/`, an IELTS Speaking Part 3 practice at `/ielts-part3/`, a
+growing IELTS Speaking course covering all three parts at `/ielts-speaking/`,
+and the 國中 vocabulary list for Grades 7 to 9 at `/junior-high-words/`.
 
 One page is not English at all: `/math/` is math practice for Grades 1 to 3,
 built for a child in an American school.
@@ -1025,6 +1026,98 @@ sentence, and the same faint 👩‍🏫 panel. Settings live under `ielts.*` in
 `localStorage` and are shared across the whole course, so a teacher who turns
 the Chinese on for a client does not turn it on again in every lesson.
 
+## 國中英語單字精熟 — Grades 7 to 9, the 康軒 word lists
+
+The junior-high vocabulary, one page for all three years: 冊 and 課 as the
+講義 has them, each word with its KK 音標, 詞性, 中譯 and an example sentence
+in both languages, each 課 headed by its 文法重點 and closed by a quiz.
+
+Grade 7 is in — 第一冊 and 第二冊, fourteen 課, **400 words**. Grades 8 and 9
+have their tabs already; each shows a short "還沒進來" note until its PDF
+arrives, rather than an empty table.
+
+| Control | What it does |
+| --- | --- |
+| 📖 自學 / 👩‍🏫 教學 | The two modes — see below |
+| ⚙ → 遮字自測 | Blanks the 中譯 side, or the English side, for self-testing |
+| ✓ on a row | Marks a word 會了; ⚙ can then hide everything already marked |
+| 🔍 | Searches the current grade's words, meanings and examples |
+| 📝 小考這一課 | Ten questions built from that 課 |
+| 🔊 | Speaks the word, or the example |
+
+### The two modes
+
+This is the first page in the repo that serves two audiences from one file,
+because the 講義 itself is aimed at both ("在學生 · 升學銜接複習 · 一對一課後
+練習"). The switch in the top bar is the whole difference:
+
+- **📖 自學** is the default, and is not the house style: the 中譯 is
+  **visible**, the quiz keeps a first-try record, and the ✓ marks persist in
+  the student's own `localStorage` under `jhs.*`. A student working alone
+  needs the meaning in front of them; the 遮字 control is how they take it
+  away again once they want to test themselves.
+- **👩‍🏫 教學** is the house style, the same as the adult and 10–12 pages:
+  every 中譯 hides behind a 中 chip, the reveal is the teacher's to time, and
+  **nothing is written down** — one laptop, several students, and a reload
+  has to be a clean lesson.
+
+Switching is a class on `<body>`, not a re-render, so the page does not jump
+under a teacher who flips it mid-課. The two modes never share a reveal: the
+opened lines and the 中文 switch are cleared on the way across.
+
+### Design notes
+
+- **The mask is a block of colour, not a blur.** A blur still gives away the
+  length and the shape of the word, and text that blurs and unblurs shifts the
+  line. The mask sets the text transparent and paints a bar behind it, so the
+  width never changes and a tap on it reveals that one cell only.
+- **A word row is a grid, not a table.** It has to stack into a card on a
+  phone and print as a 講義 row on paper, and one `grid-template-columns`
+  swap does both. The ✓ mark and the 中 chip are absolutely placed in the same
+  top-right slot — they are never both visible — because an in-flow child of a
+  grid would claim a whole row of its own.
+- **The quiz has no question bank.** Its ten questions are drawn from that
+  課's words each time it is opened, so adding a word to `content.js` adds it
+  to the quiz too. Three kinds: hear-and-pick-the-中譯, 中譯-and-pick-the-
+  English, and 中譯-and-spell-it. Spelling is only offered for a single word
+  of three to eleven letters; phrases like *Nice to meet you.* are never
+  asked that way.
+- **Distractors come from the same 課 where it has enough words**, and widen
+  to the whole grade where it does not — B1 GR has only four. They are
+  de-duplicated on the field being shown, so two options are never both
+  defensibly right.
+- **A wrong answer wobbles and stays.** No score is shown, nothing is timed,
+  and the only thing kept is which words were missed on the first try — the
+  end screen is a list titled 這幾個字再看一次, not a mark.
+- **Printing gives a handout.** Every 中譯 opens, every mask lifts, the 🔊
+  buttons, the ✓ marks and the quizzes disappear, and 只看還沒打勾的 is
+  ignored so a whole 課 prints.
+
+### Where the words come from
+
+The 講義 PDF's tables have fixed column positions, so the two scripts in
+`tools/` rebuild each row from **character coordinates** rather than from
+extracted text — a wrapped 中譯 cell and the example sentence beside it are
+genuinely indistinguishable once the PDF is flattened to a string, and text
+extraction interleaves them.
+
+```bash
+python3 tools/parse_kanghsuan_pdf.py 八年級講義.pdf > g8.json
+python3 tools/build_words_content.py g8.json
+```
+
+The first prints one JSON object per 課; the second prints the `books` array
+to paste into that grade in
+[`content.js`](public/junior-high-words/content.js), where `ready` also has to
+flip to `true`. They are two steps rather than one so that a re-parse can
+never quietly overwrite a file that has been hand-corrected since.
+
+Two fixes the parser makes, worth knowing if a number ever looks off: kerned
+capitals come out of the PDF split (`T oday`), and a Latin word butted against
+CJK loses the space the PDF draws (`女人（複數 women）`). Both are repaired on
+the way through. A word with no `kk` is a phrase — that is the flag the
+stylesheet reads, so leave the field out rather than setting it to `''`.
+
 ## Landscape Architecture Portfolio — a student's own work
 
 The odd one out. Not a lesson and not bilingual: a portfolio a landscape
@@ -1320,13 +1413,15 @@ public/aaron/             Aaron's notebook — same machinery, its own sessions
 public/aaron/book-club/   the four-book discussion guide, under that notebook
 public/anita/             Anita's notebook — same machinery again, two sessions
 public/eason/             Eason's notebook — the same, for a teenager
+public/junior-high-words/ 國中英語單字精熟 — the Grade 7–9 word lists
 public/landscape-portfolio/      the portfolio — filled in as the Ando study
 public/landscape-portfolio/content.starter.js  the same page, emptied
 public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS.md
 make-icon.py              regenerates public/apple-touch-icon.png
+tools/                    the two scripts that turn a 講義 PDF into a word list
 ```
 
-All twenty-one are plain HTML, CSS and JS with no build step.
+All twenty-two are plain HTML, CSS and JS with no build step.
 
 Every page ends with the same `<footer class="site-foot">` linking to
 <https://lewistoeic.com>, so a reader who lands on any one sheet can find the
@@ -1384,6 +1479,16 @@ tch) stay inside one chunk, as the handbook itself teaches. A chip is a bare
 string, or `{ w, say, eg, note }` when the sound needs its own cue or an
 example word. The `CUES` table at the top of the file is how a written sound
 is spoken on its own; tune a line there if a device's voice mangles one.
+
+**國中英語單字精熟.** The word lists are
+[`public/junior-high-words/content.js`](public/junior-high-words/content.js) —
+one `grades` entry per year, each holding `books`, each book its 課, each 課
+its `words`. A word is `{ w, kk, pos, zh, en, zhEx }`, and a phrase simply
+omits `kk`. Filling in a grade means replacing its empty `books` with the
+output of `tools/build_words_content.py` and setting `ready: true`; nothing
+else in the page has to change, because the year tabs, the side nav, the word
+counts and the quizzes are all built from that array. The quiz has no separate
+question list — see the section above.
 
 **Number Lab.** There is no question list to edit — every topic is a `make()`
 in [`public/math/content.js`](public/math/content.js) that builds a question
@@ -1837,8 +1942,9 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/toeic-grammar/> for the TOEIC practice,
 <http://localhost:8000/sentence-upgrades/> for the homework review,
 <http://localhost:8000/robot-helper/> for the writing worksheet,
-<http://localhost:8000/exam-writing/> for the 學測 essay survey, or
-<http://localhost:8000/ielts-part3/> for the IELTS Part 3 practice, or
+<http://localhost:8000/exam-writing/> for the 學測 essay survey,
+<http://localhost:8000/ielts-part3/> for the IELTS Part 3 practice,
+<http://localhost:8000/junior-high-words/> for the 國中 word lists, or
 <http://localhost:8000/landscape-portfolio/> for the portfolio template.
 The notebooks are <http://localhost:8000/anny/>,
 <http://localhost:8000/aaron/>, <http://localhost:8000/anita/>,
