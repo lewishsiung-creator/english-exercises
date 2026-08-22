@@ -24,14 +24,14 @@ and, for 國中 students, vocabulary and grammar together at `/junior-high/`.
 One page is not English at all: `/math/` is math practice for Grades 1 to 3,
 built for a child in an American school.
 
-Seven more pages are not lessons. `/landscape-portfolio/` is a portfolio
+Eight more pages are not lessons. `/landscape-portfolio/` is a portfolio
 template for a student to fill in with their own work, and `/anny/`, `/aaron/`,
-`/anita/`, `/eason/`, `/riva-rex/` and `/jill/` are notebooks kept for one
-student each, which grow by one session after every lesson rather than being
+`/anita/`, `/eason/`, `/anna/`, `/riva-rex/` and `/jill/` are notebooks kept for
+one student each, which grow by one session after every lesson rather than being
 finished and left alone. The first three are adult clients; `/eason/` is a
-teenager moving up to senior high school; `/riva-rex/` is a pair of ten-to-
-twelve-year-olds taught together, and `/jill/` is one child of the same age
-taught alone.
+teenager moving up to senior high school; `/anna/` is a young adult of eighteen
+to twenty; `/riva-rex/` is a pair of ten-to-twelve-year-olds taught together,
+and `/jill/` is one child of the same age taught alone.
 
 ## Word Play — CEFR A1, ages 7–10
 
@@ -1536,6 +1536,68 @@ holds — do not reconstruct a student's sentence from memory. A transcript woul
 fill it.
 
 
+## Anna's Notebook — young adult, one-to-one, kept over time
+
+The seventh notebook. Anna is eighteen to twenty, which is a register this repo
+did not have: not the working-adult voice of `/anny/` and `/aaron/`, whose
+examples come from an office and a career already under way, and not the plainer
+register of `/eason/`, who is still at school. The rule written at the top of
+[`content.js`](public/anna/content.js) is to write to someone who is an adult
+but new to the subject — full sentences, nothing simplified, examples from her
+life rather than from a job she does not have yet.
+
+The machinery is copied from [Eason's](#easons-notebook--teenager-one-to-one-kept-over-time),
+with the `localStorage` prefix changed to `anna.` so no notebook shares a voice
+or a Chinese setting with another. Two things were changed rather than copied:
+
+- **The scroll bug is fixed here.** Every earlier notebook's `markHere()` ended
+  with `a.scrollIntoView({ block: 'nearest' })` on the contents link, which
+  scrolls the *document* whenever the contents list is not itself scrolling, and
+  did so dozens of times a second under an inherited `scroll-behavior: smooth`.
+  Anna's uses `keepLinkVisible()` — container `scrollTop`, rect deltas, never
+  the document — and has no root `scroll-behavior`, the same fix
+  [Jill's](#the-page-does-not-scroll-itself) carries.
+- **The `part` block came over from Jill's renderer.** It is a divider *inside*
+  one session, a rule and a letter one level below the session heading. Anna's
+  first source arrives already cut into an article plus four labelled sections,
+  and without it Part B reads as the start of a new lesson. A session built from
+  a conversation should not use it.
+
+**The sessions here carry no date**, which Lewis asked for, and which no other
+notebook does. `dateEn`/`dateZh` are therefore optional in this renderer: give
+an entry both and the date line and the contents-list subtitle come back for
+that entry alone; leave them out and neither is drawn — not left as an empty
+element holding space, which is what the other notebooks would do. The
+consequence is that **order in the array is the only record of sequence**, so a
+lesson taught between two that already exist goes in its right place rather than
+at the bottom, and everything after it is renumbered.
+
+Session 1 is built from a bilingual handout on investing —
+what an asset is, how stocks, bonds, funds and ETFs differ, why risk and return
+are tied together, what compound growth and dollar-cost averaging actually mean,
+and why fees of well under one percent still matter over decades. The reading
+carries its own test, and the session is organised around it: *if you cannot
+explain it in simple language, you do not understand it yet.* So the `contrast`
+block runs vague against precise rather than the default cold/warm pairing —
+"it's like a lot of stocks put together" against "an ETF is a fund that holds
+many companies and trades on the market like a single stock" — and the closing
+`task` asks her to explain one idea for a minute without reading off the cards.
+
+The handout's own sections become the parts: **A** the habits the reading puts
+*before* investing, carried by the `cards` audit; **B** its collocation tables,
+as five groups of phrase cards plus a term-and-meaning `match` and a
+choose-the-collocation `gap`; **C** its word-family table, as a `note` and a
+gap set that tests the right *form* rather than the right meaning; **D** the
+talking — a `poll`, five discussion questions, and the speaking task.
+
+Two things are deliberate and should survive into later sessions on this
+subject. The page teaches the language people use about money and recommends
+nothing — no product, no market, no amount — and a `note` near the top says so
+in both languages. And the `fix` block is absent, for the structural reason
+given in the file: the source is a handout written *before* the lesson, so it
+holds no record of anything Anna said. A transcript would fill it.
+
+
 ## Layout
 
 ```
@@ -1564,6 +1626,7 @@ public/aaron/             Aaron's notebook — same machinery, its own sessions
 public/aaron/book-club/   the four-book discussion guide, under that notebook
 public/anita/             Anita's notebook — same machinery again, two sessions
 public/eason/             Eason's notebook — the same, for a teenager
+public/anna/              Anna's notebook — the same again, for a young adult
 public/jill/              Jill's notebook — one entry per weekly lesson
 public/junior-high/       國中英語精熟 — 單字 and 文法, one page, Grades 7–9
 public/junior-high-words/    a redirect: the 單字 half's old URL
