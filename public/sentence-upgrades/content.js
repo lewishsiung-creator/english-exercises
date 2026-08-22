@@ -9,7 +9,7 @@
    Every visible string is an `en` / `zh` pair. English is shown; the
    Traditional Chinese stays hidden until it is asked for, either line by line
    or with the 中文 switch in the top bar. The sentences themselves have no
-   Chinese: the student wrote them, so he already knows what he meant.
+   Chinese: the student wrote them, so she already knows what she meant.
 
    ── The change markers ──────────────────────────────────────────────────
    `original` and `revised` mark what changed with [[double brackets]]:

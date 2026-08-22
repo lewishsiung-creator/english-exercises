@@ -790,6 +790,12 @@ the revision from the handout, a note on what changed and why, and the
 collocations that came with it — 37 in all. Where the other adult pages teach a
 text, this one is the student's own writing handed back.
 
+The student is Anita, confirmed from the recording of 7 August 2026, where she
+reads sentence 1 aloud off this page. Her notebook links to it from both
+sessions — see [Anita's Notebook](#anitas-notebook--adult-one-to-one-kept-over-time).
+The page itself stays anonymous and carries no name, so the link only runs one
+way: from the `noindex` notebook out to this page, never back.
+
 | Piece | What a tap does |
 | --- | --- |
 | ✏️ Your sentence | Speaks it — the original, reproduced as written |
@@ -1475,6 +1481,13 @@ One line on the cover is not boilerplate. Anita's feedback on the homework page
 was that the generated voice lacks intonation, which is true, so the 🔊 line
 says what the audio is good for — pronunciation — and points intonation back at
 the lesson.
+
+Both sessions carry a `link` block to
+[`/sentence-upgrades/`](public/sentence-upgrades/), which is her own homework
+from 25 July — the page Lewis showed her on 7 August and that she gave feedback
+on a week later. Session 1's link sits under the five-step note, since those
+steps are instructions for that page; session 2's repeats it with her own
+finding attached, that the voice is flat.
 
 ## Eason's Notebook — teenager, one-to-one, kept over time
 

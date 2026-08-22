@@ -585,6 +585,15 @@ const NOTEBOOK = {
         },
 
         {
+          t: 'link',
+          href: '../sentence-upgrades/',
+          en: 'Sentence Upgrades — your homework, with the revisions',
+          zh: '句子升級——你的作業與修改後的版本',
+          noteEn: 'The page shown in this session: your seven sentences from 25 July, each with the revision, a note on what changed and why, and the collocations that came with it. Tap a sentence to see the marked parts light up in both versions, and 🔊 to hear the revision read aloud. This is the page the five steps above are for.',
+          noteZh: '這堂課上看到的那個頁面：你 7/25 寫的七個句子，每一句都附上修改後的版本、「改了什麼、為什麼」的說明，以及隨之而來的搭配詞。點句子可以看到標記的部分在兩個版本裡同時亮起來，點 🔊 可以聽修改後的句子。上面那五個步驟就是為這個頁面而設的。',
+        },
+
+        {
           t: 'task',
           en: 'Homework: the store, in your own words',
           zh: '作業：用你自己的話，說這家店',
@@ -1062,6 +1071,15 @@ const NOTEBOOK = {
               ],
             },
           ],
+        },
+
+        {
+          t: 'link',
+          href: '../sentence-upgrades/',
+          en: 'Sentence Upgrades — the page we talked about again this week',
+          zh: '句子升級——這週又談到的那個頁面',
+          noteEn: 'Your seven sentences from 25 July, with the revisions and the collocations. Your note on it was right: the voice is flat, so use it for pronunciation and take the intonation from the lesson. The five steps are compare, listen, repeat, produce, and write the improved sentence out by hand.',
+          noteZh: '你 7/25 的七個句子，附上修改後的版本與搭配詞。你的意見是對的：那個聲音很平，所以拿它練發音就好，語調從課堂上模仿。五個步驟是：比較、聽、跟讀、造新句，然後把改好的句子用手抄一遍。',
         },
 
         {
