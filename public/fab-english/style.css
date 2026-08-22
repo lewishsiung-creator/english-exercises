@@ -1,0 +1,777 @@
+/* Fab English — 288 plant-floor words for a working adult, driven by a teacher.
+
+   Same house rules as the other adult pages (/wealth-habits/, /business-clarity/):
+
+   - English leads. Traditional Chinese sits behind a small 中 chip on every
+     word, so the learner tries the English first and the safety net is one tap
+     away. Navigation, instructions and section titles stay bilingual — those
+     are scaffolding, not comprehension practice.
+   - Interactive parts look interactive: a border and a hand cursor mean it can
+     be tapped. Nothing else moves.
+   - Wrong answers wobble and stay open. No score, no streak, no progress bar.
+   - Light theme only. It is read side by side in a lit office, and the printed
+     word list is the reference sitting next to it.
+   - This page is a *reference* as much as a lesson, so it carries two things
+     the other adult pages do not: a search box, and an A–Z view that matches
+     the order of the learner's own printed sheet.
+
+   The palette is cooler than the other adult pages — the material is the plant
+   floor rather than the boardroom — but the type, spacing and the whole panel
+   and footer are deliberately identical, so a client who has seen one page
+   knows how to use this one. */
+
+:root {
+  --paper: #f5f6f8;
+  --card: #ffffff;
+  --ink: #17212e;
+  --ink-soft: #55637a;
+  --ink-faint: #8a95a8;
+
+  /* Kept under the name --navy so the panel and footer blocks copied from the
+     other adult pages work here unchanged. */
+  --navy: #1b4f8a;
+  --navy-soft: #eaf1fa;
+  --navy-line: #c3d6ea;
+
+  --gold: #8a6212;
+  --gold-soft: #fdf4de;
+  --gold-line: #f0c35a;
+
+  --good: #2c7a58;
+  --good-soft: #e4f2ea;
+  --good-line: #a8d6be;
+
+  --line: #e2e5ea;
+  --rule: #c8cdd6;
+
+  --font-en: "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, "Times New Roman", serif;
+  --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+
+  --bar-h: 54px;
+  --measure: 46rem;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 16px); }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-en);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---------------- the Chinese layer ----------------
+
+   Hidden everywhere by default. A word opens on its own when tapped; the 中文
+   switch in the bar opens all of them at once, at which point the individual
+   chips are just clutter and go away. */
+
+.zh {
+  display: none;
+  font-family: var(--font-zh);
+  font-size: 0.82em;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  letter-spacing: .01em;
+}
+
+.open .zh,
+body.zh-all .zh { display: block; }
+
+.zh-chip {
+  font-family: var(--font-zh);
+  font-size: 11px;
+  line-height: 1;
+  vertical-align: 2px;
+  margin-left: 6px;
+  padding: 3px 5px;
+  color: var(--ink-faint);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color .12s, border-color .12s, background .12s;
+}
+.zh-chip:hover { color: var(--navy); border-color: var(--navy-line); background: var(--navy-soft); }
+.open > .zh-chip { opacity: .35; }
+body.zh-all .zh-chip { display: none; }
+
+/* Lines the learner is not being tested on stay bilingual at all times:
+   scaffolding that only helps if it is understood — section titles, the note
+   under each title, the contents list, the practice instructions. */
+.sec-head .zh, .sec-note .zh, .toc .t .zh, .intro .zh, .drill-head .zh,
+.search-note .zh { display: block; }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus {
+  left: 12px; top: 12px; z-index: 40;
+  background: var(--card); padding: 10px 16px; border-radius: 8px;
+}
+
+:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+
+/* ---------------- top bar ---------------- */
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  background: rgba(245, 246, 248, .93);
+  backdrop-filter: saturate(1.6) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.bar-title {
+  flex: 1;
+  margin: 0;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bar-title span {
+  font-family: var(--font-zh);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-faint);
+  margin-left: 8px;
+}
+
+.bar-btn {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--navy);
+  background: transparent;
+  border: 1px solid var(--navy-line);
+  border-radius: 7px;
+  padding: 6px 11px;
+  cursor: pointer;
+}
+.bar-btn:hover { background: var(--navy-soft); }
+.bar-btn-quiet { color: var(--ink-soft); border-color: var(--line); font-size: 15px; padding: 4px 9px; }
+.bar-btn-zh { font-family: var(--font-zh); }
+.bar-btn-zh[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+@media (min-width: 900px) { #navToggle { display: none; } }
+
+/* ---------------- shell + contents ---------------- */
+
+.shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (min-width: 900px) {
+  .shell { grid-template-columns: 15rem minmax(0, 1fr); gap: 44px; padding: 0 28px; }
+}
+
+.toc { font-family: var(--font-ui); }
+
+@media (min-width: 900px) {
+  .toc {
+    position: sticky;
+    top: var(--bar-h);
+    max-height: calc(100vh - var(--bar-h));
+    overflow-y: auto;
+    padding: 30px 0 40px;
+    scrollbar-width: thin;
+  }
+}
+
+.toc-head {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.toc ul { list-style: none; margin: 0; padding: 0; }
+
+.toc a {
+  display: grid;
+  grid-template-columns: 1.9rem 1fr;
+  gap: 8px;
+  padding: 8px 10px 8px 6px;
+  border-radius: 7px;
+  text-decoration: none;
+  color: var(--ink-soft);
+  border-left: 2px solid transparent;
+}
+.toc a:hover { background: var(--navy-soft); color: var(--ink); }
+.toc a .n {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+  text-align: right;
+  padding-top: 3px;
+}
+.toc a .t .en { display: block; font-size: 13.5px; line-height: 1.35; }
+.toc a .t .zh { font-size: 11.5px; color: var(--ink-faint); }
+.toc a.here {
+  background: var(--navy-soft);
+  border-left-color: var(--navy);
+  color: var(--navy);
+}
+.toc a.here .n, .toc a.here .t .zh { color: var(--navy); }
+.toc a.here .t .en { font-weight: 600; }
+
+@media (max-width: 899px) {
+  #nav {
+    position: fixed;
+    top: var(--bar-h);
+    left: 0; right: 0;
+    z-index: 25;
+    max-height: min(70vh, 30rem);
+    overflow-y: auto;
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 24px rgba(23, 33, 46, .12);
+    padding: 14px 18px 18px;
+    display: none;
+  }
+  body.nav-open #nav { display: block; }
+  body.nav-open .nav-scrim {
+    display: block;
+    position: fixed;
+    inset: var(--bar-h) 0 0;
+    z-index: 20;
+    background: rgba(23, 33, 46, .25);
+  }
+}
+
+/* ---------------- cover ---------------- */
+
+main { max-width: var(--measure); padding-bottom: 6rem; }
+
+.cover { padding: 40px 0 6px; }
+
+/* Set for the Chinese kicker: the tracking that flatters small uppercase Latin
+   crowds Chinese glyphs, which need a size up and a little more air. */
+.kicker {
+  margin: 0 0 14px;
+  font-family: var(--font-zh);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  color: var(--gold);
+}
+
+.cover h1 { margin: 0 0 20px; font-size: 2.2rem; line-height: 1.18; font-weight: 600; }
+.cover h1 .zh { font-size: .95rem; font-weight: 400; margin-top: 8px; }
+
+.intro { margin: 0 0 26px; font-size: 1.04rem; }
+.intro .zh { margin-top: 6px; }
+
+/* ---------------- search + view switch ----------------
+
+   The two controls sit together in one bar, sticky under the top bar, because
+   in a lesson they are used mid-scroll: "what was the word for 批貨 again?" */
+
+.tools {
+  position: sticky;
+  top: var(--bar-h);
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0 0 6px;
+  padding: 12px 0 12px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+.search-box { position: relative; flex: 1 1 14rem; min-width: 0; }
+
+.search-box input {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: .92rem;
+  padding: 9px 32px 9px 32px;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+}
+.search-box input::placeholder { color: var(--ink-faint); }
+.search-box input:focus { border-color: var(--navy-line); outline-offset: 1px; }
+
+.search-box .mag {
+  position: absolute;
+  left: 10px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  color: var(--ink-faint);
+  pointer-events: none;
+}
+.search-x {
+  position: absolute;
+  right: 6px; top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  color: var(--ink-faint);
+  font-size: 14px;
+  line-height: 1;
+  padding: 5px 7px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.search-x:hover { background: var(--navy-soft); color: var(--navy); }
+.search-x[hidden] { display: none; }
+
+/* Two-position switch, drawn as one control so it reads as "this or that"
+   rather than as two buttons that might both be on. */
+.views {
+  flex: none;
+  display: flex;
+  font-family: var(--font-ui);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  overflow: hidden;
+  background: var(--card);
+}
+.views button {
+  font: inherit;
+  font-size: .82rem;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 0;
+  padding: 8px 13px;
+  cursor: pointer;
+}
+.views button + button { border-left: 1px solid var(--line); }
+.views button:hover { background: var(--navy-soft); }
+.views button[aria-pressed="true"] { background: var(--navy); color: #fff; }
+.views button em { font-family: var(--font-zh); font-style: normal; font-size: .9em; opacity: .8; margin-left: 4px; }
+
+.search-note {
+  margin: 10px 0 0;
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  color: var(--ink-faint);
+}
+.search-note .zh { font-size: .95em; margin-top: 2px; }
+.search-note[hidden] { display: none; }
+
+/* ---------------- a section of words ---------------- */
+
+.sec { padding-top: 30px; }
+.sec[hidden] { display: none; }
+
+.sec-head {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  gap: 12px;
+  align-items: baseline;
+  margin: 0 0 6px;
+  font-size: 1.42rem;
+  font-weight: 600;
+  line-height: 1.25;
+  scroll-margin-top: calc(var(--bar-h) + 70px);
+}
+.sec-head .num {
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: .06em;
+  padding-top: .35rem;
+}
+.sec-head .zh { font-size: .62em; font-weight: 400; margin-top: 4px; }
+
+.sec-note {
+  margin: 0 0 18px 3.4rem;
+  font-family: var(--font-ui);
+  font-size: .84rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.sec-note .zh { font-size: .95em; margin-top: 2px; }
+.sec-count { color: var(--ink-faint); }
+
+@media (max-width: 620px) {
+  .sec-head { grid-template-columns: 1.9rem 1fr; gap: 9px; }
+  .sec-note { margin-left: 0; }
+}
+
+/* ---------------- one word ----------------
+
+   A card rather than a table row: the example sentence is the point, and it
+   needs a full line of its own at reading size. The whole card is the 中
+   target, so a teacher can tap anywhere on it while talking. */
+
+.words { display: grid; gap: 10px; }
+
+.word {
+  padding: 13px 15px 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  cursor: pointer;
+  transition: border-color .12s, box-shadow .12s;
+}
+.word:hover { border-color: var(--navy-line); }
+.word.open { border-color: var(--navy-line); box-shadow: 0 1px 0 var(--navy-soft) inset; }
+.word[hidden] { display: none; }
+
+.word-top { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+
+.word-w {
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: .005em;
+}
+.word-p {
+  font-family: var(--font-ui);
+  font-size: .72rem;
+  font-style: italic;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+/* Pushed to the end of the row so every 🔊 on the page lines up, whatever the
+   length of the word beside it. */
+.say {
+  margin-left: auto;
+  flex: none;
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 7px;
+  font-size: 13px;
+  line-height: 1;
+  padding: 5px 7px;
+  cursor: pointer;
+  color: var(--ink-soft);
+}
+.say:hover { background: var(--navy-soft); border-color: var(--navy-line); }
+.say.saying { background: var(--navy); border-color: var(--navy); }
+
+.word .zh { margin-top: 5px; font-size: .86rem; }
+
+.word-ex {
+  margin: 7px 0 0;
+  font-size: .97rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.word-ex b { font-weight: 600; color: var(--ink); }
+body.no-ex .word-ex { display: none; }
+
+/* A–Z view: the same cards, one flat run, with a letter rule dropped in. */
+.az-letter {
+  margin: 22px 0 8px;
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold-line);
+  padding-bottom: 4px;
+}
+.az-letter:first-child { margin-top: 4px; }
+.az-letter[hidden] { display: none; }
+
+/* ---------------- practice ----------------
+
+   Generated from the example sentences above, so the drill can never drift
+   from the word list. Eight at a time; the button deals the next eight and
+   wraps round. Nothing is scored — a wrong tap wobbles and stays open. */
+
+.drill {
+  margin-top: 24px;
+  padding: 18px 20px 20px;
+  background: var(--navy-soft);
+  border: 1px solid var(--navy-line);
+  border-radius: 12px;
+}
+
+.drill-head {
+  margin: 0 0 4px;
+  font-family: var(--font-ui);
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.drill-head .zh { display: inline; margin-left: 6px; font-size: .92em; font-weight: 400; color: var(--navy); opacity: .8; }
+
+.drill-note {
+  margin: 0 0 16px;
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  color: var(--ink-soft);
+}
+
+.gap { margin: 0 0 14px; }
+.gap:last-of-type { margin-bottom: 0; }
+
+.gap-s { margin: 0; font-size: 1rem; line-height: 1.75; }
+
+.slot {
+  display: inline-block;
+  min-width: 6.5rem;
+  text-align: center;
+  padding: 1px 8px 2px;
+  margin: 0 2px;
+  border-bottom: 2px solid var(--navy-line);
+  color: var(--ink-faint);
+  font-family: var(--font-ui);
+  font-size: .86rem;
+}
+.gap.solved .slot {
+  border-bottom-color: var(--good-line);
+  background: var(--good-soft);
+  border-radius: 5px 5px 0 0;
+  color: var(--good);
+  font-weight: 700;
+  font-family: var(--font-en);
+  font-size: 1rem;
+}
+
+.opts { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
+
+.opt {
+  font-family: var(--font-ui);
+  font-size: .84rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--navy-line);
+  border-radius: 8px;
+  padding: 6px 11px;
+  cursor: pointer;
+}
+.opt:hover { background: var(--navy); border-color: var(--navy); color: #fff; }
+.opt.gone { opacity: .3; pointer-events: none; text-decoration: line-through; }
+.gap.solved .opts { display: none; }
+
+/* A wrong tap wobbles and leaves everything open. Nothing is counted, and the
+   option stays on screen — it is the right answer to some other sentence. */
+@keyframes wobble {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
+.opt.wrong { animation: wobble .34s ease; border-color: var(--gold-line); background: var(--gold-soft); }
+
+.drill-more {
+  margin-top: 16px;
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--card);
+  border: 1px solid var(--navy-line);
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.drill-more:hover { background: var(--navy); border-color: var(--navy); color: #fff; }
+.drill-more em { font-family: var(--font-zh); font-style: normal; font-weight: 400; margin-left: 5px; opacity: .8; }
+
+/* ---------------- the empty search result ---------------- */
+
+.nothing {
+  margin: 40px 0;
+  padding: 26px 22px;
+  text-align: center;
+  background: var(--card);
+  border: 1px dashed var(--rule);
+  border-radius: 12px;
+  font-family: var(--font-ui);
+  font-size: .9rem;
+  color: var(--ink-soft);
+}
+.nothing .zh { display: block; font-size: .85em; color: var(--ink-faint); margin-top: 4px; }
+.nothing[hidden] { display: none; }
+
+/* ---------------- source line ---------------- */
+
+.source {
+  margin: 46px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-ui);
+  font-size: .76rem;
+  line-height: 1.6;
+  color: var(--ink-faint);
+}
+.source .zh { display: block; font-size: .95em; color: var(--ink-faint); margin-top: 2px; }
+
+/* ---------------- teacher panel ---------------- */
+
+.panel {
+  position: fixed;
+  z-index: 40;
+  top: calc(var(--bar-h) + 8px);
+  right: 14px;
+  width: min(22rem, calc(100vw - 28px));
+  max-height: calc(100vh - var(--bar-h) - 24px);
+  overflow-y: auto;
+  padding: 18px 20px 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(23, 33, 46, .18);
+  font-family: var(--font-ui);
+}
+.panel[hidden] { display: none; }
+
+.panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.panel-head h2 { margin: 0 0 4px; font-family: var(--font-ui); font-size: .95rem; }
+.panel-head h2 span { font-family: var(--font-zh); font-size: .8rem; font-weight: 400; color: var(--ink-faint); margin-left: 6px; }
+.panel-x { background: transparent; border: 0; color: var(--ink-faint); font-size: 15px; cursor: pointer; padding: 2px 4px; }
+
+.panel .row { margin-top: 18px; }
+.panel label { display: block; font-size: .78rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 6px; }
+/* Chinese inside a panel label, button or note: same line where it fits, its
+   own line where it does not, always a shade quieter than the English. */
+.panel label em, .panel-btn em, .row-note em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+.panel-btn em { margin-left: 5px; font-size: .82em; }
+.panel-btn:not(.panel-btn-quiet) em { color: rgba(255, 255, 255, .78); }
+.row-note em { display: block; margin-top: 3px; }
+.row-check { display: flex; align-items: center; gap: 9px; cursor: pointer; margin-top: 16px; flex-wrap: wrap; }
+.row-check span { font-size: .88rem; font-weight: 600; color: var(--ink); }
+.row-check em { font-family: var(--font-zh); font-style: normal; font-weight: 400; font-size: .8rem; color: var(--ink-faint); margin-left: 5px; }
+.row-check input { width: 17px; height: 17px; accent-color: var(--navy); }
+.row-check .row-note { flex-basis: 100%; margin-left: 26px; }
+
+.panel select {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: .85rem;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.panel-btn {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: .87rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--navy);
+  border: 1px solid var(--navy);
+  border-radius: 8px;
+  padding: 9px 12px;
+  cursor: pointer;
+}
+.panel-btn:hover { filter: brightness(1.12); }
+.panel-btn-quiet { color: var(--ink-soft); background: var(--paper); border-color: var(--line); }
+.panel-btn-quiet:hover { filter: none; border-color: var(--rule); }
+
+.row-note { margin: 7px 0 0; font-size: .74rem; line-height: 1.5; color: var(--ink-faint); }
+
+/* ---------------- small screens ---------------- */
+
+@media (max-width: 620px) {
+  body { font-size: 17px; }
+  .cover h1 { font-size: 1.8rem; }
+  .bar-title span { display: none; }
+  .tools { gap: 8px; }
+  .views button { padding: 8px 10px; font-size: .78rem; }
+  .drill { padding: 16px 15px 18px; }
+  .slot { min-width: 5rem; }
+}
+
+/* ---------------- print ----------------
+
+   A handout: the word list without the machinery. Everything hidden behind a
+   tap is opened, and anything that only works with a mouse is dropped. The
+   practice goes too — on paper a tap-the-word exercise is just the answers. */
+
+@media print {
+  .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .tools, .drill,
+  .nothing, .search-note { display: none !important; }
+  body { font-size: 10.5pt; background: #fff; }
+  .shell { display: block; padding: 0; }
+  main { max-width: none; padding-bottom: 0; }
+  .zh { display: block !important; }
+  body.no-ex .word-ex { display: block !important; }
+  .sec { break-before: page; padding-top: 0; }
+  .sec:first-of-type { break-before: auto; }
+  .words { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .word { break-inside: avoid; padding: 7px 9px; border-radius: 6px; }
+  .word-w { font-size: 1rem; }
+  .word-ex { font-size: .88rem; margin-top: 3px; }
+}
+
+/* ---------------- 站尾 / site footer ----------------
+
+   同一段樣式複製到每一頁。各頁的色票變數名稱不一樣（兒童頁沒有 --ink-faint、
+   成人頁沒有 --blue），所以每個顏色都串一條 fallback，缺哪一個都還是看得到。
+
+   標誌是全站唯一的共用圖檔，放在 public/logo.png，子頁用 ../logo.png 取用。
+   它本身就是連結，所以要把文字連結那條底線和左邊距擋掉——文字連結的樣式因此
+   收窄成 .site-foot p a，不再套用到整個站尾裡的每個 a。 */
+
+.site-foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 26px 20px 40px;
+  border-top: 1px solid var(--line, #e3e0d8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  /* 換行之後（手機）文字會落到標誌下面一整行，置中才不會左右不對稱。 */
+  text-align: center;
+  font-family: var(--font-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif);
+  font-size: .8rem;
+  line-height: 1.7;
+  color: var(--ink-faint, var(--ink-soft, #7a8290));
+}
+.site-foot p { margin: 0; }
+
+.site-foot .site-mark {
+  flex: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  line-height: 0;
+  border-radius: 50%;
+  transition: opacity .12s;
+}
+.site-foot .site-mark img { display: block; width: 34px; height: 34px; }
+.site-foot .site-mark:hover { opacity: .78; }
+
+.site-foot p a {
+  margin-left: 7px;
+  padding-bottom: 1px;
+  color: var(--navy, var(--blue, #1d3f6e));
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.site-foot p a:hover { opacity: .7; }
+
+@media print { .site-foot { display: none; } }
