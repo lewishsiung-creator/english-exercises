@@ -70,7 +70,17 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 16px); }
+/* No `scroll-behavior: smooth` here, deliberately. It reads well on a short
+   page and badly on this one, because it applies to scrolls the reader did not
+   ask for as well as the ones they did: tapping a word card that sits half
+   below the fold makes the browser bring it into view, and with smooth on the
+   root that arrives as a glide rather than a jump — the page appearing to
+   drift by itself. On a document tens of thousands of pixels long, a deliberate
+   jump to a session is also better landed than flown to.
+
+   `scroll-padding-top` stays: it keeps the sticky bar from covering whatever
+   an anchor lands on. */
+html { scroll-padding-top: calc(var(--bar-h) + 16px); }
 
 body {
   margin: 0;
