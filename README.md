@@ -1562,6 +1562,14 @@ or a Chinese setting with another. Two things were changed rather than copied:
   first source arrives already cut into an article plus four labelled sections,
   and without it Part B reads as the start of a new lesson. A session built from
   a conversation should not use it.
+- **The `mcq` block came over from Jill's renderer too**, with one addition: an
+  optional bilingual `why`, hidden until the row is solved, exactly as the
+  `gap` block's explanation is. The rule for using it is written above the
+  template — leave `why` off where the question only asks what the article said,
+  because the article above *is* the explanation, and use it where the question
+  asks her to judge something. Unlike a gap, the options are never hidden after
+  the answer is found: the right one is marked, the tried ones fade, and the row
+  stays readable as a record of what was guessed before it was known.
 
 **The sessions here carry no date**, which Lewis asked for, and which no other
 notebook does. `dateEn`/`dateZh` are therefore optional in this renderer: give
@@ -1582,6 +1590,14 @@ block runs vague against precise rather than the default cold/warm pairing —
 "it's like a lot of stocks put together" against "an ETF is a fund that holds
 many companies and trades on the market like a single stock" — and the closing
 `task` asks her to explain one idea for a minute without reading off the cards.
+
+Two quizzes sit between the reading and the language work, in a part of their
+own. **Did you get it?** is ten recall questions on the article, most of them
+bare — the passage is directly above. **What would you say?** is six situations
+rather than six facts (a video promising a guaranteed 20%, a friend calling an
+ETF "completely safe", two ETFs on the same index at 0.10% and 0.85%), and every
+one of those carries its `why`, because there the explanation is the whole
+point.
 
 The handout's own sections become the parts: **A** the habits the reading puts
 *before* investing, carried by the `cards` audit; **B** its collocation tables,

@@ -1194,6 +1194,38 @@ body.zh-all .card-back { display: block; }
 
 @media print { .site-foot { display: none; } }
 
+/* ---------------- quiz questions ----------------
+
+   Options are never hidden after the answer is found. A gap-fill hides them
+   because the filled sentence replaces them; here there is no sentence to
+   fill, and leaving the row as it was played — the right one marked, the tried
+   ones faded — lets the two of us see what was guessed before it was known. */
+
+.mcq {
+  margin: 0 0 16px;
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.mcq-line { margin: 0 0 10px; }
+.mcq-q {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1.6rem 1fr auto auto;
+  align-items: baseline;
+  gap: 0 4px;
+}
+.mcq-n { font-family: var(--font-ui); font-size: .8rem; color: var(--ink-faint); }
+.mcq-t { font-size: 1rem; }
+.mcq-line .zh { padding-left: 1.6rem; }
+.mcq .opts { padding-left: 1.6rem; }
+
+/* The explanation behind a quiz answer follows the gap's rule — it appears
+   only once the row is solved, so it cannot be read as a hint. */
+.mcq .why { display: none; margin-left: 1.6rem; }
+.mcq.solved .why { display: block; }
+
 /* A divider INSIDE one session — Part A from Part B of the same handout. It
    has to read as a turn in the same lesson rather than the start of a new one,
    so it is quieter than a session heading: a rule, a letter, and the title.

@@ -67,6 +67,11 @@
      phrases   phrase cards — English face up, Chinese and an example behind a tap
      match     click a phrase on the left, then its partner on the right
      gap       a sentence with one blank and three phrases to choose from
+     mcq       a quiz question about the reading. The options stay on screen
+               after the answer is found, so the row reads as a record of what
+               was guessed. `why` is optional: leave it off where the article
+               above is already the explanation, and use it where the question
+               asks her to judge something rather than to remember it
      fix       something Anna actually said, with the upgrade behind a tap
      poll      opinion statements — agree / not sure / disagree, no answer
      cards     have it / need it cards, for auditing something
@@ -476,6 +481,229 @@ const NOTEBOOK = {
           en: 'The earlier you understand money, the more choices you may have in the future.',
           zh: '你越早了解金錢，未來就可能擁有越多選擇。',
           by: 'the closing line of the reading 本篇閱讀的結語',
+        },
+
+        {
+          t: 'part',
+          n: 'Quiz',
+          en: 'Check what stayed',
+          zh: '看看留下了什麼',
+        },
+
+        {
+          t: 'mcq',
+          en: 'Did you get it?',
+          zh: '你讀懂了嗎？',
+          hintEn: 'Ten questions on the reading above. A wrong answer fades and the question stays open, so try again — nothing is scored and nothing is recorded.',
+          hintZh: '關於上面那篇閱讀的十個問題。答錯的選項會變淡，題目仍然開著，可以再試一次——不計分，也不會留下紀錄。',
+          items: [
+            {
+              q: 'You leave NT$1,000 in a box at home for five years. What does the reading say the real problem is?',
+              qZh: '你把新台幣 1,000 元放在家裡的盒子裡五年。文章認為真正的問題是什麼？',
+              options: [
+                'Somebody may take it',
+                'Prices may rise, so the same money buys less',
+                'The bank will charge you a fee',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'What is the main difference between saving and investing?',
+              qZh: '儲蓄和投資最主要的差別是什麼？',
+              options: [
+                'The length of time the money is meant for',
+                'The amount of money you need to start',
+                'Whether you use a bank or not',
+              ],
+              answer: 0,
+            },
+            {
+              q: 'When you buy a bond, what are you actually doing?',
+              qZh: '當你購買債券時，你實際上在做什麼？',
+              options: [
+                'Buying a small part of a company',
+                'Buying a basket of shares',
+                'Lending money to a government or a company',
+              ],
+              answer: 2,
+            },
+            {
+              q: 'What makes an ETF different from an ordinary fund?',
+              qZh: 'ETF 和一般基金的差別在哪裡？',
+              options: [
+                'It always holds more companies',
+                'It can be bought and sold on the market like a single stock',
+                'Its value cannot fall',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'What does a market index measure?',
+              qZh: '市場指數衡量的是什麼？',
+              options: [
+                'How a group of companies is performing',
+                'How much a fund charges in fees',
+                'How many people are investing this year',
+              ],
+              answer: 0,
+            },
+            {
+              q: 'According to the reading, what does diversification actually do?',
+              qZh: '根據文章，分散投資真正的作用是什麼？',
+              options: [
+                'It guarantees a profit over the long term',
+                'It removes the risk of losing money',
+                'It reduces the damage one poor investment can do',
+              ],
+              answer: 2,
+              why: {
+                en: 'This is the sentence people get wrong most often. Diversification limits the harm from one bad choice; it does not promise a profit, and it will not save you when a whole market falls.',
+                zh: '這是最常被誤解的一句話。分散投資限制的是「單一個錯誤決定」帶來的傷害；它不保證獲利，當整個市場一起下跌時也救不了你。',
+              },
+            },
+            {
+              q: 'Compound growth is what happens when…',
+              qZh: '複利成長是指什麼情況？',
+              options: [
+                'you add more of your own money every year',
+                'your returns start earning returns of their own',
+                'the price of an investment rises every single year',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'Dollar-cost averaging means…',
+              qZh: '定期定額投資的意思是……',
+              options: [
+                'buying only when the price is low',
+                'spreading your money across many countries',
+                'investing a fixed amount on a regular schedule',
+              ],
+              answer: 2,
+              why: {
+                en: 'The point is the schedule, not the price. It removes the pressure of choosing a moment — it does not remove the risk, and the value can still fall.',
+                zh: '重點在於固定的時間表，而不是價格。它消除的是「挑時機」的壓力——不是風險，價值仍然可能下跌。',
+              },
+            },
+            {
+              q: 'Why does the reading say a fee of well under one percent is still worth checking?',
+              qZh: '文章為什麼說連不到百分之一的費用都值得查清楚？',
+              options: [
+                'Because a high fee always means a badly run fund',
+                'Because small differences add up over decades',
+                'Because fees above one percent are not allowed',
+              ],
+              answer: 1,
+              why: {
+                en: 'And note what the reading does *not* say: the cheapest option is not automatically the best one. Cost is one of the things you check, every time — not the only one.',
+                zh: '也要注意文章「沒有」說的部分：最便宜的並不自動就是最好的。費用是每一次都要檢查的項目之一，但不是唯一的項目。',
+              },
+            },
+            {
+              q: 'What does the reading say teenagers should do before they start investing?',
+              qZh: '文章認為青少年在開始投資之前應該先做什麼？',
+              options: [
+                'Follow what is popular online to learn faster',
+                'Borrow a small amount so they can start earlier',
+                'Build basic money habits first',
+              ],
+              answer: 2,
+            },
+          ],
+        },
+
+        {
+          t: 'mcq',
+          en: 'What would you say?',
+          zh: '你會怎麼回答？',
+          hintEn: 'Six situations rather than six facts. Each one has an explanation waiting behind the answer — that is where the teaching is, so read it even when you got the question right.',
+          hintZh: '這六題問的是情境，不是事實。每一題答對之後都會出現說明——真正的重點在那裡，所以就算答對了也要看。',
+          items: [
+            {
+              q: 'A video promises “a guaranteed 20% return every year, with no risk.” What does the reading tell you to do?',
+              qZh: '一支影片保證「每年 20% 報酬，零風險」。文章會告訴你怎麼做？',
+              options: [
+                'Treat the promise itself as the warning sign',
+                'Put in a small amount to test whether it is true',
+                'Check whether the person saying it is well known',
+              ],
+              answer: 0,
+              why: {
+                en: 'There is no investment that offers a high return with no risk, so the sentence cannot be true — which makes the sentence, not the product, the thing to react to. Checking who said it is beside the point; the reading warns about influencers and celebrities by name.',
+                zh: '世界上不存在「高報酬又零風險」的投資，所以這句話不可能是真的——真正要反應的是「這句話」，而不是那項商品。查對方是誰也沒有用；文章正是點名網紅和名人提出警告的。',
+              },
+            },
+            {
+              q: 'A friend says an ETF is “completely safe, because it holds hundreds of companies.” What is the most accurate reply?',
+              qZh: '朋友說某檔 ETF「完全安全，因為它持有數百家公司」。最精確的回答是什麼？',
+              options: [
+                '“You’re right — an ETF cannot lose value.”',
+                '“It spreads the risk, but if the whole market falls it falls too.”',
+                '“Individual stocks are actually safer than ETFs.”',
+              ],
+              answer: 1,
+              why: {
+                en: 'Diversification protects you from one company, not from the market. This is the precise-instead-of-vague move from earlier in the session: say what it is less risky than, and say what it does not protect against.',
+                zh: '分散投資保護你不受「單一公司」影響，而不是不受「市場」影響。這正是這堂課前面練過的「把話說精確」：說出它比什麼風險低，也說出它擋不住什麼。',
+              },
+            },
+            {
+              q: 'Two ETFs follow the same index. One charges 0.10% a year, the other 0.85%. What does the reading actually say?',
+              qZh: '兩檔 ETF 追蹤同一個指數，一檔年費 0.10%，另一檔 0.85%。文章實際上是怎麼說的？',
+              options: [
+                'The cheaper one is automatically the better choice',
+                'A difference that small will not affect the result',
+                'Cost is one of the things to compare — not the only one',
+              ],
+              answer: 2,
+              why: {
+                en: 'Both of the other answers are the easy mistakes: dismissing the fee because the number looks small, or letting the fee decide on its own. Over decades that gap is real money, and it is still only one of the seven questions.',
+                zh: '另外兩個選項正是兩種常見的錯誤：因為數字看起來小就不當一回事，或是讓費用單獨決定一切。拉長到幾十年，那個差距是實際的金額；但它仍然只是七個問題裡的一個。',
+              },
+            },
+            {
+              q: 'You cannot explain what an investment holds or how it makes money. What does the reading’s own test say?',
+              qZh: '你說不出某項投資持有什麼、靠什麼賺錢。文章自己的測試怎麼說？',
+              options: [
+                'You do not understand it well enough to buy it yet',
+                'Buy a small amount and learn as you go',
+                'Ask someone who already owns it to explain',
+              ],
+              answer: 0,
+              why: {
+                en: 'This is the line the whole session is built on. Note that it is a test you can apply to yourself, in your own words, without anyone else — which is exactly why it is worth having.',
+                zh: '整堂課就是建立在這句話上。要注意的是，這是一個你可以用自己的話、獨自對自己做的測試——這正是它值得記住的原因。',
+              },
+            },
+            {
+              q: 'Someone with no emergency fund, and a debt they cannot repay, wants to start investing. What would the reading say?',
+              qZh: '一個沒有緊急預備金、又背著還不起的債的人想開始投資。文章會怎麼說？',
+              options: [
+                'Start small — the returns will help clear the debt',
+                'Build the habits first, because investing enlarges the habits you already have',
+                'Borrow a little more so the amount is worth investing',
+              ],
+              answer: 1,
+              why: {
+                en: '“Investing cannot fix poor money habits” is the sentence. Money that has to come back out at the wrong moment is not invested — it is exposed, and a debt or an emergency decides the moment for you.',
+                zh: '關鍵句是「投資無法修正糟糕的金錢習慣」。一筆隨時可能要在錯誤時機被抽出來的錢，並不算是在投資——它只是暴露在風險裡，而債務或突發狀況會替你決定那個時機。',
+              },
+            },
+            {
+              q: 'An ETF that invests in one industry only, using a complicated strategy, is…',
+              qZh: '一檔只投資單一產業、而且使用複雜策略的 ETF，是……',
+              options: [
+                'safer than a broad-market ETF, because it is focused',
+                'exactly as risky as any other ETF — they all work the same way',
+                'potentially riskier than a broad-market ETF',
+              ],
+              answer: 2,
+              why: {
+                en: '“ETF” names how a thing is traded, not how risky it is. Two funds with the same three letters can sit at opposite ends of the risk range, which is why the reading tells you to look at what it holds, what it follows and what it charges.',
+                zh: '「ETF」講的是這樣東西「怎麼交易」，不是「有多大風險」。同樣掛著這三個字母的兩檔基金，可能位在風險光譜的兩端——這正是文章要你去看它持有什麼、追蹤什麼、收多少費用的原因。',
+              },
+            },
+          ],
         },
 
         {

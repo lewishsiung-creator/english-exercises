@@ -257,6 +257,37 @@ const BLOCKS = {
       }).join('')}
     </div>`,
 
+  /* A quiz question about the reading. Unlike `gap` there is no blank to fill,
+     so the options are never hidden once the answer is found: the right one
+     locks green and the tried ones fade, which leaves the row readable as a
+     record of what was guessed before it was known.
+
+     `why` is optional and is the reason this differs from the version it was
+     copied from. Where a question only asks what the article said, the article
+     itself is the explanation and `why` should be left off. Where it asks her
+     to judge something — is this claim honest, is this a reason to walk away —
+     the explanation is the teaching, and it appears once the row is solved. */
+  mcq: (b) => `
+    <div class="activity mcqs" data-act="mcq">
+      ${label(b)}
+      ${hint(b)}
+      ${b.items.map((it, n) => `
+        <div class="mcq" data-answer="${it.answer}">
+          <div class="mcq-line pair" ${it.qZh ? 'data-zh' : ''}>
+            <p class="en mcq-q"><span class="mcq-n">${n + 1}</span>
+              <span class="mcq-t">${text(it.q)}</span>${speakBtn(it.q, 'say say-quiet')}${
+                it.qZh ? '<button class="zh-chip" title="顯示中文">中</button>' : ''}</p>
+            ${it.qZh ? `<p class="zh">${text(it.qZh)}</p>` : ''}
+          </div>
+          <ul class="opts">
+            ${it.options.map((o, i) => `
+              <li><button class="chip" data-i="${i}">${text(o)}</button></li>`).join('')}
+          </ul>
+          ${it.why ? `<p class="why"><span class="en">${text(it.why.en)}</span>
+            <span class="zh">${text(it.why.zh)}</span></p>` : ''}
+        </div>`).join('')}
+    </div>`,
+
   /* Anna's own sentences, corrected. The mistake is shown as it was said and
      the upgrade waits behind a tap, so there is a moment to spot it first — and
      so the page is worth re-reading weeks later, when the correction is the
@@ -617,6 +648,7 @@ doc.addEventListener('click', (e) => {
   const kind = act.dataset.act;
   if (kind === 'match') matchClick(act, btn);
   else if (kind === 'gap') gapClick(btn);
+  else if (kind === 'mcq') mcqClick(btn);
   else if (kind === 'poll' || kind === 'audit') pickOne(btn);
   else if (kind === 'task') taskClick(act, btn);
 });
@@ -673,6 +705,22 @@ function gapClick(btn) {
   if (Number(btn.dataset.i) === Number(gap.dataset.answer)) {
     $('.slot', gap).textContent = btn.textContent;
     gap.classList.add('solved');
+    btn.classList.add('done');
+  } else {
+    wobble(btn);
+    btn.classList.add('out');
+  }
+}
+
+/* A quiz question. There is no blank to fill, so a right answer simply locks
+   the row and ticks the option that was chosen; a wrong one wobbles, fades and
+   leaves the question open, the same no-failure rule as everywhere else here. */
+function mcqClick(btn) {
+  const q = btn.closest('.mcq');
+  if (!q || q.classList.contains('solved')) return;
+
+  if (Number(btn.dataset.i) === Number(q.dataset.answer)) {
+    q.classList.add('solved');
     btn.classList.add('done');
   } else {
     wobble(btn);
@@ -779,6 +827,11 @@ $('#showAll').addEventListener('click', () => {
     $('.slot', gap).textContent = right.textContent;
     right.classList.add('done');
     gap.classList.add('solved');
+  });
+
+  $$('.mcq:not(.solved)').forEach((q) => {
+    $$('.opts .chip', q)[Number(q.dataset.answer)].classList.add('done');
+    q.classList.add('solved');
   });
 
   $$('.match').forEach((act) => {
