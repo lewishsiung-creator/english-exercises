@@ -2407,8 +2407,8 @@ Everything under `public/` is reachable at both URLs on the next push. Nothing
 here is behind a login, and no page is linked from the site root unless it is
 listed there, so an unlisted page is unlisted rather than private. Pages built
 around a named client or student, or from a client's own internal document —
-`/business-clarity/`, `/anny/`, `/aaron/`, `/anita/`, `/eason/`, `/riva-rex/`,
-`/riva-rex-practice/`, `/jill/` and `/fab-english/` — carry
+`/business-clarity/`, `/anny/`, `/aaron/`, `/anita/`, `/eason/`, `/anna/`,
+`/riva-rex/`, `/riva-rex-practice/`, `/jill/` and `/fab-english/` — carry
 `noindex, nofollow`, which keeps them out of search results; it does not make
 the URL secret. Anything that must not be publishable should not go in
 `public/` at all.
