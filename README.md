@@ -1,7 +1,7 @@
 # English Exercises
 
 English teaching material, built for classroom, homework and one-to-one use.
-Seventeen independent pages live here — a game for young learners at the site
+Eighteen independent pages live here — a game for young learners at the site
 root, phonics practice for slightly older children at `/phonics/`, an
 interactive phonics handbook for the same age at `/phonics-handbook/`, a
 review lesson for a ten-to-twelve-year-old at `/confidence-talk/`, a
@@ -17,6 +17,8 @@ sentences at `/sentence-upgrades/`, a high-school writing worksheet
 at `/robot-helper/`, a survey of seven years of the 學測 essay at
 `/exam-writing/`, an IELTS Speaking Part 3 practice at `/ielts-part3/`, a
 growing IELTS Speaking course covering all three parts at `/ielts-speaking/`,
+a semiconductor plant's own vocabulary sheet rebuilt for one-to-one adult
+lessons at `/fab-english/`,
 and, for 國中 students, vocabulary and grammar together at `/junior-high/`.
 
 One page is not English at all: `/math/` is math practice for Grades 1 to 3,
@@ -1181,6 +1183,76 @@ Four repairs worth knowing about if something ever looks off:
   you arrive.`). It is split back off, but only when the example column came up
   empty — so a row that parsed normally can never be damaged by the repair.
 
+## Fab English — adult, teacher-led, a plant's own word list
+
+The 288 words on a semiconductor plant's internal vocabulary sheet: English
+term, part of speech, Traditional Chinese gloss. A reference as much as a
+lesson, because the learner already has the printed sheet — so this page has to
+be better than the sheet, not the same thing on a screen.
+
+Three things were added and are not in the source:
+
+- **Eight themes.** The sheet is A–Z, which is useless in a lesson: *acid* sits
+  next to *active*. The words are regrouped by where in the plant you meet
+  them, so a teacher can take one area per session.
+
+  | | Theme | Words |
+  | --- | --- | --- |
+  | 01 | Wafers, process and materials 晶圓、製程與材料 | 33 |
+  | 02 | The tool: running it and fixing it 機台：操作與維修 | 36 |
+  | 03 | Moving material, and where things are 物料搬運與現場位置 | 35 |
+  | 04 | Quality, measurement and yield 品質、量測與良率 | 40 |
+  | 05 | Alarms, problems and safety 警報、異常與安全 | 29 |
+  | 06 | Computers and systems 電腦與系統 | 39 |
+  | 07 | Shifts, people and time 班務、同仁與時間 | 43 |
+  | 08 | Documents, reporting and the business 文件、回報與公司業務 | 33 |
+
+- **An example sentence for every word**, written for this page, short and in
+  the word's plant sense — *"The lot is waiting in the stocker."*
+- **Practice**, eight tap-to-fill gaps per theme, and a **search** that reads
+  both the English and the Chinese.
+
+The A–Z view is still one tap away in the bar, because that is the order the
+learner's own copy is in.
+
+### Design notes
+
+- **English leads, Chinese waits.** The gloss is hidden behind a 中 chip on
+  every card; the 中文 switch in the bar opens all 288 at once. The example
+  sentence stays English only — that is the part the learner should work out.
+  Section titles, notes, the contents list and the practice instructions stay
+  bilingual: scaffolding, not comprehension practice.
+- **The practice is generated, never authored.** Each gap is an example
+  sentence with its own headword cut out; the three wrong options are other
+  words from the same theme with the same part of speech, skipping any word
+  already sitting in the sentence. So the drill cannot drift from the word
+  list — edit a sentence and its question changes with it. The cost is that a
+  distractor is only *grammatically* plausible, not always semantically, which
+  in a lesson is the interesting case anyway.
+- **Every example contains its headword verbatim**, never inflected. That is
+  what makes a clean gap and a clean bolded word. If you edit a sentence, keep
+  the headword in it unchanged — `tools/` has no script for this page, but the
+  check is one line: every `ex` must match its own `w` (or its `k`).
+- **One card per word, built once.** Switching between the theme view and the
+  A–Z view moves the same nodes rather than re-rendering, so a word the teacher
+  has opened stays open across the switch and the search is a plain show/hide.
+- **Nothing is scored and nothing is saved.** Only the voice, the speed and the
+  Chinese switch persist. Wrong answers wobble and stay open.
+- The 👩‍🏫 panel adds one control the other adult pages do not have: **hide the
+  example sentences**, leaving the word and the Chinese, so you can ask for a
+  sentence before showing ours.
+- **Print** gives the word list as a two-column handout with all the Chinese
+  open; the practice is dropped, since on paper a tap-the-word exercise is just
+  the answers.
+
+### On the source
+
+The sheet it came from is a client's internal document and carries a
+confidentiality marking. The page keeps the words and the Chinese — ordinary
+English vocabulary — but names no company anywhere, and carries
+`noindex, nofollow`. Read the note in **Live sites** before pushing it:
+`noindex` keeps a page out of search results, it does not make the URL private.
+
 ## Landscape Architecture Portfolio — a student's own work
 
 The odd one out. Not a lesson and not bilingual: a portfolio a landscape
@@ -1487,6 +1559,7 @@ public/jill/              Jill's notebook — one entry per weekly lesson
 public/junior-high/       國中英語精熟 — 單字 and 文法, one page, Grades 7–9
 public/junior-high-words/    a redirect: the 單字 half's old URL
 public/junior-high-grammar/  a redirect: the 文法 half's old URL
+public/fab-english/       the plant word list — 288 words, eight themes
 public/landscape-portfolio/      the portfolio — filled in as the Ando study
 public/landscape-portfolio/content.starter.js  the same page, emptied
 public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS.md
@@ -1568,6 +1641,21 @@ Adding a *third* half would be one more entry in `SECTIONS` in
 [`render.js`](public/junior-high/render.js): a label, its mask options, and the
 three functions that build its nav, its blocks and its search. The shell —
 bar, grade tabs, side nav, panel, speech, ticks, print — is section-agnostic.
+
+**Fab English.** Everything is in
+[`content.js`](public/fab-english/content.js): `FAB.groups`, one entry per
+theme, each with an `id`, a bilingual title and note, and a `words` array. A
+word is `{ w, p, zh, ex }` — headword, part of speech, Chinese gloss, example
+sentence. Add `k` when the form used in the sentence differs from the printed
+headword (`w: "Spec. / specification"`, `k: "spec"`).
+
+The one rule: **`ex` must contain `w` (or `k`) verbatim, uninflected.** The
+renderer uses that match twice — to bold the word on the card, and to cut it
+out for the practice gap — so an inflected sentence silently loses both. Moving
+a word between themes is a cut and paste; the practice, the counts, the
+contents list and the A–Z view all follow. There is no question list to edit,
+and no script in `tools/` for this page: the source was a plain two-column PDF
+that `pypdf` reads correctly.
 
 **Number Lab.** There is no question list to edit — every topic is a `make()`
 in [`public/math/content.js`](public/math/content.js) that builds a question
@@ -2248,7 +2336,7 @@ here is behind a login, and no page is linked from the site root unless it is
 listed there, so an unlisted page is unlisted rather than private. Pages built
 around a named client or student, or from a client's own internal document —
 `/business-clarity/`, `/anny/`, `/aaron/`, `/anita/`, `/eason/`, `/riva-rex/`,
-`/riva-rex-practice/` and `/jill/` — carry
+`/riva-rex-practice/`, `/jill/` and `/fab-english/` — carry
 `noindex, nofollow`, which keeps them out of search results; it does not make
 the URL secret. Anything that must not be publishable should not go in
 `public/` at all.
