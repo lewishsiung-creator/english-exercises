@@ -5,8 +5,9 @@
    saved — with one difference that comes from the page being a notebook rather
    than a lesson:
 
-   - Sessions fold. The newest is open and the earlier ones are closed, because
-     after a term this page is longer than any lesson ever is. A session opens
+   - Sessions read newest first, and they fold. The newest is at the top and
+     open; the earlier ones are below it and closed, because after a term this
+     page is longer than any lesson ever is. A session opens
      by tapping its heading, by following a contents link, or by arriving on its
      anchor (/anita/#s3). The teacher panel opens the lot.
    - Which sessions are open is NOT remembered between loads. A reload is a
@@ -371,6 +372,14 @@ const BLOCKS = {
 
 const sessions = NOTEBOOK.sessions;
 
+/* The array in content.js stays chronological — a session is appended at the
+   bottom and `n` counts up — but the page reads newest first, so the latest
+   discussion is the first thing on screen rather than the last. `ordered` is
+   the display order and is used for the contents list and the document; the
+   array itself is still what "the newest" means, so it stays the source of
+   truth for which session opens. */
+const ordered = [...sessions].reverse();
+
 /* While the content is a placeholder, say so across the top — on screen and in
    print, so a demo cannot be handed over by accident. */
 function buildBanner() {
@@ -451,7 +460,7 @@ function buildNav() {
       <ul>
         <li><a href="#top" data-target="top"><span class="n">·</span>
           <span class="t"><span class="en">Start</span><span class="zh">開始</span></span></a></li>
-        ${sessions.map((s) => `
+        ${ordered.map((s) => `
           <li><a href="#${s.id}" data-target="${s.id}"><span class="n">${s.n}</span>
             <span class="t"><span class="en">${text(s.en)}</span>
             <span class="zh">${text(s.dateEn)}</span></span></a></li>`).join('')}
@@ -475,7 +484,7 @@ const openId = sessions.some((s) => s.id === wanted)
   ? wanted
   : (sessions.length ? sessions[sessions.length - 1].id : '');
 
-sessions.forEach((s) => doc.appendChild(el(buildSession(s, s.id === openId))));
+ordered.forEach((s) => doc.appendChild(el(buildSession(s, s.id === openId))));
 
 // ---------------------------------------------------------------- folding
 

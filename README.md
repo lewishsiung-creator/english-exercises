@@ -1441,9 +1441,18 @@ quietly upgrades a half-remembered claim into a fact is worse than no record.
 The third notebook, copied from
 [Aaron's](#aarons-notebook--adult-one-to-one-kept-over-time) rather than from
 Anny's, so it starts with the `link` block and the optional contrast labels
-already in place. Everything in the design notes above applies here too. The
-renderer is otherwise untouched; only the `localStorage` prefix changed, to
-`anita.`, so the two notebooks do not share a voice or a Chinese setting.
+already in place. Everything in the design notes above applies here too, with
+one exception and one rename: the `localStorage` prefix is `anita.`, so the
+notebooks do not share a voice or a Chinese setting, and **this page reads
+newest first**.
+
+That last one is the only structural difference from Anny's and Aaron's. The
+`sessions` array is still chronological — append at the bottom, `n` counts up —
+and the renderer reverses a copy of it (`ordered`) for the contents list and the
+document. The array stays the source of truth for what "the newest" means, so
+the open-on-load rule and the anchors are untouched. The other two notebooks
+still read oldest first; changing them is a separate decision, since each page
+is a deliberate copy.
 
 Session 1 (7 August 2026) is a discussion of a new running specialty store her
 company is opening — why a retailer would want its own brand influence rather

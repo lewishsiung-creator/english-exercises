@@ -8,10 +8,12 @@
    ADDING A SESSION
    ----------------
    Copy the last entry in `sessions`, change `id`, `n`, `date` and the titles,
-   and rewrite the blocks. Put it at the BOTTOM of the array — the page is
-   chronological, oldest first, and opens with the newest session expanded and
-   the earlier ones folded away. The contents list, the numbering and the
-   anchors all come from the array, so there is nothing else to keep in step.
+   and rewrite the blocks. Put it at the BOTTOM of the array — the array stays
+   chronological and `n` counts up with it. The PAGE reads the other way round:
+   the renderer reverses the array, so the newest session is at the top, open,
+   with the earlier ones below it and folded away. The contents list, the
+   numbering and the anchors all come from the array, so there is nothing else
+   to keep in step.
 
    `id` must be unique and URL-safe: it becomes the anchor, so
    /anita/#s2 opens session 2 with the rest folded.
@@ -100,8 +102,8 @@ const NOTEBOOK = {
         zh: '這裡不會儲存也不會計分。重新整理頁面就會清空，可以重新練一次。',
       },
       {
-        en: 'The newest session is open; earlier ones are folded. Tap a session heading to open or close it.',
-        zh: '最新的一堂課是展開的，之前的則收合起來。點課程標題就能展開或收合。',
+        en: 'The newest session is at the top and open; earlier ones sit below it, folded. Tap a session heading to open or close it.',
+        zh: '最新的一堂課在最上面，而且是展開的；之前的課在下面，收合起來。點課程標題就能展開或收合。',
       },
     ],
   },
