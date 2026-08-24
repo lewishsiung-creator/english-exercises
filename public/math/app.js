@@ -24,7 +24,6 @@ const state = {
   answered: false,   // current question already answered correctly
   attempts: 0,       // tries on the current question, including the right one
   typed: '',         // what is on the number pad right now
-  sound: true,
 };
 
 /* ==================== session record ==================== */
@@ -51,131 +50,6 @@ function record(question, attempts) {
   saveLog();
 }
 
-/* ==================== speech ==================== */
-
-let voice = null;
-
-/* Voices are ranked, not just wished for, because the fallback matters as much
-   as the favourite. The en-US list this machine reports is alphabetical and
-   starts: Albert, Ava, Bad News, Bahh, Bells, Boing, Bubbles… — so "take the
-   first American voice" is one missing download away from teaching maths in
-   Albert. Read as tiers, best first. */
-const VOICE_TIERS = [
-  /* Young American female — what this page was asked for, and what a six-year
-     old hears best. */
-  [/^(Flo|Shelley)\b/i],
-  /* Neural. A different class of clarity to everything below. */
-  [/\bnatural\b/i, /\bsiri\b/i, /^Google US English/i],
-  /* Apple's recorded-speaker voices and Windows' equivalents. Samantha is the
-     one almost every Mac already has. */
-  [/^(Samantha|Ava|Allison|Susan|Zoe|Nicky|Joelle|Evan|Alex|Victoria)\b/i,
-   /^Microsoft (Zira|Aria|Jenny|Michelle|Guy)\b/i],
-  /* Character and regional voices: intelligible, but stylised or not
-     American. Usable, never the automatic choice. */
-  [/^(Eddy|Reed|Rocko|Sandy|Grandma|Grandpa|Karen|Moira|Tessa|Fiona|Daniel|Rishi|Serena)\b/i],
-];
-
-/* Jokes, singing and robots. Still selectable — a child who wants to hear a
-   sum in Zarvox should get to — but never picked automatically. */
-const NOVELTY = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Good News|Hysterical|Jester|Junior|Kathy|Organ|Ralph|Superstar|Trinoids|Whisper|Wobble|Zarvox|Bruce|Agnes|Princess|Fred)\b/i;
-
-/* macOS localises a voice name and does not agree with itself about how:
-   "Flo (英文（美國）)" uses a Latin paren after a space, "Ava（增強音質）" a
-   fullwidth one with none. Matching the raw name missed the enhanced Ava
-   entirely — the best voice installed on this Mac was unreachable. */
-const baseName = (v) => String(v.name).split(/\s*[(（]/)[0].trim();
-
-/* An "enhanced" or "premium" download is the same speaker at a much higher
-   sample rate. Free quality when it is already on the machine. */
-const isEnhanced = (v) => /(enhanced|premium|增強|高級)/i.test(v.name);
-
-const englishVoices = () =>
-  (window.speechSynthesis?.getVoices() || []).filter((v) => /^en(-|_|$)/i.test(v.lang));
-
-/* Lower is better. American outranks everything except novelty, and it
-   outranks the tiers deliberately: several of these voices ship in a British
-   and an American cut under the same name, and on a page built around an
-   American classroom the wrong Flo is worse than the right Ava. Then tier,
-   then an enhanced download ahead of the standard one. */
-function voiceScore(v) {
-  const name = baseName(v);
-  let tier = VOICE_TIERS.length;
-  for (let i = 0; i < VOICE_TIERS.length; i++) {
-    if (VOICE_TIERS[i].some((re) => re.test(name))) { tier = i; break; }
-  }
-  return (NOVELTY.test(name) ? 1000 : 0)
-    + (/en[-_]US/i.test(v.lang) ? 0 : 100)
-    + tier * 10
-    + (isEnhanced(v) ? 0 : 2);
-}
-
-/* The ranked list, best first — also the order the picker shows. */
-const rankedVoices = () => englishVoices().slice().sort((a, b) => voiceScore(a) - voiceScore(b));
-
-function pickVoice() {
-  const all = englishVoices();
-  if (!all.length) return;
-
-  const saved = localStorage.getItem('math.voice');
-  if (saved) {
-    const match = all.find((v) => v.name === saved);
-    if (match) { voice = match; return; }
-  }
-  voice = rankedVoices()[0] || all[0];
-}
-
-if ('speechSynthesis' in window) {
-  pickVoice();
-  speechSynthesis.addEventListener('voiceschanged', pickVoice);
-}
-
-/* Every run of speech takes a token. Starting a new one bumps the token, so
-   callbacks still queued from the old run see that they are stale and stop —
-   otherwise moving on mid-sentence leaves two chains racing each other. */
-let speakToken = 0;
-
-function stopSpeaking() {
-  speakToken++;
-  window.speechSynthesis?.cancel();
-}
-
-/* How fast everything is read. Six-year-olds and the grown-up re-listening to
-   a hint do not want the same speed, so it is a setting rather than a
-   constant. `slower` is a multiplier for the lines worth dwelling on. */
-let rate = parseFloat(localStorage.getItem('math.rate') || '0.85');
-
-function say(text, { slower = 1, onEnd } = {}) {
-  if (!state.sound || !('speechSynthesis' in window) || !text) { onEnd?.(); return; }
-
-  stopSpeaking();
-  const mine = speakToken;
-
-  const u = new SpeechSynthesisUtterance(String(text));
-  if (voice) u.voice = voice;
-  u.lang = voice?.lang || 'en-US';
-  u.rate = Math.max(0.4, Math.min(1.4, rate * slower));
-  /* Flat pitch. Raising it thins the formants, and a raised voice reading
-     numbers all lesson is wearing rather than friendly. */
-  u.pitch = 1;
-
-  let moved = false;
-  const go = () => {
-    if (moved || mine !== speakToken) return;
-    moved = true;
-    onEnd?.();
-  };
-  u.addEventListener('end', go);
-  u.addEventListener('error', go);
-  // A machine with no audio output never fires 'end', so back it with a
-  // watchdog — without one the page would strand on the first sound. It has
-  // to scale with the rate, or a slow setting gets cut off by its own guard.
-  setTimeout(go, (1600 + String(text).length * 110) / Math.max(0.5, u.rate));
-
-  /* Chrome drops an utterance queued in the same tick as cancel(), which
-     shows up as a tap that makes no sound at all. Let the cancel land first. */
-  setTimeout(() => { if (mine === speakToken) speechSynthesis.speak(u); }, 70);
-}
-
 /* ==================== screens ==================== */
 
 const SCREENS = ['grade', 'topic', 'intro', 'teach', 'play', 'done'];
@@ -193,7 +67,6 @@ function show(name) {
 }
 
 el('backBtn').addEventListener('click', () => {
-  stopSpeaking();
   const to = BACK_TO[currentScreen()] || 'grade';
   // state.grade and state.topic are deliberately left set when backing out.
   // Nothing reads them on the way out, and clearing them turns a later back
@@ -274,18 +147,7 @@ function renderStep() {
     .map((_, i) => `<span class="dot${i === state.step ? ' is-on' : ''}"></span>`).join('');
   el('teachNext').textContent = last ? 'Let’s try it →' : 'Next';
   el('teachSkip').hidden = last;
-
-  sayStep();
 }
-
-/* The voice reads "5 + 3" as "five three", so a step with symbols in it
-   carries its own spoken line. A plain sentence says itself. */
-function sayStep() {
-  const step = state.topic.teach[state.step];
-  say(step.say || step.text, { slower: 0.94 });
-}
-
-el('teachReplay').addEventListener('click', sayStep);
 
 el('teachNext').addEventListener('click', () => {
   if (state.step === state.topic.teach.length - 1) { startRound(state.topic); return; }
@@ -343,16 +205,7 @@ function askQuestion() {
   el('hint').textContent = q.hint || '';
 
   buildAnswer(q);
-  speakQuestion();
 }
-
-/* The clock topics have nothing readable in the prompt, so they say the time
-   only *after* the question — otherwise the answer is given away up front. */
-function speakQuestion() {
-  say(current().speak);
-}
-
-el('replayBtn').addEventListener('click', speakQuestion);
 
 /* ==================== answering ==================== */
 
@@ -443,10 +296,7 @@ function judge(given, node) {
     if (node?.classList.contains('opt')) node.classList.add('is-off');
     el('feedback').textContent = NUDGES[Math.min(state.attempts, NUDGES.length) - 1];
     el('feedback').className = 'feedback is-oops';
-    if (state.attempts >= 2 && q.hint) {
-      el('hint').hidden = false;
-      say(q.hint, { slower: 0.94 });
-    }
+    if (state.attempts >= 2 && q.hint) el('hint').hidden = false;
     if (!q.choices) setTyped('');
     return;
   }
@@ -460,27 +310,13 @@ function judge(given, node) {
   el('feedback').className = 'feedback is-good';
   el('hint').hidden = true;
 
-  const next = () => {
+  // Long enough to register that it was right and see the answer sitting
+  // there, short enough not to feel like waiting.
+  setTimeout(() => {
     state.index++;
     if (state.index >= ROUND_LENGTH) finish();
     else askQuestion();
-  };
-
-  // On the clock and fraction topics the answer is worth hearing said
-  // properly; elsewhere the cheer is enough and speech would only slow the
-  // round down. Move on when the voice has finished rather than after a fixed
-  // wait: a fixed one either cuts "half past three" off at a slow speed or
-  // leaves the child staring at an answered question at a fast one.
-  if (!q.say) { setTimeout(next, 850); return; }
-
-  /* Driving the advance off onEnd alone strands the round: anything that
-     cancels the utterance — tapping "Say it again" while the answer is still
-     being read — takes its onEnd with it, and the question never moves on.
-     So whichever of the two arrives first wins. */
-  let moved = false;
-  const go = () => { if (moved) return; moved = true; setTimeout(next, 420); };
-  say(q.say, { slower: 0.94, onEnd: go });
-  setTimeout(go, 3400);
+  }, 850);
 }
 
 /* ==================== finishing ==================== */
@@ -495,7 +331,6 @@ function finish() {
   el('doneStars').textContent = '⭐'.repeat(stars) + '☆'.repeat(3 - stars);
   el('doneScore').textContent = `${score} of ${ROUND_LENGTH} right the first time.`;
   show('done');
-  say(score >= 7 ? 'Great work!' : 'Good effort. Let’s go again.');
 }
 
 el('againBtn').addEventListener('click', () => startRound(state.topic));
@@ -503,22 +338,6 @@ el('changeBtn').addEventListener('click', () => {
   el('barTitle').textContent = state.grade.name;
   show('topic');
 });
-
-/* ==================== sound switch ==================== */
-
-el('soundBtn').addEventListener('click', () => {
-  state.sound = !state.sound;
-  const b = el('soundBtn');
-  b.textContent = state.sound ? '🔊' : '🔇';
-  b.setAttribute('aria-pressed', String(state.sound));
-  b.setAttribute('aria-label', state.sound ? 'Turn sound off' : 'Turn sound on');
-  if (!state.sound) stopSpeaking();
-  try { localStorage.setItem('math.sound', state.sound ? '1' : '0'); } catch { /* private mode */ }
-});
-
-try {
-  if (localStorage.getItem('math.sound') === '0') el('soundBtn').click();
-} catch { /* private mode */ }
 
 /* ==================== grown-up panel ==================== */
 
@@ -578,81 +397,6 @@ el('logClear').addEventListener('click', () => {
   saveLog();
   renderSheet();
 });
-
-/* ---- voice picker ---- */
-
-/* One line that exercises what this page actually says: a number, an
-   operator and a result. "Testing, one two three" would prove nothing. */
-const SAMPLE = 'Two plus two equals four.';
-
-/* Listed best first rather than in the browser's own order, which is
-   alphabetical and therefore opens on Albert. */
-function fillVoices() {
-  const sel = el('voiceSelect');
-  const all = rankedVoices();
-  sel.innerHTML = '';
-  if (!all.length) {
-    sel.innerHTML = '<option>No English voices on this device</option>';
-    sel.disabled = true;
-    return;
-  }
-  sel.disabled = false;
-  for (const v of all) {
-    const o = document.createElement('option');
-    o.value = v.name;
-    const tags = [v.lang];
-    if (isEnhanced(v)) tags.push('enhanced');
-    if (NOVELTY.test(baseName(v))) tags.push('not recommended');
-    o.textContent = `${v.name} — ${tags.join(', ')}`;
-    o.selected = voice && v.name === voice.name;
-    sel.appendChild(o);
-  }
-}
-
-/* ---- speed ---- */
-
-const RATE_WORDS = (r) => (r <= 0.7 ? 'Slow' : r >= 1.05 ? 'Fast' : r >= 0.95 ? 'Brisk' : 'Normal');
-
-function showRate() {
-  el('rateRange').value = String(rate);
-  el('rateLabel').textContent = `Now: ${RATE_WORDS(rate)}.`;
-}
-
-el('rateRange').addEventListener('input', (e) => {
-  rate = parseFloat(e.target.value);
-  el('rateLabel').textContent = `Now: ${RATE_WORDS(rate)}.`;
-});
-
-/* Speak the sample on release rather than on every step of the drag, or the
-   slider stutters through a dozen cancelled utterances. */
-el('rateRange').addEventListener('change', () => {
-  try { localStorage.setItem('math.rate', String(rate)); } catch { /* private mode */ }
-  say(SAMPLE);
-});
-
-showRate();
-
-el('voiceSelect').addEventListener('change', (e) => {
-  const chosen = englishVoices().find((v) => v.name === e.target.value);
-  if (!chosen) return;
-  voice = chosen;
-  try { localStorage.setItem('math.voice', chosen.name); } catch { /* private mode */ }
-  say(SAMPLE);
-});
-
-el('voiceTest').addEventListener('click', () => say('Two plus two equals four.'));
-
-el('voiceReset').addEventListener('click', () => {
-  try { localStorage.removeItem('math.voice'); } catch { /* private mode */ }
-  pickVoice();
-  fillVoices();
-  say(SAMPLE);
-});
-
-if ('speechSynthesis' in window) {
-  fillVoices();
-  speechSynthesis.addEventListener('voiceschanged', fillVoices);
-}
 
 /* ==================== go ==================== */
 

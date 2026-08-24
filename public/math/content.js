@@ -8,7 +8,6 @@
    A question is a plain object:
 
      ask      the line the child reads            "24 + 8 = ?"
-     speak    the same line, said aloud           "24 plus 8 equals what?"
      figure   optional SVG string above the ask   a clock, blocks, an array
      answer   the correct answer, as a string     "32"
      choices  optional array of tappable answers  ["3:00", "3:30", …]
@@ -269,32 +268,8 @@ function lineFig(lo, hi, mark) {
   return svg(w, 88, body);
 }
 
-/* ==================== words for the spoken prompt ====================
-
-   The voice reads "24 + 8" as "twenty four eight" — the sign is silent. Every
-   question therefore carries its own `speak` line with the operator written
-   out, and these keep that readable. */
-
-const plus = (a, b) => `${a} plus ${b}`;
-const minus = (a, b) => `${a} minus ${b}`;
-const times = (a, b) => `${a} times ${b}`;
-const over = (a, b) => `${a} divided by ${b}`;
-const equalsWhat = (s) => `${s} equals what?`;
-
-/* "3/4" is read by the engine as "three fourths" at best and "three slash
-   four" at worst, so a fraction that is worth hearing named is written out.
-   The bar is the word he needs: he sees 2/3 and hears "two thirds". */
-const PART_NAMES = { 2: 'half', 3: 'third', 4: 'quarter', 5: 'fifth', 6: 'sixth', 8: 'eighth' };
-
-function fractionWords(k, n) {
-  const one = PART_NAMES[n] || `${n}th`;
-  const many = one === 'half' ? 'halves' : `${one}s`;
-  return `${k === 1 ? 'one' : k} ${k === 1 ? one : many}`;
-}
-
-const clockWords = (h, m) =>
-  m === 0 ? `${h} o'clock` : m === 30 ? `half past ${h}` : `${h} ${m < 10 ? 'oh ' + m : m}`;
-
+/* A clock is answered by picking a written time, so this builds both the
+   answer and the options. */
 const timeText = (h, m) => `${h}:${String(m).padStart(2, '0')}`;
 
 /* ==================== Grade 1 ==================== */
@@ -310,8 +285,7 @@ const G1 = [
       const b = rnd(1, Math.min(9, 20 - a));
       return {
         ask: `${a} + ${b} = ?`,
-        speak: equalsWhat(plus(a, b)),
-        answer: String(a + b),
+                answer: String(a + b),
         hint: `Start at ${a} and count on ${b} more.`,
       };
     },
@@ -326,8 +300,7 @@ const G1 = [
       const b = rnd(1, Math.min(9, a));
       return {
         ask: `${a} − ${b} = ?`,
-        speak: equalsWhat(minus(a, b)),
-        answer: String(a - b),
+                answer: String(a - b),
         hint: `Start at ${a} and count back ${b}.`,
       };
     },
@@ -344,13 +317,11 @@ const G1 = [
       return flip
         ? {
             ask: `${a} + ? = ${total}`,
-            speak: `${a} plus what equals ${total}?`,
             answer: String(total - a),
             hint: `How far is it from ${a} up to ${total}?`,
           }
         : {
             ask: `? + ${total - a} = ${total}`,
-            speak: `What plus ${total - a} equals ${total}?`,
             answer: String(a),
             hint: `Take ${total - a} away from ${total}.`,
           };
@@ -367,7 +338,6 @@ const G1 = [
         return {
           figure: blocksFig(value),
           ask: 'How many in all?',
-          speak: 'How many blocks in all?',
           answer: String(value),
           hint: `Each tall rod is 10. Count the rods first, then the little ones.`,
         };
@@ -375,7 +345,6 @@ const G1 = [
       const t = Math.floor(value / 10), o = value % 10;
       return {
         ask: `${t} tens and ${o} ones = ?`,
-        speak: `${t} tens and ${o} ones equals what?`,
         answer: String(value),
         hint: `${t} tens is ${t * 10}. Then add ${o}.`,
       };
@@ -392,7 +361,6 @@ const G1 = [
       const answer = a > b ? '>' : a < b ? '<' : '=';
       return {
         ask: `${a} ? ${b}`,
-        speak: `Is ${a} greater than, less than, or equal to ${b}?`,
         choices: ['<', '=', '>'],
         answer,
         hint: 'The open end always points at the bigger number.',
@@ -410,7 +378,6 @@ const G1 = [
       return {
         figure: clockFig(h, m),
         ask: 'What time is it?',
-        speak: 'What time is it?',
         // The three classic misreadings: the wrong hand, the next hour along,
         // and the hour before — which is what the short hand looks nearest to
         // at half past.
@@ -421,8 +388,7 @@ const G1 = [
           timeText(h === 1 ? 12 : h - 1, m === 0 ? 30 : 0),
         ),
         answer: timeText(h, m),
-        say: clockWords(h, m),
-        hint: 'The short hand tells the hour. The long hand tells the minutes.',
+                hint: 'The short hand tells the hour. The long hand tells the minutes.',
       };
     },
   },
@@ -441,8 +407,7 @@ const G2 = [
       const b = rnd(13, Math.min(79, 99 - a));
       return {
         ask: `${a} + ${b} = ?`,
-        speak: equalsWhat(plus(a, b)),
-        answer: String(a + b),
+                answer: String(a + b),
         hint: `Add the tens first: ${Math.floor(a / 10) * 10} + ${Math.floor(b / 10) * 10}. Then the ones.`,
       };
     },
@@ -457,8 +422,7 @@ const G2 = [
       const b = rnd(11, a - 5);
       return {
         ask: `${a} − ${b} = ?`,
-        speak: equalsWhat(minus(a, b)),
-        answer: String(a - b),
+                answer: String(a - b),
         hint: `Take away the tens first, then the ones.`,
       };
     },
@@ -481,7 +445,6 @@ const G2 = [
         const place = ['hundreds', 'tens', 'ones'][spot];
         return {
           ask: `In ${value}, what is the ${digit} worth?`,
-          speak: `In ${value}, what is the ${digit} worth?`,
           // The same digit read in each of the other two places.
           choices: options(worth, digit, digit * 10, digit * 100),
           answer: String(worth),
@@ -491,7 +454,6 @@ const G2 = [
       return {
         figure: blocksFig(value),
         ask: 'How many in all?',
-        speak: 'How many blocks in all?',
         answer: String(value),
         hint: 'Each big square is 100, each tall rod is 10.',
       };
@@ -514,7 +476,6 @@ const G2 = [
       return {
         figure: coinsFig(bag),
         ask: 'How many cents?',
-        speak: 'How many cents in all?',
         answer: String(total),
         hint: 'Count the big coins first, then add the small ones.',
       };
@@ -537,11 +498,9 @@ const G2 = [
       return {
         figure: clockFig(h, m),
         ask: 'What time is it?',
-        speak: 'What time is it?',
         choices: shuffle([right, ...wrong]),
         answer: right,
-        say: clockWords(h, m),
-        hint: 'Count the long hand round in fives.',
+                hint: 'Count the long hand round in fives.',
       };
     },
   },
@@ -556,7 +515,6 @@ const G2 = [
         return {
           figure: arrayFig(rows, cols),
           ask: 'How many counters?',
-          speak: 'How many counters altogether?',
           answer: String(rows * cols),
           hint: `There are ${rows} rows with ${cols} in each row.`,
         };
@@ -564,7 +522,6 @@ const G2 = [
       return {
         figure: arrayFig(rows, cols),
         ask: `${rows} rows of ${cols} = ?`,
-        speak: `${rows} rows of ${cols} equals what?`,
         answer: String(rows * cols),
         hint: `Add ${cols} to itself ${rows} times.`,
       };
@@ -584,8 +541,7 @@ const G3 = [
       const a = rnd(2, 10), b = rnd(2, 10);
       return {
         ask: `${a} × ${b} = ?`,
-        speak: equalsWhat(times(a, b)),
-        answer: String(a * b),
+                answer: String(a * b),
         hint: `${a} × ${b - 1} is ${a * (b - 1)}. One more group of ${a} gets you there.`,
       };
     },
@@ -600,8 +556,7 @@ const G3 = [
       const a = b * q;
       return {
         ask: `${a} ÷ ${b} = ?`,
-        speak: equalsWhat(over(a, b)),
-        answer: String(q),
+                answer: String(q),
         hint: `How many ${b}s make ${a}?`,
       };
     },
@@ -618,15 +573,13 @@ const G3 = [
         return {
           figure: fractionFig(k, n),
           ask: 'What fraction is shaded?',
-          speak: 'What fraction of the bar is shaded?',
           // Counting the unshaded parts, counting the parts either side of the
           // line, and counting the shaded parts against the whole bar. With a
           // bar half shaded the first of those *is* the answer, so options()
           // drops it.
           choices: options(`${k}/${n}`, `${n - k}/${n}`, `${k + 1}/${n}`, `${k}/${n + 1}`),
           answer: `${k}/${n}`,
-          say: fractionWords(k, n),
-          hint: `The bottom number is how many equal parts there are: ${n}.`,
+                    hint: `The bottom number is how many equal parts there are: ${n}.`,
         };
       }
       let n2 = pick([2, 3, 4, 5, 6, 8]), k2 = rnd(1, n2 - 1);
@@ -634,7 +587,6 @@ const G3 = [
       const bigger = k / n > k2 / n2 ? `${k}/${n}` : `${k2}/${n2}`;
       return {
         ask: `Which is bigger, ${k}/${n} or ${k2}/${n2}?`,
-        speak: `Which is bigger? ${fractionWords(k, n)}, or ${fractionWords(k2, n2)}?`,
         choices: shuffle([`${k}/${n}`, `${k2}/${n2}`]),
         answer: bigger,
         hint: 'Picture each one as a bar. Which bar has more shaded in?',
@@ -651,16 +603,14 @@ const G3 = [
         const a = rnd(120, 600), b = rnd(120, 380);
         return {
           ask: `${a} + ${b} = ?`,
-          speak: equalsWhat(plus(a, b)),
-          answer: String(a + b),
+                    answer: String(a + b),
           hint: 'Hundreds, then tens, then ones.',
         };
       }
       const a = rnd(300, 999), b = rnd(110, a - 50);
       return {
         ask: `${a} − ${b} = ?`,
-        speak: equalsWhat(minus(a, b)),
-        answer: String(a - b),
+                answer: String(a - b),
         hint: 'If the top digit is too small, borrow from next door.',
       };
     },
@@ -676,7 +626,6 @@ const G3 = [
         return {
           figure: rectFig(w, h),
           ask: 'What is the area?',
-          speak: `What is the area of a rectangle ${w} by ${h}?`,
           answer: String(w * h),
           hint: 'Area is the squares inside: length times width.',
         };
@@ -684,7 +633,6 @@ const G3 = [
       return {
         figure: rectFig(w, h),
         ask: 'What is the perimeter?',
-        speak: `What is the perimeter of a rectangle ${w} by ${h}?`,
         answer: String(2 * (w + h)),
         hint: 'Perimeter is the walk all the way round: add all four sides.',
       };
@@ -706,7 +654,6 @@ const G3 = [
         return {
           figure: lineFig(lo, lo + 10, v),
           ask: `Round ${v} to the nearest ten.`,
-          speak: `Round ${v} to the nearest ten.`,
           choices: options(answer, lo === answer ? lo + 10 : lo, v),
           answer: String(answer),
           hint: `Is ${v} closer to ${lo} or to ${lo + 10}?`,
@@ -719,7 +666,6 @@ const G3 = [
       return {
         figure: lineFig(lo, lo + 100, v),
         ask: `Round ${v} to the nearest hundred.`,
-        speak: `Round ${v} to the nearest hundred.`,
         choices: options(answer, lo === answer ? lo + 100 : lo, Math.round(v / 10) * 10),
         answer: String(answer),
         hint: `Is ${v} closer to ${lo} or to ${lo + 100}?`,
@@ -751,164 +697,164 @@ const GRADES = [
      together" before `5 + 3`.
    - **Worked with real numbers, not letters.** The last step is always a
      whole example finished, so he has seen one done before he is asked.
-   - `say` is only needed where the text has symbols in it, because the voice
-     reads `5 + 3` as "five three". Plain sentences say themselves. */
+   - **Everything is read, so it has to be readable.** Nothing on this page is
+     spoken; a step that only works said out loud does not work here. */
 
 const TEACH = {
   /* ---- Grade 1 ---- */
   add20: [
     { text: 'Adding means putting two groups together.', figure: countersFig(5, 3) },
     { text: 'Here are 5 and 3. Count them all. You get 8.',
-      say: 'Here are five and three. Count them all. You get eight.' },
+      },
     { text: 'There is a faster way. Start at 5, then count on 3.',
-      say: 'There is a faster way. Start at five, then count on three.', figure: hopsFig(5, 8) },
-    { text: '6, 7, 8. So 5 + 3 = 8.', say: 'Six, seven, eight. So five plus three equals eight.' },
+      figure: hopsFig(5, 8) },
+    { text: '6, 7, 8. So 5 + 3 = 8.', },
   ],
   sub20: [
     { text: 'Taking away means some of them go.', figure: countersFig(5, 4, { takeAway: true }) },
     { text: 'There were 9. Four are crossed out. 5 are left.',
-      say: 'There were nine. Four are crossed out. Five are left.' },
+      },
     { text: 'You can count back instead. Start at 9 and hop back 4.',
-      say: 'You can count back instead. Start at nine and hop back four.', figure: hopsFig(9, 5) },
-    { text: '8, 7, 6, 5. So 9 − 4 = 5.', say: 'Eight, seven, six, five. So nine minus four equals five.' },
+      figure: hopsFig(9, 5) },
+    { text: '8, 7, 6, 5. So 9 − 4 = 5.', },
   ],
   missing1: [
     { text: 'Sometimes one number is hidden.' },
     { text: '3 + ? = 7. Three, and how many more makes seven?',
-      say: 'Three plus something equals seven. Three, and how many more makes seven?' },
+      },
     { text: 'Start at 3 and count up to 7. Count the hops.',
-      say: 'Start at three and count up to seven. Count the hops.', figure: hopsFig(3, 7) },
-    { text: 'Four hops. So the hidden number is 4.', say: 'Four hops. So the hidden number is four.' },
+      figure: hopsFig(3, 7) },
+    { text: 'Four hops. So the hidden number is 4.', },
   ],
   tensones: [
     { text: 'Ten ones make one ten. This rod is ten.', figure: blocksFig(10) },
     { text: 'A tall rod is 10. A little block is 1.',
-      say: 'A tall rod is ten. A little block is one.', figure: blocksFig(23) },
-    { text: 'Two rods is 20. Three blocks is 3.', say: 'Two rods is twenty. Three blocks is three.' },
+      figure: blocksFig(23) },
+    { text: 'Two rods is 20. Three blocks is 3.', },
     { text: 'Twenty and three is 23. That is 2 tens and 3 ones.',
-      say: 'Twenty and three is twenty three. That is two tens and three ones.' },
+      },
   ],
   compare1: [
     { text: 'One number can be bigger, smaller, or the same.' },
     { text: 'The sign is a hungry mouth. It always opens to the bigger number.' },
     { text: '8 > 5. The mouth opens at the 8, so 8 is bigger.',
-      say: 'Eight is greater than five. The mouth opens at the eight, so eight is bigger.' },
+      },
     { text: '5 < 8 says the same thing the other way round.',
-      say: 'Five is less than eight says the same thing the other way round.' },
+      },
   ],
   clock1: [
     { text: 'A clock has a short hand and a long hand.', figure: clockFig(3, 0) },
     { text: 'The short hand tells the hour. It points at 3.',
-      say: 'The short hand tells the hour. It points at three.' },
+      },
     { text: 'The long hand points straight up. That means o’clock. It is 3:00.',
-      say: 'The long hand points straight up. That means o clock. It is three o clock.' },
+      },
     { text: 'When the long hand points straight down, it is half past.',
-      figure: clockFig(3, 30), say: 'When the long hand points straight down, it is half past. This is half past three.' },
+      figure: clockFig(3, 30), },
   ],
 
   /* ---- Grade 2 ---- */
   add100: [
     { text: 'Big numbers are easier in two parts. Tens first, then ones.' },
-    { text: 'Try 34 + 25.', say: 'Try thirty four plus twenty five.', figure: blocksFig(34) },
-    { text: 'Tens first. 30 and 20 makes 50.', say: 'Tens first. Thirty and twenty makes fifty.' },
+    { text: 'Try 34 + 25.', figure: blocksFig(34) },
+    { text: 'Tens first. 30 and 20 makes 50.', },
     { text: 'Now ones. 4 and 5 makes 9. So 50 and 9 is 59.',
-      say: 'Now ones. Four and five makes nine. So fifty and nine is fifty nine.' },
+      },
   ],
   sub100: [
     { text: 'Take away the tens first, then the ones.' },
-    { text: 'Try 57 − 23.', say: 'Try fifty seven minus twenty three.', figure: blocksFig(57) },
-    { text: 'Tens first. 50 take away 20 is 30.', say: 'Tens first. Fifty take away twenty is thirty.' },
+    { text: 'Try 57 − 23.', figure: blocksFig(57) },
+    { text: 'Tens first. 50 take away 20 is 30.', },
     { text: 'Now ones. 7 take away 3 is 4. So the answer is 34.',
-      say: 'Now ones. Seven take away three is four. So the answer is thirty four.' },
+      },
   ],
   place1000: [
     { text: 'Where a digit sits is what it is worth.', figure: blocksFig(243) },
     { text: 'This is 243. The big squares are hundreds.',
-      say: 'This is two hundred and forty three. The big squares are hundreds.' },
+      },
     { text: 'The 2 means 2 hundreds. That is worth 200.',
-      say: 'The two means two hundreds. That is worth two hundred.' },
+      },
     { text: 'The 4 means 4 tens, worth 40. The 3 means 3 ones, worth 3.',
-      say: 'The four means four tens, worth forty. The three means three ones, worth three.' },
+      },
   ],
   money: [
     { text: 'Coins are not all worth the same.',
       figure: coinsFig(['penny', 'nickel', 'dime', 'quarter']) },
     { text: 'A penny is 1. A nickel is 5. A dime is 10. A quarter is 25.',
-      say: 'A penny is one cent. A nickel is five. A dime is ten. A quarter is twenty five.' },
+      },
     { text: 'A dime is smaller than a nickel but worth more. Look at the number, not the size.' },
     { text: 'Start with the biggest coin: 25, then 35, then 40, then 41 cents.',
       figure: coinsFig(['quarter', 'dime', 'nickel', 'penny']),
-      say: 'Start with the biggest coin. Twenty five, then thirty five, then forty, then forty one cents.' },
+      },
   ],
   clock5: [
     { text: 'Every number on the clock is 5 minutes.',
-      say: 'Every number on the clock is five minutes.', figure: clockFig(2, 0) },
+      figure: clockFig(2, 0) },
     { text: 'Count round in fives: 5, 10, 15, 20.',
-      say: 'Count round in fives. Five, ten, fifteen, twenty.', figure: clockFig(2, 20) },
+      figure: clockFig(2, 20) },
     { text: 'The long hand is on the 4. Four fives is 20 minutes.',
-      say: 'The long hand is on the four. Four fives is twenty minutes.' },
+      },
     { text: 'The short hand is just past 2. So it is 2:20.',
-      say: 'The short hand is just past two. So it is two twenty.' },
+      },
   ],
   groups: [
     { text: 'Equal groups all hold the same number.', figure: arrayFig(3, 4) },
-    { text: 'Here are 3 rows. Each row has 4.', say: 'Here are three rows. Each row has four.' },
+    { text: 'Here are 3 rows. Each row has 4.', },
     { text: 'You could add: 4 and 4 and 4 makes 12.',
-      say: 'You could add. Four and four and four makes twelve.' },
+      },
     { text: 'Soon you will say it the short way: 3 times 4 is 12.',
-      say: 'Soon you will say it the short way. Three times four is twelve.' },
+      },
   ],
 
   /* ---- Grade 3 ---- */
   times: [
     { text: 'Times means lots of equal groups.', figure: arrayFig(4, 5) },
     { text: 'Here are 4 rows of 5. That is 4 × 5.',
-      say: 'Here are four rows of five. That is four times five.' },
-    { text: 'Count in fives: 5, 10, 15, 20.', say: 'Count in fives. Five, ten, fifteen, twenty.' },
+      },
+    { text: 'Count in fives: 5, 10, 15, 20.', },
     { text: 'So 4 × 5 = 20. And 5 × 4 is 20 too. It works both ways.',
-      say: 'So four times five equals twenty. And five times four is twenty too. It works both ways.' },
+      },
   ],
   divide: [
     { text: 'Dividing shares things out evenly.', figure: arrayFig(3, 4) },
     { text: 'Here are 12 counters shared into 3 rows.',
-      say: 'Here are twelve counters shared into three rows.' },
+      },
     { text: 'Each row got 4. So 12 ÷ 3 = 4.',
-      say: 'Each row got four. So twelve divided by three equals four.' },
+      },
     { text: 'Ask yourself: how many 3s make 12? That is the answer.',
-      say: 'Ask yourself, how many threes make twelve? That is the answer.' },
+      },
   ],
   fractions: [
     { text: 'A fraction is equal parts of one whole thing.', figure: fractionFig(0, 4) },
     { text: 'This bar is cut into 4 equal parts. The bottom number is 4.',
-      say: 'This bar is cut into four equal parts. The bottom number is four.' },
+      },
     { text: 'Shade one part. That is 1/4. The top number is how many are shaded.',
-      figure: fractionFig(1, 4), say: 'Shade one part. That is one quarter. The top number is how many are shaded.' },
+      figure: fractionFig(1, 4), },
     { text: 'More parts means each part is smaller. 1/8 is smaller than 1/4.',
-      figure: fractionFig(1, 8), say: 'More parts means each part is smaller. One eighth is smaller than one quarter.' },
+      figure: fractionFig(1, 8), },
   ],
   add1000: [
     { text: 'Three-digit numbers work just the same. Hundreds, tens, ones.' },
-    { text: 'Try 245 + 132.', say: 'Try two hundred and forty five plus one hundred and thirty two.' },
+    { text: 'Try 245 + 132.', },
     { text: 'Hundreds: 200 and 100 is 300. Tens: 40 and 30 is 70.',
-      say: 'Hundreds. Two hundred and one hundred is three hundred. Tens. Forty and thirty is seventy.' },
+      },
     { text: 'Ones: 5 and 2 is 7. Put them together: 377.',
-      say: 'Ones. Five and two is seven. Put them together. Three hundred and seventy seven.' },
+      },
   ],
   area: [
     { text: 'Area is the space inside a shape.', figure: rectFig(4, 3) },
     { text: 'Count the squares inside. 4 across and 3 down is 12 squares.',
-      say: 'Count the squares inside. Four across and three down is twelve squares.' },
+      },
     { text: 'Perimeter is different. It is the walk all the way round the edge.' },
     { text: 'Add all four sides: 4 and 3 and 4 and 3 is 14.',
-      say: 'Add all four sides. Four and three and four and three is fourteen.' },
+      },
   ],
   round: [
     { text: 'Rounding finds the closest ten.', figure: lineFig(20, 30, 23) },
     { text: '23 sits between 20 and 30. It is nearer to 20.',
-      say: 'Twenty three sits between twenty and thirty. It is nearer to twenty.' },
-    { text: 'So 23 rounds down to 20.', say: 'So twenty three rounds down to twenty.' },
+      },
+    { text: 'So 23 rounds down to 20.', },
     { text: 'If the last digit is 5 or more, go up. 27 rounds up to 30.',
-      figure: lineFig(20, 30, 27), say: 'If the last digit is five or more, go up. Twenty seven rounds up to thirty.' },
+      figure: lineFig(20, 30, 27), },
   ],
 };
 

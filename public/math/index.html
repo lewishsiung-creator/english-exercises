@@ -20,7 +20,6 @@
   <button class="bar-btn" id="backBtn" hidden aria-label="Go back">←</button>
   <h1 class="bar-title" id="barTitle">Number Lab</h1>
   <button class="bar-btn bar-btn-quiet" id="teacherBtn" aria-label="Grown-up panel">👨‍🏫</button>
-  <button class="bar-btn" id="soundBtn" aria-label="Turn sound off" aria-pressed="true">🔊</button>
 </header>
 
 <main id="main">
@@ -57,7 +56,6 @@
     <div class="q-card">
       <div class="fig-wrap" id="teachFig" aria-hidden="true"></div>
       <p class="teach-text" id="teachText" aria-live="polite"></p>
-      <button class="replay" id="teachReplay" aria-label="Say it again">🔊 Say it again</button>
     </div>
 
     <div class="teach-actions">
@@ -76,7 +74,6 @@
     <div class="q-card">
       <div class="fig-wrap" id="figWrap" aria-hidden="true"></div>
       <p class="ask" id="ask"></p>
-      <button class="replay" id="replayBtn" aria-label="Say it again">🔊 Say it again</button>
     </div>
 
     <div class="answer" id="answer"></div>
@@ -129,29 +126,6 @@
             <tbody></tbody>
           </table>
         </div>
-      </section>
-
-      <section class="block">
-        <h3>Voice</h3>
-        <label class="muted" for="voiceSelect">Best first for this device. Voices marked
-          <em>not recommended</em> are the joke ones macOS ships.</label>
-        <select id="voiceSelect"></select>
-        <div class="block-actions">
-          <button class="btn btn-small" id="voiceTest">Test voice</button>
-          <button class="btn btn-small" id="voiceReset">Use best</button>
-        </div>
-      </section>
-
-      <section class="block">
-        <h3>Speed</h3>
-        <label class="muted" for="rateRange">How fast everything is read.
-          <span id="rateLabel"></span></label>
-        <input type="range" id="rateRange" min="0.6" max="1.15" step="0.05" list="rateTicks">
-        <datalist id="rateTicks">
-          <option value="0.6" label="Slow"></option>
-          <option value="0.85" label="Normal"></option>
-          <option value="1.15" label="Fast"></option>
-        </datalist>
       </section>
 
       <section class="block">

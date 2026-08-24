@@ -265,11 +265,11 @@ grade levels, for a child in Grade 1 working up through Grade 3.
 
 - **Every topic can teach itself first.** Tapping a topic offers **Show me
   how** or **Just practise**. The explanation is three or four steps, one idea
-  each, spoken aloud and shown with a picture — counters being pushed
-  together, hops along a number line, blocks, coins, a shaded bar — and ends
-  with one whole example worked through, so he has seen one done before he is
-  asked. It is skippable at any step and never forced, because the tenth run
-  at times tables should not start with a lesson.
+  each, carried by a picture — counters being pushed together, hops along a
+  number line, blocks, coins, a shaded bar — and ends with one whole example
+  worked through, so he has seen one done before he is asked. It is skippable
+  at any step and never forced, because the tenth run at times tables should
+  not start with a lesson.
 - **The explanations are written for a Grade 1 reader at every grade.** The
   maths gets harder up the levels; the English does not. He is six and reading
   them himself.
@@ -277,11 +277,15 @@ grade levels, for a child in Grade 1 working up through Grade 3.
   `content.js` that builds a fresh question every time, so the bank never runs
   out and nothing can be learned by position. Difficulty lives in the numbers
   inside that one function and nowhere else.
-- **Same house rules as Word Play and Sound Lab.** Every prompt is spoken and
-  replayable, there are no timers, and there is no failure state — a wrong
-  answer wobbles and invites another go, only a correct one advances. After
-  two wrong tries the topic's hint appears and is read aloud; it points at the
-  method (*"Start at 24 and count on 8"*), never at the answer.
+- **Nothing is spoken.** This page is silent by choice, which is the one
+  house rule for young learners it does not follow: audio-first exists so a
+  child who cannot yet read is not blocked before the maths starts. The
+  trade is deliberate — every prompt has to carry itself in print, and a
+  drawing does the work a spoken hint would have done.
+- **The rest of the house rules hold.** No timers, and no failure state — a
+  wrong answer wobbles and invites another go, only a correct one advances.
+  After two wrong tries the topic's hint appears; it points at the method
+  (*"Start at 24 and count on 8"*), never at the answer.
 - **A wrong option dims rather than vanishes**, so he can see what he has
   already ruled out and nothing is taken away as a punishment.
 - **Half the topics are tapped, half are typed** on a number pad — the pad
@@ -295,51 +299,6 @@ grade levels, for a child in Grade 1 working up through Grade 3.
   number lines are all SVG built in `content.js`, in the page's own palette.
 - **English only**, unlike the rest of the site: he is in an American school,
   and the vocabulary in the prompts is the vocabulary his teacher uses.
-
-### Voice
-
-Every prompt, hint and explanation is spoken, so the voice is not a detail.
-This page uses the ranking approach the handbook arrived at, with the same
-reasoning and two findings of its own.
-
-- **Voices are ranked, not wished for.** The en-US list this Mac reports is
-  alphabetical and begins *Albert, Ava, Bad News, Bahh, Bells, Boing,
-  Bubbles* — so "take the first American voice" is one missing download away
-  from teaching maths in Albert. `VOICE_TIERS` puts the young American female
-  voices this page was asked for first, then neural, then Apple's
-  recorded-speaker voices, then character and regional ones; the novelty shelf
-  is excluded from automatic choice and labelled *not recommended* in the
-  picker.
-- **American beats the tiers.** Several voices ship in a British and an
-  American cut under one name, and on a page built around an American
-  classroom the wrong Flo is worse than the right Ava, so locale outranks
-  everything except novelty.
-- **A voice name cannot be matched literally.** macOS localises it and does
-  not agree with itself about how: `Flo (英文（美國）)` uses a Latin
-  parenthesis after a space, `Ava（增強音質）` a fullwidth one with none.
-  Matching the raw name missed the enhanced Ava completely — the best voice
-  installed on this machine was unreachable. Names are compared with the
-  parenthetical stripped, and an enhanced download is preferred over the
-  standard cut of the same speaker.
-- **Chrome drops an utterance queued in the same tick as `cancel()`**, which
-  presents as a tap that makes no sound. Every utterance is deferred 70ms.
-- **Pitch is flat and speed is a setting.** A raised pitch reading numbers for
-  a whole session is wearing rather than friendly. Speed lives in the panel
-  and is saved, because a six-year-old meeting a topic and a grown-up
-  re-reading a hint do not want the same pace.
-- **The operator is silent, so every question carries its own spoken line.**
-  Measured with the repo's `say` test, `24 + 8` and `24 8` synthesise the
-  same: the `+` contributes nothing. `speak` is therefore written out in
-  words and never derived from what is on screen. The same test showed digits
-  and clock times are read correctly — `2 20` is byte-identical to *two
-  twenty* — so those need no special handling.
-- **Fractions are named, not spelled.** `3/4` is read as "three fourths" at
-  best, so a fraction that is spoken is written out: he sees `2/3` and hears
-  *two thirds*.
-- **Nothing waits on a fixed timer that speech could outlive.** A correct
-  answer moves on when the voice finishes, with a backstop — cancelling an
-  utterance takes its `end` event with it, and tapping *Say it again* while
-  the answer was being read used to strand the round for good.
 
 Records live under `math.*` in `localStorage`, separate from the English
 pages, and the 👨‍🏫 panel groups misses by topic rather than by question —
@@ -391,9 +350,9 @@ the vocabulary was learnt in order to answer.
   robots* and *soybean milk* were both corrected in class; the page keeps the
   first version on screen and makes you ask for the second, because noticing
   what is odd about a sentence is the exercise.
-- **Voices are ranked, not wished for** — the same ranking as Number Lab, minus
-  its preference for a young voice: a clear adult American voice suits a
-  twelve-year-old better than the one the seven-year-olds get.
+- **Voices are ranked, not wished for** — the same ranking as the phonics
+  handbook, minus a preference for a young voice: a clear adult American voice
+  suits a twelve-year-old better than the one the seven-year-olds get.
 - **Nothing is scored and nothing is saved.** Only the voice, the speed and the
   Chinese setting persist, under `ct.*` in `localStorage`. **Print** gives the
   notes back: everything open, the machinery gone.
@@ -1792,12 +1751,10 @@ in [`public/math/content.js`](public/math/content.js) that builds a question
 each time it is called, and the numbers inside that one function are the
 difficulty. Widening Grade 1's addition to twenty-five is one `rnd(1, 9)`.
 
-A question is `{ ask, speak, figure, answer, choices, hint }`. `speak` is
-compulsory and separate from `ask`, because the browser voice reads `24 + 8`
-as "twenty four eight" — the operator is silent, so it has to be written out.
-Leave `choices` off and the number pad is used instead; the answer must then
-be something the pad can type. `hint` appears only after two wrong tries and
-should point at the method, not the answer. The drawings — clocks, blocks,
+A question is `{ ask, figure, answer, choices, hint }`. Leave `choices` off
+and the number pad is used instead; the answer must then be something the pad
+can type. `hint` appears only after two wrong tries and should point at the
+method, not the answer. The drawings — clocks, blocks,
 arrays, fraction bars, coins, grid rectangles, number lines — are functions in
 the same file; each returns an SVG string sized in its own units, and `svg()`
 puts the width and height on it, without which it collapses to nothing.
@@ -1805,10 +1762,10 @@ puts the width and height on it, without which it collapses to nothing.
 The explanations are separate, in the `TEACH` block at the foot of the same
 file — one array per topic id, hung onto the topics at the end so a generator
 stays one job and the explanations can be read together, in order, as a
-course. A step is `{ text, figure, say }`, and `say` is only needed when the
-text has a symbol in it, for the same reason. The rules a new one should
-follow are written above the block; the important one is that the reading
-level stays at Grade 1 even where the maths does not.
+course. A step is `{ text, figure }`. The rules a new one should follow are written
+above the block; the important one is that the reading level stays at Grade 1
+even where the maths does not — nothing is read aloud, so a step that only
+works said out loud does not work here.
 
 Adding a topic is one object in `G1`, `G2` or `G3` plus its `TEACH` entry; the
 grade screens build themselves from those arrays, and a topic with no
