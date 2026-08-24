@@ -304,8 +304,8 @@ const BLOCKS = {
               <p class="zh">${text(i.descZh)}</p>
             </div>
             <div class="role-btns" role="group">
-              <button class="chip" data-v="have">I have this<em>我有這樣的人</em></button>
-              <button class="chip" data-v="need">I need this<em>我需要一位</em></button>
+              <button class="chip" data-v="have">I have this</button>
+              <button class="chip" data-v="need">I need this</button>
             </div>
           </li>`).join('')}
       </ul>
