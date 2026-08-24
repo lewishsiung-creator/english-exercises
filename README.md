@@ -24,14 +24,15 @@ and, for 國中 students, vocabulary and grammar together at `/junior-high/`.
 One page is not English at all: `/math/` is math practice for Grades 1 to 3,
 built for a child in an American school.
 
-Eight more pages are not lessons. `/landscape-portfolio/` is a portfolio
+Nine more pages are not lessons. `/landscape-portfolio/` is a portfolio
 template for a student to fill in with their own work, and `/anny/`, `/aaron/`,
-`/anita/`, `/eason/`, `/anna/`, `/riva-rex/` and `/jill/` are notebooks kept for
-one student each, which grow by one session after every lesson rather than being
-finished and left alone. The first three are adult clients; `/eason/` is a
-teenager moving up to senior high school; `/anna/` is a young adult of eighteen
-to twenty; `/riva-rex/` is a pair of ten-to-twelve-year-olds taught together,
-and `/jill/` is one child of the same age taught alone.
+`/anita/`, `/nikky/`, `/eason/`, `/anna/`, `/riva-rex/` and `/jill/` are
+notebooks kept for one student each, which grow by one session after every
+lesson rather than being finished and left alone. The first four are adult
+clients; `/eason/` is a teenager moving up to senior high school; `/anna/` is a
+young adult of eighteen to twenty; `/riva-rex/` is a pair of
+ten-to-twelve-year-olds taught together, and `/jill/` is one child of the same
+age taught alone.
 
 ## Word Play — CEFR A1, ages 7–10
 
@@ -1619,6 +1620,41 @@ given in the file: the source is a handout written *before* the lesson, so it
 holds no record of anything Anna said. A transcript would fill it.
 
 
+## Nikky's Notebook — adult, one-to-one, kept over time
+
+The eighth notebook, copied from
+[Aaron's](#aarons-notebook--adult-one-to-one-kept-over-time) — so it starts with
+the optional contrast labels and the `link` block already in place — with the
+`nikky.` localStorage prefix so no notebook shares a voice or a Chinese setting
+with another. Everything in the design notes above applies here too. Nikky is an
+adult client, the same register as Anny's and Aaron's: a manager with a career
+under way, discussing her own working week in English.
+
+**The scroll fix is in from the start**, the same pair of changes
+[Jill's](#the-page-does-not-scroll-itself) and Anna's carry: `keepLinkVisible()`
+in place of `a.scrollIntoView({ block: 'nearest' })` in `markHere`, and no
+`scroll-behavior: smooth` on the root. It is worth copying forward into every
+new notebook rather than inheriting the bug along with the renderer.
+
+Session 1 (18 August 2026) is her second week in a new company: a team she has
+just inherited, a previous manager who handled the biggest key account herself
+and left with the knowledge, an Excel-and-email workflow where the last one ran
+on SAP and Power BI, and a laptop that still has no SAP on it. The hour
+converged on an order of operations — understand it, write it down, spread it
+across the team, and only then automate it — which is where the session title
+comes from. It carries twenty-four expressions, a six-item `cards` audit of the
+team's foundations, six gap-fills, and the 90-day question as homework.
+
+**The `fix` block is the reason this page exists**, and it is sourced
+carefully. The session was recorded and the captions are automatic, so the
+block holds only the lines that were clearly transcribed. Where the captions
+were plainly garbled — SAP as "SEP", SOP as "SLP", Claude Code as "Cloud
+Code" — nothing was reconstructed from memory, and the rule is written into the
+header comment of [`public/nikky/content.js`](public/nikky/content.js). The ten
+sentences that survived that filter are real ones, which is the whole value of
+the block.
+
+
 ## Layout
 
 ```
@@ -1646,6 +1682,7 @@ public/anny/              Anny's notebook — one entry per discussion
 public/aaron/             Aaron's notebook — same machinery, its own sessions
 public/aaron/book-club/   the four-book discussion guide, under that notebook
 public/anita/             Anita's notebook — same machinery again, two sessions
+public/nikky/             Nikky's notebook — the same, with the scroll fix in
 public/eason/             Eason's notebook — the same, for a teenager
 public/anna/              Anna's notebook — the same again, for a young adult
 public/jill/              Jill's notebook — one entry per weekly lesson
@@ -1660,7 +1697,7 @@ make-icon.py              regenerates public/apple-touch-icon.png
 tools/                    the scripts that turn a 講義 PDF into either of those
 ```
 
-All twenty-three are plain HTML, CSS and JS with no build step.
+All twenty-four are plain HTML, CSS and JS with no build step.
 
 Every page ends with the same `<footer class="site-foot">` linking to
 <https://lewistoeic.com>, so a reader who lands on any one sheet can find the
@@ -2428,8 +2465,9 @@ Everything under `public/` is reachable at both URLs on the next push. Nothing
 here is behind a login, and no page is linked from the site root unless it is
 listed there, so an unlisted page is unlisted rather than private. Pages built
 around a named client or student, or from a client's own internal document —
-`/business-clarity/`, `/anny/`, `/aaron/`, `/anita/`, `/eason/`, `/anna/`,
-`/riva-rex/`, `/riva-rex-practice/`, `/jill/` and `/fab-english/` — carry
+`/business-clarity/`, `/anny/`, `/aaron/`, `/anita/`, `/nikky/`, `/eason/`,
+`/anna/`, `/riva-rex/`, `/riva-rex-practice/`, `/jill/` and `/fab-english/` —
+carry
 `noindex, nofollow`, which keeps them out of search results; it does not make
 the URL secret. Anything that must not be publishable should not go in
 `public/` at all.
