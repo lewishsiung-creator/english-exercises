@@ -686,7 +686,7 @@ that move are a glossary card, a list of useful language, and the Chinese.
 
 Reading practice built on a bilingual speech: the candidate's own five-minute
 address for the 52nd President of JCI The Port, 62 sentences long, followed by
-the nineteen questions from the election floor. The text is reproduced as
+the twenty-four questions from the election floor. The text is reproduced as
 written — this page is practice, not an edit of his words.
 
 The two jobs the page does are a switch in the top bar:
@@ -724,22 +724,27 @@ The two jobs the page does are a switch in the top bar:
 
 ### The Q&A
 
-Nineteen questions, each a card: the question, then the answer as ordinary
-practice lines. Ten are answered — 42 lines in all; **nine are still to be
-written** and say so on the card, so the section doubles as his to-do list.
+Twenty-four questions, each a card: the question, then the answer as ordinary
+practice lines — 81 lines in all. Every question and every answer is bilingual,
+and none are outstanding.
 
 - **The question is context, not practice.** It is asked *to* him, so it stays
   bilingual in both modes. Only the answer beneath it hides a language.
 - **Each answer has its own ▶**, and the Q&A section has no section-wide one:
-  ten answers back to back is not a unit anyone needs to hear. The run is
+  two dozen answers back to back is not a unit anyone needs to hear. The run is
   scoped to the nearest container holding lines, so one button drives both.
-- **A contents list opens the section**, two columns, with the nine unanswered
-  questions dimmed and struck through. The sidebar keeps one entry for the
-  whole section — nineteen more would bury the speech.
-- The English is a free adaptation of the Chinese rather than a translation,
-  so a few lines pair one Chinese paragraph with two English sentences. Three
-  English sentences have no Chinese counterpart at all and are carried on the
-  end of the neighbouring line.
+- **`**Stars**` mark the phrase to land on** and render as bold — 85 of them,
+  in both languages. They are stripped from anything spoken, so 🔊 and ▶ never
+  read the markers out.
+- **A contents list opens the section**, two columns. The sidebar keeps one
+  entry for the whole section — twenty-four more would bury the speech.
+- **`pending: 1` still works** even though nothing uses it: a question can be
+  added before its answer exists, and it renders with a 「回答待補」note and is
+  struck through in the contents list.
+- The English is a free adaptation of the Chinese rather than a translation, so
+  the two do not break into paragraphs the same way. Fifteen of the twenty-four
+  needed hand-alignment — usually an English summary sentence that the Chinese
+  folds into the following paragraph.
 
 ## TOEIC Part 5 & 6 Grammar — adult, exam preparation
 
@@ -1860,12 +1865,12 @@ renderer, so inserting a sentence needs no renumbering. Any other bilingual
 text works here unchanged — swap the content file and the page is reading
 practice for that instead.
 
-**Answering the nine open questions.** A `qa` block with `pending: 1` renders
-the question and a "回答待補" note. To fill one in, delete `pending: 1` and add
-an `items` array of `en`/`zh` pairs — one per paragraph of the answer. Nothing
-else changes: the index stops striking it through, the ▶ appears, and the
-lines join both practice modes. A section takes `noPlay: 1` to suppress its
-section-wide ▶, and a `lead` for the italic standfirst under its heading.
+**Adding a question.** A `qa` block wants `n`, a bilingual title, `qEn`/`qZh`
+arrays for the question, and an `items` array of `en`/`zh` pairs — one per
+paragraph of the answer. Wrap a phrase in `**stars**` to bold it; the stars
+never reach the speech synthesiser. If the answer does not exist yet, give the
+block `pending: 1` and omit `items`. A section takes `noPlay: 1` to suppress
+its section-wide ▶, and a `lead` for the italic standfirst under its heading.
 
 **TOEIC Grammar.** The page lives in
 [`public/toeic-grammar/content.js`](public/toeic-grammar/content.js), one entry

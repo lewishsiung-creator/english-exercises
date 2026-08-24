@@ -37,8 +37,19 @@ function el(html) {
   return t.content.firstElementChild;
 }
 
+/* The Q&A marks the phrase to land on with **stars**. `rich` turns them into
+   <strong> after escaping, so the markup can never come from the content; and
+   `plain` strips them for anything spoken, so the stars are never read out. */
+function rich(s) {
+  return text(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+}
+
+function plain(s) {
+  return String(s).replace(/\*\*/g, '');
+}
+
 function speakBtn(sentence, cls = 'say') {
-  return `<button class="${cls}" data-say="${attr(sentence)}" title="Listen"
+  return `<button class="${cls}" data-say="${attr(plain(sentence))}" title="Listen"
     aria-label="Listen">🔊</button>`;
 }
 
@@ -59,11 +70,11 @@ function playBtn(en, zh, cls = 'play') {
    switching mode never rebuilds anything or loses your place. */
 function line(item, n) {
   return `
-    <li class="line${item.k ? ' key' : ''}" data-en="${attr(item.en)}">
+    <li class="line${item.k ? ' key' : ''}" data-en="${attr(plain(item.en))}">
       <span class="line-n">${n}</span>
       <div class="line-body">
-        <p class="en">${text(item.en)}</p>
-        <p class="zh">${text(item.zh)}</p>
+        <p class="en">${rich(item.en)}</p>
+        <p class="zh">${rich(item.zh)}</p>
       </div>
       <div class="line-btns">
         ${speakBtn(item.en)}
@@ -120,8 +131,8 @@ const BLOCKS = {
         <div class="qa-q">
           <p class="qa-label">Question <span>問題</span>
             ${speakBtn(b.qEn.join(' '), 'say say-quiet')}</p>
-          ${b.qEn.map((p) => `<p class="en">${text(p)}</p>`).join('')}
-          ${b.qZh.map((p) => `<p class="zh">${text(p)}</p>`).join('')}
+          ${b.qEn.map((p) => `<p class="en">${rich(p)}</p>`).join('')}
+          ${b.qZh.map((p) => `<p class="zh">${rich(p)}</p>`).join('')}
         </div>
         ${b.pending ? `
           <p class="qa-todo">Answer still to be written <span>回答待補</span></p>

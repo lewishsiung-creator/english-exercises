@@ -623,6 +623,11 @@ body:not(.mode-recall).zh-all .peek { display: none; }
   margin-left: 5px;
 }
 
+/* **Stars** in the source become this: the phrase to land on when the answer
+   is said aloud. It has to stay legible where the surrounding text is
+   deliberately softened — the answer in 記 Recall, and the Chinese anywhere. */
+.line-body strong, .qa-q strong { font-weight: 700; color: var(--ink); }
+
 .qa-a { margin-top: 16px; }
 .qa-a .qa-label { color: var(--gold); }
 .play-a { margin-bottom: 12px; }
