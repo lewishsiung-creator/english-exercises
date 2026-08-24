@@ -217,8 +217,8 @@ function buildSection(s) {
       </h2>
       ${s.lead ? `
         <div class="sec-lead">
-          <p class="en">${text(s.lead.en)}</p>
-          <p class="zh">${text(s.lead.zh)}</p>
+          <p class="en">${rich(s.lead.en)}</p>
+          <p class="zh">${rich(s.lead.zh)}</p>
         </div>` : ''}
       ${s.noPlay ? '' : playBtn('Read this section', '整段朗讀')}
       ${qas.length ? qaIndex(qas) : ''}

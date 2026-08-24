@@ -487,7 +487,7 @@ const SPEECH = {
       noPlay: 1,
       lead: {
         en: 'Twenty-four questions from the election floor. The question is given in both languages — it is asked to him, so it is context, not practice. The answer below it works exactly like the speech: read it aloud in 讀, produce it from the Chinese in 記. Bold marks the phrase to land on.',
-        zh: '選舉現場的二十四道題目。問題本身中英並陳。下方的回答則與講稿相同：在「讀」朗讀，在「記」由中文回想英文。粗體是該強調的關鍵句。',
+        zh: '選舉現場的二十四道題目。問題本身中英並陳。下方的回答則與講稿相同：在「讀」朗讀，在「記」由中文回想英文。**粗體是該強調的關鍵句。**',
       },
       blocks: [
         {
