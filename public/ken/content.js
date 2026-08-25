@@ -162,7 +162,7 @@ const NOTEBOOK = {
         {
           t: 'summary',
           en: 'The content of what you said was good, and it is worth saying so before we look at any of the English. You noticed a change in yourself early in the year, you decided to do something about it, you kept it up for two months, and you can now describe the result. That is a complete story with a beginning, a middle and an end — which is exactly what an examiner, an interviewer or a new friend is listening for. Everything below is about making the English carry that story as clearly as you told it.',
-          zh: '你說的內容很好，這一點值得在談任何英文之前先說清楚。你在年初察覺自己的改變，決定採取行動，持續了兩個月，現在能夠描述結果。這是一個有開頭、中間與結尾的完整故事——而這正是考官、面試官，或一個剛認識的朋友在聽的東西。以下所有的內容，都只是為了讓英文把這個故事講得跟你當時一樣清楚。',
+          zh: '你說的內容很好，這一點值得在談任何英文之前先說清楚。你在年初察覺自己的改變，決定採取行動，持續了兩個月，現在能夠描述結果。這是一個有開頭、有轉折、有結尾的完整故事——而考官、面試官，或一個剛認識的朋友，想聽的就是這個。接下來的內容，都只是為了讓你的英文，把這個故事說得跟你當時一樣清楚。',
         },
 
         {
@@ -189,13 +189,13 @@ const NOTEBOOK = {
               wrong: 'And workout becomes a life habit for me.',
               right: 'Working out has become a daily habit for me.',
               whyEn: 'Three separate repairs in one short sentence, and they are all worth having. “Workout” is a noun for one session at the gym, so it cannot be the subject here — the -ing form “working out” can. “Life habit” is not something English says; “a daily habit” is. And because this started earlier and is still true, the present perfect “has become” fits better than “becomes”.',
-              whyZh: '這麼短的一句裡有三個修正，而且每一個都值得記住。workout 是名詞，指「一次的健身」，不能當這裡的主詞，動名詞 working out 才可以。life habit 這個搭配英文不說，要說 a daily habit。另外，這件事從以前開始、到現在仍然成立，所以用現在完成式 has become 比 becomes 更合適。',
+              whyZh: '這麼短的一句裡有三個修正，而且每一個都值得記住。workout 是名詞，指「一次的健身」，不能當這裡的主詞，動名詞 working out 才可以。英文沒有 life habit 這種搭配，要說 a daily habit。另外，這件事從以前開始、到現在仍然成立，所以用現在完成式 has become 比 becomes 更合適。',
             },
             {
               wrong: 'A daily habit for me. Just like drinking water.',
               right: 'It has become a daily habit for me, just like drinking water.',
               whyEn: 'The comparison is a lovely one — keep it. But “Just like drinking water” has no subject and no verb, so on its own it is a fragment. Join it to the sentence it belongs to with a comma and it becomes the ending of the thought rather than a piece that fell off it.',
-              whyZh: '這個比喻很好，一定要留著。但「Just like drinking water」沒有主詞也沒有動詞，單獨存在就是一個不完整的片段。用逗號把它接回它原本所屬的那句話，它就會變成整個想法的收尾，而不是掉下來的碎片。',
+              whyZh: '這個比喻很好，一定要留著。但「Just like drinking water」沒有主詞也沒有動詞，單獨存在就是一個不完整的片段。用逗號把它接回它原本所屬的那句話，它就會變成整個想法的收尾，而不是掉在外面的一小段。',
             },
             {
               wrong: 'The second goal, it’s about Toeic exam.',
@@ -207,13 +207,13 @@ const NOTEBOOK = {
               wrong: 'I feel really fulfilled these two months.',
               right: 'I feel really fulfilled after these two months.',
               whyEn: '“Fulfilled” is how you feel now, looking back, so the two months need a preposition that puts them behind you: after these two months. Without it, the sentence reads as though the feeling ran through the whole period, which is a different claim — and a less interesting one.',
-              whyZh: 'fulfilled 是你「現在回頭看」的感受，所以這兩個月需要一個把它放在你身後的介系詞：after these two months。少了它，句子聽起來像是這種感覺貫穿了整段時間，那是另一個意思——而且比較不有趣。',
+              whyZh: 'fulfilled 是你「現在回頭看」的感受，所以這兩個月需要一個把它放在你身後的介系詞：after these two months。少了它，句子聽起來像是這種感覺貫穿了整段時間，那是另一個意思——而且沒那麼有意思。',
             },
             {
               wrong: 'I want to keep maintaining my habits.',
               right: 'I want to keep maintaining these habits.',
               whyEn: 'A small word doing real work. “My habits” could mean any habit you have ever had, including the ones you would rather not mention. “These habits” points back at the two you have just described — the gym and the studying — and that is what you meant.',
-              whyZh: '一個小字在做真正的工作。my habits 可以指你所有的習慣，包括你不太想提的那些。these habits 則指回你剛剛描述的那兩個——健身和讀書——那才是你的本意。',
+              whyZh: '一個小小的字，做的卻是關鍵的事。my habits 可以指你所有的習慣，包括你不太想提的那些。these habits 則指回你剛剛描述的那兩個——健身和讀書——那才是你的本意。',
             },
           ],
         },
@@ -294,8 +294,8 @@ const NOTEBOOK = {
           t: 'contrast',
           en: 'What the rewrite still got wrong',
           zh: '改寫版本仍然沒改好的地方',
-          hintEn: 'You ran your talk through ChatGPT, and it repaired several things properly. It also left several things alone that a native speaker would change. These are its sentences, not yours — but they are worth reading, because the errors it leaves behind are the ones people stop noticing.',
-          hintZh: '你把這段話丟給 ChatGPT 改過，它確實修好了幾個地方，但也放過了幾個母語者一定會改的地方。以下是它的句子，不是你的——但值得看，因為它留下來的錯誤，正是大家漸漸不再注意到的那一種。',
+          hintEn: 'You ran your talk through ChatGPT, and it repaired several things properly. It also left several things alone that a native speaker would change. These are its sentences, not yours — but they are worth reading, because the errors it leaves behind are the ones people stop noticing. The Chinese is almost identical on both sides, and that is the point: what is wrong is not the meaning, it is the English.',
+          hintZh: '你把這段話丟給 ChatGPT 改過，它確實修好了幾個地方，但也放過了幾個母語者一定會改的地方。以下是它的句子，不是你的——但值得看，因為它留下來的錯誤，正是大家漸漸不再注意到的那一種。兩邊的中文幾乎一模一樣，那正是重點：錯的不是意思，而是英文的形式。',
           coldEn: 'The rewrite',
           coldZh: '改寫版',
           warmEn: 'Natural English',
@@ -354,21 +354,21 @@ const NOTEBOOK = {
         {
           t: 'summary',
           en: 'Today, I’d like to share the goals I set for myself this summer and reflect on the progress I have made. At the beginning of the summer, I had two main goals: to improve my physical condition and to prepare for the TOEIC exam. Earlier this year, I noticed that I had become thinner, so I decided to start working out regularly in order to become stronger and healthier. What surprised me most was how much my body changed in just two months. Exercise gradually became part of my daily routine, and now working out feels as natural to me as drinking water.',
-          zh: '今天我想分享我這個暑假替自己設下的目標，並回顧我所取得的進步。暑假一開始，我有兩個主要目標：改善身體狀況，以及準備多益考試。今年稍早，我注意到自己變瘦了，所以我決定開始規律健身，好讓自己變得更強壯、更健康。最讓我驚訝的是，我的身體在短短兩個月內改變了這麼多。運動逐漸成為我日常作息的一部分，現在健身對我來說，就像喝水一樣自然。',
+          zh: '今天我想分享我這個暑假替自己設下的目標，並回顧這段時間的進步。暑假一開始，我有兩個主要目標：改善身體狀況，以及準備多益考試。今年年初，我注意到自己變瘦了，所以我決定開始規律健身，好讓自己變得更強壯、更健康。最讓我驚訝的是，我的身體在短短兩個月內改變了這麼多。運動逐漸成為我日常作息的一部分，現在健身對我來說，就像喝水一樣自然。',
         },
 
         {
           t: 'summary',
           en: 'My second goal was to prepare for the TOEIC exam. Since it was my first time taking the test, I felt quite nervous because I was unfamiliar with the format, rules, and overall process. However, once the exam started, I gradually became more focused and was able to complete most of the questions within the two-hour time limit. Looking back, I feel that these two months have been both productive and rewarding. Although I did not have any major travel plans or special activities, I spent my time developing healthier habits, challenging myself, and making steady progress. This experience has taught me that meaningful improvement does not always require dramatic changes; sometimes, small but consistent efforts can make a significant difference.',
-          zh: '我的第二個目標是準備多益考試。因為這是我第一次參加這個考試，我感到相當緊張，因為我對它的題型、規則和整體流程都不熟悉。不過，考試一開始之後，我逐漸變得更專注，並且能在兩個小時的時間限制內完成大部分的題目。回頭看，我覺得這兩個月既充實又有收穫。雖然我沒有什麼重要的旅行計畫或特別的活動，但我把時間花在養成更健康的習慣、挑戰自己，以及穩定地進步上。這次經驗讓我明白：有意義的進步並不總是需要巨大的改變；有時候，小而持續的努力就能帶來顯著的不同。',
+          zh: '我的第二個目標是準備多益考試。因為這是我第一次參加這個考試，我感到相當緊張——它的題型、規則和整體流程，我都不熟悉。不過，考試一開始之後，我逐漸變得更專注，並且能在兩個小時的時間限制內完成大部分的題目。回頭看，我覺得這兩個月既充實又有收穫。雖然我沒有什麼重要的旅行計畫或特別的活動，但我把時間花在養成更健康的習慣、挑戰自己，以及穩定地進步上。這次經驗讓我明白：有意義的進步並不總是需要巨大的改變；有時候，小而持續的努力就能帶來顯著的不同。',
         },
 
         {
           t: 'note',
           en: 'What this version does that yours did not',
-          zh: '這個版本做到了什麼，是你原本沒做到的',
+          zh: '這個版本做到了哪些你原本沒做到的事',
           bodyEn: 'It is not more difficult English — read it again and you will see there is almost no vocabulary in it you did not already know. What it does is signpost. It announces the structure in the first sentence (“the goals I set… and the progress I have made”), it numbers the goals, it marks the turn with “However”, and it closes by saying what the experience taught. Those signposts are what make a two-minute answer sound organised rather than remembered.',
-          bodyZh: '它並不是比較難的英文——再讀一次你會發現，裡面幾乎沒有你不認識的單字。它做到的是「指路」。它在第一句就宣告了結構（the goals I set… and the progress I have made），把目標編號，用 However 標示轉折，最後說出這段經驗教會了他什麼。正是這些路標，讓一段兩分鐘的回答聽起來是有組織的，而不是背出來的。',
+          bodyZh: '它並不是比較難的英文——再讀一次你會發現，裡面幾乎沒有你不認識的單字。它做到的是「指路」。它在第一句就宣告了結構（the goals I set… and the progress I have made），把目標編號，用 However 標示轉折，最後說出這段經驗帶給他什麼體會。正是這些路標，讓一段兩分鐘的回答聽起來是有組織的，而不是背出來的。',
         },
 
         {
@@ -449,7 +449,7 @@ const NOTEBOOK = {
               answer: 1,
               why: {
                 en: 'It is a concession: you name the thing your listener might hold against you, then turn it into your argument. “Although X, I still Y” is one of the most useful shapes in spoken English precisely because it sounds like honesty rather than defence.',
-                zh: '這是一種「讓步」：先講出聽者可能拿來質疑你的那一點，再把它翻轉成你的論點。「Although X, I still Y」是英語口說裡最好用的句型之一，正是因為它聽起來像誠實，而不像辯解。',
+                zh: '這是一種「讓步」：先講出聽者可能拿來質疑你的那一點，再把它翻轉成你的論點。「Although X, I still Y」是英語口說裡最好用的句型之一，正是因為它聽起來是坦白，而不是辯解。',
               },
             },
             {
@@ -463,7 +463,7 @@ const NOTEBOOK = {
               answer: 1,
               why: {
                 en: 'The first closes the door, and the third swaps your own experience for a slogan anyone could say. The second earns its place because it does what the paragraph has been doing all along — it stays specific to you and it looks forward, which gives the listener something to ask about.',
-                zh: '第一句把門關上了，第三句則把你自己的經驗換成了一句誰都能說的口號。第二句之所以成立，是因為它延續了整段一直在做的事——保持具體、屬於你，而且往前看，這會給聽的人一個可以追問的東西。',
+                zh: '第一句把門關上了，第三句則把你自己的經驗換成了一句誰都能說的口號。第二句之所以成立，是因為它延續了整段一直在做的事——內容具體、只有你講得出來，而且是往前看的，這會給聽的人一個可以追問的東西。',
               },
             },
           ],
@@ -473,7 +473,7 @@ const NOTEBOOK = {
           t: 'part',
           n: 'C',
           en: 'The collocations worth taking away',
-          zh: '值得帶走的搭配詞',
+          zh: '值得記下來的搭配詞',
         },
 
         {
@@ -509,7 +509,7 @@ const NOTEBOOK = {
               en: 'consistent effort',
               zh: '持續的努力',
               eg: 'Consistent effort matters more than motivation on any single day.',
-              egZh: '持續的努力，比任何單一一天的動力都更重要。',
+              egZh: '持續的努力，比某一天的衝勁重要得多。',
             },
             {
               en: 'meaningful improvement',
@@ -597,7 +597,7 @@ const NOTEBOOK = {
               en: 'be unfamiliar with something',
               zh: '對某事不熟悉',
               eg: 'I was unfamiliar with the format, so the first section felt fast.',
-              egZh: '我對題型不熟悉，所以第一個部分感覺很快。',
+              egZh: '我對題型不熟悉，所以第一大題感覺過得特別快。',
             },
             {
               en: 'the test format',
@@ -707,7 +707,7 @@ const NOTEBOOK = {
             },
             {
               text: 'Because it was my first time, I was ___ the test format.',
-              textZh: '因為那是我第一次考，所以我對考試的題型並不熟悉。',
+              textZh: '因為那是我第一次應考，所以對考試的題型並不熟悉。',
               options: ['unfamiliar to', 'unfamiliar with', 'not familiar of'],
               answer: 1,
               why: {
@@ -768,7 +768,7 @@ const NOTEBOOK = {
         {
           t: 'lead',
           en: 'Learn these as whole chunks rather than as grammar. Each one is a container you can pour any subject into — this summer, a photo you took, a job interview next year.',
-          zh: '把這些當作「整塊」記起來，而不是當文法學。每一個都是一個容器，什麼主題都能倒進去——這個暑假、你拍的一張照片、明年的面試。',
+          zh: '把這些當作「整塊」記起來，而不是當文法學。每一個都是一個框架，什麼主題都能套進去——這個暑假、你拍的一張照片、明年的面試。',
         },
 
         {
@@ -798,7 +798,7 @@ const NOTEBOOK = {
               en: 'Although…, …',
               zh: '雖然……，但是……',
               eg: 'Although I did not travel anywhere, I still had a productive summer.',
-              egZh: '雖然我沒有去任何地方旅行，我還是度過了一個充實的暑假。',
+              egZh: '雖然我沒有去任何地方旅行，但還是度過了一個充實的暑假。',
             },
             {
               en: 'Small but consistent efforts can…',
@@ -848,7 +848,7 @@ const NOTEBOOK = {
             },
             {
               text: '___ I did not travel anywhere, I still had a productive summer.',
-              textZh: '雖然我沒有去任何地方旅行，我還是度過了一個充實的暑假。',
+              textZh: '雖然我沒有去任何地方旅行，但還是度過了一個充實的暑假。',
               options: ['Although', 'But', 'However'],
               answer: 0,
               why: {
@@ -881,7 +881,7 @@ const NOTEBOOK = {
           en: 'Where this comes from',
           zh: '這些問題的出處',
           bodyEn: 'You described building a habit, so the natural next step is James Clear’s Atomic Habits, which is about exactly that. Four of its ideas are enough for our purposes: identity-based habits (become the kind of person who trains, rather than trying to train), the 1% rule (small gains compound), make it easy (shrink the habit until starting is trivial), and environment design (change the room, not your willpower). The fifth question is the one worth spending the most time on.',
-          bodyZh: '你描述的是「建立一個習慣」的過程，那麼很自然的下一步，就是 James Clear 的《原子習慣》，因為那本書談的正是這件事。對我們來說，四個概念就夠了：身份認同型習慣（成為「會訓練的那種人」，而不是努力去訓練）、1% 法則（微小的進步會複利累積）、讓它變容易（把習慣縮小到「開始」幾乎不費力）、以及環境設計（改變房間，而不是改變意志力）。第五個問題，是最值得花時間談的。',
+          bodyZh: '你描述的是「建立一個習慣」的過程，那麼很自然的下一步，就是 James Clear 的《原子習慣》，因為那本書談的正是這件事。對我們來說，四個概念就夠了：身分認同型習慣（成為「會訓練的那種人」，而不是逼自己去訓練）、1% 法則（微小的進步會複利累積）、讓行動輕而易舉（把習慣縮小到「開始」幾乎不費力）、以及環境設計（改變房間，而不是改變意志力）。第五個問題，是最值得花時間談的。',
         },
 
         {
@@ -889,37 +889,37 @@ const NOTEBOOK = {
           en: 'Audit one habit',
           zh: '盤點一個習慣',
           hintEn: 'Pick one habit you want to keep — the gym, the studying, editing photos, sleeping earlier. For each line, say whether it is already true of that habit or still missing. There is no right answer and nothing is recorded.',
-          hintZh: '挑一個你想維持的習慣——健身、讀書、修照片、早點睡。針對每一項，說說看它對這個習慣來說已經成立了，還是還缺著。沒有標準答案，也不會留下任何紀錄。',
+          hintZh: '挑一個你想維持的習慣——健身、讀書、修照片、早點睡。針對每一項，說說看這個習慣已經做到了，還是還沒做到。沒有標準答案，也不會留下任何紀錄。',
           haveEn: 'Already true',
           haveZh: '已經做到',
           needEn: 'Still missing',
-          needZh: '還缺這個',
+          needZh: '還沒做到',
           items: [
             {
               icon: '🪪',
               en: 'It matches who you think you are',
-              zh: '它符合你認為自己是什麼樣的人',
+              zh: '它符合你心目中的自己',
               descEn: 'You would describe yourself as someone who does this, not someone trying to.',
               descZh: '你會說自己「就是做這件事的人」，而不是「正在努力做這件事的人」。',
             },
             {
               icon: '👀',
               en: 'The cue is obvious',
-              zh: '提示很明顯',
+              zh: '提示顯而易見',
               descEn: 'Something in your day or your room reminds you without you having to remember.',
-              descZh: '你的一天當中或房間裡有某樣東西會提醒你，不需要你自己記得。',
+              descZh: '你的作息或房間裡有某樣東西會提醒你，不必靠自己記得。',
             },
             {
               icon: '🪶',
               en: 'Starting is easy',
-              zh: '開始很容易',
+              zh: '開始輕而易舉',
               descEn: 'The first step is small enough that you would do it on a bad day.',
               descZh: '第一步小到就算狀態很差的那一天，你也還是會做。',
             },
             {
               icon: '🎉',
               en: 'Finishing feels good',
-              zh: '完成有回饋感',
+              zh: '做完會有成就感',
               descEn: 'There is something satisfying at the end, even if it is only ticking it off.',
               descZh: '結束的時候有某種滿足感，就算只是打個勾也好。',
             },
@@ -977,7 +977,7 @@ const NOTEBOOK = {
           items: [
             {
               en: 'James Clear says habits are easier to keep when they become part of your identity. What kind of person do you want to become, and what small habit would support that?',
-              zh: 'James Clear 認為，當一個習慣成為自我認同的一部分時，就更容易維持。你想成為什麼樣的人？有什麼小習慣可以支持這個身份？',
+              zh: 'James Clear 認為，當一個習慣成為自我認同的一部分時，就更容易維持。你想成為什麼樣的人？有什麼小習慣可以支撐這個身分？',
               starters: [
                 { en: 'I want to become the kind of person who…', zh: '我想成為那種會……的人。' },
                 { en: 'The habit that would prove it to myself is…', zh: '能向我自己證明這件事的習慣是……' },
@@ -1013,7 +1013,7 @@ const NOTEBOOK = {
             },
             {
               en: 'Which matters more: setting an ambitious goal, or building a good system? Take a goal you have now and describe the system that would get you there.',
-              zh: '設定有企圖心的目標與建立良好的系統，哪一個比較重要？拿一個你現在的目標，描述一套能幫你達成它的系統。',
+              zh: '設定有企圖心的目標與建立良好的系統，哪一個比較重要？舉一個你現在的目標，描述一套能幫你達成它的系統。',
               starters: [
                 { en: 'The goal is…, but the system would be…', zh: '目標是……，但系統會是……' },
                 { en: 'I think the system matters more, because a goal only tells you…', zh: '我認為系統比較重要，因為目標只告訴你……' },
@@ -1028,7 +1028,7 @@ const NOTEBOOK = {
           en: 'Why question five is the one to sit with',
           zh: '為什麼第五題最值得停下來談',
           bodyEn: 'Most people your age talk about outcomes: a higher TOEIC score, a certain body weight, a better job. Atomic Habits replaces that question with a more useful one — what system would make this result likely? A goal is a scoreboard, and you can look at a scoreboard all day without moving. A system is what you do on Tuesday. The English worth noticing here is the difference between “I want to…” and “Every week I…”: the first describes a wish, the second describes a person.',
-          bodyZh: '和你同年紀的人多半在談結果：更高的多益分數、某個體重、更好的工作。《原子習慣》把這個問題換成一個更有用的問題——什麼樣的系統會讓這個結果更可能發生？目標是計分板，而你可以盯著計分板一整天卻毫無移動。系統則是你星期二實際會做的事。這裡值得注意的英文，是「I want to…」和「Every week I…」的差別：前者描述一個願望，後者描述一個人。',
+          bodyZh: '和你同年紀的人多半在談結果：更高的多益分數、某個體重數字、更好的工作。《原子習慣》把這個問題換成一個更有用的問題——什麼樣的系統會讓這個結果更可能發生？目標是計分板，而你可以盯著計分板一整天，卻一步也沒有前進。系統則是你星期二實際會做的事。這裡值得注意的英文，是「I want to…」和「Every week I…」的差別：前者描述一個願望，後者描述一個人。',
         },
 
         {
@@ -1036,7 +1036,7 @@ const NOTEBOOK = {
           en: 'Say it again, better',
           zh: '再說一次，說得更好',
           instructionEn: 'Talk for about ninety seconds on one of these prompts. Use at least three phrases from the tick-list, and open with one of the five patterns from Part D. Do not read off the cards — if you need to look, stop, look, then start the sentence again.',
-          instructionZh: '從以下題目選一個，說大約九十秒。至少用上檢查清單中的三個片語，並用 D 部分五個句型的其中一個開場。不要照著字卡唸——如果需要看，就先停下來看，再重新把那句話說一次。',
+          instructionZh: '從以下題目選一個，說大約九十秒。至少用上「目標片語」裡的三個，開場請用 D 部分那五個句型的其中一個。不要照著字卡唸——如果需要看，就先停下來看，再重新把那句話說一次。',
           prompts: [
             {
               en: 'Tell the story of your summer again, from the beginning, in two minutes.',
@@ -1056,7 +1056,7 @@ const NOTEBOOK = {
             },
             {
               en: 'Argue for one side: ambitious goals, or a good system.',
-              zh: '選一邊來論證：有企圖心的目標，還是一套好的系統。',
+              zh: '選一邊站，替它說出理由：有企圖心的目標，還是一套好的系統。',
             },
           ],
           checklist: [
@@ -1098,7 +1098,7 @@ const NOTEBOOK = {
             },
             {
               en: 'Although I did not travel anywhere, I still made steady progress.',
-              zh: '雖然我沒有去旅行，我還是穩定地進步了。',
+              zh: '雖然我沒有去旅行，但還是穩定地進步了。',
             },
             {
               en: 'Small but consistent efforts can make a significant difference.',
