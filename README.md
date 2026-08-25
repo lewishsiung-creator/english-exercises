@@ -24,15 +24,15 @@ and, for 國中 students, vocabulary and grammar together at `/junior-high/`.
 One page is not English at all: `/math/` is math practice for Grades 1 to 3,
 built for a child in an American school.
 
-Nine more pages are not lessons. `/landscape-portfolio/` is a portfolio
+Ten more pages are not lessons. `/landscape-portfolio/` is a portfolio
 template for a student to fill in with their own work, and `/anny/`, `/aaron/`,
-`/anita/`, `/nikky/`, `/eason/`, `/anna/`, `/riva-rex/` and `/jill/` are
-notebooks kept for one student each, which grow by one session after every
+`/anita/`, `/nikky/`, `/eason/`, `/anna/`, `/ken/`, `/riva-rex/` and `/jill/`
+are notebooks kept for one student each, which grow by one session after every
 lesson rather than being finished and left alone. The first four are adult
 clients; `/eason/` is a teenager moving up to senior high school; `/anna/` is a
-young adult of eighteen to twenty; `/riva-rex/` is a pair of
-ten-to-twelve-year-olds taught together, and `/jill/` is one child of the same
-age taught alone.
+young adult of eighteen to twenty and `/ken/` is a college student;
+`/riva-rex/` is a pair of ten-to-twelve-year-olds taught together, and `/jill/`
+is one child of the same age taught alone.
 
 ## Word Play — CEFR A1, ages 7–10
 
@@ -1616,6 +1616,50 @@ sentences that survived that filter are real ones, which is the whole value of
 the block.
 
 
+## Ken's Notebook — college student, one-to-one, kept over time
+
+The ninth notebook, copied from
+[Anna's](#annas-notebook--young-adult-one-to-one-kept-over-time) — so it starts
+with the `part` divider, the `mcq` block and the scroll fix already in place —
+with the `ken.` localStorage prefix so no notebook shares a voice or a Chinese
+setting with another. Ken is a college student, which is close enough to Anna's
+register to reuse it: an adult who is new to the subject, full sentences,
+nothing simplified, examples from his own life rather than from a job he does
+not have yet. His are **photography and weight training**, and that is written
+into the header comment of [`public/ken/content.js`](public/ken/content.js) so
+later sessions invent their example sentences from the right material.
+
+Two small changes were made rather than copied. The sessions here **are dated**,
+unlike Anna's, so every entry gets `dateEn`/`dateZh` — the fields stay optional
+in the renderer, but leaving them off here would put the page's order and its
+dates out of step. And the `cards` audit's two buttons are now overridable
+(`haveEn`/`haveZh`, `needEn`/`needZh`): the built-in Chinese reads 我有這樣的人
+/ 我需要一位 because the block was written for an audit of *people*, and this
+page audits a habit, so it sets them to **Already true / Still missing**.
+
+Session 1 (26 August 2026) is his summer: he set himself two goals — get
+stronger, and sit the TOEIC exam for the first time — and the hour was spent on
+how he told that story. It runs A–E. **A** is his own English, six sentences
+with the repairs behind a tap, plus two notes on the mistakes worth naming (`so`
+doubled with `that's the reason`; `workout` against `working out`). **B** is the
+polished model paragraph with eight comprehension questions. **C** is
+twenty-seven collocations in four card sets, a matching pair and a six-item
+gap-fill. **D** is five reusable sentence patterns and a gap-fill on them. **E**
+takes the subject into *Atomic Habits* — a habit audit, a five-statement poll,
+five discussion questions and the closing speaking task.
+
+**The source needs one rule that no other notebook has needed.** Lewis's
+write-up opens with a table of Ken's original sentences beside a **ChatGPT
+rewrite** of them, and it points out that the rewrite still contains mistakes of
+its own. The left-hand column is Ken's English, so it is `fix` material and is
+used as such. The rewrite is not, so its leftovers — `go to gym`, `stayed
+focus`, `everyday` — go into a `contrast` block labelled **The rewrite** against
+**Natural English** instead. Putting them in `fix` would credit Ken with
+sentences a machine wrote for him, and the whole value of that block is that
+every line in it was really said. The separation is written into the file, for
+any later session where a rewriting tool is part of the source.
+
+
 ## Layout
 
 ```
@@ -1646,6 +1690,7 @@ public/anita/             Anita's notebook — same machinery again, two session
 public/nikky/             Nikky's notebook — the same, with the scroll fix in
 public/eason/             Eason's notebook — the same, for a teenager
 public/anna/              Anna's notebook — the same again, for a young adult
+public/ken/               Ken's notebook — the same, for a college student
 public/jill/              Jill's notebook — one entry per weekly lesson
 public/junior-high/       國中英語精熟 — 單字 and 文法, one page, Grades 7–9
 public/junior-high-words/    a redirect: the 單字 half's old URL
@@ -2425,7 +2470,8 @@ here is behind a login, and no page is linked from the site root unless it is
 listed there, so an unlisted page is unlisted rather than private. Pages built
 around a named client or student, or from a client's own internal document —
 `/business-clarity/`, `/anny/`, `/aaron/`, `/anita/`, `/nikky/`, `/eason/`,
-`/anna/`, `/riva-rex/`, `/riva-rex-practice/`, `/jill/` and `/fab-english/` —
+`/anna/`, `/ken/`, `/riva-rex/`, `/riva-rex-practice/`, `/jill/` and
+`/fab-english/` —
 carry `noindex, nofollow`, which keeps them out of search results; it does not make
 the URL secret. Anything that must not be publishable should not go in
 `public/` at all.
