@@ -34,8 +34,8 @@ const SPEECH = {
   },
 
   intro: {
-    en: 'The speech first — sixty-two sentences, in the order they are spoken — and then the twenty-four questions from the election floor. Read each line aloud, tap 🔊 to hear it, and tap 中 only when you need the Chinese. When a section feels comfortable, switch to 記 Recall: the Chinese leads, and you say the English before you check it.',
-    zh: '先是講稿——全篇六十二句，依演說順序排列——接著是選舉現場的二十四道問答。把每一句大聲讀出來，點 🔊 聽範讀，需要時再點 中 看中文。一段唸熟之後，切換到「記」：中文在前，先把英文說出來，再點開對答案。',
+    en: 'The speech first — sixty-two sentences, in the order they are spoken — and then the twenty-seven questions from the election floor. Read each line aloud, tap 🔊 to hear it, and tap 中 only when you need the Chinese. When a section feels comfortable, switch to 記 Recall: the Chinese leads, and you say the English before you check it.',
+    zh: '先是講稿——全篇六十二句，依演說順序排列——接著是選舉現場的二十七道問答。把每一句大聲讀出來，點 🔊 聽範讀，需要時再點 中 看中文。一段唸熟之後，切換到「記」：中文在前，先把英文說出來，再點開對答案。',
     goalsEn: 'By the end of this lesson you will be able to:',
     goalsZh: '完成這堂課後，你將能夠：',
     goals: [
@@ -43,7 +43,7 @@ const SPEECH = {
       { en: 'say the twenty-eight words that most often trip up Mandarin speakers', zh: '唸出 28 個中文母語者最常唸錯的單字' },
       { en: 'produce each English sentence from the Chinese alone', zh: '只看中文，就能把英文說出來' },
       { en: 'deliver the whole speech inside five minutes', zh: '在五分鐘之內完成整篇演說' },
-      { en: 'answer all twenty-four election questions without reading from a script', zh: '不看稿，回答二十四道選舉問答' },
+      { en: 'answer all twenty-seven election questions without reading from a script', zh: '不看稿，回答二十七道選舉問答' },
     ],
   },
 
@@ -486,8 +486,8 @@ const SPEECH = {
          two dozen answers back to back is not a thing anyone needs to hear. */
       noPlay: 1,
       lead: {
-        en: 'Twenty-four questions from the election floor. The question is given in both languages — it is asked to him, so it is context, not practice. The answer below it works exactly like the speech: read it aloud in 讀, produce it from the Chinese in 記. Bold marks the phrase to land on.',
-        zh: '選舉現場的二十四道題目。問題本身中英並陳。下方的回答則與講稿相同：在「讀」朗讀，在「記」由中文回想英文。**粗體是該強調的關鍵句。**',
+        en: 'Twenty-seven questions from the election floor. The question is given in both languages — it is asked to him, so it is context, not practice. The answer below it works exactly like the speech: read it aloud in 讀, produce it from the Chinese in 記. Bold marks the phrase to land on.',
+        zh: '選舉現場的二十七道題目。問題本身中英並陳。下方的回答則與講稿相同：在「讀」朗讀，在「記」由中文回想英文。**粗體是該強調的關鍵句。**',
       },
       blocks: [
         {
@@ -890,6 +890,58 @@ const SPEECH = {
               zh: '其他的活動我們都可以再辦，但唯有會刊，一旦中斷了，就不可回復。' },
             { en: 'My KPI is simple and measurable: **Publish one issue every month from January to December 2027—12 issues in total, with zero missed months.** At the end of the year, members can easily check whether I kept this promise.',
               zh: '如果要用數字驗收，大家請注意明年1到12月有沒有出刊即可。具體 KPI 可以設定為：**2027年1月至12月，每月完成一期會刊，全年12期，中斷0次。**' },
+          ],
+        },
+        {
+          t: 'qa',
+          n: 25,
+          en: 'Motivation for Running for President',
+          zh: '參選理事長的動機',
+          qEn: ['What reasons and motivations led you to run for President? If serving as President brought no practical benefit to your business, personal network, or yourself, and instead required you to sacrifice a significant amount of time with your family and at work, would you still be willing to take on this responsibility? Why?'],
+          qZh: ['是什麼原因與動力，讓您決定投入理事長選舉？如果擔任理事長不會為您的事業、人脈或個人帶來任何實質利益，甚至需要犧牲大量家庭與工作時間，您是否仍然願意承擔？為什麼？'],
+          items: [
+            { en: 'I do not know whether becoming President of JCI The Port will help my business or career, but **that is not the reason I decided to run**.',
+              zh: '擔任巨港理事長對於我的事業會不會有成長，我不知道，這也不是我考量的原因。' },
+            { en: 'The main reason I am willing to serve as **President of JCI The Port in 2027** is that this chapter has deeply touched me, and I want to help it continue and grow in the future.',
+              zh: '我願意出來擔任 **2027 年巨港理事長**，最大的原因就是希望巨港這個讓我覺得感動的分會能夠永續存續下去。' },
+            { en: 'Even if being President brings no real benefit to my business, network, or myself, **I am still willing to take this responsibility**.',
+              zh: '即使擔任理事長不會為我的事業、人脈或個人帶來實質利益，我仍然願意承擔這份責任。' },
+          ],
+        },
+        {
+          t: 'qa',
+          n: 26,
+          en: 'Development of JCI "Three Treasures"',
+          zh: '青商三寶的發展與傳承',
+          qEn: ['JCI\'s "Three Treasures" have always been an important feature of JCI The Port. However, in recent years, the main focus has been on Oregon Debate, while the training and development of Public Speaking and Meeting Procedures have become weaker.', 'How do you view this situation? As a leader, how will you balance the development of the Three Treasures, improve the training system, and strengthen JCI The Port\'s brand competitiveness?'],
+          qZh: ['青商三寶一直是巨港的重要特色，但近年發展重心逐漸集中於奧瑞岡辯論，金口獎及會議規範的傳承與培訓明顯不足。您如何看待這樣的現象？身為領導者，又將如何重新平衡三寶的發展與培育機制，並重塑巨港的品牌競爭力？'],
+          items: [
+            { en: 'JCI\'s "Three Treasures" have always been an important part of JCI The Port.',
+              zh: '青商三寶一直是巨港的重要特色。' },
+            { en: 'Next year, we will help members understand **the benefits of learning these three skills** and how they can use them in their careers or other organizations.',
+              zh: '未來一年，我們將讓會員了解學習青商三寶有什麼優點，以及如何應用在事業或其他社團活動上。' },
+            { en: 'We will also continue to encourage members to join competitions and invite trainers to provide professional training. I want our members to have opportunities to learn and grow in all three areas: **Oregon Debate, Public Speaking, and Meeting Procedures**.',
+              zh: '我們也會持續鼓勵會員參加比賽，並聘請講師進行培訓，讓會員在奧瑞岡辯論、金口獎及會議規範三個領域都能有持續學習與成長的機會。' },
+            { en: 'Through these efforts, I hope we can **continue to pass on the Three Treasures to future members of JCI The Port**.',
+              zh: '透過這些做法，我希望讓青商三寶在巨港繼續傳承下去。' },
+          ],
+        },
+        {
+          t: 'qa',
+          n: 27,
+          en: 'Developing Members Beyond the Local Chapter',
+          zh: '向總會、區會、組務及 IA 發展',
+          qEn: ['The development of JCI is not limited to the Local Organization. It also includes JCI Taiwan, South Regional, GA, and IA.', 'If you become President of JCI The Port, how will you encourage and prepare members to take part in these higher-level organizations?', 'Do you also plan to participate in or host important activities and training programs organized by JCI Taiwan or South Regional to increase JCI The Port\'s visibility and influence?'],
+          qZh: ['青商會的發展不只在分會，更包含總會、區會、組務及 IA。若您當選理事長，將如何培育會員向外發展，並規劃爭取參加或承辦總會、區會的重要活動與課程，提升巨港的能見度與影響力？'],
+          items: [
+            { en: 'If I am elected President, I will start a plan to **review and update our chapter rules and detailed regulations**.',
+              zh: '如果我當選理事長，我將啟動**修改章程與施行細則的計畫**。' },
+            { en: 'JCI The Port\'s rules have not been updated for many years, while the rules of JCI Taiwan are updated regularly. To stay connected with JCI Taiwan and help our members better understand and follow its rules, I believe we should update our own chapter rules.',
+              zh: '因為巨港的章程已經多年未修改，反觀總會章程幾乎每年都會調整。為了與總會接軌，並讓會員更容易了解及遵循總會的規定，我認為更新巨港的章程與施行細則是應該做的事情。' },
+            { en: 'Second, we will continue to apply for **training programs and activities from JCI Taiwan**. This will give our members more opportunities to learn how to organize courses and events.',
+              zh: '另外，我們也會持續爭取總會的課程與活動，讓巨港會員有更多機會學習如何辦理課程與活動。' },
+            { en: 'We will also promote these programs to people outside our chapter. Through training, activities, and public promotion, I hope to **increase JCI The Port\'s visibility and influence**.',
+              zh: '同時，我們也會透過對外招生與活動推廣，提升巨港對外的能見度與影響力。' },
           ],
         },
       ],
