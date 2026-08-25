@@ -333,6 +333,15 @@ const BLOCKS = {
         </div>`).join('')}
     </div>`,
 
+  /* Have-it / need-it cards, for auditing something against a list.
+
+     The two button labels are overridable and that is not decoration. This
+     block arrived from a notebook where the list was PEOPLE — a mentor, an
+     honest friend — so the built-in Chinese reads 我有這樣的人 / 我需要一位,
+     "I have such a person" / "I need one". Point the same block at a list of
+     habits and that Chinese is simply wrong, which is what happened here
+     before `haveZh`/`needZh` existed. Set all four whenever the items are not
+     people; the defaults stay for the case the block was written for. */
   cards: (b) => `
     <div class="activity audit" data-act="audit">
       ${label(b)}
@@ -351,8 +360,8 @@ const BLOCKS = {
               <p class="zh">${text(i.descZh)}</p>
             </div>
             <div class="role-btns" role="group">
-              <button class="chip" data-v="have">I have this<em>我有這樣的人</em></button>
-              <button class="chip" data-v="need">I need this<em>我需要一位</em></button>
+              <button class="chip" data-v="have">${text(b.haveEn || 'I have this')}<em>${text(b.haveZh || '我有這樣的人')}</em></button>
+              <button class="chip" data-v="need">${text(b.needEn || 'I need this')}<em>${text(b.needZh || '我需要一位')}</em></button>
             </div>
           </li>`).join('')}
       </ul>

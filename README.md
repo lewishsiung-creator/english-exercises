@@ -1573,6 +1573,31 @@ choose-the-collocation `gap`; **C** its word-family table, as a `note` and a
 gap set that tests the right *form* rather than the right meaning; **D** the
 talking — a `poll`, five discussion questions, and the speaking task.
 
+**Session 2** is Morgan Housel's *The Art of Spending Money*, from a bilingual
+summary, and it is the other half of session 1 by design: the first is about
+growing money, this one about using it. Its source arrives in five numbered
+sections, so the `part` dividers are the book's own — why spending isn't math,
+what money can and can't fix, adaptation and negative returns, social debt and
+status, what to do about it — followed by a quiz part and a talking part, the
+shape session 1 settled into. The `contrast` block runs the daydream against
+the finished sentence ("if I earned three times as much I wouldn't worry about
+anything" against "…I'd stop worrying about rent, and I'd still be the person
+who worries"), and the `cards` audit asks which of six purchases would add to
+her life and which would start charging her afterwards.
+
+That audit is why the block's two button labels are now overridable. They were
+hardcoded as `I have this 我有這樣的人` / `I need this 我需要一位` — "I have such
+a person" / "I need one" — because the block was written for auditing *people*,
+a mentor or an honest friend. Pointed at a list of habits or purchases that
+Chinese is simply wrong, which is what shipped in session 1 before the fix. Set
+`haveEn`/`haveZh` and `needEn`/`needZh` whenever the items are not people; the
+defaults stay for the case it was written for. No other notebook's content uses
+this block, so nothing else was affected.
+
+One more rule the file now records: **no markdown in content strings.** The
+renderer escapes everything it is given, so `*asterisks*` reach the page as
+asterisks. Put the stress in the wording or in quotation marks.
+
 Two things are deliberate and should survive into later sessions on this
 subject. The page teaches the language people use about money and recommends
 nothing — no product, no market, no amount — and a `note` near the top says so

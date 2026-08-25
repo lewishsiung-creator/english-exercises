@@ -51,6 +51,10 @@
    Matching halves and answer chips stay in English; each is glossed on its own
    phrase card anyway.
 
+   NO MARKDOWN. The renderer escapes every string it is given, so *asterisks*
+   and _underscores_ appear on the page exactly as typed rather than turning
+   into emphasis. Put the stress in the wording, or in “quotation marks”.
+
    BLOCK TYPES
    -----------
      part      a divider INSIDE one session, for a source that arrives already
@@ -74,7 +78,9 @@
                asks her to judge something rather than to remember it
      fix       something Anna actually said, with the upgrade behind a tap
      poll      opinion statements — agree / not sure / disagree, no answer
-     cards     have it / need it cards, for auditing something
+     cards     have it / need it cards, for auditing something. Set
+               haveEn/haveZh and needEn/needZh whenever the list is not people —
+               the built-in Chinese says "I have such a person"
      discuss   questions to talk through, each with useful language to reveal
      task      a speaking or writing task with a tick-list of target phrases
 
@@ -595,7 +601,7 @@ const NOTEBOOK = {
               ],
               answer: 1,
               why: {
-                en: 'And note what the reading does *not* say: the cheapest option is not automatically the best one. Cost is one of the things you check, every time — not the only one.',
+                en: 'Note the sentence the reading refuses to write: “cheaper is better.” Cost is one of the things you check, every time — not the only one, and never the deciding one on its own.',
                 zh: '也要注意文章「沒有」說的部分：最便宜的並不自動就是最好的。費用是每一次都要檢查的項目之一，但不是唯一的項目。',
               },
             },
@@ -763,6 +769,10 @@ const NOTEBOOK = {
           zh: '習慣盤點',
           hintEn: 'Six habits the reading puts before investing. For each one, say whether it is already true of you or still something to build. There is no right answer and nothing is recorded.',
           hintZh: '文章認為在投資之前應該先具備的六個習慣。針對每一項，說說看它對你來說已經做到了，還是還要建立。沒有標準答案，也不會留下任何紀錄。',
+          haveEn: 'I have this',
+          haveZh: '我已經做到',
+          needEn: 'Still to build',
+          needZh: '還要建立',
           items: [
             {
               icon: '📋',
@@ -1383,6 +1393,816 @@ const NOTEBOOK = {
             {
               en: 'Good investing depends on patience, research, and discipline.',
               zh: '良好的投資取決於耐心、研究與紀律。',
+            },
+          ],
+        },
+      ],
+    },
+
+    {
+      id: 's2',
+      n: 2,
+      en: 'Spending it well: the half of money nobody teaches',
+      zh: '把錢花好：金錢裡沒人教的那一半',
+
+      focus: [
+        { en: 'Spending is psychology', zh: '花錢是心理學' },
+        { en: 'What money cannot fix', zh: '錢碰不到的地方' },
+        { en: 'Adaptation and negative returns', zh: '享樂適應與負報酬' },
+        { en: 'Social debt', zh: '社交負債' },
+        { en: 'Owning your own time', zh: '擁有自己的時間' },
+      ],
+
+      blocks: [
+        {
+          t: 'lead',
+          en: 'Last time was about getting money to grow. This time is the other half, and the half almost nobody is taught: what to do with it once it is there. Morgan Housel\u2019s argument is that these are not the same skill, and that being excellent at the first tells you nothing about the second.',
+          zh: '上一次談的是怎麼讓錢長大。這一次談的是另外一半，也是幾乎沒有人教過的一半：錢到手之後，要拿它怎麼辦。Morgan Housel 的看法是，這兩件事並不是同一種能力——第一件事做得再好，也完全不能拿來預測第二件事。',
+        },
+
+        {
+          t: 'part',
+          n: '1',
+          en: 'Why spending isn\u2019t math',
+          zh: '為什麼花錢不是數學',
+        },
+
+        {
+          t: 'summary',
+          en: 'Housel begins where he began: parking cars as a college valet, watching a wealthy man buy a $21,000 armchair. Not because he had sat in it and loved it. Because that, he felt, was what rich people were supposed to do. The premise of the whole book is in that scene \u2014 money and spending are psychological rather than mathematical, and being good at acquiring wealth is a completely different skill from being good at using it.',
+          zh: 'Housel 從他自己的起點講起：大學時代在停車場當泊車小弟，看著一位有錢人花兩萬一千美元買下一張扶手椅。不是因為他坐過、愛上了它，而是因為他覺得「有錢人就該這樣花」。整本書的前提都在那個畫面裡——金錢與消費本質上是心理學，而不是數學；會賺錢和會用錢，是兩種完全不同的能力。',
+        },
+
+        {
+          t: 'summary',
+          en: 'The idea that follows from it runs through the rest of the book: everyone\u2019s spending makes sense once you know their history. What looks absurd from outside usually has a reason inside \u2014 something someone grew up without, or grew up watching. Which makes judging other people\u2019s purchases, and letting other people judge yours, mostly a waste of energy.',
+          zh: '由此延伸出來的觀念貫穿全書：只要你了解一個人的成長背景，他的花錢方式其實都說得通。從外面看起來很荒謬的選擇，裡面通常都有原因——某樣他小時候沒有的東西，或是他從小看著別人怎麼做的樣子。這也讓「評斷別人怎麼花錢」，以及「讓別人來評斷你」，大多只是白費力氣。',
+        },
+
+        {
+          t: 'phrases',
+          en: 'Two different skills',
+          zh: '兩種不同的能力',
+          items: [
+            {
+              en: 'acquire wealth',
+              zh: '累積財富',
+              eg: 'Being good at acquiring wealth says nothing about how well you spend it.',
+              egZh: '很會累積財富，完全不代表你懂得怎麼花它。',
+            },
+            {
+              en: 'a completely different skill',
+              zh: '完全不同的一種能力',
+              eg: 'Earning and spending well are completely different skills.',
+              egZh: '會賺錢和會花錢，是完全不同的兩種能力。',
+            },
+            {
+              en: 'be supposed to',
+              zh: '應該要、被認為該要',
+              eg: 'He bought it because that is what rich people are supposed to do.',
+              egZh: '他之所以買下它，是因為他覺得有錢人就該這樣做。',
+            },
+            {
+              en: 'it makes sense once you know\u2026',
+              zh: '一旦你知道……，就說得通了',
+              eg: 'Her spending makes sense once you know what she grew up without.',
+              egZh: '一旦你知道她小時候缺過什麼，她的花錢方式就說得通了。',
+            },
+            {
+              en: 'grow up without something',
+              zh: '在缺少某樣東西的環境中長大',
+              eg: 'People who grew up without security often spend on it later.',
+              egZh: '在缺乏安全感的環境中長大的人，日後常常會為安全感花錢。',
+            },
+            {
+              en: 'judge someone\u2019s choices',
+              zh: '評斷某人的選擇',
+              eg: 'Judging someone\u2019s choices from outside is usually a waste of energy.',
+              egZh: '從外面評斷別人的選擇，通常只是白費力氣。',
+            },
+            {
+              en: 'a waste of energy',
+              zh: '白費力氣',
+              eg: 'Worrying about what strangers think of your car is a waste of energy.',
+              egZh: '擔心陌生人怎麼看你的車，是白費力氣。',
+            },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: '2',
+          en: 'What money can and can\u2019t fix',
+          zh: '錢能解決什麼，不能解決什麼',
+        },
+
+        {
+          t: 'summary',
+          en: 'Housel then goes after the assumption underneath most financial ambition: that wealth automatically produces happiness. His argument is not that money does not help. It is that when we imagine having more of it, we picture only the parts of our life that would improve, and quietly leave out everything money cannot touch. His example is J. Paul Getty \u2014 at one point the richest man alive \u2014 who said he envied people with cheerful temperaments.',
+          zh: '接著 Housel 直接挑戰大多數財務企圖心底下的那個假設：財富會自動帶來幸福。他的論點並不是「錢沒有用」，而是：當我們想像自己更有錢時，腦中浮現的只有那些會變好的部分，卻悄悄略過了所有錢碰不到的面向。他舉的例子是 J. Paul Getty——曾經的世界首富——這位富豪說，他羨慕那些天生性格開朗的人。',
+        },
+
+        {
+          t: 'note',
+          en: 'Why the daydream is always wrong',
+          zh: '為什麼那個白日夢一定失準',
+          bodyEn: 'Notice the shape of the error, because it is not really about money. When you imagine any large change \u2014 a different city, a different job, a different body \u2014 you compare your current life, problems included, against the new life with no problems at all — because you have not lived the new one long enough to know what its problems are. The daydream is not a lie. It is just an incomplete list.',
+          bodyZh: '注意這個錯誤的「形狀」，因為它其實跟金錢無關。當你想像任何一個重大的改變——換一個城市、換一份工作、換一副身體——你拿來比較的，是「現在的生活，連同它所有的問題」對上「新的生活，一個問題都沒有」，因為你還沒在新的那邊住得夠久，不知道它的問題是什麼。那個白日夢並不是謊言，它只是一份不完整的清單。',
+        },
+
+        {
+          t: 'contrast',
+          en: 'The list you leave out',
+          zh: '你漏掉的那一欄',
+          hintEn: 'The same wish, said two ways. Both are honest \u2014 the second one has simply finished the sentence.',
+          hintZh: '同一個願望的兩種說法。兩種都是誠實的，只是第二種把句子講完了。',
+          coldEn: 'The daydream',
+          coldZh: '白日夢的版本',
+          warmEn: 'The whole sentence',
+          warmZh: '把話講完的版本',
+          items: [
+            {
+              caseEn: 'Imagining a much higher salary',
+              caseZh: '想像一份高很多的薪水',
+              cold: {
+                en: 'If I earned three times as much, I wouldn\u2019t worry about anything.',
+                zh: '如果我賺三倍，我就什麼都不用擔心了。',
+              },
+              warm: {
+                en: 'If I earned three times as much, I\u2019d stop worrying about rent \u2014 and I\u2019d still be the person who worries.',
+                zh: '如果我賺三倍，我就不會再擔心房租了——但我還是那個會擔心的人。',
+              },
+              whyEn: 'The first sentence quietly swaps one problem for no problems. The second names what would actually change, which is both smaller and more useful.',
+              whyZh: '第一句話悄悄把「一個問題」換成了「沒有問題」。第二句說出真正會改變的是什麼——範圍更小，卻更有用。',
+            },
+            {
+              caseEn: 'Talking about someone richer than you',
+              caseZh: '談論一個比你有錢的人',
+              cold: {
+                en: 'He\u2019s got everything.',
+                zh: '他什麼都有了。',
+              },
+              warm: {
+                en: 'He\u2019s got everything money buys, which is a shorter list than it sounds.',
+                zh: '他擁有一切錢買得到的東西——而那份清單比聽起來要短。',
+              },
+              whyEn: 'Getty is the counter-example the book uses, and the point is not that he was secretly miserable. It is that the one thing he wanted was not for sale.',
+              whyZh: '書中用 Getty 當反例，重點並不是「他其實很不快樂」，而是：他唯一想要的那樣東西，並不在販售之列。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'What it can and cannot reach',
+          zh: '它碰得到與碰不到的',
+          items: [
+            {
+              en: 'produce happiness',
+              zh: '帶來幸福',
+              eg: 'Housel challenges the idea that wealth automatically produces happiness.',
+              egZh: 'Housel 挑戰「財富會自動帶來幸福」這個想法。',
+            },
+            {
+              en: 'money can\u2019t touch it',
+              zh: '（那是）錢碰不到的',
+              eg: 'We imagine what would improve and forget what money can\u2019t touch.',
+              egZh: '我們想像那些會變好的部分，卻忘了那些錢碰不到的部分。',
+            },
+            {
+              en: 'a cheerful temperament',
+              zh: '開朗的性格',
+              eg: 'The richest man alive envied people with cheerful temperaments.',
+              egZh: '當時的世界首富，羨慕那些天生性格開朗的人。',
+            },
+            {
+              en: 'envy someone',
+              zh: '羨慕某人',
+              eg: 'It is worth asking what you actually envy, and whether it is for sale.',
+              egZh: '值得問問自己真正羨慕的是什麼，以及那樣東西買不買得到。',
+            },
+            {
+              en: 'take something for granted',
+              zh: '把某樣東西視為理所當然',
+              eg: 'Whatever you buy, you will take it for granted sooner than you expect.',
+              egZh: '不管你買了什麼，你都會比想像中更快把它視為理所當然。',
+            },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: '3',
+          en: 'Adaptation and negative returns',
+          zh: '享樂適應與負報酬',
+        },
+
+        {
+          t: 'summary',
+          en: 'These are the two strongest sections of the book, and they work as a pair. Hedonic adaptation is the reason the first luxury car is thrilling and the fifth is just transport, and the reason the dream holiday house becomes, after a few summers, a place that needs maintenance. Nothing has gone wrong when this happens. It is simply what human beings do to anything that stays the same for long enough.',
+          zh: '這是全書最精彩的兩段，而且它們是一組的。「享樂適應」就是為什麼第一台名車讓你興奮不已，第五台就只是代步工具；也是為什麼夢想中的度假屋，過幾個夏天之後，不過是另一個需要維護的地方。這件事發生的時候，並沒有任何東西出錯——那只是人類面對任何長期不變的事物時，本來就會有的反應。',
+        },
+
+        {
+          t: 'summary',
+          en: 'Negative returns are the sharper idea: spending that does not merely fail to improve your life but actively makes it worse. The boat and its endless maintenance. The car you are anxious about scratching. You paid for it, and then it starts charging you \u2014 in time, in attention, in a low background worry you did not have before. From which Housel draws the conclusion the book is really built on: sophistication is not maximising what you buy, it is minimising what you need to buy in order to be content. Every desire you genuinely eliminate functions like infinite income.',
+          zh: '「負報酬」則是更銳利的一個概念：那些不只沒能讓生活變好、反而讓它變糟的消費。買了船之後無止盡的保養；一台讓你隨時擔心被刮傷的車。你付了錢，然後它開始向你收費——收你的時間、你的注意力，以及一種你以前沒有的、隱隱在背景裡的擔憂。由此 Housel 得出了整本書真正的結論：真正的財務成熟，不在於把買到的東西最大化，而在於把「需要買什麼才會滿足」最小化。每消除一個慾望，效果都等同於獲得無限的收入。',
+        },
+
+        {
+          t: 'note',
+          en: 'Infinite income',
+          zh: '無限的收入',
+          bodyEn: 'It is worth sitting with the arithmetic of that phrase. If a thing costs NT$30,000 and you want it, you need NT$30,000. If you genuinely stop wanting it, you need nothing \u2014 and no salary, however large, can beat nothing. That is why the book calls it infinite. The catch is the word “genuinely”: pretending not to want something is not the same move, and it does not pay.',
+          bodyZh: '這句話裡的算術值得停下來想一想。如果一樣東西要價新台幣 30,000 元而你想要它，你就需要 30,000 元。如果你是真的不再想要它，你需要的是零——而再高的薪水，也贏不過零。這就是書中稱它為「無限」的原因。陷阱在「真的」這兩個字：假裝自己不想要，並不是同一件事，而且沒有任何效果。',
+        },
+
+        {
+          t: 'phrases',
+          en: 'Adaptation, and what costs you afterwards',
+          zh: '適應，以及事後才開始收費的東西',
+          items: [
+            {
+              en: 'hedonic adaptation',
+              zh: '享樂適應',
+              eg: 'Hedonic adaptation turns the fifth luxury car into transport.',
+              egZh: '享樂適應會把第五台名車變成單純的代步工具。',
+            },
+            {
+              en: 'wear off',
+              zh: '（效果、新鮮感）逐漸消失',
+              eg: 'The excitement wears off faster than the payments do.',
+              egZh: '興奮感消失的速度，比分期付款結束的速度快得多。',
+            },
+            {
+              en: 'a negative return',
+              zh: '負報酬',
+              eg: 'A boat can be a negative return: it costs more than money.',
+              egZh: '一艘船可能是負報酬：它花掉的不只是錢。',
+            },
+            {
+              en: 'actively worsen your life',
+              zh: '反而讓生活變糟',
+              eg: 'Some purchases actively worsen your life rather than simply disappointing you.',
+              egZh: '有些消費不只是讓你失望，而是反而讓你的生活變糟。',
+            },
+            {
+              en: 'be anxious about something',
+              zh: '為某件事感到焦慮',
+              eg: 'He is anxious about scratching the car he saved for.',
+              egZh: '他為了那台存錢買下的車，隨時擔心它被刮傷。',
+            },
+            {
+              en: 'upkeep / maintenance',
+              zh: '維護、保養',
+              eg: 'The holiday house is mostly maintenance now.',
+              egZh: '那間度假屋現在幾乎只剩下維護的工作。',
+            },
+            {
+              en: 'be content',
+              zh: '感到滿足',
+              eg: 'Sophistication is minimising what you need in order to be content.',
+              egZh: '真正的成熟，是把「需要什麼才會滿足」最小化。',
+            },
+            {
+              en: 'eliminate a desire',
+              zh: '消除一個慾望',
+              eg: 'Every desire you genuinely eliminate functions like infinite income.',
+              egZh: '每一個你真心消除掉的慾望，效果都等同於無限的收入。',
+            },
+          ],
+        },
+
+        {
+          t: 'cards',
+          en: 'Adds to it, or charges you?',
+          zh: '是加分，還是在向你收費？',
+          hintEn: 'Six things people spend on. For each one, say which it would be for you \u2014 not which it is in general. The book\u2019s whole point is that the answer is different for different people, so a split down the middle is the expected result, not a wrong one.',
+          hintZh: '六樣人們常花錢買的東西。針對每一項，說說看它對「你」而言會是哪一種——不是一般而言。這本書的核心正是「每個人的答案不一樣」，所以答案分散在兩邊是正常的，不是錯的。',
+          haveEn: 'Adds to my life',
+          haveZh: '讓生活變好',
+          needEn: 'Would charge me',
+          needZh: '反而會向我收費',
+          items: [
+            {
+              icon: '🚗',
+              en: 'A car you would be proud of',
+              zh: '一台你會引以為傲的車',
+              descEn: 'Better to drive \u2014 and something to worry about in every car park.',
+              descZh: '開起來更好——同時也是每個停車場裡的一份擔心。',
+            },
+            {
+              icon: '🏠',
+              en: 'A holiday place of your own',
+              zh: '一間屬於自己的度假住所',
+              descEn: 'Always there when you want it. Always there when you don\u2019t.',
+              descZh: '你想去的時候它都在。你不想去的時候，它也都在。',
+            },
+            {
+              icon: '👟',
+              en: 'Something everyone can recognise',
+              zh: '一樣大家都認得出來的東西',
+              descEn: 'A brand people read at a glance, on you.',
+              descZh: '一個別人一眼就會讀出來、掛在你身上的品牌。',
+            },
+            {
+              icon: '✈️',
+              en: 'A trip you will remember',
+              zh: '一趟你會記住的旅行',
+              descEn: 'Nothing to maintain afterwards, and nothing to insure.',
+              descZh: '事後沒有東西要保養，也沒有東西要保險。',
+            },
+            {
+              icon: '⏳',
+              en: 'Paying to save time',
+              zh: '花錢換時間',
+              descEn: 'A shorter commute, a delivery, help with something you hate doing.',
+              descZh: '更短的通勤、外送，或請人幫你做你討厭做的事。',
+            },
+            {
+              icon: '📚',
+              en: 'A course or a skill',
+              zh: '一堂課或一項技能',
+              descEn: 'Costs time as well as money, and cannot be taken back off you.',
+              descZh: '花掉的不只是錢，還有時間；但沒有人能把它從你身上收回去。',
+            },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: '4',
+          en: 'Social debt and status',
+          zh: '社交負債與地位',
+        },
+
+        {
+          t: 'summary',
+          en: 'Social debt is Housel\u2019s name for the hidden cost that builds up when a purchase changes how other people see you \u2014 or how you see yourself. The bill does not arrive at the till. It arrives later, as an expectation you now have to keep meeting. From which he draws an unusual claim: each person has an ideal net worth, a point past which more money starts working as a social liability rather than an asset.',
+          zh: '「社交負債」是 Housel 給一種隱形成本取的名字：當一筆消費改變了別人看你的方式，或你看自己的方式時，所累積起來的成本。這筆帳單不會在結帳時出現，它稍後才到——以一種「你從此必須持續滿足的期待」的形式出現。由此他提出了一個不太尋常的主張：每個人都有一個「理想淨值」，超過那個門檻之後，更多的錢反而會從資產變成社交上的負擔。',
+        },
+
+        {
+          t: 'quote',
+          en: 'The most valuable financial asset is not needing to impress anyone.',
+          zh: '最有價值的財務資產，是不需要向任何人證明自己。',
+          by: 'Morgan Housel, a chapter title from The Art of Spending Money',
+        },
+
+        {
+          t: 'phrases',
+          en: 'Status, and what it costs',
+          zh: '地位，以及它的代價',
+          items: [
+            {
+              en: 'social debt',
+              zh: '社交負債',
+              eg: 'Social debt is the cost that arrives after the purchase, not at the till.',
+              egZh: '社交負債是在消費之後才到來的成本，不是在結帳時。',
+            },
+            {
+              en: 'a hidden cost',
+              zh: '隱形成本',
+              eg: 'Every status purchase carries a hidden cost.',
+              egZh: '每一筆為了地位而做的消費，都帶著隱形成本。',
+            },
+            {
+              en: 'accrue',
+              zh: '（成本、利息）累積',
+              eg: 'The cost accrues quietly, over years.',
+              egZh: '這種成本會安靜地累積，經年累月。',
+            },
+            {
+              en: 'impress someone',
+              zh: '讓某人刮目相看',
+              eg: 'The most valuable financial asset is not needing to impress anyone.',
+              egZh: '最有價值的財務資產，是不需要向任何人證明自己。',
+            },
+            {
+              en: 'a liability rather than an asset',
+              zh: '負擔而非資產',
+              eg: 'Past a certain point, more money becomes a liability rather than an asset.',
+              egZh: '超過某個程度之後，更多的錢反而變成負擔，而不是資產。',
+            },
+            {
+              en: 'live up to something',
+              zh: '達到（他人的期待）',
+              eg: 'Once people expect it, you have to keep living up to it.',
+              egZh: '一旦別人開始這樣期待你，你就得持續達到那個標準。',
+            },
+            {
+              en: 'the comparison treadmill',
+              zh: '無止盡的比較',
+              eg: 'The comparison treadmill has no finishing line, by design.',
+              egZh: '「比較」這台跑步機從設計上就沒有終點線。',
+            },
+          ],
+        },
+
+        {
+          t: 'poll',
+          en: 'Where do you stand?',
+          zh: '你的看法是？',
+          hintEn: 'No right answers. Pick one and be ready to say why \u2014 that sentence is the exercise.',
+          hintZh: '沒有標準答案。選一個，並準備好說明理由——那句理由才是真正的練習。',
+          items: [
+            {
+              en: 'There is a point past which more money would make my life harder, not easier.',
+              zh: '超過某個程度之後，更多的錢會讓我的生活更難，而不是更輕鬆。',
+            },
+            {
+              en: 'Most of what people buy to be seen, they would not buy on a desert island.',
+              zh: '人們為了「被看見」而買的東西，大部分在無人島上都不會買。',
+            },
+            {
+              en: 'Wanting other people to be impressed is normal, and pretending otherwise is dishonest.',
+              zh: '想讓別人刮目相看是很正常的事，假裝自己不在意才是不誠實。',
+            },
+            {
+              en: 'I would rather have a short commute than a job title people recognise.',
+              zh: '比起一個別人認得出來的頭銜，我寧願要一段很短的通勤。',
+            },
+            {
+              en: 'You cannot tell whether a purchase was worth it until years afterwards.',
+              zh: '一筆消費值不值得，要等好幾年後才看得出來。',
+            },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: '5',
+          en: 'What to do about it',
+          zh: '那該怎麼辦',
+        },
+
+        {
+          t: 'summary',
+          en: 'The closing chapters are short on rules and long on warnings. Stay off the comparison treadmill, which has no finishing line. Owning your own time matters more than impressing strangers. And do not make money a core part of who you are \u2014 in either direction. Treating it as the solution to everything and treating it as inherently corrupt are the same mistake wearing different clothes: both make money the main character, and both miss what it is actually for, which is buying independence.',
+          zh: '最後幾章給的規則很少，給的警告很多。不要踏上那台沒有終點線的比較跑步機。擁有自己的時間，遠比讓陌生人刮目相看重要。還有，不要把金錢當成「你是誰」的核心——兩個方向都不要。把錢當成萬靈丹，和把錢視為萬惡之源，其實是同一個錯誤換了件衣服：兩種都讓金錢成了主角，也都錯過了它真正的用途——買到獨立與自在。',
+        },
+
+        {
+          t: 'phrases',
+          en: 'Time, independence, identity',
+          zh: '時間、獨立、自我認同',
+          items: [
+            {
+              en: 'own your own time',
+              zh: '擁有自己的時間',
+              eg: 'Owning your own time matters more than impressing strangers.',
+              egZh: '擁有自己的時間，比讓陌生人刮目相看更重要。',
+            },
+            {
+              en: 'a core part of your identity',
+              zh: '自我認同的核心',
+              eg: 'Housel warns against making money a core part of your identity.',
+              egZh: 'Housel 提醒不要把金錢當成自我認同的核心。',
+            },
+            {
+              en: 'inherently corrupt',
+              zh: '本質上就是骯髒的',
+              eg: 'Treating money as inherently corrupt misses what it is for.',
+              egZh: '把金錢視為本質上骯髒的東西，一樣錯過了它的用途。',
+            },
+            {
+              en: 'a tool for independence',
+              zh: '換取獨立的工具',
+              eg: 'Its actual value is as a tool for independence.',
+              egZh: '它真正的價值，在於作為換取獨立的工具。',
+            },
+            {
+              en: 'miss the point',
+              zh: '沒抓到重點',
+              eg: 'Both extremes miss the point in the same way.',
+              egZh: '兩種極端都以同樣的方式沒抓到重點。',
+            },
+            {
+              en: 'buy back your time',
+              zh: '把時間買回來',
+              eg: 'Some spending buys back your time; some spends it for you.',
+              egZh: '有些消費是把時間買回來，有些則是替你把時間花掉。',
+            },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: 'Quiz',
+          en: 'Check what stayed',
+          zh: '看看留下了什麼',
+        },
+
+        {
+          t: 'mcq',
+          en: 'Did you get it?',
+          zh: '你讀懂了嗎？',
+          hintEn: 'Eight questions on the summary above. A wrong answer fades and the question stays open, so try again.',
+          hintZh: '關於上面那篇摘要的八個問題。答錯的選項會變淡，題目仍然開著，可以再試一次。',
+          items: [
+            {
+              q: 'What is the premise the whole book rests on?',
+              qZh: '整本書建立在什麼前提上？',
+              options: [
+                'Earning and spending well are completely different skills',
+                'Most people simply do not earn enough',
+                'Expensive things are usually not worth the money',
+              ],
+              answer: 0,
+            },
+            {
+              q: 'Why did the wealthy man buy the $21,000 armchair?',
+              qZh: '那位有錢人為什麼買下那張兩萬一千美元的扶手椅？',
+              options: [
+                'He had sat in it and loved it',
+                'He felt it was what rich people were supposed to do',
+                'It was an investment he expected to rise in value',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'According to Housel, why is judging how other people spend a waste of energy?',
+              qZh: '根據 Housel，為什麼評斷別人怎麼花錢是白費力氣？',
+              options: [
+                'Because most people spend badly anyway',
+                'Because it is impolite to notice',
+                'Because everyone\u2019s spending makes sense once you know their history',
+              ],
+              answer: 2,
+            },
+            {
+              q: 'What mistake do we make when we imagine having much more money?',
+              qZh: '當我們想像自己有多得多的錢時，會犯什麼錯？',
+              options: [
+                'We overestimate how much we would need',
+                'We picture only what would improve, and leave out what money cannot touch',
+                'We forget about tax and fees',
+              ],
+              answer: 1,
+              why: {
+                en: 'And notice this is not really a money error. Imagining any big change compares your current life, problems included, against a new life with no problems at all \u2014 because you have not lived there long enough to find them.',
+                zh: '而且要注意，這其實不是「金錢」上的錯誤。想像任何重大改變時，我們比較的都是「現在的生活連同它的問題」對上「新生活，一個問題也沒有」——因為你還沒在那邊住得夠久，還沒找到它的問題。',
+              },
+            },
+            {
+              q: 'What is hedonic adaptation?',
+              qZh: '什麼是享樂適應？',
+              options: [
+                'Buying more once you can afford more',
+                'The way anything you keep long enough stops feeling special',
+                'Adjusting your budget when prices rise',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'What makes a purchase a “negative return”?',
+              qZh: '什麼樣的消費算是「負報酬」？',
+              options: [
+                'It loses value when you resell it',
+                'It costs more than you expected to pay',
+                'It actively makes your life worse rather than simply disappointing you',
+              ],
+              answer: 2,
+              why: {
+                en: 'The distinction matters. A purchase that just fails to thrill you is ordinary. A negative return keeps charging you afterwards \u2014 in maintenance, in attention, in a worry you did not have before.',
+                zh: '這個區別很重要。一樣東西只是沒讓你興奮，那很平常；「負報酬」則是在事後持續向你收費——收保養、收注意力，收一份你原本沒有的擔憂。',
+              },
+            },
+            {
+              q: 'Housel says every desire you genuinely eliminate functions like infinite income. Why “infinite”?',
+              qZh: 'Housel 說每消除一個慾望，效果等同於無限的收入。為什麼是「無限」？',
+              options: [
+                'Because no salary can beat needing nothing',
+                'Because your savings then grow without limit',
+                'Because you can spend the money on something else instead',
+              ],
+              answer: 0,
+              why: {
+                en: 'It is arithmetic, not poetry: wanting a NT$30,000 thing means needing NT$30,000; genuinely not wanting it means needing nothing, and nothing cannot be out-earned. The load-bearing word is “genuinely” \u2014 pretending does not pay.',
+                zh: '這是算術，不是文學修辭：想要一樣三萬元的東西，就需要三萬元；真的不想要它，需要的是零，而零是任何薪水都贏不過的。整句話的重量壓在「真的」上——假裝沒有任何效果。',
+              },
+            },
+            {
+              q: 'What does Housel say about making money a core part of your identity?',
+              qZh: '關於把金錢當成自我認同的核心，Housel 怎麼說？',
+              options: [
+                'It is healthy, as long as you are honest about it',
+                'Only treating money as the solution to everything is a problem',
+                'Both extremes are a mistake \u2014 treating it as the answer, or as inherently corrupt',
+              ],
+              answer: 2,
+              why: {
+                en: 'This is the one people usually get half right. Contempt for money and worship of money are the same error in different clothes: both put money in the leading role, and both lose sight of it as a tool for independence.',
+                zh: '這一題大部分人只答對一半。鄙視金錢和崇拜金錢，是同一個錯誤換了件衣服：兩者都把金錢放在主角的位置，也都因此看不見它作為「換取獨立的工具」的價值。',
+              },
+            },
+          ],
+        },
+
+        {
+          t: 'gap',
+          en: 'Choose the phrase',
+          zh: '選出正確的說法',
+          hintEn: 'One of the three fits. Tap the Chinese for the situation if you want it.',
+          hintZh: '三個選項中只有一個適合。想看情境的話，可以點開中文。',
+          items: [
+            {
+              text: 'The excitement of a new phone ___ within a month; the payments do not.',
+              textZh: '新手機的興奮感一個月內就消失了；分期付款卻沒有。',
+              options: ['wears off', 'runs out', 'breaks down'],
+              answer: 0,
+              why: {
+                en: '“Wear off” is what a feeling does as it fades. “Run out” is for a supply, and “break down” is for a machine.',
+                zh: '「wear off」用在感覺逐漸淡去。「run out」用在存量用完，「break down」則是機器故障。',
+              },
+            },
+            {
+              text: 'Her choices ___ once you know what she grew up without.',
+              textZh: '一旦你知道她小時候缺過什麼，她的選擇就說得通了。',
+              options: ['make sure', 'come true', 'make sense'],
+              answer: 2,
+              why: {
+                en: '“Make sense” is the phrase the book turns on, and it is exactly this shape: something looks strange until you have the history behind it.',
+                zh: '「make sense」正是這本書反覆使用的說法，而且用法就是這個形狀：一件事看起來很奇怪，直到你知道它背後的來歷。',
+              },
+            },
+            {
+              text: 'Past a certain point, more money becomes a ___ rather than an asset.',
+              textZh: '超過某個程度之後，更多的錢反而變成負擔，而不是資產。',
+              options: ['liability', 'possibility', 'responsibility'],
+              answer: 0,
+              why: {
+                en: '“Liability” is the accounting opposite of “asset”, which is why the sentence lands \u2014 it borrows a balance-sheet word for a social cost.',
+                zh: '在會計上，「liability」正是「asset」的反義詞，這句話之所以有力，就是把資產負債表的詞借來講一種社交成本。',
+              },
+            },
+            {
+              text: 'Once people expect it of you, you have to keep ___ it.',
+              textZh: '一旦別人這樣期待你，你就得持續達到那個標準。',
+              options: ['looking up to', 'living up to', 'putting up with'],
+              answer: 1,
+              why: {
+                en: '“Live up to” means to keep meeting a standard or an expectation \u2014 which is what social debt actually charges you.',
+                zh: '「live up to」是持續達到某個標準或期待——而這正是社交負債真正向你收取的東西。',
+              },
+            },
+            {
+              text: 'Both extremes ___ : money is neither the answer to everything nor inherently corrupt.',
+              textZh: '兩種極端都沒抓到重點：金錢既不是萬靈丹，也不是本質上骯髒的東西。',
+              options: ['miss the point', 'lose the plot', 'take the point'],
+              answer: 0,
+              why: {
+                en: '“Miss the point” is to fail to grasp what actually matters. “Take the point” is the opposite \u2014 to accept an argument.',
+                zh: '「miss the point」是沒有掌握到真正重要的地方。「take the point」意思相反，是接受對方的論點。',
+              },
+            },
+          ],
+        },
+
+        {
+          t: 'match',
+          en: 'Term and meaning',
+          zh: '術語與意思',
+          hintEn: 'Click a term on the left, then the meaning that belongs to it on the right.',
+          hintZh: '先點左邊的說法，再點右邊對應的意思。',
+          pairs: [
+            { a: 'hedonic adaptation', b: 'the way anything you keep long enough stops feeling special' },
+            { a: 'a negative return', b: 'spending that actively makes your life worse' },
+            { a: 'social debt', b: 'the hidden cost of changing how others see you' },
+            { a: 'ideal net worth', b: 'the point past which more money is a burden' },
+            { a: 'the comparison treadmill', b: 'a race against other people with no finishing line' },
+            { a: 'a tool for independence', b: 'what money is actually for, in Housel\u2019s view' },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: 'Talk',
+          en: 'Now say it yourself',
+          zh: '換你來說',
+        },
+
+        {
+          t: 'discuss',
+          en: 'Talk it through',
+          zh: '一起討論',
+          items: [
+            {
+              en: 'Think of something you bought that you are still glad about. What made it different from the ones you are not?',
+              zh: '想一樣你買了之後到現在仍然覺得值得的東西。它和那些你並不覺得值得的東西，差別在哪裡？',
+              starters: [
+                { en: 'I still use it, which is more than I can say for\u2026', zh: '我到現在還在用它，這一點是……做不到的' },
+                { en: 'What made the difference was\u2026', zh: '真正造成差別的是……' },
+                { en: 'I bought it for myself rather than for\u2026', zh: '我是為了自己買的，而不是為了……' },
+              ],
+            },
+            {
+              en: 'Has anything you own ever started charging you \u2014 in time, worry or upkeep \u2014 after you paid for it?',
+              zh: '你擁有的東西當中，有沒有哪一樣在你付完錢之後，開始向你收費——收時間、擔憂或維護？',
+              starters: [
+                { en: 'It cost me more in\u2026 than in money.', zh: '它花掉我的……比花掉的錢還多。' },
+                { en: 'I did not expect to spend so much time\u2026', zh: '我沒想到會花這麼多時間……' },
+                { en: 'Looking back, that was a negative return because\u2026', zh: '現在回頭看，那是負報酬，因為……' },
+              ],
+            },
+            {
+              en: 'Housel says the most valuable financial asset is not needing to impress anyone. Is that easier or harder at your age?',
+              zh: 'Housel 說最有價值的財務資產是「不需要向任何人證明自己」。在你這個年紀，這件事是比較容易，還是比較難？',
+              starters: [
+                { en: 'It is harder at my age because\u2026', zh: '在我這個年紀比較難，因為……' },
+                { en: 'The people I would want to impress are\u2026', zh: '我會想證明給他看的那些人是……' },
+                { en: 'I think that gets easier once\u2026', zh: '我覺得這件事會變得比較容易，一旦……' },
+              ],
+            },
+            {
+              en: 'Is there something you have genuinely stopped wanting? What happened?',
+              zh: '有沒有什麼東西是你真的不再想要了？當時發生了什麼？',
+              starters: [
+                { en: 'I wanted one for years, and then\u2026', zh: '我想要了好幾年，然後……' },
+                { en: 'I stopped wanting it when I saw\u2026', zh: '當我看到……的時候，我就不想要了。' },
+                { en: 'I am not sure I have. The closest is\u2026', zh: '我不確定有。最接近的大概是……' },
+              ],
+            },
+            {
+              en: 'Owning your own time, or being recognised for what you do \u2014 if you could only have one, which?',
+              zh: '「擁有自己的時間」和「因為你做的事而被看見」——如果只能選一個，你選哪一個？',
+              starters: [
+                { en: 'I would take\u2026, but not without hesitating.', zh: '我會選……，但不會毫不猶豫。' },
+                { en: 'At twenty I would say\u2026; at forty, probably\u2026', zh: '二十歲的我會說……；四十歲大概會說……' },
+                { en: 'The two are not really opposites, because\u2026', zh: '這兩件事其實不是對立的，因為……' },
+              ],
+            },
+          ],
+        },
+
+        {
+          t: 'task',
+          en: 'Defend a purchase',
+          zh: '為一筆消費辯護',
+          instructionEn: 'Pick one prompt and talk for about a minute. The rule from the book applies: nobody else gets to judge the purchase, so do not defend it against them \u2014 defend it against yourself in five years.',
+          instructionZh: '選一個題目，說大約一分鐘。書裡那條規則在這裡適用：沒有別人有資格評斷這筆消費，所以不要對著別人辯護——對著五年後的你自己辯護。',
+          prompts: [
+            {
+              en: 'Something you own that other people would call a waste. Make the case for it.',
+              zh: '一樣你擁有、但別人會說是浪費的東西。替它說話。',
+            },
+            {
+              en: 'Something you want, argued honestly \u2014 including the part where it might charge you later.',
+              zh: '一樣你想要的東西，誠實地論述——包括它日後可能向你收費的那一部分。',
+            },
+            {
+              en: 'Explain hedonic adaptation to someone about to buy something expensive.',
+              zh: '向一個正要買下昂貴東西的人解釋什麼是享樂適應。',
+            },
+            {
+              en: 'Argue against Housel: make the case that wanting to impress people is a good thing.',
+              zh: '反駁 Housel：論證「想讓別人刮目相看」其實是件好事。',
+            },
+            {
+              en: 'Describe the version of your life where money is a tool for independence rather than a score.',
+              zh: '描述一種生活版本：在那裡金錢是換取獨立的工具，而不是一個分數。',
+            },
+          ],
+          checklist: [
+            { en: 'it makes sense once you know\u2026', zh: '一旦你知道……就說得通了' },
+            { en: 'the excitement wears off', zh: '興奮感會逐漸消失' },
+            { en: 'a negative return', zh: '負報酬' },
+            { en: 'a hidden cost', zh: '隱形成本' },
+            { en: 'a liability rather than an asset', zh: '負擔而非資產' },
+            { en: 'own my own time', zh: '擁有自己的時間' },
+          ],
+          frames: [
+            {
+              en: 'Being good at earning money and being good at spending it are completely different skills.',
+              zh: '會賺錢和會花錢，是完全不同的兩種能力。',
+            },
+            {
+              en: 'Everyone\u2019s spending makes sense once you know their history.',
+              zh: '只要你了解一個人的成長背景，他的花錢方式都說得通。',
+            },
+            {
+              en: 'The excitement wears off faster than the payments do.',
+              zh: '興奮感消失的速度，比分期付款結束的速度快。',
+            },
+            {
+              en: 'It stopped being something I owned and started being something I maintained.',
+              zh: '它不再是我擁有的東西，而變成我在維護的東西。',
+            },
+            {
+              en: 'Every desire you genuinely eliminate functions like infinite income.',
+              zh: '每一個你真心消除掉的慾望，效果都等同於無限的收入。',
+            },
+            {
+              en: 'Past a certain point, more money becomes a liability rather than an asset.',
+              zh: '超過某個程度之後，更多的錢反而變成負擔，而不是資產。',
+            },
+            {
+              en: 'The most valuable financial asset is not needing to impress anyone.',
+              zh: '最有價值的財務資產，是不需要向任何人證明自己。',
+            },
+            {
+              en: 'Money is neither the answer to everything nor inherently corrupt; it is a tool for independence.',
+              zh: '金錢既不是萬靈丹，也不是萬惡之源，它是一個換取獨立的工具。',
             },
           ],
         },
