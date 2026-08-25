@@ -97,6 +97,23 @@
    whole value of `fix` is that every line in it was really said. Keep that
    separation in any later session where a rewriting tool is part of the source.
 
+   SESSION 2, AND WHAT A NOTEBOOK OWES A HEALTH CLAIM
+   --------------------------------------------------
+   Session 2's source is a written summary of a Huberman Lab clip on body
+   recomposition, handed over in chat. It was written before the lesson and
+   carries no record of anything Ken said, so it has **no `fix` block** — the
+   rule from Anny's notebook, and not an oversight.
+
+   It is also the first session here built on claims about the body, and two
+   things follow. The page records what the clip and the summary SAID; it does
+   not vouch for the science, and the studies are named so he can read them
+   himself. And a `note` near the top says in both languages that this is an
+   English lesson rather than a nutrition plan — the protein figures on the page
+   are intakes used in particular studies, never a target for him. Keep any
+   later session on training or food to that line, and never let a study's
+   condition (`were used`) drift into advice (`are recommended`); Part B of that
+   session is built around exactly this distinction.
+
    SAMPLE BANNER
    -------------
    Setting `sample` puts a line across the top saying the content is a
@@ -1112,6 +1129,967 @@ const NOTEBOOK = {
           en: 'Meaningful improvement does not always require dramatic changes.',
           zh: '有意義的進步，並不總是需要巨大的改變。',
           by: 'the closing idea of your own paragraph 你自己那段話的結語',
+        },
+      ],
+    },
+
+    {
+      id: 's2',
+      n: 2,
+      dateEn: '26 August 2026',
+      dateZh: '2026 年 8 月 26 日',
+      en: 'Weight is not the whole story: body recomposition',
+      zh: '體重不是全部：談身體重組',
+
+      focus: [
+        { en: 'What recomposition is', zh: '什麼是身體重組' },
+        { en: 'Weight loss vs. fat loss', zh: '減重與減脂的差別' },
+        { en: 'Protein, calories, training', zh: '蛋白質、熱量、訓練' },
+        { en: 'What research can and cannot say', zh: '研究能說與不能說的話' },
+        { en: 'Saying a claim carefully', zh: '把一個主張講得準確' },
+      ],
+
+      blocks: [
+        {
+          t: 'lead',
+          en: 'A discussion built on a nine-minute Huberman Lab clip with the nutrition researcher Alan Aragon, on whether you can gain muscle and lose fat at the same time. The subject is your own training, so the vocabulary is worth having — but the more useful half of this hour is the language the researchers use to avoid saying more than they know.',
+          zh: '這一堂課的材料，是 Huberman Lab 一段九分鐘的影片，來賓是營養研究者 Alan Aragon，談的是「能不能同時增肌又減脂」。主題正好是你自己的訓練，所以這些字彙很值得學——但這一個小時更有用的一半，是研究者用來「不把話說得比自己知道的還滿」的那套語言。',
+        },
+
+        {
+          t: 'note',
+          en: 'What this page is, and what it is not',
+          zh: '這一頁是什麼，不是什麼',
+          bodyEn: 'This is an English lesson about how people talk and write about training and nutrition. It is a record of what the clip and the summary said, not a check on whether the science is right — the studies are named so you can go and read them yourself. Nothing here is a nutrition plan. The protein numbers you will see below are the intakes used in particular studies, not a target for you; for a figure that fits your own body and training, ask a doctor or a registered dietitian.',
+          bodyZh: '這是一堂英文課，學的是人們談論訓練與營養時所使用的語言。它記錄的是那段影片和那份摘要「說了什麼」，並不是在確認這些科學結論對不對——文中會標出研究名稱，你可以自己去讀原文。這一頁上沒有任何飲食計畫。下面會出現的蛋白質數字，是特定研究裡採用的攝取量，不是給你的目標；想知道適合你自己身體和訓練的數字，請問醫師或營養師。',
+        },
+
+        {
+          t: 'part',
+          n: 'A',
+          en: 'The idea',
+          zh: '這個概念',
+        },
+
+        {
+          t: 'summary',
+          en: 'Body recomposition means two things happening at once: muscle mass going up while fat mass goes down. The traditional bodybuilding model says the two need separate phases — eat above maintenance to build, eat below it to cut — because one needs spare energy and the other needs a shortage of it. The claim in this clip is that the separation is not absolute.',
+          zh: '身體重組（body recomposition）指的是兩件事同時發生：肌肉量上升，脂肪量下降。傳統健美的做法認為這兩件事必須分成兩個階段——增肌時吃得比維持熱量多，減脂時吃得比維持熱量少——因為一個需要多餘的能量，另一個需要能量不足。這段影片的主張是：這條界線並不是絕對的。',
+        },
+
+        {
+          t: 'summary',
+          en: 'The evidence Aragon points to is a 2020 review by Barakat and colleagues, which found recomposition happening in people who already had training experience — not only in beginners and not only in people with obesity. In roughly seven of the ten studies discussed, participants gained more lean mass than the fat they lost, which means total body weight sometimes went up while body fat went down. The review names two main drivers: progressive resistance training, and nutrition set up to support it.',
+          zh: 'Aragon 引用的證據是 Barakat 等人在 2020 年的一篇文獻回顧，該研究發現身體重組也會發生在已經有訓練經驗的人身上——不只是初學者，也不只是肥胖者。在所討論的十篇研究中，大約有七篇的受試者「增加的肌肉量」多於「減少的脂肪量」，也就是說，體脂下降的同時，總體重有時反而上升。這篇回顧指出兩個主要因素：漸進式的阻力訓練，以及為此設計的營養攝取。',
+        },
+
+        {
+          t: 'note',
+          en: 'Weight loss and fat loss are not the same thing',
+          zh: '減重和減脂不是同一件事',
+          bodyEn: 'This is the sentence to take away from the whole hour. Imagine someone who weighs 90 kg, trains for several months, and weighs 90 kg at the end. The scale says nothing happened. Underneath, fat is down three kilos and lean mass is up three. That is a serious change, and the one number most people track is the one number that cannot see it. The useful question is not “how much weight did I lose?” but “what did I lose, and what did I keep?”',
+          bodyZh: '這是整堂課最值得帶走的一句話。想像一個人體重 90 公斤，訓練了好幾個月，最後量起來還是 90 公斤。體重計說什麼都沒發生。但在底下，脂肪少了三公斤，肌肉多了三公斤。那是很大的改變，而大多數人唯一在追蹤的那個數字，恰好就是看不到這件事的數字。真正該問的不是「我瘦了幾公斤」，而是「我掉的是什麼？我留下了什麼？」',
+        },
+
+        {
+          t: 'summary',
+          en: 'Huberman asks the obvious follow-up: does the fat loss half require eating below maintenance? Aragon says not necessarily. Someone attempting a recomp could eat around maintenance, or even a little above it, provided the other conditions are in place — hard resistance training above all, and a high protein intake. For the person he sketches, that means a judicious surplus of about ten percent, which for many people is something like two to three hundred calories a day.',
+          zh: 'Huberman 接著問了最直接的問題：想要減脂，是不是一定得吃得比維持熱量少？Aragon 的回答是「不一定」。想做身體重組的人，可以吃在維持熱量附近，甚至略高一點，前提是其他條件都到位——最重要的是紮實的阻力訓練，以及高蛋白攝取。以他描述的那個對象來說，大約是抓十％左右的「有節制的盈餘」，對很多人而言差不多就是每天多兩三百大卡。',
+        },
+
+        {
+          t: 'note',
+          en: 'Read that claim slowly',
+          zh: '把這個主張讀慢一點',
+          bodyEn: 'It would be easy, and wrong, to turn the paragraph above into “eating more calories burns fat”. That is not what is being said. The proposition is narrower: if the training gives a strong enough signal to build muscle, and if most of the extra energy arrives as protein, then the outcome may look different from simply eating more carbohydrate and fat. Notice how many conditions that sentence carries. Stripping them out is exactly how a research finding becomes an internet headline.',
+          zh: '要把上面那一段講成「多吃熱量就能減脂」很容易，但那是錯的。它說的不是這個。真正的主張窄得多：如果訓練給出的「長肌肉」訊號夠強，而且多出來的能量大部分來自蛋白質，那麼結果可能會和「單純多吃碳水和脂肪」不一樣。注意這句話帶了多少前提條件。把這些條件拿掉，正是一項研究結果變成一則網路標題的過程。',
+        },
+
+        {
+          t: 'summary',
+          en: 'Protein is the centrepiece of the argument. Aragon notes that many of the successful recomposition studies had one thing in common: a very high protein intake, in the region of one to one and a half grams per pound of body weight — roughly 2.2 to 3.3 grams per kilo a day. That is well above what is needed to avoid deficiency, and above what most lifters need to maximise muscle growth. Huberman reduces it to a rule that is easy to act on: if you are going to add calories, make them high-quality protein.',
+          zh: '蛋白質是整個論點的核心。Aragon 指出，許多成功做到身體重組的研究都有一個共同點：蛋白質攝取量非常高，大約是每磅體重一到一點五公克——換算下來，每公斤體重每天大約 2.2 到 3.3 公克。這遠高於「不缺乏」所需要的量，也高於大多數重訓者「把肌肉成長拉到最大」所需要的量。Huberman 把它濃縮成一條可以直接執行的原則：如果你要多吃熱量，就讓那些熱量是優質蛋白質。',
+        },
+
+        {
+          t: 'summary',
+          en: 'The studies behind that rule come mostly from Jose Antonio and colleagues, working with people who already lift. In one, a group ate about 4.4 grams of protein per kilo a day — far more protein and far more total calories than the comparison group — and showed no significant increase in fat mass. In others, participants were told to keep eating as they normally do and simply add fifty to a hundred grams of protein a day: an extra chicken breast, some whey, a few more eggs. The fat gain you would expect from that much extra energy largely did not appear, and in some cases fat mass went down.',
+          zh: '支持這條原則的研究，多半來自 Jose Antonio 等人，對象是已經有重訓習慣的人。其中一項研究裡，有一組每公斤體重每天吃到大約 4.4 公克蛋白質——蛋白質和總熱量都遠高於對照組——結果脂肪量並沒有顯著增加。另外幾項研究則是請受試者維持原本的飲食，只多加每天五十到一百公克的蛋白質：多一塊雞胸、一些乳清、幾顆蛋。照理說多出這麼多熱量應該會增加的脂肪，大致上並沒有出現，在某些研究裡脂肪量甚至還下降了。',
+        },
+
+        {
+          t: 'summary',
+          en: 'Why might extra protein behave differently from extra energy? Aragon offers four possibilities and is careful to call them possibilities. Protein is very filling, so adding a lot of it may quietly push other food out — the real surplus ends up smaller than it looks on paper. Protein also costs more energy to digest and process than carbohydrate or fat, so four hundred calories of protein and four hundred calories of fat are not metabolically the same arrival. Eating more may let people train harder and recover better. And people may simply move more during the day without noticing, which has a name of its own: non-exercise activity thermogenesis, or NEAT.',
+          zh: '為什麼多吃蛋白質，表現會和多吃熱量不一樣？Aragon 提出四種可能，而且很小心地把它們稱為「可能」。第一，蛋白質很有飽足感，所以刻意多吃蛋白質，可能會不知不覺把其他食物擠掉——實際的熱量盈餘，比紙上算出來的小。第二，身體消化與處理蛋白質所耗掉的能量，比碳水或脂肪高，所以四百大卡的蛋白質和四百大卡的脂肪，在代謝上並不是同一回事。第三，吃得多一點，可能讓人練得更兇、恢復得更好。第四，人可能只是不自覺地在一天當中動得比較多，而這件事有自己的名字：非運動性活動產熱，簡稱 NEAT。',
+        },
+
+        {
+          t: 'summary',
+          en: 'Then Aragon does something worth copying: he points out the weakness in his own evidence. Most of these are free-living studies. Nobody is watching the participants for twenty-four hours a day, so the food record is what people say they ate, and self-reported diet data are famously unreliable. Someone told to add a hundred grams of protein reports adding a hundred grams of protein — and may not report the dessert they stopped wanting. He has a name for the other half of the problem, the “good pupil phenomenon”: people over-report the behaviour the researcher asked for and under-report the rest.',
+          zh: '接著 Aragon 做了一件值得學起來的事：他主動指出自己所引用的證據有什麼弱點。這些研究大多是「自由生活型研究」——沒有人二十四小時盯著受試者，所以飲食紀錄是「受試者說自己吃了什麼」，而自陳式的飲食資料，不可靠是出了名的。一個被要求「多吃一百公克蛋白質」的人，會回報自己多吃了一百公克蛋白質——卻不一定會回報那份他後來不太想吃的甜點。這個問題的另一半，他也給了名字，叫「好學生現象」：人們會高估自己配合研究者的程度，而低估其他部分。',
+        },
+
+        {
+          t: 'summary',
+          en: 'To make the point properly he then brings in a study that cuts against him. Bray and colleagues, 2012, kept participants inside a tightly controlled metabolic facility, where the food really is measured. They were deliberately overfed by about 954 calories a day — roughly forty percent above maintenance — on diets of five, fifteen or twenty-five percent protein. Crucially, there was no exercise programme. Everyone gained fat. The normal- and high-protein groups did gain considerably more lean mass than the very-low-protein group, but nobody escaped the surplus.',
+          zh: '為了把話說完整，他接著拿出一篇對自己不利的研究。Bray 等人在 2012 年的研究，把受試者放在嚴格控管的代謝實驗室裡，食物是真的量過的。研究刻意讓他們每天多吃大約 954 大卡——比維持熱量高出約四成——飲食中蛋白質分別佔五％、十五％、二十五％。關鍵是：這項研究沒有安排任何運動。結果所有人都增加了脂肪。蛋白質正常與偏高的兩組，確實比極低蛋白組增加了明顯更多的肌肉量，但沒有人躲得過那些多吃的熱量。',
+        },
+
+        {
+          t: 'contrast',
+          en: 'The same protein, two different situations',
+          zh: '同樣的蛋白質，兩種不同情境',
+          hintEn: 'Put the two experiments side by side and the argument stops being about protein. Protein is in both columns; what changes is whether anything is asking the body to build muscle.',
+          hintZh: '把這兩組實驗並排來看，這個論點就不再是在講蛋白質了。兩邊都有蛋白質，改變的是「有沒有東西在要求身體去長肌肉」。',
+          coldEn: 'Without training',
+          coldZh: '沒有訓練',
+          warmEn: 'With training',
+          warmZh: '有訓練',
+          items: [
+            {
+              caseEn: 'What the study did',
+              caseZh: '研究怎麼做的',
+              cold: {
+                en: 'Participants were overfed by about forty percent above maintenance, with no exercise programme at all.',
+                zh: '受試者被刻意多吃到比維持熱量高出約四成，而且完全沒有安排運動課表。',
+              },
+              warm: {
+                en: 'Participants lifted progressively, three or four times a week, and ate around maintenance or slightly above it.',
+                zh: '受試者每週做三到四次漸進式的重量訓練，吃在維持熱量附近或略高一點。',
+              },
+              whyEn: 'The energy is not the only difference and it is not the interesting one. In the second column something is repeatedly telling the body that the muscle is needed. In the first, nothing is.',
+              whyZh: '兩邊的差別不只是熱量，而且熱量也不是重點。在右邊那一欄，有某樣東西反覆在告訴身體「這些肌肉是需要的」；在左邊那一欄，沒有。',
+            },
+            {
+              caseEn: 'What happened to fat mass',
+              caseZh: '脂肪量怎麼變化',
+              cold: {
+                en: 'Everybody gained fat, including the high-protein group.',
+                zh: '所有人都增加了脂肪，包括高蛋白那一組。',
+              },
+              warm: {
+                en: 'Fat mass often stayed flat, and in several studies it fell.',
+                zh: '脂肪量多半沒有明顯變化，在好幾項研究裡甚至還下降了。',
+              },
+              whyEn: 'This is the sentence that stops the clip being read as “calories do not matter”. A large enough surplus produces fat gain whatever the protein does.',
+              whyZh: '正是這一句話，讓這段影片不能被讀成「熱量不重要」。只要盈餘夠大，不管蛋白質怎麼吃，脂肪都會增加。',
+            },
+            {
+              caseEn: 'What the protein did',
+              caseZh: '蛋白質起了什麼作用',
+              cold: {
+                en: 'The higher-protein groups still gained more lean mass than the very-low-protein group.',
+                zh: '蛋白質較高的那幾組，肌肉量還是比極低蛋白組增加得多。',
+              },
+              warm: {
+                en: 'The high protein appeared to support the muscle that the training was already asking for.',
+                zh: '高蛋白看起來是在支援訓練「本來就在要求」的那些肌肉。',
+              },
+              whyEn: 'Protein is not doing nothing in the left-hand column — it is doing the same job in both. What it cannot do on its own is supply the reason to build.',
+              whyZh: '在左邊那一欄，蛋白質並不是毫無作用——它在兩邊做的其實是同一件事。它自己做不到的，是提供「為什麼要長肌肉」的理由。',
+            },
+          ],
+        },
+
+        {
+          t: 'summary',
+          en: 'So the training is the switch, and it has to be real training. The programme Huberman sketches is resistance work three or four times a week, with sets taken close enough to failure to mean something, alongside cardio about three times a week — mostly Zone 2, with some harder work or sprints now and then. Resistance training and cardio are not competing here: one supplies the signal to build, the other raises energy expenditure and conditioning.',
+          zh: '所以訓練才是那個開關，而且必須是真的在練。Huberman 描述的課表是每週三到四次阻力訓練，每一組都要練到夠接近力竭、有意義的程度，另外每週大約三次有氧——主要是心率二區，偶爾加一些強度較高的或衝刺。在這裡，重訓和有氧並不互相衝突：一個提供「長肌肉」的訊號，另一個提高熱量消耗與心肺能力。',
+        },
+
+        {
+          t: 'summary',
+          en: 'Two practical notes close the clip, and both take pressure off. Total protein across the day matters more than the exact hour you eat it, so the “anabolic window” is not something to organise your life around. And training fasted or fed is not the deciding factor either. What decides it is total daily nutrition, total protein, the quality of the training, recovery and consistency — all things you can hold steady across a semester that does not always let you eat at the same time every day.',
+          zh: '影片最後有兩個實用的提醒，而且兩個都是在幫人卸下壓力。第一，一整天的蛋白質總量，比你到底幾點吃下去更重要，所以不必為了「合成代謝黃金期」去安排整個生活。第二，空腹練還是吃過再練，也不是決定性的因素。真正決定結果的是每日總營養、蛋白質總量、訓練品質、恢復，以及持續性——這些全都是你在一個沒辦法每天固定時間吃飯的學期裡，還能穩定維持的東西。',
+        },
+
+        {
+          t: 'quote',
+          en: 'Assess success through body composition and performance, not merely scale weight.',
+          zh: '用身體組成和運動表現來評估成果，而不是只看體重計上的數字。',
+          by: 'the practical takeaway of the discussion 這次討論最實用的結論',
+        },
+
+        {
+          t: 'mcq',
+          en: 'Did you get it?',
+          zh: '你讀懂了嗎？',
+          hintEn: 'Ten questions on the reading above. A wrong answer fades and the question stays open, so try again — nothing is scored and nothing is recorded.',
+          hintZh: '關於上面那些內容的十個問題。答錯的選項會變淡，題目仍然開著，可以再試一次——不計分，也不會留下紀錄。',
+          items: [
+            {
+              q: 'What does “body recomposition” mean?',
+              qZh: '「身體重組」是什麼意思？',
+              options: [
+                'Losing weight as fast as possible',
+                'Gaining muscle mass and losing fat mass at the same time',
+                'Building muscle first and cutting fat afterwards',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'In about seven of the ten studies in the Barakat review, what happened?',
+              qZh: '在 Barakat 那篇回顧所討論的十項研究中，大約有七項出現了什麼結果？',
+              options: [
+                'Participants gained more lean mass than the fat they lost',
+                'Participants lost more fat than the muscle they gained',
+                'Nothing measurable changed',
+              ],
+              answer: 0,
+            },
+            {
+              q: 'Someone’s body weight has not changed in four months. What does the reading say that tells you?',
+              qZh: '某個人四個月來體重完全沒變。文章認為這告訴了你什麼？',
+              options: [
+                'Their training has failed',
+                'On its own, almost nothing — fat and muscle may both have moved',
+                'They have definitely lost muscle',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'Does Aragon say fat loss during a recomp requires eating below maintenance?',
+              qZh: 'Aragon 是否認為，身體重組期間要減脂就必須吃得低於維持熱量？',
+              options: [
+                'Yes, always',
+                'Not necessarily, if training and protein are in place',
+                'Only for beginners',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'What is Huberman’s one-line rule about extra calories?',
+              qZh: 'Huberman 對「多吃的熱量」提出的一句話原則是什麼？',
+              options: [
+                'Never eat above maintenance',
+                'If you are going to add calories, make them high-quality protein',
+                'Add carbohydrate before training and protein after',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'What is the “good pupil phenomenon”?',
+              qZh: '什麼是「好學生現象」？',
+              options: [
+                'Participants over-report the behaviour the researcher asked for',
+                'Students who train harder get better results',
+                'Younger participants follow instructions more closely',
+              ],
+              answer: 0,
+            },
+            {
+              q: 'What was different about the Bray metabolic-ward study?',
+              qZh: 'Bray 那項代謝實驗室研究，特別的地方在哪裡？',
+              options: [
+                'Everyone followed a heavy lifting programme',
+                'Food was tightly controlled and there was no exercise programme',
+                'Participants ate below maintenance',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'Why does Aragon bring up a study that goes against his own argument?',
+              qZh: 'Aragon 為什麼要提出一篇對自己論點不利的研究？',
+              options: [
+                'To show that his argument has a boundary, and where it is',
+                'Because he changed his mind halfway through',
+                'To fill time in the interview',
+              ],
+              answer: 0,
+              why: {
+                en: 'Naming the case your claim does not cover is what separates an argument from a sales pitch. It also protects you: the person who has already stated the limit cannot be caught out by it later.',
+                zh: '主動說出「我這個主張不涵蓋哪些情況」，正是「論述」與「推銷」的分界線。這也是在保護自己：已經先講出界線的人，不會後來才被那條界線抓到。',
+              },
+            },
+            {
+              q: 'Which summary of the clip would be a misreading?',
+              qZh: '以下哪一句是對這段影片的誤讀？',
+              options: [
+                'Training is what makes high protein useful for recomposition',
+                'Extra calories burn fat as long as they come from protein',
+                'Total daily protein matters more than the exact timing',
+              ],
+              answer: 1,
+              why: {
+                en: 'The metabolic-ward study is in the clip precisely to rule this reading out. A large surplus produced fat gain at every protein level, so calories were never suspended — they were being spent on muscle the training had asked for.',
+                zh: '那篇代謝實驗室的研究之所以會出現在影片裡，就是為了排除這種讀法。在夠大的熱量盈餘下，不論蛋白質吃多少，脂肪都增加了；所以熱量從來沒有被豁免，只是被用在訓練所要求的肌肉上。',
+              },
+            },
+            {
+              q: 'A friend tells you he is going to eat 3.3 g of protein per kilo because “that is what the research says”. What is the careful reply?',
+              qZh: '朋友告訴你他要開始每公斤體重吃 3.3 公克蛋白質，因為「研究就是這樣說的」。比較謹慎的回答會是什麼？',
+              options: [
+                'That is the correct amount for everybody',
+                'Those were the intakes used in particular studies, not a target for everyone',
+                'Research on protein is unreliable, so ignore it',
+              ],
+              answer: 1,
+              why: {
+                en: 'Both of the other answers throw away information — one turns a study condition into a rule, the other throws out the study. The middle answer keeps the finding and its scope together, which is the whole skill this part of the page is teaching.',
+                zh: '另外兩個答案都在丟掉資訊——一個把「研究裡的條件」變成「規則」，另一個則把整篇研究都丟了。中間那個答案把「結果」和「適用範圍」一起留著，而這正是這一頁這個部分想教的能力。',
+              },
+            },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: 'B',
+          en: 'What research can and cannot say',
+          zh: '研究能說與不能說的話',
+        },
+
+        {
+          t: 'note',
+          en: 'Hedging is not weakness',
+          zh: '保留說法不是心虛',
+          bodyEn: 'Read the summary again and count the soft verbs: protein may displace other foods, training performance could improve, fat loss appeared not to follow, the mechanism is not fully established. To a Chinese ear this can sound as if the speaker is unsure of himself. It is the opposite. In academic and professional English, saying exactly how strong your evidence is marks you as someone who knows the difference between what was measured and what was concluded — and someone who states a claim more strongly than the evidence allows loses the room the first time it is checked.',
+          bodyZh: '把上面的摘要再讀一次，數數看那些「軟」的動詞：蛋白質「可能」把其他食物擠掉、訓練表現「或許」會進步、脂肪增加「看起來」沒有跟著出現、機制「尚未完全確立」。用中文的耳朵聽，這會像是講話的人對自己沒把握。其實正好相反。在學術和專業英文裡，把「你的證據有多強」講得剛剛好，代表你分得清「被量到的」和「被推論出來的」；而一旦有人把話說得比證據還滿，第一次被查證的時候，整個場子就不會再相信他了。',
+        },
+
+        {
+          t: 'contrast',
+          en: 'Say exactly as much as you know',
+          zh: '知道多少，就說多少',
+          hintEn: 'The same finding stated two ways. The left column is not a lie — it is a true finding with its conditions removed, which is how most bad fitness advice is made.',
+          hintZh: '同一個研究結果的兩種說法。左邊那一欄並不是謊話——它是一個真實的結果被拿掉了前提條件，而大部分糟糕的健身建議，就是這樣製造出來的。',
+          coldEn: 'Overclaiming',
+          coldZh: '說得太滿',
+          warmEn: 'As the research puts it',
+          warmZh: '研究的說法',
+          items: [
+            {
+              caseEn: 'Reporting what a review found',
+              caseZh: '轉述一篇回顧研究的發現',
+              cold: {
+                en: 'Science proves you can build muscle and lose fat at the same time.',
+                zh: '科學已經證明你可以同時增肌又減脂。',
+              },
+              warm: {
+                en: 'A 2020 review found evidence of recomposition in trained individuals, not only in beginners.',
+                zh: '2020 年的一篇回顧研究發現，在已有訓練經驗的人身上也有身體重組的證據，不只是初學者。',
+              },
+              whyEn: 'Reviews find evidence; they do not prove. And “you” is a promise to one person, where the study describes what happened to a group under stated conditions.',
+              whyZh: '回顧研究是「找到證據」，不是「證明」。另外，「你」是對一個人做出的承諾，而研究描述的，是一群人在特定條件下發生了什麼。',
+            },
+            {
+              caseEn: 'Reporting a possible mechanism',
+              caseZh: '轉述一個可能的機制',
+              cold: {
+                en: 'Protein burns more calories, so it cannot make you fat.',
+                zh: '蛋白質會消耗更多熱量，所以吃蛋白質不會胖。',
+              },
+              warm: {
+                en: 'Protein has a higher thermic effect, which may be part of why the fat gain did not appear.',
+                zh: '蛋白質的食物產熱效應較高，這可能是脂肪並未如預期增加的原因之一。',
+              },
+              whyEn: '“May be part of why” is doing careful work: it offers the mechanism as a candidate, not a verdict. Aragon states four candidates and refuses to choose between them, which is honest rather than vague.',
+              whyZh: '「可能是原因之一」這幾個字是在做很細緻的工作：它把這個機制當成候選答案，而不是判決。Aragon 一口氣提了四個候選，而且拒絕在它們之間下結論，這是誠實，不是含糊。',
+            },
+            {
+              caseEn: 'Reporting an amount used in a study',
+              caseZh: '轉述研究中使用的攝取量',
+              cold: {
+                en: 'You need 3.3 grams of protein per kilo to recomp.',
+                zh: '想做身體重組，你需要每公斤體重吃 3.3 公克蛋白質。',
+              },
+              warm: {
+                en: 'Intakes of around 2.2 to 3.3 grams per kilo were used in several of these studies.',
+                zh: '在其中幾項研究裡，採用的攝取量大約落在每公斤 2.2 到 3.3 公克。',
+              },
+              whyEn: 'A number that was used is not a number that is needed. The passive — “were used” — keeps the sentence about the studies rather than about the listener, which is exactly where it belongs.',
+              whyZh: '「研究裡用了這個數字」不等於「你需要這個數字」。被動語態 were used 讓這句話講的是「那些研究」而不是「聽的人」，而這正是它該待的位置。',
+            },
+            {
+              caseEn: 'Reporting a study with a known weakness',
+              caseZh: '轉述一項有已知弱點的研究',
+              cold: {
+                en: 'The participants ate an extra hundred grams of protein and did not gain fat.',
+                zh: '受試者每天多吃一百公克蛋白質，而且沒有變胖。',
+              },
+              warm: {
+                en: 'Participants reported adding a hundred grams of protein, and no significant fat gain was measured.',
+                zh: '受試者回報自己每天多吃了一百公克蛋白質，而測量到的脂肪增加並不顯著。',
+              },
+              whyEn: 'Two repairs in one sentence. “Reported” names where the number came from, and “no significant gain was measured” is what a study can actually say — “did not gain fat” claims more than the measurement can carry.',
+              whyZh: '一句話裡有兩個修正。reported 說明了這個數字的來源；而「測量到的增加不顯著」才是一項研究真正能說的話——「沒有變胖」講的比測量結果所能承擔的還要多。',
+            },
+            {
+              caseEn: 'Reporting what you did yourself',
+              caseZh: '轉述你自己做過的事',
+              cold: {
+                en: 'This programme works. I gained five kilos of muscle.',
+                zh: '這套課表有效，我長了五公斤肌肉。',
+              },
+              warm: {
+                en: 'It worked for me — my weight went up five kilos, though I did not measure body composition.',
+                zh: '這套課表對我有效——我的體重增加了五公斤，不過我沒有測身體組成。',
+              },
+              whyEn: 'One person is a story, not evidence, and “for me” is the honest scope. The second half is the part almost nobody adds: saying what you did not measure is what makes the part you did measure worth listening to.',
+              whyZh: '一個人的經驗是故事，不是證據，而「對我來說」正是誠實的適用範圍。後半句則是幾乎沒有人會補上的部分：說出「你沒有測什麼」，才讓你測到的那一部分變得值得聽。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Talking about research',
+          zh: '談論研究',
+          items: [
+            {
+              en: 'a review',
+              zh: '文獻回顧（整理多篇研究的論文）',
+              eg: 'A 2020 review pulled together ten studies on recomposition.',
+              egZh: '2020 年的一篇文獻回顧，整理了十項關於身體重組的研究。',
+            },
+            {
+              en: 'a study found that…',
+              zh: '一項研究發現……',
+              eg: 'The study found that the high-protein group gained no significant fat.',
+              egZh: '這項研究發現，高蛋白組並沒有顯著增加脂肪。',
+            },
+            {
+              en: 'evidence suggests that…',
+              zh: '有證據顯示……',
+              eg: 'Evidence suggests that trained lifters can recompose too.',
+              egZh: '有證據顯示，已經有訓練經驗的人也可能做到身體重組。',
+            },
+            {
+              en: 'participants',
+              zh: '受試者',
+              eg: 'Participants lived in the facility for the whole study.',
+              egZh: '受試者在整個研究期間都住在該研究機構裡。',
+            },
+            {
+              en: 'self-reported',
+              zh: '自陳的、受試者自行回報的',
+              eg: 'Self-reported food intake is notoriously unreliable.',
+              egZh: '受試者自行回報的飲食攝取量，不可靠是出了名的。',
+            },
+            {
+              en: 'a limitation',
+              zh: '研究限制',
+              eg: 'The main limitation is that nobody watched what they actually ate.',
+              egZh: '主要的研究限制在於：沒有人真正看著他們吃了什麼。',
+            },
+            {
+              en: 'significant',
+              zh: '（統計上）顯著的',
+              eg: 'There was no significant increase in fat mass.',
+              egZh: '脂肪量並沒有顯著增加。',
+            },
+            {
+              en: 'a control group',
+              zh: '對照組',
+              eg: 'The control group kept eating as they normally did.',
+              egZh: '對照組維持原本的飲食習慣。',
+            },
+            {
+              en: 'the mechanism',
+              zh: '機制（某件事為何會發生）',
+              eg: 'He is careful not to claim the mechanism is fully established.',
+              egZh: '他很小心，不去宣稱這個機制已經完全確立。',
+            },
+            {
+              en: 'to rule something out',
+              zh: '排除某個可能',
+              eg: 'That study rules out the simplest explanation.',
+              egZh: '那項研究排除了最簡單的那個解釋。',
+            },
+          ],
+        },
+
+        {
+          t: 'gap',
+          en: 'Choose the careful verb',
+          zh: '選出說得剛剛好的動詞',
+          hintEn: 'Every sentence is about the same evidence. Only one option says as much as the evidence allows — no more and no less.',
+          hintZh: '每一句講的都是同一份證據。只有一個選項說得剛剛好，不多也不少。',
+          items: [
+            {
+              text: 'The review ___ evidence of recomposition in trained individuals.',
+              textZh: '這篇回顧研究，在已有訓練經驗的人身上找到了身體重組的證據。',
+              options: ['proved', 'found', 'guaranteed'],
+              answer: 1,
+              why: {
+                en: 'Studies find, show, suggest, report and indicate. In English they almost never “prove” — that verb belongs to mathematics, and using it about a review is the fastest way to sound like an advertisement.',
+                zh: '研究會 find、show、suggest、report、indicate。英文裡幾乎不會說研究 prove——那個動詞屬於數學；用它來講一篇回顧研究，是最快讓自己聽起來像廣告的方法。',
+              },
+            },
+            {
+              text: 'Protein ___ be part of the reason the fat gain did not appear.',
+              textZh: '蛋白質可能是脂肪並未如預期增加的原因之一。',
+              options: ['may', 'will', 'must'],
+              answer: 0,
+              why: {
+                en: '“May” offers a candidate explanation. “Must” claims you have ruled the others out, and Aragon explicitly has not — he lists four possibilities and leaves them open.',
+                zh: 'may 提出的是一個候選解釋。must 則是宣稱你已經排除了其他可能，而 Aragon 明白表示他沒有——他列了四個可能，並且讓它們保持開放。',
+              },
+            },
+            {
+              text: 'Participants ___ adding a hundred grams of protein a day.',
+              textZh: '受試者回報自己每天多吃了一百公克蛋白質。',
+              options: ['reported', 'proved', 'promised'],
+              answer: 0,
+              why: {
+                en: '“Reported” quietly tells the reader that this number came from the participants themselves, which is the whole limitation Aragon raises. Take it out and a self-report turns into a measurement.',
+                zh: 'reported 這個字，不動聲色地告訴讀者「這個數字是受試者自己說的」——而這正是 Aragon 提出的那個限制。把它拿掉，一份自陳資料就變成了一筆測量結果。',
+              },
+            },
+            {
+              text: 'There was no ___ increase in fat mass.',
+              textZh: '脂肪量並沒有顯著增加。',
+              options: ['big', 'significant', 'real'],
+              answer: 1,
+              why: {
+                en: 'In a research sentence “significant” is a statistical word, not an emotional one. It means the result is unlikely to be chance — not that it is large, and not that it matters to you.',
+                zh: '在研究的句子裡，significant 是統計上的用語，不是情緒上的形容詞。它的意思是「這個結果不太可能是碰巧」——不是「很大」，也不是「對你很重要」。',
+              },
+            },
+            {
+              text: 'Intakes of around 3 grams per kilo ___ in several of these studies.',
+              textZh: '其中幾項研究採用了每公斤體重約三公克的攝取量。',
+              options: ['are needed', 'were used', 'are recommended'],
+              answer: 1,
+              why: {
+                en: 'The passive keeps the sentence about the studies. The moment you switch to “are needed” or “are recommended”, you have quietly turned a study condition into advice for whoever is listening.',
+                zh: '被動語態讓這句話講的是「那些研究」。一旦換成 are needed 或 are recommended，你就在不知不覺間，把「研究裡的條件」變成了給聽者的建議。',
+              },
+            },
+            {
+              text: 'It worked ___ , though I did not measure body composition.',
+              textZh: '這對我來說有效，不過我沒有測身體組成。',
+              options: ['for everyone', 'for me', 'in general'],
+              answer: 1,
+              why: {
+                en: 'Two words that keep you honest and, oddly, make you more persuasive. Nobody argues with “for me”, and the person who states their own scope is the person worth asking follow-up questions.',
+                zh: '這兩個字讓你保持誠實，而且奇妙地讓你更有說服力。沒有人會去反駁「對我來說」；而會主動說出自身適用範圍的人，才是值得繼續追問的人。',
+              },
+            },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: 'C',
+          en: 'The vocabulary of training',
+          zh: '訓練的字彙',
+        },
+
+        {
+          t: 'phrases',
+          en: 'Body composition',
+          zh: '身體組成',
+          items: [
+            {
+              en: 'body composition',
+              zh: '身體組成',
+              eg: 'Body composition tells you more than body weight does.',
+              egZh: '身體組成能告訴你的，比體重多得多。',
+            },
+            {
+              en: 'body recomposition',
+              zh: '身體重組（增肌減脂同時發生）',
+              eg: 'Body recomposition means gaining muscle and losing fat at the same time.',
+              egZh: '身體重組指的是同時增加肌肉、減少脂肪。',
+            },
+            {
+              en: 'lean mass',
+              zh: '瘦體重、除脂體重',
+              eg: 'He gained three kilos of lean mass over the summer.',
+              egZh: '這個暑假他增加了三公斤的瘦體重。',
+            },
+            {
+              en: 'fat mass',
+              zh: '脂肪量',
+              eg: 'Fat mass went down even though the scale did not move.',
+              egZh: '就算體重計上的數字沒動，脂肪量還是下降了。',
+            },
+            {
+              en: 'body fat percentage',
+              zh: '體脂率',
+              eg: 'My weight is the same, but my body fat percentage is lower.',
+              egZh: '我的體重一樣，但體脂率變低了。',
+            },
+            {
+              en: 'to put on muscle',
+              zh: '增肌',
+              eg: 'Putting on muscle is slower than most people expect.',
+              egZh: '增肌的速度，比大多數人想像的慢。',
+            },
+            {
+              en: 'to lose fat',
+              zh: '減脂',
+              eg: 'Losing fat and losing weight are not the same goal.',
+              egZh: '減脂和減重，不是同一個目標。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'In the gym',
+          zh: '在健身房',
+          items: [
+            {
+              en: 'resistance training',
+              zh: '阻力訓練、重量訓練',
+              eg: 'Resistance training three or four times a week is the signal to build.',
+              egZh: '一週三到四次的阻力訓練，就是「長肌肉」的訊號。',
+            },
+            {
+              en: 'progressive overload',
+              zh: '漸進式超負荷',
+              eg: 'Without progressive overload the body has no reason to adapt.',
+              egZh: '沒有漸進式超負荷，身體就沒有理由去適應。',
+            },
+            {
+              en: 'to train close to failure',
+              zh: '練到接近力竭',
+              eg: 'The sets have to be taken close to failure to mean anything.',
+              egZh: '每一組都要練到接近力竭，才有意義。',
+            },
+            {
+              en: 'a set / a rep',
+              zh: '一組／一下（一次反覆）',
+              eg: 'Three to six sets per body part was the example given.',
+              egZh: '影片舉的例子是每個部位三到六組。',
+            },
+            {
+              en: 'hypertrophy',
+              zh: '肌肥大',
+              eg: 'Hypertrophy is the technical word for muscle growth.',
+              egZh: 'hypertrophy 是「肌肉成長」的專業說法。',
+            },
+            {
+              en: 'Zone 2 cardio',
+              zh: '心率二區有氧',
+              eg: 'Most of the cardio in the programme is Zone 2.',
+              egZh: '這份課表裡的有氧，大部分是心率二區。',
+            },
+            {
+              en: 'recovery',
+              zh: '恢復',
+              eg: 'Recovery is not the gap between training; it is where the growth happens.',
+              egZh: '恢復不是訓練之間的空檔，成長就是在那個時候發生的。',
+            },
+            {
+              en: 'to train fasted / fed',
+              zh: '空腹訓練／進食後訓練',
+              eg: 'Whether you train fasted or fed is not the deciding factor.',
+              egZh: '空腹練還是吃過再練，並不是決定性的因素。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Food and energy',
+          zh: '飲食與熱量',
+          items: [
+            {
+              en: 'maintenance calories',
+              zh: '維持熱量',
+              eg: 'He suggests eating around maintenance, or a little above it.',
+              egZh: '他建議吃在維持熱量附近，或略高一點。',
+            },
+            {
+              en: 'a caloric surplus / deficit',
+              zh: '熱量盈餘／熱量赤字',
+              eg: 'A judicious surplus is about ten percent above maintenance.',
+              egZh: '所謂有節制的盈餘，大約是比維持熱量高出一成。',
+            },
+            {
+              en: 'protein intake',
+              zh: '蛋白質攝取量',
+              eg: 'Very high protein intake was the common feature of those studies.',
+              egZh: '非常高的蛋白質攝取量，是那些研究的共同特徵。',
+            },
+            {
+              en: 'grams per kilo of body weight',
+              zh: '每公斤體重幾公克',
+              eg: 'The studies used around two to three grams per kilo of body weight.',
+              egZh: '這些研究採用的量，大約是每公斤體重二到三公克。',
+            },
+            {
+              en: 'satiating',
+              zh: '有飽足感的',
+              eg: 'Protein is satiating, so it may push other food out.',
+              egZh: '蛋白質有飽足感，所以可能會把其他食物擠掉。',
+            },
+            {
+              en: 'the thermic effect of food',
+              zh: '食物產熱效應',
+              eg: 'Protein has a higher thermic effect than carbohydrate or fat.',
+              egZh: '蛋白質的食物產熱效應，比碳水化合物或脂肪高。',
+            },
+            {
+              en: 'to overfeed',
+              zh: '（研究中）刻意讓受試者多吃',
+              eg: 'Participants were overfed by about forty percent.',
+              egZh: '研究刻意讓受試者多吃了大約四成的熱量。',
+            },
+            {
+              en: 'energy expenditure',
+              zh: '熱量消耗',
+              eg: 'Cardio raises energy expenditure and improves conditioning.',
+              egZh: '有氧可以提高熱量消耗，並改善體能狀態。',
+            },
+          ],
+        },
+
+        {
+          t: 'match',
+          en: 'Term and meaning',
+          zh: '術語與意思',
+          hintEn: 'Click a term on the left, then the meaning that belongs to it on the right.',
+          hintZh: '先點左邊的術語，再點右邊對應的意思。',
+          pairs: [
+            { a: 'body recomposition', b: 'gaining muscle and losing fat at the same time' },
+            { a: 'lean mass', b: 'everything in the body that is not fat' },
+            { a: 'maintenance calories', b: 'the intake at which body weight stays the same' },
+            { a: 'progressive overload', b: 'gradually asking the body to do more than before' },
+            { a: 'hypertrophy', b: 'growth in the size of muscle tissue' },
+            { a: 'the thermic effect of food', b: 'the energy the body spends processing what you eat' },
+            { a: 'NEAT', b: 'the energy you burn moving around outside training' },
+            { a: 'a limitation', b: 'something a study cannot tell you, stated openly' },
+          ],
+        },
+
+        {
+          t: 'gap',
+          en: 'Choose the collocation',
+          zh: '選出正確的搭配詞',
+          hintEn: 'One of the three fits the sentence. Tap the Chinese for the situation if you want it.',
+          hintZh: '三個選項中只有一個適合這個句子。想看情境的話，可以點開中文。',
+          items: [
+            {
+              text: 'She has ___ three kilos of muscle since April.',
+              textZh: '從四月到現在，她增加了三公斤的肌肉。',
+              options: ['put on', 'put up', 'put in'],
+              answer: 0,
+              why: {
+                en: '“Put on” is the phrasal verb for weight, muscle and fat alike. It is the everyday one; “gain” is its neutral written partner, and both are correct.',
+                zh: '不論是體重、肌肉還是脂肪，片語動詞都用 put on。它偏口語；書面上的中性說法是 gain，兩個都對。',
+              },
+            },
+            {
+              text: 'The programme asks you to ___ close to failure on most sets.',
+              textZh: '這份課表要求你大部分的組數都練到接近力竭。',
+              options: ['make', 'train', 'do'],
+              answer: 1,
+              why: {
+                en: '“Train” is the verb for the activity as a whole — train hard, train close to failure, train fasted. You do a set and you make progress, but you train.',
+                zh: '講「訓練」這件事本身，動詞用 train——train hard、train close to failure、train fasted。你 do a set、make progress，但你是 train。',
+              },
+            },
+            {
+              text: 'Eating slightly ___ maintenance can still work, if you lift hard.',
+              textZh: '只要重訓夠紮實，吃得比維持熱量略高一點還是行得通。',
+              options: ['over', 'above', 'upper'],
+              answer: 1,
+              why: {
+                en: '“Above maintenance” and “below maintenance” are the fixed pair. “Over” is not wrong in speech, but every study you read will say above.',
+                zh: 'above maintenance 和 below maintenance 是固定的一組說法。口語裡用 over 不算錯，但你讀到的每一篇研究都會寫 above。',
+              },
+            },
+            {
+              text: 'Protein is very ___ , so you may end up eating less of other things.',
+              textZh: '蛋白質很有飽足感，所以你可能會不知不覺少吃其他東西。',
+              options: ['filling', 'filled', 'full'],
+              answer: 0,
+              why: {
+                en: 'The food is filling; the person is full. Mixing them up is one of the most common slips in this subject — “I am filling” describes the food you have become.',
+                zh: '食物是 filling，人是 full。把這兩個字搞混，是這個主題裡最常見的錯誤之一——說「I am filling」，等於在說你自己變成了那份食物。',
+              },
+            },
+            {
+              text: 'The study found no significant ___ in fat mass.',
+              textZh: '這項研究發現，脂肪量並沒有顯著增加。',
+              options: ['rise up', 'increase', 'grow'],
+              answer: 1,
+              why: {
+                en: '“Increase” is the noun that goes with a measurement. “Grow” is a verb and takes no article here, and “rise up” means to rebel — which is a rather different study.',
+                zh: '談測量結果時，名詞用 increase。grow 是動詞，這裡不能加冠詞；而 rise up 的意思是「起義、反抗」——那會是另一種完全不同的研究。',
+              },
+            },
+            {
+              text: 'Total daily protein matters more than the exact ___ .',
+              textZh: '一整天的蛋白質總量，比精確的攝取時間點更重要。',
+              options: ['time', 'timing', 'moment'],
+              answer: 1,
+              why: {
+                en: '“Timing” is when something is done relative to everything else — meal timing, the timing of a joke. “Time” would be asking for a clock reading.',
+                zh: 'timing 指的是「相對於其他事情的時間安排」——meal timing、笑話的 timing。用 time 就變成在問「幾點鐘」。',
+              },
+            },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: 'D',
+          en: 'Talk it through',
+          zh: '一起討論',
+        },
+
+        {
+          t: 'poll',
+          en: 'Where do you stand?',
+          zh: '你的看法是？',
+          hintEn: 'No right answers. Pick one and be ready to say why — that sentence is the exercise.',
+          hintZh: '沒有標準答案。選一個，並準備好說明理由——那句理由才是真正的練習。',
+          items: [
+            {
+              en: 'The bathroom scale does more harm than good.',
+              zh: '體重計帶來的壞處比好處多。',
+            },
+            {
+              en: 'Most fitness advice online fails because it removes the conditions, not because it is invented.',
+              zh: '網路上大多數的健身建議之所以失敗，是因為它把前提條件拿掉了，而不是因為它是編出來的。',
+            },
+            {
+              en: 'For someone my age, consistency is worth more than getting the numbers exactly right.',
+              zh: '對我這個年紀的人來說，持續下去比把數字算得完全精準更有價值。',
+            },
+            {
+              en: 'A person who says “I am not sure” sounds less credible, not more.',
+              zh: '一個會說「我不確定」的人，聽起來反而比較沒有可信度。',
+            },
+            {
+              en: 'I would rather follow a plan I understand than a better plan I do not.',
+              zh: '比起一份我看不懂但更好的計畫，我寧願照著一份我真的理解的計畫做。',
+            },
+          ],
+        },
+
+        {
+          t: 'discuss',
+          en: 'Questions',
+          zh: '討論題',
+          items: [
+            {
+              en: 'Before this discussion, what did you think had to happen to your weight in order to get stronger? Has anything moved?',
+              zh: '在這次討論之前，你以為「變壯」的過程中體重一定會怎麼變化？現在有什麼想法改變了嗎？',
+              starters: [
+                { en: 'I used to assume that…', zh: '我以前一直以為……' },
+                { en: 'What I had never separated was…', zh: '我從來沒有把……分開來看。' },
+                { en: 'I am still not convinced that…', zh: '我到現在還是不太相信……' },
+              ],
+            },
+            {
+              en: 'If you stopped weighing yourself, what would you measure instead? Be specific — what number, how often?',
+              zh: '如果你不再量體重，你會改成量什麼？請說具體一點——量哪個數字？多久量一次？',
+              starters: [
+                { en: 'I would track… instead of…', zh: '我會改成追蹤……，而不是……' },
+                { en: 'The number I actually care about is…', zh: '我真正在意的那個數字是……' },
+                { en: 'I would check it about once every…', zh: '我大概會每……檢查一次。' },
+              ],
+            },
+            {
+              en: 'Aragon brings up a study that weakens his own case. When did you last do that in an argument — and what does it cost you?',
+              zh: 'Aragon 主動提出一篇對自己論點不利的研究。你上一次在爭論中這樣做是什麼時候？這樣做要付出什麼代價？',
+              starters: [
+                { en: 'The last time I admitted a weak point was…', zh: '我上一次承認自己論點的弱點是……' },
+                { en: 'It is harder to do in Chinese than in English because…', zh: '用中文做這件事比用英文難，因為……' },
+                { en: 'I think it costs you… but you get…', zh: '我覺得這樣做會失去……，但會得到……' },
+              ],
+            },
+            {
+              en: 'A lot of training advice reaches you through short videos. What would you now check before believing one?',
+              zh: '你接收到的訓練建議，很多都來自短影片。現在的你，在相信一支影片之前會先確認什麼？',
+              starters: [
+                { en: 'The first thing I would look for is…', zh: '我會先找的第一件事是……' },
+                { en: 'A claim without… is not worth much, because…', zh: '一個沒有……的主張沒什麼價值，因為……' },
+                { en: 'The accounts I trust tend to…', zh: '我比較信任的那些帳號通常會……' },
+              ],
+            },
+            {
+              en: 'Describe your own training in the careful language from Part B — what you did, what changed, and what you did not measure.',
+              zh: '用 B 部分那種謹慎的語言，描述你自己的訓練——你做了什麼、什麼改變了，以及你沒有測到什麼。',
+              starters: [
+                { en: 'Over the last few months I have…', zh: '過去這幾個月，我……' },
+                { en: 'What I can actually say is…', zh: '我真正能說的是……' },
+                { en: 'What I never measured was…', zh: '我一直沒有測的是……' },
+              ],
+            },
+          ],
+        },
+
+        {
+          t: 'task',
+          en: 'Explain it without overclaiming',
+          zh: '把它說清楚，但不要說得太滿',
+          instructionEn: 'Pick one prompt and talk for about ninety seconds. One rule, and it is the whole exercise: every claim has to carry its conditions with it. If a sentence would still sound true with the conditions removed, it is probably too strong.',
+          instructionZh: '選一個題目，說大約九十秒。只有一條規則，而它就是這個練習的全部：每一個主張都要把前提條件一起帶著。如果一句話「把條件拿掉之後聽起來還是成立」，那它大概就說得太滿了。',
+          prompts: [
+            {
+              en: 'Explain body recomposition to a friend who thinks losing weight and losing fat are the same thing.',
+              zh: '向一個以為「減重」和「減脂」是同一件事的朋友，解釋什麼是身體重組。',
+            },
+            {
+              en: 'Explain why the metabolic-ward study matters, even though it seems to contradict the main argument.',
+              zh: '解釋那篇代謝實驗室的研究為什麼重要，即使它看起來和主要論點互相矛盾。',
+            },
+            {
+              en: 'Explain to someone what a “free-living study” is and why it should change how you read the result.',
+              zh: '向別人解釋什麼是「自由生活型研究」，以及它為什麼會改變你解讀結果的方式。',
+            },
+            {
+              en: 'Describe your own training over the past two months, and say clearly what you did not measure.',
+              zh: '描述你過去兩個月的訓練，並明確說出你沒有測到什麼。',
+            },
+            {
+              en: 'Take one fitness claim you have seen online and say it again with its conditions put back.',
+              zh: '挑一個你在網路上看過的健身主張，把前提條件放回去，再說一次。',
+            },
+          ],
+          checklist: [
+            { en: 'evidence suggests that', zh: '有證據顯示' },
+            { en: 'a review found', zh: '一篇回顧研究發現' },
+            { en: 'may be part of the reason', zh: '可能是原因之一' },
+            { en: 'participants reported', zh: '受試者回報' },
+            { en: 'no significant increase', zh: '沒有顯著增加' },
+            { en: 'the main limitation is', zh: '主要的研究限制是' },
+            { en: 'were used in these studies', zh: '這些研究採用的是' },
+            { en: 'it worked for me', zh: '這對我來說有效' },
+            { en: 'body composition', zh: '身體組成' },
+            { en: 'resistance training', zh: '阻力訓練' },
+          ],
+          frames: [
+            {
+              en: 'Body recomposition means gaining muscle and losing fat at the same time.',
+              zh: '身體重組指的是同時增加肌肉、減少脂肪。',
+            },
+            {
+              en: 'Weight loss and fat loss are not the same thing.',
+              zh: '減重和減脂不是同一件事。',
+            },
+            {
+              en: 'A 2020 review found evidence of recomposition in trained individuals.',
+              zh: '2020 年的一篇回顧研究，在已有訓練經驗的人身上找到了身體重組的證據。',
+            },
+            {
+              en: 'Intakes of around two to three grams per kilo were used in several of these studies.',
+              zh: '其中幾項研究採用的攝取量，大約是每公斤體重二到三公克。',
+            },
+            {
+              en: 'Protein may displace other foods, but the mechanism is not fully established.',
+              zh: '蛋白質可能會把其他食物擠掉，但這個機制尚未完全確立。',
+            },
+            {
+              en: 'The main limitation is that the food intake was self-reported.',
+              zh: '主要的研究限制在於，飲食攝取量是受試者自行回報的。',
+            },
+            {
+              en: 'Without a training stimulus, a large surplus still produced fat gain.',
+              zh: '在沒有訓練刺激的情況下，夠大的熱量盈餘仍然造成了脂肪增加。',
+            },
+            {
+              en: 'It worked for me, though I did not measure body composition.',
+              zh: '這對我來說有效，不過我沒有測身體組成。',
+            },
+          ],
         },
       ],
     },

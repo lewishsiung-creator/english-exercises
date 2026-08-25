@@ -1673,6 +1673,33 @@ gap-fill. **D** is five reusable sentence patterns and a gap-fill on them. **E**
 takes the subject into *Atomic Habits* — a habit audit, a five-statement poll,
 five discussion questions and the closing speaking task.
 
+**Session 2 (26 August 2026)** is body recomposition, built from a written
+summary of a Huberman Lab clip with the nutrition researcher Alan Aragon: can
+you gain muscle and lose fat at once, and does that require a caloric deficit.
+The subject is Ken's own training, but the more useful half of the page is
+**Part B**, on the language researchers use to avoid saying more than they know.
+A `note` on hedging, a `contrast` of *Overclaiming* against *As the research
+puts it* — `proved` against `found`, `you need 3.3 g/kg` against `intakes of
+around 2.2 to 3.3 g/kg were used in these studies` — ten research phrases, and
+a six-item gap-fill where the wrong options are all the ways a finding gets
+inflated. Part A carries the reading and a ten-question quiz, Part C the
+training and nutrition vocabulary, Part D the talking.
+
+The `contrast` in Part A is doing something different from the one in session 1:
+it sets the two experiments side by side, *Without training* against *With
+training*, because the argument is not about protein at all — protein is in both
+columns, and what changes is whether anything is asking the body to build.
+
+**This is the first session here built on claims about the body, and two things
+follow.** The page records what the clip and the summary *said*; it does not
+vouch for the science, and the studies are named so he can read them himself —
+the same principle as the AMPK/mTOR note in
+[Aaron's](#aarons-notebook--adult-one-to-one-kept-over-time). And a `note` near
+the top says in both languages that this is an English lesson rather than a
+nutrition plan: the protein figures on the page are intakes **used in particular
+studies**, never a target for him. There is no `fix` block, because the source
+was written before the lesson.
+
 **The source needs one rule that no other notebook has needed.** Lewis's
 write-up opens with a table of Ken's original sentences beside a **ChatGPT
 rewrite** of them, and it points out that the rewrite still contains mistakes of
