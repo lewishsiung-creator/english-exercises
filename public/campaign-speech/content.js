@@ -1,9 +1,10 @@
 /* A Five-Minute Campaign Speech — reading practice for adults.
 
-   The text is the candidate's own bilingual speech for the 52nd President of
-   JCI The Port, kept exactly as written: this page is reading practice,
-   not an edit of his words. Only the line breaks are ours, one sentence group
-   per line so each is a comfortable unit to read aloud.
+   Two documents, kept exactly as written: James's five-minute candidate speech
+   for the 2027 presidency of JCI The Port, and the twenty-seven questions from
+   the election floor. This page is reading practice, not an edit of his words.
+   Only the line breaks are ours, one sentence group per line so each is a
+   comfortable unit to read aloud.
 
    Every visible string is an `en` / `zh` pair. Which one leads depends on the
    mode in the top bar — 讀 Read puts the English first and hides the Chinese
@@ -13,8 +14,9 @@
    Block types:
      lines     the speech itself — one sentence group per entry.
                `k: 1` marks a line worth memorising; it gets a gold rule.
-     subhead   a sub-heading inside a section (第一 / 第二 / 第三)
      say       words that are hard to say — a respelling and a Chinese tip
+     subhead   a sub-heading inside a section. Nothing uses it since the speech
+               was rewritten into seven parts, but the renderer still has it.
      qa        one question from the election Q&A: a bilingual question shown
                in both languages (it is asked *to* him, so it is context, not
                practice), then the answer as practice lines. **Stars** mark
@@ -24,23 +26,23 @@
 */
 
 const SPEECH = {
-  title: 'A Five-Minute Campaign Speech',
-  titleZh: '五分鐘政見發表稿',
-  kicker: '巨港國際青年商會 · 第52屆理事長候選人',
+  title: 'Presidential Candidate Speech & Q&A',
+  titleZh: '理事長候選人演說與問答',
+  kicker: '巨港青商會 · 2027 年度理事長候選人',
 
   source: {
-    en: 'Practice text: the candidate’s own five-minute campaign speech for the 52nd President of JCI The Port. The Chinese and the English are reproduced as written.',
-    zh: '練習文本：第52屆巨港國際青年商會理事長候選人五分鐘政見發表稿，中英文均依原稿，未經改寫。',
+    en: 'Practice text: James’s own five-minute candidate speech and the twenty-seven questions from the election floor, for the 2027 presidency of JCI The Port. The Chinese and the English are reproduced as written.',
+    zh: '練習文本：2027 年度巨港青商會理事長候選人 James 的五分鐘演說稿，以及選舉現場的二十七道問答。中英文均依原稿，未經改寫。',
   },
 
   intro: {
-    en: 'The speech first — sixty-two sentences, in the order they are spoken — and then the twenty-seven questions from the election floor. Read each line aloud, tap 🔊 to hear it, and tap 中 only when you need the Chinese. When a section feels comfortable, switch to 記 Recall: the Chinese leads, and you say the English before you check it.',
-    zh: '先是講稿——全篇六十二句，依演說順序排列——接著是選舉現場的二十七道問答。把每一句大聲讀出來，點 🔊 聽範讀，需要時再點 中 看中文。一段唸熟之後，切換到「記」：中文在前，先把英文說出來，再點開對答案。',
+    en: 'The speech first — sixty sentences across seven parts, in the order they are spoken — and then the twenty-seven questions from the election floor. Read each line aloud, tap 🔊 to hear it, and tap 中 only when you need the Chinese. When a section feels comfortable, switch to 記 Recall: the Chinese leads, and you say the English before you check it.',
+    zh: '先是講稿——七個段落、共六十句，依演說順序排列——接著是選舉現場的二十七道問答。把每一句大聲讀出來，點 🔊 聽範讀，需要時再點 中 看中文。一段唸熟之後，切換到「記」：中文在前，先把英文說出來，再點開對答案。',
     goalsEn: 'By the end of this lesson you will be able to:',
     goalsZh: '完成這堂課後，你將能夠：',
     goals: [
-      { en: 'read all 62 sentences of the speech aloud, pausing where the speaker would pause', zh: '朗讀講稿全部 62 句，並在該停頓的地方停頓' },
-      { en: 'say the twenty-eight words that most often trip up Mandarin speakers', zh: '唸出 28 個中文母語者最常唸錯的單字' },
+      { en: 'read all 60 sentences of the speech aloud, pausing where the speaker would pause', zh: '朗讀講稿全部 60 句，並在該停頓的地方停頓' },
+      { en: 'say the thirty-five words that most often trip up Mandarin speakers', zh: '唸出 35 個中文母語者最常唸錯的單字' },
       { en: 'produce each English sentence from the Chinese alone', zh: '只看中文，就能把英文說出來' },
       { en: 'deliver the whole speech inside five minutes', zh: '在五分鐘之內完成整篇演說' },
       { en: 'answer all twenty-seven election questions without reading from a script', zh: '不看稿，回答二十七道選舉問答' },
@@ -48,10 +50,10 @@ const SPEECH = {
   },
 
   sections: [
-    // ================================================================ 0
+    // ================================================================ 1
     {
       id: 'open',
-      n: '開',
+      n: 1,
       en: 'Opening',
       zh: '開場',
       blocks: [
@@ -59,29 +61,29 @@ const SPEECH = {
           t: 'lines',
           items: [
             {
-              en: 'Chairperson, past presidents, members of The Port family, and honored guests, good evening.',
-              zh: '大會主席、各位前會長、各位巨港家人、各位貴賓，大家晚安。',
+              en: 'Good evening, everyone.',
+              zh: '大家晚安。',
             },
             {
-              en: 'I am James Chen, a candidate for the 52nd President of JCI The Port.',
-              zh: '我是第52屆理事長候選人陳建宏。',
+              en: 'My name is James, and I am running for President of JCI The Port in 2027.',
+              zh: '我是 James，我參選 2027 年巨港青商理事長。',
             },
             {
-              en: 'As I stand here today, I feel thankful, but I also feel a strong responsibility.',
-              zh: '今天站在這裡，我的心中除了感謝，更多的是一份責任。',
+              en: 'Why did I decide to take this responsibility?',
+              zh: '為什麼我決定承擔這份責任？',
             },
             {
-              en: 'I have always believed that everyone should have a dream, and everyone deserves support to move toward that dream.',
-              zh: '我始終相信：每一個人都應該有夢想，也值得被幫助，朝著夢想前進。',
+              en: 'To be honest, I do not know whether becoming President will help my business or my career. And that is not the reason I am here.',
+              zh: '坦白說，我不知道擔任理事長是否會對我的事業或職涯有所幫助，而這也不是我站在這裡的原因。',
             },
             {
-              en: 'Therefore, the main idea of my campaign is:',
-              zh: '因此，我這次參選的核心理念是：',
-            },
-            {
-              en: 'Build Dreams and Bring Greater Honor to The Port.',
-              zh: '建築夢想，宏揚巨港。',
+              en: 'I decided to run because JCI The Port is a chapter that has deeply touched me.',
+              zh: '我決定參選，是因為巨港是一個讓我深受感動的分會。',
               k: 1,
+            },
+            {
+              en: 'I want this chapter to continue, to grow, and to create value for the next generation.',
+              zh: '我希望這個分會能夠持續下去、持續成長，並且為下一代創造更多價值。',
             },
           ],
         },
@@ -90,72 +92,11 @@ const SPEECH = {
           en: 'Words to watch',
           zh: '注意發音',
           items: [
-            { w: 'Chairperson', say: 'CHAIR-per-son', zh: '重音在第一個音節。' },
-            { w: 'honored', say: 'ON-erd', zh: 'h 不發音，開頭直接唸母音。' },
+            { w: 'everyone', say: 'EV-ree-wun', zh: '三個音節，重音在最前面。' },
             { w: 'responsibility', say: 'ri-spon-suh-BIL-uh-tee', zh: '六個音節，重音落在 BIL。' },
-            { w: 'deserves', say: 'di-ZERVZ', zh: '字尾 -ves 唸 /vz/，別漏掉。' },
-            { w: 'Therefore', say: 'THAIR-for', zh: '兩個音節，重音在前。' },
-          ],
-        },
-      ],
-    },
-
-    // ================================================================ 1
-    {
-      id: 'why',
-      n: 1,
-      en: 'Why Am I Running?',
-      zh: '我為什麼參選？',
-      blocks: [
-        {
-          t: 'lines',
-          items: [
-            {
-              en: 'In June 2024, a friend introduced me to JCI The Port.',
-              zh: '2024年6月，透過朋友引薦，我第一次接觸巨港青商。',
-            },
-            {
-              en: 'At my first board meeting, I saw two important things.',
-              zh: '第一次參加理事會，我看見了兩件事。',
-            },
-            {
-              en: 'The first was passion. Every member was thinking about how to make The Port better and how to invite more young people to join.',
-              zh: '第一，是熱情。每位會員都在思考，如何讓巨港更好，如何吸引更多青年加入。',
-            },
-            {
-              en: 'The second was professionalism. Every proposal was discussed carefully. The system, duties, and responsibilities were clear.',
-              zh: '第二，是專業。議案討論嚴謹、制度完整、分工清楚、責任明確。',
-            },
-            {
-              en: 'At that moment, I knew that The Port was not only a place to make friends. It was also a place to develop leaders.',
-              zh: '那一刻，我知道巨港不只是交朋友的地方，更是一個培養領導者的平台。',
-              k: 1,
-            },
-            {
-              en: 'After joining, I saw senior members share their experience, officers build clear systems, and members help new partners grow.',
-              zh: '加入之後，我看見前輩願意分享經驗，幹部願意建立制度，會員願意幫助新夥伴成長。',
-            },
-            {
-              en: 'This culture of sharing and passing on experience touched me deeply.',
-              zh: '這份「傳承、不藏私」的文化，讓我非常感動。',
-            },
-            {
-              en: 'I am not running because I think I am the best. I am running because I believe in The Port, and I am ready to take responsibility and serve everyone.',
-              zh: '所以，我參選不是因為我覺得自己最厲害，而是因為我認同巨港，也願意承擔責任，為大家服務。',
-              k: 1,
-            },
-          ],
-        },
-        {
-          t: 'say',
-          en: 'Words to watch',
-          zh: '注意發音',
-          items: [
-            { w: 'introduced', say: 'in-truh-DOOST', zh: '字尾 -ced 唸 /st/，不是 /sɪd/。' },
-            { w: 'passion', say: 'PASH-un', zh: 'a 是短母音，不要唸成 pay。' },
-            { w: 'professionalism', say: 'pruh-FESH-uh-na-lizm', zh: '五個音節，重音在 FESH。' },
-            { w: 'experience', say: 'ik-SPEER-ee-uns', zh: '重音在 SPEER，開頭的 ex- 要輕。' },
-            { w: 'leaders', say: 'LEE-derz', zh: '長母音 ee，和 letters 分清楚。' },
+            { w: 'honest', say: 'ON-ist', zh: 'h 不發音，開頭直接唸母音。' },
+            { w: 'career', say: 'kuh-REER', zh: '重音在後，別唸成 carrier。' },
+            { w: 'generation', say: 'jen-uh-RAY-shun', zh: '重音在 RAY。' },
           ],
         },
       ],
@@ -163,146 +104,42 @@ const SPEECH = {
 
     // ================================================================ 2
     {
-      id: 'goals',
+      id: 'vision',
       n: 2,
-      en: 'My Three Main Goals for 2027',
-      zh: '2027年，我有三個主要願景',
+      en: 'My Vision',
+      zh: '我的願景',
       blocks: [
         {
-          t: 'subhead',
-          en: 'First, Make The Port Influential',
-          zh: '第一，打造有影響力的巨港',
-        },
-        {
           t: 'lines',
           items: [
             {
-              en: 'The value of JCI is not only about holding events. It is about creating change through action.',
-              zh: '青商的價值不只是辦活動，而是透過行動創造改變。',
+              en: 'My vision for 2027 is simple: Build a more influential JCI The Port and help every member succeed.',
+              zh: '我對 2027 年的願景其實很簡單：打造更有影響力的巨港，成就每一位會員。',
               k: 1,
             },
             {
-              en: 'In 2027, we will focus on three areas: serving the community, developing young people, and creating influence.',
-              zh: '2027年，我們將聚焦三件事：服務社區、培育青年、創造影響力。',
+              en: 'I believe JCI is not only about holding activities.',
+              zh: '我認為青商不只是辦活動。',
             },
             {
-              en: 'Every community project should answer a real need in society.',
-              zh: '每一次社區服務，都要回應真正的社會需求。',
+              en: 'It is about helping people grow.',
+              zh: '更重要的是幫助人成長。',
             },
             {
-              en: 'Every training course should give young people useful skills.',
-              zh: '每一場課程，都要讓青年學到真正能使用的能力。',
+              en: 'Through community service, training, international exchange, and cooperation across different industries, I want more young people to know JCI The Port.',
+              zh: '透過社區服務、訓練、國際交流，以及不同產業之間的合作，我希望讓更多青年認識巨港。',
             },
             {
-              en: 'Every partnership should help more people learn about The Port.',
-              zh: '每一次合作，都要讓更多人看見巨港。',
+              en: 'More importantly, I want every member to gain something meaningful from JCI.',
+              zh: '更重要的是，我希望每一位會員都能真正從青商有所收穫。',
             },
             {
-              en: 'In the future, when people talk about The Port, I hope they will say:',
-              zh: '我希望未來當別人提到巨港，他們會想到：',
+              en: 'Earlier this year, I asked our members one question: “What do you want to gain from JCI?”',
+              zh: '今年，我曾經問所有會員一個問題：「你希望從青商得到什麼？」',
             },
             {
-              en: '“They are young leaders who are willing to work for Kaohsiung, for young people, and for society.”',
-              zh: '「這是一群願意為高雄、為青年、為社會付出的年輕領導者。」',
-              k: 1,
-            },
-          ],
-        },
-
-        {
-          t: 'subhead',
-          en: 'Second, Help Every Member Succeed',
-          zh: '第二，成就每一位會員',
-        },
-        {
-          t: 'lines',
-          items: [
-            { en: 'I often say:', zh: '我常說：' },
-            {
-              en: 'Members do not come to work for JCI. They come to JCI to become better people.',
-              zh: '會員不是來為青商工作，而是透過青商成就更好的自己。',
-              k: 1,
-            },
-            {
-              en: 'In the coming year, I will provide more opportunities to practise.',
-              zh: '未來一年，我會提供更多實踐機會。',
-            },
-            {
-              en: 'I will encourage members to organize events, lead courses, and manage projects.',
-              zh: '我會鼓勵會員舉辦活動、主持課程、承擔專案。',
-            },
-            {
-              en: 'Leadership is not learned only by listening. It is learned by doing.',
-              zh: '因為領導力不是聽來的，而是做出來的。',
-              k: 1,
-            },
-            {
-              en: 'I will also build a platform for cooperation between different industries and connect members’ skills, resources, and business experience.',
-              zh: '我也會建立跨產業合作平台，整合會員的專業、資源與行業經驗。',
-            },
-            {
-              en: 'The Port should offer more than personal connections. It should create real opportunities.',
-              zh: '讓巨港不只是人脈，更能創造真正的機會。',
-            },
-            {
-              en: 'I will also start a professional sharing program. Members can share their knowledge, and more young people can learn about The Port.',
-              zh: '同時，我會推動職人分享計畫，讓會員分享專業，也讓更多優秀青年認識巨港。',
-            },
-            {
-              en: 'I hope every member can say:',
-              zh: '我希望未來每位會員都能說：',
-            },
-            {
-              en: '“Joining The Port was one of the most valuable investments in my life.”',
-              zh: '「加入巨港，是我人生最有價值的投資之一。」',
-              k: 1,
-            },
-          ],
-        },
-
-        {
-          t: 'subhead',
-          en: 'Third, Strengthen the Culture of The Port',
-          zh: '第三，深化巨港文化',
-        },
-        {
-          t: 'lines',
-          items: [
-            {
-              en: 'The most valuable part of The Port is not only our ability to organize events. It is our culture.',
-              zh: '巨港最珍貴的，不只是辦活動的能力，而是我們的文化。',
-            },
-            {
-              en: 'That culture is friendship, service, and training.',
-              zh: '這個文化就是：友誼、服務、訓練。',
-              k: 1,
-            },
-            {
-              en: 'For friendship, we will continue to organize social, travel, and sports activities. Members should not only know one another. They should trust one another.',
-              zh: '在友誼上，我們會持續舉辦聯誼、旅遊與運動活動，讓會員不只是認識，更能建立信任。',
-            },
-            {
-              en: 'For service, I hope The Port will continue to support local communities, students in need, homeless animals, and others who need help.',
-              zh: '在服務上，我希望巨港持續深入社區，關懷弱勢學生、流浪動物與其他需要協助的人。',
-            },
-            { en: 'I believe:', zh: '我相信：' },
-            {
-              en: 'When we serve others, we also improve ourselves.',
-              zh: '服務他人，就是成就自己。',
-              k: 1,
-            },
-            {
-              en: 'For training, we will continue to encourage members to join meeting procedure training, the Golden Mouth Award, Oregon Debate, and other courses.',
-              zh: '在訓練上，我們會持續鼓勵會員參與會議規範、金口獎、奧瑞岡辯論與各項課程。',
-            },
-            {
-              en: 'I do not want only a few people to speak and lead. I want more members to be brave enough to stand on stage, express their ideas, and lead others.',
-              zh: '我希望不只是少數人會說、會帶，而是有更多會員敢上台、敢表達、敢領導。',
-            },
-            {
-              en: 'True succession is not only about finishing events. It is about developing people.',
-              zh: '因為真正的傳承，不只是把活動辦完，而是把人才帶出來。',
-              k: 1,
+              en: 'If I become President, I want to help more members turn their goals into real opportunities.',
+              zh: '如果我成為理事長，我希望幫助更多會員，把自己的目標變成真正的機會。',
             },
           ],
         },
@@ -311,12 +148,11 @@ const SPEECH = {
           en: 'Words to watch',
           zh: '注意發音',
           items: [
-            { w: 'influence, influential', say: 'IN-floo-uns → in-floo-EN-shul', zh: '名詞重音在前，形容詞移到 EN。' },
-            { w: 'community', say: 'kuh-MYOO-nuh-tee', zh: '重音在 MYOO，開頭的 co- 要輕。' },
-            { w: 'Kaohsiung', say: 'KOW-shung', zh: '說英文時的唸法，兩個音節。' },
+            { w: 'influential', say: 'in-floo-EN-shul', zh: '重音在 EN，和名詞 influence 不同。' },
+            { w: 'succeed', say: 'suk-SEED', zh: '重音在後，字尾長母音 ee。' },
+            { w: 'activities', say: 'ak-TIV-uh-teez', zh: '重音在 TIV。' },
+            { w: 'exchange', say: 'iks-CHAYNJ', zh: '重音在後，ch 的音要出來。' },
             { w: 'opportunities', say: 'op-er-TOO-nuh-teez', zh: '五個音節，重音在 TOO。' },
-            { w: 'valuable', say: 'VAL-yoo-bul', zh: '三個音節就好，不要唸成四個。' },
-            { w: 'succession', say: 'suk-SESH-un', zh: '和 success 不同字，字尾是 -sion。' },
           ],
         },
       ],
@@ -324,43 +160,53 @@ const SPEECH = {
 
     // ================================================================ 3
     {
-      id: 'hope',
+      id: 'change',
       n: 3,
-      en: 'The Port I Hope to Build',
-      zh: '我期待的巨港',
+      en: 'What I Want to Change',
+      zh: '我想改變的事情',
       blocks: [
         {
           t: 'lines',
           items: [
             {
-              en: 'I hope The Port will not only become bigger. I hope it will become warmer.',
-              zh: '我期待的巨港，不只是更大，而是更有溫度。',
-              k: 1,
+              en: 'However, if we want to grow, we also need the courage to change.',
+              zh: '但是，如果我們想要成長，我們也必須有改變的勇氣。',
             },
             {
-              en: 'I hope new members will have someone to guide them.',
-              zh: '我希望新會員加入時，有人陪伴。',
+              en: 'One thing I believe we must improve is our meeting culture.',
+              zh: '我認為巨港最需要改善的一件事情，就是我們的會議文化。',
             },
             {
-              en: 'I hope long-term members will feel that staying is valuable.',
-              zh: '老會員留下時，感到值得。',
+              en: 'Our meetings sometimes last too long and end too late.',
+              zh: '我們的會議有時候太長，也結束得太晚。',
             },
             {
-              en: 'I hope senior members will share their experience, officers will take responsibility, and families will give their support.',
-              zh: '前輩願意傳承，幹部願意承擔，家人願意支持。',
+              en: 'This may seem like a small problem, but I believe it affects our ability to attract young people.',
+              zh: '這看起來可能只是小問題，但我認為它會影響我們吸引年輕人的能力。',
             },
             {
-              en: 'A truly great chapter is not built by one president. It is built by people who are willing to help one another succeed.',
-              zh: '因為一個真正偉大的分會，不是靠一位理事長，而是靠一群願意彼此成就的人。',
-              k: 1,
+              en: 'Some people say long meetings are necessary because everyone needs time to speak.',
+              zh: '有些人認為，會議時間長，是因為每個人都需要有表達意見的時間。',
             },
             {
-              en: 'One idea is very important to me:',
-              zh: '我非常重視一句話：',
+              en: 'I respect that idea.',
+              zh: '我尊重這樣的想法。',
             },
             {
-              en: 'The president should not stand in front of The Port family. The president should stand beside every member.',
-              zh: '理事長不是站在巨港的前面，而是站在巨港家人的身邊。',
+              en: 'But meeting procedures are also part of JCI training.',
+              zh: '但是，會議規範本身也是青商訓練的一部分。',
+            },
+            {
+              en: 'We should learn how to express our ideas clearly, follow the rules, respect time, and make decisions efficiently.',
+              zh: '我們應該學會清楚表達、遵守規則、尊重時間，並有效率地做出決策。',
+            },
+            {
+              en: 'My goal is not to stop discussion.',
+              zh: '我的目的不是減少討論。',
+            },
+            {
+              en: 'My goal is to make our meetings efficient, effective, and respectful of everyone’s time.',
+              zh: '而是希望我們的會議能夠做到有效率、有成果，也尊重每一個人的時間。',
               k: 1,
             },
           ],
@@ -370,10 +216,11 @@ const SPEECH = {
           en: 'Words to watch',
           zh: '注意發音',
           items: [
-            { w: 'chapter', say: 'CHAP-ter', zh: '這裡是「分會」，不是「章節」。' },
-            { w: 'president', say: 'PREZ-uh-dunt', zh: '重音在第一個音節。' },
-            { w: 'truly', say: 'TROO-lee', zh: '拼字沒有 e，唸法也沒有。' },
-            { w: 'warmer', say: 'WOR-mer', zh: 'w 開頭要圓唇，和 farmer 分清楚。' },
+            { w: 'culture', say: 'KUL-cher', zh: '重音在前，字尾 -ture 唸 cher。' },
+            { w: 'procedures', say: 'pruh-SEE-jerz', zh: '重音在 SEE。' },
+            { w: 'efficiently', say: 'ih-FISH-unt-lee', zh: '重音在 FISH，開頭的 e 要輕。' },
+            { w: 'decisions', say: 'dih-SIZH-unz', zh: '中間的 s 唸 /ʒ/，不是 /s/。' },
+            { w: 'necessary', say: 'NES-uh-ser-ee', zh: '重音在最前面。' },
           ],
         },
       ],
@@ -381,27 +228,51 @@ const SPEECH = {
 
     // ================================================================ 4
     {
-      id: 'promise',
+      id: 'leadership',
       n: 4,
-      en: 'My Promise',
-      zh: '我的承諾',
+      en: 'My Leadership Style',
+      zh: '我的領導方式',
       blocks: [
         {
           t: 'lines',
           items: [
             {
-              en: 'Dear members of The Port family, one person can have a dream, but a group of people can give that dream a better chance to come true.',
-              zh: '各位巨港家人，夢想，一個人可以擁有；但一群人，可以讓夢想更有機會實現。',
-              k: 1,
+              en: 'I also believe that a President should never think, “I have to do everything myself.”',
+              zh: '我也相信，一位理事長不能一直認為：「所有事情都要我自己做。」',
             },
             {
-              en: 'If I am lucky enough to receive your support, I cannot promise that everything will be perfect. However, I can promise:',
-              zh: '如果有幸獲得大家的支持，我不敢承諾每件事都完美，但我承諾：',
+              en: 'A strong organization cannot depend on one person.',
+              zh: '一個強大的組織，不能只依靠一個人。',
             },
-            { en: 'I will listen carefully.', zh: '我會認真傾聽。' },
-            { en: 'I will serve sincerely.', zh: '我會真誠服務。' },
-            { en: 'I will be brave enough to take responsibility.', zh: '我會勇於承擔。' },
-            { en: 'I will move forward together with all of you.', zh: '我會與大家並肩前行。' },
+            {
+              en: 'I know one of my own weaknesses is that I have a strong sense of responsibility, so sometimes I try to handle too many things myself.',
+              zh: '我知道自己的其中一個缺點，就是責任感比較強，所以有時候容易把太多事情扛在自己身上。',
+            },
+            {
+              en: 'That is something I need to change.',
+              zh: '這是我必須改變的地方。',
+            },
+            {
+              en: 'As President, I will learn to delegate.',
+              zh: '如果我成為理事長，我會學習授權。',
+            },
+            {
+              en: 'I will give our committee chairs the space to make decisions, solve problems, and grow.',
+              zh: '我會讓各委員會主委有空間做決定、解決問題，並且從過程中成長。',
+            },
+            {
+              en: 'I will listen more, ask more questions, and then make decisions.',
+              zh: '我會多聽、多問，再做決定。',
+            },
+            {
+              en: 'Because real leadership is not about showing everyone: “Look how much I can do.”',
+              zh: '因為真正的領導，不是向大家證明：「你看，我多會做事情。」',
+            },
+            {
+              en: 'Real leadership is helping other people believe: “I can do it too.”',
+              zh: '真正的領導，是讓身邊的人開始相信：「我也做得到。」',
+              k: 1,
+            },
           ],
         },
         {
@@ -409,10 +280,11 @@ const SPEECH = {
           en: 'Words to watch',
           zh: '注意發音',
           items: [
-            { w: 'promise', say: 'PROM-is', zh: '重音在前，字尾輕輕帶過。' },
-            { w: 'sincerely', say: 'sin-SEER-lee', zh: '重音在 SEER。' },
-            { w: 'perfect', say: 'PER-fikt', zh: '形容詞重音在前，動詞才在後。' },
-            { w: 'brave', say: 'BRAYV', zh: '長母音 ay，字尾 v 要出聲。' },
+            { w: 'organization', say: 'or-guh-nuh-ZAY-shun', zh: '五個音節，重音在 ZAY。' },
+            { w: 'delegate', say: 'DEL-uh-gayt', zh: '動詞重音在前，字尾唸 gayt。' },
+            { w: 'committee', say: 'kuh-MIT-ee', zh: '重音在中間，兩個 t 只唸一次。' },
+            { w: 'weaknesses', say: 'WEEK-nuh-siz', zh: '三個音節，字尾別漏掉。' },
+            { w: 'leadership', say: 'LEE-der-ship', zh: '長母音 ee。' },
           ],
         },
       ],
@@ -420,46 +292,48 @@ const SPEECH = {
 
     // ================================================================ 5
     {
-      id: 'close',
-      n: '結',
-      en: 'Closing',
-      zh: '結語',
+      id: 'rules',
+      n: 5,
+      en: 'Responsibility and Rules',
+      zh: '責任與制度',
       blocks: [
         {
           t: 'lines',
           items: [
             {
-              en: 'Let us build dreams for young people, create influence in Kaohsiung, and continue the honor of The Port.',
-              zh: '讓我們一起為青年建築夢想，在高雄創造影響，為巨港延續榮耀。',
+              en: 'At the same time, leadership also means responsibility.',
+              zh: '同時，領導也代表責任。',
+            },
+            {
+              en: 'If one of my officers cannot complete their work for a long time, even if that person is my good friend, I will first communicate, understand the problem, and offer support.',
+              zh: '如果我的幹部長時間無法完成工作，就算那個人是我的好朋友，我也會先溝通、了解問題，並提供協助。',
+            },
+            {
+              en: 'But if the problem cannot be improved, I will make a change.',
+              zh: '但是，如果問題最後仍然無法改善，我會做出調整。',
+            },
+            {
+              en: 'Friendship is important, but responsibility to the organization must come first.',
+              zh: '友誼很重要，但對組織的責任必須放在前面。',
               k: 1,
             },
             {
-              en: 'Let more people grow because of The Port.',
-              zh: '讓更多人因巨港而成長。',
+              en: 'The same is true for our rules.',
+              zh: '制度也是一樣。',
             },
             {
-              en: 'Let more families connect because of The Port.',
-              zh: '讓更多家庭因巨港而連結。',
+              en: 'No matter whether someone is a new member, a senior member, or even someone who supported me in the election, everyone should follow the same rules.',
+              zh: '無論是一位新會員、資深會員，甚至是曾經支持我當選的人，每個人都應該遵守同樣的規則。',
             },
             {
-              en: 'Let more parts of society become better because of The Port.',
-              zh: '讓更多社會角落因巨港而變得更美好。',
+              en: 'A President should not stand above the organization.',
+              zh: '理事長不是站在組織之上。',
             },
             {
-              en: 'I am James Chen, a candidate for the 52nd President of JCI The Port.',
-              zh: '我是第52屆理事長候選人陳建宏。',
-            },
-            {
-              en: 'I sincerely ask every member of The Port family to give me an opportunity to serve.',
-              zh: '懇請各位巨港家人，給建宏一個服務的機會。',
-            },
-            { en: 'Let us move forward together:', zh: '讓我們攜手同行：' },
-            {
-              en: 'Build Dreams and Bring Greater Honor to The Port.',
-              zh: '建築夢想，宏揚巨港。',
+              en: 'A President should stand in front of the organization and be ready to accept everyone’s examination.',
+              zh: '理事長應該站在大家前面，接受所有會員的檢視。',
               k: 1,
             },
-            { en: 'Thank you, everyone.', zh: '謝謝大家。' },
           ],
         },
         {
@@ -467,15 +341,152 @@ const SPEECH = {
           en: 'Words to watch',
           zh: '注意發音',
           items: [
-            { w: 'honor', say: 'ON-er', zh: 'h 不發音，和 honored 一樣。' },
-            { w: 'society', say: 'suh-SY-uh-tee', zh: '重音在 SY，開頭的 so- 要輕。' },
-            { w: 'connect', say: 'kuh-NEKT', zh: '重音在後面。' },
-            { w: 'opportunity', say: 'op-er-TOO-nuh-tee', zh: '單數少一個音節，重音不變。' },
+            { w: 'officers', say: 'OFF-uh-serz', zh: '重音在最前面。' },
+            { w: 'communicate', say: 'kuh-MYOO-nuh-kayt', zh: '重音在 MYOO。' },
+            { w: 'friendship', say: 'FREND-ship', zh: 'ie 這裡唸短母音 e。' },
+            { w: 'examination', say: 'ig-zam-uh-NAY-shun', zh: '五個音節，重音在 NAY。' },
+            { w: 'senior', say: 'SEEN-yer', zh: '兩個音節，不要唸成三個。' },
           ],
         },
       ],
     },
 
+    // ================================================================ 6
+    {
+      id: 'next',
+      n: 6,
+      en: 'Building the Next Generation',
+      zh: '培養下一代',
+      blocks: [
+        {
+          t: 'lines',
+          items: [
+            {
+              en: 'Finally, I believe the success of a President should not be judged by how many activities we hold.',
+              zh: '最後，我認為一位理事長是否成功，不應該只看一年辦了多少活動。',
+            },
+            {
+              en: 'We should ask: Are our members growing?',
+              zh: '我們真正應該問的是：會員有沒有成長？',
+            },
+            {
+              en: 'Are new members staying?',
+              zh: '新會員有沒有留下？',
+            },
+            {
+              en: 'Are more people willing to take responsibility?',
+              zh: '有沒有更多人願意承擔責任？',
+            },
+            {
+              en: 'And when my term is almost over, is there someone ready to take the next step?',
+              zh: '當我的任期即將結束時，有沒有人已經準備好接下一棒？',
+            },
+            {
+              en: 'If no one is willing to become the next President, I will not blame the members.',
+              zh: '如果沒有人願意成為下一任理事長，我不會先責怪會員。',
+            },
+            {
+              en: 'I will first ask myself: “Did I develop enough future leaders?”',
+              zh: '我會先問自己：「我有沒有培養出足夠的下一代領導者？」',
+            },
+            {
+              en: 'Because a successful President should not only finish one successful year.',
+              zh: '因為一位成功的理事長，不只是把自己的一年做好。',
+            },
+            {
+              en: 'A successful President should prepare the next generation to lead.',
+              zh: '而是要準備好下一代，讓他們有能力繼續帶領巨港。',
+              k: 1,
+            },
+          ],
+        },
+        {
+          t: 'say',
+          en: 'Words to watch',
+          zh: '注意發音',
+          items: [
+            { w: 'judged', say: 'JUJD', zh: '一個音節，字尾 -ed 唸 /d/。' },
+            { w: 'willing', say: 'WIL-ing', zh: '短母音 i，和 wheeling 分清楚。' },
+            { w: 'develop', say: 'dih-VEL-up', zh: '重音在中間。' },
+            { w: 'successful', say: 'suk-SESS-ful', zh: '重音在 SESS。' },
+            { w: 'prepare', say: 'pri-PAIR', zh: '重音在後。' },
+          ],
+        },
+      ],
+    },
+
+    // ================================================================ 7
+    {
+      id: 'close',
+      n: 7,
+      en: 'Closing',
+      zh: '結尾',
+      blocks: [
+        {
+          t: 'lines',
+          items: [
+            {
+              en: 'So, what do I hope to leave after 2027?',
+              zh: '所以，2027 年結束的時候，我希望留下什麼？',
+            },
+            {
+              en: 'I hope JCI The Port will become more visible.',
+              zh: '我希望巨港有更高的能見度。',
+            },
+            {
+              en: 'I hope our meetings will become more efficient.',
+              zh: '我希望我們的會議更加有效率。',
+            },
+            {
+              en: 'I hope our Three Treasures will continue to be passed on.',
+              zh: '我希望青商三寶能夠繼續傳承。',
+            },
+            {
+              en: 'I hope more young people will join us, and more members will find opportunities to grow.',
+              zh: '我希望更多青年加入我們，也希望更多會員能在這裡找到成長的機會。',
+            },
+            {
+              en: 'But most importantly, I hope that when my term ends, more members will look at JCI The Port and say: “This organization is worth my time.”',
+              zh: '但最重要的是，我希望當我的任期結束時，有更多會員看著巨港，說：「這是一個值得我投入時間的組織。」',
+            },
+            {
+              en: '“This organization helped me grow.”',
+              zh: '「這個組織讓我成長。」',
+            },
+            {
+              en: 'And maybe one of them will also say: “The next step? I can take it.”',
+              zh: '甚至有人願意說：「下一棒，我可以接。」',
+            },
+            {
+              en: 'That is the JCI The Port I want to build.',
+              zh: '這就是我希望打造的巨港。',
+              k: 1,
+            },
+            {
+              en: 'Not only a successful chapter for one year, but a stronger chapter for many years to come.',
+              zh: '不只是一個成功一年的分會，而是一個能夠持續強大很多年的巨港。',
+              k: 1,
+            },
+            {
+              en: 'Thank you.',
+              zh: '謝謝大家。',
+            },
+          ],
+        },
+        {
+          t: 'say',
+          en: 'Words to watch',
+          zh: '注意發音',
+          items: [
+            { w: 'visible', say: 'VIZ-uh-bul', zh: '三個音節，重音在最前面。' },
+            { w: 'efficient', say: 'ih-FISH-unt', zh: '重音在 FISH，開頭的 e 要輕。' },
+            { w: 'treasures', say: 'TREZH-erz', zh: 'ea 唸短母音 e，s 唸 /ʒ/。' },
+            { w: 'importantly', say: 'im-POR-tunt-lee', zh: '重音在 POR。' },
+            { w: 'stronger', say: 'STRONG-ger', zh: '中間多一個 g 的音。' },
+          ],
+        },
+      ],
+    },
     // ================================================================ Q&A
     {
       id: 'qa',
@@ -614,8 +625,14 @@ const SPEECH = {
               zh: '我不是站在大家上面的人，而是站在大家前面、接受大家檢視的人。' },
             { en: 'My answer is simple: **Lead by example.**',
               zh: '所以如果問我，如何讓會員仔細審視我的一舉一動，我會用四個字回答：**「以身作則。」**' },
-            { en: 'I will focus on three things. First, I will keep chapter affairs transparent. Second, I will keep the promises I make. Third, I will listen to and accept different opinions.',
-              zh: '我將做到三件事情：第一，會務上透明。第二，承諾過的事情就要做到。第三，接受不同的聲音。' },
+            { en: 'I will focus on three things.',
+              zh: '我將做到三件事情：' },
+            { en: 'First, I will keep chapter affairs transparent.',
+              zh: '第一，會務上透明。' },
+            { en: 'Second, I will keep the promises I make.',
+              zh: '第二，承諾過的事情就要做到。' },
+            { en: 'Third, I will listen to and accept different opinions.',
+              zh: '第三，接受不同的聲音。' },
           ],
         },
         {
@@ -796,7 +813,7 @@ const SPEECH = {
               zh: '我會先和這位朋友溝通，了解三個月無法完成工作的原因，以及有沒有辦法改善。' },
             { en: 'If the problem still cannot be solved, I would replace this person.',
               zh: '如果沒有辦法改善，我就會撤換他。' },
-            { en: 'My bottom line is simple: **If someone agrees to take a position, they should take responsibility for the work. If they cannot do the job, someone else should take the position.**',
+            { en: 'My bottom line is simple: **if someone agrees to take a position, they should take responsibility for the work. If they cannot do the job, someone else should take the position.**',
               zh: '我的底線就是：幹部既然答應要接這個職務，就應該執行該執行的事務；如果無法執行，就換人。' },
           ],
         },
@@ -811,7 +828,7 @@ const SPEECH = {
             { en: '**Yes, I would take action.** No matter who the person is, if they seriously damage the reputation of JCI The Port, we should follow **Article 14 of our chapter rules**.',
               zh: '不論是誰，只要嚴重傷害巨港名譽，都應該按照章程第14條處理。' },
             { en: 'According to the rules, if the required number of Board members attend the meeting and at least two-thirds of the attending Board members agree, the person can **lose their membership**.',
-              zh: '也就是如果：**「經理事會三分之二以上之出席及出席理事三分之二以上人數之通過」**就：**「喪失其會員資格」。**' },
+              zh: '也就是如果**「經理事會三分之二以上之出席及出席理事三分之二以上人數之通過」**，就**「喪失其會員資格」**。' },
             { en: 'I would follow this rule even if the person supported me in the election or made major contributions to JCI The Port. These are the rules created by the senior members who came before us, and **everyone should follow the same rules**.',
               zh: '因為這是巨港各位前輩們定下的規矩。' },
           ],
@@ -828,8 +845,16 @@ const SPEECH = {
               zh: '如果卸任時出現這樣的結果，我會認為是**失敗的**。' },
             { en: 'However, what concerns me more is whether I would wait until the end of my term to realize that we had failed.',
               zh: '但我更在意的是，我會不會在卸任那一天才發現失敗。' },
-            { en: 'That is why I want to regularly check our progress during the year. I will not only ask whether we completed our activities. I will also ask: **Are our members growing? Is participation increasing? Are new members staying? Are members getting what they want from JCI?**',
-              zh: '所以明年我會建立定期檢視機制，不只看活動有沒有辦完，而是看：會員有沒有成長？參與有沒有提升？新會員有沒有留下？會員有沒有從青商得到他想要的東西？' },
+            { en: 'That is why I want to regularly check our progress during the year. I will not only ask whether we completed our activities. I will also ask:',
+              zh: '所以明年我會建立定期檢視機制，不只看活動有沒有辦完，而是看：' },
+            { en: '**Are our members growing?**',
+              zh: '**會員有沒有成長？**' },
+            { en: '**Is participation increasing?**',
+              zh: '**參與有沒有提升？**' },
+            { en: '**Are new members staying?**',
+              zh: '**新會員有沒有留下？**' },
+            { en: '**Are members getting what they want from JCI?**',
+              zh: '**會員有沒有從青商得到他想要的東西？**' },
             { en: 'I believe the President is not simply **a manager of activities**. The President is responsible for **the growth of our members**.',
               zh: '因為我認為，**理事長不是活動的總管，而是會員成長的負責人。**' },
             { en: 'If our members do not become better and JCI The Port does not become better, I will admit that even if I organized many great activities: **I did many things, but I did not do my job as President well.**',
