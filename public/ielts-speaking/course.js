@@ -183,13 +183,31 @@ const COURSE = {
        the phrase banks and the frames only, so the question translations were
        written for this site. */
     {
+      id: 'area-answer',
+      part: 'part3',
+      built: true,
+      en: 'The A.R.E.A. Answer',
+      zh: 'A.R.E.A. 四步回答法',
+      blurbEn: 'One shape that fits most questions: answer, reason, example, balance. Teach this one first.',
+      blurbZh: '一個適用於大部分題目的架構：回答、原因、例子、另一面。這一課請先教。',
+    },
+    {
+      id: 'ninety-seconds',
+      part: 'part3',
+      built: true,
+      en: 'Ninety Seconds, Three Ways',
+      zh: '九十秒，三種題型',
+      blurbEn: 'The same four moves bent to opinion, cause and comparison questions, then paced against the clock.',
+      blurbZh: '同樣四個動作，因應意見題、原因題與比較題調整，再配合計時掌握節奏。',
+    },
+    {
       id: 'answer-shapes',
       part: 'part3',
       built: true,
       en: 'Answer Shapes and Frames',
       zh: '回答架構與句型',
-      blurbEn: 'Four structures, six frames and ten sentences worth saying as they stand. Teach this one first.',
-      blurbZh: '四種結構、六個句型，以及十句可直接照說的句子。這一課請先教。',
+      blurbEn: 'Four question-specific structures, six universal frames, and ten sentences worth saying as they stand.',
+      blurbZh: '四種對應題型的結構、六個通用句型，以及十句可直接照說的句子。',
     },
     {
       id: 'online-reviews',
@@ -230,11 +248,26 @@ const COURSE = {
   ],
 };
 
+/* The template page's own entry. It is deliberately kept out of `lessons`, so
+   it never appears on the contents page — but it still has to resolve, or
+   _template/ throws the moment a lesson it happened to borrow an id from is
+   renamed. Which is exactly what happened once. */
+COURSE.template = {
+  id: '_template',
+  part: 'part3',
+  built: false,
+  en: 'Lesson Template',
+  zh: '課程範本',
+};
+
 /* Convenience for the lesson pages: given a lesson id, hand back the lesson
    and the part it belongs to, already joined. */
 COURSE.find = function (id) {
-  const lesson = this.lessons.find((l) => l.id === id);
+  const lesson = id === this.template.id
+    ? this.template
+    : this.lessons.find((l) => l.id === id);
   if (!lesson) throw new Error(`No lesson "${id}" in course.js`);
   const part = this.parts.find((p) => p.id === lesson.part);
+  if (!part) throw new Error(`Lesson "${id}" names part "${lesson.part}", which course.js does not have`);
   return { lesson, part };
 };

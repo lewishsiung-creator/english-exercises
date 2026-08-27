@@ -151,6 +151,7 @@ const BLOCKS = {
           <li class="q-row pair" data-zh>
             <span class="en">${text(q.en)}${speakBtn(q.en, 'say say-quiet')}</span>
             <span class="zh">${text(q.zh)}</span>
+            ${q.tag ? `<span class="q-tag">${text(q.tag)}<em>${text(q.tagZh)}</em></span>` : ''}
           </li>`).join('')}
       </ol>
     </div>`,
@@ -181,6 +182,57 @@ const BLOCKS = {
         ${b.items.map((s) => `
           <li><span class="en">${text(s.en)}${speakBtn(s.en, 'say say-quiet')}</span>
             <span class="zh">${text(s.zh)}</span></li>`).join('')}
+      </ol>
+    </div>`,
+
+  /* A thin answer and the same answer done properly. The weak version is not
+     wrong, only thin, so it is set quiet and grey rather than struck through —
+     the grammar book's rule, where a colour that means "heading" cannot also
+     mean "incorrect". What to add sits between the two, and the better version
+     waits behind a reveal so the class can attempt the upgrade first. */
+  upgrade: (b) => `
+    <div class="upgrade">
+      ${label(b.en, b.zh)}
+      ${hint(b.hintEn, b.hintZh)}
+
+      <div class="up-card up-before pair" data-zh>
+        <p class="up-tag">${text(b.beforeTag)}<em>${text(b.beforeTagZh)}</em></p>
+        <p class="en">${text(b.beforeEn)}${speakBtn(b.beforeEn, 'say say-quiet')}<button
+          class="zh-chip" title="顯示中文">中</button></p>
+        <p class="zh">${text(b.beforeZh)}</p>
+      </div>
+
+      <ol class="up-adds">
+        ${b.adds.map((a) => `
+          <li><span class="en">${text(a.en)}</span><em>${text(a.zh)}</em></li>`).join('')}
+      </ol>
+
+      <button class="reveal" aria-expanded="false">Show the upgrade 顯示升級版</button>
+      <div class="up-after-wrap" hidden>
+        <div class="up-card up-after">
+          <p class="up-tag">${text(b.afterTag)}<em>${text(b.afterTagZh)}</em></p>
+          <p class="en">${text(b.afterEn)}${speakBtn(b.afterEn, 'say')}</p>
+          <p class="up-zh">${text(b.afterZh)}</p>
+        </div>
+      </div>
+    </div>`,
+
+  /* The shape of a long answer laid out against the clock. Each row owns a
+     stretch of seconds; while the speaking clock in the same step is running,
+     the row covering the current second lights up, so the page shows the pace
+     rather than describing it. Static and perfectly readable with no clock. */
+  timeline: (b) => `
+    <div class="timeline">
+      ${label(b.en, b.zh)}
+      ${hint(b.hintEn, b.hintZh)}
+      <ol class="tl-list">
+        ${b.rows.map((r) => `
+          <li class="tl-row" data-from="${r.from}" data-to="${r.to}">
+            <span class="tl-when">${face(r.from)}–${face(r.to)}</span>
+            <span class="tl-what">${text(r.en)}<em>${text(r.zh)}</em></span>
+            ${r.sayEn ? `<span class="tl-say"><span class="en">${text(r.sayEn)}${speakBtn(r.sayEn, 'say say-quiet')}</span>
+              <em>${text(r.sayZh)}</em></span>` : ''}
+          </li>`).join('')}
       </ol>
     </div>`,
 
@@ -623,6 +675,19 @@ function tickClock(unit) {
 
   unit.dataset.sec = sec;
   $('.clock-face', unit).textContent = face(sec);
+  if (!down) syncTimeline(unit, sec);
+}
+
+/* Light the timeline row covering the current second. Scoped to the step the
+   clock is in, so a lesson with two of each never lights the wrong one, and a
+   lesson with no timeline at all costs one empty query. */
+function syncTimeline(unit, sec) {
+  const step = unit.closest('.step');
+  if (!step) return;
+  $$('.tl-row', step).forEach((row) => {
+    const on = sec >= Number(row.dataset.from) && sec < Number(row.dataset.to);
+    row.classList.toggle('now', on);
+  });
 }
 
 function stopClock(unit) {
@@ -636,6 +701,9 @@ function resetClock(unit) {
   unit.dataset.sec = unit.dataset.start;
   unit.classList.remove('up', 'in', 'over');
   $('.clock-face', unit).textContent = face(Number(unit.dataset.start));
+
+  const step = unit.closest('.step');
+  if (step) $$('.tl-row', step).forEach((row) => row.classList.remove('now'));
 }
 
 function clockClick(btn) {
@@ -733,8 +801,12 @@ $('#showAll').addEventListener('click', () => {
   });
 
   $$('.card').forEach((c) => { c.classList.add('open'); c.setAttribute('aria-expanded', 'true'); });
-  $$('.model-body, .starters').forEach((b) => { b.hidden = false; });
+  $$('.model-body, .starters, .up-after-wrap').forEach((b) => { b.hidden = false; });
   $$('.reveal').forEach((r) => r.setAttribute('aria-expanded', 'true'));
+
+  // A question bank's row holds the question type behind the same tap as its
+  // Chinese, so opening every answer has to open those too.
+  $$('.q-row').forEach((r) => r.classList.add('open'));
   setPanel(false);
 });
 

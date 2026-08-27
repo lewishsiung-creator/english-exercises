@@ -16,6 +16,10 @@
    and both clocks. Get it wrong and the page throws on load rather than
    rendering something quietly wrong.
 
+   This file's own `_template` id has an entry in course.js kept outside
+   `lessons`, so this page always renders and never shows up on the contents
+   page. It sits under Part 3 only so the clocks have something to draw.
+
    Every visible string is an `en` / `zh` pair. English is shown; the
    Traditional Chinese stays hidden until it is asked for, either line by line
    with the 中 chip or all at once with the 中文 switch in the top bar.
@@ -40,10 +44,20 @@
      clock     the planning countdown and the speaking count-up, both taking
                their times from the part unless `clock` overrides them
      task      a speaking task with a tick-list of target phrases
+     bank      a two-column phrase table, the Chinese behind the row's tap
+     sentences a numbered list of whole sentences, each spoken on request
+     qbank     a bank of questions with a button that pulls one at random and
+               will not repeat it until the bank is empty. An item may carry a
+               `tag` — its question type — which hides behind the row's own tap
+               and is NOT released by the 中文 switch, being an answer
+     upgrade   a thin answer, what to add, and the same answer done properly
+               behind a reveal
+     timeline  a long answer laid out against the clock. While the speaking
+               count-up in the same step runs, the current row lights up
 */
 
 const LESSON = {
-  id: 'sort-before-you-speak',      // must match an id in course.js
+  id: '_template',      // change to the new lesson's id, which must be in course.js
   title: 'Lesson Template',
   titleZh: '課程範本',
 
@@ -262,6 +276,103 @@ const LESSON = {
             { en: 'A phrase you are listening for.', zh: '你要留意聽的句型。' },
             { en: 'Another one.', zh: '另一個。' },
           ],
+        },
+      ],
+    },
+
+    // ------------------------------------------------------------ step 4
+    {
+      id: 'reference-blocks',
+      n: 4,
+      en: 'The reference blocks',
+      zh: '參考類區塊',
+      blocks: [
+
+        {
+          t: 'bank',
+          en: 'Collocations',
+          zh: '常用詞組',
+          hintEn: 'Tap a row for the Chinese. Tap 🔊 to hear the English.',
+          hintZh: '點一列可看中文，點 🔊 可聽英文。',
+          rows: [
+            { en: 'a phrase worth having', zh: '一個值得學起來的詞組' },
+            { en: 'another phrase', zh: '另一個詞組' },
+          ],
+        },
+
+        {
+          t: 'sentences',
+          en: 'Useful sentences',
+          zh: '實用句子',
+          hintEn: 'Whole sentences, numbered because they are worked through in order.',
+          hintZh: '完整句子，編號是因為要照順序練。',
+          items: [
+            { en: 'A sentence he could say tonight, exactly as written.', zh: '一句他今晚就能照著說出口的話。' },
+            { en: 'A second one, going somewhere different.', zh: '第二句，走不同的方向。' },
+          ],
+        },
+
+        {
+          t: 'qbank',
+          en: 'The question bank',
+          zh: '題庫',
+          hintEn: 'The button never repeats a question until the bank is empty.',
+          hintZh: '在題庫抽完之前，按鈕不會重複同一題。',
+          items: [
+            /* `tag` is optional. Give it only when naming the type is itself
+               the exercise — it hides behind the row's tap as an answer. */
+            { en: 'A question, written as it would be asked.', zh: '一道題目，照它會被問出來的樣子寫。', tag: 'Opinion', tagZh: '意見題' },
+            { en: 'Another question.', zh: '另一道題目。', tag: 'Cause', tagZh: '原因題' },
+            { en: 'A question with no type label on it.', zh: '一道沒有標示題型的題目。' },
+          ],
+        },
+
+        {
+          t: 'upgrade',
+          en: 'Same opinion, two answers',
+          zh: '同樣的立場，兩種回答',
+          hintEn: 'Read the thin version, decide what you would add, then open the upgrade.',
+          hintZh: '先讀薄的版本，想想你會加什麼，再打開升級版。',
+          beforeTag: 'Too simple', beforeTagZh: '太簡單',
+          beforeEn: 'The answer a student already gives, which is not wrong — only thin.',
+          beforeZh: '學生原本就給得出的回答；它不算錯，只是太薄。',
+          adds: [
+            { en: 'the first thing missing', zh: '缺少的第一件事' },
+            { en: 'the second', zh: '第二件' },
+          ],
+          afterTag: 'Better', afterTagZh: '更好的版本',
+          afterEn: 'The same opinion with those things put back, which is what the upgrade is meant to show.',
+          afterZh: '同樣的立場，把那些東西補回去之後的樣子——這正是升級版要呈現的。',
+        },
+
+        {
+          t: 'timeline',
+          en: 'Where the time goes',
+          zh: '時間怎麼分配',
+          hintEn: 'Start the speaking clock in this step and the current row lights up.',
+          hintZh: '啟動本步驟的開口計時，當下該講的那一列就會亮起來。',
+          rows: [
+            {
+              from: 0, to: 15,
+              en: 'The first move', zh: '第一個動作',
+              /* sayEn / sayZh are optional — leave them off for a bare plan. */
+              sayEn: 'The sentence that does this job.',
+              sayZh: '負責這件事的那一句話。',
+            },
+            {
+              from: 15, to: 45,
+              en: 'The second move', zh: '第二個動作',
+              sayEn: 'And the sentence that does this one.',
+              sayZh: '以及負責這件事的那一句話。',
+            },
+          ],
+        },
+
+        {
+          t: 'clock',
+          en: 'Against the clock',
+          zh: '計時進行',
+          clock: { bandLow: 30, bandHigh: 45 },
         },
       ],
     },

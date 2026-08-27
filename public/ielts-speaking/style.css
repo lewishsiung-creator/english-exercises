@@ -1438,3 +1438,146 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 .sentences ol { margin: 0; padding-left: 1.7em; }
 .sentences ol li { margin: 0 0 8px; }
 .sentences ol li::marker { color: var(--ink-faint); font-family: var(--font-ui); font-size: .85em; }
+
+/* ---------------- the question type, behind the row's tap ---------------- */
+
+/* Held behind the same tap as the row's Chinese, but NOT released by the 中文
+   switch — the type is the answer to "which kind of question is this?", and a
+   teacher turning the Chinese on for a client should not give it away. */
+.q-tag { display: none; }
+.q-row.open .q-tag {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 2px 9px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: .04em;
+  color: var(--good);
+  background: var(--good-soft);
+  border: 1px solid var(--good-line);
+  border-radius: 999px;
+}
+.q-tag em { font-family: var(--font-zh); font-style: normal; margin-left: 6px; opacity: .8; }
+
+/* ---------------- the Band 7 upgrade ---------------- */
+
+.upgrade { margin: 22px 0; }
+
+.up-card {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+}
+.up-card .en { margin: 0; }
+.up-zh {
+  margin: 6px 0 0;
+  font-family: var(--font-zh);
+  font-size: .82em;
+  line-height: 1.7;
+  color: var(--ink-faint);
+}
+
+.up-tag {
+  margin: 0 0 7px;
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.up-tag em { font-family: var(--font-zh); font-style: normal; font-weight: 400; margin-left: 8px; text-transform: none; letter-spacing: .04em; }
+
+/* The thin version is quiet, not struck through: it is not wrong, and on this
+   page red already means "heading". Its Chinese follows the ordinary rule and
+   waits behind a tap; the upgraded version's does not, because that one is
+   already behind a reveal and a second tap there would only be in the way. */
+.up-before { background: transparent; border-style: dashed; }
+.up-before .zh { margin-top: 6px; }
+.up-before .up-tag { color: var(--ink-faint); }
+.up-before .en { color: var(--ink-soft); }
+
+.up-after { border-color: var(--good-line); background: var(--good-soft); }
+.up-after .up-tag { color: var(--good); }
+
+/* What has to be added to get from one to the other. */
+.up-adds {
+  margin: 14px 0;
+  padding-left: 1.7em;
+  font-family: var(--font-ui);
+  font-size: .9rem;
+  color: var(--ink-soft);
+}
+.up-adds li { margin: 4px 0; }
+.up-adds .en { font-family: var(--font-en); }
+.up-adds em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  color: var(--ink-faint);
+  margin-left: 8px;
+  font-size: .9em;
+}
+.up-adds li::marker { color: var(--gold); font-weight: 700; }
+
+.up-after-wrap { margin-top: 12px; }
+
+/* ---------------- the ninety-second timeline ---------------- */
+
+.timeline { margin: 22px 0; }
+
+.tl-list { list-style: none; margin: 0; padding: 0; }
+
+.tl-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px 14px;
+  padding: 10px 14px;
+  border-left: 3px solid var(--line);
+  background: var(--card);
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 3px;
+  transition: border-color .2s, background .2s;
+}
+
+@media (min-width: 620px) {
+  .tl-row { grid-template-columns: 5.5rem 11rem 1fr; align-items: baseline; }
+}
+
+.tl-when {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+.tl-what { font-weight: 600; font-size: .97rem; }
+.tl-what em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  font-size: .8em;
+  color: var(--ink-faint);
+  margin-left: 8px;
+}
+
+.tl-say { font-size: .93rem; color: var(--ink-soft); }
+.tl-say em {
+  display: block;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-size: .82em;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}
+
+/* The second the speaking clock is currently in. */
+.tl-row.now {
+  border-left-color: var(--brand);
+  background: var(--navy-soft);
+}
+.tl-row.now .tl-when { color: var(--navy); font-weight: 700; }
+
+@media print {
+  .tl-row.now { background: transparent; }
+}

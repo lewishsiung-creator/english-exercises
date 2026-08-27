@@ -973,27 +973,53 @@ than nested under a part, so ids are unique across the whole course.
   and is not mistaken for the grammar book's brick red or the business-English
   navy. `--brand` is the mark itself; `--navy` keeps its house name and holds
   the same red deepened enough to stay readable as body text on the warm paper.
-- **Three block types were added for question-bank material.** `qbank` is a
+- **Block types beyond the ones inherited from `/ielts-part3/`.** `qbank` is a
   topic's questions with a button that pulls one at random and will not pull it
   again until the bank is empty — a button that can hand you the same question
-  twice is worse than no button. `bank` is the two-column phrase table, with
-  the Chinese behind a tap like every other line. `sentences` is a numbered
-  spoken list. `cue` draws a Part 2 candidate task card.
+  twice is worse than no button; a question may carry a `tag` (its type), which
+  waits behind the row's own tap and is deliberately **not** released by the
+  中文 switch, because it is the answer to an exercise rather than a
+  translation. `bank` is the two-column phrase table, with the Chinese behind a
+  tap like every other line. `sentences` is a numbered spoken list. `upgrade`
+  sets a thin answer against the same answer done properly, with what to add
+  listed between them and the better version behind a reveal. `timeline` lays a
+  long answer out against the clock. `cue` draws a Part 2 candidate task card.
+- **The timeline is wired to the speaking clock.** While the count-up in the
+  same step is running, the row covering the current second lights up, so the
+  page shows the pace instead of describing it. It is scoped to the step, reads
+  perfectly with no clock at all, and clears on reset.
 
 ### Part 3 — commerce and trust
 
-Five lessons from one set of practice material: a structures lesson holding the
-four answer shapes, the six universal frames and ten high-value sentences, then
-four topic lessons — Online Reviews (15 questions), Customer Service (15),
-Consumer Behaviour (10) and Business Reputation (10), each with its own
-collocations, useful sentences and a worked speaking pattern. Teach the
-structures lesson first; the four topics then rehearse the same shapes four
-times rather than explaining them once.
+Seven lessons: three on how to build an answer, then four topics to build them
+on. The teaching order is the order they appear.
 
-**The question translations are the site's, not the source's.** The material
-gives Chinese for the phrase banks and the frames but the questions in English
-only, so the Chinese for all fifty questions was written here. Each lesson
-cover says so.
+| # | Lesson | What it carries |
+| --- | --- | --- |
+| 1 | The A.R.E.A. Answer | The default shape — answer, reason, example, balance, judgment — with a phrase bank per move, a worked Band 7 answer, the upgrade from a thin answer, and P.E.E.L. as the emergency fallback |
+| 2 | Ninety Seconds, Three Ways | The same moves bent to opinion, cause and comparison questions, a ninety-second timing plan, and twelve mixed questions to name the type of |
+| 3 | Answer Shapes and Frames | Four question-specific structures, six universal frames, ten high-value sentences |
+| 4–7 | The four topics | Online Reviews (15 questions), Customer Service (15), Consumer Behaviour (10), Business Reputation (10) — each with its own collocations, useful sentences and a worked speaking pattern |
+
+**Two taxonomies had to be reconciled.** The A.R.E.A. material presents Opinion,
+Cause and Comparison as a scheme of its own, which is largely the same three as
+Answer Shapes' Balanced, Cause-and-effect and Comparison. Rather than ship two
+rival schemes, Ninety Seconds presents them as A.R.E.A. bending to the question
+in front of you and points across to Answer Shapes for the fourth kind — future
+questions — which the A.R.E.A. material does not cover. The A.R.E.A. document's
+per-step phrase lists and its separate Band 7 connector table were merged the
+same way, into one bank per move, so a teacher is not reconciling two
+overlapping lists mid-session.
+
+The four topic lessons then rehearse whichever shape was taught, four times
+over, rather than explaining it once.
+
+**The question translations are the site's, not the source's.** The topic
+material gives Chinese for the phrase banks and the frames but the questions in
+English only, so the Chinese for all fifty questions was written here. The
+A.R.E.A. material is bilingual throughout; what was written for the page there
+is the question above each of its three worked answers, which arrive without
+them. Each lesson cover says which is which.
 
 Parts 1 and 2 are mapped but not written — nine lesson cards sitting dimmed on
 the contents page.
