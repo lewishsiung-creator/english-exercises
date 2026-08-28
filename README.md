@@ -642,13 +642,12 @@ that move are a glossary card, a list of useful language, and the Chinese.
 - **Print** gives one book per page, with every book unfolded, every card and
   starter list opened and the cross-page links dropped.
 
-## Presidential Candidate Speech & Q&A — adult, reading aloud
+## A Five-Minute Campaign Speech — adult, reading aloud
 
-Reading practice built on two bilingual documents: James's five-minute
-candidate speech for the 2027 presidency of JCI The Port, 60 sentences across
-seven parts, followed by the twenty-seven questions from the election floor.
-Both are reproduced as written — this page is practice, not an edit of his
-words, and both were re-verified field by field against the source PDFs.
+Reading practice built on a bilingual speech: the candidate's own five-minute
+address for the 52nd President of JCI The Port, 62 sentences long, followed by
+the twenty-seven questions from the election floor. The text is reproduced as
+written — this page is practice, not an edit of his words.
 
 The two jobs the page does are a switch in the top bar:
 
@@ -661,8 +660,8 @@ The two jobs the page does are a switch in the top bar:
 
 - **The line is the unit.** Every sentence is its own numbered row, sized for
   reading aloud at arm's length rather than skimming, so "line 4" means
-  something and nobody loses their place mid-paragraph. Nine lines worth
-  memorising — the one-sentence arguments — carry a gold rule.
+  something and nobody loses their place mid-paragraph. Seventeen lines worth
+  memorising — the slogans and the one-sentence arguments — carry a gold rule.
 - **Switching mode never rebuilds the page.** Both languages are always in the
   DOM and CSS decides which leads, so a switch mid-section keeps your place and
   costs nothing.
@@ -672,11 +671,9 @@ The two jobs the page does are a switch in the top bar:
   the play-through into the answer key. A watchdog moves the run along if the
   browser never reports that a sentence finished — otherwise a machine with no
   audio output strands it on line one.
-- **Words to watch.** Each of the seven parts ends with five words most likely
-  to trip up a Mandarin speaker — 35 in all — given as a plain respelling
-  (`ri-spon-suh-BIL-uh-tee`) rather than IPA, because these are read off a
-  shared screen mid-sentence. They are chosen from the speech as it stands, so
-  a rewrite of the speech means rewriting these too.
+- **Words to watch.** Each section ends with the words most likely to trip up a
+  Mandarin speaker, given as a plain respelling (`ri-spon-suh-BIL-uh-tee`)
+  rather than IPA, because these are read off a shared screen mid-sentence.
 - **A clock, because it is a five-minute speech.** ⏱ in the bar counts up and
   turns amber at five minutes. It is the only number on the page — nothing is
   scored.
@@ -688,7 +685,7 @@ The two jobs the page does are a switch in the top bar:
 ### The Q&A
 
 Twenty-seven questions, each a card: the question, then the answer as ordinary
-practice lines — 99 lines in all. Every question and every answer is bilingual,
+practice lines — 92 lines in all. Every question and every answer is bilingual,
 and none are outstanding.
 
 - **The question is context, not practice.** It is asked *to* him, so it stays
@@ -707,10 +704,7 @@ and none are outstanding.
 - The English is a free adaptation of the Chinese rather than a translation, so
   the two do not break into paragraphs the same way. Seventeen of the
   twenty-seven needed hand-alignment — usually an English summary sentence that
-  the Chinese folds into the following paragraph. The same is true of the
-  speech: five of its seven parts needed it.
-- **Where the source PDF uses a bullet list**, each bullet becomes its own
-  practice line rather than being run together — questions 8, 10 and 21.
+  the Chinese folds into the following paragraph.
 - Questions 4 and 26 both ask about the JCI "Three Treasures" and were both put
   to him, so both are kept. 26 is the fuller answer of the two.
 
@@ -1761,7 +1755,7 @@ public/grammar/ch14/      Nouns and Modifiers — the third
 public/wealth-habits/     the three-habits lesson
 public/wealth-habits/img/ its four photographs
 public/happy-sexy-millionaire/  the business-English reading lesson
-public/campaign-speech/   the candidate speech and election Q&A
+public/campaign-speech/   the speech and election Q&A
 public/toeic-grammar/     the TOEIC Part 5 & 6 practice
 public/sentence-upgrades/ the 2026/07/25 homework review
 public/robot-helper/      the 113 學年度 writing worksheet
@@ -1976,7 +1970,7 @@ Adding a fifth book is one entry in `GUIDE.books` and one line in the closing
 same block type exists on the Happy Sexy Millionaire page, which is how the two
 pages point at each other.
 
-**Candidate Speech & Q&A.** Both documents live in
+**Campaign Speech.** The speech lives in
 [`public/campaign-speech/content.js`](public/campaign-speech/content.js), one
 entry per section. Every string is an `en`/`zh` pair. There are only four
 block types — `lines`, `subhead`, `say` and `qa` — listed in a comment at the
