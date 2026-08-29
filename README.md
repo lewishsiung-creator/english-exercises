@@ -1738,6 +1738,80 @@ sentences a machine wrote for him, and the whole value of that block is that
 every line in it was really said. The separation is written into the file, for
 any later session where a rewriting tool is part of the source.
 
+## Health Notes — bilingual notes on the body and the mind
+
+`public/health/` — the first page here that is not English teaching. A
+reference Lewis reads about his own body, and a place to keep adding notes on
+physical and mental health. It opens with the wearable-metrics write-up
+(sleep, resting heart rate, HRV, VO₂ max, stress), rebuilt from the bilingual
+PDF of the same name.
+
+| Piece | What it does |
+| --- | --- |
+| 🇹🇼 雙語 / 中文 / EN | Three reading modes, remembered per device |
+| 🗂 Contents | Every section, Chinese first; a drawer below 900 px |
+| 1–8 | One numbered section per metric |
+| ▦ Grid | The eight metrics and the question each one answers |
+| ⚖ Fitness / Readiness | The closing distinction, as two cards |
+
+### Design notes
+
+- **Chinese leads.** Every other page on this site sets English first and puts
+  Chinese under it, because there the English *is* the lesson. Here it is not:
+  this is a reference about your own body, so the language Lewis thinks in gets
+  full contrast in the sans face, and the English original sits beneath it in
+  the serif. In **EN** mode that inverts and the English becomes the reading
+  line. Chosen by him over hiding either language behind a tap.
+- **Both languages are always in the DOM.** The mode is only a class on
+  `<body>` (`lang-both` / `lang-zh` / `lang-en`) and the CSS decides what shows,
+  so switching is instant, nothing re-renders, and find-in-page still finds a
+  word in the language that is currently hidden.
+- **A line that is the same in both languages prints once.** Plenty of pairs
+  are identical — `Light Sleep ≠ Bad Sleep`, `VO₂ Max`, the `0.94 s → 1.07 s`
+  chips, the metric names down the left of the grid. In 雙語 mode a duplicate
+  reads as a bug, so `tagLangs()` compares the two halves and flags the English
+  one `is-dup`; the CSS drops it in that mode only, and English-only mode still
+  has it. Twelve of them on this page.
+- **Each half carries its own `lang`.** `zh-Hant` on the Chinese, `en` on the
+  English, so a screen reader switches voice mid-page instead of reading 深層
+  睡眠 in an English one. The document's own `lang` follows the reading mode.
+- **The arrow chains are content, not decoration.** `深層 → 淺層 → REM →
+  再循環`, `肺部 → 心臟 → 血液循環 → 肌肉 → 粒線體` — the source uses them to
+  say a sequence is the point, so they are a `flow` block of chips rather than
+  a sentence with arrows typed into it, and each language gets its own row.
+- **"Is 50 bpm good?" is struck through.** The two places the source replaces a
+  bad question with a better one are a `contrast` block: the rejected question
+  greyed and ruled out on the left, the one worth asking on the right. It is
+  the argument of the whole document, so it is not left as prose.
+- **The disclaimer is one quiet line at the foot**, not a banner. These are
+  notes for reading your own numbers; the page says so once, where someone who
+  has finished reading will see it, and does not nag on the way in.
+- **No `scroll-behavior: smooth` on the root**, and the contents list is kept in
+  view by its own `scrollTop` — never `scrollIntoView`, which scrolls the
+  document whenever the list is not overflowing and makes the page drift. Same
+  fix as Jill's notebook. The scroll handler holds the pending
+  `requestAnimationFrame` id rather than a `ticking` boolean, because a frame
+  requested just before the tab is hidden never runs, and a stuck flag would
+  kill the highlighting for the rest of the visit.
+- **Indexed by search engines** — Lewis's choice. No client, no name, no
+  personal data on the page.
+
+### Adding to it
+
+`content.js` holds `SITE` and a `TOPICS` array. A new subject — sleep hygiene,
+training load, anything on mental health — is another object pushed onto
+`TOPICS` with `id`, `title`, `lead`, `updated` and its `sections`; the contents
+list, the anchors and the numbering all follow from it. Sections are
+`{ id, num, title, blocks }`, and `num` can be left out for a summary or a
+closing section.
+
+The block types are listed in the header comment of `content.js`: `p`, `lead`,
+`list`, `key`, `flow`, `contrast`, `note`, `quote`, `table`, `cards`. Nothing
+in `render.js` knows anything about health, so a new topic needs no code.
+
+**Both halves of every pair must be filled in.** A missing `en` is not a
+half-finished line, it is a hole for anyone reading in English only.
+
 
 ## Layout
 
@@ -1778,11 +1852,12 @@ public/fab-english/       the plant word list — 288 words, eight themes
 public/landscape-portfolio/      the portfolio — filled in as the Ando study
 public/landscape-portfolio/content.starter.js  the same page, emptied
 public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS.md
+public/health/            Health Notes — bilingual notes, one topic per subject
 make-icon.py              regenerates public/apple-touch-icon.png
 tools/                    the scripts that turn a 講義 PDF into either of those
 ```
 
-All twenty-four are plain HTML, CSS and JS with no build step.
+All twenty-five are plain HTML, CSS and JS with no build step.
 
 Every page ends with the same `<footer class="site-foot">` linking to
 <https://lewistoeic.com>, so a reader who lands on any one sheet can find the

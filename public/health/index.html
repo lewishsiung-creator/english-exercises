@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Health Notes 健康筆記 — Recovery, Energy & Fitness Metrics</title>
+<meta name="description" content="Bilingual notes on physical and mental health. First topic: how to read sleep, resting heart rate, HRV, VO₂ max and stress from a wearable — and what those numbers do not say. 中英雙語健康筆記：睡眠、心率、HRV、VO₂ Max 與壓力指標怎麼看。">
+
+<!-- General health notes with no client name or personal data in them, so
+     this page is left open to search engines. -->
+<meta name="robots" content="index, follow">
+
+<!-- Inline SVG mark: a heartbeat trace inside a rounded square. The colours
+     must be percent-encoded — a bare "#" would be read as the URL fragment
+     and the icon would silently fail to load. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='10' width='56' height='44' rx='9' fill='%23ffffff' stroke='%230f5c5c' stroke-width='4'/%3E%3Cpath d='M12 32h9l5-11 7 22 5-11h14' fill='none' stroke='%23c2543f' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta name="apple-mobile-web-app-title" content="Health Notes">
+<meta name="theme-color" content="#fbfaf7">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="lang-both">
+
+<a class="skip" href="#doc">Skip to content</a>
+
+<header class="bar">
+  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
+    <span aria-hidden="true">☰</span> <span class="btn-txt">Contents</span>
+  </button>
+
+  <p class="bar-title">
+    <span id="siteTitle">Health Notes</span>
+    <span class="bar-zh" id="siteTitleZh">健康筆記</span>
+  </p>
+
+  <!-- Reading mode. Remembered per device, so a reader who prefers Chinese
+       only gets it back on the next visit. -->
+  <div class="lang-switch" role="group" aria-label="Reading language 閱讀語言">
+    <button class="lang-btn" data-lang="both" aria-pressed="true">雙語</button>
+    <button class="lang-btn" data-lang="zh"   aria-pressed="false">中文</button>
+    <button class="lang-btn" data-lang="en"   aria-pressed="false">EN</button>
+  </div>
+</header>
+
+<div class="shell">
+
+  <div id="nav"></div>
+
+  <main id="doc-wrap">
+    <section class="hero" id="hero">
+      <h1 class="hero-title">
+        <span class="zh">健康筆記</span>
+        <span class="en">Health Notes</span>
+      </h1>
+      <!-- the tagline pair is appended here by render.js -->
+    </section>
+
+    <div id="doc"></div>
+
+    <!-- Not medical advice. Said once, plainly, at the foot of the reading
+         column rather than as a banner over the content. -->
+    <p class="disclaimer">
+      <span class="zh">這裡是理解自己數據的一般性筆記，不是醫療建議。若有症狀或需要診斷，請諮詢醫師。</span>
+      <span class="en">These are general notes for understanding your own numbers, not medical advice. For symptoms or a diagnosis, see a doctor.</span>
+    </p>
+  </main>
+
+</div>
+
+<div class="nav-scrim" hidden></div>
+
+<!-- Site footer. Identical on every page, so a reader who lands on any one
+     sheet can find the rest. -->
+<footer class="site-foot">
+  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
+     aria-label="Lewis Biz English"><img src="../logo.png" alt="" width="34" height="34"></a>
+  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
+    target="_blank" rel="noopener">lewistoeic.com</a></p>
+</footer>
+
+<script src="content.js"></script>
+<script src="render.js"></script>
+</body>
+</html>
