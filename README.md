@@ -1,7 +1,7 @@
 # English Exercises
 
 English teaching material, built for classroom, homework and one-to-one use.
-Eighteen independent pages live here — a game for young learners at the site
+Nineteen independent pages live here — a game for young learners at the site
 root, phonics practice for slightly older children at `/phonics/`, an
 interactive phonics handbook for the same age at `/phonics-handbook/`, a
 review lesson for a ten-to-twelve-year-old at `/confidence-talk/`, a
@@ -19,6 +19,7 @@ at `/robot-helper/`, a survey of seven years of the 學測 essay at
 growing IELTS Speaking course covering all three parts at `/ielts-speaking/`,
 a semiconductor plant's own vocabulary sheet rebuilt for one-to-one adult
 lessons at `/fab-english/`,
+listening and speaking practice built on short YouTube clips at `/video/`,
 and, for 國中 students, vocabulary and grammar together at `/junior-high/`.
 
 One page is not English at all: `/math/` is math practice for Grades 1 to 3,

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Watch and Practise — English with YouTube</title>
+<meta name="description" content="Listening and speaking practice built on short YouTube clips — click a line to jump to it, loop one line until it lands, slow it down, hide the words and take dictation.">
+
+<!-- An open eye over a play triangle. Colours percent-encoded: a bare "#"
+     would be read as the URL fragment. -->
+<!-- The transcripts here are other people's words, quoted in full for class
+     use. The page stays reachable by its URL for students and out of search
+     results, so it is never the copy of a talk that Google serves. -->
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d3f6e'/%3E%3Crect x='11' y='18' width='42' height='28' rx='6' fill='%23f7f6f2'/%3E%3Cpath d='M28 26l12 6-12 6z' fill='%231d3f6e'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f6f2">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#doc">Skip to the lesson 跳到課程</a>
+
+<header class="bar">
+  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
+    <span aria-hidden="true">☰</span> Clips 影片
+  </button>
+
+  <p class="bar-title">Watch and Practise <span>看影片學英文</span></p>
+
+  <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="false">中文</button>
+  <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
+          aria-controls="panel" title="Teacher panel" aria-label="Teacher panel">👩‍🏫</button>
+</header>
+
+<!-- The player is lifted out of the document flow and pinned under the bar, so
+     the transcript can be scrolled without ever losing sight of the video. -->
+<div class="stage" id="stage">
+  <div class="stage-in">
+    <div class="frame"><div id="player"></div></div>
+    <div class="deck" id="deck"></div>
+  </div>
+</div>
+
+<div class="shell">
+  <div id="nav"></div>
+  <main id="doc"></main>
+</div>
+
+<div class="nav-scrim" hidden></div>
+
+<!-- Teacher panel. Opens over the lesson rather than replacing it, so a
+     discussion in progress is never lost. -->
+<div class="panel" id="panel" role="dialog" aria-label="Teacher panel" hidden>
+  <div class="panel-head">
+    <h2>Teacher panel <span>教師面板</span></h2>
+    <button class="panel-x" id="panelClose" aria-label="Close">✕</button>
+  </div>
+
+  <label class="row row-check">
+    <input type="checkbox" id="zhAll">
+    <span>Show all Chinese <em>顯示全部中文</em></span>
+  </label>
+
+  <label class="row row-check">
+    <input type="checkbox" id="followChk" checked>
+    <span>Follow the speaker <em>跟著播放捲動</em></span>
+    <p class="row-note">Keeps the line being spoken in the middle of the screen.
+      Turn it off to read ahead while the clip runs.
+      <em>讓正在播放的句子保持在畫面中央。想邊聽邊往下讀時關掉。</em></p>
+  </label>
+
+  <div class="row">
+    <button class="panel-btn" id="revealAll">Reveal every answer <em>顯示所有答案</em></button>
+    <p class="row-note">Opens the phrase cards, the questions and any hidden
+      line — for going over the clip together afterwards.
+      <em>展開字卡、問題與所有被遮住的句子，方便課後一起檢討。</em></p>
+  </div>
+
+  <div class="row">
+    <label for="swapId">Point this lesson at another video <em>改用其他影片</em></label>
+    <input type="text" id="swapId" placeholder="https://youtu.be/…" autocomplete="off" spellcheck="false">
+    <p class="row-note">For when a clip is taken down and the same talk is
+      re-uploaded elsewhere. The transcript below does not change, so only use
+      it for the same recording. Not saved.
+      <em>影片被下架、同一段講稿改由別處重新上傳時使用。下方逐字稿不會跟著變，所以只適用於同一段錄音。不會儲存。</em></p>
+  </div>
+
+  <div class="row">
+    <button class="panel-btn panel-btn-quiet" id="reset">Reset the page <em>重設頁面</em></button>
+    <p class="row-note">Nothing is saved between lessons — this just clears the
+      screen and stops the clip. Your Chinese setting stays.
+      <em>課程之間不會儲存任何紀錄，這只是清空畫面並停止影片。中文設定會保留。</em></p>
+  </div>
+</div>
+
+<!-- Site footer. Identical on every page, so a reader who lands on any one
+     sheet can find the rest. -->
+<footer class="site-foot">
+  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
+     aria-label="Lewis Biz English"><img src="../logo.png" alt="" width="34" height="34"></a>
+  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
+    target="_blank" rel="noopener">lewistoeic.com</a></p>
+</footer>
+
+<script src="content.js"></script>
+<script src="render.js"></script>
+</body>
+</html>

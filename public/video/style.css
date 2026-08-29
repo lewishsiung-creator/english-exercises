@@ -1,0 +1,466 @@
+/* Watch and Practise — English built on short YouTube clips.
+
+   The same look as the other adult pages here, because it is driven the same
+   way: a teacher on one laptop turned sideways, or a shared screen. English
+   leads and Traditional Chinese sits behind a 中 chip; interactive things look
+   interactive and nothing else moves; light theme only, read side by side in a
+   lit room.
+
+   What is different is that something is playing. Two rules follow from that:
+
+   - The video never leaves the screen. It is pinned under the top bar, and it
+     is deliberately kept small — no more than 40% of the window's height —
+     because the transcript is the working surface and the picture is context.
+     A talking head does not need to be large.
+   - Exactly one line is lit at a time, and it is lit softly. A highlight that
+     jumps every four seconds is a strobe if it is loud, so the spoken line
+     gets a warm ground and a gold edge rather than a colour change.
+*/
+
+:root {
+  --paper: #f7f6f2;
+  --card: #ffffff;
+  --ink: #1c2430;
+  --ink-soft: #566171;
+  --ink-faint: #8b95a3;
+
+  --navy: #1d3f6e;
+  --navy-soft: #eaf0f8;
+  --navy-line: #c2d3e7;
+
+  --gold: #a1741a;
+  --gold-soft: #fbf1da;
+  --gold-line: #f2c14e;
+
+  --good: #2c7a58;
+  --good-soft: #e4f2ea;
+  --good-line: #a8d6be;
+
+  --line: #e3e0d8;
+  --rule: #cdc8bc;
+
+  --font-en: "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, "Times New Roman", serif;
+  --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+
+  --bar-h: 54px;
+  --measure: 46rem;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-en);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus {
+  left: 12px; top: 12px; z-index: 60;
+  background: var(--card); padding: 10px 16px; border-radius: 10px;
+}
+
+:focus-visible { outline: 3px solid var(--gold-line); outline-offset: 2px; }
+
+/* ---------------------------------------------------------------- top bar */
+
+.bar {
+  position: sticky; top: 0; z-index: 40;
+  display: flex; align-items: center; gap: 10px;
+  height: var(--bar-h);
+  padding: 0 12px;
+  background: rgba(247, 246, 242, .94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.bar-title {
+  flex: 1; margin: 0; min-width: 0;
+  font-size: 1rem; font-weight: 600; letter-spacing: .01em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.bar-title span {
+  font-family: var(--font-zh); color: var(--ink-faint);
+  font-size: .82rem; margin-left: .5em; font-weight: 400;
+}
+
+.bar-btn {
+  font-family: var(--font-ui); font-size: .82rem;
+  padding: 7px 11px; border-radius: 9px;
+  border: 1px solid var(--navy-line); background: var(--card);
+  color: var(--navy); cursor: pointer; white-space: nowrap;
+}
+.bar-btn:hover { background: var(--navy-soft); }
+.bar-btn-zh[aria-pressed="true"] { background: var(--navy); color: #fff; border-color: var(--navy); }
+.bar-btn-quiet { border-color: var(--line); color: var(--ink-soft); padding: 7px 9px; }
+
+/* ------------------------------------------------------------ the player */
+
+.stage {
+  position: sticky; top: var(--bar-h); z-index: 30;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 6px 14px -10px rgba(28, 36, 48, .4);
+}
+.stage-in { max-width: 62rem; margin: 0 auto; padding: 10px 12px 8px; }
+
+/* 16:9, but never taller than two fifths of the window — the transcript is
+   the working surface. The max-width is how the height cap is expressed,
+   because a box cannot be sized from its own computed height. */
+.frame {
+  width: 100%;
+  max-width: calc(40vh * 16 / 9);
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+.deck-warn {
+  margin: 0 0 8px; padding: 10px 12px;
+  background: var(--gold-soft); border: 1px solid var(--gold-line);
+  border-radius: 9px; font-size: .88rem; color: var(--gold);
+}
+.deck-warn em { display: block; font-family: var(--font-zh); font-style: normal; margin-top: 3px; }
+
+.deck-row {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 7px;
+  margin-top: 9px; font-family: var(--font-ui);
+}
+
+.d-btn {
+  font: inherit; font-size: .8rem;
+  padding: 7px 11px; border-radius: 9px;
+  border: 1px solid var(--navy-line); background: var(--card);
+  color: var(--navy); cursor: pointer; white-space: nowrap;
+}
+.d-btn:hover { background: var(--navy-soft); }
+.d-btn em { font-family: var(--font-zh); font-style: normal; opacity: .65; margin-left: .35em; }
+.d-toggle[aria-pressed="true"] { background: var(--navy); color: #fff; border-color: var(--navy); }
+.d-toggle[aria-pressed="true"] em { opacity: .8; }
+.d-quiet { border-color: var(--gold-line); background: var(--gold-soft); color: var(--gold); }
+
+.d-play { min-width: 46px; }
+.ico-pause, body.playing .ico-play { display: none; }
+body.playing .ico-pause { display: inline; }
+
+.d-sel { display: flex; align-items: center; gap: 6px; font-size: .8rem; color: var(--ink-soft); }
+.d-sel em { font-family: var(--font-zh); font-style: normal; }
+.d-sel select {
+  font: inherit; padding: 6px 8px; border-radius: 8px;
+  border: 1px solid var(--navy-line); background: var(--card); color: var(--navy);
+}
+
+/* ------------------------------------------------------------- the shell */
+
+.shell { max-width: 62rem; margin: 0 auto; padding: 0 16px 64px; }
+
+#doc { max-width: var(--measure); margin: 0 auto; }
+
+/* ---------------------------------------------------------- lesson header */
+
+.lesson-head { padding: 22px 0 10px; border-bottom: 1px solid var(--rule); }
+
+.tag {
+  font-family: var(--font-ui); font-size: .72rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--gold); margin: 0 0 6px;
+}
+.tag em { font-family: var(--font-zh); font-style: normal; text-transform: none; margin-left: .5em; opacity: .8; }
+
+.lesson-head h1 { margin: 0; font-size: 1.7rem; line-height: 1.25; }
+.lesson-head h1 span {
+  display: block; font-family: var(--font-zh); font-size: 1rem;
+  color: var(--ink-soft); font-weight: 400; margin-top: 4px;
+}
+
+.src { font-family: var(--font-ui); font-size: .8rem; color: var(--ink-faint); margin: 8px 0 0; }
+.src a { color: var(--navy); }
+
+.about { margin-top: 12px; color: var(--ink-soft); }
+
+.watch-for {
+  margin-top: 14px; padding: 12px 14px;
+  background: var(--gold-soft); border-left: 3px solid var(--gold-line);
+  border-radius: 0 9px 9px 0;
+}
+.wf-lab {
+  margin: 0 0 4px; font-family: var(--font-ui); font-size: .7rem;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--gold);
+}
+.wf-lab em { font-family: var(--font-zh); font-style: normal; text-transform: none; margin-left: .5em; }
+
+/* ------------------------------------------------- Chinese behind a chip */
+
+.zh {
+  display: none;
+  font-family: var(--font-zh); font-size: .92rem;
+  color: var(--ink-soft); margin: 3px 0 0;
+}
+.zh-on > .zh, .zh-on .zh,
+body.zh-all .zh { display: block; }
+
+.zh-chip {
+  font-family: var(--font-zh); font-size: .66rem;
+  margin-left: .45em; padding: 1px 5px; vertical-align: .12em;
+  border: 1px solid var(--navy-line); border-radius: 5px;
+  background: var(--card); color: var(--navy); cursor: pointer; line-height: 1.5;
+}
+.zh-chip:hover { background: var(--navy-soft); }
+body.zh-all .zh-chip { opacity: .3; }
+
+.pair .en { margin: 0; }
+
+.zh-always { font-family: var(--font-zh); color: var(--ink-soft); }
+
+/* -------------------------------------------------------- the transcript */
+
+.lines { list-style: none; margin: 18px 0 0; padding: 0; }
+
+.line {
+  display: grid;
+  grid-template-columns: 3.6rem 1fr 2.2rem;
+  align-items: start;
+  gap: 4px 8px;
+  padding: 7px 8px;
+  border-radius: 9px;
+  border: 1px solid transparent;
+
+  /* Where the spoken line comes to rest when the transcript follows along.
+     scrollIntoView({block:'center'}) centres the line in the WINDOW, and the
+     player is pinned over the top 40% of it — so the line being said would sit
+     behind the video, which is the one place it must never be. A scroll margin
+     on the top alone shifts the centred box upward, which lands the line
+     itself lower down, clear of the player. It has to be one-sided: an equal
+     margin top and bottom cancels out and does nothing at all. */
+  scroll-margin-top: 46vh;
+}
+.line + .line { margin-top: 2px; }
+.line:hover { background: #fff; border-color: var(--line); }
+
+.line .en { margin: 0; }
+.line .zh { grid-column: 2; }
+.line-body { min-width: 0; }
+
+.go {
+  font-family: var(--font-ui); font-size: .72rem;
+  padding: 4px 6px; border-radius: 7px;
+  border: 1px solid transparent; background: transparent;
+  color: var(--ink-faint); cursor: pointer;
+  font-variant-numeric: tabular-nums;
+}
+.go:hover { background: var(--navy-soft); color: var(--navy); border-color: var(--navy-line); }
+
+.loop {
+  font-size: .82rem; line-height: 1;
+  padding: 5px; border-radius: 7px;
+  border: 1px solid transparent; background: transparent;
+  cursor: pointer; opacity: 0; transition: opacity .12s;
+}
+.line:hover .loop, .line.now .loop, .loop[aria-pressed="true"] { opacity: 1; }
+.loop[aria-pressed="true"] { background: var(--gold-soft); border-color: var(--gold-line); }
+
+/* The line being spoken. Warm ground, gold edge, no movement. */
+.line.now {
+  background: var(--gold-soft);
+  border-color: var(--gold-line);
+}
+.line.now .go { color: var(--gold); }
+
+/* Shadowing has stopped here and is waiting for the student to say it back. */
+.line.waiting { background: var(--good-soft); border-color: var(--good-line); }
+.line.waiting .line-body::after {
+  content: "Say it back, then press play  說一次，再按播放";
+  display: block; margin-top: 4px;
+  font-family: var(--font-ui); font-size: .72rem; color: var(--good);
+}
+
+/* Hide-words mode: the English goes behind a rule that can be lifted one line
+   at a time, so a student can check a line without spoiling the rest. */
+body.blanked .line .en,
+body.blanked .line .zh { visibility: hidden; }
+body.blanked .line .line-body {
+  position: relative; min-height: 1.6em;
+  border-bottom: 2px dotted var(--rule); cursor: pointer;
+}
+body.blanked .line.shown .en,
+body.blanked .line.shown .zh { visibility: visible; }
+body.blanked .line.shown .line-body { border-bottom-color: transparent; }
+
+/* ------------------------------------------------------------- the blocks */
+
+.block { margin: 34px 0 0; padding-top: 20px; border-top: 1px solid var(--rule); }
+
+.block h2 { margin: 0 0 4px; font-size: 1.15rem; }
+.block h2 span {
+  font-family: var(--font-zh); font-size: .85rem; font-weight: 400;
+  color: var(--ink-soft); margin-left: .6em;
+}
+
+.hint { margin: 0 0 14px; font-family: var(--font-ui); font-size: .8rem; color: var(--ink-faint); }
+.hint em { font-family: var(--font-zh); font-style: normal; margin-left: .4em; }
+
+/* phrase cards */
+.cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+@media (min-width: 40rem) { .cards { grid-template-columns: 1fr 1fr; } }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 11px; overflow: hidden; }
+.card-face {
+  width: 100%; display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+  font: inherit; text-align: left; padding: 11px 13px;
+  background: none; border: 0; cursor: pointer;
+}
+.card-face:hover { background: var(--navy-soft); }
+.card-en { font-weight: 600; }
+.card-t {
+  font-family: var(--font-ui); font-size: .7rem; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; flex: none;
+}
+.card-back { display: none; padding: 0 13px 12px; border-top: 1px dashed var(--line); }
+.card.open .card-back { display: block; }
+.card-zh { font-family: var(--font-zh); margin: 9px 0 0; color: var(--ink); }
+.card-note { margin: 6px 0 0; font-size: .88rem; color: var(--ink-soft); }
+.card-note em { display: block; font-family: var(--font-zh); font-style: normal; margin-top: 2px; }
+.card-go {
+  margin-top: 9px; font-family: var(--font-ui); font-size: .74rem;
+  padding: 5px 9px; border-radius: 8px;
+  border: 1px solid var(--navy-line); background: var(--card); color: var(--navy); cursor: pointer;
+}
+.card-go em { font-family: var(--font-zh); font-style: normal; margin-left: .3em; opacity: .7; }
+
+/* questions */
+.qs { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
+.q { background: var(--card); border: 1px solid var(--line); border-radius: 11px; padding: 12px 14px; }
+.q-en { margin: 0; }
+.q-n {
+  display: inline-block; min-width: 1.5em;
+  font-family: var(--font-ui); font-size: .78rem; color: var(--gold); font-weight: 700;
+}
+.q-foot { display: flex; gap: 7px; margin-top: 9px; }
+.q-show, .q-go {
+  font-family: var(--font-ui); font-size: .74rem;
+  padding: 5px 10px; border-radius: 8px;
+  border: 1px solid var(--navy-line); background: var(--card); color: var(--navy); cursor: pointer;
+}
+.q-show em { font-family: var(--font-zh); font-style: normal; margin-left: .3em; opacity: .7; }
+.q-a { display: none; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.q.open .q-a { display: block; }
+.q.open .q-a .en { color: var(--good); }
+
+/* speaking tasks */
+.block-task .tasks { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.block-task li {
+  padding: 12px 14px; border-radius: 11px;
+  background: var(--good-soft); border: 1px solid var(--good-line);
+}
+
+.block-empty { border-top: 0; }
+.block-empty code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85em;
+  background: var(--navy-soft); padding: 1px 5px; border-radius: 5px;
+}
+
+/* ----------------------------------------------------------- the clip list */
+
+.nav {
+  position: fixed; inset: 0 auto 0 0; z-index: 50;
+  width: min(20rem, 84vw);
+  padding: 16px; overflow-y: auto;
+  background: var(--card); border-right: 1px solid var(--line);
+  transform: translateX(-102%); transition: transform .16s ease;
+}
+body.nav-open .nav { transform: none; }
+
+.nav-h {
+  margin: 0 0 10px; font-family: var(--font-ui); font-size: .7rem;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint);
+}
+.nav-h em { font-family: var(--font-zh); font-style: normal; text-transform: none; margin-left: .4em; }
+.nav ol { list-style: none; margin: 0; padding: 0; }
+.nav a {
+  display: block; padding: 9px 11px; border-radius: 9px;
+  text-decoration: none; color: var(--ink);
+}
+.nav a:hover { background: var(--navy-soft); }
+.nav a.here { background: var(--gold-soft); box-shadow: inset 3px 0 0 var(--gold-line); }
+.nav-t { display: block; font-size: .92rem; }
+.nav-zh { display: block; font-family: var(--font-zh); font-size: .78rem; color: var(--ink-soft); }
+.nav-len {
+  display: block; font-family: var(--font-ui); font-size: .68rem;
+  color: var(--ink-faint); font-variant-numeric: tabular-nums; margin-top: 2px;
+}
+
+.nav-scrim { position: fixed; inset: 0; z-index: 45; background: rgba(28, 36, 48, .3); }
+.nav-scrim[hidden] { display: none; }
+body.nav-open .nav-scrim { display: block; }
+body:not(.nav-open) .nav-scrim { display: none; }
+
+/* ------------------------------------------------------- the teacher panel */
+
+.panel {
+  position: fixed; inset: 0 0 auto auto; z-index: 55;
+  width: min(24rem, 92vw); height: 100%; overflow-y: auto;
+  padding: 16px; background: var(--card);
+  border-left: 1px solid var(--line); box-shadow: -12px 0 30px -20px rgba(28, 36, 48, .5);
+  font-family: var(--font-ui);
+}
+.panel[hidden] { display: none; }
+.panel-head { display: flex; align-items: center; justify-content: space-between; }
+.panel-head h2 { margin: 0; font-family: var(--font-en); font-size: 1.05rem; }
+.panel-head h2 span { font-family: var(--font-zh); font-size: .8rem; color: var(--ink-soft); font-weight: 400; margin-left: .5em; }
+.panel-x { font-size: 1rem; background: none; border: 0; cursor: pointer; color: var(--ink-soft); padding: 6px; }
+
+.row { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
+.row-check { display: block; }
+.row-check span { font-size: .9rem; }
+.row-check em { font-family: var(--font-zh); font-style: normal; color: var(--ink-soft); margin-left: .4em; }
+.row label { display: block; font-size: .85rem; margin-bottom: 6px; }
+.row-note { margin: 7px 0 0; font-size: .74rem; line-height: 1.5; color: var(--ink-faint); }
+.row-note em { display: block; font-family: var(--font-zh); font-style: normal; margin-top: 2px; }
+
+.panel-btn {
+  font: inherit; font-size: .84rem; width: 100%;
+  padding: 9px 12px; border-radius: 9px;
+  border: 1px solid var(--navy-line); background: var(--card); color: var(--navy); cursor: pointer;
+}
+.panel-btn:hover { background: var(--navy-soft); }
+.panel-btn em { font-family: var(--font-zh); font-style: normal; margin-left: .4em; opacity: .7; }
+.panel-btn-quiet { border-color: var(--line); color: var(--ink-soft); }
+
+.panel input[type="text"] {
+  font: inherit; font-size: .84rem; width: 100%;
+  padding: 9px 11px; border-radius: 9px;
+  border: 1px solid var(--navy-line); background: var(--paper);
+}
+.panel input[aria-invalid="true"] { border-color: #c0563a; background: #fdeee9; }
+
+/* -------------------------------------------------------------- the footer */
+
+.site-foot {
+  display: flex; align-items: center; gap: 12px;
+  max-width: 62rem; margin: 0 auto; padding: 22px 16px 40px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-ui); font-size: .78rem; color: var(--ink-faint);
+}
+.site-foot p { margin: 0; }
+.site-foot a { color: var(--navy); margin-left: .6em; }
+.site-mark img { display: block; border-radius: 8px; }
+
+/* ------------------------------------------------------------------ print */
+
+@media print {
+  .bar, .stage, .nav, .nav-scrim, .panel, .loop, .go, .zh-chip, .site-foot { display: none !important; }
+  .zh, .card-back, .q-a { display: block !important; }
+  body { font-size: 11pt; }
+  .line { break-inside: avoid; }
+}
+
+/* No lesson, no player: an empty black rectangle reads as a broken video
+   rather than as a page waiting for its first clip. */
+body.empty .stage { display: none; }
