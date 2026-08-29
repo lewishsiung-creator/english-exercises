@@ -325,15 +325,39 @@ function deck() {
 
 // ------------------------------------------------------------------ mount
 
+/* The clip list, grouped by video.
+
+   One talk cut into eight pieces is a list of eight clip titles and that reads
+   fine. Two talks is sixteen titles with nothing saying which is which, and the
+   question this list exists to answer — "which clip of which talk?" — stops
+   being answerable. So consecutive lessons sharing a videoId become a group
+   under their own source line.
+
+   The heading only appears once there is more than one group: with a single
+   video it would be a label that tells the reader nothing they cannot see. */
 function nav() {
   if (LESSONS.length < 2) return '';
-  const items = LESSONS.map((l) => `
-    <li><a href="#${text(l.id)}" data-go="${text(l.id)}">
-      <span class="nav-t">${text(l.titleEn)}</span>
-      <span class="nav-zh">${text(l.titleZh)}</span>
-      <span class="nav-len">${l.end ? clock(l.end - (l.start || 0)) : ''}</span>
-    </a></li>`).join('');
-  return `<nav class="nav"><p class="nav-h">Clips <em>影片</em></p><ol>${items}</ol></nav>`;
+
+  const groups = [];
+  for (const l of LESSONS) {
+    const last = groups[groups.length - 1];
+    if (last && last.videoId === l.videoId) last.items.push(l);
+    else groups.push({ videoId: l.videoId, source: l.sourceEn, items: [l] });
+  }
+
+  const body = groups.map((g) => {
+    const items = g.items.map((l) => `
+      <li><a href="#${text(l.id)}" data-go="${text(l.id)}">
+        <span class="nav-t">${text(l.titleEn)}</span>
+        <span class="nav-zh">${text(l.titleZh)}</span>
+        <span class="nav-len">${l.end ? clock(l.end - (l.start || 0)) : ''}</span>
+      </a></li>`).join('');
+    const head = groups.length > 1 && g.source
+      ? `<p class="nav-src">${text(g.source)}</p>` : '';
+    return head + `<ol>${items}</ol>`;
+  }).join('');
+
+  return `<nav class="nav"><p class="nav-h">Clips <em>影片</em></p>${body}</nav>`;
 }
 
 function show(id) {

@@ -383,6 +383,18 @@ body.nav-open .nav { transform: none; }
 }
 .nav-h em { font-family: var(--font-zh); font-style: normal; text-transform: none; margin-left: .4em; }
 .nav ol { list-style: none; margin: 0; padding: 0; }
+
+/* The talk a group of clips is cut from. Shown only when the list holds more
+   than one video — see nav() in render.js. */
+.nav-src {
+  margin: 16px 0 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-ui); font-size: .72rem; line-height: 1.4;
+  color: var(--ink-faint);
+}
+.nav ol:first-of-type + .nav-src,
+.nav-h + .nav-src { margin-top: 0; padding-top: 0; border-top: 0; }
 .nav a {
   display: block; padding: 9px 11px; border-radius: 9px;
   text-decoration: none; color: var(--ink);
