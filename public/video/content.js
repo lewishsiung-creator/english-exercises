@@ -21,6 +21,35 @@
    names and numbers wrong, so they are a first draft, not the lesson — read
    them against the audio once before teaching from them.
 
+   ADDING A NEW VIDEO
+   ------------------
+   Lessons from the same video must sit TOGETHER in the array. The clip list
+   groups consecutive lessons that share a videoId under one source line, so
+   interleaving two videos produces the same heading twice with the clips split
+   between them. Keep each video's run unbroken and add a new video's lessons
+   as a block at the top.
+
+   Check three things before writing anything:
+
+     1. It plays inside another page. An uploader can forbid embedding, and such
+        a video plays perfectly on YouTube while showing an error here.
+     2. It has captions at all — without them there are no timings, and every
+        feature on this page is arithmetic on timings.
+     3. Its LENGTH. This is the one that catches you out.
+
+   ON LENGTH: a fifteen-minute talk becomes eight clips and a term of lessons.
+   A two-hour interview is not eight times that — it is unusable whole, because
+   the transcript panel cannot be copied in one piece and nobody teaches a
+   two-hour transcript. Take a SEGMENT: find the chapter markers, pick five to
+   ten minutes, and copy only that stretch of the panel. Ten minutes is three or
+   four clips, which is a month.
+
+   ON INTERVIEWS: this format has no field for who is speaking, because it was
+   built for one person talking. That is a real constraint, not an oversight —
+   cut an interview around the stretches where ONE person runs uninterrupted,
+   and the question never arises. If a segment genuinely needs both voices, the
+   line format has to grow a speaker field first.
+
    CHOOSING A CLIP
    ---------------
    Three to six minutes. Longer than that and a lesson becomes homework nobody
