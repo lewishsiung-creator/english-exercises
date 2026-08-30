@@ -69,14 +69,27 @@
    nothing; write the Chinese that a person would actually say for that idea,
    and leave `zh` off entirely where the English needs no help.
 
-   THE TWO REGISTERS
-   -----------------
+   THE REGISTERS
+   -------------
    `level` sets who a lesson is written for and nothing else — it does not
    change the page. Adult clients get the register of /nikky/, /anny/ and
    /anita/: work, career, meetings, the news. Teenagers and young adults get the
    register of /anna/, /ken/ and /eason/: study, campus, first jobs, what they
-   already watch. Never write one clip for both. Pick the audience, then pick
-   the video.
+   already watch. As a rule, pick the audience, then pick the video — a clip
+   written at two people at once usually lands on neither.
+
+   THE ONE EXCEPTION, and it is a real one: some subjects are equally native to
+   both lives. Habits, goals, procrastination, confidence, how you spend a day —
+   a twenty-year-old with a degree to finish and someone with a job and a team
+   are doing the SAME thing with these, only the furniture differs. Such a clip
+   is marked "Young adult & workplace" and is written by one test: every example
+   and every task must work for both, so nothing may need direct reports, a
+   budget or a quarterly target to make sense. Reach instead for what both
+   already have — a fitness habit, a side project, a deadline, money to save.
+
+   What is NOT allowed is the register drifting mid-lesson: a business example
+   in one task and a campus example in the next reads as a lesson that could not
+   decide. Pitch at both from the first line or at neither.
 
    A LESSON
    --------
@@ -103,6 +116,703 @@
 */
 
 const LESSONS = [
+
+  /* ------------------------------------------------------------------ */
+  {
+    id: 'systems-vs-goals',
+    videoId: 'rtufWBLOXgw',
+    start: 1350,
+    end: 1477,
+
+    titleEn: 'Goals versus systems',
+    titleZh: '目標與系統',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'James Clear on The Diary Of A CEO — “Your Goals Are Quietly Restricting Your Happiness”',
+
+    aboutEn: 'Two minutes, and one question from the host: what is the difference '
+      + 'between a system and a goal? This is the whole answer, uninterrupted '
+      + '— a definition, a hard claim about what your habits are already '
+      + 'doing to you, and the sentence his book is remembered for.',
+    aboutZh: ' '
+      + '兩分鐘，主持人只問了一句：系統和目標差在哪？這就是他一口氣講完的整個答案——先給定義，再丟出一句「你的習慣正在對你做什麼」的狠話，最後收在他那本書最為人所知的一句話。',
+
+    watchForEn: 'He never tells you to drop your goals. He tells you to put one on a '
+      + 'shelf — listen for what he says to do with the time that frees up.',
+    watchForZh: '他從來沒叫你放棄目標，而是叫你把目標「擱到架子上」——注意聽他說，空出來的時間要拿去做什麼。',
+
+    lines: [
+      { t: 1350, en: 'I was very goal-driven for a long time.',
+                 zh: '有很長一段時間，我是非常「目標導向」的。' },
+      { t: 1353, en: 'I mean, I probably still am.',
+                 zh: '我是說，我現在大概也還是這樣。' },
+      { t: 1355, en: 'I don’t think there’s any way to get around the fact that we all have goals,',
+                 zh: '我覺得有一個事實是繞不過去的：我們都會有目標，' },
+      { t: 1359, en: 'and think about the outcomes we want.',
+                 zh: '也都會去想自己想要什麼結果。' },
+      { t: 1361, en: 'But a goal is about the outcome that you want to achieve,',
+                 zh: '但目標講的是你想達成的那個「結果」，' },
+      { t: 1364, en: 'and a system is about the process for getting there.',
+                 zh: '系統講的是走到那裡的「過程」。' },
+      { t: 1367, en: 'So your goal is the target, the outcome, the thing you’re shooting for.',
+                 zh: '所以目標就是靶、是結果、是你瞄準的那個東西。' },
+      { t: 1370, en: 'Your system is the collection of daily habits that you follow.',
+                 zh: '而你的系統，是你每天照著跑的那一整套習慣。' },
+      { t: 1374, en: 'And if there is ever a gap between your goal and your system,',
+                 zh: '如果你的目標和你的系統之間出現落差，' },
+      { t: 1378, en: 'if there’s ever a gap between your desired outcome and your daily habits,',
+                 zh: '如果你想要的結果和你每天的習慣之間出現落差，' },
+      { t: 1383, en: 'your daily habits will always win.',
+                 zh: '贏的一定是你每天的習慣。' },
+      { t: 1385, en: 'And so almost by definition,',
+                 zh: '所以幾乎可以說，就定義上來講，' },
+      { t: 1387, en: 'your current habits are perfectly designed to deliver your current results.',
+                 zh: '你現在的習慣，剛剛好就是為了產出你現在這些結果而設計的。' },
+      { t: 1391, en: 'If you want to see where you’re going to end up,',
+                 zh: '如果你想知道自己最後會走到哪裡，' },
+      { t: 1394, en: 'just follow the trajectory of your habits.',
+                 zh: '就順著你習慣的走向一路看下去就好。' },
+      { t: 1396, en: 'What’s the process you’ve been running',
+                 zh: '你一直在跑的是什麼樣的流程？' },
+      { t: 1398, en: 'for the last six months, or a year, or two years?',
+                 zh: '過去六個月、一年，或者兩年？' },
+      { t: 1400, en: 'And they’ve carried you almost inevitably',
+                 zh: '而它們幾乎是必然地，把你帶到了' },
+      { t: 1402, en: 'to the outcomes that you have right now.',
+                 zh: '你現在手上的這些結果。' },
+      { t: 1404, en: 'I’m not saying that habits are the only thing that matter in life.',
+                 zh: '我不是說習慣是人生中唯一重要的事。' },
+      { t: 1408, en: 'Strategy matters.',
+                 zh: '策略也很重要。' },
+      { t: 1409, en: 'Luck, randomness, misfortune — those things can influence the outcome.',
+                 zh: '運氣、隨機、還有倒楣事，這些都可能影響結果。' },
+      { t: 1413, en: 'But by definition, luck and randomness are not under your control,',
+                 zh: '但就定義上來說，運氣和隨機不在你的控制之內，' },
+      { t: 1417, en: 'and your habits are.',
+                 zh: '而你的習慣在。' },
+      { t: 1419, en: 'And the only reasonable, rational approach in life',
+                 zh: '人生裡唯一合理、理性的做法，' },
+      { t: 1422, en: 'is to focus on the pieces that are within your control.',
+                 zh: '就是把心力放在你能控制的那些部分。' },
+      { t: 1425, en: 'So I think goals can be good for setting a sense of direction.',
+                 zh: '所以我覺得，目標很適合用來定出一個大方向。' },
+      { t: 1428, en: 'They’re good for clarity.',
+                 zh: '它們能讓事情變清楚。' },
+      { t: 1430, en: 'Especially if you have a team, get everybody rowing in the same direction.',
+                 zh: '尤其你如果帶團隊，可以讓大家往同一個方向使力。' },
+      { t: 1433, en: 'But once you’ve decided what the goal is,',
+                 zh: '但一旦你決定好目標是什麼，' },
+      { t: 1436, en: 'you should basically set it on the shelf, metaphorically speaking,',
+                 zh: '基本上就該把它擱到架子上——這是比喻的說法——' },
+      { t: 1439, en: 'and spend the vast majority of your time focused on building a better system.',
+                 zh: '然後把絕大部分的時間，花在打造更好的系統上。' },
+      { t: 1443, en: 'How are the habits we’re executing each day',
+                 zh: '我們每天在執行的這些習慣，' },
+      { t: 1445, en: 'moving us closer to this outcome that we want?',
+                 zh: '是怎麼讓我們更靠近想要的那個結果的？' },
+      { t: 1447, en: 'And so after talking about this for five or six years now,',
+                 zh: '所以這件事我講了五、六年，' },
+      { t: 1450, en: 'since the book’s been out,',
+                 zh: '從那本書出版到現在，' },
+      { t: 1452, en: 'where I’ve come down on it is:',
+                 zh: '我最後的結論是：' },
+      { t: 1454, en: 'goals are best for people who care about winning once.',
+                 zh: '目標最適合那些「在乎贏一次」的人。' },
+      { t: 1456, en: 'Systems are best for people who care about winning repeatedly.',
+                 zh: '系統最適合那些「在乎一直贏」的人。' },
+      { t: 1459, en: 'If you really want to make progress again and again,',
+                 zh: '如果你真的想一次又一次往前推進，' },
+      { t: 1461, en: 'if you want to get to the top and stay at the top,',
+                 zh: '如果你想爬到頂端、而且待在頂端，' },
+      { t: 1463, en: 'you need some process for staying up there.',
+                 zh: '你就需要一套讓自己待在上面的流程。' },
+      { t: 1466, en: 'Some collection of habits that’s going to keep this machine running.',
+                 zh: '一整套習慣，讓這台機器繼續運轉下去。' },
+      { t: 1470, en: 'So this is why I say in the book,',
+                 zh: '所以我才會在書裡說，' },
+      { t: 1472, en: 'we don’t rise to the level of our goals,',
+                 zh: '我們不會升到目標的高度，' },
+      { t: 1474, en: 'we fall to the level of our systems.',
+                 zh: '我們會掉到系統的高度。' },
+    ],
+
+    words: [
+      { t: 1350, en: 'goal-driven', zh: '目標導向的',
+        noteEn: 'A noun plus -driven says what pushes you along: data-driven, '
+          + 'results-driven, deadline-driven. Natural in speech and fine on a CV.',
+        noteZh: '名詞加 '
+          + '-driven，表示「被這件事推著走」：data-driven（數據導向）、results-driven（結果導向）、deadline-driven。口語能講，履歷也能寫。' },
+      { t: 1355, en: 'get around the fact that…', zh: '迴避、繞過某個事實',
+        noteEn: 'Almost always negative: “There’s no getting around the fact that '
+          + 'we’re two weeks late.” You admit the inconvenient thing first, then '
+          + 'keep going.',
+        noteZh: '幾乎都用否定：「There’s no getting around the fact that we’re two weeks '
+          + 'late.」（有件事繞不過去：我們晚了兩週。）先承認不方便的那件事，再往下講。' },
+      { t: 1367, en: 'the thing you’re shooting for', zh: '你瞄準的那個東西、你要的結果',
+        noteEn: 'Shoot for = aim for. Spoken: “What are we shooting for here — a '
+          + 'rough draft or a finished thing?”',
+        noteZh: 'shoot for 就是「以……為目標」。口語：「What are we shooting for here — a rough '
+          + 'draft or a finished thing?」（我們這次是要做到什麼程度——先出個粗稿，還是要做到完成品？）' },
+      { t: 1394, en: 'the trajectory of your habits', zh: '你習慣延伸下去的走向',
+        noteEn: 'A trajectory is the path something is already on, extended forward. '
+          + 'Also said of careers, prices and projects: “the trajectory of this '
+          + 'project”.',
+        noteZh: 'trajectory 是「現在這條路一路延伸下去的軌跡」。也能用在職涯、價格和專案：the trajectory of this '
+          + 'project（這個案子的走向）。' },
+      { t: 1422, en: 'within your control', zh: '在你能控制的範圍內',
+        noteEn: 'The opposite pair is “outside your control” or “out of my hands”. '
+          + 'Very useful when you explain what you can and cannot promise.',
+        noteZh: '相反說法是 outside your control 或 out of my '
+          + 'hands（不在我手上）。要說明「哪些我能保證、哪些不能」時特別好用。' },
+      { t: 1430, en: 'get everybody rowing in the same direction', zh: '讓大家往同一個方向使力',
+        noteEn: 'A rowing-boat image for alignment. Common in meetings and close to a '
+          + 'cliché — one use per conversation.',
+        noteZh: '划船的比喻，指方向一致。開會很常聽到，但也接近陳腔濫調，一次談話用一次就好。' },
+      { t: 1436, en: 'set it on the shelf', zh: '先把它擱著、放一邊',
+        noteEn: 'To park something on purpose, not to abandon it. He adds '
+          + '“metaphorically speaking” because the image is so physical — that '
+          + 'little repair is worth stealing.',
+        noteZh: '是「刻意先放著」，不是「放棄」。他後面補了一句 metaphorically '
+          + 'speaking（這是比喻的說法），因為畫面太具體了——這個小動作值得偷來用。' },
+      { t: 1452, en: 'where I’ve come down on it', zh: '我最後的結論、我最後站在哪一邊',
+        noteEn: 'Come down on something = to finally take a position after thinking '
+          + 'about it a long time. Spoken, and it signals a considered view '
+          + 'rather than a first reaction.',
+        noteZh: 'come down on something 指「想了很久之後最後採取的立場」。口語，而且帶有「這是我想過的結論，不是隨口反應」的味道。' },
+    ],
+
+    questions: [
+      { t: 1361, en: 'How does he define the difference in one sentence?',
+        zh: '他用一句話怎麼定義兩者的差別？',
+        answerEn: 'A goal is about the outcome you want to achieve; a system is about '
+          + 'the process for getting there.',
+        answerZh: '目標講的是你想達成的結果；系統講的是走到那裡的過程。' },
+      { t: 1383, en: 'When your goal and your daily habits disagree, which one wins?',
+        zh: '當你的目標和你每天的習慣不一致時，贏的是哪一個？',
+        answerEn: 'The habits, always. And by definition, he says, your current habits '
+          + 'are perfectly designed to deliver your current results.',
+        answerZh: '永遠是習慣。而且他說，就定義上來講，你現在的習慣剛好就是設計來產出你現在這些結果的。' },
+      { t: 1404, en: 'He admits habits are not the only thing that matters. What else does he name, and why does he still put habits first?',
+        zh: '他承認習慣不是唯一重要的事。他還提到什麼？為什麼他還是把習慣放第一？',
+        answerEn: 'Strategy, luck, randomness and misfortune. But luck and randomness '
+          + 'are not under your control and your habits are — and he says the '
+          + 'only rational approach is to focus on what is within your control.',
+        answerZh: '策略、運氣、隨機和倒楣事。但運氣和隨機不在你的控制之內，習慣在——他說唯一理性的做法，就是專注在你能控制的部分。' },
+      { t: 1454, en: 'Who are goals best for, and who are systems best for?',
+        zh: '目標最適合誰？系統最適合誰？',
+        answerEn: 'Goals are best for people who care about winning once; systems are '
+          + 'best for people who care about winning repeatedly.',
+        answerZh: '目標最適合「在乎贏一次」的人；系統最適合「在乎一直贏」的人。' },
+    ],
+
+    tasks: [
+      { en: 'Name one goal you have right now — a qualification, getting fit, '
+        + 'saving a set amount. Then say out loud the daily system underneath '
+        + 'it. If there isn’t one, say that instead.',
+        zh: '說出你現在的一個目標——考一張證照、把身體練起來、存到一筆錢。然後出聲講出這個目標底下每天在跑的系統。如果根本沒有，那就老實說沒有。' },
+      { en: 'Use his test on yourself: what process have you been running for the '
+        + 'last six months, and where is it carrying you? Three sentences.',
+        zh: '用他的方法檢查自己：你過去六個月一直在跑的是什麼流程？它正把你帶到哪裡？用三句話回答。' },
+      { en: 'Say one thing you want to win once, and one thing you want to win '
+        + 'repeatedly. Which of the two needs a system, and what would the '
+        + 'first habit in it be?',
+        zh: '講一件你「想贏一次」的事，和一件你「想一直贏」的事。哪一件需要系統？那個系統裡的第一個習慣會是什麼？' },
+    ],
+  },
+
+  /* ------------------------------------------------------------------ */
+  {
+    id: 'spend-your-days',
+    videoId: 'rtufWBLOXgw',
+    start: 1512,
+    end: 1623,
+
+    titleEn: 'How do you want to spend your days?',
+    titleZh: '你想怎麼過你的每一天？',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'James Clear on The Diary Of A CEO — “Your Goals Are Quietly Restricting Your Happiness”',
+
+    aboutEn: 'Asked whether thinking in systems is something you can learn or just '
+      + 'a personality trait, Clear concedes the personality part in one '
+      + 'sentence and then hands over the questions anyone can use. It ends '
+      + 'on the swap he thinks most people avoid making: wanting the result '
+      + 'is easy, and the real question is whether you want the lifestyle '
+      + 'that produces it.',
+    aboutZh: ' '
+      + '主持人問他：用「系統」思考是學得來的，還是天生個性？他一句話承認個性佔了一部分，接著就把任何人都能拿來用的幾個問題交出來。最後落在一個大家常常閃避的問題上：想要那個結果很容易，真正該問的是——你想不想過那種日子。',
+
+    watchForEn: 'He splits one sentence into two halves: not do you want the result, '
+      + 'but do you want the lifestyle. Listen for the moment the question '
+      + 'changes.',
+    watchForZh: '他把一句話拆成兩半：不是「你想不想要那個結果」，而是「你想不想要那種生活」。注意聽問題轉彎的那一刻。',
+
+    lines: [
+      { t: 1512, en: 'I do think some of it is personality,',
+                 zh: '我確實覺得，這裡面有一部分是個性，' },
+      { t: 1516, en: 'and what’s exciting to you to think about.',
+                 zh: '也就是你想到什麼事情會覺得興奮。' },
+      { t: 1518, en: 'Some people are very future oriented,',
+                 zh: '有些人非常「未來導向」，' },
+      { t: 1520, en: 'thinking about what the systems are and what that would lead them to.',
+                 zh: '會去想系統長什麼樣，還有這些系統會把他們帶到哪裡去。' },
+      { t: 1524, en: 'And so on, or more process oriented.',
+                 zh: '諸如此類，或者說是比較看重「過程」的人。' },
+      { t: 1527, en: 'But there are a number of questions that you can ask',
+                 zh: '但有幾個問題是你可以拿來問自己的，' },
+      { t: 1529, en: 'that can help you figure out what systems you should be focused on.',
+                 zh: '幫你搞清楚自己該把心力放在哪些系統上。' },
+      { t: 1533, en: 'So, a couple of the ones I like.',
+                 zh: '我自己蠻喜歡的有這麼幾個。' },
+      { t: 1535, en: 'One question is: can my current habits carry me to my desired future?',
+                 zh: '第一個問題是：我現在的習慣，能把我帶到我想要的未來嗎？' },
+      { t: 1538, en: 'So you have a bunch of habits you’re following right now.',
+                 zh: '你現在身上有一堆正在執行的習慣，' },
+      { t: 1541, en: 'What path are you on?',
+                 zh: '你正走在哪一條路上？' },
+      { t: 1542, en: 'Can your current habits take you there?',
+                 zh: '你現在的習慣，能把你帶到那裡嗎？' },
+      { t: 1544, en: 'And they could be either way.',
+                 zh: '兩種答案都有可能。' },
+      { t: 1546, en: 'Sometimes the answer is yes, and what you need is patience.',
+                 zh: '有時候答案是「可以」，那你需要的就只是耐心。' },
+      { t: 1549, en: 'You just need to keep staying on the path.',
+                 zh: '你只要繼續走在這條路上就好。' },
+      { t: 1551, en: 'But sometimes the answer is no,',
+                 zh: '但有時候答案是「不行」，' },
+      { t: 1552, en: 'and then obviously something needs to change.',
+                 zh: '那顯然就有東西得改了。' },
+      { t: 1555, en: 'You’re hoping for one outcome,',
+                 zh: '你期待的是某一個結果，' },
+      { t: 1556, en: 'but then you’re following a different lifestyle.',
+                 zh: '但你過的卻是另一種生活。' },
+      { t: 1558, en: 'So to want the outcome without the lifestyle',
+                 zh: '想要那個結果，卻不想過那種生活，' },
+      { t: 1560, en: 'is to torture yourself.',
+                 zh: '等於是在折磨自己。' },
+      { t: 1561, en: 'And what really matters is not: do you want the result?',
+                 zh: '真正的關鍵，不在於「你想不想要那個結果」。' },
+      { t: 1564, en: 'Anybody would like the result if you just hand it to them.',
+                 zh: '結果如果直接送到手上，誰都會想要。' },
+      { t: 1568, en: 'The question is: do you want the lifestyle?',
+                 zh: '該問的是：你想不想要那種生活？' },
+      { t: 1570, en: 'One of the little things I try to do,',
+                 zh: '我自己會做的一件小事是這樣：' },
+      { t: 1571, en: 'whenever I have a new business project that I’m thinking about,',
+                 zh: '每當我在考慮一個新的事業計畫，' },
+      { t: 1574, en: 'or something I’m excited about potentially doing,',
+                 zh: '或是有件事我覺得很想去做，' },
+      { t: 1576, en: 'the first question I ask is: how do I want to spend my days?',
+                 zh: '我問自己的第一個問題是：我想怎麼過我的每一天？' },
+      { t: 1579, en: 'And so then you draw a box.',
+                 zh: '然後你就畫出一個框，' },
+      { t: 1581, en: 'And inside that box: how can we make the most money,',
+                 zh: '在這個框裡面問：怎麼賺最多錢、' },
+      { t: 1584, en: 'reach the most people, make the biggest impact,',
+                 zh: '接觸到最多人、帶來最大的改變，' },
+      { t: 1587, en: 'make the contribution that you want to make —',
+                 zh: '做出你想做出的那份貢獻——' },
+      { t: 1589, en: 'but not outside of it.',
+                 zh: '但不能跑到這個框外面。' },
+      { t: 1591, en: 'And what happens a lot of the time is people do that in reverse.',
+                 zh: '而很多時候，大家是反過來做的。' },
+      { t: 1593, en: 'They start by asking: how can we make the most money,',
+                 zh: '他們先問：怎麼賺最多錢、' },
+      { t: 1595, en: 'or reach the most people, or make the biggest impact,',
+                 zh: '怎麼接觸最多人、怎麼帶來最大的改變，' },
+      { t: 1598, en: 'and then they decide, oh, this is what I want to do,',
+                 zh: '然後才決定：喔，那我要做的就是這個，' },
+      { t: 1600, en: 'but it’s actually outside of how they want to spend their days.',
+                 zh: '但這其實根本不是他們想過的日子。' },
+      { t: 1603, en: 'And it’s not going to work out well,',
+                 zh: '結果通常不會太好，' },
+      { t: 1605, en: 'because it goes back to our point previously about: is this fun?',
+                 zh: '因為這又回到我們前面講的：這件事有趣嗎？' },
+      { t: 1608, en: 'If they don’t want to spend their time that way,',
+                 zh: '如果他們並不想那樣過日子，' },
+      { t: 1610, en: 'you’re just grinding for a little while,',
+                 zh: '那就只是硬撐一陣子而已，' },
+      { t: 1612, en: 'and eventually it’s not going to work.',
+                 zh: '最後還是走不下去。' },
+      { t: 1613, en: 'That’s the key for building systems that really work:',
+                 zh: '這就是打造真正有效的系統的關鍵：' },
+      { t: 1616, en: 'is this how you want to spend your days?',
+                 zh: '這是不是你想過的日子？' },
+      { t: 1618, en: 'The person who wants to live the lifestyle',
+                 zh: '想過那種生活的人，' },
+      { t: 1620, en: 'is much better positioned to get the result.',
+                 zh: '更有條件拿到那個結果。' },
+    ],
+
+    words: [
+      { t: 1518, en: 'future oriented', zh: '未來導向的（人）',
+        noteEn: '-oriented turns a noun into a description of what someone naturally '
+          + 'focuses on: detail-oriented, process-oriented, people-oriented.',
+        noteZh: '-oriented '
+          + '把名詞變成「這個人天生會注意什麼」：detail-oriented（注重細節）、process-oriented（重視流程）、people-oriented（以人為本）。' },
+      { t: 1535, en: 'carry you there', zh: '靠現在的累積，把你帶到那裡',
+        noteEn: 'Carry, not take: it says the thing gets you there on its own '
+          + 'momentum, with nothing new added. “Will this pace carry us to the '
+          + 'deadline?”',
+        noteZh: '用 carry 而不是 take，意思是「靠它本身的力道就能把你送到」，不必再加什麼新東西。Will this pace carry '
+          + 'us to the deadline?（照這個速度，撐得到截止日嗎？）' },
+      { t: 1541, en: 'What path are you on?', zh: '你現在走在哪一條路上？',
+        noteEn: 'Spoken. It asks about direction, not about where you are now — which '
+          + 'is exactly why it is hard to answer quickly.',
+        noteZh: '口語。問的是「方向」，不是「你現在在哪裡」——所以才會一時答不出來。' },
+      { t: 1560, en: 'torture yourself', zh: '折磨自己',
+        noteEn: 'Hyperbole, and completely normal in speech: choosing something that '
+          + 'guarantees you a bad time. “Don’t torture yourself watching the '
+          + 'replay.”',
+        noteZh: '誇飾用法，口語裡很常見：明知會很難受還去選它。Don’t torture yourself watching the '
+          + 'replay.（別再重看那段影片折磨自己了。）' },
+      { t: 1576, en: 'how you spend your days', zh: '你的日子是怎麼過的',
+        noteEn: 'Days, plural — not one day. It means the ordinary shape of your '
+          + 'life, the hours you repeat, not a schedule.',
+        noteZh: '是複數的 days，不是某一天。指的是你生活平常長什麼樣、你一再重複的那些時間，不是行程表。' },
+      { t: 1591, en: 'do it in reverse', zh: '順序整個反過來做',
+        noteEn: 'Not backwards in space — in order. Useful when someone got the '
+          + 'sequence wrong: “We did it in reverse — we picked the tool before we '
+          + 'knew the problem.”',
+        noteZh: '不是「往後」，是「順序顛倒」。要說某人做事順序弄反了很好用：We did it in reverse — we picked the '
+          + 'tool before we knew the problem.（我們順序反了，還沒搞清楚問題就先挑工具。）' },
+      { t: 1610, en: 'grind', zh: '硬撐、埋頭苦幹',
+        noteEn: 'Spoken. Working hard with no joy in it, usually for longer than you '
+          + 'should. “I’m just grinding through the last two weeks of the '
+          + 'course.”',
+        noteZh: '口語。埋頭硬做、做得毫無樂趣，而且通常撐得比該撐的還久。I’m just grinding through the last two '
+          + 'weeks of the course.（這門課剩下兩週我就只是在硬撐。）' },
+      { t: 1620, en: 'better positioned to do something', zh: '更有條件做到某件事',
+        noteEn: 'Not luckier and not more talented — standing somewhere that makes '
+          + 'the result more likely. Works in writing as well as speech.',
+        noteZh: '不是比較幸運，也不是比較有天分，而是「站的位置讓那個結果更容易發生」。書面和口語都能用。' },
+    ],
+
+    questions: [
+      { t: 1535, en: 'He offers one question for working out which system to build. What is it?',
+        zh: '他給了一個問題，用來判斷自己該建立什麼系統。那個問題是什麼？',
+        answerEn: 'Can my current habits carry me to my desired future? Look at the '
+          + 'habits you are running right now and ask what path they put you on.',
+        answerZh: '「我現在的習慣，能把我帶到我想要的未來嗎？」看看你正在執行的習慣，問問它們把你放在哪一條路上。' },
+      { t: 1546, en: 'The answer can go either way. What does he say you need if it is yes?',
+        zh: '這個問題的答案兩種都有可能。他說如果答案是「可以」，你需要的是什麼？',
+        answerEn: 'Patience. Nothing needs changing — you just keep staying on the '
+          + 'path. If the answer is no, then obviously something has to change.',
+        answerZh: '耐心。什麼都不用改，繼續走在這條路上就好。如果答案是「不行」，那顯然就得改東西了。' },
+      { t: 1568, en: 'He says the real question is not whether you want the result. So what is it?',
+        zh: '他說真正的問題不是「你想不想要那個結果」。那是什麼？',
+        answerEn: 'Whether you want the lifestyle. Anybody would take the result if you '
+          + 'handed it to them, so wanting it proves nothing.',
+        answerZh: '而是「你想不想要那種生活」。結果如果直接送到手上，誰都會要，所以「想要」根本證明不了什麼。' },
+      { t: 1591, en: 'What does he say people do in reverse?',
+        zh: '他說大家常常把什麼順序做反了？',
+        answerEn: 'They start from the money, the reach and the impact, decide what to '
+          + 'do from that, and only then find it sits outside how they want to '
+          + 'spend their days.',
+        answerZh: '他們從賺多少錢、接觸多少人、做出多大影響開始，據此決定要做什麼，結果才發現那根本不是他們想過的日子。' },
+    ],
+
+    tasks: [
+      { en: 'Ask his question out loud about something you want this year — a '
+        + 'qualification, a fitter body, money saved. Can your current habits '
+        + 'carry you there? Answer yes or no, and say how you know.',
+        zh: '找一個你想要的結果，出聲問那個問題：你現在的習慣能把你帶到那裡嗎？回答「可以」或「不行」，並說你怎麼知道。' },
+      { en: 'Describe the lifestyle behind something you want, hour by hour, on '
+        + 'an ordinary Tuesday. Then say whether you want that too, not just '
+        + 'the result.',
+        zh: '講講你想要的那件事背後是什麼樣的生活——用一個平常的星期二，一小時一小時說下去。然後說說：除了結果之外，那種日子你想不想要？' },
+      { en: 'Draw his box for something you are thinking of starting. Say how you '
+        + 'want to spend your days first, and only then what you would do '
+        + 'inside that.',
+        zh: '替一件你正在考慮開始的事，畫出他說的那個框。先說你想怎麼過你的每一天，然後才說在這個框裡面你會做什麼。' },
+    ],
+  },
+
+  /* ------------------------------------------------------------------ */
+  {
+    id: 'same-goals',
+    videoId: 'rtufWBLOXgw',
+    start: 1636,
+    end: 1679,
+
+    titleEn: 'Same goal, different result',
+    titleZh: '同樣的目標，不同的結果',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'James Clear on The Diary Of A CEO — “Your Goals Are Quietly Restricting Your Happiness”',
+
+    aboutEn: 'The host quotes one of the book’s claims back at him — winners and '
+      + 'losers have the same goals — and Clear proves it in forty seconds '
+      + 'flat, with a job opening and the Olympics. It is the most '
+      + 'self-contained argument in the whole interview: a claim, two '
+      + 'examples, a conclusion, all inside a minute.',
+    aboutZh: ' '
+      + '主持人把書裡的一句話丟回給他——「贏的人和輸的人，目標是一樣的」——他就用四十秒證明給你看，例子只有一個職缺和一場奧運。這是整場訪談裡最完整、最能單獨拿出來聽的一段論證：一個主張、兩個例子、一個結論，全部不到一分鐘。',
+
+    watchForEn: 'He never says goals are worthless. Listen for the phrase he uses to '
+      + 'keep them: necessary, but not sufficient.',
+    watchForZh: '他從頭到尾沒有說目標沒用。注意聽他替目標留下位子的那句話：必要，但還不夠。',
+
+    lines: [
+      { t: 1636, en: 'Everybody wants the results.',
+                 zh: '每個人都想要那個結果。' },
+      { t: 1637, en: 'Let’s say you have a hundred people apply for a job.',
+                 zh: '假設有一百個人來應徵同一份工作。' },
+      { t: 1639, en: 'You got a new job opening.',
+                 zh: '你這邊開了一個新職缺。' },
+      { t: 1640, en: 'Presumably, every candidate has the goal of getting the job.',
+                 zh: '照理說，每一個應徵者的目標都是拿到這份工作。' },
+      { t: 1643, en: 'The goal is not the thing that determines the outcome.',
+                 zh: '目標並不是決定結果的那個東西。' },
+      { t: 1646, en: 'So the person who wins and the ninety-nine people who lose,',
+                 zh: '所以最後上的那一個，和沒上的那九十九個，' },
+      { t: 1648, en: 'they have the same goals.',
+                 zh: '他們的目標一模一樣。' },
+      { t: 1650, en: 'You look at the Olympic Games — presumably any event,',
+                 zh: '你看奧運，隨便哪一個項目，' },
+      { t: 1652, en: 'everybody who’s competing has the goal of winning the Olympic medal, right?',
+                 zh: '每一個上場比賽的人，目標都是拿到奧運獎牌，對吧？' },
+      { t: 1655, en: 'Of winning the gold.',
+                 zh: '都是要拿金牌。' },
+      { t: 1656, en: 'So the goal is not the thing that makes the difference.',
+                 zh: '所以造成差別的，並不是目標。' },
+      { t: 1659, en: 'So again, winners and losers have the same goals.',
+                 zh: '再說一次：贏的人和輸的人，目標是一樣的。' },
+      { t: 1661, en: 'So if they have the same goals,',
+                 zh: '既然目標一樣，' },
+      { t: 1663, en: 'they cannot be the thing that makes the difference in their performance.',
+                 zh: '那目標就不可能是造成表現差異的原因。' },
+      { t: 1666, en: 'It has to be something else.',
+                 zh: '一定是別的東西。' },
+      { t: 1667, en: 'Maybe having a goal is part of it.',
+                 zh: '也許有目標是原因的一部分。' },
+      { t: 1669, en: 'Maybe it’s necessary, but it’s not sufficient for the outcome that you want.',
+                 zh: '也許它是必要的，但光有目標，還不足以帶來你要的結果。' },
+      { t: 1672, en: 'And for that, what you need is a system.',
+                 zh: '要拿到結果，你需要的是一套系統。' },
+      { t: 1674, en: 'You need a collection of habits that are going to make the difference',
+                 zh: '你需要一組真正能造成差別的習慣，' },
+      { t: 1677, en: 'and accumulate into a bigger outcome.',
+                 zh: '讓它們累積成更大的成果。' },
+    ],
+
+    words: [
+      { t: 1637, en: 'let’s say', zh: '假設說、比方說',
+        noteEn: 'Spoken. It launches an invented example so nobody thinks you are '
+          + 'describing a real case: “Let’s say you miss the deadline.”',
+        noteZh: '口語。用來開一個「假設的例子」，讓對方知道你不是在講真實案例：「Let’s say you miss the '
+          + 'deadline.」（假設你錯過了截止日。）' },
+      { t: 1639, en: 'a job opening', zh: '職缺',
+        noteEn: 'An opening is a position waiting to be filled. “We have two openings '
+          + 'on the team.” The verb is post: “They posted the opening yesterday.”',
+        noteZh: 'opening 是「有空缺、正在找人」的那個位置：We have two openings on the '
+          + 'team.（我們團隊有兩個職缺。）要說「開出職缺」用 post。' },
+      { t: 1640, en: 'presumably', zh: '照理說、想必',
+        noteEn: 'You are fairly sure but have not actually checked. Useful for saying '
+          + 'an assumption out loud: “Presumably they’ve seen the email.”',
+        noteZh: '你相當確定，但沒有真的去確認。想把某個假設講出來的時候很好用：「Presumably they’ve seen the '
+          + 'email.」（想必他們看過那封信了。）' },
+      { t: 1643, en: 'determine the outcome', zh: '決定結果',
+        noteEn: 'The formal word for what actually decides something. He then swaps '
+          + 'it for the plainer “makes the difference” — same idea, easier '
+          + 'register.',
+        noteZh: '比較正式的說法，指真正決定事情走向的那個因素。他後面換成比較白話的 makes the difference，意思一樣，語氣更口語。' },
+      { t: 1656, en: 'make the difference', zh: '真正造成差別的關鍵',
+        noteEn: 'What actually changes the result. Notice the: “the thing that makes '
+          + 'the difference”. Without the, “make a difference” only means to '
+          + 'help.',
+        noteZh: '指真正改變結果的那個關鍵。注意有 the：the thing that makes the difference。少了 the，make '
+          + 'a difference 只是「有幫助、有影響」。' },
+      { t: 1669, en: 'necessary but not sufficient', zh: '必要，但還不夠',
+        noteEn: 'A precise way to half-agree: you do need it, and it alone will not '
+          + 'get you there. Strong in an argument, and it survives in writing.',
+        noteZh: '一種很精準的「同意一半」：這件事你非有不可，但光有它到不了終點。辯論時很有力，寫成文字也一樣好用。' },
+      { t: 1674, en: 'a collection of habits', zh: '一組習慣',
+        noteEn: 'His definition of a system: not one habit, but the whole set you run '
+          + 'every day. Collection of rather than list says they work together.',
+        noteZh: '他對「系統」的定義：不是單一習慣，而是你每天在跑的一整組。用 collection of 而不是 list，是要強調它們是一起發揮作用的。' },
+      { t: 1677, en: 'accumulate into', zh: '累積成',
+        noteEn: 'Small things piling up over time into one big thing. “Ten minutes a '
+          + 'day accumulates into a real skill.”',
+        noteZh: '小東西隨著時間堆疊成一件大的：「Ten minutes a day accumulates into a real '
+          + 'skill.」（一天十分鐘，累積起來就是一項真本事。）' },
+    ],
+
+    questions: [
+      { t: 1637, en: 'What example does he start with?',
+        zh: '他一開始舉的例子是什麼？',
+        answerEn: 'A hundred people applying for one new job opening. Every one of them '
+          + 'has the goal of getting it, and ninety-nine of them will not.',
+        answerZh: '一百個人來應徵同一個新職缺。他們每一個人的目標都是拿到這份工作，但其中九十九個拿不到。' },
+      { t: 1643, en: 'Why does he say the goal cannot be what decides who gets hired?',
+        zh: '他為什麼說「目標」不可能是決定誰被錄取的原因？',
+        answerEn: 'Because the one who wins and the ninety-nine who lose all had the '
+          + 'same goal. Something everybody shares cannot explain why they ended '
+          + 'up differently.',
+        answerZh: '因為上的那一個和沒上的那九十九個，目標完全一樣。大家都有的東西，沒辦法解釋為什麼結果會不同。' },
+      { t: 1650, en: 'What second example does he use to make the same point?',
+        zh: '他用哪個第二個例子來說同一件事？',
+        answerEn: 'The Olympic Games. In any event, everybody competing has the goal of '
+          + 'winning the gold — so the goal is not what makes the difference.',
+        answerZh: '奧運。任何一個項目裡，上場的每個人目標都是拿金牌——所以造成差別的，不會是目標。' },
+      { t: 1667, en: 'Does he say goals are useless?',
+        zh: '他有說目標沒有用嗎？',
+        answerEn: 'No. Having a goal may be part of it, and may even be necessary — but '
+          + 'it is not sufficient. For the outcome you need a system, a '
+          + 'collection of habits.',
+        answerZh: '沒有。他說有目標也許是原因的一部分，甚至可能是必要的——但還不夠。要拿到結果，你需要一套系統，也就是一組習慣。' },
+    ],
+
+    tasks: [
+      { en: 'Run his argument on something you want this year — a qualification, '
+        + 'getting fit, saving money. Everyone chasing it has the same goal as '
+        + 'you. So what is your system?',
+        zh: '拿他的論點套在你今年想達成的事情上——考一張證照、把身體練起來、存下一筆錢都行。跟你搶同一件事的人，目標跟你一模一樣。那你的系統是什麼？' },
+      { en: 'Think of two people who started with the same goal and ended up in '
+        + 'different places. Say out loud what was different — and you are not '
+        + 'allowed to say “the goal”.',
+        zh: '想兩個一開始目標一樣、最後卻走到不同地方的人。出聲說說他們差在哪裡——而且不准說「目標不同」。' },
+      { en: 'Say one goal in a single sentence, then say the daily habits sitting '
+        + 'underneath it. If those habits ran for a year, would they get you '
+        + 'there?',
+        zh: '用一句話說出一個目標，再說出撐著這個目標的每日習慣。如果這些習慣照這樣跑一年，會把你帶到那裡嗎？' },
+    ],
+  },
+
+  /* ------------------------------------------------------------------ */
+  {
+    id: 'goals-and-happiness',
+    videoId: 'rtufWBLOXgw',
+    start: 1682,
+    end: 1719,
+
+    titleEn: 'Why goals postpone happiness',
+    titleZh: '為什麼目標會讓快樂延後',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'James Clear on The Diary Of A CEO — “Your Goals Are Quietly Restricting Your Happiness”',
+
+    aboutEn: 'The host puts one of the book’s harder claims to him — that goals '
+      + 'restrict your happiness — and Clear answers with the quiet bargain '
+      + 'hidden inside every goal: once I hit the number, then I’ll finally '
+      + 'be satisfied. Thirty-seven seconds, three versions of that same '
+      + 'bargain, and the thing he says to fall in love with instead — the '
+      + 'idea this whole interview is named after.',
+    aboutZh: '主持人把書裡比較尖銳的一個說法丟給他：目標會限制你的快樂。Clear '
+      + '的回答，是每個目標裡都藏著的那筆交易——等我做到那個數字，我就終於會滿足；三十七秒裡出現了三個版本的同一筆交易，還有他認為你真正該愛上的東西，也就是整場訪談命名的那個想法。',
+
+    watchForEn: 'Three completely different goals, one sentence pattern: “Once I…, '
+      + 'then I’ll…”. Count how many times it comes round.',
+    watchForZh: '三個完全不同的目標，同一個句型：「Once I…, then I’ll…」。數數看這個句型出現了幾次。',
+
+    lines: [
+      { t: 1682, en: 'There’s some implicit promise internally,',
+                 zh: '我們心裡都有一個沒說出口的承諾，' },
+      { t: 1684, en: 'that once I get to this goal, then I’ll be happy.',
+                 zh: '就是「等我達成這個目標，我就會快樂」。' },
+      { t: 1686, en: 'Once I write a New York Times bestseller, then I’ll feel better about it.',
+                 zh: '等我寫出一本《紐約時報》暢銷書，我心裡就會踏實一點。' },
+      { t: 1690, en: 'Once I achieve this certain number on the scale,',
+                 zh: '等我體重計上的數字到了某個數字，' },
+      { t: 1693, en: 'then I’ll be happy with my body.',
+                 zh: '我就會對自己的身材滿意了。' },
+      { t: 1695, en: 'Once I get to a million dollars in revenue,',
+                 zh: '等營收做到一百萬美金，' },
+      { t: 1698, en: 'then I’ll be happy with the business.',
+                 zh: '我就會對這門生意滿意了。' },
+      { t: 1700, en: 'And so you’re kind of constantly pushing happiness off to the next milestone,',
+                 zh: '所以你等於一直把快樂往後推，推到下一個里程碑，' },
+      { t: 1704, en: 'and thinking that once you get there, then finally you’ll be satisfied.',
+                 zh: '心裡想著等到了那裡，你才終於會滿足。' },
+      { t: 1708, en: 'But I think in fact the better way to do it',
+                 zh: '但我覺得，其實更好的做法是' },
+      { t: 1711, en: 'is to fall in love with the process,',
+                 zh: '愛上這個過程，' },
+      { t: 1713, en: 'to fall in love with the lifestyle,',
+                 zh: '愛上這種生活方式，' },
+      { t: 1715, en: 'then you can be happy along the way',
+                 zh: '這樣你在路上就已經是快樂的，' },
+      { t: 1717, en: 'and still achieve the goals as you go, still achieve the milestones.',
+                 zh: '而且一路上照樣達成目標，照樣走過那些里程碑。' },
+    ],
+
+    words: [
+      { t: 1682, en: 'an implicit promise', zh: '一個沒說出口的承諾',
+        noteEn: 'Implicit = understood but never actually said. Its opposite is '
+          + 'explicit, said out loud. Here it is a promise you made to yourself '
+          + 'without noticing.',
+        noteZh: 'implicit 是「心照不宣、沒有明講」，相反詞是 explicit（講明的）。這裡指你自己沒察覺、就對自己許下的承諾。' },
+      { t: 1690, en: 'the number on the scale', zh: '體重計上的數字',
+        noteEn: 'How English talks about your weight without saying the weight. The '
+          + 'scale is the one in your bathroom; British speakers say the scales.',
+        noteZh: '英文講體重時常這樣說，不必真的把數字講出來。scale 就是家裡的體重計；英國人會說 the scales（複數）。' },
+      { t: 1695, en: 'revenue', zh: '營收',
+        noteEn: 'All the money coming in, before any costs. What is left afterwards '
+          + 'is profit. Useful the moment your side project starts selling '
+          + 'anything.',
+        noteZh: '所有進來的錢，還沒扣掉成本；扣完剩下的才是 profit（利潤）。你的副業一開始賣東西，就會用到這個字。' },
+      { t: 1700, en: 'push something off to…', zh: '把某件事往後推到……',
+        noteEn: 'To postpone. Everyday spoken English: “Can we push the meeting off '
+          + 'to Thursday?” What he pushes off here is happiness, which is his '
+          + 'whole point.',
+        noteZh: '就是「延後」。日常口語：「Can we push the meeting off to '
+          + 'Thursday?」（會議可以往後推到週四嗎？）他這裡推的是快樂，這正是他的重點。' },
+      { t: 1702, en: 'the next milestone', zh: '下一個里程碑、下一個階段目標',
+        noteEn: 'A marked point along the way, not the finish line: passing the exam, '
+          + 'the first paying customer, week eight of training. Common in '
+          + 'projects and study plans.',
+        noteZh: '路上的一個標記點，不是終點：考過檢定、第一個付錢的客人、訓練的第八週。在專案和讀書計畫裡都很常用。' },
+      { t: 1708, en: 'I think the better way to do it is…', zh: '我覺得更好的做法是……',
+        noteEn: 'A soft way to put a different idea on the table. Saying the better '
+          + 'way rather than a better way sounds confident without sounding rude.',
+        noteZh: '把不同意見端出來的溫和說法。說 the better way 而不是 a better way，聽起來有自信，又不會太衝。' },
+      { t: 1711, en: 'fall in love with the process', zh: '愛上過程本身',
+        noteEn: 'Fall in love with does not need a person — a city, a job, a sport, a '
+          + 'process. It means you started liking it and could not stop.',
+        noteZh: 'fall in love with 後面不一定是人，也可以是一座城市、一份工作、一項運動、一個過程。意思是「不知不覺就迷上了」。' },
+      { t: 1715, en: 'along the way', zh: '一路上、過程當中',
+        noteEn: 'While you are still on your way to something, not once you arrive. '
+          + 'It pairs with as you go, which he uses in the very next breath.',
+        noteZh: '指還在往目標前進的途中，而不是抵達之後。常和 as you go 搭配——他下一口氣就用了。' },
+    ],
+
+    questions: [
+      { t: 1682, en: 'What is the promise he says we quietly make to ourselves?',
+        zh: '他說我們私底下跟自己許下的是什麼承諾？',
+        answerEn: 'That once I get to this goal, then I’ll be happy. He calls it an '
+          + 'implicit promise — one you never actually say out loud.',
+        answerZh: '「等我達成這個目標，我就會快樂。」他把這叫做一個心照不宣的承諾——你從來沒真的說出口。' },
+      { t: 1686, en: 'He gives three versions of that promise. What are they?',
+        zh: '他把那個承諾舉了三個版本。分別是什麼？',
+        answerEn: 'A New York Times bestseller, a certain number on the scale, and a '
+          + 'million dollars in revenue — a book, a body, and a business.',
+        answerZh: '一本《紐約時報》暢銷書、體重計上的某個數字、還有一百萬美金的營收——一本書、一個身材、一門生意。' },
+      { t: 1700, en: 'What does he say keeps happening to your happiness?',
+        zh: '他說你的快樂一直被怎麼樣？',
+        answerEn: 'You keep pushing it off to the next milestone, believing that once '
+          + 'you get there you will finally be satisfied.',
+        answerZh: '你一直把它往後推到下一個里程碑，以為等到了那裡，你才終於會滿足。' },
+      { t: 1708, en: 'What does he say to fall in love with instead — and what do you not have to give up?',
+        zh: '他說該愛上的是什麼？而你又不必放棄什麼？',
+        answerEn: 'The process and the lifestyle. You do not give up the goals: he says '
+          + 'you can be happy along the way and still achieve them as you go.',
+        answerZh: '過程，以及那種生活方式。你不必放棄目標：他說你可以在路上就是快樂的，同時照樣一路達成目標。' },
+    ],
+
+    tasks: [
+      { en: 'Name a goal you are chasing right now — a qualification, a weight, a '
+        + 'savings number. Say out loud what you are telling yourself you will '
+        + 'feel once you hit it.',
+        zh: '說出一個你現在正在追的目標——一張證照、一個體重、一筆存款數字。出聲說說看：你正在告訴自己「達成之後」會有什麼感覺。' },
+      { en: 'Describe the process behind that goal — what you actually do on an '
+        + 'ordinary Tuesday. Could you fall in love with that?',
+        zh: '描述那個目標背後的過程——一個普通的星期二，你實際上會做些什麼。那件事，你有辦法愛上嗎？' },
+      { en: 'Say one thing you keep pushing off until “after” — after the exam, '
+        + 'after the busy season. What would having it along the way look like?',
+        zh: '說一件你一直推遲到「之後」才要做的事——考完之後、忙完這一波之後。如果不等到那時候，而是一路上就擁有它，會是什麼樣子？' },
+    ],
+  },
+
 
   /* ------------------------------------------------------------------ 1 */
   {
