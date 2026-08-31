@@ -65,6 +65,8 @@ let shadowOn = false;       // pause at the end of every line
 let follow = true;          // keep the spoken line in view
 let started = false;        // has the clip ever played? see tick()
 let waitIdx = null;         // shadowing has stopped ON this line, waiting to be said back
+let typeIdx = null;         // the line being typed out in Listen and Type, or null
+let typeDone = false;       // has the line on screen been checked or revealed?
 let ticker = null;
 
 /* Where a line ends: the next line's start, or the lesson's own end, or the
@@ -199,6 +201,184 @@ function tick() {
   syncNow(i);
 }
 
+// -------------------------------------------------- Listen and Type
+
+/* Dictation, one line at a time.
+
+   The unit is the line, the same as everywhere else on this page: the clip
+   loops that one line until the student has it, they type what they hear, and
+   only then does the line appear. Doing the whole transcript at once would put
+   forty-six input boxes on screen; doing one keeps the exercise the size of the
+   thing being practised.
+
+   Nothing is scored and nothing is counted. Words the student caught are
+   marked, words they missed are marked, and that is the whole of the feedback —
+   a tally would turn a listening exercise into a test, and the teacher is
+   sitting right there. */
+
+/* Case, punctuation and curly-versus-straight apostrophes are all noise here;
+   the exercise is about what was HEARD.
+
+   Apostrophes are the awkward case, and they get a verdict of their own. Kept
+   strict, "dont" for "don't" is marked the same as failing to hear the negative
+   at all, which is nonsense — one is a dropped keystroke, the other is missing
+   the meaning of the sentence. Ignored entirely, "were" passes for "we're" and
+   the student never learns a distinction dictation exists to teach. So a word
+   that matches only once apostrophes are ignored is marked NEARLY: it says you
+   heard it, now look at the spelling. */
+function typeWords(s) {
+  return String(s)
+    .toLowerCase()
+    .replace(/[\u2018\u2019\u02bc]/g, "'")
+    .replace(/[^a-z0-9'\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .split(' ')
+    .filter(Boolean);
+}
+
+/* Which of the correct words the student got, aligned by longest common
+   subsequence. Comparing word by word on index instead would mark every word
+   after a single missed one as wrong, which is both untrue and dispiriting.
+   Lines are at most sixteen words, so the quadratic table costs nothing. */
+const bare = (w) => w.replace(/'/g, '');
+
+function wordsFound(correct, typed) {
+  const n = correct.length, m = typed.length;
+  const dp = Array.from({ length: n + 1 }, () => new Int32Array(m + 1));
+  for (let i = n - 1; i >= 0; i--) {
+    for (let j = m - 1; j >= 0; j--) {
+      dp[i][j] = correct[i] === typed[j]
+        ? dp[i + 1][j + 1] + 1
+        : Math.max(dp[i + 1][j], dp[i][j + 1]);
+    }
+  }
+  const got = new Array(n).fill(false);
+  let i = 0, j = 0;
+  while (i < n && j < m) {
+    if (correct[i] === typed[j]) { got[i] = true; i++; j++; }
+    else if (dp[i + 1][j] >= dp[i][j + 1]) i++;
+    else j++;
+  }
+  return got;
+}
+
+/* 'got' | 'near' | 'missed', one per word of the correct line. */
+function wordVerdicts(correct, typed) {
+  const exact = wordsFound(correct, typed);
+  const heard = wordsFound(correct.map(bare), typed.map(bare));
+  return correct.map((w, i) => (exact[i] ? 'got' : heard[i] ? 'near' : 'missed'));
+}
+
+function typeBox() {
+  return `
+    <div class="type-box">
+      <p class="type-lab">Type what you hear <em>把你聽到的打出來</em></p>
+      <div class="type-row">
+        <input class="type-in" id="typeIn" type="text" autocomplete="off"
+          autocapitalize="off" autocorrect="off" spellcheck="false"
+          aria-label="Type what you hear">
+        <button class="type-replay" id="typeReplay"
+          title="Play this line again 再聽一次" aria-label="Play this line again">▶</button>
+      </div>
+      <div class="type-acts">
+        <button class="type-btn" id="typeCheck">Check <em>對答案</em></button>
+        <button class="type-btn type-btn-quiet" id="typeShow">Show it <em>看答案</em></button>
+        <button class="type-btn type-btn-next" id="typeNext" hidden>Next line <em>下一句</em> →</button>
+      </div>
+      <div class="type-out" id="typeOut" hidden></div>
+    </div>`;
+}
+
+/* Puts the box on line i and loops that line. Looping is the point: a student
+   typing needs to hear it four or five times, and the loop already built for
+   the 🔁 button does exactly that. */
+function startTyping(i) {
+  if (i == null || i < 0 || i >= lesson.lines.length) { stopTyping(); return; }
+  /* Only the box moves. Lines already done keep their `typed` mark, so the
+     transcript fills in behind the student like a worksheet rather than
+     resealing itself every time they move on. */
+  $$('.type-box').forEach((b) => b.remove());
+
+  typeIdx = i;
+  typeDone = false;
+  lineEls[i].appendChild(el(typeBox()));
+
+  $$('#lines .loop').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+  loopIdx = i;
+  $('#loopOff').hidden = false;
+  seek(lineStart(i));
+
+  lineEls[i].scrollIntoView({ block: 'center' });
+  const input = $('#typeIn');
+  if (input) input.focus();
+}
+
+/* Reveals the line. `checked` false means the student asked to see it rather
+   than answering, so nothing is marked — there is nothing to mark. */
+function revealTyping(checked) {
+  if (typeIdx == null) return;
+  const line = lineEls[typeIdx];
+  const out = $('#typeOut');
+  if (!out) return;
+
+  const correctRaw = lesson.lines[typeIdx].en.split(/\s+/).filter(Boolean);
+  if (checked) {
+    const verdict = wordVerdicts(typeWords(lesson.lines[typeIdx].en), typeWords($('#typeIn').value));
+    /* One displayed token is not always one compared word: normalising turns
+       "goal-driven" into two, and "—" into none. So each token consumes as
+       many verdicts as it produced and they collapse back into one mark.
+       Taking a single verdict per token instead shifts every mark after the
+       first hyphen by one, which silently mis-marks the rest of the line. */
+    let k = 0;
+    out.innerHTML = correctRaw.map((w) => {
+      const n = typeWords(w).length;
+      if (!n) return `<span class="w-shown">${text(w)}</span>`;
+      const part = verdict.slice(k, k + n);
+      k += n;
+      const v = part.every((x) => x === 'got') ? 'got'
+        : part.some((x) => x === 'missed') ? 'missed' : 'near';
+      return `<span class="w-${v}">${text(w)}</span>`;
+    }).join(' ');
+  } else {
+    out.innerHTML = correctRaw.map((w) => `<span class="w-shown">${text(w)}</span>`).join(' ');
+  }
+
+  out.hidden = false;
+  line.classList.add('typed');
+  typeDone = true;
+  $('#typeCheck').hidden = true;
+  $('#typeShow').hidden = true;
+  $('#typeNext').hidden = typeIdx + 1 >= lesson.lines.length;
+  $('#typeNext').focus();
+}
+
+function stopTyping() {
+  $$('.type-box').forEach((b) => b.remove());
+  $$('#lines .line').forEach((l) => l.classList.remove('typed'));
+  typeIdx = null;
+  typeDone = false;
+  loopIdx = null;
+  const off = $('#loopOff');
+  if (off) off.hidden = true;
+}
+
+function setTyping(on) {
+  document.body.classList.toggle('typing', on);
+  const btn = $('#typeBtn');
+  if (btn) btn.setAttribute('aria-pressed', String(on));
+  if (on) {
+    /* The three hiding modes cannot share a screen: shadowing pauses the clip
+       the dictation needs looping, and hide-words is what this mode already
+       does with somewhere to type. */
+    if (document.body.classList.contains('blanked')) $('#blankBtn').click();
+    if (shadowOn) $('#shadowBtn').click();
+    startTyping(Math.max(0, nowIdx));
+  } else {
+    stopTyping();
+  }
+}
+
 // ------------------------------------------------------------------ blocks
 
 function transcript() {
@@ -319,6 +499,9 @@ function deck() {
       <button class="d-btn d-toggle" id="shadowBtn" aria-pressed="false"
         title="Pause after every line 每句停一下">🗣 Shadow <em>跟讀</em></button>
 
+      <button class="d-btn d-toggle" id="typeBtn" aria-pressed="false"
+        title="Listen and type the line 聽寫">⌨️ Listen and type <em>聽寫</em></button>
+
       <button class="d-btn d-quiet" id="loopOff" hidden>Stop looping <em>停止重複</em></button>
     </div>`;
 }
@@ -416,7 +599,9 @@ function show(id) {
   nowIdx = -1;
   loopIdx = null;
   waitIdx = null;
-  document.body.classList.remove('blanked');
+  typeIdx = null;
+  typeDone = false;
+  document.body.classList.remove('blanked', 'typing');
 
   $$('#nav a').forEach((a) => a.classList.toggle('here', a.dataset.go === lesson.id));
   syncNavGroups();
@@ -544,11 +729,33 @@ document.addEventListener('click', (e) => {
     }
   }
 
+  if (id === 'typeBtn') setTyping(!document.body.classList.contains('typing'));
+
+  /* Replays the line under the cursor. It has to re-arm the loop itself: the
+     generic [data-seek] handler clears loopIdx, which is right for a timestamp
+     click and wrong here, where looping is the exercise. */
+  if (id === 'typeReplay' && typeIdx != null) {
+    seek(lineStart(typeIdx));
+    loopIdx = typeIdx;
+    $('#loopOff').hidden = false;
+  }
+
+  if (id === 'typeCheck') revealTyping(true);
+  if (id === 'typeShow') revealTyping(false);
+  if (id === 'typeNext' && typeIdx != null) startTyping(typeIdx + 1);
+
   if (id === 'loopOff') {
     loopIdx = null;
     $('#loopOff').hidden = true;
     $$('#lines .loop').forEach((b) => b.setAttribute('aria-pressed', 'false'));
   }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter' || !e.target.matches('.type-in')) return;
+  e.preventDefault();
+  if (typeDone) { if (typeIdx != null) startTyping(typeIdx + 1); }
+  else revealTyping(true);
 });
 
 document.addEventListener('change', (e) => {
@@ -631,6 +838,7 @@ $('#reset').addEventListener('click', () => {
   shadowOn = false;
   started = false;
   waitIdx = null;
+  setTyping(false);
   follow = true;
   $('#followChk').checked = true;
   show(lesson.id);

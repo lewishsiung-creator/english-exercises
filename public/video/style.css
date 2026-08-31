@@ -514,3 +514,99 @@ body:not(.nav-open) .nav-scrim { display: none; }
 /* No lesson, no player: an empty black rectangle reads as a broken video
    rather than as a page waiting for its first clip. */
 body.empty .stage { display: none; }
+
+/* ------------------------------------------------- Listen and Type
+
+   Dictation on one line at a time. The transcript goes blank and fills in
+   behind the student as they work down it, so the page doubles as the record
+   of what they did. Words they caught go green, words they missed take the
+   gold attention colour rather than a red one — the house rule is that a wrong
+   answer stays open and does not shout, and a missed word in dictation is
+   information, not a failure. Nothing is counted anywhere. */
+
+body.typing #lines .line .en,
+body.typing #lines .line .zh { visibility: hidden; }
+body.typing #lines .line.typed .en,
+body.typing #lines .line.typed .zh { visibility: visible; }
+body.typing #lines .line .line-body {
+  min-height: 1.6em;
+  border-bottom: 2px dotted var(--rule);
+}
+body.typing #lines .line.typed .line-body { border-bottom-color: transparent; }
+
+/* The line being typed sits open below its own row, across all three columns. */
+.type-box {
+  grid-column: 1 / -1;
+  margin-top: 8px;
+  padding: 12px 13px;
+  background: var(--card);
+  border: 1px solid var(--navy-line);
+  border-radius: 11px;
+}
+
+.type-lab {
+  margin: 0 0 8px;
+  font-family: var(--font-ui); font-size: .72rem;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--navy);
+}
+.type-lab em {
+  font-family: var(--font-zh); font-style: normal;
+  text-transform: none; letter-spacing: 0; margin-left: .5em; opacity: .75;
+}
+
+.type-row { display: flex; gap: 8px; align-items: stretch; }
+
+.type-in {
+  flex: 1; min-width: 0;
+  font-family: var(--font-en); font-size: 1rem;
+  padding: 10px 12px;
+  border: 1px solid var(--navy-line); border-radius: 9px;
+  background: var(--paper); color: var(--ink);
+}
+.type-in:focus { outline: 3px solid var(--gold-line); outline-offset: 1px; }
+
+.type-replay {
+  flex: none; width: 44px;
+  font-size: .9rem; cursor: pointer;
+  border: 1px solid var(--navy-line); border-radius: 9px;
+  background: var(--navy-soft); color: var(--navy);
+}
+.type-replay:hover { background: var(--navy); color: #fff; }
+
+.type-acts { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 9px; }
+
+.type-btn {
+  font-family: var(--font-ui); font-size: .78rem;
+  padding: 7px 12px; border-radius: 9px; cursor: pointer;
+  border: 1px solid var(--navy-line); background: var(--card); color: var(--navy);
+}
+.type-btn:hover { background: var(--navy-soft); }
+.type-btn em { font-family: var(--font-zh); font-style: normal; margin-left: .35em; opacity: .7; }
+.type-btn-quiet { border-color: var(--line); color: var(--ink-soft); }
+.type-btn-next { background: var(--good-soft); border-color: var(--good-line); color: var(--good); }
+.type-btn[hidden] { display: none; }
+
+/* The answer, word by word. */
+.type-out {
+  margin-top: 11px; padding-top: 10px;
+  border-top: 1px dashed var(--line);
+  font-family: var(--font-en); font-size: 1rem; line-height: 1.9;
+}
+.type-out[hidden] { display: none; }
+
+.w-got { color: var(--good); }
+.w-missed {
+  color: var(--gold); background: var(--gold-soft);
+  padding: 1px 4px; border-radius: 5px;
+  text-decoration: underline dotted var(--gold-line);
+  text-underline-offset: 3px;
+}
+/* Heard, but spelled without its apostrophe. Neither right nor missed — the
+   mark says "you got this one, look at the form". */
+.w-near {
+  color: var(--navy); background: var(--navy-soft);
+  padding: 1px 4px; border-radius: 5px;
+  text-decoration: underline dotted var(--navy-line);
+  text-underline-offset: 3px;
+}
+.w-shown { color: var(--ink-soft); }
