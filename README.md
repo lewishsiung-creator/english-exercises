@@ -1667,6 +1667,23 @@ header comment of [`public/nikky/content.js`](public/nikky/content.js). The ten
 sentences that survived that filter are real ones, which is the whole value of
 the block.
 
+Session 2 (1 September 2026) is the sequel nobody wanted: the newcomer from
+session 1 resigned, and the source is Nikky's own written reflection on it. The
+hour turns on a shift her own last two paragraphs make — from *why did this
+employee leave?* to *what should we change in the system before we hire the next
+person?* — which the `contrast` block carries, along with the two patterns the
+handout singles out (`I understand…, but at the same time, we need to…` and
+`Instead of seeing A as…, I want them to see it as…`). Its eighteen phrase cards
+are the handout's own chunks, examples included; the Chinese was retyped rather
+than pasted, because the PDF's text layer returns CJK **radicals** for several
+common characters (⽂ ⼯ ⼒ for 文 工 力) and they would have shipped as mojibake.
+
+**Session 2 has no `fix` block**, deliberately, and the reason is in the file.
+Its source is the lesson handout, and the reflection printed in it is already
+the *polished* version of what she wrote — a polished text holds the ideas but
+not the mistakes, so there is nothing to correct. The same rule as Anny's and
+Anna's first sessions. Her original writing, or a recording, would fill it.
+
 
 ## Ken's Notebook — college student, one-to-one, kept over time
 
