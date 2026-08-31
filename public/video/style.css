@@ -384,17 +384,55 @@ body.nav-open .nav { transform: none; }
 .nav-h em { font-family: var(--font-zh); font-style: normal; text-transform: none; margin-left: .4em; }
 .nav ol { list-style: none; margin: 0; padding: 0; }
 
-/* The talk a group of clips is cut from. Shown only when the list holds more
-   than one video — see nav() in render.js. */
-.nav-src {
-  margin: 16px 0 6px;
-  padding-top: 12px;
-  border-top: 1px solid var(--line);
-  font-family: var(--font-ui); font-size: .72rem; line-height: 1.4;
-  color: var(--ink-faint);
+/* One folding section per video. The talk's own name is the biggest thing in
+   the list, because with several videos in here that is the first thing a
+   reader is looking for; the speaker and the clip count sit under it in the
+   quiet UI face. */
+.nav-group + .nav-group { margin-top: 8px; }
+
+.nav-head {
+  display: flex; align-items: flex-start; gap: 9px;
+  width: 100%; text-align: left;
+  padding: 11px 12px;
+  border: 1px solid var(--line); border-radius: 11px;
+  background: var(--card); color: inherit;
+  font: inherit; cursor: pointer;
 }
-.nav ol:first-of-type + .nav-src,
-.nav-h + .nav-src { margin-top: 0; padding-top: 0; border-top: 0; }
+.nav-head:hover { background: var(--navy-soft); border-color: var(--navy-line); }
+
+.nav-chev {
+  flex: none; font-size: .7rem; line-height: 1.7; color: var(--ink-faint);
+  transition: transform .14s ease;
+}
+.nav-group.open .nav-chev { transform: rotate(90deg); }
+
+.nav-head-t { min-width: 0; }
+
+/* The talk's name. Serif and near body size — this is a title, not a label. */
+.nav-vid {
+  display: block;
+  font-family: var(--font-en); font-size: 1rem; font-weight: 600;
+  line-height: 1.3; color: var(--ink);
+}
+.nav-vid-zh {
+  display: block; margin-top: 2px;
+  font-family: var(--font-zh); font-size: .8rem; line-height: 1.4;
+  color: var(--ink-soft);
+}
+.nav-by {
+  display: block; margin-top: 5px;
+  font-family: var(--font-ui); font-size: .7rem; color: var(--ink-faint);
+}
+
+/* The section holding the clip on screen, marked so a reader who has folded
+   everything can still see where they are. */
+.nav-group.current .nav-head {
+  border-color: var(--gold-line);
+  box-shadow: inset 3px 0 0 var(--gold-line);
+}
+
+.nav-group > ol { display: none; padding: 6px 0 2px 10px; }
+.nav-group.open > ol { display: block; }
 .nav a {
   display: block; padding: 9px 11px; border-radius: 9px;
   text-decoration: none; color: var(--ink);

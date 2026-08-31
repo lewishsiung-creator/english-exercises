@@ -325,16 +325,29 @@ function deck() {
 
 // ------------------------------------------------------------------ mount
 
-/* The clip list, grouped by video.
+/* sourceEn is written as `<who> — “<title>”` throughout this file, so the
+   heading can show the talk's own name in full size and hand the speaker and
+   the channel to a quieter second line. If a source is ever written some other
+   way the whole string becomes the title, which is wrong-looking but never
+   broken. */
+function videoTitle(source) {
+  const m = String(source || '').match(/^(.*?)\s*—\s*[“"](.+?)[”"]\s*$/);
+  if (m) return { who: m[1].trim(), title: m[2].trim() };
+  return { who: '', title: String(source || '').trim() };
+}
 
-   One talk cut into eight pieces is a list of eight clip titles and that reads
-   fine. Two talks is sixteen titles with nothing saying which is which, and the
-   question this list exists to answer — "which clip of which talk?" — stops
-   being answerable. So consecutive lessons sharing a videoId become a group
-   under their own source line.
+/* The clip list: one folding section per video.
 
-   The heading only appears once there is more than one group: with a single
-   video it would be a label that tells the reader nothing they cannot see. */
+   Two things drive the shape. First, the heading is the TALK, not the clip —
+   with more than one video in the list the first question is always "which
+   talk?", so its name is the largest thing here and the speaker sits under it.
+   Second, the sections fold. Twelve clips across two videos already overflows a
+   phone screen, and by the fourth video an unfolded list is a page in its own
+   right; folded, the whole library is four headings you can read at once.
+
+   Every section starts closed and syncNavGroups() opens the one holding the
+   clip on screen. A section the reader opens themselves stays open when they
+   switch clips — closing it for them would undo a deliberate act. */
 function nav() {
   if (LESSONS.length < 2) return '';
 
@@ -342,22 +355,53 @@ function nav() {
   for (const l of LESSONS) {
     const last = groups[groups.length - 1];
     if (last && last.videoId === l.videoId) last.items.push(l);
-    else groups.push({ videoId: l.videoId, source: l.sourceEn, items: [l] });
+    else groups.push({ videoId: l.videoId, source: l.sourceEn, zh: l.videoZh, items: [l] });
+    if (!groups[groups.length - 1].zh && l.videoZh) groups[groups.length - 1].zh = l.videoZh;
   }
 
-  const body = groups.map((g) => {
+  const body = groups.map((g, i) => {
+    const { who, title } = videoTitle(g.source);
     const items = g.items.map((l) => `
       <li><a href="#${text(l.id)}" data-go="${text(l.id)}">
         <span class="nav-t">${text(l.titleEn)}</span>
         <span class="nav-zh">${text(l.titleZh)}</span>
         <span class="nav-len">${l.end ? clock(l.end - (l.start || 0)) : ''}</span>
       </a></li>`).join('');
-    const head = groups.length > 1 && g.source
-      ? `<p class="nav-src">${text(g.source)}</p>` : '';
-    return head + `<ol>${items}</ol>`;
+
+    const n = g.items.length;
+    return `
+      <section class="nav-group" data-group="${i}">
+        <button class="nav-head" aria-expanded="false" aria-controls="navlist${i}">
+          <span class="nav-chev" aria-hidden="true">▸</span>
+          <span class="nav-head-t">
+            <span class="nav-vid">${text(title)}</span>
+            ${g.zh ? `<span class="nav-vid-zh">${text(g.zh)}</span>` : ''}
+            <span class="nav-by">${who ? text(who) + ' · ' : ''}${n} clip${n === 1 ? '' : 's'}</span>
+          </span>
+        </button>
+        <ol id="navlist${i}">${items}</ol>
+      </section>`;
   }).join('');
 
   return `<nav class="nav"><p class="nav-h">Clips <em>影片</em></p>${body}</nav>`;
+}
+
+function setGroup(section, open) {
+  section.classList.toggle('open', open);
+  const head = $('.nav-head', section);
+  if (head) head.setAttribute('aria-expanded', String(open));
+}
+
+/* Opens the section holding the clip on screen, and marks it so a reader who
+   has scrolled the list can still see where they are without opening anything. */
+function syncNavGroups() {
+  const here = $$('#nav a').find((a) => a.dataset.go === lesson.id);
+  $$('.nav-group').forEach((s) => s.classList.remove('current'));
+  if (!here) return;
+  const section = here.closest('.nav-group');
+  if (!section) return;
+  section.classList.add('current');
+  setGroup(section, true);
 }
 
 function show(id) {
@@ -375,6 +419,7 @@ function show(id) {
   document.body.classList.remove('blanked');
 
   $$('#nav a').forEach((a) => a.classList.toggle('here', a.dataset.go === lesson.id));
+  syncNavGroups();
 
   if (first) { loadApi(); }
   else if (ready) {
@@ -434,6 +479,13 @@ document.addEventListener('click', (e) => {
     loopIdx = on ? i : null;
     $('#loopOff').hidden = !on;
     if (on) seek(lineStart(i));
+    return;
+  }
+
+  const navHead = e.target.closest('.nav-head');
+  if (navHead) {
+    const section = navHead.closest('.nav-group');
+    setGroup(section, !section.classList.contains('open'));
     return;
   }
 

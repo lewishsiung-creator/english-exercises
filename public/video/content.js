@@ -98,8 +98,17 @@
      start     seconds; where the lesson begins. Omit for 0
      end       seconds; where it stops. Omit to run to the end of the video
      titleEn / titleZh
+     videoZh   OPTIONAL, and only needed once per video — the Chinese name of
+               the talk, for the folding clip list. Put it on the FIRST lesson
+               of a video's run; the list takes the first one it finds in the
+               group, so repeating it on every lesson is harmless but pointless.
+               Without it the list shows the English title alone.
      levelEn / levelZh    e.g. "Adult · B1–B2" / "成人 · B1–B2"
-     sourceEn             who is speaking and where it comes from
+     sourceEn             who is speaking and where it comes from, written as
+                          `<who> — “<title>”`. The clip list splits on that dash
+                          to show the talk's name as the heading and the speaker
+                          beneath it, so the shape is load-bearing: written any
+                          other way, the whole string becomes the heading.
      aboutEn / aboutZh    two sentences on what the clip is and why it is here
      watchForEn / watchForZh   one thing to listen for on the first play
      lines     the transcript. `t` is the second the line starts; a line runs
@@ -129,6 +138,7 @@ const LESSONS = [
     levelEn: 'Young adult & workplace · B2',
     levelZh: '青年與職場',
     sourceEn: 'James Clear on The Diary Of A CEO — “Your Goals Are Quietly Restricting Your Happiness”',
+    videoZh: '你的目標正在悄悄限制你的快樂',
 
     aboutEn: 'Two minutes, and one question from the host: what is the difference '
       + 'between a system and a goal? This is the whole answer, uninterrupted '
@@ -826,6 +836,7 @@ const LESSONS = [
     levelEn: 'Adult · B2',
     levelZh: '成人',
     sourceEn: 'Daniel Pink — “The 6 Skills AI Will Never Replace”',
+    videoZh: 'AI 永遠取代不了的六種能力',
 
     aboutEn: 'Forty-three seconds of set-up, and three moves in a fixed order: '
       + 'the problem, the promise, and the reason to trust him. Almost every '
