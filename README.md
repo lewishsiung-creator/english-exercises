@@ -1744,6 +1744,28 @@ nutrition plan: the protein figures on the page are intakes **used in particular
 studies**, never a target for him. There is no `fix` block, because the source
 was written before the lesson.
 
+**Session 3 (3 September 2026)** is *The Odyssey* — why he went, what he
+admires in Nolan, and why three hours went past without him noticing. It runs
+A–F. **A** is the polished version of his talk with an eight-question quiz;
+**B** the twenty-two collocations from the handout, in three card sets, with the
+handout's own "top ten to prioritise" turned into a `cards` audit (*I would use
+this* / *Still new*) rather than a list; **C** four sentence patterns and a
+gap-fill; **D** the handout's Answer → Reason → Example → Reflection structure,
+carried by a `contrast` of *Where most people stop* against *All four moves*;
+**E** the five discussion questions; **F** the five model answers.
+
+Two things about that last pair. The models are **`summary` blocks rather than
+`note` bodies**, because only `summary` carries a 🔊 — at this level a model
+answer is there to be heard and shadowed, not only read. And they sit in a part
+of their own, after the questions rather than beside them, because the `lead`
+above them asks him to answer first: a model read before you have tried is a
+script, and a model read after you have tried is feedback.
+
+**There is no `fix` block here either.** Session 1's PDF had a two-column table
+with his own sentences on the left; this one opens straight at *Polished
+Version*, so the original wording is already gone. Nothing was reconstructed
+from the polished text — a sentence Lewis wrote is not a sentence Ken said.
+
 **The source needs one rule that no other notebook has needed.** Lewis's
 write-up opens with a table of Ken's original sentences beside a **ChatGPT
 rewrite** of them, and it points out that the rewrite still contains mistakes of

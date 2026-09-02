@@ -114,6 +114,22 @@
    condition (`were used`) drift into advice (`are recommended`); Part B of that
    session is built around exactly this distinction.
 
+   SESSION 3, AND WHY IT HAS NO `fix` EITHER
+   -----------------------------------------
+   Session 3's source is a PDF from ~/Downloads that opens straight at
+   "Polished Version". Session 1's PDF had a two-column table with Ken's own
+   sentences on the left; this one does not — the polishing has already happened
+   and the original wording is gone with it. So there is **no `fix` block**, for
+   the same structural reason as session 2, and nothing is reconstructed from
+   the polished text: a sentence Lewis wrote is not a sentence Ken said.
+
+   It is also the first session that carries **model answers** — five of them, in
+   Part F, in the same order as the five discussion questions in Part E. They are
+   `summary` blocks rather than `note` bodies so that each one keeps its 🔊: the
+   point of a model at this level is to be heard and shadowed, not only read. The
+   `lead` above them says to answer first and read second, and that ordering is
+   the whole reason the two parts are separate rather than interleaved.
+
    SAMPLE BANNER
    -------------
    Setting `sample` puts a line across the top saying the content is a
@@ -2090,6 +2106,975 @@ const NOTEBOOK = {
               zh: '這對我來說有效，不過我沒有測身體組成。',
             },
           ],
+        },
+      ],
+    },
+
+    {
+      id: 's3',
+      n: 3,
+      dateEn: '3 September 2026',
+      dateZh: '2026 年 9 月 3 日',
+      en: 'Three hours that did not feel long: talking about a film',
+      zh: '三個小時卻不覺得長：談一部電影',
+
+      focus: [
+        { en: 'Your talk, polished', zh: '你的口說，潤飾過的版本' },
+        { en: 'Film collocations', zh: '電影相關搭配詞' },
+        { en: 'Four sentence patterns', zh: '四個句型' },
+        { en: 'Answer → Reason → Example → Reflection', zh: '回答→理由→例子→收尾' },
+        { en: 'Five questions, with models', zh: '五個問題與參考答案' },
+      ],
+
+      blocks: [
+        {
+          t: 'lead',
+          en: 'You talked about The Odyssey — why you went, what Nolan does that you admire, and why three hours went past without you noticing. This page keeps that hour: the polished version of what you said, the language it uses, and five questions with model answers to push the same subject further.',
+          zh: '你談了《奧德賽》——為什麼想去看、你欣賞諾蘭的哪一點，以及三個小時為什麼過去了卻沒有感覺。這一頁留下的就是那堂課：你所說內容的潤飾版本、它用到的語言，以及五個問題和參考答案，把同一個主題再推遠一點。',
+        },
+
+        {
+          t: 'part',
+          n: 'A',
+          en: 'Your talk, polished',
+          zh: '你的口說，潤飾過的版本',
+        },
+
+        {
+          t: 'summary',
+          en: 'Today, I want to share my thoughts on the movie The Odyssey. First, I watched The Odyssey at the movie theater last week. To be honest, it is one of the best movies I have ever seen. One of the main reasons I wanted to watch it was the director, Christopher Nolan. I really admire his commitment to minimizing the use of CGI and creating realistic scenes whenever possible. He has already created many excellent films, and several of them are considered masterpieces.',
+          zh: '今天我想分享我對電影《奧德賽》的看法。首先，我上週在電影院看了《奧德賽》。老實說，這是我看過最好看的電影之一。我想看這部片的主要原因之一，是導演克里斯多福・諾蘭。我很欣賞他堅持把電腦特效的使用降到最低、只要有可能就用實景拍出真實畫面的那份執著。他已經拍出許多優秀的作品，其中好幾部被視為經典。',
+        },
+
+        {
+          t: 'summary',
+          en: 'Second, I would like to share my thoughts after watching the movie. There are many famous actors in the film, which made it easier for me to become familiar with the characters and get into the story. Even though the movie was almost three hours long, I never felt bored or tired while watching it. The storyline kept me interested, and the way different parts of the story connected and developed was very well done. Overall, I really enjoyed the movie and found it engaging from beginning to end.',
+          zh: '第二，我想分享看完之後的想法。片中有許多知名演員，這讓我比較容易熟悉角色、進入故事。雖然這部電影將近三個小時，但我在觀看的過程中從來沒有覺得無聊或疲倦。劇情一直讓我保持興趣，而故事各個部分彼此連接、往前推進的方式也處理得非常好。整體來說，我真的很享受這部電影，從頭到尾都覺得引人入勝。',
+        },
+
+        {
+          t: 'note',
+          en: 'The two words holding this together',
+          zh: '把這段話撐起來的兩個字',
+          bodyEn: 'First… Second… That is the whole structure, and it is doing more work than it looks. Without those two words the paragraph is a pile of true sentences about a film; with them, the listener knows there are two parts, knows when the first one ends, and stops trying to guess where you are going. You already do this in Chinese without thinking. The only thing to add in English is that the signpost has to be said out loud — English listeners will not infer the structure from the content the way a Chinese listener often will.',
+          bodyZh: 'First… Second… 整個結構就是這樣，而它做的事比看起來多。少了這兩個字，這段話就只是一堆關於某部電影的正確句子；有了它們，聽的人知道有兩個部分、知道第一部分在哪裡結束，也就不會一直猜你要往哪裡走。你用中文的時候本來就會這樣做，不必特別想。用英文唯一要多做的，是把這個路標明白說出來——英文的聽者不會像中文的聽者那樣，自己從內容裡推測出結構。',
+        },
+
+        {
+          t: 'mcq',
+          en: 'Did you get it?',
+          zh: '你讀懂了嗎？',
+          hintEn: 'Eight questions on the polished version above. A wrong answer fades and the question stays open, so try again — nothing is scored and nothing is recorded.',
+          hintZh: '關於上面那個潤飾版本的八個問題。答錯的選項會變淡，題目仍然開著，可以再試一次——不計分，也不會留下紀錄。',
+          items: [
+            {
+              q: 'What was one of the main reasons the speaker wanted to watch the film?',
+              qZh: '說話者想看這部電影的主要原因之一是什麼？',
+              options: [
+                'The director, Christopher Nolan',
+                'A friend recommended it',
+                'The soundtrack',
+              ],
+              answer: 0,
+            },
+            {
+              q: 'What does he admire about Nolan?',
+              qZh: '他欣賞諾蘭的哪一點？',
+              options: [
+                'His use of the newest CGI technology',
+                'His commitment to minimising CGI and creating realistic scenes',
+                'How quickly he makes films',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'What effect did the famous actors have?',
+              qZh: '片中的知名演員產生了什麼效果？',
+              options: [
+                'They made the film too expensive',
+                'They made it easier to become familiar with the characters and get into the story',
+                'They distracted him from the storyline',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'How did he feel about the length of the film?',
+              qZh: '他對這部電影的長度有什麼感覺？',
+              options: [
+                'It was almost three hours, but he never felt bored',
+                'It was too long by about an hour',
+                'He watched it in two parts',
+              ],
+              answer: 0,
+            },
+            {
+              q: 'What does “the storyline kept me interested” mean?',
+              qZh: '「the storyline kept me interested」是什麼意思？',
+              options: [
+                'He was interested in writing a storyline',
+                'The story held his attention the whole way through',
+                'He had to force himself to pay attention',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'Which two words carry the structure of the whole talk?',
+              qZh: '哪兩個字撐起了整段話的結構？',
+              options: [
+                'To be honest / Overall',
+                'First / Second',
+                'Even though / Because',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'The speaker says “To be honest, it is one of the best movies I have ever seen.” What is “to be honest” doing there?',
+              qZh: '說話者說「To be honest, it is one of the best movies I have ever seen.」這裡的 to be honest 在做什麼？',
+              options: [
+                'Signalling that everything before it was untrue',
+                'Marking the sentence as a personal, slightly stronger opinion than usual',
+                'Apologising for the opinion',
+              ],
+              answer: 1,
+              why: {
+                en: 'It is a softener that works by pretending to be a warning: it tells the listener a real opinion is coming, not a polite one. Useful in speaking, easy to overuse — two or three in a two-minute answer and it starts to sound like a verbal tic.',
+                zh: '它是一種緩衝語，靠「假裝要提出警告」來運作：它在告訴聽者，接下來是真心話，不是客套話。口說時很好用，但也很容易用過頭——兩分鐘的回答裡出現兩三次，就會開始像口頭禪了。',
+              },
+            },
+            {
+              q: 'If you had to keep talking after “from beginning to end”, which sentence would fit best?',
+              qZh: '如果你必須在「from beginning to end」之後繼續講下去，哪一句最適合？',
+              options: [
+                'In conclusion, movies are a good way to relax.',
+                'That is all I have to say about the movie.',
+                'It also made me want to go back and watch his earlier films again.',
+              ],
+              answer: 2,
+              why: {
+                en: 'The first swaps your own experience for a slogan anyone could say, and the second closes the door. The third stays specific to you and opens something the listener can ask about — which is exactly what a good ending to a spoken answer does.',
+                zh: '第一句把你自己的經驗換成了一句誰都能說的口號，第二句則把門關上了。第三句保持具體、屬於你，而且打開了一個聽者可以追問的方向——而這正是一段口說回答的好結尾該做的事。',
+              },
+            },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: 'B',
+          en: 'The language it uses',
+          zh: '它用到的語言',
+        },
+
+        {
+          t: 'phrases',
+          en: 'Giving your view',
+          zh: '表達看法',
+          items: [
+            {
+              en: 'share my thoughts on something',
+              zh: '分享我對某事的看法',
+              eg: 'I’d like to share my thoughts on the movie.',
+              egZh: '我想分享我對這部電影的看法。',
+            },
+            {
+              en: 'share my thoughts after doing something',
+              zh: '分享做完某事之後的想法',
+              eg: 'I’d like to share my thoughts after watching the film.',
+              egZh: '我想分享看完這部片之後的想法。',
+            },
+            {
+              en: 'one of the best movies I’ve ever seen',
+              zh: '我看過最好看的電影之一',
+              eg: 'It’s one of the best movies I’ve ever seen.',
+              egZh: '這是我看過最好看的電影之一。',
+            },
+            {
+              en: 'one of the main reasons',
+              zh: '主要原因之一',
+              eg: 'One of the main reasons I chose this school was its location.',
+              egZh: '我選這所學校的主要原因之一是它的地點。',
+            },
+            {
+              en: 'to be honest',
+              zh: '老實說',
+              eg: 'To be honest, I nearly did not go.',
+              egZh: '老實說，我差一點就沒去看。',
+            },
+            {
+              en: 'overall',
+              zh: '整體來說',
+              eg: 'Overall, I really enjoyed it.',
+              egZh: '整體來說，我真的很喜歡。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'The director and the craft',
+          zh: '導演與拍片這件事',
+          items: [
+            {
+              en: 'admire someone for something',
+              zh: '因某事而欣賞某人',
+              eg: 'I admire him for his creativity.',
+              egZh: '我欣賞他的創意。',
+            },
+            {
+              en: 'commitment to something',
+              zh: '對某事的投入、堅持',
+              eg: 'I admire her commitment to her work.',
+              egZh: '我很欣賞她對工作的投入。',
+            },
+            {
+              en: 'minimize the use of something',
+              zh: '把某樣東西的使用降到最低',
+              eg: 'The company wants to minimize the use of plastic.',
+              egZh: '這家公司想把塑膠的使用降到最低。',
+            },
+            {
+              en: 'create realistic scenes',
+              zh: '拍出／創造逼真的畫面',
+              eg: 'The director used real locations to create realistic scenes.',
+              egZh: '導演用實景拍攝，做出逼真的畫面。',
+            },
+            {
+              en: 'whenever possible',
+              zh: '只要有可能就……',
+              eg: 'I try to speak English whenever possible.',
+              egZh: '只要有機會，我就盡量說英文。',
+            },
+            {
+              en: 'create excellent films',
+              zh: '拍出優秀的作品',
+              eg: 'The director has created many excellent films.',
+              egZh: '這位導演已經拍出許多優秀的作品。',
+            },
+            {
+              en: 'be considered a masterpiece',
+              zh: '被視為經典、傑作',
+              eg: 'The movie is considered a masterpiece.',
+              egZh: '這部電影被視為經典。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Watching it',
+          zh: '觀看的經驗',
+          items: [
+            {
+              en: 'famous actors',
+              zh: '知名演員',
+              eg: 'There are many famous actors in the movie.',
+              egZh: '這部電影裡有許多知名演員。',
+            },
+            {
+              en: 'become familiar with something',
+              zh: '對某事物逐漸熟悉',
+              eg: 'It took me some time to become familiar with the characters.',
+              egZh: '我花了一點時間才熟悉這些角色。',
+            },
+            {
+              en: 'get into the story',
+              zh: '進入故事、投入劇情',
+              eg: 'It was easy to get into the story.',
+              egZh: '要進入這個故事並不難。',
+            },
+            {
+              en: 'feel bored',
+              zh: '覺得無聊',
+              eg: 'I never felt bored during the movie.',
+              egZh: '看的時候我從來沒有覺得無聊。',
+            },
+            {
+              en: 'keep someone interested',
+              zh: '讓某人保持興趣',
+              eg: 'The storyline kept me interested.',
+              egZh: '劇情一直讓我保持興趣。',
+            },
+            {
+              en: 'the storyline develops',
+              zh: '劇情推進、發展',
+              eg: 'The storyline develops slowly at first.',
+              egZh: '劇情一開始推進得比較慢。',
+            },
+            {
+              en: 'be very well done',
+              zh: '處理得很好',
+              eg: 'The ending was very well done.',
+              egZh: '結局處理得非常好。',
+            },
+            {
+              en: 'find something engaging',
+              zh: '覺得某樣東西很吸引人',
+              eg: 'I found the story very engaging.',
+              egZh: '我覺得這個故事非常吸引人。',
+            },
+            {
+              en: 'from beginning to end',
+              zh: '從頭到尾',
+              eg: 'The movie was exciting from beginning to end.',
+              egZh: '這部電影從頭到尾都很精彩。',
+            },
+          ],
+        },
+
+        {
+          t: 'cards',
+          en: 'The ten to take first',
+          zh: '先拿走這十個',
+          hintEn: 'Twenty-two phrases is too many to keep at once. These are the ten that will earn their place fastest in speaking and writing. For each one, say whether you would already reach for it or whether it is still new. Nothing is recorded.',
+          hintZh: '二十二個片語一次記不住。這十個是在口說和寫作裡最快能派上用場的。針對每一個，說說看你已經會主動用它了，還是它對你來說還很新。這裡不會留下任何紀錄。',
+          haveEn: 'I would use this',
+          haveZh: '我會主動用',
+          needEn: 'Still new',
+          needZh: '還很新',
+          items: [
+            {
+              icon: '💬',
+              en: 'share my thoughts on',
+              zh: '分享我對……的看法',
+              descEn: 'The opening line of almost any opinion answer.',
+              descZh: '幾乎任何一段表達意見的回答，都可以用它開場。',
+            },
+            {
+              icon: '🎯',
+              en: 'one of the main reasons',
+              zh: '主要原因之一',
+              descEn: 'Lets you give one reason without claiming it is the only one.',
+              descZh: '讓你講出一個理由，同時不必宣稱那是唯一的理由。',
+            },
+            {
+              icon: '🙌',
+              en: 'admire someone for',
+              zh: '因為……而欣賞某人',
+              descEn: 'Names the person and the quality in one move.',
+              descZh: '一句話同時說出「是誰」和「哪一點」。',
+            },
+            {
+              icon: '🧱',
+              en: 'commitment to',
+              zh: '對……的投入',
+              descEn: 'The noun for someone sticking to a standard when it would be easier not to.',
+              descZh: '用來形容一個人在「不堅持會輕鬆得多」的時候，仍然守住標準。',
+            },
+            {
+              icon: '🔁',
+              en: 'whenever possible',
+              zh: '只要有可能就……',
+              descEn: 'Turns a habit into a policy without overstating it.',
+              descZh: '把一個習慣講成一種原則，又不會說得太滿。',
+            },
+            {
+              icon: '🏛️',
+              en: 'be considered a masterpiece',
+              zh: '被視為經典',
+              descEn: 'Passive, so the opinion belongs to everyone rather than only to you.',
+              descZh: '被動語態，所以這個評價屬於大家，而不只是你一個人的意見。',
+            },
+            {
+              icon: '🧭',
+              en: 'become familiar with',
+              zh: '逐漸熟悉',
+              descEn: 'Describes a process, not a state — useful for anything you learned slowly.',
+              descZh: '描述的是一段過程，不是一個狀態——任何你慢慢學會的事都用得上。',
+            },
+            {
+              icon: '🎬',
+              en: 'get into the story',
+              zh: '進入故事',
+              descEn: 'What happens when a film, a book or a game finally has you.',
+              descZh: '一部電影、一本書或一款遊戲，終於把你抓住的那個瞬間。',
+            },
+            {
+              icon: '🪝',
+              en: 'keep someone interested',
+              zh: '讓某人保持興趣',
+              descEn: 'Puts the story in the subject position and you in the object — which is honest.',
+              descZh: '把故事放在主詞的位置，把你放在受詞的位置——而那才是實情。',
+            },
+            {
+              icon: '✨',
+              en: 'find something engaging',
+              zh: '覺得某樣東西很吸引人',
+              descEn: '“Find” marks it as your judgement, which is stronger than “it was good”.',
+              descZh: 'find 標示出這是「你的判斷」，比 it was good 更有力道。',
+            },
+          ],
+        },
+
+        {
+          t: 'match',
+          en: 'Phrase and meaning',
+          zh: '片語與意思',
+          hintEn: 'Click a phrase on the left, then the meaning that belongs to it on the right.',
+          hintZh: '先點左邊的片語，再點右邊對應的意思。',
+          pairs: [
+            { a: 'be considered a masterpiece', b: 'widely regarded as one of the greatest works' },
+            { a: 'commitment to something', b: 'sticking to a standard even when it is inconvenient' },
+            { a: 'minimize the use of something', b: 'use as little of it as you can' },
+            { a: 'become familiar with something', b: 'get to know it gradually' },
+            { a: 'get into the story', b: 'become absorbed in what is happening' },
+            { a: 'keep someone interested', b: 'hold their attention over time' },
+            { a: 'find something engaging', b: 'judge it to be interesting and involving' },
+            { a: 'whenever possible', b: 'every time the situation allows it' },
+          ],
+        },
+
+        {
+          t: 'gap',
+          en: 'Choose the collocation',
+          zh: '選出正確的搭配詞',
+          hintEn: 'One of the three fits the sentence. Tap the Chinese for the situation if you want it.',
+          hintZh: '三個選項中只有一個適合這個句子。想看情境的話，可以點開中文。',
+          items: [
+            {
+              text: 'I ___ him for his commitment to doing things the hard way.',
+              textZh: '我很欣賞他堅持用最費工的方式做事。',
+              options: ['admire', 'appreciate', 'respect to'],
+              answer: 0,
+              why: {
+                en: '“Admire someone for something” is the pattern. “Appreciate” is for things done for you — you appreciate the help, you admire the person. And “respect” takes no “to”.',
+                zh: '固定句型是 admire someone for something。appreciate 用在「別人為你做的事」——你 appreciate 那份幫忙，但你 admire 那個人。另外 respect 後面不加 to。',
+              },
+            },
+            {
+              text: 'He tries to ___ the use of CGI and shoot real locations instead.',
+              textZh: '他盡量把電腦特效的使用降到最低，改用實景拍攝。',
+              options: ['lower', 'minimize', 'shorten'],
+              answer: 1,
+              why: {
+                en: '“Minimize” is the verb for reducing something as far as it can go. “Lower” needs a level or a number, and “shorten” is only about length.',
+                zh: 'minimize 指的是「把某樣東西減到不能再減」。lower 後面要接一個數值或程度，而 shorten 只跟長度有關。',
+              },
+            },
+            {
+              text: 'It took me twenty minutes to ___ the characters.',
+              textZh: '我花了二十分鐘才熟悉這些角色。',
+              options: ['become familiar with', 'be familiar of', 'get familiar to'],
+              answer: 0,
+              why: {
+                en: '“Become familiar with” describes the process of getting to know something; “be familiar with” is the state you end up in. The preposition is “with” in both.',
+                zh: 'become familiar with 描述的是「逐漸熟悉」的過程，be familiar with 則是最後達到的狀態。兩者的介系詞都是 with。',
+              },
+            },
+            {
+              text: 'The storyline ___ me interested for the whole three hours.',
+              textZh: '劇情讓我在整整三個小時裡都保持興趣。',
+              options: ['made', 'kept', 'held'],
+              answer: 1,
+              why: {
+                en: '“Keep someone + adjective” is the pattern for a state that continues: keep me interested, keep me awake, keep him honest. “Make” would describe the moment it started, not the three hours.',
+                zh: '「keep someone + 形容詞」是用來表達「持續的狀態」：keep me interested、keep me awake、keep him honest。用 make 只會描述它開始的那一刻，而不是那三個小時。',
+              },
+            },
+            {
+              text: 'I ___ the second half more engaging than the first.',
+              textZh: '我覺得後半段比前半段更吸引人。',
+              options: ['found', 'felt', 'thought'],
+              answer: 0,
+              why: {
+                en: '“Find + object + adjective” is the pattern for a judgement you arrived at: I found it engaging, I found the exam hard. “Thought” needs “that” and a clause, and “felt” would need one too.',
+                zh: '「find + 受詞 + 形容詞」是用來表達「你得出的判斷」：I found it engaging、I found the exam hard。thought 後面需要 that 加子句，felt 也一樣。',
+              },
+            },
+            {
+              text: 'Even ___ the film was three hours long, nobody left.',
+              textZh: '雖然這部電影長達三個小時，還是沒有人中途離場。',
+              options: ['though', 'if', 'so'],
+              answer: 0,
+              why: {
+                en: '“Even though” means the thing is true and surprising anyway; “even if” means it might not be true at all. The film really was three hours, so “though” is the one.',
+                zh: 'even though 表示那件事是真的，而且結果仍然出人意料；even if 則表示那件事不一定成立。這部電影真的有三個小時，所以要用 though。',
+              },
+            },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: 'C',
+          en: 'Four patterns worth reusing',
+          zh: '四個值得重複使用的句型',
+        },
+
+        {
+          t: 'lead',
+          en: 'Learn these as whole chunks, the same way you did the five in session 1. Each one is a frame you can put any subject into — a film, a lens you bought, a training programme, a job interview next year.',
+          zh: '把這些當作「整塊」記起來，就像第一堂課的那五個一樣。每一個都是一個框架，什麼主題都能套進去——一部電影、你新買的一顆鏡頭、一份訓練課表、明年的面試。',
+        },
+
+        {
+          t: 'phrases',
+          en: 'Sentence patterns',
+          zh: '句型',
+          items: [
+            {
+              en: 'One of the main reasons I + verb + was…',
+              zh: '我……的主要原因之一是……',
+              eg: 'One of the main reasons I liked the movie was the storyline.',
+              egZh: '我喜歡這部電影的主要原因之一是劇情。',
+            },
+            {
+              en: 'I admire someone for + noun / V-ing',
+              zh: '我因為……而欣賞某人',
+              eg: 'I admire Christopher Nolan for creating realistic scenes.',
+              egZh: '我欣賞克里斯多福・諾蘭拍出逼真畫面的做法。',
+            },
+            {
+              en: 'Even though + clause, …',
+              zh: '雖然……，但仍然……',
+              eg: 'Even though the movie was almost three hours long, I never felt bored.',
+              egZh: '雖然這部電影將近三個小時，但我從來沒有覺得無聊。',
+            },
+            {
+              en: 'Something kept me + adjective',
+              zh: '某件事讓我一直保持某種狀態',
+              eg: 'The storyline kept me interested.',
+              egZh: '劇情一直讓我保持興趣。',
+            },
+            {
+              en: 'I found + noun + adjective',
+              zh: '我覺得某樣東西……',
+              eg: 'I found the movie very engaging.',
+              egZh: '我覺得這部電影非常吸引人。',
+            },
+          ],
+        },
+
+        {
+          t: 'gap',
+          en: 'Finish the pattern',
+          zh: '把句型補完',
+          hintEn: 'The same frames, one word missing from each.',
+          hintZh: '同樣是那幾個句型，每一句少一個字。',
+          items: [
+            {
+              text: 'One of the main ___ I went was the director.',
+              textZh: '我會去看的主要原因之一，是這位導演。',
+              options: ['reason', 'reasons', 'reasoning'],
+              answer: 1,
+              why: {
+                en: '“One of the…” always takes a plural noun after it, because you are picking one out of several: one of the reasons, one of my friends, one of the best films.',
+                zh: 'one of the… 後面一定接複數名詞，因為你是從好幾個當中挑出一個：one of the reasons、one of my friends、one of the best films。',
+              },
+            },
+            {
+              text: 'I admire him ___ creating everything in camera.',
+              textZh: '我欣賞他把一切都在鏡頭前實際拍出來的做法。',
+              options: ['for', 'to', 'about'],
+              answer: 0,
+              why: {
+                en: '“Admire someone for something” — and after “for” you need a noun or an -ing form, never a plain verb.',
+                zh: '固定用法是 admire someone for something——而 for 後面要接名詞或 -ing 形式，不能接原形動詞。',
+              },
+            },
+            {
+              text: 'Even though it ___ nearly three hours, nobody moved.',
+              textZh: '雖然它長達將近三個小時，還是沒有人動一下。',
+              options: ['was', 'were', 'is'],
+              answer: 0,
+              why: {
+                en: 'The rest of the story is in the past, so this clause is too. Keeping one tense across a whole answer is worth more than any single clever phrase in it.',
+                zh: '這段話其他部分都用過去式，所以這個子句也要。整段回答維持同一個時態，比裡面任何一個漂亮的片語都更有價值。',
+              },
+            },
+            {
+              text: 'The soundtrack ___ me awake through the slow scenes.',
+              textZh: '配樂讓我在節奏慢的段落也沒有睡著。',
+              options: ['kept', 'keep', 'keeping'],
+              answer: 0,
+              why: {
+                en: 'Past tense to match the rest, and the pattern is keep + object + adjective. Note that “awake” is an adjective here, not a verb.',
+                zh: '要用過去式配合其他部分，句型是 keep + 受詞 + 形容詞。注意這裡的 awake 是形容詞，不是動詞。',
+              },
+            },
+            {
+              text: 'I ___ the ending surprisingly quiet.',
+              textZh: '我覺得結局意外地安靜。',
+              options: ['found', 'find out', 'founded'],
+              answer: 0,
+              why: {
+                en: '“Find out” means to discover a fact, and “founded” means established a company. The judgement verb is plain “found”.',
+                zh: 'find out 是「查出某個事實」，founded 是「創立（公司）」。表達判斷的動詞就是單純的 found。',
+              },
+            },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: 'D',
+          en: 'Answer → Reason → Example → Reflection',
+          zh: '回答 → 理由 → 例子 → 收尾',
+        },
+
+        {
+          t: 'note',
+          en: 'The shape that stops an answer being too short',
+          zh: '避免回答太短的那個形狀',
+          bodyEn: 'Four moves, in this order: I think… → because… → for example… → so overall… Most short answers stop after the first move, and sometimes after the second. The example is the one people skip, and it is the one that does the most work — it is where the listener stops hearing an opinion and starts hearing a person. Four moves gets you to roughly forty-five to sixty seconds without padding, which is about the length any examiner or interviewer is waiting for.',
+          bodyZh: '四個步驟，順序如下：I think…（回答）→ because…（理由）→ for example…（例子）→ so overall…（收尾）。大多數太短的回答，都停在第一步，有時候停在第二步。而最常被跳過的就是「例子」，偏偏它做的工作最多——聽的人正是在那裡，從「聽到一個意見」變成「聽到一個人」。這四步大概能撐到四十五到六十秒，而且不必硬湊，那也差不多是任何考官或面試官在等的長度。',
+        },
+
+        {
+          t: 'contrast',
+          en: 'The same opinion, two lengths',
+          zh: '同一個看法，兩種長度',
+          hintEn: 'Nothing in the left column is wrong. It is just finished too early — and an answer that ends before the listener expected it to reads as reluctance rather than brevity.',
+          hintZh: '左邊那一欄沒有任何錯誤，它只是太早結束了——而一段比聽者預期更早結束的回答，聽起來不像簡潔，比較像不太想講。',
+          coldEn: 'Where most people stop',
+          coldZh: '大多數人停下來的地方',
+          warmEn: 'All four moves',
+          warmZh: '四個步驟走完',
+          items: [
+            {
+              caseEn: 'Do famous actors make you want to watch a film?',
+              caseZh: '知名演員會讓你更想看一部電影嗎？',
+              cold: {
+                en: 'Yes, I think famous actors are important.',
+                zh: '會，我覺得知名演員很重要。',
+              },
+              warm: {
+                en: 'Yes, especially if I have enjoyed their previous performances, because a familiar actor gives me more confidence that the film will be worth watching. For example, I went to see The Odyssey partly because of the cast. So overall they matter — but not enough on their own, if the story is weak.',
+                zh: '會，尤其是我以前喜歡過他們的作品的話，因為看到熟悉的演員，會讓我比較有信心這部片值得一看。舉例來說，我會去看《奧德賽》，有一部分就是因為卡司。所以整體來說演員確實重要——但如果故事很弱，光靠演員還是不夠。',
+              },
+              whyEn: 'The reason arrives in the same breath as the answer, the example is one real film, and the last sentence gives the limit of the opinion. Three sentences, no padding.',
+              whyZh: '理由和回答在同一口氣裡講完，例子是一部真實的電影，而最後一句說出了這個看法的界線。三句話，沒有一句是硬湊的。',
+            },
+            {
+              caseEn: 'Does using less CGI make a film better?',
+              caseZh: '減少使用電腦特效會讓電影更好嗎？',
+              cold: {
+                en: 'I think less CGI is better because it looks more real.',
+                zh: '我覺得少一點電腦特效比較好，因為看起來比較真實。',
+              },
+              warm: {
+                en: 'I think it can make a film feel more realistic, but it does not automatically make it better. Practical effects work because the actors are interacting with real objects. For example, a real corridor set will beat a rendered one every time. So overall the question is not whether CGI is used, but whether it supports the story.',
+                zh: '我覺得它可以讓一部電影感覺比較真實，但不會自動就變得更好。實體特效之所以有效，是因為演員是在跟真實的東西互動。舉例來說，一條真的搭出來的走廊，每一次都會勝過用電腦算出來的。所以整體來說，重點不在於有沒有用電腦特效，而在於它有沒有在幫故事。',
+              },
+              whyEn: 'Notice how the fourth move is not a summary of the first three. It reframes the question — which is the highest-value thing you can do in the last ten seconds of an answer.',
+              whyZh: '注意第四步並不是前面三步的總結。它重新定義了這個問題——而那正是你在一段回答最後十秒裡，能做的最有價值的事。',
+            },
+            {
+              caseEn: 'What makes a three-hour film hold your attention?',
+              caseZh: '什麼樣的電影，長達三小時還能抓住你的注意力？',
+              cold: {
+                en: 'A good story and good characters.',
+                zh: '好的故事和好的角色。',
+              },
+              warm: {
+                en: 'For me it is mainly the storyline, because if it keeps developing I stop noticing the time. Well-developed characters matter too — I want to understand their motivations. For example, I did not check my phone once during The Odyssey. So overall it is pacing more than length: a long film is fine, a slow one is not.',
+                zh: '對我來說主要是劇情，因為只要它一直往前推進，我就不會注意到時間過了多久。角色寫得夠深也很重要——我會想理解他們的動機。舉例來說，我看《奧德賽》的時候一次都沒有拿起手機。所以整體來說，關鍵是節奏而不是長度：電影長沒關係，慢就有關係。',
+              },
+              whyEn: 'The example is the strongest sentence here and it is not about film at all — it is one small verifiable fact about you. Those are always more persuasive than an adjective.',
+              whyZh: '這裡最有力的一句就是那個例子，而它根本不是在講電影——它是關於你的一件小小的、可以查證的事實。這種句子永遠比一個形容詞更有說服力。',
+            },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: 'E',
+          en: 'Five questions',
+          zh: '五個問題',
+        },
+
+        {
+          t: 'phrases',
+          en: 'Language for these five',
+          zh: '這五題會用到的語言',
+          items: [
+            {
+              en: 'have a clear creative vision',
+              zh: '有清楚的創作理念',
+              eg: 'The directors I admire have a clear creative vision.',
+              egZh: '我欣賞的導演，都有清楚的創作理念。',
+            },
+            {
+              en: 'pay attention to detail',
+              zh: '注重細節',
+              eg: 'You can tell he pays attention to detail in every scene.',
+              egZh: '每一場戲都看得出他很注重細節。',
+            },
+            {
+              en: 'take risks',
+              zh: '冒險、勇於嘗試',
+              eg: 'I respect directors who are willing to take risks.',
+              egZh: '我尊敬那些願意冒險嘗試的導演。',
+            },
+            {
+              en: 'follow popular trends',
+              zh: '跟隨流行',
+              eg: 'He does not simply follow popular trends.',
+              egZh: '他不會只是跟著流行走。',
+            },
+            {
+              en: 'practical effects',
+              zh: '實體特效（實際拍出來的效果）',
+              eg: 'Practical effects make the action feel more natural.',
+              egZh: '實體特效讓動作場面感覺比較自然。',
+            },
+            {
+              en: 'support the story',
+              zh: '為故事服務',
+              eg: 'The question is whether the effects support the story.',
+              egZh: '重點在於這些特效有沒有在為故事服務。',
+            },
+            {
+              en: 'distract the audience',
+              zh: '讓觀眾分心',
+              eg: 'Too much CGI can distract the audience.',
+              egZh: '電腦特效太多，可能會讓觀眾分心。',
+            },
+            {
+              en: 'a strong storyline',
+              zh: '很強的劇情',
+              eg: 'A strong storyline is the most important factor for me.',
+              egZh: '對我來說，最重要的因素是很強的劇情。',
+            },
+            {
+              en: 'well-developed characters',
+              zh: '寫得夠深的角色',
+              eg: 'Well-developed characters make me care what happens.',
+              egZh: '角色寫得夠深，我才會在乎他們的遭遇。',
+            },
+            {
+              en: 'understand their motivations',
+              zh: '理解他們的動機',
+              eg: 'I want to understand their motivations, not just their actions.',
+              egZh: '我想理解的是他們的動機，而不只是他們的行為。',
+            },
+            {
+              en: 'an unexpected twist',
+              zh: '意想不到的轉折',
+              eg: 'An unexpected twist can keep me interested for another hour.',
+              egZh: '一個意想不到的轉折，可以再讓我多撐一個小時。',
+            },
+            {
+              en: 'good pacing',
+              zh: '節奏掌握得好',
+              eg: 'A long movie needs good pacing.',
+              egZh: '一部長片需要好的節奏。',
+            },
+            {
+              en: 'previous performances',
+              zh: '過去的演出',
+              eg: 'I liked her previous performances, so I gave it a try.',
+              egZh: '我喜歡她過去的演出，所以就去看了。',
+            },
+            {
+              en: 'be worth watching',
+              zh: '值得一看',
+              eg: 'I was fairly confident it would be worth watching.',
+              egZh: '我還蠻有信心它會值得一看。',
+            },
+            {
+              en: 'make a strong impression on someone',
+              zh: '讓某人印象深刻',
+              eg: 'Interstellar made a strong impression on me.',
+              egZh: '《星際效應》讓我印象非常深刻。',
+            },
+            {
+              en: 'deal with a topic',
+              zh: '處理某個主題',
+              eg: 'The film deals with time, family and sacrifice.',
+              egZh: '這部電影處理的是時間、家庭與犧牲。',
+            },
+            {
+              en: 'give someone a lot to think about',
+              zh: '讓某人有很多可以想的',
+              eg: 'It gave me a lot to think about afterwards.',
+              egZh: '看完之後，它讓我有很多可以想的。',
+            },
+            {
+              en: 'stay in my mind',
+              zh: '一直留在我腦海裡',
+              eg: 'Many scenes still stay in my mind.',
+              egZh: '很多畫面到現在還留在我腦海裡。',
+            },
+          ],
+        },
+
+        {
+          t: 'discuss',
+          en: 'Talk it through',
+          zh: '一起討論',
+          items: [
+            {
+              en: 'What qualities do you admire most in a film director, and why?',
+              zh: '你最欣賞電影導演的哪些特質？為什麼？',
+              starters: [
+                { en: 'I admire directors who…', zh: '我欣賞那種……的導演。' },
+                { en: 'A good director should know…', zh: '一個好的導演應該要知道……' },
+                { en: 'I also respect directors who are willing to…', zh: '我也尊敬那些願意……的導演。' },
+              ],
+            },
+            {
+              en: 'Do you think using less CGI makes a movie better, or just more realistic?',
+              zh: '你覺得少用電腦特效會讓電影變得更好，還是只是比較真實？',
+              starters: [
+                { en: 'I think it can…, but it does not always…', zh: '我覺得它可以……，但不一定總是……' },
+                { en: 'Practical effects work because…', zh: '實體特效之所以有效，是因為……' },
+                { en: 'The important thing is not whether…, but whether…', zh: '重點不在於是不是……，而在於是不是……' },
+              ],
+            },
+            {
+              en: 'What makes a film engaging enough to hold you for three hours?',
+              zh: '什麼樣的電影，能讓你連續三個小時都保持興趣？',
+              starters: [
+                { en: 'For me, the most important factor is…', zh: '對我來說，最重要的因素是……' },
+                { en: 'If the story keeps developing, I usually…', zh: '只要故事一直往前推進，我通常會……' },
+                { en: 'However, a long movie needs…', zh: '不過，一部長片需要……' },
+              ],
+            },
+            {
+              en: 'Do famous actors make you more interested in watching a film? Why, or why not?',
+              zh: '知名演員會讓你更想看一部電影嗎？為什麼？',
+              starters: [
+                { en: 'Yes, especially if I have enjoyed their…', zh: '會，尤其是我以前喜歡過他們的……' },
+                { en: 'However, I do not choose a movie only because of…', zh: '不過，我不會只因為……就選一部電影。' },
+                { en: 'A film can have… but still be…', zh: '一部電影可以有……，卻仍然……' },
+              ],
+            },
+            {
+              en: 'Think of one film that made a strong impression on you. What made it memorable?',
+              zh: '想一部曾經讓你印象深刻的電影。是什麼原因讓它令人難忘？',
+              starters: [
+                { en: 'One movie that made a strong impression on me was…', zh: '有一部讓我印象很深刻的電影是……' },
+                { en: 'What made it memorable was not only… but also…', zh: '讓它令人難忘的，不只是……，還有……' },
+                { en: 'Even though I watched it a long time ago,…', zh: '雖然我很久以前就看過了，但……' },
+              ],
+            },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: 'F',
+          en: 'Model answers',
+          zh: '參考答案',
+        },
+
+        {
+          t: 'lead',
+          en: 'Five models, in the same order as the questions above, written at about the level you are aiming for. Answer the questions yourself first — a model read before you have tried is a script, and a model read after you have tried is feedback. Tap 🔊 on any of them to hear it.',
+          zh: '五段參考答案，順序和上面的問題一樣，寫在你正在往上走的那個程度。請先自己回答一次——沒試過就先看範例，那叫背稿；試過之後再看，那才叫回饋。任何一段都可以點 🔊 聽發音。',
+        },
+
+        {
+          t: 'summary',
+          en: 'I admire directors who have a clear creative vision and pay attention to detail. A good director should know what kind of story they want to tell and how they want the audience to feel. I also respect directors who are willing to take risks instead of simply following popular trends. For example, some directors prefer practical effects instead of relying too much on CGI. I think this shows their commitment to quality and makes their movies more unique.',
+          zh: '我欣賞那些有清楚創作理念、而且注重細節的導演。一個好的導演應該知道自己想說的是什麼樣的故事，以及想讓觀眾產生什麼樣的感受。我也尊敬那些願意冒險、而不是一味跟隨流行的導演。舉例來說，有些導演偏好使用實體特效，而不是過度依賴電腦特效。我覺得這展現了他們對品質的堅持，也讓他們的作品更有獨特性。',
+        },
+
+        {
+          t: 'summary',
+          en: 'I think using less CGI can sometimes make a movie feel more realistic, but it does not always make the movie better. Practical effects can make action scenes and environments feel more natural because the actors are interacting with real objects. However, CGI is also very useful when filmmakers want to create things that are impossible to film in real life. In my opinion, the most important thing is not whether CGI is used, but whether it supports the story instead of distracting the audience.',
+          zh: '我覺得少用電腦特效，有時候可以讓一部電影感覺比較真實，但不一定會讓這部電影變得更好。實體特效可以讓動作場面和場景感覺比較自然，因為演員是在跟真實的東西互動。不過，當創作者想拍出現實中不可能拍到的東西時，電腦特效也非常有用。在我看來，最重要的不是有沒有用電腦特效，而是它究竟是在為故事服務，還是在讓觀眾分心。',
+        },
+
+        {
+          t: 'summary',
+          en: 'For me, a strong storyline is the most important factor. If the story keeps developing and gives me new information, I usually do not notice how much time has passed. Well-developed characters are also important because I want to understand their motivations and see what happens to them. Unexpected twists can also keep me interested. However, I think a long movie needs good pacing. If some scenes are too slow or unnecessary, even a great story can become boring.',
+          zh: '對我來說，最重要的因素是很強的劇情。只要故事一直往前推進、不斷給我新的訊息，我通常不會注意到時間過了多久。角色寫得夠深也很重要，因為我會想理解他們的動機，並且想知道他們後來怎麼了。意想不到的轉折同樣能讓我保持興趣。不過我覺得，一部長片需要好的節奏。如果有些場景太慢或根本不必要，再好的故事也會變得無聊。',
+        },
+
+        {
+          t: 'summary',
+          en: 'Yes, famous actors can make me more interested in a movie, especially if I have enjoyed their previous performances. Sometimes, seeing a familiar actor gives me more confidence that the movie will be worth watching. However, I do not choose a movie only because of the actors. The director, storyline, reviews, and genre are also important to me. A movie can have many famous actors but still be disappointing if the story is weak.',
+          zh: '會，知名演員確實會讓我更想看一部電影，尤其是我以前喜歡過他們的演出的話。有時候，看到一個熟悉的演員，會讓我比較有信心這部片值得一看。不過，我不會只因為演員就決定看一部電影。導演、劇情、評價和類型，對我來說同樣重要。一部電影可以有很多知名演員，但如果故事很弱，還是會讓人失望。',
+        },
+
+        {
+          t: 'summary',
+          en: 'One movie that made a strong impression on me was Interstellar. What made it memorable was not only the visual effects but also the emotional story between the father and his daughter. The movie deals with topics such as time, space, family, and sacrifice, so it gave me a lot to think about after watching it. I also found the music very powerful because it created a strong emotional atmosphere. Even though I watched the movie a long time ago, many scenes still stay in my mind.',
+          zh: '有一部讓我印象非常深刻的電影是《星際效應》。讓它令人難忘的，不只是視覺效果，還有父親和女兒之間那段情感很重的故事。這部電影處理的是時間、太空、家庭與犧牲這些主題，所以看完之後，它讓我有很多可以想的。我也覺得配樂非常有力量，因為它營造出很強烈的情緒氛圍。雖然我很久以前就看過這部電影，但很多畫面到現在還留在我腦海裡。',
+        },
+
+        {
+          t: 'task',
+          en: 'Sixty seconds, four moves',
+          zh: '六十秒，四個步驟',
+          instructionEn: 'Pick one prompt and talk for about a minute. Use all four moves in order — answer, reason, example, reflection — and make the example something real that happened to you, not a general case. Tick a phrase when you have used it.',
+          instructionZh: '選一個題目，說大約一分鐘。四個步驟依序都要用到——回答、理由、例子、收尾——而且例子要是你真實遇過的事，不要用一般性的說法。用過的片語就打勾。',
+          prompts: [
+            {
+              en: 'Recommend one film to me in sixty seconds. Assume I am hard to convince.',
+              zh: '用六十秒向我推薦一部電影。假設我很難被說服。',
+            },
+            {
+              en: 'Talk me out of watching a film everyone else liked.',
+              zh: '說服我不要去看一部大家都喜歡的電影。',
+            },
+            {
+              en: 'Photography and filmmaking both decide what to leave out. Which is harder, and why?',
+              zh: '攝影和電影都要決定「不拍什麼」。哪一個比較難？為什麼？',
+            },
+            {
+              en: 'Describe a scene from any film that you would want to have shot yourself.',
+              zh: '描述任何一部電影裡的一場戲，是你自己也會想拍的。',
+            },
+            {
+              en: 'Is a three-hour film ever justified? Answer, reason, example, reflection.',
+              zh: '一部電影拍到三個小時，有正當理由嗎？回答、理由、例子、收尾。',
+            },
+          ],
+          checklist: [
+            { en: 'share my thoughts on', zh: '分享我對……的看法' },
+            { en: 'one of the main reasons', zh: '主要原因之一' },
+            { en: 'admire someone for', zh: '因為……而欣賞某人' },
+            { en: 'commitment to', zh: '對……的投入' },
+            { en: 'whenever possible', zh: '只要有可能就……' },
+            { en: 'be considered a masterpiece', zh: '被視為經典' },
+            { en: 'become familiar with', zh: '逐漸熟悉' },
+            { en: 'get into the story', zh: '進入故事' },
+            { en: 'keep someone interested', zh: '讓某人保持興趣' },
+            { en: 'find something engaging', zh: '覺得某樣東西很吸引人' },
+          ],
+          frames: [
+            {
+              en: 'One of the main reasons I wanted to watch it was the director.',
+              zh: '我想看這部片的主要原因之一，是導演。',
+            },
+            {
+              en: 'I admire him for creating realistic scenes whenever possible.',
+              zh: '我欣賞他只要有可能就拍出真實畫面的做法。',
+            },
+            {
+              en: 'Even though the movie was almost three hours long, I never felt bored.',
+              zh: '雖然這部電影將近三個小時，但我從來沒有覺得無聊。',
+            },
+            {
+              en: 'The storyline kept me interested from beginning to end.',
+              zh: '劇情從頭到尾都讓我保持興趣。',
+            },
+            {
+              en: 'I found the second half more engaging than the first.',
+              zh: '我覺得後半段比前半段更吸引人。',
+            },
+            {
+              en: 'It is considered a masterpiece, and I can see why.',
+              zh: '它被視為經典，而我可以理解原因。',
+            },
+            {
+              en: 'What made it memorable was not only the visuals but also the story.',
+              zh: '讓它令人難忘的，不只是畫面，還有故事本身。',
+            },
+            {
+              en: 'So overall, I would say it is worth watching.',
+              zh: '所以整體來說，我會說它值得一看。',
+            },
+          ],
+        },
+
+        {
+          t: 'quote',
+          en: 'I think… because… for example… so overall…',
+          zh: '我覺得……因為……舉例來說……所以整體來說……',
+          by: 'the four moves, worth memorising 這四個步驟，值得背起來',
         },
       ],
     },
