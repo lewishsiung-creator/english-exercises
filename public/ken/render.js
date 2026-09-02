@@ -466,21 +466,45 @@ function buildCover() {
    announces itself; the body carries `.session-body` and is hidden by the
    `folded` class rather than the `hidden` attribute, so print can override it
    and unfold everything. */
+/* Give a block an anchor without wrapping it.
+
+   Any block may carry an `id`, which is what the focus chips jump to. The id
+   has to land ON the block's own root element rather than on a wrapper: the
+   stylesheet uses adjacent-sibling rules between blocks, and an extra element
+   slipped in between them would break spacing in places nobody would think to
+   check. So the attribute is spliced into the first tag of the rendered string,
+   which every block builder returns as a single root element. */
+function withId(html, id) {
+  if (!id) return html;
+  return html.replace(/<(\w+)/, `<$1 id="${text(id)}"`);
+}
+
 function buildSession(s, open) {
   const blocks = s.blocks.map((b) => {
     const fn = BLOCKS[b.t];
     if (!fn) throw new Error(`Unknown block type "${b.t}" in session ${s.id}`);
-    return fn(b);
+    return withId(fn(b), b.id);
   }).join('');
 
   /* The focus chips say what the session covered, which makes them closer to
      the contents list than to the lesson: both languages show at once, with no
      中 chip to tap. A chip that grew when touched would also be a strange
-     thing in a row of pills. */
+     thing in a row of pills.
+
+     A chip with `to` becomes a link to a block's `id` further down the same
+     session — the chips are the only contents list a session has, and on a page
+     this long, reading one and then hunting for the part it names is work the
+     page should be doing. Chips without `to` stay plain text, so a session that
+     has not been given block ids still renders. The document click handler
+     already runs `openSession` on every in-page href and ignores an id that is
+     not a session, so nothing else has to know about this. */
+  const chip = (f) => `<span class="en">${text(f.en)}</span><span class="zh">${text(f.zh)}</span>`;
   const focus = s.focus && s.focus.length ? `
     <ul class="focus">
       ${s.focus.map((f) => `
-        <li><span class="en">${text(f.en)}</span><span class="zh">${text(f.zh)}</span></li>`).join('')}
+        <li${f.to ? ' class="to"' : ''}>${f.to
+          ? `<a href="#${text(f.to)}">${chip(f)}</a>`
+          : chip(f)}</li>`).join('')}
     </ul>` : '';
 
   return `
@@ -526,15 +550,30 @@ const doc = $('#doc');
 if (NOTEBOOK.sample) doc.appendChild(el(buildBanner()));
 doc.appendChild(el(buildCover()));
 
-/* Open the session named in the URL, or the newest one. A hash that matches
-   nothing falls back to the newest, so an old link cannot land on a page with
-   everything shut. */
+/* Which session a block id lives in. The focus chips link to blocks, so a hash
+   arriving from outside — a bookmark, a message, the browser's back button —
+   may name a block rather than a session, and the block's own session has to be
+   the one that opens. Without this the target sits inside a `display: none`
+   session and the browser has nothing to scroll to. */
+const homeOf = new Map();
+sessions.forEach((s) => s.blocks.forEach((b) => { if (b.id) homeOf.set(b.id, s.id); }));
+
+/* Open the session named in the URL — or the one holding the block named in it,
+   or the newest. A hash that matches nothing falls back to the newest, so an old
+   link cannot land on a page with everything shut. */
 const wanted = decodeURIComponent(location.hash.slice(1));
-const openId = sessions.some((s) => s.id === wanted)
-  ? wanted
-  : (sessions.length ? sessions[sessions.length - 1].id : '');
+const openId = (sessions.some((s) => s.id === wanted) ? wanted : homeOf.get(wanted))
+  || (sessions.length ? sessions[sessions.length - 1].id : '');
 
 sessions.forEach((s) => doc.appendChild(el(buildSession(s, s.id === openId))));
+
+/* The browser already tried to reach the hash before any of this existed, and
+   failed if it named a block. Now that the right session is open, finish the
+   jump it started. */
+if (wanted && homeOf.has(wanted)) {
+  const target = document.getElementById(wanted);
+  if (target) target.scrollIntoView();
+}
 
 // ---------------------------------------------------------------- folding
 
@@ -552,6 +591,18 @@ function setFold(section, open) {
    Tapping a heading is the other way, and it is deliberately additive: nothing
    else closes, so two sessions can sit open side by side when a phrase from
    October is worth putting next to one from August. */
+/* A hash may name a session or a BLOCK inside one — the focus chips link to
+   blocks. Either way the block's session has to be open before the jump, so
+   this resolves one to the other and returns whatever should be scrolled to. */
+function openFor(id) {
+  const direct = openSession(id);
+  if (direct) return direct;
+  const target = document.getElementById(id);
+  const section = target && target.closest('.session');
+  if (section) openSession(section.id);
+  return target;
+}
+
 function openSession(id, sole = true) {
   const section = document.getElementById(id);
   // "#top" is the cover, and an unknown id is an old link — neither is a
@@ -599,7 +650,7 @@ doc.addEventListener('click', (e) => {
   const a = t.closest('a');
   if (a) {
     const to = a.getAttribute('href') || '';
-    if (to.startsWith('#')) openSession(decodeURIComponent(to.slice(1)));
+    if (to.startsWith('#')) openFor(decodeURIComponent(to.slice(1)));
     return;
   }
 
@@ -944,8 +995,8 @@ document.addEventListener('keydown', (e) => {
 // Arriving on an anchor from outside, or editing the hash by hand.
 addEventListener('hashchange', () => {
   const id = decodeURIComponent(location.hash.slice(1));
-  const section = openSession(id);
-  if (section) section.scrollIntoView();
+  const target = openFor(id);
+  if (target) target.scrollIntoView();
 });
 
 /* Print is the handout, and a handout with folded sessions is blank paper. */

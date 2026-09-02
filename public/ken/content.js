@@ -19,6 +19,23 @@
    `id` must be unique and URL-safe: it becomes the anchor, so
    /ken/#s2 opens session 2 with the rest folded.
 
+   FOCUS CHIPS THAT JUMP
+   ---------------------
+   A session runs long enough that its focus chips are the only contents list it
+   has, so they are links. Give a block an `id` and give the chip that names it a
+   matching `to`, and tapping the chip jumps there:
+
+     focus:  { en: 'Modern Sirens', zh: '現代版的賽蓮', to: 's4-sirens' }
+     block:  { t: 'note', id: 's4-sirens', en: 'What are your Sirens?', ... }
+
+   Any block type takes an `id`; the convention here is `<session>-<letter>` for
+   a part divider and `<session>-<word>` for a block inside one. A chip with no
+   `to` stays plain text, so nothing breaks if a session is added without them.
+   Keep every id unique across the whole file — they are page anchors, not
+   per-session ones, and /ken/#s1-fix has to open session 1 and land on the
+   corrections. The renderer handles that: a hash naming a block opens the
+   session holding it before the jump.
+
    THE STUDENT
    -----------
    Ken is a college student, so the register is the one worked out on /anna/:
@@ -193,11 +210,11 @@ const NOTEBOOK = {
       zh: '小而持續：你真正度過的這個暑假',
 
       focus: [
-        { en: 'Your own sentences, fixed', zh: '你自己的句子，修過一遍' },
-        { en: 'workout vs. working out', zh: 'workout 與 working out' },
-        { en: 'Habit and goal collocations', zh: '習慣與目標的搭配詞' },
-        { en: 'Five sentence patterns', zh: '五個句型' },
-        { en: 'Atomic Habits', zh: '《原子習慣》' },
+        { en: 'Your own sentences, fixed', zh: '你自己的句子，修過一遍', to: 's1-fix' },
+        { en: 'workout vs. working out', zh: 'workout 與 working out', to: 's1-workout' },
+        { en: 'Habit and goal collocations', zh: '習慣與目標的搭配詞', to: 's1-c' },
+        { en: 'Five sentence patterns', zh: '五個句型', to: 's1-d' },
+        { en: 'Atomic Habits', zh: '《原子習慣》', to: 's1-e' },
       ],
 
       blocks: [
@@ -222,6 +239,7 @@ const NOTEBOOK = {
 
         {
           t: 'fix',
+          id: 's1-fix',
           en: 'Your own sentences, tidied up',
           zh: '你自己的句子，修過一遍',
           hintEn: 'These are your sentences from today, exactly as you said them. Tap one to see the repair — try to spot the change yourself first.',
@@ -276,6 +294,7 @@ const NOTEBOOK = {
 
         {
           t: 'note',
+          id: 's1-workout',
           en: 'workout, work out, working out',
           zh: 'workout、work out、working out',
           bodyEn: 'One word, one noun: a workout is a single training session. “I had a good workout today.” Two words, a verb: to work out is to train. “I work out four times a week.” The -ing form is the one you needed today, because it lets the activity itself be the subject of a sentence: “Working out has become a daily habit for me.” Same for your other subject — “Shooting film has become an expensive habit” works; “Shoot film has become…” does not.',
@@ -519,6 +538,7 @@ const NOTEBOOK = {
 
         {
           t: 'part',
+          id: 's1-c',
           n: 'C',
           en: 'The collocations worth taking away',
           zh: '值得記下來的搭配詞',
@@ -808,6 +828,7 @@ const NOTEBOOK = {
 
         {
           t: 'part',
+          id: 's1-d',
           n: 'D',
           en: 'Five patterns you can reuse',
           zh: '五個可以重複使用的句型',
@@ -919,6 +940,7 @@ const NOTEBOOK = {
 
         {
           t: 'part',
+          id: 's1-e',
           n: 'E',
           en: 'Atomic Habits: five questions',
           zh: '《原子習慣》：五個問題',
@@ -1173,11 +1195,11 @@ const NOTEBOOK = {
       zh: '體重不是全部：談身體重組',
 
       focus: [
-        { en: 'What recomposition is', zh: '什麼是身體重組' },
-        { en: 'Weight loss vs. fat loss', zh: '減重與減脂的差別' },
-        { en: 'Protein, calories, training', zh: '蛋白質、熱量、訓練' },
-        { en: 'What research can and cannot say', zh: '研究能說與不能說的話' },
-        { en: 'Saying a claim carefully', zh: '把一個主張講得準確' },
+        { en: 'What recomposition is', zh: '什麼是身體重組', to: 's2-a' },
+        { en: 'Weight loss vs. fat loss', zh: '減重與減脂的差別', to: 's2-weight' },
+        { en: 'Protein, calories, training', zh: '蛋白質、熱量、訓練', to: 's2-protein' },
+        { en: 'What research can and cannot say', zh: '研究能說與不能說的話', to: 's2-b' },
+        { en: 'Saying a claim carefully', zh: '把一個主張講得準確', to: 's2-careful' },
       ],
 
       blocks: [
@@ -1197,6 +1219,7 @@ const NOTEBOOK = {
 
         {
           t: 'part',
+          id: 's2-a',
           n: 'A',
           en: 'The idea',
           zh: '這個概念',
@@ -1216,6 +1239,7 @@ const NOTEBOOK = {
 
         {
           t: 'note',
+          id: 's2-weight',
           en: 'Weight loss and fat loss are not the same thing',
           zh: '減重和減脂不是同一件事',
           bodyEn: 'This is the sentence to take away from the whole hour. Imagine someone who weighs 90 kg, trains for several months, and weighs 90 kg at the end. The scale says nothing happened. Underneath, fat is down three kilos and lean mass is up three. That is a serious change, and the one number most people track is the one number that cannot see it. The useful question is not “how much weight did I lose?” but “what did I lose, and what did I keep?”',
@@ -1268,6 +1292,7 @@ const NOTEBOOK = {
 
         {
           t: 'contrast',
+          id: 's2-protein',
           en: 'The same protein, two different situations',
           zh: '同樣的蛋白質，兩種不同情境',
           hintEn: 'Put the two experiments side by side and the argument stops being about protein. Protein is in both columns; what changes is whether anything is asking the body to build muscle.',
@@ -1465,6 +1490,7 @@ const NOTEBOOK = {
 
         {
           t: 'part',
+          id: 's2-b',
           n: 'B',
           en: 'What research can and cannot say',
           zh: '研究能說與不能說的話',
@@ -1480,6 +1506,7 @@ const NOTEBOOK = {
 
         {
           t: 'contrast',
+          id: 's2-careful',
           en: 'Say exactly as much as you know',
           zh: '知道多少，就說多少',
           hintEn: 'The same finding stated two ways. The left column is not a lie — it is a true finding with its conditions removed, which is how most bad fitness advice is made.',
@@ -2134,11 +2161,11 @@ const NOTEBOOK = {
       zh: '三個小時卻不覺得長：談一部電影',
 
       focus: [
-        { en: 'Your talk, polished', zh: '你的口說，潤飾過的版本' },
-        { en: 'Film collocations', zh: '電影相關搭配詞' },
-        { en: 'Four sentence patterns', zh: '四個句型' },
-        { en: 'Answer → Reason → Example → Reflection', zh: '回答→理由→例子→收尾' },
-        { en: 'Five questions, with models', zh: '五個問題與參考答案' },
+        { en: 'Your talk, polished', zh: '你的口說，潤飾過的版本', to: 's3-a' },
+        { en: 'Film collocations', zh: '電影相關搭配詞', to: 's3-b' },
+        { en: 'Four sentence patterns', zh: '四個句型', to: 's3-c' },
+        { en: 'Answer → Reason → Example → Reflection', zh: '回答→理由→例子→收尾', to: 's3-d' },
+        { en: 'Five questions, with models', zh: '五個問題與參考答案', to: 's3-e' },
       ],
 
       blocks: [
@@ -2150,6 +2177,7 @@ const NOTEBOOK = {
 
         {
           t: 'part',
+          id: 's3-a',
           n: 'A',
           en: 'Your talk, polished',
           zh: '你的口說，潤飾過的版本',
@@ -2275,6 +2303,7 @@ const NOTEBOOK = {
 
         {
           t: 'part',
+          id: 's3-b',
           n: 'B',
           en: 'The language it uses',
           zh: '它用到的語言',
@@ -2610,6 +2639,7 @@ const NOTEBOOK = {
 
         {
           t: 'part',
+          id: 's3-c',
           n: 'C',
           en: 'Four patterns worth reusing',
           zh: '四個值得重複使用的句型',
@@ -2721,6 +2751,7 @@ const NOTEBOOK = {
 
         {
           t: 'part',
+          id: 's3-d',
           n: 'D',
           en: 'Answer → Reason → Example → Reflection',
           zh: '回答 → 理由 → 例子 → 收尾',
@@ -2792,6 +2823,7 @@ const NOTEBOOK = {
 
         {
           t: 'part',
+          id: 's3-e',
           n: 'E',
           en: 'Five questions',
           zh: '五個問題',
@@ -3103,11 +3135,11 @@ const NOTEBOOK = {
       zh: '旅程把你變成什麼樣的人：荷馬的《奧德賽》',
 
       focus: [
-        { en: 'Nine ideas in the poem', zh: '這部史詩裡的九個概念' },
-        { en: 'Modern Sirens', zh: '現代版的賽蓮' },
-        { en: 'Goal → Temptation → Choice → Consequence → Growth', zh: '目標→誘惑→選擇→後果→成長' },
-        { en: 'Ego, judgement and leadership', zh: '自我、判斷力與領導' },
-        { en: 'Talking about what a story means', zh: '談一個故事的意義' },
+        { en: 'Nine ideas in the poem', zh: '這部史詩裡的九個概念', to: 's4-a' },
+        { en: 'Modern Sirens', zh: '現代版的賽蓮', to: 's4-sirens' },
+        { en: 'Goal → Temptation → Choice → Consequence → Growth', zh: '目標→誘惑→選擇→後果→成長', to: 's4-b' },
+        { en: 'Ego, judgement and leadership', zh: '自我、判斷力與領導', to: 's4-ego' },
+        { en: 'Talking about what a story means', zh: '談一個故事的意義', to: 's4-d' },
       ],
 
       blocks: [
@@ -3128,6 +3160,7 @@ const NOTEBOOK = {
 
         {
           t: 'part',
+          id: 's4-a',
           n: 'A',
           en: 'Nine things the poem is about',
           zh: '這部史詩談的九件事',
@@ -3159,6 +3192,7 @@ const NOTEBOOK = {
 
         {
           t: 'contrast',
+          id: 's4-ego',
           en: 'Three moves the poem keeps recommending',
           zh: '這部史詩一再建議的三個做法',
           hintEn: 'The left column is the instinct — fast, satisfying, and usually available. The right column is the harder move, and in every case the poem shows you what the first one costs.',
@@ -3221,6 +3255,7 @@ const NOTEBOOK = {
 
         {
           t: 'note',
+          id: 's4-sirens',
           en: 'What are your Sirens?',
           zh: '你的賽蓮是什麼？',
           bodyEn: 'The modern list writes itself: the feed, the game, the relationship you already know is wrong, the impulsive purchase, the thing you keep putting off. None of them announces itself as a monster; every one of them is genuinely attractive, which is the entire point. The question the poem asks is uncomfortable and worth sitting with — can you say no to something attractive today in order to protect something you want tomorrow? And notice Odysseus’s answer: he did not rely on willpower in the moment. He arranged the rope first.',
@@ -3384,6 +3419,7 @@ const NOTEBOOK = {
 
         {
           t: 'part',
+          id: 's4-b',
           n: 'B',
           en: 'One framework, every episode',
           zh: '一個架構，套用到每一段故事',
@@ -3712,6 +3748,7 @@ const NOTEBOOK = {
 
         {
           t: 'part',
+          id: 's4-d',
           n: 'D',
           en: 'Talk it through',
           zh: '一起討論',

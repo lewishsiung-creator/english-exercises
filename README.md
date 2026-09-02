@@ -1717,6 +1717,29 @@ gap-fill. **D** is five reusable sentence patterns and a gap-fill on them. **E**
 takes the subject into *Atomic Habits* — a habit audit, a five-statement poll,
 five discussion questions and the closing speaking task.
 
+**The focus chips are links, which no other notebook's are.** Four sessions in,
+a session is several screens long, and the row of chips under its heading is the
+only contents list it has — reading one and then hunting for the part it names
+is work the page should be doing. So any block can take an `id`, and a focus
+item can take a `to` naming it:
+
+```js
+focus:  { en: 'Modern Sirens', zh: '現代版的賽蓮', to: 's4-sirens' }
+block:  { t: 'note', id: 's4-sirens', en: 'What are your Sirens?', … }
+```
+
+Three details make it hold up. The id is spliced into the block's own root
+element rather than wrapped around it, because the stylesheet uses
+adjacent-sibling rules between blocks and an extra element between them would
+break spacing somewhere nobody would think to look. Ids are unique across the
+whole file, not per session, so `/ken/#s1-fix` is a shareable link — and the
+renderer resolves a block id to the session holding it before jumping, since the
+target otherwise sits inside a `display: none` session and the browser has
+nothing to scroll to. That resolution runs in three places: on load, on
+`hashchange`, and in the document click handler. There is deliberately **no**
+`scroll-margin-top`: `html` already carries `scroll-padding-top`, and adding
+both put every target 70px too low.
+
 **Session 2 (26 August 2026)** is body recomposition, built from a written
 summary of a Huberman Lab clip with the nutrition researcher Alan Aragon: can
 you gain muscle and lose fat at once, and does that require a caloric deficit.

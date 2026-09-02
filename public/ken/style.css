@@ -436,6 +436,27 @@ body.zh-all .session-btn .titles .zh { display: block; }
 .focus li .en, .focus li .zh { display: inline; }
 .focus li .zh { font-size: .95em; color: var(--navy); margin-left: .5em; opacity: .8; }
 
+/* A chip that jumps to its part. The pill keeps its own padding so the whole
+   shape is the target rather than the words inside it, and the underline is
+   left off: a row of underlined pills reads as a warning, not as navigation.
+   The affordance is the arrow and the darkening on hover. */
+.focus li.to { padding: 0; }
+.focus li.to a {
+  display: block;
+  padding: 5px 12px;
+  border-radius: inherit;
+  color: inherit;
+  text-decoration: none;
+}
+.focus li.to a::after {
+  content: ' ↓';
+  opacity: .45;
+  font-family: var(--font-ui);
+}
+.focus li.to:hover { background: var(--navy-line); }
+.focus li.to:hover a::after { opacity: .8; }
+@media (hover: none) { .focus li.to:hover { background: var(--navy-soft); } }
+
 .lead {
   margin: 0 0 24px;
   font-size: 1.1rem;
