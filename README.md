@@ -1766,6 +1766,29 @@ with his own sentences on the left; this one opens straight at *Polished
 Version*, so the original wording is already gone. Nothing was reconstructed
 from the polished text — a sentence Lewis wrote is not a sentence Ken said.
 
+**Session 4 (3 September 2026)** is the other half of the same conversation:
+the film sent them back to Homer's poem. Nine ideas — resilience, intelligence
+over strength, pride arriving just after the victory, the Sirens as short-term
+pleasure against a long-term goal, Calypso's offer refused, choices and
+consequences, leadership, adaptability, and Penelope's twenty years — then the
+handout's own framework, *Goal → Temptation → Choice → Consequence → Growth*,
+with a `match` set pairing each episode to the idea it carries. Part C is
+thirty-one phrase cards in four sets and a gap-fill; Part D the talking.
+
+It could have been parts G–J of session 3 and is a separate session instead,
+because session 3 already runs A–F and a review page is more use when the
+contents list names the two subjects separately. The two share a date, and a
+`link` block at the top of session 4 points back at `#s3` — the first `link` in
+this repo aimed at an in-page anchor rather than another page. That is safe
+here: the renderer's `hashchange` handler unfolds the target session and scrolls
+to it, so the destination is never a closed heading.
+
+The `contrast` runs *The instinct* against *The harder move* — "I need him to
+admit I was right" against "I was right, and I do not need the last word";
+"Can I do this?" against "What might happen if I do this?"; "Just be yourself"
+against "Know who you are, and learn how to adapt to the situation". Those three
+are the poem's argument in the form Ken can actually use on a Tuesday.
+
 **The source needs one rule that no other notebook has needed.** Lewis's
 write-up opens with a table of Ken's original sentences beside a **ChatGPT
 rewrite** of them, and it points out that the rewrite still contains mistakes of

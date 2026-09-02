@@ -130,6 +130,21 @@
    `lead` above them says to answer first and read second, and that ordering is
    the whole reason the two parts are separate rather than interleaved.
 
+   SESSION 4, AND WHY IT IS NOT PART G OF SESSION 3
+   ------------------------------------------------
+   Session 4 is the other half of the same conversation: the film sent them back
+   to Homer's poem. It could have been parts G–J of session 3, and it is a
+   separate session instead, for a reason worth keeping — session 3 already runs
+   A–F, and a review page is more use when the contents list names the two
+   subjects separately than when the second is buried at the bottom of the first.
+   The two carry the same date, and a `link` block at the top of session 4 points
+   back at `#s3`. That anchor works: the renderer's `hashchange` handler unfolds
+   the target session and scrolls to it, so an in-page `href` is safe here even
+   though every other `link` in this repo points at another page.
+
+   No `fix` block, for the third time running — the source is a written summary
+   handed over in chat.
+
    SAMPLE BANNER
    -------------
    Setting `sample` puts a line across the top saying the content is a
@@ -3075,6 +3090,799 @@ const NOTEBOOK = {
           en: 'I think… because… for example… so overall…',
           zh: '我覺得……因為……舉例來說……所以整體來說……',
           by: 'the four moves, worth memorising 這四個步驟，值得背起來',
+        },
+      ],
+    },
+
+    {
+      id: 's4',
+      n: 4,
+      dateEn: '3 September 2026',
+      dateZh: '2026 年 9 月 3 日',
+      en: 'What the journey makes of you: Homer’s Odyssey',
+      zh: '旅程把你變成什麼樣的人：荷馬的《奧德賽》',
+
+      focus: [
+        { en: 'Nine ideas in the poem', zh: '這部史詩裡的九個概念' },
+        { en: 'Modern Sirens', zh: '現代版的賽蓮' },
+        { en: 'Goal → Temptation → Choice → Consequence → Growth', zh: '目標→誘惑→選擇→後果→成長' },
+        { en: 'Ego, judgement and leadership', zh: '自我、判斷力與領導' },
+        { en: 'Talking about what a story means', zh: '談一個故事的意義' },
+      ],
+
+      blocks: [
+        {
+          t: 'lead',
+          en: 'The film sent us back to the poem it came from — three thousand years old, and still the most useful story anyone has written about being in your twenties. This half of the discussion is about what it is for: not the monsters, but identity, temptation, judgement, and what a long journey does to the person taking it.',
+          zh: '那部電影把我們帶回它所改編的那部史詩——三千年前寫成，至今仍是所有作品裡，最能講清楚「二十幾歲是怎麼一回事」的一個故事。這半場討論談的是它的用意：重點不在那些怪物，而在身分認同、誘惑、判斷力，以及一段漫長的旅程，會對走上這條路的人做些什麼。',
+        },
+
+        {
+          t: 'link',
+          en: 'Session 3 — the film',
+          zh: '第三堂課：那部電影',
+          href: '#s3',
+          noteEn: 'Nolan’s adaptation, the polished version of your talk, and the four-move answer structure.',
+          noteZh: '諾蘭的改編、你那段話的潤飾版本，以及四步驟的回答結構。',
+        },
+
+        {
+          t: 'part',
+          n: 'A',
+          en: 'Nine things the poem is about',
+          zh: '這部史詩談的九件事',
+        },
+
+        {
+          t: 'summary',
+          en: 'The Odyssey is usually described as an adventure about getting home, and that description is not wrong so much as thin. Odysseus takes ten years to travel a distance that should take weeks. Almost none of the story is about the sailing. It is about identity, temptation, judgement, loyalty, and growing into responsibility — which is why it survives, and why it lands differently at twenty than it would have at twelve.',
+          zh: '一般會說《奧德賽》是一個「回家」的冒險故事，這個說法不算錯，只是太薄了。奧德修斯花了十年，走完一段本來幾個星期就能走完的路。整個故事幾乎沒有一段是在講航海。它談的是身分認同、誘惑、判斷力、忠誠，以及一個人如何長成能承擔責任的樣子——這正是它能流傳下來的原因，也是為什麼你二十歲讀它，感受會和十二歲時完全不同。',
+        },
+
+        {
+          t: 'summary',
+          en: 'The first idea is resilience, and the shape of it matters. Odysseus meets storms, monsters, imprisonment and loss; the journey takes far longer than it was supposed to, and he keeps going anyway. Nobody in the poem gets a clean run. That is worth holding on to, because progress in a degree, a career, a relationship or a training programme is almost never a straight line — and the useful definition of success is not avoiding setbacks but continuing after them.',
+          zh: '第一個概念是韌性，而它的形狀很重要。奧德修斯遇上風暴、怪物、囚禁與失去；這趟旅程遠比預期的久，而他還是繼續往前走。這部史詩裡沒有任何人一路順利。這一點值得記住，因為不論是學業、職涯、感情還是訓練計畫，進展幾乎從來都不是一條直線——而「成功」比較有用的定義，不是避開挫折，而是在挫折之後繼續走下去。',
+        },
+
+        {
+          t: 'summary',
+          en: 'The second is that intelligence beats strength, and it is the reason Odysseus is remembered at all. He is not the strongest man in the poem. What he has is the ability to read a situation, plan, and change plan. Against the Cyclops he does not fight; he thinks. The modern translation is almost too neat — analyse the situation, communicate well, solve the problem, switch strategies — but it holds: the person who can do those four things usually beats the person who is simply working harder.',
+          zh: '第二個概念是「智慧勝過蠻力」，而這正是奧德修斯之所以被記住的原因。他並不是這部史詩裡最強壯的人。他真正擁有的，是判讀情勢、擬定計畫，以及改變計畫的能力。面對獨眼巨人時，他靠的不是打，而是想。換成現代的說法幾乎太過工整——分析情勢、有效溝通、解決問題、調整策略——但道理是成立的：能做到這四件事的人，通常會贏過那個只是更拚命的人。',
+        },
+
+        {
+          t: 'summary',
+          en: 'The third is the one people forget, because it comes immediately after a victory. Having escaped the Cyclops, Odysseus cannot resist shouting his real name back across the water. He has already won; he wants the win acknowledged. That single sentence costs him years. The lesson is not that pride is bad, which is too simple, but that pride tends to arrive at the exact moment you have stopped paying attention — and that winning and needing to be seen winning are two different appetites.',
+          zh: '第三個概念，是大家最容易忘記的，因為它緊接在一場勝利之後。逃出獨眼巨人的洞穴之後，奧德修斯忍不住隔著海面喊出自己的真名。他其實已經贏了，但他想要那場勝利被承認。就這麼一句話，讓他付出了好幾年的代價。這裡的教訓不是「驕傲不好」——那太簡單了——而是：驕傲往往正好在你不再警覺的那一刻出現；而「贏」和「需要被看見自己贏」，其實是兩種不同的慾望。',
+        },
+
+        {
+          t: 'contrast',
+          en: 'Three moves the poem keeps recommending',
+          zh: '這部史詩一再建議的三個做法',
+          hintEn: 'The left column is the instinct — fast, satisfying, and usually available. The right column is the harder move, and in every case the poem shows you what the first one costs.',
+          hintZh: '左邊那一欄是本能——快、爽，而且通常隨手可得。右邊那一欄比較難做到；而這部史詩每一次都會讓你看見，選了第一種要付出什麼代價。',
+          coldEn: 'The instinct',
+          coldZh: '本能反應',
+          warmEn: 'The harder move',
+          warmZh: '比較難的那個做法',
+          items: [
+            {
+              caseEn: 'After you have won an argument',
+              caseZh: '在你吵贏之後',
+              cold: {
+                en: 'I need him to admit that I was right.',
+                zh: '我要他承認我是對的。',
+              },
+              warm: {
+                en: 'I was right, and I do not need the last word.',
+                zh: '我是對的，而我不需要講最後一句話。',
+              },
+              whyEn: 'This is the Cyclops, exactly. The win is already yours; what the instinct wants is the acknowledgement, and that is the part that costs. Knowing when to walk away is a skill, not a personality trait.',
+              whyZh: '這就是獨眼巨人那一幕，一模一樣。勝利已經是你的了；本能想要的是「被承認」，而那才是要付代價的部分。知道什麼時候該轉身走開，是一種能力，不是天生的性格。',
+            },
+            {
+              caseEn: 'Before you do something you are allowed to do',
+              caseZh: '在你做一件「你可以做」的事之前',
+              cold: {
+                en: 'Can I do this?',
+                zh: '我可以這樣做嗎？',
+              },
+              warm: {
+                en: 'What might happen if I do this?',
+                zh: '如果我這樣做，可能會發生什麼事？',
+              },
+              whyEn: 'Most of the disasters in the poem come from a crew doing something nobody had forbidden. Being an adult means having more choices; the second question is the price of the first, and it is the whole of the difference.',
+              whyZh: '這部史詩裡大部分的災難，都來自船員做了一件「沒有人禁止」的事。長大意味著選擇變多；而第二個問題就是第一個問題的代價，兩者之間的差別就是全部的差別。',
+            },
+            {
+              caseEn: 'Advice you have heard a hundred times',
+              caseZh: '你已經聽過一百次的建議',
+              cold: {
+                en: 'Just be yourself.',
+                zh: '做自己就好。',
+              },
+              warm: {
+                en: 'Know who you are, and learn how to adapt to the situation.',
+                zh: '清楚知道自己是誰，同時學會依情境調整自己。',
+              },
+              whyEn: 'Odysseus fights, negotiates, waits and hides his name, depending on what the room is. That is not being fake — it is reading the room, and “be yourself” without it is advice that only works for people who are never in a difficult room.',
+              whyZh: '奧德修斯有時候打、有時候談判、有時候等待、有時候隱藏身分，全看他面對的是什麼場面。這不是虛偽，而是讀懂場面；少了這一層，「做自己就好」這句話，只對那些從來不曾身處困難場面的人才管用。',
+            },
+          ],
+        },
+
+        {
+          t: 'summary',
+          en: 'The fourth idea is self-control, and it is where the poem stops being about monsters. The Lotus-Eaters, Circe, the Sirens, the cattle of Helios — these are not really creatures. They are one thing said four ways: the pull to forget a long-term goal because of a short-term pleasure. Odysseus does not defeat the Sirens. He has himself tied to the mast, which is a plan made in advance by someone who knows he will not be reliable later.',
+          zh: '第四個概念是自制力，而這裡正是這部史詩不再是在講怪物的地方。食蓮族、瑟西、賽蓮、太陽神赫利俄斯的牛群——這些其實都不是生物。它們是同一件事的四種說法：為了眼前的快樂而忘掉長期目標的那股拉力。奧德修斯並沒有「打敗」賽蓮。他是叫人把自己綁在桅杆上——那是一個清楚知道自己「到時候會靠不住」的人，事先做好的安排。',
+        },
+
+        {
+          t: 'note',
+          en: 'What are your Sirens?',
+          zh: '你的賽蓮是什麼？',
+          bodyEn: 'The modern list writes itself: the feed, the game, the relationship you already know is wrong, the impulsive purchase, the thing you keep putting off. None of them announces itself as a monster; every one of them is genuinely attractive, which is the entire point. The question the poem asks is uncomfortable and worth sitting with — can you say no to something attractive today in order to protect something you want tomorrow? And notice Odysseus’s answer: he did not rely on willpower in the moment. He arranged the rope first.',
+          bodyZh: '現代版的名單自己就會寫出來：滑不完的動態、那款遊戲、那段你其實早就知道不對的關係、那筆衝動的消費，還有那件你一直往後拖的事。它們沒有一個會自我介紹說「我是怪物」；而它們每一個都真的很吸引人——重點正是在這裡。這部史詩問的問題並不好受，但值得停下來想：你能不能為了保住你明天想要的東西，對今天很吸引人的東西說不？另外注意奧德修斯的做法：他並沒有指望自己「當下的意志力」。他是先把繩子準備好。',
+        },
+
+        {
+          t: 'summary',
+          en: 'The fifth is the hardest to argue with. Calypso offers Odysseus immortality — not comfort, not money, immortality — and he turns it down to go back to a small rocky island, a wife and a son. His goal was never comfort. It was Ithaca, and the person he is there. Set against that, the question most people your age are asking, “how do I become successful?”, starts to look like the wrong question. The poem prefers a better one: what am I trying to become successful for?',
+          zh: '第五個概念最難反駁。卡呂普索給了奧德修斯永生——不是舒適，也不是財富，是永生——而他拒絕了，只為了回到一座多岩的小島、一個妻子和一個兒子身邊。他的目標從來就不是舒適，而是伊薩卡，以及在那裡的那個自己。放在這個對照下，你這個年紀的人最常問的那個問題——「我要怎樣才會成功？」——就開始顯得問錯了。這部史詩更喜歡另一個問法：我到底是為了什麼而想成功？',
+        },
+
+        {
+          t: 'summary',
+          en: 'The sixth and seventh are about being responsible for other people. Most of the crew’s disasters follow the same pattern: someone ignores advice, acts on impulse, and everyone pays. Freedom and responsibility arrive together, which is what adulthood mostly turns out to mean. And Odysseus himself is a genuinely useful leader to study precisely because he is not idealised — some of his decisions protect his men and some endanger them. The questions that fall out of that are worth asking about any team you end up running: do I listen to advice, do I explain my decisions, do I take responsibility when it goes wrong, and am I protecting the team or protecting my ego?',
+          zh: '第六和第七個概念，講的是為別人負責。船員遭遇的災難，大多依循同一個模式：有人不聽勸、憑衝動行事，然後所有人一起承擔。自由和責任是一起來的，而這差不多就是「長大」真正的意思。至於奧德修斯本人，之所以特別值得拿來研究領導，正因為他不是被理想化的——他有些決定保護了部下，有些卻讓他們陷入危險。從這裡衍生出來的幾個問題，值得你對任何一支自己帶的團隊問一遍：我有沒有聽建議？我有沒有解釋我的決定？出事的時候我有沒有扛？以及，我在保護的是團隊，還是我自己的面子？',
+        },
+
+        {
+          t: 'summary',
+          en: 'The ninth is the quietest and the one the adaptations usually cut. While Odysseus is away, Penelope holds a household together for twenty years with patience, intelligence and a great deal of strategy, and Telemachus grows from an uncertain boy into someone willing to take responsibility. So the poem is also about relationships surviving separation — and about the fact that they survive on consistent action rather than on feeling. Nobody in Ithaca was waiting because they felt like waiting.',
+          zh: '第九個概念最安靜，也是改編版本通常會刪掉的那一個。奧德修斯不在的那二十年，潘妮洛普靠著耐心、智慧和大量的謀略，把一個家撐了下來；而特勒瑪科斯，也從一個猶豫不決的少年，長成願意承擔責任的人。所以這部史詩同時也在講：關係如何在分離中存活下來——以及，它們靠的是持續的行動，而不是感覺。伊薩卡沒有任何人是「因為想等」才等下去的。',
+        },
+
+        {
+          t: 'note',
+          en: 'The reading that makes it a book about you',
+          zh: '讓這部史詩變成一本關於你的書的那種讀法',
+          bodyEn: 'The poem is not really about getting home. It is about who Odysseus becomes on the way — which is why the man who lands at Ithaca could not have handled Ithaca twenty years earlier. That distinction is worth holding on to, because your own list is all destinations: the degree, the job, the salary, the physique, the promotion, the move abroad. The deeper question is who you are becoming while you chase them. Session 1 met the same idea in Atomic Habits, from the other end: the process shapes the identity.',
+          bodyZh: '這部史詩真正談的，並不是「回到家」，而是奧德修斯在路上變成了什麼樣的人——這也是為什麼，最後登上伊薩卡的那個人，如果換成二十年前的他，根本應付不了伊薩卡。這個區別值得記住，因為你自己的清單上，寫的全都是終點：學位、工作、薪水、身材、升遷、出國。更深的問題是：在追這些東西的過程中，你正在變成什麼樣的人？第一堂課在《原子習慣》裡也遇過同一個概念，只是從另一端進來：過程會形塑身分認同。',
+        },
+
+        {
+          t: 'quote',
+          en: 'The goal is not simply to reach your destination. The goal is to become someone capable of handling the journey.',
+          zh: '目標不只是抵達終點，而是成為一個有能力應付這趟旅程的人。',
+          by: 'the closing idea of the discussion 這次討論的結語',
+        },
+
+        {
+          t: 'mcq',
+          en: 'Did you get it?',
+          zh: '你讀懂了嗎？',
+          hintEn: 'Ten questions on the reading above. A wrong answer fades and the question stays open, so try again — nothing is scored and nothing is recorded.',
+          hintZh: '關於上面那些內容的十個問題。答錯的選項會變淡，題目仍然開著，可以再試一次——不計分，也不會留下紀錄。',
+          items: [
+            {
+              q: 'How does the reading describe the usual “adventure about getting home” summary?',
+              qZh: '文章怎麼看待「一個回家的冒險故事」這種常見說法？',
+              options: [
+                'Wrong, because he never gets home',
+                'Not wrong so much as thin',
+                'The only reasonable reading',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'What is the useful definition of success in the resilience section?',
+              qZh: '在談韌性的那一段裡，「成功」比較有用的定義是什麼？',
+              options: [
+                'Avoiding setbacks',
+                'Reaching the goal on schedule',
+                'Continuing after setbacks',
+              ],
+              answer: 2,
+            },
+            {
+              q: 'How does Odysseus deal with the Cyclops?',
+              qZh: '奧德修斯是怎麼應付獨眼巨人的？',
+              options: [
+                'By planning and deception rather than strength',
+                'By fighting it directly',
+                'By waiting for it to leave',
+              ],
+              answer: 0,
+            },
+            {
+              q: 'What mistake does he make immediately after escaping?',
+              qZh: '逃出來之後，他立刻犯了什麼錯？',
+              options: [
+                'He goes back for the sheep',
+                'He shouts his real name back across the water',
+                'He tells his crew to attack',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'What do the Lotus-Eaters, the Sirens and the cattle of Helios have in common?',
+              qZh: '食蓮族、賽蓮和赫利俄斯的牛群，共同點是什麼？',
+              options: [
+                'They are all sent by the same god',
+                'They are all short-term pleasure against a long-term goal',
+                'They all attack the ship directly',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'What does Calypso offer, and what does he choose instead?',
+              qZh: '卡呂普索提供了什麼？他選擇了什麼？',
+              options: [
+                'Wealth — and he chooses fame',
+                'Immortality — and he chooses Ithaca',
+                'A ship — and he chooses to stay',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'What does the reading say Penelope’s twenty years demonstrate?',
+              qZh: '文章認為潘妮洛普那二十年說明了什麼？',
+              options: [
+                'That relationships survive on consistent action, not on feeling',
+                'That waiting is a form of weakness',
+                'That she had no other options',
+              ],
+              answer: 0,
+            },
+            {
+              q: 'Why does the reading say Odysseus is useful for discussing leadership?',
+              qZh: '文章為什麼說奧德修斯很適合用來討論領導？',
+              options: [
+                'Because he is complicated rather than idealised',
+                'Because he never loses a man',
+                'Because he always follows advice',
+              ],
+              answer: 0,
+              why: {
+                en: 'A leader who never gets it wrong teaches you nothing you can use, because you will get it wrong. The value is in a figure whose good and bad decisions sit in the same story, so you can tell them apart.',
+                zh: '一個從不犯錯的領導者，教不了你任何用得上的東西，因為你一定會犯錯。真正有價值的，是一個好決定和壞決定同時存在於同一個故事裡的人物，這樣你才分得出來。',
+              },
+            },
+            {
+              q: 'The reading says “he did not rely on willpower in the moment.” What did he do?',
+              qZh: '文章說「他並沒有指望自己當下的意志力」。那他做了什麼？',
+              options: [
+                'He arranged the rope in advance',
+                'He avoided the route entirely',
+                'He asked the crew to decide',
+              ],
+              answer: 0,
+              why: {
+                en: 'This is the practical core of the whole section. A decision made calmly in advance beats a decision made under pressure, and the design of the situation matters more than how strong you feel inside it.',
+                zh: '這是整個段落最實用的核心。事先在冷靜狀態下做好的決定，勝過在壓力當下才做的決定；情境的設計，比你身處其中時「感覺自己有多堅強」更重要。',
+              },
+            },
+            {
+              q: 'Which question does the reading prefer?',
+              qZh: '文章比較偏好哪一個問題？',
+              options: [
+                '“How can I become successful?”',
+                '“What am I trying to become successful for?”',
+                '“How long will it take?”',
+              ],
+              answer: 1,
+              why: {
+                en: 'The first question can be answered without ever knowing whether the answer is worth having, which is how people arrive somewhere they did not want to be. The second sets the destination before the route — the same reason Calypso’s offer was refusable.',
+                zh: '第一個問題可以回答得出來，卻完全不必知道那個答案值不值得——而這正是很多人最後抵達了一個自己並不想去的地方的原因。第二個問題先確定終點，再談路線——這也正是卡呂普索的提議之所以能被拒絕的原因。',
+              },
+            },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: 'B',
+          en: 'One framework, every episode',
+          zh: '一個架構，套用到每一段故事',
+        },
+
+        {
+          t: 'note',
+          en: 'Goal → Temptation → Choice → Consequence → Growth',
+          zh: '目標 → 誘惑 → 選擇 → 後果 → 成長',
+          bodyEn: 'Five words, and almost every episode in the poem goes through them in order. Ithaca is the goal; the island, the goddess, the singing, the cattle are the temptation; someone decides; something follows; and the person who comes out the other side is not quite the person who went in. It is worth learning because it is not really about Homer — run one of your own last few years through it and see which of the five stages you can describe in detail and which one you go quiet on. Most people can name the goal and the temptation, and skip straight past the choice.',
+          bodyZh: '五個詞，而這部史詩裡幾乎每一段情節，都會照這個順序走一遍。伊薩卡是目標；那座島、那位女神、那陣歌聲、那群牛是誘惑；有人做了選擇；接著發生了某些事；而從另一頭走出來的那個人，已經不太是走進去的那個人了。這個架構值得學起來，因為它其實不是在講荷馬——把你自己過去這幾年套進去跑一遍，看看五個階段裡，哪一個你講得出細節，哪一個你會突然沉默。大多數人說得出目標和誘惑，然後就直接跳過了「選擇」。',
+        },
+
+        {
+          t: 'match',
+          en: 'Episode and idea',
+          zh: '情節與概念',
+          hintEn: 'Click an episode on the left, then the idea it carries on the right.',
+          hintZh: '先點左邊的情節，再點右邊它所承載的概念。',
+          pairs: [
+            { a: 'The Cyclops’ cave', b: 'planning and deception beat strength' },
+            { a: 'Shouting his name from the ship', b: 'pride arrives just after the victory' },
+            { a: 'The Lotus-Eaters', b: 'comfort that makes you forget the goal' },
+            { a: 'The Sirens and the rope', b: 'deciding in advance, not in the moment' },
+            { a: 'The cattle of Helios', b: 'ignoring advice, and everyone pays' },
+            { a: 'Calypso’s offer of immortality', b: 'meaning chosen over comfort' },
+            { a: 'Penelope’s twenty years', b: 'loyalty as consistent action' },
+            { a: 'Telemachus growing up', b: 'taking on responsibility for the first time' },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: 'C',
+          en: 'The language',
+          zh: '語言',
+        },
+
+        {
+          t: 'phrases',
+          en: 'Setbacks and resilience',
+          zh: '挫折與韌性',
+          items: [
+            {
+              en: 'overcome setbacks',
+              zh: '克服挫折',
+              eg: 'What I admire is not the talent but how he overcame the setbacks.',
+              egZh: '我欣賞的不是他的天分，而是他克服挫折的方式。',
+            },
+            {
+              en: 'keep moving forward',
+              zh: '繼續往前走',
+              eg: 'The point is not the pace; it is that you keep moving forward.',
+              egZh: '重點不在速度，而在於你有沒有繼續往前走。',
+            },
+            {
+              en: 'stay resilient',
+              zh: '保持韌性',
+              eg: 'It is easy to stay resilient in a good month.',
+              egZh: '在順利的月份裡，保持韌性很容易。',
+            },
+            {
+              en: 'learn from failure',
+              zh: '從失敗中學習',
+              eg: 'Nobody learns from failure automatically; you have to look at it.',
+              egZh: '沒有人會自動從失敗中學到東西，你得真的去正視它。',
+            },
+            {
+              en: 'go through a difficult time',
+              zh: '經歷一段辛苦的時期',
+              eg: 'He was going through a difficult time and did not tell anyone.',
+              egZh: '他當時正在經歷一段辛苦的時期，而且沒有告訴任何人。',
+            },
+            {
+              en: 'progress is rarely linear',
+              zh: '進步很少是一條直線',
+              eg: 'Progress is rarely linear, in training or in anything else.',
+              egZh: '不論是訓練還是別的事，進步很少是一條直線。',
+            },
+            {
+              en: 'a detour',
+              zh: '繞路、迂迴的路',
+              eg: 'The two years I thought I had wasted turned out to be a useful detour.',
+              egZh: '那兩年我以為自己浪費掉了，結果是一段有用的繞路。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Ego and judgement',
+          zh: '自我與判斷力',
+          items: [
+            {
+              en: 'control your ego',
+              zh: '管住自己的自尊心',
+              eg: 'Half of leadership is learning to control your ego.',
+              egZh: '領導有一半，是在學怎麼管住自己的自尊心。',
+            },
+            {
+              en: 'remain humble',
+              zh: '保持謙虛',
+              eg: 'It is harder to remain humble after a win than after a loss.',
+              egZh: '贏了之後要保持謙虛，比輸了之後更難。',
+            },
+            {
+              en: 'know when to walk away',
+              zh: '知道什麼時候該收手、轉身離開',
+              eg: 'Knowing when to walk away is a skill, not a personality.',
+              egZh: '知道什麼時候該收手，是一種能力，不是性格。',
+            },
+            {
+              en: 'have the last word',
+              zh: '講最後一句話、要贏到最後',
+              eg: 'I did not need to have the last word, so I stopped replying.',
+              egZh: '我不需要講到最後一句，所以我就不再回了。',
+            },
+            {
+              en: 'prove you are right',
+              zh: '證明自己是對的',
+              eg: 'Wanting to prove you are right is not the same as being right.',
+              egZh: '「想證明自己是對的」和「是對的」，不是同一件事。',
+            },
+            {
+              en: 'face the consequences',
+              zh: '承擔後果',
+              eg: 'He made the call, and he faced the consequences without complaining.',
+              egZh: '決定是他下的，而他也沒有抱怨地承擔了後果。',
+            },
+            {
+              en: 'act on impulse',
+              zh: '憑衝動行事',
+              eg: 'Most of the damage was done by people acting on impulse.',
+              egZh: '大部分的損害，都是憑衝動行事的人造成的。',
+            },
+            {
+              en: 'ignore advice',
+              zh: '不聽勸告',
+              eg: 'The crew ignored the advice, and the whole ship paid for it.',
+              egZh: '船員不聽勸告，結果整艘船一起付出代價。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Temptation and self-control',
+          zh: '誘惑與自制力',
+          items: [
+            {
+              en: 'resist temptation',
+              zh: '抵抗誘惑',
+              eg: 'He could not resist telling them who he was.',
+              egZh: '他忍不住告訴他們自己是誰。',
+            },
+            {
+              en: 'give in to something',
+              zh: '屈服於某事、忍不住做了',
+              eg: 'I gave in to it about four days into the week.',
+              egZh: '那一週大概到第四天，我就忍不住破功了。',
+            },
+            {
+              en: 'instant gratification',
+              zh: '即時滿足',
+              eg: 'Everything on my phone is designed around instant gratification.',
+              egZh: '我手機裡的每一樣東西，都是繞著「即時滿足」設計的。',
+            },
+            {
+              en: 'delay gratification',
+              zh: '延遲滿足',
+              eg: 'Learning to delay gratification is most of the work.',
+              egZh: '學會延遲滿足，就是這件事最主要的功課。',
+            },
+            {
+              en: 'a long-term goal',
+              zh: '長期目標',
+              eg: 'Short-term pleasure is only a problem when it costs a long-term goal.',
+              egZh: '短期的快樂，只有在它讓你失去長期目標時才是問題。',
+            },
+            {
+              en: 'procrastination',
+              zh: '拖延',
+              eg: 'Procrastination is the quietest of the modern Sirens.',
+              egZh: '在現代的賽蓮當中，拖延是最安靜的那一個。',
+            },
+            {
+              en: 'impulsive spending',
+              zh: '衝動消費',
+              eg: 'Most of my impulsive spending happens after eleven at night.',
+              egZh: '我大部分的衝動消費，都發生在晚上十一點以後。',
+            },
+            {
+              en: 'to be tied to the mast',
+              zh: '把自己綁在桅杆上（事先做好防範）',
+              eg: 'Deleting the app is my version of being tied to the mast.',
+              egZh: '把那個 App 刪掉，就是我版本的「把自己綁在桅杆上」。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Leading and adapting',
+          zh: '領導與調整',
+          items: [
+            {
+              en: 'take responsibility for something',
+              zh: '為某件事負起責任',
+              eg: 'A leader takes responsibility when the plan was his.',
+              egZh: '計畫是自己的，領導者就該負起責任。',
+            },
+            {
+              en: 'listen to advice',
+              zh: '聽取建議',
+              eg: 'Asking for advice and listening to it are two different habits.',
+              egZh: '「徵詢建議」和「聽進建議」，是兩種不同的習慣。',
+            },
+            {
+              en: 'protect the team',
+              zh: '保護團隊',
+              eg: 'Am I protecting the team, or protecting my ego?',
+              egZh: '我在保護的是團隊，還是自己的面子？',
+            },
+            {
+              en: 'think strategically',
+              zh: '有策略地思考',
+              eg: 'He survives because he thinks strategically under pressure.',
+              egZh: '他能活下來，是因為他在壓力下仍然有策略地思考。',
+            },
+            {
+              en: 'change strategy',
+              zh: '改變策略',
+              eg: 'Knowing when to change strategy is part of intelligence.',
+              egZh: '知道什麼時候該改變策略，也是智慧的一部分。',
+            },
+            {
+              en: 'adapt to a situation',
+              zh: '因應情境調整',
+              eg: 'Adapting to the situation is not the same as being fake.',
+              egZh: '依情境調整，並不等於虛偽。',
+            },
+            {
+              en: 'situational awareness',
+              zh: '情境判斷力、看場合的能力',
+              eg: 'What people call charm is often just situational awareness.',
+              egZh: '大家說的「會做人」，往往只是情境判斷力好。',
+            },
+            {
+              en: 'grow into responsibility',
+              zh: '慢慢長成能承擔責任的人',
+              eg: 'Telemachus grows into responsibility over the course of the poem.',
+              egZh: '在整部史詩的過程中，特勒瑪科斯慢慢長成能承擔責任的人。',
+            },
+          ],
+        },
+
+        {
+          t: 'gap',
+          en: 'Choose the collocation',
+          zh: '選出正確的搭配詞',
+          hintEn: 'One of the three fits the sentence. Tap the Chinese for the situation if you want it.',
+          hintZh: '三個選項中只有一個適合這個句子。想看情境的話，可以點開中文。',
+          items: [
+            {
+              text: 'It took him ten years, but he ___ every setback.',
+              textZh: '他花了十年，但他克服了每一個挫折。',
+              options: ['overcame', 'overtook', 'overcome'],
+              answer: 0,
+              why: {
+                en: '“Overcome” is the base form; the past is “overcame”. And “overtake” means to pass someone on the road — a different verb entirely, and an easy one to reach for by accident.',
+                zh: 'overcome 是原形，過去式是 overcame。而 overtake 的意思是「超車、超越」，是完全不同的動詞，卻很容易不小心拿錯。',
+              },
+            },
+            {
+              text: 'He could not ___ the temptation to say his own name.',
+              textZh: '他抵擋不住那股「說出自己名字」的誘惑。',
+              options: ['refuse', 'resist', 'reject'],
+              answer: 1,
+              why: {
+                en: '“Resist temptation” is the fixed pair. You refuse an offer and reject a proposal — both of those are things someone else brought you. Temptation comes from inside, so it is resisted.',
+                zh: 'resist temptation 是固定搭配。你 refuse 一個邀約、reject 一項提案——那些都是別人拿到你面前的東西。誘惑來自你自己內部，所以用 resist。',
+              },
+            },
+            {
+              text: 'Freedom and responsibility ___ together.',
+              textZh: '自由和責任是一起來的。',
+              options: ['come', 'go', 'arrive'],
+              answer: 0,
+              why: {
+                en: '“Come together” is the idiom for two things that cannot be separated. “Go together” exists but means they match well — a wine and a dish go together; freedom and responsibility come together.',
+                zh: '講兩件事無法分開，慣用語是 come together。go together 也存在，但意思是「很搭」——酒和菜是 go together；自由和責任則是 come together。',
+              },
+            },
+            {
+              text: 'The whole crew had to ___ the consequences of one decision.',
+              textZh: '全體船員必須為一個決定承擔後果。',
+              options: ['take', 'face', 'meet'],
+              answer: 1,
+              why: {
+                en: '“Face the consequences” is the set phrase, and the image inside it is right — the consequences are already coming, and the only choice is whether you turn towards them.',
+                zh: 'face the consequences 是固定用法，而它裡面的意象也很準確——後果已經在路上了，你唯一能選的，只有要不要轉過身去面對它。',
+              },
+            },
+            {
+              text: 'Learning when to ___ away is harder than learning to win.',
+              textZh: '學會什麼時候該轉身走開，比學會怎麼贏更難。',
+              options: ['go', 'walk', 'run'],
+              answer: 1,
+              why: {
+                en: '“Walk away” carries a decision; “run away” carries fear. The whole point of the phrase is that you could have stayed and chose not to.',
+                zh: 'walk away 帶著「決定」的意味，run away 帶著「害怕」。這個片語的重點就在於：你原本可以留下來，但你選擇不留。',
+              },
+            },
+            {
+              text: 'Adapting to the situation is not the same ___ being fake.',
+              textZh: '依情境調整，並不等於虛偽。',
+              options: ['as', 'with', 'than'],
+              answer: 0,
+              why: {
+                en: '“The same as” — always “as”. It is one of the small fixed pairs that a whole sentence can fall over: different from, similar to, the same as.',
+                zh: 'the same as——永遠是 as。這是那種一整句話會栽在上面的小固定搭配之一：different from、similar to、the same as。',
+              },
+            },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: 'D',
+          en: 'Talk it through',
+          zh: '一起討論',
+        },
+
+        {
+          t: 'poll',
+          en: 'Where do you stand?',
+          zh: '你的看法是？',
+          hintEn: 'No right answers. Pick one and be ready to say why — that sentence is the exercise.',
+          hintZh: '沒有標準答案。選一個，並準備好說明理由——那句理由才是真正的練習。',
+          items: [
+            {
+              en: 'Wanting to be seen winning has cost me more than losing ever has.',
+              zh: '「想被看見自己贏」讓我付出的代價，比輸掉還多。',
+            },
+            {
+              en: 'Designing the situation beats willpower, every time.',
+              zh: '設計好情境，每一次都勝過靠意志力。',
+            },
+            {
+              en: '“Be yourself” is advice for people who have never been in a difficult room.',
+              zh: '「做自己就好」是給那些從沒待過難搞場面的人的建議。',
+            },
+            {
+              en: 'At my age, choosing a destination matters more than moving fast.',
+              zh: '在我這個年紀，選對終點比走得快更重要。',
+            },
+            {
+              en: 'A leader who has never endangered the team has never really led one.',
+              zh: '一個從來沒有讓團隊陷入險境的領導者，其實沒有真正帶過團隊。',
+            },
+          ],
+        },
+
+        {
+          t: 'discuss',
+          en: 'Questions',
+          zh: '討論題',
+          items: [
+            {
+              en: 'What are your Sirens — the attractive things that cost you a long-term goal? And what would your rope be?',
+              zh: '你的賽蓮是什麼——那些很吸引人、卻會讓你失去長期目標的東西？而你的「繩子」會是什麼？',
+              starters: [
+                { en: 'The honest answer is…', zh: '老實的答案是……' },
+                { en: 'It usually happens when…', zh: '它通常發生在……的時候。' },
+                { en: 'My version of the rope would be…', zh: '我版本的那條繩子會是……' },
+              ],
+            },
+            {
+              en: 'Odysseus loses years because he wanted the win acknowledged. When have you paid for that, even slightly?',
+              zh: '奧德修斯因為想要那場勝利被承認，賠上了好幾年。你有沒有為同樣的事付過代價，哪怕只有一點點？',
+              starters: [
+                { en: 'There was one argument where I…', zh: '有一次爭論，我……' },
+                { en: 'Looking back, what I actually wanted was…', zh: '現在回頭看，我真正想要的其實是……' },
+                { en: 'I still find it hard not to…', zh: '我到現在還是很難忍住不……' },
+              ],
+            },
+            {
+              en: '“How can I become successful?” against “What am I trying to become successful for?” Which one have you actually been asking?',
+              zh: '「我要怎樣才會成功？」和「我到底是為了什麼而想成功？」——你實際上一直在問的是哪一個？',
+              starters: [
+                { en: 'If I am honest, I have mostly been asking…', zh: '老實說，我一直問的大多是……' },
+                { en: 'The second question is harder because…', zh: '第二個問題比較難，因為……' },
+                { en: 'What I would actually want it for is…', zh: '我真正想要它，是為了……' },
+              ],
+            },
+            {
+              en: 'Run one thing from the last two years through Goal → Temptation → Choice → Consequence → Growth. Which stage do you go quiet on?',
+              zh: '把過去兩年裡的一件事，套進「目標→誘惑→選擇→後果→成長」跑一遍。你在哪一個階段會突然講不下去？',
+              starters: [
+                { en: 'The goal was…, and the temptation was…', zh: '目標是……，誘惑是……' },
+                { en: 'The stage I cannot describe well is…', zh: '我講不太出來的那個階段是……' },
+                { en: 'What I would call the growth is…', zh: '要說有什麼成長的話，那會是……' },
+              ],
+            },
+            {
+              en: 'Think of a team you have been in — a class project, a shoot, a gym partner. Was the leader protecting the team or their own ego? Be fair.',
+              zh: '想一個你待過的團隊——分組報告、一次拍攝、健身的訓練夥伴。當時帶頭的人保護的是團隊，還是自己的面子？請公平一點。',
+              starters: [
+                { en: 'In that group, the person leading tended to…', zh: '在那個團隊裡，帶頭的人通常會……' },
+                { en: 'To be fair to them,…', zh: '公平來說……' },
+                { en: 'What I would do differently is…', zh: '換成我，我會不一樣的地方是……' },
+              ],
+            },
+            {
+              en: 'The poem says the man who lands at Ithaca could not have handled it twenty years earlier. What could you handle now that you could not at eighteen?',
+              zh: '文章說，最後登上伊薩卡的那個人，二十年前的他根本應付不了伊薩卡。有什麼是你現在應付得來、十八歲時卻做不到的？',
+              starters: [
+                { en: 'At eighteen I would have…', zh: '十八歲的我大概會……' },
+                { en: 'The thing I can handle now is…', zh: '我現在應付得來的是……' },
+                { en: 'I am still not ready for…', zh: '我還沒準備好面對的是……' },
+              ],
+            },
+          ],
+        },
+
+        {
+          t: 'task',
+          en: 'Say what the story is for',
+          zh: '說出這個故事的用意',
+          instructionEn: 'Pick one prompt and talk for about ninety seconds. Use the four moves from session 3 — answer, reason, example, reflection — and make the example something from your own life rather than from the poem. Tick a phrase when you have used it.',
+          instructionZh: '選一個題目，說大約九十秒。用第三堂課那四個步驟——回答、理由、例子、收尾——而且例子要來自你自己的生活，不要用史詩裡的情節。用過的片語就打勾。',
+          prompts: [
+            {
+              en: 'Explain to a friend why a three-thousand-year-old poem is worth their time.',
+              zh: '向朋友說明，一部三千年前的史詩為什麼值得他花時間。',
+            },
+            {
+              en: 'Argue for one side: Odysseus is a good leader, or he is not.',
+              zh: '選一邊，替它說出理由：奧德修斯是不是一個好的領導者。',
+            },
+            {
+              en: 'Describe one of your Sirens and the rope you would tie yourself with.',
+              zh: '描述你的一個賽蓮，以及你會用來綁住自己的那條繩子。',
+            },
+            {
+              en: 'Tell the story of one setback using Goal → Temptation → Choice → Consequence → Growth.',
+              zh: '用「目標→誘惑→選擇→後果→成長」，把你的一次挫折說成一個故事。',
+            },
+            {
+              en: 'Answer this properly: what are you trying to become successful for?',
+              zh: '認真回答這一題：你到底是為了什麼而想成功？',
+            },
+          ],
+          checklist: [
+            { en: 'overcome setbacks', zh: '克服挫折' },
+            { en: 'progress is rarely linear', zh: '進步很少是一條直線' },
+            { en: 'resist temptation', zh: '抵抗誘惑' },
+            { en: 'instant gratification', zh: '即時滿足' },
+            { en: 'a long-term goal', zh: '長期目標' },
+            { en: 'know when to walk away', zh: '知道什麼時候該收手' },
+            { en: 'face the consequences', zh: '承擔後果' },
+            { en: 'take responsibility for', zh: '為……負起責任' },
+            { en: 'adapt to the situation', zh: '依情境調整' },
+            { en: 'grow into responsibility', zh: '長成能承擔責任的人' },
+          ],
+          frames: [
+            {
+              en: 'The story is not really about getting home; it is about who he becomes on the way.',
+              zh: '這個故事真正談的不是回家，而是他在路上變成了什麼樣的人。',
+            },
+            {
+              en: 'Success is not about avoiding setbacks; it is about continuing after them.',
+              zh: '成功不是避開挫折，而是在挫折之後繼續走下去。',
+            },
+            {
+              en: 'He did not rely on willpower in the moment — he arranged the rope in advance.',
+              zh: '他並沒有指望當下的意志力，而是事先把繩子準備好。',
+            },
+            {
+              en: 'Sometimes winning is not enough; you also need to know when to walk away.',
+              zh: '有時候贏還不夠，你還要知道什麼時候該收手。',
+            },
+            {
+              en: 'Freedom and responsibility come together.',
+              zh: '自由和責任是一起來的。',
+            },
+            {
+              en: 'Instead of asking “can I do this?”, ask “what might happen if I do?”',
+              zh: '與其問「我可以這樣做嗎？」，不如問「如果我這樣做，可能會發生什麼事？」',
+            },
+            {
+              en: 'Know who you are, but learn how to adapt to different situations.',
+              zh: '清楚知道自己是誰，同時學會依不同情境調整自己。',
+            },
+            {
+              en: 'Strong relationships are not maintained by feelings alone.',
+              zh: '穩固的關係，不是光靠感覺維持的。',
+            },
+          ],
         },
       ],
     },
