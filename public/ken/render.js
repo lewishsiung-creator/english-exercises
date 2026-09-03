@@ -126,7 +126,25 @@ const BLOCKS = {
       <figcaption>— ${text(b.by)}</figcaption>
     </figure>`,
 
+  /* A teaching paragraph, spoken aloud on request.
+
+     `titleEn`/`titleZh` are optional and exist because several sources arrive
+     already cut into NUMBERED, TITLED sections — the nine lessons of session 4,
+     the twelve sections of session 2's clip. Flattening those into a run of
+     untitled paragraphs loses the thing that makes a long reading scannable
+     weeks later, when he is looking for one idea rather than reading the lot.
+     The heading is not `label()`: that one is uppercase with wide tracking,
+     which is right for a four-word activity name and shouting for a sentence
+     like "Good leadership requires responsibility, not just confidence".
+     Optional `n` puts the source's own number in front of it. */
   summary: (b) => `
+    ${b.titleEn ? `
+      <h4 class="summary-head">
+        ${b.n ? `<span class="n" aria-hidden="true">${text(b.n)}</span>` : ''}
+        <span class="en">${text(b.titleEn)}</span>
+        <button class="zh-chip" title="顯示中文">中</button>
+        <span class="zh">${text(b.titleZh || '')}</span>
+      </h4>` : ''}
     <div class="summary pair" data-zh>
       <p class="en">${text(b.en)}${speakBtn(b.en, 'say say-quiet')}
         <button class="zh-chip" title="顯示中文">中</button></p>

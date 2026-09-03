@@ -1717,6 +1717,31 @@ gap-fill. **D** is five reusable sentence patterns and a gap-fill on them. **E**
 takes the subject into *Atomic Habits* — a habit audit, a five-statement poll,
 five discussion questions and the closing speaking task.
 
+**Teaching paragraphs carry their source's own titles.** Three of the four
+sessions were built from documents already cut into numbered sections — the nine
+lessons of the Odyssey summary, the twelve sections of the Huberman clip, the
+five model answers — and the first pass flattened all of them into runs of
+untitled paragraphs. That reads fine once and is nearly unusable later, when he
+is looking for one idea rather than reading the lot. So `summary` takes optional
+`titleEn`/`titleZh` and an optional `n`:
+
+```js
+{ t: 'summary', n: '3', titleEn: 'Pride can become a weakness',
+  titleZh: '驕傲可能變成自己的弱點', en: '…', zh: '…' }
+```
+
+The heading is **not** `label()`, which the activity blocks share: that one is
+uppercase with wide tracking, right for a four-word activity name and shouting
+for a sentence like *Good leadership requires responsibility, not just
+confidence*. `.summary-head` is sentence case with the number in a quiet chip,
+and the Chinese behind the same 中 chip as everywhere else.
+
+Restoring the titles meant restoring the structure under them: session 4's
+lessons 6 and 7 had been merged into one paragraph and lesson 8 existed only
+inside the `contrast`, so those are now three paragraphs and the poem's nine
+ideas are nine numbered things on the page rather than a claim in the part
+heading.
+
 **The focus chips are links, which no other notebook's are.** Four sessions in,
 a session is several screens long, and the row of chips under its heading is the
 only contents list it has — reading one and then hunting for the part it names

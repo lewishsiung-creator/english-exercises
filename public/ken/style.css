@@ -525,6 +525,45 @@ body.zh-all .session-btn .titles .zh { display: block; }
 
 .summary { margin: 0 0 20px; }
 
+/* The heading on a titled teaching paragraph. Deliberately NOT `.label`: that
+   one is uppercase with wide letter-spacing, which suits a short activity name
+   and shouts when the title is a full sentence. Sentence case, one step up in
+   size from the body's UI type, with the source's number in a quiet chip. */
+.summary-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 8px;
+  margin: 34px 0 10px;
+  font-family: var(--font-ui);
+  font-size: .98rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--navy);
+}
+.summary-head .n {
+  flex: none;
+  min-width: 1.5em;
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: var(--navy-soft);
+  border: 1px solid var(--navy-line);
+  font-size: .78rem;
+  text-align: center;
+}
+.summary-head .en { flex: 1 1 auto; }
+.summary-head .zh {
+  flex-basis: 100%;
+  margin-top: 3px;
+  font-size: .88rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+/* A titled paragraph opens its own idea, so it should not also inherit the
+   gap the block above it left behind. */
+.summary-head + .summary { margin-bottom: 20px; }
+.part-head + .summary-head { margin-top: 8px; }
+
 /* ---------------- note ---------------- */
 
 .note {

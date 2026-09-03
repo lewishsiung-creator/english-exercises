@@ -75,7 +75,11 @@
      lead      a framing sentence in italics, opening a session
      link      a pointer to another page in this site
      quote     a short quote, with attribution
-     summary   a teaching paragraph, spoken aloud on request
+     summary   a teaching paragraph, spoken aloud on request. Optional
+               `titleEn`/`titleZh` put a heading above it and optional `n` a
+               number beside that — use them wherever the SOURCE arrived cut
+               into titled sections, so a long reading stays scannable weeks
+               later when he is looking for one idea rather than reading the lot
      note      a boxed aside explaining one idea in more depth
      contrast  two columns compared. The tags default to "As it landed" / "As
                it could land"; set coldEn/coldZh and warmEn/warmZh for any other
@@ -420,12 +424,18 @@ const NOTEBOOK = {
 
         {
           t: 'summary',
+          n: '1',
+          titleEn: 'The two goals I set myself',
+          titleZh: '我替自己設下的兩個目標',
           en: 'Today, I’d like to share the goals I set for myself this summer and reflect on the progress I have made. At the beginning of the summer, I had two main goals: to improve my physical condition and to prepare for the TOEIC exam. Earlier this year, I noticed that I had become thinner, so I decided to start working out regularly in order to become stronger and healthier. What surprised me most was how much my body changed in just two months. Exercise gradually became part of my daily routine, and now working out feels as natural to me as drinking water.',
           zh: '今天我想分享我這個暑假替自己設下的目標，並回顧這段時間的進步。暑假一開始，我有兩個主要目標：改善身體狀況，以及準備多益考試。今年年初，我注意到自己變瘦了，所以我決定開始規律健身，好讓自己變得更強壯、更健康。最讓我驚訝的是，我的身體在短短兩個月內改變了這麼多。運動逐漸成為我日常作息的一部分，現在健身對我來說，就像喝水一樣自然。',
         },
 
         {
           t: 'summary',
+          n: '2',
+          titleEn: 'The exam, and looking back',
+          titleZh: '那場考試，以及回頭看',
           en: 'My second goal was to prepare for the TOEIC exam. Since it was my first time taking the test, I felt quite nervous because I was unfamiliar with the format, rules, and overall process. However, once the exam started, I gradually became more focused and was able to complete most of the questions within the two-hour time limit. Looking back, I feel that these two months have been both productive and rewarding. Although I did not have any major travel plans or special activities, I spent my time developing healthier habits, challenging myself, and making steady progress. This experience has taught me that meaningful improvement does not always require dramatic changes; sometimes, small but consistent efforts can make a significant difference.',
           zh: '我的第二個目標是準備多益考試。因為這是我第一次參加這個考試，我感到相當緊張——它的題型、規則和整體流程，我都不熟悉。不過，考試一開始之後，我逐漸變得更專注，並且能在兩個小時的時間限制內完成大部分的題目。回頭看，我覺得這兩個月既充實又有收穫。雖然我沒有什麼重要的旅行計畫或特別的活動，但我把時間花在養成更健康的習慣、挑戰自己，以及穩定地進步上。這次經驗讓我明白：有意義的進步並不總是需要巨大的改變；有時候，小而持續的努力就能帶來顯著的不同。',
         },
@@ -1227,12 +1237,18 @@ const NOTEBOOK = {
 
         {
           t: 'summary',
+          n: '1',
+          titleEn: 'What body recomposition is',
+          titleZh: '什麼是身體重組',
           en: 'Body recomposition means two things happening at once: muscle mass going up while fat mass goes down. The traditional bodybuilding model says the two need separate phases — eat above maintenance to build, eat below it to cut — because one needs spare energy and the other needs a shortage of it. The claim in this clip is that the separation is not absolute.',
           zh: '身體重組（body recomposition）指的是兩件事同時發生：肌肉量上升，脂肪量下降。傳統健美的做法認為這兩件事必須分成兩個階段——增肌時吃得比維持熱量多，減脂時吃得比維持熱量少——因為一個需要多餘的能量，另一個需要能量不足。這段影片的主張是：這條界線並不是絕對的。',
         },
 
         {
           t: 'summary',
+          n: '2',
+          titleEn: 'What the review actually found',
+          titleZh: '那篇回顧研究到底發現了什麼',
           en: 'The evidence Aragon points to is a 2020 review by Barakat and colleagues, which found recomposition happening in people who already had training experience — not only in beginners and not only in people with obesity. In roughly seven of the ten studies discussed, participants gained more lean mass than the fat they lost, which means total body weight sometimes went up while body fat went down. The review names two main drivers: progressive resistance training, and nutrition set up to support it.',
           zh: 'Aragon 引用的證據是 Barakat 等人在 2020 年的一篇文獻回顧，該研究發現身體重組也會發生在已經有訓練經驗的人身上——不只是初學者，也不只是肥胖者。在所討論的十篇研究中，大約有七篇的受試者「增加的肌肉量」多於「減少的脂肪量」，也就是說，體脂下降的同時，總體重有時反而上升。這篇回顧指出兩個主要因素：漸進式的阻力訓練，以及為此設計的營養攝取。',
         },
@@ -1248,6 +1264,9 @@ const NOTEBOOK = {
 
         {
           t: 'summary',
+          n: '3',
+          titleEn: 'You do not necessarily need a deficit',
+          titleZh: '不一定需要熱量赤字',
           en: 'Huberman asks the obvious follow-up: does the fat loss half require eating below maintenance? Aragon says not necessarily. Someone attempting a recomp could eat around maintenance, or even a little above it, provided the other conditions are in place — hard resistance training above all, and a high protein intake. For the person he sketches, that means a judicious surplus of about ten percent, which for many people is something like two to three hundred calories a day.',
           zh: 'Huberman 接著問了最直接的問題：想要減脂，是不是一定得吃得比維持熱量少？Aragon 的回答是「不一定」。想做身體重組的人，可以吃在維持熱量附近，甚至略高一點，前提是其他條件都到位——最重要的是紮實的阻力訓練，以及高蛋白攝取。以他描述的那個對象來說，大約是抓十％左右的「有節制的盈餘」，對很多人而言差不多就是每天多兩三百大卡。',
         },
@@ -1262,30 +1281,45 @@ const NOTEBOOK = {
 
         {
           t: 'summary',
+          n: '4',
+          titleEn: 'Protein is the centrepiece',
+          titleZh: '蛋白質是核心',
           en: 'Protein is the centrepiece of the argument. Aragon notes that many of the successful recomposition studies had one thing in common: a very high protein intake, in the region of one to one and a half grams per pound of body weight — roughly 2.2 to 3.3 grams per kilo a day. That is well above what is needed to avoid deficiency, and above what most lifters need to maximise muscle growth. Huberman reduces it to a rule that is easy to act on: if you are going to add calories, make them high-quality protein.',
           zh: '蛋白質是整個論點的核心。Aragon 指出，許多成功做到身體重組的研究都有一個共同點：蛋白質攝取量非常高，大約是每磅體重一到一點五公克——換算下來，每公斤體重每天大約 2.2 到 3.3 公克。這遠高於「不缺乏」所需要的量，也高於大多數重訓者「把肌肉成長拉到最大」所需要的量。Huberman 把它濃縮成一條可以直接執行的原則：如果你要多吃熱量，就讓那些熱量是優質蛋白質。',
         },
 
         {
           t: 'summary',
+          n: '5',
+          titleEn: 'If you are going to add calories, add protein',
+          titleZh: '要多吃熱量，就吃蛋白質',
           en: 'The studies behind that rule come mostly from Jose Antonio and colleagues, working with people who already lift. In one, a group ate about 4.4 grams of protein per kilo a day — far more protein and far more total calories than the comparison group — and showed no significant increase in fat mass. In others, participants were told to keep eating as they normally do and simply add fifty to a hundred grams of protein a day: an extra chicken breast, some whey, a few more eggs. The fat gain you would expect from that much extra energy largely did not appear, and in some cases fat mass went down.',
           zh: '支持這條原則的研究，多半來自 Jose Antonio 等人，對象是已經有重訓習慣的人。其中一項研究裡，有一組每公斤體重每天吃到大約 4.4 公克蛋白質——蛋白質和總熱量都遠高於對照組——結果脂肪量並沒有顯著增加。另外幾項研究則是請受試者維持原本的飲食，只多加每天五十到一百公克的蛋白質：多一塊雞胸、一些乳清、幾顆蛋。照理說多出這麼多熱量應該會增加的脂肪，大致上並沒有出現，在某些研究裡脂肪量甚至還下降了。',
         },
 
         {
           t: 'summary',
+          n: '6',
+          titleEn: 'Four possible reasons, offered as possibilities',
+          titleZh: '四個可能的原因，而且只是「可能」',
           en: 'Why might extra protein behave differently from extra energy? Aragon offers four possibilities and is careful to call them possibilities. Protein is very filling, so adding a lot of it may quietly push other food out — the real surplus ends up smaller than it looks on paper. Protein also costs more energy to digest and process than carbohydrate or fat, so four hundred calories of protein and four hundred calories of fat are not metabolically the same arrival. Eating more may let people train harder and recover better. And people may simply move more during the day without noticing, which has a name of its own: non-exercise activity thermogenesis, or NEAT.',
           zh: '為什麼多吃蛋白質，表現會和多吃熱量不一樣？Aragon 提出四種可能，而且很小心地把它們稱為「可能」。第一，蛋白質很有飽足感，所以刻意多吃蛋白質，可能會不知不覺把其他食物擠掉——實際的熱量盈餘，比紙上算出來的小。第二，身體消化與處理蛋白質所耗掉的能量，比碳水或脂肪高，所以四百大卡的蛋白質和四百大卡的脂肪，在代謝上並不是同一回事。第三，吃得多一點，可能讓人練得更兇、恢復得更好。第四，人可能只是不自覺地在一天當中動得比較多，而這件事有自己的名字：非運動性活動產熱，簡稱 NEAT。',
         },
 
         {
           t: 'summary',
+          n: '7',
+          titleEn: 'The weakness in his own evidence',
+          titleZh: '他自己所引用證據的弱點',
           en: 'Then Aragon does something worth copying: he points out the weakness in his own evidence. Most of these are free-living studies. Nobody is watching the participants for twenty-four hours a day, so the food record is what people say they ate, and self-reported diet data are famously unreliable. Someone told to add a hundred grams of protein reports adding a hundred grams of protein — and may not report the dessert they stopped wanting. He has a name for the other half of the problem, the “good pupil phenomenon”: people over-report the behaviour the researcher asked for and under-report the rest.',
           zh: '接著 Aragon 做了一件值得學起來的事：他主動指出自己所引用的證據有什麼弱點。這些研究大多是「自由生活型研究」——沒有人二十四小時盯著受試者，所以飲食紀錄是「受試者說自己吃了什麼」，而自陳式的飲食資料，不可靠是出了名的。一個被要求「多吃一百公克蛋白質」的人，會回報自己多吃了一百公克蛋白質——卻不一定會回報那份他後來不太想吃的甜點。這個問題的另一半，他也給了名字，叫「好學生現象」：人們會高估自己配合研究者的程度，而低估其他部分。',
         },
 
         {
           t: 'summary',
+          n: '8',
+          titleEn: 'The metabolic-ward counterexample',
+          titleZh: '代謝實驗室的反例',
           en: 'To make the point properly he then brings in a study that cuts against him. Bray and colleagues, 2012, kept participants inside a tightly controlled metabolic facility, where the food really is measured. They were deliberately overfed by about 954 calories a day — roughly forty percent above maintenance — on diets of five, fifteen or twenty-five percent protein. Crucially, there was no exercise programme. Everyone gained fat. The normal- and high-protein groups did gain considerably more lean mass than the very-low-protein group, but nobody escaped the surplus.',
           zh: '為了把話說完整，他接著拿出一篇對自己不利的研究。Bray 等人在 2012 年的研究，把受試者放在嚴格控管的代謝實驗室裡，食物是真的量過的。研究刻意讓他們每天多吃大約 954 大卡——比維持熱量高出約四成——飲食中蛋白質分別佔五％、十五％、二十五％。關鍵是：這項研究沒有安排任何運動。結果所有人都增加了脂肪。蛋白質正常與偏高的兩組，確實比極低蛋白組增加了明顯更多的肌肉量，但沒有人躲得過那些多吃的熱量。',
         },
@@ -1349,12 +1383,18 @@ const NOTEBOOK = {
 
         {
           t: 'summary',
+          n: '9',
+          titleEn: 'The training is the switch',
+          titleZh: '訓練才是那個開關',
           en: 'So the training is the switch, and it has to be real training. The programme Huberman sketches is resistance work three or four times a week, with sets taken close enough to failure to mean something, alongside cardio about three times a week — mostly Zone 2, with some harder work or sprints now and then. Resistance training and cardio are not competing here: one supplies the signal to build, the other raises energy expenditure and conditioning.',
           zh: '所以訓練才是那個開關，而且必須是真的在練。Huberman 描述的課表是每週三到四次阻力訓練，每一組都要練到夠接近力竭、有意義的程度，另外每週大約三次有氧——主要是心率二區，偶爾加一些強度較高的或衝刺。在這裡，重訓和有氧並不互相衝突：一個提供「長肌肉」的訊號，另一個提高熱量消耗與心肺能力。',
         },
 
         {
           t: 'summary',
+          n: '10',
+          titleEn: 'Total protein beats timing, fasted or fed',
+          titleZh: '總量勝過時機，空腹或吃過都行',
           en: 'Two practical notes close the clip, and both take pressure off. Total protein across the day matters more than the exact hour you eat it, so the “anabolic window” is not something to organise your life around. And training fasted or fed is not the deciding factor either. What decides it is total daily nutrition, total protein, the quality of the training, recovery and consistency — all things you can hold steady across a semester that does not always let you eat at the same time every day.',
           zh: '影片最後有兩個實用的提醒，而且兩個都是在幫人卸下壓力。第一，一整天的蛋白質總量，比你到底幾點吃下去更重要，所以不必為了「合成代謝黃金期」去安排整個生活。第二，空腹練還是吃過再練，也不是決定性的因素。真正決定結果的是每日總營養、蛋白質總量、訓練品質、恢復，以及持續性——這些全都是你在一個沒辦法每天固定時間吃飯的學期裡，還能穩定維持的東西。',
         },
@@ -2185,12 +2225,18 @@ const NOTEBOOK = {
 
         {
           t: 'summary',
+          n: '1',
+          titleEn: 'First — why I wanted to watch it',
+          titleZh: '第一：我為什麼想看這部片',
           en: 'Today, I want to share my thoughts on the movie The Odyssey. First, I watched The Odyssey at the movie theater last week. To be honest, it is one of the best movies I have ever seen. One of the main reasons I wanted to watch it was the director, Christopher Nolan. I really admire his commitment to minimizing the use of CGI and creating realistic scenes whenever possible. He has already created many excellent films, and several of them are considered masterpieces.',
           zh: '今天我想分享我對電影《奧德賽》的看法。首先，我上週在電影院看了《奧德賽》。老實說，這是我看過最好看的電影之一。我想看這部片的主要原因之一，是導演克里斯多福・諾蘭。我很欣賞他堅持把電腦特效的使用降到最低、只要有可能就用實景拍出真實畫面的那份執著。他已經拍出許多優秀的作品，其中好幾部被視為經典。',
         },
 
         {
           t: 'summary',
+          n: '2',
+          titleEn: 'Second — what I thought afterwards',
+          titleZh: '第二：看完之後的想法',
           en: 'Second, I would like to share my thoughts after watching the movie. There are many famous actors in the film, which made it easier for me to become familiar with the characters and get into the story. Even though the movie was almost three hours long, I never felt bored or tired while watching it. The storyline kept me interested, and the way different parts of the story connected and developed was very well done. Overall, I really enjoyed the movie and found it engaging from beginning to end.',
           zh: '第二，我想分享看完之後的想法。片中有許多知名演員，這讓我比較容易熟悉角色、進入故事。雖然這部電影將近三個小時，但我在觀看的過程中從來沒有覺得無聊或疲倦。劇情一直讓我保持興趣，而故事各個部分彼此連接、往前推進的方式也處理得非常好。整體來說，我真的很享受這部電影，從頭到尾都覺得引人入勝。',
         },
@@ -3013,30 +3059,45 @@ const NOTEBOOK = {
 
         {
           t: 'summary',
+          n: '1',
+          titleEn: 'What qualities do you admire most in a director?',
+          titleZh: '你最欣賞電影導演的哪些特質？',
           en: 'I admire directors who have a clear creative vision and pay attention to detail. A good director should know what kind of story they want to tell and how they want the audience to feel. I also respect directors who are willing to take risks instead of simply following popular trends. For example, some directors prefer practical effects instead of relying too much on CGI. I think this shows their commitment to quality and makes their movies more unique.',
           zh: '我欣賞那些有清楚創作理念、而且注重細節的導演。一個好的導演應該知道自己想說的是什麼樣的故事，以及想讓觀眾產生什麼樣的感受。我也尊敬那些願意冒險、而不是一味跟隨流行的導演。舉例來說，有些導演偏好使用實體特效，而不是過度依賴電腦特效。我覺得這展現了他們對品質的堅持，也讓他們的作品更有獨特性。',
         },
 
         {
           t: 'summary',
+          n: '2',
+          titleEn: 'Does using less CGI make a film better, or just more realistic?',
+          titleZh: '減少使用電腦特效，會讓電影更好，還是只是更真實？',
           en: 'I think using less CGI can sometimes make a movie feel more realistic, but it does not always make the movie better. Practical effects can make action scenes and environments feel more natural because the actors are interacting with real objects. However, CGI is also very useful when filmmakers want to create things that are impossible to film in real life. In my opinion, the most important thing is not whether CGI is used, but whether it supports the story instead of distracting the audience.',
           zh: '我覺得少用電腦特效，有時候可以讓一部電影感覺比較真實，但不一定會讓這部電影變得更好。實體特效可以讓動作場面和場景感覺比較自然，因為演員是在跟真實的東西互動。不過，當創作者想拍出現實中不可能拍到的東西時，電腦特效也非常有用。在我看來，最重要的不是有沒有用電腦特效，而是它究竟是在為故事服務，還是在讓觀眾分心。',
         },
 
         {
           t: 'summary',
+          n: '3',
+          titleEn: 'What makes a film hold you for three hours?',
+          titleZh: '什麼樣的電影，長達三小時還能抓住你？',
           en: 'For me, a strong storyline is the most important factor. If the story keeps developing and gives me new information, I usually do not notice how much time has passed. Well-developed characters are also important because I want to understand their motivations and see what happens to them. Unexpected twists can also keep me interested. However, I think a long movie needs good pacing. If some scenes are too slow or unnecessary, even a great story can become boring.',
           zh: '對我來說，最重要的因素是很強的劇情。只要故事一直往前推進、不斷給我新的訊息，我通常不會注意到時間過了多久。角色寫得夠深也很重要，因為我會想理解他們的動機，並且想知道他們後來怎麼了。意想不到的轉折同樣能讓我保持興趣。不過我覺得，一部長片需要好的節奏。如果有些場景太慢或根本不必要，再好的故事也會變得無聊。',
         },
 
         {
           t: 'summary',
+          n: '4',
+          titleEn: 'Do famous actors make you more interested?',
+          titleZh: '知名演員會讓你更想看一部電影嗎？',
           en: 'Yes, famous actors can make me more interested in a movie, especially if I have enjoyed their previous performances. Sometimes, seeing a familiar actor gives me more confidence that the movie will be worth watching. However, I do not choose a movie only because of the actors. The director, storyline, reviews, and genre are also important to me. A movie can have many famous actors but still be disappointing if the story is weak.',
           zh: '會，知名演員確實會讓我更想看一部電影，尤其是我以前喜歡過他們的演出的話。有時候，看到一個熟悉的演員，會讓我比較有信心這部片值得一看。不過，我不會只因為演員就決定看一部電影。導演、劇情、評價和類型，對我來說同樣重要。一部電影可以有很多知名演員，但如果故事很弱，還是會讓人失望。',
         },
 
         {
           t: 'summary',
+          n: '5',
+          titleEn: 'One film that made a strong impression on you',
+          titleZh: '一部讓你印象深刻的電影',
           en: 'One movie that made a strong impression on me was Interstellar. What made it memorable was not only the visual effects but also the emotional story between the father and his daughter. The movie deals with topics such as time, space, family, and sacrifice, so it gave me a lot to think about after watching it. I also found the music very powerful because it created a strong emotional atmosphere. Even though I watched the movie a long time ago, many scenes still stay in my mind.',
           zh: '有一部讓我印象非常深刻的電影是《星際效應》。讓它令人難忘的，不只是視覺效果，還有父親和女兒之間那段情感很重的故事。這部電影處理的是時間、太空、家庭與犧牲這些主題，所以看完之後，它讓我有很多可以想的。我也覺得配樂非常有力量，因為它營造出很強烈的情緒氛圍。雖然我很久以前就看過這部電影，但很多畫面到現在還留在我腦海裡。',
         },
@@ -3168,24 +3229,36 @@ const NOTEBOOK = {
 
         {
           t: 'summary',
+          n: '·',
+          titleEn: 'Not simply an adventure about getting home',
+          titleZh: '這不只是一個「回家」的冒險故事',
           en: 'The Odyssey is usually described as an adventure about getting home, and that description is not wrong so much as thin. Odysseus takes ten years to travel a distance that should take weeks. Almost none of the story is about the sailing. It is about identity, temptation, judgement, loyalty, and growing into responsibility — which is why it survives, and why it lands differently at twenty than it would have at twelve.',
           zh: '一般會說《奧德賽》是一個「回家」的冒險故事，這個說法不算錯，只是太薄了。奧德修斯花了十年，走完一段本來幾個星期就能走完的路。整個故事幾乎沒有一段是在講航海。它談的是身分認同、誘惑、判斷力、忠誠，以及一個人如何長成能承擔責任的樣子——這正是它能流傳下來的原因，也是為什麼你二十歲讀它，感受會和十二歲時完全不同。',
         },
 
         {
           t: 'summary',
+          n: '1',
+          titleEn: 'Resilience matters more than a perfect journey',
+          titleZh: '韌性比「一路順利」更重要',
           en: 'The first idea is resilience, and the shape of it matters. Odysseus meets storms, monsters, imprisonment and loss; the journey takes far longer than it was supposed to, and he keeps going anyway. Nobody in the poem gets a clean run. That is worth holding on to, because progress in a degree, a career, a relationship or a training programme is almost never a straight line — and the useful definition of success is not avoiding setbacks but continuing after them.',
           zh: '第一個概念是韌性，而它的形狀很重要。奧德修斯遇上風暴、怪物、囚禁與失去；這趟旅程遠比預期的久，而他還是繼續往前走。這部史詩裡沒有任何人一路順利。這一點值得記住，因為不論是學業、職涯、感情還是訓練計畫，進展幾乎從來都不是一條直線——而「成功」比較有用的定義，不是避開挫折，而是在挫折之後繼續走下去。',
         },
 
         {
           t: 'summary',
+          n: '2',
+          titleEn: 'Intelligence can be more powerful than strength',
+          titleZh: '智慧往往比蠻力更重要',
           en: 'The second is that intelligence beats strength, and it is the reason Odysseus is remembered at all. He is not the strongest man in the poem. What he has is the ability to read a situation, plan, and change plan. Against the Cyclops he does not fight; he thinks. The modern translation is almost too neat — analyse the situation, communicate well, solve the problem, switch strategies — but it holds: the person who can do those four things usually beats the person who is simply working harder.',
           zh: '第二個概念是「智慧勝過蠻力」，而這正是奧德修斯之所以被記住的原因。他並不是這部史詩裡最強壯的人。他真正擁有的，是判讀情勢、擬定計畫，以及改變計畫的能力。面對獨眼巨人時，他靠的不是打，而是想。換成現代的說法幾乎太過工整——分析情勢、有效溝通、解決問題、調整策略——但道理是成立的：能做到這四件事的人，通常會贏過那個只是更拚命的人。',
         },
 
         {
           t: 'summary',
+          n: '3',
+          titleEn: 'Pride can become a weakness',
+          titleZh: '驕傲可能變成自己的弱點',
           en: 'The third is the one people forget, because it comes immediately after a victory. Having escaped the Cyclops, Odysseus cannot resist shouting his real name back across the water. He has already won; he wants the win acknowledged. That single sentence costs him years. The lesson is not that pride is bad, which is too simple, but that pride tends to arrive at the exact moment you have stopped paying attention — and that winning and needing to be seen winning are two different appetites.',
           zh: '第三個概念，是大家最容易忘記的，因為它緊接在一場勝利之後。逃出獨眼巨人的洞穴之後，奧德修斯忍不住隔著海面喊出自己的真名。他其實已經贏了，但他想要那場勝利被承認。就這麼一句話，讓他付出了好幾年的代價。這裡的教訓不是「驕傲不好」——那太簡單了——而是：驕傲往往正好在你不再警覺的那一刻出現；而「贏」和「需要被看見自己贏」，其實是兩種不同的慾望。',
         },
@@ -3249,6 +3322,9 @@ const NOTEBOOK = {
 
         {
           t: 'summary',
+          n: '4',
+          titleEn: 'Self-control determines your future',
+          titleZh: '自制力會影響你未來的人生',
           en: 'The fourth idea is self-control, and it is where the poem stops being about monsters. The Lotus-Eaters, Circe, the Sirens, the cattle of Helios — these are not really creatures. They are one thing said four ways: the pull to forget a long-term goal because of a short-term pleasure. Odysseus does not defeat the Sirens. He has himself tied to the mast, which is a plan made in advance by someone who knows he will not be reliable later.',
           zh: '第四個概念是自制力，而這裡正是這部史詩不再是在講怪物的地方。食蓮族（吃了就忘記回家的人）、瑟西（女巫）、賽蓮（海妖）、太陽神赫利俄斯的牛群——這些其實都不是生物。它們是同一件事的四種說法：為了眼前的快樂而忘掉長期目標的那股拉力。奧德修斯並沒有「打敗」賽蓮。他是叫人把自己綁在桅杆上——那是一個清楚知道自己「到時候會靠不住」的人，事先做好的安排。',
         },
@@ -3264,18 +3340,45 @@ const NOTEBOOK = {
 
         {
           t: 'summary',
+          n: '5',
+          titleEn: 'Never lose sight of what really matters',
+          titleZh: '不要忘記自己真正重視的是什麼',
           en: 'The fifth is the hardest to argue with. Calypso offers Odysseus immortality — not comfort, not money, immortality — and he turns it down to go back to a small rocky island, a wife and a son. His goal was never comfort. It was Ithaca, and the person he is there. Set against that, the question most people your age are asking, “how do I become successful?”, starts to look like the wrong question. The poem prefers a better one: what am I trying to become successful for?',
           zh: '第五個概念最難反駁。卡呂普索給了奧德修斯永生——不是舒適，也不是財富，是永生——而他拒絕了，只為了回到一座多岩的小島、一個妻子和一個兒子身邊。他的目標從來就不是舒適，而是伊薩卡，以及在那裡的那個自己。放在這個對照下，你這個年紀的人最常問的那個問題——「我要怎樣才會成功？」——就開始顯得問錯了。這部史詩更喜歡另一個問法：我到底是為了什麼而想成功？',
         },
 
         {
           t: 'summary',
-          en: 'The sixth and seventh are about being responsible for other people. Most of the crew’s disasters follow the same pattern: someone ignores advice, acts on impulse, and everyone pays. Freedom and responsibility arrive together, which is what adulthood mostly turns out to mean. And Odysseus himself is a genuinely useful leader to study precisely because he is not idealised — some of his decisions protect his men and some endanger them. The questions that fall out of that are worth asking about any team you end up running: do I listen to advice, do I explain my decisions, do I take responsibility when it goes wrong, and am I protecting the team or protecting my ego?',
-          zh: '第六和第七個概念，講的是為別人負責。船員遭遇的災難，大多依循同一個模式：有人不聽勸、憑衝動行事，然後所有人一起承擔。自由和責任是一起來的，而這差不多就是「長大」真正的意思。至於奧德修斯本人，之所以特別值得拿來研究領導，正因為他不是被理想化的——他有些決定保護了部下，有些卻讓他們陷入危險。從這裡衍生出來的幾個問題，值得你對任何一支自己帶的團隊問一遍：我有沒有聽建議？我有沒有解釋我的決定？出事的時候我有沒有扛？以及，我在保護的是團隊，還是我自己的面子？',
+          n: '6',
+          titleEn: 'Your choices have consequences',
+          titleZh: '每個選擇都會帶來後果',
+          en: 'Most of the crew’s disasters follow the same pattern: someone ignores advice, acts on impulse, and everyone pays. That is the sixth idea, and it is the one that most obviously belongs to your decade rather than to Homer’s. Freedom and responsibility arrive together, which is what adulthood mostly turns out to mean. The useful shape is Decision → Consequence → Responsibility, and the discipline is to stop asking only “can I do this?”.',
+          zh: '船員遭遇的災難，大多依循同一個模式：有人不聽勸、憑衝動行事，然後所有人一起承擔。這是第六個概念，也是最明顯屬於你這個年紀、而不是屬於荷馬那個年代的一個。自由和責任是一起來的，而這差不多就是「長大」真正的意思。它有用的形狀是「決定 → 後果 → 責任」，而真正的修練，是不要只問「我可以這樣做嗎？」。',
         },
 
         {
           t: 'summary',
+          n: '7',
+          titleEn: 'Good leadership requires responsibility, not just confidence',
+          titleZh: '真正的領導力不只是自信，而是責任',
+          en: 'Odysseus is a genuinely useful leader to study precisely because he is not idealised — some of his decisions protect his men and some endanger them. Four questions fall out of that, and they are worth asking about any team you end up running: do I listen to advice, do I explain my decisions, do I take responsibility when it goes wrong, and am I protecting the team or protecting my ego? Leadership is measured partly by what happens to the people following you.',
+          zh: '奧德修斯之所以特別值得拿來研究領導，正因為他不是被理想化的——他有些決定保護了部下，有些卻讓他們陷入危險。從這裡衍生出四個問題，值得你對任何一支自己帶的團隊問一遍：我有沒有聽建議？我有沒有解釋我的決定？出事的時候我有沒有扛？以及，我在保護的是團隊，還是我自己的面子？領導做得好不好，有一部分是看跟著你的人後來怎麼了。',
+        },
+
+        {
+          t: 'summary',
+          n: '8',
+          titleEn: 'Adaptability is part of intelligence',
+          titleZh: '懂得調整自己，也是一種智慧',
+          en: 'Sometimes he fights, sometimes he negotiates, sometimes he hides his name, sometimes he simply waits. He survives partly because he knows which of those the room calls for. Set that against the advice everyone your age is given — “just be yourself” — and the gap is obvious: the advice is useful and incomplete. Know who you are, and learn how to adapt to different situations. That is not being fake; it is situational awareness, and it is the third of the three moves near the start of this part.',
+          zh: '他有時候打，有時候談判，有時候隱藏身分，有時候只是等待。他能活下來，有一部分是因為他知道當下的場面需要哪一種。把這一點對照你這個年紀的人最常聽到的建議——「做自己就好」——差距就很明顯了：那個建議有用，但不完整。清楚知道自己是誰，同時學會依不同情境調整自己。這不是虛偽，而是情境判斷力，也就是這一部分開頭那三個做法裡的第三個。',
+        },
+
+        {
+          t: 'summary',
+          n: '9',
+          titleEn: 'Relationships require loyalty and trust',
+          titleZh: '關係需要忠誠與信任',
           en: 'The ninth is the quietest and the one the adaptations usually cut. While Odysseus is away, Penelope holds a household together for twenty years with patience, intelligence and a great deal of strategy, and Telemachus grows from an uncertain boy into someone willing to take responsibility. So the poem is also about relationships surviving separation — and about the fact that they survive on consistent action rather than on feeling. Nobody in Ithaca was waiting because they felt like waiting.',
           zh: '第九個概念最安靜，也是改編版本通常會刪掉的那一個。奧德修斯不在的那二十年，潘妮洛普靠著耐心、智慧和大量的謀略，把一個家撐了下來；而特勒瑪科斯，也從一個猶豫不決的少年，長成願意承擔責任的人。所以這部史詩同時也在講：關係如何在分離中存活下來——以及，它們靠的是持續的行動，而不是感覺。伊薩卡沒有任何人是「因為想等」才等下去的。',
         },
