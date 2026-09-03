@@ -3250,7 +3250,7 @@ const NOTEBOOK = {
         {
           t: 'summary',
           en: 'The fourth idea is self-control, and it is where the poem stops being about monsters. The Lotus-Eaters, Circe, the Sirens, the cattle of Helios — these are not really creatures. They are one thing said four ways: the pull to forget a long-term goal because of a short-term pleasure. Odysseus does not defeat the Sirens. He has himself tied to the mast, which is a plan made in advance by someone who knows he will not be reliable later.',
-          zh: '第四個概念是自制力，而這裡正是這部史詩不再是在講怪物的地方。食蓮族、瑟西、賽蓮（海妖）、太陽神赫利俄斯的牛群——這些其實都不是生物。它們是同一件事的四種說法：為了眼前的快樂而忘掉長期目標的那股拉力。奧德修斯並沒有「打敗」賽蓮。他是叫人把自己綁在桅杆上——那是一個清楚知道自己「到時候會靠不住」的人，事先做好的安排。',
+          zh: '第四個概念是自制力，而這裡正是這部史詩不再是在講怪物的地方。食蓮族（吃了就忘記回家的人）、瑟西（女巫）、賽蓮（海妖）、太陽神赫利俄斯的牛群——這些其實都不是生物。它們是同一件事的四種說法：為了眼前的快樂而忘掉長期目標的那股拉力。奧德修斯並沒有「打敗」賽蓮。他是叫人把自己綁在桅杆上——那是一個清楚知道自己「到時候會靠不住」的人，事先做好的安排。',
         },
 
         {
@@ -3344,7 +3344,7 @@ const NOTEBOOK = {
             },
             {
               q: 'What do the Lotus-Eaters, the Sirens and the cattle of Helios have in common?',
-              qZh: '食蓮族、賽蓮（海妖）和赫利俄斯的牛群，共同點是什麼？',
+              qZh: '食蓮族（吃了就忘記回家的人）、賽蓮（海妖）和太陽神赫利俄斯的牛群，共同點是什麼？',
               options: [
                 'They are all sent by the same god',
                 'They are all short-term pleasure against a long-term goal',
