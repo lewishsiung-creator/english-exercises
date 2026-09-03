@@ -25,7 +25,7 @@
    has, so they are links. Give a block an `id` and give the chip that names it a
    matching `to`, and tapping the chip jumps there:
 
-     focus:  { en: 'Modern Sirens', zh: '現代版的賽蓮', to: 's4-sirens' }
+     focus:  { en: 'Modern Sirens', zh: '現代版的賽蓮（海妖）', to: 's4-sirens' }
      block:  { t: 'note', id: 's4-sirens', en: 'What are your Sirens?', ... }
 
    Any block type takes an `id`; the convention here is `<session>-<letter>` for
@@ -3136,7 +3136,7 @@ const NOTEBOOK = {
 
       focus: [
         { en: 'Nine ideas in the poem', zh: '這部史詩裡的九個概念', to: 's4-a' },
-        { en: 'Modern Sirens', zh: '現代版的賽蓮', to: 's4-sirens' },
+        { en: 'Modern Sirens', zh: '現代版的賽蓮（海妖）', to: 's4-sirens' },
         { en: 'Goal → Temptation → Choice → Consequence → Growth', zh: '目標→誘惑→選擇→後果→成長', to: 's4-b' },
         { en: 'Ego, judgement and leadership', zh: '自我、判斷力與領導', to: 's4-ego' },
         { en: 'Talking about what a story means', zh: '談一個故事的意義', to: 's4-d' },
@@ -3250,14 +3250,14 @@ const NOTEBOOK = {
         {
           t: 'summary',
           en: 'The fourth idea is self-control, and it is where the poem stops being about monsters. The Lotus-Eaters, Circe, the Sirens, the cattle of Helios — these are not really creatures. They are one thing said four ways: the pull to forget a long-term goal because of a short-term pleasure. Odysseus does not defeat the Sirens. He has himself tied to the mast, which is a plan made in advance by someone who knows he will not be reliable later.',
-          zh: '第四個概念是自制力，而這裡正是這部史詩不再是在講怪物的地方。食蓮族、瑟西、賽蓮、太陽神赫利俄斯的牛群——這些其實都不是生物。它們是同一件事的四種說法：為了眼前的快樂而忘掉長期目標的那股拉力。奧德修斯並沒有「打敗」賽蓮。他是叫人把自己綁在桅杆上——那是一個清楚知道自己「到時候會靠不住」的人，事先做好的安排。',
+          zh: '第四個概念是自制力，而這裡正是這部史詩不再是在講怪物的地方。食蓮族、瑟西、賽蓮（海妖）、太陽神赫利俄斯的牛群——這些其實都不是生物。它們是同一件事的四種說法：為了眼前的快樂而忘掉長期目標的那股拉力。奧德修斯並沒有「打敗」賽蓮。他是叫人把自己綁在桅杆上——那是一個清楚知道自己「到時候會靠不住」的人，事先做好的安排。',
         },
 
         {
           t: 'note',
           id: 's4-sirens',
           en: 'What are your Sirens?',
-          zh: '你的賽蓮是什麼？',
+          zh: '你的賽蓮（海妖）是什麼？',
           bodyEn: 'The modern list writes itself: the feed, the game, the relationship you already know is wrong, the impulsive purchase, the thing you keep putting off. None of them announces itself as a monster; every one of them is genuinely attractive, which is the entire point. The question the poem asks is uncomfortable and worth sitting with — can you say no to something attractive today in order to protect something you want tomorrow? And notice Odysseus’s answer: he did not rely on willpower in the moment. He arranged the rope first.',
           bodyZh: '現代版的名單自己就會寫出來：滑不完的動態、那款遊戲、那段你其實早就知道不對的關係、那筆衝動的消費，還有那件你一直往後拖的事。它們沒有一個會自我介紹說「我是怪物」；而它們每一個都真的很吸引人——重點正是在這裡。這部史詩問的問題並不好受，但值得停下來想：你能不能為了保住你明天想要的東西，對今天很吸引人的東西說不？另外注意奧德修斯的做法：他並沒有指望自己「當下的意志力」。他是先把繩子準備好。',
         },
@@ -3344,7 +3344,7 @@ const NOTEBOOK = {
             },
             {
               q: 'What do the Lotus-Eaters, the Sirens and the cattle of Helios have in common?',
-              qZh: '食蓮族、賽蓮和赫利俄斯的牛群，共同點是什麼？',
+              qZh: '食蓮族、賽蓮（海妖）和赫利俄斯的牛群，共同點是什麼？',
               options: [
                 'They are all sent by the same god',
                 'They are all short-term pleasure against a long-term goal',
@@ -3603,7 +3603,7 @@ const NOTEBOOK = {
               en: 'procrastination',
               zh: '拖延',
               eg: 'Procrastination is the quietest of the modern Sirens.',
-              egZh: '在現代的賽蓮當中，拖延是最安靜的那一個。',
+              egZh: '在現代的賽蓮（海妖）當中，拖延是最安靜的那一個。',
             },
             {
               en: 'impulsive spending',
@@ -3791,7 +3791,7 @@ const NOTEBOOK = {
           items: [
             {
               en: 'What are your Sirens — the attractive things that cost you a long-term goal? And what would your rope be?',
-              zh: '你的賽蓮是什麼——那些很吸引人、卻會讓你失去長期目標的東西？而你的「繩子」會是什麼？',
+              zh: '你的賽蓮（海妖）是什麼——那些很吸引人、卻會讓你失去長期目標的東西？而你的「繩子」會是什麼？',
               starters: [
                 { en: 'The honest answer is…', zh: '老實的答案是……' },
                 { en: 'It usually happens when…', zh: '它通常發生在……的時候。' },
@@ -3863,7 +3863,7 @@ const NOTEBOOK = {
             },
             {
               en: 'Describe one of your Sirens and the rope you would tie yourself with.',
-              zh: '描述你的一個賽蓮，以及你會用來綁住自己的那條繩子。',
+              zh: '描述你的一個賽蓮（海妖），以及你會用來綁住自己的那條繩子。',
             },
             {
               en: 'Tell the story of one setback using Goal → Temptation → Choice → Consequence → Growth.',
