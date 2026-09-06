@@ -1558,6 +1558,32 @@ scroll, and an **optional title on `summary`** (`titleEn`/`titleZh` plus a
 number in `n`), because the source arrives as nine numbered, titled lessons and
 flattening them loses what makes a long reading scannable later.
 
+Session 3 (6 September 2026) is his own self-introduction, and it has the third
+kind of source this page has now used: session 1 was a record of an hour that
+happened, session 2 was material prepared for one that had not, and this is a
+finished piece of writing he produced himself. The four paragraphs sit on the
+page verbatim, in `summary` blocks so each one has a 🔊 at speaking pace, with a
+`note` above them saying they are unedited — the attribution matters, because
+`summary` is otherwise the page's own teaching voice.
+
+The lesson is in one sentence of his: he is proud of his honesty and has started
+to notice that being completely honest is not always the best choice. So the
+`contrast` block is three cases where a blunt true sentence and a tactful true
+sentence carry the same information, and the note beside it draws the line he
+was actually reaching for — most of what he wants is not lying but choosing
+which true thing to say first. The white lie is the smaller tool.
+
+**The reason to keep a notebook per student is in the `note` about patience.**
+In session 1 he worked out that what frustrates him when coaching a friend is
+not losing but "I already explained it, why haven't you learned it yet?"
+Seventeen days later, unprompted and on a different subject, he listed patience
+as the one trait he still needs to work on. Two conversations, one word. A page
+built one lesson at a time cannot see that; a notebook can.
+
+`fix` is empty for the third time, and for a new reason — the writing arrived
+polished, so it carries no record of what he said while producing it, and the
+sentences in it are already correct.
+
 
 ## Anna's Notebook — young adult, one-to-one, kept over time
 

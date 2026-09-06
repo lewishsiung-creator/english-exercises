@@ -1222,5 +1222,383 @@ const NOTEBOOK = {
         },
       ],
     },
+
+    /* Session 3 has a third kind of source. Session 1 was an organised write-up
+       of an hour of talk; session 2 was material prepared before a lesson. This
+       one is a piece of finished writing Eason produced himself — a
+       self-introduction, already tidy. So the four `summary` blocks below hold
+       his own paragraphs verbatim, and the `note` above them says so on the
+       page; nothing has been rewritten, and nothing should be. `fix` stays
+       empty again: polished writing carries no record of what he said while
+       producing it, and his sentences here are already correct. */
+    {
+      id: 's3',
+      n: 3,
+      date: '2026-09-06',
+      dateEn: '6 September 2026',
+      dateZh: '2026 年 9 月 6 日',
+      en: 'Honest, and learning to be tactful as well',
+      zh: '誠實，並且學會把話說得更圓融',
+
+      focus: [
+        { en: 'Self-introduction', zh: '自我介紹' },
+        { en: 'Honesty and tact', zh: '誠實與圓融' },
+        { en: 'White lies', zh: '善意的謊言' },
+        { en: 'Patience, again', zh: '耐心，又一次' },
+        { en: 'Working with others', zh: '與他人合作' },
+      ],
+
+      blocks: [
+        {
+          t: 'lead',
+          en: 'Your self-introduction, and the sentence hiding inside it. You are proud of being honest — and you have started to notice what honesty sometimes costs the person listening. That is the most interesting line in the whole text, and it is only one line long.',
+          zh: '你的自我介紹，以及藏在裡面的那一句話。你為自己的誠實感到驕傲——而你也開始注意到，誠實有時候會讓聽的那個人付出代價。那是整篇文章裡最有意思的一句，而它只有一句話那麼長。',
+        },
+
+        {
+          t: 'note',
+          en: 'Your introduction, unchanged',
+          zh: '你的自我介紹，原文未改',
+          bodyEn: 'The four paragraphs below are yours exactly as you wrote them — nothing added, nothing corrected, nothing tidied. They are here so you can hear them: tap 🔊 on any paragraph and it is read at speaking pace, which is roughly the pace you will need if you ever have to deliver this out loud. Read along with it rather than after it. Everything further down the page is built out of these four paragraphs.',
+          bodyZh: '下面四段是你寫的原文，完全沒有更動——沒有增加、沒有訂正、也沒有整理。把它們放在這裡是為了讓你「聽」：點任何一段的 🔊，它會用說話的速度唸出來，而那大致就是你真的要講出來時需要的速度。請跟著它一起唸，而不是等它唸完再唸。這一頁後面所有的內容，都是從這四段裡長出來的。',
+        },
+
+        {
+          t: 'summary',
+          en: 'I would describe myself as an outgoing, serious, curious, and energetic person. I enjoy talking to people because I easily get bored when I spend too much time by myself. I am also quite straightforward, and I am proud of my honesty because I always try to be genuine with other people. However, I have also started to realize that being completely honest is not always the best choice. Sometimes, the truth can hurt other people’s feelings, so I would like to learn how to express myself more tactfully and even tell a harmless white lie when necessary.',
+          zh: '我會形容自己是一個外向、認真、好奇而且有活力的人。我喜歡和別人聊天，因為如果花太多時間自己一個人待著，我很容易覺得無聊。我也是一個相當直接的人，而且我很為自己的誠實感到驕傲，因為我總是希望能真誠地對待別人。不過，我也開始了解到，完全誠實並不一定在所有情況下都是最好的選擇。有時候，真話可能會傷害別人的感受，所以我想學習如何更有技巧、更委婉地表達自己，甚至在必要的時候說一些善意的謊言。',
+        },
+
+        {
+          t: 'summary',
+          en: 'I rarely feel nervous, and I usually feel more confident when I pay attention to my outfit and appearance. I think the way I present myself can affect the way I feel about myself. Among the personality traits of being serious, curious, patient, and energetic, I think I have most of them, although patience is something I still need to work on.',
+          zh: '我很少感到緊張，而且當我特別注意自己的穿著和外表時，通常會更有自信。我認為一個人如何呈現自己，也會影響自己內在的感受。在認真、好奇、有耐心和有活力這幾種特質中，我覺得自己大部分都有，不過「耐心」是我還需要繼續加強的地方。',
+        },
+
+        {
+          t: 'summary',
+          en: 'My attitude toward teamwork has also changed over time. When I was in junior high school, I usually preferred working alone rather than working with my classmates. However, after entering senior high school and meeting new classmates, I have become more willing to work with others. I think this shows that I am becoming more open to new people and new experiences.',
+          zh: '我對團隊合作的態度也隨著時間有所改變。國中的時候，比起和同學一起合作，我通常更喜歡自己完成事情。不過，進入高中、認識新的同學之後，我變得更願意和別人一起合作。我覺得這也代表我正在變得更願意接觸新的人，以及接受新的經驗。',
+        },
+
+        {
+          t: 'summary',
+          en: 'One interesting thing about me is that I am a certified diver. I have even had the chance to swim with a whale shark.',
+          zh: '關於我，有一件很有趣的事情是，我是一名擁有證照的潛水員。我甚至曾經有機會和鯨鯊一起游泳。',
+        },
+
+        {
+          t: 'note',
+          en: 'What the introduction already does — five moves',
+          zh: '這篇自我介紹已經做到的五件事',
+          bodyEn: 'First it names four traits, which is ordinary. Second it explains one of them instead of listing more — you enjoy talking to people because you get bored alone, and a reason is what makes a trait believable. Third, and this is the part most people never reach, it names a limit of your own strength: honesty can cost the listener something. Fourth it says what you intend to do about it. Fifth it ends with one concrete fact that nobody else in the room will have — a certified diver who has swum with a whale shark. The order is good. Traits, a reason, an honest limit, an intention, and one thing only you can say. Keep that shape and you can rewrite the content for any audience.',
+          bodyZh: '第一，它列出了四個特質，這很普通。第二，它沒有再多列幾個，而是解釋了其中一個——你喜歡跟人說話，因為一個人待著會無聊；有理由，特質才會讓人相信。第三，也是多數人從來不會走到的一步：它指出了自己這項優點的界線——誠實可能讓聽的人付出代價。第四，它說出你打算怎麼處理這件事。第五，它以一個別人都拿不出來的具體事實收尾——一位有證照、還跟鯨鯊一起游過泳的潛水員。這個順序很好：特質、理由、一個誠實的界線、一個打算，以及一件只有你能說的事。保住這個架構，內容就可以為任何場合重寫。',
+        },
+
+        {
+          t: 'phrases',
+          en: 'Describing yourself',
+          zh: '描述自己',
+          items: [
+            {
+              en: 'outgoing',
+              zh: '外向的',
+              eg: 'I would describe myself as an outgoing person.',
+              egZh: '我會形容自己是一個外向的人。',
+            },
+            {
+              en: 'straightforward',
+              zh: '直接的、有話直說的',
+              eg: 'I am quite straightforward — if something is wrong, I say so.',
+              egZh: '我算是相當直接的人——如果有什麼不對，我就會說出來。',
+            },
+            {
+              en: 'be genuine with someone',
+              zh: '真誠地對待某人',
+              eg: 'I always try to be genuine with other people.',
+              egZh: '我總是希望能真誠地對待別人。',
+            },
+            {
+              en: 'hurt someone’s feelings',
+              zh: '傷害某人的感受',
+              eg: 'Sometimes the truth can hurt other people’s feelings.',
+              egZh: '有時候真話會傷害別人的感受。',
+            },
+            {
+              en: 'express myself tactfully',
+              zh: '更有技巧、更委婉地表達自己',
+              eg: 'I would like to learn how to express myself more tactfully.',
+              egZh: '我想學會如何更有技巧地表達自己。',
+            },
+            {
+              en: 'a white lie',
+              zh: '善意的謊言',
+              eg: 'She told a white lie so that nobody would feel left out.',
+              egZh: '她說了一個善意的謊言，好讓沒有人覺得被排擠。',
+            },
+            {
+              en: 'work on something',
+              zh: '在某件事上下功夫、繼續加強',
+              eg: 'Patience is something I still need to work on.',
+              egZh: '耐心是我還需要繼續加強的地方。',
+            },
+            {
+              en: 'the way I present myself',
+              zh: '我呈現自己的方式',
+              eg: 'The way I present myself affects the way I feel about myself.',
+              egZh: '我呈現自己的方式，會影響我對自己的感受。',
+            },
+            {
+              en: 'pay attention to something',
+              zh: '注意、留心某件事',
+              eg: 'I feel more confident when I pay attention to my outfit.',
+              egZh: '當我注意自己的穿著時，我會更有自信。',
+            },
+            {
+              en: 'be willing to do something',
+              zh: '願意做某件事',
+              eg: 'I have become more willing to work with other people.',
+              egZh: '我變得更願意和別人合作。',
+            },
+            {
+              en: 'open to new experiences',
+              zh: '願意接受新的經驗',
+              eg: 'Changing school made me more open to new experiences.',
+              egZh: '換了學校，讓我更願意接受新的經驗。',
+            },
+            {
+              en: 'a certified diver',
+              zh: '有證照的潛水員',
+              eg: 'One interesting thing about me is that I am a certified diver.',
+              egZh: '關於我，有一件有趣的事是我是一名有證照的潛水員。',
+            },
+          ],
+        },
+
+        {
+          t: 'note',
+          en: 'A white lie, and where the line actually is',
+          zh: '善意的謊言，以及那條線到底在哪裡',
+          bodyEn: 'A white lie is a small untruth told to spare someone — “I love it, thank you” about a present you will never use. English treats it as ordinary, which is why the phrase has its own name and no real disapproval attached. But notice what you are actually asking for. Almost none of the situations that go wrong for you need a lie. In most of them there are several true things you could say, and being tactful is choosing which true one to say first. “Your slides are messy” and “the content is solid, I would cut half the text” are both honest; only the second one gets used. Learn that first. The white lie is a much smaller tool than it looks, and you will need it about once a year.',
+          bodyZh: 'white lie 是為了讓別人好過而說的小小不實話——收到一份你永遠不會用的禮物，回一句「我好喜歡，謝謝你」。英文把它視為稀鬆平常，所以這個說法才會有自己的名字，而且幾乎不帶責備的意味。但注意你真正需要的是什麼。你會出問題的那些情境，幾乎沒有一個需要說謊。在大多數情況下，你可以說的真話不只一句，而所謂的圓融，就是決定先說哪一句真話。「你的投影片很亂」和「內容很扎實，我會把文字砍掉一半」都是誠實的，但只有第二句會被聽進去。先學會這個。善意的謊言是一個比看起來小得多的工具，你大概一年才用得到一次。',
+        },
+
+        {
+          t: 'contrast',
+          en: 'Both sentences are honest',
+          zh: '兩句話都是誠實的',
+          coldEn: 'Straight out',
+          coldZh: '直接說出口',
+          warmEn: 'With tact',
+          warmZh: '說得圓融一點',
+          hintEn: 'Nothing in the right-hand column is a lie — check each one. It is the same information, with a different true sentence chosen to go first. Read both aloud.',
+          hintZh: '右邊那一欄沒有一句是謊話——你可以一句一句檢查。資訊完全相同，只是選了另一句真話放在最前面。兩邊都請唸出聲。',
+          items: [
+            {
+              caseEn: 'A classmate shows you the slides for a group presentation',
+              caseZh: '同學把小組報告的投影片拿給你看',
+              cold: {
+                en: 'Your slides are messy. Nobody is going to be able to read them.',
+                zh: '你的投影片很亂，根本沒有人看得懂。',
+              },
+              warm: {
+                en: 'The content is solid. I would cut about half the text on each slide so people can read it from the back of the room.',
+                zh: '內容很扎實。我會把每一頁的文字砍掉大概一半，這樣坐在後面的人也看得到。',
+              },
+              whyEn: 'The second sentence is not softer, it is more useful: it says what is already working, and it turns the criticism into one action. Your diving instructor did exactly this to you in August.',
+              whyZh: '第二句不是比較客氣，而是比較有用：它先說出哪裡已經做對了，再把批評變成一個可以執行的動作。八月的時候，你的潛水教練對你做的正是這件事。',
+            },
+            {
+              caseEn: 'A friend asks whether his new haircut suits him',
+              caseZh: '朋友問你他的新髮型好不好看',
+              cold: {
+                en: 'Not really. It doesn’t suit you.',
+                zh: '不太好看，不適合你。',
+              },
+              warm: {
+                en: 'The last one suited you better, but this one will look good once it grows out a bit.',
+                zh: '上一個比較適合你，不過這個等長長一點就會好看了。',
+              },
+              whyEn: 'Still no lie — you have said the last one was better. What changed is that the sentence does not end on the damage. Note that a white lie was available here and was not needed.',
+              whyZh: '一樣沒有說謊——你確實說了上一個比較好看。改變的是這句話沒有停在傷害上。也注意一下：這裡其實可以說善意的謊言，但根本用不到。',
+            },
+            {
+              caseEn: 'A teammate still has not done his part of the project',
+              caseZh: '組員到現在還沒做他負責的部分',
+              cold: {
+                en: 'You haven’t done anything. Forget it, I’ll do it myself.',
+                zh: '你什麼都沒做。算了，我自己做。',
+              },
+              warm: {
+                en: 'I’ve finished my part. Which bit can you take, and when can you get it back to me?',
+                zh: '我那部分做完了。你可以接哪一塊？大概什麼時候可以給我？',
+              },
+              whyEn: 'The left column feels satisfying and leaves you doing the whole thing alone. The right one asks for what you actually want, and it is the same move you were working on in session 1 with your friend and the game.',
+              whyZh: '左欄講起來很痛快，結果是整件事還是你一個人做完。右欄則是直接要到你真正想要的東西——而這正是第一堂課裡，你和朋友打遊戲那件事在練的同一個動作。',
+            },
+          ],
+        },
+
+        {
+          t: 'quote',
+          en: 'I have also started to realize that being completely honest is not always the best choice.',
+          zh: '我也開始了解到，完全誠實並不一定在所有情況下都是最好的選擇。',
+          by: 'your own introduction — the line worth building the rest on 你自己的自我介紹，也是最值得往下發展的一句',
+        },
+
+        {
+          t: 'gap',
+          en: 'One phrase missing',
+          zh: '少了一個片語',
+          hintEn: 'Choose the phrase that fits. The reason is behind the tick.',
+          hintZh: '選出合適的片語。理由在打勾之後會出現。',
+          items: [
+            {
+              text: 'I am quite ___ — if I think something is wrong, I say so.',
+              textZh: '我算是相當直接的人——如果我覺得有什麼不對，我就會說出來。',
+              options: ['straightforward', 'outgoing', 'energetic'],
+              answer: 0,
+              why: {
+                en: '“Straightforward” is about saying what you think without softening it. “Outgoing” is about enjoying people, and “energetic” is about how much energy you have — both true of you, but neither explains the second half of the sentence.',
+                zh: 'straightforward 講的是「想什麼就說什麼，不加修飾」。outgoing 講的是喜歡跟人相處，energetic 講的是精力充沛——這兩個用在你身上也成立，但都解釋不了後半句。',
+              },
+            },
+            {
+              text: 'Sometimes the truth can ___, so it is worth choosing which true thing to say first.',
+              textZh: '有時候真話會傷害別人的感受，所以值得想一想先說哪一句真話。',
+              options: ['hurt other people’s feelings', 'tell a white lie', 'get bored'],
+              answer: 0,
+              why: {
+                en: 'The subject is “the truth”, so the verb has to be something the truth does to a listener. A truth cannot tell a lie, and it cannot get bored.',
+                zh: '主詞是「真話」，所以動詞必須是真話對聽者造成的事。真話不會說謊，也不會覺得無聊。',
+              },
+            },
+            {
+              text: 'Patience is the one trait I still need to ___.',
+              textZh: '耐心是我還需要繼續加強的那一項特質。',
+              options: ['work on', 'work out', 'work for'],
+              answer: 0,
+              why: {
+                en: '“Work on” means to keep improving something weak. “Work out” is to exercise, or to solve a problem; “work for” is to be employed by someone. The preposition is the whole meaning here.',
+                zh: 'work on 是「持續改善某個比較弱的部分」。work out 是運動，或把問題想清楚；work for 是替某人工作。這裡的意思完全取決於那個介系詞。',
+              },
+            },
+            {
+              text: 'I would rather tell a ___ than embarrass her in front of the whole class.',
+              textZh: '我寧願說一個善意的謊言，也不想讓她在全班面前難堪。',
+              options: ['white lie', 'straight lie', 'kind lie'],
+              answer: 0,
+              why: {
+                en: '“White lie” is the fixed expression and the only one an English speaker will recognise. The other two are understandable but nobody says them.',
+                zh: 'white lie 是固定用法，也是英文母語者唯一聽得懂的說法。另外兩個雖然猜得出意思，但沒有人這樣講。',
+              },
+            },
+          ],
+        },
+
+        {
+          t: 'match',
+          en: 'What the words actually mean',
+          zh: '這些說法真正的意思',
+          hintEn: 'Click a word on the left, then the half that finishes it.',
+          hintZh: '先點左邊的詞，再點右邊接得起來的那一半。',
+          pairs: [
+            { a: 'outgoing', b: 'happy to talk to people you do not know yet' },
+            { a: 'straightforward', b: 'you say what you think, without softening it' },
+            { a: 'tactful', b: 'you say the true thing that does the least damage' },
+            { a: 'a white lie', b: 'a small untruth told to spare someone' },
+            { a: 'to be genuine', b: 'the person people meet is the person you are' },
+            { a: 'to work on something', b: 'to keep improving a weak part on purpose' },
+          ],
+        },
+
+        {
+          t: 'note',
+          en: 'Patience, and why it is the right thing to admit',
+          zh: '耐心，以及為什麼這是值得承認的一項',
+          bodyEn: 'Three weeks ago, talking about a friend you coach at a game, you worked out that what frustrates you is not losing — it is “I already explained it, why haven’t you learned it yet?” Today, without being asked about any of that, you listed patience as the one trait you still need to work on. Two different conversations, three weeks apart, arriving at the same word. That is worth knowing, and it is worth saying out loud in an interview one day, because you can do what almost no candidate can: name the weakness and then give a real example of noticing it and changing what you did. A weakness you can only name sounds like a rehearsed answer. A weakness with a story is evidence that you pay attention to yourself.',
+          bodyZh: '三個星期前，在談你教朋友打遊戲那件事的時候，你自己推導出來：讓你煩躁的不是輸，而是「我明明講過了，你怎麼還是不會？」今天，在完全沒有被問到那件事的情況下，你把「耐心」列為自己還需要加強的那一項。兩場相隔三週、內容不同的談話，最後指向同一個詞。這件事值得記下來，將來面試時也值得說出口——因為你做得到幾乎沒有人做得到的事：說出自己的弱點，然後給出一個真實的例子，說明你怎麼發現它、又怎麼改變了做法。只講得出名稱的弱點，聽起來像背好的答案；有故事的弱點，才是你會觀察自己的證據。',
+        },
+
+        {
+          t: 'poll',
+          en: 'Where do you stand?',
+          zh: '你的立場是什麼？',
+          hintEn: 'There is no right answer — take a side and say why.',
+          hintZh: '沒有標準答案：選一邊，並說明理由。',
+          items: [
+            { en: 'A white lie is still a lie.', zh: '善意的謊言終究還是謊言。' },
+            { en: 'Being told the truth is always better than being protected from it.', zh: '被告知真相，永遠好過被保護著不知道真相。' },
+            { en: 'How you dress changes how well you perform.', zh: '你怎麼穿，會影響你表現得多好。' },
+            { en: 'I get more done in a team than on my own.', zh: '比起自己一個人，我在團隊裡完成的事更多。' },
+            { en: 'Patience can be trained, like buoyancy control.', zh: '耐心是可以練的，就像浮力控制一樣。' },
+          ],
+        },
+
+        {
+          t: 'discuss',
+          en: 'Questions from the session',
+          zh: '課堂上談到的問題',
+          items: [
+            {
+              en: 'You said you get bored when you spend too much time by yourself. What is the longest you have happily spent alone, and what were you doing?',
+              zh: '你說一個人待太久會覺得無聊。你曾經最久一次「開心地」自己待著是多久？那時候你在做什麼？',
+              starters: [
+                { en: 'I can happily spend hours alone as long as…', zh: '只要……，我可以很開心地自己待上好幾個小時。' },
+                { en: 'What makes it boring is not being alone, it is…', zh: '讓我覺得無聊的不是一個人，而是……' },
+                { en: 'After about … I start looking for someone to talk to.', zh: '大概過了……之後，我就會開始找人講話。' },
+              ],
+            },
+            {
+              en: 'Your view of teamwork changed between junior high and senior high. What actually changed — the work, the classmates, or you?',
+              zh: '你對團隊合作的看法在國中和高中之間改變了。真正改變的是什麼——是工作內容、是同學，還是你？',
+              starters: [
+                { en: 'In junior high I preferred working alone because…', zh: '國中的時候我比較喜歡自己做，因為……' },
+                { en: 'What changed my mind was…', zh: '讓我改變想法的是……' },
+                { en: 'I am still not willing to share the part where…', zh: '有一部分我還是不願意分出去，就是……' },
+              ],
+            },
+            {
+              en: 'When someone asks for your opinion, do they always want the truth? How do you tell the difference?',
+              zh: '當有人問你的意見時，他們每一次都想聽真話嗎？你怎麼分辨？',
+              starters: [
+                { en: 'If they ask right after they have finished it, they usually want…', zh: '如果他們是剛做完就問，通常想要的是……' },
+                { en: 'I can tell because…', zh: '我看得出來，因為……' },
+                { en: 'When there is still time to change it, I say…', zh: '如果還來得及改，我就會說……' },
+              ],
+            },
+            {
+              en: 'If patience is the trait you are working on, what would count as proof next month that it had improved?',
+              zh: '如果耐心是你正在加強的那一項，下個月要發生什麼事，才算得上是「真的進步了」的證據？',
+              starters: [
+                { en: 'I would know it had improved if…', zh: '如果……，我就知道自己真的進步了。' },
+                { en: 'The situation that would test it is…', zh: '最能檢驗這件事的情境是……' },
+                { en: 'Instead of saying …, I would say …', zh: '我不會說……，而是會說……' },
+              ],
+            },
+          ],
+        },
+
+        {
+          t: 'task',
+          en: 'Homework: the sixty-second version, and one rewrite',
+          zh: '作業：六十秒版本，以及一次改寫',
+          instructionEn: 'Two things. First, cut your introduction down until it fits in sixty seconds spoken aloud — time yourself, do not guess. Keep the five moves from the note above: traits, a reason, an honest limit, an intention, and the diving. Second, write it once more for a different audience: a new classmate on the first day, or a university interview. Same facts, different weight on each part. Notice which sentences you keep in both versions — those are the true core of it. Send both on LINE and we will run them next time.',
+          instructionZh: '兩件事。第一，把你的自我介紹刪到唸出來剛好六十秒——請實際計時，不要用猜的。保留上面那則說明裡的五個步驟：特質、理由、一個誠實的界線、一個打算，以及潛水那件事。第二，為另一種對象再寫一次：開學第一天遇到的新同學，或是大學面試。事實一樣，但每個部分的比重不同。注意看看哪些句子在兩個版本裡都留下來了——那些才是這篇自我介紹真正的核心。兩個版本都用 LINE 傳給我，下次一起練。',
+          prompts: [
+            { en: 'Read it aloud while you cut. A sentence that is hard to say is a sentence to rewrite.', zh: '一邊唸出聲一邊刪。唸起來卡的句子，就是該改寫的句子。' },
+            { en: 'Keep the whale shark. It is the one line nobody else in the room can say.', zh: '鯨鯊那一句留著。那是全場只有你說得出來的一句話。' },
+            { en: 'The honest limit is the strongest part. Do not cut it to make room for more adjectives.', zh: '那個「誠實的界線」是最有力量的部分。不要為了多放幾個形容詞而把它刪掉。' },
+          ],
+          frames: [
+            { en: 'I would describe myself as ___, and the reason is ___.', zh: '我會形容自己是＿＿，原因是＿＿。' },
+            { en: 'I am proud of ___, but I have started to realize that ___.', zh: '我為＿＿感到驕傲，但我開始了解到＿＿。' },
+            { en: 'What I would like to learn is how to ___.', zh: '我想學會的是如何＿＿。' },
+            { en: '___ is something I still need to work on.', zh: '＿＿是我還需要繼續加強的地方。' },
+            { en: 'One thing about me that you would not guess is ___.', zh: '關於我，有一件你大概猜不到的事是＿＿。' },
+          ],
+        },
+      ],
+    },
   ],
 };
