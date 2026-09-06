@@ -1529,6 +1529,35 @@ carries no reliable record of his own wording. The rule from Anny's notebook
 holds — do not reconstruct a student's sentence from memory. A transcript would
 fill it.
 
+Session 2 (3 September 2026) is the nine lessons of Homer's *Odyssey* —
+resilience, cleverness over strength, pride arriving right after a win, the
+Sirens as something fun that costs you what you actually want, Calypso's offer
+refused, choices and consequences, leadership, adapting, and Penelope's twenty
+years — then the *Goal → Temptation → Choice → Consequence → Growth* pattern
+with a `match` set, eighteen phrase cards, a gap-fill, and the talking.
+
+**It was prepared before the lesson rather than after one**, which is a first
+for this page and is written into the file. Session 1 is a record of an hour
+that happened; session 2 is material for one that has not. That is why it has no
+`fix` block — there is nothing of his to correct yet — and why its date is the
+day it was added.
+
+**The work was the register.** The same nine ideas exist on
+[Ken's page](#kens-notebook--college-student-one-to-one-kept-over-time), written
+for a college student: careers, workplace conflicts, "being in your twenties".
+None of that is Eason's life. Here every example is school, exams, a group
+project, a club, a phone, a game, homework left until Sunday night — and the
+sentences are shorter. The two pages share a source and share almost no
+sentences, which is the point of keeping a notebook per student rather than a
+library of lessons.
+
+Two renderer additions came over from Ken's page with it, and the file says so
+at the top so nobody assumes this copy is still untouched: the **`part`
+divider**, without which nine lessons plus the language work is one undivided
+scroll, and an **optional title on `summary`** (`titleEn`/`titleZh` plus a
+number in `n`), because the source arrives as nine numbered, titled lessons and
+flattening them loses what makes a long reading scannable later.
+
 
 ## Anna's Notebook — young adult, one-to-one, kept over time
 

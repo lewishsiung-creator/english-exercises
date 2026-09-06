@@ -497,6 +497,93 @@ body.zh-all .session-btn .titles .zh { display: block; }
 
 .summary { margin: 0 0 20px; }
 
+/* The heading on a titled teaching paragraph (ported from /ken/ with session
+   2). Deliberately NOT `.label`: that one is uppercase with wide tracking,
+   which suits a short activity name and shouts when the title is a full
+   sentence. Sentence case, with the source's own number in a quiet chip. */
+.summary-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 8px;
+  margin: 34px 0 10px;
+  font-family: var(--font-ui);
+  font-size: .98rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--navy);
+}
+.summary-head .n {
+  flex: none;
+  min-width: 1.5em;
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: var(--navy-soft);
+  border: 1px solid var(--navy-line);
+  font-size: .78rem;
+  text-align: center;
+}
+.summary-head .en { flex: 1 1 auto; }
+.summary-head .zh {
+  flex-basis: 100%;
+  margin-top: 3px;
+  font-size: .88rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+.summary-head + .summary { margin-bottom: 20px; }
+.part-head + .summary-head { margin-top: 8px; }
+
+/* A divider INSIDE one session — Part A from Part B of the same lesson. It has
+   to read as a turn in the same lesson rather than the start of a new one, so
+   it is quieter than a session heading: a rule, a letter, and the title.
+   Signage, so both languages show at once and there is no 中 chip. */
+.part-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 46px 0 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.part-head:first-child { margin-top: 8px; }
+
+.part-n {
+  flex: none;
+  margin: 0;
+  min-width: 2.1em;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.part-head h3 {
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--navy);
+  display: flex;
+  align-items: baseline;
+  gap: .6em;
+  flex-wrap: wrap;
+}
+.part-head h3 .zh {
+  display: inline;
+  font-family: var(--font-zh);
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+/* A part opener should not be left stranded at the foot of a printed page. */
+@media print {
+  .part-head { break-after: avoid; break-inside: avoid; }
+}
+
 /* ---------------- note ---------------- */
 
 .note {

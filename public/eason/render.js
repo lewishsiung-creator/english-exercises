@@ -109,7 +109,37 @@ const BLOCKS = {
       <figcaption>— ${text(b.by)}</figcaption>
     </figure>`,
 
+  /* A divider INSIDE one session. Ported from /ken/ for session 2, whose source
+     arrives as nine numbered lessons plus the language work and the talking:
+     without it the whole thing is one undivided scroll. It has to read as a
+     turn in the same lesson rather than the start of a new one, so it is
+     quieter than a session heading. Signage: both languages show at once and
+     there is no 中 chip to tap. A short session built from a conversation
+     should not use it. */
+  part: (b) => `
+    <div class="part-head">
+      <p class="part-n" aria-hidden="true">${text(b.n || '')}</p>
+      <h3><span class="en">${text(b.en)}</span><span class="zh">${text(b.zh)}</span></h3>
+    </div>`,
+
+  /* A teaching paragraph, spoken aloud on request.
+
+     `titleEn`/`titleZh` are optional and came over from /ken/ with session 2,
+     whose source is already cut into nine numbered, titled lessons. Flattening
+     those into a run of untitled paragraphs loses what makes a long reading
+     scannable weeks later, when he is looking for one idea rather than reading
+     the lot. The heading is not `label()`: that one is uppercase with wide
+     tracking, which is right for a four-word activity name and shouting for a
+     sentence like "Pride can become a weakness". Optional `n` puts the source's
+     own number in front of it. */
   summary: (b) => `
+    ${b.titleEn ? `
+      <h4 class="summary-head">
+        ${b.n ? `<span class="n" aria-hidden="true">${text(b.n)}</span>` : ''}
+        <span class="en">${text(b.titleEn)}</span>
+        <button class="zh-chip" title="顯示中文">中</button>
+        <span class="zh">${text(b.titleZh || '')}</span>
+      </h4>` : ''}
     <div class="summary pair" data-zh>
       <p class="en">${text(b.en)}${speakBtn(b.en, 'say say-quiet')}
         <button class="zh-chip" title="顯示中文">中</button></p>
