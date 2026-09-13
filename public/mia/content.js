@@ -244,6 +244,7 @@ const NOTEBOOK = {
       zh: '我還能做什麼？主人翁思維、自我信任，以及你早已擁有的進步',
 
       focus: [
+        { en: 'The discussion in brief', zh: '這堂課的重點摘要', to: 's1-brief' },
         { en: 'Your own sentences, fixed', zh: '你自己的句子，修過一遍', to: 's1-fix' },
         { en: 'Worker vs. ownership mindset', zh: '員工思維與主人翁思維', to: 's1-b' },
         { en: 'Self-trust, not ability', zh: '是自我信任，不是能力', to: 's1-trust' },
@@ -257,6 +258,15 @@ const NOTEBOOK = {
           t: 'lead',
           en: 'We had not had a class in two months, and you used the hour to take stock of your past six months at work: what work has done to you, what you have learned, why you still get anxious about things you can handle, and a client whose trust you and your team won back. This is that hour, kept — your own sentences with the repairs behind them, the ideas we talked through, the language you reached for and did not have yet, and the questions to take into next time.',
           zh: '我們已經兩個月沒上課了，你用這一小時回顧了自己這半年的工作：工作如何改變了你、你學到了什麼、為什麼你還是會對自己其實應付得來的事情感到焦慮，以及一位你和團隊重新贏回信任的客戶。這一頁就是那一堂課的紀錄——你自己的句子和它們的修正、我們談過的觀念、你當時想用卻還沒有的語言，以及帶到下一堂課的問題。',
+        },
+
+        {
+          t: 'summary',
+          id: 's1-brief',
+          titleEn: 'The discussion in brief',
+          titleZh: '這堂課的重點摘要',
+          en: 'You looked back on six months of work, and said you sometimes feel you are starting to work like a machine. We turned that into a question about mindset: instead of asking what you need to finish today, an ownership mindset asks what else you can do to make the clinic better. Then we talked about why you still feel anxious before meeting a client, even though you prepare carefully. Your challenge is not ability but self-trust — most of the things you worry about never actually happen. Your story of a client whose trust you and your team rebuilt showed how much you have already grown. We finished with four practical steps: keep a record of your progress, not only your mistakes; leave a moment between an emotion and your reaction; protect your attention; and fix one thing at a time.',
+          zh: '你回顧了自己這半年的工作，說有時候覺得自己開始像機器一樣工作。我們把這一點延伸成一個關於思維的問題：與其只問「我今天需要完成什麼」，主人翁思維會問「我還能做什麼，讓診所變得更好」。接著我們談到，為什麼你在見客戶之前，即使準備得很仔細，還是會感到焦慮。你的挑戰不是能力，而是對自己的信任——你擔心的事情，大多其實並沒有發生。你分享的那位客戶，你和團隊重新贏回了她的信任，這正好證明你已經成長了多少。最後我們談了四個具體的做法：記錄自己的進步，而不只是錯誤；在情緒和反應之間留一點空間；保護自己的注意力；以及一次只改一件事。',
         },
 
         {
