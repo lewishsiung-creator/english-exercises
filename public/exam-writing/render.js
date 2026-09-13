@@ -127,8 +127,21 @@ function buildTypes(p) {
 
 function buildEssays(p) {
   const pr = p.provenance;
+  const xf = p.transfer;
 
   const one = (e) => {
+    /* 延伸範文和它的底本必須一句對一句：「對照」開關是把底本同位置的句子印在
+       每一句底下。形狀對不上就直接丟錯，而不是安靜地把公園的第五句配到學校的
+       第六句。 */
+    const base = e.base ? ESSAYS.find((x) => x.id === e.base) : null;
+    if (e.base) {
+      if (!base) throw new Error(`Essay "${e.id}": base "${e.base}" not found`);
+      const shape = (x) => x.paras.map((q) => q.sentences.length).join('+');
+      if (shape(base) !== shape(e)) {
+        throw new Error(`Essay "${e.id}" has ${shape(e)} sentences but its base "${base.id}" has ${shape(base)}`);
+      }
+    }
+
     const paras = e.paras.map((para, i) => `
       <div class="para para-${i + 1}">
         <p class="para-label"><span class="tag">${text(para.label)}</span>
@@ -136,9 +149,10 @@ function buildEssays(p) {
           ${speakBtn(para.sentences.map((s) => s.en).join(' '), 'say say-quiet')}</p>
         <p class="para-note">${text(para.noteZh)}</p>
         <ol class="es-list">
-          ${para.sentences.map((s) => `
+          ${para.sentences.map((s, j) => `
             <li class="es" data-zh>
               <p class="es-en">${text(s.en)}${speakBtn(s.en, 'say say-quiet')}</p>
+              ${base ? `<p class="es-base"><span class="es-base-y">${text(base.year)}</span>${text(base.paras[i].sentences[j].en)}</p>` : ''}
               <p class="es-job"><span class="je">${text(s.jobEn)}</span>
                 <span class="jz">${text(s.jobZh)}</span></p>
               <p class="zh">${text(s.zh)}</p>
@@ -147,11 +161,12 @@ function buildEssays(p) {
       </div>`).join('');
 
     const isPractice = LESSON.practice.year === e.year;
+    const derived = xf ? xf.items.filter((x) => x.base === e.id) : [];
 
     return `
       <article class="essay" id="${e.id}">
         <header class="essay-head">
-          <span class="yr">${text(e.year)}</span>
+          <span class="yr${e.badge ? ' yr-x' : ''}">${text(e.badge || e.year)}</span>
           <div class="essay-t">
             <p class="essay-en">${text(e.title)}</p>
             <p class="essay-aim">${text(e.aim)}</p>
@@ -162,6 +177,7 @@ function buildEssays(p) {
           <span class="chip">${text(e.type)}</span>
           <span class="chip chip-q">${e.pictures} 張圖</span>
           <span class="chip chip-q">${e.words} words</span>
+          ${base ? `<a class="chip chip-q chip-base" href="#${base.id}">骨架來自 ${text(base.year)}</a>` : ''}
         </p>
 
         <div class="steps">
@@ -169,6 +185,11 @@ function buildEssays(p) {
             <span class="s1">${text(LESSON.parts.find((x) => x.kind === 'essays').structureLabel)}</span>
             <span class="s2">${text(LESSON.parts.find((x) => x.kind === 'essays').structureLabelEn)}</span>
           </button>
+          ${base ? `
+          <button class="step-btn" data-do="compare" aria-pressed="false">
+            <span class="s1">對照 ${text(base.year)}〈${text(base.title)}〉</span>
+            <span class="s2">Line it up against the ${text(base.year)} essay</span>
+          </button>` : ''}
         </div>
 
         ${paras}
@@ -178,6 +199,15 @@ function buildEssays(p) {
           <p class="keybox-b">${text(e.keyZh)}</p>
           ${e.caution ? `<p class="caution">⚠ ${text(e.caution)}</p>` : ''}
         </div>
+
+        ${e.patterns ? `
+          <div class="keypat">
+            <p class="keypat-h">關鍵句型與用法</p>
+            <ul>
+              ${e.patterns.map((k) => `
+                <li><p class="kp-en">${text(k.en)}</p><p class="kp-zh">${text(k.zh)}</p></li>`).join('')}
+            </ul>
+          </div>` : ''}
 
         <div class="takeaway">
           <p class="takeaway-h">換題目也帶得走的一件事</p>
@@ -190,6 +220,12 @@ function buildEssays(p) {
             <span class="practice-h">→ ${text(LESSON.practice.label)}</span>
             <span class="practice-b">${text(LESSON.practice.note)}</span>
           </a>` : ''}
+
+        ${derived.map((x) => `
+          <a class="practice" href="#${x.id}">
+            <span class="practice-h">→ 同一個骨架換成新題目：${text(x.title)}</span>
+            <span class="practice-b">${text(xf.linkNote)}</span>
+          </a>`).join('')}
       </article>`;
   };
 
@@ -202,6 +238,12 @@ function buildEssays(p) {
         <p><a class="prov-l" href="${text(pr.link)}" target="_blank" rel="noopener">${text(pr.linkLabel)} ↗</a></p>
       </div>
       ${p.items.map(one).join('')}
+      ${xf ? `
+        <div class="xfer">
+          <p class="xfer-h">${text(xf.h)}</p>
+          <p class="xfer-b">${text(xf.body)}</p>
+        </div>
+        ${xf.items.map(one).join('')}` : ''}
     </section>`;
 }
 
@@ -341,13 +383,14 @@ doc.addEventListener('click', (e) => {
   const say = t.closest('.say');
   if (say) { e.stopPropagation(); speak(say.dataset.say); return; }
 
-  // 範文的「顯示每句在做什麼」
-  const struct = t.closest('[data-do="structure"]');
-  if (struct) {
-    const on = !struct.classList.contains('on');
-    struct.closest('.essay').classList.toggle('structure', on);
-    struct.classList.toggle('on', on);
-    struct.setAttribute('aria-pressed', String(on));
+  // 範文的兩個開關：「顯示每句在做什麼」，以及延伸範文的「對照底本」。
+  // 按鈕的 data-do 就是要加到 .essay 上的 class 名稱。
+  const sw = t.closest('[data-do="structure"], [data-do="compare"]');
+  if (sw) {
+    const on = !sw.classList.contains('on');
+    sw.closest('.essay').classList.toggle(sw.dataset.do, on);
+    sw.classList.toggle('on', on);
+    sw.setAttribute('aria-pressed', String(on));
     return;
   }
 

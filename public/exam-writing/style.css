@@ -528,7 +528,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
 .chip-q { font-family: var(--font-ui); color: var(--ink-faint); background: transparent; border-color: var(--line); }
 
 /* 結構開關 */
-.steps { margin: 0 0 16px; }
+.steps { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
 .step-btn {
   font-family: var(--font-zh);
   font-size: .87rem;
@@ -659,6 +659,63 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
 .practice:hover { background: #dfe9f5; }
 .practice-h { display: block; font-size: .95rem; font-weight: 700; color: var(--navy); }
 .practice-b { display: block; margin-top: 4px; font-size: .85rem; color: var(--ink-soft); }
+
+/* ---------------- 延伸範文 ----------------
+
+   不是第八個年份，所以不用年份徽章：金色的「延伸」取代深藍的年份，前面再用
+   一塊說明隔開，讓人一眼看出它不在七年之內。 */
+
+.xfer {
+  margin: 46px 0 0;
+  padding: 16px 20px;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-mid);
+  border-radius: 11px;
+}
+.xfer-h { margin: 0 0 6px; font-size: 1.02rem; font-weight: 700; color: var(--gold); }
+.xfer-b { margin: 0; font-size: .9rem; line-height: 1.8; color: var(--ink-soft); }
+
+.yr-x { background: var(--gold); font-size: .95rem; letter-spacing: .04em; }
+.chip-base { text-decoration: none; color: var(--navy); border-color: var(--navy-line); }
+.chip-base:hover { background: var(--navy-soft); }
+
+/* 對照：底本同位置的句子，印在每一句底下，淡一點、小一點——它是參照，
+   不是要讀的主角。 */
+.es-base { display: none; }
+.essay.compare .es-base {
+  display: block;
+  margin: 4px 0 0;
+  font-family: var(--font-en);
+  font-size: .9rem;
+  line-height: 1.6;
+  color: var(--ink-faint);
+}
+.es-base-y {
+  font-family: var(--font-ui);
+  font-size: .68rem;
+  font-weight: 700;
+  color: var(--navy);
+  border: 1px solid var(--navy-line);
+  border-radius: 4px;
+  padding: 0 5px;
+  margin-right: 8px;
+  vertical-align: 1px;
+}
+
+/* 講義的「關鍵句型與用法」 */
+.keypat {
+  margin: 11px 0 0;
+  padding: 14px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.keypat-h { margin: 0 0 8px; font-size: .72rem; font-weight: 700; letter-spacing: .08em; color: var(--navy); }
+.keypat ul { list-style: none; margin: 0; padding: 0; }
+.keypat li { padding: 8px 0; border-top: 1px solid var(--line); }
+.keypat li:first-child { border-top: none; padding-top: 0; }
+.kp-en { margin: 0; font-family: var(--font-en); font-size: .98rem; font-weight: 600; }
+.kp-zh { margin: 2px 0 0; font-size: .85rem; color: var(--ink-soft); }
 
 /* ---------------- 五、跨年共通模式 ---------------- */
 

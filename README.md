@@ -857,7 +857,7 @@ because they work whatever the topic is.
 | 一 七年題目一覽 | The seven questions, their type, how many pictures, and the real task |
 | 二 題型趨勢 | What is being tested behind the friendly topics |
 | 三 五大作文類型 | Five types, each linked to the years that used it |
-| 四 七篇範文 | Seven essays, each with a switch showing what every sentence does |
+| 四 七篇範文 | Seven essays, each with a switch showing what every sentence does — plus one transfer essay after them, lined up against the year it was built on |
 | 五 跨年共通模式 | The moves that recur, counted out of seven |
 | 六 四種必練句型 | Four frames, Chinese on the front |
 | 七 共用句庫 | Opening, position and closing sentences as practice cards |
@@ -891,6 +891,13 @@ because they work whatever the topic is.
   steal the skeleton and bring their own content.
 - **Cross-linked with Robot Helper** from the 113 essay, since that year has a
   whole page of practice on this site.
+- **My Ideal School is a transfer essay, not an eighth year.** It came as
+  Lewis's own handout, written on 111's skeleton, so it sits after the seven
+  under its own heading with a gold 延伸 badge where a year would be — the page
+  never implies it was a 學測 question. Its twelve moves are 111's twelve, in
+  order, and a 對照 111 switch prints the park sentence under each school
+  sentence: the page's whole claim, that the topic changes and the moves do
+  not, shown rather than told. The handout says 165 words; it is 174.
 
 ## Sort Before You Speak — adult, IELTS Speaking Part 3
 
@@ -2302,6 +2309,17 @@ so check the chain against the cards when editing. `pictures` is how many
 images the real paper supplied, `caution` adds a red warning under 中文重點,
 and the cross-link to another page on this site is `LESSON.practice`, matched
 by year.
+
+A transfer essay — a new topic written on an old year's skeleton — goes in the
+`TRANSFER` const beside `ESSAYS`, deliberately outside it: 跨年共通模式 counts
+out of the seven real years, and an eighth entry in `ESSAYS` would quietly
+change every one of those numbers. It carries a `badge` instead of a `year`
+and names its `base` essay by id, and it must match that essay sentence for
+sentence — same paragraphs, same number of sentences in each — because the
+compare switch prints the base sentence under each of its own. The renderer
+throws on a mismatch rather than pairing sentence five with sentence six. Its
+`patterns` list (the handout's 關鍵句型與用法) renders under 中文重點, and
+the base essay gets a link down to it automatically.
 
 **Landscape Portfolio.** Everything is in
 [`public/landscape-portfolio/content.js`](public/landscape-portfolio/content.js)

@@ -700,6 +700,131 @@ const ESSAYS = [
   },
 ];
 
+// ---------------------------------------------------------------- 延伸範文
+
+/* 不是學測考題，是 Lewis 自己的講義：照 111〈My Ideal Park〉的骨架，把公園
+   換成學校。刻意放在 ESSAYS 外面——「跨年共通模式」的每個數字分母都是七篇
+   真正的考題，放進 ESSAYS 就會悄悄改掉所有計數。
+
+   base 指向底本。兩篇必須一句對一句（段數、每段句數都一樣），因為「對照」
+   開關是把底本同位置的句子印在每一句底下；形狀對不上，render.js 會直接丟錯。
+   句子與中譯照講義原文，每句的 job 說明是這一頁補寫的。講義標 165 字，實際
+   是 174 字。 */
+
+const TRANSFER = [
+  {
+    id: 'x-school',
+    badge: '延伸',
+    base: 'e111',
+    title: 'My Ideal School',
+    aim: '比較兩所學校＋描述理想中的學校',
+    type: '圖片比較＋理想設計',
+    pictures: 2,
+    words: 174,
+    keyZh: '第一段比較圖 A（大而現代）與圖 B（小而親近自然）；第二段寫理想學校：設備與綠地兼顧、關心每個學生而不只是成績。',
+    takeawayEn: 'All twelve moves are the park essay’s twelve, in the same order — only the nouns and the details changed. For any “compare two pictures, then describe your ideal ___” question, write the skeleton out first and fill it in second.',
+    takeawayZh: '十二句的動作和 111 一句不差，連順序都一樣——換掉的只有名詞和細節。拿到任何「比較兩張圖＋描述理想中的 ___」的題目，先把骨架默寫出來，再把內容填進去。',
+    paras: [
+      {
+        label: 'Contrast',
+        labelZh: '第一段：比較兩張圖片',
+        noteZh: '定調開場 → 描述圖片 → 補充細節 → 說明影響 → 轉折 → 描述圖片 → 說明影響。',
+        sentences: [
+          {
+            en: 'The two pictures show two very different kinds of schools.',
+            zh: '這兩張圖片呈現兩種非常不同的學校。',
+            jobEn: 'Frames both pictures in one opening line',
+            jobZh: '定調開場：和 111 的第一句只差兩個英文字——types of parks 換成 kinds of schools。一句話交代「兩張圖、兩種學校」，比較的架構就立好了。',
+          },
+          {
+            en: 'In Picture A, the school is large and modern, with tall buildings and well-equipped computer rooms.',
+            zh: '在圖 A 中，學校又大又現代化，有高樓和設備完善的電腦教室。',
+            jobEn: 'Says what Picture A literally shows',
+            jobZh: '描述圖片：只寫圖 A 看得到的東西。111 用 such as 帶例子，這裡改用 with 接細節——同一個動作，換一個句型。',
+          },
+          {
+            en: 'Students there can use new technology in almost every class.',
+            zh: '那裡的學生幾乎每堂課都能使用新科技。',
+            jobEn: 'Turns the equipment into daily life',
+            jobZh: '補充細節：從「學校有什麼」轉到「學生在那裡能做什麼」，讓圖 A 從一排設備變成每天的生活。',
+          },
+          {
+            en: 'Such a school may prepare them well for the future.',
+            zh: '這樣的學校可能能讓他們為未來做好準備。',
+            jobEn: 'Says what Picture A is good for',
+            jobZh: '說明影響：用 Such a school may... 說出這種學校帶給學生什麼——為未來做準備，一句收掉圖 A。',
+          },
+          {
+            en: 'In Picture B, however, the school is smaller and surrounded by trees and open fields.',
+            zh: '然而在圖 B 中，學校比較小，四周圍繞著樹木和開闊的操場。',
+            jobEn: 'Turns to Picture B, and flags the turn',
+            jobZh: '轉折：把 111 的 In Picture B 和 114 的 however 合在一起用——鏡頭轉到第二張圖，同時提醒讀者方向要換了。',
+          },
+          {
+            en: 'There are fewer students in each class, so teachers can pay attention to everyone.',
+            zh: '每班的學生比較少，所以老師能夠關照到每一個人。',
+            jobEn: 'Names what is different in Picture B',
+            jobZh: '描述圖片：寫出圖 B 看得到的差別——班級比較小——再用 so 順手帶出結果：老師顧得到每個人。',
+          },
+          {
+            en: 'It looks like a warm place where students feel close to nature and to one another.',
+            zh: '它看起來是個溫暖的地方，讓學生與自然、也與彼此感覺親近。',
+            jobEn: 'Says what Picture B is good for',
+            jobZh: '說明影響：和第四句對稱，說出圖 B 給學生的是什麼——溫暖、親近自然也親近彼此。第一段在這裡收尾。',
+          },
+        ],
+      },
+      {
+        label: 'Propose',
+        labelZh: '第二段：描述理想中的學校',
+        noteZh: '回答題目 → 補充細節 → 表明立場 → 舉例說明 → 結論收尾。',
+        sentences: [
+          {
+            en: 'My ideal school would combine the advantages of both pictures.',
+            zh: '我理想中的學校會結合這兩張圖片的優點。',
+            jobEn: 'Answers the prompt in one sentence',
+            jobZh: '回答題目：和 111 一字不差，只把 park 換成 school。這就是「萬用開場句」的意思——骨架背起來，名詞跟著題目換。',
+          },
+          {
+            en: 'It should have modern classrooms and good equipment, but it should also keep green spaces where students can rest and breathe.',
+            zh: '它應該要有現代化的教室和良好的設備，但同時也要保留讓學生休息、喘口氣的綠地。',
+            jobEn: 'Spells out what combine actually means',
+            jobZh: '補充細節：用 It should have A, but it should also keep B 把圖 A 的教室和圖 B 的綠地實際接在一起，讓 combine 不只是一個字。',
+          },
+          {
+            en: 'In addition, I think a good school should care about every student, not only about grades.',
+            zh: '此外，我認為一所好的學校應該關心每一位學生，而不只是關心成績。',
+            jobEn: 'Adds a second standard: every student',
+            jobZh: '表明立場：In addition 再加一個標準，並用 not only about grades 把焦點從成績拉到每個人——全文最有立場的一句。',
+          },
+          {
+            en: 'For example, there should be small classes, clubs for different interests, and teachers who are willing to listen.',
+            zh: '舉例來說，學校裡應該要有小班教學、各種興趣的社團，以及願意傾聽的老師。',
+            jobEn: 'Backs the claim with three concrete things',
+            jobZh: '舉例說明：For example 帶出三樣看得到的東西——小班、社團、願意傾聽的老師——把上一句「關心每個學生」變成具體的樣子。',
+          },
+          {
+            en: 'A school should not only teach knowledge; it should also help students grow into kind and confident people.',
+            zh: '學校不該只是傳授知識；它也應該幫助學生成長為善良而有自信的人。',
+            jobEn: 'Closes on a bigger idea than knowledge',
+            jobZh: '結論收尾：用 should not only...; it should also... 把學校從「教知識」拉高到「讓人長成善良、有自信的人」——和 111 最後一句是同一個句型。',
+          },
+        ],
+      },
+    ],
+
+    // 講義的「關鍵句型與用法」，原文照錄。
+    patterns: [
+      { en: 'In Picture A / In Picture B, ...', zh: '描述圖片的標準開場，兩段對稱使用。' },
+      { en: '..., however, ...', zh: '轉折訊號，提醒讀者要切換到另一張圖。' },
+      { en: 'My ideal ~ would combine the advantages of both pictures.', zh: '第二段的萬用開場句，公園、學校、城市都能替換。' },
+      { en: 'It should have A, but it should also keep B.', zh: '讓步句型，展現「兩者兼顧」的成熟立場。' },
+      { en: '..., not only about X.', zh: '縮小焦點，補強立場。' },
+      { en: 'A ~ should not only ...; it should also ...', zh: '結尾拔高句型，把具體描述收束成價值觀。' },
+    ],
+  },
+];
+
 // ------------------------------------------------------------------ 全頁內容
 
 const LESSON = {
@@ -878,6 +1003,14 @@ const LESSON = {
       },
 
       items: ESSAYS,
+
+      // 七篇之後的延伸範文。資料在上面的 TRANSFER。
+      transfer: {
+        h: '延伸：同一個骨架，換一個題目',
+        body: '下面這篇不是這七年的考題，是照 111〈My Ideal Park〉的骨架、把公園換成學校寫成的練習範文。十二句的動作和 111 一句不差，連順序都一樣——打開「對照 111」，每一句底下就會出現公園那一篇同位置的句子。',
+        linkNote: '十二句的動作一句不差，只換了名詞和細節——題目換了，骨架不用換。',
+        items: TRANSFER,
+      },
     },
 
     // --------------------------------------------------------- 跨年共通模式
