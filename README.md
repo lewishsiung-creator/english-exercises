@@ -25,13 +25,14 @@ and, for 國中 students, vocabulary and grammar together at `/junior-high/`.
 One page is not English at all: `/math/` is math practice for Grades 1 to 3,
 built for a child in an American school.
 
-Ten more pages are not lessons. `/landscape-portfolio/` is a portfolio
+Eleven more pages are not lessons. `/landscape-portfolio/` is a portfolio
 template for a student to fill in with their own work, and `/anny/`, `/aaron/`,
-`/anita/`, `/nikky/`, `/eason/`, `/anna/`, `/ken/`, `/riva-rex/` and `/jill/`
-are notebooks kept for one student each, which grow by one session after every
+`/anita/`, `/nikky/`, `/eason/`, `/anna/`, `/ken/`, `/mia/`, `/riva-rex/` and
+`/jill/` are notebooks kept for one student each, which grow by one session after every
 lesson rather than being finished and left alone. The first four are adult
 clients; `/eason/` is a teenager moving up to senior high school; `/anna/` is a
-young adult of eighteen to twenty and `/ken/` is a college student;
+young adult of eighteen to twenty, `/ken/` is a college student and `/mia/`
+a young adult working in a clinic;
 `/riva-rex/` is a pair of ten-to-twelve-year-olds taught together, and `/jill/`
 is one child of the same age taught alone.
 
@@ -1910,6 +1911,46 @@ sentences a machine wrote for him, and the whole value of that block is that
 every line in it was really said. The separation is written into the file, for
 any later session where a rewriting tool is part of the source.
 
+## Mia's Notebook — young adult, one-to-one, kept over time
+
+The tenth notebook, copied from
+[Ken's](#kens-notebook--college-student-one-to-one-kept-over-time) with the
+`mia.` localStorage prefix. Mia is a young adult who works in a plastic surgery
+clinic, so the register sits between Ken's and the working-adult pages: the
+examples come from a job actually under way — consultations, aftercare, the
+front desk, clients with expectations to manage — but a job early in a career.
+That is written into the header comment of
+[`public/mia/content.js`](public/mia/content.js).
+
+**The page names Mia and never her clinic.** Lewis chose that when asked: her
+name stays, as on the other notebooks, but the clinic, its doctors and its
+address appear nowhere, and a source that names it becomes "the clinic". Two
+more lines are in the file header. Nothing that could identify a real patient
+goes on the page — a case she describes stays "a client", with no name, date or
+clinic. And the treatment language is recorded as language, not vouched for as
+medicine: the line Ken's session 2 drew, with a `note` above the treatment
+phrase cards saying so in both languages, and examples that say *can help* and
+*may* rather than *will*.
+
+**Session 1 (12 September 2026)** came from two sources, treated differently. A
+bilingual PDF, *Mia's Session Review｜課堂回顧*, written up after the lesson in
+seven titled sections, became **Part B**: seven numbered `summary` blocks, with
+a `contrast` of *Worker mindset* against *Ownership mindset* and another of *A
+wish* against *An action*. A corrections write-up pasted into chat, drawn from
+the Zoom transcript, supplied **Part A**: twenty-three of her own sentences in
+**four `fix` blocks grouped by the kind of mistake** — verbs and tenses; the
+small words; countable nouns; sentences thought in Chinese — rather than one
+long list, because the kind is what she can learn. Its chunk tables became
+**Part C**'s six phrase sets and a shadowing model; **D** is six patterns built
+from things she tried to say; **E** is a ten-chunk `cards` audit, her three
+priorities, a poll, five discussion questions and the speaking task.
+
+Not every correction on the page is the write-up's. Where its suggested version
+was itself off — *may still remain*, *I didn't expect myself to* — the page
+uses a better one, and its item on *focus on the moment* is left out, because
+that is natural English and `fix` holds mistakes. The file header records each
+change.
+
 ## Health Notes — bilingual notes on the body and the mind
 
 `public/health/` — the first page here that is not English teaching. A
@@ -2016,6 +2057,7 @@ public/nikky/             Nikky's notebook — the same, with the scroll fix in
 public/eason/             Eason's notebook — the same, for a teenager
 public/anna/              Anna's notebook — the same again, for a young adult
 public/ken/               Ken's notebook — the same, for a college student
+public/mia/               Mia's notebook — the same, for a young adult at work
 public/jill/              Jill's notebook — one entry per weekly lesson
 public/junior-high/       國中英語精熟 — 單字 and 文法, one page, Grades 7–9
 public/junior-high-words/    a redirect: the 單字 half's old URL
@@ -2029,7 +2071,7 @@ make-icon.py              regenerates public/apple-touch-icon.png
 tools/                    the scripts that turn a 講義 PDF into either of those
 ```
 
-All twenty-five are plain HTML, CSS and JS with no build step.
+All twenty-six are plain HTML, CSS and JS with no build step.
 
 Every page ends with the same `<footer class="site-foot">` linking to
 <https://lewistoeic.com>, so a reader who lands on any one sheet can find the
