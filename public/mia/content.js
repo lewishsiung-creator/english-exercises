@@ -103,6 +103,10 @@
      link      a pointer to another page in this site, or an in-page anchor
                such as `#s1` — the renderer unfolds the target session first
      quote     a short quote, with attribution
+     photo     a photograph above the paragraph it belongs to — `src`, `alt`,
+               the photographer in `by`, and a `pos` (CSS object-position) if
+               the default centre crop cuts the wrong thing. Illustration only:
+               no lesson text, and print drops it
      summary   a teaching paragraph, spoken aloud on request. Optional
                `titleEn`/`titleZh` put a heading above it and optional `n` a
                number beside that — use them wherever the SOURCE arrived cut
@@ -174,6 +178,23 @@
    The client she described — a painful treatment at another clinic, a fear of
    anything similar, trust rebuilt — is on the page only as "a client": no
    name, no date, no clinic. That is the PATIENTS line above, applied.
+
+   PHOTOGRAPHS
+   -----------
+   The `photo` block is this notebook's own — no other notebook renderer has
+   one; it is ported from /wealth-habits/. Files live in img/, from Pexels,
+   whose licence allows commercial use and asks for no attribution; the
+   photographer is credited under each picture anyway. Each was fetched at
+   1600 px wide (1600×1067) and is cropped by CSS.
+
+   Choose them the way the clinic lines above require: stock photographs of
+   no real clinic — no visible name, logo or signage (a reception shot was
+   passed over for a logo on the wall) — nothing graphic, and nobody who could
+   be taken for one of Mia's clients. Session 1 has four, each opening one of
+   the review's sections: records.jpg (B-2, preparing), consultation.jpg (B-3,
+   the client), journal.jpg (B-4, the progress journal), knitting.jpg (B-6,
+   attention). Lewis approved each file before it was downloaded; a fifth, a
+   clinician explaining facial anatomy on a tablet, was offered and declined.
 
    SAMPLE BANNER
    -------------
@@ -531,6 +552,14 @@ const NOTEBOOK = {
         },
 
         {
+          t: 'photo',
+          src: 'img/records.jpg',
+          alt: 'Hands in a white coat holding a clipboard of patient documents and a pen',
+          by: 'MART PRODUCTION',
+          pos: '50% 40%',
+        },
+
+        {
           t: 'summary',
           id: 's1-trust',
           n: '2',
@@ -541,12 +570,28 @@ const NOTEBOOK = {
         },
 
         {
+          t: 'photo',
+          src: 'img/consultation.jpg',
+          alt: 'A clinician and a client in a treatment chair looking at a tablet together, both smiling',
+          by: 'Gustavo Fring',
+          pos: '50% 35%',
+        },
+
+        {
           t: 'summary',
           n: '3',
           titleEn: 'Your client experience is evidence that you are improving',
           titleZh: '你的客戶案例，就是你正在進步的證據',
           en: 'You shared an experience about a client who had once received a very painful treatment at another clinic, and had been afraid of anything similar ever since. When she came to your clinic, you and your team did not simply try to sell her another procedure. You understood her previous experience, identified her concerns, explained the treatment clearly, showed her how it was different, rebuilt her trust, and stayed with her during the procedure. As a result, she had a much better experience and got the result she wanted. This matters because it shows you are no longer only completing tasks. You are becoming a more client-centred professional — learning to understand people, communicate clearly, build trust, reduce a client’s anxiety, and guide someone through a difficult decision. That is real professional growth.',
           zh: '你分享了一個很重要的案例：有一位客戶曾經在其他診所接受過非常痛苦的療程，從此對類似的療程產生了很大的恐懼。當她來到你們診所時，你和團隊並不是單純想要再「賣一個療程」給她。你們了解她過去的經驗、確認她真正擔心的是什麼、清楚說明療程、讓她了解不同療程之間的差異、重新建立她的信任，並在療程過程中陪伴她。最後，她得到了一次比過去好很多的經驗，也獲得了她想要的效果。這個案例很重要，因為它證明你已經不只是「完成工作」而已。你正在逐漸成為一位以客戶為中心的專業工作者——學會理解不同的人、清楚溝通、建立信任、降低客戶的不安，以及協助客戶做出困難的決定。這就是真正的職場成長。',
+        },
+
+        {
+          t: 'photo',
+          src: 'img/journal.jpg',
+          alt: 'Hands writing in a lined notebook with a pencil',
+          by: 'Kevin Malik',
+          pos: '50% 55%',
         },
 
         {
@@ -565,6 +610,14 @@ const NOTEBOOK = {
           titleZh: '成熟，不代表沒有情緒',
           en: 'You said you want to become more mature, less sensitive and less emotional. But being mature does not mean having no emotions — everyone has them. The skill is what happens between the emotion and the reaction: emotion, then space, then reaction. I feel nervous. I notice that I am nervous. I give myself a moment to think. I choose the most appropriate response. The goal is not “Don’t feel nervous.” The goal is: even when I feel nervous, I can still choose my next action.',
           zh: '你說，你希望自己可以變得更成熟、不要那麼敏感，也不要那麼容易受情緒影響。但是成熟並不代表沒有情緒——每個人都有情緒。真正重要的能力，是「情緒出現之後、做出反應之前」的那段空間：情緒 → 空間 → 反應。我感到緊張。我注意到自己很緊張。我給自己一點時間思考。我選擇最適合的反應方式。目標不是「不要緊張」，而是：即使我感到緊張，我還是可以決定自己下一步要怎麼做。',
+        },
+
+        {
+          t: 'photo',
+          src: 'img/knitting.jpg',
+          alt: 'Close-up of two hands knitting with natural yarn',
+          by: 'Sergei Starostin',
+          pos: '50% 50%',
         },
 
         {

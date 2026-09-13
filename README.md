@@ -1951,6 +1951,16 @@ uses a better one, and its item on *focus on the moment* is left out, because
 that is natural English and `fix` holds mistakes. The file header records each
 change.
 
+**It is the only notebook with photographs.** A `photo` block was ported from
+[Three Habits](#three-habits-that-build-wealth--adult-teacher-led) — `src`,
+`alt`, the photographer in `by`, a `pos` for the crop — and four Pexels
+pictures each open one section of Part B: patient records, a consultation, a
+notebook being written in, hands knitting. They were chosen to the page's clinic
+lines: no clinic's name, logo or signage in frame (a reception shot was passed
+over for a logo on the wall), nothing graphic, nobody who could be taken for one
+of her clients. Pexels asks for no attribution and the photographer is credited
+under each picture anyway; print drops them.
+
 ## Health Notes — bilingual notes on the body and the mind
 
 `public/health/` — the first page here that is not English teaching. A
@@ -2058,6 +2068,7 @@ public/eason/             Eason's notebook — the same, for a teenager
 public/anna/              Anna's notebook — the same again, for a young adult
 public/ken/               Ken's notebook — the same, for a college student
 public/mia/               Mia's notebook — the same, for a young adult at work
+public/mia/img/           its four Pexels photographs
 public/jill/              Jill's notebook — one entry per weekly lesson
 public/junior-high/       國中英語精熟 — 單字 and 文法, one page, Grades 7–9
 public/junior-high-words/    a redirect: the 單字 half's old URL

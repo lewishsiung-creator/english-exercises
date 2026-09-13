@@ -523,6 +523,41 @@ body.zh-all .session-btn .titles .zh { display: block; }
   color: var(--ink-faint);
 }
 
+/* ---------------- photographs ----------------
+
+   Ported from /wealth-habits/. A quiet band above the paragraph it belongs
+   to: no shadow, a hairline like every other card, and a fixed shape so
+   nothing jumps as the file arrives. `object-position` (set per photo in
+   content.js) decides what survives the tighter crop on a narrow screen. */
+
+.photo { margin: 6px 0 18px; }
+
+.photo img {
+  display: block;
+  width: 100%;
+  /* The width/height attributes reserve the space before the file arrives, but
+     they also set a used height — `auto` hands control back to aspect-ratio. */
+  height: auto;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--line, #e3e0d8);
+  background: var(--line, #e3e0d8);   /* holds the space while the file loads */
+}
+
+.photo figcaption {
+  margin-top: 6px;
+  font-family: var(--font-ui);
+  font-size: .7rem;
+  letter-spacing: .02em;
+  color: var(--ink-faint, #7a8290);
+  text-align: right;
+}
+
+@media (max-width: 620px) {
+  .photo img { aspect-ratio: 3 / 2; }
+}
+
 .summary { margin: 0 0 20px; }
 
 /* The heading on a titled teaching paragraph. Deliberately NOT `.label`: that
@@ -1200,6 +1235,9 @@ body.zh-all .card-back { display: block; }
   .gap.solved .opts { display: flex; }
   .slot { min-width: 9rem; border-bottom: 1px solid #999; color: transparent; }
   .cross { display: none; }
+  /* The handout is for the language; a printer should not spend its toner on
+     stock photography. */
+  .photo { display: none !important; }
 }
 
 /* ---------------- 站尾 / site footer ----------------

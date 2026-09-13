@@ -126,6 +126,20 @@ const BLOCKS = {
       <figcaption>— ${text(b.by)}</figcaption>
     </figure>`,
 
+  /* A photograph, ported from /wealth-habits/. Illustration, not content: it
+     carries no lesson text, the alt text describes it for a screen reader and
+     stops there, and print drops it. The file is cropped by CSS to a fixed
+     band, so `pos` (an object-position) decides what survives the crop.
+     The credit is the photographer's name plus the source — Pexels asks for no
+     attribution, and the page gives it anyway. */
+  photo: (b) => `
+    <figure class="photo">
+      <img src="${text(b.src)}" alt="${text(b.alt)}" width="1600" height="1067"
+           loading="lazy" decoding="async"
+           style="object-position:${text(b.pos || '50% 50%')}">
+      <figcaption>${text(b.by)} · Pexels</figcaption>
+    </figure>`,
+
   /* A teaching paragraph, spoken aloud on request.
 
      `titleEn`/`titleZh` are optional and exist because several sources arrive
