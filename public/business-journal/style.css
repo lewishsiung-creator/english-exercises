@@ -1,4 +1,13 @@
-/* Three Habits That Build Wealth — interactive lesson for working adults.
+/* 國際商業期刊導讀 · Business Journal Reading — one stylesheet for the contents
+   page and every reading in the series.
+
+   The look follows the editorial conventions of the international business
+   press — a white page, near-black ink, a sharp serif for reading, a bold
+   grotesque for article headlines, teal for labels and links, one red used
+   sparingly, and hairline rules in place of boxes. It is modelled on hbr.org's
+   design language and deliberately stops there: no masthead, logo, name or
+   licensed typeface of theirs, because this is a public page and must not read
+   as theirs. System fonts stand in for the licensed ones.
 
    A teacher drives this in a one-to-one or small-group session, usually on one
    laptop turned sideways or a shared screen. Design notes:
@@ -19,30 +28,39 @@
      a size up from a personal document. */
 
 :root {
-  --paper: #f7f6f2;
+  /* The token names are the house names kept from the first lesson, so every
+     rule below still reads the same way. Their values are the press palette:
+     --navy now holds the teal that marks what is a label or can be clicked,
+     and --gold the red that marks the one thing per screen that matters. All
+     text colours clear WCAG AA on the white page. */
+  --paper: #ffffff;
   --card: #ffffff;
-  --ink: #1c2430;
-  --ink-soft: #566171;
-  --ink-faint: #8b95a3;
+  --ink: #222222;
+  --ink-soft: #555555;
+  --ink-faint: #767676;
 
-  --navy: #1d3f6e;
-  --navy-soft: #eaf0f8;
-  --navy-line: #c2d3e7;
+  --navy: #075e64;
+  --navy-soft: #edf5f5;
+  --navy-line: #b8d4d5;
 
-  --gold: #a1741a;
-  --gold-soft: #fbf1da;
-  --gold-line: #f2c14e;
+  --gold: #c4161c;
+  --gold-soft: #f6f6f7;   /* the aside and prompt ground: grey, so the red stays rare */
+  --gold-line: #c4161c;
 
   --good: #2c7a58;
   --good-soft: #e4f2ea;
   --good-line: #a8d6be;
 
-  --line: #e3e0d8;
-  --rule: #cdc8bc;
+  --line: #e2e2e2;
+  --rule: #cfcfcf;
 
-  --font-en: "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, "Times New Roman", serif;
+  /* Charter and Georgia stand in for the press's licensed text serif, and
+     Helvetica for its grotesque. PingFang TC closes the headline stack so a
+     Chinese word in a headline is set in the same weight as the English. */
+  --font-en: Charter, "Bitstream Charter", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-head: "Helvetica Neue", Helvetica, Arial, "PingFang TC", "Heiti TC", sans-serif;
   --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
-  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-ui: "Helvetica Neue", Helvetica, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
 
   --bar-h: 54px;
   --measure: 46rem;
@@ -58,7 +76,7 @@ body {
   color: var(--ink);
   font-family: var(--font-en);
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.7;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -90,7 +108,7 @@ body.zh-all .zh { display: block; }
   color: var(--ink-faint);
   background: transparent;
   border: 1px solid var(--line);
-  border-radius: 5px;
+  border-radius: 3px;
   cursor: pointer;
   transition: color .12s, border-color .12s, background .12s;
 }
@@ -130,7 +148,7 @@ body.zh-all .zh-chip { display: none; }
   align-items: center;
   gap: 10px;
   padding: 0 16px;
-  background: rgba(247, 246, 242, .93);
+  background: rgba(255, 255, 255, .96);
   backdrop-filter: saturate(1.6) blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -139,8 +157,10 @@ body.zh-all .zh-chip { display: none; }
   flex: 1;
   margin: 0;
   min-width: 0;
+  font-family: var(--font-head);
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: -.01em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -157,17 +177,19 @@ body.zh-all .zh-chip { display: none; }
   flex: none;
   font-family: var(--font-ui);
   font-size: 13px;
-  color: var(--navy);
+  color: var(--ink);
   background: transparent;
-  border: 1px solid var(--navy-line);
-  border-radius: 7px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
   padding: 6px 11px;
   cursor: pointer;
 }
-.bar-btn:hover { background: var(--navy-soft); }
+.bar-btn:hover { background: #f5f5f5; }
 .bar-btn-quiet { color: var(--ink-soft); border-color: var(--line); font-size: 15px; padding: 4px 9px; }
 .bar-btn-zh { font-family: var(--font-zh); }
-.bar-btn-zh[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+/* The bar's one red: the 中文 switch, lit. It is the only control up here that
+   changes the whole page, so it is the one allowed to be loud. */
+.bar-btn-zh[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); color: #fff; }
 
 @media (min-width: 900px) { #navToggle { display: none; } }
 
@@ -214,7 +236,7 @@ body.zh-all .zh-chip { display: none; }
   grid-template-columns: 1.4rem 1fr;
   gap: 8px;
   padding: 8px 10px 8px 6px;
-  border-radius: 7px;
+  border-radius: 3px;
   text-decoration: none;
   color: var(--ink-soft);
   border-left: 2px solid transparent;
@@ -267,18 +289,27 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 
 .cover { padding: 40px 0 10px; }
 
-/* Set for the Chinese kicker: the tracking that flatters small uppercase Latin
-   crowds Chinese glyphs, which need a size up and a little more air. */
+/* The topic line above a headline, the way the press labels a story: bold,
+   teal, sentence case and untracked. It is set in the headline face, which
+   falls through to PingFang for the Chinese series name. */
 .kicker {
-  margin: 0 0 14px;
-  font-family: var(--font-zh);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: .16em;
-  color: var(--gold);
+  margin: 0 0 12px;
+  font-family: var(--font-head);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--navy);
 }
 
-.cover h1 { margin: 0 0 24px; font-size: 2.2rem; line-height: 1.18; font-weight: 600; }
+/* The article headline: a bold grotesque, large and tightly set. */
+.cover h1 {
+  margin: 0 0 24px;
+  font-family: var(--font-head);
+  font-size: 2.75rem;
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -.015em;
+}
 /* Inline so the 中 chip trails the last word rather than dropping a line. */
 .cover h1 .en { display: inline; }
 .cover h1 .zh { font-size: .95rem; font-weight: 400; margin-top: 8px; }
@@ -289,7 +320,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   padding: 20px 22px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 4px;
 }
 .goals-intro { font-family: var(--font-ui); font-size: .88rem; color: var(--ink-soft); }
 .goals ul { margin: 12px 0 0; padding-left: 1.1rem; }
@@ -323,8 +354,8 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  border-radius: 12px;
-  border: 1px solid var(--line);
+  border-radius: 0;               /* square-cornered, as the press runs pictures */
+  border: 1px solid var(--line);  /* keeps a pale sky from bleeding into the page */
   background: var(--navy-soft);   /* holds the space while the file loads */
 }
 
@@ -348,30 +379,29 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 
 /* ---------------- steps ---------------- */
 
-.step { padding-top: 46px; }
+.step { padding-top: 56px; }
 
+/* A section opens under a heavy black rule, the way a printed section does,
+   with its number in the series red rather than on a badge. */
 .step-head {
   display: grid;
-  grid-template-columns: 2.4rem 1fr;
-  gap: 14px;
-  align-items: start;
-  margin: 0 0 22px;
-  padding-bottom: 14px;
-  border-bottom: 2px solid var(--gold-line);
-  font-size: 1.55rem;
-  font-weight: 600;
-  line-height: 1.25;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: baseline;
+  margin: 0 0 24px;
+  padding-top: 14px;
+  border-top: 3px solid var(--ink);
+  font-family: var(--font-head);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -.01em;
 }
 .step-head .n {
-  font-family: var(--font-ui);
-  font-size: 1rem;
+  font-family: var(--font-head);
+  font-size: 1.75rem;
   font-weight: 700;
-  color: #fff;
-  background: var(--navy);
-  border-radius: 8px;
-  text-align: center;
-  padding: 4px 0;
-  margin-top: 5px;
+  color: var(--gold);
 }
 .step-head .titles .en { display: inline; }
 .step-head .titles .zh { font-size: .95rem; font-weight: 400; margin-top: 4px; }
@@ -387,11 +417,11 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 /* ---------------- quote ---------------- */
 
 .quote {
-  margin: 0 0 26px;
-  padding: 4px 0 4px 20px;
-  border-left: 4px solid var(--gold-line);
+  margin: 0 0 28px;
+  padding: 2px 0 2px 20px;
+  border-left: 3px solid var(--gold-line);
 }
-.quote blockquote { margin: 0; font-size: 1.22rem; line-height: 1.5; }
+.quote blockquote { margin: 0; font-size: 1.45rem; line-height: 1.35; }
 .quote blockquote p { margin: 0; }
 .quote .zh { font-size: .82rem; margin-top: 8px; font-style: normal; }
 .quote figcaption {
@@ -405,21 +435,19 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 
 /* ---------------- note ---------------- */
 
+/* An aside, the way a sidebar runs in print: a grey panel under a teal rule. */
 .note {
-  margin: 26px 0;
-  padding: 18px 22px;
+  margin: 28px 0;
+  padding: 16px 22px 18px;
   background: var(--gold-soft);
-  border: 1px solid #ecdcb4;
-  border-radius: 12px;
+  border-top: 3px solid var(--navy);
 }
 .note h4 {
   margin: 0 0 8px;
-  font-family: var(--font-ui);
-  font-size: .84rem;
+  font-family: var(--font-head);
+  font-size: 1rem;
   font-weight: 700;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  color: var(--gold);
+  color: var(--navy);
 }
 .note h4 .en { display: inline; }
 .note h4 .zh { text-transform: none; letter-spacing: 0; margin-top: 4px; }
@@ -434,7 +462,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   padding: 3px 5px;
   background: transparent;
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 3px;
   cursor: pointer;
   opacity: .55;
   transition: opacity .12s, border-color .12s;
@@ -444,14 +472,15 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 
 /* ---------------- section labels ---------------- */
 
+/* A label inside a step, set like a list heading in the press: bold, sentence
+   case, near-black — not the tracked capitals of a form. */
 .label {
-  margin: 32px 0 12px;
-  font-family: var(--font-ui);
-  font-size: .8rem;
+  margin: 34px 0 12px;
+  font-family: var(--font-head);
+  font-size: 1.1rem;
   font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--navy);
+  letter-spacing: -.005em;
+  color: var(--ink);
 }
 .label .en { display: inline; }
 .label .zh {
@@ -487,7 +516,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   padding: 12px 14px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 4px;
   cursor: pointer;
   transition: border-color .12s, box-shadow .12s;
 }
@@ -516,7 +545,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   color: var(--ink);
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 9px;
+  border-radius: 3px;
   padding: 8px 13px;
   cursor: pointer;
   text-align: left;
@@ -563,7 +592,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   padding: 14px 16px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 4px;
 }
 /* The number sits in its own narrow column so the sentence, and the Chinese
    under it, share one left edge. */
@@ -649,7 +678,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   padding: 16px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 4px;
 }
 .role-icon { margin: 0 0 6px; font-size: 1.4rem; line-height: 1; }
 .role-desc { margin-top: 6px; font-size: .9rem; color: var(--ink-soft); }
@@ -663,8 +692,8 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   padding: 16px 18px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-left: 3px solid var(--navy-line);
-  border-radius: 10px;
+  border-left: 3px solid var(--navy);
+  border-radius: 0 4px 4px 0;
 }
 .ask .en { font-size: 1.04rem; }
 
@@ -676,7 +705,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   color: var(--ink-soft);
   background: transparent;
   border: 1px dashed var(--rule);
-  border-radius: 7px;
+  border-radius: 3px;
   padding: 5px 10px;
   cursor: pointer;
 }
@@ -688,7 +717,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   margin: 0 0 8px;
   padding: 8px 12px;
   background: var(--navy-soft);
-  border-radius: 8px;
+  border-radius: 3px;
   font-size: .95rem;
   font-style: italic;
   color: var(--ink-soft);
@@ -708,7 +737,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   padding: 20px 22px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 4px;
 }
 .task > .label { margin-top: 0; }
 .task-how { margin-bottom: 14px; font-size: .98rem; }
@@ -720,9 +749,9 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   font-family: var(--font-en);
   font-size: .98rem;
   color: var(--ink);
-  background: var(--paper);
+  background: var(--gold-soft);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 4px;
   padding: 11px 14px;
   cursor: pointer;
 }
@@ -740,11 +769,9 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   gap: 10px;
   margin: 0 0 10px;
   font-family: var(--font-ui);
-  font-size: .78rem;
+  font-size: .82rem;
   font-weight: 700;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--ink);
 }
 /* The Chinese belongs beside its English label, so it takes the free space and
    leaves the counter pinned to the right. */
@@ -767,9 +794,9 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   font-family: var(--font-en);
   font-size: .92rem;
   color: var(--ink-soft);
-  background: var(--paper);
+  background: var(--gold-soft);
   border: 1px solid var(--line);
-  border-radius: 20px;
+  border-radius: 3px;
   padding: 6px 13px 6px 9px;
   cursor: pointer;
 }
@@ -796,9 +823,9 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 .frames li {
   margin: 0 0 8px;
   padding: 9px 13px;
-  background: var(--paper);
-  border-left: 3px solid var(--navy-line);
-  border-radius: 0 8px 8px 0;
+  background: var(--gold-soft);
+  border-left: 3px solid var(--navy);
+  border-radius: 0 3px 3px 0;
   font-size: .95rem;
   font-style: italic;
   color: var(--ink-soft);
@@ -817,7 +844,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   padding: 18px 20px 22px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 4px;
   box-shadow: 0 16px 40px rgba(28, 36, 48, .18);
   font-family: var(--font-ui);
 }
@@ -852,8 +879,8 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   font-size: .85rem;
   padding: 7px 9px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--paper);
+  border-radius: 3px;
+  background: var(--card);
   color: var(--ink);
 }
 
@@ -865,7 +892,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   color: #fff;
   background: var(--navy);
   border: 1px solid var(--navy);
-  border-radius: 8px;
+  border-radius: 3px;
   padding: 9px 12px;
   cursor: pointer;
 }
@@ -879,8 +906,9 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 
 @media (max-width: 620px) {
   body { font-size: 17px; }
-  .cover h1 { font-size: 1.8rem; }
-  .step-head { font-size: 1.3rem; grid-template-columns: 2rem 1fr; gap: 10px; }
+  .cover h1 { font-size: 2.1rem; }
+  .step-head, .step-head .n { font-size: 1.4rem; }
+  .step-head { gap: 10px; }
   /* Stacked, the two halves need a visible seam or they read as one list. */
   .match-grid { grid-template-columns: 1fr; }
   .match .col-b { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--rule); }
@@ -960,3 +988,184 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 .site-foot p a:hover { opacity: .7; }
 
 @media print { .site-foot { display: none; } }
+
+/* ================================================================
+   The series — the way back up from a reading, and the contents page.
+   ================================================================ */
+
+/* The kicker on a reading's cover is also the way back to the contents page,
+   but it only admits to being a link on hover — a reading should open on its
+   title, not on its navigation. */
+.kicker-up { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
+.kicker-up:hover { border-bottom-color: var(--navy); }
+.kicker-sep { margin: 0 .5em; opacity: .5; }
+
+.toc-up { margin: 0 0 14px; font-size: 13px; }
+
+/* `.toc a` above is a two-column grid for the numbered step rows. This link is
+   not one of those, so the display has to be put back or the label breaks a
+   character to a line inside the number column. */
+.toc-up a {
+  display: inline;
+  padding: 0;
+  border-left: 0;
+  color: var(--ink-faint);
+  text-decoration: none;
+}
+.toc-up a:hover { color: var(--navy); background: none; }
+
+/* ---------------- the contents page ---------------- */
+
+/* One column, wider than a reading: the cards want the room, and there is no
+   table of contents beside them to give it up for. */
+.shell-wide { max-width: 64rem; }
+@media (min-width: 900px) { .shell-wide { grid-template-columns: 1fr; } }
+.shell-wide main { max-width: none; }
+
+.part-count {
+  margin: 18px 0 0;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+.part-count em { font-family: var(--font-zh); font-style: normal; margin-left: 8px; }
+
+/* The contents page reads like the front page of a business publication:
+   stories rather than boxes — a photograph, a teal number, a serif headline, a
+   grey summary and a small source line, divided by hairlines. The newest
+   reading leads, full width, the way a front page leads with its top story. */
+
+.readings { margin: 40px 0 0; }
+
+.readings-head {
+  margin: 0 0 18px;
+  padding-top: 12px;
+  border-top: 3px solid var(--ink);
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -.005em;
+}
+.readings-head em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  font-size: .85em;
+  color: var(--ink-faint);
+  margin-left: 8px;
+}
+
+.reading-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 28px 32px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 700px) { .reading-grid { grid-template-columns: 1fr 1fr; } }
+
+.reading-card { position: relative; }
+/* On one column, every story after the first sits under a hairline, as a
+   list does in print; on two, the gutter does that job. */
+.reading-card + .reading-card { padding-top: 22px; border-top: 1px solid var(--line); }
+@media (min-width: 700px) {
+  .reading-card + .reading-card { padding-top: 0; border-top: 0; }
+}
+
+/* The reading's own opening photograph, cut to the same 16:9 the reading uses,
+   so the card and the page it opens look like the same thing. */
+.reading-pic {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--navy-soft);
+  margin: 0 0 14px;
+}
+
+.reading-n {
+  margin: 0 0 6px;
+  font-family: var(--font-head);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: var(--navy);
+}
+.reading-n em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  margin-left: 8px;
+}
+
+/* The one serif headline on the site: the press sets its front-page story
+   headlines in a serif and its article headlines in a sans, and so does this. */
+.reading-card h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-en);
+  font-size: 24px;
+  line-height: 1.17;
+  font-weight: 400;
+  color: var(--ink);
+}
+.reading-card h3 a { color: inherit; text-decoration: none; }
+.reading-card:hover h3 a { color: var(--navy); }
+/* The whole card is the hit area on a built reading. */
+.reading-card h3 a::after { content: ''; position: absolute; inset: 0; }
+.reading-card h3 .en { display: block; }
+/* Navigation stays bilingual — a title is how you find the reading, not a
+   comprehension check. */
+.reading-card h3 .zh { display: block; font-size: 14px; margin-top: 4px; }
+
+.lesson-blurb {
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.35;
+  color: var(--ink-soft);
+}
+.lesson-blurb em {
+  display: block;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-size: .82em;
+  line-height: 1.7;
+  color: var(--ink-faint);
+  margin-top: 4px;
+}
+
+.reading-src { margin: 0; font-family: var(--font-ui); font-size: 13px; color: var(--ink-faint); }
+.reading-src em { font-family: var(--font-zh); font-style: normal; margin-left: 8px; }
+
+/* The lead story: full width, the picture beside the text on a wide screen,
+   and the headline a size up. */
+@media (min-width: 900px) {
+  .reading-card.lead-story {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 28px;
+    align-items: center;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .reading-card.lead-story .reading-pic { margin: 0; }
+  .reading-card.lead-story h3 { font-size: 34px; line-height: 1.12; }
+}
+
+/* Listed but not written yet: the story keeps its place, dimmed, no picture. */
+.reading-card.todo h3 { color: var(--ink-soft); }
+.reading-card.todo .lesson-blurb { color: var(--ink-faint); }
+
+.soon {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  color: var(--ink-faint);
+  border: 1px dashed var(--rule);
+  border-radius: 3px;
+  padding: 3px 9px;
+}

@@ -1,6 +1,12 @@
-/* Renders LESSON (content.js) and wires up the activities.
+/* Renders LESSON (content.js) and wires up the activities. One copy of this
+   file serves every reading in 國際商業期刊導讀; each reading's folder holds
+   only a thin index.html, its content.js and its img/.
 
-   This page is driven by the teacher in a session, not worked through alone at
+   The reading's number and the link back to the contents page come from
+   course.js, looked up by LESSON.id. A reading course.js has never heard of
+   throws on load rather than rendering without its place in the series.
+
+   A reading is driven by the teacher in a session, not worked through alone at
    home, so it behaves accordingly:
 
    - Nothing is scored and nothing is saved. A fresh load is a fresh lesson,
@@ -290,13 +296,24 @@ const BLOCKS = {
     </div>`,
 };
 
+// ---------------------------------------------------------------- the series
+
+/* Where this reading sits in the series. The template is linked from nowhere
+   and deliberately absent from course.js, so it gets a stand-in, not a throw. */
+const N = COURSE.readings.findIndex((r) => r.id === LESSON.id) + 1;
+if (!N && LESSON.id !== '_template') {
+  throw new Error(`Reading "${LESSON.id}" is not listed in course.js`);
+}
+
 // ---------------------------------------------------------------- build
 
 function buildCover() {
   const i = LESSON.intro;
   return `
     <header class="cover" id="top">
-      <p class="kicker">${text(LESSON.kicker)}</p>
+      <p class="kicker"><a class="kicker-up" href="../">${text(COURSE.titleZh)}</a>
+        <span class="kicker-sep" aria-hidden="true">·</span>
+        ${N ? `No. ${N}` : 'Template'}</p>
       <h1><span class="en">${text(LESSON.title)}</span>
         <button class="zh-chip" title="顯示中文">中</button>
         <span class="zh">${text(LESSON.titleZh)}</span></h1>
@@ -312,8 +329,8 @@ function buildCover() {
             </li>`).join('')}
         </ul>
       </div>
-      <p class="source">${text(LESSON.source.en)}
-        <span class="zh">${text(LESSON.source.zh)}</span></p>
+      ${LESSON.source ? `<p class="source">${text(LESSON.source.en)}
+        <span class="zh">${text(LESSON.source.zh)}</span></p>` : ''}
     </header>`;
 }
 
@@ -341,6 +358,7 @@ function buildNav() {
   return `
     <nav class="toc" aria-label="Lesson steps">
       <p class="toc-head">Lesson 課程</p>
+      <p class="toc-up"><a href="../">← All readings 全部文章</a></p>
       <ul>
         <li><a href="#top" data-target="top"><span class="n">·</span>
           <span class="t"><span class="en">Start</span><span class="zh">開始</span></span></a></li>
@@ -352,7 +370,9 @@ function buildNav() {
     </nav>`;
 }
 
-document.title = `${LESSON.title} · ${LESSON.titleZh}`;
+document.title = `${LESSON.title} · ${LESSON.titleZh} — ${COURSE.titleZh}`;
+$('.bar-title').innerHTML =
+  `${text(LESSON.title)} <span>${text(LESSON.titleZh)}</span>`;
 
 $('#nav').appendChild(el(buildNav()));
 
@@ -362,12 +382,14 @@ LESSON.steps.forEach((s) => doc.appendChild(el(buildStep(s))));
 
 // ---------------------------------------------------------------- Chinese
 
+/* One prefix for the whole series — the contents page uses it too — so the
+   中文 switch and the chosen voice carry from reading to reading. */
 const store = {
   get(k, fallback) {
-    try { const v = localStorage.getItem(`wh.${k}`); return v === null ? fallback : v; }
+    try { const v = localStorage.getItem(`bj.${k}`); return v === null ? fallback : v; }
     catch { return fallback; }
   },
-  set(k, v) { try { localStorage.setItem(`wh.${k}`, v); } catch { /* private mode */ } },
+  set(k, v) { try { localStorage.setItem(`bj.${k}`, v); } catch { /* private mode */ } },
 };
 
 const zhToggle = $('#zhToggle');

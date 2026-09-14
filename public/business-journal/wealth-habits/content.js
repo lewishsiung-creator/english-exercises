@@ -36,9 +36,9 @@
 */
 
 const LESSON = {
+  id: 'wealth-habits',     // must match its entry in ../course.js
   title: 'Three Habits That Build Wealth',
   titleZh: '累積財富的三個習慣',
-  kicker: '國際商業期刊導讀',
 
   /* Photographs are from Pexels, whose licence allows commercial use and asks
      for no attribution; the photographers are credited anyway. `pos` is the

@@ -6,8 +6,8 @@ root, phonics practice for slightly older children at `/phonics/`, an
 interactive phonics handbook for the same age at `/phonics-handbook/`, a
 review lesson for a ten-to-twelve-year-old at `/confidence-talk/`, a
 bilingual business worksheet at `/business-clarity/`, a fifteen-chapter
-basic grammar course for adults at `/grammar/`, an interactive
-lesson for working adults at `/wealth-habits/`, a business-English reading
+basic grammar course for adults at `/grammar/`, 國際商業期刊導讀 — a growing
+series of business-journal readings — at `/business-journal/`, a business-English reading
 lesson at `/happy-sexy-millionaire/`, a four-book discussion guide at
 `/aaron/book-club/`, reading-aloud practice
 built on a bilingual speech and its election Q&A at `/campaign-speech/`,
@@ -468,7 +468,50 @@ Three things are specific here:
   order they were placed, so restoring them would be a lie about what the
   learner had got right.
 
-## Three Habits That Build Wealth — adult, teacher-led
+## 國際商業期刊導讀 · Business Journal Reading — adult, teacher-led
+
+A series that grows one reading at a time: each takes one article from the
+international business press and turns it into a teacher-led lesson. Built the
+way `/ielts-speaking/` and `/grammar/` are — one renderer and one stylesheet for
+the whole series, a map of the readings, and a thin folder per reading.
+
+### The shape
+
+```
+public/business-journal/
+  course.js      the map: the series' title and intro, and every reading
+  hub.js         the contents page
+  render.js      the reading renderer — eleven block types, shared
+  style.css      shared by the contents page and every reading
+  _template/     a working reading that uses every block type, linked from nowhere
+  wealth-habits/ one folder per reading: a thin index.html, content.js and img/
+```
+
+Adding a reading is three steps: `cp -r _template <id>`, write its `content.js`
+with `id: '<id>'`, and append it to `readings` in `course.js` with
+`built: true`. A reading's number is its position in that list, so new ones go
+at the bottom; the contents page shows them newest first on its own, leading
+with the latest the way a front page leads with its top story.
+
+- **A reading's place comes from the map.** The cover's kicker (國際商業期刊導讀
+  · No. 1) and the ← All readings link both come from `course.js`, looked up by
+  `LESSON.id`. An id the map has never heard of throws on load rather than
+  rendering without its place in the series.
+- **One storage prefix for the series**, `bj.`, so the 中文 switch and the
+  chosen voice carry from the contents page into every reading.
+- **The look is modelled on hbr.org**, at Lewis's request: a white page,
+  near-black ink, a serif for the reading text and the contents page's story
+  headlines, a bold grotesque for article headlines and labels, teal for labels
+  and links, one red for the step numbers and the lit 中文 switch, hairline
+  rules and square-cornered photographs. It stops at design language — no HBR
+  logo, name or licensed typeface; Charter/Georgia and Helvetica stand in for
+  Tiempos and GT America — because the page is public and must not read as
+  theirs. The token names are the house names kept from the first lesson:
+  `--navy` holds the teal and `--gold` the red.
+- **`/wealth-habits/` is a redirect** to `/business-journal/wealth-habits/`,
+  carrying its hash, because that URL had already gone out.
+
+### No. 1 — Three Habits That Build Wealth
 
 An interactive lesson for working adults, built from the HBR CC Book Digest of
 Scott Galloway's three highest-return habits. Five steps — advice versus
@@ -2050,8 +2093,10 @@ public/grammar/           Basic English Grammar — the hub and book.js
 public/grammar/ch01/      one folder per chapter, a content file each
 public/grammar/ch13/      Modals, Part 2 — the second chapter written
 public/grammar/ch14/      Nouns and Modifiers — the third
-public/wealth-habits/     the three-habits lesson
-public/wealth-habits/img/ its four photographs
+public/business-journal/  國際商業期刊導讀 — the hub, course.js and the shared renderer
+public/business-journal/wealth-habits/  No. 1, Three Habits — content.js and img/
+public/business-journal/_template/      a reading that uses every block type
+public/wealth-habits/     a redirect: the three-habits lesson's old URL
 public/happy-sexy-millionaire/  the business-English reading lesson
 public/campaign-speech/   the speech and election Q&A
 public/toeic-grammar/     the TOEIC Part 5 & 6 practice
@@ -2223,19 +2268,22 @@ length they should appear. The block types — questions, checkboxes, phrase
 lists, sentence frames, tables — are listed in a comment at the top of the
 file.
 
-**Three Habits.** The lesson lives in
-[`public/wealth-habits/content.js`](public/wealth-habits/content.js), one entry
-per step. Every string is an `en`/`zh` pair. The block types — quote, summary,
-phrase cards, matching, gap fill, poll, cards, discussion, task — are listed in
-a comment at the top of the file, and each is one function in
-[`render.js`](public/wealth-habits/render.js).
+**國際商業期刊導讀.** Each reading lives in its own
+`public/business-journal/<id>/content.js` — the first is
+[`wealth-habits/content.js`](public/business-journal/wealth-habits/content.js) —
+one entry per step. Every string is an `en`/`zh` pair. The block types — quote,
+summary, phrase cards, matching, gap fill, poll, cards, discussion, task — are
+listed at the top of
+[`_template/content.js`](public/business-journal/_template/content.js), which
+uses each once, and each is one function in the shared
+[`render.js`](public/business-journal/render.js).
 
 A gap sentence marks its blank with `___` and gives the index of the right
 option in `answer`; a phrase card wants an `eg` sentence, because that is what
 gets read aloud. A `photo` on the lesson or on any step adds a picture — give
 it a `src`, an `alt`, the photographer in `by`, and a `pos` if the default
-centre crop cuts the wrong thing. To build a lesson from a different article,
-replace the content file — nothing in the renderer knows about this one.
+centre crop cuts the wrong thing. To add a reading from a different article,
+copy `_template/` — nothing in the renderer knows about any one reading.
 
 **Happy Sexy Millionaire.** The lesson lives in
 [`public/happy-sexy-millionaire/content.js`](public/happy-sexy-millionaire/content.js),
@@ -2832,7 +2880,7 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/math/> for Number Lab,
 <http://localhost:8000/confidence-talk/> for the 10–12 review lesson,
 <http://localhost:8000/business-clarity/> for the business worksheet,
-<http://localhost:8000/wealth-habits/> for the three-habits lesson,
+<http://localhost:8000/business-journal/> for 國際商業期刊導讀,
 <http://localhost:8000/happy-sexy-millionaire/> for the reading lesson,
 <http://localhost:8000/campaign-speech/> for the speech,
 <http://localhost:8000/toeic-grammar/> for the TOEIC practice,
