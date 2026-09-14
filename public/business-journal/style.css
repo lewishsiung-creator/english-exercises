@@ -123,7 +123,7 @@ body.zh-all .zh-chip { display: none; }
    — a flipped phrase card, an opened "useful language" list — where a second
    tap would only be in the way. */
 .hint-zh, .source .zh, .prompt .zh, .toc .t .zh, .why .zh,
-.starters .zh, .frames .zh, .tick-t .zh { display: block; }
+.starters .zh, .frames .zh, .tick-t .zh, .model .zh { display: block; }
 
 .pair[data-zh] { cursor: pointer; }
 .pair p { margin: 0; }
@@ -929,7 +929,8 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   body { font-size: 11pt; background: #fff; }
   .shell { display: block; padding: 0; }
   main { max-width: none; }
-  .zh, .card-back, .starters, .why { display: block !important; }
+  .zh, .card-back, .starters, .why, .gloss, .model { display: block !important; }
+  .term { border-bottom: 1px solid #999; color: inherit; }
   .step { break-before: page; padding-top: 0; }
   .cards { grid-template-columns: repeat(2, 1fr); }
   .card, .gap, .ask, .task, .role, .note, .goals { break-inside: avoid; }
@@ -1168,4 +1169,150 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   border: 1px dashed var(--rule);
   border-radius: 3px;
   padding: 3px 9px;
+}
+
+/* ================================================================
+   Blocks added with No. 2 — the reading passage, model answers, and
+   the advice scale — and the part of speech on a word card.
+   ================================================================ */
+
+.card-pos {
+  margin-left: 7px;
+  font-family: var(--font-ui);
+  font-size: .74rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink-faint);
+}
+
+/* ---------------- the reading passage ----------------
+
+   Ported from /happy-sexy-millionaire/ and set as article text rather than
+   boxes, the way the press runs a story: the serif at reading size, open
+   leading, space between paragraphs. A target word is underlined, not boxed —
+   it must look tappable without turning prose into a row of buttons — and its
+   gloss opens under the paragraph, since nothing that floats can be read on a
+   projector from the back of a room. */
+
+.reading { margin: 0 0 10px; }
+.para { margin: 0 0 22px; }
+.para .en { font-size: 1.06rem; line-height: 1.78; }
+.para > .zh { margin-top: 8px; }
+
+.term {
+  font: inherit;
+  line-height: inherit;
+  color: var(--navy);
+  background: none;
+  border: 0;
+  border-bottom: 2px solid var(--navy-line);
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: background .12s, border-color .12s;
+}
+.term:hover, .term.on { background: var(--navy-soft); border-bottom-color: var(--navy); }
+
+.gloss {
+  margin: 10px 0 0;
+  padding: 10px 14px;
+  background: var(--navy-soft);
+  border-left: 3px solid var(--navy);
+  border-radius: 0 3px 3px 0;
+}
+.gloss p { margin: 0; }
+.gloss-w { font-family: var(--font-head); font-size: .95rem; font-weight: 700; color: var(--navy); }
+.gloss-pos {
+  margin-left: 6px;
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink-faint);
+}
+/* Already behind a deliberate tap, so the Chinese does not hide again. */
+.gloss-zh {
+  margin-left: 8px;
+  font-family: var(--font-zh);
+  font-size: .85rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+.gloss-def { margin-top: 4px; font-family: var(--font-ui); font-size: .85rem; line-height: 1.6; color: var(--ink-soft); }
+
+/* ---------------- model answers ---------------- */
+
+.check {
+  margin: 0 0 14px;
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+/* Same arrangement as a gap sentence: the number in its own narrow column, so
+   the question, its Chinese, the button and the answer share one left edge. */
+.check > .pair .en { display: grid; grid-template-columns: 1.6rem 1fr; }
+.check > .pair .zh { margin-top: 4px; padding-left: 1.6rem; }
+.check-q { font-size: 1rem; }
+.cue {
+  font-family: var(--font-head);
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.check .reveal { margin-left: 1.6rem; }
+
+.model {
+  margin: 12px 0 0 1.6rem;
+  padding: 10px 14px;
+  background: var(--good-soft);
+  border-left: 3px solid var(--good);
+  border-radius: 0 3px 3px 0;
+}
+.model p { margin: 0; }
+.model .en { font-size: .98rem; }
+.model .zh { margin-top: 4px; font-size: .8rem; color: var(--ink-soft); }
+
+/* ---------------- the advice scale ----------------
+
+   Soft to strong, in order, because the order is the lesson. The left rule
+   deepens with the force of the pattern — pale teal, teal, then the red — so
+   the gradient reads before a word of it does. */
+
+.ladder { list-style: none; margin: 0 0 18px; padding: 0; display: grid; gap: 8px; }
+
+.rung {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 12px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left-width: 4px;
+  border-radius: 0 4px 4px 0;
+}
+.rung-soft { border-left-color: var(--navy-line); }
+.rung-neutral { border-left-color: var(--navy); }
+.rung-strong { border-left-color: var(--gold); }
+
+.rung p { margin: 0; }
+.rung-level { padding-top: 2px; font-family: var(--font-head); font-size: .82rem; font-weight: 700; color: var(--ink-soft); }
+.rung-neutral .rung-level { color: var(--navy); }
+.rung-strong .rung-level { color: var(--gold); }
+.rung-level em {
+  display: block;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  font-size: .92em;
+  color: var(--ink-faint);
+}
+.rung-pattern { margin-bottom: 3px !important; font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--ink); }
+.rung-body .en { font-size: .95rem; font-style: italic; color: var(--ink-soft); }
+.rung-body .zh { margin-top: 3px; font-style: normal; }
+
+@media (max-width: 620px) {
+  .rung { grid-template-columns: 1fr; gap: 4px; }
 }

@@ -90,6 +90,30 @@ function shuffled(list) {
 
 let uid = 0;
 
+/* Splits a passage paragraph on its {{target words}}, turning each one into a
+   button and pushing the gloss it opens onto `found`. A word with no matching
+   glossary entry falls back to ordinary text rather than throwing — a typo in
+   content.js should cost a highlight, not the page. Ported from
+   /happy-sexy-millionaire/. */
+function marked(en, glossary, found) {
+  return en.split(/(\{\{[^}]+\}\})/).map((part) => {
+    const m = part.match(/^\{\{([^}]+)\}\}$/);
+    if (!m) return text(part);
+
+    const entry = glossary.find((g) => g.term === m[1]);
+    if (!entry) return text(m[1]);
+
+    const id = `g${uid++}`;
+    found.push({ id, entry });
+    return `<button class="term" data-g="${id}" aria-expanded="false">${text(m[1])}</button>`;
+  }).join('');
+}
+
+// What the 🔊 button should read out: the paragraph without its braces.
+function plain(en) {
+  return en.replace(/\{\{([^}]+)\}\}/g, '$1');
+}
+
 const BLOCKS = {
   lead: (b) => `<div class="lead">${pair(b.en, b.zh)}</div>`,
 
@@ -131,7 +155,7 @@ const BLOCKS = {
       <ul class="cards">
         ${b.items.map((i) => `
           <li class="card" tabindex="0" role="button" aria-expanded="false">
-            <p class="card-en">${text(i.en)}${speakBtn(i.en)}</p>
+            <p class="card-en">${text(i.en)}${i.pos ? `<span class="card-pos">${text(i.pos)}</span>` : ''}${speakBtn(i.en)}</p>
             <div class="card-back">
               <p class="card-zh">${text(i.zh)}</p>
               <p class="card-eg">${text(i.eg)}${speakBtn(i.eg, 'say say-quiet')}</p>
@@ -294,6 +318,81 @@ const BLOCKS = {
           </ul>
         </div>` : ''}
     </div>`,
+
+  /* The reading itself. A {{target word}} opens its gloss where it stands —
+     the passage is read aloud and pulled apart in the same pass, so the
+     meaning has to appear under the word, not in a list at the bottom. */
+  passage: (b) => `
+    <div class="reading">
+      <h4 class="label"><span class="en">${text(b.en)}</span>
+        <button class="zh-chip" title="顯示中文">中</button>
+        <span class="zh">${text(b.zh)}</span></h4>
+      ${b.hintEn ? `<p class="hint">${text(b.hintEn)}<span class="hint-zh">${text(b.hintZh)}</span></p>` : ''}
+      ${b.paras.map((p) => {
+        const found = [];
+        const body = marked(p.en, b.glossary || [], found);
+        return `
+          <div class="para pair" data-zh>
+            <p class="en">${body}${speakBtn(plain(p.en), 'say say-quiet')}
+              <button class="zh-chip" title="顯示中文">中</button></p>
+            ${found.map(({ id, entry }) => `
+              <div class="gloss" id="${id}" hidden>
+                <p class="gloss-w">${text(entry.term)}${entry.pos ? `<span class="gloss-pos">${text(entry.pos)}</span>` : ''}
+                  <span class="gloss-zh">${text(entry.zh)}</span></p>
+                ${entry.def ? `<p class="gloss-def">${text(entry.def)}</p>` : ''}
+              </div>`).join('')}
+            <p class="zh">${text(p.zh)}</p>
+          </div>`;
+      }).join('')}
+    </div>`,
+
+  /* Open questions with a model answer behind a tap — comprehension questions,
+     and rewrites whose `cue` names the pattern to use. The answer is a model,
+     not a key: the learner says theirs first, then the teacher opens this. */
+  check: (b) => `
+    <div class="activity checks">
+      <h4 class="label"><span class="en">${text(b.en)}</span>
+        <button class="zh-chip" title="顯示中文">中</button>
+        <span class="zh">${text(b.zh)}</span></h4>
+      ${b.hintEn ? `<p class="hint">${text(b.hintEn)}<span class="hint-zh">${text(b.hintZh)}</span></p>` : ''}
+      ${b.items.map((it, n) => `
+        <div class="check">
+          <div class="pair" data-zh>
+            <p class="en"><span class="gap-n">${n + 1}</span>
+              <span class="check-q">${text(it.en)}${it.cue ? ` <span class="cue">${text(it.cue)}</span>` : ''}${speakBtn(it.en, 'say say-quiet')}
+                <button class="zh-chip" title="顯示中文">中</button></span></p>
+            <p class="zh">${text(it.zh)}</p>
+          </div>
+          <button class="reveal" aria-expanded="false">Model answer 參考答案</button>
+          <div class="model" hidden>
+            <p class="en">${text(it.answer.en)}${speakBtn(it.answer.en, 'say say-quiet')}</p>
+            <p class="zh">${text(it.answer.zh)}</p>
+          </div>
+        </div>`).join('')}
+    </div>`,
+
+  /* A scale, soft to strong: patterns that do the same job with a different
+     force. The rows stay in order because the order is the lesson; each one
+     carries its strength, the pattern and an example spoken aloud. */
+  ladder: (b) => `
+    <div class="ladder-block">
+      <h4 class="label"><span class="en">${text(b.en)}</span>
+        <button class="zh-chip" title="顯示中文">中</button>
+        <span class="zh">${text(b.zh)}</span></h4>
+      ${b.hintEn ? `<p class="hint">${text(b.hintEn)}<span class="hint-zh">${text(b.hintZh)}</span></p>` : ''}
+      <ol class="ladder">
+        ${b.rows.map((r) => `
+          <li class="rung rung-${text(r.level)}">
+            <p class="rung-level">${text(r.levelEn)}<em>${text(r.levelZh)}</em></p>
+            <div class="rung-body pair" data-zh>
+              <p class="rung-pattern">${text(r.pattern)}</p>
+              <p class="en">${text(r.eg)}${speakBtn(r.eg, 'say say-quiet')}
+                <button class="zh-chip" title="顯示中文">中</button></p>
+              <p class="zh">${text(r.egZh)}</p>
+            </div>
+          </li>`).join('')}
+      </ol>
+    </div>`,
 };
 
 // ---------------------------------------------------------------- the series
@@ -313,7 +412,8 @@ function buildCover() {
     <header class="cover" id="top">
       <p class="kicker"><a class="kicker-up" href="../">${text(COURSE.titleZh)}</a>
         <span class="kicker-sep" aria-hidden="true">·</span>
-        ${N ? `No. ${N}` : 'Template'}</p>
+        ${N ? `No. ${N}` : 'Template'}${LESSON.level
+          ? ` <span class="kicker-sep" aria-hidden="true">·</span> ${text(LESSON.level)}` : ''}</p>
       <h1><span class="en">${text(LESSON.title)}</span>
         <button class="zh-chip" title="顯示中文">中</button>
         <span class="zh">${text(LESSON.titleZh)}</span></h1>
@@ -414,6 +514,10 @@ doc.addEventListener('click', (e) => {
   const say = t.closest('.say');
   if (say) { e.stopPropagation(); speak(say.dataset.say); return; }
 
+  // ---- a target word in the reading passage
+  const term = t.closest('.term');
+  if (term) { e.stopPropagation(); setGloss(term, term.getAttribute('aria-expanded') !== 'true'); return; }
+
   // ---- reveal Chinese for one line
   const chip = t.closest('.zh-chip');
   if (chip) {
@@ -472,6 +576,15 @@ function wobble(node) {
   void node.offsetWidth;   // restart the animation if it is already running
   node.classList.add('no');
   setTimeout(() => node.classList.remove('no'), 500);
+}
+
+// A glossed word and the card it opens, kept in step with each other.
+function setGloss(term, open) {
+  const box = document.getElementById(term.dataset.g);
+  if (!box) return;
+  box.hidden = !open;
+  term.setAttribute('aria-expanded', String(open));
+  term.classList.toggle('on', open);
 }
 
 /* Matching: pick a phrase on the left, then its partner on the right. A
@@ -618,6 +731,7 @@ $('#showAll').addEventListener('click', () => {
 
   $$('.card').forEach((c) => { c.classList.add('open'); c.setAttribute('aria-expanded', 'true'); });
   $$('.starters').forEach((s) => { s.hidden = false; });
+  $$('.model').forEach((m) => { m.hidden = false; });
   $$('.reveal').forEach((r) => r.setAttribute('aria-expanded', 'true'));
   setPanel(false);
 });

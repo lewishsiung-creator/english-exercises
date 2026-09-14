@@ -52,5 +52,16 @@ const COURSE = {
       photo: 'img/hero.jpg',
       built: true,
     },
+    {
+      id: 'better-day',
+      en: 'Protocols for a Better Day',
+      zh: '每日方案：讓一天變得更好的科學',
+      sourceEn: 'An interview with neuroscientist Andrew Huberman · B1–B2',
+      sourceZh: '神經科學家 Andrew Huberman 訪談 · B1–B2',
+      blurbEn: 'Ten mostly free daily habits — water, light, cold, breath, sleep and focus — and the language of giving advice at the right strength.',
+      blurbZh: '十個大多免費的日常習慣——水、光線、冷、呼吸、睡眠與專注——以及用恰當語氣給建議的英文。',
+      photo: 'img/hero.jpg',
+      built: true,
+    },
   ],
 };

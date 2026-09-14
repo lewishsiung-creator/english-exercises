@@ -481,7 +481,7 @@ the whole series, a map of the readings, and a thin folder per reading.
 public/business-journal/
   course.js      the map: the series' title and intro, and every reading
   hub.js         the contents page
-  render.js      the reading renderer — eleven block types, shared
+  render.js      the reading renderer — fourteen block types, shared
   style.css      shared by the contents page and every reading
   _template/     a working reading that uses every block type, linked from nowhere
   wealth-habits/ one folder per reading: a thin index.html, content.js and img/
@@ -566,6 +566,40 @@ allows commercial use and requires no attribution; the photographers — Lara
 Jameson, Polina Tankilevitch, Ron Lach and William Fortunato — are credited on
 the page anyway. Each file is stored at 1600×900 and cropped by CSS, so
 changing the framing is an `object-position` edit, not a re-export.
+
+### No. 2 — Protocols for a Better Day
+
+Built from Lewis's own B1–B2 handout, which retells an interview with
+neuroscientist Andrew Huberman on ten daily health habits. Because the reading
+is his own text rather than a publisher's, it appears in full — the first
+reading in the series to carry its passage. Five steps follow the handout's own
+sections: before you read, the reading, key vocabulary, giving advice, and
+practice.
+
+What the page adds to the handout: glosses on eleven harder words in the
+passage, example sentences for the eight useful phrases, sentence starters for
+the warm-up, prompts and frames for the two speaking tasks, and a Chinese line
+for every English sentence. Every answer comes from the handout's own key.
+
+Three block types arrived with it and now belong to the whole series:
+
+- **`passage`** — the reading, whose `{{target words}}` open a gloss where they
+  stand. Ported from `/happy-sexy-millionaire/`, and set as article text rather
+  than boxes.
+- **`check`** — open questions with a model answer behind a tap: the
+  comprehension questions, and the rewrite exercise, whose `cue` names the
+  pattern to use. "Reveal every answer" opens them all.
+- **`ladder`** — patterns on a scale, soft → neutral → strong, the left rule
+  deepening from pale teal to red with the force of the pattern.
+
+A word card can now carry its part of speech (`pos`), and a reading its
+`level`, shown after its number on the cover.
+
+The handout's disclaimer travels with it, on the cover: the health claims are
+one scientist's views from a media interview, some are debated, and nothing on
+the page is medical advice. Photographs are from Pexels — Maxim Sharypov, Nur
+Tok and Felicity Tai — each cropped to 16:9 around its subject rather than at
+the centre, since all three were shot upright.
 
 ## Happy Sexy Millionaire — adult, teacher-led reading
 
@@ -2095,6 +2129,7 @@ public/grammar/ch13/      Modals, Part 2 — the second chapter written
 public/grammar/ch14/      Nouns and Modifiers — the third
 public/business-journal/  國際商業期刊導讀 — the hub, course.js and the shared renderer
 public/business-journal/wealth-habits/  No. 1, Three Habits — content.js and img/
+public/business-journal/better-day/     No. 2, Protocols for a Better Day — content.js and img/
 public/business-journal/_template/      a reading that uses every block type
 public/wealth-habits/     a redirect: the three-habits lesson's old URL
 public/happy-sexy-millionaire/  the business-English reading lesson
@@ -2272,7 +2307,8 @@ file.
 `public/business-journal/<id>/content.js` — the first is
 [`wealth-habits/content.js`](public/business-journal/wealth-habits/content.js) —
 one entry per step. Every string is an `en`/`zh` pair. The block types — quote,
-summary, phrase cards, matching, gap fill, poll, cards, discussion, task — are
+summary, phrase cards, matching, gap fill, poll, cards, discussion, task, and
+the passage, model-answer checks and advice scale that came with No. 2 — are
 listed at the top of
 [`_template/content.js`](public/business-journal/_template/content.js), which
 uses each once, and each is one function in the shared

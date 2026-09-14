@@ -35,12 +35,16 @@
      cards     have it / need it cards, for auditing something
      discuss   questions to talk through, each with useful language to reveal
      task      a speaking or writing task, with a tick-list or sentence frames
+     passage   the reading text; {{target words}} open a gloss where they stand
+     check     open questions with a model answer behind a tap (`cue` optional)
+     ladder    patterns on a scale, soft → neutral → strong
 */
 
 const LESSON = {
   id: '_template',            // must match the reading's entry in ../course.js
   title: 'The Title of the Reading',
   titleZh: '這篇導讀的中文標題',
+  level: 'B1–B2',             // optional; shown after the number in the cover kicker
 
   source: {
     en: 'Adapted for class from “The Article’s Original Title”, The Publication, 1 January 2026.',
@@ -88,6 +92,42 @@ const LESSON = {
           bodyEn: 'One idea explained in more depth — a term, a piece of background, a common mistake.',
           bodyZh: '更深入說明一個概念——一個術語、一段背景，或一個常見錯誤。',
         },
+        {
+          t: 'passage',
+          en: 'The reading',
+          zh: '閱讀文章',
+          hintEn: 'Tap an underlined word for its meaning; tap a paragraph for the Chinese.',
+          hintZh: '點選畫底線的單字看意思；點選段落看中文。',
+          glossary: [
+            { term: 'target word', pos: 'n.', zh: '目標單字' },
+          ],
+          paras: [
+            {
+              en: 'A paragraph of the reading. A {{target word}} in double braces opens its gloss where it stands, and must match a glossary term exactly.',
+              zh: '文章的一個段落。用雙大括號標記的目標單字，點選後會在原處展開解釋，而且必須和 glossary 裡的詞條完全一致。',
+            },
+          ],
+        },
+        {
+          t: 'check',
+          en: 'Check your understanding',
+          zh: '閱讀理解',
+          hintEn: 'Answer out loud first, then open the model answer.',
+          hintZh: '先口頭回答，再打開參考答案。',
+          items: [
+            {
+              en: 'A question about the reading?',
+              zh: '一個關於文章的問題？',
+              answer: { en: 'A model answer, in a full sentence.', zh: '一個完整句子的參考答案。' },
+            },
+            {
+              en: 'A sentence to rewrite.',
+              cue: '(You should…)',
+              zh: '一個要改寫的句子。（用 You should…）',
+              answer: { en: 'You should rewrite the sentence.', zh: '你應該改寫這個句子。' },
+            },
+          ],
+        },
       ],
     },
     {
@@ -103,6 +143,7 @@ const LESSON = {
           items: [
             {
               en: 'make a decision',
+              pos: 'phrase',          // optional part of speech
               zh: '做決定',
               eg: 'We made the decision before anyone had seen the numbers.',
               egZh: '我們在任何人看到數字之前就做了決定。',
@@ -113,6 +154,16 @@ const LESSON = {
               eg: 'She took a calculated risk and it paid off.',
               egZh: '她冒了一個經過計算的險，而且成功了。',
             },
+          ],
+        },
+        {
+          t: 'ladder',
+          en: 'A scale, soft to strong',
+          zh: '由柔和到強烈的語氣',
+          rows: [
+            { level: 'soft', levelEn: 'Soft', levelZh: '語氣柔和', pattern: 'It’s worth + V-ing', eg: 'It’s worth trying this for two weeks.', egZh: '這個方法值得試兩個星期。' },
+            { level: 'neutral', levelEn: 'Neutral', levelZh: '語氣中性', pattern: 'I’d recommend + V-ing', eg: 'I’d recommend leaving your phone outside the room.', egZh: '我會建議你把手機放在房間外面。' },
+            { level: 'strong', levelEn: 'Strong', levelZh: '語氣強烈', pattern: 'Make sure you + V', eg: 'Make sure you hydrate before the flight.', egZh: '搭飛機前一定要補充水分。' },
           ],
         },
         {
