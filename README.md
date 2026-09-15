@@ -2038,6 +2038,67 @@ over for a logo on the wall), nothing graphic, nobody who could be taken for one
 of her clients. Pexels asks for no attribution and the photographer is credited
 under each picture anyway; print drops them.
 
+## Winkle's Interview Prep — adult, one-to-one, a UK job interview
+
+`public/winkle/` — one page for one student preparing one interview: a
+Statistical Programming Manager in Taipei, applying for a Senior Principal
+Statistical Programmer role in the UK. It is the page form of Lewis's
+ten-session interview course, and like the notebooks it is a standalone copy —
+its `render.js` began as `/ielts-speaking/`'s with the course map removed, and
+nothing else loads it.
+
+| Step | What it carries |
+| --- | --- |
+| 1 | The four areas the interview will lean on (from Winkle's own notes), what he has heard about how the team works, and the advertisement's own phrases |
+| 2 | The one-minute self-introduction in Lewis's cadence notation, with ▶ that performs it |
+| 3 | Answer first — a circling answer against the headline-first version |
+| 4 | The story bank: nine stories, four written, five dashed and waiting for him |
+| 5–9 | Conflict, explaining a study, global submissions, beyond SAS, the awkward questions |
+| 10 | Buying time, admitting a gap, pushback, and asking for a repeat once |
+| 11 | Thirty terms, with how a UK team says them |
+| 12 | Questions to ask them, the close, the follow-up email |
+| 13 | The cold-question drill |
+
+### Design notes
+
+- **One page, two uses.** Lewis drives it in the lesson; Winkle rehearses at
+  home. Same adult house rules — English leads, Chinese behind 中, nothing
+  scored or saved — but the page carries the self-study half itself.
+- **The drill owns no questions.** It takes every `qa` card on the page, so a
+  question added anywhere is in the drill. The question is spoken in a British
+  voice and its text stays hidden, because that is how it arrives on a call;
+  the clock starts when the question *finishes*, since the silence after it is
+  what is being practised. It never repeats until the pile is empty.
+- **A recorder beside every clock**, because the course's homework is
+  recording. MediaRecorder into a blob URL in the tab: never uploaded, a new
+  take replaces the last, a reload deletes it.
+- **The cadence block performs the notation** rather than only drawing it:
+  `> ` speeds a line up, `< ` slows it, a trailing `/`, `//` or `///` becomes a
+  real silence of increasing length, `**stars**` are stress.
+- **`[square brackets]` are slots** — facts only Winkle has (the trial's
+  endpoint, his conflict story, his notice period). They render as dashed gold
+  boxes and are read as a pause by 🔊. A model answer containing one is labelled
+  an answer frame. Do not fill them from general knowledge.
+- **Story cards** show the questions a story answers and a 30-second version;
+  the two-minute STAR version sits behind a reveal. A `pending` story keeps its
+  place, dashed, with what he needs to bring. A question naming a story id that
+  does not exist throws on load.
+- The palette swaps the IELTS red for a clinical teal. There is no root
+  `scroll-behavior: smooth`, and the contents list uses Jill's
+  `keepLinkVisible()`, so it does not carry the notebooks' drifting bug.
+
+### Naming and sources
+
+**Winkle is named; the company he is applying to never is.** Lewis chose that.
+His *current* employer does appear, inside the self-introduction, because it is
+the sentence he will say — Lewis was asked about that separately and chose to
+keep it. The page is `noindex`. The file header of
+[`public/winkle/content.js`](public/winkle/content.js) records which source
+each part came from: Lewis's course plan and cadence notes (his words,
+verbatim), Winkle's notes on the role (presented as what he has heard, never
+as company policy), the job advertisement (short phrases and the salary
+range), and the useR! 2026 poster script (the only project written in full).
+
 ## Health Notes — bilingual notes on the body and the mind
 
 `public/health/` — the first page here that is not English teaching. A
