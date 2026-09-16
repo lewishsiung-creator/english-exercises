@@ -2052,7 +2052,7 @@ nothing else loads it.
 | 1 | The four areas the interview will lean on (from Winkle's own notes), what he has heard about how the team works, and the advertisement's own phrases |
 | 2 | The one-minute self-introduction in Lewis's cadence notation, with ▶ that performs it |
 | 3 | Answer first — a circling answer against the headline-first version |
-| 4 | The story bank: nine stories, four written, five dashed and waiting for him |
+| 4 | The story bank: ten stories, five written, five dashed and waiting for him |
 | 5–9 | Conflict, explaining a study, global submissions, beyond SAS, the awkward questions |
 | 10 | Buying time, admitting a gap, pushback, and asking for a repeat once |
 | 11 | Thirty terms, with how a UK team says them |
@@ -2090,14 +2090,25 @@ nothing else loads it.
 ### Naming and sources
 
 **Winkle is named; the company he is applying to never is.** Lewis chose that.
-His *current* employer does appear, inside the self-introduction, because it is
-the sentence he will say — Lewis was asked about that separately and chose to
+His employers *do* appear — the current one inside the self-introduction, the
+earlier ones inside the submissions answer — because those are the sentences he
+will say. Lewis was asked about the current employer separately and chose to
 keep it. The page is `noindex`. The file header of
 [`public/winkle/content.js`](public/winkle/content.js) records which source
-each part came from: Lewis's course plan and cadence notes (his words,
-verbatim), Winkle's notes on the role (presented as what he has heard, never
-as company policy), the job advertisement (short phrases and the salary
-range), and the useR! 2026 poster script (the only project written in full).
+each part came from: Lewis's course plan and his two handouts (his English and
+his Chinese, verbatim, not improved), Winkle's notes on the role (presented as
+what he has heard, never as company policy), the job advertisement (short
+phrases and the salary range), and the useR! 2026 poster script.
+
+The second handout, 面試準備（二）(16 Sep 2026), changed three things rather
+than filling blanks: it **weights** the four areas (communication and the
+scientific understanding of a study decide it; languages count least), it
+supplies **two finished answers** — the out-of-role request and global
+submissions — and it turned the submissions step from slots into fact, naming
+Athenex (BIMO, ISS), Parexel (define.xml, reviewer's guides), IQVIA (UK,
+France, US) and the regulator-requested RWE study, which became a tenth story.
+Its estimand primer is the framing for the "was the method appropriate?"
+follow-up.
 
 ## Health Notes — bilingual notes on the body and the mind
 

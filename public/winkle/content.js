@@ -24,6 +24,14 @@
      "buying information". The story list is his plan's eight, plus a ninth.
    - Lewis's cadence notes for the one-minute introduction, pasted in chat:
      the introduction itself, verbatim, including every mark.
+   - Lewis's second handout, 面試準備（二）, 16 Sep 2026: the weighting of the
+     four areas, the model answer to the out-of-role request, the conflict STAR
+     stems with the rules for choosing that story, the finished global-
+     submission answer, and the estimand primer. His English and his Chinese
+     are his — reproduced verbatim, not improved. That handout also supplied
+     real career facts the page had been leaving as slots: Athenex (BIMO, ISS),
+     Parexel (define.xml and reviewer's guides), IQVIA (UK, France, US), and
+     the regulator-requested RWE study inside the COVID-19 program.
    - Winkle's own notes on the role (NOVARTIS_Winkle.docx): the four focus
      areas and the facts about how the team works. These are what he has heard
      from people inside, so they are presented as "what you've heard", and
@@ -85,8 +93,8 @@ const PAGE = {
   },
 
   source: {
-    en: "Built from Lewis's ten-session course plan, his cadence notes for the one-minute introduction, Winkle's own notes on the role, the job advertisement, and the useR! 2026 poster script. Model answers use only those facts. Anything in a dashed gold box is for Winkle to fill in — the page doesn't know it.",
-    zh: "本頁根據 Lewis 的十堂課程規劃、一分鐘自介的節奏筆記、Winkle 自己整理的職缺筆記、職缺公告，以及 useR! 2026 海報講稿製作。範例回答只使用這些資料中的事實；虛線金框的地方要由 Winkle 自己填，頁面並不知道。",
+    en: "Built from Lewis's ten-session course plan, his two handouts — the cadence notes for the one-minute introduction, and 面試準備（二）on communication, submissions and estimands — Winkle's own notes on the role, the job advertisement, and the useR! 2026 poster script. Model answers use only those facts. Anything in a dashed gold box is for Winkle to fill in — the page doesn't know it.",
+    zh: "本頁根據 Lewis 的十堂課程規劃、兩份講義（一分鐘自介的節奏筆記，以及《面試準備（二）：溝通題與 Estimand》）、Winkle 自己整理的職缺筆記、職缺公告，以及 useR! 2026 海報講稿製作。範例回答只使用這些資料中的事實；虛線金框的地方要由 Winkle 自己填，頁面並不知道。",
   },
 
   steps: [
@@ -104,6 +112,21 @@ const PAGE = {
           zh: "職缺公告和你聽到的團隊情況說的是同一件事：他們要的人，能跨國帶領一個試驗的程式工作，而且已經在用 R、Shiny 和 Git。",
         },
         {
+          t: "note",
+          en: "Where the weight is — and what to bring to the next lesson",
+          zh: "分數的重心，以及下一堂課要帶來的東西",
+          bodyEn: [
+            "Your notes put the language question down as the one you're most confident about. It is also the one that counts for least of the four — and it is already solid.",
+            "What decides this interview is the first pair: communication and conflict, and your scientific understanding of a study. Neither is about tools. Both are about judgement and depth of thought.",
+            "So bring two things: **one real conflict** you handled (choose it against the three conditions in step 5), and **one study you can go deep on** — the COVID-19 Phase III or the RWE study. For that one, be clear on four things: what the disease was, why the inclusion criteria were designed that way, what the primary endpoint was, and what statistical method was used.",
+          ],
+          bodyZh: [
+            "你在筆記裡自評最有把握的是「SAS 以外的語言」。那一題在四個題型裡權重最低，而且已經練得很扎實了。",
+            "真正決勝的是前兩題：溝通與衝突，以及你對案子的科學理解。這兩題跟工具無關，考的是判斷力與思考深度。",
+            "所以請準備兩樣東西：**一個真實的溝通衝突**（依第 5 步的三個條件挑選），以及**一個你最有把握講深的案子**——COVID-19 三期或那個 RWE 研究都可以。針對那個案子，先想清楚四件事：研究的是什麼病症、收案條件為什麼這樣設計、主要療效指標是什麼、用了什麼統計方法。",
+          ],
+        },
+        {
           t: "areas",
           en: "Where the interview will lean",
           zh: "面試的重點題型",
@@ -112,23 +135,23 @@ const PAGE = {
           items: [
             {
               en: "Communication and conflict", zh: "溝通與化解衝突", step: "conflict",
-              whyEn: "The one you called hardest. Expect a request that isn't your job, and a real conflict you handled.",
-              whyZh: "你認為最難的一類。會問到「別人請你做不是你職責的事」，以及一次你實際處理過的衝突。",
+              whyEn: "Heaviest of the four. A request that isn't your job, and a real conflict you handled.",
+              whyZh: "四題中權重最高。會問到「別人請你做不是你職責的事」，以及一次你實際處理過的衝突。",
             },
             {
               en: "Explaining a study", zh: "說清楚一個研究", step: "study",
-              whyEn: "The disease, the patients, the method — briefly. Then “why those patients?” and “was the method right?”",
-              whyZh: "病症、受試者、統計方法——簡短說完。接著是「為什麼選這些病患？」和「方法真的合適嗎？」",
+              whyEn: "The one most likely to lose marks, and the one that opens the biggest gap. The disease, the patients, the method — then “why those patients?” and “was the method right?”",
+              whyZh: "最可能失分、也最能拉開差距的一題。病症、受試者、統計方法——接著是「為什麼選這些病患？」和「方法真的合適嗎？」",
             },
             {
               en: "Global submissions", zh: "國際申報經驗", step: "global",
-              whyEn: "Your thinner area. The plan is to bridge from your work with Western partners — exactly and without apology.",
-              whyZh: "你經驗較少的部分。策略是從與歐美藥廠合作的經驗銜接過去——說得精確，不道歉。",
+              whyEn: "You underestimated this one. Name the gap, then four concrete records.",
+              whyZh: "這一題你低估自己了。先講缺口，再給四個具體實績。",
             },
             {
               en: "Beyond SAS", zh: "SAS 以外的語言", step: "beyond-sas",
-              whyEn: "Your strongest. The risk here is saying too much, not too little.",
-              whyZh: "你最有把握的部分。這裡的風險是講太多，而不是講太少。",
+              whyEn: "Your strongest, and the lightest of the four. The risk is saying too much, not too little.",
+              whyZh: "你最有把握、權重也最低的一題。風險是講太多，而不是講太少。",
             },
           ],
         },
@@ -495,7 +518,7 @@ const PAGE = {
             { k: "R", en: "We delivered the full package in three months, and the results were published in the New England Journal of Medicine. [one thing you would do the same way again]", zh: "我們在三個月內交出完整成果，結果刊登在《新英格蘭醫學期刊》。〔一件你下次還會照做的事〕" },
           ],
           add: [
-            { en: "The study itself — indication, patients, primary endpoint, analysis method. Step 6 needs all four.", zh: "研究本身——適應症、受試者、主要指標、分析方法。第 6 步四項都需要。" },
+            { en: "The four things for the next lesson: what the disease was, why the inclusion criteria were designed that way, what the primary endpoint was, and what statistical method was used.", zh: "下一堂課要準備的四件事：研究的是什麼病症、收案條件為什麼這樣設計、主要療效指標是什麼、用了什麼統計方法。" },
             { en: "How the eighteen were organised: who reported to whom, and whether some were external.", zh: "18 人怎麼組織：誰向誰回報，其中是否有外部人員。" },
             { en: "One real problem during the three months, and what you did about it.", zh: "三個月中一個真實發生的問題，以及你怎麼處理。" },
           ],
@@ -568,6 +591,27 @@ const PAGE = {
         },
         {
           t: "story",
+          id: "rwe",
+          en: "The regulator-requested RWE study",
+          zh: "主管機關要求的真實世界證據研究",
+          tags: [
+            { en: "Submissions", zh: "申報" },
+            { en: "Data standards", zh: "資料標準" },
+            { en: "Most memorable study", zh: "印象最深的研究" },
+          ],
+          short: {
+            en: "Inside the COVID-19 Phase III program, a regulator asked for a **real-world evidence study**. We standardised **unstructured hospital data** through a full **SDTM, ADaM and TLF** pipeline, under regulatory timelines.",
+            zh: "在 COVID-19 三期專案中，主管機關要求做一個真實世界證據研究。我們把非結構化的醫院資料，在法規時程壓力下，透過完整的 SDTM、ADaM 與 TLF 流程標準化。",
+          },
+          add: [
+            { en: "What the regulator asked for, and why they asked for it.", zh: "主管機關要求什麼、為什麼要求。" },
+            { en: "What “unstructured” meant in practice — and the hardest part of standardising it.", zh: "「非結構化」實際上是什麼樣子——以及標準化最難的地方。" },
+            { en: "How long it took, and who did it.", zh: "花了多久、由誰執行。" },
+            { en: "This is the second study you could go deep on. Prepare the same four points as the trial above.", zh: "這是你第二個可以講深的案子。請準備和上面那個試驗一樣的四個要點。" },
+          ],
+        },
+        {
+          t: "story",
           id: "timeline",
           pending: true,
           en: "The D3.js patient timeline",
@@ -609,10 +653,10 @@ const PAGE = {
             { en: "Negotiation", zh: "協商" },
           ],
           add: [
-            { en: "A real disagreement — best of all with a statistician, data management or medical, about a shell, a specification or a timeline. That is the team's daily reality.", zh: "一次真實的意見分歧——最好是和統計師、DM 或醫學部門，關於 shell、規格或時程。那正是這個團隊的日常。" },
-            { en: "What each side wanted, and why both had a point.", zh: "雙方各自要什麼，以及為什麼雙方都有道理。" },
-            { en: "What you actually said — the sentence itself.", zh: "你實際上說了什麼——那句話本身。" },
-            { en: "What was agreed, and how the working relationship was afterwards.", zh: "最後怎麼協議，以及之後的合作關係如何。" },
+            { en: "A real disagreement — best of all a spec or shell disagreement across functions, a CRO delivery-quality dispute, or a trade-off with medical or data management under a compressed timeline.", zh: "一次真實的意見分歧——最好是跨部門確認 spec 或 shell 的分歧、CRO 交付品質的爭議，或時程壓縮下與 medical 或 DM 的取捨。" },
+            { en: "Their reason, stated so that it sounds reasonable. This is where the marks are.", zh: "對方的理由，而且要講得合理。分數就在這裡。" },
+            { en: "What you actually did: who you called, what you walked through, what you proposed.", zh: "你實際做了什麼：找誰談、一起看過什麼、提出什麼方案。" },
+            { en: "The outcome in one sentence, and the lesson in one. It doesn't have to be a win.", zh: "結果一句、反思一句。不必是你贏。" },
           ],
         },
         {
@@ -716,13 +760,28 @@ const PAGE = {
           kind: "Communication", kindZh: "溝通題",
           en: "A colleague from another function asks you to do something that isn't part of your role. How do you handle it?",
           zh: "其他部門的同事請你做一件不屬於你職責的事，你會怎麼處理？",
-          tipEn: "Don't open with “That's not my job.” Open with the need behind the request.",
-          tipZh: "不要一開口就說「那不是我的工作」。先談這個請求背後的需求。",
+          tipEn: "This is not testing whether you can defend your boundaries. “I'd decline politely” or “I'd ask them to go through the formal process” is the wrong direction — the team's own routine is programmers checking things across functions, so they are looking for someone easy to work with, not someone defensive.",
+          tipZh: "這題不是在測你會不會守界線。答「我會婉拒」或「請他走正式流程」，方向就錯了——這個團隊的日常就是 programmer 主動跨部門確認，他們要找的是好合作的人，不是防守心強的人。",
           answer: [
-            { tag: "Headline", tagZh: "結論", en: "I'd start by understanding what they actually need, because the request is usually a symptom of a real problem — and then make sure it reaches the right owner, rather than simply saying no.", zh: "我會先弄清楚他們真正需要什麼，因為這種請求通常反映了一個真實的問題——然後確保它交到對的人手上，而不是單純拒絕。" },
-            { tag: "Example", tagZh: "舉例", en: "Say a medical colleague asks the programming team for patient narratives. That isn't our deliverable — narratives are produced by another group. So I'd ask what they need them for, and by when.", zh: "例如醫學部門的同事請程式團隊做 patient narrative。那不是我們的交付項目——narrative 由其他團隊負責。所以我會問他們需要來做什麼、什麼時候要。" },
-            { tag: "Action", tagZh: "行動", en: "Then I'd connect them with the right team, and offer the part that genuinely is ours — the data or the listing that team needs from us. If it's urgent, I'd raise it with my lead rather than quietly absorb it, because unplanned work has to be visible to be prioritised.", zh: "接著我會幫他們聯繫對的團隊，並提供真正屬於我們的部分——那個團隊需要我們提供的資料或 listing。如果很急，我會向主管提出，而不是默默吸收，因為計畫外的工作必須被看見，才能排優先順序。" },
-            { tag: "Close", tagZh: "收尾", en: "So: understand the need, route it to the right owner, contribute what's ours, and keep it visible. People remember that you helped — not that you said no.", zh: "所以：理解需求、交給對的人、提供屬於我們的部分、讓它被看見。別人記得的是你幫了忙，而不是你拒絕了。" },
+            { tag: "Understand the need", tagZh: "先問清楚", en: "My first step would be to understand what they actually need. Often people ask the wrong person simply because they don't know who owns that piece — so I'd ask what the request is for and when they need it.", zh: "我的第一步是先弄清楚他們真正需要什麼。很多時候對方問錯人，只是因為不知道這件事該歸誰負責——所以我會問這個需求是為了什麼、什麼時候需要。" },
+            { tag: "Small: just do it", tagZh: "小事直接做", en: "If it's something I can help with quickly and it doesn't put my own deliverables at risk, I'd just do it. Being easy to work with matters more than being strict about boundaries.", zh: "如果是我能很快協助、又不會影響自己交付的事，我就直接做。好合作這件事，比嚴守界線重要。" },
+            { tag: "Larger: be transparent", tagZh: "大事透明協商", en: "If it's larger, I'd be transparent: explain what it would affect on my side, tell them who normally owns it, and offer an alternative — either a scaled-down version I can do now, or a realistic timeline. If it needs a decision above me, I'd raise it with my lead rather than quietly absorbing it or quietly dropping it.", zh: "如果規模比較大，我會坦白說明：這會影響我這邊的什麼、通常這件事歸誰負責，然後提出替代方案——可能是我現在就能做的簡化版本，或是一個實際可行的時程。如果需要更上層做決定，我會往上反映，而不是默默吸收或默默放掉。" },
+            { tag: "The positioning line", tagZh: "定位句", en: "What I try to avoid is a flat no. In my experience most of these requests come from a real gap in the study, and the useful thing is to find where it should sit.", zh: "我盡量避免的是直接說不。以我的經驗，這類請求大多反映了專案裡真實存在的缺口，有用的做法是找出它該落在哪裡。" },
+          ],
+        },
+        {
+          t: "note",
+          en: "Why that answer works",
+          zh: "這個回答為什麼有效",
+          bodyEn: [
+            "Four moves: ask what's needed → do the small things → negotiate the larger ones openly → escalate only when the decision is genuinely above you.",
+            "**quietly absorbing it or quietly dropping it** is the line to keep. It rules out both common bad habits at once — taking it all on and exhausting yourself, or agreeing and then never doing it. A senior interviewer nods at that.",
+            "And the last sentence redefines an out-of-scope request as a gap in the study. That shift is what a Senior Principal sounds like.",
+          ],
+          bodyZh: [
+            "四段結構：先問清楚 → 小事直接做 → 大事透明協商 → 該升級才升級。",
+            "**quietly absorbing it or quietly dropping it** 這組對比要留著。它同時排除了兩種常見的壞做法——硬吞下來累死自己，或是答應了卻沒做。這句會讓資深面試官點頭。",
+            "最後一句把「非職責的請求」重新定義成「專案裡的缺口」，格局立刻不同。這是 Senior Principal 該有的視角。",
           ],
         },
         {
@@ -731,12 +790,30 @@ const PAGE = {
           en: "Tell me about a communication conflict you've had, and how you handled it.",
           zh: "請談一次你經歷過的溝通衝突，以及你怎麼處理。",
           story: "conflict",
+          tipEn: "One or two sentences per part. The real scoring point is the second one: their concern has to come out sounding reasonable.",
+          tipZh: "每段一到兩句就好。真正的評分點在第二段：務必把對方的理由講得合理。",
           answer: [
-            { tag: "Headline", tagZh: "結論", en: "The clearest example was a disagreement with [a statistician] about [a TLF shell], which we resolved by [what you agreed].", zh: "最清楚的例子是和〔一位統計師〕在〔一份 TLF shell〕上的意見分歧，最後我們以〔協議內容〕解決。" },
-            { tag: "Situation", tagZh: "情境", en: "We were [at which stage of the study], and they wanted [X], while I thought [Y], because [your reason].", zh: "當時我們在〔研究的哪個階段〕，對方想要〔X〕，而我認為〔Y〕，因為〔你的理由〕。" },
-            { tag: "What I did", tagZh: "我的做法", en: "I [asked to talk it through / mocked up both versions / went back to the SAP], so we were arguing about the evidence rather than about each other.", zh: "我〔約對方當面談／把兩個版本都做出來／回頭看 SAP〕，讓我們討論的是證據，而不是彼此。" },
-            { tag: "Result", tagZh: "結果", en: "We agreed [the outcome], and [how the working relationship was afterwards].", zh: "我們達成〔結果〕，而且〔之後的合作關係如何〕。" },
-            { tag: "Lesson", tagZh: "學到的事", en: "What I took from it is [one lesson you still use].", zh: "我從中學到的是〔一個你到現在還在用的做法〕。" },
+            { tag: "S · Situation", tagZh: "S｜情境：誰跟誰、為了什麼事", en: "On a study at [the company], the [function] team and I disagreed about [the issue].", zh: "在〔公司〕的一個案子裡，〔部門〕團隊和我在〔某件事〕上有不同意見。" },
+            { tag: "T · The disagreement", tagZh: "T｜衝突點：雙方的立場與理由", en: "Their concern was [their reason]. From my side, [your reason].", zh: "他們的顧慮是〔對方的理由〕。就我這邊而言，〔你的理由〕。" },
+            { tag: "A · What I did", tagZh: "A｜你做了什麼：具體動作", en: "I set up a short call with [whom], walked through [what], and proposed [the solution].", zh: "我和〔誰〕約了一個短會，一起看過〔什麼〕，並提出〔方案〕。" },
+            { tag: "R · Result and lesson", tagZh: "R｜結果與學到的事", en: "We agreed on [the outcome]. What I took from it was [the lesson].", zh: "我們達成〔結果〕。我從中學到的是〔反思〕。" },
+          ],
+        },
+        {
+          t: "note",
+          en: "Choosing the story — three conditions, three things to avoid",
+          zh: "選故事：三個條件、三個禁忌",
+          bodyEn: [
+            "**One: the other side has to have a point.** If they were simply wrong or unreasonable, the question goes unanswered — they want to see whether you can hold another position in your head, not how right you were.",
+            "**Two: there has to be real tension.** “We talked and it was fine” is too light; it sounds like nothing happened. **Three: the ending doesn't have to be perfect.** A compromise, a step back on both sides, even doing it their way and learning something — all good answers.",
+            "Avoid all three of these: criticising a named person or department; writing yourself as the only hero; and “because they weren't professional enough” as the reason. British interview culture is especially sensitive to them.",
+            "Best material: a cross-functional disagreement over a spec or a shell, an argument about the quality of a CRO's delivery, or a trade-off with medical or data management under a compressed timeline.",
+          ],
+          bodyZh: [
+            "**一、對方要有道理。**如果故事裡對方純粹是錯的、不講理，這題就等於沒答——他們想看的是你能不能理解不同立場，不是你有多對。",
+            "**二、要有真實的緊張感。**「我們溝通後就沒事了」太輕，聽起來像沒發生過。**三、結果不必完美。**妥協、各退一步、甚至最後照對方的做但你學到東西——都是好答案。",
+            "三個禁忌：不批評特定的人或部門；不要把自己寫成唯一的英雄；不要用「因為對方不專業」當原因。英國面試文化對這三點特別敏感。",
+            "素材建議：跨部門確認 spec 或 shell 的分歧、CRO 交付品質的爭議、時程壓縮下與 medical 或 DM 的取捨——這幾類最貼近這個職位。",
           ],
         },
         {
@@ -823,9 +900,9 @@ const PAGE = {
           en: "Was that method really appropriate?",
           zh: "這個研究方法真的合適嗎？",
           answer: [
-            { tag: "Headline", tagZh: "結論", en: "I think it was, for the question the study was asking — and the way I'd check is against the estimand.", zh: "我認為就這個研究要回答的問題而言是合適的——而我檢驗的方式，是對照它的 estimand。" },
+            { tag: "Frame it", tagZh: "先定框架", en: "The way I'd frame that is as an estimand question. What we're really deciding is how to handle the intercurrent events. If patients discontinue and move to rescue medication, a treatment policy strategy answers a different question from a hypothetical one — and which is appropriate depends on whether the decision-maker cares about effectiveness in practice, or about the effect of the drug itself.", zh: "我會把這個問題放進 estimand 的框架來看。我們真正要決定的是期間事件怎麼處理。如果病人停藥後改用救援用藥，treatment policy 策略和 hypothetical 策略回答的其實是不同的問題——哪一個適合，取決於決策者在意的是實際使用下的效果，還是藥物本身的效果。" },
             { tag: "Fit", tagZh: "契合", en: "The method has to fit the endpoint. A time-to-event endpoint points to a Cox model or a log-rank test; a binary response to logistic regression; repeated continuous measurements to an MMRM.", zh: "方法必須配合指標。存活時間類指標用 Cox 模型或 log-rank 檢定；二元反應用邏輯斯迴歸；重複測量的連續指標用 MMRM。" },
-            { tag: "Limits", tagZh: "限制", en: "Where I'd look hardest is intercurrent events and missing data — [for example, patients who stopped treatment or needed rescue medication] — and whether the sensitivity analyses covered them.", zh: "我會最仔細看的是伴發事件與缺失資料——〔例如停藥或需要救援藥物的病患〕——以及敏感度分析有沒有涵蓋這些情況。" },
+            { tag: "Limits", tagZh: "限制", en: "Where I'd look hardest is the intercurrent events and the missing data — [for example, patients who stopped treatment or needed rescue medication] — and whether the sensitivity analyses covered them.", zh: "我會最仔細看的是期間事件與缺失資料——〔例如停藥或需要救援藥物的病患〕——以及敏感度分析有沒有涵蓋這些情況。" },
             { tag: "Close", tagZh: "收尾", en: "So: appropriate, with [one limitation you would name].", zh: "所以：合適，但有〔一個你會指出的限制〕。" },
           ],
         },
@@ -834,12 +911,16 @@ const PAGE = {
           en: "The estimand, in one minute",
           zh: "一分鐘看懂 estimand",
           bodyEn: [
-            "ICH E9(R1) asks a study to state exactly which treatment effect it is estimating before choosing a method. An estimand has five attributes: the treatment, the population, the variable (the endpoint), how intercurrent events are handled, and the population-level summary — a hazard ratio, say, or a difference in means.",
-            "Intercurrent events are things after randomisation that change how the endpoint is read: stopping treatment, rescue medication, death. The five strategies for them: treatment policy, hypothetical, composite, while on treatment, and principal stratum.",
+            "An estimand is the precise definition of what question a trial is actually answering — stating the question clearly before anyone calculates an effect. It comes from the ICH E9(R1) addendum.",
+            "**Five attributes:** the treatment being compared; the population the conclusion applies to; the variable or endpoint measured in each patient; how intercurrent events are handled; and the population-level summary — a difference in means, a hazard ratio.",
+            "**Intercurrent events** happen after treatment starts and change how the result is read: stopping treatment, switching, rescue medication, death. **Five strategies:** treatment policy (use the outcome regardless of the event — the effect in practice); hypothetical (what if it hadn't happened); composite variable (the event is part of the outcome, e.g. counted as failure); while on treatment (only data before the event); principal stratum (only the subgroup in whom the event wouldn't occur).",
+            "**Don't recite the definition.** They are not testing the text of ICH E9(R1); they are looking for whether you think the question through before writing code. Drop the word at the right moment, with one concrete example, and they know your level.",
           ],
           bodyZh: [
-            "ICH E9(R1) 要求研究在選擇方法之前，先明確說出要估計的是哪一種治療效果。一個 estimand 有五個屬性：治療、族群、變數（指標）、伴發事件的處理方式，以及族群層級的摘要——例如風險比或平均差。",
-            "伴發事件是指隨機分派之後、會改變指標解讀的事件：停藥、救援藥物、死亡。處理它們的五種策略：治療策略（treatment policy）、假設策略（hypothetical）、複合策略（composite）、治療期間策略（while on treatment）、主要分層策略（principal stratum）。",
+            "Estimand 就是把「這個試驗到底要回答什麼問題」精確定義下來——在計算療效之前，先把問題本身講清楚。出自 ICH E9(R1) 增補版。",
+            "**五個屬性：**治療（要比較的治療與對照）、族群（結論要推論到哪一群病人）、變數／指標（在每個病人身上測量什麼）、期間事件的處理方式、族群層級摘要（用什麼量表達效果，例如平均差異、風險比）。",
+            "**期間事件**指治療開始後發生、會影響結果解讀的事——停藥、換藥、救援用藥、死亡。**五種策略：**treatment policy 治療政策（不論事件是否發生都採用之後的結果，反映實際使用下的效果）、hypothetical 假設情境（假設該事件沒發生）、composite variable 複合變數（把事件納入結果定義，例如發生即視為失敗）、while on treatment 治療期間（只看事件發生前的資料）、principal stratum 主要分層（只針對不會發生該事件的次族群推論）。",
+            "**不要背定義。**對方不是在考 ICH E9(R1) 的條文，是在看你有沒有「先想清楚問題、再寫程式」的思維。在對的時機丟出 estimand 這個詞，加上一個具體的例子，對方就知道你的層級在哪裡。",
           ],
         },
         {
@@ -876,8 +957,23 @@ const PAGE = {
       blocks: [
         {
           t: "lead",
-          en: "Your notes say this is thinner, and the plan is to bridge from your work with Western partners. That is the right plan. One rule: be exact about what you did, so that no follow-up question can catch you out.",
-          zh: "你的筆記說這部分經驗較少，策略是從與歐美藥廠合作的經驗銜接。這個策略是對的。只有一個原則：把你做過的事說得精確，讓任何追問都抓不到破綻。",
+          en: "You underestimated this one. Your notes say you have little of it — but you have BIMO and ISS packages, define.xml and reviewer's guides, cross-border projects, and delivery under regulatory timelines. That is not little.",
+          zh: "這一題你低估自己了。筆記裡寫「我比較少這樣的經驗」——但你手上有 BIMO、ISS、define.xml、reviewer guide、跨國窗口、法規時程下的交付。這不算少。",
+        },
+        {
+          t: "note",
+          en: "Honest layering",
+          zh: "誠實分層",
+          bodyEn: [
+            "Name the gap plainly (you haven't been the overall submission lead) → give four concrete records straight away → close by saying the gap is only the last layer, ownership of the whole thing.",
+            "Admitting the gap and then giving the evidence is far stronger than avoiding it or being vague — and they will check, so honesty is also the safe strategy.",
+            "Tone: **I should be straightforward about this** is said steadily, with no apology in the voice. It is confident honesty, not an admission of fault. And never drop **that's a step I'm ready to take** — without it the answer ends on the weakness.",
+          ],
+          bodyZh: [
+            "先明確講出缺口（沒當過整體送件負責人）→ 立刻給四個具體實績 → 用一句話說明差距只有「完整擁有」這一層。",
+            "承認缺口再給實績，比迴避或含糊有力得多，而且對方一定會查證，誠實是最安全的策略。",
+            "語氣：**I should be straightforward about this** 開頭要平穩、不要道歉的語調。這是自信的坦白，不是認錯。而 **that's a step I'm ready to take** 不能省——沒有這句，整段會停在弱勢。",
+          ],
         },
         {
           t: "upgrade",
@@ -889,15 +985,15 @@ const PAGE = {
           beforeEn: "Sorry, I don't have much global submission experience. Maybe a little. But I think I can learn quickly.",
           beforeZh: "抱歉，我沒有太多國際申報經驗，可能一點點。不過我覺得我學得很快。",
           adds: [
-            { en: "say exactly what you have done", zh: "精確說出你做過什麼" },
-            { en: "name the gap once, calmly", zh: "平靜地說一次你的不足" },
-            { en: "bridge: what carries over", zh: "銜接：哪些經驗可以直接沿用" },
-            { en: "end on what you'd bring", zh: "以你能帶來什麼作結" },
+            { en: "name the gap plainly, once", zh: "明確講出缺口，說一次" },
+            { en: "four concrete records, immediately", zh: "立刻給四個具體實績" },
+            { en: "one line on what is actually missing", zh: "用一句話說明真正缺的是什麼" },
+            { en: "and that you're ready for it", zh: "以及你已經準備好" },
           ],
-          revealEn: "Show the bridging version", revealZh: "顯示銜接版",
-          afterTag: "Bridging", afterTagZh: "銜接式",
-          afterEn: "My submission work so far has been [for which agencies], and I've worked to global standards with UK, European and US teams since early in my career. What I haven't done yet is [lead an FDA or EMA submission end to end]. The building blocks are the same — CDISC, define.xml, validation, traceability — so that's where I'd expect to get up to speed fastest.",
-          afterZh: "我到目前為止的申報經驗是〔哪些主管機關〕，而且從職涯早期就和英國、歐洲、美國團隊依國際標準合作。我還沒做過的是〔從頭到尾主導一次 FDA 或 EMA 申報〕。但基本構成是一樣的——CDISC、define.xml、驗證、可追溯性——所以這是我預期能最快上手的部分。",
+          revealEn: "Show the layered version", revealZh: "顯示分層版",
+          afterTag: "Honest layering", afterTagZh: "誠實分層",
+          afterEn: "I should be straightforward about this: I haven't led an end-to-end global submission to FDA or EMA as the overall submission lead. What I have done is most of the component work. So the components are familiar — the standards, the documentation, and working across time zones. What would be new is owning the whole submission end to end, and that's a step I'm ready to take.",
+          afterZh: "這點我想直說：我沒有以整體送件負責人的身分，主導過一個完整的 FDA 或 EMA 全球送件。但送件的各個組成環節，我大部分都做過。所以這些組成環節對我來說並不陌生——標準、文件、跨時區協作都做過。對我而言新的部分，是從頭到尾完整擁有一個送件，而這一步我已經準備好了。",
         },
         {
           t: "qa",
@@ -905,10 +1001,12 @@ const PAGE = {
           en: "What's your experience with global regulatory submissions?",
           zh: "你在國際法規申報方面有什麼經驗？",
           answer: [
-            { tag: "Headline", tagZh: "結論", en: "My submission work has been [for which agencies], and I've worked to global standards with UK, European and US teams since early in my career.", zh: "我的申報經驗是〔哪些主管機關〕，而且從職涯早期就和英國、歐洲、美國團隊依國際標準合作。" },
-            { tag: "Specifics", tagZh: "具體內容", en: "For [a study or program], I [prepared the SDTM and ADaM datasets, the define.xml and the reviewer's guides / delivered the TLFs] for [the agency].", zh: "在〔某個研究或專案〕中，我為〔主管機關〕〔準備了 SDTM 與 ADaM 資料集、define.xml 和 reviewer's guide／交付了 TLF〕。" },
-            { tag: "Partners", tagZh: "合作經驗", en: "With [a Western partner], we [what you delivered, to whose standards and timelines].", zh: "和〔某家歐美藥廠〕合作時，我們〔交付了什麼、依照誰的標準與時程〕。" },
-            { tag: "Gap and bridge", tagZh: "不足與銜接", en: "What I haven't done yet is [lead an FDA or EMA submission end to end]. The building blocks are the same, and that's where I'd expect to get up to speed fastest.", zh: "我還沒做過的是〔從頭到尾主導 FDA 或 EMA 申報〕。但基本構成是一樣的，這是我預期能最快上手的部分。" },
+            { tag: "The gap", tagZh: "缺口", en: "I should be straightforward about this: I haven't led an end-to-end global submission to FDA or EMA as the overall submission lead. What I have done is most of the component work.", zh: "這點我想直說：我沒有以整體送件負責人的身分，主導過一個完整的 FDA 或 EMA 全球送件。但送件的各個組成環節，我大部分都做過。" },
+            { tag: "Athenex", tagZh: "Athenex", en: "At Athenex I was responsible for submission packages including BIMO and ISS, and I reviewed the outputs coming back from our CROs.", zh: "在 Athenex 時期，我負責包含 BIMO 與 ISS 的送件包，並審查 CRO 回來的產出。" },
+            { tag: "Parexel", tagZh: "PAREXEL", en: "At Parexel I delivered CDISC-compliant datasets with define.xml and the reviewer's guide for international sponsors.", zh: "在 PAREXEL 時期，我為國際申辦方交付符合 CDISC 標準的資料集，包含 define.xml 與 reviewer guide。" },
+            { tag: "IQVIA", tagZh: "IQVIA", en: "At IQVIA I was the main point of contact for cross-border projects with teams in the UK, France, and the US.", zh: "在 IQVIA 時期，我是英國、法國、美國跨國專案的主要窗口。" },
+            { tag: "COVID-19", tagZh: "COVID-19 專案", en: "And on the COVID-19 Phase III program I led delivery under regulatory timelines, including a regulator-requested RWE study where we standardised unstructured hospital data through a full SDTM, ADaM and TLF pipeline.", zh: "而在 COVID-19 三期專案中，我在法規時程壓力下負責交付，其中也包含一個主管機關要求的真實世界證據研究，我們把非結構化的醫院資料，透過完整的 SDTM、ADaM 與 TLF 流程標準化。" },
+            { tag: "Close", tagZh: "收尾", en: "So the components are familiar — the standards, the documentation, and working across time zones. What would be new is owning the whole submission end to end, and that's a step I'm ready to take.", zh: "所以這些組成環節對我來說並不陌生——標準、文件、跨時區協作都做過。對我而言新的部分，是從頭到尾完整擁有一個送件，而這一步我已經準備好了。" },
           ],
         },
         {
@@ -1203,6 +1301,11 @@ const PAGE = {
             { w: "case report tabulations (CRT)", def: "The datasets and supporting documents submitted to a regulator.", ex: "Program-level standards make CRT production far more efficient.", zh: "病例報告列表", exZh: "專案層級的標準讓 CRT 的產出效率高得多。" },
             { w: "eCTD", sayAs: "E. C. T. D.", say: "E-C-T-D", def: "Electronic Common Technical Document — the format of a regulatory submission.", ex: "The datasets go into Module 5 of the eCTD.", zh: "電子通用技術文件", exZh: "資料集放在 eCTD 的第五模組。" },
             { w: "pooling", def: "Combining data from several studies for an integrated analysis.", ex: "Consistent structures across the program make pooling much easier.", zh: "資料合併（整合分析）", exZh: "整個專案結構一致，資料合併就容易得多。" },
+            { w: "ISS · ISE", sayAs: "I. S. S. and I. S. E.", say: "I-S-S · I-S-E", def: "Integrated summary of safety · of efficacy — the pooled analyses in a submission.", ex: "I was responsible for submission packages including BIMO and ISS.", zh: "安全性整合摘要 · 療效整合摘要", exZh: "我負責包含 BIMO 與 ISS 的送件包。" },
+            { w: "BIMO", sayAs: "by-mo", say: "“BY-mo”", def: "Bioresearch Monitoring — the datasets and listings a regulator uses to plan site inspections.", ex: "The BIMO package supports the inspection of individual sites.", zh: "生物研究監查", exZh: "BIMO 套件是用來支援個別試驗中心的查核。" },
+            { w: "reviewer's guide", def: "The document that walks a regulator's reviewer through your data: cSDRG for SDTM, ADRG for ADaM.", ex: "I delivered CDISC-compliant datasets with define.xml and the reviewer's guide.", zh: "審查者指南", exZh: "我交付符合 CDISC 標準的資料集，包含 define.xml 與 reviewer guide。" },
+            { w: "RWE", sayAs: "R. W. E.", say: "R-W-E", def: "Real-world evidence — evidence from data collected in routine care rather than in a trial.", ex: "It was a regulator-requested RWE study built from hospital data.", zh: "真實世界證據", exZh: "那是一個主管機關要求、以醫院資料建立的 RWE 研究。" },
+            { w: "CRO", sayAs: "C. R. O.", say: "C-R-O", def: "Contract research organisation — the vendor running or programming parts of a study. A sponsor oversees a CRO.", ex: "I reviewed the outputs coming back from our CROs.", zh: "委託研究機構", exZh: "我審查 CRO 回來的產出。" },
           ],
         },
         {
