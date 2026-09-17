@@ -2049,15 +2049,17 @@ nothing else loads it.
 
 | Step | What it carries |
 | --- | --- |
-| 1 | The four areas the interview will lean on (from Winkle's own notes), what he has heard about how the team works, and the advertisement's own phrases |
+| 1 | The four areas the interview will lean on and their weighting (from Winkle's own notes), what he has heard about how the team works, and the advertisement's own phrases |
 | 2 | The one-minute self-introduction in Lewis's cadence notation, with ▶ that performs it |
-| 3 | Answer first — a circling answer against the headline-first version |
-| 4 | The story bank: ten stories, five written, five dashed and waiting for him |
-| 5–9 | Conflict, explaining a study, global submissions, beyond SAS, the awkward questions |
-| 10 | Buying time, admitting a gap, pushback, and asking for a repeat once |
-| 11 | Thirty terms, with how a UK team says them |
-| 12 | Questions to ask them, the close, the follow-up email |
-| 13 | The cold-question drill |
+| 3 | The message underneath: needing a job against having something to bring, the six-month answer, negative into positive, the interview mindset, the AI practice method |
+| 4 | Answer first — a circling answer against the headline-first version |
+| 5 | The story bank: eleven stories, five written, six dashed and waiting for him |
+| 6–9 | Conflict, explaining a study, global submissions, beyond SAS |
+| 10 | The awkward questions — why you left (with its three taboos and its open evidence gap), why the UK, the IC move, salary, visa, family |
+| 11 | Buying time, admitting a gap, pushback, and asking for a repeat once |
+| 12 | Thirty-five terms, with how a UK team says them |
+| 13 | Questions to ask them, the close, the follow-up email |
+| 14 | The cold-question drill |
 
 ### Design notes
 
@@ -2083,6 +2085,12 @@ nothing else loads it.
   the two-minute STAR version sits behind a reveal. A `pending` story keeps its
   place, dashed, with what he needs to bring. A question naming a story id that
   does not exist throws on load.
+- **Step numbers are not in the content.** `render.js` assigns them from the
+  order of the `steps` array, so inserting a step renumbers the page, the
+  contents list and every "Step 4 ·" label together. Cross-references in the
+  prose name a step ("see the communication step") rather than a number, so
+  they survive an insertion — the third handout added a step in the middle and
+  that is now the expected shape.
 - The palette swaps the IELTS red for a clinical teal. There is no root
   `scroll-behavior: smooth`, and the contents list uses Jill's
   `keepLinkVisible()`, so it does not carry the notebooks' drifting bug.

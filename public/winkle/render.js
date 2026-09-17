@@ -94,6 +94,12 @@ function hint(en, zh) {
 
 // ---------------------------------------------------------------- lookups
 
+/* Step numbers come from the order of the array, not from the content file, so
+   inserting a step renumbers the page, the contents list and every "Step 4 ·"
+   label with it. Cross-references in the prose name a step rather than a
+   number, for the same reason. */
+PAGE.steps.forEach((s, i) => { s.n = i + 1; });
+
 /* Stories are numbered in the order they appear, and a question may point at
    one by id. A question naming a story that does not exist throws on load —
    a dead link found in the interview week is worse than a page that refuses

@@ -24,6 +24,17 @@
      "buying information". The story list is his plan's eight, plus a ninth.
    - Lewis's cadence notes for the one-minute introduction, pasted in chat:
      the introduction itself, verbatim, including every mark.
+   - Lewis's post-session notes, 課後重點整理, 16 Sep 2026: the mindset step in
+     full (the shift from needing a job to having something to bring, the
+     six-month answer, negative-into-positive, the interview mindset, the AI
+     practice method and the priority order), and the leaving question — its
+     final version, its three absolute taboos, and the evidence gap that is
+     still open. That handout refers to 面試準備（一）pp. 4–6 for the
+     office-politics follow-ups; that file is NOT in Downloads and its six
+     follow-up directions are therefore not on this page. Ask Lewis for it
+     rather than writing them from scratch.
+     It also establishes something the earlier pages only implied: Winkle has
+     already left his last role, and is interviewing elsewhere as well.
    - Lewis's second handout, 面試準備（二）, 16 Sep 2026: the weighting of the
      four areas, the model answer to the out-of-role request, the conflict STAR
      stems with the rules for choosing that story, the finished global-
@@ -102,7 +113,6 @@ const PAGE = {
     // ============================================================ 1
     {
       id: "the-role",
-      n: 1,
       en: "The role and the team",
       zh: "職缺與團隊",
       blocks: [
@@ -118,12 +128,12 @@ const PAGE = {
           bodyEn: [
             "Your notes put the language question down as the one you're most confident about. It is also the one that counts for least of the four — and it is already solid.",
             "What decides this interview is the first pair: communication and conflict, and your scientific understanding of a study. Neither is about tools. Both are about judgement and depth of thought.",
-            "So bring two things: **one real conflict** you handled (choose it against the three conditions in step 5), and **one study you can go deep on** — the COVID-19 Phase III or the RWE study. For that one, be clear on four things: what the disease was, why the inclusion criteria were designed that way, what the primary endpoint was, and what statistical method was used.",
+            "So bring three things to the next lesson. **The Warsaw details** — at least two of the five questions in the leaving step, because that is the biggest gap in your answer right now. **One real conflict** you handled, chosen against the three conditions in the communication step. And **one study you can go deep on** — the COVID-19 Phase III or the RWE study — clear on four things: what the disease was, why the inclusion criteria were designed that way, what the primary endpoint was, and what statistical method was used.",
           ],
           bodyZh: [
             "你在筆記裡自評最有把握的是「SAS 以外的語言」。那一題在四個題型裡權重最低，而且已經練得很扎實了。",
             "真正決勝的是前兩題：溝通與衝突，以及你對案子的科學理解。這兩題跟工具無關，考的是判斷力與思考深度。",
-            "所以請準備兩樣東西：**一個真實的溝通衝突**（依第 5 步的三個條件挑選），以及**一個你最有把握講深的案子**——COVID-19 三期或那個 RWE 研究都可以。針對那個案子，先想清楚四件事：研究的是什麼病症、收案條件為什麼這樣設計、主要療效指標是什麼、用了什麼統計方法。",
+            "所以下一堂課請帶三樣東西。**華沙的具體細節**——離職題那一步的五個問題，至少想清楚兩個，因為那是你目前最大的缺口。**一個真實的溝通衝突**，依溝通那一步的三個條件挑選。以及**一個你最有把握講深的案子**——COVID-19 三期或那個 RWE 研究都可以——要能講清楚四件事：研究的是什麼病症、收案條件為什麼這樣設計、主要療效指標是什麼、用了什麼統計方法。",
           ],
         },
         {
@@ -189,14 +199,14 @@ const PAGE = {
             {
               en: "Narratives and patient profiles are not programmers' work; they are highly automated and produced elsewhere.",
               zh: "Narrative 和 patient profile 不是 programmer 的職責，已高度自動化，由特定部門完成。",
-              soEn: "A request to produce them is exactly the “not my responsibility” question. See step 5.",
-              soZh: "有人請你做這些，正是「不是你職責的工作」那一題。見第 5 步。",
+              soEn: "A request to produce them is exactly the “not my responsibility” question — see the communication step.",
+              soZh: "有人請你做這些，正是「不是你職責的工作」那一題——見「溝通與衝突」那一步。",
             },
             {
               en: "When a health authority meets the company about efficacy concerns, programmers may attend — and may have to programme a result on the spot.",
               zh: "監管機關召開療效疑慮會議時，programmer 可能要出席，並當場寫程式產出臨時需求的結果。",
-              soEn: "Prepare an answer about producing an urgent result under pressure, accurately. See step 7.",
-              soZh: "準備一個回答：在壓力下快速且正確地產出臨時結果。見第 7 步。",
+              soEn: "Prepare an answer about producing an urgent result under pressure, accurately — see the submissions step.",
+              soZh: "準備一個回答：在壓力下快速且正確地產出臨時結果——見「國際申報經驗」那一步。",
             },
             {
               en: "The work is organised by compound, then indication (a trial or program lead), then individual study.",
@@ -207,8 +217,8 @@ const PAGE = {
             {
               en: "AI is already used in programming, but only on specifications, never on real data. It drafts code from the spec, and the results are compared with the programmer's own.",
               zh: "已開始用 AI 協助 programming，但只能讀取 specification，不能讀正式資料。AI 依 spec 產生程式，再與 programmer 的結果比對。",
-              soEn: "Have a view on AI as an independent check. See step 8.",
-              soZh: "準備好你對「AI 作為獨立驗證」的看法。見第 8 步。",
+              soEn: "Have a view on AI as an independent check — see the Beyond SAS step.",
+              soZh: "準備好你對「AI 作為獨立驗證」的看法——見「SAS 以外的語言」那一步。",
             },
           ],
         },
@@ -236,7 +246,6 @@ const PAGE = {
     // ============================================================ 2
     {
       id: "introduction",
-      n: 2,
       en: "Tell me about yourself",
       zh: "一分鐘自我介紹",
       blocks: [
@@ -417,8 +426,94 @@ const PAGE = {
 
     // ============================================================ 3
     {
+      id: "message",
+      en: "The message underneath",
+      zh: "答案底下的訊息",
+      blocks: [
+        {
+          t: "lead",
+          en: "The most important shift from the lesson: stop answering as someone who needs a job, and answer as someone who has something a team will need. It changes every question, not only one.",
+          zh: "這堂課最重要的轉折：不要再用「我需要一份工作」的心態回答，而要用「我有這個，你會需要我」的心態。它改變的是每一題，不只是某一題。",
+        },
+        {
+          t: "note",
+          en: "Where it showed",
+          zh: "它出現在哪裡",
+          bodyEn: [
+            "In the interview the day before, you were asked about your plans for the next six months. You said you wanted to find a job as soon as possible. What that actually transmits is: **I need a job.**",
+            "Same question, different underlying logic: say what you built this year and the response it got, then say you want to bring that method into the next team. Now the message is **I have something to bring.**",
+            "Your own words for it were exact: take the tools to a team and develop them there — not just want to go.",
+          ],
+          bodyZh: [
+            "前一天的面試問到「未來六個月的計畫」，你的回答是「我想盡快找到工作」——這句話真正傳達出去的訊息是：**我需要一份工作。**",
+            "同樣一題，換個底層邏輯：先講你今年做出了什麼、得到什麼回饋，再說你希望把這套方法帶進下一個團隊。訊息就變成：**我有東西可以帶過去。**",
+            "你自己的形容很準確：「帶著工具去團隊發展，不是只是想要去。」",
+          ],
+        },
+        {
+          t: "qa",
+          kind: "Mindset", kindZh: "心態題",
+          en: "What are your plans for the next six months?",
+          zh: "你未來六個月的計畫是什麼？",
+          tipEn: "The interviewer is not asking about your job search. They are testing whether you have a direction. “As soon as possible” says you have no direction, only a need.",
+          tipZh: "面試官問六個月計畫，不是在關心你的求職進度，是在測你有沒有方向感。講「盡快找到工作」等於說你沒有方向，只有需求。",
+          answer: [
+            { tag: "The answer", tagZh: "定稿", en: "In the next six months, I want to bring the work I developed this year into a team — to turn it from something I built on my own into something a study can actually use. That's the step I'm looking for.", zh: "未來六個月，我希望把今年做出來的成果帶進一個團隊——把它從我一個人做出來的東西，變成一個試驗真正能使用的工具。這就是我在找的下一步。" },
+          ],
+        },
+        {
+          t: "bank",
+          en: "Negative into positive",
+          zh: "負面轉正面",
+          hintEn: "Two principles: keep the negative words out, and describe the facts more completely. This is a way of thinking, not a rhetorical trick.",
+          hintZh: "兩個原則：盡可能不出現負面詞彙，同時更完整地描述事實。這不是修辭技巧，是思考方式。",
+          rows: [
+            { en: "everyone has problems  →  **no one is flawless**", zh: "同樣的意思，但不指向任何特定的人。" },
+            { en: "he is not a good leader  →  **he is better at following instructions**", zh: "不得罪人，而且更接近客觀描述。" },
+          ],
+        },
+        {
+          t: "note",
+          en: "Why this one is hard",
+          zh: "這件事難在哪裡",
+          bodyEn: "The hard part isn't knowing you should reframe — it's producing the alternative in the moment. That only comes from collecting them: write down a good substitution whenever you meet one, and read the list through the day before the interview.",
+          bodyZh: "難的不是知道要轉換，是當下想不出替代說法。這個能力只能靠累積——平常看到好的替代說法就記下來，面試前一天把清單看過一次。",
+        },
+        {
+          t: "note",
+          en: "Interview mindset",
+          zh: "面試心態",
+          bodyEn: [
+            "**Aim for the right to decline.** Apply and interview from a position where you are not desperate, with the setting “I want to be the one who says no.” Perform fully in the room — but what you are after is the choice. It comes through in your tone, and they can feel it.",
+            "**Say what you expect, even if they say the role is junior only.** That isn't the rule of the game. An interaction is a chance to recommend yourself. In yesterday's interview you asked about the Taipei team's position but never stated your own expectation — that was an opportunity let go.",
+            "**Listen for what is underneath the question.** What an interviewer literally asks and what they are checking are often different things. That isn't only an interview skill; it is a manager's daily one.",
+          ],
+          bodyZh: [
+            "**目標是取得「可以拒絕對方」的權利。**在不急著找工作的狀態下投履歷、去面試，心態設定成「我希望我是拒絕的那一方」。面試當中仍然全力表現，但你要的是那個選擇權。這個心態會直接反映在你的語氣上，對方感覺得出來。",
+            "**即使對方說只招 junior，還是要表達你的期待。**那不是遊戲規則。有互動的機會，才有推薦自己的機會。前一天的面試最後你問了台北團隊的定位，但沒說出自己的期望——那是一個被放掉的機會。",
+            "**聽懂問題的弦外之音。**面試官問的字面問題，和他真正想確認的事情，往往不一樣。這不只是面試技巧，是主管職的日常能力。",
+          ],
+        },
+        {
+          t: "note",
+          en: "Practising with AI — open two threads",
+          zh: "用 AI 練習：開兩個對話串",
+          bodyEn: [
+            "**Thread one: questions only.** It asks, you answer, it says nothing back. Use it in the car or on the commute — what you're training is reaction speed.",
+            "**Thread two: the consultant.** Strategy, rewritten sentences, risks pointed out. Save the advice that matters and bring it to the lesson.",
+            "**Priority order when you answer: strategy > pronunciation > grammar.** Strategy first, because if the conclusion doesn't come first, everything after it is buried. Pronunciation before grammar, because being hard to hear costs you more than a wrong tense does.",
+          ],
+          bodyZh: [
+            "**第一串：純問答。**只出題、只讓你回答，不給評論。開車或通勤時用，練的是當下的反應速度。",
+            "**第二串：當顧問。**給策略、改寫句子、指出風險。練完之後把重要的建議存下來，上課時一起看。",
+            "**回答的優先順序：策略 ＞ 發音 ＞ 文法。**策略排第一，因為結論沒有先講，後面講得再好也會被埋掉。發音排在文法之前，因為聽不清楚比說錯時態傷害更大。",
+          ],
+        },
+      ],
+    },
+
+    {
       id: "headline",
-      n: 3,
       en: "Answer first",
       zh: "結論先行",
       blocks: [
@@ -474,7 +569,6 @@ const PAGE = {
     // ============================================================ 4
     {
       id: "stories",
-      n: 4,
       en: "Your story bank",
       zh: "你的故事庫",
       blocks: [
@@ -608,6 +702,26 @@ const PAGE = {
             { en: "What “unstructured” meant in practice — and the hardest part of standardising it.", zh: "「非結構化」實際上是什麼樣子——以及標準化最難的地方。" },
             { en: "How long it took, and who did it.", zh: "花了多久、由誰執行。" },
             { en: "This is the second study you could go deep on. Prepare the same four points as the trial above.", zh: "這是你第二個可以講深的案子。請準備和上面那個試驗一樣的四個要點。" },
+          ],
+        },
+        {
+          t: "story",
+          id: "warsaw",
+          pending: true,
+          en: "Warsaw, as evidence",
+          zh: "華沙發表，當作證據",
+          tags: [
+            { en: "Why you left", zh: "離職題" },
+            { en: "Evidence", zh: "證據" },
+            { en: "Initiative", zh: "主動性" },
+          ],
+          add: [
+            { en: "Who invited you to present in Warsaw?", zh: "是誰邀請你去華沙發表的？" },
+            { en: "What did you present — in one sentence?", zh: "你實際發表的內容是什麼（一句話）？" },
+            { en: "Who was in the audience?", zh: "聽眾是哪些人？" },
+            { en: "What specifically did they praise?", zh: "他們具體稱讚了什麼？" },
+            { en: "Did it lead to anything — a collaboration, an invitation, a submission opportunity?", zh: "有沒有帶來後續——合作、邀約、投稿機會或其他實際結果？" },
+            { en: "Two of these five are the homework for the next lesson. They turn the leaving answer from an adjective into evidence.", zh: "五題中至少兩題是下次上課前的功課。它們會把離職題從形容詞變成證據。" },
           ],
         },
         {
@@ -746,7 +860,6 @@ const PAGE = {
     // ============================================================ 5
     {
       id: "conflict",
-      n: 5,
       en: "Communication and conflict",
       zh: "溝通與衝突",
       blocks: [
@@ -859,7 +972,6 @@ const PAGE = {
     // ============================================================ 6
     {
       id: "study",
-      n: 6,
       en: "Explaining a study",
       zh: "說清楚一個研究",
       blocks: [
@@ -951,7 +1063,6 @@ const PAGE = {
     // ============================================================ 7
     {
       id: "global",
-      n: 7,
       en: "Global submissions",
       zh: "國際申報經驗",
       blocks: [
@@ -1039,7 +1150,6 @@ const PAGE = {
     // ============================================================ 8
     {
       id: "beyond-sas",
-      n: 8,
       en: "Beyond SAS",
       zh: "SAS 以外的語言",
       blocks: [
@@ -1101,7 +1211,6 @@ const PAGE = {
     // ============================================================ 9
     {
       id: "awkward",
-      n: 9,
       en: "The awkward questions",
       zh: "難答的問題",
       blocks: [
@@ -1109,6 +1218,61 @@ const PAGE = {
           t: "lead",
           en: "These get asked, and they get asked early. Prepared answers sound confident; improvised ones sound unsure about the whole move. Practise the tone, not just the words.",
           zh: "這些題目一定會被問，而且通常問得很早。事先準備會顯得篤定；臨場發揮會讓人覺得你對整件事還沒想清楚。要練語氣，不只是字句。",
+        },
+        {
+          t: "qa",
+          kind: "Awkward", kindZh: "難答題",
+          en: "Why did you leave your last role?",
+          zh: "你為什麼離開上一份工作？",
+          story: "warsaw",
+          tipEn: "The goal: they should conclude this was the company's situation, not a problem with your ability — and then the focus moves quickly to what you did next. The spine is not “politics pushed me out”; it is “an organisational change happened, I made an active career choice, and I proved it was worth making”.",
+          tipZh: "這題的終極目標：讓對方認定這是公司策略造成的結果，不是你的能力出了問題——然後迅速把焦點轉到你之後主動做了什麼。敘事主軸不是「辦公室政治逼我離開」，而是「我遇到組織變動，做了一個主動的職涯選擇，並且證明這個選擇有價值」。",
+          answer: [
+            { tag: "Context", tagZh: "背景", en: "I left because the organization was going through some internal changes, and I felt it was the right time to consider my next step.", zh: "我離開是因為當時公司內部正在經歷一些變動，我覺得那是重新思考下一步的適當時機。" },
+            { tag: "The active choice", tagZh: "主動的選擇", en: "Although I had an opportunity to join another startup, I decided to pursue a project that I had wanted to develop for some time.", zh: "雖然當時有機會加入另一家新創公司，我還是決定投入一個我一直想完成的專案。" },
+            { tag: "The proof", tagZh: "證明", en: "That decision led to an opportunity to present my work in Warsaw, where it received very positive feedback.", zh: "這個決定讓我有機會到華沙發表我的成果，並得到非常正面的回饋。" },
+            { tag: "Close", tagZh: "收尾", en: "The experience gave me greater confidence in the value of my work, and I'm now ready to bring that experience and initiative to my next role.", zh: "這段經驗讓我對自己工作的價值更有信心，現在我準備好把這些經驗與主動性帶到下一個職位。" },
+          ],
+        },
+        {
+          t: "note",
+          en: "Three absolute taboos",
+          zh: "三個絕對禁忌",
+          bodyEn: [
+            "**One: never say office politics.** The phrase sends the listener straight to interpersonal conflict or a performance problem — you would be opening a door that doesn't need opening.",
+            "**Two: never use the word redundant**, and never put “I” and “redundant” in the same sentence. The word carries “surplus” in it; attached to yourself, it is a weight you don't need to carry.",
+            "**Three: don't explain the manager who left and took people with him.** Your judgement about integrity is yours, but said out loud it becomes commentary on someone else. The final version goes around that part completely.",
+            "If they push directly on office politics, the reply and six likely follow-up directions are in 面試準備（一）, pages 4 to 6 — that handout is not on this page.",
+          ],
+          bodyZh: [
+            "**一、不要說 office politics。**這個詞會讓對方直接聯想到人際衝突或績效問題，等於自己打開一扇不需要開的門。",
+            "**二、不要出現 redundant 這個字**，更不要把 I 跟 redundant 放在同一句。這個字本身就帶「多餘」的意思，接在自己身上是不必要的負擔。",
+            "**三、不要交代那位主管帶人離開的背景。**你對 integrity 的判斷是你自己的，但一講出來就變成在評論別人。定稿完全繞開這段。",
+            "被直接追問 office politics 時的答法，以及六個可能的追問方向，見《面試準備（一）》第 4–6 頁——那份講義不在這一頁上。",
+          ],
+        },
+        {
+          t: "note",
+          en: "The gap in this answer — evidence, not adjectives",
+          zh: "這題最大的缺口——要證據，不要形容詞",
+          bodyEn: [
+            "**received very positive feedback** is still an adjective. Interviewers believe concrete results; they do not believe “a lot of positive feedback”.",
+            "Think through these five, and put one or two into the answer: who invited you to present in Warsaw? What did you present, in one sentence? Who was in the audience? What specifically did they praise? And did the presentation lead to anything — a collaboration, an invitation, a submission opportunity, any concrete result?",
+          ],
+          bodyZh: [
+            "**received very positive feedback** 還是形容詞，不是證據。證據勝過形容詞——面試官相信具體的結果，不相信「得到很多正面回饋」。",
+            "請先想清楚這五件事，挑一到兩個放進答案：是誰邀請你去華沙發表的？你實際發表的內容是什麼（一句話）？聽眾是哪些人？他們具體稱讚了什麼？這次發表有沒有帶來後續——合作、邀約、投稿機會或其他實際結果？",
+          ],
+        },
+        {
+          t: "frames",
+          en: "The sentence that closes the gap",
+          zh: "補上缺口的句型",
+          hintEn: "Fill both boxes and this answer stops being an adjective.",
+          hintZh: "把兩個框填起來，這題就不再只是形容詞。",
+          items: [
+            { en: "The audience particularly valued my approach to [what], and the presentation led to [what came of it].", zh: "聽眾特別肯定我在〔什麼〕上的做法，而這次發表也帶來了〔後續結果〕。" },
+          ],
         },
         {
           t: "note",
@@ -1182,7 +1346,6 @@ const PAGE = {
     // ============================================================ 10
     {
       id: "unscripted",
-      n: 10,
       en: "When you don't know, or didn't catch it",
       zh: "答不出來或沒聽清楚的時候",
       blocks: [
@@ -1274,7 +1437,6 @@ const PAGE = {
     // ============================================================ 11
     {
       id: "words",
-      n: 11,
       en: "Words for this job",
       zh: "這份工作的用語",
       blocks: [
@@ -1354,7 +1516,6 @@ const PAGE = {
     // ============================================================ 12
     {
       id: "close",
-      n: 12,
       en: "Your questions and the close",
       zh: "反問與收尾",
       blocks: [
@@ -1418,7 +1579,6 @@ const PAGE = {
     // ============================================================ 13
     {
       id: "drill",
-      n: 13,
       en: "Cold questions",
       zh: "隨機冷問答",
       blocks: [
