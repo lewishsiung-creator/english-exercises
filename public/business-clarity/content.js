@@ -602,6 +602,18 @@ const WORKSHEET = {
               en: 'Education, autonomy and responsibility',
               zh: '教育、自主與責任',
             },
+            {
+              href: '2026-08-17/',
+              date: '2026/08/17',
+              en: 'Management, OKRs, accountability and leadership',
+              zh: '管理、OKR、當責與領導',
+            },
+            {
+              href: '2026-09-07/',
+              date: '2026/09/07',
+              en: 'AI-driven HR SaaS, talent management and retention',
+              zh: 'AI HR SaaS、人才管理與留才',
+            },
           ],
         },
       ],

@@ -391,6 +391,8 @@ so each one gets a dated directory:
 
 ```
 public/business-clarity/2026-08-10/
+public/business-clarity/2026-08-17/
+public/business-clarity/2026-09-07/
 ```
 
 The page shares the worksheet's `style.css` and `render.js` and supplies only
@@ -2202,7 +2204,9 @@ public/phonics-handbook/  自然發音學習手冊, the interactive handbook
 public/math/              Number Lab, the Grades 1–3 math practice
 public/confidence-talk/   the 2026/07/11 class notes, ages 10–12
 public/business-clarity/  the business worksheet
-public/business-clarity/2026-08-10/  one session's notes
+public/business-clarity/2026-08-10/  one session's notes — parenting
+public/business-clarity/2026-08-17/  one session's notes — management
+public/business-clarity/2026-09-07/  one session's notes — the HR SaaS product
 public/grammar/           Basic English Grammar — the hub and book.js
 public/grammar/ch01/      one folder per chapter, a content file each
 public/grammar/ch13/      Modals, Part 2 — the second chapter written
