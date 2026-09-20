@@ -30,6 +30,9 @@
      part        a divider announcing a new part of a section
      statements  finished sentences to read aloud or borrow
      points      a numbered list of ideas, each with a line of explanation
+     sessions    the dated session pages hanging under a section
+     related     the same discussions indexed by topic — every section ends
+                 with the parts of the lessons that belong to it
 
    Items in `phrases`, `bullets` and `statements` may carry a `tip` — the
    correction or "more natural version" given in class. It prints small and
@@ -149,7 +152,7 @@ const WORKSHEET = {
         },
 
         // 1 ---------------------------------------------------------------
-        { t: 'sub', letter: '1', en: 'Lulu’s Business and AI Solutions', zh: 'Lulu 的事業與 AI 解決方案' },
+        { t: 'sub', id: 'cn-1', letter: '1', en: 'Lulu’s Business and AI Solutions', zh: 'Lulu 的事業與 AI 解決方案' },
         {
           t: 'bullets',
           label: 'Main Business Ideas',
@@ -177,7 +180,7 @@ const WORKSHEET = {
         },
 
         // 2 ---------------------------------------------------------------
-        { t: 'sub', letter: '2', en: 'Product Development and Business Model', zh: '產品開發與商業模式' },
+        { t: 'sub', id: 'cn-2', letter: '2', en: 'Product Development and Business Model', zh: '產品開發與商業模式' },
         {
           t: 'phrases',
           en: 'Key Vocabulary and Collocations',
@@ -219,7 +222,7 @@ const WORKSHEET = {
         },
 
         // 3 ---------------------------------------------------------------
-        { t: 'sub', letter: '3', en: 'Workflow, Organization, and Job Design', zh: '工作流程、組織與職務設計' },
+        { t: 'sub', id: 'cn-3', letter: '3', en: 'Workflow, Organization, and Job Design', zh: '工作流程、組織與職務設計' },
         {
           t: 'phrases',
           en: 'Key Vocabulary and Collocations',
@@ -253,7 +256,7 @@ const WORKSHEET = {
         },
 
         // 4 ---------------------------------------------------------------
-        { t: 'sub', letter: '4', en: 'The Role of Humans in the AI Era', zh: 'AI 時代中的人類角色' },
+        { t: 'sub', id: 'cn-4', letter: '4', en: 'The Role of Humans in the AI Era', zh: 'AI 時代中的人類角色' },
         {
           t: 'bullets',
           label: 'Original Ideas',
@@ -283,7 +286,7 @@ const WORKSHEET = {
         },
 
         // 5 ---------------------------------------------------------------
-        { t: 'sub', letter: '5', en: 'AI, Anxiety, and the Workplace', zh: 'AI、焦慮與職場' },
+        { t: 'sub', id: 'cn-5', letter: '5', en: 'AI, Anxiety, and the Workplace', zh: 'AI、焦慮與職場' },
         {
           t: 'phrases',
           en: 'Key Vocabulary and Expressions',
@@ -327,7 +330,7 @@ const WORKSHEET = {
         },
 
         // 6 ---------------------------------------------------------------
-        { t: 'sub', letter: '6', en: 'AI Adoption and Culture', zh: 'AI 採用與文化差異' },
+        { t: 'sub', id: 'cn-6', letter: '6', en: 'AI Adoption and Culture', zh: 'AI 採用與文化差異' },
         {
           t: 'statements',
           en: 'Key Idea',
@@ -370,7 +373,7 @@ const WORKSHEET = {
         },
 
         // 7 ---------------------------------------------------------------
-        { t: 'sub', letter: '7', en: 'AI in Healthcare and Data Privacy', zh: 'AI 在醫療與資料隱私中的應用' },
+        { t: 'sub', id: 'cn-7', letter: '7', en: 'AI in Healthcare and Data Privacy', zh: 'AI 在醫療與資料隱私中的應用' },
         {
           t: 'phrases',
           en: 'Key Vocabulary and Collocations',
@@ -411,7 +414,7 @@ const WORKSHEET = {
         },
 
         // 8 ---------------------------------------------------------------
-        { t: 'sub', letter: '8', en: 'AI and Labor Regulations', zh: 'AI 與勞動法規' },
+        { t: 'sub', id: 'cn-8', letter: '8', en: 'AI and Labor Regulations', zh: 'AI 與勞動法規' },
         {
           t: 'phrases',
           en: 'Key Vocabulary and Collocations',
@@ -439,7 +442,7 @@ const WORKSHEET = {
         },
 
         // 9 ---------------------------------------------------------------
-        { t: 'sub', letter: '9', en: 'Recent AI Forum and Business Inspiration', zh: '近期 AI 論壇與商業啟發' },
+        { t: 'sub', id: 'cn-9', letter: '9', en: 'Recent AI Forum and Business Inspiration', zh: '近期 AI 論壇與商業啟發' },
         {
           t: 'phrases',
           en: 'Key Expressions',
@@ -474,7 +477,7 @@ const WORKSHEET = {
         },
 
         // 10 --------------------------------------------------------------
-        { t: 'sub', letter: '10', en: 'Travel and Personal Reflection', zh: '旅行與個人反思' },
+        { t: 'sub', id: 'cn-10', letter: '10', en: 'Travel and Personal Reflection', zh: '旅行與個人反思' },
         {
           t: 'phrases',
           en: 'Key Expressions',
@@ -509,7 +512,7 @@ const WORKSHEET = {
         },
 
         // 11 --------------------------------------------------------------
-        { t: 'sub', letter: '11', en: 'Other Vocabulary from the Discussion', zh: '其他課堂字彙' },
+        { t: 'sub', id: 'cn-11', letter: '11', en: 'Other Vocabulary from the Discussion', zh: '其他課堂字彙' },
         {
           t: 'phrases',
           en: 'Other Vocabulary',
@@ -526,7 +529,7 @@ const WORKSHEET = {
         },
 
         // 12 --------------------------------------------------------------
-        { t: 'sub', letter: '12', en: 'Core Business Ideas from the Discussion', zh: '本次討論的核心商業觀點' },
+        { t: 'sub', id: 'cn-12', letter: '12', en: 'Core Business Ideas from the Discussion', zh: '本次討論的核心商業觀點' },
         {
           t: 'points',
           en: 'The discussion can be summarized into the following ideas',
@@ -561,7 +564,7 @@ const WORKSHEET = {
         },
 
         // 13 --------------------------------------------------------------
-        { t: 'sub', letter: '13', en: 'Key Business Vocabulary to Review', zh: '建議複習的核心商業字彙' },
+        { t: 'sub', id: 'cn-13', letter: '13', en: 'Key Business Vocabulary to Review', zh: '建議複習的核心商業字彙' },
         {
           t: 'phrases',
           en: 'Review List',
@@ -614,6 +617,20 @@ const WORKSHEET = {
               en: 'AI-driven HR SaaS, talent management and retention',
               zh: 'AI HR SaaS、人才管理與留才',
             },
+          ],
+        },
+        {
+          t: 'related',
+          en: 'From the Discussions',
+          zh: '相關課堂討論',
+          items: [
+            { href: '2026-09-07/#saas-project', when: '09/07', en: 'Recent SaaS Project and Client Feedback', zh: '最近完成的 SaaS 專案與客戶回饋' },
+            { href: '2026-09-07/#what-it-does', when: '09/07', en: 'What Lulu’s SaaS System Does', zh: 'SaaS 系統解決什麼問題' },
+            { href: '2026-09-07/#ai-models', when: '09/07', en: 'Using AI to Build and Apply Competency Models', zh: '使用 AI 建立與應用職能模型' },
+            { href: '2026-09-07/#meetings', when: '09/07', en: 'AI Meeting Management', zh: 'AI 會議管理' },
+            { href: '2026-09-07/#model', when: '09/07', en: 'The Core Business Model Lulu Explained', zh: '核心商業模式' },
+            { href: '#cn-1', when: '筆記', en: 'Lulu’s Business and AI Solutions', zh: '事業與 AI 解決方案' },
+            { href: '#cn-2', when: '筆記', en: 'Product Development and Business Model', zh: '產品開發與商業模式' },
           ],
         },
       ],
@@ -698,6 +715,22 @@ const WORKSHEET = {
             'Our solution helps customers reduce _______.',
             'As a result, our customers can ______.',
             'We know our solution works because ________.',
+          ],
+        },
+        {
+          t: 'related',
+          en: 'From the Discussions',
+          zh: '相關課堂討論',
+          items: [
+            { href: '2026-09-07/#why-leave', when: '09/07', en: 'Why Employees Leave', zh: '為什麼員工離職' },
+            { href: '2026-09-07/#why-stay', when: '09/07', en: 'Why Employees Stay', zh: '員工為什麼願意留下' },
+            { href: '2026-09-07/#evp', when: '09/07', en: 'Employer Value Proposition — EVP', zh: '雇主價值主張' },
+            { href: '2026-09-07/#leave-managers', when: '09/07', en: '“People Join Companies but Leave Managers”', zh: '因公司加入，卻因主管離開' },
+            { href: '2026-09-07/#fairness', when: '09/07', en: 'Transparency and Relative Fairness', zh: '透明度與相對公平' },
+            { href: '2026-09-07/#contribution', when: '09/07', en: 'Contribution-Based Evaluation', zh: '以貢獻度為基礎的評估' },
+            { href: '2026-08-17/#okr-why', when: '08/17', en: 'Why Lulu Prefers OKRs to KPIs', zh: '為什麼偏好 OKR 而非 KPI' },
+            { href: '#cn-7', when: '筆記', en: 'AI in Healthcare and Data Privacy', zh: 'AI 在醫療與資料隱私中的應用' },
+            { href: '#cn-8', when: '筆記', en: 'AI and Labor Regulations', zh: 'AI 與勞動法規' },
           ],
         },
       ],
@@ -792,6 +825,15 @@ const WORKSHEET = {
             'They choose us because ___________.',
             'We are a good fit for customers who value ______.',
             'We may not be suitable for customers who only focus on ______.',
+          ],
+        },
+        {
+          t: 'related',
+          en: 'From the Discussions',
+          zh: '相關課堂討論',
+          items: [
+            { href: '#cn-6', when: '筆記', en: 'AI Adoption and Culture', zh: 'AI 採用與文化差異' },
+            { href: '2026-09-07/#saas-project', when: '09/07', en: 'Recent SaaS Project and Client Feedback', zh: '最近完成的 SaaS 專案與客戶回饋' },
           ],
         },
       ],
@@ -895,6 +937,19 @@ const WORKSHEET = {
             'One possible disadvantage is _____.',
           ],
         },
+        {
+          t: 'related',
+          en: 'From the Discussions',
+          zh: '相關課堂討論',
+          items: [
+            { href: '2026-09-07/#ai-assistant', when: '09/07', en: 'AI Is an Assistant, Not the Decision-Maker', zh: 'AI 是輔助者，而不是決策者' },
+            { href: '2026-09-07/#privacy', when: '09/07', en: 'De-identification and Employee Privacy', zh: '去識別化與員工隱私' },
+            { href: '2026-09-07/#qual-quant', when: '09/07', en: 'Qualitative and Quantitative Analysis', zh: '質化與量化分析' },
+            { href: '2026-09-07/#limits', when: '09/07', en: 'Technology Cannot Replace Management Decisions', zh: '系統不能取代管理決策' },
+            { href: '2026-09-07/#meetings', when: '09/07', en: 'AI Meeting Management', zh: 'AI 會議管理' },
+            { href: '#cn-4', when: '筆記', en: 'The Role of Humans in the AI Era', zh: 'AI 時代中的人類角色' },
+          ],
+        },
       ],
     },
 
@@ -988,6 +1043,16 @@ const WORKSHEET = {
             'We need to find the sweet spot between ____ and ______.',
             'If the price is too high, we may _________.',
             'If the price is too low, customers may ____.',
+          ],
+        },
+        {
+          t: 'related',
+          en: 'From the Discussions',
+          zh: '相關課堂討論',
+          items: [
+            { href: '2026-09-07/#investment', when: '09/07', en: 'Showing Employees How Much the Company Invests in Them', zh: '讓員工看見公司投入的資源' },
+            { href: '2026-09-07/#timeline', when: '09/07', en: 'How Long Does It Take to See Results?', zh: '多久可以看到成果' },
+            { href: '2026-08-10/#money', when: '08/10', en: 'Teaching Financial Awareness Through Everyday Life', zh: '透過日常生活建立金錢觀念' },
           ],
         },
       ],
@@ -1099,6 +1164,18 @@ const WORKSHEET = {
             'Increasing revenue does not always lead to higher profit because ________.',
           ],
         },
+        {
+          t: 'related',
+          en: 'From the Discussions',
+          zh: '相關課堂討論',
+          items: [
+            { href: '2026-08-17/#margin', when: '08/17', en: 'Revenue vs. Gross Profit', zh: '營業額與毛利' },
+            { href: '2026-08-17/#transparency', when: '08/17', en: 'Financial Transparency', zh: '財務透明' },
+            { href: '2026-08-17/#incentives', when: '08/17', en: 'Incentives and Bonuses', zh: '誘因與獎金制度' },
+            { href: '2026-08-17/#weighting', when: '08/17', en: 'Challenging Goals and Weighting', zh: '挑戰性目標與權重' },
+            { href: '2026-09-07/#incentives', when: '09/07', en: 'Incentives', zh: '誘因與獎勵' },
+          ],
+        },
       ],
     },
 
@@ -1194,6 +1271,15 @@ const WORKSHEET = {
             'To improve customer retention, we should ______.',
           ],
         },
+        {
+          t: 'related',
+          en: 'From the Discussions',
+          zh: '相關課堂討論',
+          items: [
+            { href: '2026-09-07/#saas-project', when: '09/07', en: 'Recent SaaS Project and Client Feedback', zh: '最近完成的 SaaS 專案與客戶回饋' },
+            { href: '2026-09-07/#evp', when: '09/07', en: 'Employer Value Proposition — EVP', zh: '雇主價值主張' },
+          ],
+        },
       ],
     },
 
@@ -1273,6 +1359,21 @@ const WORKSHEET = {
             'One possible limitation is _______.',
           ],
         },
+        {
+          t: 'related',
+          en: 'From the Discussions',
+          zh: '相關課堂討論',
+          items: [
+            { href: '2026-09-07/#right-talent', when: '09/07', en: 'Hiring the Right or Suitable Talent', zh: '找到適合的人才' },
+            { href: '2026-09-07/#competency', when: '09/07', en: 'Competency Models', zh: '職能模型' },
+            { href: '2026-09-07/#ai-models', when: '09/07', en: 'Using AI to Build and Apply Competency Models', zh: '使用 AI 建立與應用職能模型' },
+            { href: '2026-09-07/#competencies-roles', when: '09/07', en: 'Communication and Project-Management Competencies', zh: '溝通與專案管理職能' },
+            { href: '2026-08-17/#growth', when: '08/17', en: 'Employee Growth and Learning Needs', zh: '員工成長與學習需求' },
+            { href: '2026-08-17/#action-learning', when: '08/17', en: 'Action Learning', zh: '行動學習' },
+            { href: '2026-08-17/#autonomy', when: '08/17', en: 'Building an Autonomous Team', zh: '建立有自主性的團隊' },
+            { href: '#cn-3', when: '筆記', en: 'Workflow, Organization, and Job Design', zh: '工作流程、組織與職務設計' },
+          ],
+        },
       ],
     },
 
@@ -1342,6 +1443,18 @@ const WORKSHEET = {
             'Our business is not only about ____, but also about ______.',
           ],
         },
+        {
+          t: 'related',
+          en: 'From the Discussions',
+          zh: '相關課堂討論',
+          items: [
+            { href: '2026-09-07/#model', when: '09/07', en: 'The Core Business Model Lulu Explained', zh: '核心商業模式' },
+            { href: '2026-08-17/#philosophy', when: '08/17', en: 'Core Management Philosophy from This Class', zh: '核心管理理念' },
+            { href: '2026-08-10/#philosophy', when: '08/10', en: 'Lulu’s Philosophy of Education', zh: '教育理念' },
+            { href: '2026-08-10/#takeaways', when: '08/10', en: 'Main Takeaways from This Discussion', zh: '討論重點' },
+            { href: '#cn-12', when: '筆記', en: 'Core Business Ideas from the Discussion', zh: '核心商業觀點' },
+          ],
+        },
       ],
     },
 
@@ -1408,6 +1521,17 @@ const WORKSHEET = {
             'Our business model is built around ______.',
             'Our next strategic priority is _____.',
             'In the long term, we aim to ______.',
+          ],
+        },
+        {
+          t: 'related',
+          en: 'From the Discussions',
+          zh: '相關課堂討論',
+          items: [
+            { href: '2026-09-07/#pitch', when: '09/07', en: 'A Stronger 90-Second Explanation for Lulu', zh: '更有力的 90 秒說明' },
+            { href: '2026-09-07/#what-it-does', when: '09/07', en: 'What Lulu’s SaaS System Does', zh: 'SaaS 系統解決什麼問題' },
+            { href: '2026-09-07/#model', when: '09/07', en: 'The Core Business Model Lulu Explained', zh: '核心商業模式' },
+            { href: '2026-08-17/#philosophy', when: '08/17', en: 'Core Management Philosophy from This Class', zh: '核心管理理念' },
           ],
         },
       ],
@@ -1481,6 +1605,21 @@ const WORKSHEET = {
             'One activity we should continue investing in is ________.',
             'There is a trade-off between ____ and ______.',
             'Our next step should be __________.',
+          ],
+        },
+        {
+          t: 'related',
+          en: 'From the Discussions',
+          zh: '相關課堂討論',
+          items: [
+            { href: '2026-08-10/#takeaways', when: '08/10', en: 'Main Takeaways from This Discussion', zh: '教養討論的重點' },
+            { href: '2026-08-17/#accountability', when: '08/17', en: 'Autonomy + Accountability', zh: '自主 + 當責' },
+            { href: '2026-08-17/#okr-why', when: '08/17', en: 'Why Lulu Prefers OKRs to KPIs', zh: '為什麼偏好 OKR 而非 KPI' },
+            { href: '2026-08-17/#silo', when: '08/17', en: 'Self-Centered Behavior and Silo Mentality', zh: '本位主義' },
+            { href: '2026-09-07/#micromanagement', when: '09/07', en: 'Reducing Micromanagement', zh: '降低微觀管理' },
+            { href: '2026-09-07/#limits', when: '09/07', en: 'Technology Cannot Replace Management Decisions', zh: '系統不能取代管理決策' },
+            { href: '2026-09-07/#fairness', when: '09/07', en: 'Transparency and Relative Fairness', zh: '透明度與相對公平' },
+            { href: '#cn-5', when: '筆記', en: 'AI, Anxiety, and the Workplace', zh: 'AI、焦慮與職場' },
           ],
         },
       ],
@@ -1574,6 +1713,22 @@ const WORKSHEET = {
             { en: 'The next step is to ...', zh: '下一步是……' },
           ],
         },
+        {
+          t: 'related',
+          en: 'From the Discussions',
+          zh: '相關課堂討論',
+          items: [
+            { href: '2026-09-07/#organization', when: '09/07', en: 'Organization vs. Organize', zh: 'Organization 與 Organize' },
+            { href: '2026-09-07/#retain', when: '09/07', en: 'Retain Talent vs. Leave Talent', zh: '留住人才的正確說法' },
+            { href: '2026-08-17/#collaboration', when: '08/17', en: 'Collaboration vs. Cooperation', zh: 'Collaboration 與 Cooperation' },
+            { href: '2026-08-17/#facilitate', when: '08/17', en: 'Facilitate vs. Coach vs. Guide', zh: '三個動詞的差異' },
+            { href: '2026-08-17/#communication', when: '08/17', en: 'Creating a Culture of Open Communication', zh: '公開溝通的用語' },
+            { href: '2026-08-17/#chunks', when: '08/17', en: 'Learning English in Chunks', zh: '用 Chunks 學英文' },
+            { href: '2026-08-17/#review', when: '08/17', en: 'Result vs. Consequence vs. Achievement', zh: '三個「結果」的差別' },
+            { href: '2026-08-10/#corrections', when: '08/10', en: 'Key Language Corrections from the Class', zh: '課堂語言修正' },
+            { href: '2026-08-10/#speaking', when: '08/10', en: 'Encouraging Children to Speak and Think', zh: '表達與組織想法' },
+          ],
+        },
       ],
     },
 
@@ -1605,6 +1760,15 @@ const WORKSHEET = {
           ],
         },
         { t: 'write', en: 'Final Draft', zh: '最終草稿', big: true },
+        {
+          t: 'related',
+          en: 'From the Discussions',
+          zh: '相關課堂討論',
+          items: [
+            { href: '2026-09-07/#pitch', when: '09/07', en: 'A Stronger 90-Second Explanation for Lulu', zh: '更有力的 90 秒說明' },
+            { href: '2026-08-17/#philosophy', when: '08/17', en: 'Core Management Philosophy from This Class', zh: '核心管理理念' },
+          ],
+        },
       ],
     },
   ],

@@ -402,6 +402,22 @@ section the session hangs under. The renderer takes the absence of `purpose`
 as the signal to draw a session cover rather than a worksheet cover. Sessions
 are listed from the parent section with a `sessions` block.
 
+### Two ways into the same material
+
+The sessions are the record of what was said, in date order. The worksheet's
+thirteen sections are the topics. Both are useful, so each worksheet section
+ends with a `related` card listing the parts of the discussions that belong to
+it, linked by anchor — section 6 points at the gross-margin discussion, section
+12 at every vocabulary distinction, and so on. Nothing is duplicated: the card
+is an index, and a discussion can appear under more than one section.
+
+The anchors are the session `id`s. A `sub` block also takes an optional `id`,
+which is how the class notes written inline in section 1 (chipped 筆記 rather
+than a date) can be linked to from elsewhere in the worksheet.
+
+Sections with a short card are a finding, not an oversight — they mark topics
+the lessons have not covered yet.
+
 ## Basic English Grammar — adult, fifteen chapters
 
 The one page here built to grow rather than to be finished. Fifteen chapters

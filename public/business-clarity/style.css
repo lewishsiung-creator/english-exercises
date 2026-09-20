@@ -753,6 +753,50 @@ tbody td { height: 3.1rem; }
   .session-t { grid-column: 1 / -1; }
 }
 
+/* ---------------- cross-references ---------------- */
+
+/* One row per linked discussion. Quieter than a session card: this is an
+   index, and a section can carry eight of them. */
+.related { margin: 0 0 28px; }
+
+.related-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--card);
+}
+.related-list li { border-top: 1px solid var(--line); }
+.related-list li:first-child { border-top: 0; }
+
+.related-list a {
+  display: grid;
+  grid-template-columns: 3.6rem 1fr;
+  gap: 0 14px;
+  align-items: baseline;
+  padding: 9px 15px;
+  text-decoration: none;
+  color: inherit;
+}
+.related-list a:hover { background: var(--accent-soft); }
+
+.rel-when {
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.rel-t .en { font-size: .95rem; }
+.rel-t .zh { font-size: .8rem; }
+
+@media (max-width: 560px) {
+  .related-list a { grid-template-columns: 1fr; gap: 3px; }
+}
+
 /* The cover of a session page: a way back, and the date as the title. */
 .cover-notes h1 .en { font-variant-numeric: tabular-nums; }
 

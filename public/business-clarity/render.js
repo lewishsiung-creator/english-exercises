@@ -43,8 +43,10 @@ function el(html) {
 // ---------------------------------------------------------------- blocks
 
 const BLOCKS = {
+  /* `id` is optional and exists so a subsection can be linked to from a
+     `related` card elsewhere in the worksheet. */
   sub: (b) => `
-    <h3 class="sub">
+    <h3 class="sub"${b.id ? ` id="${b.id}"` : ''}>
       ${b.letter ? `<span class="sub-letter">${b.letter}</span>` : ''}
       <span class="en">${text(b.en)}</span>
       <span class="zh">${text(b.zh)}</span>
@@ -239,6 +241,24 @@ const BLOCKS = {
             <p class="step-line">${text(i.line)}</p>
           </li>`).join('')}
       </ol>
+    </div>`,
+
+  /* The same discussions, read by topic instead of by date. Each worksheet
+     section ends with the parts of the lessons that belong to it, so the
+     material can be found either way round. Lighter than `sessions` because a
+     section may list eight of these. */
+  related: (b) => `
+    <div class="related">
+      <h4 class="label"><span class="en">${text(b.en)}</span>
+      <span class="zh">${text(b.zh)}</span></h4>
+      <ul class="related-list">
+        ${b.items.map((i) => `
+          <li><a href="${i.href}">
+            <span class="rel-when">${text(i.when)}</span>
+            <span class="rel-t"><span class="en">${text(i.en)}</span>
+            <span class="zh">${text(i.zh)}</span></span>
+          </a></li>`).join('')}
+      </ul>
     </div>`,
 
   /* Dated session pages hanging under this section. One lesson's write-up can
