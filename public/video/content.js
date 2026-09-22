@@ -128,6 +128,1656 @@ const LESSONS = [
 
   /* ------------------------------------------------------------------ */
   {
+    id: 'cheat-intro',
+    videoId: 'c7jGXPEY54k',
+    start: 0,
+    end: 41,
+
+    titleEn: 'The list nobody hands you',
+    titleZh: '沒有人會交到你手上的那張清單',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'Daniel Pink — “30 Cheat Codes to Beat Every Level of Life”',
+    videoZh: '30 個破關人生的密技',
+
+    aboutEn: 'Forty seconds of set-up, and a clinic in how to open: a metaphor '
+      + 'everybody already knows, a gap nobody has filled, and the reason '
+      + 'to trust him — all before the first piece of advice arrives. Watch '
+      + 'how few words he spends earning the right to be listened to: seven '
+      + 'books, three children, three decades married, and, conservatively, '
+      + 'ten thousand mistakes.',
+    aboutZh: ' '
+      + '四十秒的開場，是一堂「怎麼開場」的示範課：先用一個大家都懂的比喻，再點出一個沒人填過的空缺，最後給出「為什麼該聽他講」的理由——全部發生在第一條建議出現之前。注意他花了多少字就把「值得一聽」這件事講完：七本書、三個小孩、三十年婚姻，還有保守估計一萬個錯誤。',
+
+    watchForEn: 'He teases two of the thirty codes and explains neither. The most '
+      + 'important one is only two words long — catch it.',
+    watchForZh: '他預告了三十條裡的兩條，卻一條也沒解釋。最重要的那一條，他只講了兩個英文字——別漏聽了。',
+
+    lines: [
+      { t:  0, en: 'Video games have cheat codes.',
+               zh: '電玩遊戲裡有密技。' },
+      { t:  1, en: 'Up, up, down, down.',
+               zh: '上、上、下、下。' },
+      { t:  3, en: 'And suddenly you’ve got thirty extra lives.',
+               zh: '一下子你就多了三十條命。' },
+      { t:  5, en: 'Well, after six decades on this planet,',
+               zh: '而我在這顆星球上活了六十年之後，' },
+      { t:  8, en: 'I’ve discovered that life has cheat codes, too.',
+               zh: '我發現人生其實也有密技。' },
+      { t: 10, en: 'It’s just that nobody ever hands you the list.',
+               zh: '只是從來沒有人會把那張清單交到你手上。' },
+      { t: 13, en: 'So, I made one.',
+               zh: '所以，我自己做了一份。' },
+      { t: 15, en: 'I’ve written seven books about human behavior,',
+               zh: '我寫過七本關於人類行為的書，' },
+      { t: 18, en: 'raised three children,',
+               zh: '養大三個小孩，' },
+      { t: 19, en: 'stayed married for three decades,',
+               zh: '婚姻維持了三十年，' },
+      { t: 21, en: 'and made, conservatively, 10,000 mistakes.',
+               zh: '還有，保守估計，犯過一萬個錯。' },
+      { t: 24, en: 'What survived are thirty cheat codes in five levels.',
+               zh: '最後留下來的，是分成五個關卡的三十條密技。' },
+      { t: 28, en: 'How to decide, how to deal with people,',
+               zh: '怎麼做決定、怎麼跟人相處、' },
+      { t: 30, en: 'how to get things done, how to work,',
+               zh: '怎麼把事情做完、怎麼工作、' },
+      { t: 32, en: 'and how to live.',
+               zh: '還有怎麼過日子。' },
+      { t: 34, en: 'One might require avoiding your relatives,',
+               zh: '其中一條，你可能得躲開自己的親戚，' },
+      { t: 36, en: 'and the most important one:',
+               zh: '至於最重要的那一條：' },
+      { t: 39, en: 'one glass.',
+               zh: '一杯。' },
+      { t: 40, en: 'Let’s start the game.',
+               zh: '那，遊戲開始吧。' },
+    ],
+
+    words: [
+      { t: 0, en: 'a cheat code', zh: '密技、作弊碼',
+        noteEn: 'From video games: a code you type in to get something you did not '
+          + 'earn. Now said of anything that works like an unfair shortcut — '
+          + '“Going to bed early is the cheat code.”',
+        noteZh: '來自電玩：輸入之後就能拿到你本來沒資格拿的東西。現在拿來講任何「像作弊一樣好用的捷徑」：Going to bed early is '
+          + 'the cheat code.（早睡就是那個密技。）' },
+      { t: 5, en: 'after six decades on this planet', zh: '在這顆星球上活了六十年之後',
+        noteEn: 'How English earns the right to give advice: name the span of time '
+          + 'first, then the advice. Swap in your own — “after four years of '
+          + 'this”, “after two years in the job”.',
+        noteZh: '英文裡「取得發言權」的做法：先報出你待了多久，再開始給建議。換成自己的就好——after four years of '
+          + 'this（熬過這四年之後）、after two years in the job（做了兩年之後）。' },
+      { t: 10, en: 'It’s just that…', zh: '只是……、問題就出在……',
+        noteEn: 'Spoken. You agree first, then use it to bring in the one catch: '
+          + '“I’d love to come. It’s just that I have a deadline on Monday.” '
+          + 'Softer than but.',
+        noteZh: '口語。先同意，再用它帶出「唯一的問題」：I’d love to come. It’s just that I have a '
+          + 'deadline on Monday.（我很想去，只是週一有個截止日。）語氣比 but 軟。' },
+      { t: 13, en: 'So, I made one.', zh: '所以我就自己做了一份',
+        noteEn: 'Not a phrase to look up — a two-sentence move. Say what is '
+          + 'missing, then say you made it. It is how people introduce anything '
+          + 'they built: a template, a checklist, a side project.',
+        noteZh: ' '
+          + '這不是查得到的片語，而是一組兩句話的招式：先說「缺了什麼」，再說「所以我做了一個」。大家要介紹自己做出來的東西時都這樣開場：一份範本、一張檢查清單、一個副業。' },
+      { t: 21, en: 'conservatively', zh: '保守估計',
+        noteEn: 'Dropped into the middle of a number to say you are deliberately '
+          + 'guessing low: “That’s conservatively three weeks of work.” Here it '
+          + 'is the joke — he is claiming more mistakes, not fewer.',
+        noteZh: '插在數字中間，表示「這個數字我還算少了」：That’s conservatively three weeks of '
+          + 'work.（保守估計要三個星期。）他這裡是在開玩笑——意思是錯誤只會更多，不會更少。' },
+      { t: 24, en: 'what survived', zh: '篩到最後留下來的',
+        noteEn: 'Survive here means to be left once everything weaker has been cut. '
+          + 'Very useful about lists and drafts: “Three of the ten ideas '
+          + 'survived the meeting.”',
+        noteZh: '這裡的 survive 是「比較弱的都被砍掉之後，還留著的那些」。講清單或草稿時很好用：Three of the ten ideas '
+          + 'survived the meeting.（十個點子裡，有三個活過了那場會議。）' },
+      { t: 30, en: 'get things done', zh: '把事情做完、把事情搞定',
+        noteEn: 'The standard English for productivity, and the title of the book '
+          + 'he cites later on. Note things — plural and vague: “I got nothing '
+          + 'done today” is the commonest way to complain about a day.',
+        noteZh: '英文裡講「生產力」最標準的說法，也是他後面引用的那本書的書名。注意 things 是複數又模糊：I got nothing done '
+          + 'today.（我今天什麼都沒做成。）是抱怨一整天最常見的講法。' },
+    ],
+
+    questions: [
+      { t: 10, en: 'He says life has cheat codes too. So what is the problem with them?',
+        zh: '他說人生也有密技。那問題出在哪裡？',
+        answerEn: 'Nobody ever hands you the list. That is exactly why he says he '
+          + 'made one himself.',
+        answerZh: '從來沒有人會把那張清單交到你手上。所以他說，他自己做了一份。' },
+      { t: 15, en: 'He gives four reasons to take his advice seriously. What are they?',
+        zh: '他給了四個理由，說明為什麼該認真看待他的建議。是哪四個？',
+        answerEn: 'Seven books about human behavior, three children raised, three '
+          + 'decades of marriage, and — conservatively — ten thousand mistakes.',
+        answerZh: '七本關於人類行為的書、養大三個小孩、三十年的婚姻，還有保守估計一萬個錯誤。' },
+      { t: 24, en: 'How many codes are there, and how has he grouped them?',
+        zh: '密技總共幾條？他又是怎麼分組的？',
+        answerEn: 'Thirty codes in five levels: how to decide, how to deal with '
+          + 'people, how to get things done, how to work, and how to live.',
+        answerZh: '三十條，分成五個關卡：怎麼做決定、怎麼跟人相處、怎麼把事情做完、怎麼工作，還有怎麼過日子。' },
+      { t: 34, en: 'He teases two of the thirty codes without explaining either one. What does he say about them?',
+        zh: '他預告了三十條裡的兩條，卻一條都沒解釋。他是怎麼說的？',
+        answerEn: 'One of them might require avoiding your relatives. And the most '
+          + 'important one is just two words: one glass.',
+        answerZh: '其中一條，你可能得躲開自己的親戚；至於最重要的那一條，他只講了兩個英文字：one glass（一杯）。' },
+    ],
+
+    tasks: [
+      { en: 'Say your own cheat code — one shortcut you worked out yourself '
+        + 'that nobody ever told you, for studying, a first job, or keeping '
+        + 'fit. One sentence for the rule, one for how you found it.',
+        zh: ' '
+          + '說一個你自己的密技——某個沒人教過你、你自己摸索出來的捷徑，讀書、第一份工作、或是維持運動習慣都可以。一句話講規則，一句話講你怎麼發現的。' },
+      { en: 'Do his credentials sentence about yourself. Four things in one '
+        + 'breath, ending with the number of mistakes you have made — and '
+        + 'round the number up, the way he does.',
+        zh: '用他那種「報資歷」的句子講你自己。一口氣講四件事，最後用你犯過的錯誤數量收尾——而且要像他一樣，把數字往上灌。' },
+      { en: 'He names five levels: deciding, people, getting things done, work, '
+        + 'and living. Say which one you most need help with this year, and '
+        + 'what is going wrong in it right now.',
+        zh: '他列出五個關卡：做決定、跟人相處、把事情做完、工作，還有過日子。說說今年你最需要幫忙的是哪一關，以及那一關現在卡在哪裡。' },
+    ],
+  },
+
+  /* ------------------------------------------------------------------ */
+  {
+    id: 'cheat-decisions',
+    videoId: 'c7jGXPEY54k',
+    start: 51,
+    end: 226,
+
+    titleEn: 'Level one — decisions',
+    titleZh: '第一關——做決定',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'Daniel Pink — “30 Cheat Codes to Beat Every Level of Life”',
+
+    aboutEn: 'Just under three minutes, and the whole of his first level: six '
+      + 'short rules for deciding, each one a line, a reason, and sometimes '
+      + 'an example from his own life. It is almost entirely imperatives '
+      + 'and fixed phrases — which makes it the easiest kind of English to '
+      + 'steal, and the hardest to listen to passively.',
+    aboutZh: ' '
+      + '不到三分鐘，一次講完他的第一關：六條做決定的短規則，每一條都是一句話、一個理由，有時候再加一個他自己的例子。整段幾乎全是祈使句和固定說法——這種英文最好偷來用，也最不適合被動地聽過去。',
+
+    watchForEn: 'One old piece of advice comes back with its two halves swapped '
+      + 'round. Listen for the moment he flips it.',
+    watchForZh: '有一句老掉牙的建議，被他把前後兩半對調。注意聽他翻轉那句話的那一刻。',
+
+    lines: [
+      { t:  51, en: 'Level one, decisions.',
+                zh: '第一關：做決定。' },
+      { t:  53, en: 'Code number one.',
+                zh: '第一號密技。' },
+      { t:  54, en: 'Make your decisions using an ordinary Tuesday,',
+                zh: '做決定的時候，用一個平常的星期二來判斷，' },
+      { t:  57, en: 'not a fantasy Saturday.',
+                zh: '而不是幻想中的那個星期六。' },
+      { t:  58, en: 'When you’re choosing a house, a job, a city,',
+                zh: '當你在挑房子、挑工作、挑一座城市，' },
+      { t:  61, en: 'any big thing, don’t select it based on its best day.',
+                zh: '任何大事都一樣，不要用它「最好的那一天」來選。' },
+      { t:  65, en: 'Hey, that house has an amazing entertainment space',
+                zh: '「欸，那間房子的娛樂空間超棒的」——' },
+      { t:  67, en: 'you’ll use four times a year.',
+                zh: '一年只會用到四次的那種。' },
+      { t:  69, en: 'That job comes with a glamorous conference in Lisbon.',
+                zh: '「那份工作還附帶一場在里斯本的華麗研討會。」' },
+      { t:  72, en: 'That sounds great, but what will the commute feel like on a Tuesday?',
+                zh: '聽起來是很棒，但星期二通勤的感覺會是怎樣？' },
+      { t:  77, en: 'What will you actually be doing on the job at 2:30 on a Tuesday afternoon?',
+                zh: '星期二下午兩點半，你在這份工作上實際上會在做什麼？' },
+      { t:  83, en: 'What will it feel like to cook in that kitchen',
+                zh: '在那個廚房裡煮飯，會是什麼感覺——' },
+      { t:  85, en: 'on a regular Tuesday night?',
+                zh: '在一個普通的星期二晚上？' },
+      { t:  87, en: 'When I left working in the White House to work for myself,',
+                zh: '當年我離開白宮的工作、自己出來做的時候，' },
+      { t:  89, en: 'this was the standard I used.',
+                zh: '我用的就是這個標準。' },
+      { t:  92, en: 'Sure, I’d give up a few days each year of extreme excitement,',
+                zh: '當然啦，我每年會少掉幾天超級刺激的日子，' },
+      { t:  96, en: 'but 51 out of 52 Tuesdays would be better.',
+                zh: '但一年五十二個星期二裡，有五十一個會過得更好。' },
+      { t:  99, en: 'Code two.',
+                zh: '第二號密技。' },
+      { t: 100, en: 'For reversible decisions, decide fast.',
+                zh: '可以反悔的決定，就快點決定。' },
+      { t: 103, en: 'Don’t spend three weeks agonizing over',
+                zh: '不要為了某件事糾結三個星期，' },
+      { t: 105, en: 'something you can undo in three minutes.',
+                zh: '而那件事你三分鐘就能收回來。' },
+      { t: 107, en: 'Some decisions are one-way doors.',
+                zh: '有些決定是單向門。' },
+      { t: 109, en: 'Once you walk through, there’s no easy return.',
+                zh: '一旦走過去，就很難再回頭。' },
+      { t: 112, en: 'Those deserve time and care.',
+                zh: '那種決定值得你花時間、好好斟酌。' },
+      { t: 115, en: 'But most decisions are two-way doors.',
+                zh: '但大部分的決定是雙向門。' },
+      { t: 117, en: 'Take the class. Go on the date.',
+                zh: '去上那堂課。去赴那場約會。' },
+      { t: 119, en: 'Accept the brief gig.',
+                zh: '接下那個短期的案子。' },
+      { t: 121, en: 'If it doesn’t work, walk back through.',
+                zh: '如果不行，再走回來就好。' },
+      { t: 124, en: 'Save your agonizing for decisions that actually deserve it.',
+                zh: '把糾結留給真正值得糾結的決定。' },
+      { t: 127, en: 'Number three.',
+                zh: '第三號。' },
+      { t: 128, en: 'Ask what would change my mind.',
+                zh: '問問自己：什麼樣的理由會讓我改變想法？' },
+      { t: 131, en: 'If your answer is nothing, you’re not thinking.',
+                zh: '如果你的答案是「沒有」，那你不是在思考，' },
+      { t: 134, en: 'You’re defending.',
+                zh: '你是在替自己辯護。' },
+      { t: 135, en: 'Before starting an important project, taking a new job,',
+                zh: '在你開始一個重要的案子、接下一份新工作，' },
+      { t: 139, en: 'or moving to a new city,',
+                zh: '或是搬到一座新城市之前，' },
+      { t: 140, en: 'find one smart person who thinks it’s a terrible idea.',
+                zh: '去找一個夠聰明、但覺得這主意糟透了的人。' },
+      { t: 143, en: 'You don’t have to obey them, but you do have to hear them.',
+                zh: '你不必聽他的，但你一定要聽他把話講完。' },
+      { t: 146, en: 'Number four.',
+                zh: '第四號。' },
+      { t: 147, en: 'Before deciding what to do,',
+                zh: '在決定要做什麼之前，' },
+      { t: 149, en: 'ask what happens if you do nothing.',
+                zh: '先問：如果我什麼都不做，會怎樣？' },
+      { t: 153, en: 'Inaction itself is a decision, one with consequences.',
+                zh: '「不行動」本身就是一個決定，而且是有後果的決定。' },
+      { t: 156, en: 'But some problems disappear when you stop feeding them.',
+                zh: '但有些問題，你不再餵它，它就自己消失了。' },
+      { t: 159, en: 'Some conflicts resolve themselves.',
+                zh: '有些衝突會自己解決。' },
+      { t: 161, en: 'Some opportunities become clearer with time.',
+                zh: '有些機會，放一段時間反而會變清楚。' },
+      { t: 164, en: 'That’s why in certain situations,',
+                zh: '所以在某些情況下，' },
+      { t: 166, en: 'the best advice isn’t “Don’t just stand there, do something.”',
+                zh: '最好的建議不是「別光站著，做點什麼」，' },
+      { t: 169, en: 'It’s “Don’t just do something, stand there.”',
+                zh: '而是「別光做東做西，站著就好」。' },
+      { t: 171, en: 'Number five.',
+                zh: '第五號。' },
+      { t: 172, en: 'Make lots of small bets.',
+                zh: '多下一些小注。' },
+      { t: 174, en: 'Take risks whose upside could change your life',
+                zh: '去冒那種風險：賭贏了可以改變你的人生，' },
+      { t: 177, en: 'and whose downside won’t ruin it.',
+                zh: '賭輸了也毀不了你的人生。' },
+      { t: 180, en: 'Launch the side project, submit the article,',
+                zh: '把那個自己的小專案做出來、把那篇文章投出去、' },
+      { t: 182, en: 'check out the conference, try the idea on a small scale.',
+                zh: '去看看那場研討會、把想法先小規模試一次。' },
+      { t: 185, en: 'You don’t always find the big thing through one heroic leap.',
+                zh: '那件大事，不見得是靠一次英雄式的縱身一躍找到的。' },
+      { t: 189, en: 'Sometimes you find it through a portfolio of small experiments.',
+                zh: '有時候，是靠一整組小實驗找到的。' },
+      { t: 193, en: 'Most of life is shots on goal.',
+                zh: '人生大部分的時候，比的是你射門幾次。' },
+      { t: 196, en: 'And number six.',
+                zh: '還有第六號。' },
+      { t: 198, en: 'Judge decisions by how you made them,',
+                zh: '評斷一個決定，要看你當初「怎麼做的」，' },
+      { t: 200, en: 'not only by how they turned out.',
+                zh: '而不是只看「結果怎樣」。' },
+      { t: 202, en: 'A smart decision can produce a bad result.',
+                zh: '聰明的決定也可能得到很糟的結果。' },
+      { t: 205, en: 'A dumb decision can get lucky.',
+                zh: '愚蠢的決定也可能走運。' },
+      { t: 207, en: 'So don’t let one good outcome convince you that your process was brilliant,',
+                zh: '所以不要因為一次結果好，就以為自己的做法很高明，' },
+      { t: 212, en: 'and don’t let one bad outcome convince you that your process was flawed.',
+                zh: '也不要因為一次結果差，就以為自己的做法有問題。' },
+      { t: 216, en: 'Ask: did I use the information available?',
+                zh: '要問的是：我有沒有用上手邊能拿到的資訊？' },
+      { t: 219, en: 'Did I consider alternatives?',
+                zh: '我有沒有考慮過其他選項？' },
+      { t: 220, en: 'And did I understand the risks?',
+                zh: '我有沒有把風險弄清楚？' },
+      { t: 222, en: 'You don’t control the universe, but you do control the decision.',
+                zh: '你沒辦法控制這個世界，但你可以控制自己怎麼做決定。' },
+    ],
+
+    words: [
+      { t: 54, en: 'an ordinary Tuesday', zh: '一個平常的星期二',
+        noteEn: 'His own test, set against “a fantasy Saturday” in the very next '
+          + 'breath. Use it for the average day rather than the best one: '
+          + '“Fine, but what’s an ordinary Tuesday there like?”',
+        noteZh: '他自己設的標準，下一句就拿 a fantasy '
+          + 'Saturday（幻想中的星期六）來對照。用它指「平均的一天」，不是最好的那一天：「Fine, but what’s an '
+          + 'ordinary Tuesday there like?」（好啊，但在那裡，平常的星期二是什麼樣子？）' },
+      { t: 107, en: 'a one-way door', zh: '單向門，走過去就回不來的決定',
+        noteEn: 'Its pair, a two-way door, arrives a few seconds later. Both are '
+          + 'now common at work: “This is a two-way door — let’s just try it.” '
+          + 'The image does the arguing for you.',
+        noteZh: '對照的 two-way door（雙向門）幾秒後就出現。這兩個說法現在職場很常聽到：「This is a two-way door '
+          + '— let’s just try it.」（這是雙向門，先試再說。）這個畫面會替你把道理講完。' },
+      { t: 124, en: 'save your agonizing for…', zh: '把糾結留給……',
+        noteEn: 'Agonize over something = to worry at it for far longer than it '
+          + 'deserves. Save X for Y means keep it where it counts, and works '
+          + 'with anything limited: “Save your best example for the last '
+          + 'slide.”',
+        noteZh: 'agonize over something 是「為某件事糾結得遠超過它該得的時間」。save X for Y '
+          + '是「留到真正需要的地方」，任何有限的東西都能用：「Save your best example for the last '
+          + 'slide.」（把最好的例子留到最後一頁。）' },
+      { t: 128, en: 'What would change my mind?', zh: '什麼樣的理由會讓我改變想法？',
+        noteEn: 'A whole question you can lift unchanged, aimed at yourself or at '
+          + 'someone else: “What would change your mind here?” It sounds '
+          + 'curious rather than combative, which is exactly why it works.',
+        noteZh: '一整句可以原封不動搬走，問自己或問別人都行：「What would change your mind '
+          + 'here?」（要怎樣你才會改變想法？）聽起來是好奇，不是在吵架，這正是它好用的原因。' },
+      { t: 143, en: 'you do have to…', zh: '你「的確」得……',
+        noteEn: 'Do in front of the verb in a positive sentence is emphasis, and it '
+          + 'almost always answers the half-sentence before it: he gives ground '
+          + '(you don’t have to obey them), then insists. Spoken, and the '
+          + 'stress must land on do.',
+        noteZh: '肯定句裡在動詞前面加 do '
+          + '是強調，而且幾乎都在回應前半句：他先讓一步（你不必聽他的），再堅持（但你一定要聽）。口語用法，重音一定要落在 do 上。' },
+      { t: 174, en: 'the upside', zh: '好的那一面、順利時能拿到的那一面',
+        noteEn: 'What you gain if it goes well; its pair, the downside, comes in '
+          + 'the next line. Both are nouns: “What’s the downside if we wait a '
+          + 'week?”',
+        noteZh: '事情順利時你能拿到的那一面；對照的 downside（不順時的那一面）下一句就來。兩個都是名詞：「What’s the '
+          + 'downside if we wait a week?」（再等一週，最壞會怎樣？）' },
+      { t: 182, en: 'on a small scale', zh: '先小規模做',
+        noteEn: 'Trying something before you commit to the full version. Its '
+          + 'opposite is on a large scale, or at scale: “Let’s run it on a '
+          + 'small scale first and see.”',
+        noteZh: '在投入完整版本之前先小小地做一次。相反是 on a large scale 或 at scale：「Let’s run it on '
+          + 'a small scale first and see.」（先小規模跑一次看看。）' },
+      { t: 193, en: 'shots on goal', zh: '射門次數，也就是你出手嘗試的次數',
+        noteEn: 'From football, and spoken: it counts how many attempts you took, '
+          + 'not how good each one was. “We need more shots on goal” means try '
+          + 'more things, not try harder.',
+        noteZh: '來自足球，口語用法：算的是你出手幾次，不是每一次多漂亮。「We need more shots on '
+          + 'goal」意思是「多試幾次」，不是「再更拚一點」。' },
+    ],
+
+    questions: [
+      { t: 54, en: 'What does he say to use when you choose a house, a job or a city — and what does he say not to use?',
+        zh: '他說挑房子、挑工作、挑城市的時候，要用什麼來判斷？又不要用什麼？',
+        answerEn: 'An ordinary Tuesday, not a fantasy Saturday. Don’t select the '
+          + 'thing based on its best day — the entertainment space you use four '
+          + 'times a year, the glamorous conference in Lisbon.',
+        answerZh: '用一個平常的星期二，不要用幻想中的星期六。不要用「最好的那一天」來選——一年只用四次的娛樂空間、那場在里斯本的華麗研討會，都不算數。' },
+      { t: 107, en: 'Which decisions does he say deserve time and care, and which do not?',
+        zh: '他說哪一種決定值得你慢慢想？哪一種不值得？',
+        answerEn: 'One-way doors deserve it: walk through and there is no easy '
+          + 'return. Most decisions are two-way doors — take the class, go on '
+          + 'the date — and if it doesn’t work, you walk back through.',
+        answerZh: '單向門值得：走過去就很難回頭。但大部分的決定是雙向門——去上課、去赴約——不行的話走回來就好。' },
+      { t: 140, en: 'Before an important project or a move, who does he tell you to go and find?',
+        zh: '在開始一個重要的案子、或是搬家之前，他叫你去找誰？',
+        answerEn: 'One smart person who thinks it is a terrible idea. You don’t have '
+          + 'to obey them, but you do have to hear them.',
+        answerZh: '一個夠聰明、而且覺得這主意糟透了的人。你不必聽他的，但你一定要聽他把話講完。' },
+      { t: 198, en: 'Number six: what should you judge a decision by, and why is the result not enough?',
+        zh: '第六號：判斷一個決定要看什麼？為什麼光看結果不夠？',
+        answerEn: 'Judge it by how you made it, not only by how it turned out. A '
+          + 'smart decision can produce a bad result and a dumb one can get '
+          + 'lucky — so ask whether you used the information available, '
+          + 'considered alternatives and understood the risks.',
+        answerZh: ' '
+          + '要看你當初「怎麼做的」，不能只看結果。聰明的決定也可能結果很慘，愚蠢的決定也可能走運——所以要問：我有沒有用上手邊的資訊？有沒有考慮其他選項？有沒有把風險弄清楚？' },
+    ],
+
+    tasks: [
+      { en: 'Take a choice you are facing right now — a flat, a course, a job, '
+        + 'a gym membership. Describe an ordinary Tuesday inside it, hour by '
+        + 'hour. Then say whether you still want it.',
+        zh: ' '
+          + '拿一件你現在正在猶豫的事——租房子、選一門課、一份工作、一張健身房會員卡。描述一下「身在其中的某個平常星期二」，一小時一小時講下去。然後說說：你還想要嗎？' },
+      { en: 'Name one decision you have been agonizing over. Is it a one-way '
+        + 'door or a two-way door? Say which, say why, and say what you are '
+        + 'going to do about it today.',
+        zh: '說出一件你一直在糾結的決定。它是單向門還是雙向門？說出是哪一種、為什麼，還有你今天打算拿它怎麼辦。' },
+      { en: 'Pick one of the six and say what you would actually change this '
+        + 'week — not the idea, the change. Then say the first small step, '
+        + 'and when you will take it.',
+        zh: '從這六條裡挑一條，說說你這個星期實際上要改什麼——不要講道理，講你要改的那件事。然後說出第一個小步驟，以及你什麼時候要做。' },
+    ],
+  },
+
+  /* ------------------------------------------------------------------ */
+  {
+    id: 'cheat-people',
+    videoId: 'c7jGXPEY54k',
+    start: 226,
+    end: 387,
+
+    titleEn: 'Level two — people',
+    titleZh: '第二關——人際',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'Daniel Pink — “30 Cheat Codes to Beat Every Level of Life”',
+
+    aboutEn: 'Two minutes and forty seconds, six cheat codes, and a confession '
+      + 'in the opening line — level two starts with the mistake Pink says '
+      + 'he has made more than any other. It is the most usable stretch of '
+      + 'the whole talk for anyone who has ever let a friendship quietly '
+      + 'lapse, and it ends somewhere uncomfortable: the people worth '
+      + 'cutting out may include your relatives.',
+    aboutZh: '兩分四十秒、六條作弊碼，而且開場第一句就先認錯——第二關一上來，Pink '
+      + '就說這一條是他犯過最多次的錯。如果你有過「某段友情就這樣淡掉」的經驗，這是整場演講最派得上用場的一段；而它收在一個不太舒服的地方：該切掉的那些人，有可能包括你的親戚。',
+
+    watchForEn: 'He says level two opens with the mistake he has made more than any '
+      + 'other. Listen for which of the six codes he is confessing to.',
+    watchForZh: '他說第二關的第一條，就是他自己犯過最多次的錯。注意聽這六條裡，他認的是哪一條。',
+
+    lines: [
+      { t: 226, en: 'Level one complete.',
+                zh: '第一關通關。' },
+      { t: 227, en: 'Level two is about people,',
+                zh: '第二關講的是人。' },
+      { t: 229, en: 'and it opens with the mistake I’ve made more than any other.',
+                zh: '而開場這一條，是我犯過最多次的錯。' },
+      { t: 233, en: 'Seven.',
+                zh: '第七條。' },
+      { t: 234, en: 'Before solving someone’s problem,',
+                zh: '在你動手幫別人解決問題之前，' },
+      { t: 236, en: 'ask what they want from you.',
+                zh: '先問對方希望你做什麼。' },
+      { t: 238, en: 'Advice, help, or just company.',
+                zh: '是要建議、要幫忙，還是只是想要有人陪。' },
+      { t: 240, en: 'Not every problem somebody tells you about is an invitation to solve it.',
+                zh: '別人跟你講的問題，不見得都是在請你出手解決。' },
+      { t: 245, en: 'Sometimes they want an answer,',
+                zh: '有時候他們要的是一個答案，' },
+      { t: 247, en: 'but many times they just want to be heard.',
+                zh: '但很多時候，他們只是想有人聽他說。' },
+      { t: 251, en: 'So before going into superhero problem-solving mode,',
+                zh: '所以在進入「超級英雄解決問題模式」之前，' },
+      { t: 256, en: 'ask.',
+                zh: '先問。' },
+      { t: 257, en: 'Number eight.',
+                zh: '第八條。' },
+      { t: 258, en: 'Assume incompetence before malice.',
+                zh: '先假設對方是笨拙，不是壞心。' },
+      { t: 261, en: 'What looks like hostility is often distraction, disorganization,',
+                zh: '看起來像敵意的，往往只是分心、沒條理，' },
+      { t: 265, en: 'or somebody having a terrible day.',
+                zh: '或者那個人今天過得很糟。' },
+      { t: 268, en: 'Some people are jerks with bad motives.',
+                zh: '確實有些人就是爛人，動機也不良。' },
+      { t: 270, en: 'No question.',
+                zh: '這點沒話說。' },
+      { t: 271, en: 'But the world contains fewer enemies and more overwhelmed people than we think.',
+                zh: '但這個世界上，敵人比我們以為的少，被生活壓垮的人比我們以為的多。' },
+      { t: 275, en: 'So begin with a more generous explanation.',
+                zh: '所以一開始，先給一個比較寬厚的解釋。' },
+      { t: 279, en: 'You can always revise it if the evidence changes.',
+                zh: '等證據變了，你隨時可以改。' },
+      { t: 282, en: 'Number nine.',
+                zh: '第九條。' },
+      { t: 283, en: 'Notice who asks you questions.',
+                zh: '注意一下，誰會反過來問你問題。' },
+      { t: 285, en: 'Curiosity is an underrated diagnostic for friendship,',
+                zh: '好奇心是一個被低估的判斷依據——用來看友情，' },
+      { t: 289, en: 'for romance, for collaboration.',
+                zh: '看感情，也看合作關係。' },
+      { t: 290, en: 'So pay attention to who is genuinely curious about you,',
+                zh: '所以留意誰是真心對你感到好奇，' },
+      { t: 295, en: 'and pay even closer attention to who never is.',
+                zh: '更要留意誰從來都不會。' },
+      { t: 298, en: 'Number ten.',
+                zh: '第十條。' },
+      { t: 299, en: 'Don’t keep score in relationships you want to keep.',
+                zh: '你想留住的關係，就不要記分數。' },
+      { t: 304, en: 'I called last time. I paid for dinner.',
+                zh: '上次是我打的電話。晚餐是我付的。' },
+      { t: 306, en: 'I helped her move. He still hasn’t thanked me.',
+                zh: '搬家是我去幫忙的。他到現在還沒跟我道謝。' },
+      { t: 309, en: 'Careful.',
+                zh: '小心了。' },
+      { t: 310, en: 'Generosity stops being generosity when you maintain a spreadsheet.',
+                zh: '當你開始把這些記在試算表上，慷慨就不叫慷慨了。' },
+      { t: 313, en: 'Strong relationships become roughly reciprocal over time,',
+                zh: '好的關係，拉長來看大致是互相的，' },
+      { t: 318, en: 'but they aren’t always equal in every moment.',
+                zh: '但不會每個當下都剛好扯平。' },
+      { t: 321, en: 'Number eleven.',
+                zh: '第十一條。' },
+      { t: 322, en: 'Build an infrastructure for friendship.',
+                zh: '幫友誼蓋一套基礎建設。' },
+      { t: 324, en: '“Hey, let’s get together sometime.”',
+                zh: '「欸，我們改天約一下。」' },
+      { t: 326, en: 'That’s how people slowly disappear from your life.',
+                zh: '人就是這樣，慢慢從你的生活裡消失的。' },
+      { t: 330, en: 'So make recurring plans with people you care about.',
+                zh: '所以，跟你在乎的人約一個會重複的行程。' },
+      { t: 333, en: 'A monthly dinner, a Saturday morning walk, a standing phone call.',
+                zh: '每個月一頓飯、週六早上散個步、一通固定時間的電話。' },
+      { t: 336, en: 'I have a regular gathering with six good friends',
+                zh: '我跟六個好朋友有一個固定的聚會，' },
+      { t: 338, en: 'where we eat, drink, and offer one another advice.',
+                zh: '我們一起吃、一起喝，互相給對方建議。' },
+      { t: 341, en: 'Without a recurring date,',
+                zh: '如果沒有這個固定的日子，' },
+      { t: 342, en: 'I suspect we’d see one another twice a year,',
+                zh: '我猜我們一年大概只會見兩次，' },
+      { t: 346, en: 'and spend half the evening saying,',
+                zh: '而且那一晚有一半的時間都在說：' },
+      { t: 347, en: '“Hey, we should do this more often.”',
+                zh: '「欸，我們真的該多約一點。」' },
+      { t: 349, en: 'And when you do want to see somebody,',
+                zh: '而當你真的想見某個人，' },
+      { t: 350, en: 'make a specific invitation.',
+                zh: '就給一個具體的邀約。' },
+      { t: 354, en: '“Let’s have a beer Thursday at six” beats “let’s get together.”',
+                zh: '「週四六點去喝一杯」勝過「改天約」。' },
+      { t: 358, en: 'One is a plan, the other is goodbye in slow motion.',
+                zh: '前者是一個計畫，後者是慢動作的道別。' },
+      { t: 363, en: 'Number twelve.',
+                zh: '第十二條。' },
+      { t: 364, en: 'Eliminate toxic people.',
+                zh: '把有毒的人清出去。' },
+      { t: 366, en: 'If someone consistently diminishes you,',
+                zh: '如果有人一再貶低你、' },
+      { t: 370, en: 'damages you, or poisons your life,',
+                zh: '傷害你，或是毒害你的生活，' },
+      { t: 372, en: 'get rid of them.',
+                zh: '那就把他從你的生活裡移掉。' },
+      { t: 374, en: 'Unfortunately, this includes relatives.',
+                zh: '很遺憾，這也包括親戚。' },
+      { t: 376, en: 'Shared DNA isn’t a license to treat you poorly.',
+                zh: '流著同樣的血，不等於有權利這樣對你。' },
+      { t: 380, en: 'Distance isn’t always cruel.',
+                zh: '保持距離，不一定是殘忍。' },
+      { t: 382, en: 'Sometimes distance is an act of wisdom.',
+                zh: '有時候，保持距離是一種智慧。' },
+      { t: 385, en: 'Okay, deep breath.',
+                zh: '好，深呼吸。' },
+    ],
+
+    words: [
+      { t: 247, en: 'just want to be heard', zh: '只是想有人聽他說',
+        noteEn: 'Be heard is not the same as be answered — it means what you said '
+          + 'actually landed on someone. “I don’t need a fix, I just want to be '
+          + 'heard.”',
+        noteZh: 'be heard 不是「被回答」，而是「你講的話真的進到對方那裡」。I don’t need a fix, I just want '
+          + 'to be heard.（我不需要你幫我解決，我只是想有人聽我說。）' },
+      { t: 258, en: 'assume incompetence before malice', zh: '先假設是笨拙，不是壞心',
+        noteEn: 'A fixed piece of English advice, usually said about emails and '
+          + 'messages. The pattern travels: assume X before Y = reach for the '
+          + 'kinder explanation first.',
+        noteZh: '英文裡一句固定的忠告，通常用在看 email 和訊息的時候。assume X before Y '
+          + '這個句型可以搬走用：先往比較善意的那一邊想。' },
+      { t: 270, en: 'No question.', zh: '這點沒話說、這絕對沒錯',
+        noteEn: 'Spoken only, and always standing alone. It concedes a point flatly '
+          + 'before you push back: “Some people are jerks. No question. But…”',
+        noteZh: '只用在口語，而且永遠自成一句。用來乾脆承認對方的某一點，然後再轉折：Some people are jerks. No '
+          + 'question. But…（有些人就是爛人，這點沒話說。但是……）' },
+      { t: 285, en: 'an underrated diagnostic', zh: '一個被低估的判斷依據',
+        noteEn: 'Underrated = better than people give it credit for; the opposite '
+          + 'is overrated. Extremely common in speech about films, skills and '
+          + 'habits.',
+        noteZh: 'underrated 是「被低估了、其實比大家講的好」，相反是 overrated（被高估）。講電影、技能、習慣的時候口語裡超常用。' },
+      { t: 299, en: 'keep score', zh: '記分數、計較誰欠誰',
+        noteEn: 'From sport, but almost always used about relationships: silently '
+          + 'counting who owed what to whom. “Stop keeping score with your '
+          + 'flatmate.”',
+        noteZh: '來自運動的「記分」，但幾乎都用在人際關係上，指在心裡算誰欠誰。Stop keeping score with your '
+          + 'flatmate.（別再跟室友算來算去了。）' },
+      { t: 333, en: 'a standing phone call', zh: '固定時間、不必再約的電話',
+        noteEn: 'Standing in front of a noun means fixed and repeating, already in '
+          + 'the diary: a standing meeting, a standing order, a standing '
+          + 'invitation.',
+        noteZh: 'standing 放在名詞前面，是「固定重複、行事曆上早就排好」的意思：a standing meeting（固定的會議）、a '
+          + 'standing invitation（隨時都算數的邀請）。' },
+      { t: 354, en: 'beats', zh: '比……好、勝過……',
+        noteEn: 'Beats as a plain comparison, not a contest: “Walking beats the '
+          + 'bus.” Spoken, short, and it saves you a whole “is better than” '
+          + 'sentence.',
+        noteZh: 'beats 當作單純的比較，不是比賽：「Walking beats the bus.」（走路比搭公車好。）口語、短，省掉一整句 is '
+          + 'better than。' },
+      { t: 376, en: 'not a license to…', zh: '不等於有權利……',
+        noteEn: 'A license here is permission, not a document. Use it to refuse an '
+          + 'excuse: “Being tired isn’t a license to talk to people like that.”',
+        noteZh: '這裡的 license 是「許可」，不是證照。用來擋掉藉口：Being tired isn’t a license to talk '
+          + 'to people like that.（累不代表你可以那樣跟人講話。）' },
+    ],
+
+    questions: [
+      { t: 245, en: 'Code seven says ask before you solve. What does he say people often want instead of a solution?',
+        zh: '第七條說「先問，再解決」。他說很多時候人們要的不是解答，而是什麼？',
+        answerEn: 'To be heard. Sometimes they do want an answer, but many times they '
+          + 'just want someone to listen — so ask before you go into '
+          + 'problem-solving mode.',
+        answerZh: '是「有人聽他說」。有時候他們確實想要答案，但很多時候只是想有人聽——所以在進入解決問題的模式之前，先問。' },
+      { t: 271, en: 'He admits some people really are jerks. So why does he still say to start with a generous explanation?',
+        zh: '他承認確實有些人就是爛人。那他為什麼還是說，要先給一個寬厚的解釋？',
+        answerEn: 'Because the world contains fewer enemies and more overwhelmed '
+          + 'people than we think — and you can always revise the explanation '
+          + 'if the evidence changes.',
+        answerZh: '因為這個世界上敵人比我們以為的少，被生活壓垮的人比我們以為的多——而且等證據變了，你隨時可以改口。' },
+      { t: 310, en: 'When does he say generosity stops being generosity?',
+        zh: '他說慷慨在什麼時候就不再是慷慨了？',
+        answerEn: 'When you maintain a spreadsheet — the moment you start keeping '
+          + 'score. Strong relationships come out roughly reciprocal over time, '
+          + 'but not equal in every moment.',
+        answerZh: '當你開始用試算表記下來的時候——也就是開始記分數的那一刻。好的關係拉長來看大致互相，但不會每個當下都剛好扯平。' },
+      { t: 358, en: 'What is the difference between “Let’s have a beer Thursday at six” and “Let’s get together sometime”?',
+        zh: '「週四六點去喝一杯」和「改天約一下」差在哪裡？',
+        answerEn: 'One is a plan, the other is goodbye in slow motion. The specific '
+          + 'invitation is what turns wanting to see someone into actually '
+          + 'seeing them.',
+        answerZh: '一個是計畫，另一個是慢動作的道別。具體的邀約，才是把「想見面」變成「真的見到面」的關鍵。' },
+    ],
+
+    tasks: [
+      { en: 'Think of someone who annoyed you this week — a flatmate, a '
+        + 'colleague, someone who never replied. Say the hostile explanation '
+        + 'out loud, then say a more generous one. Which does the evidence '
+        + 'actually support?',
+        zh: '想一個這禮拜惹到你的人——室友、同事、已讀不回的那個人。先把「有敵意」的解釋說出來，再說一個比較寬容的版本。證據比較支持哪一個？' },
+      { en: 'Name one person you keep saying “let’s get together sometime” to. '
+        + 'Now say the specific invitation out loud: what, where, which day, '
+        + 'what time.',
+        zh: '說出一個你一直跟他說「改天約」的人。現在把具體的邀約出聲講出來：做什麼、在哪裡、星期幾、幾點。' },
+      { en: 'Of these six codes, pick the one you are worst at. Say which it is '
+        + 'in one sentence, then say in three more what you would actually do '
+        + 'differently this week.',
+        zh: '這六條裡，挑一條你做得最差的。用一句話說是哪一條，再用三句話說這禮拜你實際上會怎麼做不一樣。' },
+    ],
+  },
+
+  /* ------------------------------------------------------------------ */
+  {
+    id: 'cheat-productivity',
+    videoId: 'c7jGXPEY54k',
+    start: 387,
+    end: 577,
+
+    titleEn: 'Level three — getting things done',
+    titleZh: '第三關——把事情做完',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'Daniel Pink — “30 Cheat Codes to Beat Every Level of Life”',
+
+    aboutEn: 'Three minutes and ten seconds, six numbered codes, and one '
+      + 'subject: actually getting things done — define done, start '
+      + 'embarrassingly small, let it be easy, set tomorrow up tonight, '
+      + 'track what other people owe you, and stop wearing busy as a badge. '
+      + 'It is the most immediately usable stretch of the talk, because '
+      + 'every code is one sentence long and he proves the best of them on '
+      + 'himself, with a calendar entry and forty-seven mismatched socks.',
+    aboutZh: ' '
+      + '三分十秒，六條編號的密技，講的都是同一件事：怎麼真的把事情做完——先定義什麼叫「做完」、把第一步縮到小得讓你不好意思、讓事情簡單一點、今晚就把明天的第一個動作準備好、追蹤別人欠你什麼，還有別再把「很忙」當成勳章。這是整場演講裡最能立刻拿來用的一段，因為每一條都只有一句話，而他還拿自己當證明：一則行事曆提醒，加上四十七隻湊不成對的襪子。',
+
+    watchForEn: 'One sentence explains why he puts a chore in his calendar instead '
+      + 'of relying on himself. Listen for the pair: willpower and '
+      + 'appointments.',
+    watchForZh: '有一句話解釋了他為什麼把雜事排進行事曆，而不是靠自己。注意聽那組對照：意志力，和約好的時間。',
+
+    lines: [
+      { t: 387, en: 'Okay, deep breath.',
+                zh: '好，深呼吸一下。' },
+      { t: 388, en: 'Level three is lighter.',
+                zh: '第三關輕鬆一點。' },
+      { t: 390, en: 'It’s about actually getting things done.',
+                zh: '講的是怎麼真的把事情做完。' },
+      { t: 392, en: 'Level three: productivity.',
+                zh: '第三關：生產力。' },
+      { t: 394, en: 'Number 13.',
+                zh: '第十三條。' },
+      { t: 395, en: 'Define done before you begin.',
+                zh: '開始之前，先定義什麼叫「做完」。' },
+      { t: 397, en: 'Otherwise, every project quietly becomes an infinite undertaking.',
+                zh: '不然每個案子都會在你沒察覺的時候，變成一件永遠做不完的事。' },
+      { t: 401, en: 'What will finished look like?',
+                zh: '「完成」到底長什麼樣子？' },
+      { t: 403, en: 'Decide that first.',
+                zh: '先把這件事決定好。' },
+      { t: 404, en: 'And when you’re near the end, close to the finish,',
+                zh: '而當你快做完了、已經接近終點的時候，' },
+      { t: 408, en: 'take a page from Lorne Michaels, the creator of Saturday Night Live.',
+                zh: '學一下《週六夜現場》的創辦人 Lorne Michaels。' },
+      { t: 412, en: 'He once said,',
+                zh: '他說過一句話：' },
+      { t: 413, en: '“We don’t go on because we’re ready.',
+                zh: '「我們上台，不是因為準備好了。' },
+      { t: 415, en: 'We go on because it’s 11:30.”',
+                zh: '我們上台，是因為十一點半到了。」' },
+      { t: 418, en: 'So many times when I’m writing something,',
+                zh: '我自己很多時候，在寫東西、' },
+      { t: 420, en: 'or working on a speech or a video,',
+                zh: '或是在弄一場演講、一支影片的時候，' },
+      { t: 422, en: 'I just say to myself, “Dude, it’s 11:30.”',
+                zh: '就會跟自己說：「兄弟，十一點半了。」' },
+      { t: 425, en: 'Number 14.',
+                zh: '第十四條。' },
+      { t: 426, en: 'Make the first step embarrassingly small.',
+                zh: '把第一步弄到小得讓你不好意思。' },
+      { t: 429, en: 'Don’t write the book, write three sentences.',
+                zh: '別想著寫一本書，先寫三句話。' },
+      { t: 433, en: 'Don’t get in shape, put your shoes by the door.',
+                zh: '別想著把身體練起來，先把鞋子放到門口。' },
+      { t: 436, en: 'Don’t organize the house, clean one drawer.',
+                zh: '別想著整理整間房子，先整理一個抽屜。' },
+      { t: 439, en: 'The size of the first step and the odds of taking it',
+                zh: '第一步有多大，跟你真的會不會踏出去，' },
+      { t: 442, en: 'are inversely related.',
+                zh: '兩者成反比。' },
+      { t: 444, en: 'Make the first move so small',
+                zh: '把第一個動作縮到很小，' },
+      { t: 446, en: 'you’d be embarrassed not to do it.',
+                zh: '小到你不做反而會不好意思。' },
+      { t: 449, en: '15.',
+                zh: '第十五條。' },
+      { t: 450, en: 'Let it be easy.',
+                zh: '就讓它簡單一點。' },
+      { t: 452, en: 'Difficulty is not evidence of virtue.',
+                zh: '困難不代表你比較高尚。' },
+      { t: 455, en: 'Use the rotisserie chicken.',
+                zh: '現成的烤雞就買下去。' },
+      { t: 457, en: 'Listen to the audio book.',
+                zh: '書用聽的也可以。' },
+      { t: 459, en: 'Buy the pre-cut vegetables.',
+                zh: '切好的蔬菜就買下去。' },
+      { t: 461, en: 'Take the shortcut when the shortcut actually works.',
+                zh: '捷徑真的有用的時候，就走捷徑。' },
+      { t: 464, en: 'Somewhere along the way, we absorb the idea',
+                zh: '不知道從什麼時候開始，我們吸收了一個觀念：' },
+      { t: 467, en: 'that if something isn’t excruciatingly hard, it doesn’t count.',
+                zh: '一件事如果沒有痛苦到極點，就不算數。' },
+      { t: 472, en: 'That’s just self-inflicted pain with a superiority complex.',
+                zh: '那只是自己找罪受，還外加一種優越感。' },
+      { t: 475, en: 'Number 16.',
+                zh: '第十六條。' },
+      { t: 476, en: 'Prepare tomorrow’s first move tonight.',
+                zh: '今天晚上，就先把明天的第一個動作準備好。' },
+      { t: 479, en: 'Make starting so easy that your morning self,',
+                zh: '把「開始」弄得夠簡單，讓早上的那個你——' },
+      { t: 483, en: 'who, let’s be honest, you cannot trust,',
+                zh: '老實說，那個你根本不可靠——' },
+      { t: 486, en: 'has almost no decisions to make.',
+                zh: '幾乎沒有什麼需要決定的。' },
+      { t: 488, en: 'Open the document, set out the running clothes,',
+                zh: '把檔案先開好、把跑步的衣服先拿出來，' },
+      { t: 491, en: 'put the unpleasant task on your calendar',
+                zh: '把你不想做的那件事排進行事曆，' },
+      { t: 492, en: 'with a day, a time, and a place.',
+                zh: '寫上日期、時間和地點。' },
+      { t: 494, en: 'A few weeks ago, I scheduled “clean my top dresser drawer”',
+                zh: '幾個禮拜前，我把「清理五斗櫃最上面那一格抽屜」排進行事曆，' },
+      { t: 498, en: 'for 2:30 on a Wednesday.',
+                zh: '時間訂在某個星期三的兩點半。' },
+      { t: 500, en: 'And at half two on that Wednesday,',
+                zh: '到了那個星期三的兩點半，' },
+      { t: 502, en: 'I opened that drawer and removed roughly forty-seven mismatched socks.',
+                zh: '我打開那格抽屜，清出了大概四十七隻湊不成對的襪子。' },
+      { t: 506, en: 'Was very proud of myself.',
+                zh: '我覺得自己超厲害。' },
+      { t: 508, en: 'Willpower is usually unreliable.',
+                zh: '意志力通常靠不住。' },
+      { t: 510, en: 'Appointments are usually unavoidable.',
+                zh: '但約好的時間通常躲不掉。' },
+      { t: 512, en: 'Number 17.',
+                zh: '第十七條。' },
+      { t: 513, en: 'Keep a waiting-for list.',
+                zh: '準備一份「等別人」的清單。' },
+      { t: 515, en: 'I learned this one from David Allen’s Getting Things Done.',
+                zh: '這一條我是從 David Allen 的《Getting Things Done》學來的。' },
+      { t: 518, en: 'We’re usually pretty good at tracking what we need to do,',
+                zh: '我們通常很會追蹤「自己該做什麼」，' },
+      { t: 521, en: 'but we’re much worse at tracking what other people owe us:',
+                zh: '但很不擅長追蹤「別人欠我們什麼」：' },
+      { t: 524, en: 'the proposal somebody is reviewing,',
+                zh: '某個人正在審的提案、' },
+      { t: 526, en: 'the document somebody promised to send,',
+                zh: '某個人答應要寄給你的文件、' },
+      { t: 529, en: 'the answer you need before you can move forward.',
+                zh: '還有那個非等到不可、不然你沒辦法往下走的答覆。' },
+      { t: 532, en: 'Write those things down in one place.',
+                zh: '把這些東西寫在同一個地方。' },
+      { t: 534, en: 'Otherwise, your brain will keep trying to remember them,',
+                zh: '不然你的腦袋會一直想幫你記住，' },
+      { t: 536, en: 'usually at 3:00 in the morning.',
+                zh: '而且通常是在凌晨三點。' },
+      { t: 538, en: 'Number 18.',
+                zh: '第十八條。' },
+      { t: 539, en: 'Treat constant busyness as a warning, not a status symbol.',
+                zh: '把「一直很忙」當成警訊，而不是一種身分象徵。' },
+      { t: 544, en: 'When I ask someone, “Hey, how are you?”',
+                zh: '當我問別人：「嘿，最近好嗎？」' },
+      { t: 546, en: 'and they answer, “Oh, I’m so busy,”',
+                zh: '對方回我：「哎，我超忙的。」' },
+      { t: 548, en: 'I become suspicious.',
+                zh: '我就會起疑心。' },
+      { t: 550, en: 'Sometimes busyness means your life is full.',
+                zh: '有時候忙代表你的生活很充實。' },
+      { t: 552, en: 'But sometimes it means you’re refusing to make choices.',
+                zh: '但有時候代表你在逃避做選擇。' },
+      { t: 555, en: 'You’re ignoring priorities,',
+                zh: '代表你沒在分輕重緩急，' },
+      { t: 556, en: 'or you’re just feeding your own ego.',
+                zh: '或者你只是在餵養自己的虛榮心。' },
+      { t: 559, en: 'When everything feels urgent, stop adding.',
+                zh: '當每件事都很急，就別再往上加東西了。' },
+      { t: 564, en: 'Subtract. Cancel something, decline something.',
+                zh: '用減的。取消一件事、推掉一件事。' },
+      { t: 567, en: 'Leave some white space for a walk,',
+                zh: '留一點空白，去散個步、' },
+      { t: 569, en: 'a strange book, or an unexpected conversation,',
+                zh: '看一本奇怪的書，或是聊一場沒預料到的天，' },
+      { t: 571, en: 'or just fifteen minutes of staring out the window.',
+                zh: '又或者就只是盯著窗外十五分鐘。' },
+      { t: 574, en: 'Not every square on the calendar needs to produce something.',
+                zh: '行事曆上的每一格，不是都得產出些什麼。' },
+    ],
+
+    words: [
+      { t: 395, en: 'define done', zh: '先講清楚什麼叫「做完」',
+        noteEn: 'Done used as a noun — the finish line, agreed before you start. '
+          + '“Before we begin, can we define done?” Natural in a project '
+          + 'meeting and just as useful inside your own head.',
+        noteZh: 'done 在這裡當名詞用，指「事先講好的那條終點線」。Before we begin, can we define '
+          + 'done?（開始之前，我們可以先把「做完」的標準講清楚嗎？）開會可以這樣說，自己問自己也一樣好用。' },
+      { t: 408, en: 'take a page from someone', zh: '學某人的一招、照某人的做法來',
+        noteEn: 'To borrow how somebody else does something. The full form is “take '
+          + 'a page from someone’s book”; he shortens it, as most speakers do. '
+          + '“Take a page from your flatmate — she books the gym a week ahead.”',
+        noteZh: '意思是「借用某人的做法」。完整說法是 take a page from someone’s '
+          + 'book，他跟大多數人一樣把它縮短了。Take a page from your flatmate — she books the '
+          + 'gym a week ahead.（學學你室友，她健身房都提前一週訂好。）' },
+      { t: 426, en: 'embarrassingly small', zh: '小到讓你不好意思',
+        noteEn: 'Adverb plus adjective, where the adverb says how you would feel '
+          + 'about it: embarrassingly cheap, absurdly early, painfully obvious. '
+          + 'Spoken, and an easy pattern to reuse on anything.',
+        noteZh: '副詞加形容詞，副詞負責講「你對它的感受」：embarrassingly cheap（便宜到不好意思）、absurdly '
+          + 'early（早得離譜）、painfully obvious（明顯到讓人尷尬）。口語，而且這個句型套什麼都通。' },
+      { t: 442, en: 'inversely related', zh: '成反比',
+        noteEn: 'One goes up, the other goes down. Keep it for writing and for '
+          + 'numbers; out loud, most people say the plainer “the bigger it is, '
+          + 'the less likely you are to do it”.',
+        noteZh: '一個變大，另一個就變小。書面和講數字時用它；用嘴巴講的時候，大部分人會說得白一點：the bigger it is, the '
+          + 'less likely you are to do it（越大，你就越不可能去做）。' },
+      { t: 461, en: 'take the shortcut', zh: '走捷徑',
+        noteEn: 'Neutral here, not lazy — he adds “when the shortcut actually '
+          + 'works” to make that clear. The nearby phrase “cut corners” is '
+          + 'always negative: you skipped something you shouldn’t have.',
+        noteZh: '這裡沒有貶意，不是偷懶——他後面補了 when the shortcut actually works '
+          + '就是為了講清楚這點。長得很像的 cut corners 則一定是負面的：該做的沒做、偷工減料。' },
+      { t: 513, en: 'a waiting-for list', zh: '一份「等別人」的清單',
+        noteEn: 'Not a to-do list — a list of what other people owe you. The '
+          + 'hyphens glue the phrase into one word you can put in front of a '
+          + 'noun, the same way as “a nice-to-have feature”.',
+        noteZh: '不是 to-do list，而是「別人欠你什麼」的清單。中間的連字號把整串黏成一個可以放在名詞前面的形容詞，跟 a '
+          + 'nice-to-have feature（有也不錯的功能）是同一種用法。' },
+      { t: 539, en: 'a status symbol', zh: '身分象徵',
+        noteEn: 'Something you own or do mainly so other people can see it. Usually '
+          + 'said with a raised eyebrow: “Working weekends has become a status '
+          + 'symbol around here.”',
+        noteZh: '指你擁有或去做某件事，主要是為了讓別人看見。講的時候通常帶點揶揄：Working weekends has become a '
+          + 'status symbol around here.（在這裡，週末加班已經變成一種身分象徵了。）' },
+      { t: 567, en: 'leave some white space', zh: '留白、刻意空著不排事情',
+        noteEn: 'Borrowed from page design: the empty part that makes everything '
+          + 'else readable. Said of a calendar, it means time left unbooked on '
+          + 'purpose. “I’m leaving Friday afternoons as white space.”',
+        noteZh: '從版面設計借來的說法：讓其他東西好讀的那片空白。用在行事曆上，指刻意不排事情的時間。I’m leaving Friday '
+          + 'afternoons as white space.（我刻意把週五下午空著。）' },
+    ],
+
+    questions: [
+      { t: 413, en: 'What does Lorne Michaels say decides when the show goes on?',
+        zh: 'Lorne Michaels 說，決定節目什麼時候上場的，是什麼？',
+        answerEn: 'Not being ready — the clock. “We don’t go on because we’re ready. '
+          + 'We go on because it’s 11:30.” Pink says it to himself when he is '
+          + 'finishing a piece of writing.',
+        answerZh: '不是「準備好了」，而是時鐘。「我們上台不是因為準備好了，是因為十一點半到了。」Pink 在收尾一篇稿子的時候，會拿這句話跟自己說。' },
+      { t: 429, en: 'He gives three examples of an embarrassingly small first step. What are they?',
+        zh: '他舉了三個「小到不好意思」的第一步。分別是什麼？',
+        answerEn: 'Don’t write the book, write three sentences. Don’t get in shape, '
+          + 'put your shoes by the door. Don’t organize the house, clean one '
+          + 'drawer.',
+        answerZh: '別想著寫一本書，先寫三句話；別想著把身體練起來，先把鞋子放到門口；別想著整理整間房子，先整理一個抽屜。' },
+      { t: 494, en: 'What did he put in his calendar, and what happened when the time came?',
+        zh: '他把什麼事排進行事曆？時間到了以後發生了什麼事？',
+        answerEn: 'Cleaning his top dresser drawer, at 2:30 on a Wednesday. At half '
+          + 'two that day he opened it and removed roughly forty-seven '
+          + 'mismatched socks — his proof that willpower is unreliable and '
+          + 'appointments are unavoidable.',
+        answerZh: ' '
+          + '清理五斗櫃最上面那一格抽屜，時間訂在某個星期三的兩點半。那天兩點半他真的打開抽屜，清出大概四十七隻湊不成對的襪子——這就是他的證明：意志力靠不住，但約好的時間躲不掉。' },
+      { t: 550, en: 'When someone answers “I’m so busy”, what does he suspect it might really mean?',
+        zh: '當別人回答「我超忙的」，他懷疑那背後可能是什麼意思？',
+        answerEn: 'Sometimes it does mean your life is full. But sometimes it means '
+          + 'you are refusing to make choices, ignoring priorities, or just '
+          + 'feeding your own ego.',
+        answerZh: '有時候確實代表你的生活很充實。但有時候代表你在逃避做選擇、沒在分輕重緩急，或者只是在餵養自己的虛榮心。' },
+    ],
+
+    tasks: [
+      { en: 'Pick one thing you have been meaning to start — a course, a side '
+        + 'project, getting fit. Say out loud what done looks like, then say '
+        + 'a first step small enough to embarrass you.',
+        zh: ' '
+          + '挑一件你一直想開始卻還沒開始的事——一門課、一個自己的小專案、把身體練起來。出聲說說看：這件事「做完」長什麼樣子？然後說出一個小到讓你不好意思的第一步。' },
+      { en: 'Make your waiting-for list out loud: three things other people owe '
+        + 'you right now. Then say which one you are going to chase, and '
+        + 'when.',
+        zh: '出聲列出你的「等別人」清單：現在有哪三件事是別人欠你的。然後說說你打算追哪一件、什麼時候追。' },
+      { en: 'Of the six codes in this level, pick the one you ignore most. Say '
+        + 'which it is, why you ignore it, and the one thing you will '
+        + 'actually do differently this week.',
+        zh: '這一關的六條密技裡，挑出你最常忽略的那一條。說出是哪一條、為什麼會忽略它，還有這個禮拜你真的會改的那一件事。' },
+    ],
+  },
+
+  /* ------------------------------------------------------------------ */
+  {
+    id: 'cheat-work',
+    videoId: 'c7jGXPEY54k',
+    start: 577,
+    end: 744,
+
+    titleEn: 'Level four — work',
+    titleZh: '第四關——工作',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'Daniel Pink — “30 Cheat Codes to Beat Every Level of Life”',
+
+    aboutEn: 'Just under three minutes, six separate pieces of advice, and every '
+      + 'one of them about work: send the recap email, make your boss’s '
+      + 'life easier, ask for the real deadline behind the stated one, lead '
+      + 'with the request, get good at what everybody else avoids, and be '
+      + 'the boss you should have had. It is the most immediately usable '
+      + 'stretch of the whole talk — he says “especially early in your '
+      + 'career”, and there is nothing here you could not start doing on '
+      + 'Monday morning.',
+    aboutZh: ' '
+      + '不到三分鐘，六條各自獨立的建議，全部都跟工作有關：會後把重點回顧信寄出去、讓主管的日子好過一點、問出對方口中那個截止日背後真正的截止日、開門見山講出你的請求、把大家都在閃的那件事練到很強，還有——成為你當初應該遇到的那種主管。這是整場演講裡最能馬上拿來用的一段；他自己說「尤其是在職涯早期」，而這裡每一條，星期一早上就能開始做。',
+
+    watchForEn: 'Every code here is a rule and then the reason for it. Listen for '
+      + 'the reason on number nineteen — it is not the one you expect.',
+    watchForZh: '這裡的每一條，都是先給規則、再給理由。特別注意聽第十九條的理由——跟你以為的不一樣。',
+
+    lines: [
+      { t: 577, en: 'Now, that’s the machinery of getting things done,',
+                zh: '好，以上就是「把事情做完」的那一整套機制，' },
+      { t: 580, en: 'but most of us don’t do it alone.',
+                zh: '但我們大多數人，並不是一個人在做這些事。' },
+      { t: 582, en: 'Level four: work.',
+                zh: '第四關：工作。' },
+      { t: 584, en: 'Nineteen.',
+                zh: '第十九條。' },
+      { t: 585, en: 'Send the recap email.',
+                zh: '會後把那封重點回顧信寄出去。' },
+      { t: 587, en: 'After an important meeting, send a short note.',
+                zh: '重要的會議結束後，寄一封簡短的信。' },
+      { t: 590, en: 'Here’s what we decided.',
+                zh: '我們決定了這些事。' },
+      { t: 591, en: 'Here’s who is doing what.',
+                zh: '誰負責哪一項。' },
+      { t: 593, en: 'Here’s when it’s due.',
+                zh: '什麼時候要交。' },
+      { t: 594, en: 'This helps everybody else,',
+                zh: '這對其他人都有幫助，' },
+      { t: 596, en: 'but it also helps you,',
+                zh: '但其實也幫到你自己，' },
+      { t: 598, en: 'because translating a conversation into writing',
+                zh: '因為把一場對話轉成文字，' },
+      { t: 600, en: 'forces you to understand what actually happened.',
+                zh: '會逼你搞清楚剛剛到底發生了什麼。' },
+      { t: 603, en: 'Now, AI can help organize that note,',
+                zh: '當然，AI 可以幫你把那封信整理好，' },
+      { t: 606, en: 'but don’t let it do all the thinking.',
+                zh: '但不要讓它連思考都一起做完。' },
+      { t: 608, en: 'The thinking is part of the benefit.',
+                zh: '那個思考本身，就是好處的一部分。' },
+      { t: 611, en: 'Number twenty.',
+                zh: '第二十條。' },
+      { t: 612, en: 'Make your boss’s life easier.',
+                zh: '讓你主管的日子好過一點。' },
+      { t: 615, en: 'Here’s a lesson from every workplace ever.',
+                zh: '這是每一個職場都通用的一課。' },
+      { t: 618, en: 'Bosses divide employees into two categories:',
+                zh: '主管會把員工分成兩類：' },
+      { t: 620, en: 'people who make my life harder,',
+                zh: '讓我的日子更難過的人，' },
+      { t: 623, en: 'and people who make my life easier.',
+                zh: '還有讓我的日子好過一點的人。' },
+      { t: 626, en: 'Especially early in your career,',
+                zh: '尤其是在你職涯的早期，' },
+      { t: 628, en: 'make sure you’re in the second category.',
+                zh: '一定要確保自己是在第二類。' },
+      { t: 631, en: 'Understand what your boss is trying to accomplish.',
+                zh: '搞清楚你主管想達成的是什麼。' },
+      { t: 634, en: 'Help her achieve her goals.',
+                zh: '幫她把她的目標做到。' },
+      { t: 635, en: 'Take useful things off her plate.',
+                zh: '主動接走一些她手上、而且真的有用的事。' },
+      { t: 637, en: 'That’s how you become indispensable.',
+                zh: '你就是這樣變成不可取代的。' },
+      { t: 640, en: 'Number twenty-one.',
+                zh: '第二十一條。' },
+      { t: 641, en: 'Ask for the deadline.',
+                zh: '問清楚截止日。' },
+      { t: 643, en: 'Then ask for the real deadline.',
+                zh: '然後再問一次：真正的截止日是哪一天。' },
+      { t: 645, en: 'When do you need this?',
+                zh: '你什麼時候要？' },
+      { t: 646, en: 'And when will somebody actually use this?',
+                zh: '還有：這東西到底什麼時候真的會被用到？' },
+      { t: 648, en: 'Those are two very different questions.',
+                zh: '這是兩個非常不一樣的問題。' },
+      { t: 651, en: 'One answer might be Friday.',
+                zh: '一個答案可能是「這週五」。' },
+      { t: 653, en: 'The other might be the board meeting',
+                zh: '另一個可能是「董事會開會的時候」，' },
+      { t: 655, en: 'three Thursdays from now.',
+                zh: '也就是三個星期後的那個星期四。' },
+      { t: 657, en: 'Deadlines matter,',
+                zh: '截止日是重要的，' },
+      { t: 659, en: 'but fake deadlines create unnecessary work',
+                zh: '但假的截止日只會製造出不必要的工作，' },
+      { t: 662, en: 'and unnecessary panic.',
+                zh: '還有不必要的恐慌。' },
+      { t: 664, en: 'And once you understand that,',
+                zh: '一旦你搞懂這件事，' },
+      { t: 665, en: 'you’ll get the work done at the right time.',
+                zh: '你就會在對的時間把事情做完。' },
+      { t: 668, en: 'And just as important,',
+                zh: '而且同樣重要的是，' },
+      { t: 669, en: 'you won’t inflict unnecessary deadlines on other people.',
+                zh: '你也不會把不必要的截止日丟到別人身上。' },
+      { t: 673, en: 'Number twenty-two.',
+                zh: '第二十二條。' },
+      { t: 674, en: 'Lead with the request and bring a recommendation.',
+                zh: '開門見山講出你的請求，而且帶著建議一起來。' },
+      { t: 678, en: 'Don’t begin an email with seven paragraphs of throat clearing.',
+                zh: '不要在信的開頭鋪七段廢話才進入正題。' },
+      { t: 682, en: 'Tell people what you need.',
+                zh: '直接告訴對方你需要什麼。' },
+      { t: 684, en: 'And if you’re bringing somebody a problem,',
+                zh: '如果你要拿一個問題去找人，' },
+      { t: 686, en: 'try to bring a proposed solution, too.',
+                zh: '盡量也帶一個你建議的解法一起去。' },
+      { t: 690, en: 'Diagnosis is useful.',
+                zh: '診斷有用，' },
+      { t: 691, en: 'Prescription is essential.',
+                zh: '但開藥方才是非有不可的。' },
+      { t: 693, en: 'Instead of “this isn’t working,”',
+                zh: '與其只說「這樣行不通」，' },
+      { t: 695, en: 'try: “This isn’t working.',
+                zh: '試試看這樣講：「這樣行不通。' },
+      { t: 697, en: 'Here’s what I think is causing it.',
+                zh: '我覺得原因出在這裡。' },
+      { t: 699, en: 'And here’s what I recommend we do next.”',
+                zh: '我建議我們接下來這樣做。」' },
+      { t: 701, en: 'Number twenty-three.',
+                zh: '第二十三條。' },
+      { t: 703, en: 'Get good at something valuable that everybody else avoids.',
+                zh: '去把一件有價值、但大家都在閃的事練到很強。' },
+      { t: 706, en: 'The spreadsheet nobody wants to own.',
+                zh: '那份沒人想接手的試算表。' },
+      { t: 708, en: 'The presentation nobody wants to give.',
+                zh: '那場沒人想上台講的簡報。' },
+      { t: 710, en: 'The difficult conversation everybody keeps avoiding.',
+                zh: '那場大家一直拖著不談的難談話。' },
+      { t: 713, en: 'Neglected skills have very little competition,',
+                zh: '沒人要練的技能，競爭者非常少，' },
+      { t: 716, en: 'because everyone is fighting for the glamorous territory,',
+                zh: '因為大家都在搶那些光鮮亮麗的地盤，' },
+      { t: 719, en: 'but the neglected territory is sitting there undefended.',
+                zh: '而沒人要的那塊地，就這樣空在那裡沒人守。' },
+      { t: 722, en: 'And number twenty-four,',
+                zh: '還有第二十四條，' },
+      { t: 723, en: 'for anybody who leads anybody:',
+                zh: '這條是給任何帶人的人：' },
+      { t: 725, en: 'don’t be the boss you had.',
+                zh: '不要變成你以前遇到的那種主管。' },
+      { t: 727, en: 'Be the boss you should have had.',
+                zh: '要變成你當初應該遇到的那種主管。' },
+      { t: 729, en: 'Remember what your worst managers did.',
+                zh: '回想一下你遇過最糟的主管都做了什麼。' },
+      { t: 732, en: 'Then do the opposite.',
+                zh: '然後反著做。' },
+      { t: 733, en: 'Then remember what you desperately needed from them',
+                zh: '接著再想想，你當時多麼需要他們給你什麼、' },
+      { t: 735, en: 'and never got.',
+                zh: '卻從來沒有拿到。' },
+      { t: 737, en: 'Whether that’s clarity, encouragement, honest feedback,',
+                zh: '不管那是把話講清楚、是鼓勵、是誠實的回饋，' },
+      { t: 739, en: 'or a second chance.',
+                zh: '還是再給一次機會。' },
+      { t: 740, en: 'Now go provide that to somebody else.',
+                zh: '現在，換你把那個東西給別人。' },
+      { t: 742, en: 'Level four done.',
+                zh: '第四關完成。' },
+    ],
+
+    words: [
+      { t: 585, en: 'the recap email', zh: '會後的重點回顧信',
+        noteEn: 'Recap = a short summary of what just happened. Also a verb: “Let '
+          + 'me recap.” The email itself is only three lines — decided, who, '
+          + 'when.',
+        noteZh: 'recap 是「把剛剛的內容簡短整理一遍」，也可以當動詞：Let me '
+          + 'recap.（我重點再講一遍。）這封信本身只有三行：決定了什麼、誰負責、什麼時候要交。' },
+      { t: 612, en: 'make someone’s life easier', zh: '讓某人的日子好過一點',
+        noteEn: 'The highest praise there is in a workplace, and the fastest way to '
+          + 'be remembered. The opposite, make someone’s life harder, is just '
+          + 'as common and just as blunt.',
+        noteZh: '在職場上這是最高的稱讚，也是最快被記住的方法。反過來的 make someone’s life '
+          + 'harder（讓某人的日子更難過）一樣常用，也一樣直接。' },
+      { t: 635, en: 'take something off someone’s plate', zh: '把某件事從某人手上接走',
+        noteEn: 'Your plate is everything you are carrying right now. The other '
+          + 'half of the pair is “I’ve got a lot on my plate” — I’m overloaded. '
+          + 'Spoken, and used constantly at work.',
+        noteZh: 'plate（盤子）指你現在手上扛著的所有事。配套的另一句是 I’ve got a lot on my '
+          + 'plate（我手上一堆事）。口語，職場上天天在用。' },
+      { t: 637, en: 'indispensable', zh: '不可取代的',
+        noteEn: 'Literally: cannot be done without. Used of people and of tools — '
+          + '“She’s become indispensable.” Stress the third syllable: '
+          + 'in-dis-PEN-sable.',
+        noteZh: '字面是「少了就不行」。人跟工具都能用：She’s become '
+          + 'indispensable.（她已經變得不可取代了。）重音在第三個音節：in-dis-PEN-sable。' },
+      { t: 669, en: 'inflict something on somebody', zh: '把某件討人厭的事強加在別人身上',
+        noteEn: 'What follows is always unwanted — a deadline, a meeting, your '
+          + 'holiday photos. Slightly formal, and often half-joking: “Sorry to '
+          + 'inflict this on you.”',
+        noteZh: '後面接的一定是別人不想要的東西——截止日、會議、你的度假照片。語氣稍正式，常帶半開玩笑：Sorry to inflict this '
+          + 'on you.（抱歉把這個丟給你。）' },
+      { t: 674, en: 'lead with…', zh: '開門見山、一開頭就先講',
+        noteEn: 'From journalism: put the most important thing first. “Lead with '
+          + 'the number, then explain it.” Works for emails, messages and '
+          + 'answers in an interview.',
+        noteZh: '來自新聞業：把最重要的放最前面。Lead with the number, then explain '
+          + 'it.（先講數字，再解釋。）寫信、傳訊息、面試回答都能用。' },
+      { t: 678, en: 'throat clearing', zh: '進入正題前的鋪陳廢話',
+        noteEn: 'The noise before the point — “I hope you’re well, I know you’re '
+          + 'busy, I was just wondering…”. Mildly rude about the writing, not '
+          + 'about the person.',
+        noteZh: '真正重點前面那些雜音——「希望你一切都好、我知道你很忙、我只是想問一下……」。是在嫌那段文字囉嗦，不是在罵人。' },
+      { t: 703, en: 'get good at something', zh: '把某件事練到很強',
+        noteEn: 'Get good at + noun or -ing, and it implies practice rather than '
+          + 'talent: “I want to get good at saying no.” Spoken; a CV would say '
+          + 'develop instead.',
+        noteZh: 'get good at + 名詞或 -ing，而且暗示是「練出來的」，不是天分：I want to get good at '
+          + 'saying no.（我想把「拒絕」這件事練好。）口語；履歷上會改用 develop。' },
+    ],
+
+    questions: [
+      { t: 598, en: 'The recap email helps everybody else. Why does he say it also helps you?',
+        zh: '會後的回顧信對其他人有幫助。他說為什麼它也幫到你自己？',
+        answerEn: 'Because translating a conversation into writing forces you to '
+          + 'understand what actually happened. He adds that AI can help '
+          + 'organise the note, but don’t let it do all the thinking — the '
+          + 'thinking is part of the benefit.',
+        answerZh: '因為把一場對話轉成文字，會逼你搞清楚剛剛到底發生了什麼。他還補一句：AI '
+          + '可以幫你整理那封信，但不要讓它連思考都做完——那個思考本身就是好處的一部分。' },
+      { t: 620, en: 'He says bosses divide employees into two categories. What are they?',
+        zh: '他說主管會把員工分成兩類。是哪兩類？',
+        answerEn: 'People who make my life harder and people who make my life easier. '
+          + 'Especially early in your career, he says, make sure you’re in the '
+          + 'second one.',
+        answerZh: '讓我的日子更難過的人，還有讓我的日子好過一點的人。他說尤其在職涯早期，一定要確保自己在第二類。' },
+      { t: 645, en: 'He says to ask for the deadline twice. What are the two questions?',
+        zh: '他說截止日要問兩次。那兩個問題分別是什麼？',
+        answerEn: 'When do you need this? And when will somebody actually use this? '
+          + 'One answer might be Friday; the other might be the board meeting '
+          + 'three Thursdays from now.',
+        answerZh: '「你什麼時候要？」還有「這東西到底什麼時候真的會被用到？」一個答案可能是這週五，另一個可能是三個星期後的董事會。' },
+      { t: 695, en: 'Instead of “this isn’t working”, what three things does he want you to say?',
+        zh: '他希望你不要只說「這樣行不通」，而是要講出哪三件事？',
+        answerEn: 'This isn’t working; here’s what I think is causing it; and here’s '
+          + 'what I recommend we do next. Diagnosis is useful, he says, but '
+          + 'prescription is essential.',
+        answerZh: '這樣行不通；我覺得原因出在這裡；我建議我們接下來這樣做。他說診斷有用，但開藥方才是非有不可的。' },
+    ],
+
+    tasks: [
+      { en: 'Think of the last meeting, class or group project you sat in. Say '
+        + 'the recap email out loud in three sentences: what was decided, who '
+        + 'is doing what, when it’s due.',
+        zh: '想一下你最近參加的一場會議、一堂課或一個小組報告。出聲把那封回顧信講出來，只要三句：決定了什麼、誰負責哪一項、什麼時候要交。' },
+      { en: 'Take something that genuinely isn’t working right now — a '
+        + 'flatmate, a group project, a team you’re on, an app you use every '
+        + 'day — and say it in his three parts: what isn’t working, what you '
+        + 'think is causing it, what you recommend.',
+        zh: '找一件現在真的不順的事——室友、小組報告、你待的團隊、每天在用的某個 '
+          + 'app——用他的三段式講出來：哪裡不順、你覺得原因是什麼、你建議怎麼做。' },
+      { en: 'Pick one of these six codes, and only one. Say which, and say what '
+        + 'you would actually do differently on Monday. If none of them would '
+        + 'change anything, say that instead.',
+        zh: '從這六條裡挑一條，而且只能挑一條。說出是哪一條，還有你星期一會真的做哪裡不一樣。如果哪一條都不會改變什麼，那就老實說沒有。' },
+    ],
+  },
+
+  /* ------------------------------------------------------------------ */
+  {
+    id: 'cheat-life',
+    videoId: 'c7jGXPEY54k',
+    start: 744,
+    end: 922,
+
+    titleEn: 'Level five — living',
+    titleZh: '第五關——生活',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'Daniel Pink — “30 Cheat Codes to Beat Every Level of Life”',
+
+    aboutEn: 'Three minutes, six cheat codes, and the last of Pink’s five levels '
+      + '— the one where the advice stops being about getting things done '
+      + 'and starts being about the shape of a life. It closes on the code '
+      + 'he told you at the very start he was saving for last: two '
+      + 'sentences that sort the suffering worth accepting from the '
+      + 'suffering worth removing.',
+    aboutZh: '三分鐘，六條密技，是 Pink '
+      + '五個關卡裡的最後一關——從這裡開始，建議不再是「事情怎麼做完」，而是「你的生活要長成什麼樣子」。最後收在他一開場就預告要「留到最後」的那一條：兩句話，把值得接受的痛苦，和該拿掉的痛苦分開。',
+
+    watchForEn: 'The last code splits suffering in two — necessary and unnecessary. '
+      + 'Listen for which kind he tells you to keep.',
+    watchForZh: '最後一條把痛苦分成兩種：必要的和不必要的。注意聽他叫你留下哪一種。',
+
+    lines: [
+      { t: 744, en: 'One level left.',
+                zh: '只剩最後一關了。' },
+      { t: 746, en: 'It’s where all of this either adds up to a life or it doesn’t.',
+                zh: '前面這些東西，到這一關要嘛加總成一個人生，要嘛什麼都不是。' },
+      { t: 750, en: 'And the code I told you I saved for last',
+                zh: '而我說過要留到最後的那一條，' },
+      { t: 752, en: 'is waiting for you at the end.',
+                zh: '就在這一段的結尾等你。' },
+      { t: 754, en: 'Twenty-five.',
+                zh: '第二十五條。' },
+      { t: 755, en: 'Design your environment around your behavior.',
+                zh: '照著你的行為，去設計你的環境。' },
+      { t: 758, en: 'Store things where you use them,',
+                zh: '東西要放在你真的會用到它的地方，' },
+      { t: 760, en: 'not where they’re supposedly meant to go.',
+                zh: '而不是放在「照理說該放」的那個地方。' },
+      { t: 763, en: 'Keep the medicine near the coffee maker',
+                zh: '藥就放在咖啡機旁邊，' },
+      { t: 765, en: 'if you take it with breakfast.',
+                zh: '如果你習慣配早餐吃的話。' },
+      { t: 766, en: 'Put the book on your pillow',
+                zh: '書就放在枕頭上，' },
+      { t: 767, en: 'if you want to read before bed.',
+                zh: '如果你想睡前看個幾頁的話。' },
+      { t: 769, en: 'And embrace strategic duplication.',
+                zh: '還有，大方一點，同樣的東西多準備幾份。' },
+      { t: 771, en: 'Two chargers, two umbrellas, six pairs of reading glasses.',
+                zh: '兩個充電器、兩把雨傘、六副老花眼鏡。' },
+      { t: 775, en: 'Redundancy beats self-discipline.',
+                zh: '多準備幾份，比自律有用。' },
+      { t: 777, en: 'Number twenty-six.',
+                zh: '第二十六條。' },
+      { t: 779, en: 'Spend money eliminating recurring misery',
+                zh: '花錢先解決那些一再發生的折磨，' },
+      { t: 781, en: 'before buying occasional pleasure.',
+                zh: '再花錢買偶爾一次的享受。' },
+      { t: 785, en: 'Fix the terrible mattress before booking the fancy weekend.',
+                zh: '先把那張爛床墊換掉，再去訂那個高級的週末小旅行。' },
+      { t: 788, en: 'Replace the shoes that hurt your feet.',
+                zh: '把那雙磨腳的鞋換掉。' },
+      { t: 789, en: 'Buy the second monitor that makes every workday easier.',
+                zh: '買下那台讓你每個上班日都輕鬆一點的第二螢幕。' },
+      { t: 793, en: 'Pay to remove regular annoyances.',
+                zh: '花錢把那些天天在煩你的小事除掉。' },
+      { t: 795, en: 'The weekend in Antigua lasts three days.',
+                zh: '在安地卡的那個週末只有三天。' },
+      { t: 798, en: 'The mattress is every night of your year.',
+                zh: '床墊卻是你一整年的每一個晚上。' },
+      { t: 800, en: 'Number twenty-seven.',
+                zh: '第二十七條。' },
+      { t: 801, en: 'Create traditions on purpose.',
+                zh: '刻意去創造傳統。' },
+      { t: 803, en: 'Sunday dinners, birthday breakfast,',
+                zh: '週日的晚餐、生日的早餐、' },
+      { t: 806, en: 'the same ridiculous photo every Thanksgiving.',
+                zh: '每年感恩節都拍同一張蠢照片。' },
+      { t: 809, en: 'Rituals turn passing time into a life you can actually remember.',
+                zh: '儀式會把一段就這樣過掉的時間，變成你真的記得住的人生。' },
+      { t: 813, en: 'In our house, we celebrate every New Year’s Day',
+                zh: '我們家每年元旦都會慶祝一下，' },
+      { t: 815, en: 'by making something called lucky pudding.',
+                zh: '做的是一種叫「幸運布丁」的東西。' },
+      { t: 817, en: 'The tradition began more than twenty years ago, almost by accident.',
+                zh: '這個傳統是二十幾年前開始的，幾乎可以說是誤打誤撞。' },
+      { t: 821, en: 'Now, it has taken on the significance of a sacred religious rite.',
+                zh: '現在它已經變得跟神聖的宗教儀式一樣重要了。' },
+      { t: 825, en: 'Don’t wait for traditions to form on their own.',
+                zh: '不要等傳統自己長出來。' },
+      { t: 827, en: 'Build them.',
+                zh: '自己去把它建起來。' },
+      { t: 828, en: 'Number twenty-eight.',
+                zh: '第二十八條。' },
+      { t: 830, en: 'Stop trying to be normal.',
+                zh: '別再努力想當一個「正常人」。' },
+      { t: 832, en: 'Normal is crowded.',
+                zh: '正常那一區很擠。' },
+      { t: 833, en: 'Conformity is boring.',
+                zh: '從眾很無聊。' },
+      { t: 835, en: 'Every interesting person I know is interesting',
+                zh: '我認識的每一個有趣的人，他們之所以有趣，' },
+      { t: 837, en: 'precisely at the spots where they stopped asking, “Is this normal?”',
+                zh: '正好都是在他們不再問「這樣正常嗎？」的那些地方，' },
+      { t: 840, en: 'and started asking, “Is this right for me?”',
+                zh: '而開始問「這樣適合我嗎？」的那些地方。' },
+      { t: 844, en: 'The parts of you that don’t fit may be the parts most worth keeping.',
+                zh: '你身上那些格格不入的部分，可能正是最值得留著的部分。' },
+      { t: 849, en: 'Number twenty-nine.',
+                zh: '第二十九條。' },
+      { t: 850, en: 'Compete with yourself, not with somebody else.',
+                zh: '跟自己比，不要跟別人比。' },
+      { t: 854, en: 'Social comparison is a rigged game.',
+                zh: '跟別人比較這件事，是一場動過手腳的比賽。' },
+      { t: 857, en: 'You’re comparing their outsides with your insides,',
+                zh: '你是拿別人的外在，去比自己的內在，' },
+      { t: 858, en: 'their carefully selected victory or curated profile',
+                zh: '拿他們精挑細選的一次勝利、精心經營的個人頁面，' },
+      { t: 862, en: 'with your entire chaotic, messy, unedited life.',
+                zh: '去比你整個混亂、雜亂、沒剪接過的人生。' },
+      { t: 868, en: 'So, change the opponent.',
+                zh: '所以，換一個對手。' },
+      { t: 869, en: 'Was I better today than yesterday?',
+                zh: '我今天有比昨天好嗎？' },
+      { t: 871, en: 'Am I better at this than I was six months ago?',
+                zh: '這件事，我現在有比半年前強嗎？' },
+      { t: 873, en: 'Did I handle that situation more wisely than I would have before?',
+                zh: '剛剛那個狀況，我處理得有比以前成熟嗎？' },
+      { t: 877, en: 'Don’t aim for an Olympic medal in somebody else’s event.',
+                zh: '不要在別人的項目裡，瞄準一面奧運獎牌。' },
+      { t: 882, en: 'Aim for a personal best.',
+                zh: '要瞄準的，是自己的個人最佳紀錄。' },
+      { t: 884, en: 'And the final code, number thirty.',
+                zh: '最後一條，第三十條。' },
+      { t: 887, en: 'Avoid unnecessary suffering.',
+                zh: '避開不必要的痛苦。' },
+      { t: 890, en: 'Accept necessary suffering.',
+                zh: '接受必要的痛苦。' },
+      { t: 891, en: 'Use that rotisserie chicken.',
+                zh: '那隻現成的烤雞，就用下去。' },
+      { t: 892, en: 'Take the shortcut when it works.',
+                zh: '捷徑有用的時候，就走捷徑。' },
+      { t: 894, en: 'Eliminate friction that proves nothing.',
+                zh: '把那些證明不了什麼的阻力全部拿掉。' },
+      { t: 896, en: 'Don’t expect achievement, love, creativity, or a meaningful life',
+                zh: '成就、愛、創造力，還有一個有意義的人生，' },
+      { t: 900, en: 'to cost you nothing.',
+                zh: '別指望它們不用你付出任何代價。' },
+      { t: 901, en: 'Anything worthwhile will demand effort, discomfort,',
+                zh: '任何值得的東西，都會跟你要力氣、要你不舒服、' },
+      { t: 905, en: 'criticism, uncertainty, and sacrifice.',
+                zh: '要你被批評、要你不確定，還要你犧牲。' },
+      { t: 908, en: 'Lots of it.',
+                zh: '而且要很多。' },
+      { t: 909, en: 'When you encounter those costs,',
+                zh: '當你碰到這些代價的時候，' },
+      { t: 910, en: 'don’t automatically assume you’re doing something wrong.',
+                zh: '不要反射性地就以為自己哪裡做錯了。' },
+      { t: 913, en: 'You might simply be paying the price of admission.',
+                zh: '你可能只是在付入場費而已。' },
+      { t: 915, en: 'Eliminate the suffering that gets you nothing.',
+                zh: '把那些什麼都換不到的痛苦拿掉。' },
+      { t: 918, en: 'Accept the suffering that moves you closer to something meaningful.',
+                zh: '接受那些把你推向有意義的事的痛苦。' },
+    ],
+
+    words: [
+      { t: 775, en: 'Redundancy beats self-discipline', zh: '多準備幾份，比自律有用',
+        noteEn: '“A beats B” is a whole argument in three words, with nothing to '
+          + 'hedge behind — no “tends to”, no “can be”. Steal the frame: “Done '
+          + 'beats perfect.” “A cheap system beats a good intention.”',
+        noteZh: '「A beats B」三個字就是一整個論點，沒有模糊的空間。把這個句型偷來用：Done beats '
+          + 'perfect.（做完勝過完美。）redundancy 在這裡是「同樣的東西多備幾份」。' },
+      { t: 779, en: 'recurring', zh: '一再發生的、固定會再來的',
+        noteEn: 'Something that comes back on a schedule: a recurring cost, a '
+          + 'recurring meeting, a recurring payment. He sets it against '
+          + 'occasional — the mattress is recurring, the holiday is occasional.',
+        noteZh: '指「會固定再來一次」的東西：recurring cost（經常性支出）、recurring '
+          + 'meeting（固定會議）、recurring payment（定期扣款）。他拿它跟 '
+          + 'occasional（偶爾的）對照：床墊是天天的，度假是偶爾的。' },
+      { t: 801, en: 'on purpose', zh: '刻意、故意',
+        noteEn: 'Deliberately, as opposed to by accident — and he uses both inside '
+          + 'the same code. Watch the preposition: on purpose, never “in '
+          + 'purpose”. In writing you would reach for deliberately or '
+          + 'intentionally.',
+        noteZh: '就是「刻意」，跟 by accident（不小心、碰巧）相對，而他在同一條裡兩個都用了。介系詞要注意：on purpose，不能說 '
+          + 'in purpose。寫成文字通常改用 deliberately 或 intentionally。' },
+      { t: 830, en: 'Stop trying to be…', zh: '別再努力想當……',
+        noteEn: 'A blunt spoken imperative that takes an effort away instead of '
+          + 'adding one: “Stop trying to be impressive — just be clear.” Too '
+          + 'direct for an email; softer there is “there’s no need to be…”.',
+        noteZh: '很直接的口語祈使句，重點是「把一件努力拿掉」，而不是再加一件：Stop trying to be impressive — just '
+          + 'be clear.（別再想著要讓人驚艷，講清楚就好。）寫信太衝，書面可換成 there’s no need to be…' },
+      { t: 854, en: 'a rigged game', zh: '一場被動過手腳的比賽',
+        noteEn: 'Rigged = secretly arranged so one side cannot win. A strong word, '
+          + 'common in speech about things that only look fair: “The whole '
+          + 'process was rigged.”',
+        noteZh: 'rigged 是「暗中喬過，讓你根本贏不了」。語氣很重，講到「表面公平、其實不公平」的制度時很常用：The whole '
+          + 'process was rigged.（整個流程根本就是喬好的。）' },
+      { t: 857, en: 'comparing their outsides with your insides', zh: '拿別人的外在，去比自己的內在',
+        noteEn: 'A fixed saying about social media that works far outside it. '
+          + 'Spoken only — it needs the rhythm of the two plurals, so it dies '
+          + 'on the page.',
+        noteZh: '原本是講社群媒體的固定說法，用在別的地方也通。只適合口語，因為它靠 outsides / insides '
+          + '這組複數的節奏撐著，寫下來就沒味道了。' },
+      { t: 894, en: 'friction', zh: '卡卡的阻力、讓事情變麻煩的那一點東西',
+        noteEn: 'Borrowed from physics into everyday work talk: the small '
+          + 'resistance that makes a task harder than it needs to be. Reduce '
+          + 'friction, remove friction, a frictionless process.',
+        noteZh: '從物理借來的日常職場用語，指「讓一件事變得比必要更麻煩」的那點小阻力。常說 reduce friction、remove '
+          + 'friction、a frictionless process（順暢無阻的流程）。' },
+      { t: 913, en: 'the price of admission', zh: '入場費、想參與就得付的代價',
+        noteEn: 'Literally what a ticket costs; figuratively, the cost you accept '
+          + 'simply for being in the game. “Late nights are the price of '
+          + 'admission in this industry.”',
+        noteZh: '字面是「門票錢」，引申為「想參加就非付不可的代價」。Late nights are the price of admission '
+          + 'in this industry.（在這一行，熬夜就是入場費。）' },
+    ],
+
+    questions: [
+      { t: 758, en: 'What is his rule for where to keep things, and what two examples does he give?',
+        zh: '他對「東西該放在哪裡」的規則是什麼？他舉了哪兩個例子？',
+        answerEn: 'Store things where you use them, not where they are supposedly '
+          + 'meant to go — the medicine by the coffee maker if you take it with '
+          + 'breakfast, the book on your pillow if you read before bed.',
+        answerZh: '東西要放在你真的會用到它的地方，而不是放在「照理說該放」的地方——配早餐吃的藥就放咖啡機旁邊，睡前要看的書就放在枕頭上。' },
+      { t: 795, en: 'He compares a weekend in Antigua with a mattress. What is the point?',
+        zh: '他拿安地卡的一個週末跟一張床墊比。重點是什麼？',
+        answerEn: 'The weekend lasts three days; the mattress is every night of your '
+          + 'year. So the money goes first on removing the misery that repeats, '
+          + 'and only then on the pleasure that happens once.',
+        answerZh: '那個週末只有三天，床墊卻是你一整年的每一個晚上。所以錢要先花在解決「一再重複的折磨」，之後才輪到「只有一次的享受」。' },
+      { t: 857, en: 'He calls social comparison a rigged game. Why is it rigged?',
+        zh: '他說跟別人比較是一場動過手腳的比賽。為什麼？',
+        answerEn: 'Because you compare their outsides with your insides — their '
+          + 'carefully selected victory or curated profile against your entire '
+          + 'chaotic, messy, unedited life.',
+        answerZh: '因為你是拿別人的外在去比自己的內在——拿他們精挑細選的一次勝利、精心經營的個人頁面，去比你整個混亂、沒剪接過的人生。' },
+      { t: 909, en: 'When something is costing you effort and discomfort, what does he say not to assume?',
+        zh: '當一件事讓你很費力、很不舒服的時候，他說「不要」以為什麼？',
+        answerEn: 'That you are doing something wrong. Anything worthwhile will '
+          + 'demand effort, discomfort, criticism, uncertainty and sacrifice — '
+          + 'you may simply be paying the price of admission.',
+        answerZh: '不要以為自己哪裡做錯了。任何值得的東西都會要你付出力氣、不舒服、被批評、不確定和犧牲——你可能只是在付入場費而已。' },
+    ],
+
+    tasks: [
+      { en: 'Do his money test out loud. Name one recurring misery in your week '
+        + '— the commute, a chair that hurts, a phone that dies by lunchtime '
+        + '— and one occasional pleasure you spend on. Which would you fix '
+        + 'first, and why?',
+        zh: ' '
+          + '出聲做一次他那個花錢測試。說出你一週裡一個「一再發生的折磨」——通勤、坐了會痛的椅子、中午就沒電的手機——再說一個你會花錢買的「偶爾的享受」。你會先解決哪一個？為什麼？' },
+      { en: 'Pick the one code out of these six you could act on this week — '
+        + 'not the one you agree with most, the one you could actually do. '
+        + 'Say which it is, and say the first thing you would move, buy, book '
+        + 'or cancel.',
+        zh: ' '
+          + '從這六條裡挑一條你這禮拜真的做得到的——不是你最認同的那一條，是你真的做得到的那一條。說出是哪一條，然後說你會先搬動、先買、先約、還是先取消什麼。' },
+      { en: 'Take something that is hard in your life right now — a course, a '
+        + 'first job, training, saving money. Say out loud which part of the '
+        + 'difficulty is the price of admission, and which part proves '
+        + 'nothing. Be specific about both.',
+        zh: ' '
+          + '拿一件你現在覺得辛苦的事——一門課、第一份工作、健身、存錢都可以。出聲說說：這份辛苦裡，哪一部分是「入場費」，哪一部分其實什麼都證明不了。兩邊都要講具體。' },
+    ],
+  },
+
+  /* ------------------------------------------------------------------ */
+  {
+    id: 'cheat-close',
+    videoId: 'c7jGXPEY54k',
+    start: 922,
+    end: 955,
+
+    titleEn: 'Don’t try all thirty — pick two',
+    titleZh: '不要三十個都試——挑兩個',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'Daniel Pink — “30 Cheat Codes to Beat Every Level of Life”',
+
+    aboutEn: 'Thirty-three seconds of closing that does two jobs: five of the '
+      + 'thirty codes come back as one line each, and then arrives the '
+      + 'instruction that makes the whole list usable — don’t try all '
+      + 'thirty, pick two. Then he stops, and asks you for the code he '
+      + 'missed.',
+    aboutZh: ' '
+      + '三十三秒的收尾，做了兩件事：先把三十個密技裡的五個，用一句一項的方式再提一次；接著給出讓整張清單真正能用的那句話——不要三十個一起試，挑兩個就好。然後他就停了，反過來問你：他漏掉的那一個密技是什麼。',
+
+    watchForEn: 'He doesn’t say pick any two. Listen for the two kinds he names — '
+      + 'and for the second one, which you choose by how much you’ve been '
+      + 'avoiding it.',
+    watchForZh: '他不是叫你隨便挑兩個。注意聽他指定的那兩種——尤其第二種，是靠「你有多想逃避它」來挑的。',
+
+    lines: [
+      { t: 922, en: 'So, here they are. Thirty cheat codes.',
+                zh: '好，全部就在這裡了，三十個密技。' },
+      { t: 924, en: 'Choose for Tuesdays.',
+                zh: '做選擇的時候，看的是平常的星期二。' },
+      { t: 926, en: 'Give friendship an infrastructure.',
+                zh: '替友情建立一套固定的機制。' },
+      { t: 927, en: 'Get good at something others avoid.',
+                zh: '把別人都在閃躲的事練到很強。' },
+      { t: 929, en: 'Build traditions.',
+                zh: '主動建立傳統。' },
+      { t: 930, en: 'And learn which difficulties to remove and which to accept.',
+                zh: '還有，學會分辨哪些辛苦該排掉、哪些該接受。' },
+      { t: 933, en: 'But cheat codes only work if you enter them.',
+                zh: '但密技只有在你真的輸入進去之後，才會生效。' },
+      { t: 936, en: 'So, don’t try all thirty.',
+                zh: '所以，不要三十個一起試。' },
+      { t: 938, en: 'Pick two.',
+                zh: '挑兩個就好。' },
+      { t: 939, en: 'One that would remove hassle from your life,',
+                zh: '一個是能把生活裡的麻煩拿掉的，' },
+      { t: 941, en: 'and one you’ve been resisting.',
+                zh: '另一個是你一直在抗拒的。' },
+      { t: 943, en: 'Use both this week.',
+                zh: '這個禮拜，兩個都用上。' },
+      { t: 944, en: 'And because I’m certain I missed some,',
+                zh: '而且我很確定一定有漏掉的，' },
+      { t: 946, en: 'tell me this.',
+                zh: '所以你告訴我一件事就好：' },
+      { t: 947, en: 'What’s one life cheat code you had to learn?',
+                zh: '有哪一個人生密技，是你後來不得不自己學會的？' },
+      { t: 949, en: 'Put it in the comments.',
+                zh: '留言告訴我。' },
+      { t: 950, en: 'I read every single one.',
+                zh: '我每一則都會看。' },
+      { t: 951, en: 'And that comment section might end up being even more useful than this video.',
+                zh: '而那個留言區，到頭來搞不好會比這支影片還有用。' },
+    ],
+
+    words: [
+      { t: 926, en: 'give something an infrastructure', zh: '替某件事建立固定的機制',
+        noteEn: 'Infrastructure is normally roads and power. Used of a friendship '
+          + 'or a habit, it means the standing arrangements that keep it alive '
+          + 'without willpower — a recurring date, a shared calendar.',
+        noteZh: 'infrastructure '
+          + '原本指道路、電力那類基礎建設。用在友情或習慣上，指的是「不靠意志力也撐得住」的固定安排——一個每月固定的聚會、一份共用的行事曆。' },
+      { t: 927, en: 'get good at something', zh: '把某件事練到很強',
+        noteEn: 'Get good at, not become good at — the spoken version, and it '
+          + 'implies practice rather than talent. “I want to get good at saying '
+          + 'no.”',
+        noteZh: '口語說 get good at，不說 become good at，而且帶有「靠練的，不是靠天分」的意思。I want to get '
+          + 'good at saying no.（我想把「拒絕別人」練到很順。）' },
+      { t: 933, en: 'only works if you…', zh: '只有在你……的時候才有用',
+        noteEn: 'The shape of every honest piece of advice: it states the condition '
+          + 'instead of promising a result. “The plan only works if we start on '
+          + 'Monday.”',
+        noteZh: '所有誠實的建議都是這個句型：不保證結果，而是把條件講清楚。The plan only works if we start on '
+          + 'Monday.（這個計畫只有在我們星期一就開始的情況下才行得通。）' },
+      { t: 939, en: 'remove hassle from your life', zh: '把生活裡的麻煩拿掉',
+        noteEn: 'Hassle is small, repeated annoyance — the slow website, the form '
+          + 'you refill every month. Countable when you point at one, “parking '
+          + 'is a hassle”; uncountable in bulk, as here.',
+        noteZh: 'hassle 指那種小而重複的麻煩——很慢的網站、每個月都要重填一次的表單。指單一件事時可數：Parking is a '
+          + 'hassle.（停車很麻煩。）整批講的時候就像他這樣不加冠詞。' },
+      { t: 941, en: 'something you’ve been resisting', zh: '你一直在抗拒的那件事',
+        noteEn: 'Resist here is not fighting back — it is quietly not doing the '
+          + 'thing you know you should. The tense says it has gone on a while: '
+          + '“a conversation I’ve been resisting”.',
+        noteZh: '這裡的 resist 不是「反抗」，而是「明知該做卻一直不去做」。用這個時態表示已經拖了一陣子：a conversation '
+          + 'I’ve been resisting（一場我一直在逃避的對話）。' },
+      { t: 946, en: 'tell me this', zh: '你告訴我一件事就好',
+        noteEn: 'Spoken. It shrinks a big subject down to the one question you '
+          + 'actually want answered. Say it, then ask that question — and '
+          + 'nothing after it.',
+        noteZh: '口語。用來把一個大題目縮小成「我真正想問的那一件事」。講完這句就直接問那個問題，後面不要再加別的。' },
+      { t: 950, en: 'every single one', zh: '每一個都不漏',
+        noteEn: 'Single adds nothing to the meaning and everything to the emphasis: '
+          + 'every single day, every single time. Spoken, and here it works as '
+          + 'a quiet promise.',
+        noteZh: 'single 對意思沒有幫助，但把語氣加到最重：every single day、every single '
+          + 'time。口語用法，他在這裡是拿它當一個低調的承諾。' },
+      { t: 951, en: 'end up being', zh: '到頭來變成、最後會是',
+        noteEn: 'End up + -ing is the result nobody planned. “The cheap option '
+          + 'ended up being the slow one.” Very common in speech, a shade '
+          + 'informal in writing.',
+        noteZh: 'end up + -ing 指「沒人計畫、最後卻變成這樣」。The cheap option ended up being the '
+          + 'slow one.（便宜的那個方案，到頭來是最慢的。）口語非常常用，寫成文字稍微不正式。' },
+    ],
+
+    questions: [
+      { t: 924, en: 'He picks five of the thirty to say again. What are they?',
+        zh: '他從三十個裡面挑了五個再講一次。是哪五個？',
+        answerEn: 'Choose for Tuesdays; give friendship an infrastructure; get good '
+          + 'at something others avoid; build traditions; and learn which '
+          + 'difficulties to remove and which to accept.',
+        answerZh: '做選擇時看平常的星期二；替友情建立固定的機制；把別人都在閃躲的事練到很強；主動建立傳統；還有，學會分辨哪些辛苦該排掉、哪些該接受。' },
+      { t: 933, en: 'He says cheat codes only work under one condition. What is it?',
+        zh: '他說密技只有在一個條件下才有用。是什麼條件？',
+        answerEn: 'It only works if you enter it. Knowing the code changes nothing by '
+          + 'itself.',
+        answerZh: '你得真的把它輸入進去，它才會生效。光是知道有這個密技，本身什麼都不會改變。' },
+      { t: 938, en: 'He says not to try all thirty. So what does he tell you to do instead?',
+        zh: '他說不要三十個一起試。那他叫你怎麼做？',
+        answerEn: 'Pick two: one that would remove hassle from your life, and one you '
+          + 'have been resisting. Then use both this week.',
+        answerZh: '挑兩個：一個是能把生活裡的麻煩拿掉的，另一個是你一直在抗拒的。然後這個禮拜兩個都用上。' },
+      { t: 947, en: 'What does he ask viewers to put in the comments, and what does he predict about that section?',
+        zh: '他請觀眾在留言區留下什麼？他又預測那個留言區會怎樣？',
+        answerEn: 'One life cheat code they had to learn for themselves. He says he '
+          + 'reads every single one, and that the comment section might end up '
+          + 'being more useful than the video.',
+        answerZh: '留下一個他們自己不得不學會的人生密技。他說他每一則都會看，而且那個留言區到頭來搞不好會比這支影片還有用。' },
+    ],
+
+    tasks: [
+      { en: 'Do what he asks. Name the one code that would remove the most '
+        + 'hassle from your week, and say what that hassle actually is.',
+        zh: '照他說的做。講出那個最能把你這一週的麻煩拿掉的密技，並且說清楚：那個麻煩到底是什麼。' },
+      { en: 'Now the harder half. Pick the code you have been resisting, say '
+        + 'why you have been resisting it, then say when you will use it this '
+        + 'week — a day, a time, a place.',
+        zh: '接下來是難的那一半。挑一個你一直在抗拒的密技，說說你為什麼抗拒它，然後講出這個禮拜你什麼時候會用——哪一天、幾點、在哪裡。' },
+      { en: 'Answer his last question yourself. What is one life cheat code you '
+        + 'had to learn the hard way? Say it in a single line, the way he '
+        + 'does.',
+        zh: '自己回答他最後那個問題：有哪一個人生密技，是你自己撞過才學會的？用他那種一句話的方式講出來。' },
+    ],
+  },
+
+
+  /* ------------------------------------------------------------------ */
+  {
     id: 'systems-vs-goals',
     videoId: 'rtufWBLOXgw',
     start: 1350,
