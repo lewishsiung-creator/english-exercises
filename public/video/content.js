@@ -128,6 +128,928 @@ const LESSONS = [
 
   /* ------------------------------------------------------------------ */
   {
+    id: 'attention-crisis',
+    videoId: 'ZXHrPfWJcCI',
+    start: 0,
+    end: 57,
+
+    titleEn: 'The problem, and step one',
+    titleZh: '問題本身，還有第一步',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'Daniel Pink — “How To Fix Your Attention Span (Before It’s Too Late)”',
+    videoZh: '修復你的高效專注力',
+
+    aboutEn: 'Under a minute, and it does three jobs: it names the problem, it '
+      + 'dares you to watch this properly, and it earns the right to be '
+      + 'listened to in a single sentence — seven books, fifteen minutes. '
+      + 'Then step one arrives, and it is small enough to do tonight: a '
+      + 'book, a timer, and one honest number written down.',
+    aboutZh: ' '
+      + '不到一分鐘，卻一口氣做完三件事：指出問題、要你好好把這支影片看完，並用一句話取得「值得被聽」的資格——七本書、十五分鐘。接著第一步就來了，而且小到今晚就能做：一本書、一個計時器，還有一個誠實寫下來的數字。',
+
+    watchForEn: 'He spends exactly one sentence on why you should believe him. '
+      + 'Listen for the two numbers in it — the whole argument is those two '
+      + 'numbers placed side by side.',
+    watchForZh: '他只花一句話說明「為什麼該相信他」。注意聽那句話裡的兩個數字——他的整個論證，就是把這兩個數字擺在一起。',
+
+    lines: [
+      { t:  0, en: 'Attention fragmentation is the worst it’s ever been.',
+               zh: '注意力的碎片化，現在是有史以來最嚴重的。' },
+      { t:  2, en: 'We’re distracted, scattered, pulled in a thousand directions.',
+               zh: '我們分心、心散掉，被拉往上千個方向。' },
+      { t:  5, en: 'If we don’t fix it, we’re toast',
+               zh: '如果我們不解決這個問題，我們就完蛋了——' },
+      { t:  6, en: 'as workers, as learners, as humans.',
+               zh: '不管是身為工作者、身為學習者，還是身為人。' },
+      { t:  9, en: 'Here’s my challenge to you.',
+               zh: '我要給你一個挑戰。' },
+      { t: 11, en: 'Watch this video on full screen, 1x speed,',
+               zh: '把這支影片開全螢幕、用一倍速看，' },
+      { t: 13, en: 'with no distractions.',
+               zh: '不要有任何東西來打斷你。' },
+      { t: 14, en: 'Because I’m going to share five science-backed steps',
+               zh: '因為我要分享五個有科學根據的步驟，' },
+      { t: 17, en: 'to rebuild your attention span before it’s too late.',
+               zh: '趁還來得及，把你的專注時間重建起來。' },
+      { t: 20, en: 'They’re pretty simple,',
+               zh: '這些步驟其實滿簡單的，' },
+      { t: 21, en: 'but if you follow these steps, your attention span will improve.',
+               zh: '但只要你照著做，你的專注時間就會變長。' },
+      { t: 25, en: 'I would not have been able to write seven books',
+               zh: '我根本不可能寫得出七本書——' },
+      { t: 27, en: 'if I was scrolling on my phone every fifteen minutes.',
+               zh: '如果我每十五分鐘就滑一次手機的話。' },
+      { t: 30, en: 'But these steps help me take back my time.',
+               zh: '但這些步驟幫我把時間搶了回來。' },
+      { t: 33, en: 'The first step is setting a baseline.',
+               zh: '第一步，是設一個基準值。' },
+      { t: 36, en: 'So grab a book and time yourself.',
+               zh: '所以，去拿一本書，然後幫自己計時。' },
+      { t: 38, en: 'How long can you read',
+               zh: '你可以讀多久，' },
+      { t: 39, en: 'without getting up or checking your phone?',
+               zh: '而不會站起來、也不會去看手機？' },
+      { t: 41, en: 'Really try to push yourself,',
+               zh: '真的要逼自己一下，' },
+      { t: 42, en: 'but don’t judge yourself if it’s only a few minutes.',
+               zh: '但如果只撐了幾分鐘，也不要苛責自己。' },
+      { t: 45, en: 'Write down your time.',
+               zh: '把你的時間寫下來。' },
+      { t: 46, en: 'That’s your baseline.',
+               zh: '那就是你的基準值。' },
+      { t: 48, en: 'The rest of these steps will expand it.',
+               zh: '後面這幾個步驟，會把它一路拉長。' },
+      { t: 50, en: 'You need to train your attention like a muscle.',
+               zh: '你要像練肌肉一樣訓練你的注意力。' },
+      { t: 53, en: 'Build it by starting small and gradually stretching it.',
+               zh: '從小地方開始，再慢慢把它拉長，就這樣練起來。' },
+    ],
+
+    words: [
+      { t: 0, en: 'the worst it’s ever been', zh: '有史以來最嚴重的一次',
+        noteEn: 'A superlative plus “it’s ever been” measures a thing against its '
+          + 'own history, not against anything else. Swap the adjective and it '
+          + 'still works: “The traffic is the worst it’s ever been”, “My '
+          + 'Japanese is the best it’s ever been.”',
+        noteZh: '最高級加上 it’s ever been，是拿一件事跟「它自己的過去」比，不是跟別的東西比。換個形容詞照樣能用：「The '
+          + 'traffic is the worst it’s ever been.」（交通從來沒這麼糟過。）「My Japanese is '
+          + 'the best it’s ever been.」（我的日文從來沒這麼好過。）' },
+      { t: 2, en: 'pulled in a thousand directions', zh: '被拉往上千個方向、忙得團團轉',
+        noteEn: 'Always passive, and always about too many demands at once — never '
+          + 'about one big problem. “I was pulled in a thousand directions all '
+          + 'week” explains why nothing got finished, and sounds tired rather '
+          + 'than whiny.',
+        noteZh: '一定用被動，而且講的是「同時被太多事拉著」，不是一件大麻煩。「I was pulled in a thousand '
+          + 'directions all week.」（我整個禮拜被各種事拉來拉去。）用來解釋為什麼什麼都沒做完，聽起來是累，不是在抱怨。' },
+      { t: 5, en: 'we’re toast', zh: '我們就完蛋了',
+        noteEn: 'Very informal, and always about what is coming: if this happens, '
+          + 'we are finished. Said with a shrug — “If we miss this train, we’re '
+          + 'toast.” Keep it off anything you want taken seriously as bad news.',
+        noteZh: '非常口語，而且一定指接下來會怎樣：要是這樣，我們就沒救了。講的時候帶點聳肩的味道——「If we miss this train, '
+          + 'we’re toast.」（錯過這班車我們就完了。）真正嚴重的壞消息別用這個說法。' },
+      { t: 14, en: 'science-backed', zh: '有科學根據的',
+        noteEn: 'A noun plus -backed says what is standing behind a claim: '
+          + 'science-backed, evidence-backed, government-backed. It is a '
+          + 'selling word, so it goes in front of the thing you are '
+          + 'recommending — “a science-backed way to sleep better”.',
+        noteZh: '名詞加 '
+          + '-backed，表示「背後有什麼在撐」：science-backed（有科學根據的）、evidence-backed（有證據支持的）、government-backed（政府支持的）。這是推薦用的字，放在你要推薦的東西前面——「a '
+          + 'science-backed way to sleep better」（有科學根據的助眠方法）。' },
+      { t: 30, en: 'take back my time', zh: '把自己的時間搶回來',
+        noteEn: 'Take back says the thing was yours first and something took it — '
+          + 'your time, your evenings, your weekend. Change the pronoun and it '
+          + 'is your own sentence: “I’m taking back my mornings.”',
+        noteZh: 'take back 的意思是「本來就是我的，被拿走了，我要拿回來」——時間、晚上、週末都能接。換個代名詞就變成你自己的句子：「I’m '
+          + 'taking back my mornings.」（我要把我的早上搶回來。）' },
+      { t: 33, en: 'setting a baseline', zh: '設一個基準值',
+        noteEn: 'A baseline is the number you start from, so that every later '
+          + 'number means something. Said at work and in the gym alike: “Let’s '
+          + 'set a baseline first and measure again in a month.”',
+        noteZh: 'baseline 是「起點的那個數字」，有了它，後面量到的數字才有意義。職場和健身房都這樣講：「Let’s set a '
+          + 'baseline first and measure again in a month.」（先設一個基準值，一個月後再量一次。）' },
+      { t: 36, en: 'time yourself', zh: '幫自己計時',
+        noteEn: 'Time as a verb means measure how long something takes; time '
+          + 'yourself is the reflexive version, and it is an instruction you '
+          + 'can hand to anyone. “Time yourself reading one page.” Note it is '
+          + 'not count your time.',
+        noteZh: 'time 當動詞是「量一件事花多久」；time yourself 是反身用法，是一句可以直接交給別人的指令：「Time '
+          + 'yourself reading one page.」（幫自己計時，看讀一頁要多久。）注意不是 count your time。' },
+      { t: 42, en: 'don’t judge yourself if…', zh: '就算……也不要苛責自己',
+        noteEn: 'Judge yourself here means be hard on yourself about a result, not '
+          + 'assess it. He pairs it with push yourself one line earlier: try '
+          + 'hard, then be kind about the number. “Don’t judge yourself if it '
+          + 'takes three tries.”',
+        noteZh: 'judge yourself 在這裡是「對自己的結果很苛刻」，不是「評估」。他前一句才剛說 push '
+          + 'yourself（逼自己一下），這裡馬上補上——用力試，但對結果溫柔一點。「Don’t judge yourself if it '
+          + 'takes three tries.」（就算試了三次才成，也別苛責自己。）' },
+    ],
+
+    questions: [
+      { t: 11, en: 'What exactly does he challenge you to do while you watch this video?',
+        zh: '他挑戰你在看這支影片的時候，具體要做到哪幾件事？',
+        answerEn: 'Watch it on full screen, at 1x speed, with no distractions. He '
+          + 'asks for all three before he shares a single step.',
+        answerZh: '全螢幕、一倍速、而且不能有任何干擾。這三件事，他在講出第一個步驟之前就先要求了。' },
+      { t: 25, en: 'What reason does he give for why you should believe him about any of this?',
+        zh: '他給了什麼理由，說明為什麼這些話值得你相信？',
+        answerEn: 'He says he would not have been able to write seven books if he was '
+          + 'scrolling on his phone every fifteen minutes — and that these '
+          + 'steps are what helped him take back his time.',
+        answerZh: '他說，如果他每十五分鐘就滑一次手機，根本不可能寫出七本書；而且就是這些步驟，幫他把時間搶了回來。' },
+      { t: 36, en: 'Step one is setting a baseline. What three things does he tell you to do?',
+        zh: '第一步是設基準值。他叫你做哪三件事？',
+        answerEn: 'Grab a book, time yourself — how long can you read without getting '
+          + 'up or checking your phone — and write the time down. Push '
+          + 'yourself, but don’t judge yourself if it is only a few minutes. '
+          + 'That number is your baseline.',
+        answerZh: ' '
+          + '拿一本書、幫自己計時（看你能讀多久而不站起來、不看手機），然後把時間寫下來。要逼自己一下，但只撐了幾分鐘也別苛責自己。那個數字就是你的基準值。' },
+      { t: 50, en: 'What does he compare your attention to, and how does he say you build it?',
+        zh: '他把注意力比喻成什麼？他說要怎麼把它練起來？',
+        answerEn: 'A muscle. You build it by starting small and gradually stretching '
+          + 'it — and the rest of the steps are what expand the baseline.',
+        answerZh: '肌肉。從小的開始，再慢慢把它拉長，就這樣練起來——後面那些步驟，就是用來把基準值拉長的。' },
+    ],
+
+    tasks: [
+      { en: 'Do step one for real before the next lesson: read something with '
+        + 'no phone nearby and time yourself. Then say your number out loud, '
+        + 'and say honestly what finally made you stop.',
+        zh: '下次上課前，真的去做一次第一步：把手機放遠，讀點東西，然後幫自己計時。接著把你的數字講出來，並且老實說：最後是什麼讓你停下來的。' },
+      { en: 'He says he could not have written seven books while scrolling '
+        + 'every fifteen minutes. Say the same sentence about yourself — one '
+        + 'thing you finished, and the habit that would have stopped it.',
+        zh: '他說，如果每十五分鐘就滑一次手機，他不可能寫出七本書。用同樣的句型講你自己——一件你做完的事，還有哪個習慣本來會害你做不完。' },
+      { en: 'Describe the hour of the day you concentrate worst in: the time, '
+        + 'the room, what is open on your screen. Then say one thing about it '
+        + 'you will change this week.',
+        zh: '描述你一天當中最無法專心的那一個小時：幾點、在哪個房間、螢幕上開著什麼。然後說出這個星期你要改掉其中的哪一件事。' },
+    ],
+  },
+
+  /* ------------------------------------------------------------------ */
+  {
+    id: 'attention-leeches',
+    videoId: 'ZXHrPfWJcCI',
+    start: 57,
+    end: 91,
+
+    titleEn: 'Step two — the attention leeches',
+    titleZh: '第二步——吸走注意力的水蛭',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'Daniel Pink — “How To Fix Your Attention Span (Before It’s Too Late)”',
+
+    aboutEn: 'Thirty-four seconds, three instructions, and one uncomfortable '
+      + 'claim underneath them: your environment is rigged against you, and '
+      + 'billion-dollar companies built it that way. Almost every sentence '
+      + 'is an imperative you can lift whole — and what they add up to is '
+      + 'that the first thing you fix is the room, not yourself.',
+    aboutZh: ' '
+      + '三十四秒、三個指令，底下還壓著一句讓人不太舒服的話：你所處的環境早就被動了手腳，而且是那些身價幾十億美元的公司動的手。這段幾乎每一句都是可以整句搬走的祈使句——而它們加起來的結論是：要先修的是那個空間，不是你自己。',
+
+    watchForEn: 'Three words turn his second tip from a suggestion into a rule. '
+      + 'Listen for what he puts in front of “turn off notifications”.',
+    watchForZh: '有三個英文字，把他的第二條從建議變成了規定。注意聽他在 turn off notifications 前面加了什麼。',
+
+    lines: [
+      { t: 57, en: 'Step two.',
+               zh: '第二步。' },
+      { t: 58, en: 'Eliminate the attention leeches.',
+               zh: '把那些吸走你注意力的水蛭清掉。' },
+      { t: 59, en: 'Your environment is rigged against you.',
+               zh: '你所處的環境早就被動了手腳，就是在跟你作對。' },
+      { t: 61, en: 'Billion-dollar companies are trying to hijack your attention.',
+               zh: '那些身價幾十億美元的公司，正想盡辦法劫走你的注意力。' },
+      { t: 64, en: 'So, design your environment for focus.',
+               zh: '所以，把你的環境設計成適合專注的樣子。' },
+      { t: 67, en: 'Here are some simple but very practical tips.',
+               zh: '以下幾個做法很簡單，但非常實用。' },
+      { t: 70, en: 'One, create a no-phone zone.',
+               zh: '第一，設一個手機禁區。' },
+      { t: 72, en: 'When you have important work to do,',
+               zh: '當你有重要的工作要做的時候，' },
+      { t: 74, en: 'put your phone in another room.',
+               zh: '就把手機放到另一個房間去。' },
+      { t: 76, en: 'Two, in all cases, turn off notifications.',
+               zh: '第二，不管什麼情況，一律把通知關掉。' },
+      { t: 79, en: 'Three, close those twenty-seven tabs you got open,',
+               zh: '第三，把你開著的那二十七個分頁關掉，' },
+      { t: 82, en: 'and check them only in scheduled blocks.',
+               zh: '之後只在排定好的時段裡去看它們。' },
+      { t: 85, en: 'Your attention problem isn’t only your fault,',
+               zh: '你注意力的問題，不全然是你的錯，' },
+      { t: 87, en: 'it’s an environmental problem.',
+               zh: '這是環境的問題。' },
+      { t: 89, en: 'So, fix the environment first.',
+               zh: '所以，先把環境修好。' },
+    ],
+
+    words: [
+      { t: 58, en: 'attention leeches', zh: '吸走注意力的水蛭',
+        noteEn: 'A leech is the animal that attaches to you and quietly drains '
+          + 'blood. Said of apps, group chats, open tabs — anything that takes '
+          + 'attention without you noticing: “Notifications are the biggest '
+          + 'attention leech in my day.”',
+        noteZh: 'leech 是那種吸在你身上、無聲無息把血吸走的水蛭。拿來講手機 '
+          + 'App、群組、開著的分頁——任何在你沒察覺的情況下把注意力吸走的東西：「Notifications are the biggest '
+          + 'attention leech in my day.」（我一天裡最會吸走注意力的，就是那些通知。）' },
+      { t: 59, en: 'rigged against you', zh: '被動了手腳，注定對你不利',
+        noteEn: 'Rigged = secretly arranged so that one side loses. A strong word, '
+          + 'and it always describes a setup rather than a person: “The '
+          + 'timetable is rigged against anyone who commutes.” Note the '
+          + 'preposition: against, not for.',
+        noteZh: 'rigged 是「暗中安排好，讓某一方注定輸」。語氣很重，而且講的一定是某種制度或安排，不是某個人：「The timetable '
+          + 'is rigged against anyone who commutes.」（這個時間表對通勤的人根本不公平。）注意介系詞是 '
+          + 'against，不是 for。' },
+      { t: 61, en: 'hijack your attention', zh: '劫走你的注意力',
+        noteEn: 'To hijack is to seize something already in motion and take it '
+          + 'somewhere else. Said of planes, but just as often of meetings, '
+          + 'conversations and whole afternoons: “Sorry, I hijacked the meeting '
+          + 'there.”',
+        noteZh: 'hijack 是「把正在進行中的東西半路劫走，帶去別的地方」。原本講劫機，但講會議、對話、一整個下午也一樣常見：「Sorry, I '
+          + 'hijacked the meeting there.」（抱歉，剛剛那段被我帶偏了。）' },
+      { t: 64, en: 'design your environment for…', zh: '把環境設計成適合……的樣子',
+        noteEn: 'Design used of a room, a desk or a week rather than a product — '
+          + 'you arrange the conditions in advance and let them do the work: “I '
+          + 'designed my evening for reading: phone charging in the kitchen.”',
+        noteZh: 'design 用在房間、桌面、一週的安排上，不是用在產品上——你先把條件擺好，讓條件替你做事：「I designed my '
+          + 'evening for reading: phone charging in the '
+          + 'kitchen.」（我把晚上安排成適合看書的樣子：手機放在廚房充電。）' },
+      { t: 70, en: 'a no-phone zone', zh: '手機禁區',
+        noteEn: 'The pattern is a no-X zone: a no-phone zone, a no-shoes zone, a '
+          + 'no-meeting zone on a Wednesday morning. Three words that name a '
+          + 'place and a rule at the same time.',
+        noteZh: '句型是 a no-X zone：a no-phone zone（手機禁區）、a no-shoes zone（要脫鞋的地方）、a '
+          + 'no-meeting zone on a Wednesday '
+          + 'morning（週三早上不排會議的時段）。三個字就把地點和規矩一次講完。' },
+      { t: 76, en: 'in all cases', zh: '所有情況都一樣、一律',
+        noteEn: 'Three words that turn a suggestion into a rule, and they go in '
+          + 'front of the instruction: “In all cases, reply within a day.” Its '
+          + 'softer cousin is in most cases.',
+        noteZh: '三個字就把建議變成規定，而且放在指令前面：「In all cases, reply within a '
+          + 'day.」（一律一天之內回覆。）語氣軟一點的說法是 in most cases（大部分情況下）。' },
+      { t: 82, en: 'in scheduled blocks', zh: '在排定好的固定時段裡',
+        noteEn: 'A block is a piece of time you have set aside and named. Check '
+          + 'email in scheduled blocks, revise in blocks — the point is that '
+          + 'the time was decided in advance, not whenever you feel the pull.',
+        noteZh: 'block 是你事先切出來、而且有名字的一段時間。check email in scheduled '
+          + 'blocks（在固定時段收信）、revise in blocks（分段複習）——重點是時間是事先決定好的，不是想到才做。' },
+      { t: 87, en: 'it’s an environmental problem', zh: '這是環境的問題',
+        noteEn: 'Renaming a problem in order to change what you do about it — he '
+          + 'moves it off you and onto the room. The shape is worth stealing: '
+          + '“This isn’t a motivation problem, it’s a scheduling problem.”',
+        noteZh: '把問題重新命名，好改變你接下來要做的事——他把問題從「你」身上挪到「那個空間」上。這個句型值得偷來用：「This isn’t a '
+          + 'motivation problem, it’s a scheduling problem.」（這不是動力的問題，是排程的問題。）' },
+    ],
+
+    questions: [
+      { t: 59, en: 'What does he say about your environment, and who does he say is behind it?',
+        zh: '他說你所處的環境怎麼了？他說背後是誰在做這件事？',
+        answerEn: 'Your environment is rigged against you, and billion-dollar '
+          + 'companies are trying to hijack your attention. That is why he says '
+          + 'to design your environment for focus.',
+        answerZh: '你的環境早就被動了手腳，在跟你作對；而且一堆身價幾十億美元的公司，正想盡辦法劫走你的注意力。所以他才說：把環境設計成適合專注的樣子。' },
+      { t: 70, en: 'What is his first tip, and when exactly does he say to use it?',
+        zh: '他的第一條建議是什麼？他說什麼時候要用？',
+        answerEn: 'Create a no-phone zone. When you have important work to do, put '
+          + 'your phone in another room — not face down on the desk, in another '
+          + 'room.',
+        answerZh: '設一個手機禁區。當你有重要的工作要做的時候，把手機放到另一個房間去——不是螢幕朝下放在桌上，是放到另一個房間。' },
+      { t: 79, en: 'What does he tell you to do about the open tabs — and does he say never to check them?',
+        zh: '那些開著的分頁，他叫你怎麼處理？他有叫你永遠都別看嗎？',
+        answerEn: 'Close those twenty-seven tabs you got open. He never says never — '
+          + 'he says check them only in scheduled blocks.',
+        answerZh: '把開著的那二十七個分頁關掉。他沒有說永遠不能看——他說只在排定好的時段裡去看。' },
+      { t: 85, en: 'Whose fault is your attention problem, in his view, and what does that mean you fix first?',
+        zh: '在他看來，注意力的問題是誰的錯？這代表你要先修的是什麼？',
+        answerEn: 'Not only yours. He calls it an environmental problem, and that is '
+          + 'exactly why he says to fix the environment first.',
+        answerZh: '不全是你的錯。他說這是環境的問題，所以他才會說：先把環境修好。' },
+    ],
+
+    tasks: [
+      { en: 'Pick the one of his three tips you will actually do this week — '
+        + 'not the one you should do, the one you will. Say when, say where, '
+        + 'and say where your phone is while it happens.',
+        zh: '從他的三條裡挑一條你這個星期真的會做的——不是「應該做」的那條，是「你會做」的那條。說出時間、說出地點，還有那段時間你的手機會在哪裡。' },
+      { en: 'Count the tabs you have open right now and say the number out '
+        + 'loud. Then say which ones you actually need, which ones are noise, '
+        + 'and what a scheduled block for the noise would look like in your '
+        + 'week.',
+        zh: ' '
+          + '數一數你現在開了幾個分頁，把數字念出來。然後說說哪些是你真的需要的、哪些只是干擾，還有如果要幫那些干擾排一個固定時段，放在你的一週裡會長什麼樣子。' },
+      { en: 'Describe the place you usually work or study, as if to someone who '
+        + 'has never seen it. Name one thing in it that is rigged against '
+        + 'you, and one change you could make to that room in under a minute.',
+        zh: '描述一下你平常工作或唸書的地方，就當作對方完全沒看過。指出裡面有一樣東西是「在跟你作對」的，再說一個你一分鐘之內就能對那個空間做的改變。' },
+    ],
+  },
+
+  /* ------------------------------------------------------------------ */
+  {
+    id: 'attention-rituals',
+    videoId: 'ZXHrPfWJcCI',
+    start: 91,
+    end: 170,
+
+    titleEn: 'Steps three and four — rituals and breaks',
+    titleZh: '第三步與第四步——儀式與休息',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'Daniel Pink — “How To Fix Your Attention Span (Before It’s Too Late)”',
+
+    aboutEn: 'Eighty seconds and two of the five steps together, because both '
+      + 'are plumbing rather than philosophy: a ritual that tells your '
+      + 'brain work has started, and a break taken before you need one. '
+      + 'Almost every sentence is an instruction or a small concrete '
+      + 'picture — a candle, a playlist, the same cup of tea, a toddler '
+      + 'with no snacks — which is the easiest English there is to remember '
+      + 'and the easiest to steal.',
+    aboutZh: ' '
+      + '八十秒，一口氣講完五步裡的兩步。把它們放在一起，是因為這兩步都是「做法」而不是「道理」：一套告訴大腦「開工了」的儀式，還有一個在你需要之前就先休息的習慣。整段幾乎每一句不是指令，就是一個很具體的小畫面——一根蠟燭、一份播放清單、同一杯茶、一個沒吃到點心的幼兒——這種英文最好記，也最好偷來用。',
+
+    watchForEn: 'He gives you three rituals — a candle, a playlist, a cup of tea — '
+      + 'and then says none of them is the point. Listen for the one word '
+      + 'that is.',
+    watchForZh: '他一連舉了三個儀式的例子——蠟燭、播放清單、一杯茶——然後說重點根本不在這三個。注意聽：他說真正重要的是哪一個字。',
+
+    lines: [
+      { t:  91, en: 'Step three.',
+                zh: '第三步。' },
+      { t:  92, en: 'Practice deep work rituals.',
+                zh: '練習「深度工作」的儀式。' },
+      { t:  93, en: 'Take a page from Cal Newport,',
+                zh: '這一點可以跟 Cal Newport 學，' },
+      { t:  94, en: 'the Georgetown professor and author of the book Deep Work.',
+                zh: '他是喬治城大學的教授，也是《深度工作力》（Deep Work）這本書的作者。' },
+      { t:  98, en: 'Focus is easier when you build cues',
+                zh: '當你建立一些提示訊號，專注就會變得比較容易，' },
+      { t:  99, en: 'that tell your brain, “Now it’s time to work.”',
+                zh: '那些訊號會告訴你的大腦：「現在是工作時間了。」' },
+      { t: 103, en: 'Some writers light a candle at the start of a writing session.',
+                zh: '有些作家會在開始寫作之前，點一根蠟燭。' },
+      { t: 105, en: 'Some coders put on the same playlist.',
+                zh: '有些寫程式的人會放同一份播放清單。' },
+      { t: 107, en: 'Some entrepreneurs sit in the same chair with the same cup of tea.',
+                zh: '有些創業家會坐在同一張椅子上，配同一杯茶。' },
+      { t: 110, en: 'The ritual itself doesn’t matter.',
+                zh: '儀式本身是什麼，其實不重要。' },
+      { t: 112, en: 'What does matter is the consistency.',
+                zh: '真正重要的是「每次都一樣」。' },
+      { t: 114, en: 'It’s like hitting play on a soundtrack your brain already knows.',
+                zh: '就像按下播放鍵，放一首你的大腦早就熟到不行的配樂。' },
+      { t: 119, en: 'Rituals tell your mind: stop wandering.',
+                zh: '儀式是在告訴你的腦袋：別再亂飄了。' },
+      { t: 121, en: 'Start focusing.',
+                zh: '開始專心。' },
+      { t: 122, en: 'So right now, today, create your own starting ritual',
+                zh: '所以就從現在、就今天，做一套屬於你自己的開工儀式，' },
+      { t: 127, en: 'that tells your brain it’s work time.',
+                zh: '讓它告訴你的大腦：工作時間到了。' },
+      { t: 129, en: 'Step four.',
+                zh: '第四步。' },
+      { t: 130, en: 'Leverage breaks and movement.',
+                zh: '善用休息，還有身體的活動。' },
+      { t: 132, en: 'Your brain isn’t designed to focus for twelve straight hours.',
+                zh: '你的大腦本來就不是設計來連續專注十二個小時的。' },
+      { t: 135, en: 'Ninety minutes is about the max',
+                zh: '九十分鐘大概就是極限，' },
+      { t: 136, en: 'before performance falls off a cliff.',
+                zh: '再撐下去，表現就會直接掉下懸崖。' },
+      { t: 138, en: 'So instead of pushing through until you’re fried,',
+                zh: '所以與其硬撐到整個人燒乾，' },
+      { t: 141, en: 'build in recovery,',
+                zh: '不如一開始就把恢復排進去，' },
+      { t: 142, en: 'take short breaks, walk around, stretch.',
+                zh: '短暫休息一下、走一走、伸展一下。' },
+      { t: 145, en: 'Think of your brain like a toddler.',
+                zh: '把你的大腦想成一個幼兒。' },
+      { t: 147, en: 'It melts down if you don’t give it snacks and naps.',
+                zh: '你不給它點心、不讓它睡午覺，它就會大崩潰。' },
+      { t: 151, en: 'And ignoring that fact won’t make you heroic.',
+                zh: '無視這個事實，並不會讓你變成英雄，' },
+      { t: 152, en: 'It’ll just make you cranky and unproductive.',
+                zh: '只會讓你脾氣變差，事情也做不出來。' },
+      { t: 154, en: 'High performers know what other folks don’t get.',
+                zh: '表現頂尖的人，懂一件別人不懂的事：' },
+      { t: 157, en: 'Breaks aren’t deviations from your performance.',
+                zh: '休息不是你表現裡的「脫軌」，' },
+      { t: 160, en: 'They’re part of your performance.',
+                zh: '休息本身就是表現的一部分。' },
+      { t: 162, en: 'So right now, today, schedule a fifteen-minute walk break outside,',
+                zh: '所以就從現在、就今天，排一段十五分鐘的散步時間，走到戶外，' },
+      { t: 167, en: 'no phone, every day for the next week.',
+                zh: '不帶手機，接下來一個星期每天都做。' },
+    ],
+
+    words: [
+      { t: 93, en: 'take a page from…', zh: '跟某人學一套做法',
+        noteEn: 'Short for take a page from someone’s book, and usually said short, '
+          + 'as here: copy the way they do it. The object can be a person or a '
+          + 'whole team — “We could take a page from the design team on this.”',
+        noteZh: '完整說法是 take a page from someone’s '
+          + 'book，但口語通常像他這樣講一半就好，意思是「學他那一套、照他的做法做」。對象可以是人，也可以是一整個團隊：「We could '
+          + 'take a page from the design team on this.」（這件事我們可以學一下設計團隊的做法。）' },
+      { t: 98, en: 'build cues', zh: '建立提示訊號',
+        noteEn: 'A cue is a signal that starts a behaviour — the word every habit '
+          + 'book uses, so you will meet it again. Watch the shape he gives it: '
+          + 'cues that tell your brain it is time to work, not cues for work.',
+        noteZh: 'cue 是「啟動某個行為的訊號」。談習慣的書都用這個字，之後一定還會再遇到。注意他用的句型：cues that tell your '
+          + 'brain it is time to work（告訴大腦「該工作了」的訊號），不是 cues for work。' },
+      { t: 112, en: 'what does matter is…', zh: '真正重要的是……',
+        noteEn: 'Does in front of the verb is spoken emphasis, and it almost always '
+          + 'lands on the second half of a contrast: he dismisses the ritual, '
+          + 'then insists on the consistency. Said aloud, the stress must fall '
+          + 'on does — “What does matter is that you show up.”',
+        noteZh: '動詞前面加 does '
+          + '是口語的強調，而且幾乎一定出現在對比的後半句：他先說儀式不重要，再強調「一致」才重要。唸出來的時候，重音一定要落在 does '
+          + '上：「What does matter is that you show up.」（真正重要的是你有出現。）' },
+      { t: 132, en: 'twelve straight hours', zh: '連續十二個小時',
+        noteEn: 'Straight after a number means with nothing in between: three '
+          + 'straight days, five straight wins, two straight nights. It sits '
+          + 'before the noun; after the noun you would say twelve hours in a '
+          + 'row instead.',
+        noteZh: '數字後面接 straight，表示「中間沒斷、連續」：three straight days（連續三天）、five straight '
+          + 'wins（連贏五場）、two straight nights（連續兩個晚上）。它放在名詞前面；要放在名詞後面的話，就改說 '
+          + 'twelve hours in a row。' },
+      { t: 136, en: 'fall off a cliff', zh: '直線崩掉、突然大幅下滑',
+        noteEn: 'Not a slow decline — a sudden drop off an edge. Used of '
+          + 'performance, sales, attendance, quality, sleep: “Our numbers fell '
+          + 'off a cliff in August.”',
+        noteZh: '不是慢慢下滑，而是「到了某個點突然掉下去」。可以形容表現、業績、出席率、品質、睡眠：「Our numbers fell off a '
+          + 'cliff in August.」（我們八月的數字直接崩掉。）' },
+      { t: 138, en: 'push through until you’re fried', zh: '硬撐到整個人燒乾',
+        noteEn: 'Push through = keep going at the point where you want to stop. '
+          + 'Fried = completely drained, and very common on its own: “Sorry, '
+          + 'I’m fried — can we do this tomorrow?” One half is your decision, '
+          + 'the other half is the price.',
+        noteZh: 'push through 是「已經想停下來了還硬撐下去」；fried 是「整個人燒乾、累爆」，單獨用非常常見：「Sorry, I’m '
+          + 'fried — can we do this tomorrow?」（抱歉我累爆了，明天再弄好嗎？）前半是你的選擇，後半是代價。' },
+      { t: 141, en: 'build in…', zh: '一開始就把……排進去',
+        noteEn: 'To design something into the plan from the start instead of hoping '
+          + 'room appears later: build in a buffer, build in time for '
+          + 'questions, build in a day off. The opposite is bolting it on at '
+          + 'the end, which never happens.',
+        noteZh: 'build in 是「一開始就把某個東西設計進計畫裡」，而不是期待之後還擠得出空間：build in a '
+          + 'buffer（預留緩衝）、build in time for questions（留提問時間）、build in a day '
+          + 'off（排一天休假）。相反的做法是最後才硬加上去——而那通常就是加不上去。' },
+      { t: 147, en: 'melt down', zh: '情緒大崩潰',
+        noteEn: 'What a small child does when it is tired and hungry, said just as '
+          + 'often about adults and systems. The noun is one word: “I had a '
+          + 'complete meltdown the night before the deadline.”',
+        noteZh: '原本是小孩又累又餓時的大哭大鬧，但拿來講大人或系統一樣常見。名詞寫成一個字 meltdown：「I had a complete '
+          + 'meltdown the night before the deadline.」（截止日前一晚我整個崩潰。）' },
+    ],
+
+    questions: [
+      { t: 93, en: 'Who does he tell you to take a page from, and what is that person known for?',
+        zh: '他叫你跟誰學？那個人是以什麼出名的？',
+        answerEn: 'Cal Newport, the Georgetown professor and author of the book Deep '
+          + 'Work. What he borrows from him is the idea of building cues that '
+          + 'tell your brain, “Now it’s time to work.”',
+        answerZh: 'Cal Newport，喬治城大學的教授，也是《深度工作力》（Deep '
+          + 'Work）的作者。他借來的是這個概念：建立一些提示訊號，告訴大腦「現在是工作時間了」。' },
+      { t: 103, en: 'He gives three examples of a ritual. What are they, and which one does he say is the right one?',
+        zh: '他舉了三個儀式的例子。是哪三個？他說哪一個才是對的？',
+        answerEn: 'A writer lighting a candle at the start of a session, a coder '
+          + 'putting on the same playlist, an entrepreneur sitting in the same '
+          + 'chair with the same cup of tea. None of them is the right one — '
+          + 'the ritual itself doesn’t matter, and what does matter is the '
+          + 'consistency.',
+        answerZh: ' '
+          + '作家在開始寫作前點一根蠟燭、寫程式的人放同一份播放清單、創業家坐在同一張椅子上配同一杯茶。三個都不是「正確答案」——儀式本身不重要，真正重要的是每次都一樣。' },
+      { t: 132, en: 'How long does he say a brain can actually focus, and what should you do instead of pushing on?',
+        zh: '他說大腦實際上能專注多久？與其繼續硬撐，你應該怎麼做？',
+        answerEn: 'Not twelve straight hours. Ninety minutes is about the max before '
+          + 'performance falls off a cliff — so instead of pushing through '
+          + 'until you’re fried, build in recovery: short breaks, walk around, '
+          + 'stretch.',
+        answerZh: ' '
+          + '不是連續十二個小時。九十分鐘大概就是極限，再撐下去表現就會直接掉下懸崖——所以與其硬撐到燒乾，不如把恢復排進去：短暫休息、走一走、伸展一下。' },
+      { t: 154, en: 'What do high performers understand about breaks that other people don’t?',
+        zh: '關於休息，表現頂尖的人懂了什麼是別人不懂的？',
+        answerEn: 'That breaks aren’t deviations from your performance — they’re part '
+          + 'of your performance.',
+        answerZh: '他們知道休息不是表現裡的「脫軌」，休息本身就是表現的一部分。' },
+    ],
+
+    tasks: [
+      { en: 'Design your own starting ritual out loud, in order: where you sit, '
+        + 'what you do first, what you drink, what plays. Then say what it is '
+        + 'a cue for — an essay, an hour of study, your own work before the '
+        + 'messages start — and when you will run it this week.',
+        zh: ' '
+          + '出聲設計一套屬於你自己的開工儀式，照順序講：坐在哪裡、第一件事做什麼、喝什麼、放什麼。然後說說它是在提示你開始做什麼——寫報告、念一小時書、在訊息開始湧進來之前先做自己的事——還有這個星期你什麼時候會真的跑一次。' },
+      { en: 'Think of the last time you pushed through until you were fried. '
+        + 'Say how long you had been going, what happened to the quality of '
+        + 'what you were doing, and where the ninety-minute mark would have '
+        + 'fallen.',
+        zh: '想一想你上一次硬撐到整個人燒乾是什麼時候。說說你當時已經做了多久、你做出來的東西品質變成怎樣，還有九十分鐘那個點會落在哪裡。' },
+      { en: 'Take his assignment: a fifteen-minute walk, outside, no phone, '
+        + 'every day for a week. Say which time of day it goes in, then name '
+        + 'the one thing most likely to eat it — and what you will do when it '
+        + 'tries.',
+        zh: ' '
+          + '接下他出的作業：十五分鐘、走到戶外、不帶手機，連續一個星期每天都做。說出你要排在一天中的什麼時段，然後說出最有可能把這段時間吃掉的是什麼——以及它來吃的時候，你打算怎麼辦。' },
+    ],
+  },
+
+  /* ------------------------------------------------------------------ */
+  {
+    id: 'attention-meaning',
+    videoId: 'ZXHrPfWJcCI',
+    start: 170,
+    end: 233,
+
+    titleEn: 'Step five — attention and meaning',
+    titleZh: '第五步——注意力與意義',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'Daniel Pink — “How To Fix Your Attention Span (Before It’s Too Late)”',
+
+    aboutEn: 'Just over a minute, and the last of his five steps — the one that '
+      + 'sounds like a poster on a wall until he turns it into a procedure: '
+      + 'ask why this matters, ask who benefits, write the answer down, '
+      + 'keep it where you can see it. Then he tells on himself, and the '
+      + 'second half is a writer stuck on his own book, watching sports '
+      + 'highlights on his phone, because he could not have told you why he '
+      + 'was writing it.',
+    aboutZh: ' '
+      + '一分鐘出頭，五個步驟的最後一個——這一步聽起來像牆上的勵志標語，直到他把它變成一套可以照做的流程：問這件事為什麼重要、問誰會因此受益、把答案寫下來、放在看得到的地方。然後他開始自首，後半段是一個卡在自己書裡的作者，滑著手機看運動賽事精華，因為他根本說不出自己為什麼要寫這本書。',
+
+    watchForEn: 'A third of the way in, he stops giving advice and starts '
+      + 'confessing. Listen for the sentence where “you” turns into “I”.',
+    watchForZh: '講到大約三分之一的地方，他從「給建議」變成「自首」。注意聽：是哪一句開始，主詞從 you 變成了 I。',
+
+    lines: [
+      { t: 170, en: 'Step five.',
+                zh: '第五步。' },
+      { t: 171, en: 'Reconnect attention to meaning.',
+                zh: '把注意力和意義重新接上。' },
+      { t: 172, en: 'Meaning sounds like a soft-hearted notion,',
+                zh: '「意義」聽起來像是個很軟、很感性的東西，' },
+      { t: 174, en: 'but it can be a hard-headed strategy.',
+                zh: '但它其實可以是一套很冷靜、很務實的策略。' },
+      { t: 176, en: 'So use it to reclaim your attention.',
+                zh: '所以，拿它來把你的注意力要回來。' },
+      { t: 178, en: 'Before you start anything, ask:',
+                zh: '在你開始做任何事之前，先問：' },
+      { t: 180, en: '“Why does this matter?”',
+                zh: '「這件事為什麼重要？」' },
+      { t: 181, en: '“Who benefits?”',
+                zh: '「誰會因此受益？」' },
+      { t: 182, en: 'Then write it down and keep it in view.',
+                zh: '然後把答案寫下來，放在看得到的地方。' },
+      { t: 185, en: 'Because purpose fuels persistence.',
+                zh: '因為有目的，才撐得下去。' },
+      { t: 187, en: 'When you connect attention to meaning,',
+                zh: '當你把注意力和意義接上，' },
+      { t: 189, en: 'it stops being a chore and starts being a choice.',
+                zh: '它就不再是苦差事，而變成你自己的選擇。' },
+      { t: 192, en: 'I learned this myself on my last book.',
+                zh: '這件事，是我寫上一本書的時候自己學到的。' },
+      { t: 194, en: 'I was struggling.',
+                zh: '我那時候卡住了。' },
+      { t: 195, en: 'I was distracted.',
+                zh: '我一直分心。' },
+      { t: 196, en: 'I was on my phone and watching sports highlights,',
+                zh: '我一直在滑手機、看運動賽事的精華，' },
+      { t: 199, en: 'rather than doing my work.',
+                zh: '而不是在做我該做的事。' },
+      { t: 200, en: 'And I realized the problem was',
+                zh: '然後我發現，問題出在' },
+      { t: 201, en: 'that I didn’t know why I was writing this book.',
+                zh: '我根本不知道自己為什麼要寫這本書。' },
+      { t: 204, en: 'I didn’t have a purpose.',
+                zh: '我沒有一個目的。' },
+      { t: 205, en: 'And once I thought that through,',
+                zh: '等我把這件事想清楚——' },
+      { t: 206, en: 'and it took a couple of weeks,',
+                zh: '而這花了我兩三個星期——' },
+      { t: 207, en: 'I typed out my purpose,',
+                zh: '我把我的目的打了出來，' },
+      { t: 209, en: 'figured out what it was,',
+                zh: '弄清楚它到底是什麼，' },
+      { t: 211, en: 'and then posted it on the wall,',
+                zh: '然後把它貼在牆上，' },
+      { t: 212, en: 'and used that as a way to maintain my attention,',
+                zh: '用這個方式讓我的注意力維持住，' },
+      { t: 215, en: 'maximize my focus,',
+                zh: '把專注力拉到最高，' },
+      { t: 217, en: 'and then the work started flowing.',
+                zh: '然後，工作就開始順了。' },
+      { t: 220, en: 'It’s really easy to make things complicated.',
+                zh: '把事情搞複雜，其實非常容易。' },
+      { t: 222, en: 'It’s harder to make them simple.',
+                zh: '把事情變簡單，才難。' },
+      { t: 224, en: 'And the way that we can get our attention back',
+                zh: '而我們要把注意力拿回來的方法，' },
+      { t: 227, en: 'is relatively simple and straightforward,',
+                zh: '其實相對簡單、也很直接，' },
+      { t: 229, en: 'but you have to do it.',
+                zh: '但你得真的去做。' },
+      { t: 231, en: 'You have to follow the steps.',
+                zh: '你得照著這些步驟走。' },
+    ],
+
+    words: [
+      { t: 172, en: 'a soft-hearted notion', zh: '一個很感性、心軟的想法',
+        noteEn: 'Its pair, a hard-headed strategy, lands two seconds later, and the '
+          + 'two together are the whole move: soft-hearted is kind but '
+          + 'impractical, hard-headed is unsentimental and effective. “It '
+          + 'sounds soft-hearted, but it’s a hard-headed way to protect your '
+          + 'evenings.”',
+        noteZh: '對照的 a hard-headed '
+          + 'strategy（冷靜務實的策略）兩秒後就出現，這一組對比就是他整段的手法：soft-hearted '
+          + '是善良但不切實際，hard-headed 是不帶感情、但真的有用。「It sounds soft-hearted, but it’s '
+          + 'a hard-headed way to protect your '
+          + 'evenings.」（聽起來很感性，但這其實是保住你晚上時間的務實做法。）' },
+      { t: 176, en: 'reclaim your attention', zh: '把你的注意力要回來',
+        noteEn: 'Reclaim is to take back something that was yours to begin with — '
+          + 'stronger than get back, and it hints that someone took it from '
+          + 'you. Also said of time, a weekend, a language: “I’m trying to '
+          + 'reclaim my mornings.”',
+        noteZh: 'reclaim 是「把本來就屬於你的東西拿回來」，語氣比 get back '
+          + '重，而且暗示它是被人拿走的。時間、週末、一種語言都能這樣講：「I’m trying to reclaim my '
+          + 'mornings.」（我在試著把早上的時間要回來。）' },
+      { t: 182, en: 'keep it in view', zh: '讓它一直在你看得到的地方',
+        noteEn: 'Literally within sight, and he means it literally — his purpose '
+          + 'went on the wall. In view also works for anything you need to keep '
+          + 'watching: “Keep the deadline in view.”',
+        noteZh: '字面上就是「在視線範圍內」，而且他是真的照字面做——他把自己的目的貼在牆上。in view '
+          + '也能用在任何你得一直盯著的東西：「Keep the deadline in view.」（把截止日放在看得到的地方。）' },
+      { t: 185, en: 'purpose fuels persistence', zh: '有目的，才撐得久',
+        noteEn: 'The reusable part is fuel as a verb: X fuels Y means X is what '
+          + 'keeps Y going. “Curiosity fuels the whole project.” The two '
+          + 'p-sounds are why the line sticks, which is why he pauses after it.',
+        noteZh: '可以直接借走的是動詞 fuel：X fuels Y 是「X 是讓 Y 持續下去的燃料」。「Curiosity fuels the '
+          + 'whole project.」（好奇心是撐起整個案子的動力。）這句好記是因為兩個 p 的頭韻，所以他講完停了一拍。' },
+      { t: 189, en: 'it stops being… and starts being…', zh: '它就不再是……，而變成……',
+        noteEn: 'A two-part frame for saying that something has changed in how it '
+          + 'feels, not in what it is. “Once you choose the topic yourself, it '
+          + 'stops being an assignment and starts being a project.”',
+        noteZh: '一個兩段式句型，用來講「某件事給人的感覺變了」，而不是它本身變了。「Once you choose the topic '
+          + 'yourself, it stops being an assignment and starts being a '
+          + 'project.」（一旦題目是你自己選的，它就不再是被交代的差事，而變成你自己的案子。）' },
+      { t: 196, en: 'sports highlights', zh: '運動賽事的精華片段',
+        noteEn: 'Highlights are the best bits cut out of something longer — a '
+          + 'match, a concert, a conference. Almost always plural: “I only '
+          + 'watched the highlights.” The singular, a highlight, means the best '
+          + 'part of a day or a trip.',
+        noteZh: 'highlights 是從比較長的東西裡剪出來的精華——比賽、演唱會、研討會都行，幾乎都用複數：「I only watched '
+          + 'the highlights.」（我只看了精華。）單數的 a highlight 則是指一天或一趟旅程裡最棒的那一段。' },
+      { t: 205, en: 'once I thought that through', zh: '等我把這件事從頭到尾想清楚',
+        noteEn: 'Think something through is to follow an idea all the way to its '
+          + 'consequences, not just to have it. He then admits how long it took '
+          + '— a couple of weeks — and that admission is the honest part: “I '
+          + 'need a day to think it through.”',
+        noteZh: 'think something through '
+          + '是「把一個想法一路想到它的後果」，不只是「有想到」。他接著承認這花了兩三個星期，那句承認才是誠實的地方：「I need a day '
+          + 'to think it through.」（給我一天，我要把它想清楚。）' },
+      { t: 220, en: 'make things complicated', zh: '把事情搞複雜',
+        noteEn: 'Paired in the very next line with make them simple, and the order '
+          + 'is the point: complicated is the easy default, simple is the work. '
+          + '“We’ve made this way more complicated than it needs to be.”',
+        noteZh: '下一句馬上用 make them '
+          + 'simple（把事情變簡單）來對照，而且順序就是重點：複雜是省力的預設值，簡單才是真功夫。「We’ve made this way '
+          + 'more complicated than it needs to be.」（這件事被我們搞得比需要的複雜太多了。）' },
+    ],
+
+    questions: [
+      { t: 172, en: 'He says meaning sounds like one kind of thing but can be another. What are the two descriptions he uses?',
+        zh: '他說「意義」聽起來像某一種東西，但其實可以是另一種。他用的是哪兩個形容？',
+        answerEn: 'It sounds like a soft-hearted notion, but it can be a hard-headed '
+          + 'strategy — so use it to reclaim your attention.',
+        answerZh: '聽起來像是個很軟、很感性的想法，但它可以是一套冷靜務實的策略——所以拿它來把注意力要回來。' },
+      { t: 178, en: 'What two questions does he tell you to ask before you start anything, and what are you supposed to do with the answer?',
+        zh: '他說在開始做任何事之前，要先問哪兩個問題？答案又要拿來做什麼？',
+        answerEn: 'Ask “Why does this matter?” and “Who benefits?” Then write it down '
+          + 'and keep it in view — because purpose fuels persistence.',
+        answerZh: '問「這件事為什麼重要？」和「誰會因此受益？」然後把答案寫下來，放在看得到的地方——因為有目的，才撐得下去。' },
+      { t: 194, en: 'On his last book, what was he doing instead of working, and what did he decide the real problem was?',
+        zh: '寫上一本書的時候，他都在做什麼、而不是在工作？他後來認為真正的問題是什麼？',
+        answerEn: 'He was struggling and distracted, on his phone watching sports '
+          + 'highlights rather than doing his work. The real problem was that '
+          + 'he didn’t know why he was writing the book — he had no purpose.',
+        answerZh: '他卡住了，也一直分心，都在滑手機看運動賽事的精華，而不是在做該做的事。真正的問題是：他不知道自己為什麼要寫這本書——他沒有目的。' },
+      { t: 207, en: 'Once he had worked his purpose out, what exactly did he do with it, and what happened to the work?',
+        zh: '等他把自己的目的想清楚之後，他實際上拿它做了什麼？工作又變得怎樣？',
+        answerEn: 'He typed it out, figured out what it was, and posted it on the '
+          + 'wall, using that to maintain his attention and maximize his focus. '
+          + 'Then the work started flowing.',
+        answerZh: '他把它打出來、弄清楚它到底是什麼，然後貼在牆上，用這個方式維持注意力、把專注力拉到最高。接著，工作就開始順了。' },
+    ],
+
+    tasks: [
+      { en: 'Take one thing on your list for this week — an essay, a report, a '
+        + 'training plan, the thing you keep putting off. Ask his two '
+        + 'questions out loud, answer them, and then say exactly where you '
+        + 'are going to keep that answer in view.',
+        zh: ' '
+          + '從你這星期的待辦裡挑一件事——一份作業、一份報告、一個訓練計畫，或是你一直在拖的那件事。把他那兩個問題出聲問一次、也回答一次，然後說清楚：你要把這個答案放在哪個看得到的地方。' },
+      { en: 'Tell his story about yourself. Name something you were struggling '
+        + 'with, say what you were doing on your phone instead, and say '
+        + 'honestly whether you could have explained why you were doing the '
+        + 'thing at all.',
+        zh: '用他的故事講你自己。說一件你當時卡住的事、說你那時候拿手機在做什麼，然後老實說：你當時講得出自己為什麼在做這件事嗎？' },
+      { en: 'Finish two sentences about something you are doing right now: “At '
+        + 'the moment this is a chore because…” and “It would start being a '
+        + 'choice if…”',
+        zh: '針對你現在正在做的某件事，把兩句話講完：「現在這對我來說是苦差事，因為……」還有「如果……，它就會變成我自己的選擇。」' },
+    ],
+  },
+
+  /* ------------------------------------------------------------------ */
+  {
+    id: 'attention-recap',
+    videoId: 'ZXHrPfWJcCI',
+    start: 233,
+    end: 262,
+
+    titleEn: 'Five steps, then the real point',
+    titleZh: '五個步驟，然後才是重點',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'Daniel Pink — “How To Fix Your Attention Span (Before It’s Too Late)”',
+
+    aboutEn: 'Thirty seconds of closing, and the most useful half-minute in the '
+      + 'whole video: all five steps again, one sentence each, nothing '
+      + 'padded. Then the sentence the rest of it was built toward — life '
+      + 'is not meant to be lived in fifteen-second increments.',
+    aboutZh: ' '
+      + '三十秒的收尾，也是整支影片裡最有用的半分鐘：五個步驟再講一次，一步一句，沒有半句多的。接著就是前面一路鋪陳到的那一句——人生不該是用十五秒為單位過的。',
+
+    watchForEn: 'Each step gets exactly one sentence and is never said twice. Count '
+      + 'how many of the five you can say back after a single play.',
+    watchForZh: '每個步驟只用一句話講完，而且只講一次。放一次之後，看看你能複述出幾個。',
+
+    lines: [
+      { t: 234, en: 'How to fix your attention span before it’s too late.',
+                zh: '怎麼在來不及之前，把你的專注力修好。' },
+      { t: 237, en: 'Number one,',
+                zh: '第一。' },
+      { t: 238, en: 'establish a baseline,',
+                zh: '先建立你的基準線，' },
+      { t: 239, en: 'then train it like a muscle.',
+                zh: '然後像練肌肉一樣去練它。' },
+      { t: 241, en: 'Two,',
+                zh: '第二。' },
+      { t: 242, en: 'eliminate those attention leeches.',
+                zh: '把那些吸走注意力的水蛭清掉。' },
+      { t: 244, en: 'Three,',
+                zh: '第三。' },
+      { t: 245, en: 'build your own focus rituals.',
+                zh: '建立你自己的專注儀式。' },
+      { t: 246, en: 'Four,',
+                zh: '第四。' },
+      { t: 247, en: 'take breaks before your brain crashes.',
+                zh: '趁大腦還沒當機之前先休息。' },
+      { t: 249, en: 'And five,',
+                zh: '還有第五。' },
+      { t: 250, en: 'connect your focus to a larger purpose.',
+                zh: '把你的專注，連到一個更大的目的上。' },
+      { t: 252, en: 'Life is not meant to be lived in fifteen-second increments.',
+                zh: '人生不該是用十五秒為單位過的。' },
+      { t: 255, en: 'So try these steps today,',
+                zh: '所以今天就開始試這幾個步驟，' },
+      { t: 257, en: 'because the sooner you reclaim your attention,',
+                zh: '因為你越早把注意力拿回來，' },
+      { t: 259, en: 'the sooner you can reclaim your life.',
+                zh: '就能越早把人生拿回來。' },
+    ],
+
+    words: [
+      { t: 238, en: 'establish a baseline', zh: '建立基準線、先量出起點',
+        noteEn: 'A baseline is the number you start from, measured before you '
+          + 'change anything — how long you can read, how long you can run, '
+          + 'what a month actually costs you. Establish, set or take a '
+          + 'baseline: “Let’s take a baseline first, then we’ll know if any of '
+          + 'this is working.”',
+        noteZh: 'baseline（基準線）是你在動手改變之前先量出來的那個數字——能讀多久、能跑多久、一個月實際花掉多少。動詞用 '
+          + 'establish、set 或 take：「Let’s take a baseline first, then we’ll know '
+          + 'if any of this is working.」（先量個基準，之後才知道有沒有效。）' },
+      { t: 239, en: 'train it like a muscle', zh: '像練肌肉一樣去練它',
+        noteEn: 'Train X like a muscle = grow it with small, repeated sessions that '
+          + 'get slightly harder. The image carries the method inside it, which '
+          + 'is why it survives well outside the gym: “Saying no is a muscle — '
+          + 'you have to train it.”',
+        noteZh: 'train X like a muscle '
+          + '是「用一次次小份量、一次比一次難一點的練習把它養大」。這個比喻本身就把方法講完了，所以離開健身房也一樣站得住：「Saying no '
+          + 'is a muscle — you have to train it.」（拒絕別人是一塊肌肉，要練。）' },
+      { t: 242, en: 'attention leeches', zh: '吸走注意力的水蛭',
+        noteEn: 'A leech attaches itself to you and quietly takes something you '
+          + 'need. He says eliminate those attention leeches as if you already '
+          + 'know which ones are yours — and you do. The same frame works for '
+          + 'anything that drains you: energy leeches, time leeches.',
+        noteZh: 'leech 是水蛭：吸在你身上，安安靜靜把你需要的東西抽走。他說 eliminate those attention '
+          + 'leeches，語氣就像你早就知道自己的是哪幾隻——你的確知道。同樣的說法可以套到任何會把你抽乾的東西：energy '
+          + 'leeches、time leeches。' },
+      { t: 245, en: 'build your own focus rituals', zh: '建立你自己的專注儀式',
+        noteEn: 'A ritual here is a small fixed action you repeat before the work '
+          + 'starts, not a belief — the same playlist, the same chair, the same '
+          + 'cup. Your own is doing real work in the phrase: you choose it, and '
+          + 'then you never vary it.',
+        noteZh: '這裡的 ritual（儀式）不是信仰，是你在開工前重複做的一個固定小動作——同一張歌單、同一張椅子、同一個杯子。your own '
+          + '在這句裡是有份量的：你自己挑一個，然後就不再換。' },
+      { t: 247, en: 'before your brain crashes', zh: '趁大腦還沒當機之前',
+        noteEn: 'Crash is what a computer does, borrowed for people: you stop '
+          + 'working not gradually but all at once. Before + the disaster is a '
+          + 'useful shape for arguing about timing: “Let’s sort this out before '
+          + 'the whole thing crashes.”',
+        noteZh: 'crash 本來是電腦「當機」，借來講人：不是慢慢變慢，是一下子整個停掉。before + 災難 '
+          + '這個結構很適合用來講「時機」：「Let’s sort this out before the whole thing '
+          + 'crashes.」（趁整個垮掉之前先處理。）' },
+      { t: 250, en: 'connect … to a larger purpose', zh: '把……連到一個更大的目的上',
+        noteEn: 'Larger, not large — the comparative means bigger than the task '
+          + 'sitting in front of you. Connect A to B is the verb he uses and '
+          + 'the one worth stealing: “I can’t connect this to anything larger, '
+          + 'which is probably why I keep avoiding it.”',
+        noteZh: '他用的是 larger 不是 large——比較級的意思是「比眼前這件事更大」。動詞用 connect A to '
+          + 'B，這個字值得偷走：「I can’t connect this to anything larger, which is '
+          + 'probably why I keep avoiding it.」（我沒辦法把這件事連到更大的什麼，大概就是我一直在逃避它的原因。）' },
+      { t: 252, en: 'in fifteen-second increments', zh: '以十五秒為單位、一小段一小段地',
+        noteEn: 'An increment is one small step of a bigger amount. “In X '
+          + 'increments” says how something has been chopped up: “I’m getting '
+          + 'this done in five-minute increments.”',
+        noteZh: 'increment 是「一大份裡切出來的一小步」。in X increments 是在講一件事被切成什麼樣的碎塊：「I’m '
+          + 'getting this done in five-minute increments.」（我是一次五分鐘、一點一點把它做完的。）' },
+      { t: 257, en: 'the sooner you…, the sooner you…', zh: '你越早……，就越早……',
+        noteEn: 'The two halves have to match, and the second one is the payoff — '
+          + 'here it lands on the next line. It turns an instruction into a '
+          + 'bargain, which is why it closes a talk so well. Any comparative '
+          + 'pair works: the longer you wait, the worse it gets.',
+        noteZh: '前後兩半要對稱，而且第二半才是回報——在這裡回報落在下一句。它把一句命令變成一筆交易，所以特別適合收尾。任何比較級都能套：the '
+          + 'longer you wait, the worse it gets（你越拖，情況越糟）。' },
+    ],
+
+    questions: [
+      { t: 237, en: 'He lists all five steps in about fifteen seconds. What are they, in order?',
+        zh: '他在大約十五秒內把五個步驟全講完。依序是哪五個？',
+        answerEn: 'One, establish a baseline, then train it like a muscle. Two, '
+          + 'eliminate those attention leeches. Three, build your own focus '
+          + 'rituals. Four, take breaks before your brain crashes. And five, '
+          + 'connect your focus to a larger purpose.',
+        answerZh: ' '
+          + '第一，建立基準線，然後像練肌肉一樣練它。第二，清掉那些吸走注意力的水蛭。第三，建立你自己的專注儀式。第四，趁大腦還沒當機之前先休息。第五，把你的專注連到一個更大的目的上。' },
+      { t: 238, en: 'Step one comes in two halves. What do you measure first, and what do you do with it afterwards?',
+        zh: '第一步分成兩半。你要先量什麼？量完之後要拿它怎麼辦？',
+        answerEn: 'Establish a baseline first, then train it like a muscle — find the '
+          + 'number you are actually starting from, then grow it by repetition '
+          + 'rather than by effort.',
+        answerZh: '先建立基準線，再像練肌肉一樣練它——先量出你真正的起點，然後靠重複把它養大，而不是靠硬撐。' },
+      { t: 247, en: 'He does not say take a break when you feel tired. When does he say to take one?',
+        zh: '他沒有說「累了就休息」。他說該在什麼時候休息？',
+        answerEn: 'Before your brain crashes. The break goes ahead of the collapse, '
+          + 'not after it.',
+        answerZh: '在大腦當機之前。休息要排在崩潰前面，不是崩潰後面。' },
+      { t: 252, en: 'What sentence is the whole video built toward — what does he say life is not meant to be?',
+        zh: '整支影片鋪陳到的是哪一句？他說人生不該是什麼樣子？',
+        answerEn: 'Life is not meant to be lived in fifteen-second increments. And '
+          + 'the sooner you reclaim your attention, the sooner you can reclaim '
+          + 'your life.',
+        answerZh: '人生不該是用十五秒為單位過的。而且你越早把注意力拿回來，就能越早把人生拿回來。' },
+    ],
+
+    tasks: [
+      { en: 'Say the five back in order without looking. Then pick the one you '
+        + 'are worst at, and say why it is that one and not another.',
+        zh: '不要看，把五個步驟依序講一遍。然後挑出你最做不到的那一個，說說為什麼是它，而不是別的。' },
+      { en: 'Put the step you just picked into your week. Say the day, the time '
+        + 'and the exact thing you will do — not the idea, the action. Then '
+        + 'say what will most likely stop you.',
+        zh: '把你剛剛挑的那一步排進你這個星期。說出哪一天、幾點，還有你確切要做的那件事——不要講道理，講動作。然後說說最可能害你做不成的是什麼。' },
+      { en: 'Finish his closing shape for yourself: “The sooner I ___, the '
+        + 'sooner I ___.” Say it out loud, then name one thing you have lost '
+        + 'to your phone that you would actually get back.',
+        zh: '用他收尾的句型替自己填完：「我越早 ___，就越早 ___。」出聲講一次，然後說出一件被手機吃掉、而你真的想拿回來的東西。' },
+    ],
+  },
+
+
+  /* ------------------------------------------------------------------ */
+  {
     id: 'cheat-intro',
     videoId: 'c7jGXPEY54k',
     start: 0,
