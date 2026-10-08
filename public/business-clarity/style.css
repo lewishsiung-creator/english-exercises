@@ -121,9 +121,15 @@ body {
 
 /* ---------------- shell + contents ---------------- */
 
+/* minmax(0, 1fr) rather than a bare 1fr: a grid track's min-width defaults to
+   auto, so a plain 1fr refuses to shrink below the widest thing inside it. The
+   phrase tables are wider than a phone, so on a phone the column stayed at
+   their width and every line of the worksheet ran off the right edge — the
+   .table-wrap's own overflow-x never got the chance to scroll. The 0 minimum
+   lets the column reach 375px and hands the scrolling back to the table. */
 .shell {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   max-width: 74rem;
   margin: 0 auto;
   padding: 0 20px;

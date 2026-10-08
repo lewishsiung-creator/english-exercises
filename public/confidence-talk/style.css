@@ -540,7 +540,11 @@ body.zh-all .source .zh { display: inline; }
   text-transform: uppercase;
   color: var(--ink-faint);
 }
-.upg-label .zh-fixed { text-transform: none; letter-spacing: 0; }
+/* An absolute size, not the inherited .78em. These labels are 11px uppercase
+   Latin, which reads fine at that size; .78em of it put the Chinese at 8.58px,
+   which on a phone is a grey smudge. Chinese needs about the same size as the
+   Latin beside it, not less. Same on .frame-eg-label and .q-follow-label. */
+.upg-label .zh-fixed { text-transform: none; letter-spacing: 0; font-size: 12px; }
 
 .upg-was { margin: 0 0 14px; font-size: 1.1rem; }
 
@@ -616,7 +620,7 @@ body.zh-all .source .zh { display: inline; }
   text-transform: uppercase;
   color: var(--green);
 }
-.frame-eg-label .zh-fixed { text-transform: none; letter-spacing: 0; }
+.frame-eg-label .zh-fixed { text-transform: none; letter-spacing: 0; font-size: 12px; }
 .frame-eg-en { margin: 0; }
 .frame-eg-zh {
   margin: 3px 0 0;
@@ -696,7 +700,7 @@ body.zh-all .source .zh { display: inline; }
   text-transform: uppercase;
   color: var(--ink-faint);
 }
-.q-follow-label .zh-fixed { text-transform: none; letter-spacing: 0; }
+.q-follow-label .zh-fixed { text-transform: none; letter-spacing: 0; font-size: 12px; }
 .q-follow-en { margin: 0; font-size: .98rem; }
 .q-follow-zh {
   margin: 3px 0 0;
@@ -909,4 +913,33 @@ body.zh-all .source .zh { display: inline; }
   .hidden-en, .rrow .td-en .say { visibility: visible !important; }
   .rrow:not(.open) .td-en::after { content: ""; }
   .item { break-inside: avoid; }
+}
+
+
+/* ---------------- touch targets ----------------
+
+   🔊 and 中 are the most-tapped controls on the page, but inline in running
+   text they render at about 23×19px — under the 24×24 CSS px floor of WCAG 2.2
+   AA (2.5.8 Target Size (Minimum)).
+
+   They cannot simply be drawn bigger. Measured on a 375px screen, the gap to
+   the next control is 7–10px and the line box is only 24px tall, so a larger
+   chip would collide with its neighbours — and two overlapping hit areas are
+   worse than one small one, because the loser becomes untappable.
+
+   So the visible chip is left exactly as it was and an invisible hit area is
+   centred on it: at least 24×24, never smaller than the chip itself. Nothing
+   on the page moves; the finger just gets something bigger to aim at. */
+
+.say, .zh-chip { position: relative; }
+
+.say::after,
+.zh-chip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, 24px);
+  height: max(100%, 24px);
+  transform: translate(-50%, -50%);
 }

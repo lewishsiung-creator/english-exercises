@@ -1075,3 +1075,32 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 .site-foot p a:hover { opacity: .7; }
 
 @media print { .site-foot { display: none; } }
+
+
+/* ---------------- touch targets ----------------
+
+   🔊 and 中 are the most-tapped controls on the page, but inline in running
+   text they render at about 23×19px — under the 24×24 CSS px floor of WCAG 2.2
+   AA (2.5.8 Target Size (Minimum)).
+
+   They cannot simply be drawn bigger. Measured on a 375px screen, the gap to
+   the next control is 7–10px and the line box is only 24px tall, so a larger
+   chip would collide with its neighbours — and two overlapping hit areas are
+   worse than one small one, because the loser becomes untappable.
+
+   So the visible chip is left exactly as it was and an invisible hit area is
+   centred on it: at least 24×24, never smaller than the chip itself. Nothing
+   on the page moves; the finger just gets something bigger to aim at. */
+
+.say, .zh-chip { position: relative; }
+
+.say::after,
+.zh-chip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, 24px);
+  height: max(100%, 24px);
+  transform: translate(-50%, -50%);
+}
