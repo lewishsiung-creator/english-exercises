@@ -469,6 +469,48 @@ const BLOCKS = {
       </div>
     </div>`,
 
+  /* One slide of a conference talk: what the script says now, what it should
+     say, and why. `status` is how much is moving — a slide that needs one word
+     changed should not look like one with a logic problem — and a slide with no
+     `before` is one that is already right and only needs rehearsing. */
+  slide: (b) => `
+    <article class="slide" id="slide-${b.n}">
+      <header class="slide-head">
+        <span class="slide-n">${b.n}</span>
+        <h3>${text(b.en)}<em>${text(b.zh)}</em></h3>
+        <span class="slide-status s-${b.status}">${text(SLIDE_STATUS[b.status].en)}<em>${text(SLIDE_STATUS[b.status].zh)}</em></span>
+      </header>
+      ${b.keyEn ? `<p class="slide-key"><span class="slide-key-lab">Key sentence 關鍵句</span>${rich(b.keyEn)}<em>${text(b.keyZh)}</em></p>` : ''}
+      ${b.before ? `
+        <div class="slide-was">
+          <p class="up-tag">As written<em>原稿</em></p>
+          <p class="en">${rich(b.before)}</p>
+        </div>` : ''}
+      <div class="slide-now">
+        <p class="up-tag">${b.before ? 'Say this instead' : 'Already right'}<em>${b.before ? '建議版本' : '原稿即可'}</em></p>
+        <p class="en">${rich(b.after)}${speakBtn(b.after, 'say')}</p>
+      </div>
+      ${b.why ? `<ul class="slide-why">${b.why.map((w) => `<li>${rich(w.en)}<em>${rich(w.zh)}</em></li>`).join('')}</ul>` : ''}
+      ${b.doEn ? `<p class="slide-do"><span class="slide-do-lab">On the day 上台時</span>${rich(b.doEn)}<em>${rich(b.doZh)}</em></p>` : ''}
+    </article>`,
+
+  /* How to say the words of this talk. No Chinese behind a tap: a respelling
+     and a one-line warning are scaffolding, read off a shared screen while
+     rehearsing, not something to be understood later. */
+  pron: (b) => `
+    <div class="terms pron">
+      ${label(b.en, b.zh)}
+      ${hint(b.hintEn, b.hintZh)}
+      <ul class="term-list">
+        ${b.items.map((i) => `
+          <li class="term pron-row">
+            <p class="term-w">${text(i.w)}${speakBtn(i.sayAs || i.w)}</p>
+            <p class="term-say">${text(i.say)}</p>
+            ${i.note ? `<p class="pron-note">${text(i.note)}</p>` : ''}
+          </li>`).join('')}
+      </ul>
+    </div>`,
+
   /* Words for the job: the term, how it is said, what it means in English,
      and a sentence using it. The Chinese — the term and the sentence — waits
      behind the row's tap. `sayAs` is what 🔊 reads when the written form would
@@ -488,6 +530,14 @@ const BLOCKS = {
           </li>`).join('')}
       </ul>
     </div>`,
+};
+
+/* How much a slide is moving. Three levels, because a slide that needs one
+   word changed should not read like one with a logic problem. */
+const SLIDE_STATUS = {
+  fix: { en: 'Rework', zh: '修改' },
+  tweak: { en: 'Polish', zh: '微調' },
+  keep: { en: 'Keep', zh: '保留' },
 };
 
 const STAR = {
@@ -517,7 +567,8 @@ function buildCover() {
   const c = PAGE.cover;
   return `
     <header class="cover" id="top">
-      <p class="kicker">${text(c.kicker)}</p>
+      <p class="kicker">${c.up ? `<a class="kicker-up" href="${text(c.up.href)}">${text(c.up.en)}</a>
+        <span class="kicker-sep" aria-hidden="true">·</span>` : ''}${text(c.kicker)}</p>
       <h1><span class="en">${text(PAGE.title)}</span>
         <button class="zh-chip" title="顯示中文">中</button>
         <span class="zh">${text(PAGE.titleZh)}</span></h1>
@@ -533,8 +584,8 @@ function buildCover() {
             </li>`).join('')}
         </ol>
       </div>
-      <p class="cover-jump"><a href="#${stepFor(c.jump).id}">Straight to the cold-question drill →</a>
-        <em>直接進入隨機冷問答</em></p>
+      <p class="cover-jump"><a href="#${stepFor(c.jump).id}">${text(c.jumpEn || 'Straight to the cold-question drill →')}</a>
+        <em>${text(c.jumpZh || '直接進入隨機冷問答')}</em></p>
       <p class="source">${text(PAGE.source.en)}
         <span class="zh">${text(PAGE.source.zh)}</span></p>
     </header>`;
@@ -562,7 +613,8 @@ function buildStep(s) {
 function buildNav() {
   return `
     <nav class="toc" aria-label="Steps">
-      <p class="toc-head">Interview prep 面試準備</p>
+      <p class="toc-head">${text(PAGE.navHead || 'Interview prep 面試準備')}</p>
+      ${PAGE.cover.up ? `<p class="toc-up"><a href="${text(PAGE.cover.up.href)}">← ${text(PAGE.cover.up.en)}</a></p>` : ''}
       <ul>
         <li><a href="#top" data-target="top"><span class="n">·</span>
           <span class="t"><span class="en">Read this first</span><span class="zh">先讀這段</span></span></a></li>

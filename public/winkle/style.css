@@ -2057,7 +2057,156 @@ strong { font-weight: 700; }
 .term .zh { margin-top: 5px; }
 .term .zh strong { color: var(--ink); font-weight: 600; }
 
+/* ---------------- a slide of the talk ----------------
+
+   Three things stacked: what the script says now (quiet, dashed — it is not
+   wrong, it is the draft), what to say instead, and why. The status badge
+   carries how much is moving, so a slide needing one word does not read like
+   one with a logic problem. */
+
+.slide {
+  margin: 0 0 18px;
+  padding: 16px 20px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.slide-head {
+  display: grid;
+  grid-template-columns: 1.9rem 1fr auto;
+  gap: 4px 12px;
+  align-items: start;
+}
+.slide-n {
+  margin-top: 3px;
+  padding: 3px 0;
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  font-weight: 700;
+  text-align: center;
+  color: #fff;
+  background: var(--navy);
+  border-radius: 7px;
+}
+.slide-head h3 { margin: 0; font-size: 1.08rem; line-height: 1.35; font-weight: 600; }
+.slide-head h3 em {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  font-size: .8rem;
+  color: var(--ink-faint);
+}
+
+.slide-status {
+  padding: 2px 9px;
+  font-family: var(--font-ui);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.slide-status em {
+  margin-left: 5px;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.s-fix { color: #a4442c; background: #fbece6; border: 1px solid #edc3b2; }
+.s-tweak { color: var(--navy); background: var(--navy-soft); border: 1px solid var(--navy-line); }
+.s-keep { color: var(--good); background: var(--good-soft); border: 1px solid var(--good-line); }
+
+.slide-key {
+  margin: 14px 0 0;
+  padding: 9px 13px;
+  background: var(--gold-soft);
+  border-left: 3px solid var(--gold-line);
+  border-radius: 0 8px 8px 0;
+  font-size: .97rem;
+}
+.slide-key-lab {
+  display: block;
+  margin-bottom: 3px;
+  font-family: var(--font-ui);
+  font-size: .64rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.slide-key em { display: block; margin-top: 3px; font-family: var(--font-zh); font-style: normal; font-size: .8rem; color: var(--ink-faint); }
+
+.slide-was, .slide-now { margin-top: 14px; padding: 12px 15px; border-radius: 10px; }
+.slide-was { background: transparent; border: 1px dashed var(--rule); }
+.slide-was .en { color: var(--ink-soft); }
+.slide-now { background: var(--good-soft); border: 1px solid var(--good-line); }
+.slide-was p, .slide-now p { margin: 0; }
+.slide-was .en, .slide-now .en { font-size: 1rem; line-height: 1.6; }
+
+.slide-why {
+  margin: 14px 0 0;
+  padding-left: 1.2rem;
+  font-family: var(--font-ui);
+  font-size: .84rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.slide-why li { margin: 0 0 7px; }
+.slide-why li::marker { color: var(--navy); }
+.slide-why em { display: block; margin-top: 2px; font-family: var(--font-zh); font-style: normal; color: var(--ink-faint); }
+
+.slide-do {
+  margin: 14px 0 0;
+  padding-top: 11px;
+  border-top: 1px dashed var(--rule);
+  font-family: var(--font-ui);
+  font-size: .84rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.slide-do-lab {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 1px 7px;
+  font-size: .64rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: var(--gold-soft);
+  border-radius: 5px;
+}
+.slide-do em { display: block; margin-top: 3px; font-family: var(--font-zh); font-style: normal; color: var(--ink-faint); }
+
+/* ---------------- how to say it ----------------
+
+   No Chinese behind a tap here: a respelling and a one-line warning are
+   scaffolding, read off a shared screen mid-rehearsal. */
+
+.pron-row { cursor: default; }
+.pron-row:hover { background: transparent; }
+.pron-note {
+  margin-top: 4px !important;
+  font-family: var(--font-zh);
+  font-size: .8rem;
+  color: var(--ink-faint);
+}
+
+@media (min-width: 620px) {
+  .pron-row { display: grid; grid-template-columns: 14rem 12rem 1fr; gap: 14px; align-items: baseline; }
+  .pron-row .term-say { margin-top: 0 !important; }
+  .pron-note { margin-top: 0 !important; }
+}
+
 @media print {
+  .slide-was { display: none; }
+  .slide, .pron-row { break-inside: avoid; }
   .drill, .play, .rec, .cad-legend, .cover-jump { display: none !important; }
   .star-body[hidden], .up-after-wrap[hidden] { display: block !important; }
   .story, .fact, .area, .wave, .qa-card { break-inside: avoid; }

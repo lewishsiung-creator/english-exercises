@@ -2056,14 +2056,41 @@ over for a logo on the wall), nothing graphic, nobody who could be taken for one
 of her clients. Pexels asks for no attribution and the photographer is credited
 under each picture anyway; print drops them.
 
-## Winkle's Interview Prep — adult, one-to-one, a UK job interview
+## Winkle's pages — adult, one-to-one, a hub
 
-`public/winkle/` — one page for one student preparing one interview: a
-Statistical Programming Manager in Taipei, applying for a Senior Principal
-Statistical Programmer role in the UK. It is the page form of Lewis's
-ten-session interview course, and like the notebooks it is a standalone copy —
-its `render.js` began as `/ielts-speaking/`'s with the course map removed, and
-nothing else loads it.
+`public/winkle/` is a small hub for one student, built the way
+`/ielts-speaking/` is: `course.js` maps the pages, `hub.js` draws the contents
+page, and one `render.js` and one `style.css` serve every sub-page. Like the
+notebooks it is a standalone copy — the renderer began as
+`/ielts-speaking/`'s with the course map removed, and nothing outside this
+folder loads it.
+
+```
+public/winkle/
+  index.html  hub.js  course.js     the contents page and its map
+  render.js   style.css             shared by every sub-page
+  interview/  index.html + content.js
+  rpharma/    index.html + content.js
+```
+
+It began (15 Sep 2026) as a single page at `/winkle/` for one interview. On
+15 Oct it became the hub, because three more kinds of work arrived at once:
+the conference talk, the new job, and a second company's screening call. **The
+`/winkle/` URL that was given to the student still works** — it is now the
+contents page rather than the interview, which is why the split was made this
+way rather than by renaming.
+
+Two pages are mapped but not built: **starting the new job** (he begins at a
+different pharma company on 2 November, working with a US team) and the **CIMS
+Global screening call**.
+
+### Winkle's Interview Prep — `interview/`
+
+One page for one interview: a Statistical Programming Manager in Taipei
+applying for a Senior Principal Statistical Programmer role in the UK. It is
+the page form of Lewis's ten-session interview course. Now **a record of that
+process** — he took a job elsewhere — but it is still where the story bank and
+the answers live.
 
 | Step | What it carries |
 | --- | --- |
@@ -2120,7 +2147,7 @@ His employers *do* appear — the current one inside the self-introduction, the
 earlier ones inside the submissions answer — because those are the sentences he
 will say. Lewis was asked about the current employer separately and chose to
 keep it. The page is `noindex`. The file header of
-[`public/winkle/content.js`](public/winkle/content.js) records which source
+[`public/winkle/interview/content.js`](public/winkle/interview/content.js) records which source
 each part came from: Lewis's course plan and his two handouts (his English and
 his Chinese, verbatim, not improved), Winkle's notes on the role (presented as
 what he has heard, never as company policy), the job advertisement (short
@@ -2135,6 +2162,35 @@ Athenex (BIMO, ISS), Parexel (define.xml, reviewer's guides), IQVIA (UK,
 France, US) and the regulator-requested RWE study, which became a tenth story.
 Its estimand primer is the framing for the "was the method appropriate?"
 follow-up.
+
+### R/Pharma 2026 APAC — `rpharma/`
+
+A conference talk, built from Lewis's coach notes the day before the lesson
+that works on it. *Upstream Detection of CDISC Compliance Issues*: find CDISC
+problems in the raw CRF data, before any SDTM exists.
+
+| Step | What it carries |
+| --- | --- |
+| 1 | Six things only Winkle can confirm — slot length, whether the title can change, how to say "Jev", whether the LLMs really run locally, where the QR code points |
+| 2 | The talk slide by slide: ten `slide` blocks |
+| 3 | The pronunciation list, and the two habits to watch |
+| 4 | The seven questions the audience is most likely to ask |
+| 5 | A five-minute clock with a recorder, the daily homework, tomorrow's ninety-minute plan, and the Q&A drill |
+
+Two block types were added to the shared renderer for it:
+
+- **`slide`** — what the script says now (quiet and dashed: a draft, not an
+  error), what to say instead, and why. `status` is `fix`, `tweak` or `keep`,
+  so a slide needing one word does not read like one with a logic problem; a
+  slide with no `before` is already right and only needs rehearsing.
+- **`pron`** — word, respelling, and a one-line warning. No Chinese behind a
+  tap here: it is read off a shared screen mid-rehearsal, so the note stays
+  visible.
+
+**The talk is Winkle's own research.** Every "as written" line is his, quoted;
+every suggested line and every reason is Lewis's, in his words. The page says
+so, and the open questions stay open — the slots in the Q&A answers and the
+local-LLM line are his to settle, not the page's.
 
 ## Health Notes — bilingual notes on the body and the mind
 
