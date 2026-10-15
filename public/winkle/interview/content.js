@@ -24,6 +24,13 @@
      "buying information". The story list is his plan's eight, plus a ninth.
    - Lewis's cadence notes for the one-minute introduction, pasted in chat:
      the introduction itself, verbatim, including every mark.
+   - Lewis's third handout, 面試準備（三）: the finished two-minute answer on
+     the COVID-19 trial — which is where the trial's own facts finally come
+     from (VV116 against Paxlovid, non-inferiority, time to sustained clinical
+     recovery, Kaplan–Meier and Cox, margin 0.8) — the daily-handoff answer for
+     "how did you manage that team", and Winkle's own, stronger version of the
+     submissions answer, which replaced Lewis's earlier draft. The page took
+     that replacement as instructed: his version, his wording.
    - Lewis's post-session notes, 課後重點整理, 16 Sep 2026: the mindset step in
      full (the shift from needing a job to having something to bring, the
      six-month answer, negative-into-positive, the interview mindset, the AI
@@ -129,12 +136,12 @@ const PAGE = {
           bodyEn: [
             "Your notes put the language question down as the one you're most confident about. It is also the one that counts for least of the four — and it is already solid.",
             "What decides this interview is the first pair: communication and conflict, and your scientific understanding of a study. Neither is about tools. Both are about judgement and depth of thought.",
-            "So bring three things to the next lesson. **The Warsaw details** — at least two of the five questions in the leaving step, because that is the biggest gap in your answer right now. **One real conflict** you handled, chosen against the three conditions in the communication step. And **one study you can go deep on** — the COVID-19 Phase III or the RWE study — clear on four things: what the disease was, why the inclusion criteria were designed that way, what the primary endpoint was, and what statistical method was used.",
+            "The study answer is done — the COVID-19 trial is written out in full, with the reason behind the inclusion criteria. Two things are still open. **The Warsaw details** — at least two of the five questions in the leaving step, because that is the biggest gap left in any answer here. And **one real conflict** you handled, chosen against the three conditions in the communication step.",
           ],
           bodyZh: [
             "你在筆記裡自評最有把握的是「SAS 以外的語言」。那一題在四個題型裡權重最低，而且已經練得很扎實了。",
             "真正決勝的是前兩題：溝通與衝突，以及你對案子的科學理解。這兩題跟工具無關，考的是判斷力與思考深度。",
-            "所以下一堂課請帶三樣東西。**華沙的具體細節**——離職題那一步的五個問題，至少想清楚兩個，因為那是你目前最大的缺口。**一個真實的溝通衝突**，依溝通那一步的三個條件挑選。以及**一個你最有把握講深的案子**——COVID-19 三期或那個 RWE 研究都可以——要能講清楚四件事：研究的是什麼病症、收案條件為什麼這樣設計、主要療效指標是什麼、用了什麼統計方法。",
+            "案子那題已經完成了——COVID-19 試驗已經完整寫在頁面上，連收案條件的理由都有。還沒補上的有兩樣。**華沙的具體細節**——離職題那一步的五個問題，至少想清楚兩個，那是目前所有答案裡最大的缺口。以及**一個真實的溝通衝突**，依溝通那一步的三個條件挑選。",
           ],
         },
         {
@@ -607,15 +614,10 @@ const PAGE = {
             zh: "在一個 COVID-19 第三期計畫中，我主導程式工作，協調 18 人的團隊，在三個月內交出完整成果。研究結果刊登在《新英格蘭醫學期刊》。",
           },
           star: [
-            { k: "S", en: "A COVID-19 Phase III program, on a timeline set by the pandemic rather than by us. [what made the deadline immovable]", zh: "一個 COVID-19 第三期計畫，時程是由疫情決定的，不是由我們。〔是什麼讓截止日無法更動〕" },
-            { k: "T", en: "I led the programming. The full package had to be delivered in three months, and eighteen programmers had to work as one team.", zh: "我主導程式工作。完整成果必須在三個月內交付，18 位 programmer 必須像一個團隊一樣運作。" },
-            { k: "A", en: "[how you split the work across the 18] [how you kept the standards consistent] [how you tracked status and dealt with problems]", zh: "〔你怎麼把工作分給 18 個人〕〔你怎麼維持標準一致〕〔你怎麼追蹤進度、處理問題〕" },
-            { k: "R", en: "We delivered the full package in three months, and the results were published in the New England Journal of Medicine. [one thing you would do the same way again]", zh: "我們在三個月內交出完整成果，結果刊登在《新英格蘭醫學期刊》。〔一件你下次還會照做的事〕" },
-          ],
-          add: [
-            { en: "The four things for the next lesson: what the disease was, why the inclusion criteria were designed that way, what the primary endpoint was, and what statistical method was used.", zh: "下一堂課要準備的四件事：研究的是什麼病症、收案條件為什麼這樣設計、主要療效指標是什麼、用了什麼統計方法。" },
-            { en: "How the eighteen were organised: who reported to whom, and whether some were external.", zh: "18 人怎麼組織：誰向誰回報，其中是否有外部人員。" },
-            { en: "One real problem during the three months, and what you did about it.", zh: "三個月中一個真實發生的問題，以及你怎麼處理。" },
+            { k: "S", en: "A Phase III COVID-19 study at Junshi — a randomized, controlled non-inferiority trial comparing VV116 with Paxlovid in patients with early mild-to-moderate COVID-19, on a regulatory timeline.", zh: "君實的一個 COVID-19 三期研究——隨機、對照的非劣性試驗，比較 VV116 與 Paxlovid 在早期輕到中度病人中的表現，而且是在法規時程壓力下。" },
+            { k: "T", en: "I led the programming: an 18-member team, about three months, to complete SDTM, ADaM, TLF and the submission package.", zh: "我主導程式工作：18 人的團隊，大約三個月，要完成 SDTM、ADaM、TLF 以及 submission package。" },
+            { k: "A", en: "I set up dedicated communication channels for the different workstreams and a daily handoff. Whenever the day's discussions or the evening meetings changed the analysis requirements, I updated the specifications and the documents and summarised the key changes for the team.", zh: "我針對不同工作內容建立固定的溝通管道，並建立每天的 handoff 機制。只要白天的討論或晚上的會議造成需求變更，我就更新 specification 和文件，並整理重點給團隊。" },
+            { k: "R", en: "We delivered within the timeline, the study met its primary non-inferiority objective, and the results were published in the New England Journal of Medicine.", zh: "我們在時程內完成交付，研究也達成主要的非劣性目標，結果發表在《新英格蘭醫學期刊》。" },
           ],
         },
         {
@@ -806,6 +808,7 @@ const PAGE = {
             { en: "One person — by role, not by name.", zh: "一個人——用職位描述，不要說名字。" },
             { en: "What they couldn't do before, and could do after.", zh: "他們之前做不到、之後做得到的事。" },
             { en: "How you taught: pairing, code review, a guide you wrote.", zh: "你怎麼教：一起寫程式、code review、你寫的指南。" },
+            { en: "The daily-handoff answer in the COVID-19 story is material for this one too — it shows leading through process rather than through authority.", zh: "COVID-19 那則故事裡「每日 handoff」的回答，也是這題的材料——它展示的是不靠職權、靠流程把團隊帶起來。" },
           ],
         },
         {
@@ -987,13 +990,16 @@ const PAGE = {
           en: "Tell me about the most memorable study you've worked on — the indication, the patient population and the statistical methods.",
           zh: "請描述你印象最深刻的研究，著重在適應症、研究對象以及統計方法。",
           story: "covid",
-          tipEn: "Four sentences, then stop. Let them choose what to ask next.",
-          tipZh: "四句話，然後停。讓他們決定接下來要問什麼。",
+          tipEn: "About two minutes. Say it, then stop and let them follow up. If they are visibly short of time, skip the non-inferiority reason and keep it for the follow-up.",
+          tipZh: "約兩分鐘。講完就停，讓對方追問。如果對方明顯趕時間，略過非劣性理由那段，等被問到再講。",
           answer: [
-            { tag: "Design", tagZh: "設計", en: "It was a [randomised, double-blind] Phase III trial in [the indication], comparing [the treatment] with [the comparator].", zh: "那是一個〔隨機、雙盲〕的第三期試驗，適應症是〔適應症〕，比較〔試驗藥物〕與〔對照組〕。" },
-            { tag: "Patients", tagZh: "受試者", en: "It enrolled [the population — who, and at what risk], about [number] patients.", zh: "收納的是〔受試族群——哪些人、什麼風險程度〕，約〔人數〕位病患。" },
-            { tag: "Method", tagZh: "方法", en: "The primary endpoint was [the endpoint], analysed with [the method], with [the key sensitivity analysis].", zh: "主要指標是〔指標〕，以〔統計方法〕分析，並做了〔主要的敏感度分析〕。" },
-            { tag: "My role", tagZh: "我的角色", en: "I led the programming and coordinated a team of 18. We delivered the full package in three months, and the results were published in the New England Journal of Medicine.", zh: "我主導程式工作，協調 18 人的團隊。我們在三個月內交出完整成果，結果刊登在《新英格蘭醫學期刊》。" },
+            { tag: "The study", tagZh: "研究本身", en: "One of the projects that stands out most was a Phase III COVID-19 study at Junshi — a randomized, controlled non-inferiority trial comparing VV116 with Paxlovid in patients with early mild-to-moderate COVID-19.", zh: "我印象最深刻的專案之一，是在君實參與的 COVID-19 三期研究——一個隨機、對照的非劣性試驗，比較 VV116 與 Paxlovid 在早期輕到中度 COVID-19 病人中的表現。" },
+            { tag: "The patients, and why", tagZh: "受試者，以及為什麼", en: "The population was symptomatic adults with at least one risk factor for progression to severe disease, and that was deliberate on both counts. An antiviral has to be tested while the virus is still replicating, so the window is early and mild-to-moderate. And to show that a treatment reduces the risk of progression, you need a population where enough events actually occur — in lower-risk patients, most recover on their own, so the difference would be invisible.", zh: "研究族群是有症狀的成年病人，且至少具有一項進展為重症的風險因子，這兩個條件都是刻意設計的。抗病毒藥物必須在病毒仍在複製的期間測試，所以觀察窗口設在早期、輕到中度。而要證明一個治療能降低進展風險，族群本身必須有足夠的事件發生——在低風險病人身上，多數人自己就會康復，差異根本看不出來。" },
+            { tag: "Why non-inferiority", tagZh: "為什麼是非劣性", en: "It was a non-inferiority design rather than superiority because Paxlovid was already standard of care, so a placebo arm wasn't appropriate. VV116's value was accessibility and fewer drug interactions, so showing it was not worse was clinically meaningful in itself.", zh: "採用非劣性而非優效性設計，是因為當時 Paxlovid 已經是標準治療，設置安慰劑組並不合適。VV116 的價值在於可近性與較少的藥物交互作用，所以只要證明它不比現有治療差，本身就具有臨床意義。" },
+            { tag: "Endpoint and method", tagZh: "指標與方法", en: "The primary endpoint was time to sustained clinical recovery, so a time-to-event analysis on the full analysis population. We used Kaplan–Meier to estimate the distribution and the median recovery time, and a Cox proportional-hazards model for the hazard ratio, with a non-inferiority margin of 0.8 — non-inferiority would be supported if the lower bound of the two-sided 95% confidence interval stayed above 0.8.", zh: "主要療效指標是 time to sustained clinical recovery，屬於 time-to-event 分析，以 full analysis population 為基礎。我們用 Kaplan–Meier 估計分布與中位恢復時間，並以 Cox proportional-hazards model 估計 hazard ratio，非劣性界限設為 0.8——如果雙側 95% 信賴區間的下限高於 0.8，就支持非劣性。" },
+            { tag: "My side of it", tagZh: "我負責的部分", en: "On the programming side, I led an 18-member team with about three months to complete SDTM, ADaM, TLF, and the submission package.", zh: "在 programming 這邊，我帶領一個 18 人的團隊，大約只有三個月要完成 SDTM、ADaM、TLF 以及 submission package。" },
+            { tag: "The hardest part", tagZh: "最困難的部分", en: "The hardest part wasn't the statistical method. It was making sure all 18 programmers had exactly the same understanding of the endpoint definition and the derivation rules — with a time-to-event endpoint, a small inconsistency in how the event date is derived feeds straight into the primary efficacy analysis.", zh: "最困難的部分不是統計方法本身，而是確保這 18 位程式設計師對 endpoint definition 和 derivation rules 有完全一致的理解——因為這是 time-to-event 指標，event date 的推導只要有些微不一致，就會直接反映在主要療效分析上。" },
+            { tag: "Result", tagZh: "結果", en: "We delivered within the timeline, the study met its primary non-inferiority objective, and the results were published in the New England Journal of Medicine. What stayed with me is that at that scale, programming leadership isn't only about correct code — it's about keeping the whole team aligned under real time pressure.", zh: "我們在時程內完成交付，研究也達成主要的非劣性目標，結果後來發表在《新英格蘭醫學期刊》。這件事讓我一直記得：到了這個規模，programming leadership 已經不只是確保程式正確，而是在真實的時間壓力下，讓整個團隊維持一致。" },
           ],
         },
         {
@@ -1001,10 +1007,12 @@ const PAGE = {
           kind: "Your studies", kindZh: "研究理解",
           en: "Why do you think the study enrolled those particular patients?",
           zh: "你認為這個研究為什麼要找這些特徵的病患當研究對象？",
+          tipEn: "This is the follow-up your own notes predicted, and the answer is already inside the two-minute version above — the “deliberate on both counts” sentences. If you have said them, say so briefly and add the trade-off.",
+          tipZh: "這就是你筆記裡預料到的延伸問題，而答案已經在上面那段兩分鐘的版本裡——「這兩個條件都是刻意設計的」那兩句。如果已經講過，簡短帶過，再補上代價那一句。",
           answer: [
-            { tag: "Headline", tagZh: "結論", en: "Because that's where the question matters most, and where the effect can be shown: patients who are [most likely to have the outcome the drug is meant to prevent].", zh: "因為那是這個問題最重要、也最能顯示效果的地方：〔最可能發生藥物要預防的結果〕的病患。" },
-            { tag: "Reason", tagZh: "理由", en: "Enrolling patients at higher risk means more events, so the study can detect a difference with fewer patients and in less time.", zh: "收納風險較高的病患，事件數會比較多，研究就能用較少的人數、較短的時間偵測出差異。" },
-            { tag: "Balance", tagZh: "權衡", en: "The trade-off is generalisability: the result applies most directly to that population, and [what that means for patients outside it].", zh: "代價是外推性：結果最直接適用於這個族群，而〔這對族群以外的病患代表什麼〕。" },
+            { tag: "The window", tagZh: "時間窗口", en: "An antiviral has to be tested while the virus is still replicating, so the window is early, mild-to-moderate disease.", zh: "抗病毒藥物必須在病毒仍在複製的期間測試，所以觀察窗口設在早期、輕到中度。" },
+            { tag: "The risk factor", tagZh: "風險因子", en: "And to show that a treatment reduces the risk of progression, you need a population where enough events actually occur. In lower-risk patients, most recover on their own, so the difference would be invisible.", zh: "而要證明一個治療能降低進展風險，族群本身必須有足夠的事件發生。在低風險病人身上，多數人自己就會康復，差異根本看不出來。" },
+            { tag: "The trade-off", tagZh: "代價", en: "The cost of that is generalisability: the result applies most directly to that population.", zh: "代價是外推性：結果最直接適用於這個族群。" },
           ],
         },
         {
@@ -1017,6 +1025,20 @@ const PAGE = {
             { tag: "Fit", tagZh: "契合", en: "The method has to fit the endpoint. A time-to-event endpoint points to a Cox model or a log-rank test; a binary response to logistic regression; repeated continuous measurements to an MMRM.", zh: "方法必須配合指標。存活時間類指標用 Cox 模型或 log-rank 檢定；二元反應用邏輯斯迴歸；重複測量的連續指標用 MMRM。" },
             { tag: "Limits", tagZh: "限制", en: "Where I'd look hardest is the intercurrent events and the missing data — [for example, patients who stopped treatment or needed rescue medication] — and whether the sensitivity analyses covered them.", zh: "我會最仔細看的是期間事件與缺失資料——〔例如停藥或需要救援藥物的病患〕——以及敏感度分析有沒有涵蓋這些情況。" },
             { tag: "Close", tagZh: "收尾", en: "So: appropriate, with [one limitation you would name].", zh: "所以：合適，但有〔一個你會指出的限制〕。" },
+          ],
+        },
+        {
+          t: "qa",
+          kind: "Your studies", kindZh: "研究理解",
+          en: "How did you manage a team that size?",
+          zh: "這麼大的團隊，你是怎麼管理的？",
+          story: "covid",
+          tipEn: "Keep this out of the two-minute answer — that one is about scientific understanding, and management detail blurs it. Save it for exactly this follow-up.",
+          tipZh: "不要塞進上面那段兩分鐘的回答——那題問的是科學理解，加進管理細節會讓重點模糊。留給這個追問用。",
+          answer: [
+            { tag: "The real job", tagZh: "真正的工作", en: "My role wasn't just writing programs. A large part of it was keeping the programming team, the statisticians, and the medical team aligned while requirements were changing very quickly.", zh: "我的角色不只是自己寫程式。很大一部分的責任，是在需求快速變動的情況下，讓 programming team、統計師和醫學團隊維持一致的理解。" },
+            { tag: "What I set up", tagZh: "我建立的機制", en: "I set up dedicated communication channels for different workstreams and established a daily handoff process. Whenever discussions during the day or the evening meetings changed the analysis requirements, I updated the specifications and documents and summarized the key changes for the team.", zh: "我針對不同工作內容建立固定的溝通管道，並建立每天的 handoff 機制。只要白天的討論或晚上的會議造成需求變更，我就更新 specification 和文件，並整理重點給團隊。" },
+            { tag: "Why it mattered", tagZh: "為什麼有效", en: "That way, when people started the next morning, they were working from the latest requirements instead of continuing with an outdated version. Under that timeline, it saved us a lot of rework.", zh: "這樣團隊成員隔天早上就能直接依照最新需求工作，而不是沿用過時的版本。在那樣的時程下，這替我們省掉很多重工。" },
           ],
         },
         {
@@ -1097,28 +1119,44 @@ const PAGE = {
           beforeEn: "Sorry, I don't have much global submission experience. Maybe a little. But I think I can learn quickly.",
           beforeZh: "抱歉，我沒有太多國際申報經驗，可能一點點。不過我覺得我學得很快。",
           adds: [
+            { en: "a number — six, said without hedging", zh: "一個數字——六次，不要含糊" },
             { en: "name the gap plainly, once", zh: "明確講出缺口，說一次" },
-            { en: "four concrete records, immediately", zh: "立刻給四個具體實績" },
-            { en: "one line on what is actually missing", zh: "用一句話說明真正缺的是什麼" },
-            { en: "and that you're ready for it", zh: "以及你已經準備好" },
+            { en: "the components you have actually done", zh: "你真正做過的那些環節" },
+            { en: "and reframe the gap as integration, not ability", zh: "把缺口重新定義成整合，而不是能力" },
           ],
           revealEn: "Show the layered version", revealZh: "顯示分層版",
           afterTag: "Honest layering", afterTagZh: "誠實分層",
-          afterEn: "I should be straightforward about this: I haven't led an end-to-end global submission to FDA or EMA as the overall submission lead. What I have done is most of the component work. So the components are familiar — the standards, the documentation, and working across time zones. What would be new is owning the whole submission end to end, and that's a step I'm ready to take.",
-          afterZh: "這點我想直說：我沒有以整體送件負責人的身分，主導過一個完整的 FDA 或 EMA 全球送件。但送件的各個組成環節，我大部分都做過。所以這些組成環節對我來說並不陌生——標準、文件、跨時區協作都做過。對我而言新的部分，是從頭到尾完整擁有一個送件，而這一步我已經準備好了。",
+          afterEn: "I've been involved in **six** submission preparations across both pharma and CRO, mainly supporting FDA and NMPA submissions. While I haven't owned an entire global submission end to end, I've had hands-on experience with most of the major programming components. The next step for me is not learning the individual components for the first time, but bringing those experiences together into broader end-to-end ownership.",
+          afterZh: "我在藥廠和 CRO 參與過**六次** submission 的準備，主要涉及 FDA 和 NMPA。雖然我沒有從頭到尾負責過完整的 global submission，但 programming 端的大部分主要環節我都實際做過。對我來說，下一步不是第一次學習這些環節，而是把這些經驗整合起來，承擔更完整的 end-to-end ownership。",
         },
         {
           t: "qa",
           kind: "Submissions", kindZh: "申報題",
           en: "What's your experience with global regulatory submissions?",
           zh: "你在國際法規申報方面有什麼經驗？",
+          tipEn: "Say **six**, not “around six” — “around” sounds like you aren't sure of your own record. About two minutes in full. If they only ask in passing, the first two parts and the close are enough; keep BIMO for the follow-up, but get it out if they want depth, because it is your strongest material here.",
+          tipZh: "說 **six**，不要說 around six——「around」聽起來像自己也沒把握。完整講約兩分鐘。如果對方只是順口問一句，講前兩段加結尾就夠，BIMO 留給追問；但只要對方想深入，一定要放出來，那是你這題最有力的內容。",
           answer: [
-            { tag: "The gap", tagZh: "缺口", en: "I should be straightforward about this: I haven't led an end-to-end global submission to FDA or EMA as the overall submission lead. What I have done is most of the component work.", zh: "這點我想直說：我沒有以整體送件負責人的身分，主導過一個完整的 FDA 或 EMA 全球送件。但送件的各個組成環節，我大部分都做過。" },
-            { tag: "Athenex", tagZh: "Athenex", en: "At Athenex I was responsible for submission packages including BIMO and ISS, and I reviewed the outputs coming back from our CROs.", zh: "在 Athenex 時期，我負責包含 BIMO 與 ISS 的送件包，並審查 CRO 回來的產出。" },
-            { tag: "Parexel", tagZh: "PAREXEL", en: "At Parexel I delivered CDISC-compliant datasets with define.xml and the reviewer's guide for international sponsors.", zh: "在 PAREXEL 時期，我為國際申辦方交付符合 CDISC 標準的資料集，包含 define.xml 與 reviewer guide。" },
-            { tag: "IQVIA", tagZh: "IQVIA", en: "At IQVIA I was the main point of contact for cross-border projects with teams in the UK, France, and the US.", zh: "在 IQVIA 時期，我是英國、法國、美國跨國專案的主要窗口。" },
-            { tag: "COVID-19", tagZh: "COVID-19 專案", en: "And on the COVID-19 Phase III program I led delivery under regulatory timelines, including a regulator-requested RWE study where we standardised unstructured hospital data through a full SDTM, ADaM and TLF pipeline.", zh: "而在 COVID-19 三期專案中，我在法規時程壓力下負責交付，其中也包含一個主管機關要求的真實世界證據研究，我們把非結構化的醫院資料，透過完整的 SDTM、ADaM 與 TLF 流程標準化。" },
-            { tag: "Close", tagZh: "收尾", en: "So the components are familiar — the standards, the documentation, and working across time zones. What would be new is owning the whole submission end to end, and that's a step I'm ready to take.", zh: "所以這些組成環節對我來說並不陌生——標準、文件、跨時區協作都做過。對我而言新的部分，是從頭到尾完整擁有一個送件，而這一步我已經準備好了。" },
+            { tag: "The scale, and the gap", tagZh: "規模與缺口", en: "I've been involved in six submission preparations across both pharma and CRO, mainly supporting FDA and NMPA submissions. While I haven't owned an entire global submission end to end, I've had hands-on experience with most of the major programming components involved in the submission process. My experience includes SDTM and ADaM datasets, define.xml, Reviewer's Guides, and more specialized deliverables such as BIMO and ISS.", zh: "我過去在藥廠和 CRO 的工作中，參與過六次 submission 的準備，主要涉及美國 FDA 和 NMPA。雖然我沒有以 overall submission owner 的角色，從頭到尾負責過完整的 global submission，但在 programming 端的大部分主要環節，我都有實際參與和負責的經驗，包含 SDTM、ADaM、define.xml、Reviewer's Guide，以及比較特殊的 deliverables，例如 BIMO 和 ISS。" },
+            { tag: "Where", tagZh: "在哪裡做的", en: "At Parexel and IQVIA, I worked on international sponsor projects and also served as a key programming contact for cross-regional teams in the UK, France, and the US, coordinating deliverables and timelines. Later, at Junshi, I led an 18-person programming team for a COVID-19 Phase III program and completed the required submission deliverables under a very compressed regulatory timeline.", zh: "在 Parexel 和 IQVIA 時期，我參與國際 sponsor 的專案，也擔任跨國專案主要的 programming contact，和英國、法國、美國的團隊合作，負責協調 deliverables 與時程。之後在君實的 COVID-19 三期專案中，我帶領一個 18 人的 programming team，在非常緊迫的法規時程下完成 submission 所需的 programming deliverables。" },
+            { tag: "When the tools didn't fit", tagZh: "工具不夠用的時候", en: "I've also dealt with situations where the standard tools or existing processes didn't fully support the submission requirement. For example, during a BIMO submission, we had an XML-related deliverable that could not be generated directly by our standard tools. I investigated the intermediate files and the logic used in the define.xml generation process, adapted them to the regulatory requirement, and successfully produced the required output.", zh: "我也遇過現有工具或流程無法直接支援需求的狀況。例如在一次 BIMO submission 中，我們需要一個 XML 相關的 deliverable，但標準工具無法直接產出。我研究了 define.xml 產製過程中的中間檔案與邏輯，依照法規要求做調整，最後成功產出需要的內容。" },
+            { tag: "No process to follow", tagZh: "沒有既有流程", en: "BIMO was also new to our team at the time, so there wasn't an established internal process to follow. I helped identify the required deliverables, plan the programming work, and design the logic for presenting site-level information in a way that supported regulatory review.", zh: "BIMO 當時也是我們團隊第一次處理，沒有成熟的內部流程可以沿用。我協助確認需要的 deliverables、規劃 programming 工作，並設計 site-level 資訊的呈現邏輯，讓資料能從法規審查者的角度被清楚呈現。" },
+            { tag: "Close", tagZh: "收尾", en: "So I'd describe my submission experience as fairly broad — from standard SDTM, ADaM, define packages, and Reviewer's Guides to more specialized work such as BIMO and ISS, as well as cross-regional coordination and time-critical delivery. The next step for me is not learning the individual components for the first time, but bringing those experiences together into broader end-to-end ownership.", zh: "所以如果要總結，我的 submission 經驗相當廣——從標準的 SDTM、ADaM、define package、Reviewer's Guide，到比較特殊的 BIMO、ISS，以及跨國協作與緊急時程下的交付。對我來說，下一步不是第一次學習這些環節，而是把這些經驗整合起來，承擔更完整的 end-to-end ownership。" },
+          ],
+        },
+        {
+          t: "note",
+          en: "Why the BIMO part is the strongest thing you have here",
+          zh: "為什麼 BIMO 那兩段最有價值",
+          bodyEn: [
+            "Not because you have done BIMO. Because of what the two paragraphs show. The standard tools couldn't produce the XML, so you went into the intermediate files and the logic of the define.xml generation and adapted them — **that is problem-solving**.",
+            "And BIMO was new to the team, with no process to follow, so you identified the deliverables, planned the work and designed how site-level information would be presented — **that is building a process**, which is exactly what the advertisement means by leading the refinement of templates, standards and governance.",
+            "The ending is the other strong part: the gap is reframed as a question of integration, not of ability.",
+          ],
+          bodyZh: [
+            "不是因為「我做過 BIMO」，而是這兩段展示的能力。標準工具產不出需要的 XML，你去研究 define.xml 產製過程的中間檔案和邏輯，改寫後產出——**這是解決問題的能力**。",
+            "團隊第一次做 BIMO，沒有既有流程，你協助確認 deliverables、規劃工作、設計 site-level 資訊的呈現邏輯——**這是建立流程的能力**，正好對上職缺寫的 leads refinement of templates, standards, and governance。",
+            "結尾是另一個強項：把缺口重新定義成整合層次的問題，而不是能力缺口。",
           ],
         },
         {
@@ -1189,6 +1227,8 @@ const PAGE = {
           kind: "Beyond SAS", kindZh: "其他語言",
           en: "How do you see AI being used in statistical programming?",
           zh: "你怎麼看 AI 在統計程式設計中的應用？",
+          tipEn: "When you talk about automation tools, draw the data-governance line first — in a regulated environment the boundary has to be set before the tool arrives: it reads the specification, not the patient data. That is the sentence that scores here.",
+          tipZh: "講自動化工具時，先把資料治理的界線講出來——在受監管環境裡導入這類工具，界線要先劃清楚：它讀的是 specification，不是病人資料。這句話就是這題的加分點。",
           answer: [
             { tag: "Headline", tagZh: "結論", en: "As a genuine help with speed — and a risk only if it replaces accountability.", zh: "它確實能提升速度——只有在它取代了責任歸屬時才是風險。" },
             { tag: "How", tagZh: "做法", en: "Used on the specifications — never on patient data — it can draft code from a spec very quickly. That code is useful as an independent comparison: if its results match the programmer's, that's extra assurance; if they don't, we've found something worth checking.", zh: "只用在規格文件上——絕不碰病患資料——它可以很快依 spec 產生程式。這些程式適合當作獨立比對：結果和 programmer 的一致，就多一層保證；不一致，就找到了值得檢查的地方。" },

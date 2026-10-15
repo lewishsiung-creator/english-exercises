@@ -2153,6 +2153,17 @@ his Chinese, verbatim, not improved), Winkle's notes on the role (presented as
 what he has heard, never as company policy), the job advertisement (short
 phrases and the salary range), and the useR! 2026 poster script.
 
+Handout III (面試準備（三）) is where the trial's own facts finally arrive, a
+month after the page first asked for them: VV116 against Paxlovid, a
+non-inferiority design and why, the population and the reason for it, time to
+sustained clinical recovery analysed with Kaplan–Meier and Cox at a margin of
+0.8 — and the answer to "how did you manage a team that size", kept
+deliberately *out* of the two-minute answer and parked on its own follow-up
+question. It also replaced the submissions answer with Winkle's own, stronger
+version (six preparations, FDA and NMPA, and the BIMO deliverable the standard
+tools could not generate), which is the one case so far where the student's
+draft beat the coach's and the page took his wording.
+
 The second handout, 面試準備（二）(16 Sep 2026), changed three things rather
 than filling blanks: it **weights** the four areas (communication and the
 scientific understanding of a study decide it; languages count least), it
