@@ -2080,9 +2080,7 @@ the conference talk, the new job, and a second company's screening call. **The
 contents page rather than the interview, which is why the split was made this
 way rather than by renaming.
 
-Two pages are mapped but not built: **starting the new job** (he begins at a
-different pharma company on 2 November, working with a US team) and the **CIMS
-Global screening call**.
+One page is mapped but not built: the **CIMS Global screening call**.
 
 ### Winkle's Interview Prep — `interview/`
 
@@ -2173,6 +2171,28 @@ Athenex (BIMO, ISS), Parexel (define.xml, reviewer's guides), IQVIA (UK,
 France, US) and the regulator-requested RWE study, which became a tenth story.
 Its estimand primer is the framing for the "was the method appropriate?"
 follow-up.
+
+### Starting the new job — `newjob/`
+
+He starts at a different pharma company on 2 November, working with a US team
+on about four hours of overlap — Taiwan evening, their morning — with the rest
+of the week in writing. Eleven steps: the two self-introductions, the
+three-step progress update, checking you have understood, explaining technical
+work to people who don't code, workload and boundaries, small talk, ten things
+about working with a US team, the five-item checklist for before the second,
+and eight situations wired into the drill.
+
+**The register is the point.** Every other page in the folder was written to
+get him hired; this one is for the first weeks of a job he already has. An
+interview introduction argues that you should be hired; a colleague's
+introduction tells people what to bring you. That is written into the file
+header so later sessions don't drift back into the interview voice.
+
+Nothing new was needed in the renderer — `facts`, `bank`, `upgrade`, `model`,
+`practice` and `drill` already cover it, which is a good sign that the block
+types have settled. The one page-specific judgement is that the ten
+cross-cultural points are split across two steps: the five that actually cause
+trouble, then reading them and being read.
 
 ### R/Pharma 2026 APAC — `rpharma/`
 
