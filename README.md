@@ -2255,6 +2255,25 @@ the closing chain; `quad` the four-line summary.
 
 The student in the opening anecdote stays anonymous, as in the original.
 
+**The canonical copy is on lewistoeic.com**, not here. Lewis's readers and his
+search traffic are on that WordPress site, and he publishes full articles
+there under 閱讀文章, so this page carries `rel="canonical"` pointing at the
+post and shows a visible 本文刊登於 line. Two consequences worth remembering:
+the canonical URL is in **two** places (the `<link>` in `index.html` and
+`ARTICLE.origin.href` in `content.js`) and both must change together, and a
+canonical pointing at a post that does not exist is worse than none — so the
+WordPress post has to stay published at that slug.
+
+[`tools/english-brain-to-wordpress.js`](tools/english-brain-to-wordpress.js)
+generates that WordPress copy from `content.js`, as Gutenberg block markup to
+be pasted into the editor's code view: paragraphs, headings, lists, the table
+and the prompt arrive as native editable blocks, and the pieces WordPress has
+no block for — the callouts, the three-version example, the combining box, the
+closing chain — come through as custom-HTML blocks with inlined styles,
+because themes and caching plugins strip `<style>` but leave inline styles.
+Regenerate it rather than editing the output; the speak buttons are not
+carried over, so the WordPress copy ends with a link to the interactive one.
+
 ## Health Notes — bilingual notes on the body and the mind
 
 `public/health/` — the first page here that is not English teaching. A

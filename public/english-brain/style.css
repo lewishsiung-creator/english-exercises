@@ -67,6 +67,8 @@ main { max-width: var(--measure); margin: 0 auto; padding: 0 22px 5rem; }
   border-bottom: 1px solid var(--line);
 }
 .byline span { color: var(--ink-faint); }
+.origin a { color: var(--brand); text-decoration: none; border-bottom: 1px solid var(--brand-line); }
+.origin a:hover { border-bottom-color: var(--brand); }
 
 .opening .p:first-child { font-size: 1.06rem; }
 

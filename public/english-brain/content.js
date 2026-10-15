@@ -22,6 +22,12 @@ const ARTICLE = {
   subtitle: "從翻譯、刻意練習、髓鞘化到 AI 輔助學習",
   byline: "Lewis Lin",
   date: "2026 年 9 月 29 日 · 修訂版",
+  origin: {
+    text: "本文刊登於",
+    href: "https://lewistoeic.com/%e8%8b%b1%e6%96%87%e8%85%a6%e4%b8%8d%e6%98%af%e9%ad%94%e6%b3%95/",
+    label: "lewistoeic.com",
+  },
+
   blurb: "「真的有所謂的英文思考嗎？」這篇談的是：我們怎麼從「需要翻譯」走到「自然表達」，大腦在這個過程中可能發生了什麼，以及在 AI 時代，我們該讓 AI 幫我們做多少。",
 
   opening: [

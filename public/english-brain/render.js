@@ -114,7 +114,8 @@ $('#doc').appendChild(el(`
     <header class="cover">
       <h1>${text(ARTICLE.title)}</h1>
       <p class="subtitle">${text(ARTICLE.subtitle)}</p>
-      <p class="byline">${text(ARTICLE.byline)}　<span>${text(ARTICLE.date)}</span></p>
+      <p class="byline">${text(ARTICLE.byline)}　<span>${text(ARTICLE.date)}</span>${ARTICLE.origin ? `
+        　<span class="origin">${text(ARTICLE.origin.text)} <a href="${attr(ARTICLE.origin.href)}">${text(ARTICLE.origin.label)}</a></span>` : ''}</p>
       <div class="opening">${ARTICLE.opening.map((t) => `<p class="p">${text(t)}</p>`).join('')}</div>
       <nav class="contents" aria-label="目錄">
         <p class="contents-head">目錄</p>
