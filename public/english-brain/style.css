@@ -1,0 +1,414 @@
+/* 英文腦不是魔法 — an article, not a lesson.
+
+   Chinese leads throughout, so the body font is a Chinese sans and the
+   measure and line-height are set for reading Chinese prose at length, not
+   for a teacher driving a page on a shared screen. English appears only
+   inside examples, where it is set in a serif to mark it as quoted material.
+
+   Light only, one column, no dark mode: it is a page people read once. */
+
+:root {
+  --paper: #f7f6f2;
+  --card: #ffffff;
+  --ink: #1f2630;
+  --ink-soft: #4e5868;
+  --ink-faint: #868f9d;
+
+  --brand: #3c4f76;
+  --brand-soft: #eceff6;
+  --brand-line: #c3cde0;
+
+  --gold: #8a6a12;
+  --gold-soft: #fbf2dc;
+  --gold-line: #e8b53f;
+
+  --line: #e3e0d8;
+  --rule: #cdc8bc;
+
+  --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
+  --font-en: "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --measure: 36rem;
+}
+
+* { box-sizing: border-box; }
+html { scroll-padding-top: 24px; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-zh);
+  font-size: 17px;
+  line-height: 1.95;
+  letter-spacing: .01em;
+  -webkit-text-size-adjust: 100%;
+}
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 12px; top: 12px; background: var(--card); padding: 10px 16px; border-radius: 8px; }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+main { max-width: var(--measure); margin: 0 auto; padding: 0 22px 5rem; }
+
+/* ---------------- cover ---------------- */
+
+.cover { padding: 3.5rem 0 0; }
+.cover h1 { margin: 0; font-size: 2rem; line-height: 1.35; font-weight: 700; letter-spacing: .02em; }
+.subtitle { margin: .6rem 0 0; font-size: 1rem; color: var(--ink-soft); }
+.byline {
+  margin: 1.2rem 0 2rem;
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  color: var(--ink-faint);
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--line);
+}
+.byline span { color: var(--ink-faint); }
+
+.opening .p:first-child { font-size: 1.06rem; }
+
+/* ---------------- contents ---------------- */
+
+.contents {
+  margin: 2.4rem 0 1rem;
+  padding: 1.1rem 1.3rem 1.2rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.contents-head {
+  margin: 0 0 .5rem;
+  font-family: var(--font-ui);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  color: var(--ink-faint);
+}
+.contents ol { margin: 0; padding: 0; list-style: none; }
+.contents li { margin: .3rem 0; }
+.contents a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  font-size: .95rem;
+}
+.contents a:hover { color: var(--brand); border-bottom-color: var(--brand-line); }
+.contents-n {
+  display: inline-block;
+  width: 1.6em;
+  color: var(--brand);
+  font-weight: 700;
+}
+
+/* ---------------- sections ---------------- */
+
+.section { padding-top: 3rem; }
+
+.section-head {
+  margin: 0 0 1.2rem;
+  font-size: 1.35rem;
+  line-height: 1.5;
+  font-weight: 700;
+  padding-bottom: .7rem;
+  border-bottom: 2px solid var(--brand-line);
+}
+.section-n { color: var(--brand); margin-right: .5em; }
+
+.sub {
+  margin: 2.2rem 0 .8rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.p { margin: 0 0 1.1rem; }
+
+/* The line to remember, if you remember one. */
+.key {
+  margin: 1.6rem 0;
+  padding: .9rem 1.2rem;
+  background: var(--gold-soft);
+  border-left: 3px solid var(--gold-line);
+  border-radius: 0 10px 10px 0;
+  font-size: 1.02rem;
+  font-weight: 500;
+}
+
+.list { margin: 0 0 1.2rem; padding-left: 1.4rem; }
+.list li { margin: .45rem 0; }
+.list-num li::marker { color: var(--brand); font-weight: 700; }
+.list strong { font-weight: 700; }
+
+/* ---------------- English inside the article ---------------- */
+
+.say {
+  margin-left: .45em;
+  padding: 2px 5px;
+  font-size: .72em;
+  line-height: 1;
+  vertical-align: 1px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: .5;
+  transition: opacity .12s, border-color .12s;
+}
+.say:hover { opacity: 1; border-color: var(--brand-line); }
+
+.quote {
+  margin: 1.8rem 0;
+  padding: 1.1rem 1.3rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.quote-en {
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+.quote figcaption { margin-top: .5rem; font-size: .9rem; color: var(--ink-soft); }
+
+/* Three versions of one sentence. The middle one is what Chinese structure
+   produces in English — dashed and quiet, so it reads as "not this" without
+   being labelled a mistake. */
+.versions { margin: 1.5rem 0; display: grid; gap: .6rem; }
+.ver { padding: .8rem 1.1rem; border-radius: 10px; }
+.ver p { margin: 0; }
+.ver-lab {
+  font-family: var(--font-ui);
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  margin-bottom: .3rem !important;
+}
+.ver-zh { background: var(--card); border: 1px solid var(--line); }
+.ver-zh .ver-lab { color: var(--ink-faint); }
+.ver-lit { border: 1px dashed var(--rule); }
+.ver-lit .ver-lab { color: var(--ink-faint); }
+.ver-lit p:last-child { font-family: var(--font-en); color: var(--ink-faint); }
+.ver-nat { background: var(--brand-soft); border: 1px solid var(--brand-line); }
+.ver-nat .ver-lab { color: var(--brand); }
+.ver-nat p:last-child { font-family: var(--font-en); font-size: 1.04rem; }
+
+.combine { margin: 1.5rem 0; }
+.combine-parts { list-style: none; margin: 0 0 1.1rem; padding: 0; }
+.combine-parts li {
+  display: flex;
+  gap: .7rem;
+  align-items: baseline;
+  margin: .35rem 0;
+  font-family: var(--font-en);
+}
+.combine-k {
+  flex: none;
+  width: 1.5rem;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: .75rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--ink-faint);
+  border-radius: 5px;
+}
+.combine-answer {
+  margin: 0;
+  padding: .9rem 1.2rem;
+  background: var(--brand-soft);
+  border: 1px solid var(--brand-line);
+  border-radius: 10px;
+  font-family: var(--font-en);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* ---------------- the AI prompt ---------------- */
+
+.prompt {
+  margin: 1.5rem 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.prompt-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5rem .8rem .5rem 1.1rem;
+  background: var(--brand-soft);
+  border-bottom: 1px solid var(--brand-line);
+}
+.prompt-lab {
+  font-family: var(--font-ui);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: var(--brand);
+}
+.copy {
+  position: relative;
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  color: var(--brand);
+  background: var(--card);
+  border: 1px solid var(--brand-line);
+  border-radius: 7px;
+  padding: 4px 11px;
+  cursor: pointer;
+}
+.copy:hover { background: #fff; border-color: var(--brand); }
+.copied { display: none; }
+.copy.ok { color: #2c7a58; border-color: #a8d6be; background: #e4f2ea; }
+.copy.ok .copied { display: inline; }
+.copy.ok .copy-idle { display: none; }
+
+.prompt pre {
+  margin: 0;
+  padding: 1.1rem 1.2rem;
+  font-family: var(--font-mono);
+  font-size: .86rem;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--ink);
+}
+
+/* ---------------- table ---------------- */
+
+.table-wrap { margin: 1.5rem 0; overflow-x: auto; }
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: .94rem;
+}
+.table th, .table td { padding: .7rem .9rem; text-align: left; border-bottom: 1px solid var(--line); }
+.table th {
+  font-family: var(--font-ui);
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: var(--brand);
+  background: var(--brand-soft);
+}
+.table tr:last-child td { border-bottom: 0; }
+.row-lab { font-weight: 600; }
+
+/* ---------------- the closing chain ---------------- */
+
+.flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem .5rem;
+  margin: 1.6rem 0;
+  padding: 1rem 1.1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.flow-step {
+  padding: .2rem .7rem;
+  background: var(--brand-soft);
+  border: 1px solid var(--brand-line);
+  border-radius: 999px;
+  font-size: .9rem;
+}
+.flow-arrow { color: var(--ink-faint); font-size: .85rem; }
+
+.quad { margin: 1.5rem 0; padding: 0; list-style: none; counter-reset: q; }
+.quad li {
+  margin: .7rem 0;
+  padding: .8rem 1.1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--brand-line);
+  border-radius: 0 10px 10px 0;
+}
+.quad p { margin: 0; }
+.quad-en { font-family: var(--font-en); font-size: 1.05rem; }
+.quad-zh { margin-top: .2rem !important; font-size: .9rem; color: var(--ink-soft); }
+
+/* ---------------- closing ---------------- */
+
+.cta {
+  margin: 3rem 0 0;
+  padding: 1.2rem 1.3rem;
+  background: var(--brand-soft);
+  border: 1px solid var(--brand-line);
+  border-radius: 12px;
+  font-size: .97rem;
+}
+.cta p { margin: 0; }
+.cta a { color: var(--brand); font-weight: 600; }
+
+.refs { padding-top: 2.6rem; }
+.refs h2 {
+  margin: 0 0 .8rem;
+  font-size: .95rem;
+  font-family: var(--font-ui);
+  letter-spacing: .08em;
+  color: var(--ink-faint);
+}
+.refs ol { margin: 0; padding-left: 1.3rem; }
+.refs li {
+  margin: .5rem 0;
+  font-family: var(--font-en);
+  font-size: .84rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 620px) {
+  body { font-size: 16.5px; }
+  .cover h1 { font-size: 1.7rem; }
+  .section-head { font-size: 1.2rem; }
+}
+
+@media print {
+  .say, .copy, .contents { display: none !important; }
+  body { font-size: 11pt; background: #fff; }
+  .section { break-before: auto; }
+  .key, .versions, .combine, .prompt, .quote, .table-wrap, .quad { break-inside: avoid; }
+}
+
+/* ---------------- 站尾 / site footer ---------------- */
+
+.site-foot {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 26px 22px 40px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  line-height: 1.7;
+  color: var(--ink-faint);
+}
+.site-foot p { margin: 0; }
+.site-foot .site-mark { flex: none; line-height: 0; border-radius: 50%; transition: opacity .12s; }
+.site-foot .site-mark img { display: block; width: 34px; height: 34px; }
+.site-foot .site-mark:hover { opacity: .78; }
+.site-foot p a {
+  margin-left: 7px;
+  color: var(--brand);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.site-foot p a:hover { opacity: .7; }
+@media print { .site-foot { display: none; } }

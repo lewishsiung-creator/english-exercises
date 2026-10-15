@@ -2223,6 +2223,38 @@ every suggested line and every reason is Lewis's, in his words. The page says
 so, and the open questions stay open — the slots in the Q&A answers and the
 local-LLM line are his to settle, not the page's.
 
+## 英文腦不是魔法 — an article, public
+
+`public/english-brain/` — the first page here that is published writing rather
+than teaching material: Lewis's own article of 29 Sep 2026, on whether
+"thinking in English" exists, the three stages of skill acquisition,
+myelination and its scientific limits, four practice methods with research
+behind them, and what AI should and shouldn't do.
+
+Two things set it apart from everything else in `public/`:
+
+- **Chinese leads and there is no 中 chip.** The article is Chinese prose; the
+  English appears only inside the examples. The same reasoning as Health
+  Notes — here the English is not the lesson — so the body font is a Chinese
+  sans, the measure is set for reading Chinese at length, and nothing is
+  hidden behind a tap.
+- **It is the only page meant to be found.** No `noindex`, a real description,
+  Open Graph tags, the byline, the date and the references. Everything in
+  `/winkle/` is the opposite.
+
+The two controls earn their place: 🔊 on each English example, because it is
+an English teacher's writing and the examples are meant to be heard, and a
+copy button on the AI prompt, which exists to be used (it falls back to
+selecting the text if the clipboard is refused).
+
+Block types are article-shaped rather than lesson-shaped: `versions` sets the
+Chinese against the word-for-word English and then the natural English —
+the middle one dashed and quiet, so it reads as "not this" without being
+called a mistake; `combine` is the three sentences and the answer; `flow` is
+the closing chain; `quad` the four-line summary.
+
+The student in the opening anecdote stays anonymous, as in the original.
+
 ## Health Notes — bilingual notes on the body and the mind
 
 `public/health/` — the first page here that is not English teaching. A
