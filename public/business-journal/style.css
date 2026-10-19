@@ -1531,3 +1531,180 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 
 html { -webkit-tap-highlight-color: transparent; }
 button, a, .card, .pair[data-zh], select, label { touch-action: manipulation; }
+
+
+/* ---------------- the Apple feel ----------------
+
+   Lewis asked for the feel of apple.com on top of the HBR look, not instead
+   of it. So everything that makes this a journal stays — the serif, the ink
+   and teal, the red numbers, the heavy section rules, square photographs.
+   What changes is how it handles:
+
+   - Buttons are pills (apple.com uses border-radius: 980px), boxes are
+     softly rounded, and the bar is frosted glass that the page shows through.
+   - Things respond to a press: a button sinks a little under the finger,
+     which on an iPad replaces the hover a mouse would give.
+   - Nothing snaps. A Chinese line, a gloss, a card's back, a model answer
+     fades and settles in; the teacher panel opens like a sheet; and each
+     block of a step eases up into place as it scrolls into view.
+   - The teacher panel's controls are iOS ones: a switch for the Chinese and
+     a segmented control for the speed (built from the <select> in render.js).
+
+   All of the motion sits behind prefers-reduced-motion: no-preference, and
+   none of it reaches print. */
+
+:root {
+  --ease: cubic-bezier(.25, .1, .25, 1);
+  --ease-out: cubic-bezier(.2, .8, .2, 1);
+  --r-box: 12px;
+  --r-pill: 980px;
+  --font-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
+}
+
+/* Frosted bar: translucent, with the page blurred and saturated behind it. */
+.bar {
+  background: rgba(255, 255, 255, .72);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom-color: rgba(0, 0, 0, .08);
+}
+
+/* Pills for every button that is a choice or an action. */
+.bar-btn, .chip, .reveal, .tick, .panel-btn { border-radius: var(--r-pill); }
+.bar-btn { padding-left: 14px; padding-right: 14px; }
+.bar-btn-quiet { padding-left: 10px; padding-right: 10px; }
+.chip { padding-left: 16px; padding-right: 16px; }
+/* A matching row is a full-width list item, not a pill — as in iOS lists. */
+.match .chip { border-radius: var(--r-box); }
+.zh-chip, .say { border-radius: 6px; }
+
+/* Softer boxes. Boxes with a coloured left rule keep that edge square. */
+.goals, .card, .gap, .task, .check, .prompt, .panel select { border-radius: var(--r-box); }
+.ask { border-radius: 0 var(--r-box) var(--r-box) 0; }
+
+/* Lift on hover where there is a mouse, the way apple.com's tiles do. */
+.card, .chip, .prompt, .step-next {
+  transition: border-color .2s var(--ease), background-color .2s var(--ease),
+              color .2s var(--ease), box-shadow .3s var(--ease), transform .2s var(--ease);
+}
+@media (hover: hover) {
+  .card:hover { box-shadow: 0 6px 20px rgba(0, 0, 0, .08); }
+}
+
+/* A little room to breathe between steps. */
+.step { padding-top: 80px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Press: sink under the finger or the click. */
+  button, .card, .step-next {
+    transition-property: border-color, background-color, color, box-shadow, transform, opacity;
+    transition-duration: .2s;
+    transition-timing-function: var(--ease);
+  }
+  button:not(.term):not(:disabled):active,
+  .card:active { transform: scale(.97); }
+  .step-next:active { transform: scale(.99); }
+
+  /* Reveal: what was hidden fades and settles in rather than snapping. */
+  @keyframes bj-in {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .open .zh, body.zh-all .zh, .gloss:not([hidden]), .card.open .card-back,
+  .starters:not([hidden]), .model:not([hidden]), .gap.solved .why {
+    animation: bj-in .32s var(--ease-out);
+  }
+
+  /* The teacher panel opens like a sheet from the button that called it. */
+  @keyframes bj-sheet {
+    from { opacity: 0; transform: scale(.96) translateY(-6px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .panel:not([hidden]) { animation: bj-sheet .28s var(--ease-out); transform-origin: top right; }
+  @media (max-width: 899px) {
+    body.nav-open #nav { animation: bj-in .28s var(--ease-out); }
+  }
+
+  /* Scroll: each block of a step eases up as it arrives. render.js adds
+     .rise to <html> only once it is ready to watch them, so without
+     JavaScript nothing is ever hidden. */
+  .rise .step > :not(.step-head) {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .7s var(--ease), transform .7s var(--ease-out);
+  }
+  .rise .step > .in { opacity: 1; transform: none; }
+}
+
+/* The teacher panel as an iOS sheet: rounder, frosted, a softer shadow. */
+.panel {
+  border-radius: 18px;
+  border-color: rgba(0, 0, 0, .06);
+  background: rgba(255, 255, 255, .9);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .16), 0 2px 6px rgba(0, 0, 0, .06);
+}
+
+/* iOS switch for "Show all Chinese", sitting at the right of its row. */
+.panel .row-check { display: flex; justify-content: space-between; }
+.row-check input {
+  order: 2;
+  flex: none;
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  width: 44px;
+  height: 26px;
+  margin: 0;
+  border-radius: 13px;
+  background: rgba(120, 120, 128, .2);
+  cursor: pointer;
+  transition: background-color .25s var(--ease);
+}
+.row-check input::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .2), 0 0 0 .5px rgba(0, 0, 0, .04);
+  transition: transform .25s var(--ease-out);
+}
+.row-check input:checked { background: var(--navy); }
+.row-check input:checked::before { transform: translateX(18px); }
+
+/* Segmented control for the speed, built over the hidden <select>. */
+.seg {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 9px;
+  background: rgba(118, 118, 128, .12);
+}
+.seg button {
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-radius: 7px;
+  padding: 7px 4px;
+  cursor: pointer;
+  transition: background-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+.seg button[aria-pressed="true"] {
+  background: #fff;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .12), 0 0 0 .5px rgba(0, 0, 0, .04);
+}
+.seg-select { display: none; }
+
+@media print {
+  .rise .step > :not(.step-head) { opacity: 1 !important; transform: none !important; }
+}

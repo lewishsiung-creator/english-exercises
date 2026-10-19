@@ -752,6 +752,26 @@ $('#rate').addEventListener('change', () => {
 });
 $('#rate').value = store.get('rate', '0.95');
 
+/* The speed as an iOS segmented control. The <select> stays in the page as
+   the value everything else reads; the segments only drive it. */
+(function segmented(sel) {
+  const seg = el(`<div class="seg" role="group" aria-label="Speed">${
+    [...sel.options].map((o) => `<button type="button" data-v="${text(o.value)}">${text(o.text)}</button>`).join('')
+  }</div>`);
+  const sync = () => $$('button', seg).forEach((b) =>
+    b.setAttribute('aria-pressed', String(b.dataset.v === sel.value)));
+  seg.addEventListener('click', (e) => {
+    const b = e.target.closest('button');
+    if (!b || b.dataset.v === sel.value) return;
+    sel.value = b.dataset.v;
+    sel.dispatchEvent(new Event('change'));
+    sync();
+  });
+  sel.classList.add('seg-select');
+  sel.after(seg);
+  sync();
+})($('#rate'));
+
 // ---------------------------------------------------------------- panels
 
 const panel = $('#panel');
@@ -814,6 +834,32 @@ const spy = new IntersectionObserver((entries) => {
 }, { rootMargin: '-72px 0px -70% 0px' });
 
 [$('#top'), ...$$('.step')].forEach((s) => spy.observe(s));
+
+/* Each block of a step eases up as it scrolls into view, once (see "the
+   Apple feel" in style.css). Skipped when motion is unwanted, and a block
+   above the fold on load is shown at once rather than animated. */
+if (matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) {
+  const rise = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      rise.unobserve(e.target);
+    });
+  }, { rootMargin: '0px 0px -6% 0px' });
+
+  const blocks = $$('.step > :not(.step-head)');
+  blocks.forEach((b) => {
+    if (b.getBoundingClientRect().top < innerHeight) b.classList.add('in');
+    else rise.observe(b);
+  });
+  document.documentElement.classList.add('rise');
+
+  // Reveal every answer and printing both want the whole lesson at once, not
+  // as it scrolls past.
+  const all = () => blocks.forEach((b) => b.classList.add('in'));
+  $('#showAll').addEventListener('click', all);
+  window.addEventListener('beforeprint', all);
+}
 
 const navToggle = $('#navToggle');
 navToggle.addEventListener('click', () => {

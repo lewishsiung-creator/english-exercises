@@ -550,6 +550,16 @@ with the latest the way a front page leads with its top story.
   the teacher panel and contents column size to `100dvh`, so their last rows
   no longer sit behind Safari's toolbar. Portrait iPads get the phone layout
   with the full reading column; landscape gets the contents column.
+- **The feel of apple.com, on top of the HBR look.** Lewis asked to borrow
+  Apple's handling without giving up the journal: the serif, ink, teal, red
+  numbers, heavy rules and square photographs all stay. Buttons became pills
+  and boxes softly rounded; the bar and the teacher panel are frosted glass;
+  a button sinks a little when pressed; Chinese lines, glosses, card backs
+  and model answers fade in rather than snap; each block of a step eases up
+  as it scrolls into view; the teacher panel opens like a sheet, with an iOS
+  switch for the Chinese and a segmented control for the speed (built over
+  the `<select>`, which stays as the value). UI labels use the system font.
+  All motion is off under *Reduce Motion*, and none of it reaches print.
 
 ### No. 1 — Three Habits That Build Wealth
 
