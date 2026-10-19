@@ -528,6 +528,21 @@ with the latest the way a front page leads with its top story.
   `--navy` holds the teal and `--gold` the red.
 - **`/wealth-habits/` is a redirect** to `/business-journal/wealth-habits/`,
   carrying its hash, because that URL had already gone out.
+- **Every reading ends its sections with the way on.** The cover closes on
+  *Begin → 1 …*, each step on *Next → n …*, and the last step on *End of the
+  lesson*, with the neighbouring reading in the series (the next one, or else
+  the one before), *Back to the start* and *All readings*. All of it comes from
+  `LESSON.steps` and `course.js`, so a new reading gets it for nothing. On a
+  phone the contents are folded behind ☰, and without these the only way on
+  was to keep scrolling.
+- **On a phone the bar names the step**, not the reading: *2 Reading*, from
+  the same scroll-spy that lights the contents column. A desktop keeps the
+  title, since its contents column already marks the step. Below 620px the ☰
+  button drops its English word (☰ 課程) to give the step the room.
+- **Touch targets grow under a finger.** 🔊 and 中 already had an invisible
+  24×24 hit area; where `(pointer: coarse)` they get 36×36, and the two move
+  14px apart so the areas never overlap. The dashed reveal buttons and the
+  bar's buttons are padded to about 40px tall.
 
 ### No. 1 — Three Habits That Build Wealth
 
@@ -609,6 +624,11 @@ Three block types arrived with it and now belong to the whole series:
   pattern to use. "Reveal every answer" opens them all.
 - **`ladder`** — patterns on a scale, soft → neutral → strong, the left rule
   deepening from pale teal to red with the force of the pattern.
+
+A passage can also number what it counts through: `[[4]]` in a paragraph, in
+the English and the Chinese alike, sets a small red ringed numeral where
+protocol 4 starts, so the class can be sent to "number 4" in a reading that
+runs ten protocols through six paragraphs. 🔊 skips the numbers.
 
 A word card can now carry its part of speech (`pos`), and a reading its
 `level`, shown after its number on the cover.

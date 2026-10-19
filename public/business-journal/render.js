@@ -98,7 +98,7 @@ let uid = 0;
 function marked(en, glossary, found) {
   return en.split(/(\{\{[^}]+\}\})/).map((part) => {
     const m = part.match(/^\{\{([^}]+)\}\}$/);
-    if (!m) return text(part);
+    if (!m) return numbered(text(part));
 
     const entry = glossary.find((g) => g.term === m[1]);
     if (!entry) return text(m[1]);
@@ -109,9 +109,17 @@ function marked(en, glossary, found) {
   }).join('');
 }
 
-// What the 🔊 button should read out: the paragraph without its braces.
+/* A [[number]] in a passage marks where an item the reading counts through
+   begins — protocol 4, habit 2 — so the class can be sent to it by number.
+   Takes text that is already escaped. */
+function numbered(html) {
+  return html.replace(/\[\[(\d+)\]\]\s*/g,
+    '<span class="pmark">$1</span>');
+}
+
+// What the 🔊 button should read out: the paragraph without braces or numbers.
 function plain(en) {
-  return en.replace(/\{\{([^}]+)\}\}/g, '$1');
+  return en.replace(/\[\[\d+\]\]\s*/g, '').replace(/\{\{([^}]+)\}\}/g, '$1');
 }
 
 const BLOCKS = {
@@ -341,7 +349,7 @@ const BLOCKS = {
                   <span class="gloss-zh">${text(entry.zh)}</span></p>
                 ${entry.def ? `<p class="gloss-def">${text(entry.def)}</p>` : ''}
               </div>`).join('')}
-            <p class="zh">${text(p.zh)}</p>
+            <p class="zh">${numbered(text(p.zh))}</p>
           </div>`;
       }).join('')}
     </div>`,
@@ -431,10 +439,49 @@ function buildCover() {
       </div>
       ${LESSON.source ? `<p class="source">${text(LESSON.source.en)}
         <span class="zh">${text(LESSON.source.zh)}</span></p>` : ''}
+      ${nextLink(LESSON.steps[0], 'Begin', '開始')}
     </header>`;
 }
 
-function buildStep(s) {
+/* The way on, at the foot of the cover and of every step but the last. On a
+   phone the contents are folded away behind ☰, so without this the only way
+   to the next step is to keep scrolling and hope. Navigation stays bilingual,
+   like the contents list, so its Chinese is not a hidden .zh. */
+function nextLink(s, label = 'Next', labelZh = '下一步') {
+  return `
+    <a class="step-next" href="#${s.id}">
+      <span class="step-next-k">${label}<em>${labelZh}</em></span>
+      <span class="step-next-t"><span class="n">${s.n}</span>${text(s.en)}<em>${text(s.zh)}</em></span>
+      <span class="step-next-arrow" aria-hidden="true">→</span>
+    </a>`;
+}
+
+/* The end of the lesson: a closing line, a neighbouring reading in the series
+   if there is one (the next, or else the one before), and the way back up. */
+function buildEnd() {
+  const built = COURSE.readings.filter((r) => r.built);
+  const at = built.findIndex((r) => r.id === LESSON.id);
+  const next = at >= 0 && (built[at + 1] || built[at - 1]);
+  const nextN = next && COURSE.readings.indexOf(next) + 1;
+  const isNext = next && built[at + 1] === next;
+
+  return `
+    <footer class="lesson-end">
+      <p class="lesson-end-head">End of the lesson<em>課程結束</em></p>
+      ${next ? `
+        <a class="step-next" href="../${text(next.id)}/">
+          <span class="step-next-k">${isNext ? 'Next reading' : 'Also in the series'}<em>${isNext ? '下一篇' : '系列其他文章'}</em></span>
+          <span class="step-next-t"><span class="n">No. ${nextN}</span>${text(next.en)}<em>${text(next.zh)}</em></span>
+          <span class="step-next-arrow" aria-hidden="true">→</span>
+        </a>` : ''}
+      <p class="lesson-end-links">
+        <a href="#top">↑ Back to the start <em>回到開頭</em></a>
+        <a href="../">All readings <em>全部文章</em></a>
+      </p>
+    </footer>`;
+}
+
+function buildStep(s, next) {
   const blocks = s.blocks.map((b) => {
     const fn = BLOCKS[b.t];
     if (!fn) throw new Error(`Unknown block type "${b.t}" in step ${s.id}`);
@@ -451,6 +498,7 @@ function buildStep(s) {
       </h2>
       ${photo(s.photo)}
       ${blocks}
+      ${next ? nextLink(next) : buildEnd()}
     </section>`;
 }
 
@@ -471,14 +519,20 @@ function buildNav() {
 }
 
 document.title = `${LESSON.title} · ${LESSON.titleZh} — ${COURSE.titleZh}`;
-$('.bar-title').innerHTML =
-  `${text(LESSON.title)} <span>${text(LESSON.titleZh)}</span>`;
+/* The bar holds the reading's title and, beside it, the step being read. Only
+   one shows at a time on a phone: there the contents are folded away, so the
+   bar is the one place that says where you are. A desktop keeps the title —
+   its contents column already marks the step. */
+const barTitle = $('.bar-title');
+barTitle.innerHTML =
+  `<span class="bt-lesson">${text(LESSON.title)} <span>${text(LESSON.titleZh)}</span></span>`
+  + '<span class="bt-step"></span>';
 
 $('#nav').appendChild(el(buildNav()));
 
 const doc = $('#doc');
 doc.appendChild(el(buildCover()));
-LESSON.steps.forEach((s) => doc.appendChild(el(buildStep(s))));
+LESSON.steps.forEach((s, i) => doc.appendChild(el(buildStep(s, LESSON.steps[i + 1]))));
 
 // ---------------------------------------------------------------- Chinese
 
@@ -749,6 +803,13 @@ const spy = new IntersectionObserver((entries) => {
     links.forEach((a) => a.classList.remove('here'));
     const a = links.get(e.target.id);
     if (a) { a.classList.add('here'); a.scrollIntoView({ block: 'nearest' }); }
+
+    const s = LESSON.steps.find((x) => x.id === e.target.id);
+    barTitle.dataset.at = s ? 'step' : 'top';
+    if (s) {
+      $('.bt-step', barTitle).innerHTML =
+        `<span class="bt-n">${s.n}</span>${text(s.en)} <span>${text(s.zh)}</span>`;
+    }
   });
 }, { rootMargin: '-72px 0px -70% 0px' });
 

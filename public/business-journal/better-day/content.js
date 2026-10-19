@@ -18,6 +18,9 @@
      {{double braces}}  in a passage paragraph mark a word that opens a gloss;
                         the word must match a `term` in that block's glossary
                         exactly, or it renders as plain text.
+     [[n]]              in a passage paragraph, English and Chinese alike, marks
+                        where protocol n starts, so the class can say "look at
+                        number 4" when ten protocols run through six paragraphs.
      text → textZh      a gap sentence; the Chinese is a complete sentence with
                         the answer in it, so its 中 tap is a hint that gives it.
 */
@@ -138,28 +141,28 @@ const LESSON = {
               zh: 'Andrew Huberman 是一位神經科學家，研究光線、壓力與睡眠如何影響身體。在最近一次訪談中，他談到十個日常習慣，他認為這些習慣對我們的身心健康影響最大。他把它們稱為「方案」。沒有一項很昂貴，而且大多數完全免費。',
             },
             {
-              en: 'The day begins with water. Huberman suggests drinking a large glass soon after waking, because the brain works better when the body is well {{hydrated}}. The second protocol is light. Getting daylight in your eyes within the first hour of the day raises a hormone called {{cortisol}}. Most people think of cortisol as a bad thing, but he argues that a strong morning {{peak}} is exactly what you want: it lifts your mood and attention during the day, and it helps your cortisol fall again at night, which you need in order to sleep well.',
-              zh: '一天從水開始。Huberman 建議起床後不久就喝一大杯水，因為身體水分充足時，大腦運作得比較好。第二個方案是光線。在一天的第一個小時內讓眼睛接收到自然光，會提高一種叫做皮質醇的荷爾蒙。多數人以為皮質醇是壞東西，但他認為，早晨出現一個強烈的高峰正是你想要的：它能在白天提升你的情緒與專注力，也能幫助皮質醇在晚上再次下降——而這是睡個好覺所必需的。',
+              en: '[[1]] The day begins with water. Huberman suggests drinking a large glass soon after waking, because the brain works better when the body is well {{hydrated}}. [[2]] The second protocol is light. Getting daylight in your eyes within the first hour of the day raises a hormone called {{cortisol}}. Most people think of cortisol as a bad thing, but he argues that a strong morning {{peak}} is exactly what you want: it lifts your mood and attention during the day, and it helps your cortisol fall again at night, which you need in order to sleep well.',
+              zh: '[[1]]一天從水開始。Huberman 建議起床後不久就喝一大杯水，因為身體水分充足時，大腦運作得比較好。[[2]]第二個方案是光線。在一天的第一個小時內讓眼睛接收到自然光，會提高一種叫做皮質醇的荷爾蒙。多數人以為皮質醇是壞東西，但他認為，早晨出現一個強烈的高峰正是你想要的：它能在白天提升你的情緒與專注力，也能幫助皮質醇在晚上再次下降——而這是睡個好覺所必需的。',
             },
             {
-              en: 'The third protocol is exercise, ideally in the first three or four hours of the day. He recommends three days of weights and three days of cardio each week. The fourth is more unusual: do something difficult on purpose. When you push through {{resistance}} — a cold shower, a hard book, a new language — a part of the brain linked to {{determination}} becomes stronger, and future challenges feel easier.',
-              zh: '第三個方案是運動，最好在一天的前三、四個小時內進行。他建議每週三天做重量訓練、三天做有氧運動。第四個方案比較特別：刻意做一件困難的事。當你克服抗拒感——洗冷水澡、讀一本難讀的書、學一種新語言——大腦中與決心有關的區域會變得更強，未來的挑戰也會感覺比較容易。',
+              en: '[[3]] The third protocol is exercise, ideally in the first three or four hours of the day. He recommends three days of weights and three days of cardio each week. [[4]] The fourth is more unusual: do something difficult on purpose. When you push through {{resistance}} — a cold shower, a hard book, a new language — a part of the brain linked to {{determination}} becomes stronger, and future challenges feel easier.',
+              zh: '[[3]]第三個方案是運動，最好在一天的前三、四個小時內進行。他建議每週三天做重量訓練、三天做有氧運動。[[4]]第四個方案比較特別：刻意做一件困難的事。當你克服抗拒感——洗冷水澡、讀一本難讀的書、學一種新語言——大腦中與決心有關的區域會變得更強，未來的挑戰也會感覺比較容易。',
             },
             {
-              en: 'The fifth protocol is a breathing technique for stress. Two short {{inhales}} through the nose, followed by one long {{exhale}}, will slow your heart rate within seconds. Huberman’s laboratory compared this with meditation and other breathing methods, and the people who practised it reported the greatest benefit.',
-              zh: '第五個方案是一種紓解壓力的呼吸技巧。用鼻子短短吸兩口氣，接著長長吐一口氣，幾秒內就能讓心跳慢下來。Huberman 的實驗室把這個方法和冥想及其他呼吸方法做比較，結果練習這個方法的人回報的效果最好。',
+              en: '[[5]] The fifth protocol is a breathing technique for stress. Two short {{inhales}} through the nose, followed by one long {{exhale}}, will slow your heart rate within seconds. Huberman’s laboratory compared this with meditation and other breathing methods, and the people who practised it reported the greatest benefit.',
+              zh: '[[5]]第五個方案是一種紓解壓力的呼吸技巧。用鼻子短短吸兩口氣，接著長長吐一口氣，幾秒內就能讓心跳慢下來。Huberman 的實驗室把這個方法和冥想及其他呼吸方法做比較，結果練習這個方法的人回報的效果最好。',
             },
             {
-              en: 'Protocols six to eight all concern the evening. Get outside again in the late afternoon; this protects your eyes against bright screens later on. Then {{dim}} the lights at home, and stop looking at screens for the last thirty minutes before bed. Keep the bedroom dark, and sleep on your side with your head slightly raised, which helps the brain clear waste products overnight.',
-              zh: '第六到第八個方案都和傍晚有關。傍晚再到戶外一次；這能保護你的眼睛，減少之後明亮螢幕帶來的影響。接著把家裡的燈光調暗，並在睡前最後三十分鐘停止看螢幕。讓臥室保持黑暗，側睡並把頭稍微墊高，這有助於大腦在夜間清除代謝廢物。',
+              en: 'Protocols six to eight all concern the evening. [[6]] Get outside again in the late afternoon; this protects your eyes against bright screens later on. [[7]] Then {{dim}} the lights at home, and stop looking at screens for the last thirty minutes before bed. [[8]] Keep the bedroom dark, and sleep on your side with your head slightly raised, which helps the brain clear waste products overnight.',
+              zh: '第六到第八個方案都和傍晚有關。[[6]]傍晚再到戶外一次；這能保護你的眼睛，減少之後明亮螢幕帶來的影響。[[7]]接著把家裡的燈光調暗，並在睡前最後三十分鐘停止看螢幕。[[8]]讓臥室保持黑暗，側睡並把頭稍微墊高，這有助於大腦在夜間清除代謝廢物。',
             },
             {
-              en: 'The ninth protocol is a daily period of hard, focused work — ninety minutes to two hours, with the phone in another room. In one study, people could concentrate with the phone nearby, but they became less {{flexible}} thinkers. Errors, he adds, are not a sign of failure; they are the signal that tells the brain to change.',
-              zh: '第九個方案是每天一段高強度、專注的工作時間——九十分鐘到兩小時，並把手機放在另一個房間。在一項研究中，手機在身邊時，人們仍然能夠專心，但思考變得比較不靈活。他補充說，犯錯不是失敗的象徵，而是告訴大腦需要改變的訊號。',
+              en: '[[9]] The ninth protocol is a daily period of hard, focused work — ninety minutes to two hours, with the phone in another room. In one study, people could concentrate with the phone nearby, but they became less {{flexible}} thinkers. Errors, he adds, are not a sign of failure; they are the signal that tells the brain to change.',
+              zh: '[[9]]第九個方案是每天一段高強度、專注的工作時間——九十分鐘到兩小時，並把手機放在另一個房間。在一項研究中，手機在身邊時，人們仍然能夠專心，但思考變得比較不靈活。他補充說，犯錯不是失敗的象徵，而是告訴大腦需要改變的訊號。',
             },
             {
-              en: 'The last protocol is about character rather than biology. Show {{gratitude}}, prepare properly, and do your job for the people who depend on you — but also take a short period each day when you are not performing any role at all.',
-              zh: '最後一個方案關乎品格，而不是生物學。心懷感恩、做好充分準備，為依賴你的人把工作做好——但每天也要留一小段時間，完全不扮演任何角色。',
+              en: '[[10]] The last protocol is about character rather than biology. Show {{gratitude}}, prepare properly, and do your job for the people who depend on you — but also take a short period each day when you are not performing any role at all.',
+              zh: '[[10]]最後一個方案關乎品格，而不是生物學。心懷感恩、做好充分準備，為依賴你的人把工作做好——但每天也要留一小段時間，完全不扮演任何角色。',
             },
           ],
         },
