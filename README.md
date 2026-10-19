@@ -543,6 +543,13 @@ with the latest the way a front page leads with its top story.
   24×24 hit area; where `(pointer: coarse)` they get 36×36, and the two move
   14px apart so the areas never overlap. The dashed reveal buttons and the
   bar's buttons are padded to about 40px tall.
+- **Built for an iPad's finger as well as a mouse.** Every `:hover` rule sits
+  inside `@media (hover: hover)`, because Safari keeps hover on the last thing
+  tapped — a wrong matching chip stayed teal and looked picked. Safari's grey
+  tap flash and double-tap zoom are off on controls (pinch-zoom stays), and
+  the teacher panel and contents column size to `100dvh`, so their last rows
+  no longer sit behind Safari's toolbar. Portrait iPads get the phone layout
+  with the full reading column; landscape gets the contents column.
 
 ### No. 1 — Three Habits That Build Wealth
 

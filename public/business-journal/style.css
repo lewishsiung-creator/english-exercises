@@ -112,7 +112,7 @@ body.zh-all .zh { display: block; }
   cursor: pointer;
   transition: color .12s, border-color .12s, background .12s;
 }
-.zh-chip:hover { color: var(--navy); border-color: var(--navy-line); background: var(--navy-soft); }
+@media (hover: hover) { .zh-chip:hover { color: var(--navy); border-color: var(--navy-line); background: var(--navy-soft); } }
 .open > .zh-chip,
 .open .en > .zh-chip { opacity: .35; }
 body.zh-all .zh-chip { display: none; }
@@ -184,7 +184,7 @@ body.zh-all .zh-chip { display: none; }
   padding: 6px 11px;
   cursor: pointer;
 }
-.bar-btn:hover { background: #f5f5f5; }
+@media (hover: hover) { .bar-btn:hover { background: #f5f5f5; } }
 .bar-btn-quiet { color: var(--ink-soft); border-color: var(--line); font-size: 15px; padding: 4px 9px; }
 .bar-btn-zh { font-family: var(--font-zh); }
 /* The bar's one red: the 中文 switch, lit. It is the only control up here that
@@ -226,6 +226,7 @@ body.zh-all .zh-chip { display: none; }
     position: sticky;
     top: var(--bar-h);
     max-height: calc(100vh - var(--bar-h));
+    max-height: calc(100dvh - var(--bar-h));
     overflow-y: auto;
     padding: 30px 0 40px;
     scrollbar-width: thin;
@@ -253,7 +254,7 @@ body.zh-all .zh-chip { display: none; }
   color: var(--ink-soft);
   border-left: 2px solid transparent;
 }
-.toc a:hover { background: var(--navy-soft); color: var(--ink); }
+@media (hover: hover) { .toc a:hover { background: var(--navy-soft); color: var(--ink); } }
 .toc a .n {
   font-size: 12px;
   font-variant-numeric: tabular-nums;
@@ -479,7 +480,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   opacity: .55;
   transition: opacity .12s, border-color .12s;
 }
-.say:hover { opacity: 1; border-color: var(--navy-line); }
+@media (hover: hover) { .say:hover { opacity: 1; border-color: var(--navy-line); } }
 .say-quiet { border-color: transparent; }
 
 /* ---------------- section labels ---------------- */
@@ -532,7 +533,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   cursor: pointer;
   transition: border-color .12s, box-shadow .12s;
 }
-.card:hover { border-color: var(--navy-line); box-shadow: 0 2px 8px rgba(28, 36, 48, .06); }
+@media (hover: hover) { .card:hover { border-color: var(--navy-line); box-shadow: 0 2px 8px rgba(28, 36, 48, .06); } }
 .card-en { margin: 0; font-size: 1rem; font-weight: 600; }
 .card-back { display: none; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line); }
 .card.open { border-color: var(--navy-line); background: var(--navy-soft); }
@@ -563,7 +564,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   text-align: left;
   transition: border-color .12s, background .12s, color .12s;
 }
-.chip:hover { border-color: var(--navy-line); background: var(--navy-soft); }
+@media (hover: hover) { .chip:hover { border-color: var(--navy-line); background: var(--navy-soft); } }
 .chip.picked { border-color: var(--navy); background: var(--navy-soft); color: var(--navy); font-weight: 600; }
 .chip.done {
   border-color: var(--good-line);
@@ -721,7 +722,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   padding: 5px 10px;
   cursor: pointer;
 }
-.reveal:hover { color: var(--navy); border-color: var(--navy-line); }
+@media (hover: hover) { .reveal:hover { color: var(--navy); border-color: var(--navy-line); } }
 .reveal[aria-expanded="true"] { color: var(--navy); border-style: solid; border-color: var(--navy-line); }
 
 .starters { list-style: none; margin: 12px 0 0; padding: 0; }
@@ -767,7 +768,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   padding: 11px 14px;
   cursor: pointer;
 }
-.prompt:hover { border-color: var(--navy-line); background: var(--navy-soft); }
+@media (hover: hover) { .prompt:hover { border-color: var(--navy-line); background: var(--navy-soft); } }
 .prompt .en { display: block; }
 .prompt .zh { font-size: .8rem; margin-top: 3px; }
 .prompt.on { border-color: var(--navy); background: var(--navy-soft); }
@@ -818,7 +819,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   border-radius: 4px;
   flex: none;
 }
-.tick:hover { border-color: var(--navy-line); }
+@media (hover: hover) { .tick:hover { border-color: var(--navy-line); } }
 .tick.on { color: var(--good); border-color: var(--good-line); background: var(--good-soft); }
 .tick.on .box { background: var(--good); border-color: var(--good); position: relative; }
 .tick.on .box::after {
@@ -852,6 +853,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   right: 14px;
   width: min(22rem, calc(100vw - 28px));
   max-height: calc(100vh - var(--bar-h) - 24px);
+  max-height: calc(100dvh - var(--bar-h) - 24px);
   overflow-y: auto;
   padding: 18px 20px 22px;
   background: var(--card);
@@ -908,9 +910,9 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   padding: 9px 12px;
   cursor: pointer;
 }
-.panel-btn:hover { filter: brightness(1.12); }
+@media (hover: hover) { .panel-btn:hover { filter: brightness(1.12); } }
 .panel-btn-quiet { color: var(--ink-soft); background: var(--paper); border-color: var(--line); }
-.panel-btn-quiet:hover { filter: none; border-color: var(--rule); }
+@media (hover: hover) { .panel-btn-quiet:hover { filter: none; border-color: var(--rule); } }
 
 .row-note { margin: 7px 0 0; font-size: .74rem; line-height: 1.5; color: var(--ink-faint); }
 
@@ -936,7 +938,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   text-decoration: none;
   transition: background .12s;
 }
-.step-next:hover { background: var(--navy-soft); }
+@media (hover: hover) { .step-next:hover { background: var(--navy-soft); } }
 .step-next-k {
   grid-area: k;
   font-family: var(--font-ui);
@@ -972,7 +974,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   color: var(--navy);
   transition: transform .12s;
 }
-.step-next:hover .step-next-arrow { transform: translateX(3px); }
+@media (hover: hover) { .step-next:hover .step-next-arrow { transform: translateX(3px); } }
 
 .cover .step-next { margin-top: 32px; }
 
@@ -1008,7 +1010,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   text-decoration: none;
   border-bottom: 1px solid transparent;
 }
-.lesson-end-links a:hover { border-bottom-color: var(--navy); }
+@media (hover: hover) { .lesson-end-links a:hover { border-bottom-color: var(--navy); } }
 .lesson-end-links em {
   font-family: var(--font-zh);
   font-style: normal;
@@ -1094,7 +1096,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   transition: opacity .12s;
 }
 .site-foot .site-mark img { display: block; width: 34px; height: 34px; }
-.site-foot .site-mark:hover { opacity: .78; }
+@media (hover: hover) { .site-foot .site-mark:hover { opacity: .78; } }
 
 .site-foot p a {
   margin-left: 7px;
@@ -1104,7 +1106,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   text-decoration: none;
   border-bottom: 1px solid currentColor;
 }
-.site-foot p a:hover { opacity: .7; }
+@media (hover: hover) { .site-foot p a:hover { opacity: .7; } }
 
 @media print { .site-foot { display: none; } }
 
@@ -1116,7 +1118,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
    but it only admits to being a link on hover — a reading should open on its
    title, not on its navigation. */
 .kicker-up { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
-.kicker-up:hover { border-bottom-color: var(--navy); }
+@media (hover: hover) { .kicker-up:hover { border-bottom-color: var(--navy); } }
 .kicker-sep { margin: 0 .5em; opacity: .5; }
 
 .toc-up { margin: 0 0 14px; font-size: 13px; }
@@ -1131,7 +1133,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   color: var(--ink-faint);
   text-decoration: none;
 }
-.toc-up a:hover { color: var(--navy); background: none; }
+@media (hover: hover) { .toc-up a:hover { color: var(--navy); background: none; } }
 
 /* ---------------- the contents page ---------------- */
 
@@ -1230,7 +1232,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   color: var(--ink);
 }
 .reading-card h3 a { color: inherit; text-decoration: none; }
-.reading-card:hover h3 a { color: var(--navy); }
+@media (hover: hover) { .reading-card:hover h3 a { color: var(--navy); } }
 /* The whole card is the hit area on a built reading. */
 .reading-card h3 a::after { content: ''; position: absolute; inset: 0; }
 .reading-card h3 .en { display: block; }
@@ -1351,7 +1353,8 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   cursor: pointer;
   transition: background .12s, border-color .12s;
 }
-.term:hover, .term.on { background: var(--navy-soft); border-bottom-color: var(--navy); }
+.term.on { background: var(--navy-soft); border-bottom-color: var(--navy); }
+@media (hover: hover) { .term:hover { background: var(--navy-soft); border-bottom-color: var(--navy); } }
 
 .gloss {
   margin: 10px 0 0;
@@ -1504,3 +1507,27 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   .bar-btn { padding-top: 10px; padding-bottom: 10px; }
   .bar-btn-quiet { padding-top: 8px; padding-bottom: 8px; }
 }
+
+
+/* ---------------- iPad and other touchscreens ----------------
+
+   Three things a mouse never shows.
+
+   - Sticky hover. Safari keeps :hover on whatever was last tapped, so a
+     matching chip stayed teal after a wrong tap and looked picked, and a gloss
+     word stayed lit after its gloss closed. Every :hover rule in this file is
+     therefore wrapped in @media (hover: hover) — a trackpad on an iPad still
+     gets them; a finger does not. Keep new ones the same way.
+   - The grey tap flash. The whole lesson listens for taps on one element, so
+     Safari can flash a grey box over the paragraph. Every control here
+     already shows its own new state when tapped, so the flash goes.
+   - Double-tap zoom. Tapping 中 twice to open and close it, or two chips in
+     quick succession, could zoom the page. touch-action: manipulation keeps
+     pinch-zoom and drops only the double-tap.
+
+   The panel and the contents column also use 100dvh after 100vh: on an iPad
+   100vh is the height without Safari's toolbars, so their last rows sat
+   behind the toolbar. Browsers without dvh keep the 100vh line. */
+
+html { -webkit-tap-highlight-color: transparent; }
+button, a, .card, .pair[data-zh], select, label { touch-action: manipulation; }
