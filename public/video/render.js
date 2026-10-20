@@ -472,37 +472,53 @@ function head() {
     </header>`;
 }
 
-/* The strip under the player. It holds the controls that act on the clip as a
-   whole; anything that acts on ONE line lives on that line instead. */
+/* The strip under the player.
+
+   Three groups, because eight identical pills in a row made a teacher read all
+   eight to find one. Left: what the clip is doing. Middle: how fast. Right:
+   which practice mode is on — and those three are mutually exclusive in spirit,
+   so they sit together and fill when active, like a segmented control.
+
+   Stopping a loop stands outside the groups: looping is a state you can get
+   stuck in, and its way out should not be hiding among the modes.
+
+   No icons. The emoji that used to label the modes were the loudest thing on
+   the page and said less than the words beside them. */
 function deck() {
   return `
     <div class="deck-row">
-      <button class="d-btn d-play" id="playBtn" aria-label="Play or pause">
-        <span class="ico-play">▶</span><span class="ico-pause">❚❚</span>
-      </button>
-      <button class="d-btn" id="backBtn" title="Previous line 上一句" aria-label="Previous line">↺ line</button>
-      <button class="d-btn" id="againBtn" title="Say this line again 再聽一次" aria-label="Repeat this line">Again 再一次</button>
+      <div class="d-grp">
+        <button class="d-btn d-play" id="playBtn" aria-label="Play or pause">
+          <span class="ico-play">▶</span><span class="ico-pause">❚❚</span>
+        </button>
+        <button class="d-btn" id="backBtn" title="Previous line 上一句"
+          aria-label="Previous line">↺ Line</button>
+        <button class="d-btn" id="againBtn" title="Hear this line again 再聽一次"
+          aria-label="Repeat this line">Again <em>再一次</em></button>
+      </div>
 
-      <label class="d-sel">
-        <span>Speed <em>速度</em></span>
-        <select id="rate">
-          <option value="0.5">0.5×</option>
-          <option value="0.75">0.75×</option>
-          <option value="1" selected>1×</option>
-          <option value="1.25">1.25×</option>
-        </select>
-      </label>
+      <div class="d-grp">
+        <label class="d-sel">
+          <span>Speed <em>速度</em></span>
+          <select id="rate" aria-label="Playback speed">
+            <option value="0.5">0.5×</option>
+            <option value="0.75">0.75×</option>
+            <option value="1" selected>1×</option>
+            <option value="1.25">1.25×</option>
+          </select>
+        </label>
+      </div>
 
-      <button class="d-btn d-toggle" id="blankBtn" aria-pressed="false"
-        title="Hide the words 遮住文字">🙈 Hide words <em>遮字</em></button>
+      <div class="d-grp">
+        <button class="d-btn d-toggle" id="blankBtn" aria-pressed="false"
+          title="Hide the words 遮住文字">Hide words <em>遮字</em></button>
+        <button class="d-btn d-toggle" id="shadowBtn" aria-pressed="false"
+          title="Pause after every line 每句停一下">Shadow <em>跟讀</em></button>
+        <button class="d-btn d-toggle" id="typeBtn" aria-pressed="false"
+          title="Listen and type the line 聽寫">Listen and type <em>聽寫</em></button>
+      </div>
 
-      <button class="d-btn d-toggle" id="shadowBtn" aria-pressed="false"
-        title="Pause after every line 每句停一下">🗣 Shadow <em>跟讀</em></button>
-
-      <button class="d-btn d-toggle" id="typeBtn" aria-pressed="false"
-        title="Listen and type the line 聽寫">⌨️ Listen and type <em>聽寫</em></button>
-
-      <button class="d-btn d-quiet" id="loopOff" hidden>Stop looping <em>停止重複</em></button>
+      <button class="d-quiet" id="loopOff" hidden>Stop looping <em>停止重複</em></button>
     </div>`;
 }
 

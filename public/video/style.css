@@ -1,71 +1,106 @@
 /* Watch and Practise — English built on short YouTube clips.
 
-   The same look as the other adult pages here, because it is driven the same
-   way: a teacher on one laptop turned sideways, or a shared screen. English
-   leads and Traditional Chinese sits behind a 中 chip; interactive things look
-   interactive and nothing else moves; light theme only, read side by side in a
-   lit room.
+   The look is a business magazine: a serif that means it, one red, and
+   hairlines instead of boxes. The behaviour is Apple's: the chrome defers to
+   the content, nothing moves without a reason, and everything you can touch is
+   big enough to touch.
 
-   What is different is that something is playing. Two rules follow from that:
+   Three rules hold the page together.
 
-   - The video never leaves the screen. It is pinned under the top bar, and it
-     is deliberately kept small — no more than 40% of the window's height —
-     because the transcript is the working surface and the picture is context.
-     A talking head does not need to be large.
-   - Exactly one line is lit at a time, and it is lit softly. A highlight that
-     jumps every four seconds is a strobe if it is loud, so the spoken line
-     gets a warm ground and a gold edge rather than a colour change.
-*/
+   - THE TRANSCRIPT IS THE PAGE. The video is context and is deliberately kept
+     small; the words are the working surface, so they get the serif, the
+     measure and the size. Everything else gets out of the way.
+   - ONE ACCENT, USED SPARINGLY. Red marks where you are and what matters —
+     the kicker, the line being spoken, the clip you are on. A second colour
+     would make all three mean less. The greens and ochres appear only inside
+     dictation, where they carry a meaning red cannot.
+   - HAIRLINES, NOT BOXES. A rule separates; a border encloses. Most of this
+     page is separated.
+
+   Light only, still: it is read side by side in a lit room, and often thrown
+   at a wall. */
 
 :root {
-  --paper: #f7f6f2;
-  --card: #ffffff;
-  --ink: #1c2430;
-  --ink-soft: #566171;
-  --ink-faint: #8b95a3;
+  /* ink */
+  --ink:        #1a1a1c;
+  --ink-2:      #55555d;
+  --ink-3:      #8c8c95;
 
-  --navy: #1d3f6e;
-  --navy-soft: #eaf0f8;
-  --navy-line: #c2d3e7;
+  /* ground */
+  --paper:      #ffffff;
+  --ground:     #fbfaf8;
+  --ground-2:   #f4f2ee;
 
-  --gold: #a1741a;
-  --gold-soft: #fbf1da;
-  --gold-line: #f2c14e;
+  /* hairlines */
+  --rule:       #e7e5e1;
+  --rule-2:     #d3d0ca;
 
-  --good: #2c7a58;
-  --good-soft: #e4f2ea;
-  --good-line: #a8d6be;
+  /* the one accent */
+  --accent:     #b0202a;
+  --accent-2:   #8c1a22;
+  --accent-soft:#fdf3f2;
 
-  --line: #e3e0d8;
-  --rule: #cdc8bc;
+  /* the line being spoken */
+  --now:        #fbf2e0;
+  --now-rule:   #b0202a;
 
-  --font-en: "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, "Times New Roman", serif;
-  --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
-  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  /* dictation only — these carry a meaning the accent cannot */
+  --good:       #146b51;
+  --good-soft:  #eef6f2;
+  --near:       #8a6a12;
+  --near-soft:  #fbf5e6;
 
-  --bar-h: 54px;
-  --measure: 46rem;
+  --font-serif: ui-serif, "New York", "Iowan Old Style", Charter, Georgia, "Times New Roman", serif;
+  --font-ui:    -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  --font-zh:    "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
+
+  --bar-h: 56px;
+  --measure: 41rem;
+
+  --r-sm: 8px;
+  --r:    11px;
+  --r-lg: 15px;
+
+  --ease: cubic-bezier(.4, 0, .2, 1);
+  --fast: 140ms var(--ease);
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  background: var(--paper);
+  background: var(--ground);
   color: var(--ink);
-  font-family: var(--font-en);
-  font-size: 18px;
-  line-height: 1.6;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.62;
   -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+}
+
+/* Nothing on this page animates to entertain. Honour the system setting. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
 }
 
 .skip { position: absolute; left: -9999px; }
 .skip:focus {
   left: 12px; top: 12px; z-index: 60;
-  background: var(--card); padding: 10px 16px; border-radius: 10px;
+  background: var(--paper); padding: 10px 16px; border-radius: var(--r);
+  box-shadow: 0 2px 14px rgba(26, 26, 28, .16);
 }
 
-:focus-visible { outline: 3px solid var(--gold-line); outline-offset: 2px; }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
 
 /* ---------------------------------------------------------------- top bar */
 
@@ -73,221 +108,354 @@ body {
   position: sticky; top: 0; z-index: 40;
   display: flex; align-items: center; gap: 10px;
   height: var(--bar-h);
-  padding: 0 12px;
-  background: rgba(247, 246, 242, .94);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--line);
+  padding: 0 14px;
+  background: rgba(251, 250, 248, .82);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--rule);
 }
 
 .bar-title {
   flex: 1; margin: 0; min-width: 0;
-  font-size: 1rem; font-weight: 600; letter-spacing: .01em;
+  font-family: var(--font-serif);
+  font-size: 1.02rem; font-weight: 600; letter-spacing: -.012em;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .bar-title span {
-  font-family: var(--font-zh); color: var(--ink-faint);
-  font-size: .82rem; margin-left: .5em; font-weight: 400;
+  font-family: var(--font-zh); color: var(--ink-3);
+  font-size: .8rem; margin-left: .55em; font-weight: 400; letter-spacing: 0;
 }
 
 .bar-btn {
-  font-family: var(--font-ui); font-size: .82rem;
-  padding: 7px 11px; border-radius: 9px;
-  border: 1px solid var(--navy-line); background: var(--card);
-  color: var(--navy); cursor: pointer; white-space: nowrap;
+  font-family: var(--font-ui); font-size: .8rem; font-weight: 500;
+  min-height: 34px; padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--rule-2); background: var(--paper);
+  color: var(--ink); cursor: pointer; white-space: nowrap;
+  transition: background var(--fast), border-color var(--fast), color var(--fast);
 }
-.bar-btn:hover { background: var(--navy-soft); }
-.bar-btn-zh[aria-pressed="true"] { background: var(--navy); color: #fff; border-color: var(--navy); }
-.bar-btn-quiet { border-color: var(--line); color: var(--ink-soft); padding: 7px 9px; }
+.bar-btn:hover { background: var(--ground-2); border-color: var(--ink-3); }
+.bar-btn:active { transform: translateY(.5px); }
+.bar-btn-zh[aria-pressed="true"] {
+  background: var(--ink); color: #fff; border-color: var(--ink);
+}
+.bar-btn-quiet { border-color: var(--rule); color: var(--ink-2); padding: 7px 10px; }
 
 /* ------------------------------------------------------------ the player */
 
 .stage {
   position: sticky; top: var(--bar-h); z-index: 30;
-  background: var(--paper);
-  border-bottom: 1px solid var(--line);
-  box-shadow: 0 6px 14px -10px rgba(28, 36, 48, .4);
+  background: rgba(251, 250, 248, .88);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--rule);
 }
-.stage-in { max-width: 62rem; margin: 0 auto; padding: 10px 12px 8px; }
+.stage-in { max-width: 62rem; margin: 0 auto; padding: 12px 14px 10px; }
 
-/* 16:9, but never taller than two fifths of the window — the transcript is
-   the working surface. The max-width is how the height cap is expressed,
-   because a box cannot be sized from its own computed height. */
+/* 16:9, and never taller than two fifths of the window. The max-width is how
+   the height cap is expressed, because a box cannot be sized from its own
+   computed height. */
 .frame {
   width: 100%;
   max-width: calc(40vh * 16 / 9);
   aspect-ratio: 16 / 9;
   margin: 0 auto;
   background: #000;
-  border-radius: 10px;
+  border-radius: var(--r-lg);
   overflow: hidden;
+  box-shadow: 0 1px 2px rgba(26, 26, 28, .08), 0 8px 24px -14px rgba(26, 26, 28, .35);
 }
 .frame iframe { width: 100%; height: 100%; border: 0; display: block; }
 
 .deck-warn {
-  margin: 0 0 8px; padding: 10px 12px;
-  background: var(--gold-soft); border: 1px solid var(--gold-line);
-  border-radius: 9px; font-size: .88rem; color: var(--gold);
+  margin: 0 0 10px; padding: 11px 13px;
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-family: var(--font-ui); font-size: .84rem; color: var(--accent-2);
 }
+.deck-warn a { color: var(--accent-2); }
 .deck-warn em { display: block; font-family: var(--font-zh); font-style: normal; margin-top: 3px; }
 
+/* The controls, in three groups: what the clip is doing, how fast, and which
+   practice mode is on. One undifferentiated row of eight pills made the
+   student hunt; grouping says what each control is for before it is read. */
 .deck-row {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 7px;
-  margin-top: 9px; font-family: var(--font-ui);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  margin-top: 11px; font-family: var(--font-ui);
 }
+
+/* The dividers are a one-pixel gap with the rule colour showing through from
+   behind, not borders on the children. Borders cannot survive the group
+   wrapping — on a phone the third group overflowed and `overflow: hidden` ate
+   the last label — whereas gridlines drawn this way wrap for free. */
+.d-grp {
+  display: inline-flex; flex-wrap: wrap; align-items: stretch;
+  gap: 1px;
+  background: var(--rule-2);
+  border: 1px solid var(--rule-2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.d-grp > * { background: var(--paper); }
 
 .d-btn {
-  font: inherit; font-size: .8rem;
-  padding: 7px 11px; border-radius: 9px;
-  border: 1px solid var(--navy-line); background: var(--card);
-  color: var(--navy); cursor: pointer; white-space: nowrap;
+  font: inherit; font-size: .8rem; font-weight: 500;
+  min-height: 36px; padding: 8px 12px;
+  border: 0; background: var(--paper);
+  color: var(--ink); cursor: pointer; white-space: nowrap;
+  transition: background var(--fast), color var(--fast);
 }
-.d-btn:hover { background: var(--navy-soft); }
-.d-btn em { font-family: var(--font-zh); font-style: normal; opacity: .65; margin-left: .35em; }
-.d-toggle[aria-pressed="true"] { background: var(--navy); color: #fff; border-color: var(--navy); }
-.d-toggle[aria-pressed="true"] em { opacity: .8; }
-.d-quiet { border-color: var(--gold-line); background: var(--gold-soft); color: var(--gold); }
+.d-btn:hover { background: var(--ground-2); }
+.d-btn:active { background: var(--rule); }
+.d-btn em {
+  font-family: var(--font-zh); font-style: normal;
+  color: var(--ink-3); margin-left: .35em;
+}
 
-.d-play { min-width: 46px; }
+/* A mode that is on is filled, the way a selected segment is filled. */
+.d-toggle[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.d-toggle[aria-pressed="true"]:hover { background: #000; }
+.d-toggle[aria-pressed="true"] em { color: rgba(255, 255, 255, .62); }
+
+.d-play {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 52px; font-size: .9rem;
+}
 .ico-pause, body.playing .ico-play { display: none; }
 body.playing .ico-pause { display: inline; }
 
-.d-sel { display: flex; align-items: center; gap: 6px; font-size: .8rem; color: var(--ink-soft); }
-.d-sel em { font-family: var(--font-zh); font-style: normal; }
+/* Looping is a state you can get stuck in, so its off-switch stands alone
+   rather than hiding inside a group, and it carries the accent. */
+.d-quiet {
+  border: 1px solid var(--accent); border-radius: 10px;
+  background: var(--accent-soft); color: var(--accent-2);
+  min-height: 36px; padding: 8px 12px;
+  font-size: .8rem; font-weight: 500; cursor: pointer;
+}
+.d-quiet:hover { background: #fbe9e8; }
+.d-quiet em { font-family: var(--font-zh); font-style: normal; margin-left: .35em; opacity: .75; }
+
+.d-sel {
+  display: flex; align-items: center; gap: 7px;
+  padding: 0 11px; min-height: 36px;
+  background: var(--paper); font-size: .78rem; color: var(--ink-2);
+}
+.d-sel > span { white-space: nowrap; }
+.d-sel em { font-family: var(--font-zh); font-style: normal; color: var(--ink-3); }
 .d-sel select {
-  font: inherit; padding: 6px 8px; border-radius: 8px;
-  border: 1px solid var(--navy-line); background: var(--card); color: var(--navy);
+  font: inherit; font-size: .8rem; font-weight: 500;
+  padding: 5px 4px; border: 0; background: transparent;
+  color: var(--ink); cursor: pointer;
+}
+
+/* On a phone each group takes the width and its buttons share it, so three
+   tidy rows replace one row that wrapped mid-group. */
+@media (max-width: 30rem) {
+  .d-grp { width: 100%; }
+  .d-grp > .d-btn {
+    flex: 1 1 auto;
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 10px 8px; min-height: 44px;
+  }
+  .d-sel { width: 100%; justify-content: space-between; min-height: 44px; }
+  .d-quiet { width: 100%; min-height: 44px; }
+  .bar-btn { min-height: 38px; }
 }
 
 /* ------------------------------------------------------------- the shell */
 
-.shell { max-width: 62rem; margin: 0 auto; padding: 0 16px 64px; }
-
+.shell { max-width: 62rem; margin: 0 auto; padding: 0 20px 72px; }
 #doc { max-width: var(--measure); margin: 0 auto; }
 
 /* ---------------------------------------------------------- lesson header */
 
-.lesson-head { padding: 22px 0 10px; border-bottom: 1px solid var(--rule); }
+.lesson-head {
+  padding: 40px 0 22px;
+  border-bottom: 1px solid var(--rule-2);
+}
 
+/* The kicker. Small, tracked, and the one place red appears above the fold. */
 .tag {
-  font-family: var(--font-ui); font-size: .72rem; letter-spacing: .08em;
-  text-transform: uppercase; color: var(--gold); margin: 0 0 6px;
+  margin: 0 0 10px;
+  font-family: var(--font-ui); font-size: .66rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--accent);
 }
-.tag em { font-family: var(--font-zh); font-style: normal; text-transform: none; margin-left: .5em; opacity: .8; }
+.tag em {
+  font-family: var(--font-zh); font-style: normal;
+  text-transform: none; letter-spacing: .04em; margin-left: .6em; color: var(--ink-3);
+}
 
-.lesson-head h1 { margin: 0; font-size: 1.7rem; line-height: 1.25; }
+.lesson-head h1 {
+  margin: 0;
+  font-size: clamp(1.95rem, 4.4vw, 2.55rem);
+  line-height: 1.1;
+  letter-spacing: -.021em;
+  font-weight: 600;
+}
 .lesson-head h1 span {
-  display: block; font-family: var(--font-zh); font-size: 1rem;
-  color: var(--ink-soft); font-weight: 400; margin-top: 4px;
+  display: block; margin-top: 9px;
+  font-family: var(--font-zh); font-size: .98rem; line-height: 1.5;
+  color: var(--ink-2); font-weight: 400; letter-spacing: 0;
 }
 
-.src { font-family: var(--font-ui); font-size: .8rem; color: var(--ink-faint); margin: 8px 0 0; }
-.src a { color: var(--navy); }
+.src {
+  margin: 16px 0 0;
+  font-family: var(--font-ui); font-size: .76rem; line-height: 1.6;
+  color: var(--ink-3);
+}
+.src a { color: var(--ink-2); text-decoration-color: var(--rule-2); text-underline-offset: 2px; }
+.src a:hover { color: var(--accent); text-decoration-color: currentColor; }
 
-.about { margin-top: 12px; color: var(--ink-soft); }
+.about { margin-top: 20px; color: var(--ink-2); font-size: 1.02rem; }
 
+/* "Listen for" — a pull-quote, not a notice. A rule and a label do the work a
+   filled box used to do, with a fraction of the weight. */
 .watch-for {
-  margin-top: 14px; padding: 12px 14px;
-  background: var(--gold-soft); border-left: 3px solid var(--gold-line);
-  border-radius: 0 9px 9px 0;
+  margin-top: 24px; padding: 2px 0 2px 18px;
+  border-left: 2px solid var(--accent);
 }
 .wf-lab {
-  margin: 0 0 4px; font-family: var(--font-ui); font-size: .7rem;
-  letter-spacing: .08em; text-transform: uppercase; color: var(--gold);
+  margin: 0 0 6px;
+  font-family: var(--font-ui); font-size: .64rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--accent);
 }
-.wf-lab em { font-family: var(--font-zh); font-style: normal; text-transform: none; margin-left: .5em; }
+.wf-lab em {
+  font-family: var(--font-zh); font-style: normal;
+  text-transform: none; letter-spacing: .04em; margin-left: .6em; color: var(--ink-3);
+}
+.watch-for .en { font-size: 1.1rem; line-height: 1.5; }
 
 /* ------------------------------------------------- Chinese behind a chip */
 
 .zh {
   display: none;
-  font-family: var(--font-zh); font-size: .92rem;
-  color: var(--ink-soft); margin: 3px 0 0;
+  font-family: var(--font-zh); font-size: .93rem; line-height: 1.68;
+  color: var(--ink-2); margin: 5px 0 0;
 }
 .zh-on > .zh, .zh-on .zh,
 body.zh-all .zh { display: block; }
 
+/* The chip appears on every line of a long transcript, so bordered it became a
+   column of little boxes running down the reading surface — the noisiest thing
+   on the page, for a control most readers touch a few times an hour. It defers
+   until reached for: a quiet mark that takes its box on hover. */
 .zh-chip {
   font-family: var(--font-zh); font-size: .66rem;
-  margin-left: .45em; padding: 1px 5px; vertical-align: .12em;
-  border: 1px solid var(--navy-line); border-radius: 5px;
-  background: var(--card); color: var(--navy); cursor: pointer; line-height: 1.5;
+  margin-left: .4em; padding: 2px 5px; vertical-align: .14em;
+  border: 0; border-radius: 5px;
+  background: transparent; color: var(--ink-3); cursor: pointer; line-height: 1.5;
+  transition: background var(--fast), color var(--fast);
 }
-.zh-chip:hover { background: var(--navy-soft); }
-body.zh-all .zh-chip { opacity: .3; }
+.zh-chip:hover { background: var(--ink); color: #fff; }
+body.zh-all .zh-chip { opacity: .25; }
 
 .pair .en { margin: 0; }
+.zh-always { font-family: var(--font-zh); color: var(--ink-2); }
 
-.zh-always { font-family: var(--font-zh); color: var(--ink-soft); }
+/* A chip is small to look at and must not be small to hit. */
+.say, .zh-chip { position: relative; }
+.say::after,
+.zh-chip::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: max(100%, 24px); height: max(100%, 24px);
+  transform: translate(-50%, -50%);
+}
+@media (pointer: coarse) {
+  .say::after, .zh-chip::after { width: max(100%, 44px); height: max(100%, 44px); }
+}
 
 /* -------------------------------------------------------- the transcript */
 
-.lines { list-style: none; margin: 18px 0 0; padding: 0; }
+.lines { list-style: none; margin: 26px 0 0; padding: 0; }
 
 .line {
   display: grid;
-  grid-template-columns: 3.6rem 1fr 2.2rem;
+  grid-template-columns: 3.4rem 1fr 2rem;
   align-items: start;
-  gap: 4px 8px;
-  padding: 7px 8px;
-  border-radius: 9px;
-  border: 1px solid transparent;
+  gap: 4px 10px;
+  padding: 9px 10px 9px 9px;
+
+  /* Every line carries the rule, transparent until it is the line being
+     spoken. Giving it only to the current line would shove the text sideways
+     three pixels every few seconds, which on a page you read while listening
+     is worse than no marker at all. */
+  border-left: 3px solid transparent;
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  transition: background var(--fast), border-color var(--fast);
 
   /* Where the spoken line comes to rest when the transcript follows along.
-     scrollIntoView({block:'center'}) centres the line in the WINDOW, and the
-     player is pinned over the top 40% of it — so the line being said would sit
-     behind the video, which is the one place it must never be. A scroll margin
-     on the top alone shifts the centred box upward, which lands the line
-     itself lower down, clear of the player. It has to be one-sided: an equal
-     margin top and bottom cancels out and does nothing at all. */
+     scrollIntoView({block:'center'}) centres it in the WINDOW, and the player
+     is pinned over the top of that — so the line being said would sit behind
+     the video, which is the one place it must never be. A scroll margin on the
+     top alone shifts the centred box up, which lands the line itself lower,
+     clear of the player. It has to be one-sided: an equal margin top and
+     bottom cancels out and does nothing. */
   scroll-margin-top: 46vh;
 }
-.line + .line { margin-top: 2px; }
-.line:hover { background: #fff; border-color: var(--line); }
+.line + .line { margin-top: 1px; }
+.line:hover { background: var(--ground-2); }
 
-.line .en { margin: 0; }
+.line .en { margin: 0; font-size: 1.1rem; line-height: 1.58; }
 .line .zh { grid-column: 2; }
 .line-body { min-width: 0; }
 
 .go {
-  font-family: var(--font-ui); font-size: .72rem;
-  padding: 4px 6px; border-radius: 7px;
-  border: 1px solid transparent; background: transparent;
-  color: var(--ink-faint); cursor: pointer;
-  font-variant-numeric: tabular-nums;
+  font-family: var(--font-ui); font-size: .7rem; font-weight: 500;
+  padding: 4px 5px; border-radius: 6px;
+  border: 0; background: transparent;
+  color: var(--ink-3); cursor: pointer;
+  font-variant-numeric: tabular-nums; letter-spacing: .01em;
+  transition: background var(--fast), color var(--fast);
 }
-.go:hover { background: var(--navy-soft); color: var(--navy); border-color: var(--navy-line); }
+.go:hover { background: var(--ink); color: #fff; }
 
 .loop {
-  font-size: .82rem; line-height: 1;
-  padding: 5px; border-radius: 7px;
-  border: 1px solid transparent; background: transparent;
-  cursor: pointer; opacity: 0; transition: opacity .12s;
+  font-size: .8rem; line-height: 1;
+  padding: 6px; border-radius: 6px;
+  border: 0; background: transparent;
+  cursor: pointer; opacity: 0;
+  transition: opacity var(--fast), background var(--fast);
 }
 .line:hover .loop, .line.now .loop, .loop[aria-pressed="true"] { opacity: 1; }
-.loop[aria-pressed="true"] { background: var(--gold-soft); border-color: var(--gold-line); }
+.loop:hover { background: var(--ground-2); }
+.loop[aria-pressed="true"] { background: var(--accent-soft); }
 
-/* The line being spoken. Warm ground, gold edge, no movement. */
+/* The line being spoken. A warm ground and a red edge — no movement, because
+   this changes every few seconds and anything louder is a strobe. */
+/* An inset shadow was invisible here: measured against the page ground it came
+   out at a contrast ratio of 1.02, and the rounded corners clipped the rule
+   into a sliver. A real border and a warmer band carry it instead, with the
+   text a half-step heavier — a weight change reads at a glance where two
+   near-whites never will. */
 .line.now {
-  background: var(--gold-soft);
-  border-color: var(--gold-line);
+  background: var(--now);
+  border-left-color: var(--now-rule);
 }
-.line.now .go { color: var(--gold); }
+.line.now .go { color: var(--accent-2); }
+.line.now .en { font-weight: 500; }
 
 /* Shadowing has stopped here and is waiting for the student to say it back. */
-.line.waiting { background: var(--good-soft); border-color: var(--good-line); }
+.line.waiting {
+  background: var(--good-soft);
+  border-left-color: var(--good);
+}
 .line.waiting .line-body::after {
   content: "Say it back, then press play  說一次，再按播放";
-  display: block; margin-top: 4px;
+  display: block; margin-top: 5px;
   font-family: var(--font-ui); font-size: .72rem; color: var(--good);
 }
 
-/* Hide-words mode: the English goes behind a rule that can be lifted one line
-   at a time, so a student can check a line without spoiling the rest. */
+/* Hide-words: the English goes behind a rule that lifts one line at a time, so
+   a student can check a line without spoiling the rest. */
 body.blanked .line .en,
 body.blanked .line .zh { visibility: hidden; }
 body.blanked .line .line-body {
   position: relative; min-height: 1.6em;
-  border-bottom: 2px dotted var(--rule); cursor: pointer;
+  border-bottom: 1px dashed var(--rule-2); cursor: pointer;
 }
 body.blanked .line.shown .en,
 body.blanked .line.shown .zh { visibility: visible; }
@@ -295,158 +463,180 @@ body.blanked .line.shown .line-body { border-bottom-color: transparent; }
 
 /* ------------------------------------------------------------- the blocks */
 
-.block { margin: 34px 0 0; padding-top: 20px; border-top: 1px solid var(--rule); }
+.block { margin: 46px 0 0; padding-top: 24px; border-top: 1px solid var(--rule-2); }
 
-.block h2 { margin: 0 0 4px; font-size: 1.15rem; }
+.block h2 {
+  margin: 0 0 5px;
+  font-size: 1.32rem; letter-spacing: -.014em; font-weight: 600;
+}
 .block h2 span {
-  font-family: var(--font-zh); font-size: .85rem; font-weight: 400;
-  color: var(--ink-soft); margin-left: .6em;
+  font-family: var(--font-zh); font-size: .86rem; font-weight: 400;
+  color: var(--ink-2); margin-left: .6em; letter-spacing: 0;
 }
 
-.hint { margin: 0 0 14px; font-family: var(--font-ui); font-size: .8rem; color: var(--ink-faint); }
+.hint { margin: 0 0 18px; font-family: var(--font-ui); font-size: .79rem; color: var(--ink-3); }
 .hint em { font-family: var(--font-zh); font-style: normal; margin-left: .4em; }
 
 /* phrase cards */
-.cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 @media (min-width: 40rem) { .cards { grid-template-columns: 1fr 1fr; } }
 
-.card { background: var(--card); border: 1px solid var(--line); border-radius: 11px; overflow: hidden; }
+.card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  overflow: hidden;
+  transition: border-color var(--fast), box-shadow var(--fast);
+}
+.card:hover { border-color: var(--rule-2); box-shadow: 0 1px 3px rgba(26, 26, 28, .05); }
+.card.open { border-color: var(--rule-2); }
+
 .card-face {
   width: 100%; display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
-  font: inherit; text-align: left; padding: 11px 13px;
-  background: none; border: 0; cursor: pointer;
+  font: inherit; text-align: left; padding: 13px 15px;
+  background: none; border: 0; cursor: pointer; min-height: 44px;
 }
-.card-face:hover { background: var(--navy-soft); }
-.card-en { font-weight: 600; }
+.card-en { font-weight: 600; font-size: 1.02rem; letter-spacing: -.005em; }
 .card-t {
-  font-family: var(--font-ui); font-size: .7rem; color: var(--ink-faint);
+  font-family: var(--font-ui); font-size: .68rem; color: var(--ink-3);
   font-variant-numeric: tabular-nums; flex: none;
 }
-.card-back { display: none; padding: 0 13px 12px; border-top: 1px dashed var(--line); }
+.card-back { display: none; padding: 0 15px 14px; }
 .card.open .card-back { display: block; }
-.card-zh { font-family: var(--font-zh); margin: 9px 0 0; color: var(--ink); }
-.card-note { margin: 6px 0 0; font-size: .88rem; color: var(--ink-soft); }
-.card-note em { display: block; font-family: var(--font-zh); font-style: normal; margin-top: 2px; }
+.card-zh { font-family: var(--font-zh); margin: 0 0 0; padding-top: 11px; border-top: 1px solid var(--rule); color: var(--ink); }
+.card-note { margin: 8px 0 0; font-size: .92rem; line-height: 1.6; color: var(--ink-2); }
+.card-note em { display: block; font-family: var(--font-zh); font-style: normal; margin-top: 4px; }
 .card-go {
-  margin-top: 9px; font-family: var(--font-ui); font-size: .74rem;
-  padding: 5px 9px; border-radius: 8px;
-  border: 1px solid var(--navy-line); background: var(--card); color: var(--navy); cursor: pointer;
+  margin-top: 11px; font-family: var(--font-ui); font-size: .74rem; font-weight: 500;
+  min-height: 34px; padding: 7px 11px; border-radius: var(--r-sm);
+  border: 1px solid var(--rule-2); background: var(--paper); color: var(--ink); cursor: pointer;
+  transition: background var(--fast), color var(--fast), border-color var(--fast);
 }
+.card-go:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
 .card-go em { font-family: var(--font-zh); font-style: normal; margin-left: .3em; opacity: .7; }
 
 /* questions */
-.qs { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
-.q { background: var(--card); border: 1px solid var(--line); border-radius: 11px; padding: 12px 14px; }
-.q-en { margin: 0; }
+.qs { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.q {
+  background: var(--paper); border: 1px solid var(--rule);
+  border-radius: var(--r); padding: 14px 16px;
+  transition: border-color var(--fast);
+}
+.q:hover { border-color: var(--rule-2); }
+.q-en { margin: 0; font-size: 1.04rem; line-height: 1.55; }
 .q-n {
-  display: inline-block; min-width: 1.5em;
-  font-family: var(--font-ui); font-size: .78rem; color: var(--gold); font-weight: 700;
+  display: inline-block; min-width: 1.6em;
+  font-family: var(--font-ui); font-size: .74rem; color: var(--accent); font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
-.q-foot { display: flex; gap: 7px; margin-top: 9px; }
+.q-foot { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 11px; }
 .q-show, .q-go {
-  font-family: var(--font-ui); font-size: .74rem;
-  padding: 5px 10px; border-radius: 8px;
-  border: 1px solid var(--navy-line); background: var(--card); color: var(--navy); cursor: pointer;
+  font-family: var(--font-ui); font-size: .74rem; font-weight: 500;
+  min-height: 34px; padding: 7px 12px; border-radius: var(--r-sm);
+  border: 1px solid var(--rule-2); background: var(--paper); color: var(--ink); cursor: pointer;
+  transition: background var(--fast), color var(--fast), border-color var(--fast);
 }
+.q-show:hover, .q-go:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
 .q-show em { font-family: var(--font-zh); font-style: normal; margin-left: .3em; opacity: .7; }
-.q-a { display: none; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.q-a { display: none; margin-top: 13px; padding-top: 12px; border-top: 1px solid var(--rule); }
 .q.open .q-a { display: block; }
 .q.open .q-a .en { color: var(--good); }
 
 /* speaking tasks */
-.block-task .tasks { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.block-task .tasks { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 .block-task li {
-  padding: 12px 14px; border-radius: 11px;
-  background: var(--good-soft); border: 1px solid var(--good-line);
+  padding: 2px 0 2px 18px;
+  border-left: 2px solid var(--rule-2);
+  font-size: 1.04rem;
 }
+.block-task li:hover { border-left-color: var(--accent); }
 
 .block-empty { border-top: 0; }
 .block-empty code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85em;
-  background: var(--navy-soft); padding: 1px 5px; border-radius: 5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .86em;
+  background: var(--ground-2); padding: 2px 6px; border-radius: 5px;
 }
 
 /* ----------------------------------------------------------- the clip list */
 
 .nav {
   position: fixed; inset: 0 auto 0 0; z-index: 50;
-  width: min(20rem, 84vw);
-  padding: 16px; overflow-y: auto;
-  background: var(--card); border-right: 1px solid var(--line);
-  transform: translateX(-102%); transition: transform .16s ease;
+  width: min(21rem, 86vw);
+  padding: 18px 16px calc(18px + env(safe-area-inset-bottom, 0px));
+  overflow-y: auto;
+  background: var(--paper); border-right: 1px solid var(--rule);
+  transform: translateX(-102%);
+  transition: transform 220ms var(--ease);
+  box-shadow: 10px 0 40px -28px rgba(26, 26, 28, .5);
 }
 body.nav-open .nav { transform: none; }
 
 .nav-h {
-  margin: 0 0 10px; font-family: var(--font-ui); font-size: .7rem;
-  letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint);
+  margin: 0 0 14px; font-family: var(--font-ui); font-size: .64rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3);
 }
-.nav-h em { font-family: var(--font-zh); font-style: normal; text-transform: none; margin-left: .4em; }
+.nav-h em { font-family: var(--font-zh); font-style: normal; text-transform: none; letter-spacing: .04em; margin-left: .45em; }
 .nav ol { list-style: none; margin: 0; padding: 0; }
 
-/* One folding section per video. The talk's own name is the biggest thing in
-   the list, because with several videos in here that is the first thing a
-   reader is looking for; the speaker and the clip count sit under it in the
-   quiet UI face. */
-.nav-group + .nav-group { margin-top: 8px; }
+/* One folding section per video. The talk's name is the biggest thing in the
+   list, because with several videos in here that is what a reader looks for
+   first; the speaker and the count sit under it in the quiet UI face. */
+.nav-group + .nav-group { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--rule); }
 
 .nav-head {
-  display: flex; align-items: flex-start; gap: 9px;
+  display: flex; align-items: flex-start; gap: 10px;
   width: 100%; text-align: left;
-  padding: 11px 12px;
-  border: 1px solid var(--line); border-radius: 11px;
-  background: var(--card); color: inherit;
+  padding: 11px 10px;
+  border: 0; border-radius: var(--r-sm);
+  background: transparent; color: inherit;
   font: inherit; cursor: pointer;
+  transition: background var(--fast);
 }
-.nav-head:hover { background: var(--navy-soft); border-color: var(--navy-line); }
+.nav-head:hover { background: var(--ground-2); }
 
 .nav-chev {
-  flex: none; font-size: .7rem; line-height: 1.7; color: var(--ink-faint);
-  transition: transform .14s ease;
+  flex: none; font-size: .64rem; line-height: 2; color: var(--ink-3);
+  transition: transform 180ms var(--ease);
 }
 .nav-group.open .nav-chev { transform: rotate(90deg); }
 
 .nav-head-t { min-width: 0; }
-
-/* The talk's name. Serif and near body size — this is a title, not a label. */
 .nav-vid {
   display: block;
-  font-family: var(--font-en); font-size: 1rem; font-weight: 600;
-  line-height: 1.3; color: var(--ink);
+  font-family: var(--font-serif); font-size: 1rem; font-weight: 600;
+  line-height: 1.3; letter-spacing: -.012em; color: var(--ink);
 }
 .nav-vid-zh {
-  display: block; margin-top: 2px;
-  font-family: var(--font-zh); font-size: .8rem; line-height: 1.4;
-  color: var(--ink-soft);
+  display: block; margin-top: 3px;
+  font-family: var(--font-zh); font-size: .8rem; line-height: 1.45; color: var(--ink-2);
 }
 .nav-by {
-  display: block; margin-top: 5px;
-  font-family: var(--font-ui); font-size: .7rem; color: var(--ink-faint);
+  display: block; margin-top: 6px;
+  font-family: var(--font-ui); font-size: .69rem; color: var(--ink-3);
 }
 
-/* The section holding the clip on screen, marked so a reader who has folded
+/* The section holding the clip on screen, so a reader who has folded
    everything can still see where they are. */
-.nav-group.current .nav-head {
-  border-color: var(--gold-line);
-  box-shadow: inset 3px 0 0 var(--gold-line);
-}
+.nav-group.current .nav-head { box-shadow: inset 2px 0 0 var(--accent); }
 
-.nav-group > ol { display: none; padding: 6px 0 2px 10px; }
+.nav-group > ol { display: none; padding: 4px 0 2px 12px; }
 .nav-group.open > ol { display: block; }
+
 .nav a {
-  display: block; padding: 9px 11px; border-radius: 9px;
+  display: block; padding: 9px 11px; border-radius: var(--r-sm);
   text-decoration: none; color: var(--ink);
+  transition: background var(--fast);
 }
-.nav a:hover { background: var(--navy-soft); }
-.nav a.here { background: var(--gold-soft); box-shadow: inset 3px 0 0 var(--gold-line); }
-.nav-t { display: block; font-size: .92rem; }
-.nav-zh { display: block; font-family: var(--font-zh); font-size: .78rem; color: var(--ink-soft); }
+.nav a:hover { background: var(--ground-2); }
+.nav a.here { background: var(--accent-soft); box-shadow: inset 2px 0 0 var(--accent); }
+.nav-t { display: block; font-size: .93rem; line-height: 1.4; }
+.nav-zh { display: block; font-family: var(--font-zh); font-size: .78rem; color: var(--ink-2); }
 .nav-len {
-  display: block; font-family: var(--font-ui); font-size: .68rem;
-  color: var(--ink-faint); font-variant-numeric: tabular-nums; margin-top: 2px;
+  display: block; font-family: var(--font-ui); font-size: .67rem;
+  color: var(--ink-3); font-variant-numeric: tabular-nums; margin-top: 3px;
 }
 
-.nav-scrim { position: fixed; inset: 0; z-index: 45; background: rgba(28, 36, 48, .3); }
+.nav-scrim { position: fixed; inset: 0; z-index: 45; background: rgba(26, 26, 28, .26); }
 .nav-scrim[hidden] { display: none; }
 body.nav-open .nav-scrim { display: block; }
 body:not(.nav-open) .nav-scrim { display: none; }
@@ -456,73 +646,57 @@ body:not(.nav-open) .nav-scrim { display: none; }
 .panel {
   position: fixed; inset: 0 0 auto auto; z-index: 55;
   width: min(24rem, 92vw); height: 100%; overflow-y: auto;
-  padding: 16px; background: var(--card);
-  border-left: 1px solid var(--line); box-shadow: -12px 0 30px -20px rgba(28, 36, 48, .5);
+  padding: 18px 18px calc(18px + env(safe-area-inset-bottom, 0px));
+  background: var(--paper);
+  border-left: 1px solid var(--rule);
+  box-shadow: -10px 0 40px -28px rgba(26, 26, 28, .5);
   font-family: var(--font-ui);
 }
 .panel[hidden] { display: none; }
 .panel-head { display: flex; align-items: center; justify-content: space-between; }
-.panel-head h2 { margin: 0; font-family: var(--font-en); font-size: 1.05rem; }
-.panel-head h2 span { font-family: var(--font-zh); font-size: .8rem; color: var(--ink-soft); font-weight: 400; margin-left: .5em; }
-.panel-x { font-size: 1rem; background: none; border: 0; cursor: pointer; color: var(--ink-soft); padding: 6px; }
+.panel-head h2 { margin: 0; font-family: var(--font-serif); font-size: 1.1rem; letter-spacing: -.014em; }
+.panel-head h2 span { font-family: var(--font-zh); font-size: .82rem; color: var(--ink-2); font-weight: 400; margin-left: .5em; letter-spacing: 0; }
+.panel-x {
+  font-size: 1rem; background: none; border: 0; cursor: pointer;
+  color: var(--ink-3); padding: 8px; min-width: 36px; min-height: 36px; border-radius: var(--r-sm);
+  transition: background var(--fast), color var(--fast);
+}
+.panel-x:hover { background: var(--ground-2); color: var(--ink); }
 
-.row { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
+.row { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--rule); }
 .row-check { display: block; }
 .row-check span { font-size: .9rem; }
-.row-check em { font-family: var(--font-zh); font-style: normal; color: var(--ink-soft); margin-left: .4em; }
-.row label { display: block; font-size: .85rem; margin-bottom: 6px; }
-.row-note { margin: 7px 0 0; font-size: .74rem; line-height: 1.5; color: var(--ink-faint); }
-.row-note em { display: block; font-family: var(--font-zh); font-style: normal; margin-top: 2px; }
+.row-check em { font-family: var(--font-zh); font-style: normal; color: var(--ink-2); margin-left: .4em; }
+.row label { display: block; font-size: .85rem; margin-bottom: 7px; }
+.row-note { margin: 8px 0 0; font-size: .74rem; line-height: 1.55; color: var(--ink-3); }
+.row-note em { display: block; font-family: var(--font-zh); font-style: normal; margin-top: 3px; }
 
 .panel-btn {
-  font: inherit; font-size: .84rem; width: 100%;
-  padding: 9px 12px; border-radius: 9px;
-  border: 1px solid var(--navy-line); background: var(--card); color: var(--navy); cursor: pointer;
+  font: inherit; font-size: .84rem; font-weight: 500; width: 100%;
+  min-height: 40px; padding: 10px 13px; border-radius: var(--r-sm);
+  border: 1px solid var(--rule-2); background: var(--paper); color: var(--ink); cursor: pointer;
+  transition: background var(--fast), color var(--fast), border-color var(--fast);
 }
-.panel-btn:hover { background: var(--navy-soft); }
+.panel-btn:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
 .panel-btn em { font-family: var(--font-zh); font-style: normal; margin-left: .4em; opacity: .7; }
-.panel-btn-quiet { border-color: var(--line); color: var(--ink-soft); }
+.panel-btn-quiet { border-color: var(--rule); color: var(--ink-2); }
 
 .panel input[type="text"] {
   font: inherit; font-size: .84rem; width: 100%;
-  padding: 9px 11px; border-radius: 9px;
-  border: 1px solid var(--navy-line); background: var(--paper);
+  min-height: 40px; padding: 10px 12px; border-radius: var(--r-sm);
+  border: 1px solid var(--rule-2); background: var(--ground);
+  transition: border-color var(--fast), background var(--fast);
 }
-.panel input[aria-invalid="true"] { border-color: #c0563a; background: #fdeee9; }
+.panel input[type="text"]:focus { background: var(--paper); }
+.panel input[aria-invalid="true"] { border-color: var(--accent); background: var(--accent-soft); }
 
-/* -------------------------------------------------------------- the footer */
-
-.site-foot {
-  display: flex; align-items: center; gap: 12px;
-  max-width: 62rem; margin: 0 auto; padding: 22px 16px 40px;
-  border-top: 1px solid var(--line);
-  font-family: var(--font-ui); font-size: .78rem; color: var(--ink-faint);
-}
-.site-foot p { margin: 0; }
-.site-foot a { color: var(--navy); margin-left: .6em; }
-.site-mark img { display: block; border-radius: 8px; }
-
-/* ------------------------------------------------------------------ print */
-
-@media print {
-  .bar, .stage, .nav, .nav-scrim, .panel, .loop, .go, .zh-chip, .site-foot { display: none !important; }
-  .zh, .card-back, .q-a { display: block !important; }
-  body { font-size: 11pt; }
-  .line { break-inside: avoid; }
-}
-
-/* No lesson, no player: an empty black rectangle reads as a broken video
-   rather than as a page waiting for its first clip. */
-body.empty .stage { display: none; }
-
-/* ------------------------------------------------- Listen and Type
+/* -------------------------------------------------- Listen and Type
 
    Dictation on one line at a time. The transcript goes blank and fills in
    behind the student as they work down it, so the page doubles as the record
-   of what they did. Words they caught go green, words they missed take the
-   gold attention colour rather than a red one — the house rule is that a wrong
-   answer stays open and does not shout, and a missed word in dictation is
-   information, not a failure. Nothing is counted anywhere. */
+   of what they did. Words they caught go green, a word heard but spelled
+   without its apostrophe goes ochre, and a word genuinely missed takes the
+   accent — information, not a scolding, and nothing is counted anywhere. */
 
 body.typing #lines .line .en,
 body.typing #lines .line .zh { visibility: hidden; }
@@ -530,112 +704,117 @@ body.typing #lines .line.typed .en,
 body.typing #lines .line.typed .zh { visibility: visible; }
 body.typing #lines .line .line-body {
   min-height: 1.6em;
-  border-bottom: 2px dotted var(--rule);
+  border-bottom: 1px dashed var(--rule-2);
 }
 body.typing #lines .line.typed .line-body { border-bottom-color: transparent; }
 
-/* The line being typed sits open below its own row, across all three columns. */
 .type-box {
   grid-column: 1 / -1;
-  margin-top: 8px;
-  padding: 12px 13px;
-  background: var(--card);
-  border: 1px solid var(--navy-line);
-  border-radius: 11px;
+  margin-top: 10px;
+  padding: 14px 15px;
+  background: var(--paper);
+  border: 1px solid var(--rule-2);
+  border-radius: var(--r);
+  box-shadow: 0 1px 3px rgba(26, 26, 28, .05);
 }
 
 .type-lab {
-  margin: 0 0 8px;
-  font-family: var(--font-ui); font-size: .72rem;
-  letter-spacing: .06em; text-transform: uppercase; color: var(--navy);
+  margin: 0 0 9px;
+  font-family: var(--font-ui); font-size: .64rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--accent);
 }
 .type-lab em {
   font-family: var(--font-zh); font-style: normal;
-  text-transform: none; letter-spacing: 0; margin-left: .5em; opacity: .75;
+  text-transform: none; letter-spacing: .04em; margin-left: .6em; color: var(--ink-3);
 }
 
 .type-row { display: flex; gap: 8px; align-items: stretch; }
 
 .type-in {
   flex: 1; min-width: 0;
-  font-family: var(--font-en); font-size: 1rem;
-  padding: 10px 12px;
-  border: 1px solid var(--navy-line); border-radius: 9px;
-  background: var(--paper); color: var(--ink);
+  font-family: var(--font-serif); font-size: 1.05rem;
+  min-height: 44px; padding: 11px 13px;
+  border: 1px solid var(--rule-2); border-radius: var(--r-sm);
+  background: var(--ground); color: var(--ink);
+  transition: background var(--fast), border-color var(--fast);
 }
-.type-in:focus { outline: 3px solid var(--gold-line); outline-offset: 1px; }
+.type-in:focus {
+  background: var(--paper); border-color: var(--accent);
+  outline: 2px solid var(--accent-soft); outline-offset: 0;
+}
 
 .type-replay {
-  flex: none; width: 44px;
+  flex: none; width: 46px; min-height: 44px;
   font-size: .9rem; cursor: pointer;
-  border: 1px solid var(--navy-line); border-radius: 9px;
-  background: var(--navy-soft); color: var(--navy);
+  border: 1px solid var(--rule-2); border-radius: var(--r-sm);
+  background: var(--paper); color: var(--ink);
+  transition: background var(--fast), color var(--fast), border-color var(--fast);
 }
-.type-replay:hover { background: var(--navy); color: #fff; }
+.type-replay:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
 
-.type-acts { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 9px; }
+.type-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 11px; }
 
 .type-btn {
-  font-family: var(--font-ui); font-size: .78rem;
-  padding: 7px 12px; border-radius: 9px; cursor: pointer;
-  border: 1px solid var(--navy-line); background: var(--card); color: var(--navy);
+  font-family: var(--font-ui); font-size: .78rem; font-weight: 500;
+  min-height: 38px; padding: 9px 14px; border-radius: var(--r-sm); cursor: pointer;
+  border: 1px solid var(--rule-2); background: var(--paper); color: var(--ink);
+  transition: background var(--fast), color var(--fast), border-color var(--fast);
 }
-.type-btn:hover { background: var(--navy-soft); }
+.type-btn:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
 .type-btn em { font-family: var(--font-zh); font-style: normal; margin-left: .35em; opacity: .7; }
-.type-btn-quiet { border-color: var(--line); color: var(--ink-soft); }
-.type-btn-next { background: var(--good-soft); border-color: var(--good-line); color: var(--good); }
+.type-btn-quiet { border-color: var(--rule); color: var(--ink-2); }
+.type-btn-next { background: var(--ink); color: #fff; border-color: var(--ink); }
+.type-btn-next:hover { background: #000; }
 .type-btn[hidden] { display: none; }
 
-/* The answer, word by word. */
 .type-out {
-  margin-top: 11px; padding-top: 10px;
-  border-top: 1px dashed var(--line);
-  font-family: var(--font-en); font-size: 1rem; line-height: 1.9;
+  margin-top: 13px; padding-top: 12px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-serif); font-size: 1.05rem; line-height: 2;
 }
 .type-out[hidden] { display: none; }
 
-.w-got { color: var(--good); }
-.w-missed {
-  color: var(--gold); background: var(--gold-soft);
-  padding: 1px 4px; border-radius: 5px;
-  text-decoration: underline dotted var(--gold-line);
-  text-underline-offset: 3px;
-}
-/* Heard, but spelled without its apostrophe. Neither right nor missed — the
-   mark says "you got this one, look at the form". */
+/* Words the student got stay plain. A whole sentence rendered green says
+   nothing a student cannot already see — they typed it — and it drowns the two
+   marks that actually carry information. Mark the exceptions, not the rule. */
+.w-got { color: var(--ink); }
 .w-near {
-  color: var(--navy); background: var(--navy-soft);
-  padding: 1px 4px; border-radius: 5px;
-  text-decoration: underline dotted var(--navy-line);
-  text-underline-offset: 3px;
+  color: var(--near); background: var(--near-soft);
+  padding: 1px 5px; border-radius: 5px;
+  text-decoration: underline dotted currentColor; text-underline-offset: 3px;
 }
-.w-shown { color: var(--ink-soft); }
+.w-missed {
+  color: var(--accent-2); background: var(--accent-soft);
+  padding: 1px 5px; border-radius: 5px;
+  text-decoration: underline dotted currentColor; text-underline-offset: 3px;
+}
+.w-shown { color: var(--ink-2); }
 
+/* -------------------------------------------------------------- the footer */
 
-/* ---------------- touch targets ----------------
+.site-foot {
+  display: flex; align-items: center; gap: 13px;
+  max-width: 62rem; margin: 0 auto;
+  padding: 26px 20px calc(44px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-ui); font-size: .76rem; color: var(--ink-3);
+}
+.site-foot p { margin: 0; }
+.site-foot a { color: var(--ink-2); margin-left: .6em; }
+.site-foot a:hover { color: var(--accent); }
+.site-mark img { display: block; border-radius: var(--r-sm); }
 
-   🔊 and 中 are the most-tapped controls on the page, but inline in running
-   text they render at about 23×19px — under the 24×24 CSS px floor of WCAG 2.2
-   AA (2.5.8 Target Size (Minimum)).
+/* No lesson, no player: an empty black rectangle reads as a broken video
+   rather than as a page waiting for its first clip. */
+body.empty .stage { display: none; }
 
-   They cannot simply be drawn bigger. Measured on a 375px screen, the gap to
-   the next control is 7–10px and the line box is only 24px tall, so a larger
-   chip would collide with its neighbours — and two overlapping hit areas are
-   worse than one small one, because the loser becomes untappable.
+/* ------------------------------------------------------------------ print */
 
-   So the visible chip is left exactly as it was and an invisible hit area is
-   centred on it: at least 24×24, never smaller than the chip itself. Nothing
-   on the page moves; the finger just gets something bigger to aim at. */
-
-.say, .zh-chip { position: relative; }
-
-.say::after,
-.zh-chip::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: max(100%, 24px);
-  height: max(100%, 24px);
-  transform: translate(-50%, -50%);
+@media print {
+  .bar, .stage, .nav, .nav-scrim, .panel, .loop, .go, .zh-chip, .site-foot,
+  .type-box { display: none !important; }
+  .zh, .card-back, .q-a { display: block !important; }
+  body { font-size: 11pt; background: #fff; }
+  .line { break-inside: avoid; }
+  .card, .q { border-color: #bbb; }
 }
