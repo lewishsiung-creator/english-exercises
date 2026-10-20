@@ -418,6 +418,19 @@ than a date) can be linked to from elsewhere in the worksheet.
 Sections with a short card are a finding, not an oversight — they mark topics
 the lessons have not covered yet.
 
+### The business introduction
+
+`public/business-clarity/pitch/` is the one page that is not a record. The
+dated pages say what happened on a day; this one holds the best current
+wording of the thing she actually takes out of the room, in three lengths —
+thirty seconds, ninety seconds, two minutes. It is rewritten as the
+explanation improves rather than re-drafted from scratch each lesson, and it
+is linked from sections 1, 10 and 13.
+
+Missing pieces are written as blanks inside the script rather than left out,
+so the gap is visible while she is speaking. The proof line is blank on
+purpose: three sessions have produced no number and no named client.
+
 ## Basic English Grammar — adult, fifteen chapters
 
 The one page here built to grow rather than to be finished. Fifteen chapters
@@ -2398,6 +2411,7 @@ public/business-clarity/  the business worksheet
 public/business-clarity/2026-08-10/  one session's notes — parenting
 public/business-clarity/2026-08-17/  one session's notes — management
 public/business-clarity/2026-09-07/  one session's notes — the HR SaaS product
+public/business-clarity/pitch/       the business introduction, three lengths
 public/grammar/           Basic English Grammar — the hub and book.js
 public/grammar/ch01/      one folder per chapter, a content file each
 public/grammar/ch13/      Modals, Part 2 — the second chapter written

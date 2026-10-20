@@ -620,6 +620,19 @@ const WORKSHEET = {
           ],
         },
         {
+          t: 'sessions',
+          en: 'Business Introduction',
+          zh: '事業介紹（固定版本）',
+          items: [
+            {
+              href: 'pitch/',
+              date: '最新',
+              en: 'Three lengths — 30 seconds, 90 seconds, two minutes',
+              zh: '三種長度：30 秒／90 秒／2 分鐘',
+            },
+          ],
+        },
+        {
           t: 'related',
           en: 'From the Discussions',
           zh: '相關課堂討論',
@@ -1524,6 +1537,19 @@ const WORKSHEET = {
           ],
         },
         {
+          t: 'sessions',
+          en: 'Business Introduction',
+          zh: '事業介紹（固定版本）',
+          items: [
+            {
+              href: 'pitch/',
+              date: '最新',
+              en: 'Three lengths — 30 seconds, 90 seconds, two minutes',
+              zh: '三種長度：30 秒／90 秒／2 分鐘',
+            },
+          ],
+        },
+        {
           t: 'related',
           en: 'From the Discussions',
           zh: '相關課堂討論',
@@ -1760,6 +1786,19 @@ const WORKSHEET = {
           ],
         },
         { t: 'write', en: 'Final Draft', zh: '最終草稿', big: true },
+        {
+          t: 'sessions',
+          en: 'Business Introduction',
+          zh: '事業介紹（固定版本）',
+          items: [
+            {
+              href: 'pitch/',
+              date: '最新',
+              en: 'Three lengths — 30 seconds, 90 seconds, two minutes',
+              zh: '三種長度：30 秒／90 秒／2 分鐘',
+            },
+          ],
+        },
         {
           t: 'related',
           en: 'From the Discussions',
