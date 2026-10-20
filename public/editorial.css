@@ -1,34 +1,41 @@
-/* The house palette and type, in one file.
+/* The house palette, for the pages that never had one of their own.
 
-   Every page here already drew its colours and fonts from the same set of
-   custom properties — --ink, --navy, --gold, --font-en and the rest — with the
-   same values copied into twenty-odd stylesheets. This file redefines that set
-   once, in the editorial language worked out on /video/: a serif that means it,
-   one red, and hairlines where there used to be boxes.
+   Fifteen stylesheets each carried an identical copy of the same colours.
+   This file redefines that set once, in the language worked out on /video/:
+   near-black on warm white, one red, and hairlines where there used to be
+   boxes. Changing the look of those pages is one edit from here.
 
-   It is linked AFTER each page's own stylesheet, so these definitions win and
-   nothing else has to change. Every rule that already says var(--gold) keeps
-   saying it and comes out in the new accent. A page that wants to keep its own
-   identity simply does not link this file — /ielts-speaking/ has its own red,
-   /english-brain/ its own look, and the three pages for young children have a
-   different language altogether, deliberately.
+   It is linked AFTER a page's own stylesheet — and after type.css — so these
+   definitions win and not one line of those stylesheets had to change. Every
+   rule that already says var(--gold) keeps saying it and comes out in the new
+   accent.
 
-   WHAT MAPS TO WHAT, and why
+   WHO DOES NOT LINK THIS, and why
+
+   Pages whose colour was chosen on purpose keep it: /ielts-speaking/ has the
+   IELTS red, /winkle/ and /business-journal/ their teals, /jill/ and
+   /riva-rex/ the greens that belong to the two ten-to-twelve pages,
+   /ielts-part3/ its slate, /fab-english/ its blue, /landscape-portfolio/ its
+   forest green, and /junior-high/ sets a brand per section. They share the
+   typography through type.css and nothing else — the way a magazine's sections
+   share a typeface and keep their own colour.
+
+   The three pages for young children share neither.
+
+   WHAT MAPS TO WHAT
 
      --navy      was the interactive colour: buttons, links, hovers. It becomes
-                 ink. A filled control is black now, the way it is on /video/,
-                 which leaves red free to mean something.
+                 ink. A filled control is black now, which leaves red free to
+                 mean something.
      --gold      was the attention colour: labels, highlights, the current
-                 thing. It becomes the accent, and it is the only colour on the
-                 page that is allowed to shout.
+                 thing. It becomes the accent, and it is the only colour on
+                 these pages allowed to shout.
      --gold-line was a saturated border around highlight boxes. It becomes a
-                 soft tint instead: in this language a box is held by a hairline
-                 and a ground, not by a coloured frame.
+                 soft tint: in this language a box is held by a hairline and a
+                 ground, not by a coloured frame.
 
-   The greens stay green. They mean "right" on pages that mark answers, and no
-   amount of restraint should make a correct answer red.
-
-   Changing the look of the whole site is now one edit to this file. */
+   The greens stay green. They mean "right" on the pages that mark answers, and
+   no amount of restraint should make a correct answer red. */
 
 :root {
   /* ground and ink */
@@ -60,38 +67,4 @@
   /* hairlines */
   --line:       #e7e5e1;
   --rule:       #d3d0ca;
-
-  /* Type. ui-serif resolves to New York on Apple devices, which is what a
-     Taiwanese teacher and most of these students are reading on; Charter and
-     Georgia carry it elsewhere. --font-serif is the name /video/ uses and
-     --font-en the name every older page uses, so both are defined. */
-  --font-en:    ui-serif, "New York", "Iowan Old Style", Charter, Georgia, "Times New Roman", serif;
-  --font-serif: ui-serif, "New York", "Iowan Old Style", Charter, Georgia, "Times New Roman", serif;
-  --font-ui:    -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
-  --font-zh:    "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
-}
-
-/* Type rendering, which no page set for itself. */
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  font-kerning: normal;
-}
-
-/* A visible focus ring everywhere, in the accent. Most of these pages predate
-   :focus-visible and relied on the browser default, which several of them
-   suppressed along with the outline on buttons. */
-:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-}
-
-/* Nothing on these pages animates to entertain. Honour the system setting. */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    transition-duration: .01ms !important;
-    animation-duration: .01ms !important;
-    scroll-behavior: auto !important;
-  }
 }

@@ -1,0 +1,51 @@
+/* The house typography, shared by every page that is not for small children.
+
+   This is the layer that unifies the site: one serif, one sans, one Chinese
+   face, and the small rendering decisions no page ever set for itself. It
+   deliberately contains NO colour. A page's palette is its own — /ielts-speaking/
+   keeps the IELTS red, /winkle/ its teal, /jill/ and /riva-rex/ their greens —
+   and a magazine family works the same way: every section sets in the same
+   type and each keeps its own colour.
+
+   Linked AFTER a page's own stylesheet so these definitions win. Pages that
+   also have no colour identity of their own then link editorial.css on top,
+   which maps the old navy and gold onto the house ink and accent.
+
+   Not linked by /phonics/, /phonics-handbook/ or /math/. Those are for seven-
+   to ten-year-olds and are set in a rounded sans on purpose; a magazine serif
+   would be the wrong voice, not a smarter one. */
+
+:root {
+  /* ui-serif resolves to New York on Apple devices, which is what the teacher
+     and most of these students read on; Charter and Georgia carry it
+     elsewhere. --font-en is the name every older page uses and --font-serif
+     the name /video/ uses, so both are defined to the same stack. */
+  --font-en:    ui-serif, "New York", "Iowan Old Style", Charter, Georgia, "Times New Roman", serif;
+  --font-serif: ui-serif, "New York", "Iowan Old Style", Charter, Georgia, "Times New Roman", serif;
+  --font-ui:    -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  --font-zh:    "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+}
+
+/* A visible focus ring, in whatever this page's accent happens to be. Several
+   of these pages suppressed the browser default along with the outline on
+   their buttons, which left a keyboard user with nothing to follow. */
+:focus-visible {
+  outline: 2px solid var(--gold, currentColor);
+  outline-offset: 2px;
+}
+
+/* Nothing on these pages animates to entertain. Honour the system setting. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
