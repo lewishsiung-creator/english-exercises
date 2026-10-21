@@ -4,8 +4,109 @@
     {
       "name": "english-exercises",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["serve.py", "8000"],
+      "runtimeArgs": [
+        "serve.py",
+        "8000"
+      ],
       "port": 8000
+    },
+    {
+      "name": "business-journal-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "serve.py",
+        "8014"
+      ],
+      "port": 8014
+    },
+    {
+      "name": "english-exercises-alt",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8012",
+        "--directory",
+        "public"
+      ],
+      "port": 8012
+    },
+    {
+      "name": "linkin-park",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8080",
+        "--directory",
+        "linkin-park/public"
+      ],
+      "port": 8080
+    },
+    {
+      "name": "vicky-deck",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8481",
+        "--directory",
+        "/Users/lewisyhlin/Decks/vicky-modern-art"
+      ],
+      "port": 8481
+    },
+    {
+      "name": "hudson-calendar",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8310",
+        "--directory",
+        "hudson-school-calendar"
+      ],
+      "port": 8310
+    },
+    {
+      "name": "japan-trip",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd japan-family-trip-2026 && npx wrangler pages dev --port 8790 --ip 127.0.0.1"
+      ],
+      "port": 8790
+    },
+    {
+      "name": "linguaskill-vocab",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8320",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "linguaskill-vocab"
+      ],
+      "port": 8320
+    },
+    {
+      "name": "garmin-coach",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd garmin-coach && .venv/bin/streamlit run app.py --server.headless true"
+      ],
+      "port": 8501
+    },
+    {
+      "name": "garmin-coach-site",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd garmin-coach/site && ./node_modules/.bin/wrangler pages dev --port 8791 --ip 127.0.0.1"
+      ],
+      "port": 8791
     }
   ]
 }

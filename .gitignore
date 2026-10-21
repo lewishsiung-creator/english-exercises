@@ -6,3 +6,23 @@ node_modules/
 
 # Claude Code machine-local settings
 .claude/settings.local.json
+
+# Personal side project, its own repo
+linkin-park/
+
+
+# The school calendar's private source, its own repo — it carries the child's
+# name, which is the whole reason the public build is a separate directory
+hudson-school-calendar/
+
+# Public build of the school calendar, its own repo
+disk-g1-calendar/
+
+# Family trip site, its own private repo (family names + photos)
+japan-family-trip-2026/
+
+# Personal Garmin + Claude tool: credentials and health data, never commit
+garmin-coach/
+
+# Linguaskill word list: built from a copyrighted book, private artifact only, never commit
+linguaskill-vocab/
