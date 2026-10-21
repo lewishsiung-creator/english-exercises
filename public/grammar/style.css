@@ -175,9 +175,44 @@ body.zh-all .zh-chip { display: none; }
   color: var(--ink-faint);
   margin-left: 8px;
 }
-/* On a chapter page the title is a link home to the contents. */
+/* On a chapter page the bar carries the way home and the chapter, in that
+   order. The chapter is the half that changes, so it is the half that keeps
+   its space when the bar runs out: below 620px the book title collapses to an
+   arrow and the chapter title stays whole. */
 .bar-title a { color: inherit; text-decoration: none; }
 .bar-title a:hover { color: var(--red); }
+
+.bar-home { flex: none; }
+.bar-chap {
+  font-family: var(--font-zh);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-faint);
+  margin-left: 8px;
+  white-space: nowrap;
+}
+.bar-chap b {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  color: var(--red);
+  margin-right: 5px;
+}
+
+@media (max-width: 619px) {
+  .bar-title { display: flex; align-items: baseline; min-width: 0; }
+  .home-txt { display: none; }
+  .bar-home::before { content: "←"; font-size: 16px; color: var(--red); }
+  .bar-chap {
+    margin-left: 9px;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* The ☰ button reports the section you are in, so it is as wide as a section
+   number and must not be squeezed by the title beside it. */
+#navLabel { font-variant-numeric: tabular-nums; }
 
 .bar-btn {
   flex: none;
@@ -253,7 +288,11 @@ body.zh-all .zh-chip { display: none; }
 
 .toc ul { list-style: none; margin: 0; padding: 0; }
 
-.toc a {
+/* Scoped to the list. Written as `.toc a` it also caught the "All chapters"
+   link in the heading above, which has no .n/.t children — so its text became
+   a single anonymous grid item in a 2.1rem column and wrapped into three
+   lines, on every chapter page. */
+.toc li a {
   display: grid;
   grid-template-columns: 2.1rem 1fr;
   gap: 8px;
@@ -263,7 +302,7 @@ body.zh-all .zh-chip { display: none; }
   color: var(--ink-soft);
   border-left: 2px solid transparent;
 }
-.toc a:hover { background: var(--red-soft); color: var(--ink); }
+.toc li a:hover { background: var(--red-soft); color: var(--ink); }
 .toc a .n {
   font-family: var(--font-ui);
   font-size: 11.5px;
@@ -334,6 +373,11 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 .cover h1 .zh { font-size: 19px; font-weight: 400; margin-top: 6px; }
 
 .cover-intro .en { font-size: 21px; line-height: 1.55; }
+/* 21px is a good opening size across a 46rem column and a ten-line wall of
+   type on a phone, where the same paragraph has a third of the width. */
+@media (max-width: 560px) {
+  .cover-intro .en { font-size: 18px; line-height: 1.5; }
+}
 
 .source {
   margin: 26px 0 0;
@@ -408,6 +452,26 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 .chap-secs .n { color: var(--ink-faint); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .chap-secs a.row:hover { color: var(--red); }
 .chap-secs a.row:hover .t { text-decoration: underline; }
+
+/* A section of a built chapter that has no content yet: shown, because the
+   card is a map of the book, but not offered as a link. Same treatment as the
+   sidebar gives it inside the chapter, so the two agree. */
+.chap-secs .row.todo { opacity: .45; }
+.chap-secs .row.todo .t { text-decoration: line-through; text-decoration-color: var(--rule); }
+
+/* How much of a part-finished chapter is actually there. Only drawn when the
+   chapter is built and incomplete — a finished one says nothing. */
+.chap-part {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: .04em;
+  color: var(--ink-faint);
+  border: 1px dashed var(--rule);
+  border-radius: 20px;
+  padding: 2px 10px;
+}
 
 /* A chapter whose content has not been written yet says so rather than
    pretending. The card is still there, because the map is the point. */
@@ -522,21 +586,54 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 }
 .step-head .zh { font-size: 15.5px; font-weight: 400; margin-top: 2px; }
 
-/* A section listed in the book but not yet written. It keeps its number and
-   its title so the page matches the contents, and says plainly that there is
-   nothing here yet. */
-.step.todo .step-head { opacity: .5; }
-.step.todo .step-head .n { color: var(--ink-faint); border-color: var(--line); }
-.awaiting {
+/* A section listed in the book but not yet written. It keeps its number, its
+   title and its anchor so the page still matches the book's contents — but it
+   is one quiet row, not a heading over an empty box. Chapter 1 has seven of
+   them and four run consecutively, so the box version put a thousand pixels of
+   nothing between 1-1 and 1-6. */
+.step.todo {
+  padding-top: 0;
+  margin-top: 0;
+  border-top: none;
+}
+/* The run of them reads as a list: a rule above the first, a hairline between
+   the rest, and the normal section rule returns when real content resumes. */
+.step:not(.todo) + .step.todo { margin-top: 30px; border-top: 1px solid var(--rule); }
+.step.todo + .step.todo .step-head { border-top: 1px dotted var(--line); }
+
+.step.todo .step-head {
+  grid-template-columns: 3rem 1fr auto;
+  gap: 10px 12px;
   margin: 0;
-  padding: 14px 18px;
-  border: 1px dashed var(--rule);
-  border-radius: 10px;
-  font-family: var(--font-ui);
-  font-size: 13.5px;
+  padding: 11px 0;
+  font-size: 16px;
   color: var(--ink-faint);
 }
-.awaiting .zh { display: block; font-size: 12.5px; margin-top: 3px; }
+.step.todo .step-head .n {
+  font-size: 11px;
+  color: var(--ink-faint);
+  background: transparent;
+  border-color: var(--line);
+}
+.step.todo .step-head .zh { font-size: 12.5px; margin-top: 0; }
+
+.soon-tag {
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  letter-spacing: .04em;
+  color: var(--ink-faint);
+  border: 1px dashed var(--rule);
+  border-radius: 20px;
+  padding: 2px 9px;
+  white-space: nowrap;
+}
+.soon-tag em { font-family: var(--font-zh); font-style: normal; margin-left: 4px; }
+
+/* On a phone the tag would push the title into a two-character column. */
+@media (max-width: 560px) {
+  .step.todo .step-head { grid-template-columns: 3rem 1fr; }
+  .soon-tag { grid-column: 2; justify-self: start; }
+}
 
 .lead { margin: 0 0 20px; }
 .lead .en { font-size: 18.5px; font-style: italic; color: var(--ink-soft); }
@@ -942,6 +1039,10 @@ body.zh-all .td-zh::after { display: none; }
   font-size: 13.5px;
   color: var(--ink-faint);
 }
+/* Said once per set. Five drills stacked under one heading repeated "Tap the
+   words in order" five times, which stops being an instruction after the
+   first and becomes five lines of grey. */
+.order-q ~ .order-q .built:empty::before { content: ""; }
 .order-q.solved .built { border-bottom-color: var(--good-line); background: var(--good-soft); }
 /* A word already placed can be taken back, so a slip is not a dead end. */
 .built .w { cursor: pointer; border-bottom: 1px dotted transparent; }
@@ -1063,6 +1164,12 @@ body.zh-all .td-zh::after { display: none; }
   .zh, .why { display: block !important; }
   .td-zh::after { display: none; }
   .step { break-before: page; padding-top: 0; }
+  /* An unwritten section is one line, so it must not take a page of its own:
+     Chapter 1 would otherwise print seven sheets carrying a heading each. They
+     stay in the handout, because the contents list should match the book, but
+     they run on after whatever precedes them. */
+  .step.todo { break-before: auto; }
+  .step.todo + .step:not(.todo) { break-before: page; }
   .chap-grid, .shelf-grid { grid-template-columns: repeat(2, 1fr); }
   .q, .order-q, .note, .forms, .goals, .chap-card, .table-wrap { break-inside: avoid; }
   .opt.out, .q.solved .opt:not(.right) { opacity: 1; }

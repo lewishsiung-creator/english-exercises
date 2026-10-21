@@ -10,6 +10,13 @@
    unanswered questions. Adding a chapter is: write ch07/content.js, copy the
    thin ch07/index.html, flip `built` here. Nothing else changes.
 
+   `written` lists the sections of a part-finished chapter that actually have
+   content; leaving it out means every section of that chapter is written. It
+   exists so the hub can dim a section it cannot deliver instead of offering
+   nine identical links and keeping two of them. The content file remains the
+   truth: render.js compares the two on every load of that chapter and throws
+   if they disagree, so this list cannot quietly drift out of date.
+
    The section titles follow the syllabus of Basic English Grammar (Azar &
    Hagen, 4th edition), which is the order Lewis teaches in. The explanations,
    examples and practice on each chapter page are written for this site — the
@@ -36,6 +43,7 @@ const BOOK = {
       en: 'Using Be',
       zh: '使用 be 動詞',
       built: true,
+      written: ['1-1', '1-6'],
       sections: [
         { n: '1-1', en: 'Singular pronouns + be', zh: '單數代名詞 ＋ be' },
         { n: '1-2', en: 'Plural pronouns + be', zh: '複數代名詞 ＋ be' },

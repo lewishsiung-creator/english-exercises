@@ -63,6 +63,25 @@ written.forEach((_, n) => {
   }
 });
 
+/* The hub dims the sections of a part-finished chapter that have no content,
+   and it learns which those are from book.js's `written` list rather than from
+   this file. Two places holding one fact drift, so they are compared here: the
+   content file is the truth, and a disagreement stops the page rather than
+   letting the contents quietly promise something it cannot deliver. */
+if (chapter.written) {
+  const has = (n) => written.has(n) && written.get(n).length;
+  const missing = chapter.written.filter((n) => !has(n));
+  const extra = chapter.sections.filter((s) => has(s.n) && !chapter.written.includes(s.n));
+
+  if (missing.length || extra.length) {
+    throw new Error(
+      `book.js "written" disagrees with content.js for chapter ${chapter.n}. `
+      + (missing.length ? `Listed but empty here: ${missing.join(', ')}. ` : '')
+      + (extra.length ? `Written here but not listed: ${extra.map((s) => s.n).join(', ')}.` : '')
+    );
+  }
+}
+
 /* An English line with its Chinese held behind it. The 中 chip is the visible
    affordance; clicking anywhere in the block does the same thing. */
 function pair(en, zh, cls = '') {
@@ -314,6 +333,12 @@ function buildCover() {
 function buildSection(s) {
   const blocks = written.get(s.n);
 
+  /* A section the book lists and this file has not filled in. It keeps its
+     number, its real title and its anchor, so the page still matches the
+     book's contents and a link from the hub still lands somewhere truthful —
+     but it is one quiet row rather than a full heading over an empty box.
+     Chapter 1 has seven of these, four of them consecutive, and at box size
+     they put a thousand pixels of nothing between 1-1 and 1-6. */
   if (!blocks || !blocks.length) {
     return `
       <section class="step todo" id="${secId(s.n)}" aria-labelledby="h-${secId(s.n)}">
@@ -321,9 +346,8 @@ function buildSection(s) {
           <span class="n">${text(s.n)}</span>
           <span class="titles"><span class="en">${text(s.en)}</span>
             <span class="zh">${text(s.zh)}</span></span>
+          <span class="soon-tag">Not written yet <em>待補</em></span>
         </h2>
-        <p class="awaiting">Not written yet.
-          <span class="zh">這一節的內容還沒寫。</span></p>
       </section>`;
   }
 
@@ -386,8 +410,16 @@ function buildPager() {
 }
 
 document.title = `${chapter.n}. ${chapter.en} · ${chapter.zh} · ${BOOK.title}`;
-$('#barTitle').innerHTML =
-  `<a href="../">${text(BOOK.title)}</a> <span>${chapter.n}. ${text(chapter.zh)}</span>`;
+
+/* The bar carries two things: the way back to the contents, and which chapter
+   this is. On a phone there is not room for both, and it was the book title
+   that won — so the bar read "Basic English Gr…" and the chapter, the one
+   thing that changes from page to page, was the part cut off. The chapter now
+   holds the space and the way home shrinks to an arrow (see style.css). */
+$('#barTitle').innerHTML = `
+  <a class="bar-home" href="../" aria-label="All chapters · 全書目錄"
+     title="All chapters 全書目錄"><span class="home-txt">${text(BOOK.title)}</span></a>
+  <span class="bar-chap"><b>${chapter.n}</b>${text(chapter.zh)}</span>`;
 
 $('#nav').appendChild(el(buildNav()));
 
@@ -624,12 +656,26 @@ $('#reset').addEventListener('click', () => location.reload());
 
 const links = new Map($$('.toc a').map((a) => [a.dataset.target, a]));
 
+/* The sidebar marks where you are, but there is no sidebar on a phone — it is
+   behind the ☰ button, and a chapter runs to twenty thousand pixels. So the
+   button itself reports the section: "☰ 14-2" rather than "☰ Sections". The
+   control that tells you where you are is the one that moves you, which is
+   one button rather than two and no extra furniture in a 54px bar. */
+const navLabel = $('#navLabel');
+
+function markHere(id) {
+  links.forEach((a) => a.classList.remove('here'));
+  const a = links.get(id);
+  if (!a) return;
+  a.classList.add('here');
+  a.scrollIntoView({ block: 'nearest' });
+  navLabel.textContent = id === 'top' ? 'Sections' : a.querySelector('.n').textContent;
+}
+
 const spy = new IntersectionObserver((entries) => {
   entries.forEach((e) => {
     if (!e.isIntersecting) return;
-    links.forEach((a) => a.classList.remove('here'));
-    const a = links.get(e.target.id);
-    if (a) { a.classList.add('here'); a.scrollIntoView({ block: 'nearest' }); }
+    markHere(e.target.id);
   });
 }, { rootMargin: '-72px 0px -70% 0px' });
 

@@ -10,6 +10,11 @@
 <meta name="theme-color" content="#f7f6f2">
 
 <link rel="stylesheet" href="../style.css">
+
+<!-- The house typography, shared by every page. Linked AFTER this
+     page's own stylesheet so its definitions win. Colour is NOT in
+     it — this chapter keeps the book's red. See ../../type.css. -->
+<link rel="stylesheet" href="../../type.css">
 </head>
 <body>
 
@@ -17,7 +22,7 @@
 
 <header class="bar">
   <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
-    <span aria-hidden="true">☰</span> Sections
+    <span aria-hidden="true">☰</span> <span id="navLabel">Sections</span>
   </button>
 
   <!-- Filled by render.js from book.js, so the chapter shell is identical in

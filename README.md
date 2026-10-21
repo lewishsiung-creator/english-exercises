@@ -475,12 +475,18 @@ moves — the contents page, the sidebar, the anchors and the prev/next links al
 read the map.
 
 - **A chapter's content file holds blocks and nothing else.** Titles live once,
-  in `book.js`. A section listed there with no blocks written renders with its
-  real heading and a line saying so, and is struck through in the sidebar — so
-  the page always matches the book's contents and the site doubles as the
-  to-do list, the way the campaign speech does with its unanswered questions.
-  A section number in a content file that the map has never heard of throws
-  rather than silently rendering nothing.
+  in `book.js`. A section listed there with no blocks written keeps its number,
+  its title and its anchor but renders as one quiet row, and is struck through
+  in the sidebar — so the page always matches the book's contents and the site
+  doubles as the to-do list, the way the campaign speech does with its
+  unanswered questions. A section number in a content file that the map has
+  never heard of throws rather than silently rendering nothing.
+- **The hub does not offer a link it cannot keep.** A built chapter can still be
+  part-written — Chapter 1 is two sections of nine — so `written` in `book.js`
+  lists the sections that have content, the card dims and strikes the rest, and
+  the card says how many of the sections are there. The content file stays the
+  truth: `render.js` compares the two on every load of that chapter and throws
+  if they disagree, so the list cannot drift.
 - **Two ways to be wrong, because four options cannot test word order.**
   `mcq` is a sentence with one blank; `order` gives the Chinese and a pool of
   words to tap into place. Word order is what actually goes wrong for a
@@ -511,6 +517,13 @@ Three things are specific here:
 - **A word taken back takes the words after it.** They were only correct in the
   order they were placed, so restoring them would be a lie about what the
   learner had got right.
+- **On a phone the ☰ button is also the position readout.** A chapter runs to
+  twenty thousand pixels and the sidebar that marks your place is behind that
+  button, so the button carries the section number — `☰ 14-2` rather than
+  `☰ Sections`. The control that says where you are is the one that moves you,
+  which costs no extra furniture in a 54px bar. The bar's other half gives the
+  chapter the space and shrinks the way home to an arrow, because the chapter
+  is the half that changes from page to page.
 
 ## 國際商業期刊導讀 · Business Journal Reading — adult, teacher-led
 

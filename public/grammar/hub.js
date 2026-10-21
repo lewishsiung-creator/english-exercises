@@ -42,13 +42,26 @@ function chapterCard(c) {
 
   /* The row carries the grid, not the <li>, because in a built chapter the row
      is a link wrapping both cells — put the grid on the <li> and the link
-     becomes a single child and the columns collapse. */
+     becomes a single child and the columns collapse.
+
+     A built chapter can still be part-finished, and a section with nothing in
+     it is not given a link: nine identical links of which two keep their
+     promise is worse than a map that says which two. `written` says which;
+     leaving it out of book.js means the whole chapter is written. */
   const secs = c.sections.map((s) => {
+    const done = c.built && (!c.written || c.written.includes(s.n));
     const inner = `<span class="n">${text(s.n)}</span><span class="t">${text(s.en)}</span>`;
-    return `<li>${c.built
+    return `<li>${done
       ? `<a class="row" href="${c.id}/#s${text(s.n)}">${inner}</a>`
-      : `<span class="row">${inner}</span>`}</li>`;
+      : `<span class="row${c.built ? ' todo' : ''}">${inner}</span>`}</li>`;
   }).join('');
+
+  // A built chapter that is only part-written says how much of it is there,
+  // so the card is not read as a finished chapter at a glance.
+  const part = c.built && c.written
+    ? `<span class="chap-part">${c.written.length} of ${c.sections.length} sections written
+         · 已寫 ${c.written.length} 節</span>`
+    : '';
 
   return `
     <li class="chap-card${c.built ? '' : ' todo'}">
@@ -57,7 +70,7 @@ function chapterCard(c) {
         <h2>${head}</h2>
       </div>
       <ul class="chap-secs">${secs}</ul>
-      ${c.built ? '' : '<span class="soon">Content to come 內容待補</span>'}
+      ${c.built ? part : '<span class="soon">Content to come 內容待補</span>'}
     </li>`;
 }
 
