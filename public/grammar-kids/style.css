@@ -1,0 +1,128 @@
+/* Sentence Lab — the ten-to-twelve-year-olds' skin.
+
+   This is an OVERRIDE LAYER, not a stylesheet. ../grammar/style.css is linked
+   first and carries every rule; this file changes only what this age needs.
+   That is about a hundred lines instead of twelve hundred, and a fix to the
+   adult sheet — a layout bug, a touch target — arrives here on its own.
+
+   What changes, and why, from the house rules for this age: the adult page
+   skeleton kept, larger and airier, because it is read across a table rather
+   than held at arm's length. Nothing here is a different *kind* of page.
+
+   - The palette becomes violet. The grammar red belongs to the adult course,
+     and a child handed a link should not land on something that looks like
+     their parent's page. Violet is also unused elsewhere in this repo, so no
+     two pages of Lewis's are told apart by their titles alone.
+   - Type goes up about 12%, and the column narrows a little with it, so a
+     line still holds roughly the same number of words.
+   - Everything tappable gets a real target. The adult page assumes a mouse or
+     a careful finger; this one is poked at by a ten-year-old leaning over a
+     table, so options and word chips are given 44px of height.
+   - Sections are further apart. The point is fewer things on screen at once,
+     not more.
+
+   Kept exactly as the adult course has it: English leads with the Chinese
+   behind the 中 chip, nothing is scored, nothing is saved between students, a
+   wrong answer wobbles and stays open, 🔊 is on every English sentence, and
+   there are no input fields anywhere — the productive half is spoken. */
+
+:root {
+  /* The shared sheet asks for --red everywhere, so redefining these three
+     tokens recolours the entire page. Violet, mid-dark enough to carry text
+     on the paper background. */
+  --red: #5f4b9b;
+  --red-soft: #f0edf8;
+  --red-line: #cfc4e8;
+
+  /* A little wider than the adult gold, to sit beside violet rather than
+     disappear into the paper. */
+  --gold: #9a6b12;
+
+  --measure: 42rem;
+}
+
+body { font-size: 20px; line-height: 1.65; }
+
+/* ---------------- more air ---------------- */
+
+.step { padding-top: 46px; margin-top: 46px; }
+.step-head { margin-bottom: 26px; font-size: 27px; }
+.step-head .zh { font-size: 17px; }
+.lead .en { font-size: 20px; }
+.rule .en { font-size: 19.5px; }
+.egs li { font-size: 18.5px; margin: 14px 0; }
+.forms td { font-size: 18.5px; padding: 11px 18px; }
+.table-wrap table { font-size: 17px; }
+.table-wrap td { padding: 11px 14px; }
+.note { padding: 20px 24px; }
+.note .en { font-size: 17.5px; }
+.steps li { font-size: 18px; padding: 12px 0 12px 2.6rem; }
+.q, .order-q { padding: 20px 0; }
+.q-line { font-size: 18.5px; margin-bottom: 14px; }
+.order-cue { font-size: 17px; margin-bottom: 14px; }
+
+/* ---------------- targets a child can hit ----------------
+
+   The adult page sizes these to their text. Here they get a floor: 44px is
+   the comfortable-target figure, well above the 24px WCAG minimum, because
+   this page is poked at rather than clicked. */
+
+.opt {
+  min-height: 44px;
+  align-items: center;
+  font-size: 17.5px;
+  padding: 10px 18px;
+}
+.opts { gap: 10px; }
+
+.word {
+  min-height: 44px;
+  font-size: 17.5px;
+  padding: 10px 18px;
+}
+.pool { gap: 10px; }
+
+.built {
+  min-height: 3.4rem;
+  font-size: 18.5px;
+  padding: 12px 15px;
+}
+
+.zh-chip { font-size: 12px; padding: 4px 6px; }
+.say { font-size: 17px; }
+.say-quiet { font-size: 15px; opacity: .4; }
+
+/* ---------------- the cover ---------------- */
+
+.cover h1, .chapter-cover h1 { letter-spacing: -.005em; }
+.cover-intro .en { font-size: 22px; }
+.chapter-cover h1 .zh { font-size: 19px; }
+
+/* A unit number is wider than a chapter number, so the heading's first
+   column has to be too — otherwise "UNIT" wraps inside its chip. */
+.chap-n { font-size: 10.5px; letter-spacing: .06em; }
+
+/* ---------------- the hub ---------------- */
+
+.hub-lead .en { font-size: 18.5px; }
+.chap-head h2 { font-size: 20px; }
+.chap-secs { font-size: 13.5px; }
+.chap-secs .row { padding: 4px 0; }
+
+/* Each card says which chapters of the book its unit comes from, so the two
+   courses can be lined up by anyone holding the paper copy. */
+.chap-src {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: .03em;
+  color: var(--ink-faint);
+}
+.chap-src em { font-family: var(--font-zh); font-style: normal; margin-left: 5px; }
+
+@media (max-width: 560px) {
+  body { font-size: 19px; }
+  .step-head { font-size: 23px; }
+  .cover-intro .en { font-size: 19px; }
+}

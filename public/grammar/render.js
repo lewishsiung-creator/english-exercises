@@ -51,6 +51,11 @@ function el(html) {
 const chapter = BOOK.chapters.find((c) => c.id === CHAPTER.id);
 if (!chapter) throw new Error(`No chapter "${CHAPTER.id}" in book.js`);
 
+/* This file is shared: /grammar/ is the adult course and /grammar-kids/ the
+   one for ten- to twelve-year-olds, which calls a chapter a unit. Only the
+   words differ, so they live here with the adult course's as the default. */
+const L = Object.assign({ unitEn: 'Chapter', unitZh: '章' }, BOOK.labels || {});
+
 // Blocks by section number, so the map drives the order rather than the
 // content file's own ordering.
 const written = new Map((CHAPTER.sections || []).map((s) => [s.n, s.blocks]));
@@ -349,7 +354,7 @@ function buildCover() {
   return `
     <header class="chapter-cover" id="top">
       <a class="up" href="../">← Contents 全書目錄</a>
-      <h1><span class="cn">Chapter ${chapter.n}</span>
+      <h1><span class="cn">${text(L.unitEn)} ${chapter.n}</span>
         <span class="en">${text(chapter.en)}</span>
         <button class="zh-chip" title="顯示中文">中</button>
         <span class="zh">${text(chapter.zh)}</span></h1>
@@ -422,7 +427,7 @@ function buildSection(s) {
 function buildNav() {
   return `
     <nav class="toc" aria-label="Sections in this chapter">
-      <p class="toc-head">Chapter ${chapter.n}<a href="../">All chapters 全書</a></p>
+      <p class="toc-head">${text(L.unitEn)} ${chapter.n}<a href="../">All ${text(L.unitEn.toLowerCase())}s 全書</a></p>
       <ul>
         <li><a href="#top" data-target="top"><span class="n">·</span>
           <span class="t"><span class="en">Start</span><span class="zh">開始</span></span></a></li>

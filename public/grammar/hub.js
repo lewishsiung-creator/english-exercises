@@ -66,10 +66,11 @@ function chapterCard(c) {
   return `
     <li class="chap-card${c.built ? '' : ' todo'}">
       <div class="chap-head">
-        <span class="chap-n">CH ${c.n}</span>
+        <span class="chap-n">${text(L.unitAbbr)} ${c.n}</span>
         <h2>${head}</h2>
       </div>
       <ul class="chap-secs">${secs}</ul>
+      ${c.source ? `<span class="chap-src">From ${text(c.source.en)} <em>${text(c.source.zh)}</em></span>` : ''}
       ${c.built ? part : '<span class="soon">Content to come 內容待補</span>'}
     </li>`;
 }
@@ -89,6 +90,13 @@ function shelfCard(x) {
     </li>`;
 }
 
+/* Shared with /grammar-kids/, which calls a chapter a unit. Only the words
+   differ, so they live here with the adult course's as the default. */
+const L = Object.assign(
+  { unitEn: 'Chapter', unitAbbr: 'CH', pluralEn: 'chapters', partZh: '節' },
+  BOOK.labels || {}
+);
+
 const doneChapters = BOOK.chapters.filter((c) => c.built).length;
 
 const page = `
@@ -98,26 +106,23 @@ const page = `
       <h1><span class="en">${text(BOOK.title)}</span>
         <button class="zh-chip" title="顯示中文">中</button>
         <span class="zh">${text(BOOK.titleZh)}</span></h1>
-      ${pair(
-        'Fifteen chapters, from the forms of be to making comparisons. Each section explains one point, shows the pattern, and gives you something to get wrong — English leads, and the Chinese is one tap away.',
-        '十五章，從 be 動詞的變化到比較的說法。每一節說明一個重點、呈現句型，再給你可以練錯的題目——英文在前，中文只差一個「中」。',
-        'hub-lead'
-      )}
+      ${pair(BOOK.lead.en, BOOK.lead.zh, 'hub-lead')}
     </header>
 
-    <p class="count">${doneChapters} of ${BOOK.chapters.length} chapters written ·
-      ${BOOK.count} sections in the book 全書 ${BOOK.count} 節</p>
+    <p class="count">${doneChapters} of ${BOOK.chapters.length} ${text(L.pluralEn)} written ·
+      ${BOOK.count} sections 全書 ${BOOK.count} ${text(L.partZh)}</p>
 
     <ul class="chap-grid">
       ${BOOK.chapters.map(chapterCard).join('')}
     </ul>
 
-    <section class="shelf">
-      <h2 class="label"><span class="en">Reference</span><span class="zh">查閱用</span></h2>
-      <ul class="shelf-grid">
-        ${BOOK.extras.map(shelfCard).join('')}
-      </ul>
-    </section>
+    ${(BOOK.extras || []).length ? `
+      <section class="shelf">
+        <h2 class="label"><span class="en">Reference</span><span class="zh">查閱用</span></h2>
+        <ul class="shelf-grid">
+          ${BOOK.extras.map(shelfCard).join('')}
+        </ul>
+      </section>` : ''}
 
     <p class="source">${text(BOOK.sourceNote.en)}
       <span class="zh">${text(BOOK.sourceNote.zh)}</span></p>

@@ -526,6 +526,31 @@ Three things are specific here:
 - **The Chinese setting is shared across the whole course**, under `beg.*` in
   `localStorage` — a teacher who turns it on for a client should not turn it on
   again in every chapter. It is a device setting; no lesson state is kept.
+### Sentence Lab — the same course for ten- to twelve-year-olds
+
+`/grammar-kids/` is the tween version, and it is the same machinery: its own
+map, its own content files and a stylesheet that redefines the palette and the
+sizes, then `../grammar/render.js` and `../grammar/hub.js` loaded unchanged. A
+fix to the renderer reaches both courses, and the override layer is about a
+hundred lines rather than a second copy of twelve hundred.
+
+- **It is a selection, nine units, not all fifteen chapters.** An adult uses
+  the full book as a reference; a ten-year-old does not need count and
+  noncount nouns or the word order of adjectives, and listing them would say
+  the course is longer than it is. Each unit card names the chapters it draws
+  on, so the two courses can be lined up by anyone holding the paper copy.
+- **A chapter is a unit, numbered from one.** "Unit 3" means something to a
+  child and "Chapter 13" does not. The shared renderer and hub take their
+  wording from `BOOK.labels`, defaulting to the adult course's.
+- **Violet, not the book's red**, so a child handed a link does not land on
+  something that looks like their parent's page.
+- **Type up about 12%, the column narrower with it, and every tappable thing
+  given 44px.** The adult page assumes a mouse or a careful finger; this one
+  is poked at by a child leaning over a table.
+- Same house rules otherwise: English leads with the Chinese behind the 中
+  chip, nothing scored, nothing saved, wrong answers wobble and stay open, no
+  input fields anywhere — the productive half is spoken.
+
 - **A word taken back takes the words after it.** They were only correct in the
   order they were placed, so restoring them would be a lie about what the
   learner had got right.
@@ -2454,6 +2479,8 @@ public/grammar/           Basic English Grammar — the hub and book.js
 public/grammar/ch01/      one folder per chapter, a content file each
 public/grammar/ch13/      Modals, Part 2 — the second chapter written
 public/grammar/ch14/      Nouns and Modifiers — the third
+public/grammar-kids/      Sentence Lab — the same course for 10–12, nine units
+public/grammar-kids/unit01/  Am, Is, Are — all seven sections written
 public/business-journal/  國際商業期刊導讀 — the hub, course.js and the shared renderer
 public/business-journal/wealth-habits/  No. 1, Three Habits — content.js and img/
 public/business-journal/better-day/     No. 2, Protocols for a Better Day — content.js and img/

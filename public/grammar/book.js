@@ -31,6 +31,14 @@ const BOOK = {
   /* Printed at the foot of every chapter cover. The syllabus is the book's;
      the explanations, examples and practice on these pages are written for
      this site, and the book's own charts and exercises are not reproduced. */
+  /* The paragraph under the title on the contents page. It lives here rather
+     than in hub.js because /grammar-kids/ shares that renderer and is a
+     different course. */
+  lead: {
+    en: 'Fifteen chapters, from the forms of be to making comparisons. Each section explains one point, shows the pattern, and gives you something to get wrong — English leads, and the Chinese is one tap away.',
+    zh: '十五章，從 be 動詞的變化到比較的說法。每一節說明一個重點、呈現句型，再給你可以練錯的題目——英文在前，中文只差一個「中」。',
+  },
+
   sourceNote: {
     en: 'Chapter and section headings follow the syllabus of Basic English Grammar (Azar & Hagen, 4th edition). The explanations, examples and practice here are written for this page.',
     zh: '章節標題依《Basic English Grammar》（Azar & Hagen，第四版）的編排順序；本頁的說明、例句與練習皆為本站自行撰寫。',
