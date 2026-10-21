@@ -554,6 +554,18 @@ hundred lines rather than a second copy of twelve hundred.
 - **A word taken back takes the words after it.** They were only correct in the
   order they were placed, so restoring them would be a lie about what the
   learner had got right.
+- **The column is 75 characters wide, on every device.** It was measured, not
+  chosen: at 46rem the adult page ran 91 characters to the line on a 1440px
+  laptop, where 45–75 is what the eye can track back along without losing its
+  place. 38rem lands at 75 on a computer and on an iPad; the kids page keeps
+  42rem because its type is larger and the same count needs more room. Between
+  the phone and the point where the sidebar appears the column is also centred,
+  because until then all the space it does not use collected on one side and an
+  iPad in portrait sat visibly off-centre.
+- **Touch targets go by what is pointing, not by how wide the screen is.** An
+  iPad in landscape is wider than many laptops, so the 44px comfortable target
+  is given on `pointer: coarse` rather than at a breakpoint. On a mouse the
+  sizes stay as they were.
 - **On a phone the ☰ button is also the position readout.** A chapter runs to
   twenty thousand pixels and the sidebar that marks your place is behind that
   button, so the button carries the section number — `☰ 14-2` rather than

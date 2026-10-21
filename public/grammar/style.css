@@ -60,7 +60,14 @@
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   --bar-h: 54px;
-  --measure: 46rem;
+
+  /* The width of the text column. Measured rather than chosen: at 46rem this
+     page ran 91 characters to the line on a 1440px laptop, where 45–75 is the
+     range that can be read without the eye losing its place on the way back.
+     38rem lands at 75 on a computer and on an iPad, and the phone is governed
+     by the screen rather than by this. /grammar-kids/ overrides it: its type
+     is larger, so the same character count needs more room. */
+  --measure: 38rem;
 }
 
 * { box-sizing: border-box; }
@@ -275,8 +282,12 @@ body.zh-all .zh-chip { display: none; }
   .shell { grid-template-columns: 15rem minmax(0, 1fr); gap: 44px; padding: 0 28px; }
 }
 
-/* The hub has no sidebar — its whole body is the contents. */
-.shell-wide { grid-template-columns: 1fr; max-width: 62rem; }
+/* The hub has no sidebar — its whole body is the contents, and it is a map
+   rather than something to read, so it takes the width. 62rem left the card
+   grid two columns short of a third on a laptop by about 2px; 68rem gives
+   three from an iPad in landscape upwards, which is half the scrolling for
+   fifteen chapters. */
+.shell-wide { grid-template-columns: 1fr; max-width: 68rem; }
 @media (min-width: 900px) { .shell-wide { grid-template-columns: 1fr; } }
 
 .toc { font-family: var(--font-ui); }
@@ -1177,6 +1188,32 @@ body.zh-all .td-zh::after { display: none; }
 .panel-btn:hover { filter: brightness(1.12); }
 .panel-btn-quiet { color: var(--ink-soft); background: transparent; border-color: var(--line); }
 .panel-btn-quiet:hover { background: var(--paper); filter: none; }
+
+/* ---------------- tablets ----------------
+
+   Between the phone and the point where the sidebar appears, main is the only
+   column — so the space the measure does not use all collects on one side and
+   the page sits visibly off-centre on an iPad held in portrait. Centre it.
+
+   Scoped away from the contents page, whose grid of cards wants the width. */
+@media (min-width: 620px) and (max-width: 899px) {
+  .shell { padding: 0 28px; }
+  .shell:not(.shell-wide) main { margin-inline: auto; }
+}
+
+/* ---------------- touch ----------------
+
+   These sizes are tight on purpose for a mouse. A finger needs more, and the
+   question is not how wide the screen is — an iPad in landscape is wider than
+   many laptops — but what is pointing at it. Any coarse pointer gets the 44px
+   comfortable target, well above the 24px WCAG floor the inline 🔊 and 中
+   chips already meet through their invisible hit areas. */
+@media (pointer: coarse) {
+  .opt, .word { min-height: 44px; align-items: center; }
+  .bar-btn { min-height: 40px; }
+  .bar-btn-quiet { min-height: 40px; min-width: 40px; }
+  .reveal, .panel-btn { min-height: 40px; }
+}
 
 /* ---------------- print ----------------
 
