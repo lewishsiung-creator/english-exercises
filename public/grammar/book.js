@@ -43,7 +43,6 @@ const BOOK = {
       en: 'Using Be',
       zh: '使用 be 動詞',
       built: true,
-      written: ['1-1', '1-6'],
       sections: [
         { n: '1-1', en: 'Singular pronouns + be', zh: '單數代名詞 ＋ be' },
         { n: '1-2', en: 'Plural pronouns + be', zh: '複數代名詞 ＋ be' },

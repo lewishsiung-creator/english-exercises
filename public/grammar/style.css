@@ -214,6 +214,34 @@ body.zh-all .zh-chip { display: none; }
    number and must not be squeezed by the title beside it. */
 #navLabel { font-variant-numeric: tabular-nums; }
 
+/* ---------------- the chapter opener ----------------
+
+   Not a numbered section, so its chip carries a dot rather than a number and
+   is drawn quietly: it is the thing before the chapter starts. */
+.step.opening .step-head .n {
+  color: var(--ink-faint);
+  background: transparent;
+  border-color: var(--line);
+}
+
+/* Correct / Not correct. Two options, each wide enough to read at a glance on
+   a shared screen rather than sized to its text. */
+.judge-q .opts .opt { min-width: 10rem; justify-content: flex-start; }
+.judge-q .opt em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-size: 13px;
+  color: var(--ink-faint);
+  margin-left: 6px;
+}
+.judge-q .opt.right em { color: var(--good); }
+.judge-q .q-text { font-size: 17.5px; }
+
+/* The corrected sentence sits above the explanation and is the one thing in
+   the block carrying a 🔊. */
+.judge-q .why .ex { margin: 0 0 8px; background: rgba(255, 255, 255, .75); }
+.judge-q .why p:last-child { margin: 0; }
+
 .bar-btn {
   flex: none;
   font-family: var(--font-ui);

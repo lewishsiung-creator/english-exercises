@@ -465,6 +465,7 @@ public/grammar/
   render.js     the chapter renderer
   hub.js        the contents page
   ch01/         one folder per chapter: a thin index.html and a content.js
+                Using Be — all nine sections written
   ch13/         Modals, Part 2 — all nine sections written
   ch14/         Nouns and Modifiers — all eight sections written
 ```
@@ -482,11 +483,22 @@ read the map.
   unanswered questions. A section number in a content file that the map has
   never heard of throws rather than silently rendering nothing.
 - **The hub does not offer a link it cannot keep.** A built chapter can still be
-  part-written — Chapter 1 is two sections of nine — so `written` in `book.js`
-  lists the sections that have content, the card dims and strikes the rest, and
-  the card says how many of the sections are there. The content file stays the
-  truth: `render.js` compares the two on every load of that chapter and throws
-  if they disagree, so the list cannot drift.
+  part-written, so `written` in `book.js` lists the sections that have content,
+  the card dims and strikes the rest, and the card says how many of the
+  sections are there. Leaving `written` out means the chapter is complete. The
+  content file stays the truth: `render.js` compares the two on every load of
+  that chapter and throws if they disagree, so the list cannot drift — which is
+  also what stops a finished chapter from still advertising itself as partial.
+- **A chapter can open before it begins.** The book starts each chapter with a
+  pretest — a dozen sentences, some right and some not — and `CHAPTER.opening`
+  holds blocks that render between the cover and section 1. The `judge` block
+  is that exercise: a sentence, Correct or Not correct, and the explanation
+  names the section that deals with it, so a wrong answer is a reading list.
+  It is the only practice here that shows a wrong sentence on purpose, so it
+  carries a rule of its own — **a wrong sentence gets no 🔊**. The corrected
+  version appears with the explanation and takes the speaker instead, because
+  the wrong version should never be the model going into the learner's ear.
+  That is the rule Anny's notebook set for its corrections.
 - **Two ways to be wrong, because four options cannot test word order.**
   `mcq` is a sentence with one blank; `order` gives the Chinese and a pool of
   words to tap into place. Word order is what actually goes wrong for a

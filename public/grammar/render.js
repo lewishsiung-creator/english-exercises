@@ -310,6 +310,35 @@ const BLOCKS = {
         </div>`).join('')}
       ${`<p class="tally"><span class="done">0</span> / ${b.items.length}</p>`}
     </div>`,
+
+  /* Is this sentence English or not? The shape every chapter of the book opens
+     with, and the only practice here that shows a wrong sentence on purpose.
+
+     So it carries one house rule of its own: a wrong sentence gets no 🔊. The
+     corrected version does, and it appears with the explanation once the item
+     is answered — the wrong version should never be the model going into the
+     learner's ear, which is the rule Anny's notebook set for its corrections. */
+  judge: (b) => `
+    <div class="activity" data-act="judge">
+      ${label(b)}
+      ${hint(b)}
+      ${b.items.map((it, n) => `
+        <div class="q judge-q" data-answer="${it.ok ? 0 : 1}">
+          <p class="q-line"><span class="q-n">${n + 1}</span>
+            <span class="q-text">${text(it.text)}</span>
+            ${it.ok ? speakBtn(it.text, 'say say-quiet') : ''}</p>
+          <ul class="opts">
+            <li><button class="opt" data-i="0" data-t="✓">Correct <em>正確</em></button></li>
+            <li><button class="opt" data-i="1" data-t="✕">Not correct <em>不正確</em></button></li>
+          </ul>
+          <div class="why">
+            ${it.fix ? `<p class="ex ex-good">${text(it.fix)}${speakBtn(it.fix, 'say say-quiet')}</p>` : ''}
+            <p><span class="en">${text(it.why.en)}</span>
+              <span class="zh">${text(it.why.zh)}</span></p>
+          </div>
+        </div>`).join('')}
+      ${tally(b.items.length)}
+    </div>`,
 };
 
 // ---------------------------------------------------------------- build
@@ -328,6 +357,32 @@ function buildCover() {
       <p class="source">${text(BOOK.sourceNote.en)}
         <span class="zh">${text(BOOK.sourceNote.zh)}</span></p>
     </header>`;
+}
+
+function renderBlocks(blocks, where) {
+  return blocks.map((b) => {
+    const fn = BLOCKS[b.t];
+    if (!fn) throw new Error(`Unknown block type "${b.t}" in ${where}`);
+    return fn(b);
+  }).join('');
+}
+
+/* The book opens every chapter with a pretest — a dozen sentences, some right
+   and some not, asking what the learner already knows before anything is
+   taught. That belongs to the chapter rather than to any one section, so
+   `CHAPTER.opening` holds its blocks and they render between the cover and
+   section 1. A chapter without one simply has no such section. */
+function buildOpening() {
+  if (!CHAPTER.opening || !CHAPTER.opening.length) return '';
+  return `
+    <section class="step opening" id="opening" aria-labelledby="h-opening">
+      <h2 class="step-head" id="h-opening">
+        <span class="n" aria-hidden="true">·</span>
+        <span class="titles"><span class="en">Before you start</span>
+          <span class="zh">開始之前</span></span>
+      </h2>
+      ${renderBlocks(CHAPTER.opening, 'the chapter opening')}
+    </section>`;
 }
 
 function buildSection(s) {
@@ -351,11 +406,7 @@ function buildSection(s) {
       </section>`;
   }
 
-  const body = blocks.map((b) => {
-    const fn = BLOCKS[b.t];
-    if (!fn) throw new Error(`Unknown block type "${b.t}" in section ${s.n}`);
-    return fn(b);
-  }).join('');
+  const body = renderBlocks(blocks, `section ${s.n}`);
 
   return `
     <section class="step" id="${secId(s.n)}" aria-labelledby="h-${secId(s.n)}">
@@ -375,6 +426,10 @@ function buildNav() {
       <ul>
         <li><a href="#top" data-target="top"><span class="n">·</span>
           <span class="t"><span class="en">Start</span><span class="zh">開始</span></span></a></li>
+        ${CHAPTER.opening && CHAPTER.opening.length ? `
+          <li><a href="#opening" data-target="opening"><span class="n">·</span>
+            <span class="t"><span class="en">Before you start</span>
+            <span class="zh">開始之前</span></span></a></li>` : ''}
         ${chapter.sections.map((s) => `
           <li><a href="#${secId(s.n)}" data-target="${secId(s.n)}"
                  class="${written.has(s.n) ? '' : 'todo'}"><span class="n">${text(s.n)}</span>
@@ -425,6 +480,8 @@ $('#nav').appendChild(el(buildNav()));
 
 const doc = $('#doc');
 doc.appendChild(el(buildCover()));
+const opening = buildOpening();
+if (opening) doc.appendChild(el(opening));
 chapter.sections.forEach((s) => doc.appendChild(el(buildSection(s))));
 const pager = buildPager();
 if (pager) doc.appendChild(el(pager));
