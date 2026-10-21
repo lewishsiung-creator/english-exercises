@@ -22,9 +22,19 @@ function text(s) {
   });
 }
 
-/* Every visible string is a bilingual pair, so this is the workhorse. */
-function pair(en, zh, cls = '') {
-  return `<p class="pair ${cls}"><span class="en">${text(en)}</span>` +
+/* The button that opens one line's Chinese. Emitted only where the Chinese is
+   the thing being practised — never on navigation, headings or instructions,
+   which stay bilingual and need no chip. */
+const CHIP = '<button class="zh-chip" title="顯示中文">中</button>';
+
+function chip(zh) {
+  return zh ? CHIP : '';
+}
+
+/* Every visible string is a bilingual pair, so this is the workhorse. The
+   front matter and task instructions pass `bare` — they stay open. */
+function pair(en, zh, cls = '', bare = false) {
+  return `<p class="pair ${cls}"><span class="en">${text(en)}${bare ? '' : chip(zh)}</span>` +
          (zh ? `<span class="zh">${text(zh)}</span>` : '') + '</p>';
 }
 
@@ -71,7 +81,7 @@ const BLOCKS = {
           <li class="fix">
             <span class="fix-from">${text(i.from)}</span>
             <span class="fix-arrow" aria-hidden="true">→</span>
-            <span class="fix-to"><span class="en">${text(i.to)}</span>
+            <span class="fix-to"><span class="en">${text(i.to)}${chip(i.zh)}</span>
             ${i.also ? `<span class="en">${text(i.also)}</span>` : ''}
             ${i.zh ? `<span class="zh">${text(i.zh)}</span>` : ''}</span>
           </li>`).join('')}
@@ -82,7 +92,7 @@ const BLOCKS = {
     <div class="ask">
       ${b.tagEn ? `<p class="tag"><span class="en">${text(b.tagEn)}</span>
         <span class="zh">${text(b.tagZh)}</span></p>` : ''}
-      <p class="q"><span class="en">${text(b.en)}</span>
+      <p class="q"><span class="en">${text(b.en)}${chip(b.zh)}</span>
       <span class="zh">${text(b.zh)}</span></p>
       <div class="rule"></div>
       <div class="rule"></div>
@@ -114,7 +124,7 @@ const BLOCKS = {
     <div class="check">
       ${b.tagEn ? `<p class="tag"><span class="en">${text(b.tagEn)}</span>
         <span class="zh">${text(b.tagZh)}</span></p>` : ''}
-      <p class="q"><span class="en">${text(b.en)}</span>
+      <p class="q"><span class="en">${text(b.en)}${chip(b.zh)}</span>
       <span class="zh">${text(b.zh)}</span></p>
       <ul class="opts">
         ${b.items.map((i) => `
@@ -126,7 +136,7 @@ const BLOCKS = {
 
   rank: (b) => `
     <div class="check">
-      <p class="q"><span class="en">${text(b.en)}</span>
+      <p class="q"><span class="en">${text(b.en)}${chip(b.zh)}</span>
       <span class="zh">${text(b.zh)}</span></p>
       <p class="hint"><span class="en">${text(b.hintEn)}</span>
       <span class="zh">${text(b.hintZh)}</span></p>
@@ -146,9 +156,9 @@ const BLOCKS = {
         <span class="zh">${text(b.zh)}</span></h4>
       <dl class="phrase-list ${b.numbered ? 'numbered' : ''}">
         ${b.items.map((i) => `
-          <div class="phrase">
+          <div class="phrase" title="點一下顯示中文">
             <dt>${text(i.en)}${tip(i.tip)}</dt>
-            <dd>${text(i.zh)}</dd>
+            <dd class="zh">${text(i.zh)}</dd>
           </div>`).join('')}
       </dl>
     </div>`,
@@ -183,7 +193,7 @@ const BLOCKS = {
     <div class="bullets">
       ${b.label ? `<h4 class="label"><span class="en">${text(b.label)}</span>
         <span class="zh">${text(b.labelZh)}</span></h4>` : ''}
-      ${b.en ? pair(b.en, b.zh, 'bullets-intro') : ''}
+      ${b.en ? pair(b.en, b.zh, 'bullets-intro', true) : ''}
       <${b.ordered ? 'ol' : 'ul'}>
         ${b.items.map((i) => `
           <li><span class="en">${text(i.en)}</span>
@@ -209,7 +219,7 @@ const BLOCKS = {
       <span class="zh">${text(b.zh)}</span></h4>
       <ul class="stmt-list">
         ${b.items.map((i) => `
-          <li><span class="en">${text(i.en)}</span>
+          <li><span class="en">${text(i.en)}${chip(i.zh)}</span>
           ${i.zh ? `<span class="zh">${text(i.zh)}</span>` : ''}${tip(i.tip)}</li>`).join('')}
       </ul>
     </div>`,
@@ -223,7 +233,7 @@ const BLOCKS = {
           <li>
             <p class="step-name"><span class="en">${text(i.en)}</span>
             <span class="zh">${text(i.zh)}</span></p>
-            ${i.bodyEn ? `<p class="point-body"><span class="en">${text(i.bodyEn)}</span>
+            ${i.bodyEn ? `<p class="point-body"><span class="en">${text(i.bodyEn)}${chip(i.bodyZh)}</span>
               ${i.bodyZh ? `<span class="zh">${text(i.bodyZh)}</span>` : ''}</p>` : ''}
           </li>`).join('')}
       </ol>
@@ -320,8 +330,8 @@ function buildCover() {
 
       <div class="purpose">
         <h2><span class="en">Purpose</span> <span class="zh">使用目的</span></h2>
-        ${pair(p.en, p.zh)}
-        ${pair(p.introEn, p.introZh, 'bullets-intro')}
+        ${pair(p.en, p.zh, '', true)}
+        ${pair(p.introEn, p.introZh, 'bullets-intro', true)}
         <ul class="goals">
           ${p.items.map((i) => `
             <li><span class="en">${text(i.en)}</span>
@@ -438,6 +448,50 @@ if (!WORKSHEET.sections.length) {
     <p class="empty"><span class="en">No notes written up yet.</span>
     <span class="zh">本次課堂筆記尚未整理。</span></p>`));
 }
+
+// ---------------------------------------------------------------- Chinese
+
+/* The only thing kept in localStorage is this switch — a device setting, like
+   the voice picker on the other pages. Nothing about a lesson is saved, so a
+   reload is a clean sheet for the next client. */
+const store = {
+  get(k, fallback) {
+    try { const v = localStorage.getItem(`bc.${k}`); return v === null ? fallback : v; }
+    catch { return fallback; }
+  },
+  set(k, v) { try { localStorage.setItem(`bc.${k}`, v); } catch { /* private mode */ } },
+};
+
+const zhToggle = $('#zhToggle');
+
+function setAllZh(on) {
+  document.body.classList.toggle('zh-all', on);
+  zhToggle.setAttribute('aria-pressed', String(on));
+  store.set('zh', on ? '1' : '0');
+}
+
+setAllZh(store.get('zh', '0') === '1');
+zhToggle.addEventListener('click', () => setAllZh(!document.body.classList.contains('zh-all')));
+
+/* One handler for the whole document. A chip opens the line it sits on; a row
+   in a vocabulary or option list has no chip of its own — 365 of them would be
+   clutter — so the row itself is the target. */
+const ROWS = '.phrase, .opts li, .bullets li, .fix';
+
+doc.addEventListener('click', (e) => {
+  const chipEl = e.target.closest('.zh-chip');
+  if (chipEl) {
+    // Climb to the nearest ancestor that actually holds the Chinese, whatever
+    // the block wrapped it in — a .pair, a list item, a question.
+    let host = chipEl.parentElement;
+    while (host && !host.querySelector('.zh')) host = host.parentElement;
+    if (host) host.classList.toggle('open');
+    return;
+  }
+
+  const row = e.target.closest(ROWS);
+  if (row && row.querySelector('.zh')) row.classList.toggle('open');
+});
 
 /* Highlight the section being read. rootMargin pulls the trip-line up to just
    below the sticky header so a heading counts as "current" once it reaches

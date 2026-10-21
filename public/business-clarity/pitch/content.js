@@ -231,8 +231,8 @@ const WORKSHEET = {
       blocks: [
         {
           t: 'lead',
-          en: 'Lulu’s own sentences, from across the three sessions. These are the distinctive ones — the parts a competitor could not have said. Use them as spare parts when a version needs rebuilding.',
-          zh: '以下是 Lulu 自己在三堂課中說過的句子，也是最有辨識度、競爭者說不出來的部分。改稿時可以直接當零件使用。',
+          en: 'Lulu’s own sentences, taken from the discussions. These are the distinctive ones — the parts a competitor could not have said. Use them as spare parts when a version needs rebuilding.',
+          zh: '以下是 Lulu 自己說過的句子，也是最有辨識度、競爭者說不出來的部分。改稿時可以直接當零件使用。',
         },
         {
           t: 'statements',
@@ -292,8 +292,8 @@ const WORKSHEET = {
       blocks: [
         {
           t: 'lead',
-          en: 'Across three sessions and several hundred phrases, the explanation still contains no number and no named customer. These are the questions that would fix that — worth answering out loud in the next session.',
-          zh: '三堂課、數百條片語之後，這段說明裡仍然沒有任何數字，也沒有具體的客戶。以下是能補上這一塊的問題，適合在下一堂課口頭回答。',
+          en: 'The explanation still contains no number and no named customer. These are the questions that would fix that — worth answering out loud in the next session.',
+          zh: '這段說明裡仍然沒有任何數字，也沒有具體的客戶。以下是能補上這一塊的問題，適合在下一堂課口頭回答。',
         },
 
         { t: 'sub', letter: 'A', en: 'Proof', zh: '證據' },

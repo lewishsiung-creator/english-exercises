@@ -368,10 +368,16 @@ pricing, cash flow and recruitment to a two-minute executive introduction.
 
 ### Design notes
 
-- **English leads, Chinese supports.** Every line is a pair: English in a
-  serif at full contrast, Traditional Chinese directly beneath in a smaller
-  sans at lower contrast. Either language can be followed down the page
-  without the other becoming noise.
+- **Chinese waits behind the 中 chip**, as on the other adult pages. English
+  leads in a serif at full contrast; the Traditional Chinese opens one line at
+  a time on a tap, or all at once from the 中文 switch in the bar. Vocabulary
+  rows and option lists have no chip of their own — hundreds of them would be
+  clutter — so the row itself is the target.
+- **Navigation, headings, labels and the front matter stay bilingual.**
+  Understanding those is not the exercise; they are how she finds her place.
+- The 中文 switch persists under `bc.zh` in `localStorage`. It is a device
+  setting, like the voice picker elsewhere — nothing about a lesson is saved.
+  **Print** follows the screen: turn 中文 on first for a bilingual handout.
 - **Nothing is a form control.** Blanks, checkboxes and answer rules are
   drawn, not typed into — the client writes on paper or talks. Screen and
   print therefore look the same, and a stray refresh cannot lose a session.
@@ -429,7 +435,7 @@ is linked from sections 1, 10 and 13.
 
 Missing pieces are written as blanks inside the script rather than left out,
 so the gap is visible while she is speaking. The proof line is blank on
-purpose: three sessions have produced no number and no named client.
+purpose: the discussions have produced no number and no named client.
 
 ## Basic English Grammar — adult, fifteen chapters
 

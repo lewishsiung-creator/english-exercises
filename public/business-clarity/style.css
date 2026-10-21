@@ -48,10 +48,15 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
-/* Chinese runs at a smaller size and lower contrast throughout — it is the
-   support line, never the headline. */
+/* ---------------- the Chinese layer ----------------
+
+   Hidden everywhere by default, so the English is tried first. A line opens
+   on its own when tapped; the 中文 switch in the bar opens all of them at
+   once, at which point the individual chips are clutter and go away. Same
+   pattern as the other adult pages. */
+
 .zh {
-  display: block;
+  display: none;
   font-family: var(--font-zh);
   font-size: 0.84em;
   font-weight: 400;
@@ -60,6 +65,61 @@ body {
   letter-spacing: 0.01em;
 }
 .en { display: block; }
+
+.open .zh,
+body.zh-all .zh { display: block; }
+
+.zh-chip {
+  font-family: var(--font-zh);
+  font-size: 11px;
+  line-height: 1;
+  vertical-align: 2px;
+  margin-left: 6px;
+  padding: 3px 5px;
+  color: var(--ink-faint);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color .12s, border-color .12s, background .12s;
+}
+.zh-chip:hover {
+  color: var(--accent);
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+.open > .zh-chip,
+.open .en > .zh-chip,
+.open .q > .zh-chip { opacity: .35; }
+body.zh-all .zh-chip { display: none; }
+
+/* Rows with no chip of their own open on a tap anywhere in the row. */
+.phrase, .opts li, .bullets li, .fix { cursor: pointer; }
+
+/* Lines she is not being tested on stay bilingual at all times: navigation,
+   headings, the small labels over a list, and the worksheet's own front
+   matter and task instructions. Understanding those is not the exercise. */
+.toc .t .zh,
+.section-head .zh,
+.sub .zh,
+.label .zh,
+.note h4 .zh,
+.part h3 .zh,
+.part-sub .zh,
+.session-t .zh,
+.rel-t .zh,
+.cover .zh,
+.bullets-intro .zh,
+.hint .zh,
+.step-name .zh,
+.table-wrap .zh { display: block; }
+
+/* …and the same for the handful that sit inline rather than on their own
+   line, which the blanket `display: none` above would otherwise strip. */
+.field dt .zh,
+.tag .zh,
+.purpose h2 .zh,
+.back .zh { display: inline; }
 
 .skip { position: absolute; left: -9999px; }
 .skip:focus {
@@ -115,6 +175,13 @@ body {
 }
 .bar-btn:hover { background: var(--accent-soft); }
 .bar-btn-quiet { color: var(--ink-soft); border-color: var(--line); }
+
+.bar-btn-zh { font-family: var(--font-zh); }
+.bar-btn-zh[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
 
 /* The contents button is only needed once the sidebar is gone. */
 @media (min-width: 900px) { #navToggle { display: none; } }
@@ -899,7 +966,10 @@ tbody td { height: 3.1rem; }
 @media print {
   :root { --paper: #fff; }
 
-  .bar, #nav, .nav-scrim, .skip { display: none !important; }
+  .bar, #nav, .nav-scrim, .skip, .zh-chip { display: none !important; }
+
+  /* What is on screen is what prints: turn 中文 on first for a bilingual
+     handout, leave it off for an English-only one. */
 
   body { font-size: 11pt; }
   .shell { display: block; max-width: none; padding: 0; }
