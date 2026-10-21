@@ -296,13 +296,21 @@ const BLOCKS = {
    worksheet only in having no name fields, no purpose and no feedback band,
    and in carrying a way back to the section it hangs under. */
 function buildNotesCover() {
+  /* `sibling` is a page alongside this one rather than above it, so it sits
+     outside the breadcrumb trail — putting it in the trail would claim a
+     hierarchy that does not exist. */
+  const s = WORKSHEET.sibling;
   return `
     <header class="cover cover-notes" id="top">
-      <nav class="crumbs" aria-label="Breadcrumb">
-        ${WORKSHEET.crumbs.map((c) => `
-          <a class="back" href="${c.href}"><span class="en">${text(c.en)}</span>
-          <span class="zh">${text(c.zh)}</span></a>`).join('<span class="crumb-sep" aria-hidden="true">/</span>')}
-      </nav>
+      <div class="crumb-row">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          ${WORKSHEET.crumbs.map((c) => `
+            <a class="back" href="${c.href}"><span class="en">${text(c.en)}</span>
+            <span class="zh">${text(c.zh)}</span></a>`).join('<span class="crumb-sep" aria-hidden="true">/</span>')}
+        </nav>
+        ${s ? `<a class="jump" href="${s.href}"><span class="en">${text(s.en)}</span>
+          <span class="zh">${text(s.zh)}</span> <span aria-hidden="true">→</span></a>` : ''}
+      </div>
       <h1>
         <span class="en">${text(WORKSHEET.title)}</span>
         <span class="zh">${text(WORKSHEET.titleZh)}</span>
@@ -423,10 +431,20 @@ function buildNav() {
        </a></li>`
     : '';
 
+  /* Pinned pages sit above the contents and are ruled off from it: they are
+     other pages, not places in this one, and the finished explanation should
+     not have to be found by scrolling into a section. */
+  const pinned = (WORKSHEET.pinned || []).map((p) => `
+    <li class="pin"><a href="${p.href}">
+      <span class="n" aria-hidden="true">→</span>
+      <span class="t"><span class="en">${text(p.en)}</span>
+      <span class="zh">${text(p.zh)}</span></span>
+    </a></li>`).join('');
+
   return `
     <nav class="toc" aria-label="Sections">
       <p class="toc-head">Contents 目錄</p>
-      <ul>${top}${links}${feedback}</ul>
+      <ul>${pinned}${top}${links}${feedback}</ul>
     </nav>`;
 }
 
@@ -497,7 +515,7 @@ doc.addEventListener('click', (e) => {
    below the sticky header so a heading counts as "current" once it reaches
    the top of the screen, not when it first peeks in from the bottom. */
 const links = new Map(
-  [...document.querySelectorAll('.toc a')].map((a) => [a.dataset.target, a])
+  [...document.querySelectorAll('.toc a[data-target]')].map((a) => [a.dataset.target, a])
 );
 
 const spy = new IntersectionObserver((entries) => {

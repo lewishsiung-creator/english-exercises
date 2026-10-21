@@ -43,6 +43,11 @@ const WORKSHEET = {
   title: 'Business Clarity and Communication Worksheet',
   titleZh: '商業策略與英文表達練習單',
 
+  /* Shown above the contents list: a page of its own, not a section. */
+  pinned: [
+    { href: 'pitch/', en: 'Business Introduction', zh: '事業介紹' },
+  ],
+
   fields: [
     { en: 'Name', zh: '姓名', value: 'Lulu' },
     { en: 'Business', zh: '事業名稱', value: '' },

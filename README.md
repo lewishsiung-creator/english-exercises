@@ -437,6 +437,13 @@ Missing pieces are written as blanks inside the script rather than left out,
 so the gap is visible while she is speaking. The proof line is blank on
 purpose: the discussions have produced no number and no named client.
 
+It is reachable in one hop from anywhere in the material: `pinned` puts it at
+the head of the worksheet's contents list, ruled off from the sections because
+it is a page rather than a place in one, and each session page carries a
+`sibling` link beside its breadcrumb. The sibling link deliberately sits
+*outside* the trail — the introduction is alongside a session, not above it,
+and a crumb would claim a hierarchy that does not exist.
+
 ## Basic English Grammar — adult, fifteen chapters
 
 The one page here built to grow rather than to be finished. Fifteen chapters

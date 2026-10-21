@@ -870,8 +870,52 @@ tbody td { height: 3.1rem; }
   .related-list a { grid-template-columns: 1fr; gap: 3px; }
 }
 
-/* The cover of a session page: a way back, and the date as the title. */
+/* The cover of a session page: a way back, a way across, and the date as the
+   title. */
 .cover-notes h1 .en { font-variant-numeric: tabular-nums; }
+
+.crumb-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 20px;
+  margin: 0 0 14px;
+}
+.crumb-row .crumbs { margin: 0; }
+
+/* Sideways, not upwards — so it is set apart from the trail. */
+.jump {
+  margin-left: auto;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.jump:hover { text-decoration: underline; }
+.jump .en, .jump .zh { display: inline; }
+.jump .zh {
+  font-size: .92em;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-faint);
+  margin-left: 5px;
+}
+
+@media (max-width: 560px) {
+  .jump { margin-left: 0; }
+}
+
+/* A pinned page at the head of the contents, ruled off from the sections
+   below it. */
+.toc .pin { margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.toc .pin a { border-left-color: transparent; }
+.toc .pin a .n { color: var(--accent); }
+.toc .pin a .t .en { font-weight: 600; color: var(--accent); }
 
 .crumbs {
   display: flex;

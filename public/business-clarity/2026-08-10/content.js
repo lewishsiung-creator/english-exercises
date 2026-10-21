@@ -23,6 +23,9 @@ const WORKSHEET = {
     { href: '../#overview', en: '1. Business Overview', zh: '事業概述' },
   ],
 
+  /* A page alongside this one, not above it — rendered outside the trail. */
+  sibling: { href: '../pitch/', en: 'Business Introduction', zh: '事業介紹' },
+
   sections: [
     // ------------------------------------------------------------------
     {
