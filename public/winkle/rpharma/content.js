@@ -23,8 +23,8 @@ const PAGE = {
   cover: {
     up: { href: "../", en: "Winkle's Learning Notes 全部頁面" },
     kicker: "R/Pharma 2026 APAC · 講稿準備",
-    role: "Winkle Lu · R/Pharma 2026 APAC · about five minutes, plus two Quarto pages",
-    roleZh: "Winkle Lu · R/Pharma 2026 APAC · 約五分鐘，另加兩頁 Quarto 示範",
+    role: "Winkle · R/Pharma 2026 APAC · about five minutes, plus two Quarto pages",
+    roleZh: "Winkle · R/Pharma 2026 APAC · 約五分鐘，另加兩頁 Quarto 示範",
     intro: [
       {
         en: "The structure is already good — problem → why → method → result → positioning, with a key sentence on every slide. You are already doing conclusion-first.",

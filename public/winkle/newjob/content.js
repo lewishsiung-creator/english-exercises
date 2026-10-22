@@ -28,8 +28,8 @@ const PAGE = {
   cover: {
     up: { href: "../", en: "Winkle's Learning Notes 全部頁面" },
     kicker: "Before 2 November · 上工前準備",
-    role: "Winkle Lu · a pharma company · from 2 November 2026 · a US team, about four hours of overlap",
-    roleZh: "Winkle Lu · 藥廠 · 2026 年 11 月 2 日起 · 與美國團隊約四小時重疊時間",
+    role: "Winkle · a pharma company · from 2 November 2026 · a US team, about four hours of overlap",
+    roleZh: "Winkle · 藥廠 · 2026 年 11 月 2 日起 · 與美國團隊約四小時重疊時間",
     intro: [
       {
         en: "The overlap falls in your evening and their morning. Everything outside it happens in writing — Slack, Teams, email — so the written shapes on this page matter as much as the spoken ones.",

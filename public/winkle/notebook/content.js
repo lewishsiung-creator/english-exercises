@@ -35,8 +35,8 @@ const PAGE = {
   cover: {
     up: { href: "../", en: "Winkle's Learning Notes 全部頁面" },
     kicker: "一對一 · 一堂課一則",
-    role: "Winkle Lu · one entry per lesson, newest at the bottom",
-    roleZh: "Winkle Lu · 一堂課一則，新的加在下面",
+    role: "Winkle · one entry per lesson, newest at the bottom",
+    roleZh: "Winkle · 一堂課一則，新的加在下面",
     intro: [
       {
         en: "What was said in the lesson, kept so it can be used again: what the conversation showed, the English worth keeping, and what to practise before the next one.",
