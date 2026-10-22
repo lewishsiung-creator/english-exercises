@@ -226,8 +226,33 @@ function tick() {
    the student never learns a distinction dictation exists to teach. So a word
    that matches only once apostrophes are ignored is marked NEARLY: it says you
    heard it, now look at the spelling. */
+/* A student hears "eleven thirty" and the transcript reads "11:30". Stripping
+   punctuation leaves the line demanding the tokens "11" and "30", so typing
+   what they correctly heard was marked as two missed words — a verdict about
+   the transcript's orthography, not about their listening. Number words
+   collapse to digits so the two forms meet. Compounds join: "fifty-two" is one
+   number, not a five and a two. */
+const NUM_UNIT = ['zero','one','two','three','four','five','six','seven','eight','nine','ten',
+  'eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+const NUM_TEN = { twenty:20, thirty:30, forty:40, fifty:50, sixty:60, seventy:70, eighty:80, ninety:90 };
+
+function toDigits(words) {
+  const out = [];
+  for (let i = 0; i < words.length; i++) {
+    const w = words[i];
+    if (NUM_TEN[w] !== undefined) {
+      const u = NUM_UNIT.indexOf(words[i + 1]);
+      if (u > 0 && u < 10) { out.push(String(NUM_TEN[w] + u)); i++; continue; }
+      out.push(String(NUM_TEN[w])); continue;
+    }
+    const u = NUM_UNIT.indexOf(w);
+    out.push(u >= 0 ? String(u) : w);
+  }
+  return out;
+}
+
 function typeWords(s) {
-  return String(s)
+  const plain = String(s)
     .toLowerCase()
     .replace(/[\u2018\u2019\u02bc]/g, "'")
     .replace(/[^a-z0-9'\s]/g, ' ')
@@ -235,6 +260,7 @@ function typeWords(s) {
     .trim()
     .split(' ')
     .filter(Boolean);
+  return toDigits(plain);
 }
 
 /* Which of the correct words the student got, aligned by longest common
@@ -263,11 +289,21 @@ function wordsFound(correct, typed) {
   return got;
 }
 
-/* 'got' | 'near' | 'missed', one per word of the correct line. */
+/* 'got' | 'near' | 'missed' | 'free', one per word of the correct line.
+
+   'free' is for a token that is still a numeral after number words have been
+   folded in — a year, a figure with a comma in it, "3x3". The page cannot tell
+   whether a student who wrote those as words heard them or not, so it marks
+   neither way and says so by leaving the word plain. Crediting them would be a
+   lie, and marking them missed would be a worse one. */
 function wordVerdicts(correct, typed) {
   const exact = wordsFound(correct, typed);
   const heard = wordsFound(correct.map(bare), typed.map(bare));
-  return correct.map((w, i) => (exact[i] ? 'got' : heard[i] ? 'near' : 'missed'));
+  return correct.map((w, i) => {
+    if (exact[i]) return 'got';
+    if (heard[i]) return 'near';
+    return /\d/.test(w) ? 'free' : 'missed';
+  });
 }
 
 function typeBox() {
@@ -337,7 +373,8 @@ function revealTyping(checked) {
       const part = verdict.slice(k, k + n);
       k += n;
       const v = part.every((x) => x === 'got') ? 'got'
-        : part.some((x) => x === 'missed') ? 'missed' : 'near';
+        : part.some((x) => x === 'missed') ? 'missed'
+        : part.some((x) => x === 'near') ? 'near' : 'free';
       return `<span class="w-${v}">${text(w)}</span>`;
     }).join(' ');
   } else {

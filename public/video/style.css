@@ -788,6 +788,9 @@ body.typing #lines .line.typed .line-body { border-bottom-color: transparent; }
   padding: 1px 5px; border-radius: 5px;
   text-decoration: underline dotted currentColor; text-underline-offset: 3px;
 }
+/* A numeral the page cannot fairly judge: left plain, like the answer shown
+   without being checked. */
+.w-free { color: var(--ink-2); }
 .w-shown { color: var(--ink-2); }
 
 /* -------------------------------------------------------------- the footer */
