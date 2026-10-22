@@ -2248,6 +2248,30 @@ way rather than by renaming.
 
 All five pages are built.
 
+### Who gets named, across all five
+
+Settled case by case, but the cases have turned into a rule worth stating
+once, because every new page runs into it:
+
+- **Winkle is named.** No surname.
+- **His own employers are named** — the current one in the self-introduction,
+  the earlier ones in the submissions answer — because those are sentences he
+  will actually say out loud. Lewis was asked about the current employer
+  separately and chose to keep it.
+- **A company he is applying to is named only when he says so.** It was
+  refused for the UK role and allowed for CIMS, whose products are public.
+- **A third person is never named.** The CIMS handout names the Software
+  Development manager who ran the screening call; the page calls him "the
+  Software Development manager". He is a private individual at another
+  company, he is not the one being taught, and naming him puts him on a page
+  that gets handed around for no benefit to the lesson. Same instinct as the
+  clinic in Mia's notebook. If a future handout names an interviewer, a
+  colleague or a referee, strip it the same way.
+
+Everything under `/winkle/` is `noindex` regardless, but that is a weak
+protection — the link is handed to people — so these decisions are made as if
+the pages were public.
+
 ### CIMS Global — `cims/`
 
 A record of a screening call in the first week of October 2026, kept because
