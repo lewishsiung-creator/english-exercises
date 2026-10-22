@@ -2240,3 +2240,127 @@ strong { font-weight: 700; }
   height: max(100%, 24px);
   transform: translate(-50%, -50%);
 }
+
+/* ---------------- a divider inside one lesson ---------------- */
+
+.part {
+  margin: 34px 0 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+.part h3 { margin: 0; font-size: 1.1rem; font-weight: 600; }
+.part h3 em {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  font-size: .82rem;
+  color: var(--ink-faint);
+}
+
+/* ---------------- what he said, and what to say ---------------- */
+
+.fix-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.fix-item {
+  padding: 13px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.fix-item p { margin: 0; }
+
+.fix-lab {
+  display: inline-block;
+  margin-right: 9px;
+  padding: 1px 7px;
+  font-family: var(--font-ui);
+  font-size: .64rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--ink-faint);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  vertical-align: 2px;
+}
+.fix-lab-ok { color: var(--good); border-color: var(--good-line); background: var(--good-soft); }
+.fix-lab-more { color: var(--gold); border-color: var(--gold-line); background: var(--gold-soft); }
+
+/* The original is quiet, not struck through: it was understood at the time,
+   and the point is the better version, not the error. */
+.fix-was { color: var(--ink-faint); font-size: .97rem; }
+.fix-now { margin-top: 7px !important; font-size: 1.02rem; }
+.fix-more { margin-top: 5px !important; font-size: .98rem; color: var(--ink-soft); }
+.fix-why {
+  margin-top: 9px !important;
+  padding-top: 8px;
+  border-top: 1px dashed var(--rule);
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.fix-why em { display: block; margin-top: 2px; font-family: var(--font-zh); font-style: normal; color: var(--ink-faint); }
+
+/* ---------------- a prompt to copy ---------------- */
+
+.prompt {
+  margin: 18px 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.prompt-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 10px 7px 14px;
+  background: var(--navy-soft);
+  border-bottom: 1px solid var(--navy-line);
+}
+.prompt-lab {
+  font-family: var(--font-ui);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.prompt-lab em {
+  margin-left: 8px;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-faint);
+}
+.copy {
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  color: var(--navy);
+  background: var(--card);
+  border: 1px solid var(--navy-line);
+  border-radius: 7px;
+  padding: 4px 11px;
+  cursor: pointer;
+}
+.copy:hover { border-color: var(--navy); }
+.copied { display: none; }
+.copy.ok { color: var(--good); border-color: var(--good-line); background: var(--good-soft); }
+.copy.ok .copied { display: inline; }
+.copy.ok .copy-idle { display: none; }
+
+.prompt pre {
+  margin: 0;
+  padding: 14px 16px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .84rem;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media print { .prompt .copy { display: none; } }

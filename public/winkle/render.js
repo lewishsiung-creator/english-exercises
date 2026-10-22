@@ -469,6 +469,47 @@ const BLOCKS = {
       </div>
     </div>`,
 
+  /* A divider inside one lesson. A notebook entry covers a whole session, so
+     it needs headings below the step but above the blocks; a page built from
+     one topic should not use it. */
+  part: (b) => `
+    <div class="part">
+      <h3>${text(b.en)}<em>${text(b.zh)}</em></h3>
+    </div>`,
+
+  /* What he said, and what to say instead.
+
+     The notebook rule, carried from the other students' pages: only lines
+     where the error is unmistakably his go in. A transcript mishears freely,
+     and a mishearing is not a mistake — the write-up this came from says so
+     itself, and anything garbled was left out rather than tidied into a
+     sentence he may never have said. */
+  fix: (b) => `
+    <div class="fix">
+      ${label(b.en, b.zh)}
+      ${hint(b.hintEn, b.hintZh)}
+      <ol class="fix-list">
+        ${b.items.map((i) => `
+          <li class="fix-item">
+            <p class="fix-was"><span class="fix-lab">原句</span>${rich(i.was)}</p>
+            <p class="fix-now"><span class="fix-lab fix-lab-ok">改成</span>${rich(i.now)}${speakBtn(i.now, 'say')}</p>
+            ${i.moreEn ? `<p class="fix-more"><span class="fix-lab fix-lab-more">更具體</span>${rich(i.moreEn)}${speakBtn(i.moreEn, 'say say-quiet')}</p>` : ''}
+            <p class="fix-why">${rich(i.whyEn)}<em>${rich(i.whyZh)}</em></p>
+          </li>`).join('')}
+      </ol>
+    </div>`,
+
+  /* A prompt he is meant to paste somewhere, so it has to be copyable — a
+     prompt you have to retype is a prompt nobody uses. */
+  prompt: (b) => `
+    <div class="prompt">
+      <div class="prompt-bar">
+        <span class="prompt-lab">${text(b.en)}<em>${text(b.zh)}</em></span>
+        <button class="copy" data-copy="${attr(b.text)}"><span class="copy-idle">複製</span><span class="copied">已複製</span></button>
+      </div>
+      <pre>${text(b.text)}</pre>
+    </div>`,
+
   /* One slide of a conference talk: what the script says now, what it should
      say, and why. `status` is how much is moving — a slide that needs one word
      changed should not look like one with a logic problem — and a slide with no
@@ -693,6 +734,23 @@ doc.addEventListener('click', (e) => {
     const open = body.hidden;
     body.hidden = !open;
     reveal.setAttribute('aria-expanded', String(open));
+    return;
+  }
+
+  const copyBtn = t.closest('.copy');
+  if (copyBtn) {
+    navigator.clipboard.writeText(copyBtn.dataset.copy).then(() => {
+      copyBtn.classList.add('ok');
+      setTimeout(() => copyBtn.classList.remove('ok'), 1600);
+    }).catch(() => {
+      // Clipboard refused: select the text so it can still be copied by hand.
+      const pre = copyBtn.closest('.prompt').querySelector('pre');
+      const r = document.createRange();
+      r.selectNodeContents(pre);
+      const sel = getSelection();
+      sel.removeAllRanges();
+      sel.addRange(r);
+    });
     return;
   }
 

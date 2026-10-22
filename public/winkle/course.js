@@ -17,6 +17,17 @@ const COURSE = {
   },
   pages: [
     {
+      id: "notebook",
+      href: "notebook/",
+      built: true,
+      en: "Notebook — one entry per lesson",
+      zh: "上課筆記：一堂課一則",
+      blurbEn: "What was said in each lesson, kept so it can be used again: what the conversation showed, your own English and what to say instead, the collocations, and the questions to answer again cold.",
+      blurbZh: "每一堂課談過的內容：這次談話看見了什麼、你自己的英文與改法、搭配詞，以及可以重新冷答一次的題目。",
+      noteEn: "Growing · newest at the bottom",
+      noteZh: "持續累積",
+    },
+    {
       id: "rpharma",
       href: "rpharma/",
       built: true,
