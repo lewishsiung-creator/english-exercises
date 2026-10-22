@@ -2246,7 +2246,26 @@ the conference talk, the new job, and a second company's screening call. **The
 contents page rather than the interview, which is why the split was made this
 way rather than by renaming.
 
-One page is mapped but not built: the **CIMS Global screening call**.
+All five pages are built.
+
+### CIMS Global — `cims/`
+
+A record of a screening call in the first week of October 2026, kept because
+most of it outlives that call: the expectation statement, the answer for "the
+openings are junior", the Git answer and the three sentences that close a
+conversation yourself all work at the next one.
+
+The page's own judgement, worth keeping: the invitation said *discuss
+potential opportunities that may be a good fit*, which at a small company is
+an invitation to define the role rather than fill one — so the order is ask
+first, then state, and the level comes last as a consequence of the ability,
+never as the opening demand.
+
+**The company is named; the manager who ran the call is not.** Its products
+are public and the hub already carried the name, but a private individual at
+another company adds nothing the page needs. Winkle's own thirteen-question
+review guide is not on the page either, so the five edits to it are written to
+stand on their own.
 
 ### Winkle's Interview Prep — `interview/`
 
