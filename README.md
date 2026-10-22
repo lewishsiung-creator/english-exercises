@@ -1752,7 +1752,26 @@ was that the generated voice lacks intonation, which is true, so the 🔊 line
 says what the audio is good for — pronunciation — and points intonation back at
 the lesson.
 
-Both sessions carry a `link` block to
+Session 3 (17 October 2026) is the one entry here that is not a discussion:
+it is the feedback sheet on fourteen sentences she wrote. It uses an
+`upgrade` block rather than `fix`, because `fix` marks a mistake — a cross, a
+tick, a correction — and several of those sentences are perfectly good
+English, which the sheet itself says in its closing line. So the marks are
+neutral, the first line is not struck through, and only the version to keep is
+spoken. The accent sits on the arrow rather than the sentence, since on this
+page `--navy` resolves to ink and weight alone was doing too little. The
+session also carries a `passage` block, the recording text, set wider and
+looser with the speaker on the paragraph.
+
+Its two companion links — [`/recording-practice/`](public/recording-practice/)
+and [`/sentence-upgrades/2026-10-17/`](public/sentence-upgrades/2026-10-17/) —
+sit at the TOP of that session, right under its opening line, rather than
+beside the blocks they belong to. They were at the bottom first, which in a
+session carrying fourteen sentence cards and thirty-nine phrase cards put them
+five thousand pixels down: a link nobody scrolls to is a link that is not
+there.
+
+Both August sessions carry a `link` block to
 [`/sentence-upgrades/`](public/sentence-upgrades/), which is her own homework
 from 25 July — the page Lewis showed her on 7 August and that she gave feedback
 on a week later. Session 1's link sits under the five-step note, since those

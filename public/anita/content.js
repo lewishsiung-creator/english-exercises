@@ -1155,6 +1155,28 @@ const NOTEBOOK = {
           zh: '十四個你自己寫的句子，每一句都附上值得留下的版本。先讀第一行，自己決定會怎麼改，再打開來看——而且記得，其中有好幾句根本不是錯的。',
         },
 
+        /* The two companion pages sit at the TOP of the session, not beside
+           the blocks they belong to. They were at the bottom, which in a
+           session this long put them five thousand pixels down: a link nobody
+           scrolls to is a link that is not there. */
+        {
+          t: 'link',
+          href: '../recording-practice/',
+          en: 'The passage on its own page',
+          zh: '這段文字的獨立頁面',
+          noteEn: 'The same piece, set to be read off the screen: every sentence has its own 🔊 as well as the paragraph, and the page carries the five steps for working a passage and what to listen for when you play yourself back. New passages are added there.',
+          noteZh: '同一段文字，但版面是為了「對著螢幕唸」而設的：除了段落，每一句也都有自己的 🔊；那一頁還有練習一篇文章的五個步驟，以及回聽時該注意什麼。以後新的朗讀文章都會加在那裡。',
+        },
+
+        {
+          t: 'link',
+          href: '../sentence-upgrades/2026-10-17/',
+          en: 'The same fourteen, as an exercise',
+          zh: '同樣這十四句，但做成練習',
+          noteEn: 'This session is the record; that page is the drill. There the two versions sit side by side with the changed parts marked, so you can tap one and watch its counterpart light up — and all 48 collocations are in one table with the meanings covered, for self-testing.',
+          noteZh: '這一堂是紀錄，那一頁是練習。在那裡，兩個版本並排放著、改動的地方都標出來了，點一邊就會看到另一邊對應的部分亮起來；48 個搭配詞也集中在一張表裡，中文蓋住，可以自己測。',
+        },
+
         {
           t: 'note',
           en: 'What these fourteen sentences already show',
@@ -1374,24 +1396,6 @@ const NOTEBOOK = {
               zh: '如果 AI 讓我有更多時間，我希望尋找能協助員工提升技能的工具。在零售業，我們需要在人力較少的情況下維持門市營運。AI 可以處理例行工作，讓員工有更多時間服務顧客。',
             },
           ],
-        },
-
-        {
-          t: 'link',
-          href: '../recording-practice/',
-          en: 'The passage on its own page',
-          zh: '這段文字的獨立頁面',
-          noteEn: 'The same piece, set to be read off the screen: every sentence has its own 🔊 as well as the paragraph, and the page carries the five steps for working a passage and what to listen for when you play yourself back. New passages are added there.',
-          noteZh: '同一段文字，但版面是為了「對著螢幕唸」而設的：除了段落，每一句也都有自己的 🔊；那一頁還有練習一篇文章的五個步驟，以及回聽時該注意什麼。以後新的朗讀文章都會加在那裡。',
-        },
-
-        {
-          t: 'link',
-          href: '../sentence-upgrades/2026-10-17/',
-          en: 'The same fourteen, as an exercise',
-          zh: '同樣這十四句，但做成練習',
-          noteEn: 'This session is the record; that page is the drill. There the two versions sit side by side with the changed parts marked, so you can tap one and watch its counterpart light up — and all 48 collocations are in one table with the meanings covered, for self-testing.',
-          noteZh: '這一堂是紀錄，那一頁是練習。在那裡，兩個版本並排放著、改動的地方都標出來了，點一邊就會看到另一邊對應的部分亮起來；48 個搭配詞也集中在一張表裡，中文蓋住，可以自己測。',
         },
 
         {
