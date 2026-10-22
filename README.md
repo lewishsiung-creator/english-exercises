@@ -1746,10 +1746,10 @@ Both sessions carry a `link` block to
 from 25 July — the page Lewis showed her on 7 August and that she gave feedback
 on a week later. Session 1's link sits under the five-step note, since those
 steps are instructions for that page; session 2's repeats it with her own
-finding attached, that the voice is flat. The October set is one further click
-from there, through the pointer on that page's cover — the notebook's own links
-stay where they are, because a link to October's homework inside a session dated
-14 August would misdate it.
+finding attached, that the voice is flat. A third block, added at Lewis's
+request, points at the October set from session 2 — the newest session, so it
+sits near the top of the page. Its first words are the date, because the
+material is later than the session that carries it.
 
 ## Eason's Notebook — teenager, one-to-one, kept over time
 

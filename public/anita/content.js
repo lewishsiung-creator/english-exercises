@@ -1084,6 +1084,18 @@ const NOTEBOOK = {
           noteZh: '你 7/25 的七個句子，附上修改後的版本與搭配詞。你的意見是對的：那個聲音很平，所以拿它練發音就好，語調從課堂上模仿。五個步驟是：比較、聽、跟讀、造新句，然後把改好的句子用手抄一遍。',
         },
 
+        /* The October set is later than this session, so the block says so in
+           its first words. It sits here rather than in session 1 because this
+           session is the newest and opens at the top of the page. */
+        {
+          t: 'link',
+          href: '../sentence-upgrades/2026-10-17/',
+          en: '17 October — the newer set, fourteen sentences',
+          zh: '10/17——較新的一組，十四個句子',
+          noteEn: 'Written after these sessions: fourteen more of your own sentences with the revisions and 48 collocations, plus an assessment of what this writing already does well and the three things to work on in order. The last section is a passage to read aloud and record — the one about the AI agents your company is building.',
+          noteZh: '這是在這幾堂課之後整理的：另外十四個你自己的句子，附上修改後的版本與 48 個搭配詞，還有一份評估——你的寫作已經做得好的地方，以及該優先改的三件事。最後一段是要唸出來錄音的短文，就是關於你們公司正在建置的 AI 代理那一篇。',
+        },
+
         {
           t: 'task',
           en: 'Homework: seven sentences of your own choosing',
