@@ -9,7 +9,7 @@
 
 const COURSE = {
   title: "Winkle's Learning Notes",
-  titleZh: "Winkle 的學習頁面",
+  titleZh: "Winkle 的學習筆記",
   kicker: "Lewis Biz English · 一對一",
   pages: [
     {

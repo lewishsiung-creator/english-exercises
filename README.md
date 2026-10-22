@@ -2237,7 +2237,7 @@ under each picture anyway; print drops them.
 
 ## Winkle's pages — adult, one-to-one, a hub
 
-`public/winkle/` — **Winkle's Learning Notes** — is a small hub for one
+`public/winkle/` — **Winkle's Learning Notes · Winkle 的學習筆記** — is a small hub for one
 student, built the way
 `/ielts-speaking/` is: `course.js` maps the pages, `hub.js` draws the contents
 page, and one `render.js` and one `style.css` serve every sub-page. Like the
@@ -2285,6 +2285,19 @@ once, because every new page runs into it:
 Everything under `/winkle/` is `noindex` regardless, but that is a weak
 protection — the link is handed to people — so these decisions are made as if
 the pages were public.
+
+**Two decisions elsewhere that an audit keeps re-raising, and that Lewis has
+settled — leave them alone:**
+
+- `/confidence-talk/` is **not** `noindex` and its cover links to
+  *Jill's English Notebook · Jill 的英文筆記* by name, which puts a
+  ten-to-twelve-year-old's first name on an indexable page while her own
+  notebook is hidden. Raised 22 Oct 2026; **he chose to keep it as it is.**
+- The grammar book drills use real students' first names as sentence subjects
+  — *Anita can go to class*, *Lulu is smart*, *Ken and Lisa are absent*,
+  *Anna is in Rome* — on pages that are not `noindex`. They are invented
+  sentences that say nothing about a real person, so they are not covered by
+  the third-person rule. Raised the same day; **he chose to keep them.**
 
 ### CIMS Global — `cims/`
 
