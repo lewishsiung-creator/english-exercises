@@ -21,7 +21,7 @@ const PAGE = {
   navHead: "Talk prep 講稿準備",
 
   cover: {
-    up: { href: "../", en: "Winkle's pages 全部頁面" },
+    up: { href: "../", en: "Winkle's Learning Notes 全部頁面" },
     kicker: "R/Pharma 2026 APAC · 講稿準備",
     role: "Winkle Lu · R/Pharma 2026 APAC · about five minutes, plus two Quarto pages",
     roleZh: "Winkle Lu · R/Pharma 2026 APAC · 約五分鐘，另加兩頁 Quarto 示範",

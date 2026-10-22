@@ -74,7 +74,7 @@ const PAGE = {
   titleZh: "Winkle 的面試準備",
 
   cover: {
-    up: { href: "../", en: "Winkle's pages 全部頁面" },
+    up: { href: "../", en: "Winkle's Learning Notes 全部頁面" },
     kicker: "Interview preparation · 面試準備",
     role: "Senior Principal Statistical Programmer · a global pharmaceutical company · United Kingdom",
     roleZh: "資深首席統計程式設計師 · 國際藥廠 · 英國",

@@ -27,7 +27,7 @@ const PAGE = {
   navHead: "Screening call 初次面談",
 
   cover: {
-    up: { href: "../", en: "Winkle's pages 全部頁面" },
+    up: { href: "../", en: "Winkle's Learning Notes 全部頁面" },
     kicker: "October 2026 · 紀錄",
     role: "A screening call with the Software Development manager · eClinical, R and Shiny",
     roleZh: "與 Software Development 主管的初次面談 · eClinical、R 與 Shiny",

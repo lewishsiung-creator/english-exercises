@@ -26,7 +26,7 @@ const PAGE = {
   navHead: "New job 新工作",
 
   cover: {
-    up: { href: "../", en: "Winkle's pages 全部頁面" },
+    up: { href: "../", en: "Winkle's Learning Notes 全部頁面" },
     kicker: "Before 2 November · 上工前準備",
     role: "Winkle Lu · a pharma company · from 2 November 2026 · a US team, about four hours of overlap",
     roleZh: "Winkle Lu · 藥廠 · 2026 年 11 月 2 日起 · 與美國團隊約四小時重疊時間",

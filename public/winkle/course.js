@@ -8,13 +8,9 @@
 */
 
 const COURSE = {
-  title: "Winkle's pages",
+  title: "Winkle's Learning Notes",
   titleZh: "Winkle 的學習頁面",
   kicker: "Lewis Biz English · 一對一",
-  intro: {
-    en: "Everything built for Winkle, in one place. Each page stands on its own and keeps its own link.",
-    zh: "為 Winkle 製作的所有頁面都在這裡。每一頁都是獨立的，也各自保留自己的連結。",
-  },
   pages: [
     {
       id: "notebook",

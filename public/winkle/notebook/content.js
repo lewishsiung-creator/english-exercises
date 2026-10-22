@@ -33,7 +33,7 @@ const PAGE = {
   navHead: "Notebook 筆記本",
 
   cover: {
-    up: { href: "../", en: "Winkle's pages 全部頁面" },
+    up: { href: "../", en: "Winkle's Learning Notes 全部頁面" },
     kicker: "一對一 · 一堂課一則",
     role: "Winkle Lu · one entry per lesson, newest at the bottom",
     roleZh: "Winkle Lu · 一堂課一則，新的加在下面",

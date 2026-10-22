@@ -43,10 +43,10 @@ $('#doc').appendChild(el(`
       <p class="kicker">${text(COURSE.kicker)}</p>
       <h1><span class="en">${text(COURSE.title)}</span>
         <span class="zh" style="display:block">${text(COURSE.titleZh)}</span></h1>
-      <div class="cover-intro">
+      ${COURSE.intro ? `<div class="cover-intro">
         <p class="en">${text(COURSE.intro.en)}</p>
         <p class="zh" style="display:block">${text(COURSE.intro.zh)}</p>
-      </div>
+      </div>` : ''}
     </header>
     <ul class="lesson-grid">${COURSE.pages.map(card).join('')}</ul>
   </div>`));

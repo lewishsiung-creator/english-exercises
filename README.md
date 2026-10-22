@@ -2237,7 +2237,8 @@ under each picture anyway; print drops them.
 
 ## Winkle's pages — adult, one-to-one, a hub
 
-`public/winkle/` is a small hub for one student, built the way
+`public/winkle/` — **Winkle's Learning Notes** — is a small hub for one
+student, built the way
 `/ielts-speaking/` is: `course.js` maps the pages, `hub.js` draws the contents
 page, and one `render.js` and one `style.css` serve every sub-page. Like the
 notebooks it is a standalone copy — the renderer began as
