@@ -2599,9 +2599,15 @@ a blunt instrument. Three things are therefore deliberately left out:
   `/ielts-speaking/` red, exactly as those pages intend.
 
 Not linked by the three pages for seven- to ten-year-olds, for the same reason
-they skip `type.css`. The section sub-pages under `/ielts-speaking/`,
-`/winkle/` and the dated `/business-clarity/` sheets do not link it yet either:
-they do not link `type.css` today, so pulling them in is a separate decision.
+they skip `type.css`. Everything else links it, section sub-pages included —
+the eight under `/ielts-speaking/`, the three under `/business-journal/`, the
+four dated `/business-clarity/` sheets and `/winkle/`'s own — which also took
+`type.css` at the same time, since a sheet a student opens from a section
+should not be set in a different face from the section it came from.
+
+Four pages stay outside because they have no stylesheet to attach anything to:
+`/riva-rex-practice/`, `/junior-high-words/`, `/junior-high-grammar/` and
+`/wealth-habits/` carry their CSS in an inline `<style>` block.
 
 One trap, paid for once: a file path written inside the opening comment with a
 star and a slash together ends the comment. It swallowed the `:root` block, and
