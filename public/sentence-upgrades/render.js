@@ -215,6 +215,14 @@ function buildCover() {
       </div>
       <p class="source">${text(LESSON.source.en)}
         <span class="zh">${text(LESSON.source.zh)}</span></p>
+      ${LESSON.sibling ? `
+        <a class="sibling" href="${text(LESSON.sibling.href)}">
+          <span class="sibling-go" aria-hidden="true">→</span>
+          <span class="sibling-t">
+            <span class="sibling-en">${text(LESSON.sibling.en)}</span>
+            <span class="sibling-zh">${text(LESSON.sibling.zh)}</span>
+          </span>
+        </a>` : ''}
     </header>`;
 }
 

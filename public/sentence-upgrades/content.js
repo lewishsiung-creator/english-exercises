@@ -46,6 +46,12 @@ const LESSON = {
     ],
   },
 
+  sibling: {
+    href: '2026-10-17/',
+    en: 'A newer set — the fourteen sentences of 17 October',
+    zh: '較新的一組——10/17 的十四個句子',
+  },
+
   source: {
     en: 'From the class handout of 25 July 2026. The original sentences are reproduced as written and the revisions and collocation lists are the handout’s. The note under each revision was written for this page — the handout gives the two sentences and leaves the explaining to the session.',
     zh: '出自 2026 年 7 月 25 日的課堂講義。原句照錄，修改後的版本與搭配詞清單皆來自講義；每則修改下方「改了什麼、為什麼」的說明則是為這個頁面另外寫的──講義只給兩個句子，解釋留在課堂上進行。',

@@ -13,7 +13,8 @@ lesson at `/happy-sexy-millionaire/`, a four-book discussion guide at
 built on a bilingual speech and its election Q&A at `/campaign-speech/`,
 TOEIC grammar
 practice at `/toeic-grammar/`, a homework review of one student's own
-sentences at `/sentence-upgrades/`, a high-school writing worksheet
+sentences at `/sentence-upgrades/` and a second, longer set from the same
+student at `/sentence-upgrades/2026-10-17/`, a high-school writing worksheet
 at `/robot-helper/`, a survey of seven years of the 學測 essay at
 `/exam-writing/`, an IELTS Speaking Part 3 practice at `/ielts-part3/`, a
 growing IELTS Speaking course covering all three parts at `/ielts-speaking/`,
@@ -994,6 +995,33 @@ way: from the `noindex` notebook out to this page, never back.
 | 🗂 Phrase cards | The Chinese behind a tap |
 | 📋 All 37 collocations | One list with the meanings covered, for self-testing |
 
+### The second set — `/sentence-upgrades/2026-10-17/`
+
+Fourteen more sentences, from the feedback sheet of 17 October 2026, in a dated
+folder beside the first. A set of sentences is one week's homework, so the two
+are siblings rather than chapters: each cover carries a pointer to the other and
+neither claims an order. The folder is a full copy of the renderer and
+stylesheet, the same deliberate copy the notebooks make, so July cannot break
+when October is edited.
+
+Two sections exist there that July does not have, because the October sheet
+carries them and they are what a student working alone cannot write for herself:
+
+- **Where this writing stands** — the sheet's assessment: what is already
+  working, the three things to fix in order (shown as *you wrote* against *reach
+  for*), and a three-stage plan from recognising a change to using it. The CEFR
+  B2 line is reproduced with its caveat intact: it reads one writing sample, and
+  says nothing about listening or speaking.
+- **Recording practice** — a passage from the same week, on the AI agents her
+  company is building, set wider and looser than the rest of the page because it
+  is read off the screen aloud. 🔊 sits on the paragraph rather than the
+  sentence, since what is being practised is holding a steady pace across
+  several sentences.
+
+Both are optional: `buildAssessment` and `buildRecording` skip when content.js
+leaves `assessment` or `recording` out, so the copy still renders a July-shaped
+lesson unchanged.
+
 ### Design notes
 
 - **The two sentences are the page.** Everything else is set smaller and
@@ -1718,7 +1746,10 @@ Both sessions carry a `link` block to
 from 25 July — the page Lewis showed her on 7 August and that she gave feedback
 on a week later. Session 1's link sits under the five-step note, since those
 steps are instructions for that page; session 2's repeats it with her own
-finding attached, that the voice is flat.
+finding attached, that the voice is flat. The October set is one further click
+from there, through the pointer on that page's cover — the notebook's own links
+stay where they are, because a link to October's homework inside a session dated
+14 August would misdate it.
 
 ## Eason's Notebook — teenager, one-to-one, kept over time
 
@@ -2502,6 +2533,7 @@ public/happy-sexy-millionaire/  the business-English reading lesson
 public/campaign-speech/   the speech and election Q&A
 public/toeic-grammar/     the TOEIC Part 5 & 6 practice
 public/sentence-upgrades/ the 2026/07/25 homework review
+public/sentence-upgrades/2026-10-17/  the 2026/10/17 set, with assessment and a recording passage
 public/robot-helper/      the 113 學年度 writing worksheet
 public/exam-writing/      the 109–115 學測 essay survey
 public/ielts-part3/       the IELTS Part 3 structure practice
@@ -2760,6 +2792,8 @@ own right and should therefore stay covered.
 
 **Sentence Upgrades.** The set lives in
 [`public/sentence-upgrades/content.js`](public/sentence-upgrades/content.js),
+and the October one in
+[`public/sentence-upgrades/2026-10-17/content.js`](public/sentence-upgrades/2026-10-17/content.js),
 one entry per sentence. There are no block types — every item has the same four
 parts, so an entry is `original`, `revised`, a `why` pair and a `phrases` list.
 
@@ -3286,7 +3320,8 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/happy-sexy-millionaire/> for the reading lesson,
 <http://localhost:8000/campaign-speech/> for the speech,
 <http://localhost:8000/toeic-grammar/> for the TOEIC practice,
-<http://localhost:8000/sentence-upgrades/> for the homework review,
+<http://localhost:8000/sentence-upgrades/> and
+<http://localhost:8000/sentence-upgrades/2026-10-17/> for the two homework reviews,
 <http://localhost:8000/robot-helper/> for the writing worksheet,
 <http://localhost:8000/exam-writing/> for the 學測 essay survey,
 <http://localhost:8000/ielts-part3/> for the IELTS Part 3 practice,

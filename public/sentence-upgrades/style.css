@@ -644,6 +644,35 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 tr.open .td-zh::after,
 body.zh-all .td-zh::after { display: none; }
 
+/* ---------------- the other dated set ----------------
+
+   One set of sentences is one week's homework; the sets are siblings, not
+   chapters, so this is a plain pointer on the cover rather than anything that
+   suggests an order to work through. Bilingual at all times: it is signage. */
+
+.sibling {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  margin: 18px 0 0;
+  padding: 12px 15px;
+  background: var(--navy-soft);
+  border: 1px solid var(--navy-line);
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+.sibling:hover { border-color: var(--navy); }
+.sibling-go { font-family: var(--font-ui); color: var(--navy); flex: none; }
+.sibling-en { display: block; font-weight: 600; color: var(--navy); font-size: .98rem; }
+.sibling-zh {
+  display: block;
+  font-family: var(--font-zh);
+  font-size: .82rem;
+  color: var(--navy);
+  opacity: .85;
+}
+
 /* ---------------- teacher panel ---------------- */
 
 .panel {
