@@ -269,6 +269,54 @@ const BLOCKS = {
       </ul>
     </div>`,
 
+  /* A sentence and the version to keep.
+
+     This is NOT `fix`, and the difference is the point. `fix` marks a mistake:
+     a cross, a tick, and a correction. Several of these sentences are not
+     mistakes at all — the revision is simply tighter, more formal or more
+     precise in that context, and the feedback sheet closes by saying so. So
+     the marks are neutral, the first line is not struck through or coloured as
+     wrong, and only the version to keep is spoken: the other one should not be
+     the model going into anyone's ear. */
+  upgrade: (b) => `
+    <div class="fixes ups">
+      ${label(b)}
+      ${hint(b)}
+      <ul class="fix-list">
+        ${b.items.map((i) => `
+          <li class="fix up" tabindex="0" role="button" aria-expanded="false">
+            <p class="fix-wrong up-from"><span class="fix-mark" aria-hidden="true">·</span>
+              <span class="fix-t">${text(i.from)}</span></p>
+            <div class="fix-back">
+              <p class="fix-right up-to"><span class="fix-mark" aria-hidden="true">→</span>
+                <span class="fix-t">${text(i.to)}</span>${speakBtn(i.to, 'say say-quiet')}</p>
+              <div class="pair fix-why" data-zh>
+                <p class="en">${text(i.whyEn)}<button class="zh-chip" title="顯示中文">中</button></p>
+                <p class="zh">${text(i.whyZh)}</p>
+              </div>
+            </div>
+          </li>`).join('')}
+      </ul>
+    </div>`,
+
+  /* A passage to read aloud and record. Set wider and looser than the rest of
+     the page, because this one is read off the screen rather than scanned, and
+     the speaker sits on the paragraph rather than the sentence: what is being
+     practised is holding a pace across several sentences. */
+  passage: (b) => `
+    <div class="passage-block">
+      ${label(b)}
+      ${hint(b)}
+      <div class="passage">
+        ${b.paras.map((p) => `
+          <div class="para pair" data-zh>
+            <p class="en">${text(p.en)}${speakBtn(p.en, 'say say-quiet')}
+              <button class="zh-chip" title="顯示中文">中</button></p>
+            <p class="zh">${text(p.zh)}</p>
+          </div>`).join('')}
+      </div>
+    </div>`,
+
   poll: (b) => `
     <div class="activity poll" data-act="poll">
       ${label(b)}

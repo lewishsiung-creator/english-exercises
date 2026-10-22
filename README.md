@@ -2293,6 +2293,16 @@ settled — leave them alone:**
   *Jill's English Notebook · Jill 的英文筆記* by name, which puts a
   ten-to-twelve-year-old's first name on an indexable page while her own
   notebook is hidden. Raised 22 Oct 2026; **he chose to keep it as it is.**
+- `/campaign-speech/` names the candidate **in full**, twice, and is not
+  `noindex`. Deliberate: the speech was delivered in public by a declared
+  candidate, his candidacy and the chapter are public facts, and the text is
+  reproduced word for word — changing the name would stop it being what he
+  said. **Kept.**
+- `/business-clarity/2026-08-10/` carries a lot about Lulu's primary-school-age
+  son — the kind of school, the piano, the baking, feeling different in an
+  English class. He is never named and nothing locates him; the type of school
+  is as specific as it gets. **Kept**, because that is what the lesson was
+  about. The standing rule for future sessions is in that file's header.
 - The grammar book drills use real students' first names as sentence subjects
   — *Anita can go to class*, *Lulu is smart*, *Ken and Lisa are absent*,
   *Anna is in Rome* — on pages that are not `noindex`. They are invented

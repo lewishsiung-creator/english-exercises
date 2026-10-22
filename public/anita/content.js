@@ -51,10 +51,19 @@
      match     click a phrase on the left, then its partner on the right
      gap       a sentence with one blank and three phrases to choose from
      fix       something Anita actually said, with the upgrade behind a tap
+     upgrade   a sentence she wrote and the version to keep. NOT `fix`: the
+               marks are neutral, because several of those sentences are
+               perfectly good English and only the revision is tighter
+     passage   paragraphs to read aloud and record, 🔊 per paragraph
      poll      opinion statements — agree / not sure / disagree, no answer
      cards     have it / need it cards, for auditing something
      discuss   questions to talk through, each with useful language to reveal
      task      a speaking or writing task with a tick-list of target phrases
+
+   Sessions are discussions, with one exception: a session may instead hold a
+   feedback sheet on writing she sent in. Session 3 is one. It uses `upgrade`
+   rather than `fix`, and it says in its own lead that several of the sentences
+   are not mistakes — which is what the sheet itself concludes.
 
    `fix` is the one block the other pages here do not have, and it is the reason
    a per-student notebook is worth keeping: it holds Anita's own sentences,
@@ -143,8 +152,8 @@ const NOTEBOOK = {
           t: 'note',
           en: 'Why the company is trying this — three reasons',
           zh: '公司為什麼要試這個模式——三個理由',
-          bodyEn: 'First, the model already exists elsewhere. Management has seen specialty stores of this kind in Japan, the United States and Hong Kong, and treats it as a retail trend worth testing in Taiwan. Second, and more strategically, the company wants its own brand influence. A traditional sports store is heavily influenced by the big manufacturers — customers walk in because they want Nike or Adidas, and the shop is only the shelf those brands sit on. The aim is that people come for Momentum: for the store’s selection and its recommendations. That is a select shop, and it is a real shift, because it means the store has to own its brand identity, its product selection and the experience of being advised. Third, running is simply a large market in Taiwan, and one where buyers genuinely need help choosing. So running goes first; tennis, volleyball or another category could follow later.',
-          bodyZh: '第一，這個模式在別的地方已經存在。管理層在日本、美國與香港都看過這類專門店，把它視為值得在台灣測試的零售趨勢。第二，也更具策略性的是，公司想要自己的品牌影響力。傳統運動用品店深受大品牌影響——顧客走進來是因為想要 Nike 或 Adidas，店只是那些品牌陳列的架子。目標是讓人為了 Momentum 而來：為了這家店的選品與建議而來。這就是選品店的概念，而這是一個真正的轉變，因為店必須擁有自己的品牌識別、自己的選品能力，以及「被專業建議」的那段體驗。第三，跑步在台灣本來就是很大的市場，而且是消費者真的需要協助挑選的市場。所以先做跑步；網球、排球或其他品類可以之後再說。',
+          bodyEn: 'First, the model already exists elsewhere. Management has seen specialty stores of this kind in Japan, the United States and Hong Kong, and treats it as a retail trend worth testing in Taiwan. Second, and more strategically, the company wants its own brand influence. A traditional sports store is heavily influenced by the big manufacturers — customers walk in because they want Nike or Adidas, and the shop is only the shelf those brands sit on. The aim is that people come for the store itself: for its selection and its recommendations. That is a select shop, and it is a real shift, because it means the store has to own its brand identity, its product selection and the experience of being advised. Third, running is simply a large market in Taiwan, and one where buyers genuinely need help choosing. So running goes first; tennis, volleyball or another category could follow later.',
+          bodyZh: '第一，這個模式在別的地方已經存在。管理層在日本、美國與香港都看過這類專門店，把它視為值得在台灣測試的零售趨勢。第二，也更具策略性的是，公司想要自己的品牌影響力。傳統運動用品店深受大品牌影響——顧客走進來是因為想要 Nike 或 Adidas，店只是那些品牌陳列的架子。目標是讓人為了這家店本身而來：為了它的選品與建議而來。這就是選品店的概念，而這是一個真正的轉變，因為店必須擁有自己的品牌識別、自己的選品能力，以及「被專業建議」的那段體驗。第三，跑步在台灣本來就是很大的市場，而且是消費者真的需要協助挑選的市場。所以先做跑步；網球、排球或其他品類可以之後再說。',
         },
 
         {
@@ -1111,6 +1120,288 @@ const NOTEBOOK = {
           frames: [
             { en: 'I chose this one because I would actually say it when ___.', zh: '我選這句，是因為我在＿＿的時候真的會這樣說。' },
             { en: 'The one I find hardest to say naturally is ___.', zh: '我最難自然說出口的一句是＿＿。' },
+          ],
+        },
+      ],
+    },
+
+    /* Not a discussion, and the only entry here that is not. This one is a
+       feedback sheet on fourteen sentences Anita wrote, so it uses `upgrade`
+       rather than `fix` — several of those sentences are perfectly good
+       English and the sheet says so itself. The same material is also a
+       working page at /sentence-upgrades/2026-10-17/, where the marked
+       comparison and the 48-phrase self-test table live; this is the record,
+       that is the drill. */
+    {
+      id: 's3',
+      n: 3,
+      date: '2026-10-17',
+      dateEn: '17 October 2026',
+      dateZh: '2026 年 10 月 17 日',
+      en: 'The usual pairing, and the shorter way to say it',
+      zh: '慣用的搭配，與更精簡的說法',
+
+      focus: [
+        { en: 'Collocational accuracy', zh: '搭配詞精確度' },
+        { en: 'Conciseness', zh: '精簡表達' },
+        { en: 'Logical precision', zh: '邏輯精確度' },
+        { en: 'Recording practice', zh: '錄音練習' },
+      ],
+
+      blocks: [
+        {
+          t: 'lead',
+          en: 'Fourteen sentences of your own, each with the version worth keeping. Read the first line and decide what you would change before you open it — and remember that several of these are not mistakes at all.',
+          zh: '十四個你自己寫的句子，每一句都附上值得留下的版本。先讀第一行，自己決定會怎麼改，再打開來看——而且記得，其中有好幾句根本不是錯的。',
+        },
+
+        {
+          t: 'note',
+          en: 'What these fourteen sentences already show',
+          zh: '這十四個句子已經顯示出什麼',
+          bodyEn: 'Three things, and none of them is about grammar. The vocabulary is reaching: occupational hazards, spectacular views, potential, minimize the damage all arrived without help. The sentences are built, not listed — because, if, when and although are carrying cause, condition and contrast rather than decorating. And they take a position: whether complaining has any value, and how what we fear losing changes with age, are arguments, not descriptions. On this sample that reads as roughly CEFR B2 writing. It is one writing sample and not a test, and it says nothing about listening or speaking.',
+          bodyZh: '三件事，而且沒有一件跟文法有關。字彙是有在伸手去拿的：occupational hazards、spectacular views、potential、minimize the damage 都是你自己用出來的。句子是「搭」起來的，不是列出來的——because、if、when、although 承擔的是因果、條件與對比，而不是裝飾。而且它們有立場：抱怨到底有沒有價值、我們害怕失去的東西如何隨年齡改變，這些是論點，不是描述。就這份樣本而言，大約是 CEFR B2 的寫作表現。這是一份寫作樣本，不是測驗，也不代表聽力或口說。',
+        },
+
+        {
+          t: 'upgrade',
+          en: 'Work, training and risk',
+          zh: '工作、訓練與風險',
+          hintEn: 'Your sentence, then the version to keep. Tap to open it. 🔊 reads only the version to keep.',
+          hintZh: '先是你的句子，再是值得留下的版本。點一下打開。🔊 只會唸值得留下的那一句。',
+          items: [
+            {
+              from: 'My boss is both goal-oriented and process-oriented because he wants to know how the process is progressing and what the results will be.',
+              to: 'My boss is both goal-oriented and process-oriented because he wants to monitor progress throughout the process and understand what results we are likely to achieve.',
+              whyEn: '“Know how the process is progressing” is correct, but it says process twice in a sentence that has already said it. “Monitor progress” carries the same meaning in two words and is what a manager would actually say. The ending adds what your version left out: results are a forecast, not a certainty.',
+              whyZh: '原句的 how the process is progressing 文法正確，但略顯重複。使用 monitor progress 更簡潔，也更符合職場英文。句尾補上了原句沒說出口的部分：成果是推估，不是定論。',
+            },
+            {
+              from: 'Training is a long-term process. You cannot see the results from just one training program, but training will have a gradual effect.',
+              to: 'Training is a long-term process. You cannot expect to see significant results after just one training session. However, consistent training can have a gradual but lasting effect on performance.',
+              whyEn: 'A training session is one class; a training program is the whole course of them, and you meant one class. “You cannot expect to see” is also the truer claim — results may exist, you just cannot expect them yet. And gradual but lasting turns the sentence into an argument for training rather than an apology for it.',
+              whyZh: 'training session 指單次訓練課程，而 training program 通常指包含多次課程的完整訓練計畫，你說的是前者。另外，you cannot expect to see 更準確——不是沒有成果，而是還不能期待；gradual but lasting 讓這句話變成支持訓練的理由，而不是為它找藉口。',
+            },
+            {
+              from: 'If you want to have great staff, you need to trust their potential to accomplish their tasks.',
+              to: 'If you want to develop high-performing employees, you need to believe in their potential and trust them to carry out their responsibilities.',
+              whyEn: 'Two fixed pairings sit underneath this one. You believe in someone’s potential — that is the usual collocation — and you trust someone to do something, which is the trust that matters to a manager: not a feeling about them, but handing them the task. “Have great staff” also sounds like luck; developing them is the thing you actually do.',
+              whyZh: 'trust their potential 可以理解，但 believe in their potential 是更自然的搭配；trust them to do something 則強調相信某人能完成特定任務，這正是管理上真正的信任——不是一種感覺，而是把事情交出去。另外，have great staff 聽起來像運氣好，develop 才是你實際在做的事。',
+            },
+            {
+              from: 'Every job has its occupational hazards, depending on the degree of risk involved. Therefore, every company should provide a good working environment based on its capabilities.',
+              to: 'Every job involves certain occupational hazards, although the level of risk varies depending on the nature of the work. Therefore, companies should take appropriate measures to provide a safe working environment.',
+              whyEn: 'This is the one worth being careful about. “Based on its capabilities” can be read as only as far as the company can afford — not what you meant, and a dangerous thing to say about safety. Take appropriate measures puts the duty back on the company. Although also fixes the logic: every job has hazards; what varies is how much.',
+              whyZh: '這一句要特別小心。based on its capabilities 可能讓人理解為企業只需要在能力許可範圍內提供安全環境，這不是你的本意，用在職業安全上也相當危險；take appropriate measures 把責任放回企業身上。另外，although 修好了邏輯：每份工作都有危害，變的是程度。',
+            },
+            {
+              from: 'Most supervisors will think about what the worst-case scenario is and how to minimize the damage if it happens.',
+              to: 'Most supervisors consider potential worst-case scenarios and develop contingency plans to minimize the damage if those scenarios occur.',
+              whyEn: 'Thinking about how to minimize the damage stays in the supervisor’s head; a contingency plan is the thing that exists afterwards, and it is the term used in risk management. The plural matters too — there is rarely only one way for something to go wrong.',
+              whyZh: 'think about how to 留在腦袋裡，contingency plan（應變計畫）則是事後真的存在的東西，也是風險管理在用的詞。複數的 scenarios 也有意義：事情出錯的方式很少只有一種。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'The phrases from those five',
+          zh: '這五句裡的搭配詞',
+          items: [
+            { en: 'monitor progress', zh: '掌握進度', eg: 'I monitor progress weekly rather than asking for a report at the end.', egZh: '我每週掌握進度，而不是到最後才要報告。' },
+            { en: 'throughout the process', zh: '在整個過程中', eg: 'He wants to be kept informed throughout the process.', egZh: '他希望在整個過程中都能掌握狀況。' },
+            { en: 'achieve results', zh: '達成成果', eg: 'We want to understand what results we are likely to achieve.', egZh: '我們想了解最終可能達成什麼成果。' },
+            { en: 'see significant results', zh: '看到顯著成果', eg: 'You cannot expect to see significant results after one session.', egZh: '你不能期待上一次課就看到顯著成果。' },
+            { en: 'consistent training', zh: '持續性的訓練', eg: 'Consistent training beats one impressive workshop.', egZh: '持續性的訓練勝過一場漂亮的工作坊。' },
+            { en: 'have a lasting effect on', zh: '對……產生持久影響', eg: 'It can have a gradual but lasting effect on performance.', egZh: '它能逐漸對工作表現產生持久的影響。' },
+            { en: 'develop high-performing employees', zh: '培養高績效員工', eg: 'Our job is to develop high-performing employees, not to find them.', egZh: '我們的工作是培養高績效員工，而不是去找現成的。' },
+            { en: 'believe in someone’s potential', zh: '相信某人的潛力', eg: 'You have to believe in their potential before they will.', egZh: '你得先相信他們的潛力，他們才會相信自己。' },
+            { en: 'carry out responsibilities', zh: '履行職責', eg: 'I trust her to carry out her responsibilities without checking.', egZh: '我信任她會履行自己的職責，不需要我盯。' },
+            { en: 'occupational hazards', zh: '職業危害', eg: 'Every job involves certain occupational hazards.', egZh: '每種工作都存在一定程度的職業危害。' },
+            { en: 'the level of risk varies', zh: '風險程度有所不同', eg: 'The level of risk varies depending on the nature of the work.', egZh: '風險程度會因工作性質而有所不同。' },
+            { en: 'take appropriate measures', zh: '採取適當措施', eg: 'Companies should take appropriate measures rather than do what they can afford.', egZh: '企業應該採取適當措施，而不是「能力所及就好」。' },
+            { en: 'consider worst-case scenarios', zh: '考慮最壞情境', eg: 'Most supervisors consider potential worst-case scenarios first.', egZh: '大多數主管會先考慮潛在的最壞情境。' },
+            { en: 'develop contingency plans', zh: '制定應變計畫', eg: 'Thinking about the worst case is not the same as developing a contingency plan.', egZh: '想過最壞的情況，跟制定應變計畫是兩回事。' },
+            { en: 'minimize the damage', zh: '將損害降至最低', eg: 'The plan exists to minimize the damage if those scenarios occur.', egZh: '這份計畫的存在，是為了在那些情況發生時把損害降到最低。' },
+          ],
+        },
+
+        {
+          t: 'upgrade',
+          en: 'Outside work',
+          zh: '工作以外',
+          hintEn: 'Two of these four were already natural English. The revision is tighter or more precise, not more correct.',
+          hintZh: '這四句裡有兩句本來就是自然的英文。修改後的版本是更精簡或更精確，而不是「比較對」。',
+          items: [
+            {
+              from: 'When I climbed to the top of Milan Cathedral, I was stunned by the spectacular views of its 135 exquisite Gothic spires and the 4.16-meter-tall gilded statue of the Virgin Mary standing on the cathedral’s highest spire.',
+              to: 'When I climbed to the rooftop of Milan Cathedral, I was stunned by the spectacular sight of its 135 exquisite Gothic spires, including the tallest one, which is topped by a 4.16-meter-tall gilded statue of the Virgin Mary.',
+              whyEn: 'Views are what you look out at from a high place; a sight is the thing you are looking at — and you were describing the cathedral itself. The ending was also doing too much at once: the relative clause separates the spires from the one spire that carries the statue, so a reader can follow it.',
+              whyZh: '這裡使用 spectacular sight 比 spectacular views 更精確，因為你描述的是教堂本身的建築細節，而非從屋頂向外眺望的景色。句尾原本一口氣講完太多事，改用關係子句把尖塔和「頂端有雕像的那一座」分開，讀者才跟得上。',
+            },
+            {
+              from: 'We need to regulate our breathing to match our steps when we are hiking up a high mountain.',
+              to: 'When hiking up a high mountain, we need to regulate our breathing and synchronize it with our steps to maintain a steady pace.',
+              whyEn: 'Your version was natural English — this is a rebuild, not a correction. Putting the situation first sets the scene before the instruction, which is how advice is usually given. Synchronize is more precise than match for two actions kept in time with each other, and the ending says what the breathing is for.',
+              whyZh: 'match our breathing to our steps 也很自然，這一句與其說是訂正，不如說是重寫。把情境放在句首，先交代場景再給建議，是英文給建議的習慣順序。synchronize 比 match 更精確地表達兩種動作的協調，句尾也補上了調節呼吸的目的。',
+            },
+            {
+              from: 'Kindergartens need to provide proper facilities to protect children’s safety because young children have limited knowledge and understanding.',
+              to: 'Kindergartens need to provide appropriate facilities to ensure children’s safety, as young children may not yet be fully aware of potential dangers.',
+              whyEn: 'Proper is not wrong, but appropriate asks the question that matters: appropriate to what — to the age and size of the children. The second half is the bigger gain. “Limited knowledge and understanding” judges the child; may not yet be fully aware of potential dangers describes the situation, and names the danger the facilities are for.',
+              whyZh: 'proper facilities 並沒有錯，但 appropriate facilities 更強調設施是否符合幼兒的年齡與需求。後半的改動更關鍵：limited knowledge and understanding 像是在評斷孩子，而 may not yet be fully aware of potential dangers 描述的是處境，也精確說明了設施要防的是什麼。',
+            },
+            {
+              from: 'It can lead to discomfort when we exercise beyond our body’s limits, so we need to stop and rest.',
+              to: 'Pushing our bodies beyond their physical limits during exercise can lead to discomfort or even injury. Therefore, it is important to recognize warning signs and take a break when necessary.',
+              whyEn: 'Not a grammar fix — the original is correct. Starting with it holds the real subject back; making the action itself the subject puts cause and effect in the order a reader expects. Recognize warning signs also adds the step your sentence skipped: you have to notice before you can stop.',
+              whyZh: 'It can lead to discomfort when... 並非文法錯誤，但直接以 Pushing our bodies... 作為主詞，因果關係更明確——用 it 開頭會把真正的主詞往後推。另外，recognize warning signs 補上了原句跳過的一步：要先察覺，才談得上休息。',
+            },
+          ],
+        },
+
+        {
+          t: 'upgrade',
+          en: 'Yourself, and growing',
+          zh: '關於自己，與成長',
+          items: [
+            {
+              from: 'When I have the ability to communicate effectively in English, I will be able to apply for jobs overseas.',
+              to: 'Once I develop the ability to communicate effectively in English, I will be in a better position to apply for jobs overseas.',
+              whyEn: 'Grammatically your sentence is fine; the claim is what changed. You can apply for jobs overseas today — English is not the gate. What English gives you is an advantage, and be in a better position to says exactly that. Once I develop also treats the ability as something you are building, not something that arrives.',
+              whyZh: 'I will be able to apply for jobs overseas 文法正確，但申請海外工作不一定需要先具備良好的英文能力；be in a better position to 更能表達英文能力帶來的競爭優勢。另外，once I develop 把能力看成你正在培養的東西，而不是某天自己出現的東西。',
+            },
+            {
+              from: 'Complaining is not a bad thing if it helps you adopt a more positive attitude and take positive action, it can be useful. If not, you need to stop complaining.',
+              to: 'Complaining is not necessarily a bad thing. If it helps you identify problems, develop a more constructive mindset, and take action, it can be useful. Otherwise, you need to stop complaining and focus on finding solutions.',
+              whyEn: 'The original ran two complete sentences together with only a comma — a comma splice. Splitting them is not just punctuation: each idea gets to stand, and the if … otherwise logic becomes visible. Not necessarily is the claim you were making, and the ending now gives the alternative to complaining rather than only forbidding it.',
+              whyZh: '原句有 comma splice（逗號拼接句）的問題：兩個完整句子不能只用逗號連接。拆成數句後，邏輯也更清楚。另外，not necessarily 才是你真正想說的；句尾也從「不准抱怨」變成給出替代做法——專注於尋找解決方案。',
+            },
+            {
+              from: 'Everyone has the potential to succeed at something if they set clear goals and never give up, even when they face challenges.',
+              to: 'Everyone has the potential to succeed in something if they set clear goals, remain committed, and persevere through challenges.',
+              whyEn: 'Worth knowing: succeed at something was already correct, so this one is a preference. The gain is the list. Three parallel items — set clear goals, remain committed, persevere through challenges — read as one argument, where “never give up, even when they face challenges” says the same thing twice. Persevere also suits a talk or a meeting, where never give up suits a friend.',
+              whyZh: '先說清楚：原句的 succeed at something 本身也正確，這裡是偏好而非訂正。真正的收穫在後半的並列結構：三項並列讀起來是一個完整的主張，而 never give up, even when they face challenges 其實說了兩次同樣的事。另外，persevere through challenges 更適合正式場合，never give up 比較像對朋友說的話。',
+            },
+            {
+              from: 'I have always believed that our upbringing and life experiences influence our behavior and thinking, such as whether we cherish public facilities.',
+              to: 'I have always believed that our upbringing and life experiences shape the way we think and behave, including how much we value and respect public facilities.',
+              whyEn: 'Upbringing already means how you were raised, so “upbringing experience” doubles up. In the sentence, shape the way we think and behave is stronger than influence: it says the upbringing formed the habit rather than nudged it. And how much we value allows for degrees, where whether we cherish is all or nothing.',
+              whyZh: 'upbringing 本身就表示養育方式與成長背景，所以 upbringing experience 是重複的。句子裡，shape the way we think and behave 比 influence 更有力，說的是成長背景「形塑」了習慣，而不只是輕輕影響；how much we value 也留下了程度的空間，whether we cherish 則是全有或全無。',
+            },
+            {
+              from: 'When we are young, we are usually afraid of losing things such as face, money, our jobs, and our positions. But as we grow older, the things we fear losing may change.',
+              to: 'When we are young, we tend to be afraid of losing face, money, our jobs, or our social status. However, as we grow older, our priorities may shift, and so may the things we fear losing.',
+              whyEn: 'Lose face is a fixed phrase, so “losing things such as face” pulls it apart, and tend to is gentler than usually for a claim about everyone. The ending is the one to steal: and so may the things we fear losing is an inversion, short for the things we fear losing may also shift. It adds a second idea without repeating the verb.',
+              whyZh: 'lose face 是固定搭配，losing things such as face 等於把它拆開了；tend to 用來描述「大多數人」也比 usually 委婉。真正值得學起來的是句尾：and so may the things we fear losing 是倒裝句，完整意思是 the things we fear losing may also shift，可以加上第二個想法而不必重複動詞。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'The phrases from the other nine',
+          zh: '其餘九句裡的搭配詞',
+          items: [
+            { en: 'be stunned by', zh: '被……震撼', eg: 'I was stunned by the spectacular sight of its 135 spires.', egZh: '我被那 135 座尖塔的壯觀景象震撼了。' },
+            { en: 'spectacular sight', zh: '壯觀的景象', eg: 'The rooftop itself is the spectacular sight, not the view from it.', egZh: '壯觀的是屋頂本身，不是從屋頂看出去的景色。' },
+            { en: 'be topped by', zh: '頂端設有……', eg: 'The tallest spire is topped by a gilded statue.', egZh: '最高的那座尖塔頂端矗立著一尊鍍金雕像。' },
+            { en: 'regulate one’s breathing', zh: '調節呼吸', eg: 'On a climb you regulate your breathing before you need to.', egZh: '爬山時要在還沒喘之前就先調節呼吸。' },
+            { en: 'synchronize A with B', zh: '讓 A 與 B 同步', eg: 'Synchronize your breathing with your steps.', egZh: '讓呼吸與腳步同步。' },
+            { en: 'maintain a steady pace', zh: '維持穩定的速度', eg: 'The point of all of it is to maintain a steady pace.', egZh: '這一切的目的，就是維持穩定的步伐。' },
+            { en: 'provide appropriate facilities', zh: '提供適當設施', eg: 'Appropriate means appropriate to their age, not merely safe.', egZh: '「適當」指的是符合他們的年齡，而不只是「安全」。' },
+            { en: 'ensure children’s safety', zh: '確保兒童安全', eg: 'The facilities are there to ensure children’s safety.', egZh: '這些設施的存在是為了確保兒童安全。' },
+            { en: 'be aware of potential dangers', zh: '意識到潛在危險', eg: 'Young children may not yet be fully aware of potential dangers.', egZh: '年幼的孩子可能還無法充分意識到潛在的危險。' },
+            { en: 'push one’s body beyond its limits', zh: '讓身體超出負荷', eg: 'Pushing your body beyond its limits can lead to injury.', egZh: '讓身體超出負荷可能導致受傷。' },
+            { en: 'recognize warning signs', zh: '辨識警訊', eg: 'You have to recognize the warning signs before you can rest.', egZh: '要先辨識警訊，才談得上休息。' },
+            { en: 'take a break when necessary', zh: '必要時休息', eg: 'It is important to take a break when necessary.', egZh: '必要時休息非常重要。' },
+            { en: 'develop the ability to', zh: '培養……的能力', eg: 'Once I develop the ability to speak freely, the rest follows.', egZh: '一旦我培養出自由表達的能力，其他就跟著來了。' },
+            { en: 'be in a better position to', zh: '處於更有利的位置去……', eg: 'English puts you in a better position to apply, not in the only position.', egZh: '英文讓你在申請時更有優勢，而不是唯一的門票。' },
+            { en: 'not necessarily a bad thing', zh: '不一定是壞事', eg: 'Complaining is not necessarily a bad thing.', egZh: '抱怨不一定是壞事。' },
+            { en: 'develop a constructive mindset', zh: '建立建設性的思維', eg: 'If it helps you develop a constructive mindset, it is useful.', egZh: '如果它能幫你建立建設性的思維，那它就有用。' },
+            { en: 'focus on finding solutions', zh: '專注於尋找解決方案', eg: 'Otherwise, stop and focus on finding solutions.', egZh: '否則就停下來，專注於尋找解決方案。' },
+            { en: 'set clear goals', zh: '設定明確目標', eg: 'They set clear goals and stay with them.', egZh: '他們設定明確的目標，並且堅持下去。' },
+            { en: 'remain committed', zh: '持續投入', eg: 'Setting the goal is easy; remaining committed is not.', egZh: '設定目標很容易，持續投入才難。' },
+            { en: 'persevere through challenges', zh: '在挑戰中堅持不懈', eg: 'She persevered through challenges that would have stopped most people.', egZh: '她在許多人早就放棄的挑戰裡堅持了下來。' },
+            { en: 'shape the way we think and behave', zh: '塑造我們的思考與行為方式', eg: 'Our upbringing shapes the way we think and behave.', egZh: '我們的成長背景塑造了我們的思考與行為方式。' },
+            { en: 'value and respect public facilities', zh: '重視並愛惜公共設施', eg: 'How much we value and respect public facilities is learned early.', egZh: '我們有多愛惜公共設施，是很早就學會的。' },
+            { en: 'lose face', zh: '丟臉、失去面子', eg: 'When we are young we are afraid of losing face.', egZh: '年輕時我們害怕丟臉。' },
+            { en: 'priorities shift', zh: '優先考量改變', eg: 'As we grow older, our priorities may shift.', egZh: '隨著年齡增長，我們重視的事物可能改變。' },
+          ],
+        },
+
+        {
+          t: 'note',
+          en: 'Three things to work on, in that order',
+          zh: '優先改善的三個面向，依序是',
+          bodyEn: 'First, collocational accuracy — the pairing English actually uses. You wrote trust their potential; the usual pairing is believe in their potential. This is the one that makes writing sound non-native even when nothing is wrong. Second, conciseness: know how the process is progressing became monitor progress, two words doing the work of six. Third, logical precision — be able to apply for jobs overseas became be in a better position to apply, because the first one claimed something that is not true. None of these is a grammar problem, which is why they are the next thing rather than the first thing.',
+          bodyZh: '第一，搭配詞精確度——英文實際上會這樣配的說法。你寫 trust their potential，慣用的是 believe in their potential。這一項是最容易讓文章「明明沒錯卻不像母語者」的原因。第二，精簡：know how the process is progressing 變成 monitor progress，兩個字做完六個字的工作。第三，邏輯精確度——be able to apply for jobs overseas 變成 be in a better position to apply，因為前者宣稱了一件不成立的事。這三項都不是文法問題，所以它們是「下一步」，而不是「第一步」。',
+        },
+
+        {
+          t: 'note',
+          en: 'How to work this page, in three stages',
+          zh: '這一頁的三階段用法',
+          bodyEn: 'One, recognition: compare the two versions and sort the change — is it grammar, is it naturalness, or is it a change of meaning? Two, controlled practice: take the phrase cards and work them — swap words in and out, fill gaps, rebuild the sentence from the phrase. Three, active production: write one new sentence of your own for each set, then use five of them in a 90-second spoken answer. And the principle that matters most, which the sheet itself ends on: do not treat every difference from the revision as a mistake. Several of your sentences are entirely correct. Seeing which is which is what moves your English forward.',
+          bodyZh: '第一，辨識：比較兩個版本，分辨這個改動屬於哪一類——文法修正、自然度提升，還是語意調整。第二，控制式練習：拿字卡來操作——替換、填空、用片語重組句子。第三，主動產出：每一組自己造一個新句子，再把其中五組用在一段 90 秒的口說裡。還有最重要的原則，也是講義最後強調的：不要把所有跟修正版不同的地方都當成錯誤。你有好幾句完全正確。能分辨哪句是哪種，才是真正讓英文前進的地方。',
+        },
+
+        {
+          t: 'passage',
+          en: 'Recording practice',
+          zh: '錄音練習',
+          hintEn: 'Read it aloud and record yourself. Tap 🔊 on a paragraph to hear it first, then read it at the same speed — not faster. One take, listen back once, then send it.',
+          hintZh: '唸出來並錄下自己的聲音。可以先點段落旁的 🔊 聽一次，再用同樣的速度自己唸——不要更快。一次錄完，自己回聽一次，再傳給我。',
+          paras: [
+            {
+              en: 'My company is starting to use AI agents to support our work. Our main goal is to save time on routine tasks and make information easier to find.',
+              zh: '我的公司正開始使用 AI 代理來支援工作。我們的主要目標是節省例行工作的時間，並讓資訊更容易取得。',
+            },
+            {
+              en: 'First, a small group of key users from different departments will build the agents. Later, other employees will be able to use them. For example, I am learning how to build an agent that calculates sales bonuses. Another agent could answer questions about company policies.',
+              zh: '首先，由不同部門的一小群主要使用者建立 AI 代理，之後其他員工也能使用。例如，我正在學習建立能計算業務獎金的 AI 代理。另一個代理則可以回答公司政策的相關問題。',
+            },
+            {
+              en: 'We also want to build a knowledge base. This can help us keep important knowledge when experienced employees leave or retire.',
+              zh: '我們也希望建立知識庫，幫助公司在資深員工離職或退休後，仍能保留重要知識。',
+            },
+            {
+              en: 'I think AI may reduce the number of some entry-level positions. However, we will still need people to check results, handle special requests, and make decisions.',
+              zh: '我認為 AI 可能減少部分初階職位的數量。不過，我們仍需要人員檢查結果、處理特殊需求，以及做出決策。',
+            },
+            {
+              en: 'If AI gives me more time, I want to find tools that help employees improve their skills. In our retail business, we need to keep stores running with fewer staff. AI could handle routine tasks so our employees have more time to serve customers.',
+              zh: '如果 AI 讓我有更多時間，我希望尋找能協助員工提升技能的工具。在零售業，我們需要在人力較少的情況下維持門市營運。AI 可以處理例行工作，讓員工有更多時間服務顧客。',
+            },
+          ],
+        },
+
+        {
+          t: 'link',
+          href: '../sentence-upgrades/2026-10-17/',
+          en: 'The same fourteen, as an exercise',
+          zh: '同樣這十四句，但做成練習',
+          noteEn: 'This session is the record; that page is the drill. There the two versions sit side by side with the changed parts marked, so you can tap one and watch its counterpart light up — and all 48 collocations are in one table with the meanings covered, for self-testing.',
+          noteZh: '這一堂是紀錄，那一頁是練習。在那裡，兩個版本並排放著、改動的地方都標出來了，點一邊就會看到另一邊對應的部分亮起來；48 個搭配詞也集中在一張表裡，中文蓋住，可以自己測。',
+        },
+
+        {
+          t: 'task',
+          en: 'Homework: record it, then build on it',
+          zh: '作業：先錄音，再往前推一步',
+          instructionEn: 'Record the passage above in one take and send it on LINE. Then take five of the collocations from this session and write one new sentence of your own for each — not a sentence about the phrase, a sentence you would actually say at work. Write them out by hand before you send them.',
+          instructionZh: '上面那段文字一次錄完，用 LINE 傳給我。接著從這堂課的搭配詞裡挑五個，各自造一個新句子——不是為了示範那個片語而造的句子，而是你在工作上真的會說的句子。傳給我之前，先用手抄一遍。',
+          prompts: [
+            { en: 'Read at the speed you would use with a colleague, not the speed that gets it over with.', zh: '用你跟同事說話的速度唸，不是「趕快唸完」的速度。' },
+            { en: 'Pick the five you would need this month, not the five that sound most impressive.', zh: '挑你這個月用得到的五個，而不是聽起來最厲害的五個。' },
+            { en: 'If a sentence comes out sounding like Chinese in English, keep it and we will look at it together.', zh: '如果某一句唸起來像「中文的英文」，留著，我們一起看。' },
+          ],
+          checklist: [
+            { en: 'monitor progress', zh: '掌握進度' },
+            { en: 'believe in their potential', zh: '相信他們的潛力' },
+            { en: 'take appropriate measures', zh: '採取適當措施' },
+            { en: 'develop contingency plans', zh: '制定應變計畫' },
+            { en: 'be in a better position to', zh: '處於更有利的位置去……' },
           ],
         },
       ],

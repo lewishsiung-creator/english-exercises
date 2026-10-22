@@ -726,6 +726,37 @@ body.zh-all .card-back { display: block; }
 .fix-why .en { margin: 0; font-size: .88rem; color: var(--ink-soft); }
 .fix-why .zh { font-size: .8rem; }
 
+/* ---------------- a sentence and the version to keep ----------------
+
+   Shares the fix card's machinery and drops its verdict: no red, no green, no
+   cross. The first line is ordinary text because it may be perfectly good
+   English, and the version to keep is marked by weight and an arrow rather
+   than by a tick. */
+
+.up .fix-mark { color: var(--ink-faint); font-weight: 400; }
+.up .up-from { color: var(--ink); }
+.up.open { border-color: var(--navy-line); }
+/* On this page --navy resolves to ink, so the version to keep would be told
+   apart by weight alone. The arrow carries the accent instead: one coloured
+   glyph is enough to find it, and the sentence stays black to be read. */
+.up .up-to { font-weight: 600; }
+.up .up-to .fix-mark { color: var(--gold); font-weight: 600; }
+
+/* ---------------- a passage to read aloud ----------------
+
+   Wider and looser than the rest of the page: the line length and the leading
+   are the whole design when something is read off the screen. */
+
+.passage-block { margin: 0 0 10px; }
+.passage .para { padding: 12px 0; border-top: 1px solid var(--line); }
+.passage .para:first-child { border-top: none; }
+.passage .para .en { font-size: 1.1rem; line-height: 1.85; max-width: 34em; }
+.passage .para .zh { font-size: .92rem; line-height: 1.8; max-width: 34em; }
+
+@media print {
+  .passage .para .en { font-size: 1.02rem; line-height: 1.7; }
+}
+
 /* ---------------- activities ---------------- */
 
 .activity { margin: 0 0 10px; }

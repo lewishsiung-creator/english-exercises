@@ -9,7 +9,18 @@
    anything meant to be learned or said aloud carries its Chinese.
 
    Block types are documented at the top of ../content.js. This page also
-   uses `fixes` — an original next to the more natural English. */
+   uses `fixes` — an original next to the more natural English.
+
+   ABOUT HER SON
+   Much of this discussion is about Lulu's primary-school-age son: the kind
+   of school he attends, his piano, his baking, and feeling different from
+   the other children in an English class. He is never named, and no school,
+   teacher or address appears — only the type of school.
+   Kept as it is, confirmed 22 Oct 2026. It is what the lesson was about, and
+   the detail is what made the English worth practising. The rule that still
+   holds for any future session: the child is not named, and nothing that
+   could locate him — a school's name, a class, a teacher, an address — goes
+   on the page. */
 
 const WORKSHEET = {
   title: '2026/08/10',

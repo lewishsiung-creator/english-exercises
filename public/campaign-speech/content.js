@@ -21,6 +21,16 @@
                the phrase to land on. `pending: 1` renders the question with a
                「回答待補」note instead of an answer — none are pending now, but
                a new question can be added before its answer exists.
+
+   WHY THE FULL NAME STAYS
+   The speech names the candidate in full, twice, and the page is not
+   noindex. That is deliberate, confirmed 22 Oct 2026: a campaign speech was
+   delivered in public by a declared candidate, and his candidacy and the
+   chapter are public facts, so there is nothing here that the event did not
+   already make public. The site's usual rule — a student's first name only —
+   is set aside here for that reason, and because the speech is reproduced
+   word for word: changing the name would stop it being what he said.
+   An audit that finds this again should leave it alone.
 */
 
 const SPEECH = {
