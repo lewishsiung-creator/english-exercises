@@ -128,6 +128,342 @@ const LESSONS = [
 
   /* ------------------------------------------------------------------ */
   {
+    id: 'kerr-story',
+    videoId: 'IRAaCq3nAMs',
+    start: 0,
+    end: 92,
+
+    titleEn: 'What Federer actually said',
+    titleZh: 'Federer 真正說出口的話',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'Steve Kerr on The Player Experience — “Roger Federer’s sustained success”',
+    videoZh: 'Federer 為什麼能強二十年',
+
+    aboutEn: 'A minute and a half of a story Steve Kerr tells against his own '
+      + 'team. Draymond Green asks Roger Federer how he has kept winning '
+      + 'for twenty years, the whole room braces for the answer about '
+      + 'working harder than everybody — and what they get is a description '
+      + 'of one ordinary day, in order, with nothing explained.',
+    aboutZh: '一分半的故事，而且 Steve Kerr 是講自己球隊當場的反應。Draymond Green 問 Roger '
+      + 'Federer：第一座大滿貫之後二十年，你怎麼還在贏？全場都準備好聽那句「我比別人更努力」——結果他講的是一天的流水帳，一件接一件，什麼都沒解釋。',
+
+    watchForEn: 'Nobody in that room got the answer they were braced for. Listen '
+      + 'for what his day actually contains — and for what is not in it.',
+    watchForZh: '那個房間裡沒有人等到他們以為會聽到的答案。注意聽他的一天裡有什麼——還有，沒有什麼。',
+
+    lines: [
+      { t:  0, en: 'So I’ll tell you a great story about Roger Federer.',
+               zh: '我跟你們講一個關於 Roger Federer 的好故事。' },
+      { t:  4, en: 'We were playing in China with the Warriors in 2017, I think.',
+               zh: '二〇一七年吧，我們勇士隊到中國打球。' },
+      { t:  9, en: 'Exhibition season — we’re training over there.',
+               zh: '季前熱身賽，我們在那邊練球。' },
+      { t: 12, en: 'We played two games.',
+               zh: '打了兩場。' },
+      { t: 14, en: 'Roger Federer was in Shanghai for the Masters tournament.',
+               zh: 'Roger Federer 那時人在上海打大師賽。' },
+      { t: 18, en: 'So we invited him to come and speak to the team,',
+               zh: '所以我們就請他來跟球隊講講話，' },
+      { t: 21, en: 'and Draymond Green asked him.',
+               zh: '然後 Draymond Green 就問他了。' },
+      { t: 23, en: 'He said, “How do you sustain success?',
+               zh: '他說：「你是怎麼一直保持在高水準的？' },
+      { t: 26, en: 'How have you managed to win majors twenty years after you first won one?”',
+               zh: '你第一座大滿貫之後二十年，怎麼還拿得到？」' },
+      { t: 30, en: 'And everyone was expecting him to say,',
+               zh: '全場都在等他說出那句：' },
+      { t: 33, en: '“I work harder than everybody” —',
+               zh: '「我比所有人都更努力」——' },
+      { t: 36, en: 'the will, all the clichés, right?',
+               zh: '意志力啊，那些老掉牙的說法，對吧？' },
+      { t: 40, en: 'So Roger Federer says:',
+               zh: '結果 Roger Federer 說：' },
+      { t: 42, en: '“I get up every morning and I make breakfast for my kids,',
+               zh: '「我每天早上起床，幫小孩做早餐，' },
+      { t: 46, en: 'and then I take them to school and I drop them at school.',
+               zh: '然後送他們去學校，把他們放在學校。' },
+      { t: 50, en: 'Then I go practice tennis for about two hours.',
+               zh: '接著我去練球，大概兩個小時。' },
+      { t: 52, en: 'And I’ve figured out a really good routine',
+               zh: '我已經摸索出一套很好的固定做法，' },
+      { t: 54, en: 'where I don’t destroy my body,',
+               zh: '不會把身體操壞，' },
+      { t: 55, en: 'but I can really get all the work in I need.',
+               zh: '但該練的份量一點都不會少。' },
+      { t: 59, en: 'And then I go have lunch with my wife.',
+               zh: '然後我跟太太一起吃午餐。' },
+      { t: 63, en: 'And in the evening we cook dinner together,',
+               zh: '到了晚上，我們一起做晚餐，' },
+      { t: 65, en: 'and the kids are all home from school.',
+               zh: '小孩也都放學回家了。' },
+      { t: 68, en: 'We asked them about school,',
+               zh: '我們問問他們學校的事，' },
+      { t: 70, en: 'and there’s so much joy in the house.',
+               zh: '整個家裡都是那種開心的氣氛。' },
+      { t: 73, en: 'And then we put them to bed,',
+               zh: '然後我們哄他們睡覺，' },
+      { t: 76, en: 'and then I put my head on the pillow and I go,',
+               zh: '接著我頭一沾枕頭，心裡就想：' },
+      { t: 78, en: '‘Man, that was just a great day.’”',
+               zh: '『天啊，今天真是很棒的一天。』」' },
+      { t: 80, en: 'And he goes, “And I’ve been doing that',
+               zh: '然後他說：「而這件事我已經' },
+      { t: 81, en: 'for twenty years.”',
+               zh: '做了二十年。」' },
+      { t: 83, en: 'And it was like — yes, that’s it, right?',
+               zh: '當下的感覺就是——對，就是這個，對吧？' },
+      { t: 86, en: 'That’s the formula.',
+               zh: '這就是那個公式。' },
+      { t: 88, en: 'That’s what leads to sustained success.',
+               zh: '這就是能一直維持高水準的原因。' },
+    ],
+
+    words: [
+      { t: 23, en: 'sustain success', zh: '把好成績一直維持下去',
+        noteEn: 'Sustain is the verb for keeping something going at the same level '
+          + '— sustain success, sustain growth, sustain the pace. It is the '
+          + 'word you want when “keep” sounds too small for the thing.',
+        noteZh: 'sustain 是「讓某件事維持在同樣的水準」：sustain success、sustain growth、sustain the '
+          + 'pace。當 keep 顯得太輕的時候，就用這個字。' },
+      { t: 36, en: 'all the clichés', zh: '那些老掉牙的說法',
+        noteEn: 'A cliché is a line so used up it has stopped meaning anything. '
+          + 'Naming one is a way of getting ahead of it: “I know it’s a cliché, '
+          + 'but it’s true.”',
+        noteZh: 'cliché 是用到爛、已經沒有意義的話。先自己點破它，是一種先發制人：「I know it’s a cliché, but '
+          + 'it’s true.」（我知道這是老話，但確實如此。）' },
+      { t: 52, en: 'figure out a routine', zh: '摸索出一套固定做法',
+        noteEn: 'Figure out is working something out by trying, not by being told. '
+          + 'It takes a long object happily: figure out a routine, figure out '
+          + 'what went wrong, figure out who to ask.',
+        noteZh: 'figure out 是自己試出來的，不是別人教的。後面可以接很長的東西：figure out a routine、figure '
+          + 'out what went wrong、figure out who to ask。' },
+      { t: 54, en: 'destroy my body', zh: '把身體操壞',
+        noteEn: 'Spoken exaggeration for training or working past what the body can '
+          + 'take. The everyday version is “that workout destroyed me” — said '
+          + 'the next morning, with affection.',
+        noteZh: '口語誇飾，指練過頭、操過頭。日常版本是「that workout destroyed '
+          + 'me」（那組訓練把我整慘了），通常隔天早上講，還帶點甘願。' },
+      { t: 55, en: 'get all the work in', zh: '把該做的份量做完',
+        noteEn: 'Get something in means fit it into the time you have: get a '
+          + 'workout in, get an hour in, get the calls in before lunch. Very '
+          + 'common and very useful.',
+        noteZh: 'get something in 是「在有限的時間裡把它排進去做掉」：get a workout in、get an hour '
+          + 'in、get the calls in before lunch。非常常用。' },
+      { t: 76, en: 'put my head on the pillow', zh: '頭一沾枕頭',
+        noteEn: 'Not about sleep so much as the moment just before it — the first '
+          + 'honest thought of the day’s end. “The second my head hits the '
+          + 'pillow I’m out.”',
+        noteZh: '講的不是睡著，而是睡著前的那一刻——一天結束時最誠實的那個念頭。「The second my head hits the '
+          + 'pillow I’m out.」（我頭一碰到枕頭就睡死了。）' },
+      { t: 86, en: 'the formula', zh: '公式、那個訣竅',
+        noteEn: 'Said of a method that reliably produces a result. Often ironic '
+          + 'when the “formula” turns out to be something very plain, which is '
+          + 'exactly how Kerr uses it here.',
+        noteZh: '指一套能穩定產出結果的方法。當那個「公式」其實平凡無奇時常帶點反差——Kerr 在這裡就是這個用法。' },
+      { t: 88, en: 'sustained success', zh: '長期維持的成功',
+        noteEn: 'The noun form of the question Draymond asked. Worth keeping as a '
+          + 'pair: you sustain success, and what you end up with is sustained '
+          + 'success.',
+        noteZh: '就是 Draymond 問題的名詞版。可以把這組一起記：動詞 sustain success，結果是 sustained '
+          + 'success。' },
+    ],
+
+    questions: [
+      { t: 23, en: 'What exactly did Draymond Green ask him?',
+        zh: 'Draymond Green 到底問了什麼？',
+        answerEn: 'How do you sustain success — how have you managed to win majors '
+          + 'twenty years after you first won one?',
+        answerZh: '你怎麼一直保持在高水準？第一座大滿貫之後二十年，你怎麼還拿得到？' },
+      { t: 30, en: 'What answer was the room expecting?',
+        zh: '在場的人原本預期會聽到什麼答案？',
+        answerEn: 'That he works harder than everybody — the will, all the clichés. '
+          + 'Kerr says everyone was expecting it.',
+        answerZh: '「我比所有人都更努力」——意志力、那些老掉牙的說法。Kerr 說全場都在等這個。' },
+      { t: 42, en: 'What is the first thing in Federer’s own description of his day?',
+        zh: 'Federer 自己描述的一天，第一件事是什麼？',
+        answerEn: 'He gets up and makes breakfast for his kids. Tennis does not '
+          + 'appear until the third thing he mentions.',
+        answerZh: '他起床，幫小孩做早餐。網球要到他講的第三件事才出現。' },
+      { t: 80, en: 'How long does he say he has been living that day?',
+        zh: '他說這樣的一天他過了多久？',
+        answerEn: 'Twenty years. That is the line that makes the story land — the day '
+          + 'is unremarkable, the repetition is not.',
+        answerZh: '二十年。就是這句話讓整個故事成立——那一天本身很普通，重複二十年就不普通了。' },
+    ],
+
+    tasks: [
+      { en: 'Describe your own ordinary weekday the way Federer does it: one '
+        + 'thing after another, in order, explaining nothing. Stop when you '
+        + 'get to putting your head on the pillow.',
+        zh: '照 Federer 的方式描述你自己平常的一天：一件接一件，照順序講，什麼都不要解釋。講到「頭一沾枕頭」就停。' },
+      { en: '“Everyone was expecting him to say…” — think of a question people '
+        + 'often ask you. Say the answer they expect, then say your honest '
+        + 'one.',
+        zh: '「大家都在等他說……」——想一個別人常問你的問題。先說出他們預期的答案，再說你真正的答案。' },
+      { en: 'Federer never says the word “work” until the third thing. Say the '
+        + 'three things your own day starts with, and notice where work '
+        + 'comes.',
+        zh: 'Federer 一直到第三件事才提到「練球」。說出你一天最先發生的三件事，然後看看「工作」排在第幾個。' },
+    ],
+  },
+
+  /* ------------------------------------------------------------------ */
+  {
+    id: 'kerr-meaning',
+    videoId: 'IRAaCq3nAMs',
+    start: 92,
+    end: 147,
+
+    titleEn: 'Not outworking everybody',
+    titleZh: '重點不是比別人更拚',
+    levelEn: 'Young adult & workplace · B2',
+    levelZh: '青年與職場',
+    sourceEn: 'Steve Kerr on The Player Experience — “Roger Federer’s sustained success”',
+
+    aboutEn: 'Fifty-five seconds of Kerr reading his own story back. He says '
+      + 'first what the formula is not — out-working everyone, banging your '
+      + 'head against a wall — and then what it is, in short nouns, several '
+      + 'at a time. The last word of the video is joy.',
+    aboutZh: '五十五秒，Kerr '
+      + '把自己講的故事再解讀一次。他先說那套公式「不是」什麼——不是比誰更拚、不是拿頭去撞牆——再說它是什麼，用的全是短短的名詞，一次好幾個。整支影片的最後一個字是 '
+      + 'joy。',
+
+    watchForEn: 'He answers in nouns, not verbs. Count how many he gets through in '
+      + 'the last thirty seconds.',
+    watchForZh: '他用的是名詞，不是動詞。數數看最後三十秒他一共講了幾個。',
+
+    lines: [
+      { t:  92, en: 'He loves tennis.',
+                zh: '他熱愛網球。' },
+      { t:  93, en: 'He loves his family.',
+                zh: '他愛他的家人。' },
+      { t:  95, en: 'He loves life.',
+                zh: '他熱愛生活。' },
+      { t:  97, en: 'So it’s not outworking everybody,',
+                zh: '所以重點不是比所有人都更拚，' },
+      { t: 100, en: 'and banging your head against the wall,',
+                zh: '也不是拿頭去撞牆，' },
+      { t: 102, en: 'and “I’m going to be better than everybody.”',
+                zh: '更不是那句「我要贏過所有人」。' },
+      { t: 105, en: 'It’s allowing your natural talent to shine through',
+                zh: '而是讓你原本的天賦自然顯現出來，' },
+      { t: 107, en: 'with a work ethic, with a great family life,',
+                zh: '配上肯做事的態度、很好的家庭生活、' },
+      { t: 111, en: 'with perspective, with peace,',
+                zh: '看事情的比例感、內心的平靜、' },
+      { t: 113, en: 'with a mindfulness about you that — man,',
+                zh: '還有一種對當下的覺察，讓你覺得——天啊，' },
+      { t: 115, en: 'I’m so lucky to do what I do.',
+                zh: '我能做這件事，實在太幸運了。' },
+      { t: 118, en: 'And all of us here are in the top one per cent of lucky people',
+                zh: '在座的我們，都屬於這個星球上最幸運的那百分之一，' },
+      { t: 123, en: 'on the planet. We know that, right?',
+                zh: '這點我們心裡都有數，對吧？' },
+      { t: 126, en: 'All we have to do is look at the suffering that’s out there.',
+                zh: '只要看看這世界上有多少苦難就知道了。' },
+      { t: 130, en: 'And so it’s perspective, it’s joy, it’s passion,',
+                zh: '所以答案是比例感、是喜悅、是熱情，' },
+      { t: 134, en: 'it’s mindfulness, it’s an awareness',
+                zh: '是覺察，是一種意識到' },
+      { t: 136, en: 'that we are truly lucky.',
+                zh: '我們真的很幸運的自覺。' },
+      { t: 139, en: 'And to get the most out of ourselves,',
+                zh: '而想把自己的潛力發揮到最大，' },
+      { t: 143, en: 'it’s our daily rituals and experiences and love and joy.',
+                zh: '靠的是每天的固定習慣、經歷，還有愛與喜悅。' },
+    ],
+
+    words: [
+      { t: 97, en: 'outwork somebody', zh: '比某人更拚、花的工比別人多',
+        noteEn: 'To beat someone by putting in more hours rather than by being '
+          + 'better. Out- in front of a verb does this generally: outsell, '
+          + 'outlast, outthink.',
+        noteZh: '靠投入更多時間贏過對方，而不是靠更強。out- 加動詞都是這個意思：outsell、outlast、outthink。' },
+      { t: 100, en: 'bang your head against the wall', zh: '拿頭去撞牆——白費力氣',
+        noteEn: 'Effort that produces nothing but a headache. “I spent all '
+          + 'afternoon banging my head against this bug.” Always about wasted '
+          + 'effort, never about difficulty alone.',
+        noteZh: '努力了半天只換來頭痛。「I spent all afternoon banging my head against this '
+          + 'bug.」（整個下午都在跟這個 bug 死磕。）重點是「白費」，不只是「難」。' },
+      { t: 105, en: 'shine through', zh: '（本來就有的特質）自然顯露出來',
+        noteEn: 'Said of a quality that comes out by itself once nothing is '
+          + 'blocking it — talent, warmth, nerves. You do not make something '
+          + 'shine through; you let it.',
+        noteZh: '指某種特質在沒有東西擋著的時候自己浮現出來——天賦、親切、緊張都可以。它不是你「做出來」的，是你「讓」它出來的。' },
+      { t: 107, en: 'a work ethic', zh: '肯做事的態度與習慣',
+        noteEn: 'Not how hard you work on one day but the standard you hold over '
+          + 'years. Usually praised with a strong adjective: a serious work '
+          + 'ethic, an unbelievable work ethic.',
+        noteZh: '講的不是某一天多拚，而是常年維持的標準。通常會加強烈的形容詞：a serious work ethic、an '
+          + 'unbelievable work ethic。' },
+      { t: 111, en: 'perspective', zh: '看事情的比例感',
+        noteEn: 'Knowing how big something really is next to everything else. '
+          + '“Let’s keep some perspective” is what you say when a small problem '
+          + 'is being treated as a disaster.',
+        noteZh: '知道一件事跟其他事相比到底有多大。「Let’s keep some perspective.」是在別人把小事當災難時講的。' },
+      { t: 118, en: 'the top one per cent', zh: '最頂端的那百分之一',
+        noteEn: 'Usually about money. Kerr turns it to luck instead, which is the '
+          + 'move that makes the sentence land.',
+        noteZh: '通常是在講錢。Kerr 把它改成「幸運」，這一轉正是那句話的力道所在。' },
+      { t: 134, en: 'mindfulness', zh: '對當下的覺察',
+        noteEn: 'Attention to what is happening now rather than to what is next. '
+          + 'The adjective is mindful: “be mindful of the time.”',
+        noteZh: '把注意力放在「正在發生的事」，而不是「下一件事」。形容詞是 mindful：「be mindful of the '
+          + 'time」（留意一下時間）。' },
+      { t: 139, en: 'get the most out of yourself', zh: '把自己的潛力發揮到最大',
+        noteEn: 'Get the most out of X works for anything with more in it than you '
+          + 'are using: get the most out of the day, out of this trip, out of a '
+          + 'team.',
+        noteZh: 'get the most out of X 可以接任何「還有餘力沒用上」的東西：get the most out of the '
+          + 'day、out of this trip、out of a team。' },
+    ],
+
+    questions: [
+      { t: 97, en: 'He names three things sustained success is NOT. What are they?',
+        zh: '他說「持續的成功」不是哪三件事？',
+        answerEn: 'Outworking everybody, banging your head against the wall, and “I’m '
+          + 'going to be better than everybody.”',
+        answerZh: '比所有人更拚、拿頭去撞牆，還有那句「我要贏過所有人」。' },
+      { t: 105, en: 'What does he say it is instead?',
+        zh: '那他說它是什麼？',
+        answerEn: 'Allowing your natural talent to shine through — with a work ethic, '
+          + 'a great family life, perspective, peace and a mindfulness about '
+          + 'you.',
+        answerZh: '讓你原本的天賦自然顯現出來——配上肯做事的態度、很好的家庭生活、比例感、平靜，還有對當下的覺察。' },
+      { t: 118, en: 'What claim does he make about everyone in the room?',
+        zh: '他對在場所有人下了什麼判斷？',
+        answerEn: 'That they are in the top one per cent of lucky people on the '
+          + 'planet, and that all you have to do to see it is look at the '
+          + 'suffering that is out there.',
+        answerZh: '他們是這星球上最幸運的百分之一；而要看懂這件事，只要看看世界上有多少苦難就夠了。' },
+      { t: 143, en: 'What are the last four things he names?',
+        zh: '他最後數出來的四樣東西是什麼？',
+        answerEn: 'Daily rituals, experiences, love and joy. Joy is the last word of '
+          + 'the video.',
+        answerZh: '每天的固定習慣、經歷、愛，還有喜悅。joy 是整支影片的最後一個字。' },
+    ],
+
+    tasks: [
+      { en: 'He says what it is not before he says what it is. Describe '
+        + 'something you are good at the same way round — two things it is '
+        + 'not, then what it actually is.',
+        zh: '他先說「不是什麼」，再說「是什麼」。用同樣的順序描述一件你擅長的事：先講兩個它「不是」的，再講它實際上是什麼。' },
+      { en: 'Pick three of his nouns — perspective, peace, joy, passion, '
+        + 'mindfulness. Which one is most missing from your week, and what '
+        + 'would put it back?',
+        zh: ' '
+          + '從他的名詞裡挑三個：perspective、peace、joy、passion、mindfulness。這禮拜你最缺哪一個？要怎麼把它找回來？' },
+      { en: 'Federer’s formula was a day he would happily repeat. Describe a '
+        + 'day you would be glad to live twenty years running — and say the '
+        + 'one thing in it you do not have yet.',
+        zh: 'Federer 的公式，是一種他願意一直重複的日子。描述一種你願意連過二十年的日子——再說出其中還沒擁有的那一樣東西。' },
+    ],
+  },
+
+
+  /* ------------------------------------------------------------------ */
+  {
     id: 'attention-crisis',
     videoId: 'ZXHrPfWJcCI',
     start: 0,
