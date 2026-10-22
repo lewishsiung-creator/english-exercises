@@ -2183,15 +2183,28 @@ front desk, clients with expectations to manage — but a job early in a career.
 That is written into the header comment of
 [`public/mia/content.js`](public/mia/content.js).
 
-**The page names Mia and never her clinic.** Lewis chose that when asked: her
-name stays, as on the other notebooks, but the clinic, its doctors and its
-address appear nowhere, and a source that names it becomes "the clinic". Two
-more lines are in the file header. Nothing that could identify a real patient
-goes on the page — a case she describes stays "a client", with no name, date or
-clinic. And the treatment language is recorded as language, not vouched for as
-medicine: the line Ken's session 2 drew, with a `note` above the treatment
-phrase cards saying so in both languages, and examples that say *can help* and
-*may* rather than *will*.
+### Who gets named here
+
+Lewis chose these when asked, and they are written as rules because every
+session's sources run into them again. The same shape as
+[Winkle's](#who-gets-named-across-all-five):
+
+- **Mia is named.** Her name stays, as on the other notebooks.
+- **Her workplace never is.** The clinic, its doctors and its address appear
+  nowhere, and a source that names it becomes "the clinic". Two more lines are
+  in the file header.
+- **Nobody who could be a real patient is identifiable.** A case she describes
+  stays "a client", with no name, no date and no clinic. This is the strictest
+  of the three: she is describing other people's medical treatment to practise
+  English, and they did not agree to appear anywhere.
+- **A third person is never named** — the rule Winkle's pages state in full.
+  Here it covers the doctors she works with as well as the clients.
+
+One rule that is not about names but belongs beside them: **the treatment
+language is recorded as language, not vouched for as medicine.** That is the
+line Ken's session 2 drew — a `note` above the treatment phrase cards saying
+so in both languages, and examples that say *can help* and *may* rather than
+*will*.
 
 **Session 1 (12 September 2026)** came from two sources, treated differently. A
 bilingual PDF, *Mia's Session Review｜課堂回顧*, written up after the lesson in
@@ -2264,9 +2277,9 @@ once, because every new page runs into it:
   Development manager who ran the screening call; the page calls him "the
   Software Development manager". He is a private individual at another
   company, he is not the one being taught, and naming him puts him on a page
-  that gets handed around for no benefit to the lesson. Same instinct as the
-  clinic in Mia's notebook. If a future handout names an interviewer, a
-  colleague or a referee, strip it the same way.
+  that gets handed around for no benefit to the lesson. Same instinct as
+  [Mia's clinic](#who-gets-named-here). If a future handout names an
+  interviewer, a colleague or a referee, strip it the same way.
 
 Everything under `/winkle/` is `noindex` regardless, but that is a weak
 protection — the link is handed to people — so these decisions are made as if
