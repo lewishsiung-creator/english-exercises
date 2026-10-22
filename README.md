@@ -1700,9 +1700,10 @@ That last one is the only structural difference from Anny's and Aaron's. The
 `sessions` array is still chronological — append at the bottom, `n` counts up —
 and the renderer reverses a copy of it (`ordered`) for the contents list and the
 document. The array stays the source of truth for what "the newest" means, so
-the open-on-load rule and the anchors are untouched. The other two notebooks
-still read oldest first; changing them is a separate decision, since each page
-is a deliberate copy.
+the open-on-load rule and the anchors are untouched. Anny's and Aaron's were changed the
+same way afterwards, each in its own copy. The other notebooks still read
+oldest first; each page is a deliberate copy, so that stays a decision per
+notebook rather than a consequence.
 
 Session 1 (7 August 2026) is a discussion of a new running specialty store her
 company is opening — why a retailer would want its own brand influence rather
