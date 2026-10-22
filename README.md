@@ -14,7 +14,8 @@ built on a bilingual speech and its election Q&A at `/campaign-speech/`,
 TOEIC grammar
 practice at `/toeic-grammar/`, a homework review of one student's own
 sentences at `/sentence-upgrades/` and a second, longer set from the same
-student at `/sentence-upgrades/2026-10-17/`, a high-school writing worksheet
+student at `/sentence-upgrades/2026-10-17/`, passages to read aloud and record
+at `/recording-practice/`, a high-school writing worksheet
 at `/robot-helper/`, a survey of seven years of the 學測 essay at
 `/exam-writing/`, an IELTS Speaking Part 3 practice at `/ielts-part3/`, a
 growing IELTS Speaking course covering all three parts at `/ielts-speaking/`,
@@ -2627,6 +2628,44 @@ in `render.js` knows anything about health, so a new topic needs no code.
 half-finished line, it is a hole for anyone reading in English only.
 
 
+## Recording Practice — adult, one-to-one, read aloud
+
+`/recording-practice/` is a page to read off while speaking. Each passage is
+written out of something the student already said in a lesson, so the words are
+hers before she reads them: what is being practised is delivery, not
+composition. It grows the way the notebooks do — one entry appended to
+`passages`, newest first.
+
+Three things are set differently here because the text is spoken rather than
+scanned:
+
+- **The passage runs at 1.2rem with 1.95 leading in a 32em column** — wider
+  leading than anywhere else in the repo. Reading aloud means the eye has to
+  find the next line while the mouth is still finishing this one.
+- **Every sentence has its own 🔊 as well as the paragraph.** They practise
+  different things: a sentence gives a shape to copy, a paragraph a pace to
+  hold.
+- **Nothing moves while she is speaking.** No progress bar, no highlight that
+  follows along — a page that animates during a take pulls the eye off the
+  line.
+
+The sentence speakers sit at 0.3 opacity rather than appearing on hover. The
+first version revealed them on hover, which on a phone means never; `@media
+(hover: none)` is not something to bet a control on either, since the emulator
+reported no hover and still matched the hover rule. A control that cannot be
+found is worse than one that is slightly visible.
+
+The page does not record. It asks for no microphone, stores no audio and
+uploads nothing: the recording happens in whatever app the student already
+uses and comes back on LINE. It carries `noindex` because the passage is her
+own account of her employer's project.
+
+The same passage also appears in
+[Anita's notebook](#anitas-notebook--adult-one-to-one-kept-over-time) as a
+`passage` block and in the 17 October sheet. Each points at the others, and
+they are kept deliberately: the notebook is the record of a session, this is
+the thing you read from.
+
 ## house.css — one interface for the family
 
 `type.css` gives these pages one typeface, `editorial.css` gives most of them
@@ -2704,6 +2743,7 @@ public/campaign-speech/   the speech and election Q&A
 public/toeic-grammar/     the TOEIC Part 5 & 6 practice
 public/sentence-upgrades/ the 2026/07/25 homework review
 public/sentence-upgrades/2026-10-17/  the 2026/10/17 set, with assessment and a recording passage
+public/recording-practice/        passages to read aloud and record
 public/robot-helper/      the 113 學年度 writing worksheet
 public/exam-writing/      the 109–115 學測 essay survey
 public/ielts-part3/       the IELTS Part 3 structure practice

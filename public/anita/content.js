@@ -1378,6 +1378,15 @@ const NOTEBOOK = {
 
         {
           t: 'link',
+          href: '../recording-practice/',
+          en: 'The passage on its own page',
+          zh: '這段文字的獨立頁面',
+          noteEn: 'The same piece, set to be read off the screen: every sentence has its own 🔊 as well as the paragraph, and the page carries the five steps for working a passage and what to listen for when you play yourself back. New passages are added there.',
+          noteZh: '同一段文字，但版面是為了「對著螢幕唸」而設的：除了段落，每一句也都有自己的 🔊；那一頁還有練習一篇文章的五個步驟，以及回聽時該注意什麼。以後新的朗讀文章都會加在那裡。',
+        },
+
+        {
+          t: 'link',
           href: '../sentence-upgrades/2026-10-17/',
           en: 'The same fourteen, as an exercise',
           zh: '同樣這十四句，但做成練習',

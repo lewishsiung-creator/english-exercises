@@ -1,0 +1,297 @@
+/* Recording Practice — a page to read off while speaking.
+
+   Almost everything this page looks like comes from the three shared layers:
+   ../type.css sets the face, ../editorial.css the palette, ../house.css the
+   bar, the controls and the display type. What is left here is the part no
+   other page needs: text set for reading ALOUD rather than scanning.
+
+   Three decisions follow from that:
+
+   - The passage is set at 1.2rem with 1.95 leading and a 32em column. Reading
+     aloud means the eye has to find the next line while the mouth is still
+     finishing this one, and a short line with a lot of air is what makes that
+     possible. It is wider leading than any other page here uses.
+   - Every sentence is a quiet button. The 🔊 that belongs to it is small and
+     faint until the sentence is hovered, because twenty visible speakers in a
+     paragraph would read as clutter and the paragraph has to look like prose.
+   - Nothing moves while the student is speaking. No progress, no highlight
+     that follows along: a page that animates during a take is a page that
+     pulls the eye off the line. */
+
+:root {
+  --paper: #fbfaf8;
+  --card: #ffffff;
+  --ink: #1a1a1c;
+  --ink-soft: #55555d;
+  --ink-faint: #8c8c95;
+
+  --navy: #1a1a1c;
+  --navy-soft: #f4f2ee;
+  --navy-line: #d3d0ca;
+
+  --gold: #b0202a;
+  --gold-soft: #fdf3f2;
+  --gold-line: #edd3d4;
+
+  --line: #e7e5e1;
+  --rule: #d3d0ca;
+
+  --font-en: ui-serif, "New York", Charter, Georgia, serif;
+  --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", sans-serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+
+  --bar-h: 56px;
+  --measure: 38rem;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 16px); }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-en);
+  font-size: 19px;
+  line-height: 1.65;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---------------- the Chinese layer ---------------- */
+
+.zh {
+  display: none;
+  font-family: var(--font-zh);
+  font-size: .82em;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+.open .zh,
+body.zh-all .zh { display: block; }
+
+.zh-chip {
+  font-family: var(--font-zh);
+  font-size: 11px;
+  line-height: 1;
+  vertical-align: 2px;
+  margin-left: 6px;
+  padding: 3px 5px;
+  color: var(--ink-faint);
+  background: transparent;
+  border: 1px solid var(--line);
+  cursor: pointer;
+}
+.zh-chip:hover { color: var(--ink); border-color: var(--rule); }
+body.zh-all .zh-chip { display: none; }
+
+/* Scaffolding stays bilingual: it only helps if it is understood. */
+.goals .zh, .checks .zh, .toc .t .zh, .card-zh { display: block; }
+
+.pair[data-zh] { cursor: pointer; }
+.pair p { margin: 0; }
+.pair .zh { margin-top: 6px; }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 12px; top: 12px; z-index: 40; background: var(--card); padding: 10px 16px; }
+
+/* ---------------- shell ---------------- */
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+.bar-title { flex: 1; margin: 0; min-width: 0; font-size: 15px; font-weight: 600;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-title span { font-family: var(--font-zh); font-weight: 400; color: var(--ink-faint); margin-left: 8px; }
+.bar-btn { flex: none; font-family: var(--font-ui); font-size: 13px; cursor: pointer; }
+
+@media (min-width: 900px) { #navToggle { display: none; } }
+
+.shell { display: grid; grid-template-columns: 1fr; max-width: 76rem; margin: 0 auto; padding: 0 20px; }
+@media (min-width: 900px) {
+  .shell { grid-template-columns: 13.5rem minmax(0, 1fr); gap: 56px; padding: 0 32px; }
+}
+
+#doc { max-width: var(--measure); padding-bottom: 6rem; }
+
+/* ---------------- contents ---------------- */
+
+.toc { font-family: var(--font-ui); }
+
+@media (min-width: 900px) {
+  .toc { position: sticky; top: var(--bar-h); max-height: calc(100vh - var(--bar-h));
+    overflow-y: auto; padding: 28px 0 40px; }
+}
+@media (max-width: 899px) {
+  .toc { display: none; padding: 10px 0 16px; border-bottom: 1px solid var(--line); }
+  .toc.open { display: block; }
+}
+
+.toc-head { margin: 0 0 10px; font-family: var(--font-ui); font-size: 11px;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); }
+.toc ul { list-style: none; margin: 0; padding: 0; }
+.toc a { display: grid; grid-template-columns: 1.4rem 1fr; gap: 8px; align-items: start;
+  padding: 9px 10px; color: var(--ink-soft); text-decoration: none; }
+.toc a .n { font-size: 12px; text-align: center; color: var(--ink-faint); }
+.toc a .t .en { display: block; }
+.toc a .t .zh { font-size: 11px; color: var(--ink-faint); }
+
+/* ---------------- cover ---------------- */
+
+.cover { padding: 44px 0 8px; }
+.kicker { margin: 0 0 18px; font-family: var(--font-zh); font-weight: 600; }
+.cover h1 { margin: 0 0 20px; font-weight: 600; }
+.cover h1 .en { display: inline; }
+.cover h1 .zh { font-weight: 400; }
+.cover-intro { font-size: 1.1rem; }
+
+.goals { margin-top: 26px; }
+.goals ol { margin: 14px 0 0; padding-left: 1.2rem; }
+.goals li { margin-bottom: 10px; }
+.goals li .en { font-size: .98rem; }
+
+/* ---------------- a passage ---------------- */
+
+.piece { padding-top: 54px; }
+
+.piece-head { margin: 0 0 16px; font-size: 1rem; font-weight: 400; }
+.piece-head .date {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: .7rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.piece-head .date em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: .02em;
+  margin-left: .6em;
+}
+.piece-head .titles .en { display: block; font-size: 1.7rem; font-weight: 600;
+  line-height: 1.18; letter-spacing: -.018em; }
+.piece-head .titles .zh { font-size: .98rem; margin-top: 6px; }
+
+.lead { margin-bottom: 22px; font-style: italic; color: var(--ink-soft); }
+.lead .zh { font-style: normal; }
+
+/* The passage itself. Everything above is set to be scanned; this is set to
+   be spoken, and the difference is mostly leading. */
+.passage { border-top: 1px solid var(--line); }
+.para { padding: 20px 0; border-bottom: 1px solid var(--line); }
+.para .en {
+  font-size: 1.2rem;
+  line-height: 1.95;
+  max-width: 32em;
+}
+.para .zh { margin-top: 10px; max-width: 32em; }
+
+/* A sentence is a target without looking like one until it is wanted. */
+.sent { position: relative; }
+.sent:hover { background: var(--gold-soft); }
+
+.say {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0 2px;
+  font-size: 13px;
+  line-height: 1;
+}
+/* Faint but always there. The first version revealed these on hover, which
+   on a phone means never: there is no hover, and `@media (hover: none)` is
+   not something to bet a control on — the emulator here reports no hover and
+   still matched the hover rule. A control the student cannot find is worse
+   than one that is slightly visible. */
+.say-tiny { font-size: 11px; opacity: .3; transition: opacity .15s; }
+.sent:hover .say-tiny,
+.say-tiny:focus-visible { opacity: .8; }
+.say-tiny:hover { opacity: 1; }
+.say-para { font-size: 15px; opacity: .6; margin-left: 4px; }
+.say-para:hover { opacity: 1; }
+
+/* ---------------- phrases worth owning ---------------- */
+
+.watch { margin-top: 28px; }
+.label { margin: 0 0 12px; font-family: var(--font-ui); }
+.cards { list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); }
+.card { padding: 12px 14px; background: var(--card); border: 1px solid var(--line); cursor: pointer; }
+.card-en { margin: 0; font-weight: 600; }
+.card-zh { margin: 4px 0 0; font-family: var(--font-zh); font-size: .84rem; color: var(--ink-soft); }
+
+/* ---------------- listening back ---------------- */
+
+.listen .piece-head .titles .en { font-size: 1.4rem; }
+.checks { list-style: none; margin: 0; padding: 0; }
+.checks li { padding: 12px 0 12px 16px; border-left: 2px solid var(--gold-line); margin-bottom: 10px; }
+.checks li .en { font-size: 1rem; }
+
+/* ---------------- panel ---------------- */
+
+.panel {
+  position: fixed;
+  z-index: 40;
+  top: calc(var(--bar-h) + 8px);
+  right: 14px;
+  width: min(22rem, calc(100vw - 28px));
+  max-height: calc(100vh - var(--bar-h) - 24px);
+  overflow-y: auto;
+  padding: 18px 20px 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  font-family: var(--font-ui);
+}
+.panel[hidden] { display: none; }
+.panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.panel-head h2 { margin: 0 0 4px; font-size: .95rem; }
+.panel-head h2 span { font-family: var(--font-zh); font-size: .8rem; font-weight: 400; color: var(--ink-faint); margin-left: 6px; }
+.panel-x { background: transparent; border: 0; color: var(--ink-faint); font-size: 15px; cursor: pointer; }
+.panel .row { margin-top: 18px; }
+.panel label { display: block; font-size: .78rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 6px; }
+.panel label em { font-family: var(--font-zh); font-style: normal; font-weight: 400; color: var(--ink-faint); margin-left: 5px; }
+.row-check { display: flex; align-items: center; gap: 9px; cursor: pointer; }
+.row-check span { font-size: .88rem; font-weight: 600; }
+.row-check em { font-family: var(--font-zh); font-style: normal; font-weight: 400; font-size: .8rem; color: var(--ink-faint); margin-left: 5px; }
+.row-check input { width: 17px; height: 17px; accent-color: var(--ink); }
+.row-note { margin: 6px 0 0; font-size: .76rem; line-height: 1.5; color: var(--ink-faint); }
+.row-note em { font-family: var(--font-zh); font-style: normal; display: block; margin-top: 2px; }
+.panel select { width: 100%; font-family: var(--font-ui); font-size: .85rem; padding: 7px 9px;
+  border: 1px solid var(--line); background: var(--card); }
+
+/* ---------------- footer ---------------- */
+
+.site-foot {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  max-width: 76rem; margin: 0 auto; padding: 28px 20px 40px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-ui); font-size: .82rem; color: var(--ink-faint);
+}
+.site-foot p { margin: 0; }
+.site-foot a { color: var(--ink-soft); margin-left: 10px; }
+
+/* ---------------- print ----------------
+
+   The point of printing this page is to read from paper, so the Chinese comes
+   with it and the interface does not. */
+
+@media print {
+  .bar, .toc, .panel, .say, .zh-chip, .site-foot { display: none !important; }
+  .shell { display: block; padding: 0; }
+  #doc { max-width: none; }
+  .zh { display: block !important; }
+  .para { break-inside: avoid; }
+  .para .en { font-size: 1.05rem; line-height: 1.8; }
+}

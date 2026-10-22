@@ -471,8 +471,8 @@ const LESSON = {
     en: 'Recording practice',
     zh: '錄音練習',
 
-    leadEn: 'Read this aloud and record yourself. Tap 🔊 on a paragraph to hear it first, then read it yourself at the same speed — not faster. Record the whole passage in one take, listen back once, and send it over.',
-    leadZh: '把這段文字唸出來並錄下自己的聲音。可以先點段落旁的 🔊 聽一次，再用同樣的速度自己唸——不要更快。整段一次錄完，自己回聽一次，再傳給我。',
+    leadEn: 'Read this aloud and record yourself. Tap 🔊 on a paragraph to hear it first, then read it yourself at the same speed — not faster. Record the whole passage in one take, listen back once, and send it over. It also has a page of its own at /recording-practice/, set larger for reading off the screen, where every sentence can be played on its own.',
+    leadZh: '把這段文字唸出來並錄下自己的聲音。可以先點段落旁的 🔊 聽一次，再用同樣的速度自己唸——不要更快。整段一次錄完，自己回聽一次，再傳給我。這段文字在 /recording-practice/ 也有自己的頁面，字放得更大、是為了對著螢幕唸而設計的，而且每一句都可以單獨播放。',
 
     hintEn: 'The Chinese is there if you need it, but read from the English.',
     hintZh: '中文是備用的，請看英文唸。',

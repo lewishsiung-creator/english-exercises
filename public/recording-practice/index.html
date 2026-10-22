@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Recording Practice</title>
+<meta name="description" content="Short passages to read aloud and record, built out of what a student has already said in class — with every sentence and every paragraph spoken on request.">
+
+<!-- This page carries one student's own account of her company's work, so it
+     is kept out of search results. It stays reachable by its URL for her. -->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Inline SVG mark: a microphone on its stand. The colours must be
+     percent-encoded — a bare "#" would be read as the URL fragment. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1a1c'/%3E%3Crect x='26' y='14' width='12' height='22' rx='6' fill='%23fbfaf8'/%3E%3Cpath d='M22 32a10 10 0 0 0 20 0' fill='none' stroke='%23b0202a' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M32 42v8' stroke='%23fbfaf8' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#fbfaf8">
+
+<link rel="stylesheet" href="style.css">
+
+<!-- The house typography, palette and interface, shared by every page in the
+     family. Linked AFTER this page's own stylesheet so they win. See
+     ../type.css, ../editorial.css and ../house.css. -->
+<link rel="stylesheet" href="../type.css">
+<link rel="stylesheet" href="../editorial.css">
+<link rel="stylesheet" href="../house.css">
+</head>
+<body>
+
+<a class="skip" href="#doc">Skip to the passages 跳到文章</a>
+
+<header class="bar">
+  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
+    <span aria-hidden="true">☰</span> Passages 文章
+  </button>
+
+  <p class="bar-title">Recording Practice <span>錄音練習</span></p>
+
+  <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="false">中文</button>
+  <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
+          aria-controls="panel" title="Teacher panel" aria-label="Teacher panel">👩‍🏫</button>
+</header>
+
+<div class="shell">
+  <div id="nav"></div>
+  <main id="doc"></main>
+</div>
+
+<!-- Teacher panel. Opens over the page rather than replacing it. -->
+<div class="panel" id="panel" role="dialog" aria-label="Teacher panel" hidden>
+  <div class="panel-head">
+    <h2>Teacher panel <span>教師面板</span></h2>
+    <button class="panel-x" id="panelClose" aria-label="Close">✕</button>
+  </div>
+
+  <label class="row row-check">
+    <input type="checkbox" id="zhAll">
+    <span>Show all Chinese <em>顯示全部中文</em></span>
+  </label>
+
+  <div class="row">
+    <label for="voicePick">Voice <em>語音</em></label>
+    <select id="voicePick"></select>
+    <p class="row-note">Used by the 🔊 buttons. Choosing one plays a sample.
+      <em>供 🔊 按鈕使用。選擇後會播放一段範例。</em></p>
+  </div>
+
+  <div class="row">
+    <label for="rate">Speed <em>速度</em></label>
+    <select id="rate">
+      <option value="0.75">Slow 慢</option>
+      <option value="0.95">Normal 正常</option>
+      <option value="1.1">Brisk 快</option>
+    </select>
+    <p class="row-note">Slow is for copying the shape of a sentence; normal is
+      the speed to record at. <em>「慢」用來模仿句子的形狀，「正常」是錄音時該有的速度。</em></p>
+  </div>
+</div>
+
+<!-- Site footer. Identical on every page, so a reader who lands on any one
+     sheet can find the rest. -->
+<footer class="site-foot">
+  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
+     aria-label="Lewis Biz English"><img src="../logo.png" alt="" width="34" height="34"></a>
+  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
+    target="_blank" rel="noopener">lewistoeic.com</a></p>
+</footer>
+
+<script src="content.js"></script>
+<script src="render.js"></script>
+</body>
+</html>
