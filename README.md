@@ -1737,6 +1737,36 @@ student: `almost` for `most` in session 1, and `I am pass on` for `I have passed
 on` in session 2, each recurring three or four times inside the same hour. A
 summary shows neither.
 
+### The redesign pilot — October 2026
+
+This page is where a new look is being tried before it goes anywhere else, at
+Lewis's request: **typography and layout after an editorial site (HBR),
+interface after Apple.** The two jobs are kept apart on purpose.
+
+Editorial decides the hierarchy. A display serif headline at `clamp(2.6rem,
+6.4vw, 4.1rem)`, set tight — `line-height: 1.03`, `letter-spacing: -.028em` —
+because display type needs less leading and less tracking than text does, and
+this is the one place on the site where that difference shows. Under it a
+standfirst a size up from the body, then a reading column cut to `40rem`. The
+date above each session title is an all-caps eyebrow in the accent red; the
+session number leaves its filled chip and sits in the margin as a quiet serif
+numeral. Boxes give way to hairlines: "How to use it" and every `note` are held
+by a 2px rule rather than a border and a fill.
+
+Apple decides the behaviour. The bar is glass — `saturate(180%) blur(20px)`
+over a 72% ground, with the saturation boost doing real work, since without it
+the red kicker turns to ash as it passes under. Controls are pills in the
+system face with one easing and one duration for everything that moves
+(`--ease`, `--fast`), cards lift instead of lighting up, and the teacher panel
+is a floating sheet that eases in.
+
+It is appended as one block at the end of
+[`public/anita/style.css`](public/anita/style.css) rather than merged into it,
+so it can be read, tuned or reverted whole. If it is kept, it gets folded in
+and the shareable parts move to [`type.css`](public/type.css) and
+[`editorial.css`](public/editorial.css) — which is the only way the other forty
+pages would ever get it, since each is its own copy.
+
 One line on the cover is not boilerplate. Anita's feedback on the homework page
 was that the generated voice lacks intonation, which is true, so the 🔊 line
 says what the audio is good for — pronunciation — and points intonation back at
