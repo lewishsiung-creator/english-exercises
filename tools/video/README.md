@@ -1,9 +1,13 @@
 # Tools for building /video/ lessons
 
-Three scripts that turn a YouTube transcript into clips on
-`public/video/content.js`, and check the result. They live here because
-they were twice written from scratch after a scratch directory was
-cleared between sessions.
+Six scripts that turn a YouTube transcript into clips on
+`public/video/content.js`, check the file is sound, and ask whether the
+lessons are any good to practise with. Alongside them in `cues/` are the
+caption files the timestamps are checked against.
+
+All of it lives here because it twice did not: the scripts were written
+from scratch twice and the cue files lost twice, after a scratch
+directory was cleared between sessions.
 
 ## The six scripts
 
@@ -12,6 +16,11 @@ Three build a video into lessons and check the file is sound:
     node tools/video/verify-times.js  cues.txt drafts.json
     node tools/video/assemble.js      pairs.json public/video/content.js
     node tools/video/check-lessons.js public/video/content.js
+
+`verify-times.js --all public/video/content.js` re-checks everything already
+shipped, using the cue files in `cues/`. It names any video without one rather
+than passing it in silence — a video with nothing to check against has not
+passed, it has been skipped.
 
 Three ask whether the lessons are any good to practise with — one per
 thing the practice modes do to a line:
@@ -23,7 +32,11 @@ thing the practice modes do to a line:
 ## The routine
 
 A new video arrives as a link plus a transcript copied from YouTube's own
-transcript panel — the captions cannot be fetched, because the endpoint is
+transcript panel. **Keep that paste**: cleaned into `cues/<videoId>.txt` it is
+the only thing the timestamps can ever be re-checked against, and twice now it
+was kept in a scratch directory and twice lost. See `cues/README.md`.
+
+The transcript comes from the panel — the captions cannot be fetched, because the endpoint is
 signature-gated and the panel is gated behind a signed-in session. Clean the
 paste into one `M:SS text` line per cue, then:
 
