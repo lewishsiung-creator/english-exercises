@@ -2338,6 +2338,38 @@ France, US) and the regulator-requested RWE study, which became a tenth story.
 Its estimand primer is the framing for the "was the method appropriate?"
 follow-up.
 
+### Winkle's Notebook — `notebook/`
+
+The pages above were each built for one thing. This one grows: lessons are
+weekly now and each produces a write-up, so an entry goes in per lesson. The
+`drill` step always stays **last** and owns no questions — it collects every
+`qa` card on the page, so a new entry lengthens the drill without being wired
+into it, and step numbers come from array order so nothing is renumbered.
+
+Entry one (21 Oct 2026) is the conversation with two VPs: seven findings with
+an action each, the career direction and the sentence missing from it, the
+question he couldn't answer turned into a method, his own English from the
+recording, thirteen collocations, the six-step way to turn a note into
+something sayable, the three cross-cultural habits (pointing at `newjob/`
+rather than repeating it), and the homework.
+
+Three block types arrived with it, all reusable:
+
+- **`part`** — a divider inside one lesson. A page built from a single topic
+  shouldn't use it.
+- **`fix`** — what he said against what to say, with an optional *more
+  specific* third line. The original is quiet rather than struck through: it
+  was understood at the time, and the point is the better version.
+- **`prompt`** — a copyable block, because a prompt you have to retype is a
+  prompt nobody uses. Falls back to selecting the text when the clipboard is
+  refused.
+
+**The `fix` rule, inherited from the other notebooks:** only lines where the
+slip is unmistakably his. The write-up this came from says it itself —
+自動轉錄不清楚的部分，不當成學員的語言錯誤 — so sentences the lesson built
+from what he *meant in Chinese* sit in a plain `sentences` block, which claims
+nothing about what he said.
+
 ### Starting the new job — `newjob/`
 
 He starts at a different pharma company on 2 November, working with a US team
