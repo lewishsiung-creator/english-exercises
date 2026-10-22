@@ -1737,35 +1737,14 @@ student: `almost` for `most` in session 1, and `I am pass on` for `I have passed
 on` in session 2, each recurring three or four times inside the same hour. A
 summary shows neither.
 
-### The redesign pilot — October 2026
+### The look, and where it lives
 
-This page is where a new look is being tried before it goes anywhere else, at
-Lewis's request: **typography and layout after an editorial site (HBR),
-interface after Apple.** The two jobs are kept apart on purpose.
-
-Editorial decides the hierarchy. A display serif headline at `clamp(2.6rem,
-6.4vw, 4.1rem)`, set tight — `line-height: 1.03`, `letter-spacing: -.028em` —
-because display type needs less leading and less tracking than text does, and
-this is the one place on the site where that difference shows. Under it a
-standfirst a size up from the body, then a reading column cut to `40rem`. The
-date above each session title is an all-caps eyebrow in the accent red; the
-session number leaves its filled chip and sits in the margin as a quiet serif
-numeral. Boxes give way to hairlines: "How to use it" and every `note` are held
-by a 2px rule rather than a border and a fill.
-
-Apple decides the behaviour. The bar is glass — `saturate(180%) blur(20px)`
-over a 72% ground, with the saturation boost doing real work, since without it
-the red kicker turns to ash as it passes under. Controls are pills in the
-system face with one easing and one duration for everything that moves
-(`--ease`, `--fast`), cards lift instead of lighting up, and the teacher panel
-is a floating sheet that eases in.
-
-It is appended as one block at the end of
-[`public/anita/style.css`](public/anita/style.css) rather than merged into it,
-so it can be read, tuned or reverted whole. If it is kept, it gets folded in
-and the shareable parts move to [`type.css`](public/type.css) and
-[`editorial.css`](public/editorial.css) — which is the only way the other forty
-pages would ever get it, since each is its own copy.
+The interface this page was used to work out — typography and layout after an
+editorial site, interface after Apple — now lives in
+[`public/house.css`](public/house.css) and is linked by all thirty-six pages in
+the family. Only one piece of it stayed behind here: `--measure: 40rem` and the
+`#doc` rule that applies it, because a column is a per-page decision
+(/english-brain/ chose 36rem, /exam-writing/ needs 48rem for its tables).
 
 One line on the cover is not boilerplate. Anita's feedback on the homework page
 was that the generated voice lacks intonation, which is true, so the 🔊 line
@@ -2535,6 +2514,48 @@ in `render.js` knows anything about health, so a new topic needs no code.
 **Both halves of every pair must be filled in.** A missing `en` is not a
 half-finished line, it is a hole for anyone reading in English only.
 
+
+## house.css — one interface for the family
+
+`type.css` gives these pages one typeface, `editorial.css` gives most of them
+one palette, and [`public/house.css`](public/house.css) gives them one
+**interface**. It was worked out on `/anita/` in October 2026 and taken
+site-wide once Lewis had looked at it. Thirty-six pages link it, last, after
+their own stylesheet.
+
+Two references, kept apart because they answer different questions. **Editorial
+(HBR)** decides what is big and what is quiet: a display serif headline set
+tight — `clamp(2.1rem, 4.6vw, 3.1rem)`, `line-height: 1.08`, `letter-spacing:
+-.022em`, because display type needs less leading and less tracking than text
+does — an all-caps eyebrow in the accent above it, a standfirst under it, and
+hairlines where there used to be boxes. **Apple** decides how it behaves: the
+bar is glass (`saturate(180%) blur(20px)` over a 72% ground, the saturation
+boost doing real work — without it an accent-coloured kicker turns to ash as it
+passes under), anything pressable is a pill in the system face, cards lift
+instead of lighting up, and everything that moves uses one easing and one
+duration.
+
+Because it is linked last it beats every page's own stylesheet, which makes it
+a blunt instrument. Three things are therefore deliberately left out:
+
+- **body size and leading.** `/jill/` and `/riva-rex/` are set larger for ten-
+  to twelve-year-olds, `/grammar/` smaller for a reference text. One body size
+  would quietly undo all of it.
+- **`--measure`.** The column is a per-page decision; pages that want the
+  narrow editorial column set it themselves.
+- **colour.** It names none. The accent is `var(--gold)` and the interactive
+  face `var(--ink)`, so `/winkle/` comes out teal, `/jill/` green and
+  `/ielts-speaking/` red, exactly as those pages intend.
+
+Not linked by the three pages for seven- to ten-year-olds, for the same reason
+they skip `type.css`. The section sub-pages under `/ielts-speaking/`,
+`/winkle/` and the dated `/business-clarity/` sheets do not link it yet either:
+they do not link `type.css` today, so pulling them in is a separate decision.
+
+One trap, paid for once: a file path written inside the opening comment with a
+star and a slash together ends the comment. It swallowed the `:root` block, and
+every radius on every page computed to zero while `--pill` resolved to nothing.
+The symptom looks like a specificity problem and is not one.
 
 ## Layout
 

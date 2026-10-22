@@ -1,0 +1,347 @@
+/* The house interface, shared by every page in the family.
+
+   type.css gives these pages one typeface; editorial.css gives most of them
+   one palette; this file gives them one INTERFACE. It was worked out on
+   /anita/ in October 2026 and taken site-wide once Lewis had looked at it.
+
+   Two references, kept apart on purpose because they answer different
+   questions:
+
+     Editorial (HBR)  decides what is big and what is quiet. A display serif
+                      headline set tight, an all-caps eyebrow in the accent
+                      above it, a standfirst under it, and hairlines where
+                      there used to be boxes.
+     Apple            decides how it behaves. Chrome recedes: the bar is glass
+                      rather than a band, anything pressable is a pill in the
+                      system face, cards lift instead of lighting up, and
+                      everything that moves uses one easing and one duration.
+
+   WHAT THIS FILE DELIBERATELY DOES NOT SET
+
+   It is linked last, so every rule in it beats the page's own stylesheet.
+   That makes it a blunt instrument, and three things are therefore left
+   alone:
+
+     - body type size and leading. /jill/ and /riva-rex/ are set larger for
+       ten- to twelve-year-olds and /grammar/ smaller for a reference text.
+       A single body size would quietly undo all of that.
+     - `--measure`. The column is a per-page decision: /english-brain/ chose
+       36rem, /exam-writing/ needs 48rem for its tables. Pages that want the
+       narrow editorial column set it themselves.
+     - colour. It uses var(--gold) for the accent and var(--ink) for the
+       interactive face, so /winkle/ comes out teal and /jill/ green, exactly
+       as those pages intend. Nothing here names a colour of its own.
+
+   NOT LINKED BY the three pages for seven- to ten-year-olds (/phonics/,
+   /phonics-handbook/, /math/), for the same reason they skip type.css: a
+   recessive grown-up interface is the wrong voice there, not a smarter one.
+   The section sub-pages under /ielts-speaking/, /winkle/ and the dated
+   /business-clarity/ sheets do not link it yet either — they do not link
+   type.css today, so they are a separate decision.
+
+   (And no path inside this comment may be written with a star and a slash
+   together: that sequence ends the comment, which once swallowed the :root
+   block below and left every radius at zero.) */
+
+:root {
+  --bar-h: 56px;
+
+  /* One easing and one duration for everything that moves. */
+  --ease: cubic-bezier(.4, 0, .2, 1);
+  --fast: .18s;
+
+  /* A control is a true pill; a card is softer than it is square. Two values,
+     used everywhere, so nothing invents a third. */
+  --pill: 980px;
+  --round: 16px;
+}
+
+/* ---------------- the bar becomes glass ----------------
+
+   It stops being a band with a border and becomes a pane the page slides
+   under. The saturation boost is what keeps colour from going grey behind the
+   blur; without it an accent-coloured kicker turns to ash as it passes. */
+
+.bar {
+  height: var(--bar-h);
+  padding: 0 clamp(16px, 3vw, 28px);
+  background: color-mix(in srgb, var(--paper) 72%, transparent);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+}
+
+.bar-title {
+  font-family: var(--font-ui);
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+.bar-title span { font-size: 12.5px; }
+
+/* Controls are pills in the system face, with a real tap target. The visible
+   height stays modest; the hit area is grown with padding, not with size. */
+.bar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -.005em;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  border: 0;
+  border-radius: var(--pill);
+  transition: background var(--fast) var(--ease), transform var(--fast) var(--ease);
+}
+.bar-btn:hover { background: color-mix(in srgb, var(--ink) 11%, transparent); }
+.bar-btn:active { transform: scale(.96); }
+.bar-btn-quiet { font-size: 15px; padding: 6px 10px; }
+.bar-btn-zh[aria-pressed="true"],
+.bar-btn[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ---------------- contents ----------------
+
+   Quieter: no panel, no fill on hover, and the current section marked by a
+   rule in the accent rather than by a coloured block. */
+
+.toc-head {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  color: var(--ink-faint);
+}
+
+.toc a {
+  position: relative;
+  border-radius: 8px;
+  padding: 9px 10px 9px 12px;
+  transition: background var(--fast) var(--ease), color var(--fast) var(--ease);
+}
+.toc a:hover { background: color-mix(in srgb, var(--ink) 4%, transparent); }
+.toc a .t .en { font-size: 13px; letter-spacing: -.005em; }
+.toc a .t .zh { font-size: 11px; }
+
+.toc a.here { background: transparent; }
+.toc a.here::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--gold);
+}
+.toc a.here .t .en { font-weight: 600; color: var(--ink); }
+
+/* ---------------- the masthead ----------------
+
+   Eyebrow, display line, standfirst. The headline is the only thing on a page
+   allowed to be this size, and it is set tight — display type needs less
+   leading and less tracking than text does, and this is the one place where
+   that difference is visible. */
+
+.cover { padding: clamp(44px, 7vw, 76px) 0 8px; }
+
+.kicker {
+  margin: 0 0 clamp(16px, 2.2vw, 24px);
+  font-size: 12px;
+  letter-spacing: .2em;
+  color: var(--gold);
+}
+
+.cover h1 {
+  margin: 0 0 clamp(18px, 2.4vw, 26px);
+  font-size: clamp(2.1rem, 4.6vw, 3.1rem);
+  line-height: 1.08;
+  font-weight: 600;
+  letter-spacing: -.022em;
+}
+.cover h1 .zh {
+  font-size: 1rem;
+  letter-spacing: 0;
+  margin-top: 12px;
+  color: var(--ink-soft);
+}
+
+/* The standfirst: one size up from the text, set looser, the way a deck sits
+   under a headline. */
+.cover-intro {
+  margin-bottom: clamp(26px, 3vw, 36px);
+  font-size: 1.16rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  letter-spacing: -.008em;
+}
+
+/* ---------------- hairlines, not boxes ----------------
+
+   What was a bordered card keeps its ground or keeps a single rule. What is
+   left to tell blocks apart is space and weight, which is what an editorial
+   page uses. */
+
+.goals {
+  padding: 0 0 0 clamp(18px, 2.4vw, 26px);
+  background: transparent;
+  border: 0;
+  border-left: 2px solid var(--gold-line);
+  border-radius: 0;
+}
+.goals-intro { font-size: .8rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.goals ul { padding-left: 1rem; }
+.goals li { margin-bottom: 8px; }
+
+.note {
+  border: 0;
+  border-left: 2px solid var(--gold-line);
+  border-radius: 0;
+  padding-left: clamp(18px, 2.4vw, 26px);
+  background: transparent;
+}
+
+.lead {
+  font-size: 1.16rem;
+  line-height: 1.6;
+  letter-spacing: -.008em;
+}
+
+.label {
+  font-family: var(--font-ui);
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+/* ---------------- controls ----------------
+
+   One shape for everything that can be pressed: a pill, in the system face,
+   that dips slightly when it is held. The 中 chip keeps its small size — it
+   trails a line of text and cannot grow without breaking the line. */
+
+.chip,
+.reveal,
+.panel-btn,
+.prompt,
+.tick,
+.step-btn {
+  font-family: var(--font-ui);
+  border-radius: var(--pill);
+  transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease),
+              transform var(--fast) var(--ease), color var(--fast) var(--ease);
+}
+.chip:active,
+.reveal:active,
+.step-btn:active,
+.panel-btn:active { transform: scale(.97); }
+
+.chip {
+  min-height: 38px;
+  padding: 8px 16px;
+  border-color: var(--rule);
+}
+.chip:hover { border-color: var(--ink); background: color-mix(in srgb, var(--ink) 4%, transparent); }
+
+.reveal, .step-btn { min-height: 34px; padding: 7px 15px; }
+
+.zh-chip { border-radius: 6px; }
+
+.prompt, .tick { border-radius: var(--round); }
+
+/* Cards lift rather than light up. */
+.card {
+  border-radius: var(--round);
+  transition: transform var(--fast) var(--ease), box-shadow var(--fast) var(--ease),
+              border-color var(--fast) var(--ease);
+}
+.card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(26, 26, 28, .07);
+}
+
+/* The teacher panel is a floating sheet: glass, a soft shadow, a bigger
+   radius, and it comes in rather than appearing. */
+.panel {
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--card) 86%, transparent);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  box-shadow: 0 20px 60px rgba(26, 26, 28, .16);
+  animation: sheet-in .22s var(--ease);
+}
+@keyframes sheet-in {
+  from { opacity: 0; transform: translateY(-6px) scale(.985); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------------- a notebook session ----------------
+
+   Only the five notebooks have these, and the rules are inert on every other
+   page. The date rides above the title as an eyebrow; the session number
+   leaves its filled chip and sits in the margin as a quiet serif numeral,
+   because on a page with a handful of sessions it was doing the work of a
+   badge for no reason. */
+
+.session-btn {
+  grid-template-columns: 2rem 1fr 1.4rem;
+  gap: 16px;
+  padding: 0 0 18px;
+  border-bottom: 1px solid var(--rule);
+  transition: border-color var(--fast) var(--ease);
+}
+.session-btn:hover { border-bottom-color: var(--ink-faint); }
+
+.session-btn .n {
+  font-family: var(--font-en);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--ink-faint);
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  margin-top: 1.1rem;
+  text-align: right;
+  font-variant-numeric: lining-nums;
+}
+
+.session-btn .date {
+  font-size: .7rem;
+  letter-spacing: .14em;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.session-btn .titles .en {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  line-height: 1.14;
+  letter-spacing: -.02em;
+}
+.session-btn .titles .zh { font-size: 1rem; margin-top: 8px; }
+.session-btn .fold { margin-top: 1.5rem; border-width: 1.5px; }
+
+/* Metadata chips become the small, soft, system-face pills Apple uses for
+   them rather than bordered tags. */
+.focus li {
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+  border: 0;
+  border-radius: var(--pill);
+  padding: 6px 13px;
+}
+
+/* ---------------- phone ---------------- */
+
+@media (max-width: 899px) {
+  .cover { padding-top: 36px; }
+  .session-btn { grid-template-columns: 1.6rem 1fr 1.2rem; gap: 12px; }
+  .session-btn .n { font-size: 1.25rem; margin-top: .9rem; }
+}
+
+@media print {
+  .card:hover { transform: none; box-shadow: none; }
+}
