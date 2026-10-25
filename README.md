@@ -2792,6 +2792,7 @@ The symptom looks like a specificity problem and is not one.
 
 ```
 public/                   Word Play — the site root
+public/404.html           the site-wide not-found page
 public/phonics/           Sound Lab, the phonics practice
 public/phonics-handbook/  自然發音學習手冊, the interactive handbook
 public/math/              Number Lab, the Grades 1–3 math practice
