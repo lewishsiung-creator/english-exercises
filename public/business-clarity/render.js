@@ -25,7 +25,7 @@ function text(s) {
 /* The button that opens one line's Chinese. Emitted only where the Chinese is
    the thing being practised — never on navigation, headings or instructions,
    which stay bilingual and need no chip. */
-const CHIP = '<button class="zh-chip" title="顯示中文">中</button>';
+const CHIP = '<button class="zh-chip" type="button" aria-expanded="false" title="顯示中文">中</button>';
 
 function chip(zh) {
   return zh ? CHIP : '';
@@ -129,7 +129,7 @@ const BLOCKS = {
       <ul class="opts">
         ${b.items.map((i) => `
           <li><span class="box"></span>
-            <span class="en">${text(i.en)}</span>
+            <span class="en">${text(i.en)}${chip(i.zh)}</span>
             <span class="zh">${text(i.zh)}</span></li>`).join('')}
       </ul>
     </div>`,
@@ -143,7 +143,7 @@ const BLOCKS = {
       <ul class="opts opts-rank">
         ${b.items.map((i) => `
           <li><span class="slot"></span>
-            <span class="en">${text(i.en)}</span>
+            <span class="en">${text(i.en)}${chip(i.zh)}</span>
             <span class="zh">${text(i.zh)}</span></li>`).join('')}
       </ul>
     </div>`,
@@ -156,9 +156,9 @@ const BLOCKS = {
         <span class="zh">${text(b.zh)}</span></h4>
       <dl class="phrase-list ${b.numbered ? 'numbered' : ''}">
         ${b.items.map((i) => `
-          <div class="phrase" title="點一下顯示中文">
+          <div class="phrase">
             <dt>${text(i.en)}${tip(i.tip)}</dt>
-            <dd class="zh">${text(i.zh)}</dd>
+            <dd>${chip(i.zh)}<span class="zh">${text(i.zh)}</span></dd>
           </div>`).join('')}
       </dl>
     </div>`,
@@ -196,7 +196,7 @@ const BLOCKS = {
       ${b.en ? pair(b.en, b.zh, 'bullets-intro', true) : ''}
       <${b.ordered ? 'ol' : 'ul'}>
         ${b.items.map((i) => `
-          <li><span class="en">${text(i.en)}</span>
+          <li><span class="en">${text(i.en)}${chip(i.zh)}</span>
           <span class="zh">${text(i.zh)}</span>${tip(i.tip)}</li>`).join('')}
       </${b.ordered ? 'ol' : 'ul'}>
     </div>`,
@@ -387,7 +387,7 @@ function buildFeedback() {
           <ul class="opts">
             ${b.items.map((i) => `
               <li><span class="box"></span>
-                <span class="en">${text(i.en)}</span>
+                <span class="en">${text(i.en)}${chip(i.zh)}</span>
                 <span class="zh">${text(i.zh)}</span></li>`).join('')}
           </ul>
           <p class="tiny">Comments 評語</p>
@@ -482,33 +482,73 @@ const store = {
 
 const zhToggle = $('#zhToggle');
 
+/* Which lines may be closed is decided by the stylesheet, which already keeps
+   the list of what stays bilingual. Reading it back here means the rule lives
+   in one place instead of two that can drift apart. */
+const HIDEABLE = [...doc.querySelectorAll('.zh')].filter(
+  (z) => z.textContent.trim()
+    && getComputedStyle(z).getPropertyValue('--hideable').trim() === '1'
+);
+
+HIDEABLE.forEach((z, i) => {
+  z.id = z.id || `zh-${i}`;
+  const c = z.parentElement.querySelector('.zh-chip')
+    || z.previousElementSibling?.querySelector?.('.zh-chip');
+  if (c) c.setAttribute('aria-controls', z.id);
+});
+
+/* `hidden="until-found"` rather than `display: none`: the line is closed, but
+   find-in-page can still match it and the browser opens it on the way. In a
+   browser without the attribute it degrades to a plain `hidden`, which is
+   exactly the old behaviour. */
+function show(z, on) {
+  if (on) z.removeAttribute('hidden');
+  else z.setAttribute('hidden', 'until-found');
+
+  const c = document.querySelector(`.zh-chip[aria-controls="${z.id}"]`);
+  if (c) c.setAttribute('aria-expanded', String(on));
+}
+
+function zhOf(host) {
+  return [...host.querySelectorAll('.zh')].filter((z) => HIDEABLE.includes(z));
+}
+
 function setAllZh(on) {
   document.body.classList.toggle('zh-all', on);
   zhToggle.setAttribute('aria-pressed', String(on));
+  HIDEABLE.forEach((z) => show(z, on));
   store.set('zh', on ? '1' : '0');
 }
 
 setAllZh(store.get('zh', '0') === '1');
 zhToggle.addEventListener('click', () => setAllZh(!document.body.classList.contains('zh-all')));
 
-/* One handler for the whole document. A chip opens the line it sits on; a row
-   in a vocabulary or option list has no chip of its own — 365 of them would be
-   clutter — so the row itself is the target. */
+/* The browser opens a line it matched during find-in-page; keep the chip's
+   state honest when that happens. */
+doc.addEventListener('beforematch', (e) => {
+  const z = e.target.closest('.zh');
+  if (z) requestAnimationFrame(() => show(z, true));
+}, true);
+
+/* One handler for the whole document. The chip is the real control — a button,
+   so it is reachable by keyboard and announced as expanded or collapsed. A tap
+   anywhere in a vocabulary or option row does the same thing, for the mouse. */
 const ROWS = '.phrase, .opts li, .bullets li, .fix';
 
 doc.addEventListener('click', (e) => {
   const chipEl = e.target.closest('.zh-chip');
   if (chipEl) {
-    // Climb to the nearest ancestor that actually holds the Chinese, whatever
-    // the block wrapped it in — a .pair, a list item, a question.
-    let host = chipEl.parentElement;
-    while (host && !host.querySelector('.zh')) host = host.parentElement;
-    if (host) host.classList.toggle('open');
+    const z = document.getElementById(chipEl.getAttribute('aria-controls'));
+    if (z) show(z, z.hasAttribute('hidden'));
     return;
   }
 
   const row = e.target.closest(ROWS);
-  if (row && row.querySelector('.zh')) row.classList.toggle('open');
+  if (!row) return;
+  const zs = zhOf(row);
+  if (!zs.length) return;
+  const open = zs[0].hasAttribute('hidden');
+  zs.forEach((z) => show(z, open));
 });
 
 /* Highlight the section being read. rootMargin pulls the trip-line up to just

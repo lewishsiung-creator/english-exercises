@@ -372,9 +372,16 @@ pricing, cash flow and recruitment to a two-minute executive introduction.
 
 - **Chinese waits behind the 中 chip**, as on the other adult pages. English
   leads in a serif at full contrast; the Traditional Chinese opens one line at
-  a time on a tap, or all at once from the 中文 switch in the bar. Vocabulary
-  rows and option lists have no chip of their own — hundreds of them would be
-  clutter — so the row itself is the target.
+  a time, or all at once from the 中文 switch in the bar. In a vocabulary list
+  the chip sits in the empty right-hand cell, where the Chinese will appear,
+  so 300 rows gain a control without gaining clutter. A tap anywhere in the
+  row works too, but the chip is the real one: a `<button>` carrying
+  `aria-expanded`, so the whole page can be worked by keyboard.
+- **Closed lines use `hidden="until-found"`, not `display: none`.** Find-in-page
+  can still match them and the browser opens the line it found. Without the
+  attribute a browser falls back to plain `hidden`, which is the old
+  behaviour. `--hideable` in the stylesheet marks which lines may close, and
+  the renderer reads it back, so the list lives in one place.
 - **Navigation, headings, labels and the front matter stay bilingual.**
   Understanding those is not the exercise; they are how she finds her place.
 - The 中文 switch persists under `bc.zh` in `localStorage`. It is a device
