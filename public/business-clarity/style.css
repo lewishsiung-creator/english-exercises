@@ -864,9 +864,11 @@ tbody td { height: 3.1rem; }
 
 .session-list { list-style: none; margin: 0; padding: 0; }
 .session-list li { margin-bottom: 10px; }
+/* Flex rather than a fixed grid: the chip is optional — the lesson cards go
+   without one — and the arrow should sit at the right edge either way. */
 .session-list a {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
+  flex-wrap: wrap;
   gap: 0 16px;
   align-items: center;
   padding: 14px 16px;
@@ -888,11 +890,12 @@ tbody td { height: 3.1rem; }
 }
 .session-t .en { font-size: .97rem; }
 .session-t .zh { font-size: .8rem; }
-.session-go { color: var(--accent); font-size: 1rem; }
+.session-t { flex: 1; min-width: 0; }
+.session-go { margin-left: auto; color: var(--accent); font-size: 1rem; }
 
 @media (max-width: 560px) {
-  .session-list a { grid-template-columns: 1fr auto; }
-  .session-t { grid-column: 1 / -1; }
+  /* The chip, where there is one, drops onto its own line above the title. */
+  .session-date { flex-basis: 100%; }
 }
 
 /* ---------------- cross-references ---------------- */

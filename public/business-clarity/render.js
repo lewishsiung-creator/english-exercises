@@ -281,7 +281,7 @@ const BLOCKS = {
       <ul class="session-list">
         ${b.items.map((i) => `
           <li><a href="${i.href}">
-            <span class="session-date">${text(i.date)}</span>
+            ${i.date ? `<span class="session-date">${text(i.date)}</span>` : ''}
             <span class="session-t"><span class="en">${text(i.en)}</span>
             <span class="zh">${text(i.zh)}</span></span>
             <span class="session-go" aria-hidden="true">→</span>

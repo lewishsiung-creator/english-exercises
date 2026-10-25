@@ -148,25 +148,21 @@ const WORKSHEET = {
           items: [
             {
               href: 'lesson-one/',
-              date: '第一堂',
               en: 'The AI business, workflow, privacy and labour regulations',
               zh: 'AI 事業、工作流程、隱私與勞動法規',
             },
             {
               href: 'lesson-two/',
-              date: '第二堂',
               en: 'Education, autonomy and responsibility',
               zh: '教育、自主與責任',
             },
             {
               href: 'lesson-three/',
-              date: '第三堂',
               en: 'Management, OKRs, accountability and leadership',
               zh: '管理、OKR、當責與領導',
             },
             {
               href: 'lesson-four/',
-              date: '第四堂',
               en: 'AI-driven HR SaaS, talent management and retention',
               zh: 'AI HR SaaS、人才管理與留才',
             },
