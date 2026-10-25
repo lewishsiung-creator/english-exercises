@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A2 Key 單字表</title>
+<meta name="description" content="Cambridge A2 Key 與 A2 Key for Schools（KET）官方單字表 2025 年 8 月版，1,727 個字，每個字都附中文，例句附中譯。可以聽發音、依主題或字母練習、翻閃卡、做小測驗。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='12' fill='%230071e3'/%3E%3Ctext x='32' y='42' font-family='Helvetica,Arial,sans-serif' font-size='26' font-weight='700' fill='white' text-anchor='middle'%3EA2%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="gnav" aria-label="網站">
+  <div class="wrap">
+    <div class="brand">A2 Key <span>單字表</span></div>
+    <div class="seg" id="modeseg" role="group" aria-label="模式">
+      <button id="m-self" data-mode="self">自學</button>
+      <button id="m-teach" data-mode="teach">教學</button>
+    </div>
+    <button id="stagebtn" class="link" aria-label="投影模式">投影</button>
+    <button id="setbtn" class="link" aria-label="設定">設定</button>
+  </div>
+</nav>
+
+<header class="opener wrap">
+  <div class="kicker">Cambridge A2 Key · Official Vocabulary List</div>
+  <h1>Every word on the A2 Key list, 1,727 of them.</h1>
+  <p class="dek">Cambridge 官方 A2 Key（KET）與 A2 Key for Schools 單字表，2025 年 8 月版。每個字都有中文，例句有中譯；可以聽發音、依主題練習、翻閃卡，也可以自我測驗。</p>
+  <details class="about">
+    <summary>關於這份字表</summary>
+    <p>英文單字、詞性、例句和 25 個主題，都照 Cambridge English 公布的 <a href="https://www.cambridgeenglish.org/images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" rel="noopener">A2 Key Vocabulary List（August 2025）</a>，© UCLES 2025。中文和例句的中譯是這個網站補上的，不是 Cambridge 官方的翻譯。</p>
+    <p>Cambridge 只在一個字有好幾個意思時才給例句，用來說明考試只考<b>哪一個</b>意思。例如 <i>bank</i> 的例句是 <i>I changed my money in the bank</i>：只考「銀行」，不考「河岸」。所以中文也只寫例句指的那個意思。</p>
+    <p>標著 <span class="new">2025 新增</span> 的 37 個字是這一版才加進來的。原表有幾處明顯的筆誤（例如 <i>chips</i> 寫成美式叫 <i>biscuit</i>），這裡改正了，點「已勘誤」可以看原表的寫法。</p>
+    <p>下面這幾類字表裡沒有一一列出，但考生也要會：</p>
+    <ul>
+      <li>數字：<i>one, two, three…</i> 到 <i>one thousand</i>；序數 <i>first, second, third…</i> 到 <i>thirty-first</i></li>
+      <li>星期、月份、四季：<i>Monday…, January…, spring, summer, autumn, winter</i></li>
+      <li>國家、語言和國籍：例如 <i>Brazil/Brazilian, Canada/Canadian, China/Chinese, France/French, Ireland/Irish, India/Indian, Italy/Italian, Spain/Spanish</i></li>
+      <li>七大洲：<i>Africa, Antarctica, Asia, Australia, Europe, North America, South America</i></li>
+    </ul>
+  </details>
+</header>
+
+<div class="lnav">
+  <div class="wrap">
+    <div class="row">
+      <div class="seg" role="group" aria-label="檢視">
+        <button data-view="list">單字表</button>
+        <button data-view="cards">閃卡</button>
+        <button data-view="quiz">測驗</button>
+      </div>
+      <div class="lv" id="scope" role="group" aria-label="範圍"></div>
+    </div>
+    <div class="row">
+      <div class="search"><input id="q" type="search" placeholder="搜尋英文或中文" autocomplete="off" aria-label="搜尋"></div>
+      <select id="topic" class="sm" aria-label="主題"></select>
+      <select id="letter" class="sm" aria-label="字母"></select>
+      <select id="markf" class="sm self-only" aria-label="標記">
+        <option value="all">全部的字</option>
+        <option value="review">還不熟的</option>
+        <option value="new">還沒標記的</option>
+        <option value="known">記住了的</option>
+      </select>
+      <button id="zhbtn" class="sm" aria-pressed="true">中文</button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap" id="main"></main>
+<nav class="rail" id="rail" aria-label="字母索引" hidden></nav>
+<div class="toast" id="toast" role="status" hidden></div>
+<section class="stage" id="stage" aria-label="投影" tabindex="-1" hidden></section>
+
+<dialog class="panel" id="panel">
+  <h2>設定</h2>
+  <label for="voice">發音</label>
+  <select id="voice"></select>
+  <label for="rate">語速 <span id="ratev"></span></label>
+  <input id="rate" type="range" min="0.6" max="1.2" step="0.05">
+  <div id="teacherflag">
+    <label>老師裝置</label>
+    <p>這台裝置會顯示「自學／教學」切換和「投影」。學生用一般連結打開時看不到這些按鈕。</p>
+    <div class="row" style="justify-content:flex-start"><button class="btn" id="unteach">在這台裝置隱藏</button></div>
+  </div>
+  <div id="teachtools">
+    <label>教學模式</label>
+    <p>教學模式不記錄任何東西。換下一位學生前，按「重新開始」把畫面和測驗清空。</p>
+    <div class="row" style="justify-content:flex-start"><button class="btn" id="fresh">重新開始</button></div>
+  </div>
+  <div id="selftools">
+    <label>自學紀錄</label>
+    <p id="markinfo"></p>
+    <div class="row" style="justify-content:flex-start"><button class="btn" id="clearmarks">清除所有標記</button></div>
+  </div>
+  <div class="row"><button class="btn primary" id="closepanel">關閉</button></div>
+</dialog>
+
+<script src="words.js"></script>
+<script src="render.js"></script>
+</body>
+</html>

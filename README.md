@@ -22,7 +22,8 @@ growing IELTS Speaking course covering all three parts at `/ielts-speaking/`,
 a semiconductor plant's own vocabulary sheet rebuilt for one-to-one adult
 lessons at `/fab-english/`,
 listening and speaking practice built on short YouTube clips at `/video/`,
-and, for 國中 students, vocabulary and grammar together at `/junior-high/`.
+for 國中 students, vocabulary and grammar together at `/junior-high/`, and
+Cambridge's whole A2 Key (KET) word list with Chinese at `/a2-key/`.
 
 One page is not English at all: `/math/` is math practice for Grades 1 to 3,
 built for a child in an American school.
@@ -1558,6 +1559,64 @@ confidentiality marking. The page keeps the words and the Chinese — ordinary
 English vocabulary — but names no company anywhere, and carries
 `noindex, nofollow`. Read the note in **Live sites** before pushing it:
 `noindex` keeps a page out of search results, it does not make the URL private.
+
+## A2 Key 單字表 — 國中, 自學 and 教學, Cambridge's official list
+
+All 1,727 headwords of Cambridge's *A2 Key and A2 Key for Schools Vocabulary
+List*, August 2025 edition: word, part of speech, Cambridge's example phrases
+(379 of them, only where a word has several meanings), the 25 topic lists, and
+the 37 words new in 2025 (green in the PDF). Built for 國中 students preparing
+for KET, so it has the two-mode shape of the 國中 pages and the machinery of the
+Linguaskill word list: 今天這一組 flashcards with a review schedule, a four-type
+quiz with no score, 投影, the A–Z rail, one link per word (`/a2-key/#borrow`).
+
+Lewis handed over the **2009** KET list first; asked, he chose Cambridge's
+current one instead. It is fetched, not kept here:
+`https://www.cambridgeenglish.org/images/506886-a2-key-2020-vocabulary-list.pdf`
+(the URL still says 2020; the file inside is August 2025).
+
+### Where the content comes from
+
+| | Source |
+| --- | --- |
+| Words, part of speech, examples, topics, 2025 flag | Cambridge's PDF, read by `tools/a2-key/extract.py` and `topics.py` into `tools/a2-key/words.json` |
+| 中文 for every sense, 中譯 for every example, the `*mark*` on the headword in each example | written for this page, in `tools/a2-key/zh.json` |
+| Corrections, labels, Br/Am lines, word links | `tools/a2-key/build.py`, which writes `public/a2-key/words.js` |
+
+`words.json` stays Cambridge's text as printed. Every change to it happens in
+`build.py`, and a corrected line keeps the original behind an 「已勘誤」 tag:
+*chips* (Cambridge prints "Am Eng: biscuit"), *practice*, *driving licence*
+("Br Eng" twice), *friend*'s example ("easy for her make friends"), and the
+parts of speech of *unfortunately* (adj) and *unhappy* (n).
+
+To rebuild after editing a gloss: `python3 tools/a2-key/build.py`. To re-read
+a new edition of the PDF, run `extract.py` then `topics.py` (both need
+`pymupdf`; see the machine notes) and check that `zh.json` still lines up item
+for item — it is matched by position, not by word.
+
+### Design notes
+
+- **The Chinese follows Cambridge's examples, not a dictionary.** Cambridge
+  gives an example only to say which meaning is tested: *bank* is 銀行, never
+  河岸; *net* is 網路; *rock* is 搖滾樂. The gloss gives that meaning and
+  nothing else, so a student does not learn senses the exam leaves out.
+- **British English first.** The list is British (colour, biscuit, lift, first
+  floor = 二樓), so the default voice is en-GB, and the Br/Am pairs are spelled
+  out under each word: 「英式英文；美式說 *cookie*」, or 「美式寫成」 where only
+  the spelling differs.
+- **Ranges instead of levels.** The Linguaskill page filters by CEFR level;
+  this list is one level, so the bar offers 全部 / 2025 新增, a topic menu and
+  a letter menu. 今天這一組 walks the whole list A to Z, twenty words a day.
+- **A quiz that fits a list with few sentences.** Only 252 words, about one
+  in seven, have a Cambridge example, so 填空 and 拼字 come up only for those, and the
+  rest split between 字義 and 聽力. A 填空's wrong options are forms taken from
+  Cambridge's other sentences with the same ending — *borrowed* gets *called /
+  shared / noted*, *stolen* gets *left / rang / fell* — so the tense never
+  gives the answer away, and no option is a made-up form like *feeled*.
+- Same rules as every 國中 page: 自學 shows the Chinese and keeps marks in the
+  browser only (`a2k.` prefix); 教學 hides it behind 中 chips and records
+  nothing; the plain URL is the student's, `#teach` once makes a device the
+  teacher's and is then removed from the address bar.
 
 ## Landscape Architecture Portfolio — a student's own work
 
