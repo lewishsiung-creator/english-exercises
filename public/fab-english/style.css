@@ -1,11 +1,24 @@
-/* Fab English — 288 plant-floor words for a working adult, driven by a teacher.
+/* Fab English — 288 plant-floor words, in a self-study half and a taught half.
 
-   Same house rules as the other adult pages (/wealth-habits/, /business-clarity/):
+   It began as the adult teacher-led pattern (/wealth-habits/,
+   /business-clarity/) and grew the two-mode shape of the 國中 pages once the
+   client wanted something to work on alone between sessions:
 
-   - English leads. Traditional Chinese sits behind a small 中 chip on every
-     word, so the learner tries the English first and the safety net is one tap
-     away. Navigation, instructions and section titles stay bilingual — those
-     are scaffolding, not comprehension practice.
+   - **自學** is the learner by themselves. The Chinese is shown — both the
+     gloss and the sentence's 中譯 — and 記住了／還不熟 marks are kept on their
+     own device.
+   - **教學** is Lewis driving a session. The Chinese goes back behind the 中
+     chips so the English is tried first, and nothing at all is recorded.
+     Anything that only belongs to self-study is `.self-only` and is simply not
+     there.
+
+   A student's link is the plain URL and has no switch on it. Opening the page
+   once with `#teach` makes that device the teacher's.
+
+   The rest is unchanged house style:
+
+   - Navigation, instructions and section titles stay bilingual in both modes —
+     those are scaffolding, not comprehension practice.
    - Interactive parts look interactive: a border and a hand cursor mean it can
      be tapped. Nothing else moves.
    - Wrong answers wobble and stay open. No score, no streak, no progress bar.
@@ -105,7 +118,7 @@ body.zh-all .zh-chip { display: none; }
 /* Lines the learner is not being tested on stay bilingual at all times:
    scaffolding that only helps if it is understood — section titles, the note
    under each title, the contents list, the practice instructions. */
-.sec-head .zh, .sec-note .zh, .toc .t .zh, .intro .zh, .drill-head .zh,
+.sec-head .zh, .sec-note .zh, .toc .t .zh, .intro .zh, .qask .zh,
 .search-note .zh { display: block; }
 
 .skip { position: absolute; left: -9999px; }
@@ -491,80 +504,199 @@ body.no-ex .word-ex { display: none; }
 .az-letter:first-child { margin-top: 4px; }
 .az-letter[hidden] { display: none; }
 
-/* ---------------- practice ----------------
+/* ---------------- the two modes ----------------
 
-   Generated from the example sentences above, so the drill can never drift
-   from the word list. Eight at a time; the button deals the next eight and
-   wraps round. Nothing is scored — a wrong tap wobbles and stays open. */
+   自學 is the learner alone and shows the Chinese; 教學 is a session Lewis
+   drives and keeps it behind the chips. Anything that only makes sense for one
+   of them is marked .self-only and simply is not there in the other. */
 
-.drill {
-  margin-top: 24px;
-  padding: 18px 20px 20px;
-  background: var(--navy-soft);
-  border: 1px solid var(--navy-line);
-  border-radius: 12px;
-}
+body.mode-teach .self-only { display: none !important; }
 
-.drill-head {
-  margin: 0 0 4px;
-  font-family: var(--font-ui);
-  font-size: .88rem;
-  font-weight: 700;
-  color: var(--navy);
-}
-.drill-head .zh { display: inline; margin-left: 6px; font-size: .92em; font-weight: 400; color: var(--navy); opacity: .8; }
-
-.drill-note {
-  margin: 0 0 16px;
-  font-family: var(--font-ui);
-  font-size: .78rem;
-  color: var(--ink-soft);
-}
-
-.gap { margin: 0 0 14px; }
-.gap:last-of-type { margin-bottom: 0; }
-
-.gap-s { margin: 0; font-size: 1rem; line-height: 1.75; }
-
-.slot {
-  display: inline-block;
-  min-width: 6.5rem;
-  text-align: center;
-  padding: 1px 8px 2px;
-  margin: 0 2px;
-  border-bottom: 2px solid var(--navy-line);
-  color: var(--ink-faint);
-  font-family: var(--font-ui);
-  font-size: .86rem;
-}
-.gap.solved .slot {
-  border-bottom-color: var(--good-line);
-  background: var(--good-soft);
-  border-radius: 5px 5px 0 0;
-  color: var(--good);
-  font-weight: 700;
-  font-family: var(--font-en);
-  font-size: 1rem;
-}
-
-.opts { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
-
-.opt {
-  font-family: var(--font-ui);
-  font-size: .84rem;
-  color: var(--ink);
-  background: var(--card);
+.seg.modeseg {
+  flex: none;
+  display: flex;
+  font-family: var(--font-zh);
   border: 1px solid var(--navy-line);
   border-radius: 8px;
-  padding: 6px 11px;
-  cursor: pointer;
+  overflow: hidden;
+  background: var(--card);
 }
-.opt:hover { background: var(--navy); border-color: var(--navy); color: #fff; }
-.opt.gone { opacity: .3; pointer-events: none; text-decoration: line-through; }
-.gap.solved .opts { display: none; }
+.seg.modeseg[hidden] { display: none; }
+.seg.modeseg button {
+  font: inherit;
+  font-size: 13px;
+  color: var(--navy);
+  background: transparent;
+  border: 0;
+  padding: 6px 12px;
+  cursor: pointer;
+  min-height: 34px;
+}
+.seg.modeseg button + button { border-left: 1px solid var(--navy-line); }
+.seg.modeseg button[aria-pressed="true"] { background: var(--navy); color: #fff; }
 
-/* A wrong tap wobbles and leaves everything open. Nothing is counted, and the
-   option stays on screen — it is the right answer to some other sentence. */
+/* the two filter dropdowns in the tools row */
+.tools .sm {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  padding: 8px 10px;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  max-width: 100%;
+}
+
+/* ---------------- 記住了 / 還不熟 ----------------
+
+   自學 only, and deliberately quiet: two small pills at the foot of a card,
+   coloured only once they are chosen. Nothing counts them up on screen — the
+   number lives in 設定, out of the way of reading. */
+
+.word .mark {
+  display: flex;
+  gap: 7px;
+  margin-top: 11px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.mk {
+  font-family: var(--font-zh);
+  font-size: .78rem;
+  color: var(--ink-faint);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 980px;
+  padding: 5px 13px;
+  cursor: pointer;
+  min-height: 30px;
+}
+.mk:hover { border-color: var(--rule); color: var(--ink-soft); }
+.mk[aria-pressed="true"] { font-weight: 600; }
+.mk-k[aria-pressed="true"] { background: var(--good-soft); border-color: var(--good-line); color: var(--good); }
+.mk-r[aria-pressed="true"] { background: var(--gold-soft); border-color: var(--gold-line); color: var(--gold); }
+
+/* A marked card carries a hairline down its left edge, so a run of them can be
+   read at a glance without the pills shouting. Scoped to 自學: a teaching
+   session shows a neutral list, never what the last person marked. */
+body.mode-self .word[data-mark="k"] { box-shadow: inset 3px 0 0 var(--good-line); }
+body.mode-self .word[data-mark="r"] { box-shadow: inset 3px 0 0 var(--gold-line); }
+
+/* ---------------- the quiz ----------------
+
+   Four kinds, a quarter each, all generated from the example sentences, so the
+   quiz can never drift from the word list. Nothing is scored: there is a
+   counter so you know how far through a round you are, and that is all. A
+   wrong answer wobbles, says what it actually means, and leaves the question
+   open. */
+
+#quiz[hidden] { display: none; }
+
+.status {
+  margin: 26px 0 12px;
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .08em;
+  color: var(--ink-faint);
+}
+
+.qcard {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 26px clamp(18px, 4vw, 32px) 28px;
+}
+
+.qtype {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.qtype em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: .04em;
+  margin-left: 7px;
+}
+
+.qask {
+  margin: 8px 0 20px;
+  font-family: var(--font-ui);
+  font-size: .86rem;
+  color: var(--ink-soft);
+}
+.qask .zh { margin-top: 2px; }
+
+.prompt { margin: 0 0 24px; }
+.prompt .w { font-size: 2rem; font-weight: 600; letter-spacing: -.01em; }
+.prompt .word-p { display: block; margin-top: 4px; font-size: .78rem; }
+.prompt .sent { font-size: 1.22rem; line-height: 1.65; text-wrap: pretty; }
+.prompt .reveal { margin-top: 14px; }
+.prompt .reveal .w { font-size: 1.5rem; }
+
+.prompt .sent .gap {
+  display: inline-block;
+  min-width: 5.5em;
+  border-bottom: 2px solid var(--ink);
+}
+.prompt .sent .gap.filled {
+  min-width: 0;
+  padding: 0 4px;
+  border-bottom-color: var(--good);
+  color: var(--good);
+  font-weight: 700;
+}
+
+.qzh { margin-top: 10px; font-size: .9rem; }
+.hint { margin: 14px 0 0; font-family: var(--font-ui); font-size: .78rem; color: var(--ink-faint); }
+
+/* An inline 中: the quiz shows a sentence's 中譯 behind its own chip, so a
+   gap-fill does not hand over the answer in Chinese before it is attempted. */
+.zhw { display: inline; }
+.zhw .zh { display: none; }
+.zhw.open .zh,
+body.zh-all .zhw .zh { display: inline; }
+body.zh-all .zhw .zh-chip { display: none; }
+
+.opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 640px) { .opts { grid-template-columns: 1fr; } }
+
+.opt {
+  text-align: left;
+  font-family: var(--font-ui);
+  font-size: .95rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  min-width: 0;
+  min-height: 48px;
+}
+.opt:hover:not(:disabled) { border-color: var(--navy-line); }
+.opt.en { font-family: var(--font-en); font-size: 1.05rem; }
+.opt.zhf { font-family: var(--font-zh); }
+.opt .why {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-zh);
+  font-size: .78rem;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}
+.opt.right { border-color: var(--good-line); background: var(--good-soft); color: var(--good); }
+.opt.wrong { border-color: var(--gold-line); background: var(--gold-soft); animation: wobble .34s ease; }
+.opt:disabled { cursor: default; }
+
+/* A wrong answer wobbles and the question stays open. Nothing is counted. */
 @keyframes wobble {
   0%, 100% { transform: translateX(0); }
   20% { transform: translateX(-5px); }
@@ -572,22 +704,82 @@ body.no-ex .word-ex { display: none; }
   60% { transform: translateX(-3px); }
   80% { transform: translateX(3px); }
 }
-.opt.wrong { animation: wobble .34s ease; border-color: var(--gold-line); background: var(--gold-soft); }
-
-.drill-more {
-  margin-top: 16px;
-  font-family: var(--font-ui);
-  font-size: .82rem;
-  font-weight: 600;
-  color: var(--navy);
-  background: var(--card);
-  border: 1px solid var(--navy-line);
-  border-radius: 8px;
-  padding: 8px 14px;
-  cursor: pointer;
+@media (prefers-reduced-motion: reduce) {
+  .opt.wrong, .spell.bad { animation: none; }
 }
-.drill-more:hover { background: var(--navy); border-color: var(--navy); color: #fff; }
-.drill-more em { font-family: var(--font-zh); font-style: normal; font-weight: 400; margin-left: 5px; opacity: .8; }
+
+.feedback { margin-top: 20px; }
+.feedback:empty { display: none; }
+.fb-w { font-size: 1.05rem; }
+.fb-w .zhf { font-family: var(--font-zh); font-size: .86rem; color: var(--ink-soft); margin-left: 8px; }
+.fb-ex { margin-top: 8px; font-size: 1rem; color: var(--ink-soft); }
+.fb-ex b { color: var(--ink); }
+.fb-zh { margin-top: 4px; font-family: var(--font-zh); font-size: .86rem; color: var(--ink-faint); }
+
+/* ---------------- 拼字題 ---------------- */
+
+.spell {
+  display: inline-block;
+  font: inherit;
+  color: inherit;
+  /* 16px minimum: Safari on iOS zooms the page for anything smaller. */
+  font-size: max(16px, 1em);
+  border: 0;
+  border-bottom: 2px solid var(--navy);
+  background: var(--navy-soft);
+  border-radius: 6px 6px 0 0;
+  padding: 0 6px;
+  min-width: 4ch;
+  max-width: 100%;
+}
+.spell:focus { outline: none; border-bottom-color: var(--ink); }
+.spell.bad { border-bottom-color: var(--gold-line); background: var(--gold-soft); animation: wobble .34s ease; }
+
+.spellrow { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 4px; }
+.spellmsg {
+  margin-top: 12px;
+  font-family: var(--font-zh);
+  font-size: .86rem;
+  color: var(--gold);
+  min-height: 1.4em;
+}
+
+/* ---------------- quiz buttons ---------------- */
+
+.btn {
+  font-family: var(--font-ui);
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 980px;
+  padding: 11px 20px;
+  cursor: pointer;
+  min-height: 44px;
+}
+.btn:hover { border-color: var(--rule); }
+.btn.primary { background: var(--navy); border-color: var(--navy); color: #fff; }
+.btn.primary:hover { filter: brightness(1.1); }
+.btn.again { background: var(--gold-soft); border-color: var(--gold-line); color: var(--gold); }
+.btn:disabled { opacity: .55; cursor: default; }
+.bigplay { font-size: 1rem; padding: 13px 24px; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+
+.qend h2 { margin: 10px 0 6px; font-size: 1.6rem; font-weight: 600; }
+.qend p { color: var(--ink-soft); font-size: .98rem; }
+.endlist { list-style: none; padding: 0; margin: 16px 0 0; }
+.endlist li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+  padding: 11px 0;
+}
+.endlist .w { font-size: 1.1rem; font-weight: 600; }
+.endlist .zhf { font-family: var(--font-zh); font-size: .86rem; color: var(--ink-soft); }
 
 /* ---------------- the empty search result ---------------- */
 
@@ -698,8 +890,28 @@ body.no-ex .word-ex { display: none; }
   .bar-title span { display: none; }
   .tools { gap: 8px; }
   .views button { padding: 8px 10px; font-size: .78rem; }
-  .drill { padding: 16px 15px 18px; }
-  .slot { min-width: 5rem; }
+  .qcard { padding: 20px 16px 22px; }
+  .prompt .sent { font-size: 1.1rem; }
+  .prompt .sent .gap { min-width: 4.5em; }
+}
+
+/* ---------------- touch ----------------
+
+   On a phone or an iPad the small controls stay the size they look, and grow
+   an invisible hit area instead: a ▶ or a 中 drawn at 44px would shout louder
+   than the word it belongs to. Same trick as the Linguaskill page. */
+
+@media (pointer: coarse) {
+  .say, .zh-chip, .mk { position: relative; }
+  .say::after, .zh-chip::after, .mk::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+  }
+  /* The card is itself a 中 target, so the chip's padded area must not swallow
+     taps meant for the card around it. */
+  .word .zh-chip::after { inset: -6px; }
+  .mk { min-height: 34px; }
 }
 
 /* ---------------- print ----------------
@@ -709,7 +921,7 @@ body.no-ex .word-ex { display: none; }
    practice goes too — on paper a tap-the-word exercise is just the answers. */
 
 @media print {
-  .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .tools, .drill,
+  .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .tools, #quiz, .mark,
   .nothing, .search-note { display: none !important; }
   body { font-size: 10.5pt; background: #fff; }
   .shell { display: block; padding: 0; }

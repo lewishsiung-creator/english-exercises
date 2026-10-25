@@ -1434,7 +1434,7 @@ Four repairs worth knowing about if something ever looks off:
   you arrive.`). It is split back off, but only when the example column came up
   empty — so a row that parsed normally can never be damaged by the repair.
 
-## Fab English — adult, teacher-led, a plant's own word list
+## Fab English — adult, 自學 and 教學, a plant's own word list
 
 The 288 words on a semiconductor plant's internal vocabulary sheet: English
 term, part of speech, Traditional Chinese gloss. A reference as much as a
@@ -1459,25 +1459,52 @@ Three things were added and are not in the source:
   | 08 | Documents, reporting and the business 文件、回報與公司業務 | 33 |
 
 - **An example sentence for every word**, written for this page, short and in
-  the word's plant sense — *"The lot is waiting in the stocker."*
-- **Practice**, eight tap-to-fill gaps per theme, and a **search** that reads
-  both the English and the Chinese.
+  the word's plant sense — *"The lot is waiting in the stocker."* — each with
+  its 中譯.
+- **A quiz** of four kinds, and a **search** that reads both the English and
+  the Chinese.
 
 The A–Z view is still one tap away in the bar, because that is the order the
 learner's own copy is in.
 
+### Two modes
+
+It began as a teacher-led page. In October 2026 the client wanted something to
+work on alone between sessions, so it grew the two-mode shape of the 國中 pages
+([[junior-high-material-design-rules]] in the memory notes):
+
+| | 自學 | 教學 |
+| --- | --- | --- |
+| Chinese | shown — gloss **and** the sentence's 中譯 | behind the 中 chips |
+| 記住了／還不熟 | kept on the learner's own device | not offered |
+| Filter by mark | 還不熟的／還沒標記／記住了的 | not offered |
+| Between students | nothing to do | 設定 → 重新開始 |
+
+**Two links, one page.** The plain URL is the student's and carries no switch
+at all. Opening the page once with `#teach` makes *that device* the teacher's
+and is remembered; the hash is then stripped from the address bar so it cannot
+be copied to a student by accident. 設定 → 「在這台裝置隱藏」 undoes it. He has
+to open `#teach` once per device.
+
 ### Design notes
 
-- **English leads, Chinese waits.** The gloss is hidden behind a 中 chip on
-  every card; the 中文 switch in the bar opens all 288 at once. The example
-  sentence stays English only — that is the part the learner should work out.
-  Section titles, notes, the contents list and the practice instructions stay
-  bilingual: scaffolding, not comprehension practice.
-- **The practice is generated, never authored.** Each gap is an example
-  sentence with its own headword cut out; the three wrong options are other
-  words from the same theme with the same part of speech, skipping any word
-  already sitting in the sentence. So the drill cannot drift from the word
-  list — edit a sentence and its question changes with it. The cost is that a
+- **English leads, Chinese waits — in 教學.** The gloss and the 中譯 are one
+  layer behind a 中 chip; the 中文 switch in the bar opens all 288 at once. In
+  自學 that layer starts open, because a learner alone has nobody to ask.
+  Section titles, notes, the contents list and the quiz instructions stay
+  bilingual in both modes: scaffolding, not comprehension practice.
+- **The 中譯 came later than the sentences.** The English examples were written
+  first, English-only on purpose. Self-study needs the sentence as well as the
+  word, so all 288 were translated when the modes went in.
+- **The quiz is generated, never authored.** Four kinds, a quarter each —
+  字義 (see the word, pick the Chinese), 填空 (the sentence with its headword
+  cut out), 聽力 (hear it, pick it from four) and 拼字 (type it in, first letter
+  given, 再給一個字母 for more). All four are built from the same example
+  sentence; the three wrong options are other words from the same theme with
+  the same part of speech, skipping any word already sitting in the sentence.
+  A round is ten questions, it respects the theme, search and mark filters, and
+  in 自學 it leaves out what is already marked 記住了. So the quiz cannot drift
+  from the word list — edit a sentence and its question changes with it. The cost is that a
   distractor is only *grammatically* plausible, not always semantically, which
   in a lesson is the interesting case anyway.
 - **Every example contains its headword verbatim**, never inflected. That is
@@ -1487,14 +1514,22 @@ learner's own copy is in.
 - **One card per word, built once.** Switching between the theme view and the
   A–Z view moves the same nodes rather than re-rendering, so a word the teacher
   has opened stays open across the switch and the search is a plain show/hide.
-- **Nothing is scored and nothing is saved.** Only the voice, the speed and the
-  Chinese switch persist. Wrong answers wobble and stay open.
-- The 👩‍🏫 panel adds one control the other adult pages do not have: **hide the
-  example sentences**, leaving the word and the Chinese, so you can ask for a
-  sentence before showing ours.
+- **Nothing is ever scored.** There is a 1 / 10 counter so you know how far
+  through a round you are, and that is all — no streak, no percentage, no
+  record of a round once it ends. Wrong answers wobble, say what the option
+  actually means, and leave the question open.
+- **What persists, and where.** The voice, the speed, the 中文 switch and
+  whether this is a teacher device are kept per device. The 記住了／還不熟 marks
+  are kept too — but only in 自學, only in that browser's `localStorage`, and
+  they never reach Lewis. 教學 records nothing at all, so one client's session
+  cannot leave anything for the next; the mark colours are hidden there too, so
+  a taught list is always neutral.
+- The ⚙ 設定 sheet shows only what the mode needs: 自學 gets the mark counts and
+  清除所有標記 (which asks twice), 教學 gets 重新開始 and **hide the example
+  sentences**, so you can ask for a sentence before showing ours.
 - **Print** gives the word list as a two-column handout with all the Chinese
-  open; the practice is dropped, since on paper a tap-the-word exercise is just
-  the answers.
+  open; the quiz and the marks are dropped, since on paper a tap-the-word
+  exercise is just the answers.
 
 ### On the source
 
@@ -2867,15 +2902,17 @@ bar, grade tabs, side nav, panel, speech, ticks, print — is section-agnostic.
 **Fab English.** Everything is in
 [`content.js`](public/fab-english/content.js): `FAB.groups`, one entry per
 theme, each with an `id`, a bilingual title and note, and a `words` array. A
-word is `{ w, p, zh, ex }` — headword, part of speech, Chinese gloss, example
-sentence. Add `k` when the form used in the sentence differs from the printed
-headword (`w: "Spec. / specification"`, `k: "spec"`).
+word is `{ w, p, zh, ex, zhEx }` — headword, part of speech, Chinese gloss,
+example sentence, its 中譯. Add `k` when the form used in the sentence differs
+from the printed headword (`w: "Spec. / specification"`, `k: "spec"`).
 
 The one rule: **`ex` must contain `w` (or `k`) verbatim, uninflected.** The
-renderer uses that match twice — to bold the word on the card, and to cut it
-out for the practice gap — so an inflected sentence silently loses both. Moving
-a word between themes is a cut and paste; the practice, the counts, the
-contents list and the A–Z view all follow. There is no question list to edit,
+renderer uses that match three times — to bold the word on the card, to cut it
+out for the 填空 gap, and to place the 拼字 input — so an inflected sentence
+silently loses all three. The headword doubles as the word's **id**, which is
+what a 記住了／還不熟 mark is stored against, so renaming one quietly drops the
+learner's mark for it. Moving a word between themes is a cut and paste; the
+quiz, the counts, the contents list and the A–Z view all follow. There is no question list to edit,
 and no script in `tools/` for this page: the source was a plain two-column PDF
 that `pypdf` reads correctly.
 
