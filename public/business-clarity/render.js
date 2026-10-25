@@ -580,6 +580,26 @@ navToggle.addEventListener('click', () => {
   navToggle.setAttribute('aria-expanded', String(open));
 });
 
+/* Back to the top. Injected here rather than written into five HTML files,
+   and only ever shown on a phone, where the contents list is behind a button
+   instead of beside the page. */
+const toTop = el(`
+  <button class="to-top" type="button" title="回到頂端 Back to top"
+          aria-label="回到頂端 Back to top">↑</button>`);
+document.body.appendChild(toTop);
+
+toTop.addEventListener('click', () => {
+  document.getElementById('top').scrollIntoView();
+  $('.bar-btn')?.focus();
+});
+
+/* One screen down is enough to have lost sight of the header. Reading
+   scrollY forces no layout and toggling a class that is already set costs
+   nothing, so this needs no throttling. */
+addEventListener('scroll', () => {
+  document.body.classList.toggle('scrolled', scrollY > innerHeight);
+}, { passive: true });
+
 function closeNav() {
   document.body.classList.remove('nav-open');
   navToggle.setAttribute('aria-expanded', 'false');

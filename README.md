@@ -391,24 +391,37 @@ pricing, cash flow and recruitment to a two-minute executive introduction.
   drawn, not typed into — the client writes on paper or talks. Screen and
   print therefore look the same, and a stray refresh cannot lose a session.
 - A contents sidebar tracks the section being read; on a phone it collapses
-  into the top bar. **Print** puts each numbered section on its own page.
+  into the top bar, and a back-to-top button appears once a screen has gone
+  by. **Print** puts each numbered section on its own page, and restores the
+  light palette so a dark-mode screen does not print pale ink onto nothing.
+- **Dark mode is a re-tint, not a second design**: the same tokens moved, with
+  the deep teal lifted to a pale one so it reads off a dark ground. Smooth
+  scrolling and every transition are dropped under `prefers-reduced-motion` —
+  forty thousand pixels is a lot of motion to force on someone.
 - **Lesson notes live alongside the worksheet.** What was actually said in a
   session — vocabulary that came up, corrections, polished versions of the
   client's own sentences — belongs with the section it relates to. Short
   write-ups go inline behind a `part` divider; a full session gets its own
-  dated page. Either way the printed worksheet and the record of the
-  discussion stay visibly separate.
+  page. Either way the printed worksheet and the record of the discussion
+  stay visibly separate.
 
 ### Session pages
 
 A session write-up can run longer than the worksheet section it hangs under,
-so each one gets a dated directory:
+so each one gets a directory of its own:
 
 ```
-public/business-clarity/2026-08-10/
-public/business-clarity/2026-08-17/
-public/business-clarity/2026-09-07/
+public/business-clarity/lesson-one/
+public/business-clarity/lesson-two/
+public/business-clarity/lesson-three/
+public/business-clarity/lesson-four/
 ```
+
+Numbered, not dated. The first write-up had no recorded date, and rather than
+leave one page out of step the dates came off all of them; the pages are
+identified by their place in the sequence and by what the lesson was about.
+`lesson-one/` also used to live inline in section 1, until that section had
+grown to a quarter of the whole page.
 
 The page shares the worksheet's `style.css` and `render.js` and supplies only
 its own `content.js`. That file leaves out `fields`, `purpose` and `feedback`
@@ -436,7 +449,7 @@ the lessons have not covered yet.
 ### The business introduction
 
 `public/business-clarity/pitch/` is the one page that is not a record. The
-dated pages say what happened on a day; this one holds the best current
+lesson pages say what happened in a session; this one holds the best current
 wording of the thing she actually takes out of the room, in three lengths —
 thirty seconds, ninety seconds, two minutes. It is rewritten as the
 explanation improves rather than re-drafted from scratch each lesson, and it
@@ -822,7 +835,7 @@ carries `noindex, nofollow` even though nothing on it names anyone: a page
 indexed at `/aaron/book-club/` would advertise that `/aaron/` exists, which is
 the one thing the notebook's own `noindex` is there to prevent. And its cover
 carries a breadcrumb back up to the notebook, the same pattern
-`/business-clarity/2026-08-10/` uses. If the guide is ever wanted as general
+`/business-clarity/lesson-two/` uses. If the guide is ever wanted as general
 material again, moving the folder back to `public/book-club/` means fixing four
 relative paths — the logo in `index.html`, the `link` block in `content.js`, and
 the two blocks that point at it from `/happy-sexy-millionaire/` and `/aaron/`.
@@ -2360,7 +2373,7 @@ settled — leave them alone:**
   candidate, his candidacy and the chapter are public facts, and the text is
   reproduced word for word — changing the name would stop it being what he
   said. **Kept.**
-- `/business-clarity/2026-08-10/` carries a lot about Lulu's primary-school-age
+- `/business-clarity/lesson-two/` carries a lot about Lulu's primary-school-age
   son — the kind of school, the piano, the baking, feeling different in an
   English class. He is never named and nothing locates him; the type of school
   is as specific as it gets. **Kept**, because that is what the lesson was
@@ -2762,7 +2775,7 @@ a blunt instrument. Three things are therefore deliberately left out:
 Not linked by the three pages for seven- to ten-year-olds, for the same reason
 they skip `type.css`. Everything else links it, section sub-pages included —
 the eight under `/ielts-speaking/`, the three under `/business-journal/`, the
-four dated `/business-clarity/` sheets and `/winkle/`'s own — which also took
+four `/business-clarity/` lesson sheets and `/winkle/`'s own — which also took
 `type.css` at the same time, since a sheet a student opens from a section
 should not be set in a different face from the section it came from.
 
@@ -2784,9 +2797,10 @@ public/phonics-handbook/  自然發音學習手冊, the interactive handbook
 public/math/              Number Lab, the Grades 1–3 math practice
 public/confidence-talk/   the 2026/07/11 class notes, ages 10–12
 public/business-clarity/  the business worksheet
-public/business-clarity/2026-08-10/  one session's notes — parenting
-public/business-clarity/2026-08-17/  one session's notes — management
-public/business-clarity/2026-09-07/  one session's notes — the HR SaaS product
+public/business-clarity/lesson-one/   one lesson's notes — the AI business
+public/business-clarity/lesson-two/   one lesson's notes — parenting
+public/business-clarity/lesson-three/ one lesson's notes — management
+public/business-clarity/lesson-four/  one lesson's notes — the HR SaaS product
 public/business-clarity/pitch/       the business introduction, three lengths
 public/grammar/           Basic English Grammar — the hub and book.js
 public/grammar/ch01/      one folder per chapter, a content file each

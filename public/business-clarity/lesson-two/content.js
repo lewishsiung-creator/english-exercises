@@ -1,4 +1,4 @@
-/* Class notes — 2026/08/10.
+/* Class notes — Lesson Two.
 
    A session page. Same shape as the worksheet's content file and rendered by
    the same ../render.js, minus the parts a worksheet needs and a session
@@ -23,8 +23,8 @@
    on the page. */
 
 const WORKSHEET = {
-  title: '2026/08/10',
-  titleZh: '課堂筆記',
+  title: 'Lesson Two',
+  titleZh: '第二堂課筆記',
 
   /* Breadcrumb: the worksheet itself, then the section this session hangs
      under. Two links rather than one, because "back" from a session page can

@@ -1,4 +1,4 @@
-/* Class notes — 2026/08/17.
+/* Class notes — Lesson Three.
 
    A session page. Same shape as the worksheet's content file and rendered by
    the same ../render.js, minus the parts a worksheet needs and a session
@@ -11,8 +11,8 @@
    Block types are documented at the top of ../content.js. */
 
 const WORKSHEET = {
-  title: '2026/08/17',
-  titleZh: '課堂筆記',
+  title: 'Lesson Three',
+  titleZh: '第三堂課筆記',
 
   crumbs: [
     { href: '../', en: 'Business Clarity', zh: '商業策略與英文表達' },
