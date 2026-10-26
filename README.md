@@ -523,6 +523,25 @@ read the map.
   version appears with the explanation and takes the speaker instead, because
   the wrong version should never be the model going into the learner's ear.
   That is the rule Anny's notebook set for its corrections.
+- **Search is on every page of both courses**, injected into the bar by
+  `search.js` rather than written into eight shells, so a new chapter folder
+  gets it by being copied. It indexes the map in `book.js` — every section
+  number, both titles, and the chapter each belongs to — not the body text,
+  which lives in per-chapter files that are only loaded when that chapter is
+  opened; indexing those would need a build step this repo does not have.
+  Titles are the index a reference actually wants.
+  - **Openable beats well-matched.** Eleven of fifteen chapters are still to
+    come, so "question" matches four unwritten titles that *begin* with the
+    word before it reaches the two written sections that merely contain it.
+    Written results sort first; the unwritten ones stay listed, struck
+    through and inert, because the map tells the truth about the book. An
+    exactly typed section number still wins outright — asking for 2-3 by name
+    should show 2-3, even to say it is not written yet.
+  - **`also` is searched but never shown.** Sentence Lab titles its units for
+    a ten-year-old — *Yesterday*, not *Simple past* — so each unit carries the
+    teacher's words for the same grammar, invisibly.
+  - Opens with the button, `/`, or ⌘K; arrows skip the results that go
+    nowhere; Esc closes and returns focus.
 - **Every chapter ends with a mixed set.** Each exercise elsewhere on the
   page sits under the heading that says what it tests, which is a large hint:
   you reach the drill already knowing the answer is about articles. The review

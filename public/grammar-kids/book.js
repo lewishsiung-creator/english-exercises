@@ -55,6 +55,7 @@ const BOOK = {
       id: 'unit01',
       en: 'Am, Is, Are',
       zh: '我是、你是、他是',
+      also: 'be verb am is are present 原級 be 動詞',
       source: { en: 'Chapter 1', zh: '原書第 1 章' },
       built: true,
       sections: [
@@ -72,6 +73,7 @@ const BOOK = {
       id: 'unit02',
       en: 'Asking Questions',
       zh: '問問題',
+      also: 'questions yes no wh what where who 問句 疑問句',
       source: { en: 'Chapter 2', zh: '原書第 2 章' },
       built: false,
       sections: [
@@ -87,6 +89,7 @@ const BOOK = {
       id: 'unit03',
       en: 'What I Do Every Day',
       zh: '我每天做的事',
+      also: 'simple present present simple frequency adverbs 現在簡單式 頻率副詞',
       source: { en: 'Chapter 3', zh: '原書第 3 章' },
       built: false,
       sections: [
@@ -102,6 +105,7 @@ const BOOK = {
       id: 'unit04',
       en: 'What I Am Doing Now',
       zh: '我現在正在做的事',
+      also: 'present progressive present continuous ing 現在進行式',
       source: { en: 'Chapter 4', zh: '原書第 4 章' },
       built: false,
       sections: [
@@ -116,6 +120,7 @@ const BOOK = {
       id: 'unit05',
       en: 'Where Things Are',
       zh: '東西在哪裡',
+      also: 'prepositions of place there is there are weather time 介系詞 地點',
       source: { en: 'Chapters 1 and 5', zh: '原書第 1、5 章' },
       built: false,
       sections: [
@@ -130,6 +135,7 @@ const BOOK = {
       id: 'unit06',
       en: 'Words for People and Things',
       zh: '人和東西的說法',
+      also: 'nouns pronouns plural possessive object 名詞 代名詞 複數 所有格',
       source: { en: 'Chapter 6', zh: '原書第 6 章' },
       built: false,
       sections: [
@@ -145,6 +151,7 @@ const BOOK = {
       id: 'unit07',
       en: 'Yesterday',
       zh: '昨天',
+      also: 'past tense simple past was were ed irregular 過去式',
       source: { en: 'Chapter 8', zh: '原書第 8 章' },
       built: false,
       sections: [
@@ -160,6 +167,7 @@ const BOOK = {
       id: 'unit08',
       en: 'Tomorrow',
       zh: '明天',
+      also: 'future tense will be going to 未來式',
       source: { en: 'Chapter 10', zh: '原書第 10 章' },
       built: false,
       sections: [
@@ -174,6 +182,7 @@ const BOOK = {
       id: 'unit09',
       en: 'Can and Can’t',
       zh: '會與不會',
+      also: 'modal ability can could 助動詞 能力',
       source: { en: 'Chapter 12', zh: '原書第 12 章' },
       built: false,
       sections: [

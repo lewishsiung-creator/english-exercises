@@ -1203,6 +1203,133 @@ body.zh-all .td-zh::after { display: none; }
 .panel-btn-quiet { color: var(--ink-soft); background: transparent; border-color: var(--line); }
 .panel-btn-quiet:hover { background: var(--paper); filter: none; }
 
+/* ---------------- course search ----------------
+
+   Injected by search.js into the bar of every page in both courses, so the
+   look is defined once here rather than in each page's own sheet. */
+
+.bar-btn-find .find-label { margin-left: 2px; }
+@media (max-width: 719px) { .bar-btn-find .find-label { display: none; } }
+
+.findwrap { position: fixed; inset: 0; z-index: 60; }
+.find-scrim { position: absolute; inset: 0; background: rgba(28, 36, 48, .3); }
+
+.findbox {
+  position: relative;
+  width: min(34rem, calc(100vw - 24px));
+  /* Near the top rather than centred: the list grows downwards, and a box
+     that recentres itself as you type is hard to read against. */
+  margin: calc(var(--bar-h) + 10px) auto 0;
+  max-height: calc(100vh - var(--bar-h) - 28px);
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(28, 36, 48, .22);
+  overflow: hidden;
+}
+
+.find-field { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+.find-icon { font-size: 17px; color: var(--ink-faint); }
+#findInput {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 6px 0;
+  min-height: 34px;
+}
+#findInput::placeholder { color: var(--ink-faint); font-family: var(--font-zh); }
+.find-x {
+  flex: none;
+  border: none;
+  background: transparent;
+  color: var(--ink-faint);
+  font-size: 15px;
+  cursor: pointer;
+  padding: 6px 8px;
+  min-width: 34px;
+  min-height: 34px;
+}
+.find-x:hover { color: var(--ink); }
+
+.find-hint {
+  margin: 0;
+  padding: 14px 16px 16px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.find-hint b { font-weight: 600; color: var(--red); }
+.find-hint .hint-zh { display: block; margin-top: 2px; }
+
+.find-results { list-style: none; margin: 0; padding: 6px; overflow-y: auto; }
+
+.find-hit {
+  display: grid;
+  grid-template-columns: 3.2rem 1fr auto;
+  align-items: baseline;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 9px;
+  cursor: pointer;
+}
+.find-hit.on { background: var(--red-soft); }
+.find-hit:hover { background: var(--red-soft); }
+
+.find-n {
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--red);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.find-en { display: block; font-size: 15.5px; line-height: 1.35; }
+.find-zh { display: block; font-family: var(--font-zh); font-size: 12.5px; color: var(--ink-soft); }
+/* Which chapter it sits in — the thing that makes a result from another
+   chapter safe to follow. */
+.find-where {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  color: var(--ink-faint);
+  margin-top: 3px;
+  /* Chapter 13's title is sixty characters before the Chinese even starts,
+     so left to wrap it makes those rows twice the height of the others and
+     the list stops scanning evenly. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.find-t { min-width: 0; }
+
+/* A section the book lists and this course has not written yet. Shown,
+   because the map tells the truth, but it goes nowhere. */
+.find-hit.todo { cursor: default; opacity: .55; }
+.find-hit.todo:hover { background: transparent; }
+.find-hit.todo .find-en { text-decoration: line-through; text-decoration-color: var(--rule); }
+.find-soon {
+  font-family: var(--font-zh);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  border: 1px dashed var(--rule);
+  border-radius: 20px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+/* The page behind must not scroll while the list is being read. */
+body.find-open { overflow: hidden; }
+
+@media print { .findwrap, .bar-btn-find { display: none !important; } }
+
 /* ---------------- tablets ----------------
 
    Between the phone and the point where the sidebar appears, main is the only
@@ -1224,9 +1351,18 @@ body.zh-all .td-zh::after { display: none; }
    chips already meet through their invisible hit areas. */
 @media (pointer: coarse) {
   .opt, .word { min-height: 44px; align-items: center; }
-  .bar-btn { min-height: 40px; }
-  .bar-btn-quiet { min-height: 40px; min-width: 40px; }
   .reveal, .panel-btn { min-height: 40px; }
+
+  /* Written as `.bar .bar-btn` rather than `.bar-btn` on purpose. house.css
+     sets these to 32px and is linked last, so a plain `.bar-btn` here loses
+     to it and the most-tapped controls on the page stayed at 32 — above the
+     24px WCAG floor but below a comfortable target. Two class names beat one
+     whatever the order. The desktop sizing house.css defines is untouched;
+     this only fires for a finger. */
+  .bar .bar-btn { min-height: 40px; }
+  .bar .bar-btn-quiet { min-height: 40px; min-width: 40px; }
+  /* Icon-only below 720px, so it needs a width of its own as well. */
+  .bar .bar-btn-find { min-width: 40px; justify-content: center; }
 }
 
 /* ---------------- print ----------------
