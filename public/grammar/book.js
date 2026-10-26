@@ -301,7 +301,7 @@ const BOOK = {
       id: 'ch15',
       en: 'Making Comparisons',
       zh: '比較的說法',
-      built: false,
+      built: true,
       sections: [
         { n: '15-1', en: 'The comparative: using -er and more', zh: '比較級：-er 與 more' },
         { n: '15-2', en: 'The superlative: using -est and most', zh: '最高級：-est 與 most' },

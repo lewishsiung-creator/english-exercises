@@ -491,6 +491,7 @@ public/grammar/
                 Using Be — all nine sections written
   ch13/         Modals, Part 2 — all nine sections written
   ch14/         Nouns and Modifiers — all eight sections written
+  ch15/         Making Comparisons — all eight sections written
 ```
 
 Adding a chapter is three steps: write `chNN/content.js`, copy any existing
@@ -2866,6 +2867,7 @@ public/grammar/           Basic English Grammar — the hub and book.js
 public/grammar/ch01/      one folder per chapter, a content file each
 public/grammar/ch13/      Modals, Part 2 — the second chapter written
 public/grammar/ch14/      Nouns and Modifiers — the third
+public/grammar/ch15/      Making Comparisons — the fourth
 public/grammar-kids/      Sentence Lab — the same course for 10–12, nine units
 public/grammar-kids/unit01/  Am, Is, Are — all seven sections written
 public/business-journal/  國際商業期刊導讀 — the hub, course.js and the shared renderer
