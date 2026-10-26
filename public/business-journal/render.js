@@ -135,11 +135,24 @@ const BLOCKS = {
       <figcaption>— ${text(b.by)}</figcaption>
     </figure>`,
 
+  /* A teaching paragraph. With `n` and `titleEn`/`titleZh` it becomes one
+     numbered point in a run of them — the shape a summary table of an
+     interview or a report takes. Without them it is a plain paragraph, which
+     is how the first two readings use it. */
   summary: (b) => `
-    <div class="summary pair" data-zh>
-      <p class="en">${text(b.en)}${speakBtn(b.en, 'say say-quiet')}
-        <button class="zh-chip" title="顯示中文">中</button></p>
-      <p class="zh">${text(b.zh)}</p>
+    <div class="summary${b.titleEn ? ' summary-point' : ''}">
+      ${b.titleEn ? `
+        <h4 class="point-head">
+          ${b.n ? `<span class="point-n">${text(b.n)}</span>` : ''}
+          <span class="titles"><span class="en">${text(b.titleEn)}</span>
+            <button class="zh-chip" title="顯示中文">中</button>
+            <span class="zh">${text(b.titleZh)}</span></span>
+        </h4>` : ''}
+      <div class="pair" data-zh>
+        <p class="en">${text(b.en)}${speakBtn(b.en, 'say say-quiet')}
+          <button class="zh-chip" title="顯示中文">中</button></p>
+        <p class="zh">${text(b.zh)}</p>
+      </div>
     </div>`,
 
   note: (b) => `
@@ -241,6 +254,10 @@ const BLOCKS = {
         </div>`).join('')}
     </div>`,
 
+  /* Cards to sort into two piles. The two button labels are the block's, not
+     the renderer's — this started life as "do you have this adviser?" and is
+     just as often "do you already do this?" — and default to the original
+     pair so the reading that introduced them keeps working untouched. */
   cards: (b) => `
     <div class="activity audit" data-act="audit">
       <h4 class="label"><span class="en">${text(b.en)}</span>
@@ -261,8 +278,8 @@ const BLOCKS = {
               <p class="zh">${text(i.descZh)}</p>
             </div>
             <div class="role-btns" role="group">
-              <button class="chip" data-v="have">I have this<em>我有這樣的人</em></button>
-              <button class="chip" data-v="need">I need this<em>我需要一位</em></button>
+              <button class="chip" data-v="yes">${text(b.yesEn || 'I have this')}<em>${text(b.yesZh || '我有這樣的人')}</em></button>
+              <button class="chip" data-v="no">${text(b.noEn || 'I need this')}<em>${text(b.noZh || '我需要一位')}</em></button>
             </div>
           </li>`).join('')}
       </ul>
@@ -377,6 +394,59 @@ const BLOCKS = {
             <p class="zh">${text(it.answer.zh)}</p>
           </div>
         </div>`).join('')}
+    </div>`,
+
+  /* Multiple choice on a reading, ported from /happy-sexy-millionaire/.
+     Built on the gap-fill with one difference that matters in a lesson: the
+     options stay on screen after the right one is found. A wrong pick fades
+     but stays readable, because "why was that one tempting?" is usually the
+     more useful question. */
+  quiz: (b) => `
+    <div class="activity quiz" data-act="quiz">
+      <h4 class="label"><span class="en">${text(b.en)}</span>
+        <button class="zh-chip" title="顯示中文">中</button>
+        <span class="zh">${text(b.zh)}</span></h4>
+      ${b.hintEn ? `<p class="hint">${text(b.hintEn)}<span class="hint-zh">${text(b.hintZh)}</span></p>` : ''}
+      ${b.items.map((it, n) => `
+        <div class="q" data-answer="${it.answer}">
+          <div class="q-line pair" data-zh>
+            <p class="en"><span class="gap-n">${n + 1}</span>
+              <span class="q-text">${text(it.en)}
+                <button class="zh-chip" title="顯示中文">中</button></span></p>
+            <p class="zh">${text(it.zh)}</p>
+          </div>
+          <ul class="qopts">
+            ${it.options.map((o, i) => `
+              <li><button class="chip qopt" data-i="${i}">${text(o)}</button></li>`).join('')}
+          </ul>
+          <p class="why"><span class="en">${text(it.why.en)}</span>
+            <span class="zh">${text(it.why.zh)}</span></p>
+        </div>`).join('')}
+    </div>`,
+
+  /* A numbered procedure — five steps, three stages — where the order is the
+     point. Each step carries a short English name, its Chinese, and a line of
+     explanation underneath. */
+  steps: (b) => `
+    <div class="steps-block">
+      <h4 class="label"><span class="en">${text(b.en)}</span>
+        <button class="zh-chip" title="顯示中文">中</button>
+        <span class="zh">${text(b.zh)}</span></h4>
+      ${b.hintEn ? `<p class="hint">${text(b.hintEn)}<span class="hint-zh">${text(b.hintZh)}</span></p>` : ''}
+      <ol class="steps">
+        ${b.items.map((it, n) => `
+          <li class="sstep">
+            <p class="sstep-n" aria-hidden="true">${n + 1}</p>
+            <div class="sstep-body">
+              <p class="sstep-name">${text(it.en)}${speakBtn(it.en, 'say say-quiet')}
+                <span class="sstep-zh">${text(it.zh)}</span></p>
+              <div class="pair" data-zh>
+                <p class="en">${text(it.descEn)}<button class="zh-chip" title="顯示中文">中</button></p>
+                <p class="zh">${text(it.descZh)}</p>
+              </div>
+            </div>
+          </li>`).join('')}
+      </ol>
     </div>`,
 
   /* A scale, soft to strong: patterns that do the same job with a different
@@ -613,6 +683,7 @@ doc.addEventListener('click', (e) => {
   const kind = act.dataset.act;
   if (kind === 'match') matchClick(act, btn);
   else if (kind === 'gap') gapClick(btn);
+  else if (kind === 'quiz') quizClick(btn);
   else if (kind === 'poll' || kind === 'audit') pickOne(btn);
   else if (kind === 'task') taskClick(act, btn);
 });
@@ -679,6 +750,23 @@ function gapClick(btn) {
     $('.slot', gap).textContent = btn.textContent;
     gap.classList.add('solved');
     btn.classList.add('done');
+  } else {
+    wobble(btn);
+    btn.classList.add('out');
+  }
+}
+
+/* Comprehension: the wrong options stay on screen and stay legible. A wrong
+   pick is dimmed rather than removed, because "why is that one tempting?" is
+   the question the teacher actually wants to ask. */
+function quizClick(btn) {
+  if (!btn.classList.contains('qopt')) return;
+  const q = btn.closest('.q');
+  if (!q || q.classList.contains('solved')) return;
+
+  if (Number(btn.dataset.i) === Number(q.dataset.answer)) {
+    btn.classList.add('done');
+    q.classList.add('solved');
   } else {
     wobble(btn);
     btn.classList.add('out');
@@ -801,6 +889,11 @@ $('#showAll').addEventListener('click', () => {
     $$('.chip', act).forEach((c) => { c.classList.remove('picked'); c.classList.add('done'); });
     $('.tally .done', act).textContent = $$('.col-a .chip', act).length;
     act.classList.add('all-done');
+  });
+
+  $$('.q:not(.solved)').forEach((q) => {
+    $$('.qopts .qopt', q)[Number(q.dataset.answer)].classList.add('done');
+    q.classList.add('solved');
   });
 
   $$('.card').forEach((c) => { c.classList.add('open'); c.setAttribute('aria-expanded', 'true'); });

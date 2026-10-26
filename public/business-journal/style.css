@@ -124,6 +124,7 @@ body.zh-all .zh-chip { display: none; }
    tap would only be in the way. */
 .hint-zh, .source .zh, .prompt .zh, .toc .t .zh, .why .zh,
 .starters .zh, .frames .zh, .tick-t .zh, .model .zh { display: block; }
+.sstep-zh, .point-n { display: block; }
 
 .pair[data-zh] { cursor: pointer; }
 .pair p { margin: 0; }
@@ -1050,6 +1051,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   .shell { display: block; padding: 0; }
   main { max-width: none; }
   .zh, .card-back, .starters, .why, .gloss, .model { display: block !important; }
+  .q.solved .qopt:not(.done) { opacity: 1; }
   .term { border-bottom: 1px solid #999; color: inherit; }
   .step { break-before: page; padding-top: 0; }
   .cards { grid-template-columns: repeat(2, 1fr); }
@@ -1708,3 +1710,117 @@ button, a, .card, .pair[data-zh], select, label { touch-action: manipulation; }
 @media print {
   .rise .step > :not(.step-head) { opacity: 1 !important; transform: none !important; }
 }
+
+/* ================================================================
+   Blocks added with No. 3 — numbered summary points, a procedure,
+   and multiple choice on a reading.
+   ================================================================ */
+
+/* ---------------- a numbered summary point ----------------
+
+   A run of these is a summary table of an interview or a report: each point
+   keeps its number and its own heading, so the eye can find point 6 without
+   counting paragraphs. A `summary` with no title is unchanged — still a plain
+   teaching paragraph, which is how the first two readings use it. */
+
+.summary-point {
+  margin: 0 0 22px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.summary-point:first-of-type { border-top: 0; padding-top: 0; }
+
+.point-head {
+  display: grid;
+  grid-template-columns: 2.1rem 1fr;
+  gap: 10px;
+  align-items: baseline;
+  margin: 0 0 8px;
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.005em;
+}
+/* The number is the series red, the way a step number is, so a point and a
+   step read as the same kind of landmark. */
+.point-n {
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+.point-head .titles .en { display: inline; }
+.point-head .titles .zh { font-size: .88rem; font-weight: 400; margin-top: 3px; }
+
+/* ---------------- a numbered procedure ----------------
+
+   Five steps, three stages: an ordered list where the order is the point.
+   The number sits in its own column so the explanations share a left edge. */
+
+.steps { list-style: none; margin: 0 0 18px; padding: 0; display: grid; gap: 10px; }
+
+.sstep {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.sstep p { margin: 0; }
+
+.sstep-n {
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+}
+
+.sstep-name { font-family: var(--font-head); font-size: 1.02rem; font-weight: 700; }
+/* Navigation-ish: the step's name is how you refer to it out loud, so its
+   Chinese is always there rather than behind the chip. */
+.sstep-zh {
+  font-family: var(--font-zh);
+  font-size: .82rem;
+  font-weight: 400;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}
+.sstep-body > .pair { margin-top: 6px; }
+.sstep-body .en { font-size: .97rem; }
+
+@media (max-width: 620px) {
+  .sstep { grid-template-columns: 1.5rem 1fr; gap: 10px; }
+}
+
+/* ---------------- multiple choice ----------------
+
+   Ported from /happy-sexy-millionaire/. Built on the gap-fill with one
+   difference that matters in a lesson: the options stay on screen after the
+   right one is found. A wrong pick fades but stays readable, because "why was
+   that one tempting?" is usually the more useful question. */
+
+.q {
+  margin: 0 0 16px;
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.q-line { margin: 0 0 10px; }
+.q-line .en { display: grid; grid-template-columns: 1.6rem 1fr; }
+.q-line .zh { margin-top: 5px; padding-left: 1.6rem; }
+.q-text { font-size: 1rem; font-weight: 600; }
+
+.qopts { list-style: none; margin: 0; padding: 0 0 0 1.6rem; display: grid; gap: 8px; }
+.qopt { width: 100%; }
+.q.solved .qopt { cursor: default; }
+.q.solved .qopt:not(.done):not(.out) { opacity: .55; }
+.q.solved .qopt:hover:not(.done) { border-color: var(--line); background: var(--card); }
+.q.solved .why { display: block; }
+.q .why { margin-left: 1.6rem; }

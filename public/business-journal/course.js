@@ -63,5 +63,16 @@ const COURSE = {
       photo: 'img/hero.jpg',
       built: true,
     },
+    {
+      id: 'focus-sprint',
+      en: 'Superhuman Focus',
+      zh: '超人專注力',
+      sourceEn: 'Dr. Sahar Yousef on The Diary Of A CEO · B1–B2+',
+      sourceZh: 'Dr. Sahar Yousef 於 The Diary Of A CEO 訪談 · B1–B2+',
+      blurbEn: 'Multitasking is a myth, the defaults were not designed for you, and a focus sprint has five steps — with twenty workplace expressions and a TOEIC-style reading.',
+      blurbZh: '多工是迷思、預設設定不是為你設計的，專注衝刺有五個步驟——另有二十個職場詞彙與一篇多益風格閱讀。',
+      photo: 'img/hero.jpg',
+      built: true,
+    },
   ],
 };

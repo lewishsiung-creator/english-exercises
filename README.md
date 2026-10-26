@@ -684,7 +684,7 @@ the whole series, a map of the readings, and a thin folder per reading.
 public/business-journal/
   course.js      the map: the series' title and intro, and every reading
   hub.js         the contents page
-  render.js      the reading renderer — fourteen block types, shared
+  render.js      the reading renderer — seventeen block types, shared
   style.css      shared by the contents page and every reading
   _template/     a working reading that uses every block type, linked from nowhere
   wealth-habits/ one folder per reading: a thin index.html, content.js and img/
@@ -840,6 +840,40 @@ one scientist's views from a media interview, some are debated, and nothing on
 the page is medical advice. Photographs are from Pexels — Maxim Sharypov, Nur
 Tok and Felicity Tai — each cropped to 16:9 around its subject rather than at
 the centre, since all three were shot upright.
+
+### No. 3 — Superhuman Focus
+
+Built from Lewis's own handout summarising a Diary Of A CEO interview with
+Dr. Sahar Yousef, a cognitive neuroscientist at UC Berkeley. Seven steps follow
+his handout: the eight ideas from the interview, digital hygiene, the focus
+sprint, twenty business expressions, a TOEIC Part 7-style reading he wrote
+himself, eight discussion questions, and the homework. His answer key supplies
+every `why`.
+
+Three more block types arrived with it:
+
+- **`quiz`** — four-option multiple choice, ported from
+  `/happy-sexy-millionaire/`. A wrong pick dims but stays on screen, because
+  "why was that one tempting?" is the more useful question.
+- **`steps`** — a numbered procedure where the order is the method. The step's
+  English name is spoken; its Chinese name sits under it permanently, since
+  that is how you refer to the step out loud.
+- **`summary` with `n` and `titleEn`/`titleZh`** — one numbered point in a run
+  of them, which is the shape an interview summary takes. A `summary` without
+  them is unchanged, which is how the first two readings use it.
+
+The `cards` audit also stopped being kitchen-cabinet-specific: its two button
+labels are now the block's (`yesEn`/`yesZh`, `noEn`/`noZh`) and default to the
+original "I have this / I need this", so No. 1 is untouched. This reading uses
+two audits with different labels — "I already do this / I'll try this" for the
+four digital-hygiene practices, "That's me / Not me" for the three chronotypes.
+
+**One thing in the reading is load-bearing: `peak` is deliberately not in the
+passage glossary**, because question 5 tests exactly that word against `peek`.
+Glossing it would hand over the answer.
+
+Photographs are from Pexels — Mizuno K, Lê Mạnh Tuấn and UMUT — each cropped to
+16:9 around its subject.
 
 ## Happy Sexy Millionaire — adult, teacher-led reading
 
@@ -2947,6 +2981,7 @@ public/grammar-kids/unit01/  Am, Is, Are — all seven sections written
 public/business-journal/  國際商業期刊導讀 — the hub, course.js and the shared renderer
 public/business-journal/wealth-habits/  No. 1, Three Habits — content.js and img/
 public/business-journal/better-day/     No. 2, Protocols for a Better Day — content.js and img/
+public/business-journal/focus-sprint/   No. 3, Superhuman Focus — content.js and img/
 public/business-journal/_template/      a reading that uses every block type
 public/wealth-habits/     a redirect: the three-habits lesson's old URL
 public/happy-sexy-millionaire/  the business-English reading lesson
@@ -3128,9 +3163,10 @@ file.
 `public/business-journal/<id>/content.js` — the first is
 [`wealth-habits/content.js`](public/business-journal/wealth-habits/content.js) —
 one entry per step. Every string is an `en`/`zh` pair. The block types — quote,
-summary, phrase cards, matching, gap fill, poll, cards, discussion, task, and
-the passage, model-answer checks and advice scale that came with No. 2 — are
-listed at the top of
+summary, phrase cards, matching, gap fill, poll, cards, discussion, task, the
+passage, model-answer checks and advice scale that came with No. 2, and the
+multiple-choice quiz, numbered steps and titled summary points that came with
+No. 3 — are listed at the top of
 [`_template/content.js`](public/business-journal/_template/content.js), which
 uses each once, and each is one function in the shared
 [`render.js`](public/business-journal/render.js).
