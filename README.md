@@ -550,6 +550,40 @@ Three things are specific here:
 - **The Chinese setting is shared across the whole course**, under `beg.*` in
   `localStorage` — a teacher who turns it on for a client should not turn it on
   again in every chapter. It is a device setting; no lesson state is kept.
+### Irregular Verbs — the reference page
+
+`/grammar/verbs/` is the book's 64 irregular verbs, and the first page here
+that is a reference rather than a lesson. It does not use the chapter
+renderer: that builds a chapter out of `book.js` and a content file, and this
+is neither. It shares the look and the house rules, and nothing else.
+
+- **The grouping is this page's own, and says so.** The book's list is
+  alphabetical, which is how you look a verb up and the worst way to learn
+  sixty-four of them. So the default view is nine groups by what the past form
+  actually does — the seven that do not change, the six that rhyme on -ought
+  and -aught, i becoming a, the -ew four, the ten that take an o, the -t and
+  -d endings, the -old/-ood/-ound set, and the thirteen that are simply
+  themselves. A–Z is one tap away, because a reference list has to work as a
+  reference.
+- **No past participle column.** The book's list at this level has two
+  columns, because the present perfect is not in this book. A third would
+  teach a tense the course has not reached.
+- **Two verbs tell the voice what to say.** `sayPast` overrides the spoken
+  form for *read*, whose spelling does not change but whose sound does, and
+  for *be*, whose past is two words. Without it the 🔊 on *read* teaches the
+  wrong pronunciation, which is worse than silence.
+- **The search box is the one input field in this course.** It matches the
+  present form, the past form or the Chinese, so a teacher can type what the
+  student just said in either language. The rule these pages follow is that a
+  learner never types an *answer* — not that no page may have a field.
+- The meanings are covered by a drawn rule until a row is tapped, so the table
+  is a self-test in either direction. **Print** opens them all.
+- The speech engine, the Chinese toggle and the teacher panel are written out
+  again in this page's own `render.js` rather than imported — about sixty
+  lines, against refactoring a renderer two live courses depend on. If the
+  appendices become a third page of this kind, that is when the three should
+  be pulled into a shared file.
+
 ### Sentence Lab — the same course for ten- to twelve-year-olds
 
 `/grammar-kids/` is the tween version, and it is the same machinery: its own
@@ -2868,6 +2902,7 @@ public/grammar/ch01/      one folder per chapter, a content file each
 public/grammar/ch13/      Modals, Part 2 — the second chapter written
 public/grammar/ch14/      Nouns and Modifiers — the third
 public/grammar/ch15/      Making Comparisons — the fourth
+public/grammar/verbs/     Irregular Verbs — the reference page, 64 verbs
 public/grammar-kids/      Sentence Lab — the same course for 10–12, nine units
 public/grammar-kids/unit01/  Am, Is, Are — all seven sections written
 public/business-journal/  國際商業期刊導讀 — the hub, course.js and the shared renderer

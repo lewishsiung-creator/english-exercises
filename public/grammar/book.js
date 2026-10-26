@@ -322,7 +322,7 @@ const BOOK = {
       id: 'verbs',
       en: 'Irregular Verbs',
       zh: '不規則動詞總表',
-      built: false,
+      built: true,
       note: {
         en: 'The seven groups of Chapters 8 and 9, gathered into one searchable list that speaks.',
         zh: '第八、九章分成七組的不規則動詞，整理成一份可搜尋、可發音的清單。',

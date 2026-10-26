@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Irregular Verbs · 不規則動詞總表</title>
+<meta name="description" content="The 64 irregular verbs of Basic English Grammar, grouped by what the past form does, searchable, with Traditional Chinese and every form spoken.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23a82f3c'/%3E%3Crect x='13' y='21' width='16' height='5' rx='2.5' fill='%23ffffff' opacity='.55'/%3E%3Crect x='35' y='21' width='16' height='5' rx='2.5' fill='%23f2c14e'/%3E%3Crect x='13' y='33' width='16' height='5' rx='2.5' fill='%23ffffff' opacity='.4'/%3E%3Crect x='35' y='33' width='16' height='5' rx='2.5' fill='%23f2c14e' opacity='.6'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f6f2">
+
+<!-- The course stylesheet carries every rule; style.css below adds only what
+     a table of verbs needs. -->
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="style.css">
+
+<!-- The house typography and the house interface, as on every page here.
+     Linked after this page's own sheets so they win. -->
+<link rel="stylesheet" href="../../type.css">
+<link rel="stylesheet" href="../../house.css">
+</head>
+<body>
+
+<a class="skip" href="#doc">Skip to the verbs</a>
+
+<header class="bar">
+  <p class="bar-title">
+    <a class="bar-home" href="../" aria-label="All chapters · 全書目錄"
+       title="All chapters 全書目錄"><span class="home-txt">Basic English Grammar</span></a>
+    <span class="bar-chap"><b>不規則動詞</b></span>
+  </p>
+
+  <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="false">中文</button>
+  <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
+          aria-controls="panel" title="Teacher panel" aria-label="Teacher panel">👩‍🏫</button>
+</header>
+
+<div class="shell shell-wide">
+  <main id="doc"></main>
+</div>
+
+<!-- Teacher panel. Opens over the page rather than replacing it. -->
+<div class="panel" id="panel" role="dialog" aria-label="Teacher panel" hidden>
+  <div class="panel-head">
+    <h2>Teacher panel <span>教師面板</span></h2>
+    <button class="panel-x" id="panelClose" aria-label="Close">✕</button>
+  </div>
+
+  <label class="row row-check">
+    <input type="checkbox" id="zhAll">
+    <span>Show all Chinese <em>顯示全部中文</em></span>
+  </label>
+
+  <div class="row">
+    <button class="panel-btn" id="sayAll">Read the group aloud</button>
+    <p class="row-note">Speaks every verb in the group you are looking at,
+      present then past, with a pause between. Press again to stop.</p>
+  </div>
+
+  <div class="row">
+    <label for="voicePick">Voice</label>
+    <select id="voicePick"></select>
+    <p class="row-note">Used by the 🔊 buttons. Choosing one plays a sample.</p>
+  </div>
+
+  <div class="row">
+    <label for="rate">Speed</label>
+    <select id="rate">
+      <option value="0.75">Slow</option>
+      <option value="0.9">Normal</option>
+      <option value="1.05">Brisk</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <button class="panel-btn panel-btn-quiet" id="reset">Reset for the next student</button>
+    <p class="row-note">Clears the search and closes the meanings. Your voice
+      and Chinese settings stay.</p>
+  </div>
+</div>
+
+<!-- Site footer. Identical on every page, so a reader who lands on any one
+     sheet can find the rest. -->
+<footer class="site-foot">
+  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
+     aria-label="Lewis Biz English"><img src="../../logo.png" alt="" width="34" height="34"></a>
+  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
+    target="_blank" rel="noopener">lewistoeic.com</a></p>
+</footer>
+
+<script src="verbs.js"></script>
+<script src="render.js"></script>
+</body>
+</html>
