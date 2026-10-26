@@ -523,6 +523,26 @@ read the map.
   version appears with the explanation and takes the speaker instead, because
   the wrong version should never be the model going into the learner's ear.
   That is the rule Anny's notebook set for its corrections.
+- **Every chapter ends with a mixed set.** Each exercise elsewhere on the
+  page sits under the heading that says what it tests, which is a large hint:
+  you reach the drill already knowing the answer is about articles. The review
+  has no heading to lean on and its items are new rather than repeats —
+  recognising a question you have already answered is not retrieving the rule.
+  Each explanation names the section it came from, so a wrong answer is a
+  short reading list. It lives in `CHAPTER.review`, mirroring `CHAPTER.opening`
+  at the other end.
+- **Printing gives two documents out of one stylesheet**, which is the trick
+  /robot-helper/ uses. Untouched, the page prints a blank worksheet: blanks
+  are rules to write on, word pools are there to be arranged, and no answer
+  or explanation appears. Press *Reveal every answer* first and the same page
+  prints the key, labelled as one so it cannot be handed out by accident.
+  Before this, printing revealed the answers on the way out, so the only
+  document obtainable was the key.
+- **The quiet text tier was measured and failed.** `--ink-faint` was 2.8:1 on
+  the paper — under the 4.5:1 WCAG AA floor, and it was the colour carrying
+  every Chinese hint, the layer the weakest reader needs most. It is #68707e
+  and 4.7:1 now, and the gold of the trap-note headings went the same way.
+  All 64 text styles on a chapter page pass, the tightest at 4.6:1.
 - **Two ways to be wrong, because four options cannot test word order.**
   `mcq` is a sentence with one blank; `order` gives the Chinese and a pool of
   words to tap into place. Word order is what actually goes wrong for a

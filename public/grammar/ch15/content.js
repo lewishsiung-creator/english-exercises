@@ -103,6 +103,107 @@ const CHAPTER = {
     },
   ],
 
+  /* The mixed set. New items, no section headings to lean on, and every
+     explanation names the section it came from. */
+  review: [
+    {
+      t: 'lead',
+      en: 'No headings here. Each question could be about any part of the chapter, which is how the grammar actually arrives when you are speaking.',
+      zh: '這裡沒有小節標題。每一題都可能考這一章的任何一個部分——你在說話的時候，文法就是這樣出現的。',
+    },
+    {
+      t: 'mcq',
+      en: 'Mixed practice',
+      zh: '混合練習',
+      hintEn: 'Each answer says which section it came from, so a wrong one is a short reading list.',
+      hintZh: '每個解說都會指出是哪一節，所以答錯等於拿到一份簡短的複習清單。',
+      items: [
+        {
+          text: 'My sister is ___ than me.',
+          options: ['older', 'more old', 'more older'],
+          answer: 0,
+          why: { en: 'One syllable takes -er, and only one change. 15-1.', zh: '單音節加 -er，而且只能改一次。15-1。' },
+        },
+        {
+          text: 'Health is ___ than money.',
+          options: ['more important', 'importanter', 'more importanter'],
+          answer: 0,
+          why: { en: 'Three syllables, so more in front. 15-1.', zh: '三個音節，前面加 more。15-1。' },
+        },
+        {
+          text: 'That was ___ meeting of the year.',
+          options: ['the longest', 'longest', 'the most long'],
+          answer: 0,
+          why: { en: 'A superlative keeps its the. 15-2.', zh: '最高級要保留 the。15-2。' },
+        },
+        {
+          text: 'Taipei is one of ___ in Taiwan.',
+          options: ['the biggest cities', 'the biggest city', 'biggest cities'],
+          answer: 0,
+          why: { en: 'One of needs the and a plural noun. 15-3.', zh: 'one of 需要 the 和複數名詞。15-3。' },
+        },
+        {
+          text: 'We arrived ___ than the Smiths did.',
+          options: ['earlier', 'more early', 'more earlily'],
+          answer: 0,
+          why: { en: 'Early ends in -ly and still takes -er. 15-4.', zh: 'early 以 -ly 結尾卻還是加 -er。15-4。' },
+        },
+        {
+          text: 'My phone is the same ___ yours.',
+          options: ['as', 'to', 'from'],
+          answer: 0,
+          why: { en: 'The same takes as. 15-5.', zh: 'the same 搭配 as。15-5。' },
+        },
+        {
+          text: 'This report is similar ___ last year’s.',
+          options: ['to', 'as', 'with'],
+          answer: 0,
+          why: { en: 'Similar takes to. 15-5.', zh: 'similar 搭配 to。15-5。' },
+        },
+        {
+          text: 'Our books are ___.',
+          options: ['alike', 'like', 'a like'],
+          answer: 0,
+          why: { en: 'Nothing follows, so alike. 15-6.', zh: '後面沒有東西，所以用 alike。15-6。' },
+        },
+        {
+          text: 'The room was cold ___ the coffee was hot.',
+          options: [', but', ' but', ', and'],
+          answer: 0,
+          why: { en: 'A full clause follows, so a comma. 15-7.', zh: '後面是完整子句，所以要逗號。15-7。' },
+        },
+        {
+          text: 'Maria didn’t come, but Alex ___.',
+          options: ['did', 'does', 'was'],
+          answer: 0,
+          why: { en: 'The past stays the past. 15-8.', zh: '過去式維持過去式。15-8。' },
+        },
+      ],
+    },
+    {
+      t: 'order',
+      en: 'Build the sentence',
+      zh: '造句',
+      items: [
+        {
+          cue: '火車比公車貴。',
+          answer: ['The', 'train', 'is', 'more', 'expensive', 'than', 'the', 'bus.'],
+          why: { en: 'More, the adjective, then than. 15-1.', zh: 'more、形容詞，然後 than。15-1。' },
+        },
+        {
+          cue: '新系統和舊的完全不同。',
+          answer: ['The', 'new', 'system', 'is', 'different', 'from', 'the', 'old', 'one.'],
+          why: { en: 'Different needs no the but does need from. 15-5.', zh: 'different 前面不用 the，後面一定要有 from。15-5。' },
+        },
+        {
+          cue: '我完成了報告，但我同事沒有。',
+          answer: ['I', 'finished', 'the', 'report,', 'but', 'my', 'colleague', 'didn’t.'],
+          why: { en: 'The short verb matches the first half’s tense. 15-8.', zh: '縮短的動詞要和前半句時態一致。15-8。' },
+        },
+      ],
+    },
+  ],
+
   sections: [
     // ============================================================== 15-1
     {

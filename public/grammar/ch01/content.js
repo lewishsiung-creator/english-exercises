@@ -109,6 +109,107 @@ const CHAPTER = {
     },
   ],
 
+  /* The mixed set. New items, no section headings to lean on, and every
+     explanation names the section it came from. */
+  review: [
+    {
+      t: 'lead',
+      en: 'No headings here. Each question could be about any part of the chapter, which is how the grammar actually arrives when you are speaking.',
+      zh: '這裡沒有小節標題。每一題都可能考這一章的任何一個部分——你在說話的時候，文法就是這樣出現的。',
+    },
+    {
+      t: 'mcq',
+      en: 'Mixed practice',
+      zh: '混合練習',
+      hintEn: 'Each answer says which section it came from, so a wrong one is a short reading list.',
+      hintZh: '每個解說都會指出是哪一節，所以答錯等於拿到一份簡短的複習清單。',
+      items: [
+        {
+          text: 'My colleagues ___ in the meeting room.',
+          options: ['are', 'is', 'am'],
+          answer: 0,
+          why: { en: 'Plural subject, so are. 1-2 and 1-4.', zh: '複數主詞，用 are。1-2 與 1-4。' },
+        },
+        {
+          text: 'She is ___ engineer.',
+          options: ['an', 'a', '—'],
+          answer: 0,
+          why: { en: 'A singular job needs an article, and engineer opens with a vowel sound. 1-3.', zh: '單數職業前面要有冠詞，而 engineer 以母音開頭。1-3。' },
+        },
+        {
+          text: 'Ken and Lisa ___ absent today.',
+          options: ['are', 'is', 'am'],
+          answer: 0,
+          why: { en: 'Two nouns joined by and are plural. 1-4.', zh: '用 and 連接的兩個名詞是複數。1-4。' },
+        },
+        {
+          text: 'I ___ ready yet.',
+          options: ['am not', 'amn’t', 'not am'],
+          answer: 0,
+          why: { en: 'I takes am, not follows it, and am not has no contraction. 1-6.', zh: 'I 搭配 am，not 跟在後面，而 am not 沒有縮寫。1-6。' },
+        },
+        {
+          text: '___ a long report.',
+          options: ['It’s', 'Its', 'It is’'],
+          answer: 0,
+          why: { en: 'It is, contracted. Without the apostrophe it means belonging to it. 1-5.', zh: 'it is 的縮寫。少了撇號就變成「它的」。1-5。' },
+        },
+        {
+          text: 'The babies are ___.',
+          options: ['small', 'smalls', 'a small'],
+          answer: 0,
+          why: { en: 'An adjective has no plural and takes no article. 1-7.', zh: '形容詞沒有複數，也不加冠詞。1-7。' },
+        },
+        {
+          text: 'My bag is ___.',
+          options: ['upstairs', 'at upstairs', 'in upstairs'],
+          answer: 0,
+          why: { en: 'A one-word place takes no preposition. 1-8.', zh: '單字地點前面不加介系詞。1-8。' },
+        },
+        {
+          text: 'Dogs and cats are ___.',
+          options: ['animals', 'animal', 'an animals'],
+          answer: 0,
+          why: { en: 'Plural subject, plural noun after be. 1-4.', zh: '複數主詞，be 後面的名詞也要複數。1-4。' },
+        },
+        {
+          text: '“We are in class.” After be comes ___.',
+          options: ['a place', 'a noun', 'an adjective'],
+          answer: 0,
+          why: { en: 'In class is a preposition and a noun: an expression of place. 1-9.', zh: 'in class 是介系詞加名詞，表示地點。1-9。' },
+        },
+        {
+          text: 'Which one is NOT possible?',
+          options: ['I aren’t', 'I’m not', 'I am not'],
+          answer: 0,
+          why: { en: 'Aren’t belongs to you, we and they. 1-6.', zh: 'aren’t 屬於 you、we、they。1-6。' },
+        },
+      ],
+    },
+    {
+      t: 'order',
+      en: 'Build the sentence',
+      zh: '造句',
+      items: [
+        {
+          cue: '我同事是工程師。',
+          answer: ['My', 'colleague', 'is', 'an', 'engineer.'],
+          why: { en: 'The article is the word Chinese does not have. 1-3.', zh: '冠詞是中文沒有的那個字。1-3。' },
+        },
+        {
+          cue: '她今天不在辦公室。',
+          answer: ['She', 'isn’t', 'in', 'the', 'office', 'today.'],
+          why: { en: 'Isn’t already contains not, then a place. 1-6 and 1-8.', zh: 'isn’t 裡面已經有 not，後面接地點。1-6 與 1-8。' },
+        },
+        {
+          cue: '台北和東京是城市。',
+          answer: ['Taipei', 'and', 'Tokyo', 'are', 'cities.'],
+          why: { en: 'Two names joined by and, so are — and city becomes cities. 1-4.', zh: '兩個名稱用 and 連接，所以用 are——而 city 變成 cities。1-4。' },
+        },
+      ],
+    },
+  ],
+
   sections: [
     // ============================================================== 1-1
     {

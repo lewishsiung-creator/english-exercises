@@ -28,6 +28,107 @@ const CHAPTER = {
     zh: '建議、必要、請求、提議——這四件事你每天在職場上都在做，而這四個地方，一個小小的用字就會改變你聽起來的樣子。這一章的文法很簡單：幾乎全部都接原形動詞。難的是判斷，因為 must 和 should 都對，但只有一個能讓你得到你想要的結果。',
   },
 
+  /* The mixed set. New items, no section headings to lean on, and every
+     explanation names the section it came from. */
+  review: [
+    {
+      t: 'lead',
+      en: 'No headings here. Each question could be about any part of the chapter, which is how the grammar actually arrives when you are speaking.',
+      zh: '這裡沒有小節標題。每一題都可能考這一章的任何一個部分——你在說話的時候，文法就是這樣出現的。',
+    },
+    {
+      t: 'mcq',
+      en: 'Mixed practice',
+      zh: '混合練習',
+      hintEn: 'Each answer says which section it came from, so a wrong one is a short reading list.',
+      hintZh: '每個解說都會指出是哪一節，所以答錯等於拿到一份簡短的複習清單。',
+      items: [
+        {
+          text: 'You ___ wear a badge in the building. (a written rule)',
+          options: ['must', 'must to', 'musts'],
+          answer: 0,
+          why: { en: 'Must takes the base form, and a written rule is where must belongs. 13-3.', zh: 'must 接原形動詞，書面規則正是 must 的場合。13-3。' },
+        },
+        {
+          text: 'She ___ work on Saturdays.',
+          options: ['has to', 'have to', 'has'],
+          answer: 0,
+          why: { en: 'She takes has to — the one expression here that agrees with its subject. 13-2.', zh: 'she 搭配 has to——這是本章唯一會跟主詞一致的用法。13-2。' },
+        },
+        {
+          text: 'You ___ come if you are tired. (it is not necessary)',
+          options: ['don’t have to', 'must not', 'should not'],
+          answer: 0,
+          why: { en: 'Not necessary, and the choice is theirs. 13-3.', zh: '不必要，選擇在對方。13-3。' },
+        },
+        {
+          text: '___ you please open the door?',
+          options: ['Could', 'Do', 'Should'],
+          answer: 0,
+          why: { en: 'Could you and would you make polite requests. 13-5.', zh: 'could you 與 would you 用於客氣請求。13-5。' },
+        },
+        {
+          text: 'You want to borrow a pen yourself. You say:',
+          options: ['Could I borrow your pen?', 'Could you borrow your pen?', 'I could borrow your pen.'],
+          answer: 0,
+          why: { en: 'Could I asks for yourself; could you asks the other person. 13-4 and 13-5.', zh: 'could I 是為自己請求，could you 是請對方做。13-4 與 13-5。' },
+        },
+        {
+          text: '___ late.',
+          options: ['Don’t be', 'Not be', 'Be not'],
+          answer: 0,
+          why: { en: 'A negative imperative is don’t plus the base form. 13-6.', zh: '否定祈使句是 don’t 加原形動詞。13-6。' },
+        },
+        {
+          text: 'She ___ come tomorrow. (future and ability together)',
+          options: ['will be able to', 'will can', 'can will'],
+          answer: 0,
+          why: { en: 'Two modals cannot stack. 13-7.', zh: '兩個情態助動詞不能疊在一起。13-7。' },
+        },
+        {
+          text: 'I ___ work late last night.',
+          options: ['had to', 'have to', 'must'],
+          answer: 0,
+          why: { en: 'Must has no past form, which is why had to exists. 13-2 and 13-8.', zh: 'must 沒有過去式，這就是 had to 存在的原因。13-2 與 13-8。' },
+        },
+        {
+          text: '___ start with the numbers.',
+          options: ['Let’s', 'Lets', 'Let’s to'],
+          answer: 0,
+          why: { en: 'Let’s is let us, and the apostrophe stands for the missing u. 13-9.', zh: 'let’s 就是 let us，撇號代表被省略的 u。13-9。' },
+        },
+        {
+          text: 'Which one is NOT a modal auxiliary?',
+          options: ['have to', 'should', 'might'],
+          answer: 0,
+          why: { en: 'Have to is a similar expression, which is why it changes form. 13-7.', zh: 'have to 是類似用法，所以它會變化。13-7。' },
+        },
+      ],
+    },
+    {
+      t: 'order',
+      en: 'Build the sentence',
+      zh: '造句',
+      items: [
+        {
+          cue: '你在會議中不可以接電話。',
+          answer: ['You', 'must', 'not', 'take', 'calls', 'in', 'the', 'meeting.'],
+          why: { en: 'Not after must, verb stays bare. 13-3.', zh: 'not 放在 must 後面，動詞維持原形。13-3。' },
+        },
+        {
+          cue: '可以請你幫我看一下這封信嗎？',
+          answer: ['Could', 'you', 'please', 'check', 'this', 'email?'],
+          why: { en: 'Please sits between you and the verb. 13-5.', zh: 'please 放在 you 和動詞之間。13-5。' },
+        },
+        {
+          cue: '這件事我們今天先不要決定吧。',
+          answer: ['Let’s', 'not', 'decide', 'this', 'today.'],
+          why: { en: 'Let’s not, then the bare verb. 13-9.', zh: 'let’s not，然後原形動詞。13-9。' },
+        },
+      ],
+    },
+  ],
+
   sections: [
     // ============================================================== 13-1
     {

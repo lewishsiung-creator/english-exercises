@@ -90,6 +90,97 @@ const CHAPTER = {
     },
   ],
 
+  /* The mixed set. Same idea as the adult course: new questions, no section
+     heading to tell you what is being tested, and every answer says where to
+     look it up. Shorter here, because a ten-year-old's attention is the
+     limit rather than the content. */
+  review: [
+    {
+      t: 'lead',
+      en: 'No headings this time. Any question could be about any part of the unit — which is what it is like when you are really speaking.',
+      zh: '這次沒有小節標題。每一題都可能考這個單元的任何部分——真的在講話的時候就是這樣。',
+    },
+    {
+      t: 'mcq',
+      en: 'Mixed practice',
+      zh: '混合練習',
+      hintEn: 'Each answer tells you which section to look at again.',
+      hintZh: '每個答案都會告訴你可以回去看哪一節。',
+      items: [
+        {
+          text: 'My friends ___ in Grade 5.',
+          options: ['are', 'is', 'am'],
+          answer: 0,
+          why: { en: 'More than one friend, so are. 1-1 and 1-3.', zh: '不只一個朋友，所以用 are。1-1 和 1-3。' },
+        },
+        {
+          text: 'She is ___ artist.',
+          options: ['an', 'a', '—'],
+          answer: 0,
+          why: { en: 'Artist starts with a vowel sound. 1-2.', zh: 'artist 的開頭是母音。1-2。' },
+        },
+        {
+          text: 'They are ___.',
+          options: ['students', 'student', 'a students'],
+          answer: 0,
+          why: { en: 'More than one, so the word takes an -s. 1-3.', zh: '不只一個，所以那個字要加 -s。1-3。' },
+        },
+        {
+          text: '___ cold today.',
+          options: ['It’s', 'Its', 'It are'],
+          answer: 0,
+          why: { en: 'It is, squashed together. 1-4.', zh: 'it is 擠在一起。1-4。' },
+        },
+        {
+          text: 'I ___ hungry.',
+          options: ['’m not', 'amn’t', 'aren’t'],
+          answer: 0,
+          why: { en: 'There is no amn’t. 1-5.', zh: '沒有 amn’t 這個字。1-5。' },
+        },
+        {
+          text: 'My bag is ___ the desk.',
+          options: ['under', 'on', 'in'],
+          answer: 0,
+          why: { en: 'Under means below it. 1-6.', zh: 'under 是在下面。1-6。' },
+        },
+        {
+          text: 'She is ___.',
+          options: ['upstairs', 'at upstairs', 'in upstairs'],
+          answer: 0,
+          why: { en: 'A one-word place needs nothing in front. 1-6.', zh: '一個字的地點前面什麼都不加。1-6。' },
+        },
+        {
+          text: 'They are happy. After be comes a ___.',
+          options: ['describing word', 'thing', 'place'],
+          answer: 0,
+          why: { en: 'Happy tells you what they are like. 1-7.', zh: 'happy 告訴你他們怎麼樣。1-7。' },
+        },
+      ],
+    },
+    {
+      t: 'order',
+      en: 'Build the sentence',
+      zh: '把句子排出來',
+      items: [
+        {
+          cue: '我媽媽是護理師。',
+          answer: ['My', 'mother', 'is', 'a', 'nurse.'],
+          why: { en: 'Do not forget the a. 1-2.', zh: '不要忘記 a。1-2。' },
+        },
+        {
+          cue: '貓在我的床上。',
+          answer: ['The', 'cat', 'is', 'on', 'my', 'bed.'],
+          why: { en: 'One cat, so is — then where it is. 1-1 and 1-6.', zh: '一隻貓，所以用 is——然後說在哪裡。1-1 和 1-6。' },
+        },
+        {
+          cue: '我今天不餓。',
+          answer: ['I’m', 'not', 'hungry', 'today.'],
+          why: { en: 'Not comes after the verb. 1-5.', zh: 'not 放在動詞後面。1-5。' },
+        },
+      ],
+    },
+  ],
+
   sections: [
     // ============================================================== 1-1
     {

@@ -33,6 +33,7 @@ const BOOK = {
      wording. Here a chapter is a unit. */
   labels: {
     unitEn: 'Unit',
+    unitZh: '單元',
     unitAbbr: 'UNIT',
     pluralEn: 'units',
     partZh: '節',

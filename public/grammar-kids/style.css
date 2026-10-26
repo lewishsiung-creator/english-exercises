@@ -34,10 +34,13 @@
   --red-soft: #f0edf8;
   --red-line: #cfc4e8;
 
-  /* A little wider than the adult gold, to sit beside violet rather than
-     disappear into the paper. */
-  --gold: #9a6b12;
+  /* The gold is no longer overridden here. It was set to #9a6b12 to sit
+     beside the violet, but the course sheet has since darkened its own to
+     #8a6212 for contrast, and overriding it would only make it lighter
+     again — back under the readable floor.
 
+     --measure stays: this page's type is larger, so the same number of
+     characters needs more room. */
   --measure: 42rem;
 }
 

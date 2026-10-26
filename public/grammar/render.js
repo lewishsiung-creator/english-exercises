@@ -358,6 +358,7 @@ function buildCover() {
         <span class="en">${text(chapter.en)}</span>
         <button class="zh-chip" title="顯示中文">中</button>
         <span class="zh">${text(chapter.zh)}</span></h1>
+      <p class="print-mark" aria-hidden="true"></p>
       ${CHAPTER.intro ? pair(CHAPTER.intro.en, CHAPTER.intro.zh, 'cover-intro') : ''}
       <p class="source">${text(BOOK.sourceNote.en)}
         <span class="zh">${text(BOOK.sourceNote.zh)}</span></p>
@@ -387,6 +388,28 @@ function buildOpening() {
           <span class="zh">開始之前</span></span>
       </h2>
       ${renderBlocks(CHAPTER.opening, 'the chapter opening')}
+    </section>`;
+}
+
+/* The mixed set at the end of a chapter. Every other exercise on the page
+   sits under the heading that tells you what it is testing, which is a large
+   hint: by the time you reach the drill you already know the answer is about
+   articles, or about word order. This one has no heading to lean on, and its
+   items are new rather than repeats — recognising a question you have already
+   answered is not the same as retrieving the rule.
+
+   Each explanation names the section it came from, so a wrong answer here is
+   a short reading list rather than a mark. */
+function buildReview() {
+  if (!CHAPTER.review || !CHAPTER.review.length) return '';
+  return `
+    <section class="step review" id="review" aria-labelledby="h-review">
+      <h2 class="step-head" id="h-review">
+        <span class="n" aria-hidden="true">✦</span>
+        <span class="titles"><span class="en">Review: the whole ${text(L.unitEn.toLowerCase())}</span>
+          <span class="zh">複習：整${text(L.unitZh)}混合練習</span></span>
+      </h2>
+      ${renderBlocks(CHAPTER.review, 'the chapter review')}
     </section>`;
 }
 
@@ -440,6 +463,10 @@ function buildNav() {
                  class="${written.has(s.n) ? '' : 'todo'}"><span class="n">${text(s.n)}</span>
             <span class="t"><span class="en">${text(s.en)}</span>
             <span class="zh">${text(s.zh)}</span></span></a></li>`).join('')}
+        ${CHAPTER.review && CHAPTER.review.length ? `
+          <li><a href="#review" data-target="review"><span class="n">✦</span>
+            <span class="t"><span class="en">Review</span>
+            <span class="zh">複習</span></span></a></li>` : ''}
       </ul>
     </nav>`;
 }
@@ -488,6 +515,8 @@ doc.appendChild(el(buildCover()));
 const opening = buildOpening();
 if (opening) doc.appendChild(el(opening));
 chapter.sections.forEach((s) => doc.appendChild(el(buildSection(s))));
+const review = buildReview();
+if (review) doc.appendChild(el(review));
 const pager = buildPager();
 if (pager) doc.appendChild(el(pager));
 
@@ -708,6 +737,8 @@ $('#showAll').addEventListener('click', () => {
   });
 
   $$('[data-act]').forEach(countSet);
+  // What the printout will be. The class is read by the print stylesheet.
+  document.body.classList.add('answers-shown');
   setPanel(false);
 });
 
@@ -763,5 +794,8 @@ document.addEventListener('keydown', (e) => {
   speechSynthesis.cancel();
 });
 
-// Print unfolds everything, so a handout is not a page of hidden answers.
-window.addEventListener('beforeprint', () => $('#showAll').click());
+/* Printing deliberately does NOT reveal the answers. Untouched, the page
+   prints as a blank worksheet; press "Reveal every answer" first and it
+   prints as the key. Two documents out of one stylesheet, which is what
+   /robot-helper/ does — and until now this page could only produce the key,
+   so there was no sheet to give a student. The rest is in style.css. */

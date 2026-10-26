@@ -32,6 +32,107 @@ const CHAPTER = {
     zh: '這一章的內容都發生在名詞前面，或緊接在名詞後面。英文把修飾語照固定順序疊在名詞前，中文不是這樣，所以這一章會出現「每個字都對、聽起來卻不對」的句子。這裡沒有意思上的錯誤，只有位置上的錯誤。',
   },
 
+  /* The mixed set. New items, no section headings to lean on, and every
+     explanation names the section it came from. */
+  review: [
+    {
+      t: 'lead',
+      en: 'No headings here. Each question could be about any part of the chapter, which is how the grammar actually arrives when you are speaking.',
+      zh: '這裡沒有小節標題。每一題都可能考這一章的任何一個部分——你在說話的時候，文法就是這樣出現的。',
+    },
+    {
+      t: 'mcq',
+      en: 'Mixed practice',
+      zh: '混合練習',
+      hintEn: 'Each answer says which section it came from, so a wrong one is a short reading list.',
+      hintZh: '每個解說都會指出是哪一節，所以答錯等於拿到一份簡短的複習清單。',
+      items: [
+        {
+          text: 'He works at a ___.',
+          options: ['shoe store', 'shoes store', 'store shoe'],
+          answer: 0,
+          why: { en: 'A noun used as an adjective stays singular. 14-1.', zh: '當形容詞用的名詞維持單數。14-1。' },
+        },
+        {
+          text: 'They stayed on ___.',
+          options: ['a beautiful Greek island', 'a Greek beautiful island', 'a beautiful island Greek'],
+          answer: 0,
+          why: { en: 'Opinion before nationality. 14-2.', zh: '看法排在國籍前面。14-2。' },
+        },
+        {
+          text: 'The soup tastes ___.',
+          options: ['good', 'well', 'goodly'],
+          answer: 0,
+          why: { en: 'A linking verb takes an adjective. 14-3.', zh: '連綴動詞後面接形容詞。14-3。' },
+        },
+        {
+          text: 'Linda writes ___.',
+          options: ['well', 'good', 'goodly'],
+          answer: 0,
+          why: { en: 'Well is the adverb of good. 14-4.', zh: 'well 是 good 的副詞。14-4。' },
+        },
+        {
+          text: 'She is a hard worker and she works ___.',
+          options: ['hard', 'hardly', 'more hard'],
+          answer: 0,
+          why: { en: 'Hardly means almost not. 14-4.', zh: 'hardly 的意思是「幾乎不」。14-4。' },
+        },
+        {
+          text: 'Matt ate ___ his food.',
+          options: ['almost all of', 'almost of', 'almost'],
+          answer: 0,
+          why: { en: 'Almost works with all, and all cannot be dropped. 14-5.', zh: 'almost 要搭配 all，而 all 不能省略。14-5。' },
+        },
+        {
+          text: 'All of my work ___ finished.',
+          options: ['is', 'are', 'be'],
+          answer: 0,
+          why: { en: 'The verb agrees with the noun after of. 14-6.', zh: '動詞和 of 後面的名詞一致。14-6。' },
+        },
+        {
+          text: '___ has a book.',
+          options: ['Every student', 'Every students', 'Every of the students'],
+          answer: 0,
+          why: { en: 'Every takes a singular noun and no of. 14-7.', zh: 'every 接單數名詞，不加 of。14-7。' },
+        },
+        {
+          text: 'Joe didn’t buy ___.',
+          options: ['anything', 'nothing', 'something'],
+          answer: 0,
+          why: { en: 'A negative verb takes an any- form. 14-8.', zh: '動詞否定時用 any 系列。14-8。' },
+        },
+        {
+          text: 'She gave me ___.',
+          options: ['a small glass vase', 'a glass small vase', 'a vase small glass'],
+          answer: 0,
+          why: { en: 'Size before material, and material touches the noun. 14-2.', zh: '大小在材質前面，材質緊貼名詞。14-2。' },
+        },
+      ],
+    },
+    {
+      t: 'order',
+      en: 'Build the sentence',
+      zh: '造句',
+      items: [
+        {
+          cue: '一位親切的中國老先生',
+          answer: ['a', 'kind', 'old', 'Chinese', 'man'],
+          why: { en: 'Opinion, age, nationality. 14-2.', zh: '看法、年紀、國籍。14-2。' },
+        },
+        {
+          cue: '我的朋友都很親切。',
+          answer: ['All', 'of', 'my', 'friends', 'are', 'kind.'],
+          why: { en: 'Friends is plural, so are. 14-6.', zh: 'friends 是複數，所以用 are。14-6。' },
+        },
+        {
+          cue: '你出去的時候有人打電話來。',
+          answer: ['Someone', 'called', 'while', 'you', 'were', 'out.'],
+          why: { en: 'Affirmative, so some-, and someone takes a singular verb. 14-8.', zh: '肯定句用 some 系列，而 someone 配單數動詞。14-8。' },
+        },
+      ],
+    },
+  ],
+
   sections: [
     // ============================================================== 14-1
     {

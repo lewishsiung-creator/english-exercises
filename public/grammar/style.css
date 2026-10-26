@@ -33,14 +33,21 @@
   --card: #ffffff;
   --ink: #1c2430;
   --ink-soft: #566171;
-  --ink-faint: #8b95a3;
+  /* Measured, not chosen. At #8b95a3 this was 2.8:1 on the paper — under the
+     4.5:1 WCAG AA floor for normal text, and it is the colour carrying every
+     Chinese hint, which is the layer the weakest reader needs most. #68707e
+     is 4.7:1 and still reads as the quiet tier below --ink-soft. */
+  --ink-faint: #68707e;
 
   /* Sampled from the chapter banners and chart headers of the book. */
   --red: #a82f3c;
   --red-soft: #fbeef0;
   --red-line: #e3b6bd;
 
-  --gold: #a1741a;
+  /* 3.9:1 against its own soft background at #a1741a, which fails the same
+     floor — and it is the heading colour of every trap note. #8a6212 is
+     4.9:1 on the tint and better still on paper. */
+  --gold: #8a6212;
   --gold-soft: #fbf1da;
   --gold-line: #f2c14e;
 
@@ -48,8 +55,10 @@
   --good-soft: #e4f2ea;
   --good-line: #a8d6be;
 
-  /* Grey, not red — see the note at the top of this file. */
-  --bad: #6f7580;
+  /* Grey, not red — see the note at the top of this file. Darkened from
+     #6f7580 for the same contrast reason: struck-through text is still text
+     and still has to be readable. */
+  --bad: #656b76;
 
   --line: #e3e0d8;
   --rule: #cdc8bc;
@@ -230,6 +239,11 @@ body.zh-all .zh-chip { display: none; }
   background: transparent;
   border-color: var(--line);
 }
+
+/* The mixed set that closes a chapter. It is not a numbered section either,
+   so its chip carries a mark rather than a number — but it is the real work
+   of the chapter rather than a preamble, so it keeps the solid red. */
+.step.review .step-head .n { font-size: 13px; }
 
 /* Correct / Not correct. Two options, each wide enough to read at a glance on
    a shared screen rather than sized to its text. */
@@ -1217,17 +1231,58 @@ body.zh-all .td-zh::after { display: none; }
 
 /* ---------------- print ----------------
 
-   The handout: every answer filled, every explanation open, and everything
-   that needs a mouse gone. */
+   TWO DOCUMENTS OUT OF ONE STYLESHEET, which is the trick /robot-helper/
+   uses. Printing the page untouched gives a blank worksheet: the blanks are
+   rules to write on, the word pools are there to be arranged, and no
+   explanation or answer appears. Pressing "Reveal every answer" in the
+   teacher panel first and then printing gives the answer key.
+
+   Before this, printing always called "Reveal every answer" on the way out,
+   so the only thing you could print was the key — there was no way to hand a
+   student a sheet to work on.
+
+   Both versions are bilingual: on paper the 中 chip cannot be tapped, so the
+   Chinese is simply shown. It is a gloss, not an answer. */
 
 @media print {
   .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .tally, .hint, .pager,
-  .pool, .soon { display: none !important; }
+  .soon { display: none !important; }
   body { font-size: 11pt; background: #fff; }
   .shell { display: block; padding: 0; }
   main { max-width: none; }
-  .zh, .why { display: block !important; }
+  .zh { display: block !important; }
   .td-zh::after { display: none; }
+
+  /* Which of the two documents this is. The teacher panel sets the class, so
+     a key cannot be handed out by accident. */
+  .print-mark {
+    display: inline-block;
+    font-family: var(--font-ui);
+    font-size: 9pt;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 2px 9px;
+    margin: 0 0 14px;
+  }
+  .print-mark::after { content: "Worksheet · 練習卷"; }
+  body.answers-shown .print-mark::after { content: "Answer key · 解答卷"; }
+
+  /* A word-order drill unanswered is the pool plus a line to write the
+     sentence on; answered, it is the sentence and the pool is gone. */
+  .order-q:not(.solved) .pool { display: flex !important; }
+  .order-q:not(.solved) .built {
+    border-bottom: 1px solid var(--rule);
+    min-height: 1.7em;
+    margin-top: 10px;
+  }
+  .order-q.solved .pool { display: none !important; }
+
+  /* Backgrounds are usually dropped by the printer, so the right answer says
+     so in ink rather than in colour. */
+  .q.solved .opt.right::before { content: "✓ "; font-weight: 700; }
   .step { break-before: page; padding-top: 0; }
   /* An unwritten section is one line, so it must not take a page of its own:
      Chapter 1 would otherwise print seven sheets carrying a heading each. They
@@ -1242,6 +1297,9 @@ body.zh-all .td-zh::after { display: none; }
   /* A word-order drill on paper is the sentence written out. */
   .built { min-height: 0; border: none; background: none; padding-left: 0; }
 }
+
+/* Only ever seen on paper. */
+.print-mark { display: none; }
 
 /* ---------------- 站尾 / site footer ----------------
 
