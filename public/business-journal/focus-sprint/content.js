@@ -259,8 +259,8 @@ const LESSON = {
           t: 'note',
           en: 'Choosing today’s tasks',
           zh: '每日任務選擇',
-          bodyEn: 'Ask every morning: how much uninterrupted time do I have today, and which 1–3 things are the MITs — the most important tasks? The test question is: what will your future self thank you for? If you cannot say what your MIT is, work out your “Everest” for five years from now first. The small jobs, the LITs, go in the gaps.',
-          bodyZh: '每天早上問：今天有多少不被打擾的時間？哪 1–3 件事是 MIT（最重要任務）？判斷問句是：What will your future self thank you for?（未來的你會感謝你做了什麼？）不知道 MIT 是什麼，就先想清楚 5 年後的「聖母峰」（Everest）。零碎小事（LIT）則塞進空檔。',
+          bodyEn: 'Ask every morning: how much uninterrupted time do I have today, and which 1–3 things are the MITs — the most important tasks? The test question is: what will your future self thank you for? If you cannot say what your MIT is, work out your “Everest” for five years from now first. The small jobs — the LITs, the least important tasks — go in the gaps.',
+          bodyZh: '每天早上問：今天有多少不被打擾的時間？哪 1–3 件事是 MIT（most important tasks，最重要任務）？判斷問句是：What will your future self thank you for?（未來的你會感謝你做了什麼？）不知道 MIT 是什麼，就先想清楚 5 年後的「聖母峰」（Everest）。零碎小事（LIT，least important tasks）則塞進空檔。',
         },
         {
           t: 'cards',
