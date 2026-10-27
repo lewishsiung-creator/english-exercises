@@ -265,8 +265,9 @@ const LESSON = {
           zh: '計時進行',
           /* Both clocks come from the part in course.js. Override here only
              when this lesson deliberately differs — a first attempt given
-             ninety seconds of planning, say. Delete the key otherwise.
-             clock: { plan: 90, bandLow: 40, bandHigh: 75 }, */
+             longer to plan, say. Delete the key otherwise, and prefer changing
+             the part if the whole course should move.
+             clock: { plan: 90, bandLow: 40, bandHigh: 60 }, */
         },
 
         {

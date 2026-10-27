@@ -1353,9 +1353,15 @@ than nested under a part, so ids are unique across the whole course.
   it up in `course.js` and takes the part from there. That is where the
   `Part 2` kicker on question and cue cards comes from, and both clocks: Part 2
   gets a full minute of preparation and a 1:30–2:00 band, Part 3 gets thirty
-  seconds and 0:40–1:15, and Part 1 — which has no thinking time — drops the
+  seconds and 1:10–1:30, and Part 1 — which has no thinking time — drops the
   planning clock entirely. No lesson file states a timing. An id the map has
   never heard of throws on load rather than rendering something quietly wrong.
+
+  This is what that design is for: moving Part 3 from 0:40–1:15 to 1:10–1:30
+  across nine lessons was one line in `course.js`, and it deleted two
+  per-lesson overrides rather than needing nine edits. A lesson overrides a
+  timing only where it deliberately differs from its part — and after this
+  change, none does.
 - **The palette is the IELTS red**, so the course is recognisable at a glance
   and is not mistaken for the grammar book's brick red or the business-English
   navy. `--brand` is the mark itself; `--navy` keeps its house name and holds
@@ -1448,16 +1454,19 @@ The audio script the city set was built from is **not** in the repo — only the
 questions it produced.
 
 **The course disagrees with the Cities handout about length, and says so on the
-page.** That handout closes by recommending forty to sixty seconds; Lewis
-teaches the long answer, so Cities states the ninety-second target instead,
-names the handout's figure in brackets rather than quietly dropping it, and its
-recall clock overrides Part 3's default band to 1:10–1:30 to match Ninety
-Seconds, Three Ways. The handout's warning against memorising the models is
-kept — that part was never in conflict.
+page.** That handout closes by recommending forty to sixty seconds. Lewis
+teaches the long answer, so **ninety seconds is Part 3's band course-wide** —
+1:10–1:30, set once on the part in `course.js` and inherited by all nine
+lessons. Cities states that target in its closing note and names the handout's
+figure in brackets rather than quietly dropping it, the way the 學測 page names
+the four places it departs from its source. The handout's warning against
+memorising the models is kept untouched; that part was never in conflict.
 
-Only those two lessons use the long band. Everything else in Part 3 keeps the
-default 0:40–1:15, because a question pulled from a bank is an ordinary answer,
-not an extended one.
+An examiner will often stop a candidate sooner than ninety seconds, and a
+shorter answer is not a failure. The long band is a training target for
+developing a point, and the reason it is one number rather than a short band
+for the question lessons and a long one for the model-answer lessons is that
+two bands were teaching two things at once.
 
 Parts 1 and 2 are mapped but not written — nine lesson cards sitting dimmed on
 the contents page.

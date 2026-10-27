@@ -341,9 +341,9 @@ const LESSON = {
           t: 'clock',
           en: 'Against the clock',
           zh: '計時進行',
-          /* This lesson teaches the long answer, so it overrides the part's
-             usual 0:40–1:15 band with the ninety seconds the timeline maps. */
-          clock: { bandLow: 70, bandHigh: 90 },
+          /* No override: the timeline above maps ninety seconds, and ninety
+             seconds is now Part 3's band for the whole course. This lesson
+             named the target before the course adopted it. */
         },
       ],
     },

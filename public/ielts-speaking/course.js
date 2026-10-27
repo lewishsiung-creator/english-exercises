@@ -76,7 +76,11 @@ const COURSE = {
       askEn: 'Give an answer with a shape a listener can follow: two or three parts, each one named out loud, ending on purpose.',
       askZh: '給出聽者跟得上的結構：兩到三個部分，每一部分都說出口，並且有意識地收尾。',
       minutes: '4–5 min',
-      clock: { plan: 30, speak: 0, bandLow: 40, bandHigh: 75 },
+      /* Ninety seconds, course-wide. An examiner will often stop you sooner
+         than that, and a shorter answer is not a failure — but a candidate who
+         is training to develop a point needs the longer target, and a band
+         that moved from lesson to lesson was teaching two things at once. */
+      clock: { plan: 30, speak: 0, bandLow: 70, bandHigh: 90 },
     },
   ],
 
