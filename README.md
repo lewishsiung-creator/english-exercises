@@ -1405,8 +1405,8 @@ than nested under a part, so ids are unique across the whole course.
 
 ### Part 3 — how to answer, then the topics to answer about
 
-Twelve lessons: four on how to build an answer, then eight topics to build them
-on. The teaching order is the order they appear.
+Sixteen lessons: four on how to build an answer, then twelve topics to build
+them on. The teaching order is the order they appear.
 
 | # | Lesson | What it carries |
 | --- | --- | --- |
@@ -1416,8 +1416,8 @@ on. The teaching order is the order they appear.
 | 4 | Say It Another Way | The counterweight to all of the above: how a rehearsed answer gives itself away, one question answered two opposite ways, your own examples, and paraphrasing the question |
 | 5 | Cities: Space, Transport and Traffic | Three questions on crowded cities, each with a full five-part model answer and its vocabulary, then the three shapes side by side and a recall exercise |
 | 6 | Fifteen City Questions | The bank those three came out of — rivers, redevelopment, future transport — all fifteen questions, each carrying the language it asks for, plus eight phrases that travel to any topic |
-| 7–8 | Education, Technology | Fifteen questions each, same shape as Fifteen City Questions, plus a topic-wide phrase bank |
-| 9–12 | The commerce topics | Online Reviews (15 questions), Customer Service (15), Consumer Behaviour (10), Business Reputation (10) — each with its own collocations, useful sentences and a worked speaking pattern |
+| 7–12 | Education, Technology, Environment, Work, Health, Government and Society | Fifteen questions each, same shape as Fifteen City Questions, plus a topic-wide phrase bank |
+| 13–16 | The commerce topics | Online Reviews (15 questions), Customer Service (15), Consumer Behaviour (10), Business Reputation (10) — each with its own collocations, useful sentences and a worked speaking pattern |
 
 **Lesson 4 exists because lessons 1–3 are dangerous on their own.** Three phrase
 banks and a stack of model answers is how you build range, and it is also how
@@ -1430,12 +1430,24 @@ one-clause paraphrase before answering. It is taught before the topic lessons,
 not after — a learner who meets four phrase banks first has already formed the
 habit it is trying to prevent.
 
-**Education and Technology are the first topic lessons written for this site
-rather than taken from a handout.** Everything else in Part 3 came from Lewis's
-own materials, with the per-page cover saying which Chinese was added here.
-These two have no source behind them at all — questions, language and Chinese
-are the site's — and their covers say so in those words. That is worth knowing
-before teaching from them.
+**Six of the topic lessons are written for this site rather than taken from a
+handout.** Education, Technology, Environment, Work, Health and Government and
+Society cover the six Part 3 areas the course was missing, and none of them has
+a source behind it: the questions, the language under each one and all the
+Chinese are the site's. Every one of their covers says so in those words. The
+commerce and city clusters, which came from Lewis's own materials, say which
+Chinese was added here instead. That distinction is on the page, not only in
+this file, because a teacher ought to know which is which before teaching from
+it.
+
+Each of the six is built the same way: fifteen questions in three steps of
+five, every question carrying the four or five phrases it asks for, a
+topic-wide phrase bank, and notes that go after the topic's own failure mode —
+answering about yourself in Work, the agreeable empty answer in Environment,
+half-known medical vocabulary in Health. **Government and Society opens with a
+note telling the learner to keep it general and name no party**, because that is
+the one Part 3 area where a candidate can lose marks by winning an argument,
+and the questions are written so that none of them needs a domestic reference.
 
 **The two topic clusters are built the opposite way round**, on purpose. The
 four commerce lessons are question banks with phrase banks beside them: lots of
