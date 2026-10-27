@@ -210,6 +210,15 @@ const COURSE = {
       blurbZh: '四種對應題型的結構、六個通用句型，以及十句可直接照說的句子。',
     },
     {
+      id: 'cities',
+      part: 'part3',
+      built: true,
+      en: 'Cities: Space, Transport and Traffic',
+      zh: '城市：空間、交通與車流',
+      blurbEn: 'Three questions about crowded cities, each answered in full, then taken away again.',
+      blurbZh: '三道關於擁擠城市的題目，先看完整回答，再把稿子收起來重建。',
+    },
+    {
       id: 'online-reviews',
       part: 'part3',
       built: true,

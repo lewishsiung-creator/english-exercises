@@ -172,6 +172,29 @@ const BLOCKS = {
       </ul>
     </div>`,
 
+  /* Several answers' shapes side by side: what each one argues, and the order
+     it gets there in. The chain is the point — read down the arrows and you
+     can see that three answers on three topics are the same three moves. Set
+     as rows rather than a table so it stays legible on a phone. */
+  chain: (b) => `
+    <div class="chain">
+      ${label(b.en, b.zh)}
+      ${hint(b.hintEn, b.hintZh)}
+      <ul class="chain-list">
+        ${b.rows.map((r) => `
+          <li class="chain-row">
+            <p class="chain-head"><span class="chain-n">${text(r.n)}</span>
+              <span class="chain-t">${text(r.en)}<em>${text(r.zh)}</em></span></p>
+            <p class="chain-claim">${text(r.claimEn)}<em>${text(r.claimZh)}</em></p>
+            <ol class="chain-steps">
+              ${r.steps.map((s) => `
+                <li><span class="chain-step"><span class="en">${text(s.en)}</span>
+                  <em>${text(s.zh)}</em></span></li>`).join('')}
+            </ol>
+          </li>`).join('')}
+      </ul>
+    </div>`,
+
   /* Whole sentences worth saying as they stand — the same shape as `frames`,
      but numbered, because these are meant to be worked through in order. */
   sentences: (b) => `

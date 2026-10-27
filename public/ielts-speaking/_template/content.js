@@ -54,6 +54,8 @@
                behind a reveal
      timeline  a long answer laid out against the clock. While the speaking
                count-up in the same step runs, the current row lights up
+     chain     several answers' shapes side by side: what each one argues and
+               the order it gets there in, with arrows drawn between the steps
 */
 
 const LESSON = {
@@ -364,6 +366,27 @@ const LESSON = {
               en: 'The second move', zh: '第二個動作',
               sayEn: 'And the sentence that does this one.',
               sayZh: '以及負責這件事的那一句話。',
+            },
+          ],
+        },
+
+        {
+          t: 'chain',
+          en: 'The answers at a glance',
+          zh: '回答總覽',
+          hintEn: 'What each one argues, and the order it gets there in.',
+          hintZh: '每一題主張什麼，以及它用什麼順序達成。',
+          rows: [
+            {
+              n: 'Q1',
+              en: 'The first question’s topic', zh: '第一題的主題',
+              claimEn: 'The one line the answer argues.',
+              claimZh: '這個回答主張的那一句話。',
+              steps: [
+                { en: 'First move', zh: '第一個動作' },
+                { en: 'Second move', zh: '第二個動作' },
+                { en: 'Third move', zh: '第三個動作' },
+              ],
             },
           ],
         },

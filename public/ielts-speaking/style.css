@@ -1610,3 +1610,81 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   height: max(100%, 24px);
   transform: translate(-50%, -50%);
 }
+
+/* ---------------- several answers' shapes, side by side ---------------- */
+
+.chain { margin: 22px 0; }
+
+.chain-list { list-style: none; margin: 0; padding: 0; }
+
+.chain-row {
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+.chain-row:first-child { border-top: 0; }
+
+.chain-head { display: flex; align-items: baseline; gap: 10px; margin: 0 0 4px; }
+
+.chain-n {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: #fff;
+  background: var(--brand);
+  border-radius: 999px;
+  padding: 2px 9px;
+  white-space: nowrap;
+}
+
+.chain-t { font-weight: 600; }
+.chain-t em,
+.chain-claim em,
+.chain-steps em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+.chain-t em { margin-left: 8px; font-size: .8em; }
+
+.chain-claim { margin: 0 0 9px; color: var(--ink-soft); font-size: .97rem; }
+.chain-claim em { display: block; font-size: .82em; margin-top: 2px; }
+
+/* The development order. Arrows are drawn between the steps rather than typed
+   into the content, so a step can be edited without minding its neighbours. */
+.chain-steps {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 4px;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-ui);
+  font-size: .86rem;
+}
+.chain-steps li { display: flex; align-items: baseline; gap: 4px; }
+
+/* The arrow is a sibling of the pill, not part of it. */
+.chain-steps li + li::before {
+  content: '→';
+  margin-right: 2px;
+  color: var(--ink-faint);
+}
+
+.chain-step {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 5px 11px;
+  background: var(--navy-soft);
+  border: 1px solid var(--navy-line);
+  border-radius: 999px;
+}
+.chain-steps em { font-size: .85em; }
+
+@media print {
+  .chain-step { background: transparent; }
+}

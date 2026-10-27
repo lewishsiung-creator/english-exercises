@@ -1370,15 +1370,18 @@ than nested under a part, so ids are unique across the whole course.
   tap like every other line. `sentences` is a numbered spoken list. `upgrade`
   sets a thin answer against the same answer done properly, with what to add
   listed between them and the better version behind a reveal. `timeline` lays a
-  long answer out against the clock. `cue` draws a Part 2 candidate task card.
+  long answer out against the clock. `chain` puts several answers' shapes side
+  by side — what each argues, and the order it gets there in, with the arrows
+  drawn rather than typed into the content. `cue` draws a Part 2 candidate task
+  card.
 - **The timeline is wired to the speaking clock.** While the count-up in the
   same step is running, the row covering the current second lights up, so the
   page shows the pace instead of describing it. It is scoped to the step, reads
   perfectly with no clock at all, and clears on reset.
 
-### Part 3 — commerce and trust
+### Part 3 — how to answer, then two topic clusters
 
-Seven lessons: three on how to build an answer, then four topics to build them
+Eight lessons: three on how to build an answer, then the topics to build them
 on. The teaching order is the order they appear.
 
 | # | Lesson | What it carries |
@@ -1386,7 +1389,15 @@ on. The teaching order is the order they appear.
 | 1 | The A.R.E.A. Answer | The default shape — answer, reason, example, balance, judgment — with a phrase bank per move, a worked Band 7 answer, the upgrade from a thin answer, and P.E.E.L. as the emergency fallback |
 | 2 | Ninety Seconds, Three Ways | The same moves bent to opinion, cause and comparison questions, a ninety-second timing plan, and twelve mixed questions to name the type of |
 | 3 | Answer Shapes and Frames | Four question-specific structures, six universal frames, ten high-value sentences |
-| 4–7 | The four topics | Online Reviews (15 questions), Customer Service (15), Consumer Behaviour (10), Business Reputation (10) — each with its own collocations, useful sentences and a worked speaking pattern |
+| 4 | Cities: Space, Transport and Traffic | Three questions on crowded cities, each with a full five-part model answer and its vocabulary, then the three shapes side by side and a recall exercise |
+| 5–8 | The commerce topics | Online Reviews (15 questions), Customer Service (15), Consumer Behaviour (10), Business Reputation (10) — each with its own collocations, useful sentences and a worked speaking pattern |
+
+**The two topic clusters are built the opposite way round**, on purpose. The
+four commerce lessons are question banks with phrase banks beside them: lots of
+questions, no model answers, because the point is volume. Cities is three
+questions with the answers written out in full, because the point there is
+seeing how far one point can be developed. A lesson is whichever of those two
+the material actually is.
 
 **Two taxonomies had to be reconciled.** The A.R.E.A. material presents Opinion,
 Cause and Comparison as a scheme of its own, which is largely the same three as
@@ -1398,15 +1409,27 @@ per-step phrase lists and its separate Band 7 connector table were merged the
 same way, into one bank per move, so a teacher is not reconciling two
 overlapping lists mid-session.
 
-The four topic lessons then rehearse whichever shape was taught, four times
-over, rather than explaining it once.
+A third scheme arrived with Cities — Main idea, Explanation, Example, Further
+development, Conclusion — and is handled the same way rather than added to the
+pile: it is A.R.E.A. with the fourth slot swapped, extending the point instead
+of conceding the other side. The lesson says so, and makes choosing between
+extending and balancing the thing it actually teaches.
 
-**The question translations are the site's, not the source's.** The topic
-material gives Chinese for the phrase banks and the frames but the questions in
-English only, so the Chinese for all fifty questions was written here. The
-A.R.E.A. material is bilingual throughout; what was written for the page there
-is the question above each of its three worked answers, which arrive without
-them. Each lesson cover says which is which.
+The topic lessons then rehearse whichever shape was taught rather than
+explaining it again.
+
+**Some of the Chinese is the site's, not the source's.** The commerce material
+gives Chinese for the phrase banks and the frames but the questions in English
+only, so the Chinese for all fifty questions was written here. The A.R.E.A.
+material is bilingual throughout, and what was written for the page there is the
+question above each of its three worked answers, which arrive without them. The
+Cities handout gives Chinese for its questions, its section labels and its
+vocabulary, but not for the model answers, so those translations are the site's
+too. Each lesson cover says which is which.
+
+**Cities keeps its handout's question numbers** — 9, 12 and 14 — on the question
+cards, because that is how Lewis refers to them in a session. The rest of that
+handout's questions are not in the repo.
 
 Parts 1 and 2 are mapped but not written — nine lesson cards sitting dimmed on
 the contents page.
