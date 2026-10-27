@@ -36,6 +36,7 @@ const LESSON = {
       { en: 'tell an opinion question from a cause question from a comparison question', zh: '分辨意見題、原因題與比較題' },
       { en: 'bend the four moves to fit whichever kind you were given', zh: '依照拿到的題型，調整那四個動作' },
       { en: 'pace a ninety-second answer instead of running out at forty', zh: '把九十秒的回答配好速度，而不是講到四十秒就沒了' },
+      { en: 'cut the same answer to thirty seconds without it sounding unfinished', zh: '把同一個回答壓到三十秒，而不讓它聽起來沒講完' },
       { en: 'name the question type out loud before you start speaking', zh: '在開口之前，先說出這是哪一種題型' },
     ],
   },
@@ -350,8 +351,86 @@ const LESSON = {
 
     // ------------------------------------------------------------ step 4
     {
-      id: 'name-the-type',
+      id: 'thirty-seconds',
       n: 4,
+      en: 'The same answer in thirty seconds',
+      zh: '同一題，三十秒版',
+      blocks: [
+        {
+          t: 'lead',
+          en: 'Ninety seconds is the target when you are given it. You are often not given it — a Part 3 examiner is managing a clock and will cut in. A candidate with only one gear stalls the moment that happens.',
+          zh: '九十秒是「有時間時」的目標。但你常常不會有那麼多時間——Part 3 的考官要顧進度，會直接切進來。只有一個檔位的考生，一被打斷就卡住了。',
+        },
+        {
+          t: 'question',
+          en: 'Do you think online reviews are useful?',
+          zh: '你認為線上評論有用嗎？',
+          shape: 'Opinion question, compressed',
+          shapeZh: '意見題，壓縮版',
+        },
+        {
+          t: 'model',
+          en: 'The same answer, cut to thirty seconds',
+          zh: '同一個回答，壓縮到三十秒',
+          hintEn: 'Compare it with Pattern 1 in step 2. One move has gone; three have not.',
+          hintZh: '和第 2 步的題型一對照。少了一個動作，另外三個都還在。',
+          parts: [
+            {
+              tag: 'Opinion', tagZh: '立場',
+              en: 'I think online reviews are useful, mainly because they reduce uncertainty before people spend money.',
+              zh: '我認為線上評論很有用，主要是因為它們能在人們花錢之前降低不確定性。',
+            },
+            {
+              tag: 'Balance', tagZh: '另一面',
+              en: 'That said, not all of them are reliable — some may be fake or exaggerated.',
+              zh: '話雖如此，並非每一則都可靠——有些可能是假的或誇大的。',
+            },
+            {
+              tag: 'Conclusion', tagZh: '結論',
+              en: 'So overall, they help, as long as you read them critically.',
+              zh: '所以整體來說，它們是有幫助的，只要你用批判性的方式閱讀。',
+            },
+          ],
+        },
+        {
+          t: 'note',
+          en: 'The example is the first thing to go',
+          zh: '例子是第一個該砍的',
+          bodyEn: 'Cutting from ninety seconds to thirty costs you the example — and nothing else. The reason stays, the balancing sentence stays, the conclusion stays. Most candidates cut the opposite way, dropping the balance and keeping a long story, and that is exactly backwards: the story is what any Band 5 can produce, and the balance is what Band 7 is being paid for.',
+          bodyZh: '從九十秒砍到三十秒，你要犧牲的是例子——而且只有例子。理由要留、平衡那一句要留、結論要留。多數考生砍的方向正好相反：丟掉平衡，留下一段長長的故事。那完全反了——故事是 Band 5 也講得出來的東西，而平衡才是 Band 7 真正換到分數的地方。',
+        },
+        {
+          t: 'clock',
+          en: 'Thirty seconds, same question',
+          zh: '三十秒，同一道題',
+          /* A deliberate departure from the part: this step trains the short
+             gear, so it is the one place in the course that is not ninety
+             seconds. Everything else inherits the part, as it should. */
+          clock: { plan: 10, bandLow: 25, bandHigh: 40 },
+          planNoteEn: 'ten seconds to choose what you are cutting',
+          planNoteZh: '十秒，決定你要砍掉什麼',
+        },
+        {
+          t: 'task',
+          en: 'Both gears, back to back',
+          zh: '兩個檔位，連著練',
+          instructionEn: 'Answer the same question twice: once long, once short. Record both and listen back — the short one should still sound finished, not rushed.',
+          instructionZh: '同一道題回答兩次：一次長、一次短。兩次都錄下來回聽——短的那次仍然要聽起來「講完了」，而不是趕完的。',
+          checklist: [
+            { en: 'The short version still answers in its first sentence', zh: '短版仍然第一句就回答了問題' },
+            { en: 'The reason survived the cut', zh: '理由在壓縮後還在' },
+            { en: 'The balancing sentence survived the cut', zh: '平衡那一句在壓縮後還在' },
+            { en: 'It ends on a judgment, not by running out of time', zh: '它是以判斷收尾，不是時間用完才停' },
+            { en: 'It does not sound rushed — shorter, not faster', zh: '聽起來不趕——是比較短，不是比較快' },
+          ],
+        },
+      ],
+    },
+
+    // ------------------------------------------------------------ step 5
+    {
+      id: 'name-the-type',
+      n: 5,
       en: 'Name the type, then answer',
       zh: '先說出題型，再回答',
       blocks: [

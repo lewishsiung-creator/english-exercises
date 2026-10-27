@@ -1384,20 +1384,58 @@ than nested under a part, so ids are unique across the whole course.
   same step is running, the row covering the current second lights up, so the
   page shows the pace instead of describing it. It is scoped to the step, reads
   perfectly with no clock at all, and clears on reset.
+- **Every clock draws a recorder under it**, so a lesson gets one by having a
+  clock and no content file mentions it. A speaking lesson where the learner
+  never hears himself is teaching with one eye shut — a clock can say ninety
+  seconds, but only a playback shows where the gaps were. It keeps the page's
+  rule that nothing is saved: the take is a blob URL held in memory and revoked
+  when it is replaced, deleted or the page reloads, with no upload, no download
+  and no storage. The microphone opens on the first press rather than at load,
+  every track is stopped the moment a take ends so the browser's recording
+  indicator goes out between takes, starting one recorder stops any other on the
+  page, and `pagehide` stops anything still running.
+- **Print is a designed output, and every block type has to be named in the
+  print rules.** A block whose content hides behind a class or a `hidden`
+  attribute prints blank unless the rules say otherwise, and it fails silently.
+  That is not hypothetical: `qbank`, `upgrade`, `timeline` and `chain` were all
+  added without updating it, so a printed Fifteen City Questions was fifteen
+  bare questions with none of its sixty-seven phrases, and a printed A.R.E.A.
+  had the thin answer without the Band 7 one. Fixed, and the block now carries
+  a comment saying that adding a block type means adding it here.
 
-### Part 3 — how to answer, then two topic clusters
+### Part 3 — how to answer, then the topics to answer about
 
-Eight lessons: three on how to build an answer, then the topics to build them
+Twelve lessons: four on how to build an answer, then eight topics to build them
 on. The teaching order is the order they appear.
 
 | # | Lesson | What it carries |
 | --- | --- | --- |
 | 1 | The A.R.E.A. Answer | The default shape — answer, reason, example, balance, judgment — with a phrase bank per move, a worked Band 7 answer, the upgrade from a thin answer, and P.E.E.L. as the emergency fallback |
-| 2 | Ninety Seconds, Three Ways | The same moves bent to opinion, cause and comparison questions, a ninety-second timing plan, and twelve mixed questions to name the type of |
+| 2 | Ninety Seconds, Three Ways | The same moves bent to opinion, cause and comparison questions, a ninety-second timing plan, the same answer cut to thirty, and twelve mixed questions to name the type of |
 | 3 | Answer Shapes and Frames | Four question-specific structures, six universal frames, ten high-value sentences |
-| 4 | Cities: Space, Transport and Traffic | Three questions on crowded cities, each with a full five-part model answer and its vocabulary, then the three shapes side by side and a recall exercise |
-| 5 | Fifteen City Questions | The bank those three came out of — rivers, redevelopment, future transport — all fifteen questions, each carrying the language it asks for, plus eight phrases that travel to any topic |
-| 6–9 | The commerce topics | Online Reviews (15 questions), Customer Service (15), Consumer Behaviour (10), Business Reputation (10) — each with its own collocations, useful sentences and a worked speaking pattern |
+| 4 | Say It Another Way | The counterweight to all of the above: how a rehearsed answer gives itself away, one question answered two opposite ways, your own examples, and paraphrasing the question |
+| 5 | Cities: Space, Transport and Traffic | Three questions on crowded cities, each with a full five-part model answer and its vocabulary, then the three shapes side by side and a recall exercise |
+| 6 | Fifteen City Questions | The bank those three came out of — rivers, redevelopment, future transport — all fifteen questions, each carrying the language it asks for, plus eight phrases that travel to any topic |
+| 7–8 | Education, Technology | Fifteen questions each, same shape as Fifteen City Questions, plus a topic-wide phrase bank |
+| 9–12 | The commerce topics | Online Reviews (15 questions), Customer Service (15), Consumer Behaviour (10), Business Reputation (10) — each with its own collocations, useful sentences and a worked speaking pattern |
+
+**Lesson 4 exists because lessons 1–3 are dangerous on their own.** Three phrase
+banks and a stack of model answers is how you build range, and it is also how
+you build a candidate who recites — which an examiner hears, and marks down
+under Coherence when the memorised answer turns out to fit a near neighbour of
+the question rather than the question. So one lesson pulls the other way:
+nothing in it is a phrase to learn, and its drills are a question answered two
+opposite ways, the student's own examples replacing the borrowed ones, and a
+one-clause paraphrase before answering. It is taught before the topic lessons,
+not after — a learner who meets four phrase banks first has already formed the
+habit it is trying to prevent.
+
+**Education and Technology are the first topic lessons written for this site
+rather than taken from a handout.** Everything else in Part 3 came from Lewis's
+own materials, with the per-page cover saying which Chinese was added here.
+These two have no source behind them at all — questions, language and Chinese
+are the site's — and their covers say so in those words. That is worth knowing
+before teaching from them.
 
 **The two topic clusters are built the opposite way round**, on purpose. The
 four commerce lessons are question banks with phrase banks beside them: lots of
