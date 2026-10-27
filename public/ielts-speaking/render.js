@@ -75,6 +75,37 @@ function hint(en, zh) {
   return `<p class="hint">${text(en)}<span class="hint-zh">${text(zh)}</span></p>`;
 }
 
+/* The recorder that sits under every clock.
+
+   A speaking lesson where the learner never hears himself is teaching with one
+   eye shut: the clock can say ninety seconds, but only a playback says where
+   the three-second gaps were and how many sentences restarted halfway.
+
+   It keeps the page's own rule — nothing is saved. The take lives in memory as
+   a blob URL and goes when it is replaced, cleared, or the page reloads; there
+   is no upload, no download, and no storage. The microphone is opened when
+   Record is pressed and every track is stopped the moment it finishes, so the
+   browser's recording indicator goes out between takes rather than staying lit
+   through a lesson. Permission is therefore asked for at the first press, not
+   on page load. */
+function recorder() {
+  return `
+    <div class="rec" data-act="rec">
+      <div class="rec-bar">
+        <button class="chip rec-go" aria-pressed="false">
+          <span class="go"><span class="rec-dot" aria-hidden="true"></span>Record<em>錄音</em></span>
+          <span class="stop"><span class="rec-dot" aria-hidden="true"></span>Stop<em>停止</em></span>
+        </button>
+        <p class="rec-time" aria-hidden="true">0:00</p>
+        <p class="rec-note">Listen back to your own answer. Nothing is saved —
+          the take goes when you record again or reload.
+          <em>回聽自己的回答。不會儲存：重錄或重新整理後即消失。</em></p>
+      </div>
+      <p class="rec-msg" role="status" aria-live="polite" hidden></p>
+      <div class="rec-out" hidden></div>
+    </div>`;
+}
+
 // ---------------------------------------------------------------- blocks
 
 let uid = 0;
@@ -380,6 +411,8 @@ const BLOCKS = {
     </div>`,
 
   /* Two clocks: a countdown for planning, then a count-up while he speaks.
+     The recorder below them is drawn by every clock block, so a lesson gets
+     it by having a clock and no content file mentions it.
      Both come from the part's own timings in course.js, so Part 2 gets its
      full minute of preparation and Part 3 its thirty seconds without either
      lesson having to say so. A block may override any of the four numbers.
@@ -421,6 +454,7 @@ const BLOCKS = {
             ${btns}
           </div>
         </div>
+        ${recorder()}
       </div>`;
   },
 
@@ -592,6 +626,7 @@ doc.addEventListener('click', (e) => {
   else if (kind === 'task') taskClick(act, btn);
   else if (kind === 'clock') clockClick(btn);
   else if (kind === 'qbank') qbankClick(act, btn);
+  else if (kind === 'rec') recClick(act, btn);
 });
 
 // Shape cards are focusable, so keep them operable from the keyboard.
@@ -756,6 +791,124 @@ function clockClick(btn) {
 }
 
 $$('.clock-unit').forEach((u) => { u.dataset.sec = u.dataset.start; });
+
+// ---------------------------------------------------------------- recording
+
+/* One entry per recorder on the page, holding only what has to be released
+   again: the MediaRecorder, its stream, and the blob URL of the last take. */
+const takes = new Map();
+
+function recMsg(act, en, zh) {
+  const p = $('.rec-msg', act);
+  if (!en) { p.hidden = true; p.textContent = ''; return; }
+  p.hidden = false;
+  p.innerHTML = `${text(en)}<em>${text(zh)}</em>`;
+}
+
+/* Drop the previous take. Revoking matters: without it every re-record leaks
+   a blob for the life of the page, and on a long lesson that is real memory. */
+function clearTake(act) {
+  const t = takes.get(act);
+  if (t && t.url) { URL.revokeObjectURL(t.url); t.url = null; }
+  const out = $('.rec-out', act);
+  out.hidden = true;
+  out.innerHTML = '';
+}
+
+function showTake(act, blob) {
+  clearTake(act);
+  const url = URL.createObjectURL(blob);
+  const t = takes.get(act) || {};
+  t.url = url;
+  takes.set(act, t);
+
+  const out = $('.rec-out', act);
+  out.hidden = false;
+  out.innerHTML = `
+    <audio class="rec-play" controls src="${url}"></audio>
+    <button class="chip chip-quiet rec-clear">Delete<em>刪除</em></button>`;
+}
+
+function stopRec(act) {
+  const t = takes.get(act);
+  if (!t || !t.rec || t.rec.state !== 'recording') return;
+  t.rec.stop();          // onstop releases the microphone and builds the blob
+}
+
+function recTick(act) {
+  const t = takes.get(act);
+  if (!t) return;
+  t.sec += 1;
+  $('.rec-time', act).textContent = face(t.sec);
+}
+
+async function startRec(act) {
+  if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === 'undefined') {
+    recMsg(act, 'This browser cannot record. Everything else on the page still works.',
+      '此瀏覽器無法錄音，頁面其他功能不受影響。');
+    return;
+  }
+
+  // Only one microphone at a time, however many clocks a lesson has.
+  $$('.rec.on').forEach((other) => { if (other !== act) stopRec(other); });
+
+  let stream;
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  } catch {
+    recMsg(act, 'No microphone — the browser refused or there is none attached.',
+      '沒有麥克風：瀏覽器拒絕存取，或裝置上沒有麥克風。');
+    return;
+  }
+
+  recMsg(act, '');
+  clearTake(act);
+
+  const rec = new MediaRecorder(stream);
+  const chunks = [];
+  rec.ondataavailable = (e) => { if (e.data && e.data.size) chunks.push(e.data); };
+
+  rec.onstop = () => {
+    // Release the microphone first, so the browser's indicator goes out even
+    // if building the blob throws.
+    stream.getTracks().forEach((track) => track.stop());
+    const t = takes.get(act);
+    if (t) { clearInterval(t.timer); t.rec = null; }
+    act.classList.remove('on');
+    $('.rec-go', act).setAttribute('aria-pressed', 'false');
+
+    if (!chunks.length) {
+      recMsg(act, 'That take was empty — nothing reached the microphone.',
+        '這次錄音是空的：沒有聲音進到麥克風。');
+      return;
+    }
+    showTake(act, new Blob(chunks, { type: rec.mimeType || 'audio/webm' }));
+  };
+
+  takes.set(act, {
+    rec,
+    url: (takes.get(act) || {}).url || null,
+    sec: 0,
+    timer: setInterval(() => recTick(act), 1000),
+  });
+
+  rec.start();
+  act.classList.add('on');
+  $('.rec-go', act).setAttribute('aria-pressed', 'true');
+  $('.rec-time', act).textContent = '0:00';
+}
+
+function recClick(act, btn) {
+  if (btn.classList.contains('rec-clear')) { clearTake(act); return; }
+  if (!btn.classList.contains('rec-go')) return;
+
+  const t = takes.get(act);
+  if (t && t.rec && t.rec.state === 'recording') stopRec(act);
+  else startRec(act);
+}
+
+// Leaving the page mid-take should not leave the microphone open.
+window.addEventListener('pagehide', () => $$('.rec.on').forEach(stopRec));
 
 // ---------------------------------------------------------------- speech
 

@@ -1015,17 +1015,32 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
    opened, and anything that only works with a mouse is dropped. The planning
    pads survive as ruled lines to write on. */
 
+/* Print gives a handout: everything behind a tap or a reveal is opened, and
+   anything that needs a mouse is dropped.
+
+   EVERY BLOCK TYPE HAS TO BE NAMED HERE. A block whose content hides behind a
+   class or a `hidden` attribute prints blank unless this list says otherwise,
+   and it fails silently — nobody notices until a handout comes out of the
+   printer with fifteen bare questions on it, which is exactly what happened
+   when `qbank`, `upgrade`, `timeline` and `chain` were added and this block
+   was not updated with them. Adding a block type means adding it here. */
 @media print {
   .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .reveal, .tally,
-  .hint, .clocks, .bucket-head:hover { display: none !important; }
+  .hint, .clocks, .rec, .q-bar, .bucket-head:hover { display: none !important; }
   body { font-size: 11pt; background: #fff; }
   .shell { display: block; padding: 0; }
   main { max-width: none; }
+
+  /* Opened: the Chinese layer, and everything the screen keeps behind a tap. */
   .zh, .card-back, .starters, .model-body, .why { display: block !important; }
-  .model-body[hidden], .starters[hidden] { display: block !important; }
+  .model-body[hidden], .starters[hidden], .up-after-wrap[hidden] { display: block !important; }
+  .q-words { display: flex !important; }
+  .q-tag { display: inline-block !important; }
+
   .step { break-before: page; padding-top: 0; }
   .shape-list, .pool { grid-template-columns: 1fr 1fr; }
-  .shape, .point, .note, .goals, .task, .model-part, .pad-row, .ask-card { break-inside: avoid; }
+  .shape, .point, .note, .goals, .task, .model-part, .pad-row, .ask-card,
+  .cue-card, .q-row, .bank-row, .chain-row, .tl-row, .up-card { break-inside: avoid; }
   .bucket { border-style: solid; }
   .pad-in { border: 0; border-bottom: 1px solid #999; border-radius: 0; padding-left: 0; }
   .pad-in::placeholder { color: transparent; }
@@ -1723,3 +1738,97 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 @media print {
   .q-words li { background: transparent; }
 }
+
+/* ---------------- the recorder ----------------
+
+   Sits under every clock. Quiet by default: it is a tool the learner reaches
+   for, not a thing demanding to be used, so it is a hairline row rather than
+   a panel — until it is recording, when it needs to be unmistakable, because
+   a recorder you have forgotten is running is worse than no recorder. */
+
+.rec {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.rec-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px 14px;
+  flex-wrap: wrap;
+}
+
+.chip-quiet {
+  color: var(--ink-soft);
+  border-color: var(--line);
+  background: transparent;
+}
+.chip-quiet:hover { color: var(--navy); border-color: var(--navy-line); }
+
+/* The button carries both labels; which one shows depends on .on, the same
+   trick the clock's Start/Stop uses. The shared layout rule must not restate
+   `display`, or it wins on source order and both labels show at once. */
+.rec-go .go, .rec-go .stop { align-items: center; gap: 7px; }
+.rec-go .go { display: inline-flex; }
+.rec-go .stop { display: none; }
+.rec.on .rec-go .go { display: none; }
+.rec.on .rec-go .stop { display: inline-flex; }
+
+.rec-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--brand);
+  flex: none;
+}
+.rec.on .rec-go { color: #fff; background: var(--brand); border-color: var(--brand); }
+.rec.on .rec-dot { background: #fff; animation: rec-pulse 1.4s ease-in-out infinite; }
+
+@keyframes rec-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+@media (prefers-reduced-motion: reduce) { .rec.on .rec-dot { animation: none; } }
+
+.rec-time {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+}
+.rec.on .rec-time { color: var(--navy); font-weight: 600; }
+
+.rec-note {
+  margin: 0;
+  flex: 1 1 16rem;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-faint);
+}
+.rec-note em,
+.rec-msg em {
+  display: block;
+  font-family: var(--font-zh);
+  font-style: normal;
+  margin-top: 2px;
+}
+
+.rec-msg {
+  margin: 10px 0 0;
+  padding: 9px 12px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--gold);
+  background: var(--gold-soft);
+  border-left: 3px solid var(--gold-line);
+  border-radius: 0 8px 8px 0;
+}
+
+.rec-out {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.rec-play { flex: 1 1 18rem; max-width: 100%; height: 38px; }
