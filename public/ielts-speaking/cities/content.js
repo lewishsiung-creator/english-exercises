@@ -10,8 +10,15 @@
 
    From the source material, unchanged: the three questions and their Chinese,
    the five-part labels and their Chinese, every English sentence of the three
-   model answers, the three vocabulary tables in both languages, the side-by-side
-   review, and the teaching note that closes the lesson.
+   model answers, the three vocabulary tables in both languages, and the
+   side-by-side review.
+
+   Changed from the source, deliberately: its closing note suggests aiming at
+   forty to sixty seconds. This course teaches the long answer — ninety
+   seconds, as mapped in ninety-seconds — so the note here keeps the handout's
+   warning against memorising and states the ninety-second target instead,
+   saying on the page that it departs from the handout. The clock in step 5
+   overrides Part 3's default band for the same reason.
 
    Written for this page: the Traditional Chinese for the model answers and for
    the review chains — the source gives those in English only — and the framing
@@ -381,6 +388,10 @@ const LESSON = {
           t: 'clock',
           en: 'Against the clock',
           zh: '計時進行',
+          /* These are the long five-part answers, so the band is the ninety
+             seconds Ninety Seconds, Three Ways maps, not Part 3's default
+             0:40–1:15 — that one is for an ordinary answer, which this is not. */
+          clock: { bandLow: 70, bandHigh: 90 },
         },
         {
           t: 'task',
@@ -400,8 +411,8 @@ const LESSON = {
           t: 'note',
           en: 'Do not memorise these',
           zh: '不要背這些答案',
-          bodyEn: 'These answers are extended models, written to show how far a point can be developed — they are not a target length. For Part 3, a clear forty-to-sixty-second response with two well-developed points is usually more effective than a longer, rehearsed one. An examiner can hear a memorised answer, and it costs more than a short answer ever would.',
-          bodyZh: '這些是「延伸版」的範例答案，用意是示範一個論點可以展開到什麼程度，並不是你該講的長度目標。在 Part 3，一個清楚、四十到六十秒、帶兩個充分展開論點的回答，通常比更長的背誦版本更有效。考官聽得出背稿，而那付出的代價，遠比回答太短更大。',
+          bodyEn: 'These are extended models, written to show how far a point can be developed. Rebuild the shape, not the sentences — an examiner can hear a memorised answer, and it costs more than an imperfect one ever would. The length to aim at is the ninety seconds the clock above marks, the same target as Ninety Seconds, Three Ways. (The handout these came from suggests forty to sixty seconds instead; this course teaches the longer answer, so that line is not reproduced here.)',
+          bodyZh: '這些是「延伸版」的範例答案，用意是示範一個論點可以展開到什麼程度。請重建結構，而不是重建句子——考官聽得出背稿，而那付出的代價，遠比講得不完美更大。長度目標是上方計時標示的九十秒，與「九十秒，三種題型」一致。（本課材料出處的講義建議四十到六十秒；本課程教的是較長的回答，因此該段未收錄於此。）',
         },
       ],
     },

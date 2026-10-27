@@ -1447,6 +1447,18 @@ to notice.
 The audio script the city set was built from is **not** in the repo — only the
 questions it produced.
 
+**The course disagrees with the Cities handout about length, and says so on the
+page.** That handout closes by recommending forty to sixty seconds; Lewis
+teaches the long answer, so Cities states the ninety-second target instead,
+names the handout's figure in brackets rather than quietly dropping it, and its
+recall clock overrides Part 3's default band to 1:10–1:30 to match Ninety
+Seconds, Three Ways. The handout's warning against memorising the models is
+kept — that part was never in conflict.
+
+Only those two lessons use the long band. Everything else in Part 3 keeps the
+default 0:40–1:15, because a question pulled from a bank is an ordinary answer,
+not an extended one.
+
 Parts 1 and 2 are mapped but not written — nine lesson cards sitting dimmed on
 the contents page.
 
