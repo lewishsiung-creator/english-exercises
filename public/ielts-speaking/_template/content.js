@@ -48,8 +48,9 @@
      sentences a numbered list of whole sentences, each spoken on request
      qbank     a bank of questions with a button that pulls one at random and
                will not repeat it until the bank is empty. An item may carry a
-               `tag` — its question type — which hides behind the row's own tap
-               and is NOT released by the 中文 switch, being an answer
+               `tag` — its question type — and `words`, the language that
+               question asks for. Both hide behind the row's own tap and
+               neither is released by the 中文 switch
      upgrade   a thin answer, what to add, and the same answer done properly
                behind a reveal
      timeline  a long answer laid out against the clock. While the speaking
@@ -324,8 +325,20 @@ const LESSON = {
             /* `tag` is optional. Give it only when naming the type is itself
                the exercise — it hides behind the row's tap as an answer. */
             { en: 'A question, written as it would be asked.', zh: '一道題目，照它會被問出來的樣子寫。', tag: 'Opinion', tagZh: '意見題' },
-            { en: 'Another question.', zh: '另一道題目。', tag: 'Cause', tagZh: '原因題' },
-            { en: 'A question with no type label on it.', zh: '一道沒有標示題型的題目。' },
+
+            /* `words` is optional too: the language this question asks for,
+               opened by the same tap. Use it when the bank is the lesson and
+               there is no separate phrase bank to send the student to. */
+            {
+              en: 'Another question.', zh: '另一道題目。',
+              tag: 'Cause', tagZh: '原因題',
+              words: [
+                { en: 'a phrase this question wants', zh: '這一題會用到的片語' },
+                { en: 'and another', zh: '還有一個' },
+              ],
+            },
+
+            { en: 'A question with nothing behind it but its Chinese.', zh: '一道背後只有中文的題目。' },
           ],
         },
 

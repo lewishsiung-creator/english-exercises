@@ -137,7 +137,12 @@ const BLOCKS = {
   /* A bank of exam questions on one topic. The list is there to be read, but
      the button is the point: it pulls one question at random and does not pull
      it again until the bank is empty, so a session never drifts back to the
-     same three questions. Nothing is stored — the count resets on reload. */
+     same three questions. Nothing is stored — the count resets on reload.
+
+     An item may carry `tag` (its question type) and `words` (the language that
+     question asks for). Both wait behind the row's own tap, so one tap gives
+     the Chinese, the type and the phrases together — everything about this
+     question, asked for deliberately. The 中文 switch releases neither. */
   qbank: (b) => `
     <div class="activity qbank" data-act="qbank">
       ${label(b.en, b.zh)}
@@ -152,6 +157,11 @@ const BLOCKS = {
             <span class="en">${text(q.en)}${speakBtn(q.en, 'say say-quiet')}</span>
             <span class="zh">${text(q.zh)}</span>
             ${q.tag ? `<span class="q-tag">${text(q.tag)}<em>${text(q.tagZh)}</em></span>` : ''}
+            ${q.words ? `<ul class="q-words">
+              ${q.words.map((w) => `
+                <li><span class="en">${text(w.en)}${speakBtn(w.en, 'say say-quiet')}</span>
+                  <em>${text(w.zh)}</em></li>`).join('')}
+            </ul>` : ''}
           </li>`).join('')}
       </ol>
     </div>`,

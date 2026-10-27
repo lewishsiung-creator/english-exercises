@@ -219,6 +219,15 @@ const COURSE = {
       blurbZh: '三道關於擁擠城市的題目，先看完整回答，再把稿子收起來重建。',
     },
     {
+      id: 'city-questions',
+      part: 'part3',
+      built: true,
+      en: 'Fifteen City Questions',
+      zh: '城市十五題',
+      blurbEn: 'The bank the three worked answers came from — rivers, redevelopment and traffic, each question carrying the language it asks for.',
+      blurbZh: '三個示範答案的出處題庫——河流、再開發與交通，每題都附上該題需要的用語。',
+    },
+    {
       id: 'online-reviews',
       part: 'part3',
       built: true,

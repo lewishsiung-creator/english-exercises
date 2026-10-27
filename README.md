@@ -1363,10 +1363,10 @@ than nested under a part, so ids are unique across the whole course.
 - **Block types beyond the ones inherited from `/ielts-part3/`.** `qbank` is a
   topic's questions with a button that pulls one at random and will not pull it
   again until the bank is empty — a button that can hand you the same question
-  twice is worse than no button; a question may carry a `tag` (its type), which
-  waits behind the row's own tap and is deliberately **not** released by the
-  中文 switch, because it is the answer to an exercise rather than a
-  translation. `bank` is the two-column phrase table, with the Chinese behind a
+  twice is worse than no button; a question may carry a `tag` (its type) and
+  `words` (the language it asks for), both of which wait behind the row's own
+  tap and are deliberately **not** released by the 中文 switch — one tap gives
+  the Chinese, the type and the phrases together, asked for on purpose. `bank` is the two-column phrase table, with the Chinese behind a
   tap like every other line. `sentences` is a numbered spoken list. `upgrade`
   sets a thin answer against the same answer done properly, with what to add
   listed between them and the better version behind a reveal. `timeline` lays a
@@ -1390,7 +1390,8 @@ on. The teaching order is the order they appear.
 | 2 | Ninety Seconds, Three Ways | The same moves bent to opinion, cause and comparison questions, a ninety-second timing plan, and twelve mixed questions to name the type of |
 | 3 | Answer Shapes and Frames | Four question-specific structures, six universal frames, ten high-value sentences |
 | 4 | Cities: Space, Transport and Traffic | Three questions on crowded cities, each with a full five-part model answer and its vocabulary, then the three shapes side by side and a recall exercise |
-| 5–8 | The commerce topics | Online Reviews (15 questions), Customer Service (15), Consumer Behaviour (10), Business Reputation (10) — each with its own collocations, useful sentences and a worked speaking pattern |
+| 5 | Fifteen City Questions | The bank those three came out of — rivers, redevelopment, future transport — all fifteen questions, each carrying the language it asks for, plus eight phrases that travel to any topic |
+| 6–9 | The commerce topics | Online Reviews (15 questions), Customer Service (15), Consumer Behaviour (10), Business Reputation (10) — each with its own collocations, useful sentences and a worked speaking pattern |
 
 **The two topic clusters are built the opposite way round**, on purpose. The
 four commerce lessons are question banks with phrase banks beside them: lots of
@@ -1398,6 +1399,15 @@ questions, no model answers, because the point is volume. Cities is three
 questions with the answers written out in full, because the point there is
 seeing how far one point can be developed. A lesson is whichever of those two
 the material actually is.
+
+The city cluster then ends up as both, in two lessons, because that is what the
+source was: a fifteen-question set, three of which had been answered in full.
+Cities holds the three worked answers; Fifteen City Questions holds the bank,
+and says on the page to do a question cold there before reading its model — a
+worked answer read before the attempt is worth very little. The per-question
+language in the bank is the source's own and is deliberately not merged with
+the vocabulary tables in Cities, which the handout wrote separately and
+differently for the same three questions.
 
 **Two taxonomies had to be reconciled.** The A.R.E.A. material presents Opinion,
 Cause and Comparison as a scheme of its own, which is largely the same three as
@@ -1428,8 +1438,14 @@ vocabulary, but not for the model answers, so those translations are the site's
 too. Each lesson cover says which is which.
 
 **Cities keeps its handout's question numbers** — 9, 12 and 14 — on the question
-cards, because that is how Lewis refers to them in a session. The rest of that
-handout's questions are not in the repo.
+cards, because that is how Lewis refers to them in a session. Fifteen City
+Questions is the rest of that set, grouped into the three themes the source
+used, so the numbering lines up: questions 9, 12 and 14 there are the three
+answered in full in Cities, and the page says so rather than leaving a student
+to notice.
+
+The audio script the city set was built from is **not** in the repo — only the
+questions it produced.
 
 Parts 1 and 2 are mapped but not written — nine lesson cards sitting dimmed on
 the contents page.

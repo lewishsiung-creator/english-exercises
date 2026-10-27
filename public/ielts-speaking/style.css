@@ -1688,3 +1688,38 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 @media print {
   .chain-step { background: transparent; }
 }
+
+/* ---------------- the language a question asks for ---------------- */
+
+/* Held behind the row's own tap, like the type tag beside it. Gold rather than
+   the tag's green: these are not an answer, they are what to reach for. */
+.q-words { display: none; }
+.q-row.open .q-words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 8px 0 2px;
+  padding: 0;
+  list-style: none;
+}
+.q-words li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 4px 10px;
+  font-family: var(--font-ui);
+  font-size: .84rem;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-line);
+  border-radius: 999px;
+}
+.q-words em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-size: .85em;
+  color: var(--ink-faint);
+}
+
+@media print {
+  .q-words li { background: transparent; }
+}
