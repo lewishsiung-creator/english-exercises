@@ -469,7 +469,7 @@ and a crumb would claim a hierarchy that does not exist.
 
 ## Basic English Grammar — adult, fifteen chapters
 
-The one page here built to grow rather than to be finished. Fifteen chapters
+One of the two pages here built to grow rather than to be finished. Fifteen chapters
 and 133 numbered sections, following the syllabus of *Basic English Grammar*
 (Azar & Hagen, 4th edition) — the order Lewis teaches in — from the forms of
 *be* through to making comparisons.
@@ -1325,7 +1325,7 @@ not improve it.
 
 ## IELTS Speaking — adult, all three parts
 
-The second page here built to grow rather than to be finished. The Speaking
+The other page here built to grow rather than to be finished. The Speaking
 test is three conversations, not one, so the course is three parts with their
 own lessons under each — and the contents page shows the lessons that are not
 written yet, dimmed and dashed, the way the grammar book does.
@@ -1518,8 +1518,53 @@ developing a point, and the reason it is one number rather than a short band
 for the question lessons and a long one for the model-answer lessons is that
 two bands were teaching two things at once.
 
-Parts 1 and 2 are mapped but not written — nine lesson cards sitting dimmed on
-the contents page.
+### Part 1 — four minutes of easy questions
+
+Four lessons, and they are deliberately shorter than the Part 3 ones, because
+the exam part is. Part 1 has no planning time, the questions are about you, and
+the band is fifteen to thirty-five seconds — a different exam from Part 3, and
+the course has to say so.
+
+| # | Lesson | What it carries |
+| --- | --- | --- |
+| 1 | Two Sentences More | The habit the other three assume: answer, reason, one detail, stop. Two `upgrade` blocks set a four-second answer and a sixty-second one against the right length, plus fifteen questions to run at speed |
+| 2 | Hometown and Where You Live | The most memorised answer in the test, replaced with one a person would give. Twelve questions with the language each asks for |
+| 3 | Work and Study | Saying what you do in words a stranger understands, instead of a job title. Twelve questions |
+| 4 | Free Time and Hobbies | Permission not to have a hobby, and frequency phrases, which are free marks. Twelve questions |
+
+**The second `upgrade` in lesson 1 is a Part 3 answer, and it is wrong here.**
+It is balanced, it concedes, it concludes — it is the A.R.E.A. answer delivered
+to "do you prefer indoors or outdoors?", and it would score well two parts
+later. A candidate who has drilled Part 3 hard is the one most likely to make
+that mistake, so the lesson shows it rather than warning about it.
+
+### Part 2 — the long turn
+
+Five lessons, and the first use anywhere of the `cue` block, which was written
+when the course was built and then sat unused for as long as Part 2 was empty.
+
+| # | Lesson | What it carries |
+| --- | --- | --- |
+| 1 | The One-Minute Plan | What the sixty seconds are for, as a `timeline` that lights up against the planning countdown. Four decisions, in order, and never a written sentence |
+| 2 | Describe a Person | One remembered scene instead of five adjectives, and the sentence that keeps the adjective but earns it |
+| 3 | Describe a Place | Moving through a place instead of listing it — count the "there is" in each version |
+| 4 | Describe an Experience | The card that pays for grammar: past continuous for the scene, past simple for the action, past perfect for what came before, with a worked answer tagged by tense |
+| 5 | When You Run Dry at Ninety Seconds | Contrast, time, person, reason — four places more speech comes from, and how to end on purpose rather than trail off |
+
+**Lesson 4 is where Grammatical Range stopped being ignored.** Every other task
+in this course can be answered in the present simple, so three quarters of the
+band were being practised and a quarter was not. Narrative tenses only sound
+natural inside an actual narrative, which makes the story card the only honest
+place to teach them.
+
+**The planning timeline drove a change in `render.js`.** A timeline maps time
+*elapsed*, and Part 2's planning clock runs 1:00 down to 0:00, so the countdown
+is inverted before a row is lit. A `timeline` now also declares which clock it
+follows — `for: 'plan'` takes the countdown, anything else takes the count-up —
+so a step holding one of each drives them independently. The scoping is still
+per step, which is worth knowing when writing a lesson: **a timeline in one
+step and a clock in another will never meet**, which is exactly the bug the
+one-minute-plan lesson shipped with for about ten minutes.
 
 ### Design notes
 

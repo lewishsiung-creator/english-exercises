@@ -94,7 +94,7 @@ const COURSE = {
     {
       id: 'two-sentences-more',
       part: 'part1',
-      built: false,
+      built: true,
       en: 'Two Sentences More',
       zh: '再多兩句',
       blurbEn: 'The habit that fixes most Part 1 scores: answer, then reason or example, then stop.',
@@ -103,7 +103,7 @@ const COURSE = {
     {
       id: 'hometown',
       part: 'part1',
-      built: false,
+      built: true,
       en: 'Hometown and Where You Live',
       zh: '家鄉與居住地',
       blurbEn: 'The question every candidate gets, and the answer every candidate has memorised.',
@@ -112,7 +112,7 @@ const COURSE = {
     {
       id: 'work-and-study',
       part: 'part1',
-      built: false,
+      built: true,
       en: 'Work and Study',
       zh: '工作與學業',
       blurbEn: 'Talking about what you do without reciting a job description.',
@@ -121,7 +121,7 @@ const COURSE = {
     {
       id: 'free-time',
       part: 'part1',
-      built: false,
+      built: true,
       en: 'Free Time and Hobbies',
       zh: '休閒與興趣',
       blurbEn: 'Easy questions where fluency slips, because nobody prepares for easy questions.',
@@ -132,7 +132,7 @@ const COURSE = {
     {
       id: 'the-one-minute-plan',
       part: 'part2',
-      built: false,
+      built: true,
       en: 'The One-Minute Plan',
       zh: '一分鐘的計畫',
       blurbEn: 'What to write on the paper in sixty seconds, and what never to write.',
@@ -141,7 +141,7 @@ const COURSE = {
     {
       id: 'describe-a-person',
       part: 'part2',
-      built: false,
+      built: true,
       en: 'Describe a Person',
       zh: '描述一個人',
       blurbEn: 'The commonest card family, and the trick of one scene instead of five adjectives.',
@@ -150,7 +150,7 @@ const COURSE = {
     {
       id: 'describe-a-place',
       part: 'part2',
-      built: false,
+      built: true,
       en: 'Describe a Place',
       zh: '描述一個地方',
       blurbEn: 'Places invite lists. Lists run out at forty seconds.',
@@ -159,7 +159,7 @@ const COURSE = {
     {
       id: 'describe-an-experience',
       part: 'part2',
-      built: false,
+      built: true,
       en: 'Describe an Experience',
       zh: '描述一段經驗',
       blurbEn: 'A story with a middle — the one card type where narrative tenses earn marks.',
@@ -168,7 +168,7 @@ const COURSE = {
     {
       id: 'when-you-run-dry',
       part: 'part2',
-      built: false,
+      built: true,
       en: 'When You Run Dry at Ninety Seconds',
       zh: '講到九十秒沒話說',
       blurbEn: 'Four ways to keep going when the bullets are finished and the examiner has not stopped you.',

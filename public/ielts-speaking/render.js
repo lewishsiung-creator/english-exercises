@@ -286,7 +286,7 @@ const BLOCKS = {
      the row covering the current second lights up, so the page shows the pace
      rather than describing it. Static and perfectly readable with no clock. */
   timeline: (b) => `
-    <div class="timeline">
+    <div class="timeline" data-for="${b.for === 'plan' ? 'down' : 'up'}">
       ${label(b.en, b.zh)}
       ${hint(b.hintEn, b.hintZh)}
       <ol class="tl-list">
@@ -743,17 +743,23 @@ function tickClock(unit) {
 
   unit.dataset.sec = sec;
   $('.clock-face', unit).textContent = face(sec);
-  if (!down) syncTimeline(unit, sec);
+
+  // A timeline always maps time ELAPSED, so a countdown has to be inverted
+  // before it is handed over — Part 2's planning minute is laid out 0:00 to
+  // 1:00 while its clock is running 1:00 down to 0:00.
+  syncTimeline(unit, down ? Number(unit.dataset.start) - sec : sec);
 }
 
-/* Light the timeline row covering the current second. Scoped to the step the
-   clock is in, so a lesson with two of each never lights the wrong one, and a
-   lesson with no timeline at all costs one empty query. */
-function syncTimeline(unit, sec) {
+/* Light the timeline row covering the current second. Scoped twice over: to
+   the step the clock is in, and to timelines that asked for this clock —
+   `for: 'plan'` follows the countdown, anything else follows the count-up. A
+   step with one of each therefore drives them independently, and a step with
+   no timeline costs one empty query. */
+function syncTimeline(unit, elapsed) {
   const step = unit.closest('.step');
   if (!step) return;
-  $$('.tl-row', step).forEach((row) => {
-    const on = sec >= Number(row.dataset.from) && sec < Number(row.dataset.to);
+  $$(`.timeline[data-for="${unit.dataset.mode}"] .tl-row`, step).forEach((row) => {
+    const on = elapsed >= Number(row.dataset.from) && elapsed < Number(row.dataset.to);
     row.classList.toggle('now', on);
   });
 }
@@ -771,7 +777,10 @@ function resetClock(unit) {
   $('.clock-face', unit).textContent = face(Number(unit.dataset.start));
 
   const step = unit.closest('.step');
-  if (step) $$('.tl-row', step).forEach((row) => row.classList.remove('now'));
+  if (step) {
+    $$(`.timeline[data-for="${unit.dataset.mode}"] .tl-row`, step)
+      .forEach((row) => row.classList.remove('now'));
+  }
 }
 
 function clockClick(btn) {
