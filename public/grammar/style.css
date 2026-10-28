@@ -1056,6 +1056,49 @@ body.zh-all .td-zh::after { display: none; }
 }
 .no { animation: nope .38s ease; }
 
+/* ---------------- a cast of people ----------------
+
+   The book's grid of photographs, with an emoji where the photograph was.
+   Cards rather than table rows, because the eye is meant to find one person
+   quickly and come back — the drill underneath is read against this. */
+
+.cast { margin: 22px 0; }
+
+.cast-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+}
+
+.cast-card {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  grid-template-areas: "pic name" "pic job" "zh zh";
+  align-items: baseline;
+  gap: 2px 10px;
+  padding: 12px 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+}
+.cast-card:hover { border-color: var(--red-line); }
+
+.cast-pic {
+  grid-area: pic;
+  align-self: center;
+  font-size: 26px;
+  line-height: 1;
+  /* The emoji fonts carry their own colour, so nothing here should try to
+     tint them; they only need room and a steady baseline. */
+  text-align: center;
+}
+.cast-name { grid-area: name; font-size: 15px; color: var(--ink-soft); }
+.cast-job { grid-area: job; font-size: 16.5px; }
+.cast-card .zh { grid-area: zh; font-size: 13px; margin-top: 6px; }
+
 /* ---------------- practice: two steps on one fact ----------------
 
    The verb, then the correction. The second step is indented under the first

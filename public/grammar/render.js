@@ -319,6 +319,34 @@ const BLOCKS = {
       ${`<p class="tally"><span class="done">0</span> / ${b.items.length}</p>`}
     </div>`,
 
+  /* A set of people with a picture, a name and a fact about them. The book
+     puts eight photographs in a grid and the whole exercise reads off them;
+     a photograph cannot be reproduced here, so this is the same grid with an
+     emoji where the photograph was.
+
+     The house rule is that pictures are emoji and only where they cannot
+     mislead. Two pairs here are exactly what the practice below tests —
+     nurse against doctor, mechanic against plumber — so a picture that could
+     not separate them would be worse than none. They are 💉 against 🩺 and
+     🔧 against 🚰, which are distinct at a glance and in the conventions a
+     Taiwanese adult already reads. The job is written out underneath in any
+     case, so an emoji that fails to render costs nothing. */
+  cast: (b) => `
+    <div class="cast">
+      ${label(b)}
+      ${hint(b)}
+      <ul class="cast-grid">
+        ${b.items.map((p) => `
+          <li class="cast-card pair" data-zh>
+            <span class="cast-pic" aria-hidden="true">${text(p.pic)}</span>
+            <span class="cast-name">${text(p.name)}</span>
+            <span class="en cast-job">${text(p.job)}${speakBtn(p.job, 'say say-quiet')}
+              <button class="zh-chip" title="顯示中文">中</button></span>
+            <span class="zh">${text(p.zh)}</span>
+          </li>`).join('')}
+      </ul>
+    </div>`,
+
   /* Two steps on one fact: choose is or isn’t, then say what is actually the
      case. The book's own shape — "Lisa ___ a gardener. She ___." — and the
      first exercise here that asks for production rather than recognition.

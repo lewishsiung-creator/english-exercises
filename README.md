@@ -562,6 +562,13 @@ read the map.
   every Chinese hint, the layer the weakest reader needs most. It is #68707e
   and 4.7:1 now, and the gold of the trap-note headings went the same way.
   All 64 text styles on a chapter page pass, the tightest at 4.6:1.
+- **`cast` is the book's grid of photographs, with an emoji where the
+  photograph was.** The house rule holds: pictures are emoji and only where
+  they cannot mislead — and two of the pairs here are exactly what the drill
+  underneath tests, nurse against doctor and mechanic against plumber, so
+  they are 💉 against 🩺 and 🔧 against 🚰 rather than anything that would
+  blur them. The job is written out in any case, so an emoji that fails to
+  render costs nothing.
 - **`twostep` is the one block that asks for production.** The book's own
   shape — *Lisa ___ a gardener. She ___.* — and the only exercise here where
   the learner is not choosing from what is already on screen: picking *is* or
