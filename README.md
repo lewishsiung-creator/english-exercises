@@ -1405,7 +1405,7 @@ than nested under a part, so ids are unique across the whole course.
 
 ### Part 3 — how to answer, then the topics to answer about
 
-Sixteen lessons: four on how to build an answer, then twelve topics to build
+Eighteen lessons: four on how to build an answer, then fourteen topics to build
 them on. The teaching order is the order they appear.
 
 | # | Lesson | What it carries |
@@ -1416,8 +1416,9 @@ them on. The teaching order is the order they appear.
 | 4 | Say It Another Way | The counterweight to all of the above: how a rehearsed answer gives itself away, one question answered two opposite ways, your own examples, and paraphrasing the question |
 | 5 | Cities: Space, Transport and Traffic | Three questions on crowded cities, each with a full five-part model answer and its vocabulary, then the three shapes side by side and a recall exercise |
 | 6 | Fifteen City Questions | The bank those three came out of — rivers, redevelopment, future transport — all fifteen questions, each carrying the language it asks for, plus eight phrases that travel to any topic |
-| 7–12 | Education, Technology, Environment, Work, Health, Government and Society | Fifteen questions each, same shape as Fifteen City Questions, plus a topic-wide phrase bank |
-| 13–16 | The commerce topics | Online Reviews (15 questions), Customer Service (15), Consumer Behaviour (10), Business Reputation (10) — each with its own collocations, useful sentences and a worked speaking pattern |
+| 7–8 | Computer Games, Technology in the Classroom | Six more worked answers from the same handout family as Cities, three per lesson, each in five parts with its own vocabulary |
+| 9–14 | Education, Technology, Environment, Work, Health, Government and Society | Fifteen questions each, same shape as Fifteen City Questions, plus a topic-wide phrase bank |
+| 15–18 | The commerce topics | Online Reviews (15 questions), Customer Service (15), Consumer Behaviour (10), Business Reputation (10) — each with its own collocations, useful sentences and a worked speaking pattern |
 
 **Lesson 4 exists because lessons 1–3 are dangerous on their own.** Three phrase
 banks and a stack of model answers is how you build range, and it is also how
@@ -1455,6 +1456,21 @@ questions, no model answers, because the point is volume. Cities is three
 questions with the answers written out in full, because the point there is
 seeing how far one point can be developed. A lesson is whichever of those two
 the material actually is.
+
+**Lessons 5, 7 and 8 are the worked-answer family**, all from the same
+handout's five-part structure and all deliberately kept apart from the banks.
+Computer Games and Technology in the Classroom are three questions each,
+numbered 1–6 in their source the way Cities keeps its 9, 12 and 14. Technology
+in the Classroom sits close to two banks that cover the same ground — Education
+and Technology — and its first step says so and points at both, so a learner
+wanting volume is sent there rather than left thinking three questions is all
+there is.
+
+**The fourth slot is the through-line.** Cities teaches that it either extends
+the point or concedes the other side; every question card in the two new
+lessons is tagged with which, so the shape can be predicted before the answer
+is read. Games varies — one balances, two extend. Classroom does not: all three
+end on a limit, which is what a question inviting enthusiasm is usually marking.
 
 The city cluster then ends up as both, in two lessons, because that is what the
 source was: a fifteen-question set, three of which had been answered in full.
@@ -1503,14 +1519,18 @@ to notice.
 The audio script the city set was built from is **not** in the repo — only the
 questions it produced.
 
-**The course disagrees with the Cities handout about length, and says so on the
-page.** That handout closes by recommending forty to sixty seconds. Lewis
+**The course disagrees with these handouts about length, and says so on the
+page.** They close by recommending forty to sixty seconds — and are split on it
+themselves, since the Computer Games handout's own practice section says sixty
+to ninety on the same page as its teaching note says forty to sixty. Lewis
 teaches the long answer, so **ninety seconds is Part 3's band course-wide** —
-1:10–1:30, set once on the part in `course.js` and inherited by all nine
-lessons. Cities states that target in its closing note and names the handout's
-figure in brackets rather than quietly dropping it, the way the 學測 page names
-the four places it departs from its source. The handout's warning against
-memorising the models is kept untouched; that part was never in conflict.
+1:10–1:30, set once on the part in `course.js` and inherited by every lesson in
+it. All three worked-answer lessons state that target in their closing notes
+and name the handout's figure in brackets rather than quietly dropping it, the
+way the 學測 page names the four places it departs from its source. The
+handouts' warning against reciting the models is kept untouched, and so is
+their point that a band cannot be judged from written content at all; neither
+was ever in conflict.
 
 An examiner will often stop a candidate sooner than ninety seconds, and a
 shorter answer is not a failure. The long band is a training target for
