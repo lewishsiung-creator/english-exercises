@@ -1591,6 +1591,41 @@ per step, which is worth knowing when writing a lesson: **a timeline in one
 step and a clock in another will never meet**, which is exactly the bug the
 one-minute-plan lesson shipped with for about ten minutes.
 
+### Virtual Examiner
+
+`/ielts-speaking/examiner/` — the one page in the course that shows you
+nothing. It speaks a question drawn at random from every built lesson, starts
+the part's clock, records the answer, and reveals the question only when asked.
+
+**Why it exists.** Every question in this course sits on a page next to its own
+vocabulary and often a model answer. That is right for teaching and wrong for
+rehearsal: nobody in the exam hands you the question in writing, and a
+candidate who has only met questions on paper has been practising reading.
+
+**Where the questions come from.** Every built lesson, harvested from its
+`qbank` and `question` blocks — 164 distinct Part 3 questions, 50 for Part 1
+and 9 Part 2 cards at the time of writing. There is **no index file and no
+build step**: picking a part fetches only that part's lessons and evaluates
+them with `new Function(src + '; return LESSON;')`, so the pool is whatever the
+lessons currently say and cannot go stale. A question appearing in more than
+one lesson is kept once and remembers every lesson it came from, so the reveal
+links back to all of them — which is why Part 3's 204 raw questions become 164.
+
+**Part 2 is deliberately not hidden.** Part 1 and Part 3 questions are spoken
+by the examiner, so this page speaks them and shows nothing. Part 2 is not: the
+real test hands over a printed card and a minute with a pencil. Hiding a Part 2
+card would be a harder exercise and a less faithful one, so the card is shown,
+nothing is spoken, and the minute runs.
+
+**If the device cannot speak, the page shows the question instead** and says so
+— a silent examiner is worse than a visible question.
+
+The speech and recording code is a trimmed copy of `render.js`'s. Two pages is
+not yet a reason to extract a shared file and re-wire twenty-eight lesson
+shells; a third page would be. One thing did have to change: `render.js`'s
+`el()` returns `firstElementChild`, which is right there because every block
+builder returns one element, and silently drops half the page here.
+
 ### Design notes
 
 Same house rules as the other adult pages — English leads with Chinese behind a

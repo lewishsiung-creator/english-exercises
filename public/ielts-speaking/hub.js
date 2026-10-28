@@ -91,6 +91,19 @@ function buildCover() {
             <span class="t"><span class="en">${text(p.en)}</span>
             <span class="zh">${text(p.zh)}</span></span></a>`).join('')}
       </nav>
+
+      <!-- Not a lesson, so it does not belong in a part's card list — but it
+           draws on all of them, so it sits above them all. -->
+      <a class="hub-examiner" href="examiner/">
+        <span class="hub-examiner-mark" aria-hidden="true">🔊</span>
+        <span class="hub-examiner-t">
+          <span class="en">Virtual Examiner</span>
+          <span class="zh">模擬考官</span>
+          <span class="hub-examiner-sub">The question is spoken once and never
+            shown, drawn at random from every question in the course.
+            <em>題目只唸一次、不顯示，從課程所有題目中隨機抽出。</em></span>
+        </span>
+      </a>
     </header>`;
 }
 

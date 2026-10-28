@@ -1832,3 +1832,199 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   margin-top: 12px;
 }
 .rec-play { flex: 1 1 18rem; max-width: 100%; height: 38px; }
+
+/* ---------------- the Virtual Examiner ----------------
+
+   A page with one job, so it is laid out as one column of large controls
+   rather than a document. The question is never in the DOM visibly until the
+   reveal is asked for — that is the whole feature, and it is why the stage
+   holds an empty element rather than a hidden one carrying the text. */
+
+.ex-pick { margin: 10px 0 26px; }
+
+.ex-parts {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;
+  margin: 12px 0 10px;
+}
+@media (min-width: 640px) { .ex-parts { grid-template-columns: repeat(3, 1fr); } }
+
+.ex-part {
+  display: block;
+  text-align: left;
+  padding: 13px 15px;
+  border-radius: 10px;
+}
+.ex-part .n {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.ex-part .t { display: block; margin-top: 3px; font-size: 15px; }
+.ex-part .t em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  color: var(--ink-faint);
+  margin-left: 8px;
+  font-size: .85em;
+}
+.ex-part.on { background: var(--brand); border-color: var(--brand); }
+.ex-part.on .n, .ex-part.on .t { color: #fff; }
+.ex-part.on .t em { color: rgba(255, 255, 255, .75); }
+
+.ex-pool {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+.ex-pool em { font-family: var(--font-zh); font-style: normal; margin-left: 8px; }
+
+/* ---------------- the stage ---------------- */
+
+.ex-stage { border-top: 1px solid var(--rule); padding-top: 22px; }
+
+.ex-ask {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+/* The one control the page is built around. */
+.ex-go {
+  font-size: 16px;
+  padding: 12px 22px;
+  color: #fff;
+  background: var(--brand);
+  border-color: var(--brand);
+}
+.ex-go:hover { background: var(--navy); border-color: var(--navy); }
+.ex-go em, .ex-again em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  margin-left: 8px;
+  font-size: .85em;
+  opacity: .8;
+}
+
+.ex-count {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+.ex-count em { font-family: var(--font-zh); font-style: normal; margin-left: 8px; }
+
+/* The only line that speaks to the candidate while a question is running. */
+.ex-status {
+  margin: 0 0 16px;
+  min-height: 1.6em;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+.ex-status em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  font-size: .78em;
+  color: var(--ink-faint);
+  margin-left: 10px;
+}
+
+.ex-card { margin-bottom: 18px; }
+
+.ex-clock { display: grid; gap: 12px; grid-template-columns: 1fr; margin-bottom: 4px; }
+@media (min-width: 620px) { .ex-clock { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); } }
+
+.ex-after {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.ex-after em { font-family: var(--font-zh); font-style: normal; margin-left: 8px; font-size: .85em; opacity: .8; }
+
+/* ---------------- the reveal ---------------- */
+
+.ex-reveal {
+  margin-top: 16px;
+  padding: 16px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--good-line);
+  border-radius: 0 10px 10px 0;
+}
+.ex-q { margin: 0; font-size: 1.1rem; line-height: 1.4; }
+.ex-q-zh {
+  margin: 6px 0 0;
+  font-family: var(--font-zh);
+  font-size: .85rem;
+  color: var(--ink-faint);
+}
+.ex-reveal .q-words { margin-top: 12px; }
+
+.ex-from {
+  margin: 12px 0 0;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+.ex-from em { font-family: var(--font-zh); font-style: normal; margin: 0 6px; }
+.ex-from a { color: var(--navy); }
+
+@media print {
+  .ex-stage, .ex-parts { display: none !important; }
+}
+
+/* ---------------- the examiner, on the contents page ----------------
+
+   Not a lesson, so it is not a lesson card: it is one wide row above the
+   parts, because it draws on every one of them. */
+
+.hub-examiner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 18px 0 4px;
+  padding: 15px 18px;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--navy-soft);
+  border: 1px solid var(--navy-line);
+  border-radius: 12px;
+  transition: border-color .12s, box-shadow .12s;
+}
+.hub-examiner:hover { border-color: var(--brand); box-shadow: 0 2px 14px rgba(225, 34, 59, .1); }
+
+.hub-examiner-mark { font-size: 22px; line-height: 1.2; flex: none; }
+
+.hub-examiner-t .en { display: block; font-size: 17px; font-weight: 600; }
+.hub-examiner-t .zh {
+  display: block;
+  font-family: var(--font-zh);
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 1px;
+}
+.hub-examiner-sub {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.hub-examiner-sub em {
+  display: block;
+  font-family: var(--font-zh);
+  font-style: normal;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Virtual Examiner · 模擬考官</title>
+<meta name="description" content="IELTS Speaking practice where the question is spoken and never shown — drawn at random from every question in the course, with a clock and a recorder.">
+
+<!-- Inline SVG mark: a speech mark with sound lines, for a question you hear
+     rather than read. The colours must be percent-encoded — a bare "#" would
+     be read as the URL fragment and the icon would silently fail to load. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e1223b'/%3E%3Ccircle cx='24' cy='32' r='7' fill='%23ffffff'/%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linecap='round' opacity='.8'%3E%3Cpath d='M38 24a12 12 0 0 1 0 16'/%3E%3Cpath d='M45 18a20 20 0 0 1 0 28'/%3E%3C/g%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f6f2">
+
+<link rel="stylesheet" href="../style.css">
+<!-- The family sheets. Linked AFTER the section's stylesheet so they win. -->
+<link rel="stylesheet" href="../../type.css">
+<link rel="stylesheet" href="../../house.css">
+</head>
+<body>
+
+<a class="skip" href="#doc">Skip to the examiner 跳到模擬考官</a>
+
+<header class="bar">
+  <p class="bar-title">Virtual Examiner <span>模擬考官</span></p>
+  <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
+          aria-controls="panel" title="Voice settings" aria-label="Voice settings">👩‍🏫</button>
+</header>
+
+<div class="shell shell-wide">
+  <main id="doc"></main>
+</div>
+
+<!-- Voice settings. The whole page is speech, so these are not optional extras. -->
+<div class="panel" id="panel" role="dialog" aria-label="Voice settings" hidden>
+  <div class="panel-head">
+    <h2>Voice <span>語音</span></h2>
+    <button class="panel-x" id="panelClose" aria-label="Close">✕</button>
+  </div>
+
+  <div class="row">
+    <label for="voicePick">Examiner’s voice <em>考官的聲音</em></label>
+    <select id="voicePick"></select>
+    <p class="row-note">Choosing one plays a sample. A British voice is closest
+      to most test centres, but any clear voice will do.
+      <em>選擇後會播放一段範例。英式口音最接近多數考場，但任何清晰的聲音都可以。</em></p>
+  </div>
+
+  <div class="row">
+    <label for="rate">Speed <em>速度</em></label>
+    <select id="rate">
+      <option value="0.8">Slow 慢</option>
+      <option value="0.95">Normal 正常</option>
+      <option value="1.05">Brisk 快</option>
+    </select>
+    <p class="row-note">A real examiner speaks at a normal pace and does not slow
+      down for you. <em>真正的考官用正常語速說話，不會為你放慢。</em></p>
+  </div>
+</div>
+
+<!-- Site footer. Identical on every page, so a reader who lands on any one
+     sheet can find the rest. -->
+<footer class="site-foot">
+  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
+     aria-label="Lewis Biz English"><img src="../../logo.png" alt="" width="34" height="34"></a>
+  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
+    target="_blank" rel="noopener">lewistoeic.com</a></p>
+</footer>
+
+<script src="../course.js"></script>
+<script src="examiner.js"></script>
+</body>
+</html>
