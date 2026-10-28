@@ -1385,7 +1385,12 @@ than nested under a part, so ids are unique across the whole course.
   page shows the pace instead of describing it. It is scoped to the step, reads
   perfectly with no clock at all, and clears on reset.
 - **Every clock draws a recorder under it**, so a lesson gets one by having a
-  clock and no content file mentions it. A speaking lesson where the learner
+  clock and no content file mentions it. Every lesson in the course now has
+  one: A.R.E.A. was the last without, because it ended on P.E.E.L. with nothing
+  to practise against, and it now closes with six unseen questions, an
+  A.R.E.A.-shaped planning pad, and an instruction to record the same question
+  twice — once with the plan in sight and once without, since only the second
+  take resembles the exam. A speaking lesson where the learner
   never hears himself is teaching with one eye shut — a clock can say ninety
   seconds, but only a playback shows where the gaps were. It keeps the page's
   rule that nothing is saved: the take is a blob URL held in memory and revoked
@@ -1410,7 +1415,7 @@ them on. The teaching order is the order they appear.
 
 | # | Lesson | What it carries |
 | --- | --- | --- |
-| 1 | The A.R.E.A. Answer | The default shape — answer, reason, example, balance, judgment — with a phrase bank per move, a worked Band 7 answer, the upgrade from a thin answer, and P.E.E.L. as the emergency fallback |
+| 1 | The A.R.E.A. Answer | The default shape — answer, reason, example, balance, judgment — with a phrase bank per move, a worked Band 7 answer, the upgrade from a thin answer, P.E.E.L. as the emergency fallback, and six unseen questions from five topics to run it on |
 | 2 | Ninety Seconds, Three Ways | The same moves bent to opinion, cause and comparison questions, a ninety-second timing plan, the same answer cut to thirty, and twelve mixed questions to name the type of |
 | 3 | Answer Shapes and Frames | Four question-specific structures, six universal frames, ten high-value sentences |
 | 4 | Say It Another Way | The counterweight to all of the above: how a rehearsed answer gives itself away, one question answered two opposite ways, your own examples, and paraphrasing the question |

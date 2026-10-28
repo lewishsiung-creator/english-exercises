@@ -35,6 +35,7 @@ const LESSON = {
       { en: 'add the balancing sentence that makes an answer sound considered', zh: '加上讓回答顯得成熟的那一句平衡補充' },
       { en: 'close on a judgment instead of trailing off', zh: '以一個判斷收尾，而不是逐漸消音' },
       { en: 'fall back on P.E.E.L. when your mind goes blank', zh: '在腦中一片空白時，退回 P.E.E.L. 這個備案' },
+      { en: 'run the four moves on a question you have never seen', zh: '在完全沒看過的題目上，跑完這四個動作' },
     ],
   },
 
@@ -334,6 +335,103 @@ const LESSON = {
           zh: '無聊的結構，勝過美麗的沉默',
           bodyEn: 'P.E.E.L. will never sound impressive, and it is not supposed to. It is the thing you can still execute when the question is unfamiliar and the room has gone quiet — and a plain answer delivered fluently scores far better than an elegant one that never arrives.',
           bodyZh: 'P.E.E.L. 永遠不會聽起來很厲害，它也不該。它是當題目陌生、現場安靜下來時，你仍然做得出來的東西——而一個流暢說完的樸素回答，分數遠高於一個始終沒出現的漂亮回答。',
+        },
+      ],
+    },
+
+    // ------------------------------------------------------------ step 6
+    {
+      id: 'now-you',
+      n: 6,
+      en: 'Now do it, on a question you have not seen',
+      zh: '換你做，用一道你沒看過的題目',
+      blocks: [
+        {
+          t: 'lead',
+          en: 'The worked answer in step 3 was about deleting reviews. These six are from five different topics, and the claim this lesson makes is that the same four moves handle all of them. Test that.',
+          zh: '第 3 步的示範答案談的是刪除評論。下面這六題來自五個不同的主題，而這一課的主張是：同樣四個動作，全部都應付得了。請驗證這件事。',
+        },
+        {
+          t: 'qbank',
+          en: 'Six questions, five topics',
+          zh: '六道題，五個主題',
+          hintEn: 'Pull one. Name your four moves before you speak, then answer. Questions are from the course’s own banks.',
+          hintZh: '抽一題。開口前先說出你的四個動作，再回答。題目取自本課程既有題庫。',
+          items: [
+            { en: 'Should customers always be treated as “always right”?', zh: '是否應該永遠把顧客當成「顧客永遠是對的」？' },
+            { en: 'Why do some people prefer famous brands?', zh: '為什麼有些人偏好知名品牌？' },
+            { en: 'Is it better for customer service to be handled by humans or AI chatbots?', zh: '顧客服務由真人處理比較好，還是由 AI 聊天機器人處理比較好？' },
+            { en: 'Should cities preserve old industrial buildings or replace them with modern developments?', zh: '城市應該保存舊工業建築，還是以現代建築取代？' },
+            { en: 'Why has mental health become more widely discussed?', zh: '為什麼心理健康變得更常被討論？' },
+            { en: 'Do you think transparency is important in business?', zh: '你認為透明度在商業中重要嗎？' },
+          ],
+        },
+        {
+          t: 'pad',
+          en: 'A.R.E.A., four lines',
+          zh: 'A.R.E.A.，四行',
+          hintEn: 'Key words only — this is the whole plan. Nothing here is saved, and a reload clears it.',
+          hintZh: '只寫關鍵字——這就是全部的計畫。這裡不會儲存任何內容，重新整理即清空。',
+          rows: [
+            {
+              en: 'A — your answer, in three words',
+              zh: 'A — 你的立場，三個字',
+              ideas: [
+                { en: 'yes, with conditions', zh: '是，但有條件' },
+                { en: 'no, not by them', zh: '不，但不該由他們決定' },
+              ],
+            },
+            {
+              en: 'R — one reason, not three',
+              zh: 'R — 一個理由，不是三個',
+              ideas: [
+                { en: 'they are not a neutral party', zh: '他們不是中立的一方' },
+                { en: 'the cost falls on someone else', zh: '代價落在別人身上' },
+              ],
+            },
+            {
+              en: 'E — one example you could picture',
+              zh: 'E — 一個你想像得出畫面的例子',
+              ideas: [
+                { en: 'a small shop that depends on word-of-mouth', zh: '一家靠口碑生存的小店' },
+                { en: 'someone who had a genuinely bad experience', zh: '一個真的有過不好經驗的人' },
+              ],
+            },
+            {
+              en: 'A — what you concede',
+              zh: 'A — 你要讓的那一步',
+              ideas: [
+                { en: 'that said, not every case is the same', zh: '話雖如此，不是每個情況都一樣' },
+                { en: 'however, this does not mean ________', zh: '然而，這不代表 ________' },
+              ],
+            },
+          ],
+        },
+        {
+          t: 'clock',
+          en: 'Against the clock',
+          zh: '計時進行',
+        },
+        {
+          t: 'task',
+          en: 'Say it',
+          zh: '說出來',
+          instructionEn: 'Answer with the pad in front of you but your eyes off it, then record a second attempt at the same question without the pad. Tick each move as it lands.',
+          instructionZh: '看著計畫表，但別盯著它，直接回答；接著不看計畫表，再錄一次同一題。每完成一個動作就勾起來。',
+          checklist: [
+            { en: 'A — the first sentence answered the question', zh: 'A — 第一句就回答了問題' },
+            { en: 'R — one reason, and you stopped at one', zh: 'R — 一個理由，而且你只給了一個' },
+            { en: 'E — an example, not a second reason', zh: 'E — 一個例子，而不是第二個理由' },
+            { en: 'A — you conceded, then stayed where you were', zh: 'A — 你讓步了，然後守住原本的立場' },
+            { en: 'A short judgment, then silence', zh: '一句簡短的判斷，然後安靜' },
+          ],
+        },
+        {
+          t: 'note',
+          en: 'Listen to the second take, not the first',
+          zh: '聽第二次，不要聽第一次',
+          bodyEn: 'The first attempt tells you whether you understood the shape. The second, with the plan out of sight, tells you whether you can use it — and that is the one the exam resembles. If the second take is noticeably worse, the problem is not the structure; it is that you were reading.',
+          bodyZh: '第一次錄音告訴你「你懂不懂這個結構」。第二次、在看不到計畫表的情況下，才告訴你「你用不用得出來」——而那一次才像考試。如果第二次明顯比較差，問題不在結構，而在於你第一次是在讀稿。',
         },
       ],
     },
