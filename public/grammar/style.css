@@ -1056,6 +1056,33 @@ body.zh-all .td-zh::after { display: none; }
 }
 .no { animation: nope .38s ease; }
 
+/* ---------------- practice: two steps on one fact ----------------
+
+   The verb, then the correction. The second step is indented under the first
+   and shares its left edge with the options above it, so the pair reads as
+   one question in two moves rather than as two questions. */
+
+.two-q {
+  padding: 16px 0;
+  border-top: 1px dotted var(--line);
+}
+.two-q:first-of-type { border-top: none; }
+/* The parts are already inside the pair, so they must not draw rules of
+   their own or pad themselves again. */
+.two-q .q,
+.two-q .order-q { padding: 0; border-top: none; }
+
+.two-then {
+  margin: 14px 0 0 1.9rem;
+  padding: 12px 0 0 14px;
+  border-left: 2px solid var(--red-line);
+}
+.two-then .order-cue { margin-bottom: 8px; }
+.two-then .order-cue .q-n { color: var(--red); min-width: .9rem; }
+.two-then .built,
+.two-then .pool { margin-left: 0; }
+.two-then .why { margin-left: 0; }
+
 /* ---------------- practice: put it in order ----------------
 
    Word order is the thing a Mandarin speaker actually gets wrong, and it is

@@ -562,6 +562,17 @@ read the map.
   every Chinese hint, the layer the weakest reader needs most. It is #68707e
   and 4.7:1 now, and the gold of the trap-note headings went the same way.
   All 64 text styles on a chapter page pass, the tightest at 4.6:1.
+- **`twostep` is the one block that asks for production.** The book's own
+  shape — *Lisa ___ a gardener. She ___.* — and the only exercise here where
+  the learner is not choosing from what is already on screen: picking *is* or
+  *isn't* is recognition, but building the correction from a pool is not,
+  because nothing tells you which words the sentence needs until you have
+  decided what to say. The second step stays shut until the verb is right,
+  since there is no point correcting a statement before deciding it is wrong.
+  It is assembled from the two mechanics that already exist — an ordinary
+  `.q` and an ordinary `.order-q` — so wobble, explanations and
+  reveal-everything work on it untouched, and a pair counts as one question
+  rather than two.
 - **Two ways to be wrong, because four options cannot test word order.**
   `mcq` is a sentence with one blank; `order` gives the Chinese and a pool of
   words to tap into place. Word order is what actually goes wrong for a

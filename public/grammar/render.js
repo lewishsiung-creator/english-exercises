@@ -192,7 +192,10 @@ const BLOCKS = {
           return `<td class="td-zh"><span class="zh">${text(cell)}</span></td>`;
         }
         const zh = b.rowsZh && b.rowsZh[r] ? b.rowsZh[r][c] : '';
-        if (!zh) return `<td>${text(cell)}</td>`;
+        // `sayCol` puts a speaker on one column — for a table whose cells are
+        // vocabulary rather than prose, like a list of jobs.
+        const say = b.sayCol === c ? speakBtn(cell, 'say say-quiet') : '';
+        if (!zh) return `<td>${text(cell)}${say}</td>`;
         hasZh = true;
         return `<td><span class="en">${text(cell)}</span><span class="zh">${text(zh)}</span></td>`;
       }).join('');
@@ -314,6 +317,51 @@ const BLOCKS = {
           ${why(it.why)}
         </div>`).join('')}
       ${`<p class="tally"><span class="done">0</span> / ${b.items.length}</p>`}
+    </div>`,
+
+  /* Two steps on one fact: choose is or isn’t, then say what is actually the
+     case. The book's own shape — "Lisa ___ a gardener. She ___." — and the
+     first exercise here that asks for production rather than recognition.
+     Choosing between two verbs is recognition; building the second sentence
+     from a pool is not, because nothing on screen tells you which words the
+     sentence needs until you have decided what to say.
+
+     It is assembled out of the two mechanics that already exist rather than a
+     third: the first step is an ordinary `.q`, the second an ordinary
+     `.order-q`. So the existing click handling, wobble, explanation and
+     reveal-everything all work on it untouched. The only new behaviour is
+     that the second step stays hidden until the first is right — there is no
+     point building the correction before you have decided one is needed. */
+  twostep: (b) => `
+    <div class="activity" data-act="twostep">
+      ${label(b)}
+      ${hint(b)}
+      ${b.items.map((it, n) => {
+        const [before, after = ''] = text(it.text).split('___');
+        return `
+          <div class="two-q">
+            <div class="q" data-answer="${it.answer}">
+              <p class="q-line"><span class="q-n">${n + 1}</span>
+                <span class="q-text">${before}<span class="slot"></span>${after}</span>
+                ${speakBtn(it.text.replace('___', 'blank'), 'say say-quiet')}</p>
+              <ul class="opts">
+                ${it.options.map((o, i) => `
+                  <li><button class="opt" data-i="${i}" data-t="${text(o)}">${text(o)}</button></li>`).join('')}
+              </ul>
+            </div>
+            <div class="two-then order-q" data-answer="${text(it.build.join(' '))}" hidden>
+              <p class="order-cue"><span class="q-n" aria-hidden="true">↳</span>
+                <span class="cue-zh">${text(it.cue)}</span></p>
+              <p class="built" data-ph="Now say what is true 說出事實"></p>
+              <ul class="pool">
+                ${shuffle(it.build).map((w) => `
+                  <li><button class="word" data-w="${text(w)}">${text(w)}</button></li>`).join('')}
+              </ul>
+              ${why(it.why)}
+            </div>
+          </div>`;
+      }).join('')}
+      ${tally(b.items.length)}
     </div>`,
 
   /* Is this sentence English or not? The shape every chapter of the book opens
@@ -585,8 +633,15 @@ function wobble(node) {
 }
 
 function countSet(act) {
-  const total = $$('.q, .order-q', act).length;
-  const done = $$('.q.solved, .order-q.solved', act).length;
+  /* A two-step item is one question, not two. Counting the parts would make
+     a set of seven read "0 / 14" and tick over on half-finished items. */
+  const pairs = $$('.two-q', act);
+  const total = pairs.length
+    ? pairs.length
+    : $$('.q, .order-q', act).length;
+  const done = pairs.length
+    ? pairs.filter((p) => $('.q.solved', p) && $('.order-q.solved', p)).length
+    : $$('.q.solved, .order-q.solved', act).length;
   const out = $('.tally .done', act);
   if (out) out.textContent = done;
   if (done === total) act.classList.add('all-done');
@@ -602,6 +657,9 @@ function answer(btn) {
     if (slot) slot.textContent = btn.dataset.t;
     q.classList.add('solved');
     btn.classList.add('right');
+    // In a two-step item, getting the verb right is what asks the question.
+    const then = q.parentElement && $('.two-then', q.parentElement);
+    if (then) then.hidden = false;
     countSet(act);
   } else {
     wobble(btn);
@@ -728,6 +786,8 @@ $('#showAll').addEventListener('click', () => {
     right.classList.add('right');
     q.classList.add('solved');
   });
+
+  $$('.two-then[hidden]').forEach((t) => { t.hidden = false; });
 
   $$('.order-q:not(.solved)').forEach((q) => {
     const built = $('.built', q);
