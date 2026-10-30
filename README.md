@@ -3129,6 +3129,24 @@ first version revealed them on hover, which on a phone means never; `@media
 reported no hover and still matched the hover rule. A control that cannot be
 found is worse than one that is slightly visible.
 
+**The teacher's own reading** goes in
+[`public/recording-practice/audio/`](public/recording-practice/audio/) and
+appears by itself — `<passage id>.m4a` for the whole take,
+`<passage id>-1.m4a` for paragraph one, and so on. Nothing in `content.js` has
+to be edited: the page asks the browser for each name and keeps the player
+only where the file answered. That is the point of the convention, since the
+person adding recordings is not going to edit a manifest.
+
+`/phonics-handbook/` solves the same problem the other way, with a generated
+`audio/manifest.js` and no failing requests. Here six requests — of which the
+missing ones 404 quietly — buy "record it, name it, drop it in", which is the
+right trade for this page and the wrong one for a page with two hundred words.
+
+It matters because of what the student said in August: the generated voice is
+flat and has no intonation to copy. So the page now says both things — play
+the teacher's reading for rhythm and intonation, use 🔊 for the sounds and the
+word stress.
+
 The page does not record. It asks for no microphone, stores no audio and
 uploads nothing: the recording happens in whatever app the student already
 uses and comes back on LINE. It carries `noindex` because the passage is her

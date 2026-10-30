@@ -222,6 +222,51 @@ body.zh-all .zh-chip { display: none; }
 .say-para { font-size: 15px; opacity: .6; margin-left: 4px; }
 .say-para:hover { opacity: 1; }
 
+/* ---------------- the teacher's own reading ----------------
+
+   Given its own ground so it does not read as part of the passage: this is
+   the model, not the text. The native player is kept rather than replaced
+   with buttons, because the one thing a hand-built control cannot give is
+   scrubbing, and scrubbing back four seconds to hear a phrase again is most
+   of what this is for. */
+
+.model {
+  margin: 18px 0 4px;
+  padding: 12px 14px 14px;
+  background: var(--navy-soft);
+  border-left: 2px solid var(--gold);
+}
+.model[hidden] { display: none; }
+
+.model-label {
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.model-label em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-faint);
+  margin-left: 8px;
+}
+
+.model-audio { width: 100%; height: 36px; }
+
+/* A paragraph's own take sits tighter and quieter than the whole-passage one:
+   it belongs to the paragraph above it, not to the section. */
+.model-para { margin: 12px 0 0; padding: 10px 12px 12px; background: transparent;
+  border-left: 2px solid var(--gold-line); }
+.model-para .model-label { font-size: .68rem; }
+
+@media print { .model { display: none; } }
+
 /* ---------------- phrases worth owning ---------------- */
 
 .watch { margin-top: 28px; }

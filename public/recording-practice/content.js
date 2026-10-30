@@ -41,8 +41,12 @@ const PRACTICE = {
         zh: '先默讀一次，找出你會停頓的地方。',
       },
       {
-        en: 'Tap 🔊 on a sentence you are unsure of. Copy the shape, not the voice — it is flat on purpose and has no intonation to borrow.',
-        zh: '對沒把握的句子點 🔊。模仿句子的形狀，不要模仿聲音——這個語音是平的，沒有語調可以借。',
+        en: 'If there is a reading from your teacher under the title, play that first and copy it — the rhythm, where the voice rises, where it waits.',
+        zh: '如果標題下方有老師的示範，先聽那個，然後模仿它——節奏、聲音在哪裡上揚、在哪裡停住。',
+      },
+      {
+        en: 'Tap 🔊 on a sentence you are unsure of. That one is the machine voice: use it for the sounds and the word stress, not for intonation — it has none to borrow.',
+        zh: '對沒把握的句子點 🔊。那是機器的聲音：拿它練發音和重音就好，不要拿它練語調——它沒有語調可以借。',
       },
       {
         en: 'Read the whole passage aloud twice before you record anything.',

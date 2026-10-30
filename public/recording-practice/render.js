@@ -61,6 +61,54 @@ function sentences(s) {
 const passages = PRACTICE.passages;
 const ordered = [...passages].reverse();
 
+/* ==================== the teacher's own reading ====================
+
+   A synthesised voice is a compromise, and this student said so herself: it
+   is flat, and there is no intonation in it to copy. So a recording of the
+   teacher reading the passage plays alongside it — the 🔊 buttons stay for
+   pronunciation, and this is what you copy for everything the machine cannot
+   do.
+
+   CONVENTION, NOT CONFIGURATION. Nothing in content.js has to be edited to
+   add a recording. The page looks for these names in audio/ and shows a
+   player only for the ones that are actually there:
+
+     audio/<passage id>.m4a      the whole passage, one take
+     audio/<passage id>-1.m4a    paragraph 1, and so on
+
+   So for the passage below, that is audio/ai-agents.m4a and, if they exist,
+   audio/ai-agents-1.m4a … -5.m4a. Drop a file in, push, and it appears.
+   Nothing appears while a file is missing: `preload="metadata"` makes the
+   element fetch just enough to know, and the wrapper stays hidden until that
+   succeeds. The probe IS the preload, so a missing file costs one 404 and no
+   layout.
+
+   The trade is deliberate. /phonics-handbook/ solves the same problem with a
+   generated audio/manifest.js and makes no failing requests at all — but a
+   manifest has to be regenerated every time a file is added, and the person
+   adding files here is not going to run a script. Six requests, of which the
+   missing ones 404 quietly in the console, buys "record it, name it, drop it
+   in". That is the right way round for this page. */
+
+function modelPlayer(src, cls, labelEn, labelZh) {
+  return `
+    <div class="model ${cls}" hidden>
+      <p class="model-label">${text(labelEn)}<em>${text(labelZh)}</em></p>
+      <audio class="model-audio" controls preload="metadata" src="${text(src)}"></audio>
+    </div>`;
+}
+
+/* Reveal the players whose file loaded; drop the ones whose file is not
+   there. Done on the built DOM rather than at build time, because only the
+   browser can answer the question. */
+function settleModels(root) {
+  $$('.model', root).forEach((box) => {
+    const a = $('.model-audio', box);
+    a.addEventListener('loadedmetadata', () => { box.hidden = false; }, { once: true });
+    a.addEventListener('error', () => { box.remove(); }, { once: true });
+  });
+}
+
 function buildCover() {
   const i = PRACTICE.intro;
   return `
@@ -85,13 +133,15 @@ function buildCover() {
 }
 
 function buildPassage(p) {
-  const paras = p.paras.map((para) => `
+  const paras = p.paras.map((para, i) => `
     <div class="para pair" data-zh>
       <p class="en">${sentences(para.en).map((s) => `
         <span class="sent">${text(s.trim())}${speakBtn(s.trim(), 'say say-tiny')}</span>`).join(' ')}
         ${speakBtn(para.en, 'say say-para')}
         <button class="zh-chip" title="顯示中文">中</button></p>
       <p class="zh">${text(para.zh)}</p>
+      ${modelPlayer(`audio/${p.id}-${i + 1}.m4a`, 'model-para',
+                    `Paragraph ${i + 1}, read by your teacher`, `第 ${i + 1} 段，老師的示範`)}
     </div>`).join('');
 
   const watch = p.watch ? `
@@ -118,6 +168,9 @@ function buildPassage(p) {
       </h2>
 
       <div class="lead">${pair(p.leadEn, p.leadZh)}</div>
+      ${modelPlayer(`audio/${p.id}.m4a`, 'model-whole',
+                    'The whole passage, read by your teacher',
+                    '整篇，老師的示範')}
       <div class="passage">${paras}</div>
       ${watch}
     </section>`;
@@ -167,6 +220,7 @@ const doc = $('#doc');
 doc.appendChild(el(buildCover()));
 ordered.forEach((p) => doc.appendChild(el(buildPassage(p))));
 doc.appendChild(el(buildListen()));
+settleModels(doc);
 
 // ---------------------------------------------------------------- Chinese
 
