@@ -2039,8 +2039,26 @@ have to tap to read is a label nobody reads. The tags are defined once in
   images land would miss by the height of everything above it. All four are
   `loading="lazy"` — a student reading topic one should not pay for six.
   `sips` took the four files from 1.5 MB to 928 KB on the way in.
-- **Three topics have a card and three do not**, which is fine: `image` is
-  optional on a topic and 口水, 汗 and 痰 simply have none.
+- **Three cards are theirs and three are ours, and the page never confuses the
+  two.** Cool English's post covered only 眼屎, 鼻屎 and 耳屎, so the pictures
+  for 口水, 汗 and 痰 were drawn for this page as SVG. An image carries
+  `source: 'cool'` or it does not, and `shot()` prints the credit line only for
+  the ones that do — putting their name under artwork they did not make would
+  be worse than putting none under artwork they did. The foot of the page says
+  which three are which.
+- **The drawn three are SVG, and deliberately not an imitation.** They do not
+  attempt the halftone photo-collage of the originals, which would come out as
+  a bad copy; they are flat vector on a layered colour block, in the page's own
+  palette, so they read as a different hand rather than a failed one. 4 KB each
+  against 240 KB for a JPEG, and they carry **no text**, which is what makes
+  them safe: text inside an `<img>`-referenced SVG cannot load a webfont, so a
+  Chinese character would render in whatever the device happened to have.
+- **The clear ones are clear.** Saliva and sweat are drawn as pale droplets,
+  not the yellow used for 眼屎, 鼻屎 and 痰. The first drafts had everything
+  yellow, which is wrong about the body and also lost contrast against the
+  amber block behind 口水.
+- `image` remains optional on a topic, so a seventh added without a picture
+  costs nothing.
 - **A deep link has to be jumped by hand.** The page is built by script, so by
   the time `#ear` exists the browser has already looked for it and given up —
   a link to a topic would land at the top and look broken. `jumpToHash()` runs

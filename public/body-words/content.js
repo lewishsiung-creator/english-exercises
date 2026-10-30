@@ -73,8 +73,8 @@ window.BODY = {
     name: 'Cool English',
     nameZh: '教育部酷英網',
     href: 'https://www.coolenglish.edu.tw/',
-    en: 'The cards for 眼屎, 鼻屎 and 耳屎 are Cool English’s, from their post on the three. The words on them are not anybody’s property and the text of this page was written for it rather than copied, but the artwork is theirs.',
-    zh: '「眼屎」、「鼻屎」、「耳屎」三張單字卡是 Cool English（教育部酷英網）的作品，出自他們介紹這三個字的貼文。卡片上的單字本身不屬於任何人，這一頁的文字也是重新寫的、不是照抄，但圖是他們的。',
+    en: 'The cards for 眼屎, 鼻屎 and 耳屎 are Cool English’s, from their post on the three. The words on them are not anybody’s property and the text of this page was written for it rather than copied, but the artwork is theirs. The pictures for 口水, 汗 and 痰 were drawn for this page — Cool English’s post did not cover those three.',
+    zh: '「眼屎」、「鼻屎」、「耳屎」三張單字卡是 Cool English（教育部酷英網）的作品，出自他們介紹這三個字的貼文。卡片上的單字本身不屬於任何人，這一頁的文字也是重新寫的、不是照抄，但圖是他們的。「口水」、「汗」、「痰」三張則是為這一頁另外畫的——他們那篇貼文沒有這三個。',
   },
 
   intro: {
@@ -108,7 +108,7 @@ window.BODY = {
       },
 
       image: {
-        src: 'img/eye.jpg', w: 1000, h: 1000,
+        src: 'img/eye.jpg', w: 1000, h: 1000, source: 'cool',
         alt: 'Cool English 的「眼屎」單字卡：一隻眼睛的半調網點插圖，眼角有一塊黃色的眼屎；左邊列出 sleep in one’s eyes、eye boogers、eye gunk、eye discharge 四種說法與中文，下方是常用搭配 have sleep in one’s eyes 和 wipe the sleep from one’s eyes。',
       },
 
@@ -167,7 +167,7 @@ window.BODY = {
       },
 
       image: {
-        src: 'img/nose.jpg', w: 1000, h: 1000,
+        src: 'img/nose.jpg', w: 1000, h: 1000, source: 'cool',
         alt: 'Cool English 的「鼻屎」單字卡：一個鼻子的半調網點插圖，鼻孔下有一塊黃色的鼻屎長出手腳；左邊列出 booger（美式英文）、bogey（英式英文）、dried nasal mucus（正式說法），下方是常用搭配 pick one’s nose。',
       },
 
@@ -220,7 +220,7 @@ window.BODY = {
       },
 
       image: {
-        src: 'img/ear.jpg', w: 1000, h: 1000,
+        src: 'img/ear.jpg', w: 1000, h: 1000, source: 'cool',
         alt: 'Cool English 的「耳屎」單字卡：一隻耳朵的半調網點插圖，耳道裡有一塊黃色的耳屎；上方寫著 ear（耳朵）＋ wax（蠟）＝ earwax（耳垢／耳屎），下方是常用搭配 have a lot of earwax、remove earwax 和 ear pick。',
       },
 
@@ -270,6 +270,11 @@ window.BODY = {
       lead: {
         en: 'Three everyday words for one substance, and what separates them is not what it is but how it got out of your mouth.',
         zh: '同一個東西有三個日常用字，而分辨它們的關鍵不是「它是什麼」，而是「它怎麼跑出嘴巴的」。',
+      },
+
+      image: {
+        src: 'img/mouth.svg', w: 1000, h: 1000,
+        alt: '為這一頁畫的「口水」插圖：琥珀色底上有一張張開的嘴，露出舌頭，三滴透明的口水從下唇滴落。',
       },
 
       terms: [
@@ -332,6 +337,11 @@ window.BODY = {
         zh: '這一組的日常用字本身就是動詞，所以「流汗」在英文裡只要一個字，不需要另外找一個「流」。',
       },
 
+      image: {
+        src: 'img/sweat.svg', w: 1000, h: 1000,
+        alt: '為這一頁畫的「汗」插圖：墨綠色底上有一張側臉，四顆透明的汗珠從臉的兩側甩出去。',
+      },
+
       terms: [
         {
           t: 'sweat', reg: ['neut'],
@@ -384,6 +394,11 @@ window.BODY = {
       lead: {
         en: 'A short word with a silent letter in the middle of it, and an adjective that puts the letter back and changes the meaning completely.',
         zh: '一個中間藏著不發音字母的短字，而它的形容詞不但把那個字母唸回來，意思也完全變了。',
+      },
+
+      image: {
+        src: 'img/phlegm.svg', w: 1000, h: 1000,
+        alt: '為這一頁畫的「痰」插圖：磚紅色底上有氣管和兩片肺，氣管下段卡著一塊黃綠色的痰。',
       },
 
       terms: [

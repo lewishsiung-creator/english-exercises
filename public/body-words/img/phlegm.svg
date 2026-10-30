@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" role="img" aria-hidden="true">
+  <rect width="1000" height="1000" fill="#f7f5f0"/>
+  <path d="M104 700 C 104 596, 206 548, 282 592 C 356 634, 344 760, 262 798 C 176 838, 104 800, 104 700 Z" fill="#cfe6da"/>
+  <path d="M846 112 C 940 148, 962 288, 888 338 C 818 386, 736 300, 754 204 C 768 130, 806 96, 846 112 Z" fill="#f2d49a"/>
+  <path d="M160 142 L852 176 L902 606 L786 884 L238 858 L124 542 Z" fill="#c04a2e"/>
+  <g stroke="#15201c" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <!-- the windpipe, as a tube rather than a line, so the 痰 can sit inside it -->
+    <path d="M452 206 L452 420 Q452 440 470 448 L530 448 Q548 440 548 420 L548 206 Z" fill="#ffffff"/>
+    <!-- the 痰 itself, lodged in the lower windpipe -->
+    <path d="M462 330 c 22 -16 44 -4 54 10 c 18 -12 38 2 34 22 c -4 22 -28 34 -52 32
+             c -24 -2 -40 -12 -42 -28 c -2 -14 2 -28 6 -36 Z" fill="#cdbb2e"/>
+    <g stroke-width="10" fill="none">
+      <path d="M452 250 L548 250"/><path d="M452 292 L548 292"/>
+      <path d="M452 384 L548 384"/>
+    </g>
+    <path d="M470 448 C 470 448, 444 506, 390 532 C 310 570, 266 638, 262 714
+             C 258 792, 302 840, 368 840 C 428 840, 450 792, 454 726
+             C 458 654, 466 544, 470 448 Z" fill="#ffffff"/>
+    <path d="M530 448 C 530 448, 556 506, 610 532 C 690 570, 734 638, 738 714
+             C 742 792, 698 840, 632 840 C 572 840, 550 792, 546 726
+             C 542 654, 534 544, 530 448 Z" fill="#ffffff"/>
+    <g stroke-width="11" fill="none">
+      <path d="M466 560 L404 612"/><path d="M460 646 L414 692"/>
+      <path d="M534 560 L596 612"/><path d="M540 646 L586 692"/>
+    </g>
+  </g>
+  <g stroke="#15201c" stroke-width="15" stroke-linecap="round">
+    <path d="M700 268 L754 228"/><path d="M736 330 L796 318"/><path d="M676 206 L700 150"/>
+    <path d="M274 278 L232 236"/><path d="M300 212 L282 156"/>
+  </g>
+</svg>

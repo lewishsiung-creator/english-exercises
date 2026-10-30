@@ -136,15 +136,20 @@ function buildTerm(t, topicId) {
      jump down the page mid-read, which on a phone is worse than no picture.
    - `loading="lazy"`. All of these sit below the fold, and a student on a
      phone should not pay for four cards to read the first topic.
-   - The caption is not decoration. The artwork is Cool English's and is
-     credited where it is used, not only at the foot of the page. */
+   - The caption is not decoration, and it is conditional. `source: 'cool'`
+     means the card is Cool English's, and it gets their name under it; the
+     drawings made for this page carry no such line, because putting their
+     name under artwork they did not make would be worse than putting none
+     under artwork they did. Nothing here guesses — an image says whose it is
+     or it is ours. */
 function shot(img) {
   const c = BODY.credit;
+  const mine = img.source !== 'cool';
   return `
-    <figure class="shot">
+    <figure class="shot${mine ? ' shot-own' : ''}">
       <img src="${text(img.src)}" alt="${text(img.alt)}"
            width="${img.w}" height="${img.h}" loading="lazy" decoding="async">
-      <figcaption>圖片：<a href="${text(c.href)}" target="_blank" rel="noopener">${text(c.name)}</a></figcaption>
+      ${mine ? '' : `<figcaption>圖片：<a href="${text(c.href)}" target="_blank" rel="noopener">${text(c.name)}</a></figcaption>`}
     </figure>`;
 }
 
