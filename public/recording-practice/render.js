@@ -61,11 +61,11 @@ function sentences(s) {
 const passages = PRACTICE.passages;
 const ordered = [...passages].reverse();
 
-/* ==================== the teacher's own reading ====================
+/* ==================== Lewis's own reading ====================
 
    A synthesised voice is a compromise, and this student said so herself: it
-   is flat, and there is no intonation in it to copy. So a recording of the
-   teacher reading the passage plays alongside it — the 🔊 buttons stay for
+   is flat, and there is no intonation in it to copy. So a recording of Lewis
+   reading the passage plays alongside it — the 🔊 buttons stay for
    pronunciation, and this is what you copy for everything the machine cannot
    do.
 
@@ -141,7 +141,7 @@ function buildPassage(p) {
         <button class="zh-chip" title="顯示中文">中</button></p>
       <p class="zh">${text(para.zh)}</p>
       ${modelPlayer(`audio/${p.id}-${i + 1}.m4a`, 'model-para',
-                    `Paragraph ${i + 1}, read by your teacher`, `第 ${i + 1} 段，老師的示範`)}
+                    `Paragraph ${i + 1}, read by Lewis`, `第 ${i + 1} 段，Lewis 的示範`)}
     </div>`).join('');
 
   const watch = p.watch ? `
@@ -169,8 +169,8 @@ function buildPassage(p) {
 
       <div class="lead">${pair(p.leadEn, p.leadZh)}</div>
       ${modelPlayer(`audio/${p.id}.m4a`, 'model-whole',
-                    'The whole passage, read by your teacher',
-                    '整篇，老師的示範')}
+                    'The whole passage, read by Lewis',
+                    '整篇，Lewis 的示範')}
       <div class="passage">${paras}</div>
       ${watch}
     </section>`;

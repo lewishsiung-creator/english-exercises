@@ -41,8 +41,8 @@ const PRACTICE = {
         zh: '先默讀一次，找出你會停頓的地方。',
       },
       {
-        en: 'Play your teacher’s reading first — under the title for a whole take, under a paragraph for that paragraph — and copy it: the rhythm, where the voice rises, where it waits. Scrub back and play a phrase again as often as you need.',
-        zh: '先聽老師的示範——整篇的在標題下方，單段的在那一段下面——然後模仿它：節奏、聲音在哪裡上揚、在哪裡停住。可以把進度條拉回去，同一句想聽幾次都行。',
+        en: 'Play Lewis’s reading first — under the title for the whole passage, under a paragraph for that paragraph — and copy it: the rhythm, where the voice rises, where it waits. Scrub back and play a phrase again as often as you need.',
+        zh: '先聽 Lewis 的示範——整篇的在標題下方，單段的在那一段下面——然後模仿它：節奏、聲音在哪裡上揚、在哪裡停住。可以把進度條拉回去，同一句想聽幾次都行。',
       },
       {
         en: 'Tap 🔊 on a sentence you are unsure of. That one is the machine voice: use it for the sounds and the word stress, not for intonation — it has none to borrow.',
