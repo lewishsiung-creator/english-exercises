@@ -90,22 +90,39 @@ const ordered = [...passages].reverse();
    missing ones 404 quietly in the console, buys "record it, name it, drop it
    in". That is the right way round for this page. */
 
+/* The Chinese half of a label carries one more thing than the English: that
+   the player can be scrubbed back. The halves are not translations of each
+   other here on purpose — the English names the recording, and the Chinese
+   also says what to do with it, which is where that advice is actually read. */
 function modelPlayer(src, cls, labelEn, labelZh) {
   return `
     <div class="model ${cls}" hidden>
       <p class="model-label">${text(labelEn)}<em>${text(labelZh)}</em></p>
-      <audio class="model-audio" controls preload="metadata" src="${text(src)}"></audio>
+      <audio class="model-audio" controls preload="none" src="${text(src)}"></audio>
     </div>`;
 }
 
-/* Reveal the players whose file loaded; drop the ones whose file is not
-   there. Done on the built DOM rather than at build time, because only the
-   browser can answer the question. */
+/* Reveal the players whose file is there; drop the rest. Done on the built
+   DOM rather than at build time, because only the browser can answer the
+   question.
+
+   The question is asked with HEAD rather than by letting the element preload,
+   and that is not fussiness. `preload="metadata"` asks for a byte range, and
+   a host that ignores the range header answers with the whole file: GitHub
+   Pages returns 206 and 100 bytes, Cloudflare Pages returns 200 and the
+   entire 928 KB. On the Cloudflare URL — the one students are given — six
+   players meant about 5.7 MB pulled down before she had touched anything,
+   on a phone, on mobile data.
+
+   So the elements preload nothing and a HEAD decides existence: six
+   responses with no bodies. The audio is fetched when she presses play, which
+   is the only time she wants it. */
 function settleModels(root) {
   $$('.model', root).forEach((box) => {
     const a = $('.model-audio', box);
-    a.addEventListener('loadedmetadata', () => { box.hidden = false; }, { once: true });
-    a.addEventListener('error', () => { box.remove(); }, { once: true });
+    fetch(a.getAttribute('src'), { method: 'HEAD' })
+      .then((r) => { if (r.ok) box.hidden = false; else box.remove(); })
+      .catch(() => box.remove());
   });
 }
 
@@ -141,7 +158,7 @@ function buildPassage(p) {
         <button class="zh-chip" title="顯示中文">中</button></p>
       <p class="zh">${text(para.zh)}</p>
       ${modelPlayer(`audio/${p.id}-${i + 1}.m4a`, 'model-para',
-                    `Paragraph ${i + 1}, read by Lewis`, `第 ${i + 1} 段，Lewis 的示範`)}
+                    `Paragraph ${i + 1}, read by Lewis`, `第 ${i + 1} 段，Lewis 的示範，可以拉回去重聽`)}
     </div>`).join('');
 
   const watch = p.watch ? `
@@ -170,7 +187,7 @@ function buildPassage(p) {
       <div class="lead">${pair(p.leadEn, p.leadZh)}</div>
       ${modelPlayer(`audio/${p.id}.m4a`, 'model-whole',
                     'The whole passage, read by Lewis',
-                    '整篇，Lewis 的示範')}
+                    '整篇，Lewis 的示範，可以拉回去重聽')}
       <div class="passage">${paras}</div>
       ${watch}
     </section>`;

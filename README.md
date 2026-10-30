@@ -3142,6 +3142,16 @@ person adding recordings is not going to edit a manifest.
 missing ones 404 quietly — buy "record it, name it, drop it in", which is the
 right trade for this page and the wrong one for a page with two hundred words.
 
+Those six are **HEAD** requests, and that detail was paid for. The first
+version let the elements answer the question themselves with
+`preload="metadata"`, which asks for a byte range — and a host that ignores
+the range header answers with the whole file. GitHub Pages returns 206 and a
+hundred bytes; Cloudflare Pages returns 200 and the entire 928 KB. On the
+Cloudflare URL, the one students are given, six players meant about 5.7 MB
+pulled down before the student had touched anything, on a phone. The elements
+now preload nothing, a HEAD decides existence, and the audio is fetched when
+she presses play.
+
 It matters because of what the student said in August: the generated voice is
 flat and has no intonation to copy. So the page now says both things — play
 the teacher's reading for rhythm and intonation, use 🔊 for the sounds and the
