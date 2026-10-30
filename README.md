@@ -1959,6 +1959,66 @@ for item — it is matched by position, not by word.
   nothing; the plain URL is the student's, `#teach` once makes a device the
   teacher's and is then removed from the address bar.
 
+## Body Words — 國中, 自學 and 教學, the words for what the body makes
+
+`public/body-words/` — 眼屎、鼻屎、耳屎 and the English for each, in the
+two-mode shape of the 國中 pages. Started from a Cool English carousel Lewis
+handed over; the words there are right, and its framing — a casual word, a
+formal word, a collocation line — is the shape this page keeps.
+
+### What the page says that the source does not
+
+Three things were added, and they are the reason this is a page and not a
+screenshot:
+
+| | |
+| --- | --- |
+| **cerumen** | 鼻屎 is given a 正式說法 and 眼屎 is given one, but 耳屎 is given none. The medical word is *cerumen*, which is what a nurse writes on a form. Without it the set reads inconsistent. |
+| **booger ≠ snot** | Chinese separates 鼻屎 from 鼻涕 and so does English: a booger is dry, snot is wet. This is the mistake a Taiwanese student actually makes, and the source does not mention it. |
+| **挖耳棒** | *Ear pick* is understood and is how the tool is sold, but a British or American speaker says *cotton swab*, or *Q-tip* in the US. Left uncorrected it comes out sounding translated. |
+
+### The spine
+
+Chinese names all three with one character — 屎 — and English does not. Each
+has its own word, and each word sits somewhere on a ladder from 非常口語 to
+醫學. Knowing *which rung* is most of the lesson: booger to a friend, dried
+nasal mucus on a form, never the other way round.
+
+So the register tag is not decoration and is **never hidden by either mode**.
+It shows in colour beside every term, in both languages at once — a label you
+have to tap to read is a label nobody reads. The tags are defined once in
+`registers`, so a tag can never mean 口語 on one topic and 正式 on another.
+
+### Design notes
+
+- **Two modes, the house rules.** 自學 shows the Chinese and keeps 記住了／還不熟
+  on the student's own device under `bw.`; 教學 hides the Chinese behind 中 chips
+  and records nothing. The plain URL is the student's; `#teach` once makes a
+  device the teacher's and is then stripped from the address bar.
+- **教學 hides exactly two things**: what a term means, and what a sentence
+  says. The notes are not hidden — they are the teacher's own voice explaining
+  *why* sleep has no plural — and neither are the headings, the contents list
+  or the register tags, because a student navigating in Chinese has to be able
+  to find 耳屎 in either mode.
+- **Only `.pair > .zh` hides.** Headings and the contents list carry `h-zh` and
+  `t-zh` instead. A blanket `.zh { display: none }` would have taken the
+  contents list down with it, which is the bug this avoids by construction.
+- **Each topic takes its own colour, by position.** `:nth-of-type` rather than
+  by id, so 口水 or 痰 added tomorrow picks up the next accent with no edit to
+  the stylesheet. Four cycle; a fifth topic starts again at green, which is
+  fine — they separate neighbours rather than encode anything.
+- **Indexed by search engines**, unlike the notebooks. No student, no client,
+  no personal data — and a 國中生 googling 「鼻屎 英文」 is exactly who it is for.
+
+### Adding a topic
+
+Push another object onto `topics` in
+[`content.js`](public/body-words/content.js): 口水, 汗, 痰, 頭皮屑, 指甲垢. The
+contents list, the numbering, the colour and the anchors all follow from the
+array, so a new topic needs no code. `id` becomes the anchor:
+`/body-words/#ear`. Both halves of every pair must be filled in — a missing
+`zh` is not a half-finished line, it is a hole where the meaning should be.
+
 ## Landscape Architecture Portfolio — a student's own work
 
 The odd one out. Not a lesson and not bilingual: a portfolio a landscape
@@ -4045,7 +4105,8 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/robot-helper/> for the writing worksheet,
 <http://localhost:8000/exam-writing/> for the 學測 essay survey,
 <http://localhost:8000/ielts-part3/> for the IELTS Part 3 practice,
-<http://localhost:8000/junior-high/> for the 國中 words and grammar, or
+<http://localhost:8000/junior-high/> for the 國中 words and grammar,
+<http://localhost:8000/body-words/> for 眼屎、鼻屎、耳屎, or
 <http://localhost:8000/landscape-portfolio/> for the portfolio template.
 The notebooks are <http://localhost:8000/anny/>,
 <http://localhost:8000/aaron/>, <http://localhost:8000/anita/>,

@@ -1,0 +1,393 @@
+/* Body Words — 身體的那些字.
+
+   A 國中 vocabulary page in the two-mode shape of /fab-english/ and /a2-key/.
+   type.css gives it the house type and house.css the house interface; both are
+   linked after this file, so this one sets only what is its own: the palette,
+   the measure, and the shape of a term.
+
+   THE ONE IDEA THE DESIGN HAS TO CARRY
+
+   This page is not really a list of words, it is a ladder: the same thing has
+   a word you say to a friend, a word you write on a form, and a word a doctor
+   uses. So the register tag is not decoration and is never hidden — it is the
+   lesson, and it sits in colour beside every term, in both languages at once.
+   A label you have to tap to read is a label nobody reads.
+
+   WHY EACH TOPIC HAS ITS OWN COLOUR
+
+   Keyed off position with :nth-of-type rather than off a topic's id, so that
+   口水 or 痰 added tomorrow picks up the next colour without anyone editing
+   this file. Four accents cycle; the fifth topic starts again at green, which
+   is fine — they are there to separate neighbours, not to be a code.
+
+   THE CHINESE LAYER
+
+   `.pair > .zh` is the only Chinese that hides. Headings, the contents list
+   and the register tags carry `h-zh` / `t-zh` / `tag-zh` instead, because they
+   are signage: a student navigating in Chinese must be able to find 耳屎
+   whichever mode the page is in. The notes are not hidden either — they are
+   the teacher's own voice explaining why, not something a student is meant to
+   produce. 教學 hides exactly two things: what a term means, and what a
+   sentence says. */
+
+:root {
+  --paper: #f7f5f0;
+  --card: #ffffff;
+  --ink: #1b2420;
+  --ink-soft: #4a5751;
+  /* Solved rather than picked: at #6d7b74 this failed WCAG AA on nine of the
+     page's text styles at once — the contents list, the register tags' Br/Am
+     chips, every uppercase sub-heading — because all of them are set in it. */
+  --ink-faint: #65726c;
+
+  /* house.css paints its accent with --gold. Here that is a deep green, so
+     the bar, the contents marker and the pressed states all follow. */
+  --gold: #1f6a52;
+  --gold-soft: #e7f2ed;
+  --gold-line: #a9d2c3;
+
+  --good: #2c7a58;
+  --good-line: #a8d6be;
+  --warn: #a9590f;
+  --warn-line: #f0b25a;
+
+  --line: #e3dfd6;
+  --rule: #cbc6ba;
+
+  --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
+
+  --bar-h: 54px;
+  --measure: 44rem;
+  --round: 12px;
+  --pill: 999px;
+  --ease: cubic-bezier(.4, 0, .2, 1);
+  --fast: .18s;
+
+  /* The cycle. A new topic takes the next one on its own. */
+  --a1: #1f6a52;
+  --a2: #b2432a;
+  --a3: #27567f;
+  --a4: #8a6212;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 16px); }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus {
+  left: 12px; top: 12px; z-index: 40;
+  background: var(--card); padding: 10px 16px; border-radius: 8px;
+}
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* ---------------- the Chinese layer ---------------- */
+
+.pair > .zh {
+  display: none;
+  font-family: var(--font-zh);
+  font-size: .86em;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+.pair.open > .zh,
+body.zh-all .pair > .zh { display: block; }
+body.zh-all .zh-chip { display: none; }
+.pair.open > .en > .zh-chip { opacity: .35; }
+
+/* Anything in the Chinese face that is NOT the hideable layer. */
+.h-zh, .t-zh, .tag-zh, .note-zh, .sub em { font-family: var(--font-zh); }
+
+/* ---------------- layout ---------------- */
+
+.shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+main { max-width: var(--measure); padding-bottom: 5rem; }
+
+@media (min-width: 950px) {
+  .shell { grid-template-columns: 15rem minmax(0, 1fr); gap: 40px; }
+  #navToggle { display: none; }
+  main { padding-top: 8px; }
+}
+
+@media (max-width: 949px) {
+  #nav {
+    position: fixed; z-index: 35; inset: var(--bar-h) auto 0 0;
+    width: min(19rem, 84vw); overflow-y: auto;
+    padding: 16px 18px 28px;
+    background: var(--card);
+    border-right: 1px solid var(--line);
+    transform: translateX(-102%);
+    transition: transform var(--fast) var(--ease);
+  }
+  body.nav-open #nav { transform: none; }
+  .nav-scrim {
+    position: fixed; inset: 0; z-index: 30;
+    background: rgba(27, 36, 32, .3);
+  }
+}
+
+.toc { font-family: var(--font-ui); }
+@media (min-width: 950px) {
+  .toc { position: sticky; top: var(--bar-h); max-height: calc(100vh - var(--bar-h));
+         overflow-y: auto; padding: 28px 0 40px; }
+}
+.toc ul { list-style: none; margin: 0; padding: 0; }
+.toc a { display: grid; grid-template-columns: 1.9rem 1fr; gap: 8px;
+         padding: 8px 10px 8px 6px; text-decoration: none; color: var(--ink-soft); }
+.toc .n { font-size: 11px; color: var(--ink-faint); padding-top: 3px; font-variant-numeric: tabular-nums; }
+.toc .t-zh { display: block; font-size: 14px; color: var(--ink); }
+.toc .t-en { display: block; font-size: 11.5px; color: var(--ink-faint); }
+.toc a.here .t-zh { font-weight: 600; }
+
+/* ---------------- cover ---------------- */
+
+.cover { padding: clamp(40px, 6vw, 68px) 0 10px; }
+.eyebrow {
+  margin: 0 0 10px;
+  font-family: var(--font-ui);
+  font-size: 11.5px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gold);
+}
+.cover h1 { margin: 0 0 14px; line-height: 1.12; }
+.cover h1 .h-zh { display: block; font-size: clamp(2.1rem, 6vw, 3rem); letter-spacing: .02em; }
+.cover h1 .h-en {
+  display: block; margin-top: 6px;
+  font-family: var(--font-ui); font-size: .95rem; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint);
+}
+.cover-intro .en { margin: 0; font-size: 1.05rem; color: var(--ink-soft); }
+
+/* The ladder, laid out once at the top so the tags below are already known. */
+.ladder-key {
+  display: flex; flex-wrap: wrap; gap: 7px;
+  margin: 22px 0 0; padding: 16px 0 0;
+  border-top: 1px solid var(--line);
+}
+
+/* ---------------- a topic ---------------- */
+
+.topic { padding-top: 46px; }
+.topic + .topic { margin-top: 10px; }
+
+.topic-head { border-top: 2px solid var(--accent, var(--gold)); padding-top: 18px; }
+.topic .eyebrow { display: flex; align-items: center; gap: 8px; color: var(--accent, var(--gold)); }
+.t-icon { font-size: 1.15rem; }
+
+.topic-head h2 { margin: 0 0 10px; line-height: 1.15; }
+.topic-head h2 .h-zh { display: block; font-size: clamp(1.8rem, 5vw, 2.3rem); }
+.topic-head h2 .h-en {
+  display: block; margin-top: 4px;
+  font-family: var(--font-ui); font-size: .8rem; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint);
+}
+.topic-lead .en { margin: 0; font-size: 1rem; color: var(--ink-soft); font-style: italic; }
+
+.topic:nth-of-type(4n+1) { --accent: var(--a1); }
+.topic:nth-of-type(4n+2) { --accent: var(--a2); }
+.topic:nth-of-type(4n+3) { --accent: var(--a3); }
+.topic:nth-of-type(4n+4) { --accent: var(--a4); }
+
+/* ---------------- a term ---------------- */
+
+.terms { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 14px; }
+
+.term {
+  position: relative;
+  padding: 16px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--round);
+}
+
+.term-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.term-en { margin: 0; font-size: 1.25rem; font-weight: 600; letter-spacing: -.01em; }
+.term-zh { margin: 4px 0 0; }
+.term-tags { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+
+.eg { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--line); }
+.eg-en { margin: 0; color: var(--ink-soft); }
+.eg-zh { margin: 4px 0 0; }
+
+/* ---------------- the register tags ---------------- */
+
+.tag {
+  display: inline-flex; align-items: baseline; gap: 5px;
+  padding: 3px 9px;
+  border-radius: var(--pill);
+  font-family: var(--font-ui);
+  font-size: 11.5px; line-height: 1.5;
+  white-space: nowrap;
+  background: var(--tag-bg, var(--gold-soft));
+  color: var(--tag-fg, var(--gold));
+  border: 1px solid var(--tag-line, transparent);
+}
+.tag-zh { font-weight: 600; }
+.tag-en { opacity: .75; font-size: 10.5px; letter-spacing: .03em; text-transform: uppercase; }
+.tag-quiet { opacity: .8; }
+
+/* The rungs. Casual is warm, formal and medical are cool and quiet: the
+   colour itself should say how careful the word is. */
+.tag-very { --tag-bg: #fdeae3; --tag-fg: #a83c1d; }
+.tag-talk { --tag-bg: #fdf2e0; --tag-fg: #8a6212; }
+.tag-neut { --tag-bg: #eef0ee; --tag-fg: #4a5751; }
+.tag-form { --tag-bg: #e9f0f6; --tag-fg: #27567f; }
+.tag-med  { --tag-bg: #e9eef6; --tag-fg: #3b4a7a; --tag-line: #c6d2e6; }
+.tag-us, .tag-uk { --tag-bg: transparent; --tag-fg: var(--ink-faint); --tag-line: var(--line); }
+
+/* ---------------- marks (自學 only) ---------------- */
+
+body.mode-teach .self-only { display: none !important; }
+
+.marks { display: flex; gap: 7px; margin-top: 12px; }
+.mk {
+  font-family: var(--font-ui); font-size: 12.5px;
+  padding: 5px 12px; min-height: 32px;
+  border: 1px solid var(--line); border-radius: var(--pill);
+  background: transparent; color: var(--ink-soft); cursor: pointer;
+  transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease);
+}
+.mk:hover { border-color: var(--rule); }
+.mk[data-mark="k"][aria-pressed="true"] { background: var(--gold-soft); border-color: var(--good-line); color: var(--good); font-weight: 600; }
+.mk[data-mark="r"][aria-pressed="true"] { background: #fdf3e3; border-color: var(--warn-line); color: var(--warn); font-weight: 600; }
+
+/* A marked term is flagged down its left edge, so the state survives
+   scrolling past the buttons. */
+.term[data-mark="k"] { box-shadow: inset 3px 0 0 var(--good-line); }
+.term[data-mark="r"] { box-shadow: inset 3px 0 0 var(--warn-line); }
+
+/* ---------------- collocations ---------------- */
+
+.colls { margin-top: 26px; }
+.sub {
+  margin: 0 0 12px; font-size: .95rem; font-weight: 600;
+  display: flex; align-items: baseline; gap: 8px;
+}
+.sub em { font-style: normal; font-family: var(--font-ui); font-size: .72rem;
+          letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); }
+.colls ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.coll {
+  padding: 11px 15px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent, var(--gold));
+  border-radius: 9px;
+}
+.coll-en { margin: 0; font-size: 1rem; }
+.coll-zh { margin: 3px 0 0; }
+
+/* ---------------- notes ---------------- */
+
+.note {
+  margin: 26px 0 0;
+  padding: 18px 20px;
+  background: var(--gold-soft);
+  border-radius: var(--round);
+}
+.note h4 { margin: 0 0 8px; font-size: 1rem; }
+.note h4 .h-en { display: block; }
+.note h4 .h-zh { display: block; font-size: .85rem; font-weight: 500; color: var(--ink-soft); margin-top: 2px; }
+.note-en { margin: 0; font-size: .95rem; color: var(--ink-soft); }
+.note-zh { margin: 8px 0 0; font-size: .88rem; line-height: 1.8; color: var(--ink-soft); }
+
+/* ---------------- panel and footer ---------------- */
+
+.panel {
+  position: fixed; z-index: 40;
+  top: calc(var(--bar-h) + 8px); right: 14px;
+  width: min(22rem, calc(100vw - 28px));
+  max-height: calc(100vh - var(--bar-h) - 24px); overflow-y: auto;
+  padding: 18px 20px 22px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(27, 36, 32, .18);
+  font-family: var(--font-ui); font-size: 14px;
+}
+.panel-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.panel-head h2 { margin: 0; font-size: 1rem; }
+.panel-head h2 span { font-weight: 500; color: var(--ink-faint); margin-left: 6px; font-size: .85rem; }
+.panel-x { border: 0; background: transparent; font-size: 16px; cursor: pointer; color: var(--ink-faint); }
+.panel .row { padding: 12px 0; border-top: 1px solid var(--line); }
+.panel .row:first-of-type { border-top: 0; }
+.panel label { display: block; font-weight: 600; margin-bottom: 6px; }
+.panel label em { font-style: normal; font-weight: 500; color: var(--ink-faint); margin-left: 5px; }
+.panel select { width: 100%; padding: 7px 9px; border: 1px solid var(--line); border-radius: 8px; font: inherit; }
+.row-note { margin: 7px 0 0; font-size: 12.5px; line-height: 1.6; color: var(--ink-faint); }
+.row-note em { font-style: normal; display: block; }
+.panel-btn {
+  margin-top: 10px; width: 100%; padding: 9px 14px;
+  border: 1px solid var(--line); border-radius: var(--pill);
+  background: var(--ink); color: #fff; font: inherit; cursor: pointer;
+}
+.panel-btn-quiet { background: transparent; color: var(--ink); }
+
+.site-foot {
+  max-width: 46rem; margin: 0 auto; padding: 26px 20px 40px;
+  border-top: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+  gap: 6px 14px; text-align: center;
+  font-family: var(--font-ui); font-size: .8rem; line-height: 1.7; color: var(--ink-faint);
+}
+.site-foot p { margin: 0; }
+.site-foot .site-mark { flex: none; line-height: 0; border-radius: 50%; }
+.site-foot a { color: var(--gold); margin-left: 8px; }
+
+/* ---------------- touch ----------------
+
+   On a phone the small controls keep the size they look and grow an invisible
+   hit area instead. Drawing a 🔊 or a 中 at 44px would make it shout louder
+   than the word it belongs to, which on a vocabulary page is exactly backwards
+   — the same decision /fab-english/ and the Linguaskill page made.
+
+   The 記住了／還不熟 buttons are different: they are the thing you are meant to
+   press, so those get real height. */
+
+@media (pointer: coarse) {
+  .say, .zh-chip { position: relative; }
+  .say::after, .zh-chip::after { content: ""; position: absolute; inset: -9px; }
+  .mk { min-height: 36px; padding: 7px 14px; }
+}
+
+/* ---------------- print ----------------
+
+   The handout is the page as it stands in 自學: every Chinese line open, the
+   chrome and the buttons gone. A printed sheet with the meanings still hidden
+   is a sheet of English words and nothing else. */
+
+@media print {
+  .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .marks, .skip, .site-foot { display: none !important; }
+  body { background: #fff; font-size: 11pt; }
+  .shell { display: block; max-width: none; padding: 0; }
+  main { max-width: none; }
+  .pair > .zh { display: block !important; }
+  .term, .coll, .note { break-inside: avoid; border-color: #ccc; }
+  .topic { break-before: page; padding-top: 0; }
+  .topic:first-of-type { break-before: auto; }
+}
+
+/* ---------------- spacing the 🔊 ----------------
+
+   house.css gives .say its size and its press behaviour but no margin, since
+   on most pages it follows a full sentence and a space in the markup is
+   enough. Here it follows a bare headword, where the markup has no space at
+   all — "sleep🔊" — so the gap has to be set rather than typed. */
+.term-en .say, .eg-en .say, .coll-en .say { margin-left: 7px; }
