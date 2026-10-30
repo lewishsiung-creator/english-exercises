@@ -378,3 +378,33 @@ function spy() {
 }
 addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(spy); }, { passive: true });
 spy();
+
+/* Deep links. The page is built by script, so by the time #ear exists in the
+   document the browser has already looked for it, failed, and stopped caring —
+   a link to a topic would land at the top and look broken. So the jump is done
+   here, once the DOM is up.
+
+   It is a jump and not an animation: scroll-behavior is turned off around it,
+   because a smooth scroll the length of six topics either takes seconds or is
+   cut short by the next thing that touches the scroll position. Same decision
+   as /jill/ and /health/. The offset is the bar's own height, read from the
+   custom property rather than typed again here. */
+function jumpToHash() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (!id) return;
+  const target = document.getElementById(id);
+  if (!target) return;
+
+  const root = document.documentElement;
+  const prev = root.style.scrollBehavior;
+  root.style.scrollBehavior = 'auto';
+  const bar = parseFloat(getComputedStyle(root).getPropertyValue('--bar-h')) || 54;
+  window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - bar - 12);
+  root.style.scrollBehavior = prev;
+  spy();
+}
+
+jumpToHash();
+/* #teach is claimed and stripped by the handler above before this runs, so it
+   never reaches here as an id to look for. */
+addEventListener('hashchange', jumpToHash);

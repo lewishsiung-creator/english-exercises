@@ -1961,10 +1961,22 @@ for item — it is matched by position, not by word.
 
 ## Body Words — 國中, 自學 and 教學, the words for what the body makes
 
-`public/body-words/` — 眼屎、鼻屎、耳屎 and the English for each, in the
-two-mode shape of the 國中 pages. Started from a Cool English carousel Lewis
-handed over; the words there are right, and its framing — a casual word, a
-formal word, a collocation line — is the shape this page keeps.
+`public/body-words/` — six topics and the English for each, in the two-mode
+shape of the 國中 pages.
+
+| | | Terms |
+| --- | --- | --- |
+| 01 | 眼屎 | sleep, eye boogers, eye gunk, eye discharge |
+| 02 | 鼻屎 | booger, bogey, dried nasal mucus |
+| 03 | 耳屎 | earwax, cerumen |
+| 04 | 口水 | spit, drool, dribble, saliva |
+| 05 | 汗 | sweat, sweaty, perspiration |
+| 06 | 痰 | phlegm, mucus, a frog in one's throat |
+
+The first three started from a Cool English carousel Lewis handed over; the
+words there are right, and its framing — a casual word, a formal word, a
+collocation line — is the shape the whole page keeps. The last three were
+added on the same pattern and are this page's own.
 
 ### What the page says that the source does not
 
@@ -1979,10 +1991,16 @@ screenshot:
 
 ### The spine
 
-Chinese names all three with one character — 屎 — and English does not. Each
-has its own word, and each word sits somewhere on a ladder from 非常口語 to
-醫學. Knowing *which rung* is most of the lesson: booger to a friend, dried
-nasal mucus on a form, never the other way round.
+Every one of these has its own English word, and each word sits somewhere on a
+ladder from 非常口語 to 醫學. Knowing *which rung* is most of the lesson:
+booger to a friend, dried nasal mucus on a form, never the other way round;
+sweat out loud, perspiration only on the page.
+
+A second thread runs through it, which was not planned and is now worth
+keeping: almost everything here is **uncountable**. Sleep in your eyes,
+earwax, mucus, sweat — a lot of it, never many of them, and *a* only inside
+fixed phrases like *a cold sweat*. Booger is the odd one out, because it is
+the one you can hold. Three of the notes point at this from different angles.
 
 So the register tag is not decoration and is **never hidden by either mode**.
 It shows in colour beside every term, in both languages at once — a label you
@@ -2007,17 +2025,27 @@ have to tap to read is a label nobody reads. The tags are defined once in
   by id, so 口水 or 痰 added tomorrow picks up the next accent with no edit to
   the stylesheet. Four cycle; a fifth topic starts again at green, which is
   fine — they separate neighbours rather than encode anything.
+- **A deep link has to be jumped by hand.** The page is built by script, so by
+  the time `#ear` exists the browser has already looked for it and given up —
+  a link to a topic would land at the top and look broken. `jumpToHash()` runs
+  once after the DOM is up, with `scroll-behavior` turned off around it, since
+  a smooth scroll the length of six topics either takes seconds or is cut
+  short. Same decision as `/jill/` and `/health/`.
 - **Indexed by search engines**, unlike the notebooks. No student, no client,
   no personal data — and a 國中生 googling 「鼻屎 英文」 is exactly who it is for.
 
 ### Adding a topic
 
 Push another object onto `topics` in
-[`content.js`](public/body-words/content.js): 口水, 汗, 痰, 頭皮屑, 指甲垢. The
+[`content.js`](public/body-words/content.js): 頭皮屑, 指甲垢, 鼻涕, 眼淚. The
 contents list, the numbering, the colour and the anchors all follow from the
-array, so a new topic needs no code. `id` becomes the anchor:
-`/body-words/#ear`. Both halves of every pair must be filled in — a missing
-`zh` is not a half-finished line, it is a hole where the meaning should be.
+array, so a new topic needs no code — 口水, 汗 and 痰 were added exactly this
+way and needed none. `id` becomes the anchor: `/body-words/#ear`.
+
+Both halves of every pair must be filled in — a missing `zh` is not a
+half-finished line, it is a hole where the meaning should be. `node --check`
+plus the validator in the commit message's terms catches that; there is no
+build step to run.
 
 ## Landscape Architecture Portfolio — a student's own work
 
@@ -4106,7 +4134,7 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/exam-writing/> for the 學測 essay survey,
 <http://localhost:8000/ielts-part3/> for the IELTS Part 3 practice,
 <http://localhost:8000/junior-high/> for the 國中 words and grammar,
-<http://localhost:8000/body-words/> for 眼屎、鼻屎、耳屎, or
+<http://localhost:8000/body-words/> for 身體的那些字, or
 <http://localhost:8000/landscape-portfolio/> for the portfolio template.
 The notebooks are <http://localhost:8000/anny/>,
 <http://localhost:8000/aaron/>, <http://localhost:8000/anita/>,
