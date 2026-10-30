@@ -60,6 +60,23 @@ window.BODY = {
   title:   'Body Words',
   titleZh: '身體的那些字',
 
+  /* Where the first three topics' cards come from. Stated once here and shown
+     at the foot of the page, as well as on every figure that uses one.
+
+     These are Cool English's artwork, not this site's. The words on them are
+     facts and belong to nobody, which is why the page's own text was written
+     fresh rather than transcribed — but the cards themselves are theirs, so
+     they are credited where they are used and again at the end, with a link
+     back. If the credit is ever the thing that gets edited out, the images
+     should go with it. */
+  credit: {
+    name: 'Cool English',
+    nameZh: '教育部酷英網',
+    href: 'https://www.coolenglish.edu.tw/',
+    en: 'The cards for 眼屎, 鼻屎 and 耳屎 are Cool English’s, from their post on the three. The words on them are not anybody’s property and the text of this page was written for it rather than copied, but the artwork is theirs.',
+    zh: '「眼屎」、「鼻屎」、「耳屎」三張單字卡是 Cool English（教育部酷英網）的作品，出自他們介紹這三個字的貼文。卡片上的單字本身不屬於任何人，這一頁的文字也是重新寫的、不是照抄，但圖是他們的。',
+  },
+
   intro: {
     en: 'The things the body makes, and the English for them. The first three share one character in Chinese — 屎 — and share nothing at all in English. Each one has its own word, and each word sits somewhere between what you say to a friend and what a doctor writes down. Knowing which is which is most of the lesson.',
     zh: '身體製造出來的那些東西，以及它們的英文。前三個在中文裡共用一個「屎」字，在英文裡卻毫無關係。每一個都有自己的字，而且每個字落在不同的位置——從跟朋友講的，到醫生寫在紀錄上的。真正要學的，是什麼場合該用哪一個。',
@@ -88,6 +105,11 @@ window.BODY = {
       lead: {
         en: 'The one with the strangest English word in it: the stuff in the corner of your eye when you wake up is called sleep.',
         zh: '這一組裡藏著最奇怪的一個英文字：早上起床時眼角那個東西，英文就叫 sleep。',
+      },
+
+      image: {
+        src: 'img/eye.jpg', w: 1000, h: 1000,
+        alt: 'Cool English 的「眼屎」單字卡：一隻眼睛的半調網點插圖，眼角有一塊黃色的眼屎；左邊列出 sleep in one’s eyes、eye boogers、eye gunk、eye discharge 四種說法與中文，下方是常用搭配 have sleep in one’s eyes 和 wipe the sleep from one’s eyes。',
       },
 
       terms: [
@@ -144,6 +166,11 @@ window.BODY = {
         zh: '兩個日常用字，一個在美國一個在英國；一個正式說法。還有一個陷阱：中文把「鼻屎」和「鼻涕」分開，英文也分。',
       },
 
+      image: {
+        src: 'img/nose.jpg', w: 1000, h: 1000,
+        alt: 'Cool English 的「鼻屎」單字卡：一個鼻子的半調網點插圖，鼻孔下有一塊黃色的鼻屎長出手腳；左邊列出 booger（美式英文）、bogey（英式英文）、dried nasal mucus（正式說法），下方是常用搭配 pick one’s nose。',
+      },
+
       terms: [
         {
           t: 'booger', reg: ['us', 'talk'],
@@ -190,6 +217,11 @@ window.BODY = {
       lead: {
         en: 'The easiest of the three to remember, because the word says what it is: ear + wax. The hard part is the tool you clean it with.',
         zh: '三組裡最好記的一個，因為這個字直接說出它是什麼：ear（耳朵）＋ wax（蠟）。難的是「挖耳棒」怎麼說。',
+      },
+
+      image: {
+        src: 'img/ear.jpg', w: 1000, h: 1000,
+        alt: 'Cool English 的「耳屎」單字卡：一隻耳朵的半調網點插圖，耳道裡有一塊黃色的耳屎；上方寫著 ear（耳朵）＋ wax（蠟）＝ earwax（耳垢／耳屎），下方是常用搭配 have a lot of earwax、remove earwax 和 ear pick。',
       },
 
       terms: [

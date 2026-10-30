@@ -129,6 +129,45 @@ function buildTerm(t, topicId) {
     </li>`;
 }
 
+/* A source card. Three things are deliberate here:
+
+   - `width` and `height` are set from the file's real pixels, so the browser
+     reserves the box before the image arrives. Without them the terms below
+     jump down the page mid-read, which on a phone is worse than no picture.
+   - `loading="lazy"`. All of these sit below the fold, and a student on a
+     phone should not pay for four cards to read the first topic.
+   - The caption is not decoration. The artwork is Cool English's and is
+     credited where it is used, not only at the foot of the page. */
+function shot(img) {
+  const c = BODY.credit;
+  return `
+    <figure class="shot">
+      <img src="${text(img.src)}" alt="${text(img.alt)}"
+           width="${img.w}" height="${img.h}" loading="lazy" decoding="async">
+      <figcaption>圖片：<a href="${text(c.href)}" target="_blank" rel="noopener">${text(c.name)}</a></figcaption>
+    </figure>`;
+}
+
+/* Said once, properly, at the end — where someone who has read the page will
+   see it, rather than as a banner nobody reads on the way in. */
+function buildCredit() {
+  const c = BODY.credit;
+  return `
+    <aside class="credit">
+      <figure class="credit-shot">
+        <img src="img/cover.jpg" width="1200" height="800" loading="lazy" decoding="async"
+             alt="Cool English 的貼文封面：「眼屎、鼻屎、耳屎 英文怎麼說？」，下面三張半調網點插圖分別是眼睛、鼻子和耳朵，各標著 eye discharge、booger、earwax。">
+      </figure>
+      <div class="credit-t">
+        <p class="credit-zh">${text(c.zh)}</p>
+        <p class="credit-en">${text(c.en)}</p>
+        <p class="credit-link">
+          <a href="${text(c.href)}" target="_blank" rel="noopener">${text(c.name)} ${text(c.nameZh)} →</a>
+        </p>
+      </div>
+    </aside>`;
+}
+
 function buildTopic(t, n) {
   return `
     <section class="topic" id="${text(t.id)}">
@@ -138,6 +177,8 @@ function buildTopic(t, n) {
         <h2><span class="h-zh">${text(t.zh)}</span><span class="h-en">${text(t.en)}</span></h2>
         ${pair(t.lead.en, t.lead.zh, 'topic-lead')}
       </header>
+
+      ${t.image ? shot(t.image) : ''}
 
       <ul class="terms">${t.terms.map((x) => buildTerm(x, t.id)).join('')}</ul>
 
@@ -198,6 +239,7 @@ $('#nav').appendChild(el(buildNav()));
 const doc = $('#doc');
 doc.appendChild(el(buildCover()));
 BODY.topics.forEach((t, i) => doc.appendChild(el(buildTopic(t, i + 1))));
+doc.appendChild(el(buildCredit()));
 
 // ------------------------------------------------------------------- marks
 

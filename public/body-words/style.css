@@ -351,6 +351,60 @@ body.mode-teach .self-only { display: none !important; }
 .site-foot .site-mark { flex: none; line-height: 0; border-radius: 50%; }
 .site-foot a { color: var(--gold); margin-left: 8px; }
 
+/* ---------------- the source cards ----------------
+
+   Cool English's own graphics for the first three topics. They sit between a
+   topic's lead and its terms, which is where a picture earns its place: after
+   you know what the topic is, before you start reading words.
+
+   Capped well below the column width. At full measure a 1000px square card
+   would be the loudest thing on a page whose argument is in the text, and
+   the reader would scroll past the terms to get out of its way. */
+
+.shot {
+  margin: 22px 0 4px;
+  max-width: 24rem;
+}
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--round);
+  border: 1px solid var(--line);
+  background: var(--card);
+}
+.shot figcaption {
+  margin-top: 7px;
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+}
+.shot figcaption a { color: inherit; text-underline-offset: 2px; }
+.shot figcaption a:hover { color: var(--gold); }
+
+/* ---------------- the credit, at the foot ---------------- */
+
+.credit {
+  display: grid;
+  gap: 18px;
+  margin: 56px 0 0;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}
+@media (min-width: 620px) {
+  .credit { grid-template-columns: 13rem minmax(0, 1fr); align-items: start; }
+}
+.credit-shot { margin: 0; }
+.credit-shot img {
+  display: block; width: 100%; height: auto;
+  border-radius: 9px; border: 1px solid var(--line);
+}
+.credit-t p { margin: 0 0 8px; }
+.credit-zh { font-family: var(--font-zh); font-size: .9rem; line-height: 1.8; color: var(--ink-soft); }
+.credit-en { font-size: .88rem; color: var(--ink-faint); }
+.credit-link { font-family: var(--font-ui); font-size: .82rem; }
+.credit-link a { color: var(--gold); font-weight: 600; }
+
 /* ---------------- touch ----------------
 
    On a phone the small controls keep the size they look and grow an invisible
@@ -379,7 +433,12 @@ body.mode-teach .self-only { display: none !important; }
   .shell { display: block; max-width: none; padding: 0; }
   main { max-width: none; }
   .pair > .zh { display: block !important; }
-  .term, .coll, .note { break-inside: avoid; border-color: #ccc; }
+  .term, .coll, .note, .shot, .credit { break-inside: avoid; border-color: #ccc; }
+  /* The cards stay in the handout — they are the source — but at a size that
+     does not eat a page of a teacher's colour budget each. */
+  .shot { max-width: 14rem; }
+  .shot figcaption { color: #555; }
+  .credit { grid-template-columns: 8rem 1fr; }
   .topic { break-before: page; padding-top: 0; }
   .topic:first-of-type { break-before: auto; }
 }

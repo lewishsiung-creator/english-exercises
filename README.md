@@ -2025,6 +2025,22 @@ have to tap to read is a label nobody reads. The tags are defined once in
   by id, so 口水 or 痰 added tomorrow picks up the next accent with no edit to
   the stylesheet. Four cycle; a fifth topic starts again at green, which is
   fine — they separate neighbours rather than encode anything.
+- **The source cards are on the page, and credited twice.** Cool English's
+  three graphics sit between each of the first three topics' leads and their
+  terms — after you know what the topic is, before you start reading words —
+  capped at 24rem, because a 1000px square would otherwise be the loudest thing
+  on a page whose argument is in the text. Each carries a figcaption naming the
+  source, and the foot of the page says it properly with a link and their own
+  cover card. They are **not** this site's artwork; if the credit is ever
+  edited out, the images should go with it.
+- **`width` and `height` are set on every image** from the file's real pixels,
+  so the browser reserves the box before the file arrives. Without them the
+  terms shuffle down the page mid-read, and a deep link computed before the
+  images land would miss by the height of everything above it. All four are
+  `loading="lazy"` — a student reading topic one should not pay for six.
+  `sips` took the four files from 1.5 MB to 928 KB on the way in.
+- **Three topics have a card and three do not**, which is fine: `image` is
+  optional on a topic and 口水, 汗 and 痰 simply have none.
 - **A deep link has to be jumped by hand.** The page is built by script, so by
   the time `#ear` exists the browser has already looked for it and given up —
   a link to a topic would land at the top and look broken. `jumpToHash()` runs
