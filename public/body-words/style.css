@@ -310,6 +310,55 @@ body.mode-teach .self-only { display: none !important; }
 .note-en { margin: 0; font-size: .95rem; color: var(--ink-soft); }
 .note-zh { margin: 8px 0 0; font-size: .88rem; line-height: 1.8; color: var(--ink-soft); }
 
+/* ---------------- the bar ----------------
+
+   house.css restyles the bar's skin — the glass, the border, the control
+   pills — but deliberately sets no layout, so every page lays out its own.
+   This page shipped without it: the bar was a static block box with a fixed
+   height, so its five children stacked into three lines, the last two spilled
+   over the cover beneath, and it scrolled away instead of staying put. */
+
+.bar {
+  position: sticky; top: 0; z-index: 30;
+  display: flex; align-items: center; gap: 10px;
+  height: var(--bar-h);
+  padding: 0 16px;
+  background: rgba(247, 245, 240, .93);
+  -webkit-backdrop-filter: saturate(1.6) blur(10px);
+  backdrop-filter: saturate(1.6) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.bar-title {
+  flex: 1 1 auto; min-width: 0; margin: 0;
+  font-size: 15px; font-weight: 600;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.bar-title span {
+  margin-left: 8px;
+  font-family: var(--font-ui); font-size: 12.5px; font-weight: 400;
+  color: var(--ink-faint);
+}
+.bar-btn { flex: none; }
+.bar-btn-zh { font-family: var(--font-zh); }
+
+/* The 自學／教學 switch. Teacher devices only, so it is hidden until the page
+   says otherwise and must not reappear as an inline-flex when it is. */
+.seg.modeseg {
+  flex: none; display: inline-flex; gap: 2px;
+  padding: 2px; border-radius: 9px;
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
+}
+.seg.modeseg[hidden] { display: none; }
+.seg.modeseg button {
+  font-family: var(--font-zh); font-size: 12.5px;
+  padding: 5px 11px; border: 0; border-radius: 7px;
+  background: transparent; color: var(--ink-soft); cursor: pointer;
+}
+.seg.modeseg button[aria-pressed="true"] {
+  background: var(--card); color: var(--ink); font-weight: 600;
+  box-shadow: 0 1px 3px rgb(0 0 0 / .12);
+}
+
 /* ---------------- panel and footer ---------------- */
 
 .panel {
@@ -419,6 +468,9 @@ body.mode-teach .self-only { display: none !important; }
   .say, .zh-chip { position: relative; }
   .say::after, .zh-chip::after { content: ""; position: absolute; inset: -9px; }
   .mk { min-height: 36px; padding: 7px 14px; }
+  /* The mode switch is a bar control a teacher taps mid-lesson, so it gets
+     real height rather than an invisible one — it has the room. */
+  .seg.modeseg button { min-height: 40px; padding-inline: 14px; }
 }
 
 /* ---------------- print ----------------
