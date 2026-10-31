@@ -444,5 +444,135 @@ window.BODY = {
       ],
     },
 
+    /* ---------------------------------------------------------------- 7 */
+    {
+      id: 'scalp',
+      zh: '頭皮屑',
+      en: 'Dandruff',
+      icon: '💇',
+      lead: {
+        en: 'The clearest case on this page of a word you can have a lot of but never one of — and of a body part students almost always name wrongly.',
+        zh: '這一頁裡「可以有很多、但不能有一個」最清楚的例子；順便還有一個學生幾乎都會講錯的身體部位。',
+      },
+
+      image: {
+        src: 'img/dandruff.svg', w: 1000, h: 1000,
+        alt: '為這一頁畫的「頭皮屑」插圖：藍色底上有一顆側臉的頭，頭髮是深色的，白色的頭皮屑正從髮際落下來。',
+      },
+
+      terms: [
+        {
+          t: 'dandruff', reg: ['neut'],
+          zh: '頭皮屑',
+          ex: 'I’ve had dandruff since the weather turned cold.',
+          zhEx: '天氣轉冷之後我就一直有頭皮屑。',
+        },
+        {
+          t: 'flakes', reg: ['talk'],
+          zh: '一片片的頭皮屑',
+          ex: 'There were white flakes all over his black jacket.',
+          zhEx: '他的黑外套上都是白白的頭皮屑。',
+        },
+        {
+          t: 'scalp', reg: ['neut'],
+          zh: '頭皮',
+          ex: 'My scalp gets itchy if I don’t wash my hair.',
+          zhEx: '我沒洗頭的話頭皮就會癢。',
+        },
+        {
+          t: 'seborrhoeic dermatitis', reg: ['med'],
+          zh: '脂漏性皮膚炎',
+          ex: 'The doctor said it was seborrhoeic dermatitis, not ordinary dandruff.',
+          zhEx: '醫生說那是脂漏性皮膚炎，不是普通的頭皮屑。',
+        },
+      ],
+
+      colls: [
+        { en: 'have dandruff', zh: '有頭皮屑' },
+        { en: 'an itchy scalp', zh: '頭皮癢' },
+        { en: 'anti-dandruff shampoo', zh: '抗屑洗髮精' },
+      ],
+
+      notes: [
+        {
+          en: 'You can have a lot of dandruff, but never a dandruff',
+          zh: '可以有很多頭皮屑，但不能有「一個」',
+          bodyEn: 'Dandruff is uncountable, like sweat and earwax and the sleep in your eyes: I have dandruff, a lot of dandruff, too much dandruff — never a dandruff and never dandruffs. When you do want to count, that is what flakes is for: I can see a few flakes on your collar. One word for the condition, another for the pieces. If you only remember one rule from this page, it is this one, because it has now come up five times.',
+          bodyZh: 'dandruff 是不可數的，和 sweat、earwax、眼睛裡的 sleep 一樣：可以說 I have dandruff、a lot of dandruff、too much dandruff，但不能說 a dandruff 或 dandruffs。真的想「數」的時候，那就是 flakes 的用途：I can see a few flakes on your collar（我看到你領子上有幾片頭皮屑）。一個字講「這個狀況」，另一個字講「一片一片的東西」。如果這一頁只記一條規則，就記這一條——它到現在已經出現第五次了。',
+        },
+        {
+          en: 'It is your scalp, not your head skin',
+          zh: '那叫 scalp，不是 head skin',
+          bodyEn: 'The skin on top of your head has its own word in English, and 頭皮 translates straight onto it: scalp. Head skin is understandable but is not a thing anyone says, and it is one of the easiest Taiwanese-student phrases to spot. Say my scalp is itchy. The word also shows up outside the bathroom — a scalp massage is what you get at the hairdresser.',
+          bodyZh: '頭頂上的那層皮膚在英文裡有自己的字，而「頭皮」正好可以直接對應過去：scalp。head skin 聽得懂，但沒有人這樣說，而且這是最容易被一眼認出是台灣學生講的句子之一。要說 my scalp is itchy。這個字也不只出現在浴室裡——去美髮店做的「頭皮按摩」就是 a scalp massage。',
+        },
+      ],
+    },
+
+    /* ---------------------------------------------------------------- 8 */
+    {
+      id: 'nails',
+      zh: '指甲垢',
+      en: 'Dirt under the nails',
+      icon: '💅',
+      lead: {
+        en: 'The one that turns this whole page around: here it is Chinese that has the single word, and English that has to describe it.',
+        zh: '這一組把整頁翻轉過來：這一次換成中文有專門的字，英文反而只能用一句話描述。',
+      },
+
+      image: {
+        src: 'img/nails.svg', w: 1000, h: 1000,
+        alt: '為這一頁畫的「指甲垢」插圖：琥珀色底上有一根豎起的手指，指甲是白色的，指甲前緣下方卡著一條深色的指甲垢。',
+      },
+
+      terms: [
+        {
+          t: 'the dirt under your nails', reg: ['neut'],
+          zh: '指甲垢',
+          ex: 'Wash your hands properly — look at the dirt under your nails.',
+          zhEx: '手要好好洗——你看你的指甲垢。',
+        },
+        {
+          t: 'gunk', reg: ['talk'],
+          zh: '髒東西、黏黏的汙垢',
+          ex: 'He dug the gunk out from under his thumbnail.',
+          zhEx: '他把大拇指甲縫裡的髒東西挖出來。',
+        },
+        {
+          t: 'grime', reg: ['neut', 'form'],
+          zh: '積垢、黑垢',
+          ex: 'After a day in the garden her nails were black with grime.',
+          zhEx: '在花園忙了一天之後，她的指甲裡都是黑黑的積垢。',
+        },
+        {
+          t: 'subungual debris', reg: ['med'],
+          zh: '甲下碎屑',
+          ex: 'The report described subungual debris under three nails.',
+          zhEx: '報告上寫著其中三片指甲下方有甲下碎屑。',
+        },
+      ],
+
+      colls: [
+        { en: 'clean under one’s nails', zh: '清指甲縫' },
+        { en: 'cut one’s nails', zh: '剪指甲' },
+        { en: 'bite one’s nails', zh: '咬指甲' },
+      ],
+
+      notes: [
+        {
+          en: 'This time English is the one with no word for it',
+          zh: '這一次是英文沒有字',
+          bodyEn: 'Everywhere else on this page Chinese has one short word and English has three longer ones. Here it is the other way round: 指甲垢 is a word, and English has no everyday single word at all — you describe it, as the dirt under your nails. There is a clinical term, subungual debris, and nobody has ever said it out loud outside a hospital. This is worth meeting once, because the instinct when a word is missing is to invent a compound like nail dirt. Describing it is not a failure of your English. It is what English itself does.',
+          bodyZh: '這一頁其他地方都是中文一個短字、英文三個長字。這一組剛好反過來：「指甲垢」是一個詞，而英文根本沒有對應的日常單字——你得描述它，說 the dirt under your nails。醫學上確實有一個詞 subungual debris，但除了醫院以外沒有人會把它說出口。這件事值得遇到一次，因為當一個字不存在時，大家的直覺是自己造一個複合字，例如 nail dirt。用描述的方式講並不是你英文不好，那就是英文自己的做法。',
+        },
+        {
+          en: 'Fingernail, toenail, and the nail you hammer',
+          zh: 'fingernail、toenail，和用槌子敲的那種 nail',
+          bodyEn: '指甲 covers hands and feet at once; English splits them. Fingernail is 手指甲, toenail is 腳趾甲, and nail on its own is almost always the finger one — nobody says my nails are long and means their feet. The same word is also the metal nail you hammer into a wall, which is where hit the nail on the head comes from, and that idiom has nothing to do with fingers at all.',
+          bodyZh: '中文的「指甲」同時涵蓋手和腳，英文則分開：fingernail 是手指甲，toenail 是腳趾甲，而單講 nail 幾乎都是指手的——沒有人說 my nails are long 卻是在講腳。同一個字也是用槌子敲進牆裡的「釘子」，片語 hit the nail on the head（一針見血）就是從那裡來的，跟手指完全無關。',
+        },
+      ],
+    },
+
   ],
 };

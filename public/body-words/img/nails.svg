@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" role="img" aria-hidden="true">
+  <rect width="1000" height="1000" fill="#f7f5f0"/>
+  <path d="M74 300 C 74 196, 176 148, 252 192 C 326 234, 314 360, 232 398 C 146 438, 74 400, 74 300 Z" fill="#cfe6da"/>
+  <path d="M858 638 C 952 674, 974 814, 900 864 C 830 912, 748 826, 766 730 C 780 656, 818 622, 858 638 Z" fill="#e8b4a4"/>
+  <path d="M168 134 L862 166 L908 596 L790 880 L242 856 L128 536 Z" fill="#b8821c"/>
+  <g stroke="#15201c" stroke-linecap="round" stroke-linejoin="round" stroke-width="14">
+    <!-- the finger -->
+    <path d="M360 884 L360 452 C 360 330, 424 258, 500 258 C 576 258, 640 330, 640 452 L 640 884 Z" fill="#ffffff"/>
+    <!-- the nail plate -->
+    <path d="M404 440 C 404 338, 596 338, 596 440 L 582 646 C 552 680, 448 680, 418 646 Z" fill="#f2e0c8"/>
+    <!-- its free edge, paler, so the dark band below has something to sit under -->
+    <path d="M407 404 C 440 352, 560 352, 593 404 C 560 424, 440 424, 407 404 Z" fill="#ffffff"/>
+  </g>
+  <!-- 指甲垢: the point of the whole card, so it is drawn thick and dark -->
+  <path d="M410 414 C 444 386, 556 386, 590 414 C 556 456, 444 456, 410 414 Z"
+        fill="#4a3517" stroke="#15201c" stroke-width="12" stroke-linejoin="round"/>
+  <g stroke="#15201c" stroke-width="12" stroke-linecap="round" fill="none">
+    <path d="M414 742 q 86 32 172 0"/>
+    <path d="M412 818 q 88 32 176 0"/>
+  </g>
+  <g stroke="#15201c" stroke-width="15" stroke-linecap="round">
+    <path d="M706 318 L762 278"/><path d="M742 382 L802 368"/><path d="M678 256 L702 200"/>
+    <path d="M296 338 L242 308"/><path d="M272 266 L248 212"/>
+  </g>
+  <g fill="#15201c">
+    <circle cx="232" cy="648" r="12"/><circle cx="280" cy="678" r="12"/><circle cx="232" cy="708" r="12"/>
+    <circle cx="280" cy="618" r="12"/><circle cx="280" cy="738" r="12"/>
+  </g>
+</svg>

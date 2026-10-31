@@ -1972,11 +1972,13 @@ shape of the 國中 pages.
 | 04 | 口水 | spit, drool, dribble, saliva |
 | 05 | 汗 | sweat, sweaty, perspiration |
 | 06 | 痰 | phlegm, mucus, a frog in one's throat |
+| 07 | 頭皮屑 | dandruff, flakes, scalp, seborrhoeic dermatitis |
+| 08 | 指甲垢 | the dirt under your nails, gunk, grime, subungual debris |
 
 The first three started from a Cool English carousel Lewis handed over; the
 words there are right, and its framing — a casual word, a formal word, a
-collocation line — is the shape the whole page keeps. The last three were
-added on the same pattern and are this page's own.
+collocation line — is the shape the whole page keeps. The other five were added
+on the same pattern and are this page's own.
 
 ### What the page says that the source does not
 
@@ -1998,9 +2000,17 @@ sweat out loud, perspiration only on the page.
 
 A second thread runs through it, which was not planned and is now worth
 keeping: almost everything here is **uncountable**. Sleep in your eyes,
-earwax, mucus, sweat — a lot of it, never many of them, and *a* only inside
-fixed phrases like *a cold sweat*. Booger is the odd one out, because it is
-the one you can hold. Three of the notes point at this from different angles.
+earwax, mucus, sweat, dandruff — a lot of it, never many of them, and *a* only
+inside fixed phrases like *a cold sweat*. Booger is the odd one out, because it
+is the one you can hold. Five of the notes point at this from different angles,
+and 頭皮屑 is where it is stated plainly, because *dandruff* and *flakes* are
+the same substance split into a mass word and a count word.
+
+And 指甲垢 turns the page's own premise over. Everywhere else Chinese has the
+short word and English the long ones; there, Chinese has 指甲垢 and English has
+no everyday single word at all — you say *the dirt under your nails*. That note
+exists to stop a student inventing *nail dirt*, which is exactly what the gap
+invites.
 
 So the register tag is not decoration and is **never hidden by either mode**.
 It shows in colour beside every term, in both languages at once — a label you
@@ -2057,8 +2067,8 @@ have to tap to read is a label nobody reads. The tags are defined once in
   not the yellow used for 眼屎, 鼻屎 and 痰. The first drafts had everything
   yellow, which is wrong about the body and also lost contrast against the
   amber block behind 口水.
-- `image` remains optional on a topic, so a seventh added without a picture
-  costs nothing.
+- `image` remains optional on a topic, so a ninth added without a picture costs
+  nothing — though all eight have one now, five of them drawn here.
 - **A deep link has to be jumped by hand.** The page is built by script, so by
   the time `#ear` exists the browser has already looked for it and given up —
   a link to a topic would land at the top and look broken. `jumpToHash()` runs
@@ -2071,10 +2081,10 @@ have to tap to read is a label nobody reads. The tags are defined once in
 ### Adding a topic
 
 Push another object onto `topics` in
-[`content.js`](public/body-words/content.js): 頭皮屑, 指甲垢, 鼻涕, 眼淚. The
+[`content.js`](public/body-words/content.js): 鼻涕, 眼淚, 水泡, 瘀青. The
 contents list, the numbering, the colour and the anchors all follow from the
-array, so a new topic needs no code — 口水, 汗 and 痰 were added exactly this
-way and needed none. `id` becomes the anchor: `/body-words/#ear`.
+array, so a new topic needs no code — 口水, 汗, 痰, 頭皮屑 and 指甲垢 were all
+added exactly this way and needed none. `id` becomes the anchor: `/body-words/#ear`.
 
 Both halves of every pair must be filled in — a missing `zh` is not a
 half-finished line, it is a hole where the meaning should be. `node --check`
