@@ -1961,7 +1961,7 @@ for item — it is matched by position, not by word.
 
 ## Body Words — 國中, 自學 and 教學, the words for what the body makes
 
-`public/body-words/` — six topics and the English for each, in the two-mode
+`public/body-words/` — eight topics and the English for each, in the two-mode
 shape of the 國中 pages.
 
 | | | Terms |
@@ -2090,6 +2090,90 @@ Both halves of every pair must be filled in — a missing `zh` is not a
 half-finished line, it is a hole where the meaning should be. `node --check`
 plus the validator in the commit message's terms catches that; there is no
 build step to run.
+
+## Grammar Notes — 國中, 自學 and 教學, one grammar point at a time
+
+`public/grammar-notes/` — a grammar page in the two-mode shape of the 國中
+pages, built to grow a point at a time. The first point is 狀態動詞: the verbs
+that refuse `-ing`.
+
+| | | |
+| --- | --- | --- |
+| 01 | 狀態動詞 | 狀態，還是動作？ · 常見的狀態動詞 · 兩種用法都有的動詞 · 口語裡的例外 · 練習 |
+
+Built from an annotated page of Azar & Hagen that Lewis handed over, plus his
+own Chinese write-up of it. As with `/grammar/`, **the book is not
+reproduced**: the point and its order are the syllabus's, and every example
+sentence, note and question here is written for this page — which is also why
+the sentences are about scooters, bubble tea and the MRT rather than the
+book's own cast.
+
+### The shape
+
+```
+public/grammar-notes/
+  content.js    GN.points[] → .parts[] → .blocks[]
+  render.js     eight block renderers, the two modes, the practice
+  style.css     the palette and the shape of a point
+  index.html    the shell
+```
+
+A point is a grammar point. Its **parts** are the stages of teaching it, and
+they are what the 目錄 lists — with one point the list reads as the page's own
+contents, with six it reads as a book's. Its **blocks** are the eight things a
+part can be made of: `lead`, `rule`, `pairs`, `verbs`, `twoway`, `note`,
+`judge`, `mcq`. A block whose `t` has no renderer throws on load rather than
+rendering nothing, the way `/grammar/` compares its map to its content.
+
+### What the page says that the source does not
+
+| | |
+| --- | --- |
+| **why it is hard for *us*** | Not because Chinese works differently, but because of the order we learn things in: 現在進行式 is taught as "the tense for right now", so "right now" starts to feel like a reason to use it. For a state verb it is not — the simple present already *is* now, and `be + -ing` does not make it more so. |
+| **taste** | The source charts *smell* but not *taste*, which behaves identically and is the one a Taiwanese student meets daily. *This tastes salty* against *the chef is tasting the sauce*. |
+| **the prepositions** | The annotations in the margin were `agree with`, `belong to`, `prefer A to B`. Those are half the entry, so they are printed as a pattern under the word and are **never** hidden by either mode — a fixed preposition is part of the word, not its meaning. *prefer than* is the mistake almost everyone makes. |
+| **look, smell, taste are one trap** | All three describe what a thing is like without `-ing`, and somebody deliberately pointing a sense at it with `-ing`. Soup cannot be in the middle of smelling; a dog can. |
+
+### A wrong sentence gets no 🔊
+
+This is the first page in the family whose job includes showing English that
+is not English. So it carries the rule `/grammar/` and Anny's notebook set:
+**an incorrect sentence has no speaker and no 中譯.** Neither the sound of it
+nor the meaning of it should be what a learner takes away. It is struck
+through in the warning colour, and the correction is what gets the 🔊.
+
+### What 教學 hides, and what it must not
+
+On a vocabulary page the Chinese is the answer. On a grammar page most of the
+Chinese is the *explanation*, and an explanation behind a chip is an
+explanation nobody reads. So the hideable layer is drawn narrowly and on
+purpose — `.pair > .zh` holds exactly two things, a verb's meaning and a
+sentence's 中譯. The rules, the notes, the part headings, the 狀態／動作 labels
+and the contents list are in the Chinese face too and stay on screen in both
+modes. Measured: 58 hideable pieces, and 5 notes plus 2 rules that never hide.
+
+### The practice remembers, but only in 自學
+
+Eighteen questions in two sets — correct-or-not, then choose the form. An
+answered question keeps its answer on that device under `gn.`, and the 設定
+panel says so and can clear it. 教學 records nothing and wipes the screen on
+the way in, because a lesson starts clean; the student's own answers on that
+device are left untouched. Each question's key comes from where it sits
+(`practice-0-3`), so an answer survives the page being edited around it and is
+forgotten only if that question itself moves — which is when it should be.
+
+One of the eighteen is a control: *Be quiet — the baby ___.* The answer is
+`is sleeping`. A page that spends four parts saying "not the progressive"
+teaches a student to tick the simple present without reading, and the hint
+above the set says so out loud.
+
+### Adding a point
+
+Push another object onto `points` in
+[`content.js`](public/grammar-notes/content.js). The contents list, the
+numbering, the accent colour and the anchors all follow from the array, so a
+new point needs no code. `id` becomes the anchor, on the point and on every
+part: `/grammar-notes/#both-ways`.
 
 ## Landscape Architecture Portfolio — a student's own work
 
@@ -3321,7 +3405,7 @@ instead of lighting up, and everything that moves uses one easing and one
 duration.
 
 Because it is linked last it beats every page's own stylesheet, which makes it
-a blunt instrument. Three things are therefore deliberately left out:
+a blunt instrument. Four things are therefore deliberately left out:
 
 - **body size and leading.** `/jill/` and `/riva-rex/` are set larger for ten-
   to twelve-year-olds, `/grammar/` smaller for a reference text. One body size
@@ -3331,6 +3415,16 @@ a blunt instrument. Three things are therefore deliberately left out:
 - **colour.** It names none. The accent is `var(--gold)` and the interactive
   face `var(--ink)`, so `/winkle/` comes out teal, `/jill/` green and
   `/ielts-speaking/` red, exactly as those pages intend.
+- **the bar's layout.** `.bar` here is a skin — the glass, the border, the
+  height — and sets no `display`, no `position` and no `gap`, because a bar
+  with two controls and a bar with five want different ones. **Every page has
+  to lay out its own.** This is the one omission that fails silently rather
+  than visibly: without it the bar is a static block box with a fixed height,
+  so its children stack into three lines, the last two spill over the page
+  beneath, and it scrolls away instead of staying put. `/body-words/` shipped
+  that way and went unnoticed for five commits, so it is worth grepping a new
+  page for `^\.bar {` before calling it done. `/grammar-kids/` looks like it
+  is missing one and is not — it links `/grammar/`'s whole stylesheet first.
 
 Not linked by the three pages for seven- to ten-year-olds, for the same reason
 they skip `type.css`. Everything else links it, section sub-pages included —

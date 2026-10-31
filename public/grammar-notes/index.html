@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>文法筆記 — Grammar Notes</title>
+<meta name="description" content="狀態動詞：哪些動詞不能用進行式、為什麼不能，以及 be、have、see、look、smell、taste、think、feel、love 這些兩種用法都有的動詞怎麼分。國中程度，分自學與教學兩種模式，附判斷對錯與選擇練習。">
+
+<!-- No student, no client and no personal data on this page, so unlike the
+     notebooks it is left open to search: a 國中生 googling 「狀態動詞 進行式」
+     is exactly who it is for. -->
+
+<!-- Inline SVG mark: a page with a bookmark in it — a note kept, not a book
+     read. The colours must be percent-encoded — a bare "#" would be read as
+     the URL fragment. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233f4f8f'/%3E%3Crect x='16' y='12' width='32' height='40' rx='4' fill='%23f7f6f3'/%3E%3Cpath d='M38 12v21l-5-4-5 4V12z' fill='%23d9a441'/%3E%3Crect x='21' y='39' width='22' height='3' rx='1.5' fill='%233f4f8f' opacity='.42'/%3E%3Crect x='21' y='45' width='14' height='3' rx='1.5' fill='%233f4f8f' opacity='.28'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f6f3">
+
+<link rel="stylesheet" href="style.css">
+
+<!-- The house typography, shared by every page. Linked AFTER this page's own
+     stylesheet so its definitions win. It carries no colour; this page keeps
+     its own. See ../type.css. -->
+<link rel="stylesheet" href="../type.css">
+<!-- The house interface: the bar, the controls, the display type and the
+     hairlines. Linked LAST so it wins. It sets no body size, no measure and
+     no colour of its own. See ../house.css. -->
+<link rel="stylesheet" href="../house.css">
+
+</head>
+<body>
+
+<a class="skip" href="#doc">跳到內容 Skip to the notes</a>
+
+<header class="bar">
+  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
+    <span aria-hidden="true">☰</span> 目錄
+  </button>
+
+  <p class="bar-title">文法筆記 <span>Grammar Notes</span></p>
+
+  <!-- Teacher-only. A device becomes the teacher's by opening the page once
+       with #teach; a student's plain link never shows this. -->
+  <div class="seg modeseg" id="modeseg" role="group" aria-label="模式" hidden>
+    <button data-mode="self">自學</button>
+    <button data-mode="teach">教學</button>
+  </div>
+
+  <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="false">中文</button>
+  <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
+          aria-controls="panel" title="設定" aria-label="設定">⚙</button>
+</header>
+
+<div class="shell">
+  <div id="nav"></div>
+  <main id="doc"></main>
+</div>
+
+<div class="nav-scrim" hidden></div>
+
+<!-- Settings. Opens over the page rather than replacing it, so a lesson in
+     progress is never lost. Which blocks show depends on the mode and on
+     whether this device is the teacher's. -->
+<div class="panel" id="panel" role="dialog" aria-label="設定" hidden>
+  <div class="panel-head">
+    <h2>設定 <span>Settings</span></h2>
+    <button class="panel-x" id="panelClose" aria-label="關閉">✕</button>
+  </div>
+
+  <div class="row">
+    <label for="voicePick">發音 <em>Voice</em></label>
+    <select id="voicePick"></select>
+    <p class="row-note">供 🔊 按鈕使用。選擇後會播放一段範例。錯誤的句子沒有 🔊——不該讓錯的英文進到耳朵裡。
+      <em>Used by the 🔊 buttons. An incorrect sentence never gets one.</em></p>
+  </div>
+
+  <div class="row">
+    <label for="rate">語速 <em>Speed</em></label>
+    <select id="rate">
+      <option value="0.75">慢 Slow</option>
+      <option value="0.95" selected>正常 Normal</option>
+      <option value="1.1">快 Brisk</option>
+    </select>
+  </div>
+
+  <!-- Only on a teacher device -->
+  <div class="row" id="teacherflag" hidden>
+    <label>老師裝置 <em>Teacher device</em></label>
+    <p class="row-note">這台裝置會顯示「自學／教學」切換。學生用一般連結打開時看不到。
+      <em>This device shows the 自學／教學 switch. A student opening the plain link never sees it.</em></p>
+    <button class="panel-btn panel-btn-quiet" id="unteach">在這台裝置隱藏 <em>Hide here</em></button>
+  </div>
+
+  <!-- 教學 only -->
+  <div class="row" id="teachtools" hidden>
+    <label>教學模式 <em>Teaching mode</em></label>
+    <p class="row-note">中譯和字義都收在「中」後面，可以先問學生再點開。規則和筆記不收——那是你要講的話，不是學生要答的題。教學模式不記錄任何東西。
+      <em>Meanings and translations wait behind the 中 chips; the rules and notes do not, because they are what you say rather than what they answer. Teaching mode records nothing.</em></p>
+    <button class="panel-btn panel-btn-quiet" id="fresh">清空畫面重新開始 <em>Start fresh</em></button>
+  </div>
+
+  <!-- 自學 only -->
+  <div class="row" id="selftools" hidden>
+    <label>自學紀錄 <em>Self-study record</em></label>
+    <p class="row-note" id="markinfo"></p>
+    <button class="panel-btn panel-btn-quiet" id="clearmarks">清除作答紀錄 <em>Clear every answer</em></button>
+  </div>
+
+  <div class="row">
+    <button class="panel-btn" id="closepanel">關閉 <em>Close</em></button>
+  </div>
+</div>
+
+
+<!-- Site footer. Identical on every page, so a reader who lands on any one
+     sheet can find the rest. -->
+<footer class="site-foot">
+  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
+     aria-label="Lewis Biz English"><img src="../logo.png" alt="" width="34" height="34"></a>
+  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
+    target="_blank" rel="noopener">lewistoeic.com</a></p>
+</footer>
+<script src="content.js"></script>
+<script src="render.js"></script>
+</body>
+</html>
