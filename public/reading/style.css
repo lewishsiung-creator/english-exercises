@@ -1,0 +1,491 @@
+/* High School Reading — 高中英文閱讀.
+
+   type.css gives it the house type and house.css the house interface; both are
+   linked after this file, so this one sets only what is its own: the palette,
+   the measure, and the shape of a passage.
+
+   THE ONE IDEA THE DESIGN HAS TO CARRY
+
+   The English is the page. It is set large in the text serif, with room between
+   its lines for a meaning to open inside them, and everything else is quieter
+   than it: the Chinese stays away until asked for, and the questions sit in
+   cards so that the eye can tell reading from answering.
+
+   The colour cycle is keyed off position with :nth-of-type, so a fourth passage
+   takes the next accent without this file being edited. Same arrangement as
+   /body-words/ and /grammar-notes/. */
+
+:root {
+  --paper: #f7f6f3;
+  --card: #ffffff;
+  --ink: #1e2430;
+  --ink-soft: #49505f;
+  --ink-faint: #636a79;
+
+  /* house.css paints its accent with --gold. Here that is a deep teal. */
+  --gold: #1d5c63;
+  --gold-soft: #e6f0f0;
+  --gold-line: #a9cdd0;
+
+  --good: #27694a;
+  --good-soft: #ecf5f0;
+  --good-line: #a8d0ba;
+  --bad: #9e3320;
+  --bad-soft: #fbeeea;
+  --bad-line: #e8b6a9;
+
+  --line: #e2dfd8;
+  --rule: #c9c5bc;
+
+  --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
+
+  --measure: 42rem;
+
+  --a1: #1d5c63;
+  --a2: #8a3b63;
+  --a3: #9c5318;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-padding-top: calc(var(--bar-h) + 16px); }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-en);
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-text-size-adjust: 100%;
+}
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus {
+  left: 12px; top: 12px; z-index: 40;
+  background: var(--card); padding: 10px 16px; border-radius: 8px;
+}
+
+/* ---------------- the Chinese layer ---------------- */
+
+.pair > .zh {
+  display: none;
+  font-family: var(--font-zh);
+  font-size: .9em;
+  line-height: 1.85;
+  color: var(--ink-soft);
+}
+.pair.open > .zh,
+body.zh-all .pair > .zh { display: block; }
+body.zh-all .zh-chip { display: none; }
+
+.h-zh, .p-zh, .n-zh, .t-zh, .lead-zh, .note-zh, .src-zh, .toc-point, .point-sub,
+.no, .why, .q-n, .ld-q, .ld-why, .gl-zh { font-family: var(--font-zh); }
+
+.say, .zh-chip {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; padding: 0;
+  vertical-align: 2px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink-soft);
+  font-size: 12px; line-height: 1;
+  cursor: pointer;
+  transition: border-color var(--fast) var(--ease), background var(--fast) var(--ease);
+}
+.say { border-radius: 50%; }
+.zh-chip { font-family: var(--font-zh); }
+.say:hover, .zh-chip:hover { border-color: var(--gold-line); background: var(--gold-soft); }
+.say.on { border-color: var(--gold); background: var(--gold-soft); }
+.pair.open .zh-chip { background: var(--gold-soft); border-color: var(--gold-line); }
+
+/* ---------------- layout ---------------- */
+
+.bar {
+  position: sticky; top: 0; z-index: 30;
+  display: flex; align-items: center; gap: 10px;
+}
+.bar-title {
+  flex: 1 1 auto; min-width: 0; margin: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.bar-title span {
+  margin-left: 8px; font-weight: 400; color: var(--ink-faint);
+}
+.bar-btn { flex: none; cursor: pointer; }
+.bar-btn-zh { font-family: var(--font-zh); }
+
+.shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
+
+@media (min-width: 950px) {
+  .shell { grid-template-columns: 15rem minmax(0, 1fr); gap: 40px; }
+  #navToggle { display: none; }
+}
+
+@media (max-width: 949px) {
+  #nav {
+    position: fixed; z-index: 35; inset: var(--bar-h) auto 0 0;
+    width: min(19rem, 84vw); overflow-y: auto;
+    padding: 16px 18px 28px;
+    background: var(--card);
+    border-right: 1px solid var(--line);
+    transform: translateX(-102%);
+    transition: transform var(--fast) var(--ease);
+  }
+  body.nav-open #nav { transform: none; }
+  .nav-scrim {
+    position: fixed; inset: 0; z-index: 30;
+    background: rgba(30, 36, 48, .3);
+  }
+}
+.nav-scrim[hidden] { display: none; }
+
+.toc { font-family: var(--font-ui); }
+@media (min-width: 950px) {
+  .toc { position: sticky; top: var(--bar-h); max-height: calc(100vh - var(--bar-h));
+         overflow-y: auto; padding: 28px 0 40px; }
+}
+.toc-head em { font-style: normal; margin-left: 4px; }
+.toc ul { list-style: none; margin: 0 0 20px; padding: 0; }
+.toc-point {
+  display: flex; align-items: baseline; gap: 7px;
+  margin: 10px 0 6px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13.5px; font-weight: 600; line-height: 1.45; color: var(--ink);
+}
+.toc-point .n { font-size: 11px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+.toc a { display: block; text-decoration: none; }
+.toc .t-zh { display: block; font-size: 14px; line-height: 1.4; color: var(--ink-soft); }
+.toc .t-en { display: block; font-size: 11.5px; line-height: 1.4; color: var(--ink-faint); }
+.toc a.here .t-zh { font-weight: 600; color: var(--ink); }
+
+/* ---------------- cover ---------------- */
+
+.eyebrow {
+  margin: 0 0 10px;
+  font-family: var(--font-ui);
+  font-size: 11.5px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gold);
+}
+.cover h1 .h-zh { display: block; }
+.cover h1 .h-sub {
+  display: block; margin-top: 10px;
+  font-family: var(--font-ui); font-size: .95rem; font-weight: 500;
+  letter-spacing: .02em; color: var(--ink-faint);
+}
+.lead { margin: 0 0 20px; }
+.lead-zh { margin: 0 0 6px; font-size: 1rem; line-height: 1.85; color: var(--ink); }
+.lead-en { margin: 0; font-size: .9rem; line-height: 1.65; color: var(--ink-soft); }
+.cover-intro { margin-bottom: 0; }
+
+/* ---------------- a passage ---------------- */
+
+.point { padding-top: 46px; }
+.point:nth-of-type(3n+1) { --accent: var(--a1); }
+.point:nth-of-type(3n+2) { --accent: var(--a2); }
+.point:nth-of-type(3n+3) { --accent: var(--a3); }
+
+.point-head { border-top: 2px solid var(--accent, var(--gold)); padding-top: 18px; }
+.point .eyebrow { display: flex; align-items: center; gap: 8px; color: var(--accent, var(--gold)); }
+.p-icon { font-size: 1.15rem; }
+
+.point-head h2 { margin: 0 0 6px; line-height: 1.15; }
+.point-head h2 .h-en {
+  display: block;
+  font-size: clamp(1.7rem, 4.6vw, 2.2rem); font-weight: 600; letter-spacing: -.015em;
+}
+.point-head h2 .h-zh {
+  display: block; margin-top: 8px;
+  font-size: 1rem; font-weight: 500; letter-spacing: 0; color: var(--ink-soft);
+}
+.point-sub { margin: 10px 0 0; font-size: 1rem; color: var(--ink-soft); }
+
+.part { padding-top: 34px; }
+.part-head {
+  margin: 0 0 14px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+  line-height: 1.3;
+}
+.part-head .p-zh { font-size: 1.2rem; font-weight: 700; }
+.part-head .p-en {
+  display: block; margin-top: 2px;
+  font-family: var(--font-ui); font-size: .78rem; font-weight: 500;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint);
+}
+
+/* ---------------- the text ---------------- */
+
+.para { margin: 0 0 1.5rem; }
+.para > .en { margin: 0; font-size: 1.1rem; line-height: 1.85; }
+.para > .zh { margin: 12px 0 0; padding-left: 14px; border-left: 2px solid var(--gold-line); }
+.para-tools { white-space: nowrap; margin-left: 4px; }
+
+/* A dotted word. A span with role=button rather than a <button>, because a
+   button cannot wrap across a line and these sit in running text. */
+.gl {
+  border-bottom: 1.5px dotted var(--accent, var(--gold));
+  cursor: pointer;
+  transition: background var(--fast) var(--ease);
+}
+.gl:hover, .gl[aria-expanded="true"] { background: var(--gold-soft); }
+.gl-zh {
+  margin: 0 3px; padding: 1px 6px;
+  border-radius: 6px;
+  background: var(--gold-soft); color: var(--gold);
+  font-size: .78em; font-weight: 500;
+}
+
+.slot {
+  display: inline-block; min-width: 4.6rem;
+  padding: 0 6px;
+  border-bottom: 2px solid var(--ink-faint);
+  text-align: center;
+  line-height: 1.3;
+}
+.slot-n { font-family: var(--font-ui); font-size: .72em; font-weight: 600; color: var(--ink-faint); }
+.slot.filled { border-bottom-color: var(--good); color: var(--good); font-weight: 600; }
+
+/* ---------------- notes ---------------- */
+
+.note, .stop { margin: 24px 0; }
+.note h4, .stop h4 { margin: 0 0 8px; line-height: 1.4; }
+.n-zh { font-size: .98rem; font-weight: 700; }
+.n-en {
+  display: block; margin-top: 2px;
+  font-family: var(--font-ui); font-size: .72rem; font-weight: 500;
+  letter-spacing: .05em; text-transform: uppercase; color: var(--ink-faint);
+}
+.note-zh { margin: 0; font-size: .95rem; line-height: 1.85; }
+.ex { margin: 10px 0 0; font-size: 1rem; color: var(--ink); }
+
+/* Where the source stops. Drawn as a torn edge in words: a dashed rule, so it
+   cannot be read as the article's real ending. */
+.stop {
+  padding: 16px 18px;
+  border: 1.5px dashed var(--rule);
+  border-radius: var(--round);
+}
+
+/* ---------------- questions ---------------- */
+
+.q {
+  padding: 15px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--round);
+}
+.activity .q + .q { margin-top: 10px; }
+.q.solved { border-color: var(--good-line); }
+.cloze { margin: -4px 0 1.5rem; }
+.q-n { margin: 0 0 9px; font-size: .8rem; font-weight: 600; color: var(--ink-faint); }
+
+.q-stem { display: flex; gap: 10px; margin-bottom: 11px; }
+.q-num {
+  flex: none;
+  font-family: var(--font-ui); font-size: .8rem; font-weight: 600;
+  line-height: 1.95; color: var(--ink-faint);
+}
+.q-stem .pair { flex: 1 1 auto; min-width: 0; }
+.q-stem .en { margin: 0; font-size: 1.02rem; font-weight: 600; line-height: 1.55; }
+.q-stem .zh { margin: 5px 0 0; font-weight: 400; }
+
+.choice { display: flex; gap: 7px; }
+.choice-row { flex-wrap: wrap; }
+.choice-list { flex-direction: column; }
+
+.opt {
+  display: inline-flex; align-items: baseline; gap: 8px;
+  padding: 8px 14px; min-height: 40px;
+  border: 1px solid var(--line); border-radius: 12px;
+  background: var(--paper); color: var(--ink);
+  font: inherit; font-size: .96rem; line-height: 1.45; text-align: left;
+  cursor: pointer;
+  transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease);
+}
+.opt-k { flex: none; font-family: var(--font-ui); font-size: .76rem; font-weight: 600; color: var(--ink-faint); }
+.opt:hover:not(:disabled) { border-color: var(--gold-line); background: var(--gold-soft); }
+.opt:disabled { cursor: default; color: var(--ink-faint); }
+.opt.is-wrong { background: var(--bad-soft); border-color: var(--bad-line); color: var(--bad); }
+.opt.is-wrong .opt-k { color: var(--bad); }
+.opt.is-answer { background: var(--good-soft); border-color: var(--good-line); color: var(--good); font-weight: 600; }
+.opt.is-answer .opt-k { color: var(--good); }
+
+.no { margin: 10px 0 0; font-size: .88rem; line-height: 1.75; color: var(--bad); }
+.no[hidden] { display: none; }
+
+/* The explanation is written for after the answer, so it stays shut until
+   there is one. */
+.why { display: none; margin: 11px 0 0; font-size: .9rem; line-height: 1.8; color: var(--ink-soft); }
+.q.solved .why { display: block; }
+
+.wobble { animation: wobble .3s var(--ease); }
+@keyframes wobble {
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-2px); }
+}
+
+/* ---------------- the author's words ---------------- */
+
+.loaded { list-style: none; margin: 0; padding: 0; }
+.loaded li { padding: 13px 0; border-top: 1px solid var(--line); }
+.loaded li:last-child { border-bottom: 1px solid var(--line); }
+.ld-w { margin: 0; font-size: 1.08rem; font-weight: 600; }
+.ld-q { margin: 3px 0 0; font-size: .82rem; color: var(--ink-faint); }
+.ld-q .zh-chip { width: 30px; }
+.loaded .zh { margin-top: 7px; }
+.ld-plain { margin: 0; font-family: var(--font-en); font-size: 1rem; color: var(--good); }
+.ld-why { margin: 2px 0 0; }
+
+/* ---------------- word list ---------------- */
+
+.wordlist {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 7px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+}
+.word {
+  padding: 10px 13px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.word .en { margin: 0; line-height: 1.5; }
+.pos { font-family: var(--font-ui); font-size: .74rem; color: var(--ink-faint); }
+.star { color: var(--a3); }
+.word > .zh { margin: 3px 0 0; color: var(--ink); }
+.w-line { margin: 4px 0 0; font-size: .9rem; line-height: 1.55; color: var(--ink-soft); }
+.word > .w-line-zh { margin-top: 0; font-size: .82rem; color: var(--ink-faint); }
+
+.v-theme {
+  margin: 0 0 4px;
+  font-size: 1.12rem; font-weight: 600;
+  color: var(--accent, var(--gold));
+}
+.v-theme span { margin-left: 9px; font-family: var(--font-zh); font-size: .9rem; font-weight: 500; }
+.v-head { margin: 20px 0 8px; line-height: 1.4; }
+.v-zh { font-family: var(--font-zh); font-size: .95rem; font-weight: 700; }
+.v-en {
+  margin-left: 8px;
+  font-family: var(--font-ui); font-size: .72rem; font-weight: 500;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint);
+}
+
+/* A row that is the answer to a blank stays shut until that blank is solved. */
+.word[data-after]:not(.unlocked) > * { display: none !important; }
+.word[data-after]:not(.unlocked)::before {
+  content: "完成第 " attr(data-after) " 題後顯示";
+  font-family: var(--font-zh); font-size: .84rem; color: var(--ink-faint);
+}
+
+/* ---------------- writing patterns ---------------- */
+
+.patterns { list-style: none; margin: 0; padding: 0; }
+.patterns li { padding: 13px 0; border-top: 1px solid var(--line); }
+.patterns li:first-child { border-top: 0; padding-top: 0; }
+.pat { margin: 0 0 6px; }
+.pat code {
+  font-family: var(--font-ui); font-size: .84rem; font-weight: 600;
+  padding: 3px 8px; border-radius: 6px;
+  background: var(--gold-soft); color: var(--accent, var(--gold));
+}
+.patterns .en { margin: 0; line-height: 1.6; }
+.patterns .zh { margin: 4px 0 0; }
+
+/* ---------------- talk ---------------- */
+
+.talk { list-style: none; margin: 0; padding: 0; }
+.talk li { padding: 12px 0; border-top: 1px solid var(--line); }
+.talk li:first-child { border-top: 0; padding-top: 0; }
+.talk .en { margin: 0; line-height: 1.65; }
+.talk .zh { margin: 5px 0 0; }
+
+/* ---------------- where it comes from ---------------- */
+
+.source { margin: 54px 0 0; padding-top: 22px; border-top: 1px solid var(--line); }
+.src-zh { margin: 0 0 4px; font-size: .82rem; line-height: 1.75; color: var(--ink-faint); }
+.src-en { margin: 0; font-size: .78rem; line-height: 1.65; color: var(--ink-faint); }
+
+/* ---------------- settings panel ---------------- */
+
+.panel {
+  position: fixed; z-index: 40;
+  top: calc(var(--bar-h) + 8px); right: 14px;
+  width: min(22rem, calc(100vw - 28px));
+  max-height: calc(100vh - var(--bar-h) - 24px); overflow-y: auto;
+  padding: 18px 20px 22px;
+  border: 1px solid var(--line);
+  font-family: var(--font-ui); font-size: 14px;
+}
+.panel[hidden] { display: none; }
+.panel-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.panel-head h2 { margin: 0; font-size: 1rem; }
+.panel-head h2 span { margin-left: 6px; font-weight: 500; font-size: .85rem; color: var(--ink-faint); }
+.panel-x { border: 0; background: transparent; font-size: 16px; cursor: pointer; color: var(--ink-faint); }
+.panel .row { padding: 12px 0; border-top: 1px solid var(--line); }
+.panel .row:first-of-type { border-top: 0; }
+.panel label { display: block; font-weight: 600; margin-bottom: 6px; }
+.panel label em { font-style: normal; font-weight: 500; color: var(--ink-faint); margin-left: 5px; }
+.panel select { width: 100%; padding: 7px 9px; border: 1px solid var(--line); border-radius: 8px; font: inherit; }
+.row-note { margin: 7px 0 0; font-size: 12.5px; line-height: 1.6; color: var(--ink-faint); }
+.row-note em { font-style: normal; display: block; }
+.panel-btn {
+  margin-top: 10px; width: 100%; padding: 9px 14px;
+  border: 1px solid var(--line);
+  background: var(--ink); color: #fff; font: inherit; cursor: pointer;
+}
+.panel-btn em { font-style: normal; opacity: .7; margin-left: 4px; }
+.panel-btn-quiet { background: transparent; color: var(--ink); }
+
+.site-foot {
+  max-width: 46rem; margin: 0 auto; padding: 26px 20px 40px;
+  border-top: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+  gap: 6px 14px; text-align: center;
+  font-family: var(--font-ui); font-size: .8rem; line-height: 1.7; color: var(--ink-faint);
+}
+.site-foot p { margin: 0; }
+.site-foot .site-mark { flex: none; line-height: 0; border-radius: 50%; }
+.site-foot a { color: var(--gold); margin-left: 8px; }
+
+/* ---------------- touch ----------------
+
+   The small controls keep the size they look and grow an invisible hit area,
+   the decision /grammar-notes/ and /body-words/ made. The answers are the thing
+   you are meant to press, so those have real height. */
+
+@media (pointer: coarse) {
+  .say, .zh-chip { position: relative; }
+  .say::after, .zh-chip::after { content: ""; position: absolute; inset: -9px; }
+  .opt { min-height: 44px; }
+}
+
+/* A phone has no room for the English half of the title. */
+@media (max-width: 520px) {
+  .bar-title span { display: none; }
+}
+
+/* ---------------- print ----------------
+
+   Prints as a worksheet. The Chinese stays out, since a printed translation
+   beside the paragraph is the same problem as a visible one; turn 中文 on first
+   to print it. An answered question keeps its explanation. */
+
+@media print {
+  .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .skip, .site-foot,
+  .para-tools, .no { display: none !important; }
+  body { background: #fff; font-size: 11pt; }
+  .shell { display: block; max-width: none; padding: 0; }
+  main { max-width: none; }
+  .q, .note, .stop, .word { break-inside: avoid; }
+  .point { break-before: page; padding-top: 0; }
+  .point:first-of-type { break-before: auto; }
+}

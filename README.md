@@ -2175,6 +2175,41 @@ numbering, the accent colour and the anchors all follow from the array, so a
 new point needs no code. `id` becomes the anchor, on the point and on every
 part: `/grammar-notes/#both-ways`.
 
+## High School Reading — 高中, three texts read closely
+
+`/reading/` holds three texts Lewis supplied in English and Chinese — Colossal
+and the dire wolves, Elizabeth I's letter to the Emperor of China, and the
+Baader-Meinhof phenomenon — with his word tables and five writing patterns. It
+grows by adding one object to `passages` in `content.js`.
+
+| Part | What it holds |
+| --- | --- |
+| 原文 | The text, a 中 chip per paragraph, dotted words that open a meaning in the line |
+| 閱讀測驗 | Questions written for this page; a wrong answer says why and stays open |
+| 字彙表 | Lewis's key words, phrases and topic terms, with his ★ |
+| 說說看 | Spoken discussion, no input fields |
+| 寫作句型 | His five patterns, as a last section after the texts |
+
+### Design notes
+
+- **One mode, not two.** The 國中 pages show the Chinese to a student alone. A
+  reading page cannot: a translation beside the paragraph ends the reading. So
+  there is no `#teach`, the Chinese waits behind a chip for everybody, and
+  nothing is saved but the voice.
+- **The text is verbatim** except for one fix: the source's half-translated
+  「巴ader－邁因霍夫」 is written 「巴德爾－邁因霍夫」 throughout. The first sentence's
+  "In 2024 … announced" stays as printed, and a note under the text gives the
+  real dates (announced April 2025; pups born October 2024 and January 2025).
+- **The second text stops mid-sentence** because the source image was cut off.
+  It is marked with a dashed box and nothing was written to finish it.
+- **The five cloze blanks came with no choices and no key.** The four-option
+  sets are this page's. Lewis's word table confirms 11 `coincidence`, 13 `tune
+  out` and 14 `subsequent`; 12 `stuck` and 15 `there's no way` are inferred.
+- **Three of his table rows are cloze answers**, so in `vocab` they carry
+  `after: <blank>` and read 「完成第 N 題後顯示」 until that blank is solved.
+- **`noindex`**, because the texts are someone else's writing and their source
+  is unknown.
+
 ## Landscape Architecture Portfolio — a student's own work
 
 The odd one out. Not a lesson and not bilingual: a portfolio a landscape
@@ -3479,6 +3514,7 @@ public/sentence-upgrades/2026-10-17/  the 2026/10/17 set, with assessment and a 
 public/recording-practice/        passages to read aloud and record
 public/robot-helper/      the 113 學年度 writing worksheet
 public/exam-writing/      the 109–115 學測 essay survey
+public/reading/           three high school texts, with his word tables
 public/ielts-part3/       the IELTS Part 3 structure practice
 public/anny/              Anny's notebook — one entry per discussion
 public/aaron/             Aaron's notebook — same machinery, its own sessions
