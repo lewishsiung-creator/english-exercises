@@ -2188,7 +2188,29 @@ grows by adding one object to `passages` in `content.js`.
 | 閱讀測驗 | Questions written for this page; a wrong answer says why and stays open |
 | 字彙表 | Lewis's key words, phrases and topic terms, with his ★ |
 | 說說看 | Spoken discussion, no input fields |
-| 寫作句型 | His five patterns, as a last section after the texts |
+| 寫作句型 | His five patterns, as a section after the texts |
+| 單字、片語、搭配詞複習 | Four rounds, last on the page: words, phrases, collocations, spelling |
+
+### The review
+
+Forty-eight questions across the three texts, mixed on purpose, covering all 40
+★ items. Round 1 tests words in a sentence, round 2 phrases, round 3 which verb
+or small word belongs in a collocation, and round 4 has the student type the
+English from a Chinese sentence, first letter given.
+
+- **Every sentence is new.** Reusing his example sentences would test whether a
+  student recognises the sentence, not whether they remember the word.
+- **A wrong tap explains itself without a line being written for it.** In rounds
+  1 and 2 it gives that word's meaning, looked up from his tables; in round 3 it
+  says the pairing is not one English uses. So every option in those two rounds
+  has to be a headword in a `vocab`, and the console warns if one is not.
+- **The right answer is first in `options`** in `content.js`; the page shuffles
+  them on load and again on a retry.
+- **No score, even at the end of a round.** It names what to look at again and
+  offers 「重練這 N 題」, which brings back only the questions not right first
+  time. A hint is not a miss; 看答案 is.
+- **`after` works here too.** The review questions on `coincidence` and `tune
+  out` stay shut until blanks 11 and 13 are solved.
 
 ### Design notes
 

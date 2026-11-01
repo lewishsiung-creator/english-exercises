@@ -12,7 +12,8 @@
       The dotted words are this page's own list; the 字彙表 is the teacher's.
    3. **A wrong answer stays open.** It wobbles, says why, and the question
       waits for another try. Only the right answer closes it. Nothing is scored
-      and nothing is saved, so a reload is a clean lesson.
+      and nothing is saved, so a reload is a clean lesson. A review round ends
+      by naming what to look at again, never with a mark.
 
    Everything kept in localStorage is under `rd.`, and it is only the voice. */
 
@@ -53,6 +54,29 @@ const BLANKS = {};
 RD.passages.forEach((p) => p.parts.forEach((pt) => pt.blocks.forEach((b) => {
   if (b.t === 'text') b.paras.forEach((para) => (para.blanks || []).forEach((q) => { BLANKS[q.n] = q; }));
 })));
+
+/* Everything in the teacher's lists, so the review can say what a word means
+   instead of each wrong option needing a sentence written for it. */
+const LEX = {};
+RD.passages.forEach((p) => {
+  if (!p.vocab) return;
+  [...p.vocab.words, ...p.vocab.phrases, ...(p.vocab.terms || [])].forEach((i) => { LEX[i.w] = i.zh; });
+  p.vocab.words.forEach((i) => { LEX[i.use] = i.useZh; });
+});
+
+function gloss(w) {
+  if (!LEX[w]) console.warn(`reading: "${w}" is not in the word lists`);
+  return LEX[w] || '';
+}
+
+function shuffled(list) {
+  const out = [...list];
+  for (let i = out.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
 
 function say(sentence) {
   return `<button class="say" data-say="${text(sentence)}" title="唸一次" aria-label="唸一次">🔊</button>`;
@@ -129,6 +153,16 @@ function options(q, cls) {
     </div>
     <p class="no" hidden></p>
     <p class="why">${text(q.why)}</p>`;
+}
+
+/* Under each review round. No score: it names what to look at again and offers
+   only those questions back. */
+function roundEnd() {
+  return `
+    <div class="again" hidden>
+      <p class="again-text"></p>
+      <button class="again-btn" hidden></button>
+    </div>`;
 }
 
 // ---------------------------------------------------------------- blocks
@@ -234,8 +268,62 @@ const BLOCKS = {
         </li>`).join('')}
     </ol>`,
 
-  /* Spoken, not typed: no field on this page, so the screen stays the same for
-     a student alone and for a class. */
+  /* One gap, four choices, shuffled on every load so that a position cannot be
+     memorised. A wrong tap explains itself: it gives that word's meaning, or
+     says the pairing is not one English uses. */
+  pick: (b) => `
+    <div class="round">
+      ${b.items.map((q) => {
+        const key = q.key || q.options[0];
+        const fill = q.fill || q.options[0];
+        const [before, after = ''] = text(q.text).split('___');
+        const line = `${before}<span class="r-slot" data-fill="${text(fill)}"></span>${after}`;
+        const no = (o) => (b.wrong === 'gloss'
+          ? `${o}：${gloss(o)}`
+          : `「${q.text.replace('___', o)}」不是常見的說法。`);
+        return `
+          <div class="q pick" data-answer="0"${q.after ? ` data-after="${q.after}"` : ''}>
+            ${q.zh
+              ? `<div class="pair" data-zh><p class="en r-line">${line} ${chip()}</p><p class="zh">${text(q.zh)}</p></div>`
+              : `<p class="en r-line">${line}</p>`}
+            <div class="choice choice-row">
+              ${shuffled(q.options.map((o, i) => ({ o, i }))).map(({ o, i }) => `
+                <button class="opt" data-i="${i}" data-no="${text(no(o))}"><span class="opt-t">${text(o)}</span></button>`).join('')}
+            </div>
+            <p class="no" hidden></p>
+            <p class="why"><strong>${text(key)}</strong> ${text(gloss(key))} ${say(q.text.replace('___', fill))}</p>
+          </div>`;
+      }).join('')}
+      ${roundEnd()}
+    </div>`,
+
+  /* Typing it is the strongest recall on the page, so the Chinese is the
+     prompt here and is always on screen, as on /robot-helper/. */
+  spell: (b) => `
+    <div class="round">
+      ${b.items.map((q) => {
+        const [before, after = ''] = text(q.text).split('___');
+        return `
+          <div class="q spell" data-word="${text(q.answer)}" data-hint="1">
+            <p class="s-zh">${text(q.zh)}</p>
+            <p class="en r-line">${before}<input class="s-in" type="text" aria-label="填入英文"
+              placeholder="${text(q.answer[0])}…" style="width:${q.answer.length + 3}ch"
+              autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+              enterkeyhint="done">${after}</p>
+            <div class="s-btns">
+              <button class="s-btn s-check">檢查 <em>Check</em></button>
+              <button class="s-btn s-hint">再給一個字母 <em>Hint</em></button>
+              <button class="s-btn s-show">看答案 <em>Show</em></button>
+            </div>
+            <p class="no" hidden></p>
+            <p class="why"><strong>${text(q.key)}</strong> ${text(gloss(q.key))} ${say(q.text.replace('___', q.answer))}</p>
+          </div>`;
+      }).join('')}
+      ${roundEnd()}
+    </div>`,
+
+  /* Spoken, not typed: discussion has no field, so the screen stays the same
+     for a student alone and for a class. */
   talk: (b) => `
     <ul class="talk">
       ${b.items.map((i) => `<li>${pair(i.en, i.zh)}</li>`).join('')}
@@ -321,7 +409,7 @@ function fillBlank(n) {
     s.textContent = s.classList.contains('slot-zh') ? q.zhFill : q.options[q.answer];
     s.classList.add('filled');
   });
-  $$(`.word[data-after="${n}"]`).forEach((w) => w.classList.add('unlocked'));
+  $$(`[data-after="${n}"]`).forEach((w) => w.classList.add('unlocked'));
 }
 
 function solve(q) {
@@ -334,15 +422,19 @@ function solve(q) {
   no.hidden = true;
   q.classList.add('solved');
   if (q.dataset.n) fillBlank(q.dataset.n);
+
+  const rs = $('.r-slot', q);
+  if (rs) { rs.textContent = rs.dataset.fill; rs.classList.add('filled'); }
+  const field = $('.s-in', q);
+  if (field) { field.value = q.dataset.word; field.disabled = true; }
 }
 
-function choose(q, btn) {
-  if (q.classList.contains('solved') || btn.disabled) return;
-  if (btn.dataset.i === q.dataset.answer) { solve(q); return; }
-
-  btn.classList.add('is-wrong');
+/* A miss is remembered for this round only, so the page can offer the question
+   back. It is never counted. */
+function miss(q, message) {
+  q.classList.add('missed');
   const no = $('.no', q);
-  no.textContent = btn.dataset.no;
+  no.textContent = message;
   no.hidden = false;
 
   /* Restart the wobble if the same question is missed twice in a row. */
@@ -351,20 +443,100 @@ function choose(q, btn) {
   q.classList.add('wobble');
 }
 
-function clearAll() {
-  $$('.q').forEach((q) => {
-    q.classList.remove('solved', 'wobble');
-    $$('.opt', q).forEach((b) => {
-      b.disabled = false;
-      b.classList.remove('is-answer', 'is-wrong');
-    });
-    $('.no', q).hidden = true;
+function choose(q, btn) {
+  if (q.classList.contains('solved') || btn.disabled) return;
+  if (btn.dataset.i === q.dataset.answer) { solve(q); roundDone(q); return; }
+  btn.classList.add('is-wrong');
+  miss(q, btn.dataset.no);
+}
+
+/* Curly and straight apostrophes are the same letter to a student on a phone. */
+function plain(s) {
+  return s.trim().toLowerCase().replace(/[’‘]/g, "'");
+}
+
+function checkSpelling(q) {
+  const typed = $('.s-in', q).value;
+  if (!plain(typed)) return;
+  if (plain(typed) === plain(q.dataset.word)) { solve(q); roundDone(q); return; }
+  miss(q, '還不對，再試一次，或按「再給一個字母」。');
+}
+
+function giveLetter(q) {
+  const n = Math.min(Number(q.dataset.hint) + 1, q.dataset.word.length);
+  q.dataset.hint = n;
+  const field = $('.s-in', q);
+  field.value = q.dataset.word.slice(0, n);
+  field.focus();
+}
+
+function isLocked(q) {
+  return q.dataset.after && !q.classList.contains('unlocked');
+}
+
+function missedWord(q) {
+  return q.dataset.word || $('.why strong', q).textContent;
+}
+
+/* Runs after each right answer. Once the live questions of a round are done, it
+   lists the ones that were not right the first time. */
+function roundDone(q) {
+  const round = q.closest('.round');
+  if (!round) return;
+  const qs = $$('.q', round);
+  const live = qs.filter((x) => !isLocked(x) && !x.classList.contains('parked'));
+  const again = $('.again', round);
+  if (live.some((x) => !x.classList.contains('solved'))) { again.hidden = true; return; }
+
+  const missed = live.filter((x) => x.classList.contains('missed'));
+  const btn = $('.again-btn', round);
+  again.hidden = false;
+  btn.hidden = !missed.length;
+  if (missed.length) {
+    $('.again-text', round).textContent = `再看一次：${missed.map(missedWord).join('、')}`;
+    btn.textContent = `重練這 ${missed.length} 題`;
+    return;
+  }
+  $('.again-text', round).textContent = '這一關完成了。';
+  qs.forEach((x) => x.classList.remove('parked'));
+}
+
+function resetQuestion(q) {
+  q.classList.remove('solved', 'wobble', 'missed', 'parked');
+  $$('.opt', q).forEach((b) => {
+    b.disabled = false;
+    b.classList.remove('is-answer', 'is-wrong');
   });
+  $('.no', q).hidden = true;
+
+  const rs = $('.r-slot', q);
+  if (rs) { rs.textContent = ''; rs.classList.remove('filled'); }
+  const field = $('.s-in', q);
+  if (field) { field.value = ''; field.disabled = false; q.dataset.hint = 1; }
+}
+
+/* Only what was missed comes back, with its choices in a new order, so the
+   second try cannot lean on where the answer sat. */
+function retryRound(round) {
+  $$('.q', round).forEach((q) => {
+    if (isLocked(q)) return;
+    if (!q.classList.contains('missed')) { q.classList.add('parked'); return; }
+    resetQuestion(q);
+    const row = $('.choice', q);
+    if (row) shuffled([...row.children]).forEach((b) => row.appendChild(b));
+  });
+  $('.again', round).hidden = true;
+  round.closest('.part').scrollIntoView();
+}
+
+function clearAll() {
+  $$('.q').forEach(resetQuestion);
+  $$('.again').forEach((a) => { a.hidden = true; });
   $$('.slot').forEach((s) => {
     s.classList.remove('filled');
     s.innerHTML = `<span class="slot-n">${s.dataset.n}</span>`;
   });
-  $$('.word.unlocked').forEach((w) => w.classList.remove('unlocked'));
+  $$('.unlocked').forEach((w) => w.classList.remove('unlocked'));
   $$('.pair.open').forEach((p) => p.classList.remove('open'));
   $$('.gl[aria-expanded="true"]').forEach(toggleGloss);
   setAllZh(false);
@@ -394,13 +566,27 @@ doc.addEventListener('click', (e) => {
   if (gloss) { toggleGloss(gloss); return; }
 
   const opt = e.target.closest('.opt');
-  if (opt) choose(opt.closest('.q'), opt);
+  if (opt) { choose(opt.closest('.q'), opt); return; }
+
+  const again = e.target.closest('.again-btn');
+  if (again) { retryRound(again.closest('.round')); return; }
+
+  const spellBtn = e.target.closest('.s-btn');
+  if (spellBtn) {
+    const q = spellBtn.closest('.q');
+    if (spellBtn.classList.contains('s-check')) checkSpelling(q);
+    else if (spellBtn.classList.contains('s-hint')) giveLetter(q);
+    else { q.classList.add('missed'); solve(q); roundDone(q); }
+  }
 });
 
 doc.addEventListener('keydown', (e) => {
   if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('gl')) {
     e.preventDefault();
     toggleGloss(e.target);
+  }
+  if (e.key === 'Enter' && e.target.classList.contains('s-in')) {
+    checkSpelling(e.target.closest('.q'));
   }
 });
 

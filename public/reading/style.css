@@ -333,6 +333,59 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
   75% { transform: translateX(-2px); }
 }
 
+/* ---------------- review rounds ---------------- */
+
+.round .q + .q { margin-top: 10px; }
+.q.parked { display: none; }
+.r-line { margin: 0 0 11px; font-size: 1.04rem; line-height: 1.7; }
+.pick .pair .r-line { margin-bottom: 4px; }
+.pick .pair > .zh { margin: 0 0 11px; }
+.r-slot {
+  display: inline-block; min-width: 4.5rem; min-height: 1.1em;
+  padding: 0 5px;
+  border-bottom: 2px solid var(--ink-faint);
+  text-align: center;
+  line-height: 1.3;
+  vertical-align: baseline;
+}
+.r-slot.filled { border-bottom-color: var(--good); color: var(--good); font-weight: 600; }
+.why strong { font-family: var(--font-en); margin-right: 4px; color: var(--ink); }
+
+.s-zh { margin: 0 0 6px; font-family: var(--font-zh); font-size: 1rem; font-weight: 600; line-height: 1.7; }
+.s-in {
+  max-width: 100%; margin: 0 3px; padding: 2px 6px;
+  border: 0; border-bottom: 2px solid var(--ink-faint); border-radius: 0;
+  background: transparent; color: var(--ink);
+  font: inherit; font-weight: 600;
+}
+.s-in:focus { outline: none; border-bottom-color: var(--gold); background: var(--gold-soft); }
+.s-in:disabled { border-bottom-color: var(--good); color: var(--good); -webkit-text-fill-color: var(--good); opacity: 1; }
+.s-btns { display: flex; flex-wrap: wrap; gap: 7px; }
+.q.solved .s-btns { display: none; }
+.s-btn {
+  min-height: 36px; padding: 6px 13px;
+  border: 1px solid var(--line); border-radius: var(--pill);
+  background: var(--paper); color: var(--ink);
+  font-family: var(--font-zh); font-size: .84rem; cursor: pointer;
+  transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease);
+}
+.s-btn em { font-family: var(--font-ui); font-style: normal; font-size: .74rem; color: var(--ink-faint); }
+.s-btn:hover { border-color: var(--gold-line); background: var(--gold-soft); }
+.s-check { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.s-check em { color: inherit; opacity: .7; }
+.s-check:hover { background: var(--ink); border-color: var(--ink); }
+
+.again { margin-top: 14px; padding: 13px 16px; border-radius: var(--round); background: var(--gold-soft); }
+.again[hidden] { display: none; }
+.again-text { margin: 0; font-family: var(--font-zh); font-size: .94rem; line-height: 1.75; }
+.again-btn {
+  margin-top: 9px; padding: 8px 16px; min-height: 38px;
+  border: 0; border-radius: var(--pill);
+  background: var(--ink); color: var(--paper);
+  font-family: var(--font-zh); font-size: .86rem; cursor: pointer;
+}
+.again-btn[hidden] { display: none; }
+
 /* ---------------- the author's words ---------------- */
 
 .loaded { list-style: none; margin: 0; padding: 0; }
@@ -379,9 +432,10 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
   letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint);
 }
 
-/* A row that is the answer to a blank stays shut until that blank is solved. */
-.word[data-after]:not(.unlocked) > * { display: none !important; }
-.word[data-after]:not(.unlocked)::before {
+/* A row or a review question that is the answer to a blank stays shut until
+   that blank is solved. */
+[data-after]:not(.unlocked) > * { display: none !important; }
+[data-after]:not(.unlocked)::before {
   content: "完成第 " attr(data-after) " 題後顯示";
   font-family: var(--font-zh); font-size: .84rem; color: var(--ink-faint);
 }
@@ -481,7 +535,7 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 
 @media print {
   .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .skip, .site-foot,
-  .para-tools, .no { display: none !important; }
+  .para-tools, .no, .again, .s-btns { display: none !important; }
   body { background: #fff; font-size: 11pt; }
   .shell { display: block; max-width: none; padding: 0; }
   main { max-width: none; }

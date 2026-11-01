@@ -19,6 +19,13 @@
    strong grip, uneventful) would be handed over by its own gloss. In `vocab`,
    `after: 11` keeps a row shut until blank 11 is solved, for the same reason.
 
+   THE REVIEW AT THE END. In a `pick` item the right answer comes first in
+   `options`; the page shuffles them. Every sentence there is new rather than
+   one of the teacher's examples, because recognising a sentence is not
+   remembering a word. With `wrong: 'gloss'` every option must be a headword in
+   a `vocab`, so a wrong tap can say what that word means; `key` names the list
+   entry to show once it is solved, when that is not the first option.
+
    Questions, notes and discussion prompts are this page's own. In a question, `answer` is an index into `options`, `no` gives the reason for
    each wrong option by that same index, and `why` shows once it is solved.
    Explanations are in Chinese only: the reader is a Taiwanese student, the same
@@ -29,12 +36,12 @@ const RD = {
   titleZh: '高中英文閱讀',
   title: 'Three Texts, Read Closely',
   intro: {
-    zh: '三篇文章，一次讀一篇。先試著直接讀英文，點虛線字看字義，整段卡住再點「中」。',
-    en: 'Three texts, one at a time. Read the English first, tap a dotted word for its meaning, and open the 中 only when a whole paragraph has stopped you.',
+    zh: '三篇文章，一次讀一篇。先試著直接讀英文，點虛線字看字義，整段卡住再點「中」。讀完後，最後一節可以複習單字、片語和搭配詞。',
+    en: 'Three texts, one at a time. Read the English first, tap a dotted word for its meaning, and open the 中 only when a whole paragraph has stopped you. The last section reviews the words, phrases and collocations.',
   },
   sourceNote: {
-    zh: '三篇文章的英文與中譯、字彙表和寫作句型來自老師提供的資料，第二篇的原文在第二段中途中斷。閱讀測驗、第三篇的選項與筆記是本頁另外編寫的，不是原出處的題目。',
-    en: 'The English and Chinese of the three texts, the word tables and the writing patterns come from material supplied by the teacher; the second text breaks off partway through its second paragraph. The questions, the choices for the third text and the notes were written for this page and are not from the original source.',
+    zh: '三篇文章的英文與中譯、字彙表和寫作句型來自老師提供的資料，第二篇的原文在第二段中途中斷。閱讀測驗、第三篇的選項、筆記與單字複習是本頁另外編寫的，不是原出處的題目。',
+    en: 'The English and Chinese of the three texts, the word tables and the writing patterns come from material supplied by the teacher; the second text breaks off partway through its second paragraph. The questions, the choices for the third text, the notes and the review were written for this page and are not from the original source.',
   },
 
   passages: [
@@ -701,6 +708,127 @@ const RD = {
                 { pat: 'Once + S + V, S + V.', en: 'Once we form a habit, it can be difficult to change.', zh: '一旦我們養成習慣，就可能很難改變。' },
                 { pat: 'Even though + S + V, S + V.', en: 'Even though the information is popular, it may not be accurate.', zh: '即使這項資訊廣為流傳，也未必正確。' },
                 { pat: 'By + V-ing, S + can + V.', en: 'By considering different viewpoints, we can make better decisions.', zh: '透過考慮不同觀點，我們可以做出更好的決定。' },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
+    // ----------------------------------------------------------- review
+    {
+      id: 'review',
+      label: 'Review',
+      icon: '🔁',
+      en: 'Review the Words',
+      zh: '單字、片語、搭配詞複習',
+      sub: '三篇都讀完再來練。句子都是新的，三篇的內容混在一起考。',
+      parts: [
+        {
+          id: 'review-words',
+          zh: '第一關：單字',
+          en: 'Round 1: Words',
+          blocks: [
+            {
+              t: 'pick',
+              wrong: 'gloss',
+              items: [
+                { text: 'The dodo has been ___ for more than 300 years.', zh: '渡渡鳥已經滅絕三百多年了。', options: ['extinct', 'objective', 'challenging', 'genetic'] },
+                { text: 'This national park is a success story for wildlife ___.', zh: '這座國家公園是野生動物保育的成功案例。', options: ['conservation', 'perception', 'phenomenon', 'occurrence'] },
+                { text: 'The ad was ___: the “free” gift cost NT$500 to ship.', zh: '這則廣告有誤導之嫌：那份「免費」贈品要付 500 元運費。', options: ['misleading', 'cognitive', 'uneventful', 'extinct'] },
+                { text: 'Students who feel stressed should ___ help from a counselor.', zh: '覺得壓力大的學生應該向輔導老師尋求協助。', options: ['seek', 'restore', 'interpret', 'accompany'] },
+                { text: 'Cycling is a cheap ___ to driving.', zh: '騎腳踏車是開車以外的便宜選擇。', options: ['alternative', 'trait', 'hybrid', 'remains'] },
+                { text: 'Climbing Yushan was the most ___ thing I have ever done.', zh: '爬玉山是我做過最有挑戰性的事。', options: ['challenging', 'misleading', 'genetic', 'extinct'] },
+                { text: 'A rainbow is a natural ___ caused by light and water.', zh: '彩虹是由光和水形成的自然現象。', options: ['phenomenon', 'perception', 'remains', 'trait'] },
+                { text: 'What a ___! We both wore the same shirt today.', zh: '真是太巧了！我們今天穿了同一件上衣。', options: ['coincidence', 'awareness', 'conservation', 'perception'], after: 11 },
+                { text: 'How do you ___ the ending of this novel?', zh: '你怎麼解讀這本小說的結局？', options: ['interpret', 'safeguard', 'entrust', 'accompany'] },
+                { text: 'With only an hour left, we need to ___ the most important questions.', zh: '只剩一小時，我們得優先處理最重要的題目。', options: ['prioritize', 'accompany', 'safeguard', 'entrust'] },
+                { text: 'A judge must stay ___ and not take sides.', zh: '法官必須保持客觀，不偏袒任何一方。', options: ['objective', 'extinct', 'cognitive', 'genetic'] },
+                { text: 'Social media has changed public ___ of the sport.', zh: '社群媒體改變了大眾對這項運動的看法。', options: ['perception', 'occurrence', 'remains', 'trait'] },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'review-phrases',
+          zh: '第二關：片語',
+          en: 'Round 2: Phrases',
+          blocks: [
+            {
+              t: 'pick',
+              wrong: 'gloss',
+              items: [
+                { text: 'Only ___ people showed up, so the meeting ended early.', zh: '只來了少數幾個人，所以會議提早結束。', options: ['a handful of', 'at best', 'as planned', 'in the hope of + V-ing'], fill: 'a handful of' },
+                { text: 'This old laptop is, ___, good enough for typing.', zh: '這台舊筆電充其量只能拿來打字。', options: ['at best', 'as planned', 'a handful of', 'if left unchecked'], fill: 'at best' },
+                { text: 'The school trip went ___, and everyone was home by five.', zh: '校外教學按照計畫進行，大家五點前都回到家了。', options: ['as planned', 'at best', 'set off from', 'be traced back to'], fill: 'as planned' },
+                { text: 'We ___ Taipei at 6 a.m. and reached Hualien before noon.', zh: '我們清晨六點從台北出發，中午前抵達花蓮。', options: ['set off from', 'give priority to', 'be tempted to V', 'remind someone that…'], fill: 'set off from' },
+                { text: 'This temple festival can ___ the Qing dynasty.', zh: '這個廟會可以追溯到清朝。', options: ['be traced back to', 'set off from', 'have a tendency to V', 'block someone’s path'], fill: 'be traced back to' },
+                { text: 'A fallen rock ___ on the mountain road.', zh: '一塊落石在山路上擋住了我們的去路。', options: ['block someone’s path', 'open up a trade route', 'set off from', 'as planned'], fill: 'blocked our path' },
+                { text: 'I know I should study, but I ___ watch one more video.', zh: '我知道該讀書，但還是忍不住想再看一部影片。', options: ['be tempted to V', 'in the hope of + V-ing', 'as planned', 'at best'], fill: 'am tempted to' },
+                { text: 'People ___ believe news that matches their own views.', zh: '人們往往傾向相信符合自己看法的新聞。', options: ['have a tendency to V', 'set off from', 'block someone’s path', 'be traced back to'], fill: 'have a tendency to' },
+                { text: 'She moved to Taipei ___ finding a better job.', zh: '她搬到台北，希望能找到更好的工作。', options: ['in the hope of + V-ing', 'a handful of', 'at best', 'have a tendency to V'], fill: 'in the hope of' },
+                { text: 'This poster ___ every small habit counts.', zh: '這張海報提醒我們，每個小習慣都很重要。', options: ['remind someone that…', 'be traced back to', 'interpret A as B', 'set off from'], fill: 'reminds us that' },
+                { text: 'I wear earplugs to ___ the noise from the street.', zh: '我戴耳塞，好忽略街上的噪音。', options: ['tune out', 'set off from', 'as planned', 'at best'], fill: 'tune out', after: 13 },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'review-collocations',
+          zh: '第三關：搭配詞',
+          en: 'Round 3: Collocations',
+          blocks: [
+            {
+              t: 'lead',
+              zh: '搭配詞要整組記：哪個動詞配哪個名詞、後面接哪個小字。',
+              en: 'Learn these as chunks: which verb goes with which noun, and which small word comes next.',
+            },
+            {
+              t: 'pick',
+              wrong: 'colloc',
+              items: [
+                { text: '___ ecological balance', options: ['restore', 'raise', 'block', 'tune'], key: 'restore ecological balance' },
+                { text: '___ public awareness', options: ['raise', 'block', 'entrust', 'tune'], key: 'raise public awareness' },
+                { text: '___ friendly relations', options: ['establish', 'distract', 'block', 'cite'], key: 'establish friendly relations' },
+                { text: '___ natural resources', options: ['safeguard', 'interpret', 'tune', 'distract'], key: 'safeguard natural resources' },
+                { text: '___ priority to', options: ['give', 'open', 'hold', 'block'], key: 'give priority to' },
+                { text: '___ an effort to', options: ['make', 'do', 'hold', 'block'], key: 'make an effort to V' },
+                { text: '___ a misleading claim', options: ['make', 'do', 'open', 'set'], key: 'make a misleading claim' },
+                { text: '___ one’s belief', options: ['strengthen', 'tune', 'set', 'open'], key: 'strengthen one’s belief' },
+                { text: '___ species', options: ['endangered', 'selective', 'objective', 'heavy'], key: 'endangered species' },
+                { text: '___ bias', options: ['confirmation', 'heavy', 'endangered', 'extinct'], key: 'confirmation bias' },
+                { text: '___ attention', options: ['selective', 'extinct', 'heavy', 'endangered'], key: 'selective attention' },
+                { text: 'distract students ___ their studies', options: ['from', 'to', 'as', 'of'], key: 'distract A from B' },
+                { text: 'entrust the project ___ a friend', options: ['to', 'from', 'as', 'of'], key: 'entrust A to B' },
+                { text: 'interpret a smile ___ agreement', options: ['as', 'from', 'to', 'of'], key: 'interpret A as B' },
+                { text: 'cite the weather ___ an excuse to cancel', options: ['as', 'from', 'to', 'of'], key: 'cite A as an excuse to V' },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'review-spell',
+          zh: '第四關：自己拼出來',
+          en: 'Round 4: Spell it yourself',
+          blocks: [
+            {
+              t: 'lead',
+              zh: '看中文，把英文打出來。第一個字母已經給你了，想不起來可以再要一個字母。',
+              en: 'Read the Chinese and type the English. The first letter is given, and you can ask for another.',
+            },
+            {
+              t: 'spell',
+              items: [
+                { zh: '這則廣告裡的說法具有誤導性。', text: 'The claim in this ad is ___.', answer: 'misleading', key: 'misleading' },
+                { zh: '森林有助於恢復生態平衡。', text: 'Forests help ___ ecological balance.', answer: 'restore', key: 'restore ecological balance' },
+                { zh: '手機通知讓我無法專心讀書。', text: 'Phone notifications ___ me from my studies.', answer: 'distract', key: 'distract A from B' },
+                { zh: '老師把這項任務託付給我。', text: 'The teacher ___ the task to me.', answer: 'entrusted', key: 'entrust A to B' },
+                { zh: '比賽按照計畫舉行。', text: 'The game went ahead as ___.', answer: 'planned', key: 'as planned' },
+                { zh: '別把他的微笑解讀為同意。', text: 'Don’t ___ his smile as agreement.', answer: 'interpret', key: 'interpret A as B' },
+                { zh: '只有少數幾位朋友知道這個祕密。', text: 'Only a ___ of friends knew the secret.', answer: 'handful', key: 'a handful of' },
+                { zh: '確認偏誤會讓我們忽略事實。', text: '___ bias can make us ignore the facts.', answer: 'confirmation', key: 'confirmation bias' },
+                { zh: '我們應該優先處理重要的工作。', text: 'We should ___ important work.', answer: 'prioritize', key: 'prioritize' },
+                { zh: '這次旅行強化了她對自己的信心。', text: 'The trip ___ her belief in herself.', answer: 'strengthened', key: 'strengthen one’s belief' },
               ],
             },
           ],
