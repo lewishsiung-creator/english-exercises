@@ -7,8 +7,13 @@
    thing being practised and are set in the serif, larger than anything else
    around them.
 
-   Red is not used. A wrong answer is not an alarm: it wobbles, goes amber and
-   explains itself. Green only ever means "yes, that one".
+   Colour has one meaning each. Navy is the thing to press. Amber is
+   encouragement and emphasis, never a verdict. Green only ever means "yes,
+   that one". A wrong answer is not an alarm, so it has no colour at all: it
+   wobbles, goes neutral and explains itself. Red is not used.
+
+   Three levels of control, and no others: .pill and .act-said are primary,
+   .act is secondary, .link is quiet. On navy the primary turns to paper.
 
    Light theme only, like the other adult pages. */
 
@@ -82,7 +87,16 @@ button:disabled { cursor: default; }
 .bar-title span { margin-left: 6px; color: var(--ink-soft); font-weight: 500; }
 
 .tally-pill { text-decoration: none; white-space: nowrap; }
-.tally-pill b { font-variant-numeric: tabular-nums; color: var(--gold); margin-left: 2px; }
+.tally-pill b { display: inline-block; font-variant-numeric: tabular-nums; color: var(--gold); margin-left: 2px; }
+
+/* The pills stay their size; the hit area grows to 44px around them. */
+.bar .bar-btn { position: relative; }
+.bar .bar-btn::after { content: ""; position: absolute; inset: -6px 0; }
+.bar .bar-btn-quiet { min-width: 44px; justify-content: center; }
+.bar-title { padding: 11px 0; }
+
+.bar .bar-btn-zh[aria-pressed="false"] { color: var(--ink-soft); background: transparent; box-shadow: inset 0 0 0 1px var(--rule); }
+.bar .bar-btn-zh[aria-pressed="true"] { color: var(--ink); background: color-mix(in srgb, var(--ink) 11%, transparent); font-weight: 600; }
 
 .tabs-top { display: none; }
 
@@ -184,9 +198,11 @@ main {
   font-family: var(--font-ui), var(--font-zh);
   font-weight: 600;
 }
-.kicker a { text-decoration: none; }
+.kicker a { display: inline-block; margin: -15px 0; padding: 15px 12px 15px 0; text-decoration: none; }
 
 .head { padding: clamp(30px, 6vw, 56px) 0 4px; }
+h1:focus-visible { outline: none; }
+
 .head h1 {
   font-size: clamp(1.8rem, 5vw, 2.5rem);
   line-height: 1.2;
@@ -263,8 +279,9 @@ main {
 
 .link {
   display: inline-block;
+  min-height: 44px;
   margin: 14px 0 0 14px;
-  padding: 8px 2px;
+  padding: 11px 2px;
   font-family: var(--font-ui), var(--font-zh);
   font-size: 14px;
   color: var(--ink-soft);
@@ -276,8 +293,8 @@ main {
 
 .mini {
   flex: none;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: inline-grid;
   place-items: center;
   padding: 0;
@@ -291,7 +308,7 @@ main {
 
 .acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .act {
-  min-height: 40px;
+  min-height: 44px;
   padding: 7px 14px;
   font-family: var(--font-ui), var(--font-zh);
   font-size: 14px;
@@ -305,11 +322,19 @@ main {
 .act:hover { background: color-mix(in srgb, var(--ink) 11%, transparent); }
 .act:active { transform: scale(.97); }
 .act-rec.on { color: var(--paper); background: var(--gold); }
-.act-said { background: var(--gold-soft); color: var(--gold); font-weight: 600; }
-.act-said:hover { background: color-mix(in srgb, var(--gold-line) 40%, var(--gold-soft)); }
+/* The one action this page exists for, so it is the widest thing in the block
+   and the only solid one. It sits last: listen, try, then say you did. */
+.act-said { color: var(--paper); background: var(--ink); font-weight: 600; }
+.act-said:hover { background: var(--ink); opacity: .88; }
+.acts .act-said { flex: 1 1 100%; order: 2; min-height: 48px; font-size: 15px; }
 .act-said.done { color: var(--good); background: var(--good-soft); }
+.act-said.done:hover { background: var(--good-soft); opacity: 1; }
 
 .wobble { animation: wobble .34s var(--ease); }
+.bump { animation: bump .32s var(--ease); }
+@keyframes bump {
+  40% { transform: scale(1.4); }
+}
 @keyframes wobble {
   20% { transform: translateX(-5px); }
   50% { transform: translateX(4px); }
@@ -376,7 +401,8 @@ main {
 }
 .drill-sit { margin-top: 10px; font-size: 1.12rem; line-height: 1.6; font-weight: 500; }
 .drill-try { margin-top: 10px; font-size: .9rem; color: color-mix(in srgb, var(--paper) 72%, transparent); }
-.drill .pill { color: var(--ink); background: var(--gold-line); }
+.drill .pill { color: var(--ink); background: var(--paper); }
+.home-hint { margin-top: 12px; font-size: .86rem; color: color-mix(in srgb, var(--paper) 72%, transparent); }
 .drill .say { color: var(--ink); border: 0; }
 .drill .effect { color: var(--gold-line); }
 .drill-end { padding: 6px 0 2px; }
@@ -389,6 +415,7 @@ main {
 .tally { margin-top: clamp(30px, 5vw, 44px); padding: 22px 0 0; border-top: 1px solid var(--rule); }
 .tally-big { display: flex; align-items: baseline; gap: 10px; }
 .tally-big b {
+  display: inline-block;
   font-family: var(--font-en);
   font-size: clamp(3rem, 12vw, 4.2rem);
   font-weight: 500;
@@ -420,7 +447,7 @@ main {
 .yn { display: flex; gap: 8px; margin-top: 10px; }
 .mini-pill {
   min-width: 68px;
-  min-height: 38px;
+  min-height: 44px;
   padding: 6px 16px;
   font-family: var(--font-ui), var(--font-zh);
   font-size: 14px;
@@ -457,7 +484,7 @@ textarea, .field input {
 .exercise {
   margin-top: 14px;
   padding: 16px;
-  background: color-mix(in srgb, var(--gold-soft) 62%, var(--paper));
+  background: color-mix(in srgb, var(--ink) 4%, var(--paper));
   border-radius: var(--round);
 }
 .sort-ask { display: flex; justify-content: space-between; gap: 10px; font-weight: 600; }
@@ -480,7 +507,7 @@ textarea, .field input {
 .bucket:disabled { opacity: .5; }
 .bucket.right { color: var(--good); background: var(--good-soft); border-color: var(--good-line); }
 .sort-why { margin-top: 10px; font-size: .95rem; }
-.sort-why.soft { color: var(--gold); }
+.sort-why.soft { color: var(--ink); }
 .sort-why .zh { margin-bottom: 4px; }
 .sort-why[hidden] { display: none; }
 
@@ -491,7 +518,7 @@ textarea, .field input {
 .slot.full .slot-tag { color: var(--good); }
 .slot-en { font-family: var(--font-en); line-height: 1.4; }
 .slot-hint { margin-top: 12px; font-size: .92rem; color: var(--ink-soft); }
-.slot-msg { margin-top: 8px; font-size: .94rem; color: var(--gold); }
+.slot-msg { margin-top: 8px; font-size: .94rem; color: var(--ink); }
 .cards { display: grid; gap: 8px; margin-top: 8px; }
 .sent {
   padding: 12px 14px;
@@ -535,7 +562,7 @@ textarea, .field input {
 .subtabs { display: flex; gap: 4px; margin-top: 18px; padding: 3px; background: color-mix(in srgb, var(--ink) 6%, transparent); border-radius: 12px; }
 .subtabs a {
   flex: 1;
-  min-height: 38px;
+  min-height: 44px;
   display: grid;
   place-items: center;
   padding: 4px 2px;
@@ -570,7 +597,7 @@ textarea, .field input {
 .upgrade { padding-top: 16px; }
 .upgrade + .upgrade { margin-top: 16px; border-top: 1px solid var(--line); }
 .weak { font-family: var(--font-en); font-size: 1.04rem; color: var(--ink-soft); text-decoration: line-through; text-decoration-color: var(--gold-line); text-decoration-thickness: 2px; }
-.weak span { margin-right: 8px; font-family: var(--font-ui), var(--font-zh); font-size: 12px; font-weight: 500; color: var(--gold); display: inline-block; text-decoration: none; }
+.weak .tag { margin-right: 8px; font-family: var(--font-ui), var(--font-zh); font-size: 12px; font-weight: 500; color: var(--ink-soft); display: inline-block; text-decoration: none; }
 .weak em { font-family: var(--font-zh); font-size: .84rem; font-style: normal; display: inline-block; text-decoration: none; }
 .no-zh .weak em { display: none; }
 
@@ -621,11 +648,8 @@ textarea, .field input {
 .opts[hidden] { display: none; }
 .opts { scroll-margin: calc(var(--bar-h) + 14px) 0 calc(var(--tab-h) + 24px); }
 
-.say-first { background: var(--gold-soft); border-color: var(--gold-line); }
+.say-first { border-color: var(--rule); }
 .first-ask { font-size: 1rem; font-weight: 500; }
-.say-first .act { background: var(--card); }
-.say-first .act-said { color: var(--paper); background: var(--ink); }
-.say-first .act-said:hover { background: var(--ink); opacity: .88; }
 .opt {
   display: block;
   width: 100%;
@@ -643,13 +667,13 @@ textarea, .field input {
 .opt.tried .zh, .opt.right .zh { display: block; }
 .no-zh .opt .zh { display: none; }
 .opt:disabled { opacity: .56; }
-.opt.tried { background: var(--gold-soft); border-color: var(--gold-line); opacity: 1; }
+.opt.tried { background: color-mix(in srgb, var(--ink) 5%, var(--paper)); border-color: var(--rule); opacity: 1; }
 .opt.right { background: var(--good-soft); border-color: var(--good-line); opacity: 1; }
 
 .result { margin-top: 2px; scroll-margin-bottom: calc(var(--tab-h) + 24px); }
 .result[hidden] { display: none; }
 .after-label { margin-top: 12px; font-size: .84rem; font-weight: 500; color: var(--ink-soft); }
-.why { margin-top: 12px; padding: 10px 14px; font-size: .96rem; color: var(--gold); background: var(--gold-soft); border-radius: 12px; }
+.why { margin-top: 12px; padding: 10px 14px; font-size: .96rem; color: var(--ink); background: color-mix(in srgb, var(--ink) 6%, var(--paper)); border-radius: 12px; }
 .why.good { color: var(--good); background: var(--good-soft); }
 .retry { margin-top: 8px; font-size: .92rem; font-weight: 500; }
 
@@ -696,7 +720,7 @@ textarea, .field input {
 .my-turn { margin-top: 6px; }
 
 .scene-end { margin-top: 24px; padding-top: 6px; }
-.reflect { margin-top: 20px; padding: 16px; background: var(--gold-soft); border-radius: var(--round); }
+.reflect { margin-top: 20px; padding: 16px; background: color-mix(in srgb, var(--ink) 4%, var(--paper)); border-radius: var(--round); }
 
 /* ---------------- email ---------------- */
 
@@ -748,7 +772,7 @@ textarea, .field input {
 
 .found { margin-top: 10px; font-family: var(--font-ui), var(--font-zh); font-size: 13.5px; font-weight: 600; color: var(--gold); }
 .flaws { display: grid; gap: 8px; margin-top: 12px; }
-.flaws li { padding: 10px 14px; background: var(--gold-soft); border-radius: 12px; }
+.flaws li { padding: 10px 14px; background: color-mix(in srgb, var(--ink) 5%, var(--paper)); border-radius: 12px; }
 .flaws.works li { background: var(--good-soft); }
 .flaws .note-en { font-size: .84rem; }
 .flaws .note-zh { font-size: .96rem; }
@@ -780,7 +804,7 @@ textarea, .field input {
 .checks { display: grid; gap: 6px; }
 .checks li { display: grid; grid-template-columns: 1.3em 1fr; gap: 4px; padding: 9px 13px; font-size: .95rem; background: var(--card); border-radius: 12px; }
 .checks .ok { color: var(--good); background: var(--good-soft); }
-.checks .hint { color: var(--gold); background: var(--gold-soft); }
+.checks .hint { color: var(--ink); background: color-mix(in srgb, var(--ink) 6%, var(--paper)); }
 .checks .idle { display: block; color: var(--ink-soft); border: 1px dashed var(--rule); background: transparent; }
 
 /* ---------------- settings and toast ---------------- */
@@ -803,13 +827,13 @@ textarea, .field input {
 .panel-head { display: flex; align-items: center; justify-content: space-between; }
 .panel-head h2 { font-size: 1.08rem; font-weight: 600; }
 .panel-head h2 span { font-family: var(--font-en); font-size: .86rem; font-weight: 400; font-style: italic; color: var(--ink-soft); }
-.panel-x { width: 40px; height: 40px; margin-right: -8px; background: none; border: 0; }
+.panel-x { width: 44px; height: 44px; margin-right: -8px; background: none; border: 0; }
 .row { margin-top: 12px; }
 .row label { display: block; font-size: .92rem; font-weight: 600; }
 .row label em { font-family: var(--font-en); font-size: .84rem; font-weight: 400; color: var(--ink-soft); }
 .row select { width: 100%; margin-top: 4px; padding: 8px 10px; font: 16px var(--font-ui); color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 10px; }
 .row-note { margin-top: 6px; font-size: .84rem; line-height: 1.55; color: var(--ink-soft); }
-.panel-btn { margin-top: 8px; padding: 8px 16px; min-height: 40px; font-size: 14px; background: color-mix(in srgb, var(--ink) 6%, transparent); border: 0; }
+.panel-btn { margin-top: 8px; padding: 8px 16px; min-height: 44px; font-size: 14px; background: color-mix(in srgb, var(--ink) 6%, transparent); border: 0; }
 #clearAsk { display: block; margin-top: 6px; font-size: .84rem; color: var(--gold); }
 
 .toast {

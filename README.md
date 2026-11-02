@@ -2292,6 +2292,16 @@ Five tabs, routed by the hash so any scenario or email can be sent as a link:
   typed there is stored, and the page says so. Recordings stay in the tab's
   memory until the next take or the next view.
 - **No sound starts by itself.** This gets opened in offices.
+- **Three levels of control, and one meaning per colour.** Primary is navy
+  (`.pill`, `.act-said`), secondary `.act`, quiet `.link`. Amber is encouragement
+  and emphasis, green is "yes, that one", and a wrong answer has no colour,
+  because a verdict in the accent colour made the accent mean two things.
+- **It is built to be saved and shared.** A student receives the link in LINE, so
+  it has an Open Graph card, and `tools/keep-speaking/make_images.py` draws that
+  and the home-screen icons. The manifest says `display: browser`, not
+  `standalone`: the page keeps its record in the browser's storage, and an iPhone
+  home-screen app can keep a separate one, so a trainee's count would depend on
+  which way they came in.
 
 ### What the page changes from the handbook
 

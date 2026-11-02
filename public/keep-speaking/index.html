@@ -15,6 +15,27 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231c2b4a'/%3E%3Cpath d='M14 18h36v22H30l-9 8v-8h-7z' fill='%23f2b544'/%3E%3C/svg%3E">
 <meta name="theme-color" content="#f7f5f0">
 
+<!-- A student gets this page as a link in LINE, so the preview is its first
+     impression. An image has to be an absolute URL, and it points at the
+     Cloudflare site, the one the link is handed out on. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Keep Speaking 繼續開口">
+<meta property="og:description" content="你的英文不需要完美。需要的是繼續開口。句型、情境和 Email，每天三分鐘開口練。">
+<meta property="og:url" content="https://english-exercises-6e4.pages.dev/keep-speaking/">
+<meta property="og:image" content="https://english-exercises-6e4.pages.dev/keep-speaking/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Keep Speaking 繼續開口">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- The home-screen icon. display is "browser" in the manifest on purpose: the
+     page opens in the browser, not as a separate app. On an iPhone a separate
+     app can keep its own storage, and a trainee's count must not depend on
+     which icon they tapped. -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-title" content="繼續開口">
+
 <link rel="stylesheet" href="style.css">
 
 <!-- The house typography, then the house interface, linked last so they win.
@@ -32,7 +53,7 @@
   <nav class="tabs tabs-top" aria-label="主選單"></nav>
 
   <a class="bar-btn tally-pill" href="#today" aria-label="你開口的次數">開口 <b class="tally-n">0</b></a>
-  <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="true" title="顯示或隱藏英文句子的中譯">中文</button>
+  <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="true" title="顯示或隱藏英文句子的中譯">中譯</button>
   <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
           aria-controls="panel" title="設定" aria-label="設定">⚙</button>
 </header>

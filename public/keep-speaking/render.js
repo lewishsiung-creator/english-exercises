@@ -35,6 +35,9 @@ const store = {
   },
 };
 
+// Script-driven scrolling does not obey the stylesheet's reduced-motion rule.
+const motion = () => (matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth');
+
 const pad = (n) => String(n).padStart(2, '0');
 const dayKey = (d = new Date()) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 
@@ -55,7 +58,7 @@ function shuffle(list) {
 }
 
 // Chinese always shows; it is instructions, not comprehension practice.
-const note = (o) => `<p class="note-zh">${text(o.zh)}</p>${o.en ? `<p class="note-en">${text(o.en)}</p>` : ''}`;
+const note = (o) => `<p class="note-zh">${text(o.zh)}</p>${o.en ? `<p lang="en" class="note-en">${text(o.en)}</p>` : ''}`;
 
 // -------------------------------------------------------------- the tally
 
@@ -76,6 +79,8 @@ function addSpoken() {
   log[k] = (log[k] || 0) + 1;
   store.set('log', log);
   paintTally();
+  // This is the one thing the page counts, so it has to be felt when it moves.
+  $$('.tally-n').forEach((e) => replay(e, 'bump'));
   const hit = MILESTONES.find((m) => m.n === spokenTotal());
   if (hit) toast(hit.zh);
 }
@@ -241,8 +246,8 @@ window.addEventListener('pagehide', dropTake);
 function sayBlock({ en, zh, lv, who, say, sub }) {
   const spoken = say || en;
   return `<div class="say" data-say="${text(spoken)}" data-who="${text(who || '')}">
-    <p class="say-en">${lv ? `<span class="lv">${text(lv)}</span>` : ''}${text(en)}</p>
-    ${say && say !== en ? `<p class="say-fill">例：${text(say)}</p>` : ''}
+    <p class="say-en" lang="en">${lv ? `<span class="lv">${text(lv)}</span>` : ''}${text(en)}</p>
+    ${say && say !== en ? `<p class="say-fill">例：<span lang="en">${text(say)}</span></p>` : ''}
     ${zh ? `<p class="zh">${text(sub || zh)}</p>` : ''}
     <div class="acts">
       <button class="act" data-act="hear">🔊 聽</button>
@@ -282,14 +287,14 @@ function sortInner(id) {
   const item = s.items[s.i];
   return `<p class="sort-ask">${text(cfg.ask)} <span>${s.i + 1} / ${s.items.length}</span></p>
     <div class="sort-q ${cfg.english ? 'is-en' : ''}">
-      ${cfg.english ? `<p class="line-en">${text(item.q)}</p>` : `<p>${text(item.q)}</p>`}
+      ${cfg.english ? `<p lang="en" class="line-en">${text(item.q)}</p>` : `<p>${text(item.q)}</p>`}
       ${cfg.english ? `<button class="mini" data-act="hear" data-say="${text(item.q)}">🔊</button>` : ''}
     </div>
     <div class="sort-btns" style="--n:${cfg.buckets.length}">
       ${cfg.buckets.map((b) => `<button class="bucket" data-act="sort-pick" data-id="${id}" data-key="${b.key}">
         ${text(b.zh)}${b.en ? `<small>${text(b.en)}</small>` : ''}</button>`).join('')}
     </div>
-    <div class="sort-why" hidden></div>`;
+    <div class="sort-why" aria-live="polite" hidden></div>`;
 }
 
 function sortPick(btn) {
@@ -315,11 +320,13 @@ function sortPick(btn) {
     <button class="pill" data-act="sort-next" data-id="${btn.dataset.id}">下一句</button>`;
 }
 
-function wobble(el) {
-  el.classList.remove('wobble');
+function replay(el, cls) {
+  el.classList.remove(cls);
   void el.offsetWidth;
-  el.classList.add('wobble');
+  el.classList.add(cls);
 }
+
+const wobble = (el) => replay(el, 'wobble');
 
 // -------------------------------------------------------------- BLUF order
 
@@ -337,7 +344,7 @@ function blufInner() {
   const set = BLUF_SETS[blufSet];
   const slots = BLUF_PARTS.map((p, i) => `<li class="slot ${i < blufNext ? 'full' : ''}">
     <span class="slot-tag">${i + 1} ${text(p.zh)}</span>
-    <span class="slot-en">${i < blufNext ? text(set[p.key]) : ''}</span></li>`).join('');
+    <span class="slot-en" lang="en">${i < blufNext ? text(set[p.key]) : ''}</span></li>`).join('');
 
   const done = blufNext === 3;
   const left = blufCards.filter((c) => BLUF_PARTS.findIndex((p) => p.key === c.part) >= blufNext);
@@ -347,7 +354,7 @@ function blufInner() {
     ${done ? `${sayBlock({ en: `${set.c} ${set.r} ${set.a}` })}
       <button class="pill" data-act="bluf-next">下一組</button>`
     : `<p class="slot-hint">依序點選：先放「${text(BLUF_PARTS[blufNext].zh)}」</p>
-      <div class="cards">${left.map((c) => `<button class="sent" data-act="bluf-pick" data-part="${c.part}">${text(c.en)}</button>`).join('')}</div>
+      <div class="cards">${left.map((c) => `<button class="sent" lang="en" data-act="bluf-pick" data-part="${c.part}">${text(c.en)}</button>`).join('')}</div>
       <p class="slot-msg" hidden></p>`}`;
 }
 
@@ -394,8 +401,9 @@ function drillInner(id) {
   const d = drills.get(id);
   if (d.i >= d.items.length) {
     return `<div class="drill-end"><p class="done-big">${text(d.doneMsg || '這組說完了。')}</p>
-      <p class="note-en">${text(COURSE.motto.en)}</p>
-      <button class="pill" data-act="drill-more" data-id="${id}">再來一組</button></div>`;
+      <p lang="en" class="note-en">${text(COURSE.motto.en)}</p>
+      <button class="pill" data-act="drill-more" data-id="${id}">再來一組</button>
+      ${id === 'today' ? '<p class="home-hint">明天想少按幾步：用瀏覽器的選單或分享鍵，選「加入主畫面」。</p>' : ''}</div>`;
   }
   const it = d.items[d.i];
   return `<p class="drill-head"><span>${text(it.kind)}</span><span>${d.i + 1} / ${d.items.length}</span></p>
@@ -449,11 +457,11 @@ function viewToday() {
   const friday = [5, 6].includes(new Date().getDay());
 
   const weekly = `<section class="block" id="weekly">
-    <h2>週五檢查 <span>Weekly Self-Check</span></h2>
+    <h2>週五檢查 <span lang="en">Weekly Self-Check</span></h2>
     <p class="note-zh">${text(WEEKLY.note)}</p>
     ${WEEKLY.checks.map((c, i) => `<div class="check" data-q="${c.id}">
       <p class="check-q"><b>Q${i + 1}</b> ${text(c.zh)}</p>
-      <p class="note-en">${text(c.en)}</p>
+      <p lang="en" class="note-en">${text(c.en)}</p>
       <div class="yn">
         <button class="mini-pill" data-act="week" data-q="${c.id}" data-v="yes" aria-pressed="${now[c.id] === 'yes'}">有</button>
         <button class="mini-pill" data-act="week" data-q="${c.id}" data-v="no" aria-pressed="${now[c.id] === 'no'}">還沒</button>
@@ -462,7 +470,7 @@ function viewToday() {
     </div>`).join('')}
     <div class="check">
       <p class="check-q"><b>Q4</b> ${text(WEEKLY.q4.zh)}</p>
-      <p class="note-en">${text(WEEKLY.q4.en)}</p>
+      <p lang="en" class="note-en">${text(WEEKLY.q4.en)}</p>
       <textarea id="q4" rows="3" placeholder="寫給自己看的，只存在這台裝置。">${text(now.q4 || '')}</textarea>
     </div>
     ${pastWeeks(week, key)}
@@ -484,15 +492,15 @@ function viewToday() {
     ${friday ? weekly : ''}
 
     <section class="block">
-      <h2>現在要做什麼？ <span>What's next at work?</span></h2>
+      <h2>現在要做什麼？ <span lang="en">What's next at work?</span></h2>
       <div class="doors">
         ${DOORS.map((d) => `<a class="door" href="#${d.to}">
-          <b>${text(d.zh)}</b><small>${text(d.en)}</small><span>${text(d.note)}</span></a>`).join('')}
+          <b>${text(d.zh)}</b><small lang="en">${text(d.en)}</small><span>${text(d.note)}</span></a>`).join('')}
       </div>
     </section>
 
     <section class="block">
-      <h2>今天三分鐘 <span>Today's three</span></h2>
+      <h2>今天三分鐘 <span lang="en">Today's three</span></h2>
       <p class="note-zh">三個工作上會遇到的時刻。不用看稿，先開口。</p>
       ${drillBlock('today', () => items, '今天的三分鐘完成了。', start)}
     </section>
@@ -517,29 +525,29 @@ function viewConcepts() {
   blufSet = 0;
   blufDeal();
   return `<header class="head">
-      <p class="kicker">Part 1 · Core Concepts</p>
+      <p class="kicker" lang="en">Part 1 · Core Concepts</p>
       <h1>核心觀念</h1>
       <p class="sub">忘記重點時，先回到這裡。每一項都可以練。</p>
     </header>
 
     <section class="block" id="bluf-sec">
-      <h2>BLUF 結論先行 <span>Bottom Line Up Front</span></h2>
+      <h2>BLUF 結論先行 <span lang="en">Bottom Line Up Front</span></h2>
       <p class="note-zh">每次溝通用三層結構：結論 → 原因 → 行動</p>
       <div class="exercise" id="bluf">${blufInner()}</div>
     </section>
 
     <section class="block">
-      <h2>高低語境 <span>High-Low Context</span></h2>
+      <h2>高低語境 <span lang="en">High-Low Context</span></h2>
       <div class="ctxcards">
         ${CONTEXT.cards.map((c) => `<article class="ctxcard">
           <h3>${text(c.zh)}<span>${text(c.who)}</span></h3>
-          <p>${text(c.points)}</p><p class="note-en">${text(c.en)}</p></article>`).join('')}
+          <p>${text(c.points)}</p><p lang="en" class="note-en">${text(c.en)}</p></article>`).join('')}
       </div>
       <div class="exercise">${sortBlock(CONTEXT.sort)}</div>
     </section>
 
     <section class="block">
-      <h2>語氣量尺 <span>Tone Scale</span></h2>
+      <h2>語氣量尺 <span lang="en">Tone Scale</span></h2>
       <p class="note-zh">目標是 3–4。太軟，對方聽不到；太硬，對方不想聽。</p>
       <ol class="scale">
         ${TONE.scale.map((l) => `<li class="${l.target ? 'target' : ''}">
@@ -549,13 +557,13 @@ function viewConcepts() {
     </section>
 
     <section class="block">
-      <h2>三種會議行為 <span>Three Behavior Patterns</span></h2>
+      <h2>三種會議行為 <span lang="en">Three Behavior Patterns</span></h2>
       <p class="note-zh">下次開會前，先問自己：今天我會比較像誰？</p>
       <div class="people">
         ${BEHAVIOR.people.map((p) => `<article class="person ${p.good ? 'good' : ''}">
           <h3>${text(p.name)}<span>${text(p.tag)}</span></h3>
           <p>${text(p.obs)}</p>
-          <p class="lesson">${text(p.lesson)}</p><p class="note-en">${text(p.lessonEn)}</p></article>`).join('')}
+          <p class="lesson">${text(p.lesson)}</p><p lang="en" class="note-en">${text(p.lessonEn)}</p></article>`).join('')}
       </div>
       <details class="past"><summary>一張卡看三種選擇</summary>
         <dl class="grid3">
@@ -584,7 +592,7 @@ function phraseRow(p) {
   return `<li class="phrase">
     <span class="lv">${text(p.lv)}</span>
     <div class="phrase-body">
-      <p class="line-en">${text(p.en)}</p>
+      <p lang="en" class="line-en">${text(p.en)}</p>
       <p class="zh">${text(p.zh)}</p>
     </div>
     <button class="mini" data-act="hear" data-say="${text(p.fill || p.en)}" aria-label="聽這句">🔊</button>
@@ -594,7 +602,7 @@ function phraseRow(p) {
 
 function viewPhrases(sub) {
   const head = (title, en, lead) => `<header class="head">
-      <p class="kicker">${text(en)}</p><h1>${text(title)}</h1>${lead ? `<p class="sub">${text(lead)}</p>` : ''}
+      <p class="kicker" lang="en">${text(en)}</p><h1>${text(title)}</h1>${lead ? `<p class="sub">${text(lead)}</p>` : ''}
     </header>
     <div class="subtabs" role="group" aria-label="句型">
       ${SUBTABS.map((t) => `<a href="#${t.to}" ${location.hash.slice(1) === t.to || (!sub && t.to === 'phrases') ? 'aria-current="page"' : ''}>${text(t.zh)}</a>`).join('')}
@@ -612,8 +620,8 @@ function viewPhrases(sub) {
         : '<p class="empty">還沒有挑。到下面點 ☆，放進來的就是你下一場會議要用的句子。</p>'}
       </section>
       <section class="block">
-        <h2>從這裡挑 <span>Pick 2–3</span></h2>
-        ${FUNCTIONS.map((f) => `<h3 class="fn-head">功能 ${f.n}：${text(f.zh)} <span>${text(f.en)}</span></h3>
+        <h2>從這裡挑 <span lang="en">Pick 2–3</span></h2>
+        ${FUNCTIONS.map((f) => `<h3 class="fn-head">功能 ${f.n}：${text(f.zh)} <span lang="en">${text(f.en)}</span></h3>
           <ul class="phrases">${f.phrases.map(phraseRow).join('')}</ul>`).join('')}
       </section>`;
   }
@@ -623,14 +631,14 @@ function viewPhrases(sub) {
       <section class="block">
         <ul class="upgrades">
           ${UPGRADES.map((u) => `<li class="upgrade">
-            <p class="weak"><span>你說的</span>${text(u.weak)} <em>${text(u.weakZh)}</em></p>
+            <p class="weak"><span class="tag">你說的</span><span lang="en">${text(u.weak)}</span> <em>${text(u.weakZh)}</em></p>
             ${sayBlock({ en: u.strong, zh: u.zh, say: u.fill })}
             <p class="effect">${text(u.effect)}</p>
           </li>`).join('')}
         </ul>
       </section>
       <section class="block">
-        <h2>說說看 <span>Say it</span></h2>
+        <h2>說說看 <span lang="en">Say it</span></h2>
         ${drillBlock('upgrade', () => shuffle(upgradeItems()), '五句都換過一次了。')}
       </section>`;
   }
@@ -641,19 +649,19 @@ function viewPhrases(sub) {
         ${CLARIFY.map((c) => sayBlock({ en: c.en, zh: c.zh, lv: c.lv })).join('')}
       </section>
       <section class="block">
-        <h2>說說看 <span>Say it</span></h2>
+        <h2>說說看 <span lang="en">Say it</span></h2>
         ${drillBlock('clarify', () => shuffle(clarifyItems()), '五種追問都說過了。')}
       </section>`;
   }
 
   return `${head('四大功能句型', 'Card A · Function Phrases', '每個功能都有 A2 版。先用 A2 也完全可以，說出來最重要。')}
     <section class="block">
-      <h2>說說看 <span>Say it</span></h2>
+      <h2>說說看 <span lang="en">Say it</span></h2>
       <p class="note-zh">看情境，先自己開口，再看參考句。</p>
       ${drillBlock('phrases', () => shuffle(phraseItems()).slice(0, 4), '這一組說完了。')}
     </section>
     ${FUNCTIONS.map((f) => `<section class="block">
-      <h2>功能 ${f.n}：${text(f.zh)} <span>${text(f.en)}</span></h2>
+      <h2>功能 ${f.n}：${text(f.zh)} <span lang="en">${text(f.en)}</span></h2>
       <ul class="phrases">${f.phrases.map(phraseRow).join('')}</ul>
     </section>`).join('')}`;
 }
@@ -664,7 +672,7 @@ function viewScenes() {
   const done = store.get('scenes', {});
   const count = SCENES.filter((s) => done[s.id]).length;
   return `<header class="head">
-      <p class="kicker">Part 2 · Scenarios</p>
+      <p class="kicker" lang="en">Part 2 · Scenarios</p>
       <h1>情境演練</h1>
       <p class="sub">你來當主角。每個情境都走到開口為止。${count ? `已經走完 ${count} 個。` : ''}</p>
     </header>
@@ -672,7 +680,7 @@ function viewScenes() {
       <ul class="scene-list">
         ${SCENES.map((s) => `<li><a class="scene-link" href="#scenes/${s.id}">
           <b class="letter">${text(s.letter)}</b>
-          <span class="scene-t"><strong>${text(s.zh)}</strong><small>${text(s.en)}</small>
+          <span class="scene-t"><strong>${text(s.zh)}</strong><small lang="en">${text(s.en)}</small>
             <small>${text(s.pair)} · ${text(s.unit)}</small></span>
           ${done[s.id] ? '<span class="tick" aria-label="走完了">✓</span>' : ''}
         </a></li>`).join('')}
@@ -706,7 +714,7 @@ function viewScene(id) {
   return `<header class="head">
       <p class="kicker"><a href="#scenes">← 情境 ${text(s.letter)} / 6</a></p>
       <h1>${text(s.zh)}</h1>
-      <p class="sub">${text(s.en)}</p>
+      <p class="sub" lang="en">${text(s.en)}</p>
     </header>
     <section class="block">
       <p class="focus-line">${text(s.focus)}</p>
@@ -733,13 +741,13 @@ function bubble(l) {
   const you = l.you || (run && l.who === run.role);
   return `<div class="msg ${you ? 'mine' : ''}">
     <p class="who">${text(l.who)}${l.role ? ` <span>${text(l.role)}</span>` : ''}</p>
-    <div class="bubble"><p class="line-en">${text(l.en)}</p>${l.zh ? `<p class="zh">${text(l.zh)}</p>` : ''}
+    <div class="bubble"><p lang="en" class="line-en">${text(l.en)}</p>${l.zh ? `<p class="zh">${text(l.zh)}</p>` : ''}
       <button class="mini" data-act="hear" data-say="${text(l.en)}" data-who="${text(l.who)}" aria-label="聽這句">🔊</button></div>
   </div>`;
 }
 
 const thought = (who, zh, en) => `<div class="think"><p class="who">${text(who)} 心想</p>
-  <p>${text(zh)}</p>${en ? `<p class="note-en">${text(en)}</p>` : ''}</div>`;
+  <p>${text(zh)}</p>${en ? `<p lang="en" class="note-en">${text(en)}</p>` : ''}</div>`;
 
 const continueBtn = () => '<button class="pill go" data-act="scene-next">繼續</button>';
 
@@ -771,7 +779,7 @@ function playStep(st) {
     case 'line': return { html: bubble(st) };
     case 'think': return { html: thought(st.who, st.zh, st.en) };
     case 'choice': return { html: choiceBlock(st), stop: true };
-    case 'parts': return { html: `<ul class="parts">${st.parts.map((p) => `<li><b>${text(p.tag)}</b><span>${text(p.en)}</span><small>${text(p.note)}</small></li>`).join('')}</ul>` };
+    case 'parts': return { html: `<ul class="parts">${st.parts.map((p) => `<li><b>${text(p.tag)}</b><span lang="en">${text(p.en)}</span><small>${text(p.note)}</small></li>`).join('')}</ul>` };
     case 'say': return { html: `<div class="say-group"><p class="ask">${text(st.ask)}</p>
       ${st.lines.map((l) => sayBlock(l)).join('')}${run.all ? '' : continueBtn()}</div>`, stop: true };
     case 'reveal': return { html: revealBlock(st), stop: true };
@@ -791,20 +799,20 @@ function revealBlock(st) {
 }
 
 const revealOpen = (st) => `<div class="reveal-box open"><p class="label">${text(st.label)}</p>
-  <p class="reveal-zh">${text(st.zh)}</p><p class="line-en">${text(st.en)}</p>
+  <p class="reveal-zh">${text(st.zh)}</p><p lang="en" class="line-en">${text(st.en)}</p>
   <button class="mini" data-act="hear" data-say="${text(st.en)}" data-who="Tanaka" aria-label="聽這句">🔊</button>
   <p class="reveal-note">${text(st.note)}</p></div>`;
 
 function choiceBlock(st) {
   const opts = shuffle(st.options.map((o, i) => `<button class="opt ${run.all && o.ok ? 'right' : ''}"
       data-act="opt" data-i="${i}" ${run.all ? 'disabled' : ''}>
-      <span class="line-en">${text(o.en)}</span>${o.zh ? `<span class="zh">${text(o.zh)}</span>` : ''}</button>`)).join('');
+      <span lang="en" class="line-en">${text(o.en)}</span>${o.zh ? `<span class="zh">${text(o.zh)}</span>` : ''}</button>`)).join('');
   const right = st.options.find((o) => o.ok);
   return `<div class="choice" data-step="${run.i - 1}">
     <p class="ask">${text(st.ask)}</p>
     ${run.all ? '' : sayFirst()}
     <div class="opts" ${run.all ? '' : 'hidden'}>${opts}</div>
-    <div class="result" ${run.all ? '' : 'hidden'}>${run.all ? `<p class="why good">${text(right.why)}</p>` : ''}</div>
+    <div class="result" aria-live="polite" ${run.all ? '' : 'hidden'}>${run.all ? `<p class="why good">${text(right.why)}</p>` : ''}</div>
   </div>`;
 }
 
@@ -838,14 +846,14 @@ function pickOption(btn) {
 
 // An answer can land under the fold, or under the bar of tabs on a phone.
 function bringUp(el) {
-  el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  el.scrollIntoView({ block: 'nearest', behavior: motion() });
 }
 
 function questBlock(st) {
   const rows = (run.all ? st.good : [...st.good, ...st.weak]).map((q, i) => {
     const isGood = i < st.good.length;
     return `<button class="opt quest-opt" data-act="quest" data-i="${i}" data-good="${isGood}" ${run.all ? 'disabled' : ''}>
-      <span class="line-en">${q.lv ? `<span class="lv">${text(q.lv)}</span>` : ''}${text(q.en)}</span></button>`;
+      <span lang="en" class="line-en">${q.lv ? `<span class="lv">${text(q.lv)}</span>` : ''}${text(q.en)}</span></button>`;
   });
   return `<div class="quest">
     <p class="ask">${text(st.ask)}</p>
@@ -904,7 +912,7 @@ function pickRole(btn) {
       <h3>${text(me.name)}<span>${text(me.job)}</span></h3>
       <p>${text(me.task)}</p>
       ${f ? `<details class="past"><summary>功能 ${f.n}：${text(f.zh)}的其他說法</summary>
-        ${f.phrases.map((p) => `<p class="line-en small">${text(p.en)}</p>`).join('')}</details>` : ''}
+        ${f.phrases.map((p) => `<p lang="en" class="line-en small">${text(p.en)}</p>`).join('')}</details>` : ''}
     </article>
     <div id="turns"></div>
     <div id="turn-foot"></div>`;
@@ -949,7 +957,7 @@ function advance() {
   // A step that stops carries its own 繼續, which finishes the run from there.
   if (run.i >= steps.length && (run.all || !isStopping(steps[steps.length - 1]))) finishScene();
 
-  if (first && !run.all) first.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  if (first && !run.all) first.scrollIntoView({ block: 'start', behavior: motion() });
 }
 
 const isStopping = (st) => ['choice', 'say', 'reveal', 'roles', 'quest', 'meeting'].includes(st.t);
@@ -973,7 +981,7 @@ function openReveal(btn) {
 function viewEmailIndex() {
   const done = store.get('emails', {});
   return `<header class="head">
-      <p class="kicker">Part 3 · BLUF Email</p>
+      <p class="kicker" lang="en">Part 3 · BLUF Email</p>
       <h1>BLUF Email</h1>
       <p class="sub">${text(COMPARE.lead)}</p>
     </header>
@@ -986,7 +994,7 @@ function viewEmailIndex() {
     </section>
 
     <section class="block">
-      <h2>三封範例 <span>Three Emails</span></h2>
+      <h2>三封範例 <span lang="en">Three Emails</span></h2>
       <ul class="scene-list">
         ${EMAILS.map((e) => `<li><a class="scene-link" href="#email/${e.id}">
           <b class="letter">${text(e.id)}</b>
@@ -998,7 +1006,7 @@ function viewEmailIndex() {
     </section>
 
     <section class="block">
-      <h2>三封對照 <span>Side-by-Side</span></h2>
+      <h2>三封對照 <span lang="en">Side-by-Side</span></h2>
       <div class="compare">
         ${COMPARE.cols.map((c) => `<article><h3>${text(c.name)}</h3>
           <dl>${c.vals.map((v, i) => `<dt>${text(COMPARE.rows[i])}</dt><dd>${text(v)}</dd>`).join('')}</dl></article>`).join('')}
@@ -1015,17 +1023,17 @@ function viewEmail(id) {
   return `<header class="head">
       <p class="kicker"><a href="#email">← Email ${text(e.id)} / 3</a></p>
       <h1>${text(e.zh)}</h1>
-      <p class="sub">${text(e.en)}</p>
+      <p class="sub" lang="en">${text(e.en)}</p>
     </header>
     <section class="block">
       <p class="focus-line">${text(e.challenge)}</p>
       ${note(e.ctx)}
     </section>
     <section class="block" id="mail-1">
-      <h2>第一步：找問題 <span>Spot it</span></h2>
+      <h2>第一步：找問題 <span lang="en">Spot it</span></h2>
       <p class="note-zh">這是原本的寫法。點你覺得有問題的句子。</p>
       <p class="found" id="found">找到 0 / ${e.flaws.length}</p>
-      <div class="letter-sheet is-before">
+      <div class="letter-sheet is-before" lang="en">
         <p class="mail-subj"><span>Subject:</span> ${sentence(e.before.subject)}</p>
         ${e.before.body.map((para) => `<p>${para.map(sentence).join(' ')}</p>`).join('')}
       </div>
@@ -1076,12 +1084,12 @@ function mailStepTwo() {
   if ($('#mail-2')) return;
   $('#mail-next').innerHTML = '';
   $('#mail-rest').innerHTML = `<section class="block" id="mail-2">
-      <h2>第二步：改寫 <span>Rewrite it</span></h2>
+      <h2>第二步：改寫 <span lang="en">Rewrite it</span></h2>
       <p class="note-zh">換你來選。每一步都有理由。</p>
       <div id="mail-picks"></div>
     </section>`;
   mailPick();
-  $('#mail-2').scrollIntoView({ block: 'start', behavior: 'smooth' });
+  $('#mail-2').scrollIntoView({ block: 'start', behavior: motion() });
 }
 
 function mailPick() {
@@ -1091,8 +1099,8 @@ function mailPick() {
   $('#mail-picks').insertAdjacentHTML('beforeend', `<div class="choice mail-choice" data-pick="${pick}">
     <p class="ask">${pick + 1}. ${text(p.ask)}</p>
     <div class="opts">${shuffle(p.options.map((o, i) => `<button class="opt" data-act="mail-opt" data-i="${i}">
-      <span class="line-en">${text(o.en)}</span></button>`)).join('')}</div>
-    <div class="result" hidden></div>
+      <span lang="en" class="line-en">${text(o.en)}</span></button>`)).join('')}</div>
+    <div class="result" aria-live="polite" hidden></div>
   </div>`);
 }
 
@@ -1126,8 +1134,8 @@ function mailStepThree() {
   store.set('emails', done);
   const t = TEMPLATES[e.template];
   $('#mail-rest').insertAdjacentHTML('beforeend', `<section class="block" id="mail-3">
-      <h2>第三步：完整範例 <span>BLUF After</span></h2>
-      <div class="letter-sheet">
+      <h2>第三步：完整範例 <span lang="en">BLUF After</span></h2>
+      <div class="letter-sheet" lang="en">
         <p class="mail-subj"><span>Subject:</span> ${text(e.after.subject)}</p>
         ${afterBody(e.after.body)}
       </div>
@@ -1138,7 +1146,7 @@ function mailStepThree() {
       <a class="pill" href="#email/write" data-template="${t.id}" data-act="use-template">用「${text(t.zh)}」模板寫我的</a>
       <a class="link" href="#email">回 Email 列表</a>
     </section>`);
-  $('#mail-3').scrollIntoView({ block: 'start', behavior: 'smooth' });
+  $('#mail-3').scrollIntoView({ block: 'start', behavior: motion() });
 }
 
 // --------- 我的 Email
@@ -1152,10 +1160,10 @@ function viewWrite() {
       <p class="sub">選一個模板，把 [ ] 換成你的內容；或把正在寫的信貼進來。下面的健檢會跟著你打的字更新。</p>
     </header>
     <section class="block">
-      <h2>三大模板 <span>Card B</span></h2>
+      <h2>三大模板 <span lang="en">Card B</span></h2>
       <div class="tpl-picks">
         ${TEMPLATES.map((t) => `<button class="tpl" data-act="template" data-i="${t.id}">
-          <b>${text(t.zh)}</b><small>${text(t.en)}</small><span>${text(t.when)}</span></button>`).join('')}
+          <b>${text(t.zh)}</b><small lang="en">${text(t.en)}</small><span>${text(t.when)}</span></button>`).join('')}
       </div>
     </section>
     <section class="block">
@@ -1168,7 +1176,7 @@ function viewWrite() {
       <p class="privacy">這裡打的字不會離開你的裝置，也不會存下來；重新整理就清空。</p>
     </section>
     <section class="block">
-      <h2>BLUF 健檢 <span>Before you send</span></h2>
+      <h2>BLUF 健檢 <span lang="en">Before you send</span></h2>
       <ul class="checks" id="checks"></ul>
     </section>`;
 }
@@ -1279,7 +1287,10 @@ const TABS = [
   { to: 'email', zh: 'Email', icon: '✉' },
 ];
 
-function route() {
+let booted = false;
+
+// A pin in 我的小抄 re-renders the same view and passes `stay`.
+function route({ stay = false } = {}) {
   const [tab = 'today', sub] = (location.hash.slice(1) || 'today').split('/');
   dropTake();
   if (canSpeak) speechSynthesis.cancel();
@@ -1304,6 +1315,16 @@ function route() {
     else a.removeAttribute('aria-current');
   });
   paintTally();
+
+  const h1 = $('#view h1');
+  if (h1) {
+    h1.tabIndex = -1;
+    document.title = name === 'today' ? `${COURSE.title} — ${COURSE.titleZh}` : `${h1.textContent} · ${COURSE.title}`;
+    // Otherwise focus stays on the tab just pressed, and a screen reader is
+    // never told the page changed. Not on load: the reader is already there.
+    if (booted && !stay) h1.focus({ preventScroll: true });
+  }
+  booted = true;
   window.scrollTo(0, 0);
 }
 
@@ -1366,7 +1387,7 @@ const ACTS = {
     else store.set('pins', [...list, id]);
     if (location.hash === '#phrases/mine') {
       const y = window.scrollY;
-      route();
+      route({ stay: true });
       window.scrollTo(0, y);
     } else {
       const on = pins().includes(id);
@@ -1470,12 +1491,20 @@ function initChrome() {
 
   const panel = $('#panel');
   const toggle = $('#panelToggle');
-  const setPanel = (open) => {
+  const setPanel = (open, refocus = true) => {
     panel.hidden = !open;
     toggle.setAttribute('aria-expanded', open);
+    if (open) $('#panelClose').focus();
+    else if (refocus) toggle.focus();
   };
   toggle.addEventListener('click', () => setPanel(panel.hidden));
   $('#panelClose').addEventListener('click', () => setPanel(false));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !panel.hidden) setPanel(false);
+  });
+  document.addEventListener('click', (e) => {
+    if (!panel.hidden && !panel.contains(e.target) && !toggle.contains(e.target)) setPanel(false, false);
+  });
 
   $('#rate').value = store.get('rate', '0.95');
   $('#rate').addEventListener('change', (e) => {
@@ -1502,12 +1531,11 @@ function initChrome() {
       try { localStorage.removeItem(`ks.${k}`); } catch { /* private window */ }
     });
     ask.textContent = '';
-    e.target.blur();
     setPanel(false);
-    route();
+    route({ stay: true });
   });
 
-  window.addEventListener('hashchange', route);
+  window.addEventListener('hashchange', () => route());
   route();
 }
 
