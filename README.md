@@ -2232,6 +2232,74 @@ English from a Chinese sentence, first letter given.
 - **`noindex`**, because the texts are someone else's writing and their source
   is unknown.
 
+## Keep Speaking — adult, self-study, a course handbook to rehearse
+
+`/keep-speaking/` is the practice version of the 35-page 學員複習手冊 from the
+cross-cultural communication course: BLUF, the four function phrases, six
+scenarios, three before-and-after emails. The trainees already have the
+handbook, so this page does not re-present it. It is where they say it out
+loud. Its title is the handbook's own last line: 你的英文不需要完美。需要的是繼續開口。
+
+Five tabs, routed by the hash so any scenario or email can be sent as a link:
+
+| Tab | What is in it |
+| --- | --- |
+| 今天 `#today` | The handbook's three ways of using it as three doors, 今天三分鐘, the tally, the Friday check |
+| 觀念 `#concepts` | BLUF order, high/low context, Tone Scale, the three behaviours; each ends in an exercise |
+| 句型 `#phrases` | `/mine` 我的小抄 (2–3 phrases), `/upgrade` Tool 2, `/clarify` the clarifying questions |
+| 情境 `#scenes/a` … `/f` | Each scenario played as you, stopping where you have to answer |
+| Email `#email/1` … `/3`, `/write` | Find the flaws, rewrite, see the After; then 寫我的 Email |
+
+### Design notes
+
+- **It breaks the adult rule on purpose.** The adult pages are teacher-led with
+  nothing saved, because Lewis runs several clients on one laptop. This one is
+  self-study on the trainee's own phone, and he asked for it to encourage them,
+  so it keeps a record, on that device only. The Chinese is also on by default,
+  the 自學 rule: someone alone has nobody to ask. There is no `#teach` mode.
+- **The one number is 開口次數.** 我說了 is on trust, and a finished recording
+  counts too. It measures attempts and never correctness, so it agrees with the
+  handbook's closing line instead of contradicting it. The seven-day strip shows
+  days spoken and is not a streak: an empty day must not read as a failure.
+  `MILESTONES` may only ever praise having spoken.
+- **A drill asks first.** Read the situation in Chinese, say your own version,
+  and only then see the reference line. That order is the exercise. 今天三分鐘
+  takes one phrase, one upgrade or clarifying question, and one scenario moment,
+  least recently practised first, and holds them for the day.
+- **Wrong options play out.** Choosing Vivian's vague reply runs the rest of her
+  dialogue, then the option stays open to choose again. In a choice the Chinese
+  stays hidden until an option is chosen, or it would give the answer away.
+- **Scenario E's hidden mechanic is a meter.** Clarifying questions move Tanaka
+  from 表面強硬 to 願意合作; apologising moves nothing. That is the handbook's
+  own rule made playable. Tanaka's replies are written for the page and only
+  restate facts from Scenario B and Email 2.
+- **The BLUF check is plain text rules**, each taken from a reason the handbook
+  gives. All three After emails pass and all three Before emails are flagged,
+  which was tested in the browser and is the test to rerun after changing a
+  rule. It cannot read for meaning, so it words results as nudges, and
+  `DEADLINE` deliberately ignores "on June 1", which would pass Email 1's Before.
+- **Drafts are not kept.** 寫我的 Email may hold a real business email, so nothing
+  typed there is stored, and the page says so. Recordings stay in the tab's
+  memory until the next take or the next view.
+- **No sound starts by itself.** This gets opened in offices.
+
+### What the page changes from the handbook
+
+Recorded in the header of `content.js`: levels follow Card A where Part 1
+disagrees, the word counts on the emails are dropped because they do not match
+the text, and the doubled quotes in the tables are gone. Every English line was
+compared with the PDF's text by script; what did not match is the list of
+deliberate additions and shortenings described there.
+
+The 中譯 of the phrases, every `sit` and `fill`, and the options marked
+`added: true` are written for this page.
+
+The handbook names its client on every page. **The page names no company**, by
+Lewis's decision on 2026-11-02, the same choice he made for `/fab-english/`:
+lines that needed a subject became "we", "us", "your" or 公司, and the
+characters keep their names. It also carries `noindex`, which keeps it out of
+search results and does not make the URL private.
+
 ## Landscape Architecture Portfolio — a student's own work
 
 The odd one out. Not a lesson and not bilingual: a portfolio a landscape
@@ -3537,6 +3605,7 @@ public/recording-practice/        passages to read aloud and record
 public/robot-helper/      the 113 學年度 writing worksheet
 public/exam-writing/      the 109–115 學測 essay survey
 public/reading/           three high school texts, with his word tables
+public/keep-speaking/     the practice page for the course handbook, five tabs
 public/ielts-part3/       the IELTS Part 3 structure practice
 public/anny/              Anny's notebook — one entry per discussion
 public/aaron/             Aaron's notebook — same machinery, its own sessions
