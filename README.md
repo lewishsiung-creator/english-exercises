@@ -2288,6 +2288,13 @@ Five tabs, routed by the hash so any scenario or email can be sent as a link:
   which was tested in the browser and is the test to rerun after changing a
   rule. It cannot read for meaning, so it words results as nudges, and
   `DEADLINE` deliberately ignores "on June 1", which would pass Email 1's Before.
+- **The check stays in view while writing.** Beside the draft on a wide screen.
+  On a phone the list is under the draft, so the count rides in a bar (`paintBar`)
+  that opens to the items still to fix. While typing it sits on the keyboard: a
+  keyboard covers the page without moving anything fixed, so `trackKeyboard()`
+  reads `visualViewport` into `--kb`. The bar hides once the list itself is on
+  screen. A clean result still asks about the first sentence, which the rules
+  cannot judge.
 - **Drafts are not kept.** 寫我的 Email may hold a real business email, so nothing
   typed there is stored, and the page says so. Recordings stay in the tab's
   memory until the next take or the next view.

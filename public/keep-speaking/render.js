@@ -1232,7 +1232,7 @@ function viewWrite() {
   return `<header class="head">
       <p class="kicker"><a href="#email">← Email</a></p>
       <h1>寫我的 Email</h1>
-      <p class="sub">選一個模板，把 [ ] 換成你的內容；或把正在寫的信貼進來。下面的健檢會跟著你打的字更新。</p>
+      <p class="sub">選一個模板，把 [ ] 換成你的內容；或把正在寫的信貼進來。健檢會跟著你打的字更新。</p>
     </header>
     <section class="block">
       <h2>三大模板 <span lang="en">Card B</span></h2>
@@ -1241,6 +1241,7 @@ function viewWrite() {
           <b>${text(t.zh)}</b><small lang="en">${text(t.en)}</small><span>${text(t.when)}</span></button>`).join('')}
       </div>
     </section>
+    <div class="write-grid">
     <section class="block">
       <label class="field"><span>Subject</span><input id="d-subject" type="text" autocomplete="off" spellcheck="true" lang="en"></label>
       <label class="field"><span>內容</span><textarea id="d-body" rows="9" spellcheck="true" lang="en"></textarea></label>
@@ -1250,10 +1251,15 @@ function viewWrite() {
       </div>
       <p class="privacy">這裡打的字不會離開你的裝置，也不會存下來；重新整理就清空。</p>
     </section>
-    <section class="block">
+    <section class="block check-col" id="checkCol">
       <h2>BLUF 健檢 <span lang="en">Before you send</span></h2>
       <ul class="checks" id="checks"></ul>
-    </section>`;
+    </section>
+    </div>
+    <div class="check-bar" id="checkBar" hidden>
+      <div class="check-more" id="checkMore" hidden></div>
+      <button class="check-sum" id="checkSum" data-act="check-toggle" aria-expanded="false" aria-controls="checkMore"></button>
+    </div>`;
 }
 
 /* The check is a set of plain text rules, each one a line of the handbook:
@@ -1325,11 +1331,52 @@ function emailChecks(rawSubject, rawBody) {
   return rows;
 }
 
+const checkRow = (r) => `<li class="${r.ok ? 'ok' : 'hint'}"><span>${r.ok ? '✓' : '→'}</span>${text(r.ok ? r.good : r.fix)}</li>`;
+
 function paintChecks() {
   const rows = emailChecks($('#d-subject').value, $('#d-body').value);
   $('#checks').innerHTML = rows.length
-    ? rows.map((r) => `<li class="${r.ok ? 'ok' : 'hint'}"><span>${r.ok ? '✓' : '→'}</span>${text(r.ok ? r.good : r.fix)}</li>`).join('')
+    ? rows.map(checkRow).join('')
     : '<li class="idle">選一個模板，或貼上你的信，這裡就會開始檢查。</li>';
+  paintBar(rows);
+}
+
+/* On a phone the list sits under the draft, out of sight while typing, so the
+   result also rides in a bar. The rules only read the form of a letter, so a
+   clean result still asks the one question they cannot answer. */
+function paintBar(rows) {
+  const bar = $('#checkBar');
+  const hints = rows.filter((r) => !r.ok);
+  bar.hidden = !rows.length;
+  const was = Number(bar.dataset.left ?? hints.length);
+  bar.dataset.left = hints.length;
+
+  $('#checkSum').innerHTML = hints.length
+    ? `<span>還有 <b>${hints.length}</b> 項可以改</span><i aria-hidden="true">${$('#checkSum').getAttribute('aria-expanded') === 'true' ? '▾' : '▴'}</i>`
+    : '<span>✓ 都通過了。再看一次第一句是不是結論。</span>';
+  if (hints.length < was) { const n = $('#checkSum b'); if (n) replay(n, 'bump'); }
+
+  $('#checkMore').innerHTML = hints.length ? `<ul class="checks">${hints.map(checkRow).join('')}</ul>` : '';
+  if (!hints.length) setBarOpen(false);
+}
+
+function setBarOpen(open) {
+  $('#checkMore').hidden = !open;
+  $('#checkSum').setAttribute('aria-expanded', open);
+  const arrow = $('#checkSum i');
+  if (arrow) arrow.textContent = open ? '▾' : '▴';
+}
+
+// The bar is noise once the full list itself is on screen.
+let checkWatch = null;
+
+function watchChecks() {
+  if (checkWatch) checkWatch.disconnect();
+  if (!('IntersectionObserver' in window)) return;
+  checkWatch = new IntersectionObserver(([e]) => {
+    $('#checkBar')?.classList.toggle('near', e.isIntersecting);
+  });
+  checkWatch.observe($('#checkCol'));
 }
 
 function loadTemplate(i) {
@@ -1392,6 +1439,7 @@ function route({ stay = false } = {}) {
   const known = TABS.some((t) => t.to === tab);
   const name = known ? tab : 'today';
   const view = $('#view');
+  view.classList.toggle('wide', name === 'email' && sub === 'write');
 
   if (name === 'today') view.innerHTML = viewToday();
   else if (name === 'concepts') view.innerHTML = viewConcepts(sub);
@@ -1401,6 +1449,7 @@ function route({ stay = false } = {}) {
     if (sub === 'write') {
       view.innerHTML = viewWrite();
       if (templateWanted !== null) { loadTemplate(templateWanted); templateWanted = null; } else paintChecks();
+      watchChecks();
     } else view.innerHTML = sub ? viewEmail(sub) : viewEmailIndex();
   }
 
@@ -1554,6 +1603,7 @@ const ACTS = {
 
   template(btn) { loadTemplate(btn.dataset.i); },
   'use-template'(btn) { templateWanted = Number(btn.dataset.template); },
+  'check-toggle'() { setBarOpen($('#checkMore').hidden); },
   'copy-draft': copyDraft,
   'clear-draft'() {
     $('#d-subject').value = '';
@@ -1566,6 +1616,11 @@ const ACTS = {
 document.addEventListener('click', (e) => {
   const btn = e.target.closest('[data-act]');
   if (btn && ACTS[btn.dataset.act]) ACTS[btn.dataset.act](btn);
+});
+
+// Tapping the bar must not take the caret out of the draft and drop the keyboard.
+document.addEventListener('mousedown', (e) => {
+  if (e.target.closest('#checkSum')) e.preventDefault();
 });
 
 document.addEventListener('input', (e) => {
@@ -1584,6 +1639,22 @@ document.addEventListener('input', (e) => {
 });
 
 // -------------------------------------------------------------- the chrome
+
+/* A phone's keyboard covers the page without moving anything fixed, and only
+   visualViewport knows how much it covers. --kb lifts the check bar onto it,
+   and the tabs go away, since nothing is reachable behind a keyboard anyway.
+   A pinch zoom also shrinks the viewport, and is not a keyboard. */
+function trackKeyboard() {
+  const vv = window.visualViewport;
+  if (!vv) return;
+  const update = () => {
+    const kb = vv.scale > 1.01 ? 0 : Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+    document.documentElement.style.setProperty('--kb', `${kb}px`);
+    document.body.classList.toggle('typing', kb > 120);
+  };
+  vv.addEventListener('resize', update);
+  vv.addEventListener('scroll', update);
+}
 
 function initChrome() {
   const links = TABS.map((t) => `<a href="#${t.to}" data-tab="${t.to}"><i aria-hidden="true">${t.icon}</i>${text(t.zh)}</a>`).join('');
@@ -1622,6 +1693,7 @@ function initChrome() {
     speak('Before we move on, I want to flag something.');
   });
 
+  trackKeyboard();
   setQuiet(store.get('quiet', false));
   $('#quietPick').addEventListener('change', (e) => setQuiet(e.target.checked));
 

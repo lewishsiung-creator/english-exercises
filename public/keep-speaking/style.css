@@ -801,6 +801,62 @@ textarea, .field input {
 .field input, .field textarea { margin-top: 4px; }
 .privacy { margin-top: 10px; font-size: .84rem; color: var(--ink-soft); }
 
+/* The check beside the draft: side by side where there is room, and on a phone
+   a bar above the tabs, or above the keyboard while typing. */
+main.wide { max-width: 66rem; }
+
+@media (min-width: 900px) {
+  .wide .tpl-picks { grid-template-columns: repeat(3, 1fr); }
+  .write-grid { display: grid; grid-template-columns: minmax(0, 1fr) 21rem; gap: 32px; align-items: start; }
+  .write-grid #d-body { min-height: 24rem; }
+  .check-col {
+    position: sticky;
+    top: var(--bar-h);
+    max-height: calc(100vh - var(--bar-h) - 16px);
+    overflow-y: auto;
+  }
+}
+
+.check-bar {
+  position: fixed;
+  z-index: 29;
+  left: 12px;
+  right: 12px;
+  bottom: calc(var(--tab-h) + env(safe-area-inset-bottom) + 8px);
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: var(--round);
+  box-shadow: 0 8px 26px rgba(28, 43, 74, .16);
+}
+.check-bar[hidden], .check-bar.near { display: none; }
+.check-sum {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 46px;
+  padding: 8px 15px;
+  font-size: .95rem;
+  font-weight: 500;
+  text-align: left;
+  background: none;
+  border: 0;
+}
+.check-sum b { display: inline-block; color: var(--gold); font-variant-numeric: tabular-nums; }
+.check-sum i { font-style: normal; color: var(--ink-soft); }
+.check-more { max-height: 38vh; padding: 8px 8px 0; overflow-y: auto; }
+.check-more[hidden] { display: none; }
+
+.typing .tabs-bottom { display: none; }
+.typing .check-bar { bottom: calc(var(--kb, 0px) + 8px); }
+.typing .check-bar.near { display: block; }
+
+@media (min-width: 900px) {
+  .check-bar { display: none; }
+}
+
 .checks { display: grid; gap: 6px; }
 .checks li { display: grid; grid-template-columns: 1.3em 1fr; gap: 4px; padding: 9px 13px; font-size: .95rem; background: var(--card); border-radius: 12px; }
 .checks .ok { color: var(--good); background: var(--good-soft); }
@@ -938,6 +994,6 @@ textarea, .field input {
 }
 
 @media print {
-  .bar, .tabs, .toast, .panel, .acts, .pill, .link, .mini { display: none !important; }
+  .bar, .tabs, .toast, .panel, .acts, .pill, .link, .mini, .check-bar { display: none !important; }
   body { background: #fff; }
 }
