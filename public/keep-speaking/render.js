@@ -181,9 +181,10 @@ async function toggleRecord(btn) {
   const box = btn.closest('.say');
   const out = $('.take', box);
   const fail = (msg) => { out.hidden = false; out.innerHTML = `<p class="take-msg">${msg}</p>`; };
+  const anyway = `直接說出來，再按「${box.classList.contains('say-first') ? '說完了' : '我說了'}」也一樣算數。`;
 
   if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === 'undefined') {
-    fail('這個瀏覽器不能錄音。直接說出來，再按「我說了」也一樣算數。');
+    fail(`這個瀏覽器不能錄音。${anyway}`);
     return;
   }
 
@@ -191,7 +192,7 @@ async function toggleRecord(btn) {
   try {
     stream = await navigator.mediaDevices.getUserMedia({ audio: true });
   } catch {
-    fail('沒有拿到麥克風。直接說出來，再按「我說了」也一樣算數。');
+    fail(`沒有拿到麥克風。${anyway}`);
     return;
   }
 
@@ -211,7 +212,9 @@ async function toggleRecord(btn) {
     const url = URL.createObjectURL(new Blob(chunks, { type: rec.mimeType || 'audio/webm' }));
     out.hidden = false;
     out.innerHTML = `<audio controls src="${url}"></audio>
-      <p class="take-msg">聽聽自己的，再按 🔊 比一比。這段錄音只在這裡，離開就消失。</p>`;
+      <p class="take-msg">${box.classList.contains('say-first')
+        ? '聽聽自己的。這段錄音只在這裡，離開就消失。'
+        : '聽聽自己的，再按 🔊 比一比。比發音和重音就好，機器的語調不用學。這段錄音只在這裡，離開就消失。'}</p>`;
     markSaid(box);
     addSpoken();
   };
@@ -219,7 +222,15 @@ async function toggleRecord(btn) {
   // A forgotten take should not leave the microphone open.
   const limit = setTimeout(() => { if (rec.state === 'recording') rec.stop(); }, 90000);
   take = { rec };
-  rec.start();
+  try {
+    rec.start();
+  } catch {
+    clearTimeout(limit);
+    take = null;
+    stream.getTracks().forEach((t) => t.stop());
+    fail(`這次沒辦法錄音。${anyway}`);
+    return;
+  }
   btn.classList.add('on');
   btn.textContent = '■ 停止';
 }
@@ -243,6 +254,8 @@ function sayBlock({ en, zh, lv, who, say, sub }) {
 }
 
 function markSaid(box) {
+  box.dataset.counted = '1';
+  if (box.classList.contains('say-first')) return;
   const b = $('.act-said', box);
   b.classList.add('done');
   b.textContent = '✓ 說了，再說一次';
@@ -291,7 +304,7 @@ function sortPick(btn) {
     btn.disabled = true;
     why.hidden = false;
     why.className = 'sort-why soft';
-    why.innerHTML = '<p>再想想看。這句話比較不像這一邊。</p>';
+    why.innerHTML = `<p>${text(item.no[btn.dataset.key])}</p><p class="retry">再選一次。</p>`;
     return;
   }
   s.solved = true;
@@ -730,6 +743,28 @@ const thought = (who, zh, en) => `<div class="think"><p class="who">${text(who)}
 
 const continueBtn = () => '<button class="pill go" data-act="scene-next">繼續</button>';
 
+/* Options are reading practice, and a meeting does not offer any. So the
+   trainee answers in their own words first, then compares. 先看選項 stays there
+   for someone who has nothing yet; it opens the options and counts nothing. */
+const sayFirst = () => `<div class="say say-first">
+    <p class="first-ask">先不看選項。用你自己的話，大聲回一句。簡單的句子就夠了。</p>
+    <div class="acts">
+      <button class="act act-rec" data-act="rec">🎙 錄下來</button>
+      <button class="act act-said" data-act="first-said">說完了，看選項</button>
+      <button class="act" data-act="first-open">先看選項</button>
+    </div>
+    <div class="take" hidden></div>
+  </div>`;
+
+function openOptions(btn) {
+  const box = btn.closest('.say-first');
+  const opts = $('.opts', box.parentElement);
+  opts.hidden = false;
+  $('.acts', box).remove();
+  $('.first-ask', box).textContent = '現在對照一下：哪一句最接近你想說的，或比你說的更好？';
+  bringUp(opts);
+}
+
 // Returns the markup for a step and whether the run stops there.
 function playStep(st) {
   switch (st.t) {
@@ -761,13 +796,14 @@ const revealOpen = (st) => `<div class="reveal-box open"><p class="label">${text
   <p class="reveal-note">${text(st.note)}</p></div>`;
 
 function choiceBlock(st) {
-  const opts = st.options.map((o, i) => `<button class="opt ${run.all && o.ok ? 'right' : ''}"
+  const opts = shuffle(st.options.map((o, i) => `<button class="opt ${run.all && o.ok ? 'right' : ''}"
       data-act="opt" data-i="${i}" ${run.all ? 'disabled' : ''}>
-      <span class="line-en">${text(o.en)}</span>${o.zh ? `<span class="zh">${text(o.zh)}</span>` : ''}</button>`).join('');
+      <span class="line-en">${text(o.en)}</span>${o.zh ? `<span class="zh">${text(o.zh)}</span>` : ''}</button>`)).join('');
   const right = st.options.find((o) => o.ok);
   return `<div class="choice" data-step="${run.i - 1}">
     <p class="ask">${text(st.ask)}</p>
-    <div class="opts">${opts}</div>
+    ${run.all ? '' : sayFirst()}
+    <div class="opts" ${run.all ? '' : 'hidden'}>${opts}</div>
     <div class="result" ${run.all ? '' : 'hidden'}>${run.all ? `<p class="why good">${text(right.why)}</p>` : ''}</div>
   </div>`;
 }
@@ -815,7 +851,8 @@ function questBlock(st) {
     <p class="ask">${text(st.ask)}</p>
     <ol class="meter" id="meter">${st.meter.map((m, i) => `<li class="${i === 0 || run.all ? 'on' : ''}">${text(m)}</li>`).join('')}</ol>
     <div class="quest-log" id="quest-log"></div>
-    <div class="opts">${shuffle(rows).join('')}</div>
+    ${run.all ? '' : sayFirst()}
+    <div class="opts" ${run.all ? '' : 'hidden'}>${shuffle(rows).join('')}</div>
     <div id="quest-foot"></div>
   </div>`;
 }
@@ -1053,8 +1090,8 @@ function mailPick() {
   if (!p) { mailStepThree(); return; }
   $('#mail-picks').insertAdjacentHTML('beforeend', `<div class="choice mail-choice" data-pick="${pick}">
     <p class="ask">${pick + 1}. ${text(p.ask)}</p>
-    <div class="opts">${p.options.map((o, i) => `<button class="opt" data-act="mail-opt" data-i="${i}">
-      <span class="line-en">${text(o.en)}</span></button>`).join('')}</div>
+    <div class="opts">${shuffle(p.options.map((o, i) => `<button class="opt" data-act="mail-opt" data-i="${i}">
+      <span class="line-en">${text(o.en)}</span></button>`)).join('')}</div>
     <div class="result" hidden></div>
   </div>`);
 }
@@ -1367,6 +1404,14 @@ const ACTS = {
     advance();
   },
   opt: pickOption,
+  'first-said'(btn) {
+    const box = btn.closest('.say-first');
+    // A take still running will count itself when it stops.
+    if (take && take.rec && take.rec.state === 'recording') take.rec.stop();
+    else if (!box.dataset.counted) addSpoken();
+    openOptions(btn);
+  },
+  'first-open': openOptions,
   reveal: openReveal,
   quest: askTanaka,
   role: pickRole,

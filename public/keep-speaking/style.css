@@ -618,6 +618,14 @@ textarea, .field input {
 .choice, .quest, .meeting, .say-group, .rolecards, .reveal-box, .parts, .principle { scroll-margin-top: calc(var(--bar-h) + 14px); }
 
 .opts { display: grid; gap: 8px; margin-top: 10px; }
+.opts[hidden] { display: none; }
+.opts { scroll-margin: calc(var(--bar-h) + 14px) 0 calc(var(--tab-h) + 24px); }
+
+.say-first { background: var(--gold-soft); border-color: var(--gold-line); }
+.first-ask { font-size: 1rem; font-weight: 500; }
+.say-first .act { background: var(--card); }
+.say-first .act-said { color: var(--paper); background: var(--ink); }
+.say-first .act-said:hover { background: var(--ink); opacity: .88; }
 .opt {
   display: block;
   width: 100%;

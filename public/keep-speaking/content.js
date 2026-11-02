@@ -17,6 +17,10 @@
    say-it version of Vivian's answer in Scenario C, the Tone Scale items), and
    the English `ctx` lines stop before the part a scenario then plays out.
 
+   The weak options run long on purpose. The handbook's answers are specific,
+   so they tended to be the longest line on offer, and the longest line was
+   the right one in 13 of 16 choices. Keep the lengths mixed when adding one.
+
    Those fixes to the source are deliberate:
 
    - A phrase's level follows Card A, not the Part 1 table, where three phrases
@@ -38,6 +42,7 @@
    ------------
    A scenario is a list of `steps`, played in order; the types are documented
    beside `playStep()` in render.js. A choice needs exactly one `ok: true`.
+   A sort item's `no` gives the reason for each bucket that is not its answer.
    An email's `flaws` are matched to its text by `hot` on a sentence. */
 
 const COURSE = {
@@ -214,17 +219,41 @@ const CONTEXT = {
     ],
     items: [
       { q: '「應該可以，我們還在努力。」說這句話的人，以為對方聽得出言外之意。', a: 'high',
-        why: '留有餘地、等對方自己理解——這是高語境的習慣。' },
+        why: '留有餘地、等對方自己理解——這是高語境的習慣。',
+        no: {
+          low: '低語境的人不會這樣說。他們會直接給明確的答案和日期。',
+          mixed: '混合型是對方等你追問。這句是說話的人把話留白，等對方自己體會。',
+        } },
       { q: '對方要的是明確的承諾。模糊的回答，會被當成「沒問題」。', a: 'low',
-        why: 'Marcus 把 Vivian 的模糊當成確認，開始安排宣傳。' },
+        why: 'Marcus 把 Vivian 的模糊當成確認，開始安排宣傳。',
+        no: {
+          high: '高語境的聽者會試著聽出言外之意。這裡只看字面上說了什麼。',
+          mixed: '混合型會期待你主動說明。這裡直接把模糊當成確認，沒有再問。',
+        } },
       { q: '對方說「不適合」，其實在等你主動問：是哪一部分？', a: 'mixed',
-        why: '表面強硬，但只要主動追問，Tanaka 願意合作。' },
+        why: '表面強硬，但只要主動追問，Tanaka 願意合作。',
+        no: {
+          high: '高語境是話留餘地、等人意會。這裡的話很直接，只是後面還有沒說完的部分。',
+          low: '低語境的人會自己把理由講清楚。這裡對方沒有說明，是在看你會不會問。',
+        } },
       { q: '說清楚是講者的責任，不是聽者的。', a: 'low',
-        why: '低語境裡，講者要說清楚。' },
+        why: '低語境裡，講者要說清楚。',
+        no: {
+          high: '高語境正好相反：聽者要自己理解言外之意。',
+          mixed: '混合型期待的是你主動追問，責任不全在講者身上。',
+        } },
       { q: '關係比把話講滿更重要，話不用說得太白。', a: 'high',
-        why: '高語境重視關係，對方應該理解言外之意。' },
+        why: '高語境重視關係，對方應該理解言外之意。',
+        no: {
+          low: '低語境要的是直接、明確，不能容忍模糊。',
+          mixed: '混合型重視專業判斷和主動追問。這句講的是留餘地、顧關係。',
+        } },
       { q: '要的不是道歉，是聽懂之後做出專業回應。', a: 'mixed',
-        why: 'Tanaka 期待的是「聽懂他的話、做出專業回應」。' },
+        why: 'Tanaka 期待的是「聽懂他的話、做出專業回應」。',
+        no: {
+          high: '高語境的重點是留餘地、顧關係。這句要的是專業回應。',
+          low: '低語境的重點是把話說明確。這句的重點是聽懂對方，再展現專業判斷。',
+        } },
     ],
   },
 };
@@ -274,21 +303,53 @@ const TONE = {
     ],
     items: [
       { q: "It should be fine. We're still working on it.", a: 'soft',
-        zh: '應該可以，我們還在努力。', why: '沒有結論，也沒有根據。Marcus 聽到的是「沒問題」。' },
+        zh: '應該可以，我們還在努力。', why: '沒有結論，也沒有根據。Marcus 聽到的是「沒問題」。',
+        no: {
+          target: '聽起來很穩，但沒有立場也沒有根據。Q2 到底開不開得了？',
+          hard: '這句沒有攻擊性。問題不是太強，是什麼都沒說清楚。',
+        } },
       { q: 'The opening is at risk — contractor needs 6 more weeks.', a: 'target',
-        zh: '開幕有風險——裝潢商需要再六週。', why: '清楚說立場，也有根據。' },
+        zh: '開幕有風險——裝潢商需要再六週。', why: '清楚說立場，也有根據。',
+        no: {
+          soft: '這句沒有「也許」，也沒有道歉。壞消息不等於語氣軟。',
+          hard: '直接不等於攻擊。這句只說事實和原因，沒有指責任何人。',
+        } },
       { q: "Um... I'm not sure. Kevin knows the numbers better than I do.", a: 'soft',
-        zh: '嗯⋯⋯我不確定。Kevin 比我更清楚數字。', why: '把決定推給別人，自己沒有立場。' },
+        zh: '嗯⋯⋯我不確定。Kevin 比我更清楚數字。', why: '把決定推給別人，自己沒有立場。',
+        no: {
+          target: '目標要有清楚的立場。這句連自己怎麼想都沒說。',
+          hard: '這句一點也不強硬，它把發言權讓給了別人。',
+        } },
       { q: "That's wrong. You didn't think about Q3 at all.", a: 'hard', added: true,
-        zh: '這是錯的。你根本沒想到 Q3。', why: '沒有緩衝，也沒有同理，聽起來像在攻擊。' },
+        zh: '這是錯的。你根本沒想到 Q3。', why: '沒有緩衝，也沒有同理，聽起來像在攻擊。',
+        no: {
+          soft: '這句沒有任何緩衝，絕對不軟。',
+          target: '有立場是對的，但「You didn\'t think」在指責人，不是在談問題。',
+        } },
       { q: "I understand the logic, but I'm concerned about the Q3 window.", a: 'target',
-        zh: '我懂這個邏輯，但我擔心 Q3 的時間窗口。', why: '先承認對方有道理，再說自己的立場。穩定友好但堅定。' },
+        zh: '我懂這個邏輯，但我擔心 Q3 的時間窗口。', why: '先承認對方有道理，再說自己的立場。穩定友好但堅定。',
+        no: {
+          soft: '「I understand」是同理，不是退讓。後面的立場很清楚。',
+          hard: '這句先承認對方有道理，不是在攻擊。',
+        } },
       { q: 'Sorry, but maybe we can try something else?', a: 'soft', added: true,
-        zh: '不好意思，也許我們可以試試別的？', why: '又道歉、又「也許」，還像在問問題。' },
+        zh: '不好意思，也許我們可以試試別的？', why: '又道歉、又「也許」，還像在問問題。',
+        no: {
+          target: '目標要說出具體立場。「something else」是什麼？',
+          hard: '開頭就道歉，離強硬很遠。',
+        } },
       { q: 'I recommend we approve. Without this budget, we lose the Q3 window.', a: 'target',
-        zh: '我建議核准。沒有這筆預算，我們就會失去 Q3 的時間窗口。', why: '直接自信，有根據，不道歉。' },
+        zh: '我建議核准。沒有這筆預算，我們就會失去 Q3 的時間窗口。', why: '直接自信，有根據，不道歉。',
+        no: {
+          soft: '「I recommend」是明確的立場，沒有緩衝詞。',
+          hard: '它給了理由，也沒有否定任何人。直接，但不是攻擊。',
+        } },
       { q: 'No. Your numbers mean nothing. Just approve it.', a: 'hard', added: true,
-        zh: '不對。你的數字沒有意義。核准就對了。', why: '有立場，但沒有同理。這是量尺的另一端。' },
+        zh: '不對。你的數字沒有意義。核准就對了。', why: '有立場，但沒有同理。這是量尺的另一端。',
+        no: {
+          soft: '這句完全沒有緩衝，不可能算軟。',
+          target: '目標要有根據和同理。「mean nothing」否定了對方，也沒有給理由。',
+        } },
     ],
   },
 };
@@ -326,19 +387,43 @@ const BEHAVIOR = {
     ],
     items: [
       { q: 'I agree with what Kevin said.', a: 'amy', zh: '我同意 Kevin 說的。',
-        why: '附和不等於參與。這句話裡沒有你自己的觀點。' },
+        why: '附和不等於參與。這句話裡沒有你自己的觀點。',
+        no: {
+          kevin: 'Kevin 會加上數據和自己的立場。這句兩樣都沒有。',
+          vivian: 'Vivian 的問題是繞圈，又把決定推給別人。這句很短，只是沒有內容。',
+        } },
       { q: 'I disagree. We lose NT$800K if we delay. Can we do a soft opening instead?', a: 'kevin',
         zh: '我不同意。延後的話我們會損失 NT$80 萬。可以改成軟開幕嗎？',
-        why: '結論在第一句，有數據，提出替代方案，沒有道歉。' },
+        why: '結論在第一句，有數據，提出替代方案，沒有道歉。',
+        no: {
+          vivian: 'Vivian 的結論會出現得很晚。這句第一個字就是立場。',
+          amy: 'Amy 只附和。這句有自己的立場，還提出替代方案。',
+        } },
       { q: "Um... yes, so Marcus has been supportive and I think maybe the investment could be beneficial, but Kevin knows the numbers better than I do so... I'm not sure.", a: 'vivian',
         zh: '嗯⋯⋯對，Marcus 一直很支持，我覺得這筆投資也許有幫助，但 Kevin 比我更清楚數字，所以⋯⋯我不確定。',
-        why: '結論不見了，決定也推給了別人。' },
+        why: '結論不見了，決定也推給了別人。',
+        no: {
+          kevin: 'Kevin 的結論在第一句。這句到最後都沒有結論。',
+          amy: 'Amy 一句話就結束。這句說了很多，只是不敢下結論。',
+        } },
       { q: "I think Kevin's numbers are right, so yes, same here.", a: 'amy', added: true,
-        zh: '我覺得 Kevin 的數字是對的，所以我也一樣。', why: '引用別人的數據，然後就結束了。' },
+        zh: '我覺得 Kevin 的數字是對的，所以我也一樣。', why: '引用別人的數據，然後就結束了。',
+        no: {
+          kevin: '有提到數字，但那是別人的數字，自己沒有多說什麼。',
+          vivian: 'Vivian 會猶豫、繞圈。這句很乾脆，只是沒有自己的觀點。',
+        } },
       { q: 'I recommend we approve. Without this budget, we lose the Q3 window.', a: 'kevin',
-        zh: '我建議核准。沒有這筆預算，我們就會失去 Q3 的時間窗口。', why: '第一句就是立場，第二句就是理由。' },
+        zh: '我建議核准。沒有這筆預算，我們就會失去 Q3 的時間窗口。', why: '第一句就是立場，第二句就是理由。',
+        no: {
+          vivian: 'Vivian 會把決定推給別人。這句自己做了建議。',
+          amy: '這句不是附和別人，是自己提出建議和理由。',
+        } },
       { q: "I'm so sorry, maybe it's just me, but I wonder if we could perhaps think about it?", a: 'vivian', added: true,
-        zh: '真的很抱歉，也許只是我的想法，不知道我們能不能再想一想？', why: '過度道歉，而且聽不出結論是什麼。' },
+        zh: '真的很抱歉，也許只是我的想法，不知道我們能不能再想一想？', why: '過度道歉，而且聽不出結論是什麼。',
+        no: {
+          kevin: 'Kevin 完全沒有道歉，結論也在第一句。',
+          amy: 'Amy 是附和別人。這句沒有附和誰，是自己講得很不確定。',
+        } },
     ],
   },
 };
@@ -365,8 +450,8 @@ const SCENES = [
               { who: 'Marcus', en: "Great — I'll start promoting the opening on our social media.", zh: '太好了，我開始在社群上宣傳開幕。' },
               { who: 'Marcus', en: "Wait — you're saying the store won't be ready? We've already done promotions!", zh: '等等，你是說門市來不及嗎？我們已經宣傳了！' },
             ] },
-          { en: "We've been working closely with the contractor, and there have been some delays, but we're doing our best.", added: true,
-            zh: '我們一直和裝潢商密切合作，有一些延誤，但我們會盡力。',
+          { en: "We've been working closely with the contractor for some time now, and there have been some delays along the way, but everyone is doing their best and we're staying positive.", added: true,
+            zh: '我們和裝潢商合作了一段時間，過程中有一些延誤，但大家都盡力了，我們也保持樂觀。',
             why: '先講背景，結論一直沒出現。Marcus 還是不知道 Q2 開不開得了。' },
           { en: "The opening is at risk — contractor needs 6 more weeks. I'll send a revised timeline by Friday.", ok: true,
             zh: '開幕有風險——裝潢商需要再六週。我週五前會寄出修訂版時間表。',
@@ -405,7 +490,8 @@ const SCENES = [
               { narr: '3 週後，Kevin 交了同樣的配置。' },
               { who: 'Tanaka', en: 'I see you kept the same layout. This is not what I expected.', zh: '我看到你們保留了同樣的配置。這不是我預期的。' },
             ] },
-          { en: "I'm very sorry. We will fix it right away.", added: true, zh: '非常抱歉，我們馬上修改。',
+          { en: "I'm very sorry about that. We understand, and our team will take another look and fix everything right away, as soon as we possibly can.", added: true,
+            zh: '非常抱歉。我們了解了，團隊會再看一次，盡快全部修改好。',
             why: '只道歉 → 繼續強硬。Tanaka 還是不知道你聽懂了什麼。',
             then: [{ who: 'Tanaka', en: 'Please revise and resubmit.', zh: '請修改後重新提交。' }] },
           { en: "Could you tell me which specific parts don't fit? Is it the overall size, the design style, or the layout?", ok: true,
@@ -451,7 +537,8 @@ const SCENES = [
               { who: 'James', role: '主管 Manager', en: "Alright — let's hold off on the budget for now. Meeting adjourned.", zh: '好，預算先暫緩。散會。' },
               { think: 'Vivian', en: "Wait — that's not what I meant. Marcus NEEDS this budget or we'll lose the Q3 window. Why didn't I say that?", zh: '等等，我不是這個意思。Marcus 需要這筆預算，不然我們會失去 Q3 的時間窗口。我為什麼沒說出來？' },
             ] },
-          { en: "Kevin's numbers are right, so I'll go with Kevin.", added: true, zh: 'Kevin 的數字是對的，所以我跟 Kevin 一樣。',
+          { en: "Kevin's numbers are right, and I respect that, so I think I'll go with Kevin on this one. Marcus has been very supportive and the relationship is important, but maybe we can talk about it again some other time if that's okay with everyone.", added: true,
+            zh: 'Kevin 的數字是對的，我尊重這一點，所以這次我跟 Kevin 一樣。Marcus 一直很支持，這段關係也很重要，但如果大家都可以，也許我們改天再談。',
             why: '你知道 Marcus 需要這筆預算，卻沒有說出來。' },
           { en: "I see Kevin's concern, and I see it a bit differently. Without this budget, we lose the Q3 window entirely — Marcus has been clear about this. The 28% over-budget is real, but losing Q3 has a bigger downstream cost. I recommend we approve.", ok: true,
             zh: '我理解 Kevin 的顧慮，但我的看法有點不一樣。沒有這筆預算，我們會完全失去 Q3 的時間窗口——Marcus 講得很清楚。超支 28% 是事實，但失去 Q3 的後續代價更大。我建議核准。',
@@ -468,6 +555,9 @@ const SCENES = [
         options: [
           { en: 'I agree with what Kevin said.', zh: '我同意 Kevin 說的。',
             why: '附和不等於參與。主管眼中：你沒有獨立判斷能力。' },
+          { en: "I agree with Kevin. His numbers are really clear and he explained everything very well, so I don't have anything else to add. Whatever everyone decides is fine with me, and I'm happy to support the team on this.", added: true,
+            zh: '我同意 Kevin。他的數字很清楚，也解釋得很好，所以我沒有什麼要補充的。大家決定什麼我都可以，我很樂意配合團隊。',
+            why: '話變多了，但還是附和。裡面沒有任何一個你自己的觀點。' },
           { en: "I agree with Kevin's data, and I'd also add: from a marketing perspective, if we miss Q3 our brand awareness campaign loses ~30% of its planned reach. So the question isn't just budget — it's also brand cost.", ok: true,
             zh: '我同意 Kevin 的數據，我也想補充：從行銷的角度看，如果錯過 Q3，品牌知名度活動的預期觸及會少大約 30%。所以問題不只是預算，還有品牌代價。',
             why: '先附和，再加入自己的一個觀點。' },
@@ -500,7 +590,8 @@ const SCENES = [
         ] },
       { t: 'choice', ask: '步驟 2：提出折衷方案，然後確認。',
         options: [
-          { en: "Maybe we could send a little earlier? I'll see what I can do.", added: true, zh: '也許我們可以早一點寄？我看看能做什麼。',
+          { en: "Maybe we could send a little earlier? I'm not sure how much yet, but I'll talk to the team, see what I can do and get back to you when I know more.", added: true,
+            zh: '也許我們可以早一點寄？我還不確定能寄多少，但我會跟團隊談談，看看能做什麼，有消息再回覆你。',
             why: '沒有數字、沒有日期。Marcus 什麼都不能安排。' },
           { en: "Here's what I can do: 30% emergency ship next week, the rest in 4 weeks as planned. Just to confirm — does this cover your peak weekend?", ok: true,
             zh: '我能做的是：下週緊急出貨 30%，其餘依原定四週後出貨。確認一下——這樣能撐過週末高峰嗎？',
@@ -654,7 +745,7 @@ const EMAILS = [
       { ask: '主旨要怎麼寫？',
         options: [
           { en: 'Update on June shipment', why: '太模糊，Marcus 不知道要不要立刻打開。' },
-          { en: '[FYI] Some changes to the June shipment', added: true, why: '[FYI] 代表不用處理，但這封信需要 Marcus 回覆。' },
+          { en: '[FYI] Some changes to the June shipment and your HK activities', added: true, why: '[FYI] 代表不用處理，但這封信需要 Marcus 回覆。' },
           { en: '[Action needed] June shipment delayed to June 15 — proposed mitigation inside', ok: true, why: '主旨清楚標示 [Action needed]＋結論，Marcus 立刻知道要打開。' },
         ] },
       { ask: '第一句要寫什麼？',
@@ -665,7 +756,7 @@ const EMAILS = [
         ] },
       { ask: '怎麼收尾？',
         options: [
-          { en: 'Let me know if you have any questions or concerns.', why: '太被動，沒有具體的下一步。' },
+          { en: 'I understand this may impact your marketing activities, so let me know if you have any questions or concerns.', added: true, why: '太被動，沒有具體的下一步。' },
           { en: 'We are sorry about this.', why: '只有道歉，沒有解決方案。' },
           { en: 'Please confirm by Thursday (May 30) so I can lock in the emergency shipping schedule.', ok: true, why: '明確的截止日期，讓 Marcus 容易回應。' },
         ] },
@@ -733,7 +824,7 @@ const EMAILS = [
       { ask: '主旨要怎麼寫？',
         options: [
           { en: 'Revised design', why: '太簡略，Tanaka 不知道是哪個版本。' },
-          { en: 'Our apologies — new design attached', added: true, why: '主旨在道歉，不是在說這封信要對方做什麼。' },
+          { en: 'Our apologies — the new design is attached, with some adjustments to the size and style', added: true, why: '主旨在道歉，不是在說這封信要對方做什麼。' },
           { en: '[Review needed] Japan store design v2 — revised per your June 3 feedback', ok: true, why: '主旨直接說「v2＋具體日期」，Tanaka 立刻看出這是回應他的回饋。' },
         ] },
       { ask: '第一句要寫什麼？',
@@ -750,7 +841,7 @@ const EMAILS = [
         ] },
       { ask: '怎麼收尾？',
         options: [
-          { en: 'Thank you very much for your patience and guidance.', why: '空洞的感謝，沒有說謝什麼。' },
+          { en: 'We hope this version will be more suitable. Thank you very much for your patience and guidance, and please let us know if anything is still not right.', added: true, why: '空洞的感謝，而且聽起來像沒信心。' },
           { en: 'I appreciate your detailed feedback last time — it was exactly what we needed to make the design fit the Japanese market.', ok: true, why: '結尾感謝具體 (detailed feedback)，不是空洞的「謝謝您的耐心」。' },
         ] },
     ],
@@ -822,7 +913,7 @@ const EMAILS = [
         options: [
           { en: 'Japan project update', why: '看不出嚴重程度，也看不出要 Linda 做什麼。' },
           { en: '[Decision needed by Wed] Japan Store #2 — Q3 at risk, recommending Q4 move', ok: true, why: '主旨直接說 [Decision needed by Wed]，Linda 立刻知道優先順序。' },
-          { en: '[FYI] Some developments on Japan Store #2', added: true, why: '[FYI] 代表不用處理，但這件事 Linda 必須決定。' },
+          { en: '[FYI] Some developments on Japan Store #2 that we should probably discuss', added: true, why: '[FYI] 代表不用處理，但這件事 Linda 必須決定。' },
         ] },
       { ask: '第一句要寫什麼？',
         options: [
@@ -833,7 +924,7 @@ const EMAILS = [
       { ask: '怎麼收尾？',
         options: [
           { en: 'We probably need to weigh different scenarios.', why: '把工作推回給 Linda。' },
-          { en: 'When you have time, maybe we could set up a call to discuss?', why: '沒有時間迫切感。這是要向董事會報告的事。' },
+          { en: "When you have time, maybe we could set up a call to discuss? I'm happy to walk through the details.", why: '沒有時間迫切感。這是要向董事會報告的事。' },
           { en: 'I recommend Option A. Available for a 30-min call any time today or Tuesday.', ok: true, why: '推薦其中一個選項，並主動提出時間和形式。' },
         ] },
     ],

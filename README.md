@@ -2266,9 +2266,19 @@ Five tabs, routed by the hash so any scenario or email can be sent as a link:
   and only then see the reference line. That order is the exercise. 今天三分鐘
   takes one phrase, one upgrade or clarifying question, and one scenario moment,
   least recently practised first, and holds them for the day.
+- **Speak, then see the options.** A scenario's options stay hidden until the
+  trainee has answered aloud in their own words, because picking from a list is
+  reading practice and a meeting offers no list. 先看選項 is there for someone who
+  has nothing yet: it opens them and counts nothing. 直接看全部內容 skips the step.
 - **Wrong options play out.** Choosing Vivian's vague reply runs the rest of her
   dialogue, then the option stays open to choose again. In a choice the Chinese
   stays hidden until an option is chosen, or it would give the answer away.
+- **Length must not give the answer away.** The handbook's answers are specific,
+  so at first the right option was the longest line in 13 of 16 choices. The
+  weak options now run long, as weak answers do; it is 5 of 16, those by a word
+  or two. Options are shuffled on every play. Recheck this when adding a choice.
+- **A wrong sort answer says why that bucket is wrong.** Each item's `no` holds a
+  reason per wrong bucket, the same rule as every other adult page.
 - **Scenario E's hidden mechanic is a meter.** Clarifying questions move Tanaka
   from 表面強硬 to 願意合作; apologising moves nothing. That is the handbook's
   own rule made playable. Tanaka's replies are written for the page and only
