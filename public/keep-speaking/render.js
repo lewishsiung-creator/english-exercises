@@ -4,7 +4,7 @@
    can be handed out as a link and the back button works:
 
      #today                       今天
-     #concepts                    觀念
+     #concepts /context /tone /people    觀念
      #phrases  /mine /upgrade /clarify   句型
      #scenes   /a … /f            情境
      #email    /1 … /3  /write    Email
@@ -81,6 +81,7 @@ function addSpoken() {
   paintTally();
   // This is the one thing the page counts, so it has to be felt when it moves.
   $$('.tally-n').forEach((e) => replay(e, 'bump'));
+  if (run) run.spoken = (run.spoken || 0) + 1;
   const hit = MILESTONES.find((m) => m.n === spokenTotal());
   if (hit) toast(hit.zh);
 }
@@ -172,6 +173,7 @@ function speak(sentence, who) {
 /* One take at a time. The blob stays in this tab's memory until the trainee
    records again or leaves the view; it is never uploaded or stored. */
 let take = null;
+let run = null;
 
 function dropTake() {
   if (take && take.rec && take.rec.state === 'recording') take.rec.stop();
@@ -242,6 +244,17 @@ async function toggleRecord(btn) {
 
 window.addEventListener('pagehide', dropTake);
 
+/* For an open-plan office. Mouthing a line still counts, so quiet mode changes
+   the words and takes the microphone away, and nothing else. Both wordings are
+   always in the page and CSS picks one, so it can be switched mid-scenario. */
+const loud = (say, hush) => `<span class="loud">${say}</span><span class="hush">${hush}</span>`;
+
+function setQuiet(on) {
+  document.body.classList.toggle('quiet', on);
+  store.set('quiet', on);
+  $('#quietPick').checked = on;
+}
+
 // The block that every speaking moment on the page is made of.
 function sayBlock({ en, zh, lv, who, say, sub }) {
   const spoken = say || en;
@@ -252,7 +265,7 @@ function sayBlock({ en, zh, lv, who, say, sub }) {
     <div class="acts">
       <button class="act" data-act="hear">🔊 聽</button>
       <button class="act act-rec" data-act="rec">🎙 錄下來</button>
-      <button class="act act-said" data-act="said">我說了</button>
+      <button class="act act-said" data-act="said">${loud('我說了', '我默念了')}</button>
     </div>
     <div class="take" hidden></div>
   </div>`;
@@ -263,7 +276,7 @@ function markSaid(box) {
   if (box.classList.contains('say-first')) return;
   const b = $('.act-said', box);
   b.classList.add('done');
-  b.textContent = '✓ 說了，再說一次';
+  b.innerHTML = loud('✓ 說了，再說一次', '✓ 念過了，再一次');
 }
 
 // -------------------------------------------------------------- sorters
@@ -400,7 +413,9 @@ function drillBlock(id, deal, doneMsg, start = 0) {
 function drillInner(id) {
   const d = drills.get(id);
   if (d.i >= d.items.length) {
+    const spokenToday = store.get('log', {})[dayKey()] || 0;
     return `<div class="drill-end"><p class="done-big">${text(d.doneMsg || '這組說完了。')}</p>
+      ${id === 'today' && spokenToday ? `<p class="drill-count">今天開口 ${spokenToday} 次。</p>` : ''}
       <p lang="en" class="note-en">${text(COURSE.motto.en)}</p>
       <button class="pill" data-act="drill-more" data-id="${id}">再來一組</button>
       ${id === 'today' ? '<p class="home-hint">明天想少按幾步：用瀏覽器的選單或分享鍵，選「加入主畫面」。</p>' : ''}</div>`;
@@ -411,8 +426,8 @@ function drillInner(id) {
     ${d.shown ? `${sayBlock({ en: it.en, zh: it.zh, lv: it.lv, say: it.say, sub: it.sub })}
       ${it.effect ? `<p class="effect">${text(it.effect)}</p>` : ''}
       <button class="pill" data-act="drill-next" data-id="${id}">${d.i + 1 === d.items.length ? '完成' : '下一句'}</button>`
-    : `<p class="drill-try">先用你自己的話，大聲說一次。說錯也沒關係。</p>
-      <button class="pill" data-act="drill-show" data-id="${id}">說完了，看參考句</button>`}`;
+    : `<p class="drill-try">${loud('先用你自己的話，大聲說一次。', '先用你自己的話，在心裡說一次。')}說錯也沒關係。</p>
+      <button class="pill" data-act="drill-show" data-id="${id}">${loud('說完了，看參考句', '念完了，看參考句')}</button>`}`;
 }
 
 function touch(id) {
@@ -521,58 +536,80 @@ function pastWeeks(all, key) {
 
 // -------------------------------------------------------------- 觀念
 
-function viewConcepts() {
-  blufSet = 0;
-  blufDeal();
+const CONCEPT_TABS = [
+  { to: 'concepts', zh: 'BLUF' },
+  { to: 'concepts/context', zh: '語境' },
+  { to: 'concepts/tone', zh: '語氣' },
+  { to: 'concepts/people', zh: '行為' },
+];
+
+function subTabs(list, label) {
+  const here = location.hash.slice(1);
+  const known = list.some((t) => t.to === here);
+  return `<div class="subtabs" role="group" aria-label="${label}">
+    ${list.map((t, i) => `<a href="#${t.to}" ${t.to === here || (!known && i === 0) ? 'aria-current="page"' : ''}>${text(t.zh)}</a>`).join('')}
+  </div>`;
+}
+
+function conceptPage(title, en, lead, body) {
+  const here = location.hash.slice(1);
+  const i = CONCEPT_TABS.findIndex((t) => t.to === here);
+  const next = CONCEPT_TABS[Math.max(i, 0) + 1];
   return `<header class="head">
-      <p class="kicker" lang="en">Part 1 · Core Concepts</p>
-      <h1>核心觀念</h1>
-      <p class="sub">忘記重點時，先回到這裡。每一項都可以練。</p>
+      <p class="kicker" lang="en">Part 1 · ${text(en)}</p>
+      <h1>${text(title)}</h1>
+      <p class="sub">${text(lead)}</p>
     </header>
+    ${subTabs(CONCEPT_TABS, '觀念')}
+    ${body}
+    ${next ? `<a class="link next-link" href="#${next.to}">下一項：${text(next.zh)} →</a>` : ''}`;
+}
 
-    <section class="block" id="bluf-sec">
-      <h2>BLUF 結論先行 <span lang="en">Bottom Line Up Front</span></h2>
-      <p class="note-zh">每次溝通用三層結構：結論 → 原因 → 行動</p>
-      <div class="exercise" id="bluf">${blufInner()}</div>
-    </section>
-
-    <section class="block">
-      <h2>高低語境 <span lang="en">High-Low Context</span></h2>
+function viewConcepts(sub) {
+  if (sub === 'context') {
+    return conceptPage('高低語境', 'High-Low Context', '同一句話，不同文化聽到的意思不一樣。', `<section class="block">
       <div class="ctxcards">
         ${CONTEXT.cards.map((c) => `<article class="ctxcard">
-          <h3>${text(c.zh)}<span>${text(c.who)}</span></h3>
+          <h2>${text(c.zh)}<span>${text(c.who)}</span></h2>
           <p>${text(c.points)}</p><p lang="en" class="note-en">${text(c.en)}</p></article>`).join('')}
       </div>
       <div class="exercise">${sortBlock(CONTEXT.sort)}</div>
-    </section>
+    </section>`);
+  }
 
-    <section class="block">
-      <h2>語氣量尺 <span lang="en">Tone Scale</span></h2>
-      <p class="note-zh">目標是 3–4。太軟，對方聽不到；太硬，對方不想聽。</p>
+  if (sub === 'tone') {
+    return conceptPage('語氣量尺', 'Tone Scale', '目標是 3–4。太軟，對方聽不到；太硬，對方不想聽。', `<section class="block">
       <ol class="scale">
         ${TONE.scale.map((l) => `<li class="${l.target ? 'target' : ''}">
-          <b>${l.n}</b><div><strong>${text(l.zh)}</strong> <span>${text(l.en)}</span><p>${text(l.note)}</p></div></li>`).join('')}
+          <b>${l.n}</b><div><strong>${text(l.zh)}</strong> <span lang="en">${text(l.en)}</span><p>${text(l.note)}</p></div></li>`).join('')}
       </ol>
       <div class="exercise">${sortBlock(TONE.sort)}</div>
-    </section>
+    </section>`);
+  }
 
-    <section class="block">
-      <h2>三種會議行為 <span lang="en">Three Behavior Patterns</span></h2>
-      <p class="note-zh">下次開會前，先問自己：今天我會比較像誰？</p>
+  if (sub === 'people') {
+    return conceptPage('三種會議行為', 'Three Behavior Patterns', '下次開會前，先問自己：今天我會比較像誰？', `<section class="block">
       <div class="people">
         ${BEHAVIOR.people.map((p) => `<article class="person ${p.good ? 'good' : ''}">
-          <h3>${text(p.name)}<span>${text(p.tag)}</span></h3>
+          <h2>${text(p.name)}<span>${text(p.tag)}</span></h2>
           <p>${text(p.obs)}</p>
           <p class="lesson">${text(p.lesson)}</p><p lang="en" class="note-en">${text(p.lessonEn)}</p></article>`).join('')}
       </div>
       <details class="past"><summary>一張卡看三種選擇</summary>
         <dl class="grid3">
-          ${BEHAVIOR.table.map((r) => `<div><dt>${text(r.row)}</dt>
-            <dd><b>Kevin</b>${text(r.kevin)}</dd><dd><b>Vivian</b>${text(r.vivian)}</dd><dd><b>Amy</b>${text(r.amy)}</dd></div>`).join('')}
+          ${BEHAVIOR.table.map((row) => `<div><dt>${text(row.row)}</dt>
+            <dd><b>Kevin</b>${text(row.kevin)}</dd><dd><b>Vivian</b>${text(row.vivian)}</dd><dd><b>Amy</b>${text(row.amy)}</dd></div>`).join('')}
         </dl>
       </details>
       <div class="exercise">${sortBlock(BEHAVIOR.sort)}</div>
-    </section>`;
+    </section>`);
+  }
+
+  blufSet = 0;
+  blufDeal();
+  return conceptPage('BLUF 結論先行', 'Bottom Line Up Front', '每次溝通用三層結構：結論 → 原因 → 行動', `<section class="block">
+      <div class="exercise" id="bluf">${blufInner()}</div>
+    </section>`);
 }
 
 // -------------------------------------------------------------- 句型
@@ -586,6 +623,15 @@ const SUBTABS = [
 
 const pins = () => store.get('pins', []);
 const allPhrases = () => FUNCTIONS.flatMap((f) => f.phrases.map((p) => ({ ...p, fn: f })));
+
+// What a finished scenario offers for the cheat sheet. F's is the role played.
+function keepLines() {
+  const roles = SCENES.find((s) => s.id === 'f').steps.find((st) => st.t === 'meeting').roles;
+  return [
+    ...SCENES.filter((s) => s.keep).map((s) => ({ ...s.keep, id: `keep-${s.id}`, from: `情境 ${s.letter}` })),
+    ...roles.map((role) => ({ id: `keep-f-${role.name}`, en: role.en, zh: role.zh, from: '情境 F' })),
+  ];
+}
 
 function phraseRow(p) {
   const on = pins().includes(p.id);
@@ -604,16 +650,14 @@ function viewPhrases(sub) {
   const head = (title, en, lead) => `<header class="head">
       <p class="kicker" lang="en">${text(en)}</p><h1>${text(title)}</h1>${lead ? `<p class="sub">${text(lead)}</p>` : ''}
     </header>
-    <div class="subtabs" role="group" aria-label="句型">
-      ${SUBTABS.map((t) => `<a href="#${t.to}" ${location.hash.slice(1) === t.to || (!sub && t.to === 'phrases') ? 'aria-current="page"' : ''}>${text(t.zh)}</a>`).join('')}
-    </div>`;
+    ${subTabs(SUBTABS, '句型')}`;
 
   if (sub === 'mine') {
-    const mine = allPhrases().filter((p) => pins().includes(p.id));
+    const mine = [...allPhrases(), ...keepLines()].filter((p) => pins().includes(p.id));
     return `${head('我的小抄', 'Before a Meeting', '開會前挑 2–3 句準備使用。太多句，開會時一句也想不起來。')}
       <section class="block">
         ${mine.length ? mine.map((p) => `<div class="cheat">
-            <p class="cheat-fn">功能 ${p.fn.n}：${text(p.fn.zh)}</p>
+            <p class="cheat-fn">${p.fn ? `功能 ${p.fn.n}：${text(p.fn.zh)}` : text(p.from)}</p>
             ${sayBlock({ en: p.en, zh: p.zh, say: p.fill, sub: p.fillZh })}
             <button class="link" data-act="pin" data-id="${p.id}">從小抄拿掉</button>
           </div>`).join('')
@@ -703,7 +747,6 @@ function viewScenes() {
 
    line, think, parts and principle play straight on; everything else stops
    until the trainee moves it on. */
-let run = null;
 
 function viewScene(id) {
   const s = SCENES.find((x) => x.id === id);
@@ -723,18 +766,7 @@ function viewScene(id) {
       <div class="stage" id="stage"></div>
       <div id="stage-foot"><button class="pill" data-act="scene-start">開始</button>
         <button class="link" data-act="scene-all">直接看全部內容</button></div>
-    </section>
-    <template id="scene-end">
-      <div class="scene-end">
-        <div class="reflect">
-          <p class="label">複習反思 Reflection</p>
-          ${note(s.reflect)}
-          <textarea id="scene-note" rows="3" placeholder="寫給自己看的，只存在這台裝置。">${text((store.get('notes', {}))[s.id] || '')}</textarea>
-        </div>
-        ${next ? `<a class="pill" href="#scenes/${next.id}">下一個：情境 ${text(next.letter)}</a>` : '<a class="pill" href="#email">接著練 Email</a>'}
-        <a class="link" href="#scenes">回情境列表</a>
-      </div>
-    </template>`;
+    </section>`;
 }
 
 function bubble(l) {
@@ -755,10 +787,10 @@ const continueBtn = () => '<button class="pill go" data-act="scene-next">繼續<
    trainee answers in their own words first, then compares. 先看選項 stays there
    for someone who has nothing yet; it opens the options and counts nothing. */
 const sayFirst = () => `<div class="say say-first">
-    <p class="first-ask">先不看選項。用你自己的話，大聲回一句。簡單的句子就夠了。</p>
+    <p class="first-ask">先不看選項。${loud('用你自己的話，大聲回一句。', '用你自己的話，在心裡回一句，動動嘴巴也好。')}簡單的句子就夠了。</p>
     <div class="acts">
       <button class="act act-rec" data-act="rec">🎙 錄下來</button>
-      <button class="act act-said" data-act="first-said">說完了，看選項</button>
+      <button class="act act-said" data-act="first-said">${loud('說完了，看選項', '念完了，看選項')}</button>
       <button class="act" data-act="first-open">先看選項</button>
     </div>
     <div class="take" hidden></div>
@@ -962,12 +994,49 @@ function advance() {
 
 const isStopping = (st) => ['choice', 'say', 'reveal', 'roles', 'quest', 'meeting'].includes(st.t);
 
-function finishScene() {
-  const stage = $('#stage');
-  stage.append($('#scene-end').content.cloneNode(true));
+/* The last screen is what a scenario is remembered by, so it says what the
+   trainee did and hands them one line to keep. 直接看全部內容 is reading, not
+   doing: it marks nothing done and gets no celebration. */
+function finishCard() {
+  const { s, spoken = 0 } = run;
   const done = store.get('scenes', {});
-  done[run.s.id] = dayKey();
-  store.set('scenes', done);
+  const count = SCENES.filter((x) => done[x.id]).length;
+  const line = s.keep ? keepLines().find((k) => k.id === `keep-${s.id}`)
+    : keepLines().find((k) => k.id === `keep-f-${run.role}`);
+  const held = line && pins().includes(line.id);
+  return `<div class="finish">
+      <p class="finish-t">情境 ${text(s.letter)} 走完了</p>
+      ${spoken ? `<p class="finish-n"><b>${spoken}</b><span>這次開口的次數</span></p>`
+    : '<p class="finish-none">這次用看的也沒關係。下次挑一句說出來。</p>'}
+      <p class="finish-all">${count === SCENES.length ? '六個情境全部走完了。' : `六個情境，你走完了 ${count} 個。`}</p>
+    </div>
+    ${line ? `<div class="keep">
+      <p class="label">這句留著用</p>
+      <p lang="en" class="line-en">${text(line.en)}</p>
+      <p class="zh">${text(line.zh)}</p>
+      <button class="act" data-act="keep-pin" data-id="${line.id}" ${held ? 'disabled' : ''}>${held ? '★ 已在小抄裡' : '☆ 放進我的小抄'}</button>
+    </div>` : ''}`;
+}
+
+function finishScene() {
+  const { s, all } = run;
+  if (!all) {
+    const done = store.get('scenes', {});
+    done[s.id] = dayKey();
+    store.set('scenes', done);
+  }
+  const next = SCENES[SCENES.indexOf(s) + 1];
+  const saved = store.get('notes', {})[s.id] || '';
+  $('#stage').insertAdjacentHTML('beforeend', `<div class="scene-end">
+      ${all ? '' : finishCard()}
+      <div class="reflect">
+        <p class="label">複習反思 Reflection</p>
+        ${note(s.reflect)}
+        <textarea id="scene-note" rows="3" placeholder="寫給自己看的，只存在這台裝置。">${text(saved)}</textarea>
+      </div>
+      ${next ? `<a class="pill" href="#scenes/${next.id}">下一個：情境 ${text(next.letter)}</a>` : '<a class="pill" href="#email">接著練 Email</a>'}
+      <a class="link" href="#scenes">回情境列表</a>
+    </div>`);
 }
 
 function openReveal(btn) {
@@ -1027,7 +1096,8 @@ function viewEmail(id) {
     </header>
     <section class="block">
       <p class="focus-line">${text(e.challenge)}</p>
-      ${note(e.ctx)}
+      <p class="brief">${text(e.brief)}</p>
+      <details class="more"><summary>看完整背景</summary>${note(e.ctx)}</details>
     </section>
     <section class="block" id="mail-1">
       <h2>第一步：找問題 <span lang="en">Spot it</span></h2>
@@ -1133,6 +1203,7 @@ function mailStepThree() {
   done[e.id] = dayKey();
   store.set('emails', done);
   const t = TEMPLATES[e.template];
+  const count = EMAILS.filter((x) => done[x.id]).length;
   $('#mail-rest').insertAdjacentHTML('beforeend', `<section class="block" id="mail-3">
       <h2>第三步：完整範例 <span lang="en">BLUF After</span></h2>
       <div class="letter-sheet" lang="en">
@@ -1143,6 +1214,10 @@ function mailStepThree() {
       <ul class="flaws works">${e.works.map((w) => `<li>${note(w)}</li>`).join('')}</ul>
       ${e.note ? `<div class="principle"><p class="label">${text(e.note.label)}</p>${note(e.note)}</div>` : ''}
       ${e.reflect ? `<div class="reflect"><p class="label">複習反思 Reflection</p>${note(e.reflect)}</div>` : ''}
+      <div class="finish">
+        <p class="finish-t">Email ${text(e.id)} 走完了</p>
+        <p class="finish-all">${count === EMAILS.length ? '三封範例全部走完了。下一封，就是你自己的。' : `三封範例，你走完了 ${count} 封。`}</p>
+      </div>
       <a class="pill" href="#email/write" data-template="${t.id}" data-act="use-template">用「${text(t.zh)}」模板寫我的</a>
       <a class="link" href="#email">回 Email 列表</a>
     </section>`);
@@ -1277,6 +1352,24 @@ async function copyDraft(btn) {
   setTimeout(() => { btn.textContent = '複製這封信'; }, 2000);
 }
 
+// -------------------------------------------------------------- the first visit
+
+/* Shown on whichever view the link opened, since a trainee may arrive on a
+   scenario sent to them. Skipped for anyone who has already spoken here. A
+   native <dialog> brings the focus trap, Esc and the backdrop with it. */
+function showIntro() {
+  const d = $('#intro');
+  if (store.get('intro', false) || spokenTotal() || !d.showModal) return;
+  d.innerHTML = `<h2>${text(INTRO.title)}</h2>
+    <ol>${INTRO.points.map((p) => `<li>${text(p)}</li>`).join('')}</ol>
+    <button class="pill" data-act="intro-go">${text(INTRO.go)}</button>
+    <button class="link" data-act="intro-quiet">${text(INTRO.quiet)}</button>
+    <p class="intro-note">${text(INTRO.note)}</p>`;
+  // Stored on showing, not on closing: seen once is enough, however it was shut.
+  store.set('intro', true);
+  d.showModal();
+}
+
 // -------------------------------------------------------------- routing
 
 const TABS = [
@@ -1294,13 +1387,14 @@ function route({ stay = false } = {}) {
   const [tab = 'today', sub] = (location.hash.slice(1) || 'today').split('/');
   dropTake();
   if (canSpeak) speechSynthesis.cancel();
+  run = null;
 
   const known = TABS.some((t) => t.to === tab);
   const name = known ? tab : 'today';
   const view = $('#view');
 
   if (name === 'today') view.innerHTML = viewToday();
-  else if (name === 'concepts') view.innerHTML = viewConcepts();
+  else if (name === 'concepts') view.innerHTML = viewConcepts(sub);
   else if (name === 'phrases') view.innerHTML = viewPhrases(sub);
   else if (name === 'scenes') view.innerHTML = sub ? viewScene(sub) : viewScenes();
   else if (name === 'email') {
@@ -1421,8 +1515,19 @@ const ACTS = {
   },
   'scene-next'(btn) {
     btn.remove();
-    if (run.i >= run.s.steps.length) { finishScene(); return; }
+    if (run.i >= run.s.steps.length) {
+      finishScene();
+      $('.scene-end').scrollIntoView({ block: 'start', behavior: motion() });
+      return;
+    }
     advance();
+  },
+  'keep-pin'(btn) {
+    const list = pins();
+    if (list.length >= 3) { toast('小抄放三句就好。先到小抄拿掉一句。'); return; }
+    store.set('pins', [...list, btn.dataset.id]);
+    btn.disabled = true;
+    btn.textContent = '★ 已在小抄裡';
   },
   opt: pickOption,
   'first-said'(btn) {
@@ -1433,6 +1538,11 @@ const ACTS = {
     openOptions(btn);
   },
   'first-open': openOptions,
+  'intro-go'() { $('#intro').close(); },
+  'intro-quiet'() {
+    setQuiet(true);
+    $('#intro').close();
+  },
   reveal: openReveal,
   quest: askTanaka,
   role: pickRole,
@@ -1512,6 +1622,9 @@ function initChrome() {
     speak('Before we move on, I want to flag something.');
   });
 
+  setQuiet(store.get('quiet', false));
+  $('#quietPick').addEventListener('change', (e) => setQuiet(e.target.checked));
+
   loadVoices();
   if (canSpeak) speechSynthesis.onvoiceschanged = loadVoices;
   $('#voicePick').addEventListener('change', (e) => {
@@ -1537,6 +1650,7 @@ function initChrome() {
 
   window.addEventListener('hashchange', () => route());
   route();
+  showIntro();
 }
 
 initChrome();

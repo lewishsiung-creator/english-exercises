@@ -475,7 +475,7 @@ textarea, .field input {
 }
 
 .past { margin-top: 14px; font-size: .94rem; }
-.past summary { padding: 8px 0; font-family: var(--font-ui), var(--font-zh); font-weight: 500; cursor: pointer; }
+.past summary { min-height: 44px; padding: 10px 0; font-family: var(--font-ui), var(--font-zh); font-weight: 500; cursor: pointer; }
 .past p { margin-top: 8px; }
 .past p b { display: block; font-size: .8rem; color: var(--ink-soft); }
 
@@ -534,11 +534,11 @@ textarea, .field input {
 
 .ctxcards, .people { display: grid; gap: 10px; }
 .ctxcard, .person { padding: 14px 16px; background: var(--card); border: 1px solid var(--line); border-radius: var(--round); }
-.ctxcard h3, .person h3, .rolecards h3, .rolecard-me h3, .role-sum h3 { font-size: 1.06rem; font-weight: 600; }
-.ctxcard h3 span, .person h3 span, .rolecards h3 span, .rolecard-me h3 span, .role-sum h3 span { margin-left: 8px; font-size: .84rem; font-weight: 400; color: var(--ink-soft); }
+.ctxcard h2, .person h2, .rolecards h3, .rolecard-me h3, .role-sum h3 { font-size: 1.06rem; font-weight: 600; }
+.ctxcard h2 span, .person h2 span, .rolecards h3 span, .rolecard-me h3 span, .role-sum h3 span { margin-left: 8px; font-size: .84rem; font-weight: 400; color: var(--ink-soft); }
 .ctxcard p, .person p { margin-top: 4px; font-size: .95rem; }
 .person.good { border-color: var(--good-line); }
-.person.good h3 span { color: var(--good); font-weight: 500; }
+.person.good h2 span { color: var(--good); font-weight: 500; }
 .lesson { font-weight: 500; }
 
 .scale { display: grid; gap: 2px; }
@@ -807,6 +807,75 @@ textarea, .field input {
 .checks .hint { color: var(--ink); background: color-mix(in srgb, var(--ink) 6%, var(--paper)); }
 .checks .idle { display: block; color: var(--ink-soft); border: 1px dashed var(--rule); background: transparent; }
 
+/* ---------------- finishing something ----------------
+
+   The end of a scenario is the part that gets remembered, so it is the one
+   large moment on the page. */
+
+.finish {
+  margin-top: 22px;
+  padding: 22px 20px;
+  color: var(--paper);
+  background: var(--ink);
+  border-radius: var(--round);
+  animation: sheet-in .22s var(--ease);
+}
+.finish-t { font-size: 1.24rem; font-weight: 600; }
+.finish-n { display: flex; align-items: baseline; gap: 10px; margin-top: 10px; }
+.finish-n b { font-family: var(--font-en); font-size: 3.4rem; font-weight: 500; line-height: 1; color: var(--gold-line); font-variant-numeric: lining-nums; }
+.finish-n span, .finish-none, .finish-all { font-size: .94rem; color: color-mix(in srgb, var(--paper) 78%, transparent); }
+.finish-none { margin-top: 8px; }
+.finish-all { margin-top: 8px; }
+
+.keep { margin-top: 12px; padding: 16px; background: var(--card); border: 1px solid var(--line); border-radius: var(--round); }
+.keep .act { margin-top: 12px; }
+.keep .act:disabled { color: var(--good); background: var(--good-soft); }
+
+.drill-count { margin-top: 6px; color: var(--gold-line); font-weight: 500; }
+
+/* ---------------- one level down ---------------- */
+
+.brief { font-size: 1.06rem; line-height: 1.6; font-weight: 500; }
+.more { margin-top: 4px; font-size: .95rem; }
+.more summary { min-height: 44px; padding: 10px 0; font-family: var(--font-ui), var(--font-zh); font-size: 14px; font-weight: 500; color: var(--ink-soft); cursor: pointer; }
+.next-link { margin: 18px 0 0; font-weight: 500; color: var(--ink); }
+
+/* ---------------- quiet mode ---------------- */
+
+.hush { display: none; }
+.quiet .hush { display: inline; }
+.quiet .loud { display: none; }
+.quiet .act-rec { display: none; }
+
+/* ---------------- the first visit ---------------- */
+
+.intro {
+  width: min(24rem, calc(100vw - 32px));
+  padding: 24px 22px 18px;
+  color: var(--ink);
+  background: var(--card);
+  border: 0;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(28, 43, 74, .24);
+}
+.intro::backdrop { background: rgba(28, 43, 74, .46); }
+.intro h2 { font-size: 1.3rem; font-weight: 600; }
+.intro ol { margin-top: 14px; counter-reset: point; }
+.intro li { position: relative; padding: 8px 0 8px 30px; line-height: 1.55; counter-increment: point; }
+.intro li::before {
+  content: counter(point);
+  position: absolute;
+  left: 0;
+  top: 7px;
+  font-family: var(--font-en);
+  font-size: 1.3rem;
+  line-height: 1.3;
+  color: var(--gold);
+}
+.intro .pill { display: flex; width: 100%; }
+.intro .link { display: block; width: 100%; margin: 6px 0 0; text-align: center; }
+.intro-note { font-size: .82rem; text-align: center; color: var(--ink-soft); }
+
 /* ---------------- settings and toast ---------------- */
 
 .panel {
@@ -832,6 +901,8 @@ textarea, .field input {
 .row label { display: block; font-size: .92rem; font-weight: 600; }
 .row label em { font-family: var(--font-en); font-size: .84rem; font-weight: 400; color: var(--ink-soft); }
 .row select { width: 100%; margin-top: 4px; padding: 8px 10px; font: 16px var(--font-ui); color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 10px; }
+.row .row-check { display: flex; align-items: center; gap: 10px; min-height: 44px; }
+.row-check input { width: 20px; height: 20px; margin: 0; accent-color: var(--ink); }
 .row-note { margin-top: 6px; font-size: .84rem; line-height: 1.55; color: var(--ink-soft); }
 .panel-btn { margin-top: 8px; padding: 8px 16px; min-height: 44px; font-size: 14px; background: color-mix(in srgb, var(--ink) 6%, transparent); border: 0; }
 #clearAsk { display: block; margin-top: 6px; font-size: .84rem; color: var(--gold); }

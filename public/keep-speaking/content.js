@@ -59,6 +59,19 @@ const COURSE = {
   },
 };
 
+// Shown once, before the first thing the page asks anyone to say out loud.
+const INTRO = {
+  title: '開始之前',
+  points: [
+    '沒有分數，也沒有人看得到你的紀錄。紀錄只存在這台裝置。',
+    '只算一件事：你開口了幾次。說錯也算數。',
+    '先開口，再看答案。簡單的句子就夠了。',
+  ],
+  go: '開始練習',
+  quiet: '現在不方便出聲',
+  note: '之後可以在 ⚙ 設定裡更改。',
+};
+
 // The handbook's three ways of using it, as the three doors on the first screen.
 const DOORS = [
   { to: 'email/write', zh: '寫 Email', en: 'Before writing',
@@ -433,6 +446,7 @@ const BEHAVIOR = {
 const SCENES = [
   {
     id: 'a', letter: 'A', zh: '香港展店時間線', en: 'HK Store Opening Timeline',
+    keep: { en: "The opening is at risk — contractor needs 6 more weeks. I'll send a revised timeline by Friday.", zh: '開幕有風險——裝潢商需要再六週。我週五前會寄出修訂版時間表。' },
     pair: 'Vivian / Marcus', unit: 'Unit 1 案例分析', you: 'Vivian',
     focus: '文化動態：高語境（Vivian）vs 低語境期待（Marcus）',
     ctx: {
@@ -472,6 +486,7 @@ const SCENES = [
   },
   {
     id: 'b', letter: 'B', zh: '日本門市設計', en: 'Japan Store Design',
+    keep: { en: 'Just to clarify — are there parts of the proposal that work for you?', zh: '確認一下——有哪些部分是可以接受的？' },
     pair: 'Kevin / Tanaka', unit: 'Unit 1 案例分析', you: 'Kevin',
     focus: '文化動態：高語境（Kevin）vs 直接否定（Tanaka）',
     ctx: {
@@ -517,6 +532,7 @@ const SCENES = [
   },
   {
     id: 'c', letter: 'C', zh: '內部會議劇本', en: 'Internal Meeting Script',
+    keep: { en: "I see Kevin's concern, and I see it a bit differently.", zh: '我理解 Kevin 的顧慮，但我的看法有點不一樣。' },
     pair: 'James / Kevin / Vivian / Amy', unit: 'Unit 3 模擬會議', you: 'Vivian，然後 Amy',
     focus: '觀察重點：Vivian 知道答案但沒說出來，會議因此做出錯誤決定',
     ctx: {
@@ -571,6 +587,7 @@ const SCENES = [
   },
   {
     id: 'd', letter: 'D', zh: '香港出貨壓力', en: 'HK Shipment Pressure',
+    keep: { en: 'I hear you — losing stock at peak weekend is critical.', zh: '我明白——週末高峰期斷貨是很嚴重的事。' },
     pair: 'Vivian / Marcus', unit: 'Unit 3 配對練習', you: 'Vivian',
     focus: '整合技巧：功能 3（爭取時間）＋功能 4（確認）',
     ctx: {
@@ -615,6 +632,7 @@ const SCENES = [
   },
   {
     id: 'e', letter: 'E', zh: '日本設計被拒', en: 'Design Rejection (with Hidden Mechanic)',
+    keep: { en: 'Could you help me understand which specific parts concern you?', zh: '能幫我了解哪些具體部分讓你擔心嗎？' },
     pair: 'Kevin / Tanaka', unit: 'Unit 3 配對練習', you: 'Kevin',
     focus: '整合技巧：功能 2（不同意）＋功能 3（爭取時間）＋追問技巧',
     ctx: {
@@ -715,6 +733,7 @@ const EMAILS = [
   {
     id: '1', to: 'Marcus', role: '香港代理商', task: '通知出貨延誤', challenge: '低語境 · 壞消息＋解決方案',
     zh: '通知 Marcus 出貨延誤', en: 'Notifying Marcus of a Shipment Delay',
+    brief: 'Marcus 已排好行銷活動，但 6 月 1 日的出貨要延到 6 月 15 日。',
     ctx: {
       zh: '公司下個月要出貨給香港的茶葉原料，因為台灣供應商品質檢測延遲，原訂的 6 月 1 日出貨日期需要延後到 6 月 15 日。Marcus 已經在香港門市排了行銷活動配合這批原料到貨。',
       en: 'We are shipping tea leaves to HK next month. Quality inspection delay means original June 1 shipment must move to June 15. Marcus has already scheduled HK marketing activities around the original date.',
@@ -793,6 +812,7 @@ const EMAILS = [
   {
     id: '2', to: 'Tanaka', role: '日本代理商', task: '修改後設計提案重送', challenge: '高語境商業 · 專業立場',
     zh: '回應 Tanaka 的設計修改要求', en: 'Resubmitting a Revised Design Proposal to Tanaka',
+    brief: 'Tanaka 上週退回了設計。你們已縮小坪數 30%、改用內斂色調，現在要重新提交。',
     ctx: {
       zh: '上週 Tanaka 拒絕了你的日本門市設計提案。經過追問你發現具體問題是：(1) 門市坪數太大 (2) 視覺風格太鮮豔。你的團隊已經做了修改：縮小坪數 30%、改成更內斂的色調。現在要重新提交。',
       en: 'Last week Tanaka rejected your design saying "doesn\'t fit our market." Through follow-up questions: (1) footprint too large, (2) visual style too bold. Your team has revised: 30% smaller footprint, more restrained color palette. Now you need to resubmit.',
@@ -881,6 +901,7 @@ const EMAILS = [
   {
     id: '3', to: 'Linda', role: '海外拓展總監', task: '日本展店風險升級', challenge: '內部 · 量化選項＋建議',
     zh: '向 Linda 報告日本展店風險', en: 'Escalating Japan Store Risk to Linda',
+    brief: '日本第二間門市的許可慢了 6 週，Q3 開幕幾乎不可行，而 Linda 已向董事會承諾 Q3。',
     ctx: {
       zh: '日本第二間門市的建築許可審批比預期慢了 6 週，Q3 開幕幾乎不可行。如果延後到 Q4，行銷活動會損失 NT$80 萬，但供應商合約有違約金 NT$120 萬。Linda 已經向董事會承諾 Q3 開幕，這個延誤她需要立刻知道。',
       en: 'Japan Store #2 permit is 6 weeks behind. Q3 opening nearly infeasible. Q4 delay = NT$800K marketing loss but NT$1.2M supplier penalty. Linda has committed Q3 to the board. She needs to know immediately.',

@@ -2245,7 +2245,7 @@ Five tabs, routed by the hash so any scenario or email can be sent as a link:
 | Tab | What is in it |
 | --- | --- |
 | 今天 `#today` | The handbook's three ways of using it as three doors, 今天三分鐘, the tally, the Friday check |
-| 觀念 `#concepts` | BLUF order, high/low context, Tone Scale, the three behaviours; each ends in an exercise |
+| 觀念 `#concepts`, `/context`, `/tone`, `/people` | BLUF order, high/low context, Tone Scale, the three behaviours; one at a time, each ending in an exercise |
 | 句型 `#phrases` | `/mine` 我的小抄 (2–3 phrases), `/upgrade` Tool 2, `/clarify` the clarifying questions |
 | 情境 `#scenes/a` … `/f` | Each scenario played as you, stopping where you have to answer |
 | Email `#email/1` … `/3`, `/write` | Find the flaws, rewrite, see the After; then 寫我的 Email |
@@ -2292,6 +2292,17 @@ Five tabs, routed by the hash so any scenario or email can be sent as a link:
   typed there is stored, and the page says so. Recordings stay in the tab's
   memory until the next take or the next view.
 - **No sound starts by itself.** This gets opened in offices.
+- **The first visit says what the page will not do.** Before anything asks them
+  to speak, a short `<dialog>` says there are no scores and nobody sees the
+  record. It appears on whichever view the link opened, and not for anyone who
+  has already spoken.
+- **Quiet mode is for an open-plan office.** It swaps the wording and removes the
+  microphone; mouthing a line still counts. Both wordings sit in the page and
+  CSS picks one (`loud()`), so switching mid-scenario loses nothing.
+- **A scenario ends on what the trainee did.** The last screen gives this run's
+  count and one line to keep, which goes into 我的小抄 beside the phrases. F's
+  line is the role just played. 直接看全部內容 is reading, so it marks nothing
+  done and gets no finish screen.
 - **Three levels of control, and one meaning per colour.** Primary is navy
   (`.pill`, `.act-said`), secondary `.act`, quiet `.link`. Amber is encouragement
   and emphasis, green is "yes, that one", and a wrong answer has no colour,

@@ -65,6 +65,8 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
+<dialog class="intro" id="intro" aria-label="開始之前"></dialog>
+
 <div class="panel" id="panel" role="dialog" aria-label="設定" hidden>
   <div class="panel-head">
     <h2>設定 <span>Settings</span></h2>
@@ -84,6 +86,11 @@
       <option value="0.95">正常 Normal</option>
       <option value="1.1">快 Brisk</option>
     </select>
+  </div>
+
+  <div class="row">
+    <label class="row-check"><input type="checkbox" id="quietPick"><span>現在不方便出聲 <em>Quiet mode</em></span></label>
+    <p class="row-note">隱藏錄音，提示改成默念或動動嘴巴。一樣算數。</p>
   </div>
 
   <div class="row">
