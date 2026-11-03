@@ -902,14 +902,155 @@ body.zh-all .zhw .zh-chip { display: none; }
 /* ---------------- the quiz takes the page ----------------
    No cover and no contents list while answering: the list's theme highlight
    meant nothing there, and the cover pushed question 1 below the fold. */
-body.view-quiz .cover,
-body.view-quiz .list-only,
-body.view-quiz #navToggle { display: none !important; }
+body.view-solo .cover,
+body.view-solo .list-only,
+body.view-solo #navToggle { display: none !important; }
 @media (min-width: 900px) {
-  body.view-quiz #nav { display: none; }
-  body.view-quiz .shell { grid-template-columns: minmax(0, 1fr); max-width: calc(var(--measure) + 56px); }
+  body.view-solo #nav { display: none; }
+  body.view-solo .shell { grid-template-columns: minmax(0, 1fr); max-width: calc(var(--measure) + 56px); }
 }
-body.view-quiz #quiz { margin-top: 18px; }
+body.view-solo #quiz, body.view-solo #practice { margin-top: 18px; }
+body.view-practice .search-box,
+body.view-practice #filtBtn,
+body.view-practice #filters,
+body.view-practice #qnote { display: none !important; }
+
+/* ---------------- practice ----------------
+   Consultations, documents and emails. A line reads like the card's sentence:
+   the English at reading size, its Chinese under it, a ▶ at the right. Who is
+   speaking sits in a narrow column so a dialogue scans down one edge. */
+
+.prac-head { padding: 6px 0 4px; }
+.prac-title { margin: 0 0 8px; font-size: 1.6rem; font-weight: 600; }
+.prac-title .zh { display: block; font-size: .55em; font-weight: 400; margin-top: 4px; }
+.prac-intro {
+  margin: 0 0 18px;
+  font-family: var(--font-ui);
+  font-size: .86rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.prac-intro .zh, .prac-index .zh, .piece-title .zh, .piece-note .zh { display: block; }
+
+.prac-index {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 14px 22px;
+  padding: 16px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+}
+.prac-index ul { list-style: none; margin: 6px 0 0; padding: 0; }
+.prac-index li + li { margin-top: 8px; }
+.prac-index a {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: .86rem;
+  line-height: 1.4;
+  color: var(--navy);
+  text-decoration: none;
+}
+.prac-index a:hover { text-decoration: underline; }
+.prac-index a .zh { font-size: .92em; color: var(--ink-soft); margin-top: 1px; }
+
+.piece-kind {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.piece-kind span { font-family: var(--font-zh); letter-spacing: .08em; margin-left: 4px; }
+
+.roleplay { margin: 16px 0 0; font-family: var(--font-ui); }
+.roleplay .row-note { display: block; flex-basis: 100%; margin: 4px 0 0 26px; font-weight: 400; }
+.roleplay .row-note em { display: block; }
+
+.piece {
+  margin-top: 40px;
+  padding-top: 26px;
+  border-top: 1px solid var(--rule);
+  scroll-margin-top: calc(var(--bar-h) + var(--tools-h, 64px) + 12px);
+}
+.piece-title { margin: 6px 0 8px; font-size: 1.36rem; font-weight: 600; line-height: 1.3; }
+.piece-title .zh { font-size: .64em; font-weight: 400; margin-top: 4px; }
+.piece-note {
+  margin: 0 0 16px;
+  font-family: var(--font-ui);
+  font-size: .84rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+}
+.line {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 11px 14px;
+  cursor: pointer;
+}
+.line + .line { border-top: 1px solid var(--line); }
+.line:hover { background: color-mix(in srgb, var(--navy-soft) 55%, transparent); }
+.line-body { flex: 1 1 auto; min-width: 0; }
+.line-en { margin: 0; font-size: 1rem; line-height: 1.55; }
+.line .zh { margin: 4px 0 0; font-size: .86rem; }
+.line .say { margin-left: 0; }
+
+.who {
+  flex: none;
+  width: 4.2rem;
+  font-family: var(--font-ui);
+  font-size: .74rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink-soft);
+}
+.who em { display: block; font-family: var(--font-zh); font-style: normal; font-weight: 400; }
+.who-L .who { color: var(--navy); }
+.who-L { box-shadow: inset 3px 0 0 var(--navy-line); }
+
+.line.head .line-en { font-weight: 700; letter-spacing: .01em; }
+.piece-document .lines .line-en { font-family: var(--font-en); }
+
+/* Role-play: the lawyer's English is covered until tapped. */
+body.cover-L .who-L:not(.shown) .line-en,
+body.cover-L .who-L:not(.shown) .zh {
+  color: transparent;
+  text-shadow: none;
+  background: repeating-linear-gradient(0deg, var(--line) 0 1.2em, transparent 1.2em 1.55em);
+  border-radius: 4px;
+  user-select: none;
+}
+body.cover-L .who-L:not(.shown) .say { visibility: hidden; }
+
+.aside { margin-top: 16px; }
+.aside-h {
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+.aside-h span { font-family: var(--font-zh); font-weight: 400; margin-left: 4px; }
+.phrases .line-en { font-weight: 600; }
+
+@media (max-width: 620px) {
+  .line { flex-wrap: wrap; padding: 10px 12px; }
+  .who { width: 100%; display: flex; gap: 6px; }
+  .who em { display: inline; }
+  .line-body { flex-basis: calc(100% - 52px); }
+}
 
 /* ---------------- teacher panel ---------------- */
 

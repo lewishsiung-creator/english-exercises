@@ -182,6 +182,7 @@ function buildTools() {
     <div class="tools-row">
       <div class="views tabs" id="viewseg" role="group" aria-label="View 檢視">
         <button data-view="list">Terms<em>詞彙</em></button>
+        <button data-view="practice">Practice<em>實務</em></button>
         <button data-view="quiz">Quiz<em>測驗</em></button>
       </div>
 
@@ -297,6 +298,73 @@ function buildSource() {
   </p>`;
 }
 
+// ------------------------------------------------------------------- practice
+
+/* The Practice tab, from practice.js: consultations, documents and emails.
+   Built once, like the cards. Every English line is a .line — tapping it
+   opens its Chinese the way a card does, so 自學 and 教學 behave as they do in
+   the word list. Titles, notes and the index are scaffolding and stay
+   bilingual in both modes. */
+
+const KIND = { dialogue: ['Consultation', '諮詢對話'], document: ['Reading', '文件閱讀'], email: ['Email', '英文書信'] };
+const WHO = { L: ['Lawyer', '律師'], C: ['Client', '當事人'] };
+
+function lineHtml(l, withSay) {
+  const who = l.who ? `<span class="who">${WHO[l.who][0]}<em>${WHO[l.who][1]}</em></span>` : '';
+  const cls = ['line', l.head ? 'head' : '', l.who ? 'who-' + l.who : ''].filter(Boolean).join(' ');
+  return `<li class="${cls}" tabindex="0">${who}
+      <div class="line-body"><p class="line-en">${text(l.en)}</p><p class="zh">${text(l.zh)}</p></div>
+      ${withSay ? sayBtn(l.en, '播放') : ''}</li>`;
+}
+
+function buildPiece(p) {
+  return `
+  <article class="piece piece-${p.kind}" id="p-${p.id}">
+    <p class="piece-kind">${KIND[p.kind][0]} <span>${KIND[p.kind][1]}</span></p>
+    <h3 class="piece-title">${text(p.en)}<span class="zh">${text(p.zh)}</span></h3>
+    <p class="piece-note">${text(p.note.en)}<span class="zh">${text(p.note.zh)}</span></p>
+    <ol class="lines">${p.lines.map((l) => lineHtml(l, true)).join('')}</ol>
+    ${p.check ? `
+    <div class="aside">
+      <p class="aside-h">What to check in Taiwan <span>在台灣要確認的事</span></p>
+      <ul class="lines">${lineHtml(p.check, false)}</ul>
+    </div>` : ''}
+    <div class="aside">
+      <p class="aside-h">Phrases to take away <span>值得帶走的說法</span></p>
+      <ul class="lines phrases">${p.phrases.map((x) => lineHtml(x, false)).join('')}</ul>
+    </div>
+  </article>`;
+}
+
+function buildPractice() {
+  const kinds = ['dialogue', 'document', 'email'];
+  return `
+  <div id="practice" hidden>
+    <header class="prac-head">
+      <h2 class="prac-title">Practice <span class="zh">實務練習</span></h2>
+      <p class="prac-intro">Consultations, documents and emails from cross-border family cases. ▶ reads a
+        line aloud; when the Chinese is hidden, tap a line to see it.
+        <span class="zh">涉外家事案件的諮詢對話、文件與書信。按 ▶ 朗讀；中文隱藏時，點一下該行即可顯示。</span></p>
+      <nav class="prac-index" aria-label="Practice 練習內容">
+        ${kinds.map((k) => `
+        <div class="prac-group">
+          <p class="piece-kind">${KIND[k][0]} <span>${KIND[k][1]}</span></p>
+          <ul>${PRACTICE.filter((p) => p.kind === k).map((p) => `
+            <li><a href="#p-${p.id}">${text(p.en)}<span class="zh">${text(p.zh)}</span></a></li>`).join('')}
+          </ul>
+        </div>`).join('')}
+      </nav>
+      <label class="row-check roleplay">
+        <input type="checkbox" id="coverL">
+        <span>Cover the lawyer's lines <em>遮住律師的台詞</em></span>
+        <span class="row-note">For role-play: say the lawyer's line yourself, then tap it to check.
+          <em>角色扮演用：先自己說出律師的台詞，再點一下核對。</em></span>
+      </label>
+    </header>
+    ${PRACTICE.map(buildPiece).join('')}
+  </div>`;
+}
+
 // ------------------------------------------------------------------- render
 
 $('#nav').appendChild(el(buildNav()));
@@ -317,6 +385,9 @@ list.appendChild(el(`
     No term matches that.
     <span class="zh">沒有符合的詞彙。</span>
   </p>`));
+
+const practice = el(buildPractice());
+doc.appendChild(practice);
 
 const quiz = el('<div id="quiz" hidden></div>');
 doc.appendChild(quiz);
@@ -727,7 +798,11 @@ function setView(v) {
     b.setAttribute('aria-pressed', String(b.dataset.view === v)));
   list.hidden = v !== 'list';
   quiz.hidden = v !== 'quiz';
-  document.body.classList.toggle('view-quiz', v === 'quiz');
+  practice.hidden = v !== 'practice';
+  // Practice and the quiz both take the page; practice also has no use for
+  // the search or the filters.
+  document.body.classList.toggle('view-solo', v !== 'list');
+  document.body.classList.toggle('view-practice', v === 'practice');
   render();
   if (was !== v) window.scrollTo(0, v === 'list' ? listY : 0);
 }
@@ -802,7 +877,8 @@ function setAllZh(on) {
 }
 
 function render() {
-  if (S.view === 'quiz') renderQuiz(); else applyFilter();
+  if (S.view === 'quiz') renderQuiz();
+  else if (S.view === 'list') applyFilter();
 }
 
 // ------------------------------------------------------------------- events
@@ -867,6 +943,18 @@ doc.addEventListener('click', (e) => {
     return;
   }
 
+  // ---- a practice line: uncover it (role-play), else open its Chinese
+  const line = t.closest('#practice .line');
+  if (line) {
+    if (document.body.classList.contains('cover-L')
+        && line.classList.contains('who-L') && !line.classList.contains('shown')) {
+      line.classList.add('shown');
+      return;
+    }
+    line.classList.toggle('open');
+    return;
+  }
+
   // ---- anywhere else on a card opens its Chinese
   const card = t.closest('.word');
   if (card) toggleCard(card);
@@ -875,6 +963,19 @@ doc.addEventListener('click', (e) => {
 $$('#viewseg button').forEach((b) => b.addEventListener('click', () => setView(b.dataset.view)));
 $$('#orderseg button').forEach((b) => b.addEventListener('click', () => { setOrder(b.dataset.order); applyFilter(); }));
 $$('#exseg button').forEach((b) => b.addEventListener('click', () => setFold(b.dataset.ex === 'fold', true)));
+
+$('#coverL').addEventListener('change', (e) => {
+  document.body.classList.toggle('cover-L', e.target.checked);
+  $$('#practice .line.shown').forEach((l) => l.classList.remove('shown'));
+});
+
+// A practice line is a tap target, so it answers Enter and Space as well.
+practice.addEventListener('keydown', (e) => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('line')) {
+    e.preventDefault();
+    e.target.click();
+  }
+});
 
 const filtBtn = $('#filtBtn');
 filtBtn.addEventListener('click', () => {

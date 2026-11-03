@@ -30,8 +30,8 @@
 window.LAW = {
 
   intro: {
-    en: "The words a family-law case is made of in Taiwan — marriage, divorce, property, children, protection orders, inheritance and the court — plus the phrases for talking with a client.",
-    zh: "台灣家事案件會用到的英文：婚姻、離婚、財產、子女、保護令、繼承與法院程序，再加上與當事人溝通的常用句。"
+    en: "The words a family-law case is made of in Taiwan — marriage, divorce, property, children, protection orders, inheritance and the court — plus the phrases for talking with a client. The Practice tab has consultations, documents and emails from cross-border cases.",
+    zh: "台灣家事案件會用到的英文：婚姻、離婚、財產、子女、保護令、繼承與法院程序，再加上與當事人溝通的常用句。「實務」分頁有涉外案件的諮詢對話、文件閱讀與英文書信。"
   },
 
   groups: [
@@ -103,6 +103,8 @@ window.LAW = {
       { w:"asset", p:"n.", zh:"資產", ex:"Please list every asset in your name, including bank accounts.", zhEx:"請列出你名下的每一項資產，包括銀行帳戶。" },
       { w:"debt", p:"n.", zh:"債務", ex:"Any debt is subtracted before the two sides are compared.", zhEx:"比較雙方之前，會先扣除債務。" },
       { w:"mortgage", p:"n.", zh:"房貸", ex:"There is still a mortgage on the apartment.", zhEx:"這間公寓還有房貸。" },
+      { w:"provisional attachment", p:"n.", zh:"假扣押", ex:"We applied for a provisional attachment of his bank account.", zhEx:"我們聲請假扣押他的銀行帳戶。" },
+      { w:"security deposit", p:"n.", zh:"擔保金", ex:"The court usually orders a security deposit before it grants a provisional attachment.", zhEx:"法院准許假扣押之前，通常會命聲請人提供擔保金。" },
       { w:"valuation", p:"n.", zh:"估價；鑑價", ex:"We need a valuation of the house before the hearing.", zhEx:"開庭前我們需要先為房子估價。" },
       { w:"bank statement", p:"n.", zh:"銀行對帳單；交易明細", ex:"Ask the bank for a bank statement for the last five years.", zhEx:"請向銀行申請最近五年的交易明細。" },
       { w:"disclose", p:"v.", zh:"揭露；陳報", ex:"Both sides must disclose their income and property.", zhEx:"雙方都必須陳報自己的收入與財產。" },
@@ -128,6 +130,8 @@ window.LAW = {
       { w:"best interests of the child", p:"n.", zh:"子女最佳利益", ex:"Every decision must be made in the best interests of the child.", zhEx:"每一項決定都必須以子女最佳利益為依歸。" },
       { w:"views", p:"n.", zh:"意見；意願", ex:"The judge will listen to the child's views in private.", zhEx:"法官會私下聽取孩子的意見。" },
       { w:"visitation", p:"n.", zh:"會面交往", ex:"The father will have visitation every other weekend.", zhEx:"父親每隔一個週末可以會面交往。" },
+      { w:"change of custody", p:"n.", zh:"改定親權", ex:"She asked for a change of custody after he moved abroad.", zhEx:"他搬到國外後，她聲請改定親權。" },
+      { w:"handover", p:"n.", zh:"交付（子女）", ex:"The handover of the child takes place at a supervised visitation center.", zhEx:"子女的交付在會面交往中心進行。" },
       { w:"child support", p:"n.", zh:"子女扶養費", ex:"Child support is usually paid every month until the child becomes an adult.", zhEx:"子女扶養費通常按月給付到孩子成年。" },
       { w:"minor", p:"n.", zh:"未成年人", ex:"A minor cannot sign this agreement alone.", zhEx:"未成年人不能自己簽這份協議。" },
       { w:"legal representative", p:"n.", zh:"法定代理人", ex:"As her legal representative, you sign for her.", zhEx:"你是她的法定代理人，由你替她簽名。" },
@@ -186,6 +190,9 @@ window.LAW = {
       { w:"executor", p:"n.", zh:"遺囑執行人", ex:"She named her brother as executor of her will.", zhEx:"她指定她的哥哥為遺囑執行人。" },
       { w:"bequest", p:"n.", zh:"遺贈", ex:"Her will includes a bequest to a charity.", zhEx:"她的遺囑裡有一筆給慈善機構的遺贈。" },
       { w:"compulsory portion", p:"n.", zh:"特留分", ex:"A will cannot take away an heir's compulsory portion.", zhEx:"遺囑不能剝奪繼承人的特留分。" },
+      { w:"contest", p:"v.", zh:"爭執（遺囑效力）", ex:"His sisters want to contest the will.", zhEx:"他的姊妹想爭執這份遺囑的效力。" },
+      { w:"partition of the estate", p:"n.", zh:"遺產分割", ex:"The heirs could not agree, so we filed for partition of the estate.", zhEx:"繼承人之間談不攏，所以我們提起遺產分割。" },
+      { w:"claim for recovery of inheritance", p:"n.", zh:"繼承回復請求權", ex:"A claim for recovery of inheritance must be made within two years of learning that your rights were infringed.", zhEx:"繼承回復請求權，須在知悉繼承權被侵害時起兩年內行使。" },
       { w:"renounce", p:"v.", zh:"拋棄（繼承）", ex:"You can renounce the inheritance within three months of learning that you are an heir.", zhEx:"你可以在知道自己是繼承人後三個月內拋棄繼承。" },
       { w:"liable", p:"adj.", zh:"負有責任的", ex:"Heirs are liable for debts only up to the value of the estate.", zhEx:"繼承人只以所繼承的遺產為限，負擔債務。" },
       { w:"estate tax", p:"n.", zh:"遺產稅", ex:"The heirs must file an estate tax return within six months.", zhEx:"繼承人必須在六個月內申報遺產稅。" },
@@ -210,6 +217,7 @@ window.LAW = {
       { w:"hearing", p:"n.", zh:"開庭；審理期日", ex:"The next hearing is on March 5.", zhEx:"下一次開庭是 3 月 5 日。" },
       { w:"judgment", p:"n.", zh:"判決", ex:"The judgment will be sent to you by mail.", zhEx:"判決書會用郵寄送達給你。" },
       { w:"ruling", p:"n.", zh:"裁定", ex:"A protection order is made by a ruling, not a judgment.", zhEx:"保護令是以裁定核發，而不是判決。" },
+      { w:"interim order", p:"n.", zh:"暫時處分", ex:"We asked for an interim order on visitation while the case is pending.", zhEx:"案件審理期間，我們聲請關於會面交往的暫時處分。" },
       { w:"appeal", p:"v.", zh:"上訴", ex:"You have twenty days to appeal a judgment.", zhEx:"你有二十天可以對判決提起上訴。" },
       { w:"serve", p:"v.", zh:"送達", ex:"The court will serve the papers on the other side.", zhEx:"法院會把文書送達給對方。" },
       { w:"evidence", p:"n.", zh:"證據", ex:"Keep every message as evidence.", zhEx:"每一則訊息都要留下來當證據。" },
@@ -221,7 +229,35 @@ window.LAW = {
     ]
   },
 
-  /* ---------------- 8 ---------------- */
+  /* ---------------- 8 ----------------
+     Added 2026-11-03 once Lewis said the learner is a lawyer who meets
+     foreign clients and reads and writes English documents. Every sentence
+     is Taiwan's side of a cross-border case: 涉外民事法律適用法, 家事事件法 §53
+     (jurisdiction), 民事訴訟法 §402 (recognition), 入出國及移民法 (residence
+     after divorce), 土地法 §18 (reciprocity). */
+  { id: "crossborder",
+    en: "Cross-border cases",
+    zh: "涉外案件",
+    note: { en: "When one side is a foreign national, lives abroad, or holds documents made abroad.",
+            zh: "當事人一方是外國人、住在國外，或文件是在國外作成時會用到的詞彙。" },
+    words: [
+      { w:"foreign spouse", p:"n.", zh:"外籍配偶", ex:"As a foreign spouse, your right to stay in Taiwan is linked to the marriage.", zhEx:"身為外籍配偶，你在台灣的居留權與婚姻相連。" },
+      { w:"nationality", p:"n.", zh:"國籍", ex:"Nationality is not a reason to give custody to one parent.", zhEx:"國籍不是把親權判給某一方的理由。" },
+      { w:"jurisdiction", p:"n.", zh:"管轄權", ex:"Taiwan's courts have jurisdiction because your wife is a Taiwanese national.", zhEx:"因為你太太是中華民國國民，台灣的法院有管轄權。" },
+      { w:"applicable law", p:"n.", zh:"準據法", ex:"Before anything else, we need to work out the applicable law.", zhEx:"我們首先要確認準據法。" },
+      { w:"recognize", p:"v.", zh:"承認（外國判決）", ex:"A court may refuse to recognize a foreign judgment that goes against public order.", zhEx:"外國判決如果違背公共秩序，法院可以不予承認。" },
+      { w:"marriage certificate", p:"n.", zh:"結婚證書", ex:"Bring the original marriage certificate from your home country.", zhEx:"請帶你本國的結婚證書正本來。" },
+      { w:"notarize", p:"v.", zh:"公證；認證", ex:"Ask a local notary to notarize your power of attorney first.", zhEx:"請先找當地公證人為你的委任狀做公證。" },
+      { w:"authentication", p:"n.", zh:"（駐外館處）驗證", ex:"Documents made abroad usually need authentication by a Taiwan overseas office.", zhEx:"在國外作成的文件，通常需要經我國駐外館處驗證。" },
+      { w:"certified translation", p:"n.", zh:"經認證的翻譯", ex:"Please provide a Chinese translation; a certified translation is safer.", zhEx:"請提供中文譯本；附經認證的翻譯會更穩妥。" },
+      { w:"interpreter", p:"n.", zh:"通譯；口譯", ex:"The court can provide an interpreter at the hearing.", zhEx:"開庭時法院可以提供通譯。" },
+      { w:"residence permit", p:"n.", zh:"居留證", ex:"A foreign parent with custody of a Taiwanese child can usually keep the residence permit after a divorce.", zhEx:"對台灣籍子女有親權的外籍父母，離婚後通常可以保留居留證。" },
+      { w:"reciprocity", p:"n.", zh:"平等互惠", ex:"A foreign heir can inherit land here only if there is reciprocity with their country.", zhEx:"外籍繼承人只有在其本國與我國平等互惠時，才能繼承台灣的土地。" },
+      { w:"child abduction", p:"n.", zh:"（跨國）擄走子女", ex:"Taiwan is not a party to the Hague Convention on child abduction.", zhEx:"台灣不是海牙國際兒童誘拐公約的締約方。" }
+    ]
+  },
+
+  /* ---------------- 9 ---------------- */
   { id: "client",
     en: "Talking with a client",
     zh: "與當事人溝通",
@@ -229,6 +265,9 @@ window.LAW = {
             zh: "初次會談用得到的說法：請對方說明經過、表達同理，並清楚說明接下來的步驟。" },
     words: [
       { w:"walk me through", p:"ph.", zh:"從頭說明一遍", ex:"Could you walk me through what happened that night?", zhEx:"可以從頭跟我說一遍那天晚上發生了什麼事嗎？" },
+      { w:"consultation", p:"n.", zh:"諮詢", ex:"The first consultation takes about an hour.", zhEx:"第一次諮詢大約一個小時。" },
+      { w:"conflict check", p:"n.", zh:"利益衝突審查", ex:"Before we take the case, we run a conflict check.", zhEx:"接案之前，我們會先做利益衝突審查。" },
+      { w:"engagement letter", p:"n.", zh:"委任契約", ex:"Please read the engagement letter carefully.", zhEx:"請仔細閱讀委任契約。" },
       { w:"take your time", p:"ph.", zh:"慢慢來，不用急", ex:"Take your time; we can stop whenever you need to.", zhEx:"慢慢來，你需要的話我們隨時可以暫停。" },
       { w:"must have been hard", p:"ph.", zh:"一定很不容易", ex:"That must have been hard for you and the children.", zhEx:"這對你和孩子來說一定很不容易。" },
       { w:"in confidence", p:"ph.", zh:"保密地", ex:"Everything you tell me is said in confidence.", zhEx:"你跟我說的每一件事都會保密。" },

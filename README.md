@@ -1929,12 +1929,13 @@ in the other deliberately.
 | --- | --- | --- |
 | 01 | Marriage and the couple 婚姻與夫妻關係 | 16 |
 | 02 | Divorce 離婚 | 16 |
-| 03 | Property and money 財產與金錢 | 16 |
-| 04 | Children 子女 | 16 |
+| 03 | Property and money 財產與金錢 | 18 |
+| 04 | Children 子女 | 18 |
 | 05 | Domestic violence 家庭暴力 | 17 |
-| 06 | Inheritance and later life 繼承與高齡 | 16 |
-| 07 | The court and the process 法院與程序 | 18 |
-| 08 | Talking with a client 與當事人溝通 | 15 |
+| 06 | Inheritance and later life 繼承與高齡 | 19 |
+| 07 | The court and the process 法院與程序 | 19 |
+| 08 | Cross-border cases 涉外案件 | 13 |
+| 09 | Talking with a client 與當事人溝通 | 18 |
 
 What is worth knowing before editing the content:
 
@@ -1954,6 +1955,25 @@ What is worth knowing before editing the content:
   distractors are other phrases. They still obey the verbatim rule.
 - The UI calls the entries **terms／詞彙**, not words／單字, because so many are
   multi-word ("divorce by mutual consent"). The quiz prompts still say "word".
+
+**Who it is for, learned later the same day.** The learner is a **lawyer**,
+B1–B2, at a large Taiwan firm whose family practice is divorce (親權, 探視,
+剩餘財產, 扶養費, 贍養費) and inheritance (繼承權侵害, 遺產分配, 遺囑效力). They
+use English to **meet foreign clients, read English documents and write
+English emails**. Lewis gave the firm's website; **the firm is not named
+anywhere in the folder**, and neither are its brands or lawyers. That brief
+added 24 terms (the 涉外案件 theme; 遺產分割, 繼承回復請求權, 假扣押, 改定親權,
+暫時處分, 利益衝突審查, 委任契約 …) and the Practice tab.
+
+**The Practice tab** is [`practice.js`](public/family-law/practice.js),
+`window.PRACTICE`: three consultations (`kind: "dialogue"`, lines with
+`who: "L" | "C"`), two English documents a Taiwan lawyer is handed (a US
+divorce judgment, clauses from an English will, each with a *What to check in
+Taiwan* note), and three emails the lawyer writes. Every piece ends in
+*Phrases to take away*. All people, amounts and dates are fictional. A line
+taps open its Chinese like a card; **Cover the lawyer's lines** turns the
+dialogues into role-play — the learner says the line, then taps to check it.
+The quiz does not draw on it.
 
 **Its renderer was reworked on 2026-11-03** from a UI/UX review Lewis asked
 for, and the same changes were then ported to Fab English the same day, so
@@ -3787,7 +3807,7 @@ public/junior-high/       國中英語精熟 — 單字 and 文法, one page, Gr
 public/junior-high-words/    a redirect: the 單字 half's old URL
 public/junior-high-grammar/  a redirect: the 文法 half's old URL
 public/fab-english/       the plant word list — 288 words, eight themes
-public/family-law/        家事法律英文 — 130 terms, eight themes, Fab English's renderer
+public/family-law/        家事法律英文 — 154 terms in nine themes, plus a Practice tab
 public/landscape-portfolio/      the portfolio — filled in as the Ando study
 public/landscape-portfolio/content.starter.js  the same page, emptied
 public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS.md
