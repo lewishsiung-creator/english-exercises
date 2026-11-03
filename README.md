@@ -1949,6 +1949,26 @@ What is worth knowing before editing the content:
 - The UI calls the entries **terms／詞彙**, not words／單字, because so many are
   multi-word ("divorce by mutual consent"). The quiz prompts still say "word".
 
+**It no longer matches Fab English's renderer** (2026-11-03, from a UI/UX
+review Lewis asked for). What changed here and not there:
+
+- Only one row of tools is pinned — Terms／Quiz tabs, search, **Filter**. Theme,
+  marks, order and the **Sentences** switch open behind Filter, with a count
+  badge for active filters.
+- **Sentences on tap** is the default: a card is the term and its gloss until
+  tapped; the headword is a `<button>` with `aria-expanded`. It replaces the
+  teacher panel's "hide the example sentences" checkbox. Stored as `fl.fold`.
+- The quiz hides the cover and the contents list (`body.view-quiz`); Next and
+  every filter scroll to just below the pinned tools, whose height render.js
+  keeps in `--tools-h`. Going back to Terms returns to where the list was.
+- On a phone the Themes button names the theme on screen ("04 Children").
+- `--ink-faint` is `#646e73` (4.8:1); the disclaimer is a note box. Touch
+  sizes are raised under `(pointer: coarse)` — note `.bar .bar-btn`, since
+  house.css is linked last and a bare `.bar-btn` loses to it.
+- `[hidden] { display: none !important }` — `.views { display: flex }` had been
+  beating the attribute. Fab English still has that bug, the bracket-shaped
+  contents marker and the 2.8:1 grey.
+
 ## Cambridge 核心單字 — the official lists, from Starters to B1 Preliminary
 
 `/cambridge/` is a hub with one page per Cambridge vocabulary list, every word
