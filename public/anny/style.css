@@ -109,7 +109,7 @@ body.zh-all .zh-chip { display: none; }
    prompts, navigation), and anything already sitting behind a deliberate reveal
    — a flipped phrase card, an opened "useful language" list — where a second
    tap would only be in the way. */
-.hint-zh, .prompt .zh, .toc .t .zh, .why .zh, .focus .zh,
+.hint-zh, .prompt .zh, .toc .t .zh, .why .zh, .focus .zh, .role-name .zh,
 .starters .zh, .frames .zh, .tick-t .zh { display: block; }
 
 .pair[data-zh] { cursor: pointer; }
@@ -831,7 +831,18 @@ body.zh-all .card-back { display: block; }
   border-radius: 12px;
 }
 .role-icon { margin: 0 0 6px; font-size: 1.4rem; line-height: 1; }
-.role-desc { margin-top: 6px; font-size: .9rem; color: var(--ink-soft); }
+
+/* The audited items are named things, not prose, so both languages show at
+   once and the name carries no 中 chip — the same decision as the focus chips.
+   On this page the list is the seven hidden blockers, and each is a sentence
+   she is meant to recognise in herself: making her tap it first would put a
+   step in front of the only question the block asks. The description below
+   stays behind a tap, and keeps the chip the name gave up. */
+.role-name { margin: 0; }
+.role-name .en { font-weight: 600; }
+.role-name .zh { font-size: .84rem; margin-top: 3px; }
+
+.role-desc { margin-top: 8px; font-size: .9rem; color: var(--ink-soft); }
 .role-btns { display: flex; gap: 6px; margin-top: 12px; }
 
 /* discussion */

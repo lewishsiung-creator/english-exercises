@@ -277,13 +277,12 @@ const BLOCKS = {
         ${b.items.map((i) => `
           <li class="role">
             <p class="role-icon" aria-hidden="true">${i.icon}</p>
-            <div class="pair" data-zh>
-              <p class="en"><strong>${text(i.en)}</strong>
-                <button class="zh-chip" title="顯示中文">中</button></p>
-              <p class="zh">${text(i.zh)}</p>
-            </div>
+            <p class="role-name">
+              <strong class="en">${text(i.en)}</strong>
+              <span class="zh">${text(i.zh)}</span>
+            </p>
             <div class="pair role-desc" data-zh>
-              <p class="en">${text(i.descEn)}</p>
+              <p class="en">${text(i.descEn)}<button class="zh-chip" title="顯示中文">中</button></p>
               <p class="zh">${text(i.descZh)}</p>
             </div>
             <div class="role-btns" role="group">
