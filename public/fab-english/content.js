@@ -33,8 +33,8 @@
 window.FAB = {
 
   intro: {
-    en: "Two hundred and eighty-eight words from the plant's own vocabulary sheet, grouped by where you meet them. Tap 中 on any line for the Chinese.",
-    zh: "廠內常用單字表的 288 個字，依使用場合分成八組。點任一行的 中 可看中文。"
+    en: "Two hundred and eighty-eight words from the plant's own vocabulary sheet, grouped by where you meet them.",
+    zh: "廠內常用單字表的 288 個字，依使用場合分成八組。"
   },
 
   groups: [

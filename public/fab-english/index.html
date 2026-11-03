@@ -34,7 +34,7 @@
 
 <header class="bar">
   <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
-    <span aria-hidden="true">☰</span> Themes 主題
+    <span aria-hidden="true">☰</span> <span id="navLab">Themes 主題</span>
   </button>
 
   <p class="bar-title">Fab English <span>半導體廠常用英文單字</span></p>
@@ -95,13 +95,9 @@
   <!-- 教學 only -->
   <div class="row" id="teachtools" hidden>
     <label>Teaching mode <em>教學模式</em></label>
-    <label class="row-check">
-      <input type="checkbox" id="exHide">
-      <span>Hide the example sentences <em>隱藏例句</em></span>
-    </label>
-    <p class="row-note">Leaves the word only, so you can ask for a sentence
-      before showing ours. Teaching mode records nothing.
-      <em>只留下單字，方便先請學生自己造句。教學模式不記錄任何東西。</em></p>
+    <p class="row-note">Teaching mode records nothing. To ask for a sentence
+      before showing ours, keep Filter → Sentences on tap.
+      <em>教學模式不記錄任何東西。想先請學生造句，可在「篩選」選「點開才看」例句。</em></p>
     <button class="panel-btn panel-btn-quiet" id="fresh">Start fresh <em>重新開始</em></button>
   </div>
 

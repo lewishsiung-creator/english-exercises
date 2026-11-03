@@ -1904,6 +1904,12 @@ English vocabulary — but names no company anywhere, and carries
 `noindex, nofollow`. Read the note in **Live sites** before pushing it:
 `noindex` keeps a page out of search results, it does not make the URL private.
 
+
+**Reworked 2026-11-03** together with `/family-law/` — one pinned row of tools
+with the rest behind Filter, sentences folded until a word is tapped, a quiz
+that takes the page, legible greys (`--ink-faint` `#5f6a80`), larger touch
+targets. The details are in the Family Law English section; the A–Z view is
+still there, under Filter.
 ## Family Law English — adult, 自學 and 教學, the English of a family case
 
 One adult learner who works with family-law cases, built 2026-11-03. Lewis
@@ -1949,8 +1955,10 @@ What is worth knowing before editing the content:
 - The UI calls the entries **terms／詞彙**, not words／單字, because so many are
   multi-word ("divorce by mutual consent"). The quiz prompts still say "word".
 
-**It no longer matches Fab English's renderer** (2026-11-03, from a UI/UX
-review Lewis asked for). What changed here and not there:
+**Its renderer was reworked on 2026-11-03** from a UI/UX review Lewis asked
+for, and the same changes were then ported to Fab English the same day, so
+the two match again apart from content, labels (terms／詞彙 vs words／單字),
+palette and storage prefix. What changed:
 
 - Only one row of tools is pinned — Terms／Quiz tabs, search, **Filter**. Theme,
   marks, order and the **Sentences** switch open behind Filter, with a count
@@ -1966,8 +1974,7 @@ review Lewis asked for). What changed here and not there:
   sizes are raised under `(pointer: coarse)` — note `.bar .bar-btn`, since
   house.css is linked last and a bare `.bar-btn` loses to it.
 - `[hidden] { display: none !important }` — `.views { display: flex }` had been
-  beating the attribute. Fab English still has that bug, the bracket-shaped
-  contents marker and the 2.8:1 grey.
+  beating the attribute, so By theme／A–Z showed during the quiz.
 
 ## Cambridge 核心單字 — the official lists, from Starters to B1 Preliminary
 

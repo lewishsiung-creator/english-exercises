@@ -133,6 +133,7 @@ const S = {
   theme: 'all',
   markf: 'all',
   q: '',
+  fold: true,            // sentences on tap (a device setting)
 };
 
 let MARKS = store.get('marks', {});     // headword -> 'k' (記住了) | 'r' (還不熟); 自學 only
@@ -165,42 +166,60 @@ function buildCover() {
       <span class="zh">廠內常用英文單字 288</span>
     </h1>
     <p class="intro">${text(FAB.intro.en)}<span class="zh">${text(FAB.intro.zh)}</span></p>
+    <p class="intro-how" id="introHow"></p>
   </header>`;
 }
 
+/* One row stays pinned under the bar: the Words／Quiz tabs, the search, and a
+   Filter button. Everything else — theme, marks, order, sentences — lives in
+   a row the Filter button opens, so on a phone the pinned chrome is one line
+   rather than four. */
 function buildTools() {
   return `
-  <div class="tools">
-    <div class="views" id="viewseg" role="group" aria-label="View 檢視">
-      <button data-view="list">Words<em>單字表</em></button>
-      <button data-view="quiz">Quiz<em>測驗</em></button>
+  <div class="tools" id="tools">
+    <div class="tools-row">
+      <div class="views tabs" id="viewseg" role="group" aria-label="View 檢視">
+        <button data-view="list">Words<em>單字</em></button>
+        <button data-view="quiz">Quiz<em>測驗</em></button>
+      </div>
+
+      <div class="search-box">
+        <span class="mag" aria-hidden="true">🔍</span>
+        <!-- type="text", not "search": the native search field draws its own
+             clear button, which would sit next to ours. -->
+        <input id="q" type="text" autocomplete="off" spellcheck="false"
+               aria-label="Search the words 搜尋單字"
+               placeholder="Search 搜尋…">
+        <button class="search-x" id="qx" hidden aria-label="Clear the search">✕</button>
+      </div>
+
+      <button class="filt-btn" id="filtBtn" aria-expanded="false" aria-controls="filters">
+        Filter<em>篩選</em><b class="filt-n" id="filtN" hidden></b>
+      </button>
     </div>
 
-    <div class="search-box">
-      <span class="mag" aria-hidden="true">🔍</span>
-      <!-- type="text", not "search": the native search field draws its own
-           clear button, which would sit next to ours. -->
-      <input id="q" type="text" autocomplete="off" spellcheck="false"
-             aria-label="Search the words 搜尋單字"
-             placeholder="Search English or 中文…">
-      <button class="search-x" id="qx" hidden aria-label="Clear the search">✕</button>
-    </div>
+    <div class="filters" id="filters" hidden>
+      <select id="themef" class="sm" aria-label="Theme 主題">
+        <option value="all">Every theme 全部主題</option>
+        ${FAB.groups.map((g, i) => `<option value="${g.id}">${num(i)} ${text(g.zh)}</option>`).join('')}
+      </select>
 
-    <select id="themef" class="sm" aria-label="Theme 主題">
-      <option value="all">Every theme 全部主題</option>
-      ${FAB.groups.map((g, i) => `<option value="${g.id}">${num(i)} ${text(g.zh)}</option>`).join('')}
-    </select>
+      <select id="markf" class="sm self-only" aria-label="Marks 標記">
+        <option value="all">All words 全部的字</option>
+        <option value="review">還不熟的</option>
+        <option value="new">還沒標記的</option>
+        <option value="known">記住了的</option>
+      </select>
 
-    <select id="markf" class="sm self-only" aria-label="Marks 標記">
-      <option value="all">All words 全部的字</option>
-      <option value="review">還不熟的</option>
-      <option value="new">還沒標記的</option>
-      <option value="known">記住了的</option>
-    </select>
+      <div class="views list-only" id="orderseg" role="group" aria-label="Order 排序">
+        <button data-order="theme">By theme<em>依主題</em></button>
+        <button data-order="az">A–Z<em>字母</em></button>
+      </div>
 
-    <div class="views" id="orderseg" role="group" aria-label="Order 排序">
-      <button data-order="theme">By theme<em>依主題</em></button>
-      <button data-order="az">A–Z<em>字母</em></button>
+      <div class="views list-only" id="exseg" role="group" aria-label="Example sentences 例句">
+        <button data-ex="fold">Sentences on tap<em>點開才看</em></button>
+        <button data-ex="all">All sentences<em>全部展開</em></button>
+      </div>
     </div>
   </div>
   <p class="search-note" id="qnote" hidden></p>`;
@@ -214,9 +233,12 @@ function buildCard(e) {
   return `
   <article class="word" data-id="${text(e.id)}">
     <div class="word-top">
-      <span class="word-w">${text(e.w)}</span>
-      <span class="word-p">${text(e.p)}</span>
-      <button class="zh-chip" aria-label="Show the Chinese for ${text(e.w)}">中</button>
+      <div class="word-head">
+        <button class="word-w" aria-expanded="false">${text(e.w)}</button>
+        <span class="word-p">${text(e.p)}</span>
+        <button class="zh-chip" aria-label="Show the Chinese for ${text(e.w)}">中</button>
+      </div>
+      <span class="caret" aria-hidden="true"></span>
       ${sayBtn(e.w + '. ' + e.ex, 'Say ' + e.w)}
     </div>
     <p class="zh zh-gloss">${text(e.zh)}</p>
@@ -372,6 +394,10 @@ function applyFilter() {
   }
 
   $('.nothing').hidden = keep.size > 0;
+
+  const n = (S.theme !== 'all') + (S.mode === 'self' && S.markf !== 'all');
+  $('#filtN').hidden = !n;
+  $('#filtN').textContent = n;
 
   const note = $('#qnote');
   const filtered = term || S.theme !== 'all' || (S.mode === 'self' && S.markf !== 'all');
@@ -679,18 +705,31 @@ function setMode(m, remember) {
   $('#selftools').hidden = S.mode !== 'self';
 
   Q.key = '';            // the pool changed, so the round is no longer valid
+  introHow();
   render();
 }
 
+/* The quiz takes the page: the cover and the contents list go, and it opens at
+   the top with the first question in view. Going back to the list returns to
+   the place in it you left. */
+let listY = 0;
+
 function setView(v) {
+  const was = S.view;
+  if (was === 'list' && v !== 'list') listY = window.scrollY;
   S.view = v;
   $$('#viewseg button').forEach((b) =>
     b.setAttribute('aria-pressed', String(b.dataset.view === v)));
   list.hidden = v !== 'list';
   quiz.hidden = v !== 'quiz';
-  $('#orderseg').hidden = v !== 'list';
+  document.body.classList.toggle('view-quiz', v === 'quiz');
   render();
+  if (was !== v) window.scrollTo(0, v === 'list' ? listY : 0);
 }
+
+/* How far down the pinned bar and tools reach, so a scroll can stop below them
+   rather than under them. */
+const pinnedBottom = () => $('#tools').getBoundingClientRect().bottom;
 
 function setOrder(o) {
   if (o === S.order) return;
@@ -718,6 +757,40 @@ function setOrder(o) {
 
 const zhToggle = $('#zhToggle');
 
+function toggleCard(card, open) {
+  const on = card.classList.toggle('open', open);
+  $('.word-w', card).setAttribute('aria-expanded', String(on));
+}
+
+/* Sentences on tap is the default: a closed card is the term and its gloss on
+   one or two lines, so 288 of them are a list you can scan rather than a
+   scroll. The choice is a device setting, like the voice. */
+function setFold(fold, remember) {
+  S.fold = fold;
+  document.body.classList.toggle('fold', fold);
+  $$('#exseg button').forEach((b) =>
+    b.setAttribute('aria-pressed', String((b.dataset.ex === 'fold') === fold)));
+  if (remember) store.set('fold', fold);
+  introHow();
+}
+
+/* The line under the intro says what a tap does, which depends on the mode
+   and on whether sentences are folded. */
+function introHow() {
+  const el = $('#introHow');
+  if (!el) return;
+  const [en, zh] = S.mode === 'teach'
+    ? (S.fold
+      ? ['Tap a word for its example sentence and the Chinese.', '點單字可看例句與中文。']
+      : ['Tap a card, or its 中, for the Chinese.', '點卡片或 中 可看中文。'])
+    : (S.fold
+      ? ['Tap a word to open its example sentence. The Chinese is on; switch it off with 中文 at the top to test yourself.',
+         '點單字可展開例句。中文目前顯示；想自我測驗時，按上方「中文」關掉。']
+      : ['The Chinese is on; switch it off with 中文 at the top to test yourself.',
+         '中文目前顯示；想自我測驗時，按上方「中文」關掉。']);
+  el.innerHTML = `${en}<span class="zh">${zh}</span>`;
+}
+
 function setAllZh(on) {
   document.body.classList.toggle('zh-all', on);
   zhToggle.setAttribute('aria-pressed', String(on));
@@ -740,7 +813,8 @@ doc.addEventListener('click', (e) => {
   const chip = t.closest('.zh-chip');
   if (chip) {
     e.stopPropagation();
-    (chip.closest('.word') || chip.closest('.zhw')).classList.toggle('open');
+    const box = chip.closest('.word');
+    if (box) toggleCard(box); else chip.closest('.zhw').classList.toggle('open');
     return;
   }
 
@@ -772,7 +846,8 @@ doc.addEventListener('click', (e) => {
     if (Q.i + 1 < Q.items.length) { Q.i++; Q.solved = false; Q.tried = new Set(); resetSpell(); }
     else Q.done = true;
     renderQuiz();
-    window.scrollTo({ top: quiz.offsetTop - 80, behavior: 'smooth' });
+    const gap = quiz.getBoundingClientRect().top - (pinnedBottom() + 10);
+    if (gap < 0) window.scrollBy(0, gap);
     return;
   }
   if (t.closest('#qagain')) { buildQuiz(); renderQuiz(); return; }
@@ -789,11 +864,25 @@ doc.addEventListener('click', (e) => {
 
   // ---- anywhere else on a card opens its Chinese
   const card = t.closest('.word');
-  if (card) card.classList.toggle('open');
+  if (card) toggleCard(card);
 });
 
 $$('#viewseg button').forEach((b) => b.addEventListener('click', () => setView(b.dataset.view)));
-$$('#orderseg button').forEach((b) => b.addEventListener('click', () => setOrder(b.dataset.order)));
+$$('#orderseg button').forEach((b) => b.addEventListener('click', () => { setOrder(b.dataset.order); applyFilter(); }));
+$$('#exseg button').forEach((b) => b.addEventListener('click', () => setFold(b.dataset.ex === 'fold', true)));
+
+const filtBtn = $('#filtBtn');
+filtBtn.addEventListener('click', () => {
+  const open = $('#filters').hidden;
+  $('#filters').hidden = !open;
+  filtBtn.setAttribute('aria-expanded', String(open));
+});
+
+/* The pinned tools change height when Filter opens; anchors and the theme
+   headings read it from here so a jump never lands under them. */
+new ResizeObserver(() => {
+  document.documentElement.style.setProperty('--tools-h', $('#tools').offsetHeight + 'px');
+}).observe($('#tools'));
 $$('#modeseg button').forEach((b) => b.addEventListener('click', () => setMode(b.dataset.mode, true)));
 
 zhToggle.addEventListener('click', () => {
@@ -803,11 +892,19 @@ zhToggle.addEventListener('click', () => {
 });
 
 const q = $('#q');
-q.addEventListener('input', () => { S.q = q.value; Q.key = ''; render(); });
+/* A filter that shortens the list must not leave you scrolled past its end:
+   bring the top of the results up under the pinned tools. */
+function toResults() {
+  const box = S.view === 'quiz' ? quiz : list;
+  const gap = box.getBoundingClientRect().top - (pinnedBottom() + 10);
+  if (gap < 0) window.scrollBy(0, gap);
+}
+
+q.addEventListener('input', () => { S.q = q.value; Q.key = ''; render(); toResults(); });
 $('#qx').addEventListener('click', () => { q.value = ''; S.q = ''; Q.key = ''; render(); q.focus(); });
 
-$('#themef').addEventListener('change', (e) => { S.theme = e.target.value; Q.key = ''; render(); });
-$('#markf').addEventListener('change', (e) => { S.markf = e.target.value; Q.key = ''; render(); });
+$('#themef').addEventListener('change', (e) => { S.theme = e.target.value; Q.key = ''; render(); toResults(); });
+$('#markf').addEventListener('change', (e) => { S.markf = e.target.value; Q.key = ''; render(); toResults(); });
 
 // ------------------------------------------------------------------- panel
 
@@ -836,10 +933,6 @@ $('#rate').addEventListener('change', () => {
 });
 $('#rate').value = store.get('rate', '0.95');
 
-$('#exHide').addEventListener('change', (e) => {
-  document.body.classList.toggle('no-ex', e.target.checked);
-});
-
 $('#unteach').addEventListener('click', () => {
   TEACHER = false;
   store.set('teacher', false);
@@ -855,14 +948,12 @@ $('#fresh').addEventListener('click', () => {
   q.value = ''; S.q = '';
   S.theme = 'all'; $('#themef').value = 'all';
   setOrder('theme');
-  $$('.word.open').forEach((c) => c.classList.remove('open'));
-  document.body.classList.remove('no-ex');
-  $('#exHide').checked = false;
+  $$('.word.open').forEach((c) => toggleCard(c, false));
   buildQuiz();
   setView('list');
   setPanel(false);
   if (canSpeak) speechSynthesis.cancel();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo(0, 0);
 });
 
 /* Clearing the marks throws away the learner's own record, so it asks once. */
@@ -917,20 +1008,35 @@ document.addEventListener('keydown', (e) => {
 /* Which theme is on screen, for the contents list. Watching a band across the
    upper third rather than the whole viewport keeps the highlight from jumping
    between two headings while scrolling. */
+const navLab = $('#navLab');
+
+function markHere(id) {
+  $$('#nav a').forEach((a) => {
+    const on = a.dataset.id === id;
+    a.classList.toggle('here', on);
+    if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+  });
+  // On a phone the contents list is hidden, so the button that opens it says
+  // where you are instead: "02 Divorce" rather than "Themes".
+  const i = FAB.groups.findIndex((g) => g.id === id);
+  navLab.textContent = i < 0 ? 'Themes 主題' : `${num(i)} ${FAB.groups[i].en}`;
+}
+
 const spy = new IntersectionObserver((rows) => {
   rows.forEach((r) => {
     if (!r.isIntersecting) return;
-    const id = r.target.dataset.id;
-    $$('#nav a').forEach((a) => a.classList.toggle('here', a.dataset.id === id));
+    markHere(r.target.classList.contains('cover') ? null : r.target.dataset.id);
   });
 }, { rootMargin: '-15% 0px -70% 0px' });
 
 $$('.sec').forEach((s) => spy.observe(s));
+spy.observe($('.cover'));
 
 // ------------------------------------------------------------------- start
 
 $('#modeseg').hidden = !TEACHER;
 $('#teacherflag').hidden = !TEACHER;
+setFold(store.get('fold', true) !== false, false);
 setView('list');
 setOrder('theme');
 $$('#orderseg button').forEach((b) =>
