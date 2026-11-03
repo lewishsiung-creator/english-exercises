@@ -1,6 +1,6 @@
-"""Read Appendix 2 (topic lists) of the A2 Key PDF and tag words.json with topics.
+"""Read the topic-list appendix of a Cambridge list PDF and tag <exam>/words.json.
 
-Usage: python -I topics.py a2key.pdf words.json
+Usage: python -I topics.py a2-key a2key.pdf
 
 Topic headings are bold lines at the left margin; the words under each run in
 four columns, so membership is all that survives (order within a topic is
@@ -12,27 +12,17 @@ import json
 import re
 import sys
 
+from pathlib import Path
+
 import fitz
 
-POS = re.compile(r'\s*\((?:n|v|adj|adv)\b[^)]*\)\s*$')
+sys.path.insert(0, str(Path(__file__).parent))   # run with -I, which leaves this folder off the path
+from exams import EXAMS  # noqa: E402
+
+POS = re.compile(r'\s*\((?:n|v|adj|adv|phr v)\b[^)]*\)\s*$')
+FOOTER = re.compile(r'UCLES|CUPA|^Page \d+ of|^(A2 Key|Key and Key|Schools|Vocabulary List|B1 Preliminary|Preliminary and|for Schools)')
 MONTHS = 'January February March April May June July August September October November December'.split()
 DAYS = 'Monday Tuesday Wednesday Thursday Friday Saturday Sunday'.split()
-# items whose wording matches no headword by rule
-BY_HAND = {
-    '(aero)/(air)plane': ['aeroplane', 'plane'],
-    'half (past)': ['half', 'past'],
-    'quarter (past/to)': ['quarter'],
-    'enter (a competition)': ['enter'],
-    'costume (swimming)': ['costume'],
-    'driving/driver’s licence': ['driving/driver’s licence'],
-    'waiter/ waitress': ['waiter', 'waitress'],
-    'a.m./p.m.': ['a.m.', 'p.m.'],
-    'piece of cake': ['piece'],
-    'kilo(gram[me])/kg': ['kilogramme (kg)'],
-    'tourist information': ['tourist information centre'],
-    'straight on': ['straight'],
-    'rucksack': [],                  # in the topic list, missing from the A-Z list
-}
 
 
 def keys(s):
@@ -50,7 +40,7 @@ def keys(s):
 def read_topics(pdf):
     doc = fitz.open(pdf)
     topics, cur = [], None
-    for pn in range(24, 32):
+    for pn in range(*X['topic_pages']):
         lines = []
         for b in doc[pn].get_text('dict')['blocks']:
             for l in b.get('lines', []):
@@ -59,22 +49,41 @@ def read_topics(pdf):
                     continue
                 t = re.sub(r'\s+', ' ', ''.join(s['text'] for s in l['spans'])).strip()
                 lines.append((l['bbox'][1], l['bbox'][0], t, spans))
-        lines.sort()
-        for y, x, t, spans in lines:
-            if 'UCLES' in t or re.match(r'Page \d+ of', t) or t.startswith(('A2 Key', 'Key and Key', 'Schools', 'Vocabulary List')):
-                continue
-            if t in ('Appendix 2', 'Topic Lists'):
-                continue
-            heading = x < 60 and all('Bold' in s['font'] for s in spans) and not POS.search(t)
-            if heading:
-                cur = {'en': t, 'items': []}
+        lines = [ln for ln in lines if not FOOTER.search(ln[2]) and ln[2] not in ('Appendix 2', 'Topic Lists')]
+        # Headings run across the page; under each, items sit in four columns. Read each
+        # column top to bottom so an item that wraps ("barbecue (n &" / "v)") stays together.
+        heads = sorted(ln for ln in lines if ln[1] < X['topic_head_x'] and all('Bold' in sp['font'] for sp in ln[3])
+                       and not POS.search(ln[2]))
+        bounds = [h[0] for h in heads] + [1e9]
+        segments = [(None, [ln for ln in lines if ln[0] < bounds[0] and ln not in heads])]
+        for i, h in enumerate(heads):
+            segments.append((h[2], [ln for ln in lines if h[0] < ln[0] < bounds[i + 1] and ln not in heads]))
+        for title, seg in segments:
+            if title:
+                cur = {'en': title, 'items': []}
                 topics.append(cur)
-            elif cur:
-                cur['items'].append(t)
+            if not cur:
+                continue
+            xs = sorted({round(ln[1]) for ln in seg})
+            col = {}
+            for x in xs:                          # columns: x positions within 40pt of each other
+                col[x] = col[x - 1] if x - 1 in col else next((col[c] for c in col if x - c < 40), len(set(col.values())))
+            items = []
+            for y, x, t, spans in sorted(seg, key=lambda ln: (col[round(ln[1])], ln[0])):
+                if items and (items[-1].count('(') > items[-1].count(')') or items[-1].endswith(('/', '–', '-'))
+                              or re.fullmatch(POS.pattern, t)):
+                    items[-1] = items[-1] + ' ' + t
+                else:
+                    items.append(t)
+            cur['items'] += items
     return topics
 
 
-def main(pdf, dest):
+def main(exam, pdf):
+    global X
+    X = EXAMS[exam]
+    BY_HAND = X.get('topic_by_hand', {})
+    dest = Path(__file__).parent / exam / 'words.json'
     words = json.load(open(dest))
     index = {}
     for i, w in enumerate(words):

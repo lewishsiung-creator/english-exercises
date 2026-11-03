@@ -3,7 +3,8 @@
    reading column where entries are divided by hairlines, not boxed.
    Type and colour follow HBR's editorial language; controls follow Apple's.
    System fonts stand in for both houses' licensed faces. The same look as the
-   Linguaskill word list, whose machinery this page shares. */
+   Linguaskill word list, whose machinery these pages share. Used by every
+   Cambridge list page under /cambridge/ except the young learners one. */
 :root {
   --paper: #ffffff;                 /* page ground */
   --sheet: #ffffff;
@@ -89,6 +90,8 @@ button:disabled { cursor: default; opacity: .4; }
 
 /* ---------- editorial opener ---------- */
 .opener { padding-block: 44px 26px; }
+.opener .up { display: inline-block; margin-bottom: 14px; color: var(--accent); font-size: 14px; text-decoration: none; }
+@media (hover: hover) { .opener .up:hover { text-decoration: underline; } }
 .kicker {
   font: 700 12px/1.2 var(--font-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--red);
 }

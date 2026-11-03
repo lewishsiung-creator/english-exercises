@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cambridge 核心單字</title>
+<meta name="description" content="Cambridge English 官方單字表，從兒童的 Starters、Movers、Flyers 到 A2 Key（KET）和 B1 Preliminary（PET）。每個字都有中文，可以聽發音、翻閃卡、做小測驗。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='12' fill='%230071e3'/%3E%3Ctext x='32' y='42' font-family='Helvetica,Arial,sans-serif' font-size='24' font-weight='700' fill='white' text-anchor='middle'%3ECE%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="lists.css">
+<style>
+/* The hub: the list pages' opener, then one tile per exam, in level order.
+   Tiles are Apple's grey tiles; the CEFR level is the HBR red kicker. */
+.exams { list-style: none; margin: 0; padding: 0 0 72px; display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); }
+.exam {
+  display: flex; flex-direction: column; gap: 10px; height: 100%;
+  background: var(--tile); border-radius: 22px; padding: 26px 26px 22px;
+  color: var(--ink); text-decoration: none; transition: transform .15s ease;
+}
+@media (hover: hover) { .exam:hover { transform: translateY(-2px); } .exam:hover .go { text-decoration: underline; } }
+.exam .kicker { margin: 0; }
+.exam h2 { margin: 0; font: 700 28px/1.12 var(--font-en); letter-spacing: -0.015em; }
+.exam .also { font: italic 16px/1.35 var(--font-en); color: var(--muted); margin-top: -4px; }
+.exam p { margin: 0; font: 15px/1.6 var(--font-zh); color: var(--muted); letter-spacing: 0; }
+.exam .facts { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: auto; padding-top: 8px; font: 13px/1.4 var(--font-zh); color: var(--muted); }
+.exam .facts b { color: var(--ink); font: 600 15px/1 var(--font-ui); font-variant-numeric: tabular-nums; margin-right: 3px; }
+.exam .mine { color: var(--ok); }
+.exam .go { color: var(--accent); font-size: 15px; }
+.foot { max-width: 40em; padding-bottom: 64px; font: 14px/1.7 var(--font-zh); color: var(--muted); letter-spacing: 0; }
+.foot a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<nav class="gnav" aria-label="網站">
+  <div class="wrap"><div class="brand">Cambridge <span>核心單字</span></div></div>
+</nav>
+
+<header class="opener wrap">
+  <div class="kicker">Cambridge English · Official Vocabulary Lists</div>
+  <h1>The words Cambridge expects, exam by exam.</h1>
+  <p class="dek">Cambridge 為每個考試公布的官方單字表，從兒童的 Starters 到 B1 Preliminary，每個字都附上中文。選一個考試開始：</p>
+</header>
+
+<main class="wrap">
+  <ul class="exams">
+    <li><a class="exam" href="young-learners/">
+      <div class="kicker">Pre A1 – A2 · 6 到 12 歲</div>
+      <h2>Starters, Movers, Flyers</h2>
+      <div class="also">Young Learners</div>
+      <p>兒童三級，同一份字表分三個等級。先聽再看：每個字都能點了聽，能畫成圖的字配上圖案。</p>
+      <div class="facts"><span><b>1,407</b>個字</span><span><b>3</b>個等級</span><span><b>362</b>個有圖</span></div>
+      <span class="go">打開 ›</span>
+    </a></li>
+    <li><a class="exam" href="a2-key/">
+      <div class="kicker">A2 · 國中</div>
+      <h2>A2 Key</h2>
+      <div class="also">KET · Key for Schools</div>
+      <p>官方字表 2025 年 8 月版。有例句的字附例句中譯，可以依主題練習、翻閃卡、自我測驗。</p>
+      <div class="facts"><span><b>1,727</b>個字</span><span><b>25</b>個主題</span><span class="mine" data-store="a2k"></span></div>
+      <span class="go">打開 ›</span>
+    </a></li>
+    <li><a class="exam" href="b1-preliminary/">
+      <div class="kicker">B1 · 國中、高中</div>
+      <h2>B1 Preliminary</h2>
+      <div class="also">PET · Preliminary for Schools</div>
+      <p>官方字表 2025 年 8 月版。和 A2 Key 同一套練習方式，字數將近兩倍，例句也更多。</p>
+      <div class="facts"><span><b data-count="b1p">3,121</b>個字</span><span><b>23</b>個主題</span><span class="mine" data-store="b1p"></span></div>
+      <span class="go">打開 ›</span>
+    </a></li>
+  </ul>
+  <p class="foot">字表來自 Cambridge English 公開的官方 PDF（© UCLES / Cambridge University Press &amp; Assessment），中文是這個網站補上的，不是官方翻譯。B2 First 以上的考試 Cambridge 沒有公布單字表，所以這裡只到 B1。</p>
+</main>
+
+<script>
+  // Each list keeps 自學 marks in this browser under its own prefix; show the count on its tile.
+  document.querySelectorAll('[data-store]').forEach(el => {
+    let n = 0;
+    try { n = Object.values(JSON.parse(localStorage.getItem(el.dataset.store + '.marks') || '{}')).filter(v => v === 'k').length; } catch (e) {}
+    if (n) el.innerHTML = `<b>${n.toLocaleString()}</b>個記住了`;
+  });
+</script>
+</body>
+</html>

@@ -23,7 +23,8 @@ a semiconductor plant's own vocabulary sheet rebuilt for one-to-one adult
 lessons at `/fab-english/`,
 listening and speaking practice built on short YouTube clips at `/video/`,
 for 國中 students, vocabulary and grammar together at `/junior-high/`, and
-Cambridge's whole A2 Key (KET) word list with Chinese at `/a2-key/`.
+Cambridge's official word lists with Chinese — Starters, Movers and Flyers,
+A2 Key, B1 Preliminary — under one hub at `/cambridge/`.
 
 One page is not English at all: `/math/` is math practice for Grades 1 to 3,
 built for a child in an American school.
@@ -1901,63 +1902,115 @@ English vocabulary — but names no company anywhere, and carries
 `noindex, nofollow`. Read the note in **Live sites** before pushing it:
 `noindex` keeps a page out of search results, it does not make the URL private.
 
-## A2 Key 單字表 — 國中, 自學 and 教學, Cambridge's official list
+## Cambridge 核心單字 — the official lists, from Starters to B1 Preliminary
 
-All 1,727 headwords of Cambridge's *A2 Key and A2 Key for Schools Vocabulary
-List*, August 2025 edition: word, part of speech, Cambridge's example phrases
-(379 of them, only where a word has several meanings), the 25 topic lists, and
-the 37 words new in 2025 (green in the PDF). Built for 國中 students preparing
-for KET, so it has the two-mode shape of the 國中 pages and the machinery of the
-Linguaskill word list: 今天這一組 flashcards with a review schedule, a four-type
-quiz with no score, 投影, the A–Z rail, one link per word (`/a2-key/#borrow`).
+`/cambridge/` is a hub with one page per Cambridge vocabulary list, every word
+with Chinese. Cambridge publishes lists up to B1 only; B2 First and above have
+none, and the hub says so.
 
-Lewis handed over the **2009** KET list first; asked, he chose Cambridge's
-current one instead. It is fetched, not kept here:
-`https://www.cambridgeenglish.org/images/506886-a2-key-2020-vocabulary-list.pdf`
-(the URL still says 2020; the file inside is August 2025).
+| Page | List | Words | Built for |
+| --- | --- | --- | --- |
+| `/cambridge/young-learners/` | Pre A1 Starters, A1 Movers, A2 Flyers (2018 syllabus) | 1,407 (495 / 399 / 513) | 6–12, the children's house rules |
+| `/cambridge/a2-key/` | A2 Key and Key for Schools, August 2025 | 1,727 | 國中, 自學 and 教學 |
+| `/cambridge/b1-preliminary/` | B1 Preliminary and Preliminary for Schools, August 2025 | 3,121 | 國中 and 高中, 自學 and 教學 |
+
+A2 Key was built first at `/a2-key/` (2026-10-25) and moved under the hub on
+2026-11-03. `/a2-key/` stays as a redirect that carries the hash, so links
+already handed out — `#borrow`, `#teach` — still land. Lewis handed over the
+**2009** KET list at the start; asked, he chose Cambridge's current one.
+
+The PDFs are fetched, not kept here:
+
+- `https://www.cambridgeenglish.org/images/506166-starters-movers-flyers-word-list-2018.pdf`
+- `https://www.cambridgeenglish.org/images/506886-a2-key-2020-vocabulary-list.pdf` (the URL says 2020; the file is August 2025)
+- `https://www.cambridgeenglish.org/images/506887-b1-preliminary-vocabulary-list.pdf`
 
 ### Where the content comes from
 
 | | Source |
 | --- | --- |
-| Words, part of speech, examples, topics, 2025 flag | Cambridge's PDF, read by `tools/a2-key/extract.py` and `topics.py` into `tools/a2-key/words.json` |
-| 中文 for every sense, 中譯 for every example, the `*mark*` on the headword in each example | written for this page, in `tools/a2-key/zh.json` |
-| Corrections, labels, Br/Am lines, word links | `tools/a2-key/build.py`, which writes `public/a2-key/words.js` |
+| A2 Key and B1: words, part of speech, examples, topics, 2025 flag | the PDF, read by `tools/cambridge/extract.py <exam> <pdf>` then `topics.py <exam> <pdf>` into `tools/cambridge/<exam>/words.json` |
+| Young learners: words, part of speech, level, topics | `tools/cambridge/young_learners.py <pdf>`, from the PDF's combined A–Z list (which marks each word S, M or F) and its thematic list |
+| 中文, 中譯, the `*mark*` on the headword in each example, the children's emoji | written for these pages, in `tools/cambridge/<exam>/zh.json` |
+| Corrections, labels, Br/Am lines, word links | `tools/cambridge/build.py <exam>` (or `young_learners.py build`), which writes `public/cambridge/<exam>/words.js` |
 
-`words.json` stays Cambridge's text as printed. Every change to it happens in
-`build.py`, and a corrected line keeps the original behind an 「已勘誤」 tag:
-*chips* (Cambridge prints "Am Eng: biscuit"), *practice*, *driving licence*
-("Br Eng" twice), *friend*'s example ("easy for her make friends"), and the
-parts of speech of *unfortunately* (adj) and *unhappy* (n).
+`exams.py` holds everything that differs between the A2 and B1 PDFs — page
+ranges, column positions — and every change made to Cambridge's text. That
+keeps `words.json` as printed; a corrected line keeps the original behind an
+「已勘誤」 tag. Corrected so far:
 
-To rebuild after editing a gloss: `python3 tools/a2-key/build.py`. To re-read
-a new edition of the PDF, run `extract.py` then `topics.py` (both need
-`pymupdf`; see the machine notes) and check that `zh.json` still lines up item
-for item — it is matched by position, not by word.
+- **A2 Key:** *chips* ("Am Eng: biscuit"), *practice*, *driving licence* ("Br Eng"
+  twice), *friend*'s example ("easy for her make friends"), the parts of speech
+  of *unfortunately* and *unhappy*.
+- **B1 Preliminary:** *suprising* (the headword's spelling), *drop*'s verb
+  example labelled (n), the parts of speech of *solve*, *unusual*, *unhappy*.
 
-### Design notes
+The B1 PDF breaks its own lines more than A2's does. `extract.py` mends what a
+rule can (a headword run into the line above it, a part of speech wrapped to
+the next line, "Please leave comments below. common (adj)"), and `exams.py`
+lists the rest by hand (`leaked`, `repair`): *border* and *communicate*, which
+ran into the end of the example above them, *digital camera*, *driver's
+licence*, *film star*, *truck*. Rerunning A2's extraction after each of those
+changes gave a byte-identical `words.json` — check that again after touching
+`extract.py`.
+
+`zh.json` is matched to `words.json` **by position**. If a new edition adds or
+splits an entry, match the old Chinese back by word before rebuilding, as was
+done when *border* and *communicate* appeared mid-translation.
+
+### A2 Key and B1 Preliminary
+
+One engine, `public/cambridge/lists.js` and `lists.css`; each exam's page only
+sets `EXAM = { url, store, newLabel }` and loads its own `words.js`. A fix there
+lands on both. The machinery is the Linguaskill word list's: 今天這一組
+flashcards with a review schedule, a four-type quiz with no score, 投影, the
+A–Z rail, one link per word (`/cambridge/a2-key/#borrow`).
 
 - **The Chinese follows Cambridge's examples, not a dictionary.** Cambridge
   gives an example only to say which meaning is tested: *bank* is 銀行, never
   河岸; *net* is 網路; *rock* is 搖滾樂. The gloss gives that meaning and
   nothing else, so a student does not learn senses the exam leaves out.
-- **British English first.** The list is British (colour, biscuit, lift, first
-  floor = 二樓), so the default voice is en-GB, and the Br/Am pairs are spelled
-  out under each word: 「英式英文；美式說 *cookie*」, or 「美式寫成」 where only
-  the spelling differs.
-- **Ranges instead of levels.** The Linguaskill page filters by CEFR level;
-  this list is one level, so the bar offers 全部 / 2025 新增, a topic menu and
-  a letter menu. 今天這一組 walks the whole list A to Z, twenty words a day.
-- **A quiz that fits a list with few sentences.** Only 252 words, about one
-  in seven, have a Cambridge example, so 填空 and 拼字 come up only for those, and the
-  rest split between 字義 and 聽力. A 填空's wrong options are forms taken from
-  Cambridge's other sentences with the same ending — *borrowed* gets *called /
-  shared / noted*, *stolen* gets *left / rang / fell* — so the tense never
-  gives the answer away, and no option is a made-up form like *feeled*.
+- **British English first.** The lists are British (colour, biscuit, lift,
+  first floor = 二樓), so the default voice is en-GB, and the Br/Am pairs are
+  spelled out under each word: 「英式英文；美式說 *cookie*」, or 「美式寫成」
+  where only the spelling differs.
+- **Ranges instead of levels.** Each list is one level, so the bar offers
+  全部 / 2025 新增, a topic menu and a letter menu. 今天這一組 walks the whole
+  list A to Z, twenty words a day.
+- **A quiz that fits a list with few sentences.** Only one word in seven has a
+  Cambridge example (A2 252, B1 467), so 填空 and 拼字 come up only for those,
+  and the rest split between 字義 and 聽力. A 填空's wrong options are forms
+  taken from Cambridge's other sentences with the same ending — *borrowed* gets
+  *called / shared / noted* — so the tense never gives the answer away.
 - Same rules as every 國中 page: 自學 shows the Chinese and keeps marks in the
-  browser only (`a2k.` prefix); 教學 hides it behind 中 chips and records
-  nothing; the plain URL is the student's, `#teach` once makes a device the
-  teacher's and is then removed from the address bar.
+  browser only (`a2k.` / `b1p.` prefixes, which the hub reads to show 「N 個記住了」
+  on each tile); 教學 hides it behind 中 chips and records nothing; the plain URL
+  is the student's, `#teach` once makes a device the teacher's and is then
+  removed from the address bar.
+- B1's 3,121 glosses were written in six batches and then read by two
+  reviewers who were not the writers; nine fixes came back (*post* had its
+  noun and verb glosses swapped). A2's were read line by line.
+
+### Starters, Movers, Flyers
+
+Its own page, built to the children's house rules rather than on the list
+engine: every card speaks when tapped; 362 words that one picture can show
+carry an emoji, and in 全部 those come first; the Chinese waits behind 中 for a
+parent or teacher (⚙ can show it all); the voice is an American young female
+(Flo, Shelley, Samantha, matched by name prefix).
+
+- **Levels are the three exams.** Each level button shows the words *new* at
+  that level; a tick adds the levels below, since a Movers candidate needs the
+  Starters words too.
+- **聽聽看，點一點** — hear a word, tap its picture (or, for readers, the word).
+  No timer, no score: a wrong tile wobbles, greys out and the word plays again;
+  the question stays until the right one is found. First tries are kept for
+  the faint ⚙, not shown to the child. A question never shows two tiles with
+  the same picture (lift / elevator, cry / sad share one) — checked across all
+  63 level-and-topic combinations.
+- Some words appear twice with different senses (*bat* the animal, *bat* for
+  sport; *letter* of the alphabet and in the mail); the topic tagging follows
+  the bracket so each lands in its own topic.
 
 ## Body Words — 國中, 自學 and 教學, the words for what the body makes
 

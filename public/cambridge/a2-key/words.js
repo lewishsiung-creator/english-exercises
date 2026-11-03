@@ -1,5 +1,5 @@
-/* A2 Key vocabulary — built by tools/a2-key/build.py from Cambridge's list (August 2025,
-   © UCLES 2025) and the Chinese in tools/a2-key/zh.json. Edit those, not this. */
+/* A2 Key vocabulary — built by tools/cambridge/build.py a2-key from Cambridge's list
+   (August 2025, © UCLES 2025) and the Chinese in tools/cambridge/a2-key/zh.json. Edit those, not this. */
 const TOPICS = [["Appliances", "家電用品"], ["Clothes and Accessories", "服裝與配件"], ["Colours", "顏色"], ["Communication and Technology", "通訊與科技"], ["Documents and Texts", "文件與文字"], ["Education", "學校與教育"], ["Entertainment and Media", "娛樂與媒體"], ["Family and Friends", "家人與朋友"], ["Food and Drink", "食物與飲料"], ["Health, Medicine and Exercise", "健康、醫療與運動"], ["Hobbies and Leisure", "嗜好與休閒"], ["House and Home", "房屋與居家"], ["Measurements", "度量單位"], ["Personal Feelings, Opinions and Experiences (adjectives)", "感受、看法與經驗（形容詞）"], ["Places: Buildings", "地點：建築物"], ["Places: Countryside", "地點：鄉間"], ["Places: Town and City", "地點：城鎮"], ["Services", "服務"], ["Shopping", "購物"], ["Sport", "運動"], ["The Natural World", "大自然"], ["Time", "時間"], ["Travel and Transport", "旅行與交通"], ["Weather", "天氣"], ["Work and Jobs", "工作與職業"]];
 // [id, word, label, spoken as, senses [[pos, 中文]], Br/Am note, examples [[en, 中譯]], topics, new in 2025, corrections]
 const RAW = [

@@ -1,12 +1,12 @@
-/* A2 Key 單字表. The machinery is the Linguaskill word list's (自學／教學, 今天這一組,
+/* Cambridge word lists (A2 Key, B1 Preliminary): one engine, each exam's page gives
+   EXAM = { url, store, newLabel } and its own words.js. The machinery is the Linguaskill word list's (自學／教學, 今天這一組,
    a four-type quiz with no score, 投影, the A–Z rail), with the levels replaced by
-   what this list has instead: Cambridge's 25 topics, the alphabet, and the words
-   new in the 2025 edition. Data is in words.js, built by tools/a2-key/build.py. */
+   what these lists have instead: Cambridge's topics, the alphabet, and the words
+   new in the 2025 edition. Data is in each exam's words.js, built by tools/cambridge/build.py. */
 
-// The page's public address; a word's own link is this plus #bank.
-const SITE_URL = 'https://english-exercises-6e4.pages.dev/a2-key/';
+// EXAM.url is the page's public address; a word's own link is that plus #bank.
 const POSZH = { n: '名詞', v: '動詞', adj: '形容詞', adv: '副詞', prep: '介系詞', det: '限定詞', pron: '代名詞', conj: '連接詞',
-  exclam: '感嘆詞', mv: '情態助動詞', av: '助動詞', 'phr v': '片語動詞', 'prep phr': '介系詞片語', 'n pl': '複數名詞', 'unc n': '不可數名詞', abbrev: '縮寫' };
+  exclam: '感嘆詞', phr: '片語', mv: '情態助動詞', av: '助動詞', 'phr v': '片語動詞', 'prep phr': '介系詞片語', 'n pl': '複數名詞', 'unc n': '不可數名詞', abbrev: '縮寫' };
 
 /* ---------- data ---------- */
 const ENTRIES = RAW.map(([id, w, lab, sayAs, senses, vari, exs, tops, isNew, fixes], n) => {
@@ -19,8 +19,8 @@ const ENTRIES = RAW.map(([id, w, lab, sayAs, senses, vari, exs, tops, isNew, fix
 
 /* ---------- device settings & self-study marks (try/catch: storage may be blocked) ---------- */
 const store = {
-  get(k, d) { try { const v = localStorage.getItem('a2k.' + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
-  set(k, v) { try { localStorage.setItem('a2k.' + k, JSON.stringify(v)); } catch (e) {} }
+  get(k, d) { try { const v = localStorage.getItem(EXAM.store + '.' + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(EXAM.store + '.' + k, JSON.stringify(v)); } catch (e) {} }
 };
 const S = {
   mode: store.get('mode', 'self'),
@@ -145,7 +145,7 @@ function fixTag(e, key) {
 const posTag = p => `<span class="pos ${p ? '' : 'none'}" title="${esc(POSZH[p] || '')}">${esc(p || '—')}</span>`;
 function headHTML(e) {
   return `<div class="head">
-    <div class="hw"><span class="w">${esc(e.w)}</span>${e.lab ? `<span class="lab">${esc(e.lab)}</span>` : ''}${sayBtn(e.sayAs, '播放 ' + esc(e.sayAs))}</div>
+    <div class="hw"><span class="w">${esc(e.w)}</span>${fixTag(e, 'word')}${e.lab ? `<span class="lab">${esc(e.lab)}</span>` : ''}${sayBtn(e.sayAs, '播放 ' + esc(e.sayAs))}</div>
     ${e.se.map((s, si) => `<div class="sense">${posTag(s.p)}<div class="sb">
       ${s.z ? `<div class="mean">${zhw(esc(s.z))}${si === 0 ? fixTag(e, 'pos') : ''}</div>` : ''}</div></div>`).join('')}
     ${e.x.length ? `<div class="exs">${e.x.map((x, xi) => `<div class="ex"><div class="en">${hl(x.en)} ${sayBtn(x.en, '播放例句')}${fixTag(e, 'x' + xi)}</div>${x.zh ? `<div class="zh">${zhw(esc(x.zh))}</div>` : ''}</div>`).join('')}</div>` : ''}
@@ -160,7 +160,7 @@ function markBtns(e) {
 function entryHTML(e) {
   const m = S.mode === 'self' ? MARKS[e.id] : '';
   return `<article class="entry ${m === 'k' ? 'known' : m === 'r' ? 'review' : ''}" id="e-${e.id}">
-    <div class="meta"><span class="tag">${letterOf(e).toUpperCase()}</span>${e.nw ? '<span class="new">2025 新增</span>' : ''}
+    <div class="meta"><span class="tag">${letterOf(e).toUpperCase()}</span>${e.nw ? `<span class="new">${EXAM.newLabel}</span>` : ''}
       ${e.t.length ? `<span class="tops">${e.t.map(t => `<span>${esc(topicZh(t))}</span>`).join('')}</span>` : ''}
       ${markBtns(e)}<button class="link copy" data-copy="${e.id}" aria-label="複製 ${esc(e.w)} 的連結">複製連結</button></div>
     <div class="body">${headHTML(e)}</div>
@@ -172,7 +172,7 @@ function where() {
   const parts = [];
   if (S.q.trim()) parts.push(`搜尋「${esc(S.q.trim())}」`);
   else {
-    parts.push(S.scope === 'new' ? '2025 新增' : '全部');
+    parts.push(S.scope === 'new' ? EXAM.newLabel : '全部');
     if (S.letter !== 'all') parts.push(S.letter.toUpperCase() + ' 開頭');
   }
   if (S.topic !== 'all') parts.push(esc(topicZh(+S.topic)));
@@ -263,7 +263,7 @@ function toast(html, ms) {
   clearTimeout(toastT); toastT = setTimeout(() => { el.hidden = true; }, ms || 2200);
 }
 function copyLink(id) {
-  const url = SITE_URL + '#' + id;
+  const url = EXAM.url + '#' + id;
   const fallback = () => {
     toast(`<span>複製這個連結：</span><input id="toasturl" readonly value="${esc(url)}" aria-label="這個字的連結">`, 9000);
     const f = $('#toasturl'); f.focus(); f.select();
@@ -327,7 +327,7 @@ function renderCards() {
     return;
   }
   $('#main').innerHTML = head + `<section class="card">
-    <div class="meta"><span class="tag">${letterOf(e).toUpperCase()}</span>${e.nw ? '<span class="new">2025 新增</span>' : ''}${set ? (isDue(e.id) ? '<span class="num" style="color:var(--warn)">複習</span>' : '<span class="num" style="color:var(--accent)">新字</span>') : markBtns(e)}</div>
+    <div class="meta"><span class="tag">${letterOf(e).toUpperCase()}</span>${e.nw ? `<span class="new">${EXAM.newLabel}</span>` : ''}${set ? (isDue(e.id) ? '<span class="num" style="color:var(--warn)">複習</span>' : '<span class="num" style="color:var(--accent)">新字</span>') : markBtns(e)}</div>
     <div class="front"><span class="w">${esc(e.w)}</span>${e.lab ? `<span class="lab">${esc(e.lab)}</span>` : ''}
       <div>${sayBtn(e.sayAs)}</div></div>
     ${D.flipped ? `<div class="back">${headHTML(e)}</div>` : `<button class="btn primary flip" id="flip">翻面</button>`}
@@ -559,7 +559,7 @@ function renderStage() {
   const zhStep = lastStep(e), v = n => P.step >= n ? '' : 'veil';
   const stepLabel = P.step >= zhStep ? '下一個字 →' : P.step === 0 && e.x.length ? '顯示例句' : '顯示中文';
   st.innerHTML = `<div class="st-top">
-      <span class="kicker">${letterOf(e).toUpperCase()}${e.t.length ? ' · ' + esc(topicZh(e.t[0])) : ''}${e.nw ? ' · 2025 新增' : ''}</span>
+      <span class="kicker">${letterOf(e).toUpperCase()}${e.t.length ? ' · ' + esc(topicZh(e.t[0])) : ''}${e.nw ? ' · ' + EXAM.newLabel : ''}</span>
       <span class="st-count">${P.i + 1} / ${P.slides.length}</span>
       ${document.fullscreenEnabled ? '<button class="link" id="st-full">全螢幕</button>' : ''}
       <button class="link" id="st-close">結束投影</button></div>
@@ -590,7 +590,7 @@ $('#stage').addEventListener('touchend', ev => {
 const NEW_COUNT = ENTRIES.filter(e => e.nw).length;
 function renderScope() {
   $('#scope').innerHTML = `<button data-scope="all" aria-pressed="${S.scope === 'all'}">全部<small>${ENTRIES.length.toLocaleString()}</small></button>` +
-    `<button data-scope="new" aria-pressed="${S.scope === 'new'}">2025 新增<small>${NEW_COUNT}</small></button>`;
+    `<button data-scope="new" aria-pressed="${S.scope === 'new'}">${EXAM.newLabel}<small>${NEW_COUNT}</small></button>`;
 }
 function render() {
   $('#modeseg').hidden = !TEACHER; $('#stagebtn').hidden = !TEACHER;

@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Starters · Movers · Flyers 單字</title>
+<meta name="description" content="Cambridge 兒童英檢 Pre A1 Starters、A1 Movers、A2 Flyers 官方字表，1,407 個字。點一下就唸給你聽，能畫成圖的字有圖，還有「聽聽看，點圖」小遊戲。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext x='32' y='48' font-size='44' text-anchor='middle'%3E%F0%9F%90%BE%3C/text%3E%3C/svg%3E">
+<style>
+/* Young learners: the house rules for children's pages. Every word speaks when
+   tapped; a picture leads wherever one exists; the Chinese waits behind 中 for
+   the parent or teacher; the game has no timer and no failure state, only
+   another try; teacher tools sit in one faint ⚙. Targets are big for tablets. */
+:root {
+  --bg: #fffaf2; --card: #ffffff; --ink: #2b2118; --muted: #74695e; --line: #eadfce;
+  --s: #e8590c; --s-soft: #fff0e6; --m: #1c6fc4; --m-soft: #e7f1fc; --f: #2b8a3e; --f-soft: #e7f6ea;
+  --lv: var(--s); --lv-soft: var(--s-soft);
+  --ok: #2b8a3e; --ok-soft: #e3f6e7; --try: #c2410c;
+  --shadow: 0 2px 0 rgb(43 33 24 / .06), 0 6px 18px rgb(43 33 24 / .06);
+  --font: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1b1712; --card: #26211b; --ink: #f6efe6; --muted: #b3a797; --line: #3a3229;
+    --s: #ff8a4c; --s-soft: #3a2416; --m: #6aaef5; --m-soft: #172a40; --f: #6fd08a; --f-soft: #16301d;
+    --ok: #6fd08a; --ok-soft: #16301d; --try: #ff9b66; --shadow: none; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1b1712; --card: #26211b; --ink: #f6efe6; --muted: #b3a797; --line: #3a3229;
+  --s: #ff8a4c; --s-soft: #3a2416; --m: #6aaef5; --m-soft: #172a40; --f: #6fd08a; --f-soft: #16301d;
+  --ok: #6fd08a; --ok-soft: #16301d; --try: #ff9b66; --shadow: none; color-scheme: dark;
+}
+body[data-lv="1"] { --lv: var(--m); --lv-soft: var(--m-soft); }
+body[data-lv="2"] { --lv: var(--f); --lv-soft: var(--f-soft); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 18px/1.45 var(--font), var(--zh); -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid var(--lv); outline-offset: 3px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-left, 0px)) 0 max(16px, env(safe-area-inset-right, 0px)); }
+
+header { padding: 22px 0 6px; }
+.up { color: var(--muted); font-size: 15px; text-decoration: none; }
+h1 { margin: 10px 0 4px; font-size: clamp(28px, 5vw, 40px); line-height: 1.1; letter-spacing: -0.01em; }
+.sub { margin: 0; color: var(--muted); font: 16px/1.6 var(--zh); }
+
+/* levels: three big buttons, each in its colour */
+.levels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 20px 0 10px; }
+.levels button {
+  border: 3px solid transparent; border-radius: 22px; background: var(--card); box-shadow: var(--shadow);
+  padding: 14px 10px; min-height: 92px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+}
+.levels b { font-size: clamp(19px, 3.4vw, 26px); }
+.levels small { color: var(--muted); font: 14px/1.3 var(--zh); }
+.levels [data-lv="0"] b { color: var(--s); } .levels [data-lv="1"] b { color: var(--m); } .levels [data-lv="2"] b { color: var(--f); }
+.levels [data-lv="0"][aria-pressed="true"] { border-color: var(--s); background: var(--s-soft); }
+.levels [data-lv="1"][aria-pressed="true"] { border-color: var(--m); background: var(--m-soft); }
+.levels [data-lv="2"][aria-pressed="true"] { border-color: var(--f); background: var(--f-soft); }
+.cumul { display: flex; align-items: center; gap: 8px; color: var(--muted); font: 15px/1.4 var(--zh); margin: 0 0 14px; }
+.cumul input { width: 22px; height: 22px; accent-color: var(--lv); }
+
+/* topics: emoji chips that wrap */
+.topics { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
+.topics button {
+  border: 2px solid var(--line); background: var(--card); border-radius: 999px; padding: 9px 15px 9px 12px; min-height: 48px;
+  font: 16px/1.2 var(--zh); display: inline-flex; align-items: center; gap: 6px;
+}
+.topics button[aria-pressed="true"] { border-color: var(--lv); background: var(--lv-soft); font-weight: 600; }
+.topics .e { font-size: 21px; line-height: 1; }
+.topics small { color: var(--muted); font-size: 13px; }
+
+/* view switch */
+.views { display: inline-flex; background: var(--line); border-radius: 18px; padding: 4px; gap: 4px; margin: 2px 0 18px; }
+.views button { border: 0; background: none; border-radius: 14px; padding: 12px 20px; min-height: 56px; font: 600 17px/1 var(--zh); color: var(--muted); }
+.views button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: var(--shadow); }
+
+.status { color: var(--muted); font: 15px/1.4 var(--zh); margin: 0 0 12px; }
+
+/* word cards */
+.grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(46%, 168px), 1fr)); padding-bottom: 90px; }
+.card { background: var(--card); border-radius: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; overflow: hidden; }
+.card .hear {
+  border: 0; background: none; padding: 18px 12px 10px; min-height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center;
+}
+.card .pic { font-size: 64px; line-height: 1; }
+.card .w { font-size: 25px; font-weight: 700; line-height: 1.15; overflow-wrap: anywhere; }
+.card .hear.nopic .w { font-size: 30px; }
+.card .note { font: 13px/1.35 var(--zh); color: var(--muted); }
+.card .note i { font-family: var(--font); font-style: normal; color: var(--ink); }
+.card .foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 10px 10px 14px; min-height: 48px; }
+.card .lvdot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.card .zh { font: 600 16px/1.35 var(--zh); text-align: right; }
+.card .zh .p { color: var(--muted); font: 12px var(--font); margin-right: 4px; font-weight: 400; }
+.chip { border: 0; background: var(--bg); color: var(--muted); border-radius: 999px; min-width: 48px; min-height: 44px; padding: 0 14px; font: 16px var(--zh); }
+.card.playing { outline: 3px solid var(--lv); }
+@media (hover: hover) { .card .hear:hover .w { color: var(--lv); } }
+
+/* the game */
+.game { background: var(--card); border-radius: 28px; box-shadow: var(--shadow); padding: clamp(20px, 4vw, 36px); text-align: center; margin-bottom: 90px; }
+.game .kind { display: inline-flex; gap: 6px; margin-bottom: 14px; }
+.game .kind button { border: 2px solid var(--line); background: none; border-radius: 999px; padding: 8px 16px; min-height: 44px; font: 15px var(--zh); color: var(--muted); }
+.game .kind button[aria-pressed="true"] { border-color: var(--lv); color: var(--ink); background: var(--lv-soft); }
+.count { color: var(--muted); font: 15px var(--zh); }
+.big { border: 0; border-radius: 999px; background: var(--lv); color: #fff; font: 700 22px/1 var(--zh); padding: 0 34px; min-height: 76px; margin: 14px 0 22px; display: inline-flex; align-items: center; gap: 12px; }
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 2.4vw, 20px); max-width: 720px; margin: 0 auto; }
+.tile {
+  border: 4px solid var(--line); background: var(--bg); border-radius: 26px; min-height: clamp(120px, 24vw, 190px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 10px;
+}
+.tile .pic { font-size: clamp(56px, 12vw, 96px); line-height: 1; }
+.tile .w { font-size: clamp(22px, 4.4vw, 34px); font-weight: 700; overflow-wrap: anywhere; }
+.tile.right { border-color: var(--ok); background: var(--ok-soft); }
+.tile.tried { opacity: .45; animation: wob .4s; }
+@keyframes wob { 20% { transform: translateX(-7px) } 50% { transform: translateX(7px) } 80% { transform: translateX(-3px) } }
+@media (prefers-reduced-motion: reduce) { .tile.tried { animation: none; } }
+.said { min-height: 64px; margin-top: 18px; font: 600 22px/1.4 var(--zh); }
+.said .en { font: 700 30px var(--font); margin-right: 10px; }
+.said .again { color: var(--try); }
+.next { border: 0; border-radius: 999px; background: var(--ok); color: #fff; font: 700 22px/1 var(--zh); min-height: 72px; padding: 0 40px; margin-top: 8px; }
+.endlist { list-style: none; padding: 0; margin: 16px auto 0; max-width: 520px; display: grid; gap: 10px; }
+.endlist button { width: 100%; border: 0; background: var(--bg); border-radius: 18px; min-height: 64px; display: flex; align-items: center; gap: 14px; padding: 0 18px; font-size: 22px; font-weight: 700; }
+.endlist .pic { font-size: 36px; }
+.empty { color: var(--muted); font: 18px/1.7 var(--zh); padding: 40px 0 100px; text-align: center; }
+
+/* teacher: one faint gear */
+.gear { position: fixed; right: max(12px, env(safe-area-inset-right, 0px)); bottom: max(12px, env(safe-area-inset-bottom, 0px)); width: 48px; height: 48px; border: 0; border-radius: 50%; background: transparent; color: var(--muted); opacity: .35; font-size: 22px; }
+.gear:hover, .gear:focus-visible { opacity: .9; }
+dialog { border: 0; border-radius: 24px; background: var(--card); color: var(--ink); padding: 26px; width: min(440px, calc(100vw - 32px)); }
+dialog::backdrop { background: rgb(0 0 0 / .35); }
+dialog h2 { margin: 0 0 6px; font-size: 22px; }
+dialog label { display: block; color: var(--muted); font: 600 13px/1.2 var(--zh); margin: 18px 0 8px; }
+dialog select, dialog input[type=range] { width: 100%; font: 16px var(--font); }
+dialog select { border: 2px solid var(--line); border-radius: 12px; padding: 10px; background: var(--bg); color: var(--ink); }
+dialog p { margin: 0; color: var(--muted); font: 15px/1.6 var(--zh); }
+dialog .row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+dialog .btn { border: 0; border-radius: 999px; background: var(--bg); padding: 12px 20px; min-height: 48px; font: 16px var(--zh); }
+dialog .btn.primary { background: var(--lv); color: #fff; }
+@media (max-width: 600px) {
+  /* one row that swipes sideways, so the words start on the first screen */
+  .topics { flex-wrap: nowrap; overflow-x: auto; margin: 0 -16px 16px; padding: 2px 16px 6px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .topics::-webkit-scrollbar { display: none; }
+  .topics button { flex: none; }
+}
+@media (max-width: 520px) {
+  .levels button { min-height: 80px; border-radius: 18px; }
+  .levels small { font-size: 13px; }
+  .card .pic { font-size: 54px; }
+  .card .w { font-size: 22px; }
+  .tiles { gap: 8px; }
+}
+</style>
+</head>
+<body data-lv="0">
+
+<div class="wrap">
+  <header>
+    <a class="up" href="../">‹ Cambridge 核心單字</a>
+    <h1>Starters · Movers · Flyers</h1>
+    <p class="sub">Cambridge 兒童英檢官方字表。點一下就唸給你聽；能畫成圖的字都有圖。中文藏在「中」後面，給爸媽和老師看。</p>
+  </header>
+
+  <div class="levels" role="group" aria-label="等級"></div>
+  <label class="cumul"><input type="checkbox" id="cumul"> <span id="cumultext">也放進前面等級的字</span></label>
+  <div class="topics" id="topics" role="group" aria-label="主題"></div>
+  <div class="views" role="group" aria-label="檢視">
+    <button data-view="cards">👀 字卡</button>
+    <button data-view="game">👂 聽聽看，點一點</button>
+  </div>
+  <main id="main"></main>
+</div>
+
+<button class="gear" id="gear" aria-label="老師設定">⚙</button>
+<dialog id="panel">
+  <h2>老師設定</h2>
+  <label for="voice">聲音</label>
+  <select id="voice"></select>
+  <label for="rate">速度 <span id="ratev"></span></label>
+  <input id="rate" type="range" min="0.5" max="1.1" step="0.05">
+  <label>中文</label>
+  <div class="row"><button class="btn" id="zhall"></button></div>
+  <label>這一輪第一次就點對的</label>
+  <p id="record">還沒有開始遊戲。</p>
+  <div class="row" style="justify-content:flex-end;margin-top:22px"><button class="btn primary" id="closepanel">關閉</button></div>
+</dialog>
+
+<script src="words.js"></script>
+<script>
+const LEVELS = [['Starters', 'Pre A1'], ['Movers', 'A1'], ['Flyers', 'A2']];
+const W = RAW.map(([id, w, note, sayAs, lv, senses, emoji, tops], n) => ({ id, w, note, sayAs, lv, se: senses, pic: emoji, t: tops, n }));
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('yl.' + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('yl.' + k, JSON.stringify(v)); } catch (e) {} }
+};
+const S = { lv: store.get('lv', 0), cumul: store.get('cumul', false), topic: 'all', view: 'cards', zhAll: store.get('zhAll', false),
+  voice: store.get('voice', ''), rate: store.get('rate', 0.8) };
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const it = s => esc(s).replace(/\*([^*]+)\*/g, '<i>$1</i>');
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+/* ---------- voice: an American young female voice first (Flo, then Shelley, then Samantha).
+   macOS localises voice names ("Flo (英文（美國）)"), so match on the start of the name. ---------- */
+let VOICES = [];
+function loadVoices() {
+  if (!('speechSynthesis' in window)) return;
+  VOICES = speechSynthesis.getVoices().filter(v => /^en[-_]/i.test(v.lang));
+  const us = VOICES.filter(v => /US/i.test(v.lang)), rest = VOICES.filter(v => !/US/i.test(v.lang));
+  $('#voice').innerHTML = '<option value="">自動（美式女聲）</option>' + us.concat(rest).map(v => `<option value="${esc(v.name)}">${esc(v.name)} · ${esc(v.lang)}</option>`).join('');
+  $('#voice').value = VOICES.some(v => v.name === S.voice) ? S.voice : '';
+}
+function pickVoice() {
+  if (S.voice) { const v = VOICES.find(v => v.name === S.voice); if (v) return v; }
+  const us = VOICES.filter(v => /en[-_]US/i.test(v.lang));
+  for (const name of ['Flo', 'Shelley', 'Samantha', 'Google US English', 'Microsoft Aria', 'Microsoft Jenny']) {
+    const v = us.find(v => v.name.startsWith(name)); if (v) return v;
+  }
+  return us[0] || VOICES[0];
+}
+function say(text) {
+  if (!('speechSynthesis' in window)) return;
+  if (!VOICES.length) loadVoices();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = pickVoice(); if (v) u.voice = v;
+  u.lang = v ? v.lang : 'en-US'; u.rate = S.rate;
+  if (speechSynthesis.speaking || speechSynthesis.pending) { speechSynthesis.cancel(); setTimeout(() => speechSynthesis.speak(u), 60); }
+  else speechSynthesis.speak(u);
+}
+if ('speechSynthesis' in window) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+
+/* ---------- which words ---------- */
+const inLevel = w => S.cumul ? w.lv <= S.lv : w.lv === S.lv;
+const pool = () => W.filter(w => inLevel(w) && (S.topic === 'all' || w.t.includes(+S.topic)));
+const zhLine = w => w.se.map(([p, z]) => `${p ? `<span class="p">${esc(p)}</span>` : ''}${esc(z)}`).join('<br>');
+
+function renderChrome() {
+  document.body.dataset.lv = S.lv;
+  $('.levels').innerHTML = LEVELS.map(([name, cefr], i) =>
+    `<button data-lv="${i}" aria-pressed="${S.lv === i}"><b>${name}</b><small>${cefr} · ${W.filter(w => w.lv === i).length} 個字</small></button>`).join('');
+  $('#cumul').checked = S.cumul; $('#cumul').parentElement.hidden = S.lv === 0;
+  $('#cumultext').textContent = S.lv === 1 ? '也放進 Starters 的字（Movers 考生也要會）' : '也放進 Starters 和 Movers 的字（Flyers 考生也要會）';
+  const inLv = W.filter(inLevel);
+  $('#topics').innerHTML = `<button data-topic="all" aria-pressed="${S.topic === 'all'}"><span class="e">✨</span>全部<small>${inLv.length}</small></button>` +
+    TOPICS.map(([en, zh, e], i) => {
+      const n = inLv.filter(w => w.t.includes(i)).length;
+      return n ? `<button data-topic="${i}" aria-pressed="${S.topic === String(i)}" title="${esc(en)}"><span class="e">${e}</span>${esc(zh)}<small>${n}</small></button>` : '';
+    }).join('');
+  document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === S.view));
+}
+
+/* ---------- 字卡: tap the card, hear the word ---------- */
+let shown = 60;
+function renderCards() {
+  // in 全部, words with a picture come first, so a young child starts on cat and apple, not a and about
+  const list = S.topic === 'all' ? pool().sort((a, b) => !a.pic - !b.pic || a.n - b.n) : pool();
+  $('#main').innerHTML = `<p class="status">${list.length} 個字・點卡片聽發音</p><div class="grid">` +
+    list.slice(0, shown).map(cardHTML).join('') + `</div>` +
+    (list.length > shown ? `<div style="text-align:center;margin:-70px 0 90px"><button class="chip" id="more" style="min-height:56px;padding:0 28px">再多看一些</button></div>` : '');
+}
+function cardHTML(w) {
+  const lvc = ['var(--s)', 'var(--m)', 'var(--f)'][w.lv];
+  return `<article class="card" id="c-${w.id}">
+    <button class="hear ${w.pic ? '' : 'nopic'}" data-say="${esc(w.sayAs)}" aria-label="聽 ${esc(w.w)}">
+      ${w.pic ? `<span class="pic" aria-hidden="true">${w.pic}</span>` : ''}<span class="w">${esc(w.w)}</span>${w.note ? `<span class="note">${it(w.note)}</span>` : ''}
+    </button>
+    <div class="foot"><span class="lvdot" style="background:${lvc}" title="${LEVELS[w.lv][0]}"></span>
+      ${S.zhAll ? `<span class="zh">${zhLine(w)}</span>` : `<button class="chip" data-zh="${w.n}" aria-label="顯示中文">中</button>`}</div>
+  </article>`;
+}
+
+/* ---------- 聽聽看，點一點: hear a word, tap its picture (or, for readers, the word). No timer, no score:
+   a wrong tile wobbles and greys out, the question stays until the right one is found. First tries are
+   kept for the teacher's ⚙, not shown to the child. ---------- */
+const G = { kind: store.get('kind', 'pic'), items: [], i: 0, tried: new Set(), solved: false, first: [], key: '' };
+function gameKey() { return [S.lv, S.cumul, S.topic, G.kind].join('|'); }
+function buildGame() {
+  const src = pool().filter(w => G.kind === 'pic' ? w.pic : true);
+  G.items = []; G.i = 0; G.first = []; G.key = gameKey(); G.tried = new Set(); G.solved = false;
+  if (src.length < 3) return;
+  for (const w of shuffle(src).slice(0, 10)) {
+    // three tiles that cannot be confused: different pictures, different words, different sound
+    const look = x => G.kind === 'pic' ? x.pic : x.w.toLowerCase();
+    const others = [];
+    for (const o of shuffle(src)) {
+      if (o === w || look(o) === look(w) || o.sayAs.toLowerCase() === w.sayAs.toLowerCase() || others.some(x => look(x) === look(o))) continue;
+      others.push(o); if (others.length === 2) break;
+    }
+    if (others.length === 2) G.items.push({ w, opts: shuffle([w, ...others]) });
+  }
+}
+function renderGame() {
+  if (G.key !== gameKey()) buildGame();
+  const kinds = `<div class="kind" role="group" aria-label="題型"><button data-kind="pic" aria-pressed="${G.kind === 'pic'}">🖼️ 點圖</button><button data-kind="word" aria-pressed="${G.kind === 'word'}">🔤 點字</button></div>`;
+  if (!G.items.length) {
+    $('#main').innerHTML = `<section class="game">${kinds}<p class="empty" style="padding:20px 0">${G.kind === 'pic' ? '這裡能畫成圖的字不夠三個。<br>換一個主題，或改成「點字」。' : '這裡的字不夠三個，換一個主題吧。'}</p></section>`;
+    return;
+  }
+  if (G.i >= G.items.length) return renderEnd(kinds);
+  const q = G.items[G.i];
+  $('#main').innerHTML = `<section class="game">${kinds}
+    <div class="count">${G.i + 1} / ${G.items.length}</div>
+    <button class="big" data-say="${esc(q.w.sayAs)}" aria-label="再聽一次">🔊 再聽一次</button>
+    <div class="tiles">${q.opts.map((o, k) => {
+      const cls = G.solved && o === q.w ? 'right' : G.tried.has(k) ? 'tried' : '';
+      return `<button class="tile ${cls}" data-tile="${k}" ${G.solved ? 'disabled' : ''} aria-label="${G.kind === 'pic' ? '圖 ' + (k + 1) : esc(o.w)}">
+        ${G.kind === 'pic' ? `<span class="pic" aria-hidden="true">${o.pic}</span>` : ''}${G.kind === 'word' || (G.solved && o === q.w) ? `<span class="w">${esc(o.w)}</span>` : ''}</button>`;
+    }).join('')}</div>
+    <div class="said">${G.solved ? `<span class="en">${esc(q.w.w)}</span>${esc(q.w.se.map(s => s[1]).join('；'))}` : G.tried.size ? '<span class="again">再聽一次，再試試看！</span>' : ''}</div>
+    ${G.solved ? `<button class="next" id="next">${G.i + 1 < G.items.length ? '下一個 →' : '做完了！'}</button>` : ''}
+  </section>`;
+}
+function renderEnd(kinds) {
+  const again = G.first.filter(r => !r.ok).map(r => r.w);
+  $('#main').innerHTML = `<section class="game">${kinds}
+    <div style="font-size:72px">🎉</div><h2 style="margin:6px 0 4px;font-size:30px">做完了！</h2>
+    ${again.length ? `<p class="sub">這幾個字再聽一次：</p><ul class="endlist">${again.map(w =>
+      `<li><button data-say="${esc(w.sayAs)}">${w.pic ? `<span class="pic">${w.pic}</span>` : ''}${esc(w.w)}</button></li>`).join('')}</ul>` : '<p class="sub">每一個都找到了！</p>'}
+    <button class="next" id="again" style="margin-top:22px">再玩一次</button>
+  </section>`;
+}
+function tapTile(k) {
+  const q = G.items[G.i]; if (!q || G.solved || G.tried.has(k)) return;
+  const firstTry = G.tried.size === 0;
+  if (q.opts[k] === q.w) {
+    G.solved = true;
+    if (firstTry || !G.first.some(r => r.w === q.w)) G.first.push({ w: q.w, ok: firstTry });
+    say(q.w.sayAs);
+  } else {
+    G.tried.add(k);
+    if (firstTry) G.first.push({ w: q.w, ok: false });
+    setTimeout(() => say(q.w.sayAs), 350);   // hear it again, and try again
+  }
+  renderGame();
+}
+
+/* ---------- render, events ---------- */
+function render() {
+  renderChrome();
+  if (S.view === 'cards') renderCards(); else renderGame();
+  if (S.view === 'game' && G.items[G.i] && !G.solved && !G.tried.size) say(G.items[G.i].w.sayAs);
+}
+document.addEventListener('click', ev => {
+  const t = ev.target.closest('button'); if (!t) return;
+  if (t.dataset.say != null) {
+    say(t.dataset.say);
+    const c = t.closest('.card'); if (c) { document.querySelectorAll('.card.playing').forEach(x => x.classList.remove('playing')); c.classList.add('playing'); }
+    return;
+  }
+  if (t.dataset.zh != null) { t.outerHTML = `<span class="zh">${zhLine(W[+t.dataset.zh])}</span>`; return; }
+  if (t.dataset.lv != null && t.closest('.levels')) { S.lv = +t.dataset.lv; store.set('lv', S.lv); S.topic = 'all'; shown = 60; render(); return; }
+  if (t.dataset.topic != null) { S.topic = t.dataset.topic; shown = 60; render(); return; }
+  if (t.dataset.view) { S.view = t.dataset.view; render(); return; }
+  if (t.dataset.kind) { G.kind = t.dataset.kind; store.set('kind', G.kind); render(); return; }
+  if (t.dataset.tile != null) { tapTile(+t.dataset.tile); return; }
+  switch (t.id) {
+    case 'more': shown += 60; renderCards(); break;
+    case 'next': G.i++; G.tried = new Set(); G.solved = false; renderGame(); if (G.items[G.i]) say(G.items[G.i].w.sayAs); break;
+    case 'again': G.key = ''; render(); break;
+    case 'gear': openPanel(); break;
+    case 'closepanel': $('#panel').close(); break;
+    case 'zhall': S.zhAll = !S.zhAll; store.set('zhAll', S.zhAll); t.textContent = S.zhAll ? '字卡上直接顯示中文（按一下改回藏起來）' : '中文藏在「中」後面（按一下改成直接顯示）'; if (S.view === 'cards') renderCards(); break;
+  }
+});
+$('#cumul').addEventListener('change', ev => { S.cumul = ev.target.checked; store.set('cumul', S.cumul); S.topic = 'all'; render(); });
+$('#voice').addEventListener('change', ev => { S.voice = ev.target.value; store.set('voice', S.voice); say('Hello! This is my voice.'); });
+$('#rate').addEventListener('input', ev => { S.rate = +ev.target.value; store.set('rate', S.rate); $('#ratev').textContent = '×' + S.rate.toFixed(2); });
+function openPanel() {
+  $('#rate').value = S.rate; $('#ratev').textContent = '×' + (+S.rate).toFixed(2);
+  $('#zhall').textContent = S.zhAll ? '字卡上直接顯示中文（按一下改回藏起來）' : '中文藏在「中」後面（按一下改成直接顯示）';
+  const r = G.first;
+  $('#record').innerHTML = r.length
+    ? `${r.filter(x => x.ok).length} / ${r.length} 個第一次就點對。` + (r.some(x => !x.ok) ? `<br>第一次沒點對：${r.filter(x => !x.ok).map(x => esc(x.w.w)).join('、')}` : '')
+    : '還沒有開始遊戲。';
+  $('#panel').showModal();
+}
+render();
+</script>
+</body>
+</html>

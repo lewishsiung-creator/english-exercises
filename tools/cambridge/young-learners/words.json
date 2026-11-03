@@ -1,0 +1,11800 @@
+[
+ {
+  "word": "a",
+  "pos": "det",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "about",
+  "pos": "prep",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "above",
+  "pos": "prep",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "across",
+  "pos": "prep",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "act",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "actor",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "actually",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "add",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "address",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "adventure",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "a few",
+  "pos": "det",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "afraid",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "after",
+  "pos": "prep",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "after",
+  "pos": "adv + conj",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "afternoon",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "again",
+  "pos": "adv",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "age",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "ago",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "agree",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "air",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "airport",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions",
+   "Work"
+  ]
+ },
+ {
+  "word": "Alex",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "Alice",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "alien",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Toys"
+  ]
+ },
+ {
+  "word": "a little",
+  "pos": "adv + det",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "all",
+  "pos": "adj + adv + det + pron",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "all right",
+  "pos": "adj + adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "alone",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "along",
+  "pos": "prep",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "a lot",
+  "pos": "adv + pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "a lot of",
+  "pos": "det",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "alphabet",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "already",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "also",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "always",
+  "pos": "adv",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "a.m.",
+  "pos": "",
+  "note": "(for time)",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "amazing",
+  "pos": "adj + excl",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "ambulance",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Transport",
+   "Work"
+  ]
+ },
+ {
+  "word": "an",
+  "pos": "det",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "and",
+  "pos": "conj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "angry",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "animal",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "Ann/Anna",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "another",
+  "pos": "det + pron",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "answer",
+  "pos": "n + v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "any",
+  "pos": "det + pron",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "anyone",
+  "pos": "pron",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "anything",
+  "pos": "pron",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "anywhere",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "apartment",
+  "pos": "n",
+  "note": "(UK flat)",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "app",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "appear",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "apple",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "April",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "arm",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "armchair",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "around",
+  "pos": "prep",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "arrive",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "art",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "artist",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "as",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "as … as",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "ask",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "asleep",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "astronaut",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "at",
+  "pos": "prep",
+  "note": "of place",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "at",
+  "pos": "prep",
+  "note": "of time",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "at the moment",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "August",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "aunt",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "autumn",
+  "pos": "n",
+  "note": "(US fall)",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "awake",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "away",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "baby",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "back",
+  "pos": "adj + adv + n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "backpack",
+  "pos": "n",
+  "note": "(UK rucksack)",
+  "level": "F",
+  "topics": [
+   "School",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "bad",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "badly",
+  "pos": "adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "badminton",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "bag",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "balcony",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "ball",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure",
+   "Toys"
+  ]
+ },
+ {
+  "word": "balloon",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Toys"
+  ]
+ },
+ {
+  "word": "banana",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "bandage",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "band (music)",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "bank",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "baseball",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure",
+   "Toys"
+  ]
+ },
+ {
+  "word": "baseball cap",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "basement",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "basketball",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure",
+   "Toys"
+  ]
+ },
+ {
+  "word": "bat",
+  "pos": "n",
+  "note": "(as sports equipment)",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "bat",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "bath",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "bathroom",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "be",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "beach",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure",
+   "The world around us"
+  ]
+ },
+ {
+  "word": "bean",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "bear",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "beard",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "beautiful",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "be called",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "because",
+  "pos": "conj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "bed",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "bedroom",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "bee",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "beetle",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "before",
+  "pos": "prep",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "before",
+  "pos": "adv + conj",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "begin",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "behind",
+  "pos": "prep",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "believe",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "below",
+  "pos": "prep",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "belt",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "Ben",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "best",
+  "pos": "adj + adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "better",
+  "pos": "adj + adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "Betty",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "between",
+  "pos": "prep",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "bicycle",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "big",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "bike",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure",
+   "Toys",
+   "Transport"
+  ]
+ },
+ {
+  "word": "Bill",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "bin",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "bird",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "birthday",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "biscuit",
+  "pos": "n",
+  "note": "(US cookie)",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "bit",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "black",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Colours"
+  ]
+ },
+ {
+  "word": "blanket",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "blond(e)",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "blue",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Colours"
+  ]
+ },
+ {
+  "word": "board",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "board game",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Toys"
+  ]
+ },
+ {
+  "word": "boat",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure",
+   "Toys",
+   "Transport"
+  ]
+ },
+ {
+  "word": "body",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "book",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "bookcase",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "School"
+  ]
+ },
+ {
+  "word": "bookshop",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "boots",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "bored",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "boring",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "borrow",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "both",
+  "pos": "det + pron",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "bottle",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "bottom",
+  "pos": "adj + n",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "bounce",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "bowl",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "box",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "boy",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "bracelet",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "brave",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "bread",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "break",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "break",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "breakfast",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "bridge",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions",
+   "The world around us"
+  ]
+ },
+ {
+  "word": "brilliant",
+  "pos": "adj + excl",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "bring",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "broken",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "brother",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "brown",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Colours"
+  ]
+ },
+ {
+  "word": "brush",
+  "pos": "n + v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "build",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "building",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions",
+   "The world around us"
+  ]
+ },
+ {
+  "word": "burger",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "burn",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "bus",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "business",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "businessman/woman",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Family & friends",
+   "Work"
+  ]
+ },
+ {
+  "word": "bus station",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions",
+   "Transport"
+  ]
+ },
+ {
+  "word": "bus stop",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions",
+   "Transport"
+  ]
+ },
+ {
+  "word": "busy",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "but",
+  "pos": "conj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "butter",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "butterfly",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "buy",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "by",
+  "pos": "prep",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "bye",
+  "pos": "excl",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "by myself",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "by yourself",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "café",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "cage",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "cake",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "calendar",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "call",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "camel",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "camera",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "camp",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "can",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "candy",
+  "pos": "n",
+  "note": "(UK sweet(s))",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "car",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Toys",
+   "Transport"
+  ]
+ },
+ {
+  "word": "card",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Materials"
+  ]
+ },
+ {
+  "word": "careful",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "carefully",
+  "pos": "adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "car park",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "carrot",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "carry",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "cartoon",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "castle",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions",
+   "The world around us"
+  ]
+ },
+ {
+  "word": "cat",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "catch",
+  "pos": "v",
+  "note": "(e.g. a ball)",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "catch",
+  "pos": "v",
+  "note": "(e.g. a bus)",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "cave",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "CD",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "centre",
+  "pos": "n",
+  "note": "(US center)",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "century",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "cereal",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "chair",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "change",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "channel",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "Charlie",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "chat",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "cheap",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "cheese",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "chemist('s)",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Health",
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "chess",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "chicken",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals",
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "child/children",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "chips",
+  "pos": "n",
+  "note": "(US fries)",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "chocolate",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "choose",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "chopsticks",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "cinema",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "circle",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "circus",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions",
+   "Work"
+  ]
+ },
+ {
+  "word": "city",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions",
+   "The world around us"
+  ]
+ },
+ {
+  "word": "city/town centre",
+  "pos": "n",
+  "note": "(US center)",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "clap",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "Clare",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "class",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "classmate",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "classroom",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "clean",
+  "pos": "adj + v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "clever",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "climb",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "clock",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "Time"
+  ]
+ },
+ {
+  "word": "close",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "closed",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "clothes",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "cloud",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Weather"
+  ]
+ },
+ {
+  "word": "cloudy",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Weather"
+  ]
+ },
+ {
+  "word": "clown",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "club",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions",
+   "School"
+  ]
+ },
+ {
+  "word": "coat",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "coconut",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "coffee",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "cold",
+  "pos": "adj + n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "collect",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "college",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions",
+   "School"
+  ]
+ },
+ {
+  "word": "colour",
+  "pos": "n + v",
+  "note": "(US color)",
+  "level": "S",
+  "topics": [
+   "Colours",
+   "School"
+  ]
+ },
+ {
+  "word": "comb",
+  "pos": "n + v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "come",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "come on",
+  "pos": "excl",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "comic",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "comic book",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "competition",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "complete",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "computer",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "School"
+  ]
+ },
+ {
+  "word": "concert",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "conversation",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "cook",
+  "pos": "n + v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "cooker",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "cookie",
+  "pos": "n",
+  "note": "(UK biscuit)",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "cool",
+  "pos": "adj + excl",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "corner",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "correct",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "costume",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "cough",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "could",
+  "pos": "v",
+  "note": "(as in past of can for ability)",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "could",
+  "pos": "v",
+  "note": "(for possibility)",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "count",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "country",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "countryside",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "cousin",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "cow",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "crayon",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "creature",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "crocodile",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "cross",
+  "pos": "n + v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "crown",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "cry",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "cup",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "cupboard",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "School"
+  ]
+ },
+ {
+  "word": "curly",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "cushion",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "cut",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "cycle",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "dad",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "Daisy",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "Dan",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "dance",
+  "pos": "n + v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "dangerous",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "dark",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "date",
+  "pos": "n",
+  "note": "(as in time)",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "daughter",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "David",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "day",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "dear",
+  "pos": "adj",
+  "note": "(as in Dear Harry)",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "December",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "decide",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "deep",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "delicious",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "dentist",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health",
+   "Work"
+  ]
+ },
+ {
+  "word": "desert",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "design",
+  "pos": "n + v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "designer",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "desk",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "School"
+  ]
+ },
+ {
+  "word": "diary",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "dictionary",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "difference",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "different",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "difficult",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "dining room",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "dinner",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "dinosaur",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "dirty",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "disappear",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "do",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "doctor",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health",
+   "Work"
+  ]
+ },
+ {
+  "word": "dog",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "doll",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "Sports & leisure",
+   "Toys"
+  ]
+ },
+ {
+  "word": "dolphin",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "donkey",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "don’t worry",
+  "pos": "excl",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "door",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "School"
+  ]
+ },
+ {
+  "word": "double",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "down",
+  "pos": "adv + prep",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "downstairs",
+  "pos": "adv + n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "draw",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "drawing",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "dream",
+  "pos": "n + v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "dress",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "dress up",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "drink",
+  "pos": "n + v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "drive",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure",
+   "Transport"
+  ]
+ },
+ {
+  "word": "drive",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure",
+   "Transport"
+  ]
+ },
+ {
+  "word": "driver",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Transport",
+   "Work"
+  ]
+ },
+ {
+  "word": "drop",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "drum",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "dry",
+  "pos": "adj + v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "duck",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "during",
+  "pos": "prep",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "DVD",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "each",
+  "pos": "det + pron",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "eagle",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "ear",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "earache",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "early",
+  "pos": "adj + adv",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "Earth",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "east",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "easy",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "eat",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "e-book",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "egg",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "elbow",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "elephant",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "elevator",
+  "pos": "n",
+  "note": "(UK lift)",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "else",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "email",
+  "pos": "n + v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "Emma",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "empty",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "end",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Places & directions",
+   "Time"
+  ]
+ },
+ {
+  "word": "end",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions",
+   "Time"
+  ]
+ },
+ {
+  "word": "engine",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "engineer",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "English",
+  "pos": "adj + n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "enjoy",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "enormous",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "enough",
+  "pos": "adj + pron",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "enter (a competition)",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "entrance",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home",
+   "The world around us"
+  ]
+ },
+ {
+  "word": "envelope",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "environment",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "eraser",
+  "pos": "n",
+  "note": "(UK rubber)",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "Eva",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "evening",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "ever",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "every",
+  "pos": "det",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "everyone",
+  "pos": "pron",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "everything",
+  "pos": "pron",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "everywhere",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "example",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "excellent",
+  "pos": "adj + excl",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "excited",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "exciting",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "excuse me",
+  "pos": "dis",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "exit",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "expensive",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "explain",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "explore",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "extinct",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "eye",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "face",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "factory",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions",
+   "Work"
+  ]
+ },
+ {
+  "word": "fair",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "fall",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "fall",
+  "pos": "n",
+  "note": "(UK autumn)",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "fall over",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "family",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "famous",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "fantastic",
+  "pos": "adj + excl",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "far",
+  "pos": "adj + adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "farm",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "farmer",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "fast",
+  "pos": "adj + adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "fat",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "father",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "favourite",
+  "pos": "adj",
+  "note": "(US favorite)",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "February",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "feed",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "feel",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "festival",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "fetch",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "field",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "file",
+  "pos": "n",
+  "note": "(as in open and close a file)",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "film",
+  "pos": "n + v",
+  "note": "(US movie)",
+  "level": "M",
+  "topics": [
+   "Sports & leisure",
+   "Work"
+  ]
+ },
+ {
+  "word": "film star",
+  "pos": "n",
+  "note": "(US movie star)",
+  "level": "M",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "find",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "find out",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "fine",
+  "pos": "adj + excl",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "finger",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "finish",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "fire",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "fire engine",
+  "pos": "n",
+  "note": "(US fire truck)",
+  "level": "F",
+  "topics": [
+   "Transport",
+   "Work"
+  ]
+ },
+ {
+  "word": "fire fighter",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "fire station",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "first",
+  "pos": "adj + adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "fish",
+  "pos": "n",
+  "note": "(singular + plural)",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "fish",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Animals",
+   "Food & drink",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "fishing",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "fix",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "flag",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "flashlight",
+  "pos": "n",
+  "note": "(UK torch)",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "flat",
+  "pos": "n",
+  "note": "(US apartment)",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "floor",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "floor",
+  "pos": "n",
+  "note": "(e.g. ground, 1st, etc.)",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "flour",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "flower",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "fly",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals",
+   "Sports & leisure",
+   "Transport"
+  ]
+ },
+ {
+  "word": "fly",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Animals",
+   "Sports & leisure",
+   "Transport"
+  ]
+ },
+ {
+  "word": "fog",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Weather"
+  ]
+ },
+ {
+  "word": "foggy",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Weather"
+  ]
+ },
+ {
+  "word": "follow",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "food",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "football",
+  "pos": "n",
+  "note": "(US soccer)",
+  "level": "S",
+  "topics": [
+   "Sports & leisure",
+   "Toys"
+  ]
+ },
+ {
+  "word": "foot/feet",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "for",
+  "pos": "prep",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "for",
+  "pos": "prep",
+  "note": "of time",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "forest",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "forget",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "fork",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "Frank",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "Fred",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "Friday",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "fridge",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "friend",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "friendly",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "fries",
+  "pos": "n",
+  "note": "(UK chips)",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "frightened",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "frightening",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "frog",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "from",
+  "pos": "prep",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "front",
+  "pos": "adj + n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "fruit",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "full",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "fun",
+  "pos": "adj + n",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "funfair",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "funny",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "fur",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "furry",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "future",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time",
+   "The world around us"
+  ]
+ },
+ {
+  "word": "game",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure",
+   "Toys"
+  ]
+ },
+ {
+  "word": "garden",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "gate",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "geography",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "George",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "get",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "get dressed",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "get off",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "get on",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "get to",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "get undressed",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "get up",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "giraffe",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "girl",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "give",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "glass",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink",
+   "Materials"
+  ]
+ },
+ {
+  "word": "glass",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink",
+   "Materials"
+  ]
+ },
+ {
+  "word": "glasses",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "glove",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "glue",
+  "pos": "n + v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "go",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "goal",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "goat",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "go away",
+  "pos": "excl",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "gold",
+  "pos": "adj + n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Colours",
+   "Materials"
+  ]
+ },
+ {
+  "word": "golf",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "good",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "goodbye",
+  "pos": "excl",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "go out",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "go shopping",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "go to bed",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "go to sleep",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "Grace",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "granddaughter",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "grandfather",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "grandma",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "grandmother",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "grandpa",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "grandparent",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "grandson",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "grape",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "grass",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "gray",
+  "pos": "adj",
+  "note": "(UK grey)",
+  "level": "S",
+  "topics": [
+   "Colours"
+  ]
+ },
+ {
+  "word": "great",
+  "pos": "adj + excl",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "green",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Colours"
+  ]
+ },
+ {
+  "word": "grey",
+  "pos": "adj",
+  "note": "(US gray)",
+  "level": "S",
+  "topics": [
+   "Colours"
+  ]
+ },
+ {
+  "word": "ground",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "group",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "grow",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "grown-up",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "guess",
+  "pos": "n + v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "guitar",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "gym",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "hair",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "half",
+  "pos": "adj + n",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "hall",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "hand",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "handbag",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "happen",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "happy",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "hard",
+  "pos": "adj + adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "Harry",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "hat",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "hate",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "have",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "have got",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "have (got) to",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "he",
+  "pos": "pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "head",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "headache",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "hear",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "heavy",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "Helen",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "helicopter",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Toys",
+   "Transport"
+  ]
+ },
+ {
+  "word": "hello",
+  "pos": "excl",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "helmet",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "help",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "her",
+  "pos": "poss adj + pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "here",
+  "pos": "adv",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "hers",
+  "pos": "pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "hi",
+  "pos": "excl",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "hide",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "high",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "hill",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "him",
+  "pos": "pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "hippo",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "his",
+  "pos": "poss adj + pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "history",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "hit",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "hobby",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "hockey",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "hold",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "hole",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "holiday",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "Holly",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "home",
+  "pos": "n + adv",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "homework",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "honey",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "hooray",
+  "pos": "excl",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "hop",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "hope",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "horrible",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "horse",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "hospital",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health",
+   "Places & directions",
+   "Work"
+  ]
+ },
+ {
+  "word": "hot",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "hotel",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "hour",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "house",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "how",
+  "pos": "int",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "how",
+  "pos": "adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "how long",
+  "pos": "adv + int",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "how many",
+  "pos": "int",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "how much",
+  "pos": "adv + int",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "how often",
+  "pos": "adv + int",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "how old",
+  "pos": "int",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "huge",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "Hugo",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "hundred",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Numbers"
+  ]
+ },
+ {
+  "word": "hungry",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "hurry",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "hurt",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "husband",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "I",
+  "pos": "pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "ice",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Weather"
+  ]
+ },
+ {
+  "word": "ice cream",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "ice skates",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "ice skating",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "idea",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "if",
+  "pos": "conj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "if you want",
+  "pos": "excl",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "ill",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "important",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "improve",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "in",
+  "pos": "prep",
+  "note": "of place + time",
+  "level": "S",
+  "topics": [
+   "Places & directions",
+   "Time"
+  ]
+ },
+ {
+  "word": "in a minute",
+  "pos": "excl",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "information",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "in front of",
+  "pos": "prep",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "insect",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "inside",
+  "pos": "adv + n + prep",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "instead",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "instrument",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "interested",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "interesting",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "internet",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "into",
+  "pos": "prep",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "invent",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "invitation",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "invite",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "island",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "it",
+  "pos": "pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "its",
+  "pos": "poss adj + pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "Jack",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "jacket",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "jam",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "Jane",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "January",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "jeans",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "jellyfish",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "Jill",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "Jim",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "job",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "join (a club)",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "journalist",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "journey",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "juice",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "Julia",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "July",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "jump",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "June",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "jungle",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "just",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "kangaroo",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "Katy",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "keep",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "key",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "keyboard (computer)",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "kick",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "kick",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "kid",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "kilometre",
+  "pos": "n",
+  "note": "(US kilometer)",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "Kim",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "kind",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "kind",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "king",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "kitchen",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "kite",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "kitten",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "kiwi",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "knee",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "knife",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "know",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "lake",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "lamp",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "land",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "language",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "laptop",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "large",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "last",
+  "pos": "adj + adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "late",
+  "pos": "adj + adv",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "later",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "laugh",
+  "pos": "n + v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "lazy",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "leaf/leaves",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "learn",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "leave",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "left",
+  "pos": "adj + n",
+  "note": "(as in direction)",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "leg",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "lemon",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "lemonade",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "lesson",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "let",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "let’s",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "letter",
+  "pos": "n",
+  "note": "(as in alphabet)",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "letter",
+  "pos": "n",
+  "note": "(as in mail)",
+  "level": "F",
+  "topics": [
+   "The home",
+   "School"
+  ]
+ },
+ {
+  "word": "library",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "lie",
+  "pos": "v",
+  "note": "(as in lie down)",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "lift",
+  "pos": "n",
+  "note": "(US elevator)",
+  "level": "M",
+  "topics": [
+   "The home",
+   "Transport"
+  ]
+ },
+ {
+  "word": "lift",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "lift (ride)",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "light",
+  "pos": "adj + n",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "like",
+  "pos": "prep + v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "Lily",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "lime",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "line",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "lion",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "listen",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "little",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "live",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "living room",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "lizard",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "London",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "long",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "look",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "look after",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "look at",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "look for",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "look like",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "lorry",
+  "pos": "n",
+  "note": "(US truck)",
+  "level": "S",
+  "topics": [
+   "Toys",
+   "Transport"
+  ]
+ },
+ {
+  "word": "lose",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "lots",
+  "pos": "adv + pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "lots of",
+  "pos": "det",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "loud",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "loudly",
+  "pos": "adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "love",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "lovely",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "low",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "lucky",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "Lucy",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "lunch",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "machine",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "magazine",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "make",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "make sure",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "manager",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "mango",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "man/men",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "many",
+  "pos": "det",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "map",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "March",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "Mark",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "market",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "married",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "Mary",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "mat",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "match (football)",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "maths",
+  "pos": "n",
+  "note": "(US math)",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "Matt",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "matter",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "May",
+  "pos": "n",
+  "note": "(as in girl’s name)",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "May",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names",
+   "Time"
+  ]
+ },
+ {
+  "word": "may",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names",
+   "Time"
+  ]
+ },
+ {
+  "word": "me",
+  "pos": "pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "meal",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "mean",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "meat",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "meatballs",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "mechanic",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "medicine",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "meet",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "meeting",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "member",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "message",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "metal",
+  "pos": "adj + n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Materials"
+  ]
+ },
+ {
+  "word": "me too",
+  "pos": "dis",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "Michael",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "midday",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "middle",
+  "pos": "n + adj",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "midnight",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "might",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "milk",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "milkshake",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "million",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Numbers"
+  ]
+ },
+ {
+  "word": "mind",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "mine",
+  "pos": "pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "minute",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "mirror",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "Miss",
+  "pos": "title",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "missing",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "mistake",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "mix",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "model",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Toys"
+  ]
+ },
+ {
+  "word": "Monday",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "money",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "monkey",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "monster",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Toys"
+  ]
+ },
+ {
+  "word": "month",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "moon",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "more",
+  "pos": "adv + det + pron",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "morning",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "most",
+  "pos": "adv + det + pron",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "mother",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "motorbike",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Toys",
+   "Transport"
+  ]
+ },
+ {
+  "word": "motorway",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "mountain",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "mouse (computer)",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals",
+   "School"
+  ]
+ },
+ {
+  "word": "mouse/mice",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals",
+   "School"
+  ]
+ },
+ {
+  "word": "moustache",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "mouth",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "move",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "movie",
+  "pos": "n",
+  "note": "(UK film)",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "Mr",
+  "pos": "title",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "Mrs",
+  "pos": "title",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "much",
+  "pos": "adv + det + pron",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "mum",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "museum",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "music",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "must",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "my",
+  "pos": "poss adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "name",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "naughty",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "near",
+  "pos": "adv + prep",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "neck",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "necklace",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "need",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "nest",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "net",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "never",
+  "pos": "adv",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "new",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "news",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "newspaper",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "next",
+  "pos": "adj + adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "next to",
+  "pos": "prep",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "nice",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "Nick",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "night",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "no",
+  "pos": "adv + det",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "noise",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "noisy",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "noodles",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "no-one",
+  "pos": "pron",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "no problem",
+  "pos": "excl",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "north",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "nose",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "not",
+  "pos": "adv",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "nothing",
+  "pos": "pron",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "November",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "now",
+  "pos": "adv",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "nowhere",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "number",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "nurse",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health",
+   "Work"
+  ]
+ },
+ {
+  "word": "ocean",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "o’clock",
+  "pos": "adv",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "October",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "octopus",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "of",
+  "pos": "prep",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "of course",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "off",
+  "pos": "adv + prep",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "office",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "often",
+  "pos": "adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "oh",
+  "pos": "dis",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "oh dear",
+  "pos": "excl",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "OK",
+  "pos": "adj + dis",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "old",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "Oliver",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "olives",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "on",
+  "pos": "prep",
+  "note": "of place",
+  "level": "S",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "on",
+  "pos": "adv + prep",
+  "note": "of time",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "once",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "one",
+  "pos": "det + pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "onion",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "online",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "only",
+  "pos": "adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "open",
+  "pos": "adj + v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "opposite",
+  "pos": "prep",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "or",
+  "pos": "conj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "orange",
+  "pos": "adj + n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Colours",
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "other",
+  "pos": "det + pron",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "our",
+  "pos": "poss adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "ours",
+  "pos": "pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "out",
+  "pos": "adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "out of",
+  "pos": "prep",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "outside",
+  "pos": "adv + n + prep",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "oven",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "over",
+  "pos": "adv + prep",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "page",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "paint",
+  "pos": "n + v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "painting",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "pair",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Numbers"
+  ]
+ },
+ {
+  "word": "pajamas",
+  "pos": "n",
+  "note": "(UK pyjamas)",
+  "level": "F",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "pancake",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "panda",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "paper",
+  "pos": "adj + n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Materials",
+   "School"
+  ]
+ },
+ {
+  "word": "pardon",
+  "pos": "int",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "parent",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "park",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "parrot",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "part",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "party",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "passenger",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "past",
+  "pos": "n + prep",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "pasta",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "Pat",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "path",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "Paul",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "pea",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "pear",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "pen",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "pencil",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "penguin",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "pepper",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "perhaps",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "person/people",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "pet",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "Peter",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "phone",
+  "pos": "n + v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "photo",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "photographer",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "piano",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "pick up",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "picnic",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "picture",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "School",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "pie",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "piece",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "pilot",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "pineapple",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "pink",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Colours"
+  ]
+ },
+ {
+  "word": "pirate",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "pizza",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "place",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "plane",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Toys",
+   "Transport"
+  ]
+ },
+ {
+  "word": "planet",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "plant",
+  "pos": "n + v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "plastic",
+  "pos": "adj + n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Materials"
+  ]
+ },
+ {
+  "word": "plate",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "platform",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "play",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "player",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "playground",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Places & directions",
+   "School"
+  ]
+ },
+ {
+  "word": "please",
+  "pos": "dis",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "pleased",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "p.m.",
+  "pos": "",
+  "note": "(for time)",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "pocket",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "point",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "polar bear",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "police officer",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "police station",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions",
+   "Work"
+  ]
+ },
+ {
+  "word": "pond",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "pool",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "poor",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "pop music",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "pop star",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "popular",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "post",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "postcard",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "poster",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "post office",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "potato",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "practice",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "practise",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "prefer",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "prepare",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "present",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "pretty",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "prize",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "problem",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "programme",
+  "pos": "n",
+  "note": "(US program)",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "project",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "pull",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "puppy",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "purple",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Colours"
+  ]
+ },
+ {
+  "word": "push",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "put",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "put on",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "puzzle",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "pyjamas",
+  "pos": "n",
+  "note": "(US pajamas)",
+  "level": "F",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "pyramid",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "quarter",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "queen",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "question",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "quick",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "quickly",
+  "pos": "adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "quiet",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "quietly",
+  "pos": "adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "quite",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "quiz",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "rabbit",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "race",
+  "pos": "n + v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "racing (car; bike)",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "radio",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "railway",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "rain",
+  "pos": "n + v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Weather"
+  ]
+ },
+ {
+  "word": "rainbow",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Weather"
+  ]
+ },
+ {
+  "word": "read",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "ready",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "really",
+  "pos": "adv",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "red",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Colours"
+  ]
+ },
+ {
+  "word": "remember",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "repair",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "repeat",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "restaurant",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "rice",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "rich",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "Richard",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "ride",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure",
+   "Transport"
+  ]
+ },
+ {
+  "word": "ride",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure",
+   "Transport"
+  ]
+ },
+ {
+  "word": "right",
+  "pos": "dis",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "right",
+  "pos": "adj",
+  "note": "(as in correct)",
+  "level": "S",
+  "topics": [
+   "Places & directions",
+   "School"
+  ]
+ },
+ {
+  "word": "right",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "right",
+  "pos": "n",
+  "note": "(as in direction)",
+  "level": "F",
+  "topics": [
+   "Places & directions",
+   "School"
+  ]
+ },
+ {
+  "word": "ring",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "river",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "road",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "Robert",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "robot",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Toys"
+  ]
+ },
+ {
+  "word": "rock",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "rocket",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Transport",
+   "Work"
+  ]
+ },
+ {
+  "word": "rock music",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "roller skates",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "roller skating",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "roof",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "room",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "round",
+  "pos": "adj + adv + prep",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "rubber",
+  "pos": "n",
+  "note": "(US eraser)",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "rucksack",
+  "pos": "n",
+  "note": "(US backpack)",
+  "level": "F",
+  "topics": [
+   "School",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "rug",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "ruler",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "run",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure",
+   "Transport"
+  ]
+ },
+ {
+  "word": "sad",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "safe",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "sail",
+  "pos": "n + v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "salad",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "Sally",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "salt",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "Sam",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "same",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "sand",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "sandwich",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "Sarah",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "Saturday",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "sauce",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "sausage",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "save",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "say",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "scarf",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "scary",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "school",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "science",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "scissors",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "score",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "score",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "screen",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home",
+   "School"
+  ]
+ },
+ {
+  "word": "sea",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "search",
+  "pos": "n + v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "seat",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "second",
+  "pos": "adj + adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "secret",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "see",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "see you",
+  "pos": "excl",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "sell",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "send",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "sentence",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "September",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "several",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Numbers"
+  ]
+ },
+ {
+  "word": "shall",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "shampoo",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "shape",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "shark",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "she",
+  "pos": "pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "sheep",
+  "pos": "n",
+  "note": "(singular + plural)",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "shelf",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home",
+   "School"
+  ]
+ },
+ {
+  "word": "shell",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "ship",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "shirt",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "shoe",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "shop",
+  "pos": "n",
+  "note": "(US store)",
+  "level": "S",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "shop",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "shopping",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "shopping centre",
+  "pos": "n",
+  "note": "(US center)",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "short",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "shorts",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "should",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "shoulder",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "shout",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "show",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "shower",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "sick",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "silly",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "silver",
+  "pos": "adj + n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Colours",
+   "Materials"
+  ]
+ },
+ {
+  "word": "since",
+  "pos": "prep",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "sing",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "singer",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "sister",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "sit",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "skate",
+  "pos": "n + v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "skateboard",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "skateboarding",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "ski",
+  "pos": "n + v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "skip",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "skirt",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "sky",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Weather",
+   "The world around us"
+  ]
+ },
+ {
+  "word": "skyscraper",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "sledge",
+  "pos": "n + v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "sleep",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "slow",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "slowly",
+  "pos": "adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "small",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "smell",
+  "pos": "n + v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "smile",
+  "pos": "n + v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "snack",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "snail",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "snake",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "snow",
+  "pos": "n + v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Weather"
+  ]
+ },
+ {
+  "word": "snowball",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "snowboard",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "snowboarding",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "snowman",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "so",
+  "pos": "dis",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "so",
+  "pos": "adv + conj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "soap",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "soccer",
+  "pos": "n",
+  "note": "(UK football)",
+  "level": "S",
+  "topics": [
+   "Sports & leisure",
+   "Toys"
+  ]
+ },
+ {
+  "word": "sock",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "sofa",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "soft",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "some",
+  "pos": "det",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "someone",
+  "pos": "pron",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "something",
+  "pos": "pron",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "sometimes",
+  "pos": "adv",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "somewhere",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "son",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "song",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "soon",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "Sophia",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "sore",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "sorry",
+  "pos": "adj + int",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "sound",
+  "pos": "n + v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "soup",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "south",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "space",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "spaceship",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "speak",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "special",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "spell",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "spend",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "spider",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "spoon",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "sport",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "sports centre",
+  "pos": "n",
+  "note": "(US center)",
+  "level": "M",
+  "topics": [
+   "Places & directions",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "spot",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Clothes",
+   "Colours"
+  ]
+ },
+ {
+  "word": "spotted",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Clothes",
+   "Colours"
+  ]
+ },
+ {
+  "word": "spring",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "square",
+  "pos": "adj + n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "stadium",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "stage (theatre)",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "stair(s)",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "stamp",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "stand",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "star",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "start",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "station",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions",
+   "Transport"
+  ]
+ },
+ {
+  "word": "stay",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "step",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "still",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "stomach",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "stomach-ache",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "stone",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "stop",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "store",
+  "pos": "n",
+  "note": "(UK shop)",
+  "level": "S",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "storm",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Weather"
+  ]
+ },
+ {
+  "word": "story",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "straight",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "straight on",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "strange",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "strawberry",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "stream",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "street",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Places & directions",
+   "The world around us"
+  ]
+ },
+ {
+  "word": "stripe",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Clothes",
+   "Colours"
+  ]
+ },
+ {
+  "word": "striped",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Clothes",
+   "Colours"
+  ]
+ },
+ {
+  "word": "strong",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "student",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "study",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "subject",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "such",
+  "pos": "det",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "suddenly",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "Sue",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "sugar",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "suitcase",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "summer",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "sun",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Weather",
+   "The world around us"
+  ]
+ },
+ {
+  "word": "Sunday",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "sunglasses",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "sunny",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Weather"
+  ]
+ },
+ {
+  "word": "supermarket",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "sure",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "surname",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "surprise",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "surprised",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "swan",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "sweater",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "sweet",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "sweet(s)",
+  "pos": "n",
+  "note": "(US candy)",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "swim",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure",
+   "Transport"
+  ]
+ },
+ {
+  "word": "swim",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure",
+   "Transport"
+  ]
+ },
+ {
+  "word": "swimming pool",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "swimsuit",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "swing",
+  "pos": "n + v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "table",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "tablet",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "table tennis",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "tail",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "take",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "take",
+  "pos": "v",
+  "note": "(as in time, e.g. it takes 20 minutes)",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "take a photo/picture",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "School",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "take off (i.e. get undressed)",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "talk",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "tall",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "taste",
+  "pos": "n + v",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "taxi",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Transport",
+   "Work"
+  ]
+ },
+ {
+  "word": "tea",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "teach",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "teacher",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School",
+   "Work"
+  ]
+ },
+ {
+  "word": "team",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "teddy (bear)",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Toys"
+  ]
+ },
+ {
+  "word": "telephone",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "television/TV",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "tell",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "temperature",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "tennis",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "tennis racket",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "tent",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "terrible",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "text",
+  "pos": "n + v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "School",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "than",
+  "pos": "conj + prep",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "thank",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "thanks",
+  "pos": "dis",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "thank you",
+  "pos": "dis",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "that",
+  "pos": "det + pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "the",
+  "pos": "det",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "theatre",
+  "pos": "n",
+  "note": "(US theater)",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "their",
+  "pos": "poss adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "theirs",
+  "pos": "pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "them",
+  "pos": "pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "then",
+  "pos": "dis",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "then",
+  "pos": "adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "there",
+  "pos": "adv",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "these",
+  "pos": "det + pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "they",
+  "pos": "pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "thin",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "thing",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "think",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "third",
+  "pos": "adj + adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "thirsty",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "this",
+  "pos": "det + pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "those",
+  "pos": "det + pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "thousand",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Numbers"
+  ]
+ },
+ {
+  "word": "through",
+  "pos": "prep",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "throw",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "Thursday",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "tick",
+  "pos": "n + v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "ticket",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "tidy",
+  "pos": "adj + v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "tiger",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "time",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "timetable",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "tired",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "to",
+  "pos": "prep",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "today",
+  "pos": "adv + n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "toe",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "together",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "Tom",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "tomato",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "tomorrow",
+  "pos": "adv + n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "tonight",
+  "pos": "adv + n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "too",
+  "pos": "adv",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "toothache",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "toothbrush",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "toothpaste",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "tooth/teeth",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The body and the face"
+  ]
+ },
+ {
+  "word": "top",
+  "pos": "adj + n",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "torch",
+  "pos": "n",
+  "note": "(US flashlight)",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "tortoise",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "touch",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "tour",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "towel",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The home",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "town",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Places & directions",
+   "The world around us"
+  ]
+ },
+ {
+  "word": "town/city centre",
+  "pos": "n",
+  "note": "(US center)",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "toy",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "Sports & leisure",
+   "Toys"
+  ]
+ },
+ {
+  "word": "tractor",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "traffic",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "train",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Toys",
+   "Transport"
+  ]
+ },
+ {
+  "word": "trainers",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "travel",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "treasure",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "tree",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "The world around us"
+  ]
+ },
+ {
+  "word": "trip",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "trousers",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "truck",
+  "pos": "n",
+  "note": "(UK lorry)",
+  "level": "S",
+  "topics": [
+   "Toys",
+   "Transport"
+  ]
+ },
+ {
+  "word": "try",
+  "pos": "n + v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "T-shirt",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "Tuesday",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "tune",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "turn",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "turn off",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "turn on",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "TV/television",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "twice",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "tyre",
+  "pos": "n",
+  "note": "(US tire)",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "ugly",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "umbrella",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Clothes",
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "uncle",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "under",
+  "pos": "prep",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "understand",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "unfriendly",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "unhappy",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "uniform",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "university",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions",
+   "School"
+  ]
+ },
+ {
+  "word": "unkind",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "untidy",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "until",
+  "pos": "prep",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "unusual",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "up",
+  "pos": "adv + prep",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "upstairs",
+  "pos": "adv + n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "us",
+  "pos": "pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "use",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "usually",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "vegetable",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "very",
+  "pos": "adv",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "Vicky",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "video",
+  "pos": "n + v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "view",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "village",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "violin",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "visit",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "volleyball",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "wait",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "waiter",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "wake (up)",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "walk",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "walk",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "wall",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "School"
+  ]
+ },
+ {
+  "word": "want",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "warm",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "wash",
+  "pos": "n + v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The home"
+  ]
+ },
+ {
+  "word": "watch",
+  "pos": "n + v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "Sports & leisure",
+   "Time"
+  ]
+ },
+ {
+  "word": "water",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink",
+   "The world around us"
+  ]
+ },
+ {
+  "word": "water",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Food & drink",
+   "The world around us"
+  ]
+ },
+ {
+  "word": "waterfall",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "watermelon",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "wave",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "wave",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "way",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "we",
+  "pos": "pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "weak",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "wear",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Clothes"
+  ]
+ },
+ {
+  "word": "weather",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Weather"
+  ]
+ },
+ {
+  "word": "website",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "Wednesday",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "week",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "weekend",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "well",
+  "pos": "dis",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "well",
+  "pos": "adj + adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "well done",
+  "pos": "dis",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "west",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Places & directions"
+  ]
+ },
+ {
+  "word": "wet",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "whale",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "what",
+  "pos": "int",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "wheel",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Transport"
+  ]
+ },
+ {
+  "word": "when",
+  "pos": "adv + conj + int",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "where",
+  "pos": "int",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "where",
+  "pos": "pron",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "which",
+  "pos": "int",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "which",
+  "pos": "pron",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "while",
+  "pos": "conj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "whisper",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "whistle",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "white",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Colours"
+  ]
+ },
+ {
+  "word": "who",
+  "pos": "int",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "who",
+  "pos": "pron",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "whose",
+  "pos": "int",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "why",
+  "pos": "int",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "wife",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "wifi",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "wild",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "will",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "William",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "win",
+  "pos": "v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "wind",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Weather"
+  ]
+ },
+ {
+  "word": "window",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "The home",
+   "School"
+  ]
+ },
+ {
+  "word": "windy",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Weather"
+  ]
+ },
+ {
+  "word": "wing",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "winner",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Sports & leisure"
+  ]
+ },
+ {
+  "word": "winter",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "wish",
+  "pos": "n + v",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "with",
+  "pos": "prep",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "without",
+  "pos": "prep",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "woman/women",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends",
+   "Work"
+  ]
+ },
+ {
+  "word": "wonderful",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "wood",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Materials",
+   "The world around us"
+  ]
+ },
+ {
+  "word": "wool",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Materials"
+  ]
+ },
+ {
+  "word": "word",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "work",
+  "pos": "n + v",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Work"
+  ]
+ },
+ {
+  "word": "world",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "The world around us"
+  ]
+ },
+ {
+  "word": "worried",
+  "pos": "adj",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "worse",
+  "pos": "adj + adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "worst",
+  "pos": "adj + adv",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "would",
+  "pos": "v",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "would like",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "wow",
+  "pos": "excl",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "write",
+  "pos": "v",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "School"
+  ]
+ },
+ {
+  "word": "wrong",
+  "pos": "adj",
+  "note": "",
+  "level": "M",
+  "topics": []
+ },
+ {
+  "word": "x-ray",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Health"
+  ]
+ },
+ {
+  "word": "year",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "yellow",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Colours"
+  ]
+ },
+ {
+  "word": "yes",
+  "pos": "adv",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "yesterday",
+  "pos": "adv + n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Time"
+  ]
+ },
+ {
+  "word": "yet",
+  "pos": "adv",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "yoghurt",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": [
+   "Food & drink"
+  ]
+ },
+ {
+  "word": "you",
+  "pos": "pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "young",
+  "pos": "adj",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Family & friends"
+  ]
+ },
+ {
+  "word": "your",
+  "pos": "poss adj",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "you’re welcome",
+  "pos": "excl",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "yours",
+  "pos": "pron",
+  "note": "",
+  "level": "S",
+  "topics": []
+ },
+ {
+  "word": "zebra",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals"
+  ]
+ },
+ {
+  "word": "zero",
+  "pos": "n",
+  "note": "",
+  "level": "F",
+  "topics": []
+ },
+ {
+  "word": "Zoe",
+  "pos": "n",
+  "note": "",
+  "level": "M",
+  "topics": [
+   "Names"
+  ]
+ },
+ {
+  "word": "zoo",
+  "pos": "n",
+  "note": "",
+  "level": "S",
+  "topics": [
+   "Animals",
+   "Places & directions"
+  ]
+ }
+]
