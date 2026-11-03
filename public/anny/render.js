@@ -161,8 +161,13 @@ const BLOCKS = {
         </div>`).join('')}
     </div>`,
 
-  /* Phrase cards. English is face up; the Chinese and an example sentence are
-     behind a tap, so she can try the meaning first. */
+  /* Phrase cards. The phrase and its gloss sit face up together — a phrase and
+     its meaning are one item, and splitting them put a tap in front of the
+     thing she came to the card for. What stays behind the tap is the example
+     sentence, which is the part worth waiting for: seeing the phrase used is a
+     different act from knowing what it means. The example's translation goes
+     with it, since a Chinese gloss of an English sentence nobody can see yet
+     would be no use on its own. */
   phrases: (b) => `
     <div class="phrases">
       ${label(b)}
@@ -170,8 +175,8 @@ const BLOCKS = {
         ${b.items.map((i) => `
           <li class="card" tabindex="0" role="button" aria-expanded="false">
             <p class="card-en">${text(i.en)}${speakBtn(i.en)}</p>
+            <p class="card-zh">${text(i.zh)}</p>
             <div class="card-back">
-              <p class="card-zh">${text(i.zh)}</p>
               <p class="card-eg">${text(i.eg)}${speakBtn(i.eg, 'say say-quiet')}</p>
               ${i.egZh ? `<p class="card-eg-zh">${text(i.egZh)}</p>` : ''}
             </div>

@@ -2644,7 +2644,7 @@ session, as a self-audit Anny marks for her manager and then for herself.
 | --- | --- |
 | 🗂 Sessions | One folded section per discussion, newest at the top and open |
 | ⚖️ Contrast | Two columns, labelled per block — how it landed / how it could, or a belief and its reframe |
-| 🗂 Phrase cards | Meaning and an example sentence, behind a tap |
+| 🗂 Phrase cards | The phrase and its meaning face up; the example sentence behind a tap |
 | ☑️ Audit | A list to mark against yourself; the button wording is set per block |
 | ✕✓ Corrections | Her own sentence, with the upgrade and the reason behind a tap |
 | 🔗 Matching, ✏️ gap fill | The usual collocation work |
@@ -2688,6 +2688,17 @@ session, as a self-audit Anny marks for her manager and then for herself.
   sentence only — the wrong version should not be the model going into her ear.
 - **A mistake is a grey ✕, never red.** This page has no score and no failure
   state, and a page of red pen would be one.
+- **What hides behind a tap is prose, not names.** The rule the page arrived at
+  after Lewis asked the same question three times. A *named thing* — a focus
+  chip, one of the seven blockers, a phrase on a card — shows both languages at
+  once, because a name and its translation are one item and putting a tap
+  between them only delays the thing he came for. *Prose* — a teaching
+  paragraph, a blocker's description, a phrase's example sentence — keeps
+  English in front and Chinese one tap away, which is where the reading
+  practice actually lives. Anything hidden must also carry a visible 中 chip:
+  three separate reports of "missing Chinese" on this page were all text that
+  was present but had nothing to announce it, and an affordance nobody can see
+  is the same as one that is not there.
 - **A paywalled source still gets sourced honestly.** Session 2's article is
   behind a paywall in both languages — about 5% of each is readable. What the
   session carries instead came from what could be read in full: the seven names
