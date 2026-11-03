@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Family Law English — 家事法律英文</title>
+<meta name="description" content="The English of a Taiwan family-law case — marriage, divorce, property, children, protection orders, inheritance, the court and talking with a client — each term with an example sentence and its 中譯. Self-study and teaching modes, with a four-type quiz.">
+
+<!-- One student's page, handed out by its URL like the other student pages,
+     so it is kept out of search results. -->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Inline SVG mark: a house with a heart in its door — the home a family
+     case is about. The colours must be percent-encoded — a bare "#" would be
+     read as the URL fragment. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23284f5c'/%3E%3Cpath d='M14 31 32 15l18 16' fill='none' stroke='%23edf3f2' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M19 29v19h26V29' fill='none' stroke='%23edf3f2' stroke-width='5' stroke-linejoin='round'/%3E%3Cpath d='M32 44c-6-4-8-7-8-9.5a3.8 3.8 0 0 1 8-1.6 3.8 3.8 0 0 1 8 1.6C40 37 38 40 32 44z' fill='%23e9b95a'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f6f5f2">
+
+<link rel="stylesheet" href="style.css">
+
+<!-- The house typography, shared by every page. Linked AFTER this
+     page's own stylesheet so its definitions win. Colour is NOT in
+     it — this page keeps its own. See ../type.css. -->
+<link rel="stylesheet" href="../type.css">
+<!-- The house interface, shared by every page in the family: the bar, the
+     controls, the display type and the hairlines. Linked LAST so it wins,
+     and it deliberately sets no body size, no measure and no colour of its
+     own. See ../house.css. -->
+<link rel="stylesheet" href="../house.css">
+
+</head>
+<body>
+
+<a class="skip" href="#doc">Skip to the terms 跳到詞彙</a>
+
+<header class="bar">
+  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
+    <span aria-hidden="true">☰</span> Themes 主題
+  </button>
+
+  <p class="bar-title">Family Law English <span>家事法律英文</span></p>
+
+  <!-- Teacher-only. A device becomes the teacher's by opening the page once
+       with #teach; a student's plain link never shows this. -->
+  <div class="seg modeseg" id="modeseg" role="group" aria-label="模式" hidden>
+    <button data-mode="self">自學</button>
+    <button data-mode="teach">教學</button>
+  </div>
+
+  <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="false">中文</button>
+  <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
+          aria-controls="panel" title="設定" aria-label="設定">⚙</button>
+</header>
+
+<div class="shell">
+  <div id="nav"></div>
+  <main id="doc"></main>
+</div>
+
+<div class="nav-scrim" hidden></div>
+
+<!-- Settings. Opens over the page rather than replacing it, so a lesson in
+     progress is never lost. Which blocks are shown depends on the mode and on
+     whether this device is the teacher's. -->
+<div class="panel" id="panel" role="dialog" aria-label="設定" hidden>
+  <div class="panel-head">
+    <h2>Settings <span>設定</span></h2>
+    <button class="panel-x" id="panelClose" aria-label="關閉">✕</button>
+  </div>
+
+  <div class="row">
+    <label for="voicePick">Voice <em>發音</em></label>
+    <select id="voicePick"></select>
+    <p class="row-note">Used by the ▶ buttons. Choosing one plays a sample.
+      <em>供 ▶ 按鈕使用。選擇後會播放一段範例。</em></p>
+  </div>
+
+  <div class="row">
+    <label for="rate">Speed <em>語速</em></label>
+    <select id="rate">
+      <option value="0.75">Slow 慢</option>
+      <option value="0.95" selected>Normal 正常</option>
+      <option value="1.1">Brisk 快</option>
+    </select>
+  </div>
+
+  <!-- Only on a teacher device -->
+  <div class="row" id="teacherflag" hidden>
+    <label>Teacher device <em>老師裝置</em></label>
+    <p class="row-note">This device shows the 自學／教學 switch. A student
+      opening the plain link never sees it.
+      <em>這台裝置會顯示「自學／教學」切換。學生用一般連結打開時看不到。</em></p>
+    <button class="panel-btn panel-btn-quiet" id="unteach">Hide on this device <em>在這台裝置隱藏</em></button>
+  </div>
+
+  <!-- 教學 only -->
+  <div class="row" id="teachtools" hidden>
+    <label>Teaching mode <em>教學模式</em></label>
+    <label class="row-check">
+      <input type="checkbox" id="exHide">
+      <span>Hide the example sentences <em>隱藏例句</em></span>
+    </label>
+    <p class="row-note">Leaves the term only, so you can ask for a sentence
+      before showing ours. Teaching mode records nothing.
+      <em>只留下詞彙，方便先請學生自己造句。教學模式不記錄任何東西。</em></p>
+    <button class="panel-btn panel-btn-quiet" id="fresh">Start fresh <em>重新開始</em></button>
+  </div>
+
+  <!-- 自學 only -->
+  <div class="row" id="selftools" hidden>
+    <label>Self-study record <em>自學紀錄</em></label>
+    <p class="row-note" id="markinfo"></p>
+    <button class="panel-btn panel-btn-quiet" id="clearmarks">Clear every mark <em>清除所有標記</em></button>
+    <span id="clearask"></span>
+  </div>
+
+  <div class="row">
+    <button class="panel-btn" id="closepanel">Close <em>關閉</em></button>
+  </div>
+</div>
+
+
+<!-- Site footer. Identical on every page, so a reader who lands on any one
+     sheet can find the rest. -->
+<footer class="site-foot">
+  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
+     aria-label="Lewis Biz English"><img src="../logo.png" alt="" width="34" height="34"></a>
+  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
+    target="_blank" rel="noopener">lewistoeic.com</a></p>
+</footer>
+<script src="content.js"></script>
+<script src="render.js"></script>
+</body>
+</html>

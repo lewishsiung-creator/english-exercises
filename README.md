@@ -21,6 +21,8 @@ at `/robot-helper/`, a survey of seven years of the 學測 essay at
 growing IELTS Speaking course covering all three parts at `/ielts-speaking/`,
 a semiconductor plant's own vocabulary sheet rebuilt for one-to-one adult
 lessons at `/fab-english/`,
+the English of a Taiwan family-law case for one adult learner at
+`/family-law/`,
 listening and speaking practice built on short YouTube clips at `/video/`,
 for 國中 students, vocabulary and grammar together at `/junior-high/`, and
 Cambridge's official word lists with Chinese — Starters, Movers and Flyers,
@@ -1902,6 +1904,51 @@ English vocabulary — but names no company anywhere, and carries
 `noindex, nofollow`. Read the note in **Live sites** before pushing it:
 `noindex` keeps a page out of search results, it does not make the URL private.
 
+## Family Law English — adult, 自學 and 教學, the English of a family case
+
+One adult learner who works with family-law cases, built 2026-11-03. Lewis
+chose all four of: a specific student, **content written by me** (no source
+document), **自學＋教學** like Fab English, and **public but unnamed** — the
+learner's name appears nowhere in the folder, and the page carries `noindex`
+like the other student pages.
+
+It is **Fab English's renderer, copied** — `render.js`, `style.css` and the
+panel in `index.html` — with its own `content.js` (`LAW.groups`), its own
+localStorage prefix `fl.`, and a slate-teal palette in place of the plant blue.
+So everything in the Fab English section about the quiz, the two modes, `#teach`
+and the verbatim-headword rule holds here, and a fix to one page has to be made
+in the other deliberately.
+
+| | Theme | Terms |
+| --- | --- | --- |
+| 01 | Marriage and the couple 婚姻與夫妻關係 | 16 |
+| 02 | Divorce 離婚 | 16 |
+| 03 | Property and money 財產與金錢 | 16 |
+| 04 | Children 子女 | 16 |
+| 05 | Domestic violence 家庭暴力 | 17 |
+| 06 | Inheritance and later life 繼承與高齡 | 16 |
+| 07 | The court and the process 法院與程序 | 18 |
+| 08 | Talking with a client 與當事人溝通 | 15 |
+
+What is worth knowing before editing the content:
+
+- **Every sentence describes Taiwan's law, not an American or British court.**
+  The terms follow the Civil Code's Family and Succession parts, the Family Act
+  and the Domestic Violence Prevention Act: two ways to divorce (兩願／裁判),
+  剩餘財產分配 rather than "equitable distribution", three kinds of protection
+  order and who may ask for each, mediation before litigation, judgment vs
+  ruling (判決／裁定). Where the English and the concept do not fit — *custody*
+  for 親權 — the gloss and the theme note say so. Check a new sentence against
+  the current article before adding it; the 2023 DV amendments and the 2023
+  constitutional judgment on the more-at-fault spouse both changed things a
+  textbook would get wrong.
+- **The cover says it is language practice, not legal advice**, in both
+  languages. Keep that line.
+- Theme 08 is phrases (`p: "ph."`) for a client meeting, so its quiz
+  distractors are other phrases. They still obey the verbatim rule.
+- The UI calls the entries **terms／詞彙**, not words／單字, because so many are
+  multi-word ("divorce by mutual consent"). The quiz prompts still say "word".
+
 ## Cambridge 核心單字 — the official lists, from Starters to B1 Preliminary
 
 `/cambridge/` is a hub with one page per Cambridge vocabulary list, every word
@@ -3713,6 +3760,7 @@ public/junior-high/       國中英語精熟 — 單字 and 文法, one page, Gr
 public/junior-high-words/    a redirect: the 單字 half's old URL
 public/junior-high-grammar/  a redirect: the 文法 half's old URL
 public/fab-english/       the plant word list — 288 words, eight themes
+public/family-law/        家事法律英文 — 130 terms, eight themes, Fab English's renderer
 public/landscape-portfolio/      the portfolio — filled in as the Ando study
 public/landscape-portfolio/content.starter.js  the same page, emptied
 public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS.md
