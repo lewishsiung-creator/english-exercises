@@ -719,9 +719,9 @@ body.mode-self .word[data-mark="r"] { box-shadow: inset 3px 0 0 var(--gold-line)
 .qask .zh { margin-top: 2px; }
 
 .prompt { margin: 0 0 24px; }
-.prompt .w { font-size: 2rem; font-weight: 600; letter-spacing: -.01em; }
+.prompt .w { font-family: var(--font-en); font-size: 2rem; font-weight: 600; letter-spacing: -.005em; }
 .prompt .word-p { display: block; margin-top: 4px; font-size: .78rem; }
-.prompt .sent { font-size: 1.22rem; line-height: 1.65; text-wrap: pretty; }
+.prompt .sent { font-family: var(--font-en); font-size: 1.22rem; line-height: 1.65; text-wrap: pretty; }
 .prompt .reveal { margin-top: 14px; }
 .prompt .reveal .w { font-size: 1.5rem; }
 
@@ -790,6 +790,27 @@ body.zh-all .zhw .zh-chip { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .opt.wrong, .spell.bad { animation: none; }
+}
+
+.whys {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  font-family: var(--font-zh);
+  font-size: .84rem;
+  line-height: 1.6;
+  color: var(--gold);
+}
+.whys li::before { content: "✕ "; }
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .feedback { margin-top: 20px; }
@@ -1022,6 +1043,42 @@ body.view-practice #qnote { display: none !important; }
 
 .line.head .line-en { font-weight: 700; letter-spacing: .01em; }
 .piece-document .lines .line-en { font-family: var(--font-en); }
+
+/* 換你寫: the brief is an instruction, so it stays bilingual in both modes. */
+.task { padding: 14px 16px 16px; background: var(--gold-soft); border: 1px solid var(--gold-line); border-radius: 11px; }
+.task .aside-h { color: var(--gold); }
+.task-brief { margin: 0 0 6px; font-size: 1rem; line-height: 1.55; }
+.task-brief .zh, .task-how .zh { display: block; margin-top: 3px; font-size: .86rem; }
+.task-how { margin: 0 0 12px; font-family: var(--font-ui); font-size: .8rem; color: var(--ink-soft); }
+.task .btn em { font-family: var(--font-zh); font-style: normal; font-size: .9em; margin-left: 4px; }
+.task .model { margin-top: 12px; }
+
+/* Search hits from Practice, under the matching words. */
+.prac-hits { margin-top: 30px; }
+.prac-hits-h { margin: 0 0 10px; font-size: 1.1rem; font-weight: 600; }
+.prac-hits-h span { font-family: var(--font-zh); font-size: .78em; font-weight: 400; color: var(--ink-soft); margin-left: 6px; }
+.prac-hits ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.hit {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 11px 14px;
+  font: inherit;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  cursor: pointer;
+}
+.hit:hover { border-color: var(--navy-line); }
+.hit-en { display: block; margin-top: 4px; font-size: .98rem; line-height: 1.5; }
+.hit .zh { margin-top: 2px; font-size: .84rem; }
+.hit mark, .prac-hits mark { background: var(--gold-soft); color: inherit; border-radius: 3px; padding: 0 1px; }
+.prac-hits-more { margin: 8px 0 0; font-family: var(--font-ui); font-size: .8rem; color: var(--ink-soft); }
+.prac-hits-more span { font-family: var(--font-zh); margin-left: 4px; }
+.line.flash { animation: flash 1.8s ease; }
+@keyframes flash { 0%, 40% { background: var(--gold-soft); } 100% { background: transparent; } }
+@media (prefers-reduced-motion: reduce) { .line.flash { animation: none; background: var(--gold-soft); } }
 
 /* Play all: the button sits under the note; the line being read is lit, and
    a covered lawyer line waiting for the learner says so. */

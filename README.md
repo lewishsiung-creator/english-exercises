@@ -1988,6 +1988,26 @@ speech events at all), so the play-through was checked with `speak()`
 stubbed; on a real browser it needs one real tap to start, as Chrome requires.
 Lewis listened on his own device the same day and confirmed the voices work.
 
+**Search reaches Practice.** Typing in the word-list search also lists up to
+six matching Practice lines under the words ("We act for …" finds the email to
+opposing counsel); tapping one opens Practice at that line. Every practice
+line carries `data-ref="pieceId:index"` (`:check`, `:p0` phrases, `:m0`
+model) for this.
+
+**換你寫.** Each email has a `task` and a `model` in practice.js: a short
+situation, then a model answer behind *Show a model answer*. There is no text
+field — the adult house rule, nothing saved — so the learner writes in their
+own mail program or says it in a lesson.
+
+**Quiz polish, on both this page and Fab English:** 拼字 only for a single word
+of up to twelve letters (longer terms become a gap fill); letter counts ignore
+spaces and hyphens; the reason a wrong option is wrong sits under the grid
+instead of inside the tile, so the grid no longer jumps; quiz English is in
+the same serif as the list; a live region outside `#quiz` announces right and
+wrong to a screen reader; the section count is one number; and `render()`
+always runs `applyFilter()`, so clearing the search from the quiz clears its
+note too.
+
 **Its renderer was reworked on 2026-11-03** from a UI/UX review Lewis asked
 for, and the same changes were then ported to Fab English the same day, so
 the two match again apart from content, labels (terms／詞彙 vs words／單字),

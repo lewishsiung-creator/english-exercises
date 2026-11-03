@@ -25,7 +25,12 @@
                         document / email: { en, zh }, and { head: true } for
                         a heading line
      check              optional { en, zh } — what a Taiwan lawyer checks
-     phrases            [{ en, zh }] — phrases worth taking away */
+     phrases            [{ en, zh }] — phrases worth taking away
+     task, model        email only: a writing task { en, zh } and a model
+                        answer in the same line format. There is no field to
+                        type into (the adult pages save nothing): the learner
+                        writes in their own mail program, or says it aloud in
+                        a lesson, then opens the model to compare. */
 
 window.PRACTICE = [
 
@@ -201,6 +206,16 @@ window.PRACTICE = [
       { en:"if you have them", zh:"如果您有的話" },
       { en:"Please note that …", zh:"請留意……" },
       { en:"setting out the fees", zh:"列明費用" }
+    ],
+    task: { en:"The client writes back: Thursday no longer works, and asks for next Monday morning. Reply: agree, give the new time, and remind them what to bring.",
+            zh:"當事人回信說週四不行，想改到下週一上午。請回信：同意改期、給出新時間，並提醒對方要帶的資料。" },
+    model: [
+      { head:true, en:"Subject: New time for your consultation", zh:"主旨：諮詢的新時間" },
+      { en:"Dear Ms. Clarke,", zh:"Clarke 女士您好：" },
+      { en:"Thank you for letting me know. I can confirm that your consultation has been moved to Monday at 10:00 a.m., at our Taipei office.", zh:"謝謝您告知。在此確認您的諮詢已改到週一上午十點，地點同樣在我們的台北辦公室。" },
+      { en:"As before, please bring your marriage certificate, your residence permit, and any messages about the children's arrangements.", zh:"和之前一樣，請帶結婚證書、居留證，以及任何與孩子安排有關的訊息。" },
+      { en:"If the new time does not work for you, please let me know.", zh:"如果新的時間不方便，請告訴我。" },
+      { en:"Kind regards,", zh:"敬祝 安好" }
     ]
   },
 
@@ -226,6 +241,17 @@ window.PRACTICE = [
       { en:"However, we could not agree on …", zh:"不過，……的部分沒有談成。" },
       { en:"Before then, could you …?", zh:"在那之前，能否請您……？" },
       { en:"can be enforced like a court judgment", zh:"與法院判決有同樣的執行效力" }
+    ],
+    task: { en:"The other side's lawyer asks to postpone the next mediation by two weeks, to December 17, to review the income documents. Write to Mr. Evans: explain the request, recommend agreeing, and ask for his answer by Friday.",
+            zh:"對方律師要求把下一次調解延後兩週到 12 月 17 日，以便審閱收入資料。請寫信給 Evans 先生：說明對方的要求、建議同意，並請他在週五前回覆。" },
+    model: [
+      { head:true, en:"Subject: Request to postpone the mediation", zh:"主旨：對方要求延後調解" },
+      { en:"Dear Mr. Evans,", zh:"Evans 先生您好：" },
+      { en:"I'm writing to let you know that your wife's lawyer has asked to postpone the next mediation session by two weeks, to December 17.", zh:"來信告知，您太太的律師要求將下一次調解延後兩週，改到 12 月 17 日。" },
+      { en:"They need more time to review the income documents we sent.", zh:"他們需要更多時間審閱我們提供的收入資料。" },
+      { en:"I recommend that we agree, as it gives both sides a better chance of settling child support without a trial.", zh:"我建議同意，這樣雙方比較有機會不經審判就談妥扶養費。" },
+      { en:"Could you let me know by Friday whether you agree?", zh:"能否請您在週五前告訴我是否同意？" },
+      { en:"Best regards,", zh:"敬祝 順心" }
     ]
   },
 
@@ -251,6 +277,17 @@ window.PRACTICE = [
       { en:"We propose that …", zh:"我們建議……" },
       { en:"We would be grateful for … by …", zh:"盼於……前……" },
       { en:"If no agreement can be reached, …", zh:"若無法達成協議，……" }
+    ],
+    task: { en:"December 6 has passed and the other side's lawyer has not replied. Write a short follow-up: refer to your earlier email, ask for a reply within three days, and say what your client will do if there is none.",
+            zh:"12 月 6 日已過，對方律師仍未回覆。請寫一封簡短的追蹤信：提及先前的信、請對方三天內回覆，並說明若仍未回覆，我方當事人會怎麼做。" },
+    model: [
+      { head:true, en:"Subject: Follow-up: winter holiday travel with the children", zh:"主旨：追蹤——寒假帶孩子出國" },
+      { en:"Dear Counsel,", zh:"律師您好：" },
+      { en:"We refer to our email of November 28 about our client's proposed trip to the UK with the children.", zh:"謹就本所 11 月 28 日來信，關於我方當事人擬帶孩子赴英一事，再次聯繫。" },
+      { en:"We note that we have not yet received a reply.", zh:"本所至今尚未收到回覆。" },
+      { en:"We would be grateful for your client's response within three days of this email.", zh:"盼貴方當事人於本信發出後三日內回覆。" },
+      { en:"If we do not hear from you by then, our client will ask the court for an interim order.", zh:"屆時若仍未收到回覆，我方當事人將向法院聲請暫時處分。" },
+      { en:"Yours sincerely,", zh:"順頌 時祺" }
     ]
   }
 

@@ -268,7 +268,7 @@ function buildSection(g, i) {
     <p class="sec-note">
       ${text(g.note.en)}
       <span class="zh">${text(g.note.zh)}</span>
-      <span class="sec-count">${n} terms · ${n} 個詞彙</span>
+      <span class="sec-count">${n} 個詞彙 terms</span>
     </p>
     <div class="words" data-words="${g.id}"></div>
   </section>`;
@@ -309,10 +309,10 @@ function buildSource() {
 const KIND = { dialogue: ['Consultation', '諮詢對話'], document: ['Reading', '文件閱讀'], email: ['Email', '英文書信'] };
 const WHO = { L: ['Lawyer', '律師'], C: ['Client', '當事人'] };
 
-function lineHtml(l, withSay) {
+function lineHtml(l, withSay, ref) {
   const who = l.who ? `<span class="who">${WHO[l.who][0]}<em>${WHO[l.who][1]}</em></span>` : '';
   const cls = ['line', l.head ? 'head' : '', l.who ? 'who-' + l.who : ''].filter(Boolean).join(' ');
-  return `<li class="${cls}" tabindex="0">${who}
+  return `<li class="${cls}" tabindex="0" data-ref="${ref}">${who}
       <div class="line-body"><p class="line-en">${text(l.en)}</p><p class="zh">${text(l.zh)}</p></div>
       ${withSay ? sayBtn(l.en, '播放') : ''}</li>`;
 }
@@ -324,18 +324,40 @@ function buildPiece(p) {
     <h3 class="piece-title">${text(p.en)}<span class="zh">${text(p.zh)}</span></h3>
     <p class="piece-note">${text(p.note.en)}<span class="zh">${text(p.note.zh)}</span></p>
     ${'speechSynthesis' in window ? `<button class="btn playall" data-play="${p.id}" aria-pressed="false">${PLAY_LABEL.idle}</button>` : ''}
-    <ol class="lines">${p.lines.map((l) => lineHtml(l, true)).join('')}</ol>
+    <ol class="lines">${p.lines.map((l, i) => lineHtml(l, true, `${p.id}:${i}`)).join('')}</ol>
     ${p.check ? `
     <div class="aside">
       <p class="aside-h">What to check in Taiwan <span>在台灣要確認的事</span></p>
-      <ul class="lines">${lineHtml(p.check, false)}</ul>
+      <ul class="lines">${lineHtml(p.check, false, `${p.id}:check`)}</ul>
     </div>` : ''}
     <div class="aside">
       <p class="aside-h">Phrases to take away <span>值得帶走的說法</span></p>
-      <ul class="lines phrases">${p.phrases.map((x) => lineHtml(x, false)).join('')}</ul>
+      <ul class="lines phrases">${p.phrases.map((x, i) => lineHtml(x, false, `${p.id}:p${i}`)).join('')}</ul>
     </div>
+    ${p.task ? `
+    <div class="aside task">
+      <p class="aside-h">Your turn to write <span>換你寫</span></p>
+      <p class="task-brief">${text(p.task.en)}<span class="zh">${text(p.task.zh)}</span></p>
+      <p class="task-how">Write it in your own email, or say it aloud, then compare.
+        <span class="zh">在自己的信箱寫，或口頭說出來，再對照參考答案。</span></p>
+      <button class="btn" data-model="${p.id}" aria-expanded="false">Show a model answer <em>看參考答案</em></button>
+      <ol class="lines model" id="model-${p.id}" hidden>${p.model.map((l, i) => lineHtml(l, true, `${p.id}:m${i}`)).join('')}</ol>
+    </div>` : ''}
   </article>`;
 }
+
+/* Every English line in Practice, flattened, so the word-list search can also
+   say "this phrase is in the email to the other side's lawyer". */
+const PRAC_INDEX = [];
+PRACTICE.forEach((p) => {
+  const add = (l, ref) => PRAC_INDEX.push({
+    ref, piece: p, en: l.en, zh: l.zh, hay: (l.en + ' ' + l.zh).toLowerCase(),
+  });
+  p.lines.forEach((l, i) => add(l, `${p.id}:${i}`));
+  if (p.check) add(p.check, `${p.id}:check`);
+  p.phrases.forEach((x, i) => add(x, `${p.id}:p${i}`));
+  (p.model || []).forEach((l, i) => add(l, `${p.id}:m${i}`));
+});
 
 function buildPractice() {
   const kinds = ['dialogue', 'document', 'email'];
@@ -381,7 +403,7 @@ const PLAY_LABEL = {
 };
 const P = { id: null, i: 0, run: 0, waiting: false };
 
-const playLines = (id) => $$('ol.lines > .line', $('#p-' + id));
+const playLines = (id) => $$(':scope > ol.lines > .line', $('#p-' + id));
 
 function playLabel(id, state) {
   const b = $(`[data-play="${id}"]`);
@@ -465,6 +487,7 @@ const list = el('<div id="list"></div>');
 doc.appendChild(list);
 LAW.groups.forEach((g, i) => list.appendChild(el(buildSection(g, i))));
 list.appendChild(el(buildAz()));
+list.appendChild(el('<section class="prac-hits" id="pracHits" hidden></section>'));
 list.appendChild(el(`
   <p class="nothing" hidden>
     No term matches that.
@@ -475,7 +498,11 @@ const practice = el(buildPractice());
 doc.appendChild(practice);
 
 const quiz = el('<div id="quiz" hidden></div>');
+// Outside #quiz, which is re-rendered on every answer: a live region that is
+// replaced is never announced.
+const qlive = el('<p class="sr-only" id="qlive" aria-live="polite"></p>');
 doc.appendChild(quiz);
+doc.appendChild(qlive);
 doc.appendChild(el(buildSource()));
 
 // Cards, built once and parked in their theme section.
@@ -554,7 +581,27 @@ function applyFilter() {
     });
   }
 
-  $('.nothing').hidden = keep.size > 0;
+  // Practice lines that match, shown under the words.
+  const lc = term.toLowerCase();
+  const hits = lc ? PRAC_INDEX.filter((h) => h.hay.includes(lc)) : [];
+  const box = $('#pracHits');
+  box.hidden = !hits.length;
+  if (hits.length) {
+    const mark = (s) => text(s).replace(new RegExp(esc(text(term)), 'ig'), (m) => `<mark>${m}</mark>`);
+    const shown = hits.slice(0, 6);
+    box.innerHTML = `
+      <h3 class="prac-hits-h">In Practice <span>實務練習中的句子</span></h3>
+      <ul>${shown.map((h) => `
+        <li><button class="hit" data-goto="${h.ref}">
+          <span class="piece-kind">${KIND[h.piece.kind][0]} <span>${text(h.piece.zh)}</span></span>
+          <span class="hit-en">${mark(h.en)}</span>
+          <span class="zh">${mark(h.zh)}</span>
+        </button></li>`).join('')}</ul>
+      ${hits.length > shown.length
+        ? `<p class="prac-hits-more">and ${hits.length - shown.length} more <span>還有 ${hits.length - shown.length} 句</span></p>` : ''}`;
+  }
+
+  $('.nothing').hidden = keep.size > 0 || hits.length > 0;
 
   const n = (S.theme !== 'all') + (S.mode === 'self' && S.markf !== 'all');
   $('#filtN').hidden = !n;
@@ -564,8 +611,8 @@ function applyFilter() {
   const filtered = term || S.theme !== 'all' || (S.mode === 'self' && S.markf !== 'all');
   note.hidden = !filtered;
   if (filtered) {
-    note.innerHTML = `${keep.size} ${keep.size === 1 ? 'term' : 'terms'}
-      <span class="zh">符合 ${keep.size} 個詞彙</span>`;
+    note.innerHTML = `${keep.size} ${keep.size === 1 ? 'term' : 'terms'}${hits.length ? ` · ${hits.length} in Practice` : ''}
+      <span class="zh">符合 ${keep.size} 個詞彙${hits.length ? `，實務練習中 ${hits.length} 句` : ''}</span>`;
   }
 }
 
@@ -661,6 +708,8 @@ function lineVoice(li) {
 
 const Q = { items: [], i: 0, missed: new Set(), tried: new Set(), solved: false, done: false, key: '' };
 const SP = { typed: '', hint: 1, msg: '', bad: false };
+/* Letters only: "in-laws" has six letters to type, not seven. */
+const letterCount = (s) => s.replace(/[^A-Za-z]/g, '').length;
 const resetSpell = () => { SP.typed = ''; SP.hint = 1; SP.msg = ''; SP.bad = false; };
 
 const quizKey = () => [S.mode, S.theme, S.markf, S.q].join('|');
@@ -685,8 +734,12 @@ function pick3(e, src, differ) {
 
 function makeQuestion(e, src, kind) {
   // 拼字: an open gap, only for words that are one plain alphabetic token
-  if (kind === 'spell' && /^[A-Za-z][A-Za-z' -]{2,}$/.test(e.key)) {
-    return { type: 'spell', e };
+  // 拼字 only for a single word of up to twelve letters — typing "divorce by
+  // mutual consent" tests the keyboard, not the English. Anything longer is
+  // asked as a gap fill instead.
+  if (kind === 'spell') {
+    if (/^[A-Za-z][A-Za-z'-]{2,11}$/.test(e.key)) return { type: 'spell', e };
+    kind = 'gap';
   }
   // 聽力: hear it, pick it from four written words
   if (kind === 'listen' && canSpeak) {
@@ -767,19 +820,27 @@ function renderQuiz() {
   <section class="qcard">${prompt}
     <div class="opts">${q.opts.map((o, k) => {
       const state = Q.tried.has(k) ? (o.right ? 'right' : 'wrong') : (Q.solved && o.right ? 'right' : '');
-      const why = Q.tried.has(k) && !o.right
-        ? (q.type === 'mean'
-            ? `<span class="why">這是 ${text(o.w)} 的意思</span>`
-            : `<span class="why">${text(o.t)}：${text(o.z || '')}</span>`)
-        : '';
       return `<button class="opt ${q.type === 'mean' ? 'zhf' : 'en'} ${state}"
-                data-opt="${k}" ${Q.solved ? 'disabled' : ''}>${text(o.t)}${why}</button>`;
+                data-opt="${k}" ${Q.solved ? 'disabled' : ''}>${text(o.t)}</button>`;
     }).join('')}</div>
+    ${whyList(q)}
     <div class="feedback">${Q.solved ? feedbackHTML(q) : ''}</div>
   </section>
   <div class="actions">${Q.solved
     ? `<button class="btn primary" id="qnext">${Q.i + 1 < Q.items.length ? 'Next 下一題' : 'Finish 看這一輪'}</button>`
     : `<button class="btn" id="qskip">Show the answer 看答案</button>`}</div>`;
+}
+
+/* Why each wrong option was wrong, under the grid rather than inside the
+   tile: a tile that grew a second line pushed the whole grid about. */
+const whyOne = (q, o) => q.type === 'mean'
+  ? `${text(o.t)}：這是 ${text(o.w)} 的意思`
+  : `${text(o.t)}：${text(o.z || '')}`;
+
+function whyList(q) {
+  const wrong = [...Q.tried].map((k) => q.opts[k]).filter((o) => !o.right);
+  if (!wrong.length) return '';
+  return `<ul class="whys">${wrong.map((o) => `<li>${whyOne(q, o)}</li>`).join('')}</ul>`;
 }
 
 /* 拼字: type the word into the sentence. Nothing is counted; a hint adds a
@@ -799,7 +860,7 @@ function renderSpell(q) {
     : `<input class="spell ${SP.bad ? 'bad' : ''}" id="spellin" value="${text(SP.typed)}"
          style="width:${Math.max(4, ans.length + 2)}ch" autocomplete="off" autocapitalize="off"
          autocorrect="off" spellcheck="false" enterkeyhint="done"
-         aria-label="填入空格的字（${ans.length} 個字母）">`;
+         aria-label="填入空格的字（${letterCount(ans)} 個字母）">`;
 
   quiz.innerHTML = `<p class="status">${Q.i + 1} / ${Q.items.length}</p>
   <section class="qcard">
@@ -807,7 +868,7 @@ function renderSpell(q) {
     <p class="qask">Spell the missing word. <span class="zh">把空格裡的字拼出來。</span></p>
     <div class="prompt"><div class="sent">${before}${field}${after}</div>
       <div class="qzh">${zhw(text(q.e.zhEx))}</div>
-      <p class="hint">Hint 提示：${text(q.e.p)} ${zhw(text(q.e.zh))}・${ans.length} 個字母</p></div>
+      <p class="hint">Hint 提示：${text(q.e.p)} ${zhw(text(q.e.zh))}・${letterCount(ans)} 個字母</p></div>
     ${Q.solved ? '' : `<div class="spellrow">
       <button class="btn primary" id="spcheck">Check 檢查</button>
       <button class="btn" id="sphint">再給一個字母</button>
@@ -846,7 +907,7 @@ function checkSpell() {
     const a = norm(q.e.form), t = norm(SP.typed);
     const k = commonPrefix(t, a);
     SP.msg = t.length < a.length && k === t.length
-      ? `還沒拼完，這個字有 ${a.length} 個字母。`
+      ? `還沒拼完，這個字有 ${letterCount(a)} 個字母。`
       : `前 ${k} 個字母是對的，從第 ${k + 1} 個字母再想想。`;
   }
   renderQuiz();
@@ -1004,9 +1065,12 @@ function setAllZh(on) {
   zhToggle.setAttribute('aria-pressed', String(on));
 }
 
+/* The list's filter also keeps the search note and the ✕ current, so it runs
+   in every view — otherwise clearing the search from the quiz left "0 terms"
+   showing above it. */
 function render() {
+  applyFilter();
   if (S.view === 'quiz') renderQuiz();
-  else if (S.view === 'list') applyFilter();
 }
 
 // ------------------------------------------------------------------- events
@@ -1021,6 +1085,31 @@ doc.addEventListener('click', (e) => {
     stopPlay();
     const li = say.closest('#practice .line');
     speak(say.dataset.say, li ? lineVoice(li) : null);
+    return;
+  }
+
+  // ---- 換你寫: open or close the model answer
+  const mb = t.closest('[data-model]');
+  if (mb) {
+    const box = $('#model-' + mb.dataset.model);
+    box.hidden = !box.hidden;
+    mb.setAttribute('aria-expanded', String(!box.hidden));
+    mb.innerHTML = box.hidden ? 'Show a model answer <em>看參考答案</em>' : 'Hide the model answer <em>收起參考答案</em>';
+    return;
+  }
+
+  // ---- a search hit: open Practice at that line
+  const go = t.closest('[data-goto]');
+  if (go) {
+    setView('practice');
+    const li = $(`#practice [data-ref="${go.dataset.goto}"]`);
+    const model = li && li.closest('.model');
+    if (model && model.hidden) $(`[data-model="${model.id.slice(6)}"]`).click();
+    if (li) {
+      window.scrollBy(0, li.getBoundingClientRect().top - (pinnedBottom() + 60));
+      li.classList.add('flash');
+      setTimeout(() => li.classList.remove('flash'), 1800);
+    }
     return;
   }
 
@@ -1052,6 +1141,9 @@ doc.addEventListener('click', (e) => {
     const k = Number(opt.dataset.opt);
     const q = Q.items[Q.i];
     Q.tried.add(k);
+    qlive.textContent = q.opts[k].right
+      ? `Correct 答對了：${q.e.w}，${q.e.zh}`
+      : `Not this one 不是這個。${whyOne(q, q.opts[k]).replace(/<[^>]+>/g, '')}`;
     if (q.opts[k].right) { Q.solved = true; speak(q.type === 'mean' ? q.e.w : q.e.ex); }
     else Q.missed.add(Q.i);
     renderQuiz();

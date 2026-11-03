@@ -265,7 +265,7 @@ function buildSection(g, i) {
     <p class="sec-note">
       ${text(g.note.en)}
       <span class="zh">${text(g.note.zh)}</span>
-      <span class="sec-count">${n} words · ${n} 個字</span>
+      <span class="sec-count">${n} 個單字 words</span>
     </p>
     <div class="words" data-words="${g.id}"></div>
   </section>`;
@@ -314,7 +314,11 @@ list.appendChild(el(`
   </p>`));
 
 const quiz = el('<div id="quiz" hidden></div>');
+// Outside #quiz, which is re-rendered on every answer: a live region that is
+// replaced is never announced.
+const qlive = el('<p class="sr-only" id="qlive" aria-live="polite"></p>');
 doc.appendChild(quiz);
+doc.appendChild(qlive);
 doc.appendChild(el(buildSource()));
 
 // Cards, built once and parked in their theme section.
@@ -458,6 +462,8 @@ function speak(sentence) {
 
 const Q = { items: [], i: 0, missed: new Set(), tried: new Set(), solved: false, done: false, key: '' };
 const SP = { typed: '', hint: 1, msg: '', bad: false };
+/* Letters only: "in-laws" has six letters to type, not seven. */
+const letterCount = (s) => s.replace(/[^A-Za-z]/g, '').length;
 const resetSpell = () => { SP.typed = ''; SP.hint = 1; SP.msg = ''; SP.bad = false; };
 
 const quizKey = () => [S.mode, S.theme, S.markf, S.q].join('|');
@@ -482,8 +488,12 @@ function pick3(e, src, differ) {
 
 function makeQuestion(e, src, kind) {
   // 拼字: an open gap, only for words that are one plain alphabetic token
-  if (kind === 'spell' && /^[A-Za-z][A-Za-z' -]{2,}$/.test(e.key)) {
-    return { type: 'spell', e };
+  // 拼字 only for a single word of up to twelve letters — typing "divorce by
+  // mutual consent" tests the keyboard, not the English. Anything longer is
+  // asked as a gap fill instead.
+  if (kind === 'spell') {
+    if (/^[A-Za-z][A-Za-z'-]{2,11}$/.test(e.key)) return { type: 'spell', e };
+    kind = 'gap';
   }
   // 聽力: hear it, pick it from four written words
   if (kind === 'listen' && canSpeak) {
@@ -564,19 +574,27 @@ function renderQuiz() {
   <section class="qcard">${prompt}
     <div class="opts">${q.opts.map((o, k) => {
       const state = Q.tried.has(k) ? (o.right ? 'right' : 'wrong') : (Q.solved && o.right ? 'right' : '');
-      const why = Q.tried.has(k) && !o.right
-        ? (q.type === 'mean'
-            ? `<span class="why">這是 ${text(o.w)} 的意思</span>`
-            : `<span class="why">${text(o.t)}：${text(o.z || '')}</span>`)
-        : '';
       return `<button class="opt ${q.type === 'mean' ? 'zhf' : 'en'} ${state}"
-                data-opt="${k}" ${Q.solved ? 'disabled' : ''}>${text(o.t)}${why}</button>`;
+                data-opt="${k}" ${Q.solved ? 'disabled' : ''}>${text(o.t)}</button>`;
     }).join('')}</div>
+    ${whyList(q)}
     <div class="feedback">${Q.solved ? feedbackHTML(q) : ''}</div>
   </section>
   <div class="actions">${Q.solved
     ? `<button class="btn primary" id="qnext">${Q.i + 1 < Q.items.length ? 'Next 下一題' : 'Finish 看這一輪'}</button>`
     : `<button class="btn" id="qskip">Show the answer 看答案</button>`}</div>`;
+}
+
+/* Why each wrong option was wrong, under the grid rather than inside the
+   tile: a tile that grew a second line pushed the whole grid about. */
+const whyOne = (q, o) => q.type === 'mean'
+  ? `${text(o.t)}：這是 ${text(o.w)} 的意思`
+  : `${text(o.t)}：${text(o.z || '')}`;
+
+function whyList(q) {
+  const wrong = [...Q.tried].map((k) => q.opts[k]).filter((o) => !o.right);
+  if (!wrong.length) return '';
+  return `<ul class="whys">${wrong.map((o) => `<li>${whyOne(q, o)}</li>`).join('')}</ul>`;
 }
 
 /* 拼字: type the word into the sentence. Nothing is counted; a hint adds a
@@ -596,7 +614,7 @@ function renderSpell(q) {
     : `<input class="spell ${SP.bad ? 'bad' : ''}" id="spellin" value="${text(SP.typed)}"
          style="width:${Math.max(4, ans.length + 2)}ch" autocomplete="off" autocapitalize="off"
          autocorrect="off" spellcheck="false" enterkeyhint="done"
-         aria-label="填入空格的字（${ans.length} 個字母）">`;
+         aria-label="填入空格的字（${letterCount(ans)} 個字母）">`;
 
   quiz.innerHTML = `<p class="status">${Q.i + 1} / ${Q.items.length}</p>
   <section class="qcard">
@@ -604,7 +622,7 @@ function renderSpell(q) {
     <p class="qask">Spell the missing word. <span class="zh">把空格裡的字拼出來。</span></p>
     <div class="prompt"><div class="sent">${before}${field}${after}</div>
       <div class="qzh">${zhw(text(q.e.zhEx))}</div>
-      <p class="hint">Hint 提示：${text(q.e.p)} ${zhw(text(q.e.zh))}・${ans.length} 個字母</p></div>
+      <p class="hint">Hint 提示：${text(q.e.p)} ${zhw(text(q.e.zh))}・${letterCount(ans)} 個字母</p></div>
     ${Q.solved ? '' : `<div class="spellrow">
       <button class="btn primary" id="spcheck">Check 檢查</button>
       <button class="btn" id="sphint">再給一個字母</button>
@@ -643,7 +661,7 @@ function checkSpell() {
     const a = norm(q.e.form), t = norm(SP.typed);
     const k = commonPrefix(t, a);
     SP.msg = t.length < a.length && k === t.length
-      ? `還沒拼完，這個字有 ${a.length} 個字母。`
+      ? `還沒拼完，這個字有 ${letterCount(a)} 個字母。`
       : `前 ${k} 個字母是對的，從第 ${k + 1} 個字母再想想。`;
   }
   renderQuiz();
@@ -796,8 +814,12 @@ function setAllZh(on) {
   zhToggle.setAttribute('aria-pressed', String(on));
 }
 
+/* The list's filter also keeps the search note and the ✕ current, so it runs
+   in every view — otherwise clearing the search from the quiz left "0 words"
+   showing above it. */
 function render() {
-  if (S.view === 'quiz') renderQuiz(); else applyFilter();
+  applyFilter();
+  if (S.view === 'quiz') renderQuiz();
 }
 
 // ------------------------------------------------------------------- events
@@ -833,6 +855,9 @@ doc.addEventListener('click', (e) => {
     const k = Number(opt.dataset.opt);
     const q = Q.items[Q.i];
     Q.tried.add(k);
+    qlive.textContent = q.opts[k].right
+      ? `Correct 答對了：${q.e.w}，${q.e.zh}`
+      : `Not this one 不是這個。${whyOne(q, q.opts[k]).replace(/<[^>]+>/g, '')}`;
     if (q.opts[k].right) { Q.solved = true; speak(q.type === 'mean' ? q.e.w : q.e.ex); }
     else Q.missed.add(Q.i);
     renderQuiz();
