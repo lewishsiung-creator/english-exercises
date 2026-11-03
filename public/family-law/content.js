@@ -30,8 +30,8 @@
 window.LAW = {
 
   intro: {
-    en: "The words a family-law case is made of in Taiwan — marriage, divorce, property, children, protection orders, inheritance and the court — plus the phrases for talking with a client. Tap 中 on any line for the Chinese.",
-    zh: "台灣家事案件會用到的英文：婚姻、離婚、財產、子女、保護令、繼承與法院程序，再加上與當事人溝通的常用句。點任一行的 中 可看中文。"
+    en: "The words a family-law case is made of in Taiwan — marriage, divorce, property, children, protection orders, inheritance and the court — plus the phrases for talking with a client.",
+    zh: "台灣家事案件會用到的英文：婚姻、離婚、財產、子女、保護令、繼承與法院程序，再加上與當事人溝通的常用句。"
   },
 
   groups: [

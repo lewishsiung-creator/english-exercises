@@ -28,7 +28,10 @@
   --card: #ffffff;
   --ink: #1c2226;
   --ink-soft: #56636a;
-  --ink-faint: #8b969b;
+  /* The quietest grey that still reads: 4.8:1 on the paper, 5.2:1 on a card.
+     The copied value was 2.8:1, which put the legal disclaimer — of all
+     things — below the WCAG AA line. */
+  --ink-faint: #646e73;
 
   /* Kept under the name --navy so the panel and footer blocks copied from the
      other adult pages work here unchanged. */
@@ -57,7 +60,14 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 16px); }
+/* No root smooth-scroll: it animated every scroll the page made for itself,
+   the fault behind 「網頁會自動飄移」 on the notebooks. Anchors land below the
+   bar AND the pinned tools, whose height render.js keeps in --tools-h. */
+html { scroll-padding-top: calc(var(--bar-h) + var(--tools-h, 64px) + 12px); }
+
+/* An element hidden by the renderer stays hidden whatever display a class
+   gives it — `.views { display: flex }` had been beating [hidden]. */
+[hidden] { display: none !important; }
 
 body {
   margin: 0;
@@ -217,7 +227,6 @@ body.zh-all .zh-chip { display: none; }
   border-radius: 7px;
   text-decoration: none;
   color: var(--ink-soft);
-  border-left: 2px solid transparent;
 }
 .toc a:hover { background: var(--navy-soft); color: var(--ink); }
 .toc a .n {
@@ -229,11 +238,9 @@ body.zh-all .zh-chip { display: none; }
 }
 .toc a .t .en { display: block; font-size: 13.5px; line-height: 1.35; }
 .toc a .t .zh { font-size: 11.5px; color: var(--ink-faint); }
-.toc a.here {
-  background: var(--navy-soft);
-  border-left-color: var(--navy);
-  color: var(--navy);
-}
+/* The current theme is marked by house.css's gold rule. A border here as well
+   had curled into a bracket round the link's rounded corners. */
+.toc a.here { color: var(--navy); }
 .toc a.here .n, .toc a.here .t .zh { color: var(--navy); }
 .toc a.here .t .en { font-weight: 600; }
 
@@ -284,23 +291,73 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 .intro { margin: 0 0 26px; font-size: 1.04rem; }
 .intro .zh { margin-top: 6px; }
 
-/* ---------------- search + view switch ----------------
+/* What a tap does, which depends on the mode — written by render.js. */
+.intro-how {
+  margin: -12px 0 26px;
+  font-family: var(--font-ui);
+  font-size: .84rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.intro-how .zh { display: block; margin-top: 2px; }
 
-   The two controls sit together in one bar, sticky under the top bar, because
-   in a lesson they are used mid-scroll: "what was the word for 批貨 again?" */
+/* ---------------- tabs, search and filters ----------------
+
+   Pinned under the top bar, because in a lesson they are used mid-scroll:
+   "what was the word for 聲請 again?" Only ONE row is pinned — the Terms／Quiz
+   tabs, the search and a Filter button. The filters open beneath it on
+   demand. Four pinned rows had taken 31% of a phone's screen. */
 
 .tools {
   position: sticky;
   top: var(--bar-h);
   z-index: 15;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
   margin: 0 0 6px;
-  padding: 12px 0 12px;
+  padding: 10px 0;
   background: var(--paper);
   border-bottom: 1px solid var(--line);
+}
+.tools-row { display: flex; align-items: center; gap: 8px; }
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* The two views are the page's main choice, so they read as tabs: heavier
+   than the filters, and first in the row. */
+.views.tabs button { font-weight: 600; padding: 8px 14px; }
+
+.filt-btn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 8px 11px;
+  cursor: pointer;
+}
+.filt-btn em { font-family: var(--font-zh); font-style: normal; font-size: .9em; color: var(--ink-soft); }
+.filt-btn:hover { background: var(--navy-soft); }
+.filt-btn[aria-expanded="true"] { border-color: var(--navy-line); background: var(--navy-soft); }
+.filt-n {
+  min-width: 18px;
+  height: 18px;
+  margin-left: 3px;
+  padding: 0 5px;
+  border-radius: 9px;
+  font-size: 11px;
+  line-height: 18px;
+  text-align: center;
+  color: #fff;
+  background: var(--navy);
 }
 
 .search-box { position: relative; flex: 1 1 14rem; min-width: 0; }
@@ -390,7 +447,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   font-size: 1.42rem;
   font-weight: 600;
   line-height: 1.25;
-  scroll-margin-top: calc(var(--bar-h) + 70px);
+  scroll-margin-top: calc(var(--bar-h) + var(--tools-h, 64px) + 12px);
 }
 .sec-head .num {
   font-family: var(--font-ui);
@@ -437,12 +494,27 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 .word.open { border-color: var(--navy-line); box-shadow: 0 1px 0 var(--navy-soft) inset; }
 .word[hidden] { display: none; }
 
-.word-top { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.word-top { display: flex; align-items: baseline; gap: 8px; }
 
+/* The headword, its part of speech and the 中 chip run as one line of text,
+   so a long term wraps like a sentence and its "n. 中" follow it, while the
+   ⌄ and ▶ hold the right edge. */
+.word-head { flex: 1 1 auto; min-width: 0; }
+
+/* A button, so a keyboard can open the card, drawn as the headword. */
 .word-w {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  font: inherit;
   font-size: 1.12rem;
   font-weight: 600;
   letter-spacing: .005em;
+  text-align: left;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  cursor: pointer;
 }
 .word-p {
   font-family: var(--font-ui);
@@ -469,7 +541,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 .say:hover { background: var(--navy-soft); border-color: var(--navy-line); }
 .say.saying { background: var(--navy); border-color: var(--navy); }
 
-.word .zh { margin-top: 5px; font-size: .86rem; }
+.word .zh { margin: 5px 0 0; font-size: .86rem; }
 
 .word-ex {
   margin: 7px 0 0;
@@ -478,7 +550,29 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   color: var(--ink-soft);
 }
 .word-ex b { font-weight: 600; color: var(--ink); }
-body.no-ex .word-ex { display: none; }
+/* ---- sentences on tap (the default) ----
+   A closed card is the term and its gloss. Tapping it opens the sentence, its
+   中譯 and, in 自學, the 記住了／還不熟 pills — so the pills appear while the
+   word is being studied rather than on all 130 cards at once. */
+body.fold .word { padding: 10px 14px 11px; }
+body.fold .word:not(.open) .word-ex,
+body.fold .word:not(.open) .zh-ex,
+body.fold .word:not(.open) .mark { display: none !important; }
+
+.caret { display: none; }
+body.fold .caret {
+  display: inline-block;
+  flex: none;
+  margin-left: auto;
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid var(--ink-faint);
+  border-bottom: 1.5px solid var(--ink-faint);
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform var(--fast, .18s) ease;
+}
+body.fold .word.open .caret { transform: translateY(1px) rotate(-135deg); }
+body.fold .caret + .say { margin-left: 4px; }
 
 /* A–Z view: the same cards, one flat run, with a letter rule dropped in. */
 .az-letter {
@@ -791,14 +885,31 @@ body.zh-all .zhw .zh-chip { display: none; }
 
 .source {
   margin: 46px 0 0;
-  padding-top: 18px;
-  border-top: 1px solid var(--line);
+  padding: 14px 16px 15px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold-line);
+  border-radius: 11px;
   font-family: var(--font-ui);
-  font-size: .76rem;
+  font-size: .84rem;
   line-height: 1.6;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
 }
-.source .zh { display: block; font-size: .95em; color: var(--ink-faint); margin-top: 2px; }
+.source strong { display: block; margin-bottom: 6px; color: var(--ink); }
+.source .zh { display: block; font-size: .95em; color: var(--ink-soft); margin-top: 2px; }
+.source strong .zh { color: var(--ink); }
+
+/* ---------------- the quiz takes the page ----------------
+   No cover and no contents list while answering: the list's theme highlight
+   meant nothing there, and the cover pushed question 1 below the fold. */
+body.view-quiz .cover,
+body.view-quiz .list-only,
+body.view-quiz #navToggle { display: none !important; }
+@media (min-width: 900px) {
+  body.view-quiz #nav { display: none; }
+  body.view-quiz .shell { grid-template-columns: minmax(0, 1fr); max-width: calc(var(--measure) + 56px); }
+}
+body.view-quiz #quiz { margin-top: 18px; }
 
 /* ---------------- teacher panel ---------------- */
 
@@ -880,6 +991,14 @@ body.zh-all .zhw .zh-chip { display: none; }
   .bar-title span { display: none; }
   .tools { gap: 8px; }
   .views button { padding: 8px 10px; font-size: .78rem; }
+  .views.tabs button { padding: 8px 11px; }
+  .views button em, .filt-btn em { display: block; margin: 1px 0 0; }
+  .filt-btn { flex-direction: column; gap: 0; line-height: 1.15; padding: 5px 10px; position: relative; }
+  .filt-n { position: absolute; top: -6px; right: -6px; margin: 0; }
+  /* The theme name now rides on this button, so give it room and cut it off
+     cleanly rather than letting it push the bar's other controls out. */
+  #navToggle { flex: 0 1 auto; min-width: 0; max-width: 11.5rem; }
+  #navLab { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .qcard { padding: 20px 16px 22px; }
   .prompt .sent { font-size: 1.1rem; }
   .prompt .sent .gap { min-width: 4.5em; }
@@ -892,6 +1011,14 @@ body.zh-all .zhw .zh-chip { display: none; }
    than the word it belongs to. Same trick as the Linguaskill page. */
 
 @media (pointer: coarse) {
+  /* Drawn a little larger too: a 23×19 中 was below even WCAG's 24px floor. */
+  .say { padding: 7px 10px; }
+  .zh-chip { font-size: 12px; padding: 5px 7px; }
+  .bar .bar-btn, .views button, .filt-btn, .tools .sm { min-height: 42px; }
+  .bar .bar-btn-quiet { min-width: 42px; justify-content: center; }
+  /* iOS Safari zooms the page into any field set below 16px. */
+  .search-box input { font-size: 16px; padding-top: 10px; padding-bottom: 10px; }
+
   .say, .zh-chip, .mk { position: relative; }
   .say::after, .zh-chip::after, .mk::after {
     content: "";
