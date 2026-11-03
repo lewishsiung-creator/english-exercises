@@ -1986,6 +1986,7 @@ piece top to bottom with the current line lit; with the role-play cover on it
 line. Audio could not be heard in the in-app preview browser (it fires no
 speech events at all), so the play-through was checked with `speak()`
 stubbed; on a real browser it needs one real tap to start, as Chrome requires.
+Lewis listened on his own device the same day and confirmed the voices work.
 
 **Its renderer was reworked on 2026-11-03** from a UI/UX review Lewis asked
 for, and the same changes were then ported to Fab English the same day, so
