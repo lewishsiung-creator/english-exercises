@@ -43,14 +43,19 @@
      quote     a short quote, with attribution
      summary   a teaching paragraph, spoken aloud on request
      note      a boxed aside explaining one idea in more depth
-     contrast  the same message said two ways — how it landed, how it could
-               land. Both sides are good English, so both are spoken aloud
+     contrast  the same message said two ways. Both sides are good English, so
+               both are spoken aloud. The column tags default to "As it landed"
+               / "As it could land"; set coldEn/coldZh/warmEn/warmZh when the
+               two columns are not a before and after — session 2 uses them for
+               a belief and its reframe
      phrases   phrase cards — English face up, Chinese and an example behind a tap
      match     click a phrase on the left, then its partner on the right
      gap       a sentence with one blank and three phrases to choose from
      fix       something Anny actually said, with the upgrade behind a tap
      poll      opinion statements — agree / not sure / disagree, no answer
-     cards     have it / need it cards, for auditing something
+     cards     a two-button audit list. The buttons default to "I have this" /
+               "I need this", which is wording for auditing PEOPLE; set
+               haveEn/haveZh/needEn/needZh whenever the list is anything else
      discuss   questions to talk through, each with useful language to reveal
      task      a speaking or writing task with a tick-list of target phrases
 
@@ -510,6 +515,428 @@ const NOTEBOOK = {
             { en: 'I’d rather understand what’s happening than tell them what’s wrong.', zh: '比起告訴他們哪裡不對，我更想了解到底發生了什麼。' },
             { en: 'Your success is measured by whether ___ becomes better.', zh: '衡量你成功與否的，是＿＿有沒有變得更好。' },
           ],
+        },
+      ],
+    },
+
+    {
+      id: 's2',
+      n: 2,
+      date: '2026-11-04',
+      dateEn: '4 November 2026',
+      dateZh: '2026 年 11 月 4 日',
+      en: 'The beliefs that hold a leader back',
+      zh: '拖垮領導力的心魔',
+
+      focus: [
+        { en: 'Naming a hidden blocker', zh: '指認潛在障礙' },
+        { en: 'Belief → reframe', zh: '從信念到轉念' },
+        { en: 'Coaching yourself', zh: '自我教練' },
+      ],
+
+      blocks: [
+        {
+          t: 'lead',
+          en: 'Last time we looked at your manager from the outside. This article looks at her from the inside — and then, quietly, at you.',
+          zh: '上次我們是從外面看這位主管。這篇文章是從她的內在看她——然後，不動聲色地，也看向你。',
+        },
+
+        {
+          t: 'summary',
+          en: 'Muriel Wilkins has coached senior executives for twenty years. Her finding is that when a leader stalls, the cause is rarely the bureaucracy or the team — it is a belief the leader holds about themselves and has never examined. She calls these hidden blockers, and out of more than three hundred leaders she drew seven that come up again and again.',
+          zh: '慕瑞爾‧威金斯擔任高階主管教練二十年。她的發現是：當一位領導者卡住，原因很少是官僚體系或團隊，而是他對自己抱持、卻從未檢視過的某個信念。她稱之為「潛在障礙」，並從三百多位領導者身上歸納出七個反覆出現的類型。',
+        },
+
+        {
+          t: 'note',
+          en: 'How she works on one: uncover, unpack, unblock',
+          zh: '她的處理順序：找出、剖析、破除',
+          bodyEn: 'Three stages, and the order is the point. Uncover: notice you are stuck, then put the belief into words. Unpack: admit the part you are playing, then trace where the belief came from — it was usually earning its keep for years. Unblock: replace it with one that serves the leader you now have to be, and change a single concrete thing. Most people try to jump straight to the last stage, which is why the change never holds.',
+          bodyZh: '三個階段，順序本身就是重點。找出：先察覺自己卡住了，再把那個信念化成具體的句子。剖析：承認自己在其中扮演的角色，再回溯這個信念從哪裡來——它通常曾經很管用，而且管用了很多年。破除：換成一個能支撐你現在這個角色的信念，並且具體改變一件事。多數人想直接跳到最後一個階段，這就是改變撐不住的原因。',
+        },
+
+        {
+          t: 'cards',
+          en: 'The seven hidden blockers',
+          zh: '七大心魔',
+          hintEn: 'Read each one as a sentence you might say to yourself. Mark the ones you recognise — in her, or in you.',
+          hintZh: '把每一句都當成你可能對自己說的話。認得出來的就標記起來——不論是在她身上，還是在你身上。',
+          haveEn: 'That’s me',
+          haveZh: '這就是我',
+          needEn: 'Not really',
+          needZh: '還好',
+          items: [
+            {
+              icon: '🙋',
+              en: 'I need to be involved.',
+              zh: '我必須親自介入。',
+              descEn: 'You are in every meeting and on every thread, and decisions wait for you. To everyone else it reads as micromanagement.',
+              descZh: '每場會議、每串訊息你都在，決策也都在等你。但看在別人眼裡，這就是微觀管理。',
+            },
+            {
+              icon: '⏱',
+              en: 'I need it done now.',
+              zh: '我必須立刻完成。',
+              descEn: 'Urgency is the only speed you have. Work that would be better for another week of thought goes out on Friday anyway.',
+              descZh: '你只有「急」這一種速度。有些事再多想一週會更好，但還是週五就送出去了。',
+            },
+            {
+              icon: '☝️',
+              en: 'I know I’m right.',
+              zh: '我知道我是對的。',
+              descEn: 'You often are, which is the problem. You stop asking, they stop offering, and the room gets quieter every month.',
+              descZh: '你常常真的是對的，而這正是問題。你不再問，他們也不再說，會議室一個月比一個月安靜。',
+            },
+            {
+              icon: '🎯',
+              en: 'I can’t make a mistake.',
+              zh: '我絕不能犯錯。',
+              descEn: 'Nothing leaves your desk until it is perfect, so less and less leaves your desk. Risk looks like exposure rather than learning.',
+              descZh: '不夠完美的東西你不放手，於是放得出去的愈來愈少。風險在你眼中是把柄，不是學習。',
+            },
+            {
+              icon: '🪞',
+              en: 'If I can do it, so can you.',
+              zh: '如果我能做到，你們也能。',
+              descEn: 'Your own capability is the standard, and you cannot see why anyone would need more time, more context, or a different route.',
+              descZh: '你拿自己的能力當標準，無法理解為什麼有人需要更多時間、更多背景，或是另一條路。',
+            },
+            {
+              icon: '🚪',
+              en: 'I can’t say no.',
+              zh: '我不能拒絕。',
+              descEn: 'Every request becomes a commitment, your calendar belongs to other people, and the work only you can do happens after hours.',
+              descZh: '每個請求都變成承諾，行事曆屬於別人，只有你能做的事只好留到下班以後。',
+            },
+            {
+              icon: '🪟',
+              en: 'I don’t belong here.',
+              zh: '我不屬於這裡。',
+              descEn: 'You are in the room on merit and still waiting to be found out, so you over-prepare, over-prove, and speak last.',
+              descZh: '你是憑實力坐在那裡的，卻還在等著被拆穿，於是你過度準備、過度證明，而且總是最後才發言。',
+            },
+          ],
+        },
+
+        {
+          t: 'contrast',
+          en: 'The belief, and the reframe',
+          zh: '信念，與轉念',
+          hintEn: 'On the left, the sentence running underneath. On the right, what could replace it — not softer, just more use to the person she now has to be.',
+          hintZh: '左邊是底下一直在跑的那句話。右邊是可以取代它的說法——不是比較軟，而是對她現在這個角色更有用。',
+          coldEn: 'The belief',
+          coldZh: '心魔',
+          warmEn: 'The reframe',
+          warmZh: '轉念',
+          items: [
+            {
+              caseEn: 'When she steps into the training',
+              caseZh: '當她接手那場訓練',
+              cold: { en: 'I need to be involved.', zh: '我必須親自介入。' },
+              warm: {
+                en: 'I need to be involved mainly where I add the most value.',
+                zh: '我只需要在我最能創造價值的地方介入。',
+              },
+              whyEn: 'This is the one reframe Wilkins publishes herself, and notice it does not say “step back”. It says be deliberate about where you step in — which is what makes it survivable for someone who built twelve years on being involved.',
+              whyZh: '這是威金斯自己公開的那一個轉念，而且注意：它並沒有說「放手」，而是說「刻意選擇你要在哪裡介入」。對一個靠「親自參與」累積了十二年的人來說，正是這個差別讓她接得住。',
+            },
+            {
+              caseEn: 'When she already has the answer',
+              caseZh: '當她心裡已經有答案',
+              cold: { en: 'I know I’m right.', zh: '我知道我是對的。' },
+              warm: {
+                en: 'I may be right, and I still want to hear what I’m missing.',
+                zh: '我可能是對的，但我還是想聽聽我漏掉了什麼。',
+              },
+              whyEn: 'The reframe does not ask her to doubt herself. It only separates being right from being finished — she keeps the judgement and still leaves the door open.',
+              whyZh: '這個轉念並沒有要她懷疑自己。它只是把「我是對的」和「這件事談完了」分開——判斷她留著，門也留著。',
+            },
+            {
+              caseEn: 'When the surgeon is slower than she was',
+              caseZh: '當醫師的進度比她當年慢',
+              cold: { en: 'If I can do it, so can you.', zh: '如果我能做到，你們也能。' },
+              warm: {
+                en: 'What took me years, I’m asking him to do in a week.',
+                zh: '我花了好幾年才會的事，我卻要求他一週就做到。',
+              },
+              whyEn: 'Her own learning curve has gone invisible to her, which is what expertise does to everyone. Putting the time back into the sentence is usually enough to change the tone of the whole session.',
+              whyZh: '她自己的學習曲線對她來說已經隱形了——專業對每個人都會這樣。把「花了多久」放回句子裡，通常就足以改變整堂訓練的語氣。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'The language of a hidden belief',
+          zh: '談「隱藏信念」的語言',
+          items: [
+            {
+              en: 'a limiting belief',
+              zh: '限制性信念',
+              eg: 'Her real problem isn’t the surgeon. It’s a limiting belief about her own value.',
+              egZh: '她真正的問題不是那位醫師，而是一個關於自身價值的限制性信念。',
+            },
+            {
+              en: 'a hidden blocker',
+              zh: '潛在障礙',
+              eg: 'A hidden blocker is hidden mainly from the person carrying it.',
+              egZh: '潛在障礙主要是對當事人自己隱形。',
+            },
+            {
+              en: 'a blind spot',
+              zh: '盲點',
+              eg: 'Everyone on her team can see the blind spot except her.',
+              egZh: '她團隊裡每個人都看得見那個盲點，只有她看不見。',
+            },
+            {
+              en: 'self-awareness',
+              zh: '自我覺察',
+              eg: 'You can’t talk someone into self-awareness by telling them what they’re like.',
+              egZh: '你沒辦法靠「告訴對方他是什麼樣的人」，就讓他產生自我覺察。',
+            },
+            {
+              en: 'mindset',
+              zh: '心態、思維模式',
+              eg: 'Carol Dweck’s research is why mindset is in every leadership book now.',
+              egZh: '現在每本領導力的書都在談 mindset，源頭是卡蘿‧杜維克的研究。',
+            },
+            {
+              en: 'reframe something',
+              zh: '轉念、重新框架',
+              eg: 'Don’t delete the belief — reframe it into one that still sounds like her.',
+              egZh: '不要刪掉那個信念——把它轉成一個聽起來仍然像她的說法。',
+            },
+            {
+              en: 'own the impact',
+              zh: '承擔自己造成的影響',
+              eg: 'She has to own the impact before any of this starts moving.',
+              egZh: '她必須先承擔自己造成的影響，這件事才動得起來。',
+            },
+            {
+              en: 'unexamined',
+              zh: '未經檢視的',
+              eg: 'It’s an unexamined rule she has followed since her first job.',
+              egZh: '那是一條她從第一份工作就遵守、卻從未檢視過的規則。',
+            },
+            {
+              en: 'serve someone well',
+              zh: '對某人很管用、讓某人受用',
+              eg: 'That belief served you well for twelve years. It doesn’t serve this job.',
+              egZh: '那個信念讓你受用了十二年，但它幫不了現在這個職位。',
+            },
+            {
+              en: 'get in your own way',
+              zh: '自己絆住自己',
+              eg: 'She isn’t being blocked by the company. She’s getting in her own way.',
+              egZh: '擋住她的不是公司，是她自己絆住了自己。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Letting go, in English',
+          zh: '「放手」的英文',
+          items: [
+            {
+              en: 'delegate',
+              zh: '授權、把工作下放',
+              eg: 'Delegate the task and the authority, or you’ve only moved the work.',
+              egZh: '要授權就連決定權一起給，否則你只是把工作換了個位置。',
+            },
+            {
+              en: 'step back',
+              zh: '退一步、放手',
+              eg: 'I’m going to step back on this one and let her run it.',
+              egZh: '這件事我打算退一步，讓她主導。',
+            },
+            {
+              en: 'a bottleneck',
+              zh: '瓶頸',
+              eg: 'If every decision waits for you, you are the bottleneck.',
+              egZh: '如果每個決策都在等你，你就是那個瓶頸。',
+            },
+            {
+              en: 'micromanage',
+              zh: '微觀管理、事必躬親',
+              eg: 'Her 360 feedback used the word micromanage, and it landed hard.',
+              egZh: '她的 360 回饋裡出現了「微觀管理」這個詞，而這句話打得很重。',
+            },
+            {
+              en: 'be pulled into the weeds',
+              zh: '被拉進瑣碎細節裡',
+              eg: 'I get pulled into the weeds and never reach the strategic work.',
+              egZh: '我老是被拉進瑣碎細節裡，永遠做不到策略性的事。',
+            },
+            {
+              en: 'give someone room',
+              zh: '給某人空間',
+              eg: 'Give her room to do it her way, even if it takes longer.',
+              egZh: '給她空間用她的方法做，就算久一點也沒關係。',
+            },
+            {
+              en: 'trust someone with something',
+              zh: '把某事放心交給某人',
+              eg: 'I’m trusting you with the whole account, not just the paperwork.',
+              egZh: '我是把整個客戶放心交給你，不只是那些文書作業。',
+            },
+            {
+              en: 'let it go',
+              zh: '放下、不再糾結',
+              eg: 'It won’t be done the way I’d do it, and I have to let that go.',
+              egZh: '它不會照我的方式完成，而我得放下這件事。',
+            },
+            {
+              en: 'set someone up to succeed',
+              zh: '幫某人鋪好成功的條件',
+              eg: 'Delegating with no context isn’t trust — it’s setting someone up to fail.',
+              egZh: '沒給背景就授權，那不是信任，而是讓人注定失敗。',
+            },
+            {
+              en: 'where I add the most value',
+              zh: '我最能創造價值的地方',
+              eg: 'I’m working out where I add the most value, and protecting that time.',
+              egZh: '我正在想清楚我最能創造價值的地方，並把那段時間保護起來。',
+            },
+          ],
+        },
+
+        {
+          t: 'match',
+          en: 'Which half goes with which',
+          zh: '配對：哪一半接哪一半',
+          hintEn: 'Tap a phrase on the left, then its partner on the right.',
+          hintZh: '先點左邊的字詞，再點右邊配對的字詞。',
+          pairs: [
+            { a: 'get in', b: 'your own way' },
+            { a: 'own', b: 'the impact' },
+            { a: 'a limiting', b: 'belief' },
+            { a: 'pulled into', b: 'the weeds' },
+            { a: 'set someone up', b: 'to succeed' },
+            { a: 'give her', b: 'room' },
+            { a: 'trust him', b: 'with the account' },
+          ],
+        },
+
+        {
+          t: 'gap',
+          en: 'Choose the phrase that fits',
+          zh: '選出適合的片語',
+          items: [
+            {
+              text: 'If every decision waits for you, you are the ___.',
+              textZh: '如果每個決策都在等你，你就是那個瓶頸。',
+              options: ['bottleneck', 'blind spot', 'mindset'],
+              answer: 0,
+              why: {
+                en: 'The image is the neck of the bottle — the narrow point everything has to squeeze through.',
+                zh: '這個比喻講的是瓶子的頸部——所有東西都得擠過去的那個窄口。',
+              },
+            },
+            {
+              text: 'That belief ___ for twelve years. It doesn’t help in this job.',
+              textZh: '那個信念讓她受用了十二年，但在現在這個職位上幫不了她。',
+              options: ['served her well', 'got in her way', 'let it go'],
+              answer: 0,
+              why: {
+                en: 'The whole coaching move depends on saying this first. It is what makes the next sentence hearable.',
+                zh: '整段教練對話的關鍵，就在於先說這一句。有了它，下一句才聽得進去。',
+              },
+            },
+            {
+              text: 'She can see everyone else’s ___ except her own.',
+              textZh: '她看得見別人的盲點，唯獨看不見自己的。',
+              options: ['blind spot', 'bottleneck', 'reframe'],
+              answer: 0,
+              why: {
+                en: 'A blind spot is literal: the piece of the mirror where the car genuinely cannot be seen.',
+                zh: '「盲點」是字面的：後照鏡上那塊真的看不到車的位置。',
+              },
+            },
+            {
+              text: 'Don’t ask her to drop the belief — help her ___ it.',
+              textZh: '不要要求她丟掉那個信念，而是幫她把它轉個念。',
+              options: ['reframe', 'delegate', 'own'],
+              answer: 0,
+              why: {
+                en: 'Dropping a belief that built a career is not on offer. Changing its shape is.',
+                zh: '要她丟掉一個造就了她職涯的信念，不可能；改變它的形狀，才做得到。',
+              },
+            },
+          ],
+        },
+
+        {
+          t: 'discuss',
+          en: 'Talk it through',
+          zh: '聊聊看',
+          items: [
+            {
+              en: 'Of the seven, which one is your manager’s? And is it the same one you marked for yourself?',
+              zh: '七個之中，哪一個是你那位主管的？它跟你替自己標記的是同一個嗎？',
+              starters: [
+                { en: 'The one that jumped out for her was…', zh: '一眼就看到她身上的那一個是⋯⋯' },
+                { en: 'Mine is less obvious, but I think it’s…', zh: '我自己的沒那麼明顯，但我想應該是⋯⋯' },
+                { en: 'I’d never have called it a belief before.', zh: '我以前從來不會把它叫做「信念」。' },
+              ],
+            },
+            {
+              en: 'Her belief earned her twelve years of success. How do you ask someone to change the very thing that worked?',
+              zh: '她的信念為她換來十二年的成功。你要怎麼開口，請一個人改變那個一直很管用的東西？',
+              starters: [
+                { en: 'I’d start by naming what it got her.', zh: '我會先說出這個信念為她帶來了什麼。' },
+                { en: 'I wouldn’t ask her to drop it — I’d ask her to aim it somewhere else.', zh: '我不會要她放棄，我會請她把它用在別的地方。' },
+                { en: 'The risk is she hears “so I was wrong all along”.', zh: '風險是她會聽成「原來我一直都是錯的」。' },
+              ],
+            },
+            {
+              en: 'Last time you said the higher you climb, the fewer people tell you the truth. So who would tell you yours?',
+              zh: '上次你說，爬得越高，願意對你說真話的人就越少。那麼，誰會告訴你你的那一個？',
+              starters: [
+                { en: 'Honestly, probably nobody at work.', zh: '老實說，公司裡大概沒有人。' },
+                { en: 'I’d have to ask directly, and make it safe to answer.', zh: '我得直接問，而且要讓對方覺得回答是安全的。' },
+                { en: 'My team can see it. They just wouldn’t say it to me.', zh: '我的團隊看得出來，只是不會對我說。' },
+              ],
+            },
+          ],
+        },
+
+        {
+          t: 'task',
+          en: 'Two minutes: uncover, unpack, unblock',
+          zh: '兩分鐘：找出、剖析、破除',
+          instructionEn: 'Pick one blocker — hers or yours — and take it through the three stages. Name it in one sentence, say where it came from and what it has been worth, then say the reframe out loud. Tick each phrase as it lands.',
+          instructionZh: '挑一個心魔——她的或你的都可以——照三個階段走一遍。用一句話命名它，說出它從哪裡來、曾經帶來什麼價值，然後把轉念說出口。用到哪個片語就打勾。',
+          prompts: [
+            { en: 'Her blocker, as you would put it to her.', zh: '她的心魔，用你會對她說的方式講一遍。' },
+            { en: 'Your own, as you would put it to a coach.', zh: '你自己的，用你會對教練說的方式講一遍。' },
+            { en: 'The one you marked “that’s me” and wish you hadn’t.', zh: '那個你標了「這就是我」、又有點後悔標下去的。' },
+          ],
+          checklist: [
+            { en: 'a limiting belief', zh: '限制性信念' },
+            { en: 'It served me well when…', zh: '它在⋯⋯的時候很管用' },
+            { en: 'get in my own way', zh: '自己絆住自己' },
+            { en: 'own the impact', zh: '承擔自己造成的影響' },
+            { en: 'reframe it as…', zh: '把它轉成⋯⋯' },
+            { en: 'where I add the most value', zh: '我最能創造價值的地方' },
+          ],
+          frames: [
+            { en: 'The sentence running underneath is ___.', zh: '底下一直在跑的那句話是＿＿。' },
+            { en: 'It came from ___, and it worked for a long time.', zh: '它來自＿＿，而且管用了很久。' },
+            { en: 'What it costs me now is ___.', zh: '它現在讓我付出的代價是＿＿。' },
+            { en: 'The version I’d rather run is ___.', zh: '我比較想跑的版本是＿＿。' },
+          ],
+        },
+
+        /* Sourcing, on the page rather than only in this file: the seven names
+           and the three stages are Wilkins's, one reframe is hers, and the rest
+           is the lesson's own. Anyone reading the page can see which is which. */
+        {
+          t: 'note',
+          en: 'Where this comes from',
+          zh: '出處',
+          bodyEn: 'Muriel M. Wilkins, “The Hidden Beliefs That Hold Leaders Back”, Harvard Business Review, November–December 2025, read here in the HBR Taiwan translation 〈拖垮領導力的七大心魔〉; the ideas are developed in her book Leadership Unblocked (HBR Press, 2025). The seven names and the three stages are hers, and so is the first reframe above. The other two reframes, and every example, explanation and exercise on this page, were written for this lesson — they are not quotations from the article.',
+          bodyZh: '出自 Muriel M. Wilkins〈The Hidden Beliefs That Hold Leaders Back〉，《哈佛商業評論》2025 年 11–12 月號，此處讀的是中文版〈拖垮領導力的七大心魔〉；相關概念另見其著作《Leadership Unblocked》（HBR Press, 2025）。七個名稱與三個階段出自原作者，上面第一個轉念也是。其餘兩個轉念，以及本頁所有的例子、說明與練習，都是為這堂課而寫，並非原文的引述。',
         },
       ],
     },

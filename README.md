@@ -2634,11 +2634,18 @@ promoted clinical sales manager whose technical strength is not in question and
 whose communication has not moved with the job. It carries the twenty-four
 expressions that came out of that hour.
 
+Session 2 is the article that explains her from the inside — Muriel Wilkins's
+seven hidden blockers, the beliefs a leader cannot see. Session 1 watched the
+manager step into a surgeon's training with "let me demonstrate"; Wilkins's
+first blocker is *I need to be involved*. The seven are the spine of the
+session, as a self-audit Anny marks for her manager and then for herself.
+
 | Piece | What it does |
 | --- | --- |
-| 🗂 Sessions | One folded section per discussion, newest open |
-| ⚖️ Contrast | The same message said two ways — how it landed, how it could |
+| 🗂 Sessions | One folded section per discussion, newest at the top and open |
+| ⚖️ Contrast | Two columns, labelled per block — how it landed / how it could, or a belief and its reframe |
 | 🗂 Phrase cards | Meaning and an example sentence, behind a tap |
+| ☑️ Audit | A list to mark against yourself; the button wording is set per block |
 | ✕✓ Corrections | Her own sentence, with the upgrade and the reason behind a tap |
 | 🔗 Matching, ✏️ gap fill | The usual collocation work |
 | 🗣 Poll, 💬 Discussion, ⏱ Two minutes | Reasons to talk |
@@ -2651,6 +2658,15 @@ expressions that came out of that hour.
   number, its date and its title — enough to find a lesson without opening it.
   Which sessions are open is deliberately **not** remembered between loads: a
   reload is a clean start here exactly as it is everywhere else in this repo.
+- **The page reads newest-first; the array does not.** `render.js` builds
+  `const ordered = [...sessions].reverse()` and hands that to both the contents
+  list and the document, so the newest lesson is the first thing on screen
+  rather than the last. The array itself stays chronological, which is what
+  lets "the newest" mean something — the open-on-load rule still takes
+  `sessions[sessions.length - 1]`. Session 2 is the first time any of this is
+  visible; until November both this notebook and Aaron's had one session each.
+  The four adult notebooks built after this one dropped the reversal and read
+  oldest-first. This page and Jill's keep it.
 - **Two ways to open a session, meaning two different things.** A contents link
   or a URL hash means *take me to this one*, and folds the others, so
   `/anny/#s3` lands on session 3 rather than session 3 plus whatever was
@@ -2672,6 +2688,25 @@ expressions that came out of that hour.
   sentence only — the wrong version should not be the model going into her ear.
 - **A mistake is a grey ✕, never red.** This page has no score and no failure
   state, and a page of red pen would be one.
+- **A paywalled source still gets sourced honestly.** Session 2's article is
+  behind a paywall in both languages — about 5% of each is readable. What the
+  session carries instead came from what could be read in full: the seven names
+  and their order from two independent sources that agree, and the three stages
+  from the author's own published worksheet. The article is not reproduced, the
+  same rule `/wealth-habits/` set. One reframe on the page is Wilkins's own and
+  is credited as hers; the other two, and every example and exercise, were
+  written for the lesson. The closing `note` block says exactly which is which,
+  **on the page** rather than only in the content file — a reader who cannot
+  see this README is the one who needs to know.
+- **The contents list no longer scrolls the page.** `markHere` used to end with
+  `a.scrollIntoView({ block: 'nearest' })`, which scrolls the nearest scrollable
+  *ancestor* — the document, whenever the list is not itself scrolling — fired
+  on every scroll event, and inherited `scroll-behavior: smooth`, so each call
+  started an animation that fought the next. `keepLinkVisible()` moves only
+  `.toc`, only when the marked link is genuinely outside its box, and
+  instantly. The fix landed on Jill's page in August (`277be2c`) and spread by
+  copying; this page was built before it and was the last one still carrying
+  the bug.
 - **`noindex, nofollow`.** The page carries a named client and, through her, a
   named-by-description report and a customer. It stays reachable by its URL for
   her and out of search results for everyone else. That is a mitigation, not a
@@ -2698,11 +2733,12 @@ ended on.
 
 Two things are new in this copy of the renderer:
 
-- **The contrast block took two optional labels.** Anny's version hard-codes its
-  columns as *As it landed* / *As it could land*, which is right for a message
-  and wrong for anything else. `coldEn`/`coldZh` and `warmEn`/`warmZh` override
-  them — here to *The instinct* against *The reframe*, which is the move the
-  whole hour kept making. The defaults are unchanged, so nothing else breaks.
+- **The contrast block took two optional labels.** The columns default to
+  *As it landed* / *As it could land*, which is right for a message and wrong
+  for anything else. `coldEn`/`coldZh` and `warmEn`/`warmZh` override them —
+  here to *The instinct* against *The reframe*, which is the move the whole
+  hour kept making. The defaults are unchanged, so nothing else breaks. This
+  started on Aaron's page; Anny's has since been given the same two labels.
 - **A `link` block**, the same one the two Happy Sexy Millionaire pages use.
   Session 1's homework question comes from *The Wealth Ladder*, so the block
   points at [`book-club/#ladder`](public/aaron/book-club/) for the summary and the
@@ -2723,7 +2759,7 @@ one exception and one rename: the `localStorage` prefix is `anita.`, so the
 notebooks do not share a voice or a Chinese setting, and **this page reads
 newest first**.
 
-That last one is the only structural difference from Anny's and Aaron's. The
+Newest-first started here, but it is no longer what sets this page apart: the
 `sessions` array is still chronological — append at the bottom, `n` counts up —
 and the renderer reverses a copy of it (`ordered`) for the contents list and the
 document. The array stays the source of truth for what "the newest" means, so
@@ -4198,16 +4234,21 @@ discipline unchanged.
 **Anny's Notebook.** Adding a discussion is one entry appended to the
 `sessions` array in [`public/anny/content.js`](public/anny/content.js). Copy
 the last one, change `id`, `n`, `date`/`dateEn`/`dateZh` and the titles, and
-rewrite the blocks; put it at the bottom, since the page is chronological. `id`
-becomes the anchor, so keep it unique and URL-safe. The block types are listed
-at the top of that file; eleven of the thirteen are the same ones the other
-adult pages use, and `fix` and `contrast` are the two this page adds.
+rewrite the blocks. Put it at the **bottom**: the *array* is chronological even
+though the page is not, and the renderer reverses a copy of it so the entry you
+append is the one that shows first. `id` becomes the anchor, so keep it unique
+and URL-safe. The block types are listed at the top of that file; eleven of the
+thirteen are the same ones the other adult pages use, and `fix` and `contrast`
+are the two this page added. Two of them take optional labels, and both default
+to session 1's wording: `contrast` takes `coldEn`/`coldZh` and
+`warmEn`/`warmZh` for when the columns are not a before and after, and `cards`
+takes `haveEn`/`haveZh` and `needEn`/`needZh`, which matter whenever the list
+being audited is not a list of people.
 
 **Aaron's Notebook.** The same, in
 [`public/aaron/content.js`](public/aaron/content.js). Its renderer is a copy of
-Anny's with two additions: a `link` block, and two optional labels on `contrast`
-(`coldEn`/`coldZh`, `warmEn`/`warmZh`) for when the two columns are not a
-message said twice. Leaving them out keeps Anny's wording. Changes that belong
+Anny's, and what it added first — the optional `contrast` labels — has since
+been backfilled into Anny's too, so the one block it still has alone is `link`. Changes that belong
 in both notebooks have to be made twice — the copy is deliberate, since a
 student's page should not change because someone edited another student's.
 

@@ -136,7 +136,8 @@ const BLOCKS = {
           </p>
           <div class="cx-grid">
             <div class="cx-side cx-cold">
-              <p class="cx-tag">As it landed <em>當下造成的效果</em></p>
+              <p class="cx-tag">${text(b.coldEn || 'As it landed')}
+                <em>${text(b.coldZh || '當下造成的效果')}</em></p>
               <div class="pair" data-zh>
                 <p class="en">${text(i.cold.en)}${speakBtn(i.cold.en, 'say say-quiet')}
                   <button class="zh-chip" title="顯示中文">中</button></p>
@@ -144,7 +145,8 @@ const BLOCKS = {
               </div>
             </div>
             <div class="cx-side cx-warm">
-              <p class="cx-tag">As it could land <em>可以有的效果</em></p>
+              <p class="cx-tag">${text(b.warmEn || 'As it could land')}
+                <em>${text(b.warmZh || '可以有的效果')}</em></p>
               <div class="pair" data-zh>
                 <p class="en">${text(i.warm.en)}${speakBtn(i.warm.en, 'say say-quiet')}
                   <button class="zh-chip" title="顯示中文">中</button></p>
@@ -285,8 +287,8 @@ const BLOCKS = {
               <p class="zh">${text(i.descZh)}</p>
             </div>
             <div class="role-btns" role="group">
-              <button class="chip" data-v="have">I have this<em>我有這樣的人</em></button>
-              <button class="chip" data-v="need">I need this<em>我需要一位</em></button>
+              <button class="chip" data-v="have">${text(b.haveEn || 'I have this')}<em>${text(b.haveZh || '我有這樣的人')}</em></button>
+              <button class="chip" data-v="need">${text(b.needEn || 'I need this')}<em>${text(b.needZh || '我需要一位')}</em></button>
             </div>
           </li>`).join('')}
       </ul>
@@ -783,13 +785,39 @@ $('#nav').addEventListener('click', (e) => {
    trigger band and the observer reports whichever fired last. */
 const marks = [$('#top'), ...$$('.session')];
 
+/* Keep the marked link inside the contents list WITHOUT ever scrolling the
+   page. The obvious `a.scrollIntoView({ block: 'nearest' })` is the bug that
+   made this notebook drift on its own:
+
+   - `markHere` runs on every scroll event, so it fired dozens of times a
+     second while the reader was scrolling;
+   - `scrollIntoView` scrolls the nearest scrollable ANCESTOR, and when the
+     contents list is not itself scrolling — a short list, or a narrow screen
+     where it is a closed panel — that ancestor is the document; and
+   - it inherited `scroll-behavior: smooth`, so each call started an animation
+     that outlived the gesture and fought the next one.
+
+   Scrolling the container by hand fixes all three at once: it moves only
+   `.toc`, only when the link is actually outside its box, and instantly. */
+function keepLinkVisible(a) {
+  const box = a.closest('.toc');
+  if (!box || box.scrollHeight <= box.clientHeight) return;
+  /* Rect deltas rather than offsetTop: the link's offsetParent is whichever
+     ancestor happens to be positioned, which is not reliably the scroll box,
+     and subtracting the wrong origin silently pins scrollTop at 0. */
+  const link = a.getBoundingClientRect();
+  const view = box.getBoundingClientRect();
+  if (link.top < view.top) box.scrollTop -= view.top - link.top;
+  else if (link.bottom > view.bottom) box.scrollTop += link.bottom - view.bottom;
+}
+
 function markHere() {
   const line = 90;
   let here = marks[0];
   marks.forEach((m) => { if (m.getBoundingClientRect().top <= line) here = m; });
   links.forEach((a) => a.classList.remove('here'));
   const a = links.get(here.id);
-  if (a) { a.classList.add('here'); a.scrollIntoView({ block: 'nearest' }); }
+  if (a) { a.classList.add('here'); keepLinkVisible(a); }
 }
 
 markHere();
