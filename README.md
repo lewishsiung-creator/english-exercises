@@ -1988,6 +1988,18 @@ speech events at all), so the play-through was checked with `speak()`
 stubbed; on a real browser it needs one real tap to start, as Chrome requires.
 Lewis listened on his own device the same day and confirmed the voices work.
 
+**Checked against the law, 2026-11-03.** Ten of the page's legal statements
+were checked against law.moj.gov.tw, ris.gov.tw and the MOI's reciprocity
+table. None was wrong; five were tightened: residence after divorce is
+something the parent *applies* for (入出國及移民法 §31 IV(3), custody **or**
+visitation); a US heir's state is their **domicile**, not simply where they
+live (MOI's per-state table — Oklahoma has none; inherited farmland must be
+sold within 3 years, 土地法 §17 II); renouncing is **in writing to the court**
+(§1174); the recovery claim also ends **ten years** after the death (§1146
+II); and the will note now says nationality *when the will was made* (§60)
+versus *at death* (§58), with the Taiwanese-heir exception as §58's proviso.
+Recheck the MOI table before adding anything on a specific US state.
+
 **Search reaches Practice.** Typing in the word-list search also lists up to
 six matching Practice lines under the words ("We act for …" finds the email to
 opposing counsel); tapping one opens Practice at that line. Every practice

@@ -53,7 +53,7 @@ window.PRACTICE = [
       { who:"C", en:"Will a Taiwanese court treat me fairly as a foreigner?", zh:"身為外國人，台灣的法院會公平對待我嗎？" },
       { who:"L", en:"Nationality is not a reason to give custody to one parent. And if your Chinese isn't strong enough, the court can provide an interpreter.", zh:"國籍不是把親權判給某一方的理由。如果你的中文不夠好，法院也可以提供通譯。" },
       { who:"C", en:"What about my visa? It's based on the marriage.", zh:"那我的簽證呢？那是依親的。" },
-      { who:"L", en:"That's an important point. If you have custody of the children, or regular visitation with them, you can usually keep living in Taiwan. I'll check the details of your permit.", zh:"這點很重要。如果你取得孩子的親權，或對孩子有固定的會面交往，通常可以繼續在台灣居留。我會再確認你居留證的細節。" },
+      { who:"L", en:"That's an important point. If you have custody of the children, or regular visitation with them, you can usually apply to keep living in Taiwan. I'll check the details of your permit.", zh:"這點很重要。如果你取得孩子的親權，或對孩子有固定的會面交往，通常可以申請繼續在台灣居留。我會再確認你居留證的細節。" },
       { who:"C", en:"That's a relief. So what happens next?", zh:"那我放心多了。接下來呢？" },
       { who:"L", en:"If you both agree, you can sign a divorce agreement with two witnesses and register it. If not, the case will usually go to mediation first.", zh:"如果雙方都同意，可以簽離婚協議書、找兩位證人，再去登記。如果談不攏，案件通常會先進行調解。" },
       { who:"L", en:"For now, please keep a record of the time you spend with the children, and don't move out without talking to me first.", zh:"現在請你把陪伴孩子的時間記錄下來，搬出去之前也請先跟我討論。" },
@@ -82,10 +82,10 @@ window.PRACTICE = [
       { who:"L", en:"A handwritten will must be written entirely by hand, dated and signed. If any of that is missing, it is void.", zh:"自書遺囑必須全文親筆、記明年月日並簽名。缺少任何一項，遺囑就無效。" },
       { who:"L", en:"And even a valid will cannot take away your compulsory portion. As his daughter, you are an heir.", zh:"而且就算遺囑有效，也不能剝奪你的特留分。你是他的女兒，就是繼承人。" },
       { who:"C", en:"Even though I'm an American citizen?", zh:"即使我是美國公民？" },
-      { who:"L", en:"Yes. Inheritance follows the law of your father's nationality, which is Taiwanese law.", zh:"是的。繼承依被繼承人的本國法，也就是台灣的法律。" },
-      { who:"L", en:"One thing to check: a foreigner can inherit land here only if there is reciprocity. For US citizens it depends on the state you live in, so I'll confirm it.", zh:"有一件事要確認：外國人要有平等互惠，才能繼承台灣的土地。美國人要看住在哪一州，我會再確認。" },
+      { who:"L", en:"Yes. Inheritance follows the law of your father's nationality at the time of his death, which is Taiwanese law.", zh:"是的。繼承依被繼承人死亡時的本國法，也就是台灣的法律。" },
+      { who:"L", en:"One thing to check: a foreigner can inherit land here only if there is reciprocity. For US citizens it depends on the state where you have your legal home, so I'll confirm it.", zh:"有一件事要確認：外國人要有平等互惠，才能繼承台灣的土地。美國人要看你的住所（法律上的居住地）在哪一州，我會再確認。" },
       { who:"C", en:"I think he also had some debts. Should I be worried?", zh:"他好像也有一些債務。我需要擔心嗎？" },
-      { who:"L", en:"Heirs are liable for debts only up to the value of the estate. If the debts are larger than the assets, you can renounce the inheritance, but only within three months of learning that you are an heir.", zh:"繼承人只在遺產範圍內負擔債務。如果債務比資產多，你可以拋棄繼承，但必須在知道自己是繼承人後三個月內。" },
+      { who:"L", en:"Heirs are liable for debts only up to the value of the estate. If the debts are larger than the assets, you can renounce the inheritance by writing to the court, but only within three months of learning that you are an heir.", zh:"繼承人只在遺產範圍內負擔債務。如果債務比資產多，你可以書面向法院拋棄繼承，但必須在知道自己是繼承人後三個月內。" },
       { who:"C", en:"Three months. So I need to decide quickly.", zh:"三個月。所以我得快點決定。" },
       { who:"L", en:"Yes. First, we'll find out what is in the estate and what he owed. If your brothers won't share the house fairly, we can file for partition of the estate.", zh:"對。首先我們會查清遺產和債務。如果你的哥哥們不願公平分配房子，我們可以提起遺產分割。" },
       { who:"L", en:"Since you live abroad, you'll need to sign a power of attorney, have it notarized, and get it authenticated by a Taiwan office in the US.", zh:"因為你住在國外，你需要簽一份委任狀，經公證後，再送我國駐美辦事處驗證。" }
@@ -170,8 +170,8 @@ window.PRACTICE = [
       { en:"I give the residue of my estate to my wife.", zh:"本人其餘遺產全部遺贈予妻子。" },
       { en:"Signed by the Testator in our presence, and then by us in the Testator's presence.", zh:"立遺囑人在我們面前簽名，之後我們在立遺囑人面前簽名。" }
     ],
-    check: { en:"When the person who made the will was a foreign national, the will and the inheritance generally follow the law of their nationality. One exception protects heirs who are Taiwanese nationals: they can still inherit the property in Taiwan that Taiwanese law would give them.",
-             zh:"立遺囑人是外國人時，遺囑和繼承原則上依其本國法。但有一個例外保護具中華民國國籍的繼承人：依我國法律應為繼承人者，仍可就其在台灣的遺產繼承。" },
+    check: { en:"When the person who made the will was a foreign national, the will follows the law of their nationality when it was made, and the inheritance follows the law of their nationality at death. One exception: Taiwanese nationals who are heirs under Taiwanese law can still inherit the property left in Taiwan.",
+             zh:"立遺囑人是外國人時，遺囑依其立遺囑時的本國法，繼承依其死亡時的本國法。例外是：依我國法律應為繼承人的中華民國國民，仍可就在台灣的遺產繼承。" },
     phrases: [
       { en:"revoke all earlier wills", zh:"撤銷先前所有遺囑" },
       { en:"codicil", zh:"遺囑附件（補充遺囑）" },

@@ -192,8 +192,8 @@ window.LAW = {
       { w:"compulsory portion", p:"n.", zh:"特留分", ex:"A will cannot take away an heir's compulsory portion.", zhEx:"遺囑不能剝奪繼承人的特留分。" },
       { w:"contest", p:"v.", zh:"爭執（遺囑效力）", ex:"His sisters want to contest the will.", zhEx:"他的姊妹想爭執這份遺囑的效力。" },
       { w:"partition of the estate", p:"n.", zh:"遺產分割", ex:"The heirs could not agree, so we filed for partition of the estate.", zhEx:"繼承人之間談不攏，所以我們提起遺產分割。" },
-      { w:"claim for recovery of inheritance", p:"n.", zh:"繼承回復請求權", ex:"A claim for recovery of inheritance must be made within two years of learning that your rights were infringed.", zhEx:"繼承回復請求權，須在知悉繼承權被侵害時起兩年內行使。" },
-      { w:"renounce", p:"v.", zh:"拋棄（繼承）", ex:"You can renounce the inheritance within three months of learning that you are an heir.", zhEx:"你可以在知道自己是繼承人後三個月內拋棄繼承。" },
+      { w:"claim for recovery of inheritance", p:"n.", zh:"繼承回復請求權", ex:"A claim for recovery of inheritance must be made within two years of learning that your rights were infringed, and no more than ten years after the death.", zhEx:"繼承回復請求權須在知悉繼承權被侵害時起兩年內行使，且自繼承開始起不得超過十年。" },
+      { w:"renounce", p:"v.", zh:"拋棄（繼承）", ex:"You can renounce the inheritance in writing to the court within three months of learning that you are an heir.", zhEx:"你可以在知道自己是繼承人後三個月內，以書面向法院拋棄繼承。" },
       { w:"liable", p:"adj.", zh:"負有責任的", ex:"Heirs are liable for debts only up to the value of the estate.", zhEx:"繼承人只以所繼承的遺產為限，負擔債務。" },
       { w:"estate tax", p:"n.", zh:"遺產稅", ex:"The heirs must file an estate tax return within six months.", zhEx:"繼承人必須在六個月內申報遺產稅。" },
       { w:"guardianship", p:"n.", zh:"監護宣告", ex:"The family asked the court for guardianship of their father, who has dementia.", zhEx:"家人為失智的父親向法院聲請監護宣告。" }
@@ -251,7 +251,7 @@ window.LAW = {
       { w:"authentication", p:"n.", zh:"（駐外館處）驗證", ex:"Documents made abroad usually need authentication by a Taiwan overseas office.", zhEx:"在國外作成的文件，通常需要經我國駐外館處驗證。" },
       { w:"certified translation", p:"n.", zh:"經認證的翻譯", ex:"Please provide a Chinese translation; a certified translation is safer.", zhEx:"請提供中文譯本；附經認證的翻譯會更穩妥。" },
       { w:"interpreter", p:"n.", zh:"通譯；口譯", ex:"The court can provide an interpreter at the hearing.", zhEx:"開庭時法院可以提供通譯。" },
-      { w:"residence permit", p:"n.", zh:"居留證", ex:"A foreign parent with custody of a Taiwanese child can usually keep the residence permit after a divorce.", zhEx:"對台灣籍子女有親權的外籍父母，離婚後通常可以保留居留證。" },
+      { w:"residence permit", p:"n.", zh:"居留證", ex:"After a divorce, a foreign parent who cares for or visits a Taiwanese child can usually apply to keep a residence permit.", zhEx:"離婚後，對台灣籍子女有扶養、行使親權或會面交往的外籍父母，通常可以申請繼續居留。" },
       { w:"reciprocity", p:"n.", zh:"平等互惠", ex:"A foreign heir can inherit land here only if there is reciprocity with their country.", zhEx:"外籍繼承人只有在其本國與我國平等互惠時，才能繼承台灣的土地。" },
       { w:"child abduction", p:"n.", zh:"（跨國）擄走子女", ex:"Taiwan is not a party to the Hague Convention on child abduction.", zhEx:"台灣不是海牙國際兒童誘拐公約的締約方。" }
     ]
