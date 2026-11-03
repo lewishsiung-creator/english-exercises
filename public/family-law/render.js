@@ -323,6 +323,7 @@ function buildPiece(p) {
     <p class="piece-kind">${KIND[p.kind][0]} <span>${KIND[p.kind][1]}</span></p>
     <h3 class="piece-title">${text(p.en)}<span class="zh">${text(p.zh)}</span></h3>
     <p class="piece-note">${text(p.note.en)}<span class="zh">${text(p.note.zh)}</span></p>
+    ${'speechSynthesis' in window ? `<button class="btn playall" data-play="${p.id}" aria-pressed="false">${PLAY_LABEL.idle}</button>` : ''}
     <ol class="lines">${p.lines.map((l) => lineHtml(l, true)).join('')}</ol>
     ${p.check ? `
     <div class="aside">
@@ -363,6 +364,90 @@ function buildPractice() {
     </header>
     ${PRACTICE.map(buildPiece).join('')}
   </div>`;
+}
+
+/* ---------------- Play all ----------------
+
+   Reads a piece from top to bottom, each line in its speaker's voice, with
+   the line being read lit and kept in view. With "Cover the lawyer's lines"
+   on, it stops at each covered lawyer line and waits: the learner says it,
+   then taps Continue (or the line) to hear it and go on. A run number makes
+   any callback from a stopped run do nothing — cancel() fires onend too. */
+
+const PLAY_LABEL = {
+  idle: '▶&#xFE0E; Play all <em>全部播放</em>',
+  playing: '■ Stop <em>停止</em>',
+  waiting: '▶&#xFE0E; Continue <em>換你說完了，繼續</em>',
+};
+const P = { id: null, i: 0, run: 0, waiting: false };
+
+const playLines = (id) => $$('ol.lines > .line', $('#p-' + id));
+
+function playLabel(id, state) {
+  const b = $(`[data-play="${id}"]`);
+  if (!b) return;
+  b.innerHTML = PLAY_LABEL[state];
+  b.setAttribute('aria-pressed', String(state !== 'idle'));
+  b.classList.toggle('waiting', state === 'waiting');
+}
+
+function stopPlay() {
+  if (!P.id) return;
+  P.run++;
+  $$('#practice .line.playing, #practice .line.yourturn').forEach((l) =>
+    l.classList.remove('playing', 'yourturn'));
+  playLabel(P.id, 'idle');
+  P.id = null; P.waiting = false;
+  if (canSpeak) speechSynthesis.cancel();
+}
+
+function keepInView(li) {
+  const r = li.getBoundingClientRect();
+  const top = pinnedBottom() + 12;
+  if (r.top < top || r.bottom > window.innerHeight - 12) window.scrollBy(0, r.top - top - 40);
+}
+
+function playStep() {
+  const lines = playLines(P.id);
+  $$('#practice .line.playing').forEach((l) => l.classList.remove('playing'));
+  if (P.i >= lines.length) { stopPlay(); return; }
+  const li = lines[P.i];
+  li.classList.add('playing');
+  keepInView(li);
+
+  if (document.body.classList.contains('cover-L')
+      && li.classList.contains('who-L') && !li.classList.contains('shown')) {
+    P.waiting = true;
+    li.classList.add('yourturn');
+    playLabel(P.id, 'waiting');
+    return;
+  }
+
+  const run = P.run;
+  speak($('.line-en', li).textContent, lineVoice(li), () => {
+    if (run !== P.run) return;
+    P.i++;
+    setTimeout(() => { if (run === P.run) playStep(); }, 450);
+  });
+}
+
+function yourTurnDone() {
+  if (!P.waiting) return;
+  const li = playLines(P.id)[P.i];
+  li.classList.remove('yourturn');
+  li.classList.add('shown');
+  P.waiting = false;
+  playLabel(P.id, 'playing');
+  playStep();
+}
+
+function playButton(id) {
+  if (P.id === id && P.waiting) { yourTurnDone(); return; }
+  if (P.id === id) { stopPlay(); return; }
+  stopPlay();
+  P.id = id; P.i = 0;
+  playLabel(id, 'playing');
+  playStep();
 }
 
 // ------------------------------------------------------------------- render
@@ -507,16 +592,58 @@ function loadVoices() {
 }
 
 loadVoices();
-if (canSpeak) speechSynthesis.onvoiceschanged = loadVoices;
+if (canSpeak) speechSynthesis.onvoiceschanged = () => { loadVoices(); CLIENT_VOICE.clear(); };
 
-function speak(sentence) {
-  if (!canSpeak) return;
+/* The client in a Practice dialogue speaks in a different voice from the
+   lawyer, matched to who they are (practice.js: client: { lang, sex }). The
+   Speech API says nothing about sex, so it is read off the voice's name from
+   the names Apple, Google and Microsoft ship; a voice not on either list
+   still serves, just without that match. Never the lawyer's own voice. */
+const MALE = /Daniel|Alex|Fred|Arthur|Oliver|Tom|Aaron|Rishi|Gordon|Lee|Guy|Ryan|Thomas|George|James|David|Mark|Male/i;
+const FEMALE = /Samantha|Karen|Moira|Tessa|Serena|Kate|Martha|Allison|Ava|Susan|Victoria|Zoe|Nicky|Catherine|Hazel|Libby|Sonia|Natasha|Aria|Jenny|Zira|Female|Google US English/i;
+// macOS also ships joke and character voices; never hand one to a client.
+const NOVELTY = /Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Junior|Kathy|Ralph|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley/i;
+const CLIENT_VOICE = new Map();
+const langOf = (v) => v.lang.replace('_', '-');
+// "Ava (Enhanced)" is still Ava: compare voices by the name before any bracket.
+const baseName = (v) => v.name.replace(/\s*[(（].*$/, '').trim().toLowerCase();
+
+function clientVoice(pieceId) {
+  if (CLIENT_VOICE.has(pieceId)) return CLIENT_VOICE.get(pieceId);
+  const want = (PRACTICE.find((p) => p.id === pieceId) || {}).client || {};
+  const others = voices.filter((v) =>
+    !NOVELTY.test(v.name) && (!voice || baseName(v) !== baseName(voice)));
+  const sexOk = (v) => !want.sex || (want.sex === 'm' ? MALE : FEMALE).test(v.name);
+  const tries = [
+    (v) => langOf(v) === want.lang && sexOk(v),
+    (v) => langOf(v) === want.lang,
+    (v) => langOf(v) !== (voice && langOf(voice)) && sexOk(v),
+    (v) => sexOk(v),
+    () => true,
+  ];
+  let pick = null;
+  for (const t of tries) { pick = others.find(t); if (pick) break; }
+  CLIENT_VOICE.set(pieceId, pick || voice);
+  return pick || voice;
+}
+
+function speak(sentence, v, onend) {
+  if (!canSpeak) { if (onend) onend(); return; }
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(sentence);
-  if (voice) { u.voice = voice; u.lang = voice.lang; } else { u.lang = 'en-US'; }
+  const use = v || voice;
+  if (use) { u.voice = use; u.lang = use.lang; } else { u.lang = 'en-US'; }
   u.rate = Number($('#rate').value);
+  if (onend) { u.onend = onend; u.onerror = onend; }
   // Safari drops an utterance queued in the same tick as cancel().
   setTimeout(() => speechSynthesis.speak(u), 0);
+}
+
+/* The voice for one practice line: the client's in a dialogue, else the
+   lawyer's (the one chosen in 設定). */
+function lineVoice(li) {
+  if (!li.classList.contains('who-C')) return voice;
+  return clientVoice(li.closest('.piece').id.slice(2));
 }
 
 // ------------------------------------------------------------------- quiz
@@ -793,6 +920,7 @@ let listY = 0;
 function setView(v) {
   const was = S.view;
   if (was === 'list' && v !== 'list') listY = window.scrollY;
+  if (v !== 'practice') stopPlay();
   S.view = v;
   $$('#viewseg button').forEach((b) =>
     b.setAttribute('aria-pressed', String(b.dataset.view === v)));
@@ -888,7 +1016,17 @@ doc.addEventListener('click', (e) => {
 
   // ---- speak
   const say = t.closest('[data-say]');
-  if (say) { e.stopPropagation(); speak(say.dataset.say); return; }
+  if (say) {
+    e.stopPropagation();
+    stopPlay();
+    const li = say.closest('#practice .line');
+    speak(say.dataset.say, li ? lineVoice(li) : null);
+    return;
+  }
+
+  // ---- Play all / Stop / Continue
+  const pb = t.closest('[data-play]');
+  if (pb) { playButton(pb.dataset.play); return; }
 
   // ---- a 中 chip opens just its own line
   const chip = t.closest('.zh-chip');
@@ -945,6 +1083,7 @@ doc.addEventListener('click', (e) => {
 
   // ---- a practice line: uncover it (role-play), else open its Chinese
   const line = t.closest('#practice .line');
+  if (line && line.classList.contains('yourturn')) { yourTurnDone(); return; }
   if (line) {
     if (document.body.classList.contains('cover-L')
         && line.classList.contains('who-L') && !line.classList.contains('shown')) {
@@ -1109,6 +1248,7 @@ document.addEventListener('keydown', (e) => {
   if (e.key !== 'Escape') return;
   setNav(false);
   setPanel(false);
+  stopPlay();
 });
 
 /* Which theme is on screen, for the contents list. Watching a band across the

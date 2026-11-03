@@ -1023,6 +1023,25 @@ body.view-practice #qnote { display: none !important; }
 .line.head .line-en { font-weight: 700; letter-spacing: .01em; }
 .piece-document .lines .line-en { font-family: var(--font-en); }
 
+/* Play all: the button sits under the note; the line being read is lit, and
+   a covered lawyer line waiting for the learner says so. */
+.playall { margin: 0 0 12px; }
+.playall em { font-family: var(--font-zh); font-style: normal; font-size: .9em; margin-left: 4px; opacity: .85; }
+.playall[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+.playall.waiting { background: var(--gold-soft); border-color: var(--gold-line); color: var(--gold); }
+.line.playing { background: var(--navy-soft); }
+.line.yourturn { background: var(--gold-soft); box-shadow: inset 3px 0 0 var(--gold-line); }
+.line.yourturn .who::after {
+  content: "Your turn\A換你說";
+  white-space: pre-line;
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-zh);
+  font-size: .9em;
+  color: var(--gold);
+}
+@media (max-width: 620px) { .line.yourturn .who::after { content: "Your turn 換你說"; display: inline; margin: 0 0 0 6px; } }
+
 /* Role-play: the lawyer's English is covered until tapped. */
 body.cover-L .who-L:not(.shown) .line-en,
 body.cover-L .who-L:not(.shown) .zh {

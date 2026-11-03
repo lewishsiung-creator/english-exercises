@@ -17,6 +17,10 @@
    Fields:
      id, kind, en, zh   the piece and its bilingual title
      note               { en, zh } — the situation, shown above the piece
+     client             dialogue only: { lang, sex } — the accent and the
+                        sex of the client's voice. The lawyer speaks in the
+                        voice chosen in 設定; the client gets a different one,
+                        picked to match (see clientVoice() in render.js).
      lines              dialogue: { who: 'L' | 'C', en, zh }
                         document / email: { en, zh }, and { head: true } for
                         a heading line
@@ -27,7 +31,7 @@ window.PRACTICE = [
 
   /* ---------------- dialogues ---------------- */
 
-  { id: "consult-divorce", kind: "dialogue",
+  { id: "consult-divorce", kind: "dialogue", client: { lang: "en-GB", sex: "m" },
     en: "A divorce consultation with a foreign father",
     zh: "外籍父親的離婚諮詢",
     note: { en: "The client is British, married to a Taiwanese woman for nine years. They have two children in Taipei. His wife has said she wants a divorce.",
@@ -60,7 +64,7 @@ window.PRACTICE = [
     ]
   },
 
-  { id: "consult-inheritance", kind: "dialogue",
+  { id: "consult-inheritance", kind: "dialogue", client: { lang: "en-US", sex: "f" },
     en: "An inheritance consultation with an heir abroad",
     zh: "住在國外的繼承人來諮詢",
     note: { en: "The client is an American whose Taiwanese father died in Kaohsiung three weeks ago. Her half-brothers say a handwritten will leaves them the house.",
@@ -91,7 +95,7 @@ window.PRACTICE = [
     ]
   },
 
-  { id: "call-support", kind: "dialogue",
+  { id: "call-support", kind: "dialogue", client: { lang: "en-AU", sex: "f" },
     en: "A first phone call about unpaid child support",
     zh: "初次來電：扶養費沒有付",
     note: { en: "A foreign mother calls the firm. Her former husband has stopped paying child support.",

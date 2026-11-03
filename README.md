@@ -1975,6 +1975,18 @@ taps open its Chinese like a card; **Cover the lawyer's lines** turns the
 dialogues into role-play — the learner says the line, then taps to check it.
 The quiz does not draw on it.
 
+**Two voices and Play all** (added the same day). The lawyer speaks in the
+voice chosen in 設定; each dialogue's client gets a different voice, matched
+to `client: { lang, sex }` in practice.js (British man, American woman,
+Australian woman). The Speech API has no sex field, so `clientVoice()` reads
+it off the voice's name; it also skips macOS's joke voices and never hands
+the client "Ava (Enhanced)" when the lawyer is Ava. **Play all** reads a
+piece top to bottom with the current line lit; with the role-play cover on it
+**stops at each covered lawyer line** until the learner taps Continue or the
+line. Audio could not be heard in the in-app preview browser (it fires no
+speech events at all), so the play-through was checked with `speak()`
+stubbed; on a real browser it needs one real tap to start, as Chrome requires.
+
 **Its renderer was reworked on 2026-11-03** from a UI/UX review Lewis asked
 for, and the same changes were then ported to Fab English the same day, so
 the two match again apart from content, labels (terms／詞彙 vs words／單字),
