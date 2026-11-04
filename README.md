@@ -318,8 +318,9 @@ grade levels, for a child in Grade 1 working up through Grade 3.
   questions redraw themselves byte for byte.
 - **The record says what he answered, not just how many tries.** "34 + 27 →
   82, he said 73" is a missing carry; "attempts: 2" is nothing at all. The
-  wrong answers sit under the question in the log, and that is the whole
-  reason the field exists.
+  wrong answers sit under the question in the log, and a question he had to
+  be shown is marked as such — needing the answer and getting there on the
+  fourth go look identical in an attempt count and are not the same thing.
 - **The hint matches the question it is for.** A question built to need making
   ten says *"Take 6 from the 9 to make ten. Then 10 + 3"* rather than the
   generic *"count on 9"*, which is the wrong strategy for that question. This
@@ -327,6 +328,17 @@ grade levels, for a child in Grade 1 working up through Grade 3.
 - **`add1000` and the clock, money, blocks and area topics were left alone**,
   because measuring them found nothing wrong: three-digit carrying and
   borrowing already came out at 71% and 70% on their own.
+- **There is a way out of a question he cannot do.** Two misses bring the
+  method up as a hint; a third offers **Show me**, which puts the answer on
+  screen and asks him to enter it himself. He gets unstuck, he ends the
+  question by doing the right thing rather than by giving up, and the record
+  says he was given it. Without this, "only a correct answer advances" turns
+  into an infinite failure state on a number-pad question, where unlike the
+  multiple-choice topics there is nothing to guess between — the opposite of
+  the rule it came from. It sits **inside the question card**, not under the
+  feedback line: on a 375×812 phone the hint already ends at y=754 and the
+  feedback at 801, so anything below them is off the bottom of the screen at
+  exactly the moment he needs to find it.
 - **Nothing is spoken.** This page is silent by choice, which is the one
   house rule for young learners it does not follow: audio-first exists so a
   child who cannot yet read is not blocked before the maths starts. The

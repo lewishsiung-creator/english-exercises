@@ -323,6 +323,44 @@ main {
   letter-spacing: 0;
 }
 
+/* ---------------- the way out of a stuck question ---------------- */
+
+/* Offered, not pushed: it only appears after a third miss, and it is warm
+   rather than loud — asking for help should not feel like ringing an alarm. */
+.show-me {
+  border: 2px solid var(--orange);
+  border-radius: 14px;
+  background: var(--orange-soft);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 10px 20px;
+  min-height: 48px;
+  cursor: pointer;
+}
+.show-me:active { transform: translateY(2px); }
+.show-me[hidden] { display: none; }
+
+.solution { margin: 2px 0 0; text-align: center; }
+.solution[hidden] { display: none; }
+
+.solution-answer {
+  margin: 0;
+  font-family: var(--num);
+  font-size: clamp(2rem, 8vw, 2.8rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--good);
+}
+
+.solution-do {
+  margin: 2px 0 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--ink-soft);
+}
+
 /* ---------------- answering ---------------- */
 
 .answer { margin-top: 18px; }

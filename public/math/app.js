@@ -24,6 +24,7 @@ const state = {
   answered: false,   // current question already answered correctly
   attempts: 0,       // tries on the current question, including the right one
   wrongGiven: [],    // what he actually answered on the way to getting it right
+  shown: false,      // he asked to be shown the answer to this one
   typed: '',         // what is on the number pad right now
 };
 
@@ -48,6 +49,9 @@ function record(question, attempts) {
     // "34 + 27, he answered 51" says he forgot to carry. "attempts: 3" says
     // nothing at all, which is the whole reason this field exists.
     wrong: state.wrongGiven.slice(0, 4),
+    // Needing the answer and getting there on the fourth go look identical
+    // in an attempt count, and they are not the same thing at all.
+    shown: state.shown,
     topic: state.topic.name,
     grade: state.grade.name,
     attempts,
@@ -292,7 +296,10 @@ function askQuestion() {
   state.answered = false;
   state.attempts = 0;
   state.wrongGiven = [];
+  state.shown = false;
   state.typed = '';
+  el('showMeAnswer').hidden = true;
+  el('solution').hidden = true;
 
   el('progressFill').style.width = `${(state.index / ROUND_LENGTH) * 100}%`;
   el('progressText').textContent = `Question ${state.index + 1} of ${ROUND_LENGTH}`;
@@ -399,7 +406,25 @@ function bringBackLater(q) {
   }
 }
 
+/* Being shown the answer does not end the question — he still has to put it
+   in. One action, with the answer in front of him: he gets unstuck, he ends
+   on doing the right thing rather than on giving up, and it is still honestly
+   recorded as an answer he was given rather than one he found. */
+el('showMeAnswer').addEventListener('click', () => {
+  const q = current();
+  state.shown = true;
+  el('showMeAnswer').hidden = true;
+  el('solutionAnswer').textContent = q.answer;
+  el('solution').hidden = false;
+  if (q.hint) el('hint').hidden = false;
+  el('feedback').textContent = '';
+  el('feedback').className = 'feedback';
+  if (!q.choices) setTyped('');
+});
+
 const CHEERS = ['Yes!', 'That’s it!', 'Nice work!', 'Correct!', 'Well done!', 'Got it!'];
+/* Warm but honest: he copied it, and "Perfect!" would be a lie he can spot. */
+const AFTER_SHOWN = ['Now you have it.', 'That’s the one.', 'Good — you did it.'];
 const NUDGES = ['Not quite — try again.', 'Close! Have another go.', 'Try once more.'];
 
 function judge(given, node) {
@@ -416,9 +441,17 @@ function judge(given, node) {
     node?.classList.add('is-wobble');
     setTimeout(() => node?.classList.remove('is-wobble'), 460);
     if (node?.classList.contains('opt')) node.classList.add('is-off');
-    el('feedback').textContent = NUDGES[Math.min(state.attempts, NUDGES.length) - 1];
-    el('feedback').className = 'feedback is-oops';
+    if (!state.shown) {
+      el('feedback').textContent = NUDGES[Math.min(state.attempts, NUDGES.length) - 1];
+      el('feedback').className = 'feedback is-oops';
+    }
     if (state.attempts >= 2 && q.hint) el('hint').hidden = false;
+    // Two misses get the method. A third means the method did not land, and
+    // from here "only a correct answer advances" stops being a kindness: on
+    // a number-pad question there is nothing to guess between, so without a
+    // way out it is an infinite failure state — the opposite of the rule it
+    // came from.
+    if (state.attempts >= 3 && !state.shown) el('showMeAnswer').hidden = false;
     if (!q.choices) setTyped('');
     return;
   }
@@ -434,9 +467,11 @@ function judge(given, node) {
   record(q, state.attempts);
 
   if (node?.classList.contains('opt')) node.classList.add('is-on');
-  el('feedback').textContent = CHEERS[Math.floor(Math.random() * CHEERS.length)];
+  const lines = state.shown ? AFTER_SHOWN : CHEERS;
+  el('feedback').textContent = lines[Math.floor(Math.random() * lines.length)];
   el('feedback').className = 'feedback is-good';
   el('hint').hidden = true;
+  el('solution').hidden = true;
 
   // Long enough to register that it was right and see the answer sitting
   // there, short enough not to feel like waiting.
@@ -518,7 +553,9 @@ function renderSheet() {
     if (r.attempts > 1) tr.className = 'is-missed';
     // What he tried is the diagnosis. "34 + 27 → 61, he said 51" is a missing
     // carry; the attempt count on its own could be anything.
-    const tried = r.wrong?.length ? `<span class="tried">he said ${r.wrong.join(', ')}</span>` : '';
+    const tried = r.wrong?.length
+      ? `<span class="tried">he said ${r.wrong.join(', ')}${r.shown ? ' · needed the answer' : ''}</span>`
+      : '';
     tr.innerHTML = `<td>${r.ask}${r.answer ? ` <span class="ans">${r.answer}</span>` : ''}${tried}</td>
       <td>${r.topic}</td><td>${r.attempts}</td>`;
     body.appendChild(tr);
