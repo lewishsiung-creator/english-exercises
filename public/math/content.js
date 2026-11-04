@@ -297,6 +297,32 @@ function lineFig(lo, hi, mark) {
    answer and the options. */
 const timeText = (h, m) => `${h}:${String(m).padStart(2, '0')}`;
 
+/* ==================== redrawing a saved question ====================
+
+   A question's `figure` is a rendered SVG string, and they are big: a clock
+   is 14KB and a place-value question up to 25KB. A review queue that stored
+   them would run to megabytes and would not fit in localStorage, so a figure
+   question also carries the recipe that drew it — a function name and its
+   arguments, a hundred bytes at most. The queue keeps the recipe and the
+   drawing is rebuilt on the way back in.
+
+   This table is the only place the recipe and the drawing can drift apart,
+   so there is a check that every topic's recipe redraws its own figure
+   exactly. */
+
+const FIGURES = {
+  clock: clockFig,
+  blocks: blocksFig,
+  array: arrayFig,
+  fraction: fractionFig,
+  coins: coinsFig,
+  rect: rectFig,
+  line: lineFig,
+};
+
+const redrawFigure = (recipe) =>
+  Array.isArray(recipe) && FIGURES[recipe[0]] ? FIGURES[recipe[0]](...recipe.slice(1)) : '';
+
 /* ==================== Grade 1 ==================== */
 
 const G1 = [
@@ -413,6 +439,7 @@ const G1 = [
       if (Math.random() < 0.5) {
         return {
           figure: blocksFig(value),
+          redraw: ['blocks', value],
           ask: 'How many in all?',
           answer: String(value),
           hint: `Each tall rod is 10. Count the rods first, then the little ones.`,
@@ -478,6 +505,7 @@ const G1 = [
       const m = pick([0, 0, 30]);
       return {
         figure: clockFig(h, m),
+        redraw: ['clock', h, m],
         ask: 'What time is it?',
         // The three classic misreadings: the wrong hand, the next hour along,
         // and the hour before — which is what the short hand looks nearest to
@@ -586,6 +614,7 @@ const G2 = [
       }
       return {
         figure: blocksFig(value),
+          redraw: ['blocks', value],
         ask: 'How many in all?',
         answer: String(value),
         hint: 'Each big square is 100, each tall rod is 10.',
@@ -608,6 +637,7 @@ const G2 = [
       const total = bag.reduce((sum, c) => sum + COINS[c].value, 0);
       return {
         figure: coinsFig(bag),
+        redraw: ['coins', bag],
         ask: 'How many cents?',
         answer: String(total),
         hint: 'Count the big coins first, then add the small ones.',
@@ -630,6 +660,7 @@ const G2 = [
       ]).slice(0, 3);
       return {
         figure: clockFig(h, m),
+        redraw: ['clock', h, m],
         ask: 'What time is it?',
         choices: shuffle([right, ...wrong]),
         answer: right,
@@ -647,6 +678,7 @@ const G2 = [
       if (Math.random() < 0.5) {
         return {
           figure: arrayFig(rows, cols),
+          redraw: ['array', rows, cols],
           ask: 'How many counters?',
           answer: String(rows * cols),
           hint: `There are ${rows} rows with ${cols} in each row.`,
@@ -654,6 +686,7 @@ const G2 = [
       }
       return {
         figure: arrayFig(rows, cols),
+        redraw: ['array', rows, cols],
         ask: `${rows} rows of ${cols} = ?`,
         answer: String(rows * cols),
         hint: `Add ${cols} to itself ${rows} times.`,
@@ -721,6 +754,7 @@ const G3 = [
       if (Math.random() < 0.5) {
         return {
           figure: fractionFig(k, n),
+          redraw: ['fraction', k, n],
           ask: 'What fraction is shaded?',
           // Counting the unshaded parts, counting the parts either side of the
           // line, and counting the shaded parts against the whole bar. With a
@@ -774,6 +808,7 @@ const G3 = [
       if (Math.random() < 0.5) {
         return {
           figure: rectFig(w, h),
+          redraw: ['rect', w, h],
           ask: 'What is the area?',
           answer: String(w * h),
           hint: 'Area is the squares inside: length times width.',
@@ -781,6 +816,7 @@ const G3 = [
       }
       return {
         figure: rectFig(w, h),
+        redraw: ['rect', w, h],
         ask: 'What is the perimeter?',
         answer: String(2 * (w + h)),
         hint: 'Perimeter is the walk all the way round: add all four sides.',
@@ -802,6 +838,7 @@ const G3 = [
         const answer = Math.round(v / 10) * 10;
         return {
           figure: lineFig(lo, lo + 10, v),
+          redraw: ['line', lo, lo + 10, v],
           ask: `Round ${v} to the nearest ten.`,
           choices: options(answer, lo === answer ? lo + 10 : lo, v),
           answer: String(answer),
@@ -814,6 +851,7 @@ const G3 = [
       const answer = Math.round(v / 100) * 100;
       return {
         figure: lineFig(lo, lo + 100, v),
+        redraw: ['line', lo, lo + 100, v],
         ask: `Round ${v} to the nearest hundred.`,
         choices: options(answer, lo === answer ? lo + 100 : lo, Math.round(v / 10) * 10),
         answer: String(answer),

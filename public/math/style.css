@@ -548,6 +548,21 @@ main {
 .log th, .log td { padding: 7px 10px; text-align: left; border-bottom: 1px solid var(--line); }
 .log th { position: sticky; top: 0; background: var(--bg-2); font-size: .82rem; }
 .log td:first-child { font-family: var(--num); }
+/* What he actually answered, under the question it belongs to. */
+.log .tried {
+  display: block;
+  color: var(--oops);
+  font-family: inherit;
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.count { color: var(--ink-soft); font-size: .85rem; font-weight: 700; }
+.muted-inline { color: var(--ink-soft); font-size: .82rem; font-weight: 600; }
+/* Boxes filled on the way to being retired — quiet, because it is a to-do
+   list for the page, not a score for the child. */
+.tag-quiet { background: var(--bg-2); color: var(--ink-soft); letter-spacing: .12em; }
+
 .log .ans { color: var(--good); font-weight: 700; }
 .log .ans::before { content: "→ "; color: var(--ink-soft); font-weight: 400; }
 .log tr.is-missed td { background: var(--oops-soft); }

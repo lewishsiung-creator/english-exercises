@@ -23,6 +23,7 @@ const state = {
   firstTry: 0,
   answered: false,   // current question already answered correctly
   attempts: 0,       // tries on the current question, including the right one
+  wrongGiven: [],    // what he actually answered on the way to getting it right
   typed: '',         // what is on the number pad right now
 };
 
@@ -43,12 +44,106 @@ function record(question, attempts) {
     // Without the answer, every clock row in the record reads "What time is
     // it?" and tells the grown-up nothing about which clock was hard.
     answer: question.answer,
+    // And without what he actually said, neither does the attempt count.
+    // "34 + 27, he answered 51" says he forgot to carry. "attempts: 3" says
+    // nothing at all, which is the whole reason this field exists.
+    wrong: state.wrongGiven.slice(0, 4),
     topic: state.topic.name,
     grade: state.grade.name,
     attempts,
   });
   saveLog();
 }
+
+/* ==================== bringing missed questions back ====================
+
+   A question he got wrong is the most useful question on the page, and until
+   now it was thrown away: every round was ten fresh rolls of the dice, so the
+   fact he had missed five times came round no more often than the one he
+   could already do.
+
+   Two timescales, because they do different jobs:
+
+   - **Inside the round.** A missed question reappears about three questions
+     later. That is retrieval practice — close enough that he can still
+     reconstruct it, far enough that he has to.
+   - **Across rounds and days.** It is saved, and seeded into the next round
+     of that topic. Get it right first time on the way back and it moves up a
+     box; three boxes and it is retired. Miss it again and it drops to the
+     bottom.
+
+   Nothing on screen marks a question as one he failed before. Being quietly
+   asked again is the point; being told "you got this wrong last Tuesday" is
+   a failure state wearing a hat. The grown-up panel shows the queue instead.
+
+   Figures are not saved — see the redraw recipes in content.js. */
+
+const REVIEW_KEY = 'math.review';
+const REVIEW_PER_TOPIC = 12;   // the queue is a to-do list, not a history
+const REVIEW_PER_ROUND = 3;    // of ten, so a round is mostly new ground
+const RETIRED_AT = 3;          // right first time this many times running
+
+let review = {};
+try { review = JSON.parse(localStorage.getItem(REVIEW_KEY)) || {}; } catch { review = {}; }
+
+function saveReview() {
+  try { localStorage.setItem(REVIEW_KEY, JSON.stringify(review)); } catch { /* private mode */ }
+}
+
+const askKey = (q) => `${q.ask}|${q.answer}`;
+
+/* Saved flat, without the rendered figure. `redraw` rebuilds it. */
+function remember(topicId, q) {
+  const list = review[topicId] || (review[topicId] = []);
+  const found = list.find((it) => askKey(it) === askKey(q));
+  if (found) {
+    found.box = 0;
+    found.missed++;
+  } else {
+    list.push({
+      ask: q.ask, answer: q.answer, choices: q.choices, hint: q.hint,
+      redraw: q.redraw, box: 0, missed: 1,
+    });
+  }
+  // Over the cap, the ones closest to being retired go first: they are the
+  // ones he is nearly on top of.
+  if (list.length > REVIEW_PER_TOPIC) {
+    list.sort((a, b) => b.box - a.box || a.missed - b.missed);
+    list.splice(0, list.length - REVIEW_PER_TOPIC);
+  }
+  saveReview();
+}
+
+function promote(topicId, q) {
+  const list = review[topicId];
+  if (!list) return;
+  const at = list.findIndex((it) => askKey(it) === askKey(q));
+  if (at < 0) return;
+  if (++list[at].box >= RETIRED_AT) list.splice(at, 1);
+  if (!list.length) delete review[topicId];
+  saveReview();
+}
+
+/* Shakiest first: lowest box, then whichever has waited longest, then most
+   missed. The waiting matters — sorting on box and misses alone is a stable
+   sort over items that mostly tie, so with five in the queue the same three
+   came back every single round and the other two were never seen again. */
+function dueFor(topicId, n) {
+  const list = (review[topicId] || []).slice()
+    .sort((a, b) => a.box - b.box || (a.last || 0) - (b.last || 0) || b.missed - a.missed)
+    .slice(0, n);
+
+  const now = Date.now();
+  list.forEach((it, i) => { it.last = now + i; });   // +i keeps them in order
+  if (list.length) saveReview();
+
+  return list.map((it) => ({
+    ask: it.ask, answer: it.answer, choices: it.choices, hint: it.hint,
+    redraw: it.redraw, figure: redrawFigure(it.redraw), fromReview: true,
+  }));
+}
+
+const reviewCount = () => Object.values(review).reduce((n, l) => n + l.length, 0);
 
 /* ==================== screens ==================== */
 
@@ -168,13 +263,22 @@ function startRound(topic) {
   // same words every time and all the difference is in the picture.
   state.queue = [];
   const seen = new Set();
+
+  // The ones he has missed before go in first, so the fresh questions are
+  // generated knowing not to collide with them.
+  const back = dueFor(topic.id, REVIEW_PER_ROUND);
+  for (const q of back) seen.add(askKey(q));
+
   for (let i = 0; i < ROUND_LENGTH; i++) {
     let q = topic.make();
-    const key = (x) => `${x.ask}|${x.answer}`;
-    for (let tries = 0; tries < 12 && seen.has(key(q)); tries++) q = topic.make();
-    seen.add(key(q));
+    for (let tries = 0; tries < 12 && seen.has(askKey(q)); tries++) q = topic.make();
+    seen.add(askKey(q));
     state.queue.push(q);
   }
+
+  // Spaced through the round rather than bunched at the front, and never
+  // first: opening on a question he already failed is a poor way to start.
+  back.forEach((q, i) => { state.queue[2 + i * 3] = q; });
 
   el('barTitle').textContent = topic.name;
   show('play');
@@ -187,6 +291,7 @@ function askQuestion() {
   const q = current();
   state.answered = false;
   state.attempts = 0;
+  state.wrongGiven = [];
   state.typed = '';
 
   el('progressFill').style.width = `${(state.index / ROUND_LENGTH) * 100}%`;
@@ -282,6 +387,18 @@ document.addEventListener('keydown', (e) => {
   e.preventDefault();
 });
 
+/* Put a missed question back about three later, taking a fresh question's
+   slot so the round is still ten. Near the end there is no room left, and it
+   only has the saved queue to fall back on. */
+function bringBackLater(q) {
+  for (let at = state.index + 3; at < ROUND_LENGTH; at++) {
+    const slot = state.queue[at];
+    if (slot.fromReview || slot.isRepeat) continue;   // don't displace another
+    state.queue[at] = { ...q, isRepeat: true };
+    return;
+  }
+}
+
 const CHEERS = ['Yes!', 'That’s it!', 'Nice work!', 'Correct!', 'Well done!', 'Got it!'];
 const NUDGES = ['Not quite — try again.', 'Close! Have another go.', 'Try once more.'];
 
@@ -291,6 +408,11 @@ function judge(given, node) {
   state.attempts++;
 
   if (String(given) !== String(q.answer)) {
+    state.wrongGiven.push(String(given));
+    if (state.attempts === 1) {
+      remember(state.topic.id, q);
+      bringBackLater(q);
+    }
     node?.classList.add('is-wobble');
     setTimeout(() => node?.classList.remove('is-wobble'), 460);
     if (node?.classList.contains('opt')) node.classList.add('is-off');
@@ -302,7 +424,13 @@ function judge(given, node) {
   }
 
   state.answered = true;
-  if (state.attempts === 1) state.firstTry++;
+  if (state.attempts === 1) {
+    state.firstTry++;
+    // Only a question carried over from an earlier round counts as recall.
+    // Getting the three-question-later repeat right is good, but it is not
+    // evidence it has stuck, so it must not retire the item.
+    if (q.fromReview && !q.isRepeat) promote(state.topic.id, q);
+  }
   record(q, state.attempts);
 
   if (node?.classList.contains('opt')) node.classList.add('is-on');
@@ -381,14 +509,42 @@ function renderSheet() {
     ul.appendChild(li);
   }
 
+  renderComingBack();
+
   const body = el('teacherLog').querySelector('tbody');
   body.innerHTML = '';
   for (const r of log.slice().reverse().slice(0, 60)) {
     const tr = document.createElement('tr');
     if (r.attempts > 1) tr.className = 'is-missed';
-    tr.innerHTML = `<td>${r.ask}${r.answer ? ` <span class="ans">${r.answer}</span>` : ''}</td>
+    // What he tried is the diagnosis. "34 + 27 → 61, he said 51" is a missing
+    // carry; the attempt count on its own could be anything.
+    const tried = r.wrong?.length ? `<span class="tried">he said ${r.wrong.join(', ')}</span>` : '';
+    tr.innerHTML = `<td>${r.ask}${r.answer ? ` <span class="ans">${r.answer}</span>` : ''}${tried}</td>
       <td>${r.topic}</td><td>${r.attempts}</td>`;
     body.appendChild(tr);
+  }
+}
+
+/* What the page will quietly ask him again, and how close each one is to
+   being retired. The child never sees this. */
+function renderComingBack() {
+  const ul = el('teacherReview');
+  const items = [];
+  for (const [topicId, list] of Object.entries(review)) {
+    const topic = GRADES.flatMap((g) => g.topics).find((t) => t.id === topicId);
+    for (const it of list) items.push({ ...it, topic: topic ? topic.name : topicId });
+  }
+  items.sort((a, b) => a.box - b.box || b.missed - a.missed);
+
+  el('teacherReviewEmpty').hidden = items.length > 0;
+  el('teacherReviewCount').textContent = items.length ? `${items.length} waiting` : '';
+  ul.innerHTML = '';
+  for (const it of items) {
+    const li = document.createElement('li');
+    li.innerHTML = `<span>${it.ask} <span class="ans">${it.answer}</span>
+        <span class="muted-inline">${it.topic}</span></span>
+      <span class="tag tag-quiet">${'●'.repeat(it.box)}${'○'.repeat(RETIRED_AT - it.box)}</span>`;
+    ul.appendChild(li);
   }
 }
 

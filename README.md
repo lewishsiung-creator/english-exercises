@@ -298,6 +298,28 @@ grade levels, for a child in Grade 1 working up through Grade 3.
   and the thing to edit; the easier kinds are kept in, not removed, so a round
   still has somewhere to breathe. Measured again after: 60%, 55%, 65%, 65%,
   50%, and ×2/×10 down to 11%.
+- **A missed question comes back.** It used to be thrown away: every round
+  was ten fresh rolls of the dice, so a fact he had missed five times came
+  round no more often than one he could already do. Now it returns on two
+  timescales — about three questions later in the same round, which is close
+  enough to reconstruct and far enough to have to; and seeded into the next
+  round of that topic, three of the ten, spaced and never first. Right first
+  time on the way back moves it up a box, three boxes retires it, missing it
+  again drops it to the bottom. **Nothing on screen marks a question as one
+  he failed before** — being quietly asked again is the point, and "you got
+  this wrong last Tuesday" is a failure state wearing a hat. The grown-up
+  panel has the queue instead.
+- **The queue stores a recipe, not a drawing.** A rendered figure is 5KB on
+  average and 25KB at worst, so a queue holding them would run to megabytes
+  and not fit in `localStorage`. Each figure question carries the call that
+  drew it — `['clock', 6, 50]`, twenty bytes — and it is redrawn on the way
+  back in. `FIGURES` in `content.js` is the one place the recipe and the
+  drawing can drift apart, so there is a check that all 45,000-odd figure
+  questions redraw themselves byte for byte.
+- **The record says what he answered, not just how many tries.** "34 + 27 →
+  82, he said 73" is a missing carry; "attempts: 2" is nothing at all. The
+  wrong answers sit under the question in the log, and that is the whole
+  reason the field exists.
 - **The hint matches the question it is for.** A question built to need making
   ten says *"Take 6 from the 9 to make ten. Then 10 + 3"* rather than the
   generic *"count on 9"*, which is the wrong strategy for that question. This
@@ -329,9 +351,13 @@ grade levels, for a child in Grade 1 working up through Grade 3.
   and the vocabulary in the prompts is the vocabulary his teacher uses.
 
 Records live under `math.*` in `localStorage`, separate from the English
-pages, and the 👨‍🏫 panel groups misses by topic rather than by question —
+pages: `math.log` is the answer history, capped at 300, and `math.review` is
+the queue of questions waiting to come back, capped at 12 a topic. Two
+hundred simulated rounds leave them at about 60KB together, so neither is
+near a quota. The 👨‍🏫 panel groups misses by topic rather than by question —
 with generated numbers no single sum repeats often enough to mean anything,
-but "Grade 3 · Times tables, 6 missed" does.
+but "Grade 3 · Times tables, 6 missed" does — and lists the review queue
+under **Coming back**, each item showing how close it is to being retired.
 
 ## Confidence and Everyday Life — ages 10–12, teacher-led
 
