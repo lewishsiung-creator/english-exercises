@@ -822,7 +822,7 @@ const CHAPTER = {
               zh: '我不難過，我很開心。', given: true },
             { pic: '☃️', not: 'The weather isn’t hot.', subject: 'It is', answer: 'cold',
               zh: '天氣不熱，很冷。' },
-            { pic: '🪙', not: 'The man isn’t rich.', subject: 'He is', answer: 'poor',
+            { pic: '💰', not: 'The man isn’t rich.', subject: 'He is', answer: 'poor',
               zh: '這個男人不有錢，他很窮。' },
             { pic: '✂️', not: 'My hair isn’t long.', subject: 'It is', answer: 'short',
               zh: '我的頭髮不長，很短。' },
