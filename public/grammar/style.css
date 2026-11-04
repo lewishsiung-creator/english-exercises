@@ -1099,6 +1099,122 @@ body.zh-all .td-zh::after { display: none; }
 .cast-job { grid-area: job; font-size: 16.5px; }
 .cast-card .zh { grid-area: zh; font-size: 13px; margin-top: 6px; }
 
+/* ---------------- practice: a word bank ----------------
+
+   A pool of words above a numbered picture list. The bank is a panel rather
+   than a bare row so that it reads as one object the whole exercise belongs
+   to, and it keeps its words after they are used — crossed through instead of
+   removed, because the shape of what is left is the help a bank is for. That
+   is the one place this differs from the word-order pool, where a used chip
+   vanishes. */
+
+.bank {
+  margin: 14px 0 18px;
+  padding: 12px 14px 14px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+}
+.bank-head {
+  margin: 0 0 9px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.bank-head .zh { display: inline; margin-left: 7px; letter-spacing: 0; }
+
+.bank-words {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+}
+.bank .bank-w.used {
+  opacity: .34;
+  text-decoration: line-through;
+  pointer-events: none;
+}
+
+.bank-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 9px;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+}
+
+.bank-q {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr;
+  grid-template-areas: "pic not" "pic line" "zh zh";
+  gap: 2px 10px;
+  align-items: baseline;
+  padding: 11px 13px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+}
+.bank-pic {
+  grid-area: pic;
+  align-self: center;
+  font-size: 25px;
+  line-height: 1;
+  text-align: center;
+}
+/* The number rides with the picture rather than taking a column of its own:
+   twelve cards three across have no room for a third column, and the number
+   is only there so a teacher can say "number seven". */
+.bank-n {
+  grid-area: pic;
+  align-self: start;
+  justify-self: start;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+.bank-not { grid-area: not; margin: 0; font-size: 15px; color: var(--ink-soft); }
+.bank-line { grid-area: line; margin: 2px 0 0; font-size: 16.5px; }
+.bank-q .zh { grid-area: zh; font-size: 13px; margin: 6px 0 0; }
+
+/* The blank is a button here, because tapping it is how you choose which item
+   the next word goes into. */
+.slot-btn {
+  font: inherit;
+  background: none;
+  cursor: pointer;
+  min-width: 5rem;
+}
+/* Where the next word will land has to be obvious from across the room, so
+   the active card is ringed rather than merely tinted — on a phone the bank
+   and the card are far enough apart that a faint border is missed, and tapping
+   a word and not seeing where it went is the one failure this drill can
+   have. */
+.bank-q.active {
+  border-color: var(--red-line);
+  box-shadow: 0 0 0 2px var(--red-line);
+}
+.bank-q.active .slot-btn { background: var(--red-soft); border-bottom-color: var(--red-line); }
+.bank-q.solved .slot-btn { cursor: default; border-bottom-color: var(--good-line); color: var(--good); }
+
+/* The whole sentence can only be heard once it exists. */
+.bank-q:not(.solved) .say-after { visibility: hidden; }
+
+.bank-close {
+  margin: 16px 0 0;
+  padding: 11px 14px;
+  background: var(--good-soft);
+  border-radius: 10px;
+  font-size: 15.5px;
+}
+.bank-close .zh { display: block; font-size: 13.5px; color: var(--ink-soft); margin-top: 3px; }
+
 /* ---------------- practice: two steps on one fact ----------------
 
    The verb, then the correction. The second step is indented under the first
@@ -1497,7 +1613,14 @@ body.find-open { overflow: hidden; }
   .step.todo { break-before: auto; }
   .step.todo + .step:not(.todo) { break-before: page; }
   .chap-grid, .shelf-grid { grid-template-columns: repeat(2, 1fr); }
-  .q, .order-q, .note, .forms, .goals, .chap-card, .table-wrap { break-inside: avoid; }
+  .q, .order-q, .note, .forms, .goals, .chap-card, .table-wrap,
+  .bank, .bank-q { break-inside: avoid; }
+  /* On paper the bank is the reference it started as: every word legible,
+     including the ones already used, and the ring round the active item
+     means nothing once there is nobody tapping. */
+  .bank .bank-w.used { opacity: 1; }
+  .bank-q.active { border-color: var(--line); }
+  .bank-q .slot-btn { background: none !important; }
   .opt.out, .q.solved .opt:not(.right) { opacity: 1; }
   .slot { min-width: 7rem; }
   /* A word-order drill on paper is the sentence written out. */

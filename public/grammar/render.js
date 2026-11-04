@@ -319,6 +319,63 @@ const BLOCKS = {
       ${`<p class="tally"><span class="done">0</span> / ${b.items.length}</p>`}
     </div>`,
 
+  /* A word bank over a picture list. One pool of words, one blank each, and
+     every word used exactly once — so the bank shrinks as the list fills and
+     the last few items are solved partly by elimination, which is the whole
+     point of a bank and the reason it is not twelve separate option sets.
+
+     Each item gives a negative sentence and asks for the positive one, so the
+     answer is the opposite of a word already on screen. That makes it a
+     vocabulary drill wearing a grammar drill's clothes, which is why it sits
+     under isn't/aren't rather than in a word list.
+
+     WHICH BLANK a tapped word goes into: the active one, drawn with a ring.
+     The first unsolved item is active from the start and the next one takes
+     over as each is solved, so tapping straight down the list works with no
+     extra taps. Tapping a blank makes that item active instead, so a child who
+     wants to do number 7 first can. A wrong word wobbles and is not used up.
+
+     An item marked `given` is the worked example at the top — filled in, its
+     word already crossed off the bank, and not counted in the tally. */
+  bank: (b) => `
+    <div class="activity" data-act="bank">
+      ${label(b)}
+      ${hint(b)}
+      <div class="bank">
+        <p class="bank-head"><span class="en">Word bank</span><span class="zh">單字庫</span></p>
+        <ul class="bank-words">
+          ${shuffle(b.words).map((w) => {
+            const used = b.items.some((it) => it.given && it.answer === w);
+            return `
+              <li><button class="word bank-w${used ? ' used' : ''}"
+                data-w="${text(w)}">${text(w)}</button></li>`;
+          }).join('')}
+        </ul>
+      </div>
+      <ol class="bank-list">
+        ${b.items.map((it, n) => {
+          const full = `${it.not} ${it.subject} ${it.answer}.`;
+          return `
+            <li class="bank-q pair${it.given ? ' given solved' : ''}" data-zh
+                data-answer="${text(it.answer)}"
+                data-say="${text(full)}">
+              <span class="bank-pic" aria-hidden="true">${text(it.pic)}</span>
+              <span class="bank-n">${n + 1}</span>
+              <p class="bank-not">${text(it.not)}${speakBtn(it.not, 'say say-quiet')}</p>
+              <p class="bank-line en">${text(it.subject)}
+                <button class="slot slot-btn" aria-label="The blank 空格">${it.given ? text(it.answer) : ''}</button>.${speakBtn(full, 'say say-quiet say-after')}
+                <button class="zh-chip" title="顯示中文">中</button></p>
+              <p class="zh">${text(it.zh)}</p>
+            </li>`;
+        }).join('')}
+      </ol>
+      ${tally(b.items.filter((it) => !it.given).length)}
+      ${b.closeEn ? `
+        <p class="bank-close"><span class="en">${text(b.closeEn)}
+          ${speakBtn(b.closeSay || b.closeEn, 'say say-quiet')}</span>
+          <span class="zh">${text(b.closeZh)}</span></p>` : ''}
+    </div>`,
+
   /* A set of people with a picture, a name and a fact about them. The book
      puts eight photographs in a grid and the whole exercise reads off them;
      a photograph cannot be reproduced here, so this is the same grid with an
@@ -596,6 +653,13 @@ if (review) doc.appendChild(el(review));
 const pager = buildPager();
 if (pager) doc.appendChild(el(pager));
 
+// Each word bank starts aimed at its first unanswered item, so the first tap
+// on a word does something without a tap to aim it first.
+$$('[data-act="bank"]').forEach((act) => {
+  const first = $$('.bank-q', act).find((q) => !q.classList.contains('solved'));
+  if (first) first.classList.add('active');
+});
+
 // ---------------------------------------------------------------- Chinese
 
 const store = {
@@ -641,6 +705,13 @@ doc.addEventListener('click', (e) => {
   const opt = t.closest('.opt');
   if (opt) { answer(opt); return; }
 
+  // A bank chip is a word chip, so it has to be caught before the pool one.
+  const bankWord = t.closest('.bank-w');
+  if (bankWord) { fill(bankWord); return; }
+
+  const slotBtn = t.closest('.slot-btn');
+  if (slotBtn) { aim(slotBtn.closest('.bank-q')); return; }
+
   const word = t.closest('.word');
   if (word) { place(word); return; }
 
@@ -666,10 +737,10 @@ function countSet(act) {
   const pairs = $$('.two-q', act);
   const total = pairs.length
     ? pairs.length
-    : $$('.q, .order-q', act).length;
+    : $$('.q, .order-q, .bank-q:not(.given)', act).length;
   const done = pairs.length
     ? pairs.filter((p) => $('.q.solved', p) && $('.order-q.solved', p)).length
-    : $$('.q.solved, .order-q.solved', act).length;
+    : $$('.q.solved, .order-q.solved, .bank-q.solved:not(.given)', act).length;
   const out = $('.tally .done', act);
   if (out) out.textContent = done;
   if (done === total) act.classList.add('all-done');
@@ -721,6 +792,43 @@ function place(btn) {
     countSet(q.closest('[data-act]'));
     speak(q.dataset.answer);
   }
+}
+
+/* The word bank. Which item a word lands in is decided here rather than by
+   the learner having to drag anything: the active item, or the first unsolved
+   one if nothing is active. A wrong word is not consumed — the bank still
+   holds every word that has not yet been placed correctly, which is what
+   makes elimination work at the end. */
+function aim(q) {
+  if (!q || q.classList.contains('solved')) return;
+  const act = q.closest('[data-act]');
+  $$('.bank-q.active', act).forEach((x) => x.classList.remove('active'));
+  q.classList.add('active');
+}
+
+function nextOpen(act) {
+  return $$('.bank-q', act).find((q) => !q.classList.contains('solved'));
+}
+
+function fill(btn) {
+  const act = btn.closest('[data-act]');
+  if (!act || btn.classList.contains('used')) return;
+
+  const aimed = $('.bank-q.active', act);
+  const q = aimed && !aimed.classList.contains('solved') ? aimed : nextOpen(act);
+  if (!q) return;
+
+  if (btn.dataset.w !== q.dataset.answer) { wobble(btn); return; }
+
+  $('.slot', q).textContent = btn.dataset.w;
+  q.classList.add('solved');
+  q.classList.remove('active');
+  btn.classList.add('used');
+  countSet(act);
+  speak(q.dataset.say);
+
+  const next = nextOpen(act);
+  if (next) next.classList.add('active');
 }
 
 /* Taking a word back returns it and everything after it, because the words
@@ -822,6 +930,17 @@ $('#showAll').addEventListener('click', () => {
     built.textContent = q.dataset.answer;
     $$('.word', q).forEach((w) => w.classList.add('used'));
     q.classList.add('solved');
+  });
+
+  $$('.bank-q:not(.solved)').forEach((q) => {
+    const act = q.closest('[data-act]');
+    const slot = $('.slot', q);
+    if (slot) slot.textContent = q.dataset.answer;
+    q.classList.add('solved');
+    q.classList.remove('active');
+    const chip = $$('.bank-w', act)
+      .find((w) => w.dataset.w === q.dataset.answer && !w.classList.contains('used'));
+    if (chip) chip.classList.add('used');
   });
 
   $$('[data-act]').forEach(countSet);
