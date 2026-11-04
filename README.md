@@ -328,6 +328,21 @@ grade levels, for a child in Grade 1 working up through Grade 3.
 - **`add1000` and the clock, money, blocks and area topics were left alone**,
   because measuring them found nothing wrong: three-digit carrying and
   borrowing already came out at 71% and 70% on their own.
+- **What he does on Tuesday is still there on Thursday.** Each topic card
+  carries its best round ever as stars, mastered topics get a badge and a
+  gold edge, and the level screen totals it: so many stars of 54, so many
+  days of practice. **Nothing in it ever goes down.** The stars are a
+  collection, not a score — a bad round after a good one takes nothing away,
+  and there is deliberately no streak, because a streak that breaks is a
+  failure state wearing a different hat and would turn a day off into a
+  loss. The empty stars are there on purpose, the way a sticker chart has
+  empty squares: faint enough that eighteen untouched topics read as things
+  to collect rather than things already failed.
+- **Mastery is an invitation, not a gate.** Two rounds running at nine or
+  better out of ten earns the badge, and the results screen offers the one
+  topic that follows it — `next` in `content.js`, the same skill a level up.
+  Offered once, when it is earned, then never again. Nothing is locked
+  behind it, and a bad round afterwards does not take it back.
 - **There is a way out of a question he cannot do.** Two misses bring the
   method up as a hint; a third offers **Show me**, which puts the answer on
   screen and asks him to enter it himself. He gets unstuck, he ends the
@@ -363,8 +378,13 @@ grade levels, for a child in Grade 1 working up through Grade 3.
   and the vocabulary in the prompts is the vocabulary his teacher uses.
 
 Records live under `math.*` in `localStorage`, separate from the English
-pages: `math.log` is the answer history, capped at 300, and `math.review` is
-the queue of questions waiting to come back, capped at 12 a topic. Two
+pages: `math.log` is the answer history, capped at 300, `math.review` is the
+queue of questions waiting to come back, capped at 12 a topic, and
+`math.progress` is the stars, badges and days practised — under a kilobyte,
+and the only one of the three the child ever sees. It has its own reset
+button in the panel, well away from the one that clears the log: the stars
+are his, and wiping them by accident while tidying up would be a small
+disaster. Two
 hundred simulated rounds leave them at about 60KB together, so neither is
 near a quota. The 👨‍🏫 panel groups misses by topic rather than by question —
 with generated numbers no single sum repeats often enough to mean anything,

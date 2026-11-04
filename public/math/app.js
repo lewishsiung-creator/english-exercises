@@ -59,6 +59,70 @@ function record(question, attempts) {
   saveLog();
 }
 
+/* ==================== what he has collected ====================
+
+   The one thing a six-year-old gets from a page like this between Tuesday
+   and Thursday is the sense that Tuesday counted. Three stars at the end of
+   a round and then nothing is not that.
+
+   Two rules hold this to the same house line as the rest of the page:
+
+   - **Nothing ever goes down.** The stars are a collection, not a score. A
+     bad round after a good one takes nothing away, and there is no streak to
+     break — a streak that breaks is a failure state wearing a different hat,
+     and it is the one thing that would make a day off feel like a loss.
+   - **Mastery is an invitation, not a gate.** Two rounds running at nine or
+     better earns the badge and one suggestion of where to go next. It is
+     offered once, when it is earned, and never again. Nothing is locked
+     behind it and nothing nags. */
+
+const PROGRESS_KEY = 'math.progress';
+const MASTERY_SCORE = 9;    // of ten, right first time
+const MASTERY_RUNS = 2;     // and twice running, so one lucky round is not it
+
+let progress = { topics: {}, days: [] };
+try {
+  const saved = JSON.parse(localStorage.getItem(PROGRESS_KEY));
+  if (saved && typeof saved === 'object') {
+    progress = { topics: saved.topics || {}, days: saved.days || [] };
+  }
+} catch { /* private mode */ }
+
+function saveProgress() {
+  try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress)); } catch { /* private mode */ }
+}
+
+/* Read-only, and deliberately so: drawing the topic grid asks about every
+   topic, and an accessor that creates as it reads would write an empty entry
+   for all eighteen just because he looked at the list. */
+const BLANK = Object.freeze({ best: 0, runs: [], mastered: false });
+const topicProgress = (id) => progress.topics[id] || BLANK;
+
+/* Local date, not UTC: a session at nine in the evening belongs to the day
+   he actually did it on. */
+const today = () => new Date().toLocaleDateString('en-CA');
+
+const allTopics = () => GRADES.flatMap((g) => g.topics);
+const totalStars = () => Object.values(progress.topics).reduce((n, p) => n + p.best, 0);
+
+function recordRound(topicId, stars, firstTry) {
+  const p = progress.topics[topicId]
+    || (progress.topics[topicId] = { best: 0, runs: [], mastered: false });
+  const hadBest = p.best;
+  const wasMastered = p.mastered;
+
+  p.best = Math.max(p.best, stars);
+  p.runs = [...p.runs, firstTry].slice(-MASTERY_RUNS);
+  if (p.runs.length === MASTERY_RUNS && p.runs.every((s) => s >= MASTERY_SCORE)) p.mastered = true;
+
+  const day = today();
+  if (!progress.days.includes(day)) progress.days.push(day);
+  if (progress.days.length > 400) progress.days = progress.days.slice(-400);
+
+  saveProgress();
+  return { newBest: p.best > hadBest, newlyMastered: p.mastered && !wasMastered };
+}
+
 /* ==================== bringing missed questions back ====================
 
    A question he got wrong is the most useful question on the page, and until
@@ -191,23 +255,47 @@ function buildGrades() {
   }
 }
 
+/* Empty stars are on purpose, the way a sticker chart has empty squares:
+   they say what there is to collect. They are drawn faint so eighteen of
+   them do not read as eighteen things he has failed at. */
+const starStrip = (best) => '★'.repeat(best) + '☆'.repeat(3 - best);
+
+function buildTopicGrid(grade) {
+  const grid = el('topicGrid');
+  grid.innerHTML = '';
+  for (const t of grade.topics) {
+    const p = topicProgress(t.id);
+    const b = document.createElement('button');
+    b.className = `card tint-${grade.tint}${p.mastered ? ' is-mastered' : ''}`;
+    b.innerHTML = `<span class="card-icon">${t.icon}</span>
+      <span class="card-name">${t.name}</span>
+      <span class="card-blurb">${t.blurb}</span>
+      <span class="card-stars" aria-label="${p.best} of 3 stars">
+        <span class="stars-got">${'★'.repeat(p.best)}</span><span class="stars-left">${'☆'.repeat(3 - p.best)}</span>${p.mastered ? ' <span class="badge">🏅</span>' : ''}</span>`;
+    b.addEventListener('click', () => openTopic(t));
+    grid.appendChild(b);
+  }
+}
+
 function openGrade(grade) {
   state.grade = grade;
   el('barTitle').textContent = grade.name;
   el('topicLead').textContent = 'Choose what to practise';
-
-  const grid = el('topicGrid');
-  grid.innerHTML = '';
-  for (const t of grade.topics) {
-    const b = document.createElement('button');
-    b.className = `card tint-${grade.tint}`;
-    b.innerHTML = `<span class="card-icon">${t.icon}</span>
-      <span class="card-name">${t.name}</span>
-      <span class="card-blurb">${t.blurb}</span>`;
-    b.addEventListener('click', () => openTopic(t));
-    grid.appendChild(b);
-  }
+  buildTopicGrid(grade);
   show('topic');
+}
+
+/* The line under the level cards: everything he has, and nothing he has
+   lost. Hidden until there is something in it, so a first visit is not
+   greeted by a row of zeroes. */
+function renderCollection() {
+  const stars = totalStars();
+  const days = progress.days.length;
+  const box = el('collection');
+  box.hidden = stars === 0 && days === 0;
+  box.innerHTML = `<span class="collection-stars">★ ${stars}</span>
+    <span class="collection-of">of ${allTopics().length * 3}</span>
+    <span class="collection-days">${days} ${days === 1 ? 'day' : 'days'} of practice</span>`;
 }
 
 /* ==================== show me how, or just practise ==================== */
@@ -488,12 +576,43 @@ function finish() {
   el('progressFill').style.width = '100%';
   const score = state.firstTry;
   const stars = score >= 9 ? 3 : score >= 7 ? 2 : score >= 4 ? 1 : 0;
+  const { newBest, newlyMastered } = recordRound(state.topic.id, stars, score);
 
   el('doneEmoji').textContent = score >= 9 ? '🏆' : score >= 7 ? '🎉' : '💪';
   el('doneTitle').textContent = score >= 9 ? 'Perfect run!' : score >= 7 ? 'Great going!' : 'Round finished!';
   el('doneStars').textContent = '⭐'.repeat(stars) + '☆'.repeat(3 - stars);
   el('doneScore').textContent = `${score} of ${ROUND_LENGTH} right the first time.`;
+
+  // Earning the badge is worth more than beating a best, so it wins the line
+  // when both happen at once.
+  const note = el('doneNote');
+  const nextBtn = el('nextTopicBtn');
+  nextBtn.hidden = true;
+  note.hidden = false;
+  if (newlyMastered) {
+    note.textContent = `🏅 You have got ${state.topic.name}!`;
+    const onward = allTopics().find((t) => t.id === state.topic.next);
+    if (onward) {
+      nextBtn.textContent = `Try ${onward.name} →`;
+      nextBtn.hidden = false;
+      nextBtn.onclick = () => jumpTo(onward);
+    }
+  } else if (newBest) {
+    note.textContent = '⭐ A new best for this one!';
+  } else {
+    note.hidden = true;
+  }
+
+  renderCollection();
   show('done');
+}
+
+/* The next topic can be in another grade, so the grade has to move with him
+   or the ← button would walk back into the wrong list. */
+function jumpTo(topic) {
+  const grade = GRADES.find((g) => g.topics.includes(topic));
+  if (grade) openGrade(grade);
+  openTopic(topic);
 }
 
 el('againBtn').addEventListener('click', () => startRound(state.topic));
@@ -591,6 +710,16 @@ el('logClear').addEventListener('click', () => {
   renderSheet();
 });
 
+/* Kept apart from clearing the record, because the stars are his and wiping
+   them by accident while tidying up the log would be a small disaster. */
+el('progressClear').addEventListener('click', () => {
+  progress = { topics: {}, days: [] };
+  saveProgress();
+  renderCollection();
+  if (state.grade) buildTopicGrid(state.grade);
+});
+
 /* ==================== go ==================== */
 
 buildGrades();
+renderCollection();

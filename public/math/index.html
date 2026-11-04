@@ -28,6 +28,9 @@
   <section class="screen is-active" id="screen-grade">
     <p class="lead">Choose a level</p>
     <div class="card-grid" id="gradeGrid"></div>
+    <!-- Everything he has collected. Only ever goes up, and stays hidden
+         until there is something in it. -->
+    <p class="collection" id="collection" hidden></p>
   </section>
 
   <!-- ============ Screen: choose a topic ============ -->
@@ -98,9 +101,11 @@
     <p class="done-title" id="doneTitle">All done!</p>
     <p class="done-stars" id="doneStars"></p>
     <p class="done-score" id="doneScore"></p>
+    <p class="done-note" id="doneNote" hidden></p>
     <div class="done-actions">
       <button class="btn btn-primary" id="againBtn">Go again</button>
       <button class="btn" id="changeBtn">Practise something else</button>
+      <button class="btn btn-next" id="nextTopicBtn" hidden></button>
     </div>
   </section>
 
@@ -148,6 +153,7 @@
       <section class="block">
         <div class="block-actions">
           <button class="btn btn-small" id="logClear">Clear session record</button>
+          <button class="btn btn-small" id="progressClear">Reset stars and badges</button>
         </div>
       </section>
     </div>

@@ -166,6 +166,55 @@ main {
 .card-name { font-size: 1.15rem; font-weight: 800; }
 .card-blurb { font-size: .9rem; color: var(--ink-soft); }
 
+/* Best ever on a topic, sitting on its card. Earned stars are gold and solid;
+   the ones still to get are faint, so a grid of untouched topics reads as
+   things to collect rather than things already lost. */
+.card-stars {
+  margin-top: 4px;
+  font-size: 1.1rem;
+  letter-spacing: .08em;
+  line-height: 1;
+}
+.stars-got { color: #f0a92e; }
+.stars-left { color: rgba(44, 36, 64, .18); }
+.badge { font-size: .95rem; }
+
+/* Two rounds running at nine or better. A quiet gold edge, not a trophy
+   cabinet. */
+.card.is-mastered { box-shadow: var(--shadow), inset 0 0 0 2px #f0a92e; }
+
+/* The running total under the level cards. */
+.collection {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 22px 0 0;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+.collection[hidden] { display: none; }
+.collection-stars { color: #f0a92e; font-size: 1.3rem; font-weight: 800; }
+.collection-of { font-size: .95rem; }
+.collection-days {
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 2px solid var(--line);
+  font-size: .88rem;
+}
+
+/* The one line on the results screen that is about more than this round. */
+.done-note {
+  margin: 2px 0 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--green);
+}
+.done-note[hidden] { display: none; }
+
+
 .tint-green  { border-color: var(--green);  background: var(--green-soft); }
 .tint-blue   { border-color: var(--blue);   background: var(--blue-soft); }
 .tint-purple { border-color: var(--purple); background: var(--purple-soft); }
@@ -485,9 +534,11 @@ main {
 .done-emoji { font-size: 4.5rem; line-height: 1; }
 .done-title { margin: 10px 0 4px; font-size: 1.6rem; font-weight: 800; }
 .done-stars { margin: 0; font-size: 2rem; letter-spacing: .1em; }
-.done-score { margin: 4px 0 22px; color: var(--ink-soft); font-weight: 700; }
+.done-score { margin: 4px 0 8px; color: var(--ink-soft); font-weight: 700; }
 
-.done-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+/* Spaced from here rather than from the score, so the gap is the same whether
+   or not the note above it is showing. */
+.done-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 18px; }
 
 .btn {
   min-height: 56px;
@@ -504,6 +555,11 @@ main {
 }
 .btn:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(44, 36, 64, .12); }
 .btn-primary { background: var(--green-soft); border-color: var(--green); color: var(--green); }
+/* Must come after .btn — same specificity, so source order is what decides.
+   Warmer than a plain button but quieter than "Go again": an invitation to
+   move up should not shove him out of something he has just succeeded at. */
+.btn-next { background: var(--orange-soft); border-color: var(--orange); color: var(--ink); }
+.btn-next[hidden] { display: none; }
 .btn-small { min-height: 44px; font-size: .9rem; padding: 0 14px; }
 /* The two choices before a round, and Next through the explanation — a tablet
    target, in the same family as the answer buttons. */

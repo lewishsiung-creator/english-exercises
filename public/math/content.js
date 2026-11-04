@@ -325,9 +325,14 @@ const redrawFigure = (recipe) =>
 
 /* ==================== Grade 1 ==================== */
 
+/* `next` is where a topic leads once he has it: the same skill, one level up.
+   Only offered when a topic is mastered, and only once — an invitation, not
+   a gate, and never a nag. Topics with nowhere obvious to go have no next. */
+
 const G1 = [
   {
     id: 'add20',
+    next: 'add100',
     name: 'Add to 20',
     icon: '➕',
     blurb: 'Sums that stay under twenty',
@@ -369,6 +374,7 @@ const G1 = [
   },
   {
     id: 'sub20',
+    next: 'sub100',
     name: 'Take away',
     icon: '➖',
     blurb: 'Subtracting inside twenty',
@@ -431,6 +437,7 @@ const G1 = [
   },
   {
     id: 'tensones',
+    next: 'place1000',
     name: 'Tens and ones',
     icon: '🧱',
     blurb: 'Reading the blocks',
@@ -455,6 +462,7 @@ const G1 = [
   },
   {
     id: 'compare1',
+    next: 'place1000',
     name: 'Bigger or smaller',
     icon: '⚖️',
     blurb: 'Greater than, less than, equal',
@@ -497,6 +505,7 @@ const G1 = [
   },
   {
     id: 'clock1',
+    next: 'clock5',
     name: 'What time is it?',
     icon: '🕐',
     blurb: 'O’clock and half past',
@@ -528,6 +537,7 @@ const G1 = [
 const G2 = [
   {
     id: 'add100',
+    next: 'add1000',
     name: 'Add two digits',
     icon: '🔢',
     blurb: 'Sums up to one hundred',
@@ -559,6 +569,7 @@ const G2 = [
   },
   {
     id: 'sub100',
+    next: 'add1000',
     name: 'Subtract two digits',
     icon: '📉',
     blurb: 'Taking two-digit numbers apart',
@@ -590,6 +601,7 @@ const G2 = [
   },
   {
     id: 'place1000',
+    next: 'add1000',
     name: 'Hundreds, tens, ones',
     icon: '🏛️',
     blurb: 'What each digit is worth',
@@ -670,6 +682,7 @@ const G2 = [
   },
   {
     id: 'groups',
+    next: 'times',
     name: 'Equal groups',
     icon: '🟢',
     blurb: 'Rows and columns, before times tables',
@@ -715,6 +728,7 @@ function timesFact() {
 const G3 = [
   {
     id: 'times',
+    next: 'divide',
     name: 'Times tables',
     icon: '✖️',
     blurb: 'Facts up to ten times ten',
