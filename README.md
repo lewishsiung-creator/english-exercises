@@ -257,16 +257,17 @@ Lab's, so the two pages never mix voice or speed.
 
 ## Number Lab — math, Grades 1–3
 
-The one page here that is not English. Eighteen topics across three American
+The one page here that is not English. Twenty-one topics across three American
 grade levels, for a child in Grade 1 working up through Grade 3.
 
 | Grade 1 | Grade 2 | Grade 3 |
 | --- | --- | --- |
 | Add to 20 | Add two digits | Times tables |
 | Take away | Subtract two digits | Sharing out |
-| Missing number | Hundreds, tens, ones | Fractions |
-| Tens and ones | Count the money | Add and subtract to 1000 |
-| Bigger or smaller | Time to five minutes | Area and perimeter |
+| Missing number | Hundreds, tens, ones | Word problems |
+| Tens and ones | Count the money | Fractions |
+| Bigger or smaller | Word problems | Add and subtract to 1000 |
+| Word problems | Time to five minutes | Area and perimeter |
 | What time is it? | Equal groups | Rounding |
 
 ### Design notes
@@ -285,6 +286,30 @@ grade levels, for a child in Grade 1 working up through Grade 3.
   `content.js` that builds a fresh question every time, so the bank never runs
   out and nothing can be learned by position. Difficulty lives in the numbers
   inside that one function and nowhere else.
+- **Word problems, one topic a grade.** Everything else here is a bare sum or
+  a picture to read, and an American classroom assesses mostly in prose — a
+  child who can add and cannot read the question gets the question wrong.
+  The Grade 1 kinds are the ones the research names rather than ones I
+  invented: result unknown, change unknown, and comparison, weighted so the
+  last two — where children who can already add come unstuck — are not left
+  to chance.
+- **The Grade 1 ones carry a picture, and that is the audio rule being kept
+  a different way.** Nothing is read aloud, so for a six-year-old reading it
+  himself the picture is what stops one unfamiliar word blocking the whole
+  question. Grade 2 and 3 problems have none: their numbers are too big to
+  count, and by then the reading is the point. Items are drawn five to a row
+  — eighteen apples on one line came out 662px wide, which a 375px phone
+  scales to 16px an apple, too small to count, which is the one thing the
+  picture is for.
+- **The name is repeated rather than replaced by a pronoun.** *Mia has 4
+  apples. Mia gets 3 more.* Working out who "she" refers to is a second
+  comprehension task sitting on top of the maths, and early readers repeat
+  the name for that reason.
+- **The story has to make sense, or he thinks about the story.** A free pick
+  of objects and containers produced cats in boxes and stars on a plate in
+  one question in six, so container problems draw from a packable list only.
+  The same check caught a two-step problem that handed back exactly what it
+  had just taken, and a shop selling bugs.
 - **A topic is not allowed to be easier than its own name.** Left to plain
   random numbers the skill a topic exists to teach turns up by accident, and
   measuring it showed how badly: "Add to 20" crossed ten in 46% of questions

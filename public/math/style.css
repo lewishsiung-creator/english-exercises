@@ -364,6 +364,20 @@ main {
    sum: the monospaced digit face is there to keep 6 from reading as 5, and it
    only makes prose harder. app.js sets this class when the prompt is mostly
    words. */
+/* A word problem is three short sentences, and at question size they would
+   push the number pad off the bottom of a phone. The numbers inside it stay
+   in the digit face, which is the one thing he has to pick out of the
+   sentence. */
+.ask.is-story {
+  font-family: inherit;
+  font-size: clamp(1.15rem, 4.2vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: 0;
+  max-width: 26ch;
+  font-variant-numeric: tabular-nums;
+}
+
 .ask.is-words {
   font-family: inherit;
   font-size: clamp(1.4rem, 5vw, 1.9rem);

@@ -397,8 +397,10 @@ function askQuestion() {
 
   el('ask').textContent = q.ask;
   // Three or more words means a sentence rather than a sum, and a sentence
-  // does not want the monospaced digit face.
-  el('ask').className = (q.ask.match(/[A-Za-z]{2,}/g) || []).length >= 3 ? 'ask is-words' : 'ask';
+  // does not want the monospaced digit face. Ten or more means a story, and
+  // a story set at question size would push the number pad off a phone.
+  const words = (q.ask.match(/[A-Za-z]{2,}/g) || []).length;
+  el('ask').className = words >= 10 ? 'ask is-story' : words >= 3 ? 'ask is-words' : 'ask';
   el('feedback').textContent = '';
   el('feedback').className = 'feedback';
   el('hint').hidden = true;

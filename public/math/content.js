@@ -276,6 +276,87 @@ function hopsFig(from, to) {
   return svg(at(hi) + pad, y + 36, body);
 }
 
+/* --- the picture beside a word problem ---
+
+   Not decoration. Nothing on this page is read aloud, so for a six-year-old
+   reading it himself this picture is what stops one unfamiliar word blocking
+   the whole question — the job the voice used to do. Grade 1 numbers are
+   small enough to count, and counting is a first-grade strategy rather than
+   a way round the question. Grade 2 and 3 problems carry no picture: their
+   numbers are too big to count, and by then the reading is the point. */
+function storyFig(kind, a, b, icon) {
+  const s = 34, gap = 10, pad = 10;
+  /* Five to a row. Eighteen apples in one line came out 662px wide, which a
+     375px phone scales down to 16px an apple — too small to count, which is
+     the one thing the picture is for. Fives also group the way a child
+     counts them. */
+  const PER_ROW = 5;
+
+  const item = (x, y, faded) =>
+    `<text x="${x + s / 2}" y="${y + s - 7}" text-anchor="middle" font-size="${s - 9}"
+      opacity="${faded ? 0.28 : 1}">${icon}</text>`;
+  const cross = (x, y) => `<path d="M${x + 8} ${y + 8} L${x + s - 8} ${y + s - 8}
+    M${x + s - 8} ${y + 8} L${x + 8} ${y + s - 8}"
+    stroke="var(--oops)" stroke-width="3" stroke-linecap="round"/>`;
+
+  /* A block of n laid out in rows of five, from a given corner. `skip` many
+     at the start are drawn solid, the rest faded and crossed. */
+  const block = (n, x0, y0, solid = n) => {
+    let out = '';
+    for (let i = 0; i < n; i++) {
+      const x = x0 + (i % PER_ROW) * s;
+      const y = y0 + Math.floor(i / PER_ROW) * (s + gap);
+      const gone = i >= solid;
+      out += item(x, y, gone) + (gone ? cross(x, y) : '');
+    }
+    return out;
+  };
+  const rows = (n) => Math.ceil(n / PER_ROW);
+  const blockW = (n) => Math.min(n, PER_ROW) * s;
+  const blockH = (n) => rows(n) * (s + gap) - gap;
+
+  if (kind === 'take') {
+    return svg(pad * 2 + blockW(a), pad * 2 + blockH(a), block(a, pad, pad, a - b));
+  }
+
+  if (kind === 'compare') {
+    /* Two single rows, left-aligned, so the extra ones stick out past the end
+       of the shorter one — that overhang is the whole of what "how many
+       more" means.
+
+       Drawn plainly, 8 over 2 just looked like ten of them that had wrapped,
+       and the comparison disappeared. So each row sits on its own baseline
+       and a dashed fence falls at the end of the shorter row: everything to
+       the right of it is the answer. */
+    const rowGap = 18;
+    const y2 = pad + s + rowGap;
+    const shortEnd = pad + Math.min(a, b) * s;
+    const wide = Math.max(a, b);
+    let out = '';
+    for (const [n, y] of [[a, pad], [b, y2]]) {
+      out += `<line x1="${pad - 3}" y1="${y + s + 1}" x2="${pad + n * s + 3}" y2="${y + s + 1}"
+        stroke="var(--line-strong)" stroke-width="2.5" stroke-linecap="round"/>`;
+      for (let i = 0; i < n; i++) out += item(pad + i * s, y, false);
+    }
+    if (a !== b) {
+      out += `<line x1="${shortEnd}" y1="${pad - 4}" x2="${shortEnd}" y2="${y2 + s + 6}"
+        stroke="var(--orange)" stroke-width="3" stroke-dasharray="6 5" stroke-linecap="round"/>`;
+    }
+    return svg(pad * 2 + wide * s, pad * 2 + s * 2 + rowGap + 8, out);
+  }
+
+  // join: the two groups with a plus between them
+  const signW = 30;
+  const left = pad;
+  const right = pad + blockW(a) + signW;
+  const h = Math.max(blockH(a), blockH(b));
+  return svg(pad * 2 + blockW(a) + signW + blockW(b), pad * 2 + h,
+    block(a, left, pad)
+    + `<text x="${pad + blockW(a) + signW / 2}" y="${pad + h / 2 + 9}" text-anchor="middle"
+        font-size="26" font-weight="800" fill="var(--ink-soft)">+</text>`
+    + block(b, right, pad));
+}
+
 /* --- a number line with one point marked, for rounding --- */
 function lineFig(lo, hi, mark) {
   const w = 320, pad = 20;
@@ -318,7 +399,52 @@ const FIGURES = {
   coins: coinsFig,
   rect: rectFig,
   line: lineFig,
+  story: storyFig,
 };
+
+/* ==================== the people and things in a story ====================
+
+   Every name is one or two syllables and every object is a word a six-year
+   old can decode unaided, because nothing here is read aloud.
+
+   The name is repeated rather than replaced by "she" or "he". Working out
+   who a pronoun refers to is a second comprehension task sitting on top of
+   the maths, and early readers repeat the name for exactly that reason. */
+
+const WHO = ['Mia', 'Ben', 'Ava', 'Leo', 'Zoe', 'Max', 'Sam', 'Ivy'];
+
+const THINGS = [
+  { one: 'apple', many: 'apples', icon: '🍎' },
+  { one: 'car', many: 'cars', icon: '🚗' },
+  { one: 'shell', many: 'shells', icon: '🐚' },
+  { one: 'hat', many: 'hats', icon: '🎩' },
+  { one: 'book', many: 'books', icon: '📘' },
+  { one: 'cat', many: 'cats', icon: '🐱' },
+  { one: 'star', many: 'stars', icon: '⭐' },
+  { one: 'frog', many: 'frogs', icon: '🐸' },
+  { one: 'bug', many: 'bugs', icon: '🐞' },
+  { one: 'cake', many: 'cakes', icon: '🧁' },
+];
+
+/* Only the things that sensibly go in a container, and only containers you
+   would put them in. Left to a free pick of both lists, one question in six
+   came out as cats in boxes or stars on a plate, and a six-year-old reading
+   that is thinking about the cat rather than the sum. */
+const PACKABLE = THINGS.filter((t) => ['apple', 'shell', 'hat', 'book', 'star', 'cake', 'car'].includes(t.one));
+
+const HOLDERS = [
+  { one: 'box', many: 'boxes' },
+  { one: 'bag', many: 'bags' },
+  { one: 'basket', many: 'baskets' },
+];
+
+/* Two different names, for the problems that compare one child with another. */
+function twoNames() {
+  const a = pick(WHO);
+  let b = pick(WHO);
+  while (b === a) b = pick(WHO);
+  return [a, b];
+}
 
 const redrawFigure = (recipe) =>
   Array.isArray(recipe) && FIGURES[recipe[0]] ? FIGURES[recipe[0]](...recipe.slice(1)) : '';
@@ -504,6 +630,76 @@ const G1 = [
     },
   },
   {
+    id: 'story1',
+    next: 'story2',
+    name: 'Word problems',
+    icon: '📖',
+    blurb: 'Maths hiding in a story',
+    /* The kinds are the ones the research names, not ones I invented: a
+       result unknown, a change unknown, and a comparison. They are listed in
+       the order they get hard. The last two are where children who can
+       already add come unstuck, which is exactly why they are in here and
+       not left to chance. */
+    make() {
+      const kind = weighted({ join: 3.5, take: 3.5, compare: 2, changeUnknown: 1 });
+      const it = pick(THINGS);
+      const who = pick(WHO);
+
+      if (kind === 'join') {
+        const a = rnd(2, 9);
+        const b = rnd(2, Math.min(9, 18 - a));
+        return {
+          ask: `${who} has ${a} ${it.many}. ${who} gets ${b} more. How many now?`,
+          figure: storyFig('join', a, b, it.icon),
+          redraw: ['story', 'join', a, b, it.icon],
+          answer: String(a + b),
+          hint: `${a} and ${b} more. Count them all.`,
+        };
+      }
+
+      if (kind === 'take') {
+        const a = rnd(4, 10);
+        const b = rnd(1, a - 1);
+        return {
+          ask: `${who} has ${a} ${it.many}. ${who} gives ${b} away. How many are left?`,
+          figure: storyFig('take', a, b, it.icon),
+          redraw: ['story', 'take', a, b, it.icon],
+          answer: String(a - b),
+          hint: `Start with ${a}. Take ${b} away. Count what is left.`,
+        };
+      }
+
+      if (kind === 'compare') {
+        const [one, two] = twoNames();
+        const a = rnd(4, 10);
+        const b = rnd(1, a - 1);
+        return {
+          ask: `${one} has ${a} ${it.many}. ${two} has ${b}. How many more does ${one} have?`,
+          figure: storyFig('compare', a, b, it.icon),
+          redraw: ['story', 'compare', a, b, it.icon],
+          answer: String(a - b),
+          hint: 'The rows are lined up. Count the extra ones on the end.',
+        };
+      }
+
+      // The change is the unknown: he has to work out what happened in the
+      // middle, not what came out at the end.
+      // Kept inside ten. The compare picture has to stay on one line for the
+      // overhang to mean anything, and eighteen in a row shrinks on a phone
+      // until it cannot be counted. Change-unknown past ten without a
+      // picture is what "Missing number" is for.
+      const start = rnd(1, 6);
+      const total = start + rnd(2, 10 - start);
+      return {
+        ask: `${who} has ${start} ${it.many}. Now ${who} has ${total}. How many more did ${who} get?`,
+        figure: storyFig('compare', total, start, it.icon),
+        redraw: ['story', 'compare', total, start, it.icon],
+        answer: String(total - start),
+        hint: `Count up from ${start} to ${total}.`,
+      };
+    },
+  },
+  {
     id: 'clock1',
     next: 'clock5',
     name: 'What time is it?',
@@ -657,6 +853,67 @@ const G2 = [
     },
   },
   {
+    id: 'story2',
+    next: 'story3',
+    name: 'Word problems',
+    icon: '📖',
+    blurb: 'Bigger numbers in a story',
+    /* No picture from here on: these numbers are too big to count, and by
+       second grade reading the problem is the thing being practised. */
+    make() {
+      const kind = weighted({ join: 3, take: 3, money: 2, twoStep: 2 });
+      const it = pick(THINGS);
+      const who = pick(WHO);
+
+      if (kind === 'join') {
+        const a = rnd(21, 58);
+        const b = rnd(13, 99 - a);
+        return {
+          ask: `${who} has ${a} ${it.many}. ${who} gets ${b} more. How many now?`,
+          answer: String(a + b),
+          hint: `Add the tens first, then the ones.`,
+        };
+      }
+
+      if (kind === 'take') {
+        const a = rnd(35, 99);
+        const b = rnd(12, a - 10);
+        return {
+          ask: `There are ${a} ${it.many}. ${b} are taken away. How many are left?`,
+          answer: String(a - b),
+          hint: `Start at ${a} and take away ${b}.`,
+        };
+      }
+
+      if (kind === 'money') {
+        const cost = rnd(15, 78);
+        const paid = Math.ceil(cost / 10) * 10 + rnd(1, 2) * 10;
+        // Something you would actually buy — "a bug costs 33¢" sends him
+        // thinking about the bug.
+        const sold = pick(PACKABLE);
+        return {
+          ask: `A ${sold.one} costs ${cost}¢. ${who} pays ${paid}¢. How much change?`,
+          answer: String(paid - cost),
+          hint: `Count up from ${cost}¢ to ${paid}¢.`,
+        };
+      }
+
+      // Two steps, because one-step problems stop testing anything once the
+      // arithmetic is fluent: the work is holding on to the middle number.
+      const a = rnd(20, 45);
+      const b = rnd(11, 30);
+      // Never give away exactly what was just picked up: the answer would be
+      // the number he started with, which teaches him to skip the middle.
+      let c = rnd(5, Math.min(25, a + b - 5));
+      if (c === b) c = c > 5 ? c - 1 : c + 1;
+      return {
+        ask: `${who} has ${a} ${it.many}. ${who} gets ${b} more. Then ${who} gives ${c} away. How many now?`,
+        answer: String(a + b - c),
+        hint: `First work out ${a} + ${b}. Then take ${c} off that.`,
+      };
+    },
+  },
+  {
     id: 'clock5',
     name: 'Time to five minutes',
     icon: '⏰',
@@ -754,6 +1011,54 @@ const G3 = [
         ask: `${b * q} ÷ ${b} = ?`,
         answer: String(q),
         hint: `How many ${b}s make ${b * q}?`,
+      };
+    },
+  },
+  {
+    id: 'story3',
+    name: 'Word problems',
+    icon: '📖',
+    blurb: 'Groups, sharing and two steps',
+    /* Sharing and grouping are the two faces of division and they are not
+       the same question: "how many in each bag" and "how many bags" land on
+       the same sum by different roads, and children who only meet one of
+       them get stuck the first time they meet the other. */
+    make() {
+      const kind = weighted({ groups: 3, share: 2.5, grouping: 2.5, twoStep: 2 });
+      const it = pick(PACKABLE);
+      const box = pick(HOLDERS);
+      const who = pick(WHO);
+      const [r, c] = timesFact();
+
+      if (kind === 'groups') {
+        return {
+          ask: `There are ${r} ${box.many}. Each ${box.one} has ${c} ${it.many}. How many ${it.many} in all?`,
+          answer: String(r * c),
+          hint: `${r} groups of ${c}. That is ${r} × ${c}.`,
+        };
+      }
+
+      if (kind === 'share') {
+        return {
+          ask: `${r * c} ${it.many} go into ${r} ${box.many}. How many in each ${box.one}?`,
+          answer: String(c),
+          hint: `Share ${r * c} out between ${r} ${box.many}.`,
+        };
+      }
+
+      if (kind === 'grouping') {
+        return {
+          ask: `There are ${r * c} ${it.many}. Each ${box.one} holds ${c}. How many ${box.many}?`,
+          answer: String(r),
+          hint: `How many ${c}s make ${r * c}?`,
+        };
+      }
+
+      const eaten = rnd(1, Math.max(1, r * c - 2));
+      return {
+        ask: `${r} ${box.many} have ${c} ${it.many} each. ${who} takes ${eaten} away. How many are left?`,
+        answer: String(r * c - eaten),
+        hint: `First ${r} × ${c}. Then take ${eaten} off.`,
       };
     },
   },
@@ -942,6 +1247,29 @@ const TEACH = {
       },
     { text: '5 < 8 says the same thing the other way round.',
       },
+  ],
+  story1: [
+    { text: 'Some questions come as a little story.' },
+    { text: 'Read it. Then find the numbers.',
+      figure: storyFig('join', 4, 3, '🍎') },
+    { text: 'Mia has 4 apples. Mia gets 3 more.' },
+    { text: 'Getting more means add. 4 and 3 is 7.' },
+    { text: 'Always ask yourself: more, or fewer?' },
+  ],
+  story2: [
+    { text: 'Now the numbers are too big to count.' },
+    { text: 'So read it, and find the two numbers.' },
+    { text: 'Ben has 34 shells. Ben gets 27 more.' },
+    { text: 'More means add. 34 + 27 is 61.' },
+    { text: 'Some stories have two steps. Do the first one first.' },
+  ],
+  story3: [
+    { text: 'Equal groups hide inside a lot of stories.' },
+    { text: '3 bags. Each bag has 6 apples.',
+      figure: arrayFig(3, 6) },
+    { text: 'That is 3 groups of 6. So 3 × 6 is 18.' },
+    { text: 'Sharing goes the other way. 18 into 3 bags is 6 each.' },
+    { text: 'Ask: am I building groups, or breaking them up?' },
   ],
   clock1: [
     { text: 'A clock has a short hand and a long hand.', figure: clockFig(3, 0) },
