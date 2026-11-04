@@ -148,6 +148,45 @@ const BLOCKS = {
       ${b.note ? `<p class="small">${text(b.note)}</p>` : ''}
     </div>`,
 
+  /* The band that says a section is a proposal. It is the loudest thing on
+     the page and it survives print, because the failure it guards against is
+     a draft being circulated as the plan. */
+  draft: (b) => `
+    <div class="draft">
+      <p class="draft-label">${text(b.label)}</p>
+      <p>${text(b.text)}</p>
+    </div>`,
+
+  /* The two days. `goal` tags which of the three outcomes from section 01 a
+     slot serves, and a slot with none shows nothing — an empty tag row is the
+     signal that the slot is a break, or that it is not earning its place.
+     `fixed` marks the one block that was actually supplied; everything else
+     carries the draft mark so a row cannot be read as settled once it is
+     away from the banner at the top of the section. */
+  days: (b) => `
+    <div class="days">
+      ${b.days.map((d) => `
+        <section class="day">
+          <h3 class="day-h">${text(d.d)}</h3>
+          <ol class="day-rows">
+            ${d.rows.map((r) => `
+              <li${r.fixed ? ' class="fixed"' : ''}>
+                <div class="day-slot">
+                  <p class="day-time">${text(r.time)}</p>
+                  <p class="day-mark">${r.fixed ? '已提供' : '建議'}</p>
+                </div>
+                <div class="day-main">
+                  <p class="day-what">${text(r.t)}</p>
+                  ${r.why ? `<p class="day-why">${text(r.why)}</p>` : ''}
+                  ${r.goal && r.goal.length
+                    ? `<p class="day-goals">${r.goal.map((g) => `<span>${text(g)}</span>`).join('')}</p>`
+                    : ''}
+                </div>
+              </li>`).join('')}
+          </ol>
+        </section>`).join('')}
+    </div>`,
+
   /* The afternoon under review. Not a `two` table: the left-hand cell is three
      things of different weight — the slot, what it is, who is on — and the
      right-hand one is the only part Anny has to act on today, so it is marked

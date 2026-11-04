@@ -455,6 +455,95 @@ h3 {
 }
 .clock-row.now .clock-when { color: var(--good); font-weight: 600; }
 
+/* ---------------- the draft band ----------------
+
+   The only loud thing on the page, and the only one that keeps its colour in
+   print. A proposal that gets forwarded as a plan is the failure this guards
+   against, and it cannot guard against it quietly. */
+
+.draft {
+  margin: 0 0 26px;
+  padding: 16px 20px;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold);
+  border-left-width: 4px;
+  border-radius: 11px;
+}
+.draft p:last-child { margin: 0; font-size: .94rem; }
+.draft-label {
+  margin: 0 0 4px;
+  font-family: var(--font-ui);
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  color: var(--gold);
+}
+
+/* ---------------- the two days ----------------
+
+   Read like the agenda below it, so the two sit together: the slot on the
+   left, what it is and why on the right. The difference is the mark under
+   every time — 建議 or 已提供 — which travels with the row when it is read
+   away from the band at the top of the section. */
+
+.days { margin: 0 0 8px; }
+
+.day { margin: 0 0 26px; }
+
+.day-h {
+  margin: 0 0 6px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 1.02rem;
+  color: var(--ink);
+}
+
+.day-rows { margin: 0; padding: 0; list-style: none; }
+
+.day-rows li {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 20px;
+  padding: 15px 0;
+  border-top: 1px solid var(--line);
+}
+.day-rows li:first-child { border-top: 0; }
+
+.day-time {
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: .95rem;
+  font-variant-numeric: tabular-nums lining-nums;
+  color: var(--ink-soft);
+}
+.day-mark {
+  margin: 4px 0 0;
+  font-family: var(--font-ui);
+  font-size: .64rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  color: var(--gold);
+}
+.day-rows li.fixed .day-time { color: var(--ink); font-weight: 600; }
+.day-rows li.fixed .day-mark { color: var(--good); }
+
+.day-what { margin: 0; font-weight: 600; font-size: .98rem; line-height: 1.65; }
+.day-why { margin: 5px 0 0; font-size: .9rem; color: var(--ink-soft); }
+
+/* The outcome a slot serves. A slot with none shows nothing here, which is
+   the whole point of the 檢核 line that closes the section. */
+.day-goals { display: flex; flex-wrap: wrap; gap: 6px; margin: 9px 0 0; }
+.day-goals span {
+  font-family: var(--font-ui);
+  font-size: .68rem;
+  letter-spacing: .04em;
+  color: var(--ink-soft);
+  background: var(--navy-soft);
+  border: 1px solid var(--navy-line);
+  border-radius: 20px;
+  padding: 3px 10px;
+}
+
 /* ---------------- the agenda under review ----------------
 
    Two columns: the slot as it stands, and the one thing to settle about it
@@ -703,6 +792,11 @@ h3 {
   /* The slot and the question stack. The question keeps its gold rule so it is
      still obviously the part to act on and not a continuation of the slot. */
   .agenda li { grid-template-columns: 1fr; gap: 10px; }
+  /* The time and its 建議／已提供 mark sit on one line once they are above
+     the slot rather than beside it. */
+  .day-rows li { grid-template-columns: 1fr; gap: 8px; }
+  .day-slot { display: flex; align-items: baseline; gap: 10px; }
+  .day-mark { margin: 0; }
   .steps li { grid-template-columns: 1.4rem 1fr; gap: 10px; }
   .steps li::before { font-size: 1.1rem; }
   .script-body, .lines .line-body { padding-left: 16px; padding-right: 16px; }
@@ -754,7 +848,13 @@ h3 {
   .tbl-wrap { overflow: visible; }
   .tbl { min-width: 0; }
   .callout, .goals, .clock-row, .steps li, .asks li, .replies li, .agenda li,
-  .script-body, .lines li, .tick, .field, .tbl tr { break-inside: avoid; }
+  .script-body, .lines li, .tick, .field, .tbl tr, .day-rows li,
+  .draft { break-inside: avoid; }
+  /* The draft band keeps its colour on paper. Everything else on this page
+     can go grey; a printed proposal being mistaken for the schedule is the
+     one failure worth ink. */
+  .draft { background: var(--gold-soft) !important; break-after: avoid; }
+  .day-h { break-after: avoid; }
   /* A green "we are here" band on paper means nothing — the meeting is over by
      the time it is read. */
   .clock-row.now { background: #fff; border-color: var(--line); }

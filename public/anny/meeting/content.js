@@ -42,6 +42,13 @@
      two      a two-column table: `head` of two, then `rows` of two
      clock    the 30-minute plan. Rows carry `from`/`to` in minutes, and the
               timer in the top bar lights the row the meeting is actually in
+     draft    a loud band saying a section is a proposal, not a schedule. It
+              prints, because the failure it guards against is a draft being
+              handed round as the plan
+     days     the two-day outline. One heading per day, then rows of
+              time / what / why. `goal` tags the outcome from 01 that the slot
+              serves, and `fixed` marks the only part that was actually
+              supplied rather than drafted
      agenda   the afternoon session under review: the slot as it stands on the
               left, what to settle today on the right
      asks     questions to ask out loud, each on its own line
@@ -203,15 +210,163 @@ const GUIDE = {
     },
 
     // ------------------------------------------------------------------ 03
+    /* Lewis asked for the whole two days on the page (4 Nov 2026). Only the
+       13:30–16:00 block was ever supplied — the source document says so
+       itself — so everything else here was drafted from the guide's own
+       reasoning in 01: day one builds shared understanding, the evening is
+       for the people who rarely talk, day two turns that into action. It is a
+       starting point for the conversation with the other CSD, which is what
+       section 02 says the conversation is for. It is not a schedule, and the
+       banner, the row marks and the closing note all say so. Replace it the
+       moment a real agenda exists. */
+    {
+      id: 'twoday',
+      n: '03',
+      title: '兩天一夜完整議程',
+      sub: '建議草案，尚未確認',
+      blocks: [
+        {
+          t: 'draft',
+          label: '建議草案',
+          text: '只有第一天 13:30–16:00 是已提供的安排。其餘時段是依據前面「先有成果，再排議程」的邏輯擬出來的建議，尚未與任何人確認，也還沒排進行事曆。請當作今天跟另一位 CSD 討論的起點，不要當成定案發出去。',
+        },
+        {
+          t: 'p',
+          text: '主線：第一天建立共同理解，晚間讓平常少互動的同事真的講到話，第二天把前一天的共識轉成各自帶得回團隊的行動。每一段後面標的是它支持哪一個成果——沒有對應成果的時段，就是可以砍掉或換掉的時段。',
+        },
+        {
+          t: 'days',
+          days: [
+            {
+              d: '第一天',
+              rows: [
+                {
+                  time: '12:30–13:30',
+                  t: '報到與午餐',
+                  why: '刻意安排座位，不要讓大家各自找熟人坐。這一餐已經是活動的一部分。',
+                  goal: ['凝聚團隊'],
+                },
+                {
+                  time: '13:30–16:00',
+                  t: '下午主場次：開場、來賓分享、兩場座談、2027 Goal Plan',
+                  why: '唯一已提供的安排。逐項的確認事項放在下一節「下午場議程檢視」。',
+                  goal: ['掌握 2027 方向', '理解文化與價值'],
+                  fixed: true,
+                },
+                {
+                  time: '16:00–16:20',
+                  t: '休息',
+                  why: '真的休息。前面連續 150 分鐘，這裡再塞內容，後面的討論品質會掉。',
+                  goal: [],
+                },
+                {
+                  time: '16:20–17:40',
+                  t: '分組討論一：這些跟我的團隊有什麼關係？',
+                  why: '把下午聽到的案例換成自己的問題。產出：每組寫下一到兩個具體的跨團隊合作障礙，要寫到看得出是哪兩個團隊、卡在哪一步。',
+                  goal: ['凝聚團隊'],
+                },
+                {
+                  time: '17:40–18:30',
+                  t: '休息與入住',
+                  why: '',
+                  goal: [],
+                },
+                {
+                  time: '18:30–20:30',
+                  t: '晚宴',
+                  why: '兩天一夜最難取代的一段，也最容易浪費。混桌安排，讓平常少接觸的團隊同桌；一桌一個輕量的桌邊題，不做上台環節。',
+                  goal: ['凝聚團隊', '理解文化與價值'],
+                },
+                {
+                  time: '20:30 之後',
+                  t: '自由交流',
+                  why: '不安排內容。這一段的價值在於沒有議程。',
+                  goal: ['凝聚團隊'],
+                },
+              ],
+            },
+            {
+              d: '第二天',
+              rows: [
+                {
+                  time: '08:00–09:00',
+                  t: '早餐',
+                  why: '',
+                  goal: [],
+                },
+                {
+                  time: '09:00–09:20',
+                  t: '回顧：昨天留下了什麼',
+                  why: '主持人整理昨天各組寫下的障礙，不是重講一次昨天的內容。十分鐘讀，十分鐘補。',
+                  goal: ['凝聚團隊'],
+                },
+                {
+                  time: '09:20–10:40',
+                  t: '分組討論二：針對昨天的障礙，提出做得出來的做法',
+                  why: '產出：每組一個試行方案，講清楚做什麼、誰負責、什麼時候檢視。做不出負責人與時間的方案，就是還沒想完。',
+                  goal: ['凝聚團隊', '掌握 2027 方向'],
+                },
+                {
+                  time: '10:40–11:00',
+                  t: '休息',
+                  why: '',
+                  goal: [],
+                },
+                {
+                  time: '11:00–12:00',
+                  t: '各組報告與回應',
+                  why: '每組 8 分鐘：方案，以及需要哪個團隊提供什麼支援。被點名的團隊當場回應可行或不可行，不要留到會後。',
+                  goal: ['凝聚團隊', '掌握 2027 方向'],
+                },
+                {
+                  time: '12:00–12:30',
+                  t: '收斂：2027 年的優先事項與跨團隊承諾',
+                  why: '把兩天的東西收成一頁：明年最優先的幾件事，以及各團隊彼此答應了什麼。這一段呼應第一天最後的 2027 Goal Plan，是它的落地，不是重講。',
+                  goal: ['掌握 2027 方向'],
+                },
+                {
+                  time: '12:30–12:45',
+                  t: '結語與後續追蹤',
+                  why: '說清楚紀錄由誰整理、什麼時候發出、下一次檢視進度是什麼時候。沒有這一段，前面兩天會在兩週內蒸發。',
+                  goal: ['掌握 2027 方向'],
+                },
+                {
+                  time: '12:45 之後',
+                  t: '午餐與賦歸',
+                  why: '',
+                  goal: [],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          t: 'asks',
+          head: '這份草案要跟另一位 CSD 確認的三件事',
+          items: [
+            '第一天下午之外的時段，有哪些其實已經定案了？我現在是當成空白在排。',
+            '兩天的重心放在「把問題講出來」還是「把做法定下來」？這會決定第二天上午的長度。',
+            '分組討論要不要做？如果要，分組方式、帶討論的人，以及誰整理產出，今天就要決定。',
+          ],
+        },
+        {
+          t: 'callout',
+          label: '檢核',
+          text: '把這張表從頭看一遍，問一個問題：哪一段拿掉之後，活動結束一週後同事說得出、做得出的東西會變少？拿掉不會變少的那幾段，兩天一夜才站得住。',
+        },
+      ],
+    },
+
+    // ------------------------------------------------------------------ 04
     {
       id: 'agenda',
-      n: '03',
-      title: '議程檢視',
+      n: '04',
+      title: '下午場議程檢視',
       sub: '從個人經驗，走向共同方向',
       blocks: [
         {
           t: 'p',
-          text: '提供的下午議程共 150 分鐘。建議主線：個人經驗 → 團隊成長與挑戰 → 2027 年方向。以下列出原安排及建議確認事項。',
+          text: '提供的下午議程共 150 分鐘，是兩天裡唯一已安排好的一段。建議主線：個人經驗 → 團隊成長與挑戰 → 2027 年方向。以下列出原安排及建議確認事項。',
         },
         {
           t: 'agenda',
@@ -266,10 +421,10 @@ const GUIDE = {
       ],
     },
 
-    // ------------------------------------------------------------------ 04
+    // ------------------------------------------------------------------ 05
     {
       id: 'panels',
-      n: '04',
+      n: '05',
       title: '座談與參與設計',
       sub: '讓案例有深度，讓聽眾有角色',
       blocks: [
@@ -322,10 +477,10 @@ const GUIDE = {
       ],
     },
 
-    // ------------------------------------------------------------------ 05
+    // ------------------------------------------------------------------ 06
     {
       id: 'script',
-      n: '05',
+      n: '06',
       title: '完整中文口頭稿',
       sub: '共同確認成果，再談議程與分工',
       blocks: [
@@ -351,10 +506,10 @@ const GUIDE = {
       ],
     },
 
-    // ------------------------------------------------------------------ 06
+    // ------------------------------------------------------------------ 07
     {
       id: 'lines',
-      n: '06',
+      n: '07',
       title: '現場可用說法',
       sub: '開場、討論議程、確認共識',
       blocks: [
@@ -392,10 +547,10 @@ const GUIDE = {
       ],
     },
 
-    // ------------------------------------------------------------------ 07
+    // ------------------------------------------------------------------ 08
     {
       id: 'record',
-      n: '07',
+      n: '08',
       title: '會議待辦與紀錄',
       sub: '勾選的狀態與填寫的內容都會留在這台裝置上',
       blocks: [

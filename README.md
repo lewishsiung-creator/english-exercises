@@ -2846,12 +2846,14 @@ three shared sheets so the two still read as one set. A static block at the top
 of `#nav` links the two together in both directions — `#nav` is appended to,
 never replaced, so hand-written markup inside it survives the renderer.
 
-Seven sections, from the outcomes to agree before anything else, through the
-afternoon agenda under review, to a checklist and a decisions table.
+Eight sections, from the outcomes to agree before anything else, through the
+two-day outline and the afternoon agenda under review, to a checklist and a
+decisions table.
 
 | Piece | What it does |
 | --- | --- |
 | ⏱ 30-minute plan | The row the conversation is in lights up, driven by the clock in the bar |
+| 📅 Two days | A drafted outline of the whole event; every row marked 建議 or 已提供 |
 | 📋 Agenda review | Each slot as it stands, and the one thing to settle about it today |
 | 💬 Objections | What the other person may say, and a way to answer it |
 | 🗣 Script and openers | The long draft and five short things to say, each copyable |
@@ -2874,6 +2876,17 @@ afternoon agenda under review, to a checklist and a decisions table.
   is the task most easily dropped once a meeting ends, so the tools panel turns
   what was typed — the outcomes, the owners, the dates, and anything still
   unticked — into a message she can paste into mail or LINE.
+- **The two-day outline is drafted, and the page never lets you forget it.**
+  Only 13:30–16:00 was ever supplied; the source document says so itself. Lewis
+  asked for the whole two days anyway, so the rest was written from the guide's
+  own reasoning — day one builds shared understanding, the evening is for the
+  people who rarely talk, day two turns that into action. Saying so once in a
+  banner is not enough for a page that gets scrolled, printed and forwarded, so
+  every row carries its own 建議 or 已提供 mark, the band keeps its colour in
+  print, and the section closes on the three things to settle with the other
+  CSD. Each slot is also tagged with which of the three outcomes from section
+  01 it serves, which makes the empty tags the useful ones: a slot that serves
+  no outcome is a slot to cut.
 - **A block type with no builder says so on the page.** The dispatch table used
   to return an empty string for an unknown `t`, and the whole agenda table
   vanished silently the first time it ran. It now renders a loud red marker and
