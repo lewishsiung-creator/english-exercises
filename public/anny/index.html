@@ -50,7 +50,17 @@
 </header>
 
 <div class="shell">
-  <div id="nav"></div>
+  <div id="nav">
+    <!-- Static, so it survives render.js appending the contents list after it.
+         Pages that belong to Anny but are not sessions live here: they are not
+         part of the notebook, so they sit above it with their own heading. -->
+    <nav class="toc toc-aside" aria-label="Other pages 其他頁面">
+      <p class="toc-head">Other pages 其他頁面</p>
+      <ul><li><a href="meeting/"><span class="n">→</span>
+        <span class="t"><span class="en">Co-planning a team meeting</span>
+        <span class="zh">商務團隊會議・共同籌辦指南</span></span></a></li></ul>
+    </nav>
+  </div>
   <main id="doc"></main>
 </div>
 

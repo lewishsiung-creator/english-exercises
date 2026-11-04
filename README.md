@@ -2787,6 +2787,68 @@ session, as a self-audit Anny marks for her manager and then for herself.
   content file puts a line across the top, on screen and in print, so a draft
   cannot be handed over by accident.
 
+### `/anny/meeting/` — the co-planning guide, and the first page here that is not a lesson
+
+Anny is co-planning a two-day business team meeting with the other Clinical
+Sales Director, and the thing she needed was not English practice but a
+document to run a 30-minute conversation from. So `/anny/meeting/` is a working
+tool, not teaching material, and almost everything the notebook does it does
+not: no English layer, no 中 chip, no 🔊, no answers to reveal, no folding.
+Chinese is the text rather than a translation, so the body face is the Chinese
+one and the serif is kept only for figures. It has its own `content.js`,
+`render.js` and `style.css`, and reuses the notebook's colour tokens and the
+three shared sheets so the two still read as one set. A static block at the top
+of `#nav` links the two together in both directions — `#nav` is appended to,
+never replaced, so hand-written markup inside it survives the renderer.
+
+Seven sections, from the outcomes to agree before anything else, through the
+afternoon agenda under review, to a checklist and a decisions table.
+
+| Piece | What it does |
+| --- | --- |
+| ⏱ 30-minute plan | The row the conversation is in lights up, driven by the clock in the bar |
+| 📋 Agenda review | Each slot as it stands, and the one thing to settle about it today |
+| 💬 Objections | What the other person may say, and a way to answer it |
+| 🗣 Script and openers | The long draft and five short things to say, each copyable |
+| ☑️ Checklist, 📝 Decisions | Ticks, owners, dates and notes — all saved |
+
+- **This page saves, and the rest of the repo deliberately does not.** Every
+  other adult page here clears on reload, because the same page is used with
+  the next client and one client's work must not greet another. This one has no
+  clients. It belongs to one person for one meeting, and a checklist that
+  empties itself when her phone locks the screen would be worse than paper. The
+  ticks, the owners, the dates and the notes all live under one localStorage
+  key, and 清空本頁紀錄 in the tools panel wipes the lot. Every read and write
+  is wrapped, so private browsing degrades to an unsaved page rather than a
+  broken one.
+- **The clock only claims to be somewhere while it is running.** A paused or
+  unstarted clock sits at 0:00, and lighting the first row at 0:00 would say
+  "we are here" about a meeting nobody has started. Past 30 minutes the last
+  row stays lit rather than going dark — overrunning is the normal case.
+- **複製決議 is the one checklist item the page does itself.** *整理並分享會議決議*
+  is the task most easily dropped once a meeting ends, so the tools panel turns
+  what was typed — the outcomes, the owners, the dates, and anything still
+  unticked — into a message she can paste into mail or LINE.
+- **A block type with no builder says so on the page.** The dispatch table used
+  to return an empty string for an unknown `t`, and the whole agenda table
+  vanished silently the first time it ran. It now renders a loud red marker and
+  logs to the console, because a guide someone is about to walk into a meeting
+  with must not be able to lose a section quietly.
+- **`minmax(0, 1fr)`, not `1fr`, on the single-column shell.** A bare `1fr`
+  floors the track at the widest thing inside it, and the tables carry a
+  `min-width` so their columns stay legible — which pushed the page 41px wider
+  than a 375px phone instead of letting the wrapper scroll. Below 620px the
+  tables stop scrolling and stack instead: the renderer puts the column heading
+  on every cell as `data-h`, and the stacked view shows it, because a stacked
+  row that threw its headings away reads as two unrelated sentences.
+- **It names people, which the notebook next door does not.** The notebook
+  names nobody but Anny. This page carries ten colleagues and an internal 2027
+  agenda, because an agenda table she has to run on the day is close to useless
+  with the people taken out of it. That was Lewis's call, made explicitly. It
+  carries `noindex, nofollow` like everything in this folder — unfindable, not
+  secret. The line to hold is the one under *Live sites*: anything that must
+  never be readable by someone with the link does not belong in `public/`.
+
 ## Aaron's Notebook — adult, one-to-one, kept over time
 
 The second notebook, on the same machinery as
@@ -3943,6 +4005,7 @@ public/reading/           three high school texts, with his word tables
 public/keep-speaking/     the practice page for the course handbook, five tabs
 public/ielts-part3/       the IELTS Part 3 structure practice
 public/anny/              Anny's notebook — one entry per discussion
+public/anny/meeting/      her co-planning guide for a team meeting — not a lesson
 public/aaron/             Aaron's notebook — same machinery, its own sessions
 public/aaron/book-club/   the four-book discussion guide, under that notebook
 public/anita/             Anita's notebook — same machinery again, two sessions

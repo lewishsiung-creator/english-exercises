@@ -212,6 +212,11 @@ body.zh-all .zh-chip { display: none; }
   color: var(--ink-faint);
 }
 
+/* Pages of Anny's that are not sessions — the meeting guide. They are not part
+   of the notebook, so they sit above its contents with a rule between, and
+   their heading says so. */
+.toc-aside { margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+
 .toc ul { list-style: none; margin: 0; padding: 0; }
 
 .toc a {
