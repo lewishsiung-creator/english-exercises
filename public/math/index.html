@@ -54,10 +54,12 @@
 
   <!-- ============ Screen: the explanation ============ -->
   <section class="screen" id="screen-teach">
-    <p class="dots" id="teachDots" aria-hidden="true"></p>
+    <!-- Named from the start: renderStep() replaces this, but until it runs
+         a role="img" with no name is the very thing being avoided. -->
+    <p class="dots" id="teachDots" role="img" aria-label="Step 1"></p>
 
     <div class="q-card">
-      <div class="fig-wrap" id="teachFig" aria-hidden="true"></div>
+      <div class="fig-wrap" id="teachFig"></div>
       <p class="teach-text" id="teachText" aria-live="polite"></p>
     </div>
 
@@ -75,7 +77,7 @@
     <p class="progress-text" id="progressText" aria-live="polite"></p>
 
     <div class="q-card">
-      <div class="fig-wrap" id="figWrap" aria-hidden="true"></div>
+      <div class="fig-wrap" id="figWrap"></div>
       <p class="ask" id="ask"></p>
 
       <!-- The way out of a question he cannot do. Inside the card on purpose:

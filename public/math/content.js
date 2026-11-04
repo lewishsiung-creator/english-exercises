@@ -84,9 +84,28 @@ function weighted(table) {
 /* The width and height attributes are not decoration: an inline SVG with only
    a viewBox has no intrinsic size, and in a grid or flex parent it collapses
    to nothing. CSS then scales it down from these, never up. */
-const svg = (w, h, body) =>
+/* Every drawing either says what it is or is marked decorative. A
+   `role="img"` with no name is the worst of both: something is announced and
+   it has nothing to announce.
+
+   Where the figure *is* the question — the blocks in "how many in all?" —
+   the name has to carry what a sighted child sees and no more. "Two ten rods
+   and five blocks" is the same observation; "twenty-five" would be handing
+   over the answer. The clock is the clearest case: the name says where the
+   two hands point, and reading a time off them is still the question. */
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+
+const svg = (w, h, body, label) =>
   `<svg class="fig" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"
-    role="img" xmlns="http://www.w3.org/2000/svg">${body}</svg>`;
+    ${label ? `role="img" aria-label="${esc(label)}"` : 'aria-hidden="true" focusable="false"'}
+    xmlns="http://www.w3.org/2000/svg"><g aria-hidden="true">${body}</g></svg>`;
+
+/* "2 quarters, 1 dime and 3 pennies" */
+const countList = (parts) => {
+  const said = parts.filter(([n]) => n > 0).map(([n, one, many]) => `${n} ${n === 1 ? one : many}`);
+  if (said.length <= 1) return said[0] || 'nothing';
+  return `${said.slice(0, -1).join(', ')} and ${said[said.length - 1]}`;
+};
 
 /* --- a clock face --- */
 function clockFig(hour, minute) {
@@ -116,7 +135,9 @@ function clockFig(hour, minute) {
       stroke="var(--ink)" stroke-width="9" stroke-linecap="round"/>
     <line x1="${cx}" y1="${cy}" x2="${cx + 70 * Math.sin(ma)}" y2="${cy - 70 * Math.cos(ma)}"
       stroke="var(--blue)" stroke-width="6" stroke-linecap="round"/>
-    <circle cx="${cx}" cy="${cy}" r="7" fill="var(--ink)"/>`);
+    <circle cx="${cx}" cy="${cy}" r="7" fill="var(--ink)"/>`,
+    `A clock face. The short hand is ${minute === 0 ? `on the ${hour}` : `just past the ${hour}`}. `
+    + `The long hand points to the ${minute === 0 ? 12 : minute / 5}.`);
 }
 
 /* --- base-ten blocks: flats of 100, rods of 10, single ones --- */
@@ -151,7 +172,10 @@ function blocksFig(value) {
       fill="var(--orange-soft)" stroke="var(--orange)" stroke-width="2"/>`;
   }
   const width = x + (ones ? Math.ceil(ones / 5) * (u + 5) : 0) + 6;
-  return svg(Math.max(width, 120), 102, body);
+  return svg(Math.max(width, 120), 102, body,
+    countList([[hundreds, 'hundred square', 'hundred squares'],
+               [tens, 'ten rod', 'ten rods'],
+               [ones, 'single block', 'single blocks']]));
 }
 
 /* --- an array of counters: the picture behind "3 groups of 4" --- */
@@ -164,7 +188,8 @@ function arrayFig(rows, cols) {
         fill="var(--green-soft)" stroke="var(--green)" stroke-width="2.5"/>`;
     }
   }
-  return svg(cols * s + pad * 2, rows * s + pad * 2, body);
+  return svg(cols * s + pad * 2, rows * s + pad * 2, body,
+    `${rows} ${rows === 1 ? 'row' : 'rows'} of ${cols} counters`);
 }
 
 /* --- a fraction bar, k parts of n shaded ---
@@ -178,7 +203,8 @@ function fractionFig(k, n) {
     body += `<rect x="${i * pw + 4}" y="4" width="${pw}" height="${h - 8}"
       fill="${i < k ? 'var(--purple)' : 'var(--card)'}" stroke="var(--purple-deep)" stroke-width="3"/>`;
   }
-  return svg(w + 11, h, body);
+  return svg(w + 11, h, body,
+    `A bar in ${n} equal parts, ${k} of them shaded`);
 }
 
 /* --- coins, drawn at true relative size so they can be told apart --- */
@@ -198,7 +224,10 @@ function coinsFig(list) {
         fill="${c.ink}">${c.label}</text>`;
     x += c.r * 2 + 10;
   }
-  return svg(x + 6, 68, body);
+  const n = (name) => list.filter((c) => c === name).length;
+  return svg(x + 6, 68, body,
+    countList([[n('quarter'), 'quarter', 'quarters'], [n('dime'), 'dime', 'dimes'],
+               [n('nickel'), 'nickel', 'nickels'], [n('penny'), 'penny', 'pennies']]));
 }
 
 /* --- a rectangle on grid paper, for area and perimeter --- */
@@ -212,7 +241,8 @@ function rectFig(w, h) {
     font-weight="700" fill="var(--ink-soft)">${w}</text>`;
   body += `<text x="${w * u + 18}" y="${4 + h * u / 2 + 5}" text-anchor="middle" font-size="16"
     font-weight="700" fill="var(--ink-soft)">${h}</text>`;
-  return svg(w * u + 34, h * u + 34, body);
+  return svg(w * u + 34, h * u + 34, body,
+    `A rectangle ${w} squares across and ${h} squares down`);
 }
 
 /* --- counters, used only by the explanations ---
@@ -244,7 +274,9 @@ function countersFig(a, b, { takeAway = false } = {}) {
       x += s;
     }
   }
-  return svg(x + pad, s + pad * 2, body);
+  return svg(x + pad, s + pad * 2, body, takeAway
+    ? `${a + b} counters with the last ${b} crossed out`
+    : `${a} counters and ${b} more`);
 }
 
 /* --- hops along a number line, for counting on and counting back ---
@@ -273,7 +305,8 @@ function hopsFig(from, to) {
   }
   body += `<circle cx="${at(from)}" cy="${y}" r="7" fill="var(--orange)"/>
     <circle cx="${at(to)}" cy="${y}" r="7" fill="var(--green)"/>`;
-  return svg(at(hi) + pad, y + 36, body);
+  return svg(at(hi) + pad, y + 36, body,
+    `A number line hopping ${to > from ? 'up' : 'back'} from ${from} to ${to}, one at a time`);
 }
 
 /* --- the picture beside a word problem ---
@@ -283,7 +316,12 @@ function hopsFig(from, to) {
    the whole question — the job the voice used to do. Grade 1 numbers are
    small enough to count, and counting is a first-grade strategy rather than
    a way round the question. Grade 2 and 3 problems carry no picture: their
-   numbers are too big to count, and by then the reading is the point. */
+   numbers are too big to count, and by then the reading is the point.
+
+   The one drawing with no accessible name, on purpose. "Mia has 4 apples.
+   Mia gets 3 more" already says everything the picture says, and announcing
+   it twice helps nobody: this is a reading aid for a child who can see it,
+   not a second copy of the question. */
 function storyFig(kind, a, b, icon) {
   const s = 34, gap = 10, pad = 10;
   /* Five to a row. Eighteen apples in one line came out 662px wide, which a
@@ -371,7 +409,7 @@ function lineFig(lo, hi, mark) {
   body += `<circle cx="${at(mark)}" cy="46" r="9" fill="var(--orange)"/>
     <text x="${at(mark)}" y="24" text-anchor="middle" font-size="17" font-weight="800"
       fill="var(--orange)">${mark}</text>`;
-  return svg(w, 88, body);
+  return svg(w, 88, body, `A number line from ${lo} to ${hi} with ${mark} marked on it`);
 }
 
 /* A clock is answered by picking a written time, so this builds both the

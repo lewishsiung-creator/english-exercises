@@ -247,7 +247,7 @@ function buildGrades() {
   for (const g of GRADES) {
     const b = document.createElement('button');
     b.className = `card tint-${g.tint}`;
-    b.innerHTML = `<span class="card-icon">${g.id === 'g1' ? '1️⃣' : g.id === 'g2' ? '2️⃣' : '3️⃣'}</span>
+    b.innerHTML = `<span class="card-icon" aria-hidden="true">${g.id === 'g1' ? '1️⃣' : g.id === 'g2' ? '2️⃣' : '3️⃣'}</span>
       <span class="card-name">${g.name}</span>
       <span class="card-blurb">${g.blurb}</span>`;
     b.addEventListener('click', () => openGrade(g));
@@ -267,7 +267,7 @@ function buildTopicGrid(grade) {
     const p = topicProgress(t.id);
     const b = document.createElement('button');
     b.className = `card tint-${grade.tint}${p.mastered ? ' is-mastered' : ''}`;
-    b.innerHTML = `<span class="card-icon">${t.icon}</span>
+    b.innerHTML = `<span class="card-icon" aria-hidden="true">${t.icon}</span>
       <span class="card-name">${t.name}</span>
       <span class="card-blurb">${t.blurb}</span>
       <span class="card-stars" aria-label="${p.best} of 3 stars">
@@ -330,6 +330,9 @@ function renderStep() {
   el('teachFig').hidden = !step.figure;
   el('teachText').textContent = step.text;
 
+  // The dots are the only progress indicator on this screen, so they carry
+  // the text equivalent rather than being hidden outright.
+  el('teachDots').setAttribute('aria-label', `Step ${state.step + 1} of ${steps.length}`);
   el('teachDots').innerHTML = steps
     .map((_, i) => `<span class="dot${i === state.step ? ' is-on' : ''}"></span>`).join('');
   el('teachNext').textContent = last ? 'Let’s try it →' : 'Next';

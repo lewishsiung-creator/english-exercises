@@ -379,6 +379,17 @@ grade levels, for a child in Grade 1 working up through Grade 3.
   feedback line: on a 375×812 phone the hint already ends at y=754 and the
   feedback at 801, so anything below them is off the bottom of the screen at
   exactly the moment he needs to find it.
+- **Every drawing either says what it is or is marked decorative.** A
+  `role="img"` with no name is the worst of both — something is announced and
+  has nothing to announce — and all of them were that, inside wrappers that
+  were `aria-hidden` anyway, which with the voice gone left the figures
+  invisible to anything but eyes. Where the figure *is* the question the name
+  carries what a sighted child sees and no further: *"A clock face. The short
+  hand is on the 3. The long hand points to the 12"* leaves reading the time
+  as the question, where "a clock showing 3 o'clock" would not. The word
+  problem pictures are the one deliberate exception and stay decorative,
+  because the sentence beside them already says the same thing and nobody
+  needs it twice.
 - **Nothing is spoken.** This page is silent by choice, which is the one
   house rule for young learners it does not follow: audio-first exists so a
   child who cannot yet read is not blocked before the maths starts. The
