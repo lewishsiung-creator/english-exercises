@@ -285,6 +285,26 @@ grade levels, for a child in Grade 1 working up through Grade 3.
   `content.js` that builds a fresh question every time, so the bank never runs
   out and nothing can be learned by position. Difficulty lives in the numbers
   inside that one function and nowhere else.
+- **A topic is not allowed to be easier than its own name.** Left to plain
+  random numbers the skill a topic exists to teach turns up by accident, and
+  measuring it showed how badly: "Add to 20" crossed ten in 46% of questions
+  and handed over a freebie — an addend of 1 or 2 — in 30% of them; "Take
+  away" crossed ten in 25%; carrying and borrowing appeared in 42% and 46% of
+  the Grade 2 questions named after them; "Bigger or smaller" put the same
+  digit in the tens place, the only case where the ones matter at all, 7% of
+  the time; and 39% of the times tables were a ×2 or a ×10. So those
+  generators now pick a *kind* of question first — `weighted()` — and build
+  numbers guaranteed to be that kind. Those weights are the teaching decision
+  and the thing to edit; the easier kinds are kept in, not removed, so a round
+  still has somewhere to breathe. Measured again after: 60%, 55%, 65%, 65%,
+  50%, and ×2/×10 down to 11%.
+- **The hint matches the question it is for.** A question built to need making
+  ten says *"Take 6 from the 9 to make ten. Then 10 + 3"* rather than the
+  generic *"count on 9"*, which is the wrong strategy for that question. This
+  only became possible once the generator knew which kind it had built.
+- **`add1000` and the clock, money, blocks and area topics were left alone**,
+  because measuring them found nothing wrong: three-digit carrying and
+  borrowing already came out at 71% and 70% on their own.
 - **Nothing is spoken.** This page is silent by choice, which is the one
   house rule for young learners it does not follow: audio-first exists so a
   child who cannot yet read is not blocked before the maths starts. The

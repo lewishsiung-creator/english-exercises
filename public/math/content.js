@@ -50,6 +50,31 @@ function options(correct, ...wrong) {
   return shuffle(out);
 }
 
+/* Pick one of several kinds of question by weight.
+
+   This is what stops a topic from being easier than its own name. Left to
+   plain random numbers, the skill a topic exists to teach turns up by
+   accident: "Add to 20" crossed ten in 46% of questions and handed over a
+   freebie (one addend of 1 or 2) in 30% of them, and "Bigger or smaller" put
+   the same digit in the tens place — the only case where you have to look at
+   the ones at all — 7% of the time.
+
+   So the generators below choose a *kind* first and then build numbers that
+   are guaranteed to be that kind, rather than rolling numbers and hoping.
+   The weights are the teaching decision and the one thing worth editing: the
+   core skill gets the majority, with the easier kinds kept in so a round
+   still has somewhere to breathe.
+
+   It also makes the hint honest. A question built to need making ten can say
+   "take 1 from the 5 to make ten" instead of the generic "count on 5", which
+   is the wrong strategy for that question. */
+function weighted(table) {
+  const entries = Object.entries(table);
+  let r = Math.random() * entries.reduce((sum, [, w]) => sum + w, 0);
+  for (const [kind, w] of entries) if ((r -= w) < 0) return kind;
+  return entries[0][0];
+}
+
 /* ==================== drawings ====================
 
    Every figure is a self-contained SVG string. They use the page's CSS
@@ -281,12 +306,38 @@ const G1 = [
     icon: '➕',
     blurb: 'Sums that stay under twenty',
     make() {
-      const a = rnd(2, 12);
-      const b = rnd(1, Math.min(9, 20 - a));
+      const kind = weighted({ makeTen: 6, within10: 2.5, teen: 1.5 });
+
+      if (kind === 'makeTen') {
+        // Both single digits, sum always over ten — the question that the
+        // make-ten strategy exists for, and the core of first-grade addition.
+        const a = rnd(4, 9);
+        const b = rnd(11 - a, 9);
+        return {
+          ask: `${a} + ${b} = ?`,
+          answer: String(a + b),
+          hint: `Take ${10 - a} from the ${b} to make ten. Then 10 + ${b - (10 - a)}.`,
+        };
+      }
+
+      if (kind === 'within10') {
+        const a = rnd(2, 7);
+        const b = rnd(2, 10 - a);
+        return {
+          ask: `${a} + ${b} = ?`,
+          answer: String(a + b),
+          hint: `Start at ${a} and count on ${b} more.`,
+        };
+      }
+
+      // A teen plus a few, staying inside the ten: this is place value, not
+      // adding — 13 + 4 is really 3 + 4 with a ten sitting in front.
+      const a = rnd(11, 15);
+      const b = rnd(2, Math.min(4, 19 - a));
       return {
         ask: `${a} + ${b} = ?`,
-                answer: String(a + b),
-        hint: `Start at ${a} and count on ${b} more.`,
+        answer: String(a + b),
+        hint: `${a} is 10 and ${a - 10}. Add ${b} to the ${a - 10}.`,
       };
     },
   },
@@ -296,12 +347,37 @@ const G1 = [
     icon: '➖',
     blurb: 'Subtracting inside twenty',
     make() {
-      const a = rnd(5, 20);
-      const b = rnd(1, Math.min(9, a));
+      const kind = weighted({ crossTen: 5.5, within10: 2.5, teen: 2 });
+
+      if (kind === 'crossTen') {
+        // A teen take away enough to drop under ten. The counterpart of
+        // making ten, and the one most children get stuck on.
+        const a = rnd(11, 18);
+        const b = rnd(a - 9, 9);
+        return {
+          ask: `${a} − ${b} = ?`,
+          answer: String(a - b),
+          hint: `Take ${a - 10} away to get down to 10. Then take ${b - (a - 10)} more.`,
+        };
+      }
+
+      if (kind === 'within10') {
+        const a = rnd(5, 10);
+        const b = rnd(2, a - 1);
+        return {
+          ask: `${a} − ${b} = ?`,
+          answer: String(a - b),
+          hint: `Start at ${a} and count back ${b}.`,
+        };
+      }
+
+      // Stays in the teens: the ten is untouched and only the ones change.
+      const a = rnd(13, 19);
+      const b = rnd(2, a - 10);
       return {
         ask: `${a} − ${b} = ?`,
-                answer: String(a - b),
-        hint: `Start at ${a} and count back ${b}.`,
+        answer: String(a - b),
+        hint: `The ten stays. Just take ${b} from the ${a - 10}.`,
       };
     },
   },
@@ -356,14 +432,39 @@ const G1 = [
     icon: '⚖️',
     blurb: 'Greater than, less than, equal',
     make() {
-      const a = rnd(1, 99);
-      const b = Math.random() < 0.2 ? a : rnd(1, 99);
-      const answer = a > b ? '>' : a < b ? '<' : '=';
+      const kind = weighted({ sameTens: 5, differentTens: 3.5, equal: 1.5 });
+      let a, b, hint;
+
+      /* Roll a second digit that cannot land on the first: pick from a range
+         one short, then step over the one being avoided. */
+      const otherThan = (taken, lo, hi) => {
+        const v = rnd(lo, hi - 1);
+        return v >= taken ? v + 1 : v;
+      };
+
+      if (kind === 'sameTens') {
+        // The whole skill: when the tens match, the ones decide it. Left to
+        // chance this turned up in 7% of questions.
+        const t = rnd(1, 9);
+        const oa = rnd(0, 9);
+        a = t * 10 + oa;
+        b = t * 10 + otherThan(oa, 0, 9);
+        hint = `Both have ${t} tens, so the ones decide it.`;
+      } else if (kind === 'differentTens') {
+        const ta = rnd(1, 9);
+        a = ta * 10 + rnd(0, 9);
+        b = otherThan(ta, 1, 9) * 10 + rnd(0, 9);
+        hint = 'Look at the tens first. More tens wins.';
+      } else {
+        a = b = rnd(10, 99);
+        hint = 'Look carefully — these two are the same number.';
+      }
+
       return {
         ask: `${a} ? ${b}`,
         choices: ['<', '=', '>'],
-        answer,
-        hint: 'The open end always points at the bigger number.',
+        answer: a > b ? '>' : a < b ? '<' : '=',
+        hint,
       };
     },
   },
@@ -403,12 +504,28 @@ const G2 = [
     icon: '🔢',
     blurb: 'Sums up to one hundred',
     make() {
-      const a = rnd(21, 78);
-      const b = rnd(13, Math.min(79, 99 - a));
+      const kind = weighted({ regroup: 6.5, plain: 3.5 });
+
+      if (kind === 'regroup') {
+        // Ones chosen to overflow, tens kept small enough that the carry
+        // still lands under a hundred.
+        const oa = rnd(2, 9), ob = rnd(10 - oa, 9);
+        const ta = rnd(1, 4), tb = rnd(1, Math.min(4, 8 - ta));
+        const a = ta * 10 + oa, b = tb * 10 + ob;
+        return {
+          ask: `${a} + ${b} = ?`,
+          answer: String(a + b),
+          hint: `${oa} + ${ob} is ${oa + ob} — that is a whole ten and ${(oa + ob) % 10} left over.`,
+        };
+      }
+
+      const oa = rnd(1, 7), ob = rnd(1, 9 - oa);
+      const ta = rnd(1, 5), tb = rnd(1, Math.min(4, 9 - ta));
+      const a = ta * 10 + oa, b = tb * 10 + ob;
       return {
         ask: `${a} + ${b} = ?`,
-                answer: String(a + b),
-        hint: `Add the tens first: ${Math.floor(a / 10) * 10} + ${Math.floor(b / 10) * 10}. Then the ones.`,
+        answer: String(a + b),
+        hint: `Add the tens first: ${ta * 10} + ${tb * 10}. Then the ones.`,
       };
     },
   },
@@ -418,12 +535,28 @@ const G2 = [
     icon: '📉',
     blurb: 'Taking two-digit numbers apart',
     make() {
-      const a = rnd(30, 99);
-      const b = rnd(11, a - 5);
+      const kind = weighted({ borrow: 6.5, plain: 3.5 });
+
+      if (kind === 'borrow') {
+        // Top ones digit deliberately smaller than the bottom one, so a ten
+        // has to be broken open. Tens kept apart to keep the answer positive.
+        const oa = rnd(0, 7), ob = rnd(oa + 1, 9);
+        const tb = rnd(1, 4), ta = rnd(tb + 1, 9);
+        const a = ta * 10 + oa, b = tb * 10 + ob;
+        return {
+          ask: `${a} − ${b} = ?`,
+          answer: String(a - b),
+          hint: `${oa} is too small to take ${ob} from. Break a ten open: ${oa + 10} − ${ob}.`,
+        };
+      }
+
+      const oa = rnd(1, 9), ob = rnd(0, oa);
+      const tb = rnd(1, 4), ta = rnd(tb + 1, 9);
+      const a = ta * 10 + oa, b = tb * 10 + ob;
       return {
         ask: `${a} − ${b} = ?`,
-                answer: String(a - b),
-        hint: `Take away the tens first, then the ones.`,
+        answer: String(a - b),
+        hint: 'Take away the tens first, then the ones.',
       };
     },
   },
@@ -531,6 +664,21 @@ const G2 = [
 
 /* ==================== Grade 3 ==================== */
 
+/* The multiplication facts, weighted by how hard they actually are.
+
+   Uniform random across 2–10 made 39% of questions a ×2 or a ×10 — the two
+   tables a child has usually finished before the rest begin. The facts that
+   take a year to become automatic, the 6s to 9s against each other, were
+   getting no more practice than the ones he already knew. Division draws from
+   the same pool, so the two topics drill the same shaky facts from both
+   directions. */
+function timesFact() {
+  const kind = weighted({ hard: 6, mid: 2.5, easy: 1.5 });
+  if (kind === 'hard') return shuffle([rnd(6, 9), rnd(3, 9)]);
+  if (kind === 'mid') return shuffle([rnd(3, 5), rnd(3, 9)]);
+  return shuffle([pick([2, 5, 10]), rnd(2, 10)]);
+}
+
 const G3 = [
   {
     id: 'times',
@@ -538,10 +686,10 @@ const G3 = [
     icon: '✖️',
     blurb: 'Facts up to ten times ten',
     make() {
-      const a = rnd(2, 10), b = rnd(2, 10);
+      const [a, b] = timesFact();
       return {
         ask: `${a} × ${b} = ?`,
-                answer: String(a * b),
+        answer: String(a * b),
         hint: `${a} × ${b - 1} is ${a * (b - 1)}. One more group of ${a} gets you there.`,
       };
     },
@@ -552,12 +700,13 @@ const G3 = [
     icon: '➗',
     blurb: 'Division facts, nothing left over',
     make() {
-      const b = rnd(2, 10), q = rnd(2, 10);
-      const a = b * q;
+      // Built from the same weighted fact pool as the times tables, so the
+      // division he practises is the division of the facts he is shakiest on.
+      const [q, b] = timesFact();
       return {
-        ask: `${a} ÷ ${b} = ?`,
-                answer: String(q),
-        hint: `How many ${b}s make ${a}?`,
+        ask: `${b * q} ÷ ${b} = ?`,
+        answer: String(q),
+        hint: `How many ${b}s make ${b * q}?`,
       };
     },
   },
