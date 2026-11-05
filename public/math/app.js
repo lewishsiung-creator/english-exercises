@@ -224,6 +224,14 @@ const BACK_TO = { topic: 'grade', intro: 'topic', teach: 'intro', play: 'topic',
 const currentScreen = () => SCREENS.find((s) => el(`screen-${s}`).classList.contains('is-active'));
 
 function show(name) {
+  /* Redraw the two screens that show progress on the way in, not only when
+     they are first built. A round changes the stars, and arriving back at
+     the list from the results screen used to show the ones from before he
+     played — the card said no stars while the total underneath it had
+     already counted them. */
+  if (name === 'grade') { buildGrades(); renderCollection(); }
+  if (name === 'topic' && state.grade) buildTopicGrid(state.grade);
+
   for (const s of SCREENS) el(`screen-${s}`).classList.toggle('is-active', s === name);
   el('backBtn').hidden = name === 'grade';
   window.scrollTo(0, 0);
@@ -245,11 +253,19 @@ function buildGrades() {
   const grid = el('gradeGrid');
   grid.innerHTML = '';
   for (const g of GRADES) {
+    // A level card can say how far in he is, which is the one thing it was
+    // not saying. The keycap emoji it used to carry rendered as a small grey
+    // block — a plain numeral in the same chip the topics use is clearer and
+    // ties the two screens together.
+    const got = g.topics.reduce((n, t) => n + topicProgress(t.id).best, 0);
+    const most = g.topics.length * 3;
     const b = document.createElement('button');
     b.className = `card tint-${g.tint}`;
-    b.innerHTML = `<span class="card-icon" aria-hidden="true">${g.id === 'g1' ? '1️⃣' : g.id === 'g2' ? '2️⃣' : '3️⃣'}</span>
+    b.innerHTML = `<span class="card-icon grade-num" aria-hidden="true">${g.name.slice(-1)}</span>
       <span class="card-name">${g.name}</span>
-      <span class="card-blurb">${g.blurb}</span>`;
+      <span class="card-blurb">${g.blurb}</span>
+      ${got ? `<span class="card-stars" aria-label="${got} of ${most} stars">
+        <span class="stars-got">★</span> ${got}<span class="stars-left"> / ${most}</span></span>` : ''}`;
     b.addEventListener('click', () => openGrade(g));
     grid.appendChild(b);
   }
@@ -266,12 +282,17 @@ function buildTopicGrid(grade) {
   for (const t of grade.topics) {
     const p = topicProgress(t.id);
     const b = document.createElement('button');
-    b.className = `card tint-${grade.tint}${p.mastered ? ' is-mastered' : ''}`;
+    b.className = `card card-row tint-${grade.tint}${p.mastered ? ' is-mastered' : ''}`;
+    /* A row rather than a centred stack. Seven topics in stacked cards ran
+       past the bottom of a phone after three and a half, and four centred
+       lines in a row give the eye nothing to run down. */
     b.innerHTML = `<span class="card-icon" aria-hidden="true">${t.icon}</span>
-      <span class="card-name">${t.name}</span>
-      <span class="card-blurb">${t.blurb}</span>
-      <span class="card-stars" aria-label="${p.best} of 3 stars">
-        <span class="stars-got">${'★'.repeat(p.best)}</span><span class="stars-left">${'☆'.repeat(3 - p.best)}</span>${p.mastered ? ' <span class="badge">🏅</span>' : ''}</span>`;
+      <span class="card-text">
+        <span class="card-name">${t.name}</span>
+        <span class="card-blurb">${t.blurb}</span>
+      </span>
+      <span class="card-stars" aria-label="${p.best} of 3 stars${p.mastered ? ', mastered' : ''}">
+        <span class="stars-got">${'★'.repeat(p.best)}</span><span class="stars-left">${'☆'.repeat(3 - p.best)}</span></span>`;
     b.addEventListener('click', () => openTopic(t));
     grid.appendChild(b);
   }
@@ -281,8 +302,8 @@ function openGrade(grade) {
   state.grade = grade;
   el('barTitle').textContent = grade.name;
   el('topicLead').textContent = 'Choose what to practise';
-  buildTopicGrid(grade);
-  show('topic');
+  show('topic');                 // show() builds the grid, so it is fresh
+
 }
 
 /* The line under the level cards: everything he has, and nothing he has
@@ -293,22 +314,49 @@ function renderCollection() {
   const days = progress.days.length;
   const box = el('collection');
   box.hidden = stars === 0 && days === 0;
-  box.innerHTML = `<span class="collection-stars">★ ${stars}</span>
-    <span class="collection-of">of ${allTopics().length * 3}</span>
-    <span class="collection-days">${days} ${days === 1 ? 'day' : 'days'} of practice</span>`;
+  // Two chips with the same treatment. It used to be a big gold number, a
+  // small grey one and a pill, which was three different voices telling him
+  // one thing.
+  box.innerHTML = `<span class="chip"><b class="stars-got">★</b> ${stars} of ${allTopics().length * 3}</span>
+    <span class="chip">${days} ${days === 1 ? 'day' : 'days'} of practice</span>`;
 }
 
 /* ==================== show me how, or just practise ==================== */
 
 function openTopic(topic) {
   state.topic = topic;
+  const p = topicProgress(topic.id);
+
   el('barTitle').textContent = topic.name;
   el('introIcon').textContent = topic.icon;
   el('introName').textContent = topic.name;
   el('introBlurb').textContent = topic.blurb;
+
+  // His best so far, and nothing about what he got wrong. A count of
+  // questions waiting to come back would be useful to a grown-up and would
+  // be the page telling a six-year-old it remembers him failing.
+  const stars = el('introStars');
+  stars.hidden = !p.best;
+  stars.innerHTML = `<span class="stars-got">${'★'.repeat(p.best)}</span>`
+    + `<span class="stars-left">${'☆'.repeat(3 - p.best)}</span>`
+    + (p.mastered ? ' <span class="intro-badge">🏅</span>' : '');
+
   // A topic with no explanation written yet still works: the offer just isn't
   // made, rather than opening an empty screen.
-  el('showMeBtn').hidden = !topic.teach?.length;
+  const teach = el('showMeBtn');
+  const practise = el('practiseBtn');
+  teach.hidden = !topic.teach?.length;
+
+  /* Whichever he is more likely to want goes first and goes green. On a
+     topic he has never opened that is the explanation; after that it is
+     almost always practice, and making him read past the lesson every time
+     to reach the thing he came for is a tax on the common case. */
+  const firstTime = !p.best && !p.runs.length;
+  teach.classList.toggle('btn-primary', firstTime);
+  practise.classList.toggle('btn-primary', !firstTime);
+  practise.textContent = firstTime ? '▶️ Just practise' : '▶️ Start';
+  el('introActions').prepend(firstTime ? teach : practise);
+
   show('intro');
 }
 
@@ -420,6 +468,7 @@ function buildAnswer(q) {
   box.className = 'answer';
 
   if (q.choices) {
+    el('readout').hidden = true;
     box.classList.add('answer-choices', q.choices.length <= 2 ? 'two-up' : 'grid-up');
     for (const choice of q.choices) {
       const b = document.createElement('button');
@@ -431,10 +480,11 @@ function buildAnswer(q) {
     return;
   }
 
+  // The readout lives in the question card and is only shown for the topics
+  // that are typed, so the pad sits directly under what it is filling in.
+  el('readout').hidden = false;
   box.classList.add('answer-pad');
-  box.innerHTML = `
-    <output class="readout" id="readout" aria-live="off">–</output>
-    <div class="pad" id="pad"></div>`;
+  box.innerHTML = '<div class="pad" id="pad"></div>';
 
   const pad = el('pad');
   const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'clear', '0', 'enter'];
@@ -467,7 +517,10 @@ function setTyped(value) {
   // readout confusing ("007"). Strip it as it is typed rather than at check.
   state.typed = value.replace(/^0+(?=\d)/, '');
   const out = el('readout');
-  if (out) out.textContent = state.typed || '–';
+  if (!out) return;
+  out.textContent = state.typed;
+  // Empty reads as a waiting slot rather than a stray dash.
+  out.classList.toggle('is-empty', !state.typed);
 }
 
 function submitTyped() {
@@ -722,6 +775,7 @@ el('progressClear').addEventListener('click', () => {
   saveProgress();
   renderCollection();
   if (state.grade) buildTopicGrid(state.grade);
+  buildGrades();
 });
 
 /* ==================== go ==================== */

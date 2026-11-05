@@ -499,7 +499,7 @@ const G1 = [
     next: 'add100',
     name: 'Add to 20',
     icon: '➕',
-    blurb: 'Sums that stay under twenty',
+    blurb: 'Sums under twenty',
     make() {
       const kind = weighted({ makeTen: 6, within10: 2.5, teen: 1.5 });
 
@@ -629,7 +629,7 @@ const G1 = [
     next: 'place1000',
     name: 'Bigger or smaller',
     icon: '⚖️',
-    blurb: 'Greater than, less than, equal',
+    blurb: 'Which one is bigger?',
     make() {
       const kind = weighted({ sameTens: 5, differentTens: 3.5, equal: 1.5 });
       let a, b, hint;
@@ -806,7 +806,7 @@ const G2 = [
     next: 'add1000',
     name: 'Subtract two digits',
     icon: '📉',
-    blurb: 'Taking two-digit numbers apart',
+    blurb: 'Two digits, taken apart',
     make() {
       const kind = weighted({ borrow: 6.5, plain: 3.5 });
 
@@ -980,7 +980,7 @@ const G2 = [
     next: 'times',
     name: 'Equal groups',
     icon: '🟢',
-    blurb: 'Rows and columns, before times tables',
+    blurb: 'Rows and columns',
     make() {
       const rows = rnd(2, 5), cols = rnd(2, 6);
       if (Math.random() < 0.5) {
@@ -1040,7 +1040,7 @@ const G3 = [
     id: 'divide',
     name: 'Sharing out',
     icon: '➗',
-    blurb: 'Division facts, nothing left over',
+    blurb: 'Sharing with none left',
     make() {
       // Built from the same weighted fact pool as the times tables, so the
       // division he practises is the division of the facts he is shakiest on.
@@ -1056,7 +1056,7 @@ const G3 = [
     id: 'story3',
     name: 'Word problems',
     icon: '📖',
-    blurb: 'Groups, sharing and two steps',
+    blurb: 'Groups and sharing',
     /* Sharing and grouping are the two faces of division and they are not
        the same question: "how many in each bag" and "how many bags" land on
        the same sum by different roads, and children who only meet one of
@@ -1104,7 +1104,7 @@ const G3 = [
     id: 'fractions',
     name: 'Fractions',
     icon: '🍕',
-    blurb: 'Naming and comparing parts',
+    blurb: 'Naming equal parts',
     make() {
       const n = pick([2, 3, 4, 5, 6, 8]);
       const k = rnd(1, n - 1);
@@ -1137,7 +1137,7 @@ const G3 = [
     id: 'add1000',
     name: 'Add and subtract to 1000',
     icon: '🧮',
-    blurb: 'Three digits, column by column',
+    blurb: 'Three digits at a time',
     make() {
       if (Math.random() < 0.5) {
         const a = rnd(120, 600), b = rnd(120, 380);
@@ -1159,7 +1159,7 @@ const G3 = [
     id: 'area',
     name: 'Area and perimeter',
     icon: '📐',
-    blurb: 'Squares inside, steps around',
+    blurb: 'Inside, and around',
     make() {
       const w = rnd(2, 9), h = rnd(2, 7);
       if (Math.random() < 0.5) {
@@ -1184,7 +1184,7 @@ const G3 = [
     id: 'round',
     name: 'Rounding',
     icon: '🎯',
-    blurb: 'To the nearest ten or hundred',
+    blurb: 'To the nearest ten',
     make() {
       if (Math.random() < 0.5) {
         // A number already on a ten has nothing to round, and it would make

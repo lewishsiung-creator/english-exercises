@@ -127,7 +127,7 @@ main {
 }
 
 .lead {
-  margin: 6px 0 18px;
+  margin: 4px 0 12px;
   text-align: center;
   font-size: 1.15rem;
   font-weight: 700;
@@ -140,6 +140,15 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 14px;
+}
+
+/* Topics are rows, so one column on a phone — all seven then fit without
+   scrolling, where the stacked cards ran out of screen after three and a
+   half — and two side by side once there is room. */
+#topicGrid { grid-template-columns: 1fr; gap: 9px; }
+
+@media (min-width: 720px) {
+  #topicGrid { grid-template-columns: 1fr 1fr; gap: 12px; }
 }
 
 .card {
@@ -163,25 +172,79 @@ main {
 .card:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(44, 36, 64, .12); }
 
 .card-icon { font-size: 2.1rem; line-height: 1; }
+
+/* The level number, in the same chip the topic icons sit in. */
+.grade-num {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 2px;
+  border-radius: 50%;
+  background: var(--card);
+  box-shadow: inset 0 0 0 2px rgba(44, 36, 64, .07);
+  font-family: var(--num);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
 .card-name { font-size: 1.15rem; font-weight: 800; }
 .card-blurb { font-size: .9rem; color: var(--ink-soft); }
 
-/* Best ever on a topic, sitting on its card. Earned stars are gold and solid;
-   the ones still to get are faint, so a grid of untouched topics reads as
-   things to collect rather than things already lost. */
-.card-stars {
-  margin-top: 4px;
-  font-size: 1.1rem;
-  letter-spacing: .08em;
+/* ---------------- a topic, as a row ---------------- */
+
+.card-row {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  min-height: 88px;
+  padding: 12px 16px;
+  text-align: left;
+}
+
+/* The chip is what makes a list of mixed icons hold together. "+" and "−"
+   are flat text glyphs while the rest are full-colour emoji, so unframed
+   they sat at wildly different visual weights down the column; a circle of
+   fixed size gives every one of them the same footprint. */
+.card-row .card-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--card);
+  box-shadow: inset 0 0 0 2px rgba(44, 36, 64, .07);
+  font-size: 1.6rem;
   line-height: 1;
+}
+
+.card-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.card-row .card-name { font-size: 1.1rem; }
+.card-row .card-blurb { font-size: .85rem; line-height: 1.25; }
+
+/* Best ever on a topic. Earned stars are gold and solid; the ones still to
+   get are faint, so a list of untouched topics reads as things to collect
+   rather than things already lost. */
+.card-stars {
+  flex: none;
+  font-size: 1.05rem;
+  letter-spacing: .06em;
+  line-height: 1;
+  white-space: nowrap;
 }
 .stars-got { color: #f0a92e; }
 .stars-left { color: rgba(44, 36, 64, .18); }
-.badge { font-size: .95rem; }
 
-/* Two rounds running at nine or better. A quiet gold edge, not a trophy
-   cabinet. */
-.card.is-mastered { box-shadow: var(--shadow), inset 0 0 0 2px #f0a92e; }
+/* Two rounds running at nine or better. A gold edge down the side, which a
+   row has and a centred card does not — the previous inset ring sat just
+   inside the green border and read as a rendering fault rather than an
+   achievement. */
+.card.is-mastered {
+  border-left-width: 9px;
+  border-left-color: #f0a92e;
+  padding-left: 11px;
+}
 
 /* The running total under the level cards. */
 .collection {
@@ -195,15 +258,16 @@ main {
   color: var(--ink-soft);
 }
 .collection[hidden] { display: none; }
-.collection-stars { color: #f0a92e; font-size: 1.3rem; font-weight: 800; }
-.collection-of { font-size: .95rem; }
-.collection-days {
-  padding: 3px 12px;
+.chip {
+  padding: 5px 14px;
   border-radius: 999px;
   background: var(--card);
   border: 2px solid var(--line);
-  font-size: .88rem;
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--ink-soft);
 }
+.chip b { font-weight: 800; }
 
 /* The one line on the results screen that is about more than this round. */
 .done-note {
@@ -221,28 +285,42 @@ main {
 
 /* ---------------- show me how, or just practise ---------------- */
 
-.intro-card {
+/* A heading, not a card. The boxed version repeated the icon, name and blurb
+   from the card he had just tapped and pushed the two buttons — the only
+   things on the screen with a job — most of the way down a phone. */
+.intro-head {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 26px 18px;
-  border: 3px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--card);
-  box-shadow: var(--shadow);
+  gap: 4px;
+  padding: 18px 8px 22px;
   text-align: center;
 }
 
-.intro-icon { font-size: 3.2rem; line-height: 1; }
-.intro-name { margin: 4px 0 0; font-size: 1.5rem; font-weight: 800; }
+.intro-icon {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: var(--card);
+  box-shadow: var(--shadow), inset 0 0 0 2px rgba(44, 36, 64, .07);
+  font-size: 2.3rem;
+  line-height: 1;
+}
+
+.intro-name { margin: 10px 0 0; font-size: 1.5rem; font-weight: 800; }
 .intro-blurb { margin: 0; color: var(--ink-soft); font-weight: 600; }
+.intro-stars { margin: 6px 0 0; font-size: 1.25rem; letter-spacing: .08em; }
+.intro-stars[hidden] { display: none; }
+.intro-badge { font-size: 1.05rem; }
 
 .intro-actions {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 14px;
-  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 420px;
+  margin: 0 auto;
 }
 
 /* ---------------- the explanation ---------------- */
@@ -303,10 +381,12 @@ main {
 /* ---------------- progress ---------------- */
 
 .progress {
-  height: 10px;
+  height: 8px;
   border-radius: 999px;
-  background: rgba(44, 36, 64, .09);
+  background: rgba(44, 36, 64, .12);
   overflow: hidden;
+  max-width: 520px;
+  margin: 0 auto;
 }
 
 .progress-fill {
@@ -326,6 +406,31 @@ main {
 }
 
 /* ---------------- the question ---------------- */
+
+/* A question, a slot and a number pad are a narrow column of work. Left to
+   the page's 960px, "5 + 7 = ?" floated alone in a white bar three times
+   wider than the keypad underneath it, which looked like a mistake on a
+   laptop. The column is capped at the width the pad actually wants, and on
+   a tall screen it sits in the middle of the viewport rather than clinging
+   to the top with 400px of nothing below. */
+#screen-play.is-active,
+#screen-done.is-active,
+#screen-intro.is-active,
+#screen-teach.is-active {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+@media (min-width: 700px) and (min-height: 640px) {
+  #screen-play.is-active,
+  #screen-done.is-active {
+    min-height: calc(100vh - 210px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #screen-play.is-active .progress { margin-bottom: 0; }
+}
 
 .q-card {
   display: flex;
@@ -454,25 +559,34 @@ main {
 
 /* ---------------- the number pad ---------------- */
 
-.answer-pad {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
+.answer-pad { display: flex; justify-content: center; }
 
+/* The answer he is building, inside the question card. A slot, not a second
+   card: as a dashed panel of its own it weighed the same as the question and
+   the two competed for the eye. */
 .readout {
   display: block;
-  width: min(100%, 320px);
-  padding: 10px 16px;
-  border: 3px dashed var(--line-strong);
-  border-radius: 18px;
-  background: var(--card);
+  min-width: 2.4em;
+  min-height: 1.2em;
+  margin: 2px 0 0;
+  padding: 0 .18em 6px;
+  border-bottom: 5px solid var(--line-strong);
   font-family: var(--num);
-  font-size: 2.2rem;
+  font-size: clamp(2rem, 8vw, 2.6rem);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
+  line-height: 1.1;
   text-align: center;
+  color: var(--blue);
+}
+.readout[hidden] { display: none; }
+.readout.is-empty { border-bottom-color: var(--blue); animation: slot 1.6s ease-in-out infinite; }
+
+/* A slow pulse on the empty slot says "this is where it goes" without a
+   label. It stops the moment he types. */
+@keyframes slot {
+  0%, 100% { border-bottom-color: var(--line-strong); }
+  50% { border-bottom-color: var(--blue); }
 }
 
 .pad {
@@ -551,8 +665,16 @@ main {
 .done-score { margin: 4px 0 8px; color: var(--ink-soft); font-weight: 700; }
 
 /* Spaced from here rather than from the score, so the gap is the same whether
-   or not the note above it is showing. */
-.done-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 18px; }
+   or not the note above it is showing. A stack of equal widths: sized to
+   their own text they came out three different widths centred under each
+   other, which looked like three unrelated things. */
+.done-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 420px;
+  margin: 18px auto 0;
+}
 
 .btn {
   min-height: 56px;

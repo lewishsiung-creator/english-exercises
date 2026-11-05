@@ -41,14 +41,21 @@
 
   <!-- ============ Screen: show me how, or just practise ============ -->
   <section class="screen" id="screen-intro">
-    <div class="intro-card">
+    <!-- Deliberately not a copy of the card he just tapped. It had the same
+         icon, name and blurb again inside a tall box, which said nothing new
+         and pushed the buttons down the screen. All it owes him is his best
+         so far and the choice. -->
+    <div class="intro-head">
       <span class="intro-icon" id="introIcon" aria-hidden="true"></span>
       <h2 class="intro-name" id="introName"></h2>
       <p class="intro-blurb" id="introBlurb"></p>
+      <p class="intro-stars" id="introStars" hidden></p>
     </div>
-    <div class="intro-actions">
-      <button class="btn btn-big btn-primary" id="showMeBtn">👀 Show me how</button>
-      <button class="btn btn-big" id="practiseBtn">▶️ Just practise</button>
+    <!-- Order and emphasis are set in openTopic(): the explanation leads on a
+         topic he has never opened, and practice leads once he has. -->
+    <div class="intro-actions" id="introActions">
+      <button class="btn btn-big" id="showMeBtn">👀 Show me how</button>
+      <button class="btn btn-big" id="practiseBtn">▶️ Start</button>
     </div>
   </section>
 
@@ -89,6 +96,12 @@
         <p class="solution-answer" id="solutionAnswer"></p>
         <p class="solution-do">Now you do it.</p>
       </div>
+
+      <!-- What he has typed, inside the question rather than in a box of its
+           own below it. As a separate dashed panel it was the same size and
+           weight as the question itself, so the two competed and it cost
+           ~90px of a phone screen to show one number. -->
+      <output class="readout" id="readout" hidden></output>
     </div>
 
     <div class="answer" id="answer"></div>

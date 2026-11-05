@@ -379,6 +379,30 @@ grade levels, for a child in Grade 1 working up through Grade 3.
   feedback line: on a 375×812 phone the hint already ends at y=754 and the
   feedback at 801, so anything below them is off the bottom of the screen at
   exactly the moment he needs to find it.
+- **The answer he is typing lives inside the question card.** It used to be a
+  dashed panel below it, the same size and weight as the question itself, so
+  the two competed and it spent about 90px of a phone screen to show one
+  number. It is a slot on an underline now, directly under the sum it is
+  filling in, and when he asks to be shown the answer the order reads
+  straight down: the question, the answer, *now you do it*, the slot.
+- **Topics are rows, not centred cards.** Seven stacked cards ran off the
+  bottom of a phone after three and a half, and four centred lines gave the
+  eye nothing to run down. All seven now fit one screen with the name on a
+  scan line and the stars in a column. The icon sits in a chip because `+`
+  and `−` are flat text glyphs while the rest are full-colour emoji — framed
+  the same, they stop reading as two different kinds of thing.
+- **Mastery is a gold edge down the side of the row.** It was an inset ring
+  sitting just inside the green border, which read as a rendering fault
+  rather than an achievement.
+- **The work column is capped at 520px and centred on a tall screen.** Left
+  to the page's 960px, "5 + 7 = ?" floated alone in a white bar three times
+  the width of the keypad under it, which looked like a mistake on a laptop.
+- **The screen before a round is a heading, not a second copy of the card.**
+  It used to repeat the icon, name and blurb he had just tapped and push the
+  only two things with a job most of the way down the screen. It now shows
+  his best so far — and nothing about what he got wrong, which would be the
+  page telling a six-year-old it remembers him failing — and it leads with
+  the explanation on a topic he has never opened, with practice once he has.
 - **Every drawing either says what it is or is marked decorative.** A
   `role="img"` with no name is the worst of both — something is announced and
   has nothing to announce — and all of them were that, inside wrappers that
