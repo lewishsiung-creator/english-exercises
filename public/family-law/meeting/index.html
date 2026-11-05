@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meeting Prep — 會前準備</title>
+<meta name="description" content="A password-protected meeting preparation page for one student.">
+
+<!-- One student's page, behind a password. noindex as well, so not even the
+     lock screen turns up in a search. -->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Inline SVG mark: two cups on a table — a visit, not a lesson. Colours
+     percent-encoded, or "#" ends the URL. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23284f5c'/%3E%3Crect x='10' y='44' width='44' height='4' rx='2' fill='%23edf3f2'/%3E%3Cpath d='M15 28h14v8a7 7 0 0 1-14 0z' fill='%23edf3f2'/%3E%3Cpath d='M35 28h14v8a7 7 0 0 1-14 0z' fill='%23e9b95a'/%3E%3Cpath d='M22 24c0-3 3-4 0-8M42 24c0-3 3-4 0-8' fill='none' stroke='%23c0d5d6' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f6f5f2">
+
+<link rel="stylesheet" href="style.css">
+
+<!-- The house typography and interface, linked after the page's own
+     stylesheet so they win. See ../../type.css and ../../house.css. -->
+<link rel="stylesheet" href="../../type.css">
+<link rel="stylesheet" href="../../house.css">
+
+</head>
+<body class="locked">
+
+<a class="skip" href="#doc">Skip to the content 跳到內容</a>
+
+<header class="bar">
+  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav" hidden>
+    <span aria-hidden="true">☰</span> <span id="navLab">Contents 目錄</span>
+  </button>
+
+  <p class="bar-title">Meeting Prep <span>會前準備</span></p>
+
+  <!-- Teacher-only, as on the page above this one: opening the page once with
+       #teach makes the device the teacher's. -->
+  <div class="seg modeseg" id="modeseg" role="group" aria-label="模式" hidden>
+    <button data-mode="self">自學</button>
+    <button data-mode="teach">教學</button>
+  </div>
+
+  <button class="bar-btn bar-btn-cover" id="coverBtn" aria-pressed="false" hidden
+          title="遮住你要說的句子，先自己說再點開核對">Cover <span>遮台詞</span></button>
+  <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="false" hidden>中文</button>
+  <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
+          aria-controls="panel" title="設定" aria-label="設定" hidden>⚙</button>
+</header>
+
+<div class="shell">
+  <div id="nav">
+    <nav class="toc toc-up" aria-label="其他頁面">
+      <p class="toc-head">Back 回到</p>
+      <ul><li><a href="../"><span class="n">↩</span>
+        <span class="t"><span class="en">Family Law English</span><span class="zh">家事法律英文</span></span></a></li></ul>
+    </nav>
+  </div>
+
+  <main id="doc">
+    <!-- The lock. Everything else on the page is encrypted in sealed.js and
+         only exists once the password has opened it. -->
+    <section class="lock" id="lock">
+      <p class="kicker">Private 不公開</p>
+      <h1>Meeting Prep<span class="zh">會前準備</span></h1>
+      <p class="lock-note">This page is for one student. Enter the password to open it.
+        <span class="zh">這一頁只給一位學員使用，請輸入密碼開啟。</span></p>
+      <form id="lockForm" autocomplete="off">
+        <label for="pw">Password <em>密碼</em></label>
+        <input id="pw" type="password" autocomplete="current-password" autocapitalize="none" spellcheck="false" required>
+        <label class="row-check"><input type="checkbox" id="remember" checked>
+          <span>Remember this device <em>記住這台裝置</em></span></label>
+        <button class="panel-btn" type="submit" id="unlockBtn">Open <em>開啟</em></button>
+        <p class="lock-msg" id="lockMsg" role="alert"></p>
+      </form>
+    </section>
+  </main>
+</div>
+
+<div class="nav-scrim" hidden></div>
+
+<div class="panel" id="panel" role="dialog" aria-label="設定" hidden>
+  <div class="panel-head">
+    <h2>Settings <span>設定</span></h2>
+    <button class="panel-x" id="panelClose" aria-label="關閉">✕</button>
+  </div>
+
+  <div class="row">
+    <label for="voicePick">Your voice <em>你的聲音</em></label>
+    <select id="voicePick"></select>
+    <p class="row-note">Reads your lines. The visitor is given a different voice — a British or Hong Kong one where this device has it.
+      <em>朗讀你要說的句子。來訪者會自動換成另一種聲音，裝置上有的話，優先用英式或香港英語。</em></p>
+  </div>
+
+  <div class="row">
+    <label for="rate">Speed <em>語速</em></label>
+    <select id="rate">
+      <option value="0.75">Slow 慢</option>
+      <option value="0.95" selected>Normal 正常</option>
+      <option value="1.1">Brisk 快</option>
+    </select>
+  </div>
+
+  <div class="row" id="teacherflag" hidden>
+    <label>Teacher device <em>老師裝置</em></label>
+    <p class="row-note">This device shows the 自學／教學 switch. The student's plain link never does.
+      <em>這台裝置會顯示「自學／教學」切換，學生用一般連結看不到。</em></p>
+    <button class="panel-btn panel-btn-quiet" id="unteach">Hide on this device <em>在這台裝置隱藏</em></button>
+  </div>
+
+  <div class="row">
+    <label>Checklist <em>會前檢核</em></label>
+    <p class="row-note">Ticks are kept on this device only.
+      <em>勾選只存在這台裝置上。</em></p>
+    <button class="panel-btn panel-btn-quiet" id="clearChecks">Clear the ticks <em>清除勾選</em></button>
+  </div>
+
+  <div class="row">
+    <label>Lock <em>上鎖</em></label>
+    <p class="row-note">Forget the password on this device. The page will ask for it next time.
+      <em>讓這台裝置忘記密碼，下次打開時要重新輸入。</em></p>
+    <button class="panel-btn panel-btn-quiet" id="lockNow">Lock this device <em>這台裝置上鎖</em></button>
+  </div>
+</div>
+
+<footer class="site-foot">
+  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
+     aria-label="Lewis Biz English"><img src="../../logo.png" alt="" width="34" height="34"></a>
+  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
+    target="_blank" rel="noopener">lewistoeic.com</a></p>
+</footer>
+
+<!-- Order matters: the sealed content, then the renderer that opens it. -->
+<script src="sealed.js"></script>
+<script src="render.js"></script>
+</body>
+</html>

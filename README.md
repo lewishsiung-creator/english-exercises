@@ -2194,6 +2194,55 @@ palette and storage prefix. What changed:
 - `[hidden] { display: none !important }` — `.views { display: flex }` had been
   beating the attribute, so By theme／A–Z showed during the quiz.
 
+### `/family-law/meeting/` — Meeting Prep, behind a password
+
+Built 2026-11-05 for the same student: preparation for one real meeting in
+English with a visitor from abroad. What the meeting is, and with whom, is
+inside the sealed content, not here — this README is public. Lewis asked for reference material
+first; the student's own script comes later and has a waiting slot
+(`script` section). **It is the first page in the repo behind a password.**
+
+**How the password works.** The repo is public, so a login screen alone would
+leave the words readable on GitHub. Instead the content is **encrypted**:
+
+```
+private/family-law-meeting/content.mjs   plaintext — git-ignored, never committed
+private/family-law-meeting/.pass         the password — git-ignored
+tools/seal.mjs                           encrypts one into the other
+public/family-law/meeting/sealed.js      the encrypted copy — committed and published
+```
+
+After editing the content, re-seal and commit `sealed.js`:
+
+```
+node tools/seal.mjs private/family-law-meeting/content.mjs public/family-law/meeting/sealed.js
+```
+
+PBKDF2-SHA-256 (310 000 rounds) → AES-256-GCM, all WebCrypto, so it works on
+both live hosts and on localhost but not over plain http. 「記住這台裝置」 stores
+the derived key under `flm.key`, never the password; the seal keeps the salt so
+a remembered device survives content edits, and changing the password locks
+every device out until it is typed again. ⚙ → 這台裝置上鎖 forgets it. The
+plaintext exists only on Lewis's machine — **if `private/` is lost, decrypt
+`sealed.js` with the password; there is no other copy.** It is as strong as
+the password: anyone can copy `sealed.js` and guess offline.
+
+**Content rules.** The firm and the visitor are never named (slots and "our
+firm"); the visitor's organisation is, as the subject of the meeting. Facts
+about it come from its own pages, read 2026-11-05, and the plaintext's header
+lists them. The firm's numbers come from its website and are drawn as **slots** — `[[…]]`, highlighted, read aloud without
+the brackets — for the student to confirm. The meeting length is labelled an
+estimate.
+
+**Renderer.** Its own, smaller than the parent's: no quiz and no search, a
+block list instead (`notes`, `table`, `flow`, `lines`, `qa`, `dialogue`,
+`words`, `email`, `pending`, `check`, documented in `render.js`). It keeps the
+parent's 自學／教學 and `#teach`, the two voices and Play all. **Cover** in the
+bar hides every line the student says (`who-Y`) across the page, not only in
+the role-play; the visitor (`who-V`) gets an en-HK voice where the device has
+one, else en-GB. The checklist is the one thing saved (`flm.check`). The page
+is not linked from `/family-law/`.
+
 ## Cambridge 核心單字 — the official lists, from Starters to B1 Preliminary
 
 `/cambridge/` is a hub with one page per Cambridge vocabulary list, every word
