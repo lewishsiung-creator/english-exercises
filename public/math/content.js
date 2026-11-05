@@ -245,6 +245,93 @@ function rectFig(w, h) {
     `A rectangle ${w} squares across and ${h} squares down`);
 }
 
+/* --- a twenty frame: two ten frames, one above the other ---
+
+   The visual for every first-grade sum within twenty, and a frame rather
+   than a scattered handful of counters on purpose. Loose dots can be counted
+   one at a time forever, which is the habit this age needs to grow out of; a
+   frame makes 5 + 7 *look like* a full ten with 2 over, so the picture
+   teaches the same make-ten move the hints do.
+
+   Cells fill left to right, top to bottom, so the first ten frame is the one
+   that fills first and the spill into the second is the whole point.
+
+   `kind` is 'add' (a, then b more), 'take' (a, with the last b crossed off)
+   or 'missing' (a in all, with `b` of them known and the rest unknown). */
+function frameFig(kind, a, b) {
+  const c = 30, pad = 8, split = 10, gap = 18;
+  const col = (i) => pad + (i % 5) * c;
+  const row = (i) => pad + Math.floor(i / 5) * c + (i >= split ? gap : 0);
+
+  const cell = (i, fill, stroke, dash) =>
+    `<rect x="${col(i)}" y="${row(i)}" width="${c}" height="${c}"
+      fill="${fill}" stroke="${stroke}" stroke-width="2.5"
+      ${dash ? 'stroke-dasharray="5 4"' : ''}/>`;
+  const dot = (i, fill, stroke) =>
+    `<circle cx="${col(i) + c / 2}" cy="${row(i) + c / 2}" r="${c / 2 - 7}"
+      fill="${fill}" stroke="${stroke}" stroke-width="2.5"/>`;
+  const cross = (i) => `<path d="M${col(i) + 8} ${row(i) + 8}
+      L${col(i) + c - 8} ${row(i) + c - 8} M${col(i) + c - 8} ${row(i) + 8}
+      L${col(i) + 8} ${row(i) + c - 8}"
+      stroke="var(--oops)" stroke-width="3" stroke-linecap="round"/>`;
+
+  let body = '';
+  for (let i = 0; i < 20; i++) body += cell(i, 'var(--card)', 'var(--line-strong)');
+
+  let label;
+  if (kind === 'add') {
+    for (let i = 0; i < a; i++) body += dot(i, 'var(--green-soft)', 'var(--green)');
+    for (let i = a; i < a + b; i++) body += dot(i, 'var(--orange-soft)', 'var(--orange)');
+    label = `A twenty frame. ${a} counters, then ${b} more in a second colour.`;
+  } else if (kind === 'take') {
+    for (let i = 0; i < a - b; i++) body += dot(i, 'var(--green-soft)', 'var(--green)');
+    for (let i = a - b; i < a; i++) body += dot(i, 'var(--card)', 'var(--line-strong)') + cross(i);
+    label = `A twenty frame with ${a} counters, the last ${b} crossed out.`;
+  } else {
+    // `a` is the total and `b` the addend he already knows. The rest are
+    // drawn as empty dashed cells: the question made visible, not answered.
+    for (let i = 0; i < b; i++) body += dot(i, 'var(--green-soft)', 'var(--green)');
+    for (let i = b; i < a; i++) body += cell(i, 'var(--orange-soft)', 'var(--orange)', true);
+    label = `A twenty frame holding ${a} in all, with ${b} of them filled in.`;
+  }
+
+  return svg(pad * 2 + c * 5, pad * 2 + c * 4 + gap, body, label);
+}
+
+/* --- two numbers as base-ten blocks, one above the other ---
+   For comparing. Stacked and left-aligned, the tens line up, so "both have
+   four tens, so look at the ones" is something he can see rather than
+   something the hint has to tell him. */
+function compareBlocksFig(a, b) {
+  /* A ten rod is drawn with ten segments, not five. Divided any other way a
+     child who counts the segments gets a different number from the one the
+     rod is supposed to stand for. */
+  const u = 8, gap = 7, rowGap = 16, pad = 8;
+  const draw = (v, y) => {
+    let x = pad, out = '';
+    for (let t = 0; t < Math.floor(v / 10); t++) {
+      out += `<rect x="${x}" y="${y}" width="${u}" height="${u * 10}"
+        fill="var(--blue-soft)" stroke="var(--blue)" stroke-width="2"/>`;
+      for (let i = 1; i < 10; i++) {
+        out += `<line x1="${x}" y1="${y + i * u}" x2="${x + u}" y2="${y + i * u}"
+          stroke="var(--blue)" stroke-width=".8"/>`;
+      }
+      x += u + 3;
+    }
+    x += gap;
+    for (let o = 0; o < v % 10; o++) {
+      out += `<rect x="${x + (o % 5) * (u + 3)}" y="${y + Math.floor(o / 5) * (u + 3)}"
+        width="${u}" height="${u}" fill="var(--orange-soft)" stroke="var(--orange)" stroke-width="2"/>`;
+    }
+    return out;
+  };
+  const widthOf = (v) => pad + Math.floor(v / 10) * (u + 3) + gap + Math.min(v % 10, 5) * (u + 3) + pad;
+  const h = u * 10;
+  return svg(Math.max(widthOf(a), widthOf(b)), pad * 2 + h * 2 + rowGap,
+    draw(a, pad) + draw(b, pad + h + rowGap),
+    `${a} and ${b} drawn as ten rods and single blocks, one above the other.`);
+}
+
 /* --- counters, used only by the explanations ---
    Two groups side by side with a plus between them, or one group with the
    last few crossed out. This is what "add" and "take away" actually mean,
@@ -438,6 +525,8 @@ const FIGURES = {
   rect: rectFig,
   line: lineFig,
   story: storyFig,
+  frame: frameFig,
+  compareBlocks: compareBlocksFig,
 };
 
 /* ==================== the people and things in a story ====================
@@ -510,6 +599,8 @@ const G1 = [
         const b = rnd(11 - a, 9);
         return {
           ask: `${a} + ${b} = ?`,
+          figure: frameFig('add', a, b),
+          redraw: ['frame', 'add', a, b],
           answer: String(a + b),
           hint: `Take ${10 - a} from the ${b} to make ten. Then 10 + ${b - (10 - a)}.`,
         };
@@ -520,6 +611,8 @@ const G1 = [
         const b = rnd(2, 10 - a);
         return {
           ask: `${a} + ${b} = ?`,
+          figure: frameFig('add', a, b),
+          redraw: ['frame', 'add', a, b],
           answer: String(a + b),
           hint: `Start at ${a} and count on ${b} more.`,
         };
@@ -531,6 +624,8 @@ const G1 = [
       const b = rnd(2, Math.min(4, 19 - a));
       return {
         ask: `${a} + ${b} = ?`,
+        figure: frameFig('add', a, b),
+        redraw: ['frame', 'add', a, b],
         answer: String(a + b),
         hint: `${a} is 10 and ${a - 10}. Add ${b} to the ${a - 10}.`,
       };
@@ -552,6 +647,8 @@ const G1 = [
         const b = rnd(a - 9, 9);
         return {
           ask: `${a} − ${b} = ?`,
+          figure: frameFig('take', a, b),
+          redraw: ['frame', 'take', a, b],
           answer: String(a - b),
           hint: `Take ${a - 10} away to get down to 10. Then take ${b - (a - 10)} more.`,
         };
@@ -562,6 +659,8 @@ const G1 = [
         const b = rnd(2, a - 1);
         return {
           ask: `${a} − ${b} = ?`,
+          figure: frameFig('take', a, b),
+          redraw: ['frame', 'take', a, b],
           answer: String(a - b),
           hint: `Start at ${a} and count back ${b}.`,
         };
@@ -572,6 +671,8 @@ const G1 = [
       const b = rnd(2, a - 10);
       return {
         ask: `${a} − ${b} = ?`,
+        figure: frameFig('take', a, b),
+        redraw: ['frame', 'take', a, b],
         answer: String(a - b),
         hint: `The ten stays. Just take ${b} from the ${a - 10}.`,
       };
@@ -586,17 +687,19 @@ const G1 = [
       const total = rnd(8, 20);
       const a = rnd(1, total - 1);
       const flip = Math.random() < 0.5;
-      return flip
-        ? {
-            ask: `${a} + ? = ${total}`,
-            answer: String(total - a),
-            hint: `How far is it from ${a} up to ${total}?`,
-          }
-        : {
-            ask: `? + ${total - a} = ${total}`,
-            answer: String(a),
-            hint: `Take ${total - a} away from ${total}.`,
-          };
+      /* The frame shows the total and the part he already has; the dashed
+         cells are the question drawn, not the answer given — the same thing
+         a sighted child sees in a textbook's missing-addend picture. */
+      const known = flip ? a : total - a;
+      return {
+        ask: flip ? `${a} + ? = ${total}` : `? + ${total - a} = ${total}`,
+        figure: frameFig('missing', total, known),
+        redraw: ['frame', 'missing', total, known],
+        answer: String(flip ? total - a : a),
+        hint: flip
+          ? `How far is it from ${a} up to ${total}?`
+          : `Take ${total - a} away from ${total}.`,
+      };
     },
   },
   {
@@ -619,6 +722,8 @@ const G1 = [
       const t = Math.floor(value / 10), o = value % 10;
       return {
         ask: `${t} tens and ${o} ones = ?`,
+        figure: blocksFig(value),
+        redraw: ['blocks', value],
         answer: String(value),
         hint: `${t} tens is ${t * 10}. Then add ${o}.`,
       };
@@ -661,6 +766,8 @@ const G1 = [
 
       return {
         ask: `${a} ? ${b}`,
+        figure: compareBlocksFig(a, b),
+        redraw: ['compareBlocks', a, b],
         choices: ['<', '=', '>'],
         answer: a > b ? '>' : a < b ? '<' : '=',
         hint,

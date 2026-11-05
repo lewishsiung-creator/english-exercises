@@ -286,6 +286,21 @@ grade levels, for a child in Grade 1 working up through Grade 3.
   `content.js` that builds a fresh question every time, so the bank never runs
   out and nothing can be learned by position. Difficulty lives in the numbers
   inside that one function and nowhere else.
+- **Every Grade 1 question carries a picture**, which four of the seven
+  topics did not: the sums, the missing number and the comparison were bare
+  symbols. They are **ten frames, not loose counters**, and that is the whole
+  decision — scattered dots can be counted one at a time forever, which is
+  the habit a six-year-old needs to grow out of, while a frame makes 7 + 5
+  *look like* a full ten with two over, so the picture teaches the same
+  make-ten move the hints do. Cells fill left to right and top to bottom
+  across two stacked frames, so the spill past ten is the thing he sees.
+  Subtraction crosses the last few off; a missing number shows the total with
+  the part he has filled in and the rest dashed, which is the question drawn
+  rather than the answer given. Comparing shows both numbers as ten rods
+  above one another, so "both have four tens, so look at the ones" is visible
+  instead of being something the hint has to say. Grade 2 and 3 are
+  unchanged — by then the numbers are too big to count and the point is to
+  work without a picture.
 - **Word problems, one topic a grade.** Everything else here is a bare sum or
   a picture to read, and an American classroom assesses mostly in prose — a
   child who can add and cannot read the question gets the question wrong.
