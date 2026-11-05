@@ -41,7 +41,7 @@ if (!src || !out) {
 
 const passFile = passArg || join(dirname(src), '.pass');
 const pass = (await readFile(passFile, 'utf8')).split('\n')[0].trim();
-if (pass.length < 8) { console.error('password too short'); process.exit(1); }
+if (pass.length < 6) { console.error('password too short'); process.exit(1); }
 
 const content = (await import(pathToFileURL(resolve(src)).href + '?t=' + Date.now())).default;
 const plain = new TextEncoder().encode(JSON.stringify(content));
