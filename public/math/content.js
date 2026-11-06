@@ -576,6 +576,170 @@ function twoNames() {
 const redrawFigure = (recipe) =>
   Array.isArray(recipe) && FIGURES[recipe[0]] ? FIGURES[recipe[0]](...recipe.slice(1)) : '';
 
+/* ==================== what the wrong answer says ====================
+
+   A six-year-old's mistakes are not random. There is a short list of wrong
+   methods — counting the number you start on, dropping the ten, running the
+   sum backwards, reading the long hand as the hour — and each one leaves its
+   own number behind. So the number he typed is a diagnosis, and naming what
+   he did beats repeating what he should have done: the hint underneath has
+   been saying that all along, and saying it louder is not teaching.
+
+   Grade 1 only. By Grade 2 the wrong answers stop being this legible — with
+   three-digit numbers and two steps there are too many ways to arrive at the
+   same wrong one to guess which was his.
+
+   Written as recipes (`why: ['add', a, b]`) for the same reason the drawings
+   are: a missed question has to survive a trip through localStorage into
+   tomorrow's review round, and a closure does not.
+
+   Every one of these is allowed to return null, and most of the time it
+   does. A number that matches no pattern is a guess, and inventing a reason
+   for a guess teaches him that the page is not really reading his answer. */
+
+const WHY = {
+  add(given, a, b) {
+    const n = Number(given), answer = a + b;
+    if (!Number.isFinite(n)) return null;
+    if (n === a || n === b) return `${n} is one of the two numbers on its own. Both of them go together.`;
+    /* The make-ten mistake — the ones right and a whole ten gone — is the
+       commonest wrong answer in first-grade addition, so it is read first.
+       It collides with "subtracted instead" whenever one of the numbers is
+       exactly 5 (5 + 9: nine take five, and fourteen minus its ten, are both
+       4), and when the same number can be read two ways the generous reading
+       wins: this one tells him the part he got right. */
+    if (answer > 10 && n === answer - 10) return `The ones are right. But a whole ten went missing. Look again — the first ten is full, and ${answer - 10} more sit underneath.`;
+    if (n === Math.abs(a - b)) return `${n} is what you get by taking away. This one says +. It gets bigger, not smaller.`;
+    if (n === a * b) return `${n} is ${a} lots of ${b}. The + sign only means put the two piles together.`;
+    if (n === answer - 1) return `One short. Count on from ${a}. The first number you say is ${a + 1}, not ${a}.`;
+    if (n === answer + 1) return `One too many. Count on ${b} times from ${a} and then stop.`;
+    return null;
+  },
+
+  take(given, a, b) {
+    const n = Number(given), answer = a - b, ones = a % 10;
+    if (!Number.isFinite(n)) return null;
+    if (n === a + b) return `${n} is what you get by adding. The − sign sends ${b} of them away. It gets smaller.`;
+    if (n === a) return `${a} is what you started with. ${b} of them still have to go.`;
+    if (n === b) return `${b} is what you took away. Not what is left behind.`;
+    // Smaller-from-larger: 13 − 5 done as 5 − 3, because 3 − 5 "cannot" be
+    // done. He has to go down through the ten instead.
+    if (a > 10 && b > ones && n === b - ones) return `You took the ${ones} off the ${b}. It goes the other way round. You have ${a}. Drop ${ones} to land on 10, then ${b - ones} more.`;
+    if (n === answer + 1) return `One too many left. That takes ${b - 1} away. The question takes ${b}.`;
+    if (n === answer - 1) return `One too few left. You went one step past. Take away ${b}, not ${b + 1}.`;
+    return null;
+  },
+
+  missing(given, total, known) {
+    const n = Number(given), answer = total - known;
+    if (!Number.isFinite(n)) return null;
+    if (n === total) return `${total} is the total. That is where you finish. The box is the part missing out of it.`;
+    if (n === known) return `${known} is the part you can already see. The box is the rest of it.`;
+    if (n === total + known) return `${n} is both numbers added. One of them is already inside the ${total}. So this time it comes off.`;
+    if (n === answer + 1) return `One too many. Count from ${known} up to ${total}. How many steps is that?`;
+    if (n === answer - 1) return `One short. Count from ${known} up to ${total}. The last step counts too.`;
+    return null;
+  },
+
+  blocks(given, value) {
+    const n = Number(given), t = Math.floor(value / 10), o = value % 10;
+    if (!Number.isFinite(n)) return null;
+    if (t !== o && n === o * 10 + t) return `The tens and ones are the wrong way round. There are ${t} tall rods. So the ${t} goes in front.`;
+    if (n === t + o) return `You added the two digits. But ${t} rods are not ${t}. Each rod is ten, so they are ${t * 10} already.`;
+    if (n === t) return o === 0
+      ? `${t} is how many rods there are. Not how many blocks. One rod is worth ten.`
+      : `${t} is how many rods there are. Each one is worth ten. So they come to ${t * 10}.`;
+    if (n === o) return o === 0
+      ? `There are no loose ones here. It is all rods. And a rod is worth ten.`
+      : `${o} is just the loose ones. The ${t} rods count too. They are ${t * 10}.`;
+    if (Math.abs(n - value) === 10) return `One rod out. Count the tall ones again — there are ${t}.`;
+    if (Math.abs(n - value) === 1) return `One loose block out. There are ${o} sitting on their own.`;
+    return null;
+  },
+
+  compare(given, a, b) {
+    const ta = Math.floor(a / 10), tb = Math.floor(b / 10);
+    if (given === '=') {
+      if (a === b) return null;
+      return ta === tb
+        ? `These two are not the same. The tens match, so look at the ones.`
+        : `These two are not the same. One of them has more tens.`;
+    }
+    if (a === b) return `Look again, digit by digit. Same tens. Same ones.`;
+    // Everything left is the right comparison pointing the wrong way, which
+    // is a reading mistake and not a number one — so it gets the mouth back.
+    if (ta === tb) return `The mouth always opens at the bigger number. Both of these have ${ta} tens. So the ones decide it: ${a % 10} against ${b % 10}.`;
+    return `The mouth always opens at the bigger number. Count the tens first — ${ta} tens against ${tb} tens.`;
+  },
+
+  clock(given, h, m) {
+    const [gh, gm] = String(given).split(':').map(Number);
+    const nextH = h === 12 ? 1 : h + 1;
+    if (gm === m && gh === nextH) {
+      return m === 30
+        ? `Half past, but a whole hour on. The short hand sits between two numbers. The hour is the one it has gone past.`
+        : `The minutes are right. Look at the short hand again. It points straight at a number. That one is the hour.`;
+    }
+    if (gm === m) return `The minutes are right. The hour comes from the short hand, the stubby one.`;
+    if (gh === h) {
+      return `The hour is right. Now the long hand. Straight up is o’clock. Straight down is half past.`;
+    }
+    return `Short hand first. That one is the hour. Then the long hand. Straight up is o’clock, straight down is half past.`;
+  },
+
+  /* Word problems. What goes wrong here is almost never the adding — it is
+     choosing the wrong sum, so these name the story rather than the method. */
+  story(given, kind, a, b) {
+    const n = Number(given);
+    if (!Number.isFinite(n)) return null;
+
+    if (kind === 'join') {
+      if (n === Math.abs(a - b)) return `That is what you get by taking away. In this story more of them arrive. The number has to grow.`;
+      if (n === a) return `${a} is how many there were to start with. Then ${b} more turned up.`;
+      if (Math.abs(n - (a + b)) === 1) return `So close — one out. Start at ${a}. Count on ${b} more, carefully.`;
+      return null;
+    }
+
+    if (kind === 'take') {
+      if (n === a + b) return `That is both numbers added. This story gives ${b} of them away. What is left is smaller than ${a}.`;
+      if (n === a) return `${a} is how many there were before. ${b} of them have gone.`;
+      if (Math.abs(n - (a - b)) === 1) return `One out. Start at ${a} and count back ${b}.`;
+      return null;
+    }
+
+    if (kind === 'compare') {
+      if (n === a + b) return `That is the two rows added together. The question asks how many extra. Only the ones hanging off the end.`;
+      if (n === a) return `${a} is the whole top row. The extra ones have nobody underneath them.`;
+      if (n === b) return `${b} is the short row. Count the ones left over on the long row instead.`;
+      if (Math.abs(n - (a - b)) === 1) return `One out. Line the rows up. Count only the ones sticking out at the end.`;
+      return null;
+    }
+
+    // The change is the unknown: a is where it ended up, b where it began.
+    if (n === a) return `${a} is how many there are now. The question is how many arrived.`;
+    if (n === b) return `${b} is how many there were at the start, before any came.`;
+    if (n === a + b) return `That is both numbers added. But the ${b} is already inside the ${a}. So this one comes off instead.`;
+    if (Math.abs(n - (a - b)) === 1) return `One out. Count up from ${b}. The ${b} itself does not count. Start with the next one.`;
+    return null;
+  },
+};
+
+/* A wrong answer, read back to him. Null means his number says nothing I can
+   honestly read, and the caller falls back to the method.
+
+   `answer` is a guard, not data: several of these patterns can land on the
+   right answer by coincidence (14 − 7 = 7 is both the answer and the number
+   taken away, 2 + 2 = 4 is both the sum and the product), and a sentence
+   explaining what is wrong with a correct answer would be worse than
+   silence. Only judge() calls this, and only on a wrong answer — but the
+   function should not depend on its one caller being careful. */
+function diagnose(recipe, given, answer) {
+  if (!Array.isArray(recipe) || !WHY[recipe[0]]) return null;
+  if (answer !== undefined && String(given) === String(answer)) return null;
+  try { return WHY[recipe[0]](given, ...recipe.slice(1)) || null; }
+  catch { return null; }   // never let an explanation break a question
+}
+
 /* ==================== Grade 1 ==================== */
 
 /* `next` is where a topic leads once he has it: the same skill, one level up.
@@ -601,6 +765,7 @@ const G1 = [
           ask: `${a} + ${b} = ?`,
           figure: frameFig('add', a, b),
           redraw: ['frame', 'add', a, b],
+          why: ['add', a, b],
           answer: String(a + b),
           hint: `Take ${10 - a} from the ${b} to make ten. Then 10 + ${b - (10 - a)}.`,
         };
@@ -613,6 +778,7 @@ const G1 = [
           ask: `${a} + ${b} = ?`,
           figure: frameFig('add', a, b),
           redraw: ['frame', 'add', a, b],
+          why: ['add', a, b],
           answer: String(a + b),
           hint: `Start at ${a} and count on ${b} more.`,
         };
@@ -626,6 +792,7 @@ const G1 = [
         ask: `${a} + ${b} = ?`,
         figure: frameFig('add', a, b),
         redraw: ['frame', 'add', a, b],
+        why: ['add', a, b],
         answer: String(a + b),
         hint: `${a} is 10 and ${a - 10}. Add ${b} to the ${a - 10}.`,
       };
@@ -649,6 +816,7 @@ const G1 = [
           ask: `${a} − ${b} = ?`,
           figure: frameFig('take', a, b),
           redraw: ['frame', 'take', a, b],
+          why: ['take', a, b],
           answer: String(a - b),
           hint: `Take ${a - 10} away to get down to 10. Then take ${b - (a - 10)} more.`,
         };
@@ -661,6 +829,7 @@ const G1 = [
           ask: `${a} − ${b} = ?`,
           figure: frameFig('take', a, b),
           redraw: ['frame', 'take', a, b],
+          why: ['take', a, b],
           answer: String(a - b),
           hint: `Start at ${a} and count back ${b}.`,
         };
@@ -673,6 +842,7 @@ const G1 = [
         ask: `${a} − ${b} = ?`,
         figure: frameFig('take', a, b),
         redraw: ['frame', 'take', a, b],
+        why: ['take', a, b],
         answer: String(a - b),
         hint: `The ten stays. Just take ${b} from the ${a - 10}.`,
       };
@@ -695,6 +865,7 @@ const G1 = [
         ask: flip ? `${a} + ? = ${total}` : `? + ${total - a} = ${total}`,
         figure: frameFig('missing', total, known),
         redraw: ['frame', 'missing', total, known],
+        why: ['missing', total, known],
         answer: String(flip ? total - a : a),
         hint: flip
           ? `How far is it from ${a} up to ${total}?`
@@ -714,6 +885,7 @@ const G1 = [
         return {
           figure: blocksFig(value),
           redraw: ['blocks', value],
+          why: ['blocks', value],
           ask: 'How many in all?',
           answer: String(value),
           hint: `Each tall rod is 10. Count the rods first, then the little ones.`,
@@ -724,6 +896,7 @@ const G1 = [
         ask: `${t} tens and ${o} ones = ?`,
         figure: blocksFig(value),
         redraw: ['blocks', value],
+        why: ['blocks', value],
         answer: String(value),
         hint: `${t} tens is ${t * 10}. Then add ${o}.`,
       };
@@ -768,6 +941,7 @@ const G1 = [
         ask: `${a} ? ${b}`,
         figure: compareBlocksFig(a, b),
         redraw: ['compareBlocks', a, b],
+        why: ['compare', a, b],
         choices: ['<', '=', '>'],
         answer: a > b ? '>' : a < b ? '<' : '=',
         hint,
@@ -797,6 +971,7 @@ const G1 = [
           ask: `${who} has ${a} ${it.many}. ${who} gets ${b} more. How many now?`,
           figure: storyFig('join', a, b, it.icon),
           redraw: ['story', 'join', a, b, it.icon],
+          why: ['story', 'join', a, b],
           answer: String(a + b),
           hint: `${a} and ${b} more. Count them all.`,
         };
@@ -809,6 +984,7 @@ const G1 = [
           ask: `${who} has ${a} ${it.many}. ${who} gives ${b} away. How many are left?`,
           figure: storyFig('take', a, b, it.icon),
           redraw: ['story', 'take', a, b, it.icon],
+          why: ['story', 'take', a, b],
           answer: String(a - b),
           hint: `Start with ${a}. Take ${b} away. Count what is left.`,
         };
@@ -822,6 +998,7 @@ const G1 = [
           ask: `${one} has ${a} ${it.many}. ${two} has ${b}. How many more does ${one} have?`,
           figure: storyFig('compare', a, b, it.icon),
           redraw: ['story', 'compare', a, b, it.icon],
+          why: ['story', 'compare', a, b],
           answer: String(a - b),
           hint: 'The rows are lined up. Count the extra ones on the end.',
         };
@@ -839,6 +1016,7 @@ const G1 = [
         ask: `${who} has ${start} ${it.many}. Now ${who} has ${total}. How many more did ${who} get?`,
         figure: storyFig('compare', total, start, it.icon),
         redraw: ['story', 'compare', total, start, it.icon],
+        why: ['story', 'grow', total, start],
         answer: String(total - start),
         hint: `Count up from ${start} to ${total}.`,
       };
@@ -856,6 +1034,7 @@ const G1 = [
       return {
         figure: clockFig(h, m),
         redraw: ['clock', h, m],
+        why: ['clock', h, m],
         ask: 'What time is it?',
         // The three classic misreadings: the wrong hand, the next hour along,
         // and the hour before — which is what the short hand looks nearest to

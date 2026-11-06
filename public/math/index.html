@@ -106,7 +106,13 @@
 
     <div class="answer" id="answer"></div>
 
-    <p class="hint" id="hint" hidden></p>
+    <!-- One help slot, two stages. A Grade 1 mistake puts what he just did in
+       here first (blue), and a second mistake replaces it with the method
+       (orange). Two panels at once cost 112px, which on a 375×812 phone
+       pushed the bottom row of the number pad off the screen — and a
+       six-year-old should not have to read two paragraphs to be told he is
+       one ten short. -->
+  <p class="hint" id="hint" hidden aria-live="polite"></p>
     <p class="feedback" id="feedback" role="status" aria-live="assertive"></p>
   </section>
 

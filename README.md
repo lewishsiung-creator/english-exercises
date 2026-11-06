@@ -383,8 +383,37 @@ grade levels, for a child in Grade 1 working up through Grade 3.
   topic that follows it — `next` in `content.js`, the same skill a level up.
   Offered once, when it is earned, then never again. Nothing is locked
   behind it, and a bad round afterwards does not take it back.
+- **Grade 1 is told what it just did wrong.** A six-year-old's mistakes are
+  not random: there is a short list of wrong methods — counting the number
+  you start on, dropping the ten, running the sum backwards, reading the long
+  hand as the hour — and each one leaves its own number behind. So the first
+  miss on any Grade 1 question reads the number he typed and names the
+  method: `12` answered `2` gets *"The ones are right. But a whole ten went
+  missing."* `WHY` in `content.js` holds one reader per topic, stored as a
+  recipe (`why: ['add', 7, 5]`) for the same reason the drawings are — a
+  missed question has to survive localStorage into tomorrow's review round,
+  and a closure does not. Every reader may return `null`, and usually does: a
+  number that matches no method is a guess, and inventing a reason for a
+  guess teaches him the page is not really reading his answer. Measured at
+  100% of the named wrong methods across 6,000 questions each, 0% of numbers
+  no method produces. Grade 1 only — by Grade 2 the wrong answers stop being
+  legible, because with three digits and two steps too many wrong methods
+  land on the same number. None of them names the answer, so **Show me** is
+  still the only thing that gives it away.
+- **One help slot, two stages.** The diagnosis arrives in the *same* panel
+  the method uses, blue instead of orange, and a second miss replaces it with
+  the method. Two panels at once was the first attempt and it cost 112px,
+  which pushed the bottom row of the number pad off a 375×812 phone — and it
+  asked a six-year-old to read two paragraphs to be told he is one ten short.
+  The panel scrolls itself into view with `block: 'nearest'` when it opens,
+  because a Grade 1 question is a picture, a sum and a keypad with keys big
+  enough for small fingers, which fills a phone screen on its own. Not
+  smoothed: a slide is one more moving thing to follow at the worst moment,
+  and a throttled browser drops `smooth` outright, so the panel would
+  sometimes simply not arrive.
 - **There is a way out of a question he cannot do.** Two misses bring the
-  method up as a hint; a third offers **Show me**, which puts the answer on
+  method up as a hint (one, in Grade 1, after the diagnosis); a third offers
+  **Show me**, which puts the answer on
   screen and asks him to enter it himself. He gets unstuck, he ends the
   question by doing the right thing rather than by giving up, and the record
   says he was given it. Without this, "only a correct answer advances" turns
@@ -4283,10 +4312,13 @@ in [`public/math/content.js`](public/math/content.js) that builds a question
 each time it is called, and the numbers inside that one function are the
 difficulty. Widening Grade 1's addition to twenty-five is one `rnd(1, 9)`.
 
-A question is `{ ask, figure, answer, choices, hint }`. Leave `choices` off
-and the number pad is used instead; the answer must then be something the pad
-can type. `hint` appears only after two wrong tries and should point at the
-method, not the answer. The drawings — clocks, blocks,
+A question is `{ ask, figure, answer, choices, hint, why }`. Leave `choices`
+off and the number pad is used instead; the answer must then be something the
+pad can type. `hint` points at the method, not the answer, and appears after
+two wrong tries — after one in Grade 1. `why` is optional and Grade 1 only: a
+recipe naming a reader in `WHY`, which turns the wrong number he typed into a
+sentence about the method he used. Readers return `null` whenever the number
+tells them nothing. The drawings — clocks, blocks,
 arrays, fraction bars, coins, grid rectangles, number lines — are functions in
 the same file; each returns an SVG string sized in its own units, and `svg()`
 puts the width and height on it, without which it collapses to nothing.

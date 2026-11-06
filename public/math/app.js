@@ -170,7 +170,7 @@ function remember(topicId, q) {
   } else {
     list.push({
       ask: q.ask, answer: q.answer, choices: q.choices, hint: q.hint,
-      redraw: q.redraw, box: 0, missed: 1,
+      redraw: q.redraw, why: q.why, box: 0, missed: 1,
     });
   }
   // Over the cap, the ones closest to being retired go first: they are the
@@ -207,7 +207,7 @@ function dueFor(topicId, n) {
 
   return list.map((it) => ({
     ask: it.ask, answer: it.answer, choices: it.choices, hint: it.hint,
-    redraw: it.redraw, figure: redrawFigure(it.redraw), fromReview: true,
+    redraw: it.redraw, why: it.why, figure: redrawFigure(it.redraw), fromReview: true,
   }));
 }
 
@@ -455,6 +455,7 @@ function askQuestion() {
   el('feedback').textContent = '';
   el('feedback').className = 'feedback';
   el('hint').hidden = true;
+  el('hint').className = 'hint';
   el('hint').textContent = q.hint || '';
 
   buildAnswer(q);
@@ -562,7 +563,13 @@ el('showMeAnswer').addEventListener('click', () => {
   el('showMeAnswer').hidden = true;
   el('solutionAnswer').textContent = q.answer;
   el('solution').hidden = false;
-  if (q.hint) el('hint').hidden = false;
+  // He has given up on this one, so the slot goes back to the method: that
+  // is what lets him copy the answer out and still learn something.
+  if (q.hint) {
+    el('hint').textContent = q.hint;
+    el('hint').className = 'hint';
+    el('hint').hidden = false;
+  }
   el('feedback').textContent = '';
   el('feedback').className = 'feedback';
   if (!q.choices) setTyped('');
@@ -591,7 +598,43 @@ function judge(given, node) {
       el('feedback').textContent = NUDGES[Math.min(state.attempts, NUDGES.length) - 1];
       el('feedback').className = 'feedback is-oops';
     }
-    if (state.attempts >= 2 && q.hint) el('hint').hidden = false;
+
+    /* Grade 1 is helped from the very first miss, and the first thing the
+       page says is what he just did. "Not quite" only tells him he is wrong,
+       which he can see; "a whole ten went missing" tells him something he
+       cannot. The method follows on a second miss, in the same slot — one
+       thing to read at a time, and the screen does not grow.
+
+       Asked of the topic, not of state.grade: the grade is set by walking
+       the screens, and "try the next topic" jumps straight into a round. */
+    const atOnce = GRADES[0].topics.includes(state.topic);
+    const why = state.attempts === 1 && !state.shown
+      ? diagnose(q.why, given, q.answer)
+      : null;
+
+    const wasHidden = el('hint').hidden;
+    if (why) {
+      el('hint').textContent = why;
+      el('hint').className = 'hint is-why';
+      el('hint').hidden = false;
+    } else if (q.hint && state.attempts >= (atOnce ? 1 : 2)) {
+      el('hint').textContent = q.hint;
+      el('hint').className = 'hint';
+      el('hint').hidden = false;
+    }
+    /* Help he cannot see is not help. A Grade 1 question is a picture, a sum
+       and a number pad with keys big enough for small fingers, and on a
+       375×812 phone that fills the screen on its own — so the panel opens
+       below the fold. `nearest` scrolls the least that will show it, which
+       keeps both the bottom row of the pad and the picture it refers to on
+       screen; anything more and the drawing he is being told to look at
+       slides off the top.
+
+       Not smoothed. A slide is one more moving thing to follow at the moment
+       he is already being told he got it wrong, and `smooth` is dropped
+       outright by a browser that is throttling the page — so the panel
+       would sometimes simply not arrive. */
+    if (wasHidden && !el('hint').hidden) el('hint').scrollIntoView({ block: 'nearest' });
     // Two misses get the method. A third means the method did not land, and
     // from here "only a correct answer advances" stops being a kindness: on
     // a number-pad question there is nothing to guess between, so without a

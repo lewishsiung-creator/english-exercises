@@ -628,6 +628,22 @@ main {
   text-align: center;
 }
 
+/* The same slot, saying what he just did rather than how to do it. Blue, not
+   orange and not the red of being wrong: three different jobs want three
+   different colours — red says "no", orange says "here is how", and this one
+   says "here is what you did", which is information and should not look like
+   a telling-off. */
+.hint.is-why {
+  background: var(--blue-soft);
+  border-color: var(--blue);
+  animation: hint-in .28s ease-out;
+}
+
+@keyframes hint-in {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: none; }
+}
+
 .feedback {
   margin: 14px 0 0;
   min-height: 1.7em;
@@ -653,6 +669,7 @@ main {
 @media (prefers-reduced-motion: reduce) {
   .is-wobble { animation: none; outline: 3px solid var(--oops); }
   .screen.is-active { animation: none; }
+  .hint.is-why { animation: none; }
 }
 
 /* ---------------- finished ---------------- */
