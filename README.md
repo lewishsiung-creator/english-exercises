@@ -2860,6 +2860,33 @@ appendix).
   Examples are kept to 5–12 words of A1–A2 English. `python3
   tools/moe/build.py` refuses to build while any word lacks Chinese.
 
+**The textbook words from `/junior-high/` are merged in (2026-11-08)**, at
+Lewis's choice over adding that page to `/learn/`. The grammar stays where it
+is; `/junior-high/` itself is untouched and keeps its URL.
+
+- **One source.** `build.py` reads `public/junior-high/words.js` and
+  `grammar.js` through node; nothing from them is copied into `tools/moe/`.
+  Change a textbook word there and rebuild here.
+- **No word twice.** A textbook word on the 2,000 list (542 of 689) stays one
+  card and gains the 講義's KK, its example and a 「七年級 B1 L3」 chip. One that
+  is not (141, mostly phrases — *How old...?*, *take a shower*) becomes its own
+  card in the 講義's words. Matching is by the whole headword, case included
+  (*May* the month, *may* the verb), never by part of a phrase; `PLURALS`
+  sends *teeth*, *fishermen* and the like to the list's singular.
+- **Four sets, not one level each:** 基本字, 常用字, 七年級課本, 八年級課本 —
+  a word can be in a table and a grade. 全部 is now one A–Z run (it used to
+  read 基本字 a–z and then start again).
+- **A grade reads in lesson order**, with a head over each lesson (課次, topic,
+  文法重點) and a 課次 select. The head's 「看這一課的文法」 goes to
+  `#g/<grade>/<unit>` on `/junior-high/` — the unit `build.py` finds the same way
+  that page's own ✎ 文法 link does. (`#g/for-<lesson>` exists too, but landed
+  on the wrong unit for B1 L1; don't use it.) The A–Z rail is off in a grade.
+- **The 講義's examples are marked for the quiz** where the word can be found
+  as written — inflected first words (*takes a shower*), plural last words
+  (*video games*), the bracketed forms (*thought*). Ten cannot (*both...and*,
+  *built*); they show, but never become a gap-fill.
+- A word taught in both grades is counted once on the opener (660).
+
 ## Landscape Architecture Portfolio — a student's own work
 
 The odd one out. Not a lesson and not bilingual: a portfolio a landscape

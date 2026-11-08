@@ -2,26 +2,46 @@
    高中單字 engine (../vocab/vocab.js), kept separate so an edit to one cannot
    move the other: 自學／教學, 今天這一組, a four-type quiz with no score, 投影,
    the A–Z rail and the Apple-style opener are the same. What changed is what the
-   list has: two sets -- 基本字 and 其他常用字 -- instead of six levels, and no
-   printed parts of speech (the ones shown are this site's). Data is in
-   words.js, built by tools/moe/build.py. */
+   list has: no printed parts of speech (the ones shown are this site's), and
+   four overlapping sets instead of one level per word -- the list's two tables,
+   基本字 and 其他常用字, and Lewis's 七年級 and 八年級 textbook words from
+   /junior-high/. A word can be in a table and a grade at once. A grade is
+   listed in lesson order, under lesson heads that link to that lesson's
+   grammar on /junior-high/; everything else is A–Z. Data is in words.js
+   (RAW and BOOK), built by tools/moe/build.py. */
 
 // EXAM.url is the page's public address; a word's own link is that plus #bank.
 const POSZH = { n: '名詞', v: '動詞', adj: '形容詞', adv: '副詞', prep: '介系詞', det: '限定詞', pron: '代名詞', conj: '連接詞',
   exclam: '感嘆詞', phr: '片語', art: '冠詞', aux: '助動詞', int: '感嘆詞', num: '數詞', mv: '情態助動詞', av: '助動詞', 'phr v': '片語動詞', 'prep phr': '介系詞片語', 'n pl': '複數名詞', 'unc n': '不可數名詞', abbrev: '縮寫' };
 
 /* ---------- data ---------- */
-// The list's two tables. "Level" is kept as the engine's word for them.
-const LEVEL_ZH = ['', '基本字', '常用字'];
-const LEVEL_LONG = ['', '基本字', '其他常用字'];
-// [id, word as printed, level, spoken as, senses [[pos, 中文]], examples [[en, 中譯]]]
-const ENTRIES = RAW.map(([id, w, lv, sayAs, senses, exs], n) => {
+// The four sets, in the order the bar shows them. The first two are the list's
+// tables, the last two Lewis's textbook words.
+const SETS = [['basic', '基本字', '基本字'], ['more', '常用字', '其他常用字'], ['g7', '七年級', '七年級課本'], ['g8', '八年級', '八年級課本']];
+const SET_ZH = Object.fromEntries(SETS.map(([k, short]) => [k, short]));
+const isGrade = k => k === 'g7' || k === 'g8';
+// lesson key ("g7/b1-l1") -> its lesson, and per grade the order its words are taught in
+const LESSON = {}, GRADE_ORDER = {};
+Object.entries(BOOK).forEach(([g, b]) => {
+  GRADE_ORDER[g] = [];
+  b.lessons.forEach(l => { LESSON[l.key] = l; l.ids.forEach(id => { if (!GRADE_ORDER[g].includes(id)) GRADE_ORDER[g].push(id); }); });
+});
+// [id, word as printed, sets, spoken as, senses [[pos, 中文]], examples [[en, 中譯]], KK, lesson keys]
+const ENTRIES = RAW.map(([id, w, sets, sayAs, senses, exs, kk, lessons], n) => {
   const se = senses.map(([p, z]) => ({ p, z }));
   const x = exs.map(([en, zh]) => ({ en, zh }));
   const firstZh = (se.find(s => s.z) || {}).z || '';
   const text = (w + ' ' + sayAs + ' ' + se.map(s => s.z).join(' ')).toLowerCase();
-  return { id, n, w, lab: '', sayAs, se, vari: '', x, lv, fixes: {}, firstZh, text, w0: w };
+  return { id, n, w, lab: kk, sayAs, se, vari: '', x, sets, lessons, fixes: {}, firstZh, text, w0: w };
 });
+const BY_ID = Object.fromEntries(ENTRIES.map(e => [e.id, e]));
+// the lesson a word is taught in within one grade: its first, if it comes back later
+const lessonIn = (e, g) => e.lessons.find(k => k.startsWith(g + '/'));
+// the chips under a word's letter: its table, then each grade it is taught in --
+// except the grade being browsed, which the lesson head above already names
+const chips = e => e.sets.filter(k => k !== S.scope || !isGrade(k)).map(k => isGrade(k)
+  ? `<span class="lvtag grade">${SET_ZH[k]} ${esc(LESSON[lessonIn(e, k)].code)}</span>`
+  : `<span class="lvtag">${SET_ZH[k]}</span>`).join('');
 
 /* ---------- device settings & self-study marks (try/catch: storage may be blocked) ---------- */
 const store = {
@@ -31,7 +51,8 @@ const store = {
 const S = {
   mode: store.get('mode', 'self'),
   view: 'list',
-  scope: 'all',             // 'all' | '1'…'6'
+  scope: 'all',             // 'all' | 'basic' | 'more' | 'g7' | 'g8'
+  lesson: 'all',            // a lesson key, within a grade scope
   letter: 'all',
   q: '',
   markf: 'all',
@@ -115,10 +136,13 @@ const sayBtn = (t, label) => `<button class="say" data-say="${esc(plain(t))}" ar
 const letterOf = e => (e.w.toLowerCase().match(/[a-z]/) || ['#'])[0];
 function pool(ignoreSearch, ignoreMark) {
   const q = ignoreSearch ? '' : S.q.trim().toLowerCase();
-  return ENTRIES.filter(e => {
+  // a grade reads in the order its lessons teach, not A–Z
+  const base = !q && isGrade(S.scope) ? GRADE_ORDER[S.scope].map(id => BY_ID[id]) : ENTRIES;
+  return base.filter(e => {
     if (q) { if (!e.text.includes(q)) return false; }
     else {
-      if (S.scope !== 'all' && e.lv !== +S.scope) return false;
+      if (S.scope !== 'all' && !e.sets.includes(S.scope)) return false;
+      if (isGrade(S.scope) && S.lesson !== 'all' && lessonIn(e, S.scope) !== S.lesson) return false;
       if (S.letter !== 'all' && letterOf(e) !== S.letter) return false;
     }
     if (S.mode === 'self' && S.markf !== 'all' && !ignoreMark) {
@@ -163,7 +187,7 @@ function markBtns(e) {
 function entryHTML(e) {
   const m = S.mode === 'self' ? MARKS[e.id] : '';
   return `<article class="entry ${m === 'k' ? 'known' : m === 'r' ? 'review' : ''}" id="e-${e.id}">
-    <div class="meta"><span class="tag">${letterOf(e).toUpperCase()}</span><span class="lvtag">${LEVEL_ZH[e.lv]}</span>
+    <div class="meta"><span class="tag">${letterOf(e).toUpperCase()}</span>${chips(e)}
       ${markBtns(e)}<button class="link copy" data-copy="${e.id}" aria-label="複製 ${esc(e.w)} 的連結">複製連結</button></div>
     <div class="body">${headHTML(e)}</div>
   </article>`;
@@ -174,16 +198,39 @@ function where() {
   const parts = [];
   if (S.q.trim()) parts.push(`搜尋「${esc(S.q.trim())}」`);
   else {
-    parts.push(S.scope === 'all' ? '全部' : LEVEL_ZH[+S.scope]);
+    parts.push(S.scope === 'all' ? '全部' : SETS.find(x => x[0] === S.scope)[2]);
+    if (isGrade(S.scope) && S.lesson !== 'all') parts.push(esc(LESSON[S.lesson].code));
     if (S.letter !== 'all') parts.push(S.letter.toUpperCase() + ' 開頭');
   }
   return parts.join(' · ');
+}
+/* Inside a grade, a head goes above the first word of each lesson: its 課次,
+   its topic, and the grammar it teaches, linked to that lesson's grammar on
+   /junior-high/. Built from the word before, so appending more continues it. */
+const GRAMMAR_URL = '../../junior-high/';
+function lessonHead(k) {
+  const l = LESSON[k], g = k.split('/')[0];
+  return `<header class="lesson-head">
+    <p class="lh-code">${SET_ZH[g]} · ${esc(l.code)}</p>
+    <h3 class="lh-title">${esc(l.title)}</h3>
+    ${l.grammar ? `<p class="lh-gram">文法：${esc(l.grammar)}${l.unit
+      ? ` <a href="${GRAMMAR_URL}#g/${g}/${esc(l.unit)}" title="${esc(l.unitTitle)}">看這一課的文法 ›</a>` : ''}</p>` : ''}
+  </header>`;
+}
+function listHTML(list, from, to) {
+  const heads = isGrade(S.scope) && !S.q.trim();
+  let prev = heads && from > 0 ? lessonIn(list[from - 1], S.scope) : null;
+  return list.slice(from, to).map(e => {
+    let h = '';
+    if (heads) { const k = lessonIn(e, S.scope); if (k !== prev) { h = lessonHead(k); prev = k; } }
+    return h + entryHTML(e);
+  }).join('');
 }
 function renderList() {
   const list = searchSort(pool());
   const shown = list.slice(0, S.shown);
   $('#main').innerHTML = `<p class="status">${where()} · ${list.length} 個字${list.length > shown.length ? `，目前顯示前 ${shown.length} 個` : ''}</p>` +
-    (list.length ? shown.map(entryHTML).join('') : `<p class="empty">沒有符合的字。換個級別、字母或關鍵字試試。</p>`) +
+    (list.length ? listHTML(list, 0, S.shown) : `<p class="empty">沒有符合的字。換個範圍、字母或關鍵字試試。</p>`) +
     (list.length > shown.length ? `<button class="btn more" id="more">再顯示 40 個</button>` : '');
   observeMore();
   renderRail(list);
@@ -195,7 +242,8 @@ let STARTS = {};
 function renderRail(list) {
   const rail = $('#rail');
   STARTS = {};
-  if (!S.q.trim() && S.letter === 'all') {
+  // the A–Z rail only means something when the list is A–Z
+  if (!S.q.trim() && S.letter === 'all' && !isGrade(S.scope)) {
     list.forEach((e, i) => {
       const L = letterOf(e);
       if (L === '#' || STARTS[L] != null) return;
@@ -248,7 +296,7 @@ function openFromHash() {
   }
   const id = decodeURIComponent(location.hash.slice(1));
   const e = id && ENTRIES.find(x => x.id === id); if (!e) return false;
-  S.view = 'list'; S.scope = 'all'; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = '';
+  S.view = 'list'; S.scope = 'all'; S.lesson = 'all'; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = '';
   S.markf = 'all'; $('#markf').value = 'all';
   render();
   jumpTo(pool().indexOf(e), true);
@@ -282,7 +330,7 @@ function appendMore() {
   const list = searchSort(pool());
   const from = S.shown; S.shown += 40;
   const b = $('#more'); if (!b) return;
-  b.insertAdjacentHTML('beforebegin', list.slice(from, S.shown).map(entryHTML).join(''));
+  b.insertAdjacentHTML('beforebegin', listHTML(list, from, S.shown));
   const st = $('.status'); if (st) st.textContent = st.textContent.replace(/，目前顯示前 \d+ 個/, list.length > S.shown ? `，目前顯示前 ${S.shown} 個` : '');
   if (list.length <= S.shown) b.remove(); else observeMore();
 }
@@ -291,7 +339,7 @@ function appendMore() {
    then new words in list order. 還不熟 sends a card back a few places in the same set. */
 const D = { deck: [], i: 0, flipped: false, key: '', kind: store.get('deckkind', 'set'), again: [], info: null };
 function deckKind() { return S.mode === 'self' ? D.kind : 'all'; }
-function deckKey() { return [S.scope, S.letter, S.q, S.markf, S.mode, deckKind()].join('|'); }
+function deckKey() { return [S.scope, S.lesson, S.letter, S.q, S.markf, S.mode, deckKind()].join('|'); }
 function buildSet() {
   const range = searchSort(pool(false, true));
   const due = range.filter(e => isDue(e.id)).sort((a, b) => (SCHED[a.id]?.due ?? 0) - (SCHED[b.id]?.due ?? 0));
@@ -328,7 +376,7 @@ function renderCards() {
     return;
   }
   $('#main').innerHTML = head + `<section class="card">
-    <div class="meta"><span class="tag">${letterOf(e).toUpperCase()}</span><span class="lvtag">${LEVEL_ZH[e.lv]}</span>${set ? (isDue(e.id) ? '<span class="num" style="color:var(--warn)">複習</span>' : '<span class="num" style="color:var(--accent)">新字</span>') : markBtns(e)}</div>
+    <div class="meta"><span class="tag">${letterOf(e).toUpperCase()}</span>${chips(e)}${set ? (isDue(e.id) ? '<span class="num" style="color:var(--warn)">複習</span>' : '<span class="num" style="color:var(--accent)">新字</span>') : markBtns(e)}</div>
     <div class="front"><span class="w">${esc(e.w)}</span>${e.lab ? `<span class="lab">${esc(e.lab)}</span>` : ''}
       <div>${sayBtn(e.sayAs)}</div></div>
     ${D.flipped ? `<div class="back">${headHTML(e)}</div>` : `<button class="btn primary flip" id="flip">翻面</button>`}
@@ -560,7 +608,7 @@ function renderStage() {
   const zhStep = lastStep(e), v = n => P.step >= n ? '' : 'veil';
   const stepLabel = P.step >= zhStep ? '下一個字 →' : P.step === 0 && e.x.length ? '顯示例句' : '顯示中文';
   st.innerHTML = `<div class="st-top">
-      <span class="kicker">${letterOf(e).toUpperCase()} · ${LEVEL_ZH[e.lv]}</span>
+      <span class="kicker">${letterOf(e).toUpperCase()} · ${e.sets.map(k => SET_ZH[k]).join(' · ')}</span>
       <span class="st-count">${P.i + 1} / ${P.slides.length}</span>
       ${document.fullscreenEnabled ? '<button class="link" id="st-full">全螢幕</button>' : ''}
       <button class="link" id="st-close">結束投影</button></div>
@@ -588,28 +636,37 @@ $('#stage').addEventListener('touchend', ev => {
 }, { passive: true });
 
 /* ---------- chrome ---------- */
-/* One button per table. Both tables are complete, so unlike 高中單字 there is
-   no 還沒進來 pill. */
-const LEVEL_COUNT = [1, 2].map(n => ENTRIES.filter(e => e.lv === n).length);
+/* One button per set. The 課次 select appears only inside a grade, and lists
+   that grade's lessons. */
+const SET_COUNT = Object.fromEntries(SETS.map(([k]) => [k, ENTRIES.filter(e => e.sets.includes(k)).length]));
 function renderScope() {
   $('#scope').innerHTML = `<button data-scope="all" aria-pressed="${S.scope === 'all'}">全部<small>${ENTRIES.length.toLocaleString()}</small></button>` +
-    LEVEL_COUNT.map((c, i) => `<button data-scope="${i + 1}" aria-pressed="${S.scope === String(i + 1)}">${LEVEL_ZH[i + 1]}<small>${c.toLocaleString()}</small></button>`).join('');
+    SETS.map(([k, short]) => `<button data-scope="${k}" aria-pressed="${S.scope === k}">${short}${isGrade(k) ? '課本' : ''}<small>${SET_COUNT[k].toLocaleString()}</small></button>`).join('');
+  const sel = $('#lesson');
+  sel.hidden = !isGrade(S.scope);
+  if (isGrade(S.scope)) {
+    sel.innerHTML = '<option value="all">課次：全部</option>' +
+      BOOK[S.scope].lessons.map(l => `<option value="${esc(l.key)}">${esc(l.code)}　${esc(l.title)}</option>`).join('');
+    sel.value = S.lesson;
+  }
 }
 /* The opener's numbers and tiles, from the data, so they show the tables as
    printed (1,211 and 794) rather than the titles' round numbers. */
 function renderIntro() {
   $('#stat-words').textContent = ENTRIES.length.toLocaleString();
-  $('#stat-basic').textContent = LEVEL_COUNT[0].toLocaleString();
-  const span = n => { const l = ENTRIES.filter(e => e.lv === n); return [l[0].w, l[l.length - 1].w]; };
-  const blurb = ['', '國中一定要會的字，課本和會考的底。', '再往上一步，閱讀和寫作常用。'];
-  $('#tiles').innerHTML = LEVEL_COUNT.map((c, i) => {
-    const [a, z] = span(i + 1);
-    return `<button class="tile rise" data-pick="${i + 1}">
-      <span class="tile-n">${c.toLocaleString()}</span>
-      <span class="tile-t">${LEVEL_LONG[i + 1]}</span>
-      <span class="tile-d">${blurb[i + 1]}從 <i>${esc(a)}</i> 到 <i>${esc(z)}</i>。</span>
-      <span class="tile-go">看這一組 ›</span></button>`;
-  }).join('');
+  // a word taught in both grades counts once
+  $('#stat-basic').textContent = ENTRIES.filter(e => e.lessons.length).length.toLocaleString();
+  const blurb = {
+    basic: '教育部表一，國中一定要會的字。',
+    more: '教育部表二，閱讀和寫作常用。',
+    g7: `七年級講義，${BOOK.g7.lessons.length} 課，照課次排，每課連到文法。`,
+    g8: `八年級講義，${BOOK.g8.lessons.length} 個文法主題，照主題排。`,
+  };
+  $('#tiles').innerHTML = SETS.map(([k, , long]) => `<button class="tile rise" data-pick="${k}">
+      <span class="tile-n">${SET_COUNT[k].toLocaleString()}</span>
+      <span class="tile-t">${long}</span>
+      <span class="tile-d">${blurb[k]}</span>
+      <span class="tile-go">看這一組 ›</span></button>`).join('');
 }
 
 /* Fade-and-rise as the opener scrolls into view. Only with JS and only when the
@@ -651,7 +708,7 @@ document.addEventListener('click', ev => {
   if (t.dataset.say != null) { say(t.dataset.say); return; }
   if (t.dataset.copy) { copyLink(t.dataset.copy); return; }
   if (t.dataset.go) { S.view = t.dataset.go; render(); goToList(); return; }
-  if (t.dataset.pick) { S.view = 'list'; S.scope = t.dataset.pick; S.shown = 40; S.q = ''; $('#q').value = ''; render(); goToList(); return; }
+  if (t.dataset.pick) { S.view = 'list'; S.scope = t.dataset.pick; S.lesson = 'all'; S.shown = 40; S.q = ''; $('#q').value = ''; render(); goToList(); return; }
   if (t.dataset.orig != null) { toast(`<span>原表寫法：${esc(t.dataset.orig)}</span>`, 5000); return; }
   if (t.dataset.letter) { if (ev.detail === 0) jumpLetter(t.dataset.letter); return; }  // keyboard; touch and mouse go through pointer events
   if (t.classList.contains('chip')) { t.parentElement.classList.add('open'); return; }
@@ -662,7 +719,7 @@ document.addEventListener('click', ev => {
   }
   if (t.dataset.kind) { D.kind = t.dataset.kind; store.set('deckkind', D.kind); D.key = ''; renderCards(); return; }
   if (t.dataset.view) { S.view = t.dataset.view; render(); window.scrollTo(0, 0); return; }
-  if (t.dataset.scope) { S.scope = t.dataset.scope; S.shown = 40; S.q = ''; $('#q').value = ''; render(); window.scrollTo(0, 0); return; }
+  if (t.dataset.scope) { S.scope = t.dataset.scope; S.lesson = 'all'; S.shown = 40; S.q = ''; $('#q').value = ''; render(); window.scrollTo(0, 0); return; }
   if (t.dataset.mark) {
     markWord(t.dataset.id, t.dataset.mark, true);
     const art = t.closest('.entry');
@@ -704,7 +761,7 @@ document.addEventListener('click', ev => {
     case 'setbtn': openPanel(); break;
     case 'closepanel': $('#panel').close(); break;
     case 'fresh':
-      S.q = ''; $('#q').value = ''; S.scope = 'all'; S.letter = 'all'; $('#letter').value = 'all';
+      S.q = ''; $('#q').value = ''; S.scope = 'all'; S.lesson = 'all'; S.letter = 'all'; $('#letter').value = 'all';
       S.zh = false; D.key = Q.key = ''; S.shown = 40; $('#panel').close(); render(); window.scrollTo(0, 0); break;
     case 'clearmarks':
       if (t.dataset.sure) { MARKS = {}; SCHED = {}; store.set('marks', MARKS); store.set('sched', SCHED); D.key = ''; $('#panel').close(); delete t.dataset.sure; t.textContent = '清除所有標記'; render(); }
@@ -732,6 +789,7 @@ $('#q').addEventListener('input', ev => { clearTimeout(qt); qt = setTimeout(() =
   const lsel = $('#letter');
   lsel.innerHTML = '<option value="all">字母：A–Z</option>' + letters.map(L => `<option value="${L}">${L.toUpperCase()} 開頭</option>`).join('');
   lsel.addEventListener('change', ev => { S.letter = ev.target.value; S.shown = 40; window.scrollTo(0, 0); render(); });
+  $('#lesson').addEventListener('change', ev => { S.lesson = ev.target.value; S.shown = 40; render(); goToList(); });
 })();
 $('#markf').addEventListener('change', ev => { S.markf = ev.target.value; S.shown = 40; render(); });
 $('#voice').addEventListener('change', ev => { S.voice = ev.target.value; store.set('voice', S.voice); say('Hello, this is how the words will sound.'); });
