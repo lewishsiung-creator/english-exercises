@@ -52,4 +52,16 @@
   .fam a { padding: 0 5px; }
   .fam .fam-home { padding-left: 0; margin-right: 2px; font-size: 13px; }
 }
+/* The Lewis Biz English mark in the footer of the family pages that had none
+   (/learn/, 程度檢測, 國中單字, 高中單字), the same 34px circle, public/logo.png,
+   that the rest of the site carries in its footer. */
+.fam-foot { display: flex; align-items: center; gap: 12px; }
+.fam-foot p { margin: 0 !important; }
+.fam-mark { flex: none; line-height: 0; border-radius: 50%; transition: opacity .12s; }
+.fam-mark img { display: block; width: 34px; height: 34px; }
+@media (hover: hover) { .fam-mark:hover { opacity: .78; } }
+
+/* Teacher tools show only on a teacher's device (learn/teacher.js puts
+   is-teacher on <html>). */
+html:not(.is-teacher) .teacher-only { display: none !important; }
 @media print { .fam { display: none; } }

@@ -2943,6 +2943,40 @@ so the five pages read as one product rather than five neighbours:
   the card, with the two buttons on the right, the way a phone already had it.
   The word gets the card's full width on a laptop. Both `vocab.css` copies.
 
+**Designer review, items 1–4 (2026-11-08)**, after a top-tier UI/UX review
+of the six pages (nine recommendations; Lewis chose 1–4):
+
+1. **常用搭配 fold in the word lists.** A card's collocations start as one row,
+   「常用搭配 3 組 ›」, so a phone shows a word in about one screen instead of
+   one and a half. They open by themselves for a search that matched a
+   collocation and for a word a link points at; flashcard backs and the
+   projector keep them open; printing opens them all. `headHTML(e, fold)`.
+2. **Teacher tools only on a teacher's device.** `public/learn/teacher.js`
+   keeps one family-wide flag, `lc.teacher`, set by `#teach` on any of the six
+   pages (the word pages set and clear it too, with their own flag) and puts
+   `is-teacher` on `<html>`; `.teacher-only` hides otherwise (fam.css).
+   Hidden from students: 學測寫作's 全部展開／全部收起／指定任務 (its panel is
+   now 設定 ⚙ for everyone, with voice and speed), 閱讀's 顯示所有答案, and
+   the word cards' 複製連結. 設定 → 在這台裝置隱藏 clears the flag.
+3. **Offline.** `public/sw.js`, registered by `public/learn/app.js` for
+   exactly three scopes — `learn/`, `reading/`, `exam-writing/` — so it can
+   never touch a student's page. Network first with a 4-second fallback to
+   the kept copy, so a deploy shows at once online. A page posts the files it
+   used to the worker on its first visit, so any page opened once online
+   opens offline afterwards (tested by stopping the local server).
+4. **The home screen.** `learn/manifest.webmanifest` (英文學習, standalone),
+   `learn/icon-180/192/512.png` and a maskable 512 — a white 「英」 on Apple
+   blue, drawn on a canvas in the browser because this Mac has no image
+   tools — linked from all six pages. /learn/ shows a 加到主畫面 card on
+   iPhone Safari (the two taps) and on Android (the browser's own prompt),
+   hidden once opened from the home screen or after 不用了. **iPhone keeps a
+   home-screen app's records apart from Safari's**; the card says so and
+   points to the 備份碼 to carry them across.
+
+Also: the Lewis Biz English mark (`public/logo.png`, 34px, linked to
+lewistoeic.com) is now in the footer of /learn/, 程度檢測, 國中單字 and 高中單字,
+as it already was on 閱讀, 學測寫作 and the rest of the site (`.fam-foot`).
+
 **今天這一組, findable (2026-11-08)**, both word pages. Lewis: 「今天這一組」不好找 —
 the plan told students to do it every day, but the opener's button said only
 開始練閃卡 (which did open it). The main button now reads 開始今天這一組, a line

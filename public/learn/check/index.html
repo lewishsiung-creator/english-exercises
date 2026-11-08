@@ -12,6 +12,13 @@
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="../fam.css">
 <link rel="stylesheet" href="check.css">
+<!-- 英文學習 as an app: the home-screen icon and name, and offline use (learn/app.js, sw.js). -->
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<meta name="apple-mobile-web-app-title" content="英文學習">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<script src="../app.js" defer></script>
 </head>
 <body>
 
@@ -37,7 +44,9 @@
 
 <footer class="notes">
   <div class="wrap">
-    <p>題目從國中單字、高中單字兩頁的字表隨機抽出，每次都不一樣。結果只存在這台裝置上。 · <a href="https://lewistoeic.com/" target="_blank" rel="noopener">lewistoeic.com</a></p>
+    <div class="fam-foot"><a class="fam-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener" aria-label="Lewis Biz English"><img src="../../logo.png" alt="" width="34" height="34"></a>
+      <p>題目從國中單字、高中單字兩頁的字表隨機抽出，每次都不一樣。結果只存在這台裝置上。 · <a href="https://lewistoeic.com/" target="_blank" rel="noopener">lewistoeic.com</a></p>
+    </div>
   </div>
 </footer>
 

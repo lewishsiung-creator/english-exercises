@@ -18,6 +18,7 @@
 
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="../learn/fam.css">
+<script src="../learn/teacher.js"></script>
 
 <!-- The house typography, shared by every page. Linked AFTER this page's own
      stylesheet so its definitions win. It carries no colour; this page keeps
@@ -28,6 +29,13 @@
      no colour of its own. See ../house.css. -->
 <link rel="stylesheet" href="../house.css">
 
+<!-- 英文學習 as an app: the home-screen icon and name, and offline use (learn/app.js, sw.js). -->
+<link rel="manifest" href="../learn/manifest.webmanifest">
+<link rel="apple-touch-icon" href="../learn/icon-180.png">
+<meta name="apple-mobile-web-app-title" content="英文學習">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<script src="../learn/app.js" defer></script>
 </head>
 <body>
 
@@ -92,7 +100,7 @@
     <label>上課用 <em>For class</em></label>
     <p class="row-note">作答內容不會存下來，重新整理就是全新的一頁；只會記得你完成過哪幾關（目錄上的 ✓）。
       <em>No answer is saved; a reload is a clean page. Only finished parts are remembered, as a ✓ in the contents.</em></p>
-    <button class="panel-btn panel-btn-quiet" id="showAll">顯示所有答案 <em>Show every answer</em></button>
+    <button class="panel-btn panel-btn-quiet teacher-only" id="showAll">顯示所有答案 <em>Show every answer</em></button>
     <button class="panel-btn panel-btn-quiet" id="fresh">清空畫面重新開始 <em>Start fresh</em></button>
   </div>
 

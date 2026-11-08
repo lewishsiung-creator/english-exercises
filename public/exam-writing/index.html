@@ -30,9 +30,17 @@
      own. See ../house.css. -->
 <link rel="stylesheet" href="../house.css">
 <link rel="stylesheet" href="../learn/fam.css">
+<script src="../learn/teacher.js"></script>
 <!-- The 英文學習 family's Apple look and dark mode, by tokens. Linked last. -->
 <link rel="stylesheet" href="apple.css">
 
+<!-- 英文學習 as an app: the home-screen icon and name, and offline use (learn/app.js, sw.js). -->
+<link rel="manifest" href="../learn/manifest.webmanifest">
+<link rel="apple-touch-icon" href="../learn/icon-180.png">
+<meta name="apple-mobile-web-app-title" content="英文學習">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<script src="../learn/app.js" defer></script>
 </head>
 <body>
 
@@ -59,7 +67,7 @@
 
   <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="false">中譯</button>
   <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
-          aria-controls="panel" title="教師面板" aria-label="教師面板">👩‍🏫</button>
+          aria-controls="panel" title="設定" aria-label="設定">⚙</button>
 </header>
 
 <div class="shell">
@@ -71,9 +79,9 @@
 
 <!-- Teacher panel. Opens over the page rather than replacing it, so a
      discussion in progress is never lost. -->
-<div class="panel" id="panel" role="dialog" aria-label="教師面板" hidden>
+<div class="panel" id="panel" role="dialog" aria-label="設定" hidden>
   <div class="panel-head">
-    <h2>教師面板 <span>Teacher panel</span></h2>
+    <h2>設定 <span>Settings</span></h2>
     <button class="panel-x" id="panelClose" aria-label="關閉">✕</button>
   </div>
 
@@ -82,13 +90,14 @@
     <span>顯示全部中譯 <em>Show all Chinese</em></span>
   </label>
 
-  <div class="row">
+  <!-- Teacher-only rows: shown on a teacher's device (learn/teacher.js). -->
+  <div class="row teacher-only">
     <button class="panel-btn" id="showAll">全部展開</button>
     <p class="row-note">一次打開七篇範文的逐句結構，以及所有句型和句庫的英文。適合上課一起複習，
       或印成解答本。</p>
   </div>
 
-  <div class="row">
+  <div class="row teacher-only">
     <button class="panel-btn panel-btn-quiet" id="hideAll">全部收起</button>
     <p class="row-note">把答案收起來，回到只看得到中文提示的樣子。</p>
   </div>
@@ -96,7 +105,7 @@
   <!-- A teacher hands out one essay's 拆解練習 as this week's task: the link
        opens /learn/, which keeps it and shows the student's progress.
        Filled by drill.js. -->
-  <div class="row">
+  <div class="row teacher-only">
     <label for="taskPick">指定任務 <em>Assign as a task</em></label>
     <select id="taskPick"></select>
     <button class="panel-btn panel-btn-quiet" id="taskCopy">複製任務連結，傳給學生</button>

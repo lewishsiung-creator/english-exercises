@@ -67,7 +67,8 @@ const S = {
 };
 let MARKS = store.get('marks', {});   // id -> 'k' (記住了) | 'r' (還不熟); 自學 only
 // Students never see 教學 or 投影. A device becomes the teacher's by opening the link with #teach once.
-let TEACHER = store.get('teacher', false);
+// lc.teacher is the family-wide flag (learn/teacher.js): #teach on any page of the family counts here too
+let TEACHER = store.get('teacher', false) || (() => { try { return JSON.parse(localStorage.getItem('lc.teacher')) === true; } catch (e) { return false; } })();
 if (location.hash === '#teach') becomeTeacher();
 if (!TEACHER) S.mode = 'self';
 S.zh = S.mode === 'self';
@@ -114,7 +115,7 @@ function weekHTML(days) {
   return `<div class="week"><div class="wk-row">${cells}</div><p class="wk-n">這週練了 <b>${n}</b> 天</p></div>`;
 }
 function becomeTeacher() {
-  TEACHER = true; store.set('teacher', true); S.mode = 'teach'; store.set('mode', 'teach'); S.zh = false;
+  TEACHER = true; store.set('teacher', true); try { localStorage.setItem('lc.teacher', 'true'); } catch (e) {} S.mode = 'teach'; store.set('mode', 'teach'); S.zh = false;
   // take #teach out of the address bar so it is not copied to a student by accident
   try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
 }
@@ -220,16 +221,26 @@ function fixTag(e, key) {
   return o == null ? '' : `<button class="fixed" data-orig="${esc(o)}" aria-label="已勘誤，看原表寫法">已勘誤</button>`;
 }
 const posTag = p => `<span class="pos ${p ? '' : 'none'}" title="${esc(POSZH[p] || '')}">${esc(p || '—')}</span>`;
-function headHTML(e) {
+/* In the word list a card's 常用搭配 start folded -- 「常用搭配 3 組 ›」 -- so a
+   phone shows a word, its meaning and its example in about a screen instead
+   of a screen and a half (2026-11-08). They open by themselves when a search
+   matched a collocation, and on the word a link pointed at; on a flashcard's
+   back and on the projector they are always open. */
+function colsOpen(e) {
+  const q = S.q.trim().toLowerCase();
+  return !!q && e.co.some(c => (c.c + ' ' + c.zh).toLowerCase().includes(q));
+}
+function headHTML(e, fold) {
   return `<div class="head">
     <div class="hw"><span class="w">${esc(e.w)}</span>${fixTag(e, 'word')}${e.lab ? `<span class="lab">${esc(e.lab)}</span>` : ''}${sayBtn(e.sayAs, '播放 ' + esc(e.sayAs))}</div>
     ${e.se.map((s, si) => `<div class="sense">${posTag(s.p)}<div class="sb">
       ${s.z ? `<div class="mean">${zhw(esc(s.z))}${si === 0 ? fixTag(e, 'pos') : ''}</div>` : ''}</div></div>`).join('')}
     ${e.x.length ? `<div class="exs">${e.x.map((x, xi) => `<div class="ex"><div class="en">${hl(x.en)} ${sayBtn(x.en, '播放例句')}${fixTag(e, 'x' + xi)}</div>${x.zh ? `<div class="zh">${zhw(esc(x.zh))}</div>` : ''}</div>`).join('')}</div>` : ''}
-    ${e.co.length ? `<div class="cols"><p class="cols-k">常用搭配</p>${e.co.map(c => `<div class="col">
+    ${e.co.length ? (fold ? `<details class="colsd"${colsOpen(e) ? ' open' : ''}><summary><span class="cs-k">常用搭配</span><span class="cs-n">${e.co.length} 組</span></summary>` : '') +
+      `<div class="cols">${fold ? '' : '<p class="cols-k">常用搭配</p>'}${e.co.map(c => `<div class="col">
       <div class="col-c"><b>${esc(c.c)}</b> <span class="col-zh">${zhw(esc(c.zh))}</span></div>
       <div class="en">${hl(c.en)} ${sayBtn(c.en, '播放例句')}</div>
-      <div class="zh">${zhw(esc(c.ezh))}</div></div>`).join('')}</div>` : ''}
+      <div class="zh">${zhw(esc(c.ezh))}</div></div>`).join('')}</div>` + (fold ? '</details>' : '') : ''}
     ${e.vari ? `<div class="vari">${it(e.vari)}${fixTag(e, 'note')}</div>` : ''}
   </div>`;
 }
@@ -242,8 +253,8 @@ function entryHTML(e) {
   const m = S.mode === 'self' ? MARKS[e.id] : '';
   return `<article class="entry ${m === 'k' ? 'known' : m === 'r' ? 'review' : ''}" id="e-${e.id}">
     <div class="meta"><span class="tag">${letterOf(e).toUpperCase()}</span>${chips(e)}${dots(e.id)}
-      ${markBtns(e)}<button class="link copy" data-copy="${e.id}" aria-label="複製 ${esc(e.w)} 的連結">複製連結</button></div>
-    <div class="body">${headHTML(e)}</div>
+      ${markBtns(e)}${TEACHER ? `<button class="link copy" data-copy="${e.id}" aria-label="複製 ${esc(e.w)} 的連結">複製連結</button>` : ''}</div>
+    <div class="body">${headHTML(e, true)}</div>
   </article>`;
 }
 
@@ -339,7 +350,7 @@ function jumpTo(i, flash) {
   if (i >= S.shown) { S.shown = Math.ceil((i + 1) / 40) * 40; renderList(); }
   const el = document.getElementById('e-' + e.id); if (!el) return;
   el.scrollIntoView({ block: 'start' });
-  if (flash) { el.classList.remove('target'); void el.offsetWidth; el.classList.add('target'); }
+  if (flash) { el.classList.remove('target'); void el.offsetWidth; el.classList.add('target'); const cd = el.querySelector('.colsd'); if (cd) cd.open = true; }
 }
 function jumpLetter(L) {
   if (STARTS[L] == null) return;
@@ -1026,7 +1037,7 @@ document.addEventListener('click', ev => {
     case 'st-prev': stageGo(-1); $('#stage').focus({ preventScroll: true }); break;
     case 'st-next': stageGo(1); $('#stage').focus({ preventScroll: true }); break;
     case 'st-step': stageStep(); $('#stage').focus({ preventScroll: true }); break;
-    case 'unteach': TEACHER = false; store.set('teacher', false); S.mode = 'self'; store.set('mode', 'self'); S.zh = true; D.key = Q.key = ''; $('#panel').close(); render(); break;
+    case 'unteach': TEACHER = false; store.set('teacher', false); try { localStorage.removeItem('lc.teacher'); } catch (e) {} S.mode = 'self'; store.set('mode', 'self'); S.zh = true; D.key = Q.key = ''; $('#panel').close(); render(); break;
     case 'qskip': Q.missed.add(Q.i); Q.solved = true; SP.msg = ''; renderQuiz(); break;
     case 'spcheck': checkSpell(); break;
     case 'sphint': spellHint(); break;
@@ -1101,3 +1112,5 @@ renderIntro();
 render();
 riseIn();
 openFromHash();
+// a printed list shows every card's 常用搭配
+window.addEventListener('beforeprint', () => document.querySelectorAll('.colsd').forEach(x => { x.open = true; }));

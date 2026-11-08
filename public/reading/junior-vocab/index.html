@@ -11,6 +11,15 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='12' fill='%230071e3'/%3E%3Ctext x='32' y='43' font-family='Helvetica,Arial,sans-serif' font-size='26' font-weight='700' fill='white' text-anchor='middle'%3EJH%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="vocab.css">
 <link rel="stylesheet" href="../../learn/fam.css">
+<!-- 英文學習 as an app: the home-screen icon and name, and offline use (learn/app.js, sw.js). -->
+<link rel="manifest" href="../../learn/manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../learn/icon-180.png">
+<meta name="apple-mobile-web-app-title" content="英文學習">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<script src="../../learn/app.js" defer></script>
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 </head>
 <body>
 
@@ -118,7 +127,9 @@
       <p>「七年級課本」「八年級課本」是路老師《康軒版國中英語單字精熟講義》的單字，和<a href="../../junior-high/">國中英語精熟</a>那一頁同一份資料。課本裡的字如果也在教育部字表上，就不重複列出，而是在同一張卡片加上 KK 音標、講義的例句和課次；字表上沒有的（多半是片語，例如 <i>How old...?</i>、<i>take a shower</i>）另外列出，用講義的中譯和例句。</p>
       <p>括號裡是同一個字的其他說法或變化，例如 <i>airplane (plane)</i>、<i>be (am, is, are, was, were, been)</i>。PDF 裡有幾個字中間多了空格（例如 blo use），這裡已經接回來。</p>
     </details>
-    <p class="fine">更多教材與課程 · <a href="https://lewistoeic.com/" target="_blank" rel="noopener">lewistoeic.com</a></p>
+    <div class="fam-foot"><a class="fam-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener" aria-label="Lewis Biz English"><img src="../../logo.png" alt="" width="34" height="34"></a>
+      <p class="fine">更多教材與課程 · <a href="https://lewistoeic.com/" target="_blank" rel="noopener">lewistoeic.com</a></p>
+    </div>
   </div>
 </footer>
 <nav class="rail" id="rail" aria-label="字母索引" hidden></nav>

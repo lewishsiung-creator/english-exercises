@@ -683,3 +683,21 @@ body.staged { overflow: hidden; }
   text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;
   -webkit-tap-highlight-color: transparent;
 }
+
+/* 常用搭配, folded in the list (headHTML(e, true)): one quiet row that opens. */
+.colsd { margin-top: 18px; padding-left: calc(4.2rem + 12px); border-top: 1px solid var(--hair); }
+.colsd > summary {
+  display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 0 0;
+  list-style: none; cursor: pointer; color: var(--accent); -webkit-tap-highlight-color: transparent;
+}
+.colsd > summary::-webkit-details-marker { display: none; }
+.colsd > summary::after { content: "›"; font: 600 18px/1 var(--font-ui); transition: transform .2s cubic-bezier(.4, 0, .2, 1); }
+.colsd[open] > summary::after { transform: rotate(90deg); }
+.cs-k { font: 600 15px/1.2 var(--font-zh); letter-spacing: 0; }
+.cs-n { font: 13px/1.2 var(--font-zh); color: var(--muted); letter-spacing: 0; }
+.colsd > .cols { margin-top: 4px; padding: 0 0 4px; border-top: 0; padding-left: 0; }
+@media (max-width: 560px) { .colsd { padding-left: 0; } }
+@media print { .colsd { padding-left: 0; } .colsd > summary { display: none; } }
+
+/* the footer's logo row keeps the gap the old footer line had */
+.notes .fam-foot { margin-top: 18px; }

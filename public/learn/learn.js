@@ -429,3 +429,47 @@ function openRestore() {
 }
 document.getElementById('bkMake')?.addEventListener('click', openBackup);
 document.getElementById('bkRestore')?.addEventListener('click', openRestore);
+
+/* 加到主畫面 (2026-11-08). Opened from the home screen, the family runs like
+   an app: full screen, its own icon, and offline once a page has been opened.
+   iPhone/iPad Safari has no button a page can press, so the card shows the
+   two taps; Android Chrome offers its own prompt, which the card's button
+   triggers. Not shown once opened from the home screen, nor after 不用了.
+   One catch is said on the card: on an iPhone the home-screen app keeps its
+   own records, apart from Safari's -- the 備份碼 below carries them across. */
+(function () {
+  const box = document.getElementById('install');
+  if (!box) return;
+  const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  let hidden = false;
+  try { hidden = localStorage.getItem('lc.installHide') === '1'; } catch (e) {}
+  if (standalone || hidden) return;
+  const ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const close = '<button class="in-no" id="inNo">不用了</button>';
+  const draw = (body) => {
+    box.innerHTML = `<div class="in-icon" aria-hidden="true"><img src="icon-180.png" alt="" width="56" height="56"></div>
+      <div class="in-text"><h2 id="inTitle">加到主畫面，每天一點開就能練</h2>${body}</div>`;
+    box.hidden = false;
+    box.querySelector('#inNo').addEventListener('click', () => {
+      try { localStorage.setItem('lc.installHide', '1'); } catch (e) {}
+      box.hidden = true;
+    });
+  };
+  if (ios) {
+    draw(`<p>在 Safari 點下方的<b>分享</b>按鈕，再選<b>「加入主畫面」</b>。之後從主畫面打開，就像一個 App，沒網路也能練打開過的頁面。</p>
+      <p class="in-note">注意：主畫面的「英文學習」和 Safari 的紀錄是分開的。已經在 Safari 練過的話，先按下面的「產生備份碼」，再到主畫面的「英文學習」貼上還原。</p>
+      <div class="in-row">${close}</div>`);
+    return;
+  }
+  window.addEventListener('beforeinstallprompt', (ev) => {
+    ev.preventDefault();
+    draw(`<p>加到主畫面後，就像一個 App，沒網路也能練打開過的頁面。</p>
+      <div class="in-row"><button class="in-go" id="inGo">加到主畫面</button>${close}</div>`);
+    box.querySelector('#inGo').addEventListener('click', async () => {
+      ev.prompt();
+      try { await ev.userChoice; } catch (e) {}
+      box.hidden = true;
+    });
+  });
+})();
+

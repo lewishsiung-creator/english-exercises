@@ -11,6 +11,15 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='12' fill='%231d5c63'/%3E%3Ctext x='32' y='42' font-family='Helvetica,Arial,sans-serif' font-size='24' font-weight='700' fill='white' text-anchor='middle'%3EL1%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="vocab.css">
 <link rel="stylesheet" href="../../learn/fam.css">
+<!-- 英文學習 as an app: the home-screen icon and name, and offline use (learn/app.js, sw.js). -->
+<link rel="manifest" href="../../learn/manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../learn/icon-180.png">
+<meta name="apple-mobile-web-app-title" content="英文學習">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<script src="../../learn/app.js" defer></script>
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 </head>
 <body>
 
@@ -117,7 +126,9 @@
       <p>字表的寫法和原表一樣：<i>agree(ment)</i> 表示 agree 加上 -ment 就是名詞 agreement；<i>chopstick(s)</i> 表示通常用複數；斜線隔開的是同一個字的不同說法，例如 <i>bicycle/bike</i>。</p>
       <p>原表有一處筆誤，<i>calm</i> 的詞性少了一個點（v./adj./n），這裡已經補上。</p>
     </details>
-    <p class="fine">更多教材與課程 · <a href="https://lewistoeic.com/" target="_blank" rel="noopener">lewistoeic.com</a></p>
+    <div class="fam-foot"><a class="fam-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener" aria-label="Lewis Biz English"><img src="../../logo.png" alt="" width="34" height="34"></a>
+      <p class="fine">更多教材與課程 · <a href="https://lewistoeic.com/" target="_blank" rel="noopener">lewistoeic.com</a></p>
+    </div>
   </div>
 </footer>
 <nav class="rail" id="rail" aria-label="字母索引" hidden></nav>
