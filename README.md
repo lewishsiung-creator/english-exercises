@@ -2943,6 +2943,30 @@ so the five pages read as one product rather than five neighbours:
   the card, with the two buttons on the right, the way a phone already had it.
   The word gets the card's full width on a laptop. Both `vocab.css` copies.
 
+**主題 — words by topic (2026-11-08)**, both word pages. Lewis asked for
+「以主題分類單字」 and chose, from options, both lists and inside the existing
+pages (not a new page), so the cards, quiz, 熟練度 and progress all work on a
+topic as they do on a level.
+
+- **26 topics, one list for both pages** — `tools/topics/list.json` ([id, 中文名,
+  what belongs]). Concrete subjects first (人物與家庭 … 科學與研究), then four
+  for words with no subject: 思考與觀念 (abstract nouns and thinking verbs),
+  動作與變化 (general verbs), 描述與性質 (general adjectives and adverbs),
+  基礎詞 (grammar words). Every word has one or two, the best fit first.
+- **`tools/topics/topics.json`** tags all 6,343 headwords across both pages,
+  keyed like the collocations (exact headword for China/May/Miss and their
+  lower-case twins, otherwise lower-cased), so a word shared by both pages has
+  one set of topics. Written by eight taggers working from the meanings the
+  site teaches; not hand-reviewed word by word — spot checks only.
+  `tools/topics/topics.py` is the shared reader; both `build.py` add the
+  topics as the last field of each row and write `TOPIC_LIST` into words.js.
+- **On the page**: a 主題 select beside the letter select narrows whatever is
+  chosen (第三級 · 科技與網路); a row of 26 chips with counts under the level
+  tiles, 「或是，從主題開始」, opens the whole list at a topic; `#topic/<id>`
+  does the same from a link. `#today` and `#set/…` start from all topics.
+  `deckKey()` includes the topic, so changing it deals a new deck.
+- **To retag a word**, edit `tools/topics/topics.json` and run both builds.
+
 **Second gamification review (2026-11-08)**, after Levels 3–6 and 學測寫作
 joined. Six recommendations; Lewis chose the first three. Same house rules:
 no score, no points, no leaderboard, nothing timed, nothing that resets.

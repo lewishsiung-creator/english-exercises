@@ -13,6 +13,10 @@ its ids to zh.json and running this again; the page shows the rest as 還沒進�
 import json
 import re
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'topics'))
+from topics import tags_for, topic_list, topic_tags  # noqa: E402
 
 HERE = Path(__file__).parent
 OUT = HERE.parent.parent / 'public' / 'reading' / 'vocab' / 'words.js'
@@ -41,6 +45,7 @@ def main():
     zh = json.loads((HERE / 'zh.json').read_text(encoding='utf-8'))
 
     cols = collocations()
+    tags = topic_tags()
     rows, missing = [], []
     for e in words:
         z = zh.get(e['id'])
@@ -50,7 +55,8 @@ def main():
         pos = [p.strip('().') for p in e['pos'].split('/')]
         if [s[0] for s in z['senses']] != pos:
             raise SystemExit(f"{e['id']}: senses {z['senses']} do not follow pos {e['pos']}")
-        rows.append([e['id'], e['w'], e['level'], z['say'], z['senses'], [z['ex']], cols.get(e['w'].strip()) or cols.get(colloc_key(e['w']), [])])
+        rows.append([e['id'], e['w'], e['level'], z['say'], z['senses'], [z['ex']], cols.get(e['w'].strip()) or cols.get(colloc_key(e['w']), []),
+                     tags_for(tags, e['w'])])
 
     stray = set(zh) - {e['id'] for e in words}
     if stray:
@@ -61,7 +67,8 @@ def main():
         '/* 高中單字 — built by tools/ceec/build.py from 大考中心《高中英文參考詞彙表》\n'
         '   (111 學年度起適用, 109 年 7 月, © 大學入學考試中心基金會) and the Chinese in\n'
         '   tools/ceec/zh.json. Edit those, not this. */\n'
-        f'const RAW = [\n{lines}\n];\n', encoding='utf-8')
+        f'const RAW = [\n{lines}\n];\n'
+        f'const TOPIC_LIST = {json.dumps(topic_list(), ensure_ascii=False)};\n', encoding='utf-8')
     levels = sorted({r[2] for r in rows})
     print(f'{len(rows)} words (levels {levels}), {len(missing)} still without Chinese -> {OUT}')
 

@@ -32,6 +32,10 @@ import json
 import re
 import subprocess
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'topics'))
+from topics import tags_for, topic_list, topic_tags  # noqa: E402
 
 HERE = Path(__file__).parent
 ROOT = HERE.parent.parent
@@ -190,8 +194,9 @@ def main():
     # and then started again at a for 常用字, and the A-Z rail could not follow.
     order = sorted(entries.values(), key=lambda e: (re.sub(r'[^a-z]', '', e['w'].lower()) or e['w'].lower(), e['w']))
     cols = collocations()
+    tags = topic_tags()
     rows = [[e['id'], e['w'], e['sets'], e['say'], e['senses'], e['ex'], e['kk'], e['lessons'],
-             cols.get(e['w'].strip()) or cols.get(colloc_key(e['w']), [])]
+             cols.get(e['w'].strip()) or cols.get(colloc_key(e['w']), []), tags_for(tags, e['w'])]
             for e in order]
     lines = ',\n'.join(json.dumps(r, ensure_ascii=False) for r in rows)
     OUT.write_text(
@@ -199,7 +204,8 @@ def main():
         '   (2,000 字, 附錄五), the Chinese in tools/moe/zh.json, and the textbook words in\n'
         '   public/junior-high/words.js (路老師講義, 康軒版). Edit those, not this. */\n'
         f'const RAW = [\n{lines}\n];\n'
-        f'const BOOK = {json.dumps(book, ensure_ascii=False)};\n', encoding='utf-8')
+        f'const BOOK = {json.dumps(book, ensure_ascii=False)};\n'
+        f'const TOPIC_LIST = {json.dumps(topic_list(), ensure_ascii=False)};\n', encoding='utf-8')
     # /learn/ shows a teacher's task -- one lesson -- without loading 2,000 words,
     # so it gets just the lessons: code, title and the ids each one teaches.
     lessons = {l['key']: {'grade': b['zh'], 'code': l['code'], 'title': l['title'], 'ids': l['ids']}

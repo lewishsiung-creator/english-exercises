@@ -27,7 +27,7 @@ Object.entries(BOOK).forEach(([g, b]) => {
   b.lessons.forEach(l => { LESSON[l.key] = l; l.ids.forEach(id => { if (!GRADE_ORDER[g].includes(id)) GRADE_ORDER[g].push(id); }); });
 });
 // [id, word as printed, sets, spoken as, senses [[pos, 中文]], examples [[en, 中譯]], KK, lesson keys]
-const ENTRIES = RAW.map(([id, w, sets, sayAs, senses, exs, kk, lessons, cols = []], n) => {
+const ENTRIES = RAW.map(([id, w, sets, sayAs, senses, exs, kk, lessons, cols = [], tp = []], n) => {
   const se = senses.map(([p, z]) => ({ p, z }));
   const x = exs.map(([en, zh]) => ({ en, zh }));
   const firstZh = (se.find(s => s.z) || {}).z || '';
@@ -35,7 +35,7 @@ const ENTRIES = RAW.map(([id, w, sets, sayAs, senses, exs, kk, lessons, cols = [
   const co = cols.map(([c, zh, en, ezh]) => ({ c, zh, en, ezh }));
   // search finds a word by its collocations too: "make a decision" turns up decision
   const text = (w + ' ' + sayAs + ' ' + se.map(s => s.z).join(' ') + ' ' + co.map(c => c.c + ' ' + c.zh).join(' ')).toLowerCase();
-  return { id, n, w, lab: kk, sayAs, se, vari: '', x, sets, lessons, co, fixes: {}, firstZh, text, w0: w };
+  return { id, n, w, lab: kk, sayAs, se, vari: '', x, sets, lessons, co, tp, fixes: {}, firstZh, text, w0: w };
 });
 const BY_ID = Object.fromEntries(ENTRIES.map(e => [e.id, e]));
 // the lesson a word is taught in within one grade: its first, if it comes back later
@@ -56,6 +56,7 @@ const S = {
   view: 'list',
   scope: 'all',             // 'all' | 'basic' | 'more' | 'g7' | 'g8'
   lesson: 'all',            // a lesson key, within a grade scope
+  topic: 'all',             // 'all' | a topic id from TOPIC_LIST
   letter: 'all',
   q: '',
   markf: 'all',
@@ -191,6 +192,7 @@ function pool(ignoreSearch, ignoreMark) {
     else {
       if (S.scope !== 'all' && !e.sets.includes(S.scope)) return false;
       if (isGrade(S.scope) && S.lesson !== 'all' && lessonIn(e, S.scope) !== S.lesson) return false;
+      if (S.topic !== 'all' && !e.tp.includes(S.topic)) return false;
       if (S.letter !== 'all' && letterOf(e) !== S.letter) return false;
     }
     if (S.mode === 'self' && S.markf !== 'all' && !ignoreMark) {
@@ -252,6 +254,7 @@ function where() {
   else {
     parts.push(S.scope === 'all' ? '全部' : SETS.find(x => x[0] === S.scope)[2]);
     if (isGrade(S.scope) && S.lesson !== 'all') parts.push(esc(LESSON[S.lesson].code));
+    if (S.topic !== 'all') parts.push(esc(TOPIC_ZH[S.topic]));
     if (S.letter !== 'all') parts.push(S.letter.toUpperCase() + ' 開頭');
   }
   return parts.join(' · ');
@@ -363,10 +366,19 @@ function openFromHash() {
     becomeTeacher(); D.key = Q.key = ''; render();
     return true;
   }
+  // #topic/<id> opens the whole list at one topic
+  const tm = location.hash.match(/^#topic\/([a-z]+)$/);
+  if (tm && TOPIC_COUNT[tm[1]]) {
+    S.view = 'list'; S.scope = 'all'; S.topic = tm[1]; $('#topic').value = tm[1]; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = ''; S.shown = 40;
+    render();
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (err) {}
+    setTimeout(goToList, 60);
+    return true;
+  }
   // #today opens 今天這一組 over the whole list: the words due for review first,
   // then new ones. The 今天的複習 panel on /learn/ links here.
   if (location.hash === '#today') {
-    S.view = 'cards'; S.scope = 'all'; S.lesson = 'all'; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = '';
+    S.view = 'cards'; S.scope = 'all'; S.topic = 'all'; $('#topic').value = 'all'; S.lesson = 'all'; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = '';
     S.markf = 'all'; $('#markf').value = 'all';
     if (S.mode === 'self') { D.kind = 'set'; store.set('deckkind', 'set'); }
     D.key = '';
@@ -391,7 +403,7 @@ function openFromHash() {
   // reload is the ordinary page.
   const set = location.hash.match(/^#set\/([\w-]+)$/);
   if (set && SETS.some(x => x[0] === set[1])) {
-    S.view = 'list'; S.scope = set[1]; S.lesson = 'all'; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = ''; S.shown = 40;
+    S.view = 'list'; S.scope = set[1]; S.topic = 'all'; $('#topic').value = 'all'; S.lesson = 'all'; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = ''; S.shown = 40;
     render();
     try { history.replaceState(null, '', location.pathname + location.search); } catch (err) {}
     setTimeout(goToList, 60);
@@ -455,7 +467,7 @@ function appendMore() {
    then new words in list order. 還不熟 sends a card back a few places in the same set. */
 const D = { deck: [], i: 0, flipped: false, key: '', kind: store.get('deckkind', 'set'), again: [], info: null };
 function deckKind() { return S.mode === 'self' ? D.kind : 'all'; }
-function deckKey() { return [S.scope, S.lesson, S.letter, S.q, S.markf, S.mode, deckKind()].join('|'); }
+function deckKey() { return [S.scope, S.lesson, S.topic, S.letter, S.q, S.markf, S.mode, deckKind()].join('|'); }
 function buildSet() {
   const range = searchSort(pool(false, true));
   const due = range.filter(e => isDue(e.id)).sort((a, b) => (SCHED[a.id]?.due ?? 0) - (SCHED[b.id]?.due ?? 0));
@@ -854,6 +866,21 @@ function announceStops(before) {
   paintTileProgress();
 }
 
+/* ---------- 主題 (2026-11-08) ----------
+   Every word carries one or two of 26 topics (tools/topics/), the same list on
+   國中單字 and 高中單字, so 食物與飲料 means the same set of ideas on both.
+   A topic narrows whatever else is chosen -- 第三級 · 食物與飲料 -- and the
+   cards, the quiz and 今天這一組 all draw from the narrowed list. The opener
+   has a row of topics for a student who would rather start from a subject
+   than from a level. TOPIC_LIST comes with the data in words.js. */
+const TOPIC_ZH = Object.fromEntries(TOPIC_LIST.map(([k, zh]) => [k, zh]));
+const TOPIC_COUNT = Object.fromEntries(TOPIC_LIST.map(([k]) => [k, ENTRIES.filter(e => e.tp.includes(k)).length]));
+function renderTopics() {
+  const box = $('#topics'); if (!box) return;
+  box.innerHTML = TOPIC_LIST.filter(([k]) => TOPIC_COUNT[k]).map(([k, zh]) =>
+    `<button class="topic" data-topic="${k}"><span class="tp-zh">${esc(zh)}</span><span class="tp-n">${TOPIC_COUNT[k].toLocaleString()}</span></button>`).join('');
+}
+
 function renderIntro() {
   $('#stat-words').textContent = ENTRIES.length.toLocaleString();
   $('#wk-a').textContent = weeks(SET_COUNT.basic);
@@ -872,6 +899,7 @@ function renderIntro() {
       <span class="tile-d">${blurb[k]}</span>
       <span class="tile-go">看這一組 ›</span></button>`).join('');
   paintTileProgress();
+  renderTopics();
 }
 
 /* Fade-and-rise as the opener scrolls into view. Only with JS and only when the
@@ -928,6 +956,11 @@ document.addEventListener('click', ev => {
   const t = ev.target.closest('button'); if (!t) return;
   if (t.dataset.say != null) { say(t.dataset.say); return; }
   if (t.dataset.copy) { copyLink(t.dataset.copy); return; }
+  if (t.dataset.topic) {
+    S.view = 'list'; S.scope = 'all'; S.topic = t.dataset.topic; $('#topic').value = S.topic;
+    S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = ''; S.shown = 40; S.lesson = 'all';
+    render(); goToList(); return;
+  }
   if (t.dataset.task) { copyTask(t.dataset.task); return; }
   if (t.dataset.go) { S.view = t.dataset.go; render(); goToWork(); return; }
   if (t.dataset.pick) { S.view = 'list'; S.scope = t.dataset.pick; S.lesson = 'all'; S.shown = 40; S.q = ''; $('#q').value = ''; render(); goToList(); return; }
@@ -1011,6 +1044,10 @@ $('#q').addEventListener('input', ev => { clearTimeout(qt); qt = setTimeout(() =
   const lsel = $('#letter');
   lsel.innerHTML = '<option value="all">字母：A–Z</option>' + letters.map(L => `<option value="${L}">${L.toUpperCase()} 開頭</option>`).join('');
   lsel.addEventListener('change', ev => { S.letter = ev.target.value; S.shown = 40; render(); goToList(); });
+  const tsel = $('#topic');
+  tsel.innerHTML = '<option value="all">主題：全部</option>' +
+    TOPIC_LIST.filter(([k]) => TOPIC_COUNT[k]).map(([k, zh]) => `<option value="${k}">${esc(zh)}</option>`).join('');
+  tsel.addEventListener('change', ev => { S.topic = ev.target.value; S.shown = 40; render(); goToList(); });
   $('#lesson').addEventListener('change', ev => { S.lesson = ev.target.value; S.shown = 40; render(); goToList(); });
 })();
 $('#markf').addEventListener('change', ev => { S.markf = ev.target.value; S.shown = 40; render(); });

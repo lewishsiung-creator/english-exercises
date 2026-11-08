@@ -1,0 +1,20262 @@
+{
+"China": [
+"places"
+],
+"May": [
+"time"
+],
+"Miss": [
+"people"
+],
+"a few": [
+"time"
+],
+"a little": [
+"time",
+"describe"
+],
+"a lot": [
+"time",
+"describe"
+],
+"a lot of": [
+"time"
+],
+"a.m.": [
+"time"
+],
+"a/an": [
+"function"
+],
+"abandon": [
+"action"
+],
+"abbreviate": [
+"talk"
+],
+"abide": [
+"law"
+],
+"ability": [
+"mind"
+],
+"able": [
+"describe"
+],
+"abnormal": [
+"describe"
+],
+"aboard": [
+"travel"
+],
+"abolish": [
+"law"
+],
+"aboriginal": [
+"society"
+],
+"abortion": [
+"body",
+"society"
+],
+"abound": [
+"describe"
+],
+"about": [
+"function"
+],
+"above": [
+"places"
+],
+"abroad": [
+"travel",
+"places"
+],
+"abrupt": [
+"describe"
+],
+"absence": [
+"school"
+],
+"absent": [
+"school"
+],
+"absolute": [
+"describe"
+],
+"absorb": [
+"action",
+"science"
+],
+"abstract": [
+"mind"
+],
+"abstraction": [
+"mind"
+],
+"absurd": [
+"describe"
+],
+"abundance": [
+"time"
+],
+"abundant": [
+"describe"
+],
+"abuse": [
+"society",
+"law"
+],
+"academic": [
+"school"
+],
+"academy": [
+"school"
+],
+"accelerate": [
+"action"
+],
+"accent": [
+"talk"
+],
+"accept": [
+"action"
+],
+"acceptable": [
+"describe"
+],
+"acceptance": [
+"mind",
+"school"
+],
+"access": [
+"action",
+"tech"
+],
+"accessible": [
+"describe"
+],
+"accessory": [
+"clothes"
+],
+"accident": [
+"travel"
+],
+"accidental": [
+"describe"
+],
+"acclaim": [
+"talk"
+],
+"accommodate": [
+"travel"
+],
+"accommodation": [
+"travel"
+],
+"accompany": [
+"action"
+],
+"accomplish(ment)": [
+"action"
+],
+"accord": [
+"society"
+],
+"accordance": [
+"mind"
+],
+"accordingly": [
+"function"
+],
+"account": [
+"money",
+"talk"
+],
+"accountable": [
+"work"
+],
+"accountant": [
+"work",
+"money"
+],
+"accounting": [
+"business",
+"work"
+],
+"accumulate": [
+"action"
+],
+"accumulation": [
+"action"
+],
+"accuracy": [
+"describe"
+],
+"accurate": [
+"describe"
+],
+"accusation": [
+"law"
+],
+"accuse": [
+"law"
+],
+"accustom": [
+"mind"
+],
+"ache": [
+"body"
+],
+"achieve(ment)": [
+"action"
+],
+"acid": [
+"science"
+],
+"acknowledge(ment)": [
+"talk"
+],
+"acne": [
+"body"
+],
+"acquaint": [
+"people"
+],
+"acquaintance": [
+"people"
+],
+"acquire": [
+"action"
+],
+"acquisition": [
+"business",
+"mind"
+],
+"acre": [
+"time"
+],
+"across": [
+"places"
+],
+"across from": [
+"places"
+],
+"act": [
+"action",
+"arts"
+],
+"action": [
+"action"
+],
+"active": [
+"feelings"
+],
+"activist": [
+"society"
+],
+"activity": [
+"leisure"
+],
+"actor": [
+"arts",
+"work"
+],
+"actor/actress": [
+"arts",
+"work"
+],
+"actress": [
+"arts",
+"work"
+],
+"actual": [
+"describe"
+],
+"actually": [
+"describe"
+],
+"acute": [
+"body"
+],
+"adapt": [
+"action"
+],
+"adaptation": [
+"arts",
+"action"
+],
+"add": [
+"action"
+],
+"addict": [
+"body"
+],
+"addiction": [
+"body"
+],
+"addition": [
+"action",
+"science"
+],
+"additional": [
+"describe"
+],
+"address": [
+"places",
+"talk"
+],
+"adequate": [
+"describe"
+],
+"adjust(ment)": [
+"action"
+],
+"administer/administrate": [
+"work"
+],
+"administration": [
+"work",
+"law"
+],
+"administrative": [
+"work"
+],
+"administrator": [
+"work"
+],
+"admirable": [
+"feelings"
+],
+"admiral": [
+"law"
+],
+"admiration": [
+"feelings"
+],
+"admire": [
+"feelings"
+],
+"admission": [
+"school"
+],
+"admit": [
+"talk"
+],
+"adolescence": [
+"people"
+],
+"adolescent": [
+"people"
+],
+"adopt": [
+"people"
+],
+"adore": [
+"feelings"
+],
+"adult": [
+"people"
+],
+"advance": [
+"action"
+],
+"advanced": [
+"describe"
+],
+"advantage": [
+"mind"
+],
+"adventure": [
+"travel",
+"leisure"
+],
+"adverse": [
+"describe"
+],
+"advertise(ment)/ad": [
+"business",
+"arts"
+],
+"advertisement": [
+"business",
+"arts"
+],
+"advice": [
+"talk"
+],
+"advise": [
+"talk"
+],
+"adviser/advisor": [
+"work",
+"school"
+],
+"advisory": [
+"work"
+],
+"advocate": [
+"society"
+],
+"aesthetic": [
+"arts"
+],
+"affair": [
+"society"
+],
+"affect": [
+"action"
+],
+"affection": [
+"feelings"
+],
+"affectionate": [
+"feelings"
+],
+"affiliate": [
+"business"
+],
+"affirm": [
+"talk"
+],
+"afford": [
+"money"
+],
+"afraid": [
+"feelings"
+],
+"after": [
+"time"
+],
+"after school": [
+"school",
+"time"
+],
+"afternoon": [
+"time"
+],
+"afterward/afterwards": [
+"time"
+],
+"again": [
+"time"
+],
+"against": [
+"function"
+],
+"age": [
+"people",
+"time"
+],
+"agency": [
+"work",
+"business"
+],
+"agenda": [
+"work"
+],
+"agent": [
+"work"
+],
+"aggression": [
+"feelings",
+"law"
+],
+"aggressive": [
+"feelings"
+],
+"ago": [
+"time"
+],
+"agony": [
+"feelings",
+"body"
+],
+"agree": [
+"talk"
+],
+"agree(ment)": [
+"talk"
+],
+"agreeable": [
+"feelings"
+],
+"agricultural": [
+"business",
+"nature"
+],
+"agriculture": [
+"business",
+"nature"
+],
+"ahead": [
+"places"
+],
+"aid": [
+"society"
+],
+"aim": [
+"mind"
+],
+"air": [
+"nature"
+],
+"air conditioner": [
+"home"
+],
+"aircraft": [
+"travel"
+],
+"airline": [
+"travel"
+],
+"airlines": [
+"travel"
+],
+"airplane (plane)": [
+"travel"
+],
+"airplane/plane": [
+"travel"
+],
+"airport": [
+"travel"
+],
+"airtight": [
+"describe"
+],
+"airway": [
+"body",
+"travel"
+],
+"aisle": [
+"places",
+"travel"
+],
+"alarm": [
+"home"
+],
+"album": [
+"arts"
+],
+"alcohol": [
+"food"
+],
+"alcoholic": [
+"food"
+],
+"alert": [
+"feelings"
+],
+"algebra": [
+"school",
+"science"
+],
+"alien": [
+"describe"
+],
+"alienate": [
+"society"
+],
+"align": [
+"action"
+],
+"alike": [
+"describe"
+],
+"alive": [
+"body"
+],
+"all": [
+"function"
+],
+"allege": [
+"law"
+],
+"allergic": [
+"body"
+],
+"allergy": [
+"body"
+],
+"alley": [
+"places"
+],
+"alliance": [
+"law"
+],
+"alligator": [
+"animals"
+],
+"allocate": [
+"action"
+],
+"allow": [
+"action"
+],
+"allowance": [
+"money"
+],
+"ally": [
+"law"
+],
+"almond": [
+"food"
+],
+"almost": [
+"describe"
+],
+"alone": [
+"describe"
+],
+"along": [
+"places"
+],
+"alongside": [
+"places"
+],
+"aloud": [
+"talk"
+],
+"alphabet": [
+"talk",
+"school"
+],
+"already": [
+"time"
+],
+"also": [
+"function"
+],
+"alter": [
+"action"
+],
+"alternate": [
+"describe"
+],
+"alternative": [
+"describe"
+],
+"although": [
+"function"
+],
+"altitude": [
+"nature"
+],
+"altogether": [
+"describe"
+],
+"aluminum": [
+"science"
+],
+"always": [
+"time"
+],
+"am/a.m.": [
+"time"
+],
+"amateur": [
+"leisure"
+],
+"amaze(ment)": [
+"feelings"
+],
+"ambassador": [
+"law"
+],
+"ambiguity": [
+"talk"
+],
+"ambiguous": [
+"talk",
+"describe"
+],
+"ambition": [
+"feelings"
+],
+"ambitious": [
+"feelings"
+],
+"ambulance": [
+"body",
+"travel"
+],
+"amend": [
+"law"
+],
+"america": [
+"places"
+],
+"american": [
+"places"
+],
+"amid/amidst": [
+"function"
+],
+"among": [
+"function"
+],
+"amount": [
+"time"
+],
+"ample": [
+"describe"
+],
+"amplify": [
+"action"
+],
+"amuse(ment)": [
+"feelings",
+"leisure"
+],
+"analogy": [
+"talk"
+],
+"analysis": [
+"science",
+"mind"
+],
+"analyst": [
+"work"
+],
+"analytical": [
+"mind"
+],
+"analyze": [
+"mind",
+"science"
+],
+"ancestor": [
+"people"
+],
+"anchor": [
+"travel",
+"arts"
+],
+"ancient": [
+"law"
+],
+"and": [
+"function"
+],
+"angel": [
+"society"
+],
+"anger": [
+"feelings"
+],
+"angle": [
+"science"
+],
+"angry": [
+"feelings"
+],
+"animal": [
+"animals"
+],
+"animate": [
+"arts"
+],
+"ankle": [
+"body"
+],
+"anniversary": [
+"leisure"
+],
+"announce(ment)": [
+"talk"
+],
+"annoy": [
+"feelings"
+],
+"annoyance": [
+"feelings"
+],
+"annual": [
+"time"
+],
+"anonymous": [
+"describe"
+],
+"another": [
+"function"
+],
+"answer": [
+"talk"
+],
+"ant": [
+"animals"
+],
+"anthem": [
+"arts"
+],
+"antibiotic": [
+"body"
+],
+"anticipate": [
+"mind"
+],
+"anticipation": [
+"mind",
+"feelings"
+],
+"antique": [
+"arts",
+"describe"
+],
+"antonym": [
+"talk"
+],
+"anxiety": [
+"feelings"
+],
+"anxious": [
+"feelings"
+],
+"any": [
+"function"
+],
+"anybody/anyone": [
+"function"
+],
+"anyhow": [
+"function"
+],
+"anyone (anybody)": [
+"function"
+],
+"anything": [
+"function"
+],
+"anytime": [
+"time"
+],
+"anyway": [
+"function"
+],
+"anywhere": [
+"places"
+],
+"anywhere/anyplace": [
+"places"
+],
+"apart": [
+"places"
+],
+"apartment": [
+"home"
+],
+"ape": [
+"animals"
+],
+"apologize": [
+"talk"
+],
+"apology": [
+"talk"
+],
+"apparent": [
+"describe"
+],
+"appeal": [
+"feelings",
+"law"
+],
+"appear": [
+"action"
+],
+"appearance": [
+"clothes"
+],
+"appetite": [
+"food"
+],
+"applaud": [
+"arts"
+],
+"applause": [
+"arts"
+],
+"apple": [
+"food"
+],
+"appliance": [
+"home"
+],
+"applicable": [
+"describe"
+],
+"applicant": [
+"work"
+],
+"application": [
+"work",
+"tech"
+],
+"apply": [
+"work",
+"action"
+],
+"appoint(ment)": [
+"work",
+"time"
+],
+"appreciate": [
+"feelings"
+],
+"appreciation": [
+"feelings"
+],
+"apprentice": [
+"work"
+],
+"approach": [
+"mind"
+],
+"appropriate": [
+"describe"
+],
+"approval": [
+"mind"
+],
+"approve": [
+"mind"
+],
+"approximate": [
+"time"
+],
+"april": [
+"time"
+],
+"apron": [
+"clothes",
+"home"
+],
+"apt": [
+"describe"
+],
+"aquarium": [
+"animals",
+"places"
+],
+"arch": [
+"places"
+],
+"archaeology": [
+"science",
+"law"
+],
+"architect": [
+"work",
+"places"
+],
+"architecture": [
+"places",
+"arts"
+],
+"archive": [
+"tech"
+],
+"area": [
+"places"
+],
+"arena": [
+"places",
+"leisure"
+],
+"argue": [
+"talk"
+],
+"argue(argument)": [
+"talk"
+],
+"arise": [
+"action"
+],
+"arithmetic": [
+"school",
+"science"
+],
+"arm": [
+"body"
+],
+"armchair": [
+"home"
+],
+"armed": [
+"law"
+],
+"arms": [
+"law"
+],
+"army": [
+"law"
+],
+"around": [
+"places"
+],
+"arouse": [
+"feelings"
+],
+"arrange": [
+"action"
+],
+"arrange(ment)": [
+"action"
+],
+"array": [
+"time"
+],
+"arrest": [
+"law"
+],
+"arrival": [
+"travel"
+],
+"arrive": [
+"travel"
+],
+"arrive on time": [
+"travel",
+"time"
+],
+"arrogant": [
+"feelings"
+],
+"arrow": [
+"places"
+],
+"art": [
+"arts"
+],
+"article": [
+"arts"
+],
+"articulate": [
+"talk"
+],
+"artificial": [
+"describe",
+"tech"
+],
+"artist": [
+"arts",
+"work"
+],
+"artistic": [
+"arts"
+],
+"as": [
+"function"
+],
+"as soon as": [
+"function"
+],
+"as...as": [
+"function"
+],
+"ascend": [
+"action"
+],
+"ash": [
+"nature"
+],
+"ashamed": [
+"feelings"
+],
+"aside": [
+"places"
+],
+"ask": [
+"talk"
+],
+"asleep": [
+"home",
+"body"
+],
+"aspect": [
+"mind"
+],
+"aspire": [
+"feelings"
+],
+"aspirin": [
+"body"
+],
+"ass": [
+"animals"
+],
+"assassinate": [
+"law"
+],
+"assault": [
+"law"
+],
+"assemble": [
+"action"
+],
+"assembly": [
+"school",
+"law"
+],
+"assert": [
+"talk"
+],
+"assess(ment)": [
+"mind"
+],
+"asset": [
+"business",
+"money"
+],
+"assign(ment)": [
+"school",
+"work"
+],
+"assist": [
+"action"
+],
+"assistance": [
+"action"
+],
+"assistant": [
+"work"
+],
+"associate": [
+"work"
+],
+"association": [
+"society"
+],
+"assume": [
+"mind"
+],
+"assumption": [
+"mind"
+],
+"assurance": [
+"talk"
+],
+"assure": [
+"talk"
+],
+"asthma": [
+"body"
+],
+"astonish(ment)": [
+"feelings"
+],
+"astray": [
+"travel"
+],
+"astronaut": [
+"science",
+"work"
+],
+"astronomer": [
+"science"
+],
+"astronomy": [
+"science"
+],
+"at": [
+"function"
+],
+"at that time": [
+"time"
+],
+"athlete": [
+"leisure"
+],
+"athletic": [
+"leisure"
+],
+"athletics": [
+"leisure"
+],
+"atmosphere": [
+"nature",
+"feelings"
+],
+"atom": [
+"science"
+],
+"atomic": [
+"science"
+],
+"attach(ment)": [
+"action"
+],
+"attack": [
+"law",
+"action"
+],
+"attain(ment)": [
+"action"
+],
+"attempt": [
+"action"
+],
+"attend": [
+"school"
+],
+"attendance": [
+"school"
+],
+"attendant": [
+"work"
+],
+"attention": [
+"mind"
+],
+"attic": [
+"home"
+],
+"attitude": [
+"mind",
+"feelings"
+],
+"attorney": [
+"law",
+"work"
+],
+"attract": [
+"action"
+],
+"attraction": [
+"travel"
+],
+"attractive": [
+"clothes"
+],
+"attribute": [
+"mind"
+],
+"auction": [
+"money"
+],
+"audience": [
+"arts"
+],
+"audio": [
+"tech"
+],
+"audit": [
+"business"
+],
+"auditorium": [
+"school",
+"places"
+],
+"august": [
+"time"
+],
+"aunt": [
+"people"
+],
+"authentic": [
+"describe"
+],
+"author": [
+"arts"
+],
+"authority": [
+"law"
+],
+"authorize": [
+"law"
+],
+"autobiography": [
+"arts"
+],
+"autograph": [
+"arts"
+],
+"automatic": [
+"tech"
+],
+"automobile/auto": [
+"travel"
+],
+"autonomy": [
+"law"
+],
+"autumn (fall)": [
+"nature",
+"time"
+],
+"available": [
+"describe"
+],
+"avenue": [
+"places",
+"travel"
+],
+"average": [
+"describe"
+],
+"avert": [
+"action"
+],
+"aviation": [
+"travel"
+],
+"avoid": [
+"action"
+],
+"await": [
+"action"
+],
+"awake": [
+"home",
+"body"
+],
+"awaken": [
+"action"
+],
+"award": [
+"leisure"
+],
+"aware": [
+"mind"
+],
+"away": [
+"places"
+],
+"awe": [
+"feelings"
+],
+"awesome": [
+"feelings"
+],
+"awful": [
+"feelings"
+],
+"awhile": [
+"time"
+],
+"awkward": [
+"feelings"
+],
+"baby": [
+"people"
+],
+"baby sitter": [
+"work",
+"people"
+],
+"bachelor": [
+"people",
+"school"
+],
+"back": [
+"places"
+],
+"backbone": [
+"body"
+],
+"background": [
+"people"
+],
+"backpack": [
+"clothes",
+"school"
+],
+"backward": [
+"places"
+],
+"backward/backwards": [
+"places"
+],
+"backyard": [
+"home"
+],
+"bacon": [
+"food"
+],
+"bacteria": [
+"science",
+"body"
+],
+"bad": [
+"describe"
+],
+"badge": [
+"clothes"
+],
+"badly": [
+"describe"
+],
+"badminton": [
+"leisure"
+],
+"bag": [
+"clothes"
+],
+"baggage": [
+"travel"
+],
+"bait": [
+"leisure"
+],
+"bake": [
+"food"
+],
+"bakery": [
+"food",
+"money"
+],
+"balance": [
+"body",
+"money"
+],
+"balcony": [
+"home"
+],
+"bald": [
+"clothes"
+],
+"ball": [
+"leisure"
+],
+"ballet": [
+"arts"
+],
+"balloon": [
+"leisure"
+],
+"ballot": [
+"law"
+],
+"bamboo": [
+"animals"
+],
+"ban": [
+"law"
+],
+"banana": [
+"food"
+],
+"band": [
+"arts"
+],
+"bandage": [
+"body"
+],
+"bang": [
+"action"
+],
+"bank": [
+"money",
+"nature"
+],
+"banker": [
+"money",
+"work"
+],
+"bankrupt": [
+"business",
+"money"
+],
+"banner": [
+"leisure"
+],
+"banquet": [
+"food",
+"leisure"
+],
+"bar": [
+"food",
+"describe"
+],
+"barbarian": [
+"society"
+],
+"barbecue": [
+"food",
+"leisure"
+],
+"barber": [
+"work",
+"clothes"
+],
+"bare": [
+"describe"
+],
+"barely": [
+"describe"
+],
+"bargain": [
+"money"
+],
+"bark": [
+"animals"
+],
+"barn": [
+"animals"
+],
+"barrel": [
+"time"
+],
+"barren": [
+"nature"
+],
+"barrier": [
+"places"
+],
+"base": [
+"places",
+"leisure"
+],
+"baseball": [
+"leisure"
+],
+"basement": [
+"home"
+],
+"basic": [
+"describe"
+],
+"basics": [
+"mind"
+],
+"basin": [
+"nature",
+"home"
+],
+"basis": [
+"mind"
+],
+"basket": [
+"home"
+],
+"basketball": [
+"leisure"
+],
+"basketball court": [
+"leisure"
+],
+"bass": [
+"arts"
+],
+"bat": [
+"animals",
+"leisure"
+],
+"batch": [
+"time"
+],
+"bath": [
+"home"
+],
+"bathe": [
+"home"
+],
+"bathroom": [
+"home"
+],
+"batter": [
+"food"
+],
+"battery": [
+"tech"
+],
+"battle": [
+"law"
+],
+"bay": [
+"nature"
+],
+"be": [
+"function"
+],
+"be (am, is, are, was, were, been)": [
+"function"
+],
+"be afraid of": [
+"feelings"
+],
+"be busy": [
+"work"
+],
+"be covered with": [
+"describe"
+],
+"be filled with": [
+"describe"
+],
+"be going to": [
+"function"
+],
+"be good at": [
+"school"
+],
+"be interested in": [
+"feelings"
+],
+"be known as": [
+"talk"
+],
+"be made from": [
+"describe"
+],
+"be made in": [
+"business"
+],
+"be made of": [
+"describe"
+],
+"be proud of": [
+"feelings"
+],
+"be used for": [
+"action"
+],
+"be worth": [
+"money"
+],
+"beach": [
+"nature",
+"travel"
+],
+"bead": [
+"clothes"
+],
+"beam": [
+"science"
+],
+"bean": [
+"food"
+],
+"bear": [
+"animals"
+],
+"beard": [
+"clothes"
+],
+"beast": [
+"animals"
+],
+"beat": [
+"leisure",
+"action"
+],
+"beautiful": [
+"clothes",
+"describe"
+],
+"beautify": [
+"clothes"
+],
+"beauty": [
+"clothes"
+],
+"because": [
+"function"
+],
+"become": [
+"action"
+],
+"bed": [
+"home"
+],
+"bedroom": [
+"home"
+],
+"bee": [
+"animals"
+],
+"beef": [
+"food"
+],
+"been to": [
+"travel"
+],
+"beep": [
+"tech"
+],
+"beer": [
+"food"
+],
+"beetle": [
+"animals"
+],
+"before": [
+"time"
+],
+"beforehand": [
+"time"
+],
+"beg": [
+"talk"
+],
+"beggar": [
+"society"
+],
+"begin": [
+"action"
+],
+"beginner": [
+"school"
+],
+"beginning": [
+"time"
+],
+"behalf": [
+"society"
+],
+"behave": [
+"society"
+],
+"behavior": [
+"society"
+],
+"behind": [
+"places"
+],
+"being": [
+"people"
+],
+"belief": [
+"mind"
+],
+"believe": [
+"mind"
+],
+"bell": [
+"school"
+],
+"belong": [
+"action"
+],
+"belongings": [
+"home"
+],
+"beloved": [
+"feelings"
+],
+"below": [
+"places"
+],
+"belt": [
+"clothes"
+],
+"bench": [
+"places"
+],
+"bend": [
+"action"
+],
+"beneath": [
+"places"
+],
+"beneficial": [
+"describe"
+],
+"benefit": [
+"mind",
+"money"
+],
+"berry": [
+"food"
+],
+"beside": [
+"places"
+],
+"besides": [
+"function"
+],
+"best": [
+"describe"
+],
+"bet": [
+"money",
+"talk"
+],
+"betray": [
+"society"
+],
+"better": [
+"describe"
+],
+"between": [
+"places"
+],
+"beverage": [
+"food"
+],
+"beware": [
+"talk"
+],
+"beyond": [
+"places"
+],
+"bias": [
+"mind"
+],
+"bicycle (bike)": [
+"travel"
+],
+"bicycle/bike": [
+"travel"
+],
+"bid": [
+"money"
+],
+"big": [
+"describe"
+],
+"bilateral": [
+"law"
+],
+"bill": [
+"money"
+],
+"billion": [
+"time"
+],
+"bin": [
+"home"
+],
+"bind": [
+"action"
+],
+"biography": [
+"arts"
+],
+"biological": [
+"science",
+"people"
+],
+"biology": [
+"science",
+"school"
+],
+"bird": [
+"animals"
+],
+"birth": [
+"people"
+],
+"birthday": [
+"leisure",
+"people"
+],
+"biscuit": [
+"food"
+],
+"bit": [
+"time"
+],
+"bite": [
+"action",
+"food"
+],
+"bitter": [
+"food",
+"feelings"
+],
+"bizarre": [
+"describe"
+],
+"black": [
+"describe"
+],
+"blackboard": [
+"school"
+],
+"blade": [
+"home"
+],
+"blame": [
+"talk"
+],
+"blank": [
+"describe"
+],
+"blanket": [
+"home"
+],
+"blast": [
+"action",
+"law"
+],
+"blaze": [
+"nature"
+],
+"bleach": [
+"home"
+],
+"bleed": [
+"body"
+],
+"blend": [
+"food",
+"action"
+],
+"bless": [
+"society"
+],
+"blessing": [
+"society"
+],
+"blind": [
+"body"
+],
+"blink": [
+"body"
+],
+"block": [
+"places"
+],
+"blond/blonde": [
+"clothes"
+],
+"blood": [
+"body"
+],
+"bloody": [
+"body"
+],
+"bloom": [
+"animals"
+],
+"blossom": [
+"animals"
+],
+"blot": [
+"action"
+],
+"blouse": [
+"clothes"
+],
+"blow": [
+"nature",
+"action"
+],
+"blue": [
+"describe",
+"feelings"
+],
+"blunt": [
+"describe"
+],
+"blur": [
+"describe"
+],
+"blush": [
+"feelings"
+],
+"board": [
+"school",
+"business"
+],
+"boast": [
+"talk"
+],
+"boat": [
+"travel"
+],
+"bodily": [
+"body"
+],
+"body": [
+"body"
+],
+"bodyguard": [
+"work"
+],
+"boil": [
+"food"
+],
+"bold": [
+"feelings"
+],
+"bolt": [
+"home"
+],
+"bomb": [
+"law"
+],
+"bond": [
+"society",
+"money"
+],
+"bone": [
+"body"
+],
+"bonus": [
+"work",
+"money"
+],
+"book": [
+"school",
+"arts"
+],
+"bookcase": [
+"home"
+],
+"booklet": [
+"arts"
+],
+"bookstore": [
+"money",
+"places"
+],
+"boom": [
+"business"
+],
+"boost": [
+"action"
+],
+"boot": [
+"clothes"
+],
+"booth": [
+"places"
+],
+"border": [
+"places"
+],
+"bore": [
+"feelings"
+],
+"bored": [
+"feelings"
+],
+"boredom": [
+"feelings"
+],
+"boring": [
+"feelings"
+],
+"born": [
+"people"
+],
+"borrow": [
+"money"
+],
+"bosom": [
+"body",
+"feelings"
+],
+"boss": [
+"work"
+],
+"both": [
+"function"
+],
+"both...and": [
+"function"
+],
+"bother": [
+"feelings"
+],
+"bottle": [
+"home"
+],
+"bottom": [
+"places"
+],
+"boulevard": [
+"places",
+"travel"
+],
+"bounce": [
+"action"
+],
+"bound": [
+"action"
+],
+"boundary": [
+"places"
+],
+"bow": [
+"society"
+],
+"bowl": [
+"food",
+"home"
+],
+"bowling": [
+"leisure"
+],
+"box": [
+"home"
+],
+"boxer": [
+"leisure"
+],
+"boxing": [
+"leisure"
+],
+"boy": [
+"people"
+],
+"boycott": [
+"society"
+],
+"brace": [
+"body"
+],
+"bracelet": [
+"clothes"
+],
+"brain": [
+"body",
+"mind"
+],
+"brake": [
+"travel"
+],
+"branch": [
+"animals",
+"business"
+],
+"brand": [
+"business"
+],
+"brass": [
+"science"
+],
+"brassiere/bra": [
+"clothes"
+],
+"brave": [
+"feelings"
+],
+"bravery": [
+"feelings"
+],
+"bread": [
+"food"
+],
+"breadth": [
+"time"
+],
+"break": [
+"action"
+],
+"breakdown": [
+"tech",
+"feelings"
+],
+"breakfast": [
+"food"
+],
+"breakthrough": [
+"science"
+],
+"breakup": [
+"people"
+],
+"breast": [
+"body"
+],
+"breath": [
+"body"
+],
+"breathe": [
+"body"
+],
+"breed": [
+"animals"
+],
+"breeze": [
+"nature"
+],
+"bribe": [
+"law"
+],
+"brick": [
+"places"
+],
+"bride": [
+"people"
+],
+"bridegroom/groom": [
+"people"
+],
+"bridge": [
+"travel",
+"places"
+],
+"brief": [
+"describe"
+],
+"briefcase": [
+"work"
+],
+"bright": [
+"describe"
+],
+"brilliant": [
+"describe"
+],
+"bring": [
+"action"
+],
+"brink": [
+"places"
+],
+"broad": [
+"describe"
+],
+"broadcast": [
+"arts"
+],
+"broaden": [
+"action"
+],
+"brochure": [
+"travel"
+],
+"broil": [
+"food"
+],
+"broke": [
+"money"
+],
+"bronze": [
+"leisure",
+"science"
+],
+"brook": [
+"nature"
+],
+"broom": [
+"home"
+],
+"broth": [
+"food"
+],
+"brother": [
+"people"
+],
+"brotherhood": [
+"people",
+"society"
+],
+"brown": [
+"describe"
+],
+"browse": [
+"tech"
+],
+"bruise": [
+"body"
+],
+"brunch": [
+"food"
+],
+"brush": [
+"home"
+],
+"brutal": [
+"describe"
+],
+"bubble": [
+"describe"
+],
+"bucket": [
+"home"
+],
+"bud": [
+"animals"
+],
+"budget": [
+"money"
+],
+"buffalo": [
+"animals"
+],
+"buffet": [
+"food"
+],
+"bug": [
+"animals",
+"tech"
+],
+"build": [
+"action",
+"places"
+],
+"building": [
+"places"
+],
+"bulb": [
+"home",
+"animals"
+],
+"bulk": [
+"time"
+],
+"bulky": [
+"describe"
+],
+"bull": [
+"animals"
+],
+"bullet": [
+"law"
+],
+"bulletin": [
+"school",
+"arts"
+],
+"bully": [
+"school",
+"society"
+],
+"bump": [
+"body"
+],
+"bun": [
+"food"
+],
+"bunch": [
+"time"
+],
+"bundle": [
+"time"
+],
+"burden": [
+"feelings"
+],
+"bureau": [
+"law"
+],
+"bureaucracy": [
+"law"
+],
+"bureaucrat": [
+"law"
+],
+"burger": [
+"food"
+],
+"burglar": [
+"law"
+],
+"burial": [
+"society"
+],
+"burn": [
+"action",
+"body"
+],
+"burst": [
+"action"
+],
+"bury": [
+"action"
+],
+"bus": [
+"travel"
+],
+"bus stop": [
+"travel"
+],
+"bush": [
+"animals"
+],
+"business": [
+"business"
+],
+"businessman": [
+"business",
+"work"
+],
+"busy": [
+"work"
+],
+"but": [
+"function"
+],
+"butcher": [
+"food",
+"work"
+],
+"butter": [
+"food"
+],
+"butterfly": [
+"animals"
+],
+"button": [
+"clothes",
+"tech"
+],
+"buy": [
+"money"
+],
+"buzz": [
+"animals"
+],
+"by": [
+"function"
+],
+"by the way": [
+"talk"
+],
+"bypass": [
+"travel"
+],
+"cabbage": [
+"food"
+],
+"cabin": [
+"home",
+"travel"
+],
+"cabinet": [
+"home",
+"law"
+],
+"cable": [
+"tech"
+],
+"cafeteria": [
+"food",
+"school"
+],
+"caffeine": [
+"food"
+],
+"café/cafe": [
+"food"
+],
+"cage": [
+"animals"
+],
+"cake": [
+"food"
+],
+"calcium": [
+"food",
+"science"
+],
+"calculate": [
+"science",
+"time"
+],
+"calculation": [
+"science"
+],
+"calculator": [
+"school",
+"tech"
+],
+"calendar": [
+"time"
+],
+"call": [
+"tech",
+"talk"
+],
+"calligraphy": [
+"arts"
+],
+"calm": [
+"feelings"
+],
+"calorie": [
+"food"
+],
+"camel": [
+"animals"
+],
+"camera": [
+"tech"
+],
+"camp": [
+"leisure"
+],
+"campaign": [
+"society",
+"law"
+],
+"camping": [
+"leisure"
+],
+"campus": [
+"school"
+],
+"can": [
+"function"
+],
+"can't help": [
+"action"
+],
+"canal": [
+"nature",
+"travel"
+],
+"cancel": [
+"action"
+],
+"cancer": [
+"body"
+],
+"candidate": [
+"law",
+"work"
+],
+"candle": [
+"home"
+],
+"candy": [
+"food"
+],
+"cane": [
+"body"
+],
+"canoe": [
+"leisure"
+],
+"canvas": [
+"arts"
+],
+"canyon": [
+"nature"
+],
+"cap": [
+"clothes"
+],
+"capability": [
+"mind"
+],
+"capable": [
+"describe"
+],
+"capacity": [
+"time",
+"mind"
+],
+"cape": [
+"nature",
+"clothes"
+],
+"capital": [
+"places",
+"money"
+],
+"capital(ism)": [
+"business",
+"places"
+],
+"capitalist": [
+"business"
+],
+"capsule": [
+"body",
+"science"
+],
+"captain": [
+"work",
+"leisure"
+],
+"caption": [
+"arts"
+],
+"captive": [
+"law"
+],
+"captivity": [
+"law",
+"animals"
+],
+"capture": [
+"action"
+],
+"car": [
+"travel"
+],
+"carbon": [
+"science"
+],
+"card": [
+"leisure"
+],
+"cardboard": [
+"home"
+],
+"cardinal": [
+"society",
+"describe"
+],
+"care": [
+"feelings",
+"body"
+],
+"career": [
+"work"
+],
+"carefree": [
+"feelings"
+],
+"careful": [
+"feelings"
+],
+"careless": [
+"feelings"
+],
+"caretaker": [
+"work"
+],
+"cargo": [
+"travel",
+"business"
+],
+"carnival": [
+"leisure"
+],
+"carpenter": [
+"work"
+],
+"carpet": [
+"home"
+],
+"carriage": [
+"travel"
+],
+"carrier": [
+"travel",
+"business"
+],
+"carrot": [
+"food"
+],
+"carry": [
+"action"
+],
+"cart": [
+"money",
+"travel"
+],
+"carton": [
+"food"
+],
+"cartoon": [
+"arts"
+],
+"carve": [
+"arts",
+"food"
+],
+"case": [
+"mind",
+"law"
+],
+"cash": [
+"money"
+],
+"cashier": [
+"money",
+"work"
+],
+"casino": [
+"leisure"
+],
+"cast": [
+"action",
+"arts"
+],
+"castle": [
+"places"
+],
+"casual": [
+"clothes",
+"describe"
+],
+"casualty": [
+"law",
+"nature"
+],
+"cat": [
+"animals"
+],
+"catalogue": [
+"money"
+],
+"catastrophe": [
+"nature"
+],
+"catch": [
+"action",
+"leisure"
+],
+"category": [
+"mind"
+],
+"cater": [
+"food",
+"business"
+],
+"caterpillar": [
+"animals"
+],
+"cathedral": [
+"places",
+"society"
+],
+"cattle": [
+"animals"
+],
+"cause": [
+"mind"
+],
+"caution": [
+"feelings",
+"talk"
+],
+"cautious": [
+"feelings"
+],
+"cave": [
+"nature"
+],
+"cavity": [
+"body"
+],
+"cease": [
+"action"
+],
+"ceiling": [
+"home"
+],
+"celebrate": [
+"leisure"
+],
+"celebration": [
+"leisure"
+],
+"celebrity": [
+"arts"
+],
+"celery": [
+"food"
+],
+"cell": [
+"science",
+"law"
+],
+"cellphone": [
+"tech"
+],
+"cellular": [
+"science",
+"tech"
+],
+"celsius": [
+"time",
+"nature"
+],
+"cement": [
+"home"
+],
+"cemetery": [
+"places"
+],
+"census": [
+"society"
+],
+"cent": [
+"money"
+],
+"center": [
+"places"
+],
+"centimeter": [
+"time"
+],
+"central": [
+"places"
+],
+"century": [
+"time"
+],
+"ceramic": [
+"arts",
+"home"
+],
+"cereal": [
+"food"
+],
+"ceremony": [
+"society"
+],
+"certain": [
+"mind",
+"function"
+],
+"certainly": [
+"describe"
+],
+"certainty": [
+"mind"
+],
+"certificate": [
+"school",
+"work"
+],
+"certify": [
+"work",
+"law"
+],
+"chain": [
+"business"
+],
+"chair": [
+"home"
+],
+"chairperson/chair/chairman/chairwoman": [
+"work",
+"business"
+],
+"chalk": [
+"school"
+],
+"challenge": [
+"mind"
+],
+"chamber": [
+"home",
+"law"
+],
+"champagne": [
+"food"
+],
+"champion": [
+"leisure"
+],
+"championship": [
+"leisure"
+],
+"chance": [
+"mind"
+],
+"change": [
+"action",
+"money"
+],
+"channel": [
+"arts",
+"nature"
+],
+"chant": [
+"talk",
+"arts"
+],
+"chaos": [
+"describe"
+],
+"chapel": [
+"society",
+"places"
+],
+"chapter": [
+"arts",
+"school"
+],
+"character": [
+"arts",
+"feelings"
+],
+"characteristic": [
+"describe"
+],
+"characterize": [
+"describe"
+],
+"charge": [
+"money",
+"tech"
+],
+"charitable": [
+"society"
+],
+"charity": [
+"society"
+],
+"charm": [
+"feelings"
+],
+"chart": [
+"science"
+],
+"chase": [
+"action"
+],
+"chat": [
+"talk"
+],
+"cheap": [
+"money"
+],
+"cheat": [
+"school",
+"law"
+],
+"check": [
+"action",
+"money"
+],
+"checkup": [
+"body"
+],
+"cheek": [
+"body"
+],
+"cheer": [
+"leisure",
+"feelings"
+],
+"cheerful": [
+"feelings"
+],
+"cheese": [
+"food"
+],
+"chef": [
+"food",
+"work"
+],
+"chemical": [
+"science"
+],
+"chemist": [
+"science",
+"work"
+],
+"chemistry": [
+"science"
+],
+"cherish": [
+"feelings"
+],
+"cherry": [
+"food",
+"animals"
+],
+"chess": [
+"leisure"
+],
+"chest": [
+"body",
+"home"
+],
+"chestnut": [
+"food"
+],
+"chew": [
+"food",
+"body"
+],
+"chicken": [
+"food",
+"animals"
+],
+"chief": [
+"work",
+"describe"
+],
+"child": [
+"people"
+],
+"childhood": [
+"people"
+],
+"childish": [
+"feelings"
+],
+"childlike": [
+"feelings"
+],
+"chili": [
+"food"
+],
+"chill": [
+"nature"
+],
+"chilly": [
+"nature"
+],
+"chimney": [
+"home"
+],
+"chimpanzee": [
+"animals"
+],
+"chin": [
+"body"
+],
+"china": [
+"home",
+"arts"
+],
+"chinese": [
+"places",
+"talk"
+],
+"chip": [
+"tech",
+"food"
+],
+"chirp": [
+"animals"
+],
+"chocolate": [
+"food"
+],
+"choice": [
+"mind"
+],
+"choir": [
+"arts"
+],
+"choke": [
+"body"
+],
+"cholesterol": [
+"body"
+],
+"choose": [
+"mind"
+],
+"chop": [
+"food"
+],
+"chopstick(s)": [
+"food"
+],
+"chopsticks": [
+"food"
+],
+"chord": [
+"arts"
+],
+"chore": [
+"home"
+],
+"chorus": [
+"arts"
+],
+"christmas": [
+"leisure"
+],
+"chronic": [
+"body"
+],
+"chubby": [
+"clothes"
+],
+"chunk": [
+"time"
+],
+"church": [
+"society",
+"places"
+],
+"cigar": [
+"body"
+],
+"cigarette": [
+"body"
+],
+"cinema": [
+"arts"
+],
+"circle": [
+"describe",
+"science"
+],
+"circuit": [
+"tech",
+"science"
+],
+"circular": [
+"describe"
+],
+"circulate": [
+"action"
+],
+"circulation": [
+"body",
+"arts"
+],
+"circumstance": [
+"mind"
+],
+"circus": [
+"leisure"
+],
+"cite": [
+"talk"
+],
+"citizen": [
+"law"
+],
+"citizenship": [
+"law"
+],
+"city": [
+"places"
+],
+"civic": [
+"law",
+"society"
+],
+"civil": [
+"law"
+],
+"civilian": [
+"law"
+],
+"civilization": [
+"law",
+"society"
+],
+"civilize": [
+"society"
+],
+"claim": [
+"talk"
+],
+"clam": [
+"food",
+"animals"
+],
+"clap": [
+"action",
+"leisure"
+],
+"clarify": [
+"talk"
+],
+"clarity": [
+"describe"
+],
+"clash": [
+"society"
+],
+"clasp": [
+"action"
+],
+"class": [
+"school",
+"society"
+],
+"classic": [
+"arts"
+],
+"classical": [
+"arts"
+],
+"classification": [
+"mind"
+],
+"classify": [
+"mind"
+],
+"classmate": [
+"school"
+],
+"classroom": [
+"school"
+],
+"clause": [
+"talk",
+"law"
+],
+"claw": [
+"animals"
+],
+"clay": [
+"arts",
+"nature"
+],
+"clean": [
+"home",
+"describe"
+],
+"cleaner": [
+"home",
+"work"
+],
+"clear": [
+"describe",
+"nature"
+],
+"clearance": [
+"money"
+],
+"clerk": [
+"work",
+"money"
+],
+"clever": [
+"feelings",
+"mind"
+],
+"click": [
+"tech"
+],
+"client": [
+"business",
+"work"
+],
+"cliff": [
+"nature"
+],
+"climate": [
+"nature"
+],
+"climax": [
+"arts"
+],
+"climb": [
+"leisure",
+"action"
+],
+"cling": [
+"action"
+],
+"clinic": [
+"body"
+],
+"clinical": [
+"body",
+"science"
+],
+"clip": [
+"tech",
+"action"
+],
+"clock": [
+"time",
+"home"
+],
+"clockwise": [
+"describe"
+],
+"clone": [
+"science"
+],
+"close": [
+"action",
+"describe"
+],
+"closet": [
+"home",
+"clothes"
+],
+"closure": [
+"action"
+],
+"cloth": [
+"clothes"
+],
+"clothe": [
+"clothes"
+],
+"clothes": [
+"clothes"
+],
+"clothing": [
+"clothes"
+],
+"cloud": [
+"nature"
+],
+"cloudy": [
+"nature"
+],
+"clown": [
+"leisure"
+],
+"club": [
+"leisure",
+"school"
+],
+"clue": [
+"mind"
+],
+"clumsy": [
+"feelings"
+],
+"cluster": [
+"describe"
+],
+"coach": [
+"leisure",
+"work"
+],
+"coal": [
+"nature"
+],
+"coalition": [
+"law"
+],
+"coarse": [
+"describe"
+],
+"coast": [
+"nature"
+],
+"coastline": [
+"nature"
+],
+"coat": [
+"clothes"
+],
+"cocaine": [
+"law",
+"body"
+],
+"cock": [
+"animals"
+],
+"cockroach": [
+"animals"
+],
+"cockroach/roach": [
+"animals"
+],
+"cocktail": [
+"food"
+],
+"cocoa": [
+"food"
+],
+"coconut": [
+"food"
+],
+"code": [
+"tech"
+],
+"coffee": [
+"food"
+],
+"coffin": [
+"society"
+],
+"cognitive": [
+"mind",
+"science"
+],
+"coherent": [
+"talk"
+],
+"coin": [
+"money"
+],
+"coincidence": [
+"mind"
+],
+"cola": [
+"food"
+],
+"cola/coke": [
+"food"
+],
+"cold": [
+"nature",
+"body"
+],
+"collaboration": [
+"work"
+],
+"collapse": [
+"action"
+],
+"collar": [
+"clothes",
+"animals"
+],
+"colleague": [
+"work"
+],
+"collect": [
+"leisure",
+"action"
+],
+"collecting": [
+"leisure"
+],
+"collection": [
+"leisure",
+"arts"
+],
+"collective": [
+"society"
+],
+"collector": [
+"leisure"
+],
+"college": [
+"school"
+],
+"collision": [
+"travel"
+],
+"colloquial": [
+"talk"
+],
+"colonial": [
+"law"
+],
+"colony": [
+"law",
+"animals"
+],
+"color": [
+"describe",
+"arts"
+],
+"colorful": [
+"describe"
+],
+"column": [
+"arts",
+"places"
+],
+"columnist": [
+"arts",
+"work"
+],
+"comb": [
+"clothes"
+],
+"combat": [
+"law"
+],
+"combination": [
+"mind"
+],
+"combine": [
+"action"
+],
+"come": [
+"action"
+],
+"come on": [
+"talk"
+],
+"comedian": [
+"arts"
+],
+"comedy": [
+"arts"
+],
+"comet": [
+"science",
+"nature"
+],
+"comfort": [
+"feelings"
+],
+"comfortable": [
+"feelings"
+],
+"comic": [
+"arts"
+],
+"comic(s)": [
+"arts"
+],
+"comma": [
+"talk"
+],
+"command": [
+"talk",
+"law"
+],
+"commander": [
+"law"
+],
+"comment": [
+"talk"
+],
+"commentary": [
+"talk",
+"arts"
+],
+"commentator": [
+"arts"
+],
+"commerce": [
+"business"
+],
+"commercial": [
+"business",
+"arts"
+],
+"commission": [
+"business",
+"work"
+],
+"commit": [
+"law",
+"mind"
+],
+"commitment": [
+"mind"
+],
+"committee": [
+"work",
+"law"
+],
+"commodity": [
+"business"
+],
+"common": [
+"describe"
+],
+"commonplace": [
+"describe"
+],
+"commonwealth": [
+"law"
+],
+"communicate": [
+"talk"
+],
+"communication": [
+"talk"
+],
+"communicative": [
+"talk"
+],
+"communism": [
+"law"
+],
+"communist": [
+"law"
+],
+"community": [
+"society"
+],
+"commute": [
+"travel"
+],
+"commuter": [
+"travel"
+],
+"compact": [
+"describe"
+],
+"companion": [
+"people"
+],
+"company": [
+"business",
+"people"
+],
+"comparable": [
+"describe"
+],
+"comparative": [
+"describe"
+],
+"compare": [
+"mind"
+],
+"comparison": [
+"mind"
+],
+"compass": [
+"travel"
+],
+"compassion": [
+"feelings"
+],
+"compassionate": [
+"feelings"
+],
+"compatible": [
+"describe",
+"tech"
+],
+"compel": [
+"action"
+],
+"compensate": [
+"money",
+"law"
+],
+"compensation": [
+"money",
+"law"
+],
+"compete": [
+"leisure"
+],
+"competence": [
+"mind"
+],
+"competent": [
+"describe"
+],
+"competition": [
+"leisure"
+],
+"competitive": [
+"leisure",
+"business"
+],
+"competitor": [
+"leisure",
+"business"
+],
+"compile": [
+"action"
+],
+"complain": [
+"talk"
+],
+"complaint": [
+"talk"
+],
+"complement": [
+"describe",
+"talk"
+],
+"complete": [
+"action",
+"describe"
+],
+"complex": [
+"describe",
+"places"
+],
+"complexion": [
+"body"
+],
+"complexity": [
+"describe"
+],
+"compliance": [
+"law"
+],
+"complicate": [
+"action"
+],
+"complication": [
+"body"
+],
+"compliment": [
+"talk"
+],
+"comply": [
+"law"
+],
+"component": [
+"tech"
+],
+"compose": [
+"arts"
+],
+"composer": [
+"arts"
+],
+"composition": [
+"school",
+"arts"
+],
+"compound": [
+"science"
+],
+"comprehend": [
+"mind"
+],
+"comprehension": [
+"mind",
+"school"
+],
+"comprehensive": [
+"describe"
+],
+"comprise": [
+"action"
+],
+"compromise": [
+"talk"
+],
+"compulsory": [
+"school",
+"law"
+],
+"compute": [
+"science",
+"tech"
+],
+"computer": [
+"tech"
+],
+"computerize": [
+"tech"
+],
+"comrade": [
+"people"
+],
+"conceal": [
+"action"
+],
+"concede": [
+"talk"
+],
+"conceive": [
+"mind"
+],
+"concentrate": [
+"mind"
+],
+"concentration": [
+"mind",
+"science"
+],
+"concept": [
+"mind"
+],
+"conception": [
+"mind"
+],
+"concern": [
+"feelings"
+],
+"concerning": [
+"function"
+],
+"concert": [
+"arts"
+],
+"concession": [
+"talk",
+"business"
+],
+"concise": [
+"talk"
+],
+"conclude": [
+"mind"
+],
+"conclusion": [
+"mind"
+],
+"concrete": [
+"describe",
+"home"
+],
+"condemn": [
+"talk",
+"law"
+],
+"condense": [
+"science"
+],
+"condition": [
+"describe",
+"body"
+],
+"conduct": [
+"action",
+"arts"
+],
+"conductor": [
+"arts",
+"science"
+],
+"cone": [
+"describe",
+"food"
+],
+"confederation": [
+"law"
+],
+"conference": [
+"work"
+],
+"confess": [
+"talk"
+],
+"confession": [
+"talk"
+],
+"confidence": [
+"feelings"
+],
+"confident": [
+"feelings"
+],
+"confidential": [
+"work"
+],
+"confine": [
+"action",
+"law"
+],
+"confirm": [
+"talk"
+],
+"conflict": [
+"society"
+],
+"conform": [
+"society"
+],
+"confront": [
+"action"
+],
+"confrontation": [
+"society"
+],
+"confuse": [
+"mind",
+"feelings"
+],
+"confused": [
+"feelings",
+"mind"
+],
+"confusion": [
+"mind"
+],
+"congratulate": [
+"talk"
+],
+"congratulation": [
+"talk"
+],
+"congratulation(s)": [
+"talk"
+],
+"congress": [
+"law"
+],
+"congressman/congresswoman": [
+"law"
+],
+"connect": [
+"action",
+"tech"
+],
+"connection": [
+"society"
+],
+"conquer": [
+"law"
+],
+"conquest": [
+"law"
+],
+"conscience": [
+"mind"
+],
+"conscientious": [
+"feelings"
+],
+"conscious": [
+"mind"
+],
+"consecutive": [
+"time"
+],
+"consensus": [
+"mind",
+"talk"
+],
+"consent": [
+"talk"
+],
+"consequence": [
+"mind"
+],
+"consequent": [
+"describe"
+],
+"conservation": [
+"nature"
+],
+"conservative": [
+"mind",
+"law"
+],
+"conserve": [
+"nature"
+],
+"consider": [
+"mind"
+],
+"considerable": [
+"describe"
+],
+"considerate": [
+"feelings"
+],
+"consideration": [
+"mind"
+],
+"consist": [
+"action"
+],
+"consistent": [
+"describe"
+],
+"consolation": [
+"feelings"
+],
+"console": [
+"tech",
+"feelings"
+],
+"consonant": [
+"talk"
+],
+"conspiracy": [
+"law"
+],
+"constant": [
+"describe",
+"science"
+],
+"constitute": [
+"action"
+],
+"constitution": [
+"law"
+],
+"constitutional": [
+"law"
+],
+"constraint": [
+"mind"
+],
+"construct": [
+"action"
+],
+"construction": [
+"places"
+],
+"constructive": [
+"describe"
+],
+"consult": [
+"talk"
+],
+"consultant": [
+"work"
+],
+"consultation": [
+"work",
+"body"
+],
+"consume": [
+"business",
+"food"
+],
+"consumer": [
+"business",
+"money"
+],
+"consumption": [
+"business"
+],
+"contact": [
+"talk"
+],
+"contact lens": [
+"body",
+"clothes"
+],
+"contagious": [
+"body"
+],
+"contain": [
+"action"
+],
+"container": [
+"home",
+"business"
+],
+"contaminate": [
+"nature"
+],
+"contemplate": [
+"mind"
+],
+"contemporary": [
+"time",
+"arts"
+],
+"contempt": [
+"feelings"
+],
+"contend": [
+"talk"
+],
+"content": [
+"arts",
+"feelings"
+],
+"content(ment)": [
+"feelings"
+],
+"contention": [
+"talk"
+],
+"contest": [
+"leisure"
+],
+"contestant": [
+"leisure"
+],
+"context": [
+"talk"
+],
+"continent": [
+"places"
+],
+"continental": [
+"places"
+],
+"continual": [
+"time"
+],
+"continue": [
+"action"
+],
+"continuity": [
+"time"
+],
+"continuous": [
+"time"
+],
+"contract": [
+"business",
+"law"
+],
+"contractor": [
+"business",
+"work"
+],
+"contradict": [
+"talk"
+],
+"contradiction": [
+"mind"
+],
+"contrary": [
+"describe"
+],
+"contrast": [
+"mind"
+],
+"contribute": [
+"society"
+],
+"contribution": [
+"society"
+],
+"control": [
+"action"
+],
+"controller": [
+"tech"
+],
+"controversial": [
+"society"
+],
+"controversy": [
+"society"
+],
+"convene": [
+"work"
+],
+"convenience": [
+"describe"
+],
+"convenience store": [
+"money",
+"places"
+],
+"convenient": [
+"describe"
+],
+"convention": [
+"society"
+],
+"conventional": [
+"society"
+],
+"conversation": [
+"talk"
+],
+"converse": [
+"talk"
+],
+"conversion": [
+"action"
+],
+"convert": [
+"action"
+],
+"convey": [
+"talk"
+],
+"convict": [
+"law"
+],
+"conviction": [
+"mind",
+"law"
+],
+"convince": [
+"talk"
+],
+"cook": [
+"food"
+],
+"cooker": [
+"food",
+"home"
+],
+"cookie": [
+"food"
+],
+"cool": [
+"nature",
+"feelings"
+],
+"cooperate": [
+"work"
+],
+"cooperation": [
+"work"
+],
+"cooperative": [
+"work"
+],
+"coordinate": [
+"work",
+"science"
+],
+"cope": [
+"action"
+],
+"copper": [
+"science"
+],
+"copy": [
+"action"
+],
+"copyright": [
+"law",
+"arts"
+],
+"coral": [
+"animals",
+"nature"
+],
+"cord": [
+"home",
+"tech"
+],
+"core": [
+"describe"
+],
+"corn": [
+"food"
+],
+"corner": [
+"places"
+],
+"corporate": [
+"business"
+],
+"corporation": [
+"business"
+],
+"corpse": [
+"body",
+"law"
+],
+"correct": [
+"school",
+"describe"
+],
+"correlation": [
+"science"
+],
+"correspond": [
+"describe",
+"talk"
+],
+"correspondence": [
+"talk"
+],
+"correspondent": [
+"arts",
+"work"
+],
+"corridor": [
+"home",
+"places"
+],
+"corrupt": [
+"law"
+],
+"corruption": [
+"law"
+],
+"cosmetic": [
+"clothes"
+],
+"cosmetics": [
+"clothes"
+],
+"cost": [
+"money"
+],
+"costly": [
+"money"
+],
+"costume": [
+"clothes",
+"arts"
+],
+"cottage": [
+"home"
+],
+"cotton": [
+"clothes"
+],
+"couch": [
+"home"
+],
+"cough": [
+"body"
+],
+"could": [
+"function"
+],
+"council": [
+"law"
+],
+"counsel": [
+"talk",
+"law"
+],
+"counselor": [
+"school",
+"work"
+],
+"count": [
+"time"
+],
+"countable": [
+"talk"
+],
+"counter": [
+"money"
+],
+"counterpart": [
+"work"
+],
+"country": [
+"places"
+],
+"countryside": [
+"places"
+],
+"county": [
+"places"
+],
+"couple": [
+"people",
+"time"
+],
+"coupon": [
+"money"
+],
+"courage": [
+"feelings"
+],
+"courageous": [
+"feelings"
+],
+"course": [
+"school",
+"food"
+],
+"court": [
+"law",
+"leisure"
+],
+"courteous": [
+"feelings"
+],
+"courtesy": [
+"society"
+],
+"courtyard": [
+"home"
+],
+"cousin": [
+"people"
+],
+"cover": [
+"action",
+"arts"
+],
+"coverage": [
+"arts"
+],
+"cow": [
+"animals"
+],
+"coward": [
+"feelings"
+],
+"cowardly": [
+"feelings"
+],
+"cowboy": [
+"work"
+],
+"cozy": [
+"home"
+],
+"crab": [
+"animals",
+"food"
+],
+"crack": [
+"action"
+],
+"crackdown": [
+"law"
+],
+"cracker": [
+"food"
+],
+"cradle": [
+"home",
+"people"
+],
+"craft": [
+"arts"
+],
+"cram": [
+"school"
+],
+"cramp": [
+"body"
+],
+"crane": [
+"animals",
+"tech"
+],
+"crash": [
+"travel",
+"tech"
+],
+"crater": [
+"nature"
+],
+"crawl": [
+"action"
+],
+"crayon": [
+"school",
+"arts"
+],
+"crazy": [
+"feelings"
+],
+"cream": [
+"food",
+"clothes"
+],
+"create": [
+"arts"
+],
+"creation": [
+"arts"
+],
+"creative": [
+"arts"
+],
+"creativity": [
+"arts"
+],
+"creator": [
+"arts"
+],
+"creature": [
+"animals"
+],
+"credibility": [
+"mind"
+],
+"credible": [
+"mind"
+],
+"credit": [
+"money",
+"school"
+],
+"credit card": [
+"money"
+],
+"creek": [
+"nature"
+],
+"creep": [
+"action"
+],
+"crew": [
+"work",
+"travel"
+],
+"cricket": [
+"animals",
+"leisure"
+],
+"crime": [
+"law"
+],
+"criminal": [
+"law"
+],
+"cripple": [
+"body"
+],
+"crisis": [
+"society"
+],
+"crispy": [
+"food"
+],
+"criterion/criteria": [
+"mind"
+],
+"critic": [
+"arts"
+],
+"critical": [
+"mind"
+],
+"criticism": [
+"talk"
+],
+"criticize": [
+"talk"
+],
+"crocodile": [
+"animals"
+],
+"crop": [
+"animals",
+"action"
+],
+"cross": [
+"travel",
+"action"
+],
+"crossing": [
+"travel"
+],
+"crossroads": [
+"travel"
+],
+"crow": [
+"animals"
+],
+"crowd": [
+"society"
+],
+"crowded": [
+"places"
+],
+"crown": [
+"law",
+"clothes"
+],
+"crucial": [
+"describe"
+],
+"crude": [
+"describe"
+],
+"cruel": [
+"feelings"
+],
+"cruelty": [
+"feelings"
+],
+"cruise": [
+"travel"
+],
+"crunchy": [
+"food"
+],
+"crush": [
+"feelings",
+"action"
+],
+"crutch": [
+"body"
+],
+"cry": [
+"feelings"
+],
+"crystal": [
+"nature"
+],
+"cub": [
+"animals"
+],
+"cube": [
+"describe",
+"science"
+],
+"cucumber": [
+"food"
+],
+"cue": [
+"talk"
+],
+"cuisine": [
+"food"
+],
+"cultivate": [
+"animals",
+"mind"
+],
+"cultural": [
+"society"
+],
+"culture": [
+"society"
+],
+"cumulative": [
+"time"
+],
+"cunning": [
+"feelings"
+],
+"cup": [
+"food",
+"home"
+],
+"cupboard": [
+"home"
+],
+"curb": [
+"travel",
+"action"
+],
+"cure": [
+"body"
+],
+"curfew": [
+"law",
+"home"
+],
+"curiosity": [
+"feelings"
+],
+"curious": [
+"feelings"
+],
+"curl": [
+"clothes"
+],
+"currency": [
+"money"
+],
+"current": [
+"time",
+"nature"
+],
+"curriculum": [
+"school"
+],
+"curry": [
+"food"
+],
+"curse": [
+"talk"
+],
+"curtain": [
+"home"
+],
+"curve": [
+"describe"
+],
+"cushion": [
+"home"
+],
+"custody": [
+"law"
+],
+"custom": [
+"society"
+],
+"customary": [
+"society"
+],
+"customer": [
+"money",
+"business"
+],
+"customs": [
+"travel"
+],
+"cut": [
+"action",
+"body"
+],
+"cute": [
+"describe"
+],
+"cycle": [
+"science",
+"leisure"
+],
+"cynical": [
+"feelings"
+],
+"daily": [
+"time"
+],
+"dairy": [
+"food"
+],
+"dam": [
+"nature"
+],
+"damage": [
+"action"
+],
+"damp": [
+"nature",
+"describe"
+],
+"dance": [
+"leisure",
+"arts"
+],
+"dancer": [
+"arts"
+],
+"danger": [
+"describe"
+],
+"dangerous": [
+"describe"
+],
+"dare": [
+"feelings"
+],
+"dark": [
+"describe"
+],
+"darling": [
+"people"
+],
+"dash": [
+"action"
+],
+"data": [
+"tech",
+"science"
+],
+"database": [
+"tech"
+],
+"date": [
+"time",
+"people"
+],
+"daughter": [
+"people"
+],
+"dawn": [
+"time"
+],
+"day": [
+"time"
+],
+"dazzle": [
+"describe"
+],
+"dead": [
+"body"
+],
+"deadline": [
+"work",
+"time"
+],
+"deadly": [
+"body"
+],
+"deaf": [
+"body"
+],
+"deafen": [
+"body"
+],
+"deal": [
+"business",
+"action"
+],
+"dealer": [
+"business"
+],
+"dear": [
+"people"
+],
+"death": [
+"body"
+],
+"debate": [
+"talk"
+],
+"debris": [
+"nature"
+],
+"debt": [
+"money"
+],
+"debut": [
+"arts"
+],
+"decade": [
+"time"
+],
+"decay": [
+"nature"
+],
+"deceive": [
+"law"
+],
+"december": [
+"time"
+],
+"decent": [
+"describe"
+],
+"decide": [
+"mind"
+],
+"decision": [
+"mind"
+],
+"decisive": [
+"mind",
+"feelings"
+],
+"deck": [
+"travel",
+"leisure"
+],
+"declaration": [
+"talk",
+"law"
+],
+"declare": [
+"talk"
+],
+"decline": [
+"action"
+],
+"decorate": [
+"home"
+],
+"decoration": [
+"home",
+"leisure"
+],
+"decrease": [
+"action"
+],
+"dedicate": [
+"mind"
+],
+"dedication": [
+"mind"
+],
+"deduct": [
+"money"
+],
+"deed": [
+"action"
+],
+"deem": [
+"mind"
+],
+"deep": [
+"describe"
+],
+"deepen": [
+"action"
+],
+"deer": [
+"animals"
+],
+"default": [
+"tech",
+"money"
+],
+"defeat": [
+"leisure",
+"law"
+],
+"defect": [
+"describe"
+],
+"defend": [
+"law",
+"leisure"
+],
+"defendant": [
+"law"
+],
+"defense": [
+"law",
+"leisure"
+],
+"defensible": [
+"mind"
+],
+"defensive": [
+"feelings",
+"law"
+],
+"defiance": [
+"society"
+],
+"deficit": [
+"money",
+"business"
+],
+"define": [
+"talk"
+],
+"definite": [
+"describe"
+],
+"definition": [
+"talk"
+],
+"definitive": [
+"describe"
+],
+"defy": [
+"society"
+],
+"degree": [
+"time",
+"school"
+],
+"delay": [
+"time",
+"travel"
+],
+"delegate": [
+"work"
+],
+"delegation": [
+"work",
+"law"
+],
+"deliberate": [
+"mind"
+],
+"delicate": [
+"describe"
+],
+"delicious": [
+"food"
+],
+"delight": [
+"feelings"
+],
+"delightful": [
+"feelings"
+],
+"deliver": [
+"money",
+"action"
+],
+"delivery": [
+"money"
+],
+"demand": [
+"talk",
+"business"
+],
+"democracy": [
+"law"
+],
+"democrat": [
+"law"
+],
+"democratic": [
+"law"
+],
+"demonstrate": [
+"school",
+"society"
+],
+"demonstration": [
+"society"
+],
+"denial": [
+"talk"
+],
+"dense": [
+"describe"
+],
+"density": [
+"science"
+],
+"dental": [
+"body"
+],
+"dentist": [
+"body",
+"work"
+],
+"deny": [
+"talk"
+],
+"depart": [
+"travel"
+],
+"department": [
+"work",
+"school"
+],
+"department store": [
+"money",
+"places"
+],
+"departure": [
+"travel"
+],
+"depend": [
+"mind"
+],
+"dependent": [
+"describe"
+],
+"depict": [
+"arts"
+],
+"deplete": [
+"nature"
+],
+"deploy": [
+"law"
+],
+"deposit": [
+"money"
+],
+"depress": [
+"feelings"
+],
+"depression": [
+"feelings",
+"business"
+],
+"deprive": [
+"action"
+],
+"depth": [
+"time"
+],
+"deputy": [
+"work"
+],
+"derive": [
+"action"
+],
+"descend": [
+"action"
+],
+"descent": [
+"action",
+"people"
+],
+"describe": [
+"talk"
+],
+"description": [
+"talk"
+],
+"descriptive": [
+"talk"
+],
+"desert": [
+"nature"
+],
+"deserve": [
+"mind"
+],
+"design": [
+"arts"
+],
+"designer": [
+"arts",
+"work"
+],
+"desirable": [
+"describe"
+],
+"desire": [
+"feelings"
+],
+"desk": [
+"school",
+"home"
+],
+"despair": [
+"feelings"
+],
+"desperate": [
+"feelings"
+],
+"despise": [
+"feelings"
+],
+"despite": [
+"function"
+],
+"dessert": [
+"food"
+],
+"destination": [
+"travel"
+],
+"destined": [
+"mind"
+],
+"destiny": [
+"mind"
+],
+"destroy": [
+"action"
+],
+"destruction": [
+"action"
+],
+"destructive": [
+"describe"
+],
+"detach": [
+"action"
+],
+"detail": [
+"describe"
+],
+"detain": [
+"law"
+],
+"detect": [
+"science"
+],
+"detective": [
+"law"
+],
+"detention": [
+"law",
+"school"
+],
+"deter": [
+"action"
+],
+"detergent": [
+"home"
+],
+"determination": [
+"feelings"
+],
+"determine": [
+"mind"
+],
+"develop": [
+"action"
+],
+"develop(ment)": [
+"action",
+"business"
+],
+"device": [
+"tech"
+],
+"devil": [
+"society"
+],
+"devise": [
+"mind",
+"action"
+],
+"devote": [
+"action",
+"feelings"
+],
+"devotion": [
+"feelings",
+"society"
+],
+"devour": [
+"food"
+],
+"dew": [
+"nature"
+],
+"diabetes": [
+"body"
+],
+"diagnose": [
+"body"
+],
+"diagnosis": [
+"body"
+],
+"diagram": [
+"science"
+],
+"dial": [
+"tech"
+],
+"dialect": [
+"talk"
+],
+"dialogue": [
+"talk"
+],
+"diameter": [
+"science",
+"time"
+],
+"diamond": [
+"clothes"
+],
+"diaper": [
+"home",
+"people"
+],
+"diary": [
+"talk"
+],
+"dictate": [
+"talk",
+"law"
+],
+"dictation": [
+"school",
+"talk"
+],
+"dictator": [
+"law"
+],
+"dictatorship": [
+"law"
+],
+"dictionary": [
+"school",
+"talk"
+],
+"die": [
+"body"
+],
+"diesel": [
+"travel"
+],
+"diet": [
+"food",
+"body"
+],
+"differ": [
+"describe"
+],
+"difference": [
+"describe"
+],
+"different": [
+"describe"
+],
+"differentiate": [
+"mind"
+],
+"difficult": [
+"describe"
+],
+"difficulty": [
+"describe"
+],
+"dig": [
+"action"
+],
+"digest": [
+"body"
+],
+"digestion": [
+"body"
+],
+"digital": [
+"tech"
+],
+"dignity": [
+"society",
+"feelings"
+],
+"dilemma": [
+"mind"
+],
+"diligence": [
+"feelings",
+"school"
+],
+"diligent": [
+"feelings",
+"school"
+],
+"dim": [
+"describe"
+],
+"dime": [
+"money"
+],
+"dimension": [
+"science"
+],
+"diminish": [
+"action"
+],
+"dine": [
+"food"
+],
+"dining room": [
+"home"
+],
+"dinner": [
+"food"
+],
+"dinosaur": [
+"animals"
+],
+"dip": [
+"action",
+"food"
+],
+"diploma": [
+"school"
+],
+"diplomacy": [
+"law"
+],
+"diplomat": [
+"law",
+"work"
+],
+"diplomatic": [
+"law"
+],
+"direct": [
+"describe",
+"arts"
+],
+"direction": [
+"places"
+],
+"directive": [
+"work",
+"law"
+],
+"director": [
+"arts",
+"work"
+],
+"directory": [
+"tech"
+],
+"dirt": [
+"home",
+"nature"
+],
+"dirty": [
+"describe",
+"home"
+],
+"disability": [
+"body"
+],
+"disable": [
+"body",
+"tech"
+],
+"disadvantage": [
+"mind"
+],
+"disagree(ment)": [
+"talk"
+],
+"disappear": [
+"action"
+],
+"disappoint(ment)": [
+"feelings"
+],
+"disapprove": [
+"mind"
+],
+"disaster": [
+"nature"
+],
+"disastrous": [
+"nature",
+"describe"
+],
+"disbelief": [
+"mind"
+],
+"discard": [
+"action"
+],
+"discharge": [
+"body"
+],
+"disciple": [
+"society"
+],
+"disciplinary": [
+"school",
+"law"
+],
+"discipline": [
+"school"
+],
+"disclose": [
+"talk"
+],
+"disclosure": [
+"talk"
+],
+"discomfort": [
+"body",
+"feelings"
+],
+"disconnect": [
+"tech"
+],
+"discount": [
+"money"
+],
+"discourage(ment)": [
+"feelings"
+],
+"discourse": [
+"talk"
+],
+"discover": [
+"science"
+],
+"discovery": [
+"science"
+],
+"discreet": [
+"feelings"
+],
+"discriminate": [
+"society"
+],
+"discrimination": [
+"society"
+],
+"discuss": [
+"talk"
+],
+"discussion": [
+"talk"
+],
+"disease": [
+"body"
+],
+"disgrace": [
+"society",
+"feelings"
+],
+"disguise": [
+"clothes"
+],
+"disgust": [
+"feelings"
+],
+"dish": [
+"food"
+],
+"dishonest": [
+"feelings"
+],
+"disk/disc": [
+"tech"
+],
+"dislike": [
+"feelings"
+],
+"dismay": [
+"feelings"
+],
+"dismiss": [
+"work"
+],
+"disorder": [
+"body"
+],
+"dispensable": [
+"describe"
+],
+"dispense": [
+"body"
+],
+"display": [
+"money",
+"tech"
+],
+"disposable": [
+"describe"
+],
+"disposal": [
+"nature"
+],
+"dispose": [
+"nature"
+],
+"dispute": [
+"talk",
+"law"
+],
+"disrupt": [
+"action"
+],
+"dissent": [
+"talk"
+],
+"dissolve": [
+"science"
+],
+"distance": [
+"places"
+],
+"distant": [
+"places"
+],
+"distinct": [
+"describe"
+],
+"distinction": [
+"mind"
+],
+"distinctive": [
+"describe"
+],
+"distinguish": [
+"mind"
+],
+"distinguished": [
+"work"
+],
+"distract": [
+"mind"
+],
+"distraction": [
+"mind",
+"leisure"
+],
+"distress": [
+"feelings"
+],
+"distribute": [
+"action"
+],
+"distribution": [
+"action",
+"business"
+],
+"district": [
+"places"
+],
+"disturb": [
+"action",
+"feelings"
+],
+"disturbance": [
+"action"
+],
+"ditch": [
+"places"
+],
+"dive": [
+"leisure"
+],
+"diverse": [
+"society"
+],
+"diversify": [
+"business"
+],
+"diversion": [
+"travel",
+"leisure"
+],
+"diversity": [
+"society"
+],
+"divert": [
+"travel"
+],
+"divide": [
+"science"
+],
+"dividend": [
+"money",
+"business"
+],
+"divine": [
+"society"
+],
+"division": [
+"science",
+"work"
+],
+"divorce": [
+"people"
+],
+"dizzy": [
+"body"
+],
+"do": [
+"function",
+"action"
+],
+"do (does, did, done)": [
+"function",
+"action"
+],
+"do the dishes": [
+"home"
+],
+"dock": [
+"travel"
+],
+"doctor (dr.)": [
+"work",
+"body"
+],
+"doctor/doc": [
+"work",
+"body"
+],
+"doctrine": [
+"society"
+],
+"document": [
+"work"
+],
+"documentary": [
+"arts"
+],
+"dodge": [
+"action"
+],
+"dodge ball": [
+"leisure"
+],
+"dog": [
+"animals"
+],
+"doll": [
+"leisure"
+],
+"dollar": [
+"money"
+],
+"dolphin": [
+"animals"
+],
+"domain": [
+"tech",
+"mind"
+],
+"dome": [
+"places"
+],
+"domestic": [
+"home",
+"places"
+],
+"dominant": [
+"describe"
+],
+"dominate": [
+"law"
+],
+"don't": [
+"function"
+],
+"donate": [
+"money",
+"society"
+],
+"donation": [
+"money",
+"society"
+],
+"donkey": [
+"animals"
+],
+"donor": [
+"society"
+],
+"doom": [
+"feelings"
+],
+"door": [
+"home"
+],
+"doorway": [
+"home"
+],
+"dormitory/dorm": [
+"school"
+],
+"dos and don'ts": [
+"society"
+],
+"dose": [
+"body"
+],
+"dot": [
+"describe"
+],
+"double": [
+"time"
+],
+"doubt": [
+"mind"
+],
+"doubtful": [
+"mind"
+],
+"dough": [
+"food"
+],
+"doughnut": [
+"food"
+],
+"dove": [
+"animals"
+],
+"down": [
+"places"
+],
+"download": [
+"tech"
+],
+"downstairs": [
+"home"
+],
+"downtown": [
+"places"
+],
+"downward": [
+"places"
+],
+"downward/downwards": [
+"places"
+],
+"doze": [
+"home"
+],
+"dozen": [
+"time"
+],
+"draft": [
+"talk",
+"work"
+],
+"drag": [
+"action"
+],
+"dragon": [
+"arts"
+],
+"dragonfly": [
+"animals"
+],
+"drain": [
+"home"
+],
+"drama": [
+"arts"
+],
+"dramatic": [
+"arts",
+"describe"
+],
+"drastic": [
+"describe"
+],
+"draught": [
+"home"
+],
+"draw": [
+"arts"
+],
+"drawer": [
+"home"
+],
+"drawing": [
+"arts"
+],
+"dread": [
+"feelings"
+],
+"dreadful": [
+"feelings"
+],
+"dream": [
+"home",
+"mind"
+],
+"dress": [
+"clothes"
+],
+"dresser": [
+"home"
+],
+"dressing": [
+"food"
+],
+"drift": [
+"action"
+],
+"drill": [
+"tech",
+"school"
+],
+"drink": [
+"food"
+],
+"drip": [
+"action"
+],
+"drive": [
+"travel"
+],
+"driver": [
+"travel",
+"work"
+],
+"driveway": [
+"home"
+],
+"drop": [
+"action"
+],
+"drought": [
+"nature"
+],
+"drown": [
+"body"
+],
+"drowsy": [
+"body"
+],
+"drug": [
+"body",
+"law"
+],
+"drugstore": [
+"money",
+"body"
+],
+"drum": [
+"arts"
+],
+"drunk": [
+"food"
+],
+"dry": [
+"describe"
+],
+"dryer": [
+"home"
+],
+"dual": [
+"describe"
+],
+"dubious": [
+"mind"
+],
+"duck": [
+"animals"
+],
+"due": [
+"time"
+],
+"dull": [
+"describe"
+],
+"dumb": [
+"feelings"
+],
+"dump": [
+"nature"
+],
+"dumpling": [
+"food"
+],
+"durable": [
+"describe"
+],
+"duration": [
+"time"
+],
+"during": [
+"function",
+"time"
+],
+"dusk": [
+"time"
+],
+"dust": [
+"home"
+],
+"dusty": [
+"home"
+],
+"duty": [
+"work"
+],
+"dwarf": [
+"arts"
+],
+"dwell": [
+"home"
+],
+"dwelling": [
+"home"
+],
+"dye": [
+"clothes"
+],
+"dynamic": [
+"feelings"
+],
+"dynasty": [
+"law"
+],
+"e-mail": [
+"tech",
+"talk"
+],
+"each": [
+"function"
+],
+"eager": [
+"feelings"
+],
+"eagle": [
+"animals"
+],
+"ear": [
+"body"
+],
+"early": [
+"time"
+],
+"earn": [
+"money",
+"work"
+],
+"earnest": [
+"feelings"
+],
+"earphone": [
+"tech"
+],
+"earring(s)": [
+"clothes"
+],
+"earrings": [
+"clothes"
+],
+"earth": [
+"nature"
+],
+"earthquake": [
+"nature"
+],
+"ease": [
+"feelings"
+],
+"east": [
+"places"
+],
+"easter": [
+"leisure"
+],
+"eastern": [
+"places"
+],
+"easy": [
+"describe"
+],
+"eat": [
+"food"
+],
+"eccentric": [
+"feelings"
+],
+"echo": [
+"science"
+],
+"eclipse": [
+"nature",
+"science"
+],
+"ecological": [
+"nature"
+],
+"ecology": [
+"nature",
+"science"
+],
+"economic": [
+"business"
+],
+"economical": [
+"money"
+],
+"economics": [
+"business",
+"school"
+],
+"economist": [
+"business",
+"work"
+],
+"economy": [
+"business"
+],
+"ecosystem": [
+"nature"
+],
+"edge": [
+"places"
+],
+"edible": [
+"food"
+],
+"edit": [
+"arts"
+],
+"edition": [
+"arts"
+],
+"editor": [
+"arts",
+"work"
+],
+"editorial": [
+"arts"
+],
+"educate": [
+"school"
+],
+"education": [
+"school"
+],
+"educational": [
+"school"
+],
+"effect": [
+"mind"
+],
+"effective": [
+"describe"
+],
+"efficiency": [
+"work"
+],
+"efficient": [
+"work",
+"describe"
+],
+"effort": [
+"action"
+],
+"egg": [
+"food"
+],
+"ego": [
+"feelings"
+],
+"eight": [
+"time"
+],
+"eighteen": [
+"time"
+],
+"eighty": [
+"time"
+],
+"either": [
+"function"
+],
+"either...or": [
+"function"
+],
+"elaborate": [
+"describe"
+],
+"elastic": [
+"describe",
+"clothes"
+],
+"elbow": [
+"body"
+],
+"elder": [
+"people"
+],
+"elderly": [
+"people"
+],
+"elect": [
+"law"
+],
+"election": [
+"law"
+],
+"electric": [
+"tech"
+],
+"electrical": [
+"tech"
+],
+"electrician": [
+"work"
+],
+"electricity": [
+"tech"
+],
+"electronic": [
+"tech"
+],
+"electronics": [
+"tech"
+],
+"elegant": [
+"clothes"
+],
+"element": [
+"science"
+],
+"elementary": [
+"school"
+],
+"elementary school": [
+"school"
+],
+"elephant": [
+"animals"
+],
+"elevate": [
+"action"
+],
+"elevator": [
+"home",
+"places"
+],
+"eleven": [
+"time"
+],
+"eligible": [
+"law"
+],
+"eliminate": [
+"action",
+"leisure"
+],
+"eloquent": [
+"talk"
+],
+"else": [
+"function"
+],
+"elsewhere": [
+"places"
+],
+"email": [
+"tech",
+"talk"
+],
+"embarrass": [
+"feelings"
+],
+"embarrass(ment)": [
+"feelings"
+],
+"embassy": [
+"law",
+"places"
+],
+"embrace": [
+"people"
+],
+"emerge": [
+"action"
+],
+"emergency": [
+"body",
+"nature"
+],
+"emigrant": [
+"society"
+],
+"emigrate": [
+"society",
+"travel"
+],
+"emigration": [
+"society"
+],
+"emission": [
+"nature"
+],
+"emotion": [
+"feelings"
+],
+"emotional": [
+"feelings"
+],
+"emperor": [
+"law"
+],
+"emphasis": [
+"talk"
+],
+"emphasize": [
+"talk"
+],
+"empire": [
+"law"
+],
+"employ": [
+"work"
+],
+"employ(ment)": [
+"work"
+],
+"employee": [
+"work"
+],
+"employer": [
+"work"
+],
+"empty": [
+"describe"
+],
+"enable": [
+"action"
+],
+"enclose": [
+"talk",
+"action"
+],
+"encounter": [
+"action"
+],
+"encourage(ment)": [
+"feelings"
+],
+"encyclopedia": [
+"school",
+"arts"
+],
+"end": [
+"time",
+"action"
+],
+"endanger": [
+"nature"
+],
+"endeavor": [
+"action"
+],
+"ending": [
+"arts"
+],
+"endorse(ment)": [
+"business"
+],
+"endowment": [
+"money"
+],
+"endurance": [
+"body"
+],
+"endure": [
+"feelings"
+],
+"enemy": [
+"law",
+"people"
+],
+"energetic": [
+"feelings"
+],
+"energy": [
+"body",
+"science"
+],
+"enforce(ment)": [
+"law"
+],
+"engage(ment)": [
+"action",
+"people"
+],
+"engine": [
+"tech",
+"travel"
+],
+"engineer": [
+"work",
+"tech"
+],
+"engineering": [
+"tech",
+"science"
+],
+"english": [
+"school",
+"talk"
+],
+"enhance(ment)": [
+"action"
+],
+"enjoy": [
+"feelings"
+],
+"enjoy(ment)": [
+"feelings"
+],
+"enjoyable": [
+"feelings"
+],
+"enlarge(ment)": [
+"action"
+],
+"enlighten(ment)": [
+"mind"
+],
+"enormous": [
+"describe"
+],
+"enough": [
+"time"
+],
+"enrich(ment)": [
+"action"
+],
+"enroll(ment)": [
+"school"
+],
+"ensure": [
+"action"
+],
+"enter": [
+"action",
+"places"
+],
+"enterprise": [
+"business"
+],
+"entertain(ment)": [
+"leisure",
+"arts"
+],
+"enthusiasm": [
+"feelings"
+],
+"enthusiastic": [
+"feelings"
+],
+"entire": [
+"describe"
+],
+"entitle": [
+"law"
+],
+"entity": [
+"mind"
+],
+"entrance": [
+"places"
+],
+"entrepreneur": [
+"business",
+"work"
+],
+"entry": [
+"places"
+],
+"envelope": [
+"talk"
+],
+"envious": [
+"feelings"
+],
+"environment": [
+"nature"
+],
+"environmental": [
+"nature"
+],
+"envision": [
+"mind"
+],
+"envy": [
+"feelings"
+],
+"epidemic": [
+"body"
+],
+"episode": [
+"arts"
+],
+"equal": [
+"describe",
+"society"
+],
+"equality": [
+"society"
+],
+"equalize": [
+"leisure"
+],
+"equate": [
+"mind"
+],
+"equation": [
+"science"
+],
+"equip(ment)": [
+"tech"
+],
+"equity": [
+"society",
+"business"
+],
+"equivalent": [
+"describe"
+],
+"era": [
+"time",
+"law"
+],
+"erase": [
+"school"
+],
+"eraser": [
+"school"
+],
+"erect": [
+"action"
+],
+"errand": [
+"home"
+],
+"error": [
+"mind"
+],
+"erupt": [
+"nature"
+],
+"escalator": [
+"places"
+],
+"escape": [
+"action"
+],
+"escort": [
+"action"
+],
+"especially": [
+"describe"
+],
+"essay": [
+"school",
+"talk"
+],
+"essence": [
+"mind"
+],
+"essential": [
+"describe"
+],
+"establish(ment)": [
+"action"
+],
+"estate": [
+"home",
+"money"
+],
+"esteem": [
+"feelings"
+],
+"estimate": [
+"mind"
+],
+"eternal": [
+"time"
+],
+"eternity": [
+"time"
+],
+"ethic(s)": [
+"mind",
+"society"
+],
+"ethical": [
+"mind",
+"society"
+],
+"ethnic": [
+"society"
+],
+"evacuate": [
+"nature"
+],
+"evaluate": [
+"mind"
+],
+"evaluation": [
+"mind"
+],
+"eve": [
+"time",
+"leisure"
+],
+"even": [
+"describe"
+],
+"evening": [
+"time"
+],
+"event": [
+"leisure"
+],
+"eventual": [
+"time"
+],
+"ever": [
+"time"
+],
+"evergreen": [
+"animals"
+],
+"every": [
+"function"
+],
+"everyone (everybody)": [
+"function"
+],
+"everyone/everybody": [
+"function"
+],
+"everything": [
+"function"
+],
+"everywhere": [
+"places"
+],
+"evidence": [
+"law"
+],
+"evident": [
+"describe"
+],
+"evil": [
+"feelings"
+],
+"evoke": [
+"feelings"
+],
+"evolution": [
+"science"
+],
+"evolve": [
+"science"
+],
+"exact": [
+"describe"
+],
+"exaggerate": [
+"talk"
+],
+"exaggeration": [
+"talk"
+],
+"exam": [
+"school"
+],
+"examination/exam": [
+"school"
+],
+"examine": [
+"school",
+"body"
+],
+"examinee": [
+"school"
+],
+"examiner": [
+"school"
+],
+"example": [
+"school"
+],
+"exceed": [
+"describe"
+],
+"excel": [
+"describe"
+],
+"excellence": [
+"describe"
+],
+"excellent": [
+"describe"
+],
+"except": [
+"function"
+],
+"exception": [
+"mind"
+],
+"exceptional": [
+"describe"
+],
+"excerpt": [
+"arts"
+],
+"excess": [
+"time"
+],
+"excessive": [
+"describe"
+],
+"exchange": [
+"money"
+],
+"excite": [
+"feelings"
+],
+"excite(ment)": [
+"feelings"
+],
+"excited": [
+"feelings"
+],
+"exciting": [
+"feelings"
+],
+"exclaim": [
+"talk"
+],
+"exclude": [
+"action"
+],
+"exclusion": [
+"society"
+],
+"exclusive": [
+"describe",
+"money"
+],
+"excuse": [
+"talk"
+],
+"excuse me.": [
+"talk"
+],
+"execute": [
+"action",
+"law"
+],
+"execution": [
+"law"
+],
+"executive": [
+"work",
+"business"
+],
+"exempt": [
+"law"
+],
+"exercise": [
+"leisure",
+"body"
+],
+"exert": [
+"action"
+],
+"exhaust": [
+"travel",
+"body"
+],
+"exhibit": [
+"arts"
+],
+"exhibition": [
+"arts"
+],
+"exile": [
+"law"
+],
+"exist": [
+"mind"
+],
+"existence": [
+"mind"
+],
+"exit": [
+"places"
+],
+"exotic": [
+"places"
+],
+"expand": [
+"action"
+],
+"expansion": [
+"action"
+],
+"expect": [
+"mind"
+],
+"expectation": [
+"mind"
+],
+"expedition": [
+"travel"
+],
+"expenditure": [
+"money"
+],
+"expense": [
+"money"
+],
+"expensive": [
+"money"
+],
+"experience": [
+"mind"
+],
+"experiment": [
+"science"
+],
+"experimental": [
+"science"
+],
+"expert": [
+"work"
+],
+"expertise": [
+"work"
+],
+"expiration": [
+"time"
+],
+"expire": [
+"time"
+],
+"explain": [
+"talk"
+],
+"explanation": [
+"talk"
+],
+"explicit": [
+"describe"
+],
+"explode": [
+"action"
+],
+"exploit": [
+"society"
+],
+"exploration": [
+"travel",
+"science"
+],
+"explore": [
+"travel"
+],
+"explosion": [
+"action"
+],
+"explosive": [
+"action"
+],
+"export": [
+"business"
+],
+"expose": [
+"action"
+],
+"exposure": [
+"action"
+],
+"express": [
+"talk",
+"travel"
+],
+"expression": [
+"talk"
+],
+"expressive": [
+"talk"
+],
+"extend": [
+"action"
+],
+"extension": [
+"action"
+],
+"extensive": [
+"describe"
+],
+"extent": [
+"describe"
+],
+"exterior": [
+"places"
+],
+"external": [
+"places"
+],
+"extinct": [
+"animals"
+],
+"extra": [
+"describe"
+],
+"extract": [
+"science",
+"food"
+],
+"extracurricular": [
+"school"
+],
+"extraordinary": [
+"describe"
+],
+"extreme": [
+"describe"
+],
+"eye": [
+"body"
+],
+"eyebrow/brow": [
+"body"
+],
+"eyelash/lash": [
+"body"
+],
+"eyelid": [
+"body"
+],
+"eyesight": [
+"body"
+],
+"fable": [
+"arts"
+],
+"fabric": [
+"clothes"
+],
+"fabulous": [
+"describe"
+],
+"face": [
+"body"
+],
+"facial": [
+"body"
+],
+"facilitate": [
+"action"
+],
+"facility": [
+"places"
+],
+"fact": [
+"mind"
+],
+"faction": [
+"law"
+],
+"factor": [
+"mind"
+],
+"factory": [
+"work",
+"places"
+],
+"faculty": [
+"school"
+],
+"fade": [
+"action"
+],
+"fahrenheit": [
+"nature",
+"time"
+],
+"fail": [
+"school"
+],
+"failure": [
+"mind"
+],
+"faint": [
+"body"
+],
+"fair": [
+"society",
+"leisure"
+],
+"fairly": [
+"describe"
+],
+"fairy": [
+"arts"
+],
+"faith": [
+"society"
+],
+"faithful": [
+"feelings"
+],
+"fake": [
+"describe"
+],
+"fall": [
+"action",
+"nature"
+],
+"false": [
+"describe"
+],
+"falter": [
+"action"
+],
+"fame": [
+"society"
+],
+"familiar": [
+"mind"
+],
+"familiarity": [
+"mind"
+],
+"family": [
+"people"
+],
+"famous": [
+"society"
+],
+"fan": [
+"home",
+"leisure"
+],
+"fancy": [
+"describe"
+],
+"fantastic": [
+"describe"
+],
+"fantasy": [
+"arts"
+],
+"far": [
+"places"
+],
+"fare": [
+"travel",
+"money"
+],
+"farewell": [
+"talk"
+],
+"farm": [
+"nature",
+"work"
+],
+"farmer": [
+"work"
+],
+"farther": [
+"places"
+],
+"fascinate": [
+"feelings"
+],
+"fascination": [
+"feelings"
+],
+"fashion": [
+"clothes"
+],
+"fashionable": [
+"clothes"
+],
+"fast": [
+"describe"
+],
+"fasten": [
+"action"
+],
+"fat": [
+"body",
+"food"
+],
+"fatal": [
+"body"
+],
+"fate": [
+"mind"
+],
+"father": [
+"people"
+],
+"father (dad, daddy)": [
+"people"
+],
+"fatigue": [
+"body"
+],
+"faucet": [
+"home"
+],
+"fault": [
+"mind"
+],
+"favor": [
+"people"
+],
+"favorable": [
+"describe"
+],
+"favorite": [
+"feelings"
+],
+"fax": [
+"tech",
+"work"
+],
+"fear": [
+"feelings"
+],
+"fearful": [
+"feelings"
+],
+"feasible": [
+"mind"
+],
+"feast": [
+"food",
+"leisure"
+],
+"feather": [
+"animals"
+],
+"feature": [
+"describe"
+],
+"february": [
+"time"
+],
+"federal": [
+"law"
+],
+"fee": [
+"money"
+],
+"feeble": [
+"body"
+],
+"feed": [
+"animals"
+],
+"feedback": [
+"talk"
+],
+"feel": [
+"feelings"
+],
+"feel like": [
+"feelings"
+],
+"feeling": [
+"feelings"
+],
+"fellow": [
+"people"
+],
+"female": [
+"people"
+],
+"feminine": [
+"people"
+],
+"fence": [
+"home"
+],
+"ferry": [
+"travel"
+],
+"fertile": [
+"nature"
+],
+"fertility": [
+"nature",
+"body"
+],
+"fertilizer": [
+"nature"
+],
+"festival": [
+"leisure"
+],
+"fetch": [
+"action"
+],
+"fever": [
+"body"
+],
+"few": [
+"time"
+],
+"fiancé/fiance": [
+"people"
+],
+"fiber": [
+"food",
+"clothes"
+],
+"fiction": [
+"arts"
+],
+"field": [
+"places",
+"leisure"
+],
+"fierce": [
+"feelings"
+],
+"fifteen": [
+"time"
+],
+"fifty": [
+"time"
+],
+"fight": [
+"action"
+],
+"fighter": [
+"law"
+],
+"figure": [
+"time"
+],
+"file": [
+"work",
+"tech"
+],
+"fill": [
+"action"
+],
+"film": [
+"arts"
+],
+"filter": [
+"tech"
+],
+"fin": [
+"animals"
+],
+"final": [
+"time",
+"leisure"
+],
+"finally": [
+"time"
+],
+"finance": [
+"money",
+"business"
+],
+"financial": [
+"money",
+"business"
+],
+"find": [
+"action"
+],
+"fine": [
+"describe",
+"law"
+],
+"finger": [
+"body"
+],
+"finish": [
+"action"
+],
+"finite": [
+"time"
+],
+"fire": [
+"nature",
+"work"
+],
+"firecracker": [
+"leisure"
+],
+"fireman/firewoman": [
+"work"
+],
+"fireplace": [
+"home"
+],
+"fireproof": [
+"home"
+],
+"firework": [
+"leisure"
+],
+"firm": [
+"business",
+"describe"
+],
+"first": [
+"time"
+],
+"fiscal": [
+"money",
+"business"
+],
+"fish": [
+"animals",
+"food"
+],
+"fisherman": [
+"work"
+],
+"fishery": [
+"business",
+"nature"
+],
+"fishing": [
+"leisure"
+],
+"fishing town": [
+"places"
+],
+"fist": [
+"body"
+],
+"fit": [
+"clothes",
+"body"
+],
+"five": [
+"time"
+],
+"fix": [
+"tech",
+"action"
+],
+"flag": [
+"law"
+],
+"flake": [
+"nature"
+],
+"flame": [
+"nature"
+],
+"flash": [
+"tech"
+],
+"flashlight": [
+"tech"
+],
+"flat": [
+"describe",
+"home"
+],
+"flat tire": [
+"travel"
+],
+"flatter": [
+"talk"
+],
+"flavor": [
+"food"
+],
+"flaw": [
+"describe"
+],
+"flea": [
+"animals"
+],
+"flee": [
+"action"
+],
+"fleet": [
+"travel"
+],
+"flesh": [
+"body"
+],
+"flexibility": [
+"describe",
+"body"
+],
+"flexible": [
+"describe"
+],
+"flight": [
+"travel"
+],
+"flip": [
+"action"
+],
+"float": [
+"action"
+],
+"flock": [
+"animals"
+],
+"flood": [
+"nature"
+],
+"floor": [
+"home"
+],
+"flour": [
+"food"
+],
+"flourish": [
+"action"
+],
+"flow": [
+"action"
+],
+"flower": [
+"animals"
+],
+"flu": [
+"body"
+],
+"fluency": [
+"talk"
+],
+"fluent": [
+"talk"
+],
+"fluid": [
+"science"
+],
+"flunk": [
+"school"
+],
+"flush": [
+"home"
+],
+"flute": [
+"arts"
+],
+"fly": [
+"travel",
+"animals"
+],
+"foam": [
+"describe"
+],
+"focus": [
+"mind"
+],
+"foe": [
+"law",
+"people"
+],
+"fog": [
+"nature"
+],
+"foggy": [
+"nature"
+],
+"fold": [
+"action"
+],
+"folk": [
+"people",
+"arts"
+],
+"folklore": [
+"arts",
+"society"
+],
+"follow": [
+"action"
+],
+"follower": [
+"tech",
+"society"
+],
+"following": [
+"time"
+],
+"fond": [
+"feelings"
+],
+"food": [
+"food"
+],
+"fool": [
+"feelings"
+],
+"foolish": [
+"feelings"
+],
+"foot": [
+"body",
+"time"
+],
+"football": [
+"leisure"
+],
+"for": [
+"function"
+],
+"for example": [
+"talk"
+],
+"forbid": [
+"law"
+],
+"force": [
+"action",
+"law"
+],
+"forecast": [
+"nature"
+],
+"foreign": [
+"places"
+],
+"foreigner": [
+"places",
+"people"
+],
+"forest": [
+"nature"
+],
+"forever": [
+"time"
+],
+"forge": [
+"action"
+],
+"forget": [
+"mind"
+],
+"forgive": [
+"feelings"
+],
+"fork": [
+"food"
+],
+"form": [
+"describe",
+"work"
+],
+"formal": [
+"describe"
+],
+"format": [
+"tech"
+],
+"formation": [
+"action"
+],
+"former": [
+"time"
+],
+"formidable": [
+"describe"
+],
+"formula": [
+"science"
+],
+"formulate": [
+"mind"
+],
+"forsake": [
+"action"
+],
+"fort": [
+"law",
+"places"
+],
+"forth": [
+"places"
+],
+"forthcoming": [
+"time"
+],
+"fortify": [
+"law"
+],
+"fortunate": [
+"feelings"
+],
+"fortune": [
+"money"
+],
+"forty": [
+"time"
+],
+"forum": [
+"talk"
+],
+"forward": [
+"places"
+],
+"forward/forwards": [
+"places"
+],
+"fossil": [
+"science"
+],
+"foster": [
+"people"
+],
+"foul": [
+"leisure",
+"describe"
+],
+"found": [
+"business"
+],
+"foundation": [
+"business"
+],
+"founder": [
+"business"
+],
+"fountain": [
+"places"
+],
+"four": [
+"time"
+],
+"fourteen": [
+"time"
+],
+"fowl": [
+"animals"
+],
+"fox": [
+"animals"
+],
+"fraction": [
+"science",
+"time"
+],
+"fracture": [
+"body"
+],
+"fragile": [
+"describe"
+],
+"fragment": [
+"describe"
+],
+"fragrance": [
+"describe"
+],
+"fragrant": [
+"describe"
+],
+"frame": [
+"arts"
+],
+"framework": [
+"mind"
+],
+"franchise": [
+"business"
+],
+"frank": [
+"feelings"
+],
+"frantic": [
+"feelings"
+],
+"fraud": [
+"law"
+],
+"freak": [
+"people",
+"feelings"
+],
+"free": [
+"money"
+],
+"freedom": [
+"law",
+"society"
+],
+"freeway": [
+"travel"
+],
+"freeze": [
+"nature"
+],
+"freezer": [
+"home",
+"food"
+],
+"freezing": [
+"nature"
+],
+"freight": [
+"travel",
+"business"
+],
+"frequency": [
+"time"
+],
+"frequent": [
+"time"
+],
+"fresh": [
+"food"
+],
+"freshman": [
+"school"
+],
+"friction": [
+"people",
+"science"
+],
+"friday": [
+"time"
+],
+"friend": [
+"people"
+],
+"friendly": [
+"feelings"
+],
+"friendship": [
+"people"
+],
+"fries": [
+"food"
+],
+"fries (french fries)": [
+"food"
+],
+"fright": [
+"feelings"
+],
+"frighten": [
+"feelings"
+],
+"frisbee": [
+"leisure"
+],
+"frog": [
+"animals"
+],
+"from": [
+"function"
+],
+"front": [
+"places"
+],
+"frontier": [
+"places"
+],
+"frost": [
+"nature"
+],
+"frown": [
+"feelings"
+],
+"fruit": [
+"food"
+],
+"frustrate": [
+"feelings"
+],
+"frustration": [
+"feelings"
+],
+"fry": [
+"food"
+],
+"fuel": [
+"nature",
+"travel"
+],
+"fulfill(ment)": [
+"mind"
+],
+"full": [
+"describe",
+"food"
+],
+"fume": [
+"nature",
+"feelings"
+],
+"fun": [
+"leisure",
+"feelings"
+],
+"function": [
+"describe",
+"science"
+],
+"functional": [
+"describe"
+],
+"fund": [
+"money",
+"business"
+],
+"fundamental": [
+"mind"
+],
+"funeral": [
+"society"
+],
+"funny": [
+"feelings"
+],
+"fur": [
+"animals",
+"clothes"
+],
+"furious": [
+"feelings"
+],
+"furnish": [
+"home"
+],
+"furniture": [
+"home"
+],
+"further": [
+"describe"
+],
+"furthermore": [
+"function"
+],
+"fury": [
+"feelings"
+],
+"fuse": [
+"tech"
+],
+"fuss": [
+"feelings"
+],
+"future": [
+"time"
+],
+"gain": [
+"action"
+],
+"galaxy": [
+"science"
+],
+"gallery": [
+"arts"
+],
+"gallon": [
+"time"
+],
+"gallop": [
+"animals"
+],
+"gamble": [
+"leisure",
+"money"
+],
+"game": [
+"leisure"
+],
+"gang": [
+"law"
+],
+"gangster": [
+"law"
+],
+"gap": [
+"describe"
+],
+"garage": [
+"home",
+"travel"
+],
+"garbage": [
+"home",
+"nature"
+],
+"garden": [
+"home",
+"animals"
+],
+"gardener": [
+"work",
+"animals"
+],
+"garlic": [
+"food"
+],
+"garment": [
+"clothes"
+],
+"gas": [
+"travel",
+"science"
+],
+"gasoline/gas": [
+"travel"
+],
+"gasp": [
+"body"
+],
+"gate": [
+"places",
+"travel"
+],
+"gather": [
+"action"
+],
+"gathering": [
+"society"
+],
+"gauge": [
+"science",
+"mind"
+],
+"gay": [
+"society"
+],
+"gaze": [
+"action"
+],
+"gear": [
+"tech",
+"leisure"
+],
+"gender": [
+"society"
+],
+"gene": [
+"science"
+],
+"general": [
+"describe",
+"law"
+],
+"generate": [
+"action"
+],
+"generation": [
+"people"
+],
+"generator": [
+"tech"
+],
+"generosity": [
+"feelings"
+],
+"generous": [
+"feelings"
+],
+"genetic": [
+"science"
+],
+"genetics": [
+"science"
+],
+"genius": [
+"mind",
+"people"
+],
+"genre": [
+"arts"
+],
+"gentle": [
+"feelings"
+],
+"gentleman": [
+"people"
+],
+"genuine": [
+"describe"
+],
+"geographical": [
+"school",
+"places"
+],
+"geography": [
+"school"
+],
+"geometry": [
+"school",
+"science"
+],
+"germ": [
+"body",
+"science"
+],
+"gesture": [
+"talk"
+],
+"get": [
+"action"
+],
+"get lost": [
+"travel"
+],
+"get off": [
+"travel"
+],
+"get on": [
+"travel"
+],
+"get up": [
+"home"
+],
+"ghost": [
+"society"
+],
+"giant": [
+"describe"
+],
+"gift": [
+"leisure",
+"money"
+],
+"gifted": [
+"mind"
+],
+"gigantic": [
+"describe"
+],
+"giggle": [
+"feelings"
+],
+"ginger": [
+"food"
+],
+"giraffe": [
+"animals"
+],
+"girl": [
+"people"
+],
+"give": [
+"action"
+],
+"give me a break.": [
+"talk"
+],
+"give up": [
+"action"
+],
+"glacier": [
+"nature"
+],
+"glad": [
+"feelings"
+],
+"glamorous": [
+"clothes"
+],
+"glamour": [
+"clothes"
+],
+"glance": [
+"action"
+],
+"glare": [
+"feelings",
+"nature"
+],
+"glass": [
+"food",
+"home"
+],
+"glasses": [
+"clothes"
+],
+"gleam": [
+"describe"
+],
+"glide": [
+"action"
+],
+"glimpse": [
+"action"
+],
+"glitter": [
+"describe"
+],
+"global": [
+"places",
+"describe"
+],
+"globe": [
+"places",
+"nature"
+],
+"gloom": [
+"feelings"
+],
+"gloomy": [
+"feelings",
+"nature"
+],
+"glorious": [
+"describe"
+],
+"glory": [
+"feelings"
+],
+"glove": [
+"clothes"
+],
+"glove(s)": [
+"clothes"
+],
+"glow": [
+"describe"
+],
+"glue": [
+"school"
+],
+"go": [
+"action",
+"travel"
+],
+"go into": [
+"action"
+],
+"goal": [
+"mind",
+"leisure"
+],
+"goal setting": [
+"mind",
+"work"
+],
+"goalkeeper": [
+"leisure"
+],
+"goat": [
+"animals"
+],
+"god": [
+"society"
+],
+"god/goddess": [
+"society"
+],
+"gold": [
+"describe",
+"money"
+],
+"golden": [
+"describe"
+],
+"golf": [
+"leisure"
+],
+"gone to": [
+"travel"
+],
+"good": [
+"describe"
+],
+"good-bye (goodbye, bye)": [
+"talk"
+],
+"goodbye": [
+"talk"
+],
+"goodness": [
+"feelings"
+],
+"goods": [
+"money",
+"business"
+],
+"goodwill": [
+"society",
+"business"
+],
+"goose": [
+"animals"
+],
+"gorgeous": [
+"clothes",
+"describe"
+],
+"gorilla": [
+"animals"
+],
+"gospel": [
+"society",
+"arts"
+],
+"gossip": [
+"talk"
+],
+"govern": [
+"law"
+],
+"government": [
+"law"
+],
+"governor": [
+"law"
+],
+"gown": [
+"clothes"
+],
+"grab": [
+"action"
+],
+"grace": [
+"describe"
+],
+"graceful": [
+"describe"
+],
+"gracious": [
+"feelings"
+],
+"grade": [
+"school"
+],
+"gradual": [
+"describe"
+],
+"graduate": [
+"school"
+],
+"graduation": [
+"school"
+],
+"grain": [
+"food"
+],
+"gram": [
+"time"
+],
+"grammar": [
+"talk",
+"school"
+],
+"grammatical": [
+"talk"
+],
+"grand": [
+"describe"
+],
+"granddaughter": [
+"people"
+],
+"grandfather": [
+"people"
+],
+"grandfather (grandpa)": [
+"people"
+],
+"grandmother": [
+"people"
+],
+"grandmother (grandma)": [
+"people"
+],
+"grandson": [
+"people"
+],
+"grant": [
+"money",
+"action"
+],
+"grape": [
+"food"
+],
+"grapefruit": [
+"food"
+],
+"graph": [
+"school",
+"science"
+],
+"graphic": [
+"arts",
+"tech"
+],
+"grasp": [
+"action",
+"mind"
+],
+"grass": [
+"animals"
+],
+"grasshopper": [
+"animals"
+],
+"grassy": [
+"animals"
+],
+"grateful": [
+"feelings"
+],
+"gratitude": [
+"feelings"
+],
+"grave": [
+"society",
+"describe"
+],
+"gravity": [
+"science"
+],
+"gray": [
+"describe"
+],
+"graze": [
+"animals"
+],
+"grease": [
+"food",
+"tech"
+],
+"greasy": [
+"food"
+],
+"great": [
+"describe"
+],
+"greed": [
+"feelings"
+],
+"greedy": [
+"feelings"
+],
+"green": [
+"describe",
+"nature"
+],
+"greenhouse": [
+"nature",
+"animals"
+],
+"greet": [
+"talk"
+],
+"greeting(s)": [
+"talk"
+],
+"grief": [
+"feelings"
+],
+"grieve": [
+"feelings"
+],
+"grill": [
+"food"
+],
+"grim": [
+"feelings"
+],
+"grin": [
+"feelings"
+],
+"grind": [
+"food",
+"action"
+],
+"grip": [
+"action"
+],
+"groan": [
+"talk",
+"feelings"
+],
+"grocery": [
+"food",
+"money"
+],
+"gross": [
+"describe"
+],
+"ground": [
+"places"
+],
+"group": [
+"society"
+],
+"grow": [
+"action",
+"animals"
+],
+"growl": [
+"animals"
+],
+"growth": [
+"action"
+],
+"grumble": [
+"talk"
+],
+"guarantee": [
+"money",
+"talk"
+],
+"guard": [
+"work"
+],
+"guardian": [
+"people"
+],
+"guava": [
+"food"
+],
+"guess": [
+"mind"
+],
+"guest": [
+"people"
+],
+"guidance": [
+"school"
+],
+"guide": [
+"travel"
+],
+"guideline": [
+"mind"
+],
+"guilt": [
+"feelings",
+"law"
+],
+"guilty": [
+"feelings",
+"law"
+],
+"guitar": [
+"arts"
+],
+"gulf": [
+"nature"
+],
+"gum": [
+"food",
+"body"
+],
+"gun": [
+"law"
+],
+"gut": [
+"body"
+],
+"guy": [
+"people"
+],
+"gym": [
+"leisure",
+"school"
+],
+"gymnasium/gym": [
+"leisure",
+"school"
+],
+"habit": [
+"home"
+],
+"habitat": [
+"animals",
+"nature"
+],
+"habitual": [
+"describe"
+],
+"hacker": [
+"tech"
+],
+"hail": [
+"nature"
+],
+"hair": [
+"body",
+"clothes"
+],
+"hair dresser": [
+"work",
+"clothes"
+],
+"haircut": [
+"clothes"
+],
+"hairdresser": [
+"work",
+"clothes"
+],
+"half": [
+"time"
+],
+"hall": [
+"places"
+],
+"halloween": [
+"leisure"
+],
+"hallway": [
+"home"
+],
+"halt": [
+"action"
+],
+"ham": [
+"food"
+],
+"hamburger (burger)": [
+"food"
+],
+"hamburger/burger": [
+"food"
+],
+"hammer": [
+"home",
+"tech"
+],
+"hamper": [
+"action"
+],
+"hand": [
+"body"
+],
+"handful": [
+"time"
+],
+"handicap": [
+"body"
+],
+"handicraft": [
+"arts",
+"leisure"
+],
+"handkerchief": [
+"clothes"
+],
+"handle": [
+"action"
+],
+"handsome": [
+"clothes"
+],
+"handwriting": [
+"school",
+"talk"
+],
+"handy": [
+"describe"
+],
+"hang": [
+"action"
+],
+"hanger": [
+"home",
+"clothes"
+],
+"happen": [
+"action"
+],
+"happy": [
+"feelings"
+],
+"harass(ment)": [
+"law",
+"society"
+],
+"harbor": [
+"travel",
+"places"
+],
+"hard": [
+"describe"
+],
+"hard-working": [
+"feelings",
+"work"
+],
+"harden": [
+"action"
+],
+"hardly": [
+"describe"
+],
+"hardship": [
+"society"
+],
+"hardware": [
+"tech"
+],
+"hardworking": [
+"feelings",
+"work"
+],
+"harm": [
+"action"
+],
+"harmful": [
+"describe"
+],
+"harmonica": [
+"arts"
+],
+"harmony": [
+"society",
+"arts"
+],
+"harness": [
+"tech"
+],
+"harsh": [
+"describe"
+],
+"harvest": [
+"food",
+"nature"
+],
+"haste": [
+"time"
+],
+"hasten": [
+"action"
+],
+"hasty": [
+"describe"
+],
+"hat": [
+"clothes"
+],
+"hatch": [
+"animals"
+],
+"hate": [
+"feelings"
+],
+"hateful": [
+"feelings"
+],
+"hatred": [
+"feelings"
+],
+"haul": [
+"action"
+],
+"haunt": [
+"society"
+],
+"have": [
+"function"
+],
+"have (has, had)": [
+"function"
+],
+"hawk": [
+"animals"
+],
+"hay": [
+"animals"
+],
+"hazard": [
+"nature"
+],
+"he (him, his, himself)": [
+"function"
+],
+"head": [
+"body"
+],
+"headache": [
+"body"
+],
+"headline": [
+"arts"
+],
+"headphone(s)": [
+"tech",
+"arts"
+],
+"headquarters": [
+"business",
+"work"
+],
+"heal": [
+"body"
+],
+"health": [
+"body"
+],
+"healthful": [
+"body"
+],
+"healthy": [
+"body"
+],
+"heap": [
+"time"
+],
+"hear": [
+"body",
+"action"
+],
+"heart": [
+"body"
+],
+"hearty": [
+"food",
+"feelings"
+],
+"heat": [
+"nature"
+],
+"heater": [
+"home"
+],
+"heaven": [
+"society"
+],
+"heavy": [
+"describe"
+],
+"hedge": [
+"animals"
+],
+"heel": [
+"body",
+"clothes"
+],
+"height": [
+"time",
+"body"
+],
+"heighten": [
+"action"
+],
+"heir": [
+"law",
+"people"
+],
+"helicopter": [
+"travel"
+],
+"hell": [
+"society"
+],
+"hello": [
+"talk"
+],
+"helmet": [
+"clothes",
+"travel"
+],
+"help": [
+"action"
+],
+"helpful": [
+"describe"
+],
+"hemisphere": [
+"places",
+"science"
+],
+"hen": [
+"animals"
+],
+"hence": [
+"function"
+],
+"herb": [
+"food",
+"animals"
+],
+"herd": [
+"animals"
+],
+"here": [
+"places"
+],
+"here we are.": [
+"travel"
+],
+"heritage": [
+"society"
+],
+"hero": [
+"people",
+"arts"
+],
+"hero/heroine": [
+"people",
+"arts"
+],
+"heroic": [
+"feelings"
+],
+"heroin": [
+"law",
+"body"
+],
+"hesitate": [
+"feelings"
+],
+"hesitation": [
+"feelings"
+],
+"heterosexual": [
+"society"
+],
+"hey": [
+"talk"
+],
+"hi": [
+"talk"
+],
+"hide": [
+"action"
+],
+"hierarchy": [
+"society"
+],
+"high": [
+"describe"
+],
+"highlight": [
+"school",
+"talk"
+],
+"highly": [
+"describe"
+],
+"highway": [
+"travel"
+],
+"hijack": [
+"law"
+],
+"hike": [
+"leisure"
+],
+"hiking": [
+"leisure"
+],
+"hill": [
+"nature"
+],
+"hint": [
+"talk"
+],
+"hip": [
+"body"
+],
+"hippo": [
+"animals"
+],
+"hippopotamus/hippo": [
+"animals"
+],
+"hire": [
+"work"
+],
+"historian": [
+"law",
+"work"
+],
+"historic": [
+"law"
+],
+"historical": [
+"law"
+],
+"history": [
+"law",
+"school"
+],
+"hit": [
+"action"
+],
+"hive": [
+"animals"
+],
+"hoarse": [
+"body"
+],
+"hobby": [
+"leisure"
+],
+"hockey": [
+"leisure"
+],
+"hold": [
+"action"
+],
+"holder": [
+"home"
+],
+"hole": [
+"places"
+],
+"holiday": [
+"leisure"
+],
+"hollow": [
+"describe"
+],
+"holy": [
+"society"
+],
+"home": [
+"home"
+],
+"homeland": [
+"places"
+],
+"homesick": [
+"feelings"
+],
+"hometown": [
+"places"
+],
+"homework": [
+"school"
+],
+"homosexual": [
+"society"
+],
+"honest": [
+"feelings"
+],
+"honesty": [
+"feelings"
+],
+"honey": [
+"food"
+],
+"honeymoon": [
+"people",
+"travel"
+],
+"honor": [
+"society"
+],
+"honorable": [
+"feelings"
+],
+"honorary": [
+"society"
+],
+"hook": [
+"home"
+],
+"hop": [
+"action"
+],
+"hope": [
+"feelings"
+],
+"hopeful": [
+"feelings"
+],
+"horizon": [
+"nature"
+],
+"horizontal": [
+"describe",
+"science"
+],
+"hormone": [
+"body",
+"science"
+],
+"horn": [
+"animals",
+"arts"
+],
+"horrible": [
+"describe"
+],
+"horrify": [
+"feelings"
+],
+"horror": [
+"feelings",
+"arts"
+],
+"horse": [
+"animals"
+],
+"hose": [
+"home"
+],
+"hospitable": [
+"feelings"
+],
+"hospital": [
+"body",
+"places"
+],
+"hospitality": [
+"feelings",
+"travel"
+],
+"hospitalize": [
+"body"
+],
+"host": [
+"people",
+"leisure"
+],
+"host/hostess": [
+"people",
+"leisure"
+],
+"hostage": [
+"law"
+],
+"hostel": [
+"travel"
+],
+"hostile": [
+"feelings"
+],
+"hostility": [
+"feelings"
+],
+"hot": [
+"describe",
+"food"
+],
+"hot dog": [
+"food"
+],
+"hotel": [
+"travel"
+],
+"hour": [
+"time"
+],
+"hourly": [
+"time"
+],
+"house": [
+"home"
+],
+"household": [
+"home",
+"people"
+],
+"housekeeper": [
+"work",
+"home"
+],
+"housewife": [
+"home",
+"people"
+],
+"housework": [
+"home"
+],
+"housing": [
+"home",
+"society"
+],
+"hover": [
+"action"
+],
+"how": [
+"function"
+],
+"how do i get to...?": [
+"travel"
+],
+"how many": [
+"time"
+],
+"how much": [
+"money"
+],
+"how often": [
+"time"
+],
+"how old...?": [
+"people"
+],
+"however": [
+"function"
+],
+"howl": [
+"animals"
+],
+"hug": [
+"people"
+],
+"huge": [
+"describe"
+],
+"hum": [
+"arts"
+],
+"human": [
+"people"
+],
+"humanity": [
+"society"
+],
+"humble": [
+"feelings"
+],
+"humid": [
+"nature"
+],
+"humidity": [
+"nature"
+],
+"humiliate": [
+"feelings"
+],
+"humor": [
+"feelings"
+],
+"humorous": [
+"feelings"
+],
+"hunch": [
+"mind"
+],
+"hundred": [
+"time"
+],
+"hunger": [
+"food",
+"body"
+],
+"hungry": [
+"food"
+],
+"hunt": [
+"animals"
+],
+"hunter": [
+"animals",
+"work"
+],
+"hurdle": [
+"leisure"
+],
+"hurricane": [
+"nature"
+],
+"hurry": [
+"time"
+],
+"hurry up.": [
+"time"
+],
+"hurt": [
+"body"
+],
+"husband": [
+"people"
+],
+"hush": [
+"talk"
+],
+"hut": [
+"home"
+],
+"hybrid": [
+"science",
+"travel"
+],
+"hydrogen": [
+"science"
+],
+"hygiene": [
+"body"
+],
+"hypocrite": [
+"feelings"
+],
+"hypothesis": [
+"science"
+],
+"i (me, my, mine, myself)": [
+"function"
+],
+"i see.": [
+"talk"
+],
+"ice": [
+"nature",
+"food"
+],
+"ice cream": [
+"food"
+],
+"iceberg": [
+"nature"
+],
+"icon": [
+"tech",
+"arts"
+],
+"icy": [
+"nature"
+],
+"idea": [
+"mind"
+],
+"ideal": [
+"mind"
+],
+"identical": [
+"describe"
+],
+"identification": [
+"law"
+],
+"identify": [
+"mind"
+],
+"identity": [
+"society"
+],
+"ideology": [
+"mind",
+"law"
+],
+"idiom": [
+"talk"
+],
+"idiot": [
+"feelings"
+],
+"idle": [
+"describe"
+],
+"idol": [
+"arts",
+"people"
+],
+"if": [
+"function"
+],
+"ignorance": [
+"mind"
+],
+"ignorant": [
+"mind"
+],
+"ignore": [
+"action"
+],
+"ill": [
+"body"
+],
+"illuminate": [
+"describe"
+],
+"illusion": [
+"mind"
+],
+"illustrate": [
+"arts",
+"talk"
+],
+"illustration": [
+"arts"
+],
+"image": [
+"arts"
+],
+"imaginary": [
+"mind"
+],
+"imagination": [
+"mind"
+],
+"imaginative": [
+"mind"
+],
+"imagine": [
+"mind"
+],
+"imitate": [
+"action"
+],
+"imitation": [
+"action"
+],
+"immediate": [
+"time"
+],
+"immense": [
+"describe"
+],
+"immigrant": [
+"society",
+"places"
+],
+"immigrate": [
+"society"
+],
+"immigration": [
+"society",
+"travel"
+],
+"imminent": [
+"time"
+],
+"immune": [
+"body"
+],
+"impact": [
+"action"
+],
+"imperative": [
+"describe"
+],
+"imperial": [
+"law"
+],
+"implement": [
+"action"
+],
+"implication": [
+"mind"
+],
+"implicit": [
+"talk"
+],
+"imply": [
+"talk"
+],
+"impolite": [
+"feelings"
+],
+"import": [
+"business"
+],
+"importance": [
+"mind"
+],
+"important": [
+"describe"
+],
+"impose": [
+"law"
+],
+"imposing": [
+"describe"
+],
+"impossible": [
+"describe"
+],
+"impress": [
+"feelings"
+],
+"impression": [
+"mind"
+],
+"impressive": [
+"describe"
+],
+"imprison(ment)": [
+"law"
+],
+"improve": [
+"action"
+],
+"improve(ment)": [
+"action"
+],
+"impulse": [
+"feelings"
+],
+"in": [
+"function"
+],
+"in fact": [
+"function"
+],
+"in front of": [
+"places"
+],
+"in order to": [
+"function"
+],
+"in the past": [
+"time"
+],
+"incentive": [
+"business"
+],
+"inch": [
+"time"
+],
+"incident": [
+"society"
+],
+"incline": [
+"mind"
+],
+"include": [
+"action"
+],
+"including": [
+"function"
+],
+"inclusive": [
+"society"
+],
+"income": [
+"money"
+],
+"incorporate": [
+"action",
+"business"
+],
+"increase": [
+"action"
+],
+"incredible": [
+"describe"
+],
+"incur": [
+"money"
+],
+"indeed": [
+"describe"
+],
+"independence": [
+"law"
+],
+"independent": [
+"describe"
+],
+"index": [
+"school",
+"business"
+],
+"indicate": [
+"talk"
+],
+"indication": [
+"mind"
+],
+"indifference": [
+"feelings"
+],
+"indifferent": [
+"feelings"
+],
+"indigenous": [
+"society"
+],
+"indignant": [
+"feelings"
+],
+"indispensable": [
+"describe"
+],
+"individual": [
+"people",
+"society"
+],
+"indoor": [
+"places"
+],
+"indoors": [
+"places"
+],
+"induce": [
+"action"
+],
+"indulge": [
+"feelings"
+],
+"industrial": [
+"business"
+],
+"industrialize": [
+"business"
+],
+"industry": [
+"business"
+],
+"inevitable": [
+"describe"
+],
+"infant": [
+"people"
+],
+"infect": [
+"body"
+],
+"infection": [
+"body"
+],
+"infectious": [
+"body"
+],
+"infer": [
+"mind"
+],
+"inferior": [
+"describe"
+],
+"infinite": [
+"describe"
+],
+"inflation": [
+"business",
+"money"
+],
+"inflict": [
+"action"
+],
+"influence": [
+"action"
+],
+"influential": [
+"describe"
+],
+"inform": [
+"talk"
+],
+"information": [
+"talk"
+],
+"informative": [
+"describe"
+],
+"infrastructure": [
+"society"
+],
+"ingredient": [
+"food"
+],
+"inhabit": [
+"places"
+],
+"inhabitant": [
+"places"
+],
+"inherent": [
+"describe"
+],
+"inherit": [
+"law",
+"people"
+],
+"initial": [
+"time"
+],
+"initiate": [
+"action"
+],
+"initiative": [
+"action"
+],
+"inject": [
+"body"
+],
+"injection": [
+"body"
+],
+"injure": [
+"body"
+],
+"injury": [
+"body"
+],
+"injustice": [
+"law"
+],
+"ink": [
+"school"
+],
+"inland": [
+"places"
+],
+"inn": [
+"travel"
+],
+"inner": [
+"places"
+],
+"inning": [
+"leisure"
+],
+"innocence": [
+"law",
+"feelings"
+],
+"innocent": [
+"law",
+"feelings"
+],
+"innovation": [
+"tech"
+],
+"innovative": [
+"tech"
+],
+"innumerable": [
+"time"
+],
+"input": [
+"tech"
+],
+"inquire": [
+"talk"
+],
+"inquiry": [
+"talk"
+],
+"insane": [
+"feelings"
+],
+"insect": [
+"animals"
+],
+"insert": [
+"action"
+],
+"inside": [
+"places"
+],
+"insight": [
+"mind"
+],
+"insist": [
+"talk"
+],
+"insistence": [
+"talk"
+],
+"inspect": [
+"work"
+],
+"inspection": [
+"work"
+],
+"inspector": [
+"work"
+],
+"inspiration": [
+"mind"
+],
+"inspire": [
+"feelings"
+],
+"install": [
+"tech"
+],
+"installation": [
+"tech",
+"arts"
+],
+"instance": [
+"mind"
+],
+"instant": [
+"time",
+"food"
+],
+"instead": [
+"function"
+],
+"instinct": [
+"mind"
+],
+"instinctive": [
+"mind"
+],
+"institute": [
+"school"
+],
+"institution": [
+"society"
+],
+"instruct": [
+"school"
+],
+"instruction": [
+"school"
+],
+"instructor": [
+"school",
+"work"
+],
+"instrument": [
+"arts",
+"science"
+],
+"insult": [
+"talk"
+],
+"insurance": [
+"money"
+],
+"intact": [
+"describe"
+],
+"intake": [
+"body"
+],
+"integrate": [
+"action"
+],
+"integration": [
+"action"
+],
+"integrity": [
+"feelings"
+],
+"intellect": [
+"mind"
+],
+"intellectual": [
+"mind"
+],
+"intelligence": [
+"mind"
+],
+"intelligent": [
+"mind"
+],
+"intend": [
+"mind"
+],
+"intense": [
+"describe"
+],
+"intensify": [
+"action"
+],
+"intensity": [
+"describe"
+],
+"intensive": [
+"describe"
+],
+"intent": [
+"mind"
+],
+"intention": [
+"mind"
+],
+"interact": [
+"society"
+],
+"interaction": [
+"society"
+],
+"interest": [
+"leisure",
+"money"
+],
+"interested": [
+"feelings"
+],
+"interesting": [
+"feelings"
+],
+"interfere": [
+"action"
+],
+"interference": [
+"action"
+],
+"interior": [
+"home"
+],
+"intermediate": [
+"school"
+],
+"internal": [
+"places"
+],
+"international": [
+"places"
+],
+"internet (net)": [
+"tech"
+],
+"internet/internet": [
+"tech"
+],
+"interpret": [
+"talk"
+],
+"interpretation": [
+"talk"
+],
+"interpreter": [
+"talk",
+"work"
+],
+"interrupt": [
+"talk"
+],
+"interruption": [
+"talk"
+],
+"intersection": [
+"travel"
+],
+"interval": [
+"time"
+],
+"intervene": [
+"action"
+],
+"intervention": [
+"action"
+],
+"interview": [
+"work"
+],
+"intimacy": [
+"people"
+],
+"intimate": [
+"people"
+],
+"intimidate": [
+"feelings"
+],
+"into": [
+"function"
+],
+"intonation": [
+"talk"
+],
+"intrigue": [
+"feelings"
+],
+"introduce": [
+"talk",
+"people"
+],
+"introduction": [
+"talk"
+],
+"intrude": [
+"action"
+],
+"intruder": [
+"law"
+],
+"intuition": [
+"mind"
+],
+"invade": [
+"law"
+],
+"invaluable": [
+"describe"
+],
+"invariably": [
+"time"
+],
+"invasion": [
+"law"
+],
+"invent": [
+"tech"
+],
+"invention": [
+"tech"
+],
+"inventor": [
+"tech"
+],
+"inventory": [
+"business"
+],
+"invest(ment)": [
+"money",
+"business"
+],
+"investigate": [
+"law",
+"science"
+],
+"investigation": [
+"law",
+"science"
+],
+"investigator": [
+"law",
+"work"
+],
+"invitation": [
+"leisure"
+],
+"invite": [
+"leisure"
+],
+"involve(ment)": [
+"action"
+],
+"iron": [
+"home",
+"science"
+],
+"ironic": [
+"talk"
+],
+"irony": [
+"talk"
+],
+"irritable": [
+"feelings"
+],
+"irritate": [
+"feelings"
+],
+"island": [
+"nature",
+"places"
+],
+"isle": [
+"nature",
+"places"
+],
+"isolate": [
+"action"
+],
+"isolation": [
+"society"
+],
+"issue": [
+"society"
+],
+"it (its, itself)": [
+"function"
+],
+"itch": [
+"body"
+],
+"item": [
+"money"
+],
+"ivory": [
+"animals"
+],
+"ivy": [
+"animals"
+],
+"jacket": [
+"clothes"
+],
+"jade": [
+"clothes"
+],
+"jail": [
+"law"
+],
+"jam": [
+"food",
+"travel"
+],
+"janitor": [
+"work"
+],
+"january": [
+"time"
+],
+"jar": [
+"home",
+"food"
+],
+"jasmine": [
+"animals"
+],
+"jaw": [
+"body"
+],
+"jazz": [
+"arts"
+],
+"jealous": [
+"feelings"
+],
+"jealousy": [
+"feelings"
+],
+"jeans": [
+"clothes"
+],
+"jeep": [
+"travel"
+],
+"jelly": [
+"food"
+],
+"jet": [
+"travel"
+],
+"jewel": [
+"clothes"
+],
+"jewelry": [
+"clothes"
+],
+"jingle": [
+"arts"
+],
+"job": [
+"work"
+],
+"jockey": [
+"leisure"
+],
+"jog": [
+"leisure"
+],
+"join": [
+"action"
+],
+"joint": [
+"body"
+],
+"joke": [
+"talk"
+],
+"jolly": [
+"feelings"
+],
+"journal": [
+"arts"
+],
+"journalism": [
+"arts"
+],
+"journalist": [
+"arts",
+"work"
+],
+"journey": [
+"travel"
+],
+"joy": [
+"feelings"
+],
+"joyful": [
+"feelings"
+],
+"joyous": [
+"feelings"
+],
+"judge": [
+"law"
+],
+"judgment/judgement": [
+"mind",
+"law"
+],
+"judicial": [
+"law"
+],
+"jug": [
+"food"
+],
+"juice": [
+"food"
+],
+"juicy": [
+"food"
+],
+"july": [
+"time"
+],
+"jump": [
+"action"
+],
+"junction": [
+"travel"
+],
+"june": [
+"time"
+],
+"jungle": [
+"nature"
+],
+"junior": [
+"people",
+"school"
+],
+"junior high school": [
+"school"
+],
+"junk": [
+"home"
+],
+"jury": [
+"law"
+],
+"just": [
+"function"
+],
+"just now": [
+"time"
+],
+"justice": [
+"law"
+],
+"justify": [
+"mind"
+],
+"juvenile": [
+"people"
+],
+"kangaroo": [
+"animals"
+],
+"keen": [
+"feelings"
+],
+"keep": [
+"action"
+],
+"keeper": [
+"work"
+],
+"ketchup": [
+"food"
+],
+"kettle": [
+"home",
+"food"
+],
+"key": [
+"home",
+"school"
+],
+"keyboard": [
+"tech",
+"arts"
+],
+"kick": [
+"action",
+"leisure"
+],
+"kid": [
+"people"
+],
+"kidnap": [
+"law"
+],
+"kidney": [
+"body"
+],
+"kill": [
+"law"
+],
+"kilogram": [
+"time"
+],
+"kilometer": [
+"time"
+],
+"kin": [
+"people"
+],
+"kind": [
+"feelings"
+],
+"kindergarten": [
+"school"
+],
+"kindle": [
+"action"
+],
+"king": [
+"law"
+],
+"kingdom": [
+"law"
+],
+"kiss": [
+"people"
+],
+"kit": [
+"home"
+],
+"kitchen": [
+"home"
+],
+"kite": [
+"leisure"
+],
+"kitten": [
+"animals"
+],
+"knee": [
+"body"
+],
+"kneel": [
+"body"
+],
+"knife": [
+"food",
+"home"
+],
+"knight": [
+"law"
+],
+"knit": [
+"clothes",
+"leisure"
+],
+"knob": [
+"home"
+],
+"knock": [
+"action"
+],
+"knot": [
+"action"
+],
+"know": [
+"mind"
+],
+"knowledge": [
+"mind"
+],
+"knowledgeable": [
+"mind"
+],
+"koala": [
+"animals"
+],
+"label": [
+"money"
+],
+"labor": [
+"work"
+],
+"laboratory/lab": [
+"science",
+"school"
+],
+"lace": [
+"clothes"
+],
+"lack": [
+"describe"
+],
+"lad": [
+"people"
+],
+"ladder": [
+"home"
+],
+"lady": [
+"people"
+],
+"ladybug": [
+"animals"
+],
+"lag": [
+"time"
+],
+"lake": [
+"nature"
+],
+"lamb": [
+"animals",
+"food"
+],
+"lamp": [
+"home"
+],
+"land": [
+"nature",
+"travel"
+],
+"landlady": [
+"home",
+"people"
+],
+"landlord": [
+"home",
+"people"
+],
+"landmark": [
+"places"
+],
+"landscape": [
+"nature"
+],
+"landslide": [
+"nature",
+"law"
+],
+"lane": [
+"travel"
+],
+"language": [
+"talk"
+],
+"lantern": [
+"leisure",
+"home"
+],
+"lap": [
+"body",
+"leisure"
+],
+"large": [
+"describe"
+],
+"largely": [
+"describe"
+],
+"laser": [
+"tech",
+"science"
+],
+"last": [
+"time"
+],
+"last night": [
+"time"
+],
+"late": [
+"time"
+],
+"lately": [
+"time"
+],
+"later": [
+"time"
+],
+"latest": [
+"time"
+],
+"latitude": [
+"places",
+"science"
+],
+"latter": [
+"function"
+],
+"laugh": [
+"feelings"
+],
+"laughter": [
+"feelings"
+],
+"launch": [
+"business",
+"action"
+],
+"laundry": [
+"home",
+"clothes"
+],
+"lavish": [
+"money",
+"describe"
+],
+"law": [
+"law",
+"science"
+],
+"lawful": [
+"law"
+],
+"lawmaker": [
+"law"
+],
+"lawn": [
+"home",
+"nature"
+],
+"lawsuit": [
+"law"
+],
+"lawyer": [
+"law",
+"work"
+],
+"lay": [
+"action"
+],
+"layer": [
+"describe"
+],
+"layman": [
+"people"
+],
+"layout": [
+"arts",
+"describe"
+],
+"lazy": [
+"feelings"
+],
+"lead": [
+"action",
+"work"
+],
+"leader": [
+"people",
+"work"
+],
+"leadership": [
+"work"
+],
+"leaf": [
+"animals"
+],
+"league": [
+"leisure"
+],
+"leak": [
+"action"
+],
+"lean": [
+"action",
+"body"
+],
+"leap": [
+"action"
+],
+"learn": [
+"school"
+],
+"learned": [
+"school",
+"mind"
+],
+"learning": [
+"school"
+],
+"lease": [
+"home",
+"money"
+],
+"least": [
+"time",
+"function"
+],
+"leather": [
+"clothes"
+],
+"leave": [
+"action",
+"work"
+],
+"lecture": [
+"school"
+],
+"lecturer": [
+"school",
+"work"
+],
+"left": [
+"places"
+],
+"leg": [
+"body"
+],
+"legacy": [
+"law",
+"money"
+],
+"legal": [
+"law"
+],
+"legend": [
+"arts"
+],
+"legendary": [
+"arts",
+"describe"
+],
+"legislation": [
+"law"
+],
+"legislative": [
+"law"
+],
+"legislator": [
+"law"
+],
+"legitimate": [
+"law"
+],
+"leisure": [
+"leisure"
+],
+"leisurely": [
+"leisure",
+"describe"
+],
+"lemon": [
+"food"
+],
+"lemonade": [
+"food"
+],
+"lend": [
+"money"
+],
+"length": [
+"time"
+],
+"lengthen": [
+"action",
+"time"
+],
+"lengthy": [
+"time",
+"describe"
+],
+"lens": [
+"tech"
+],
+"leopard": [
+"animals"
+],
+"lesbian": [
+"society"
+],
+"less": [
+"time",
+"function"
+],
+"lessen": [
+"action"
+],
+"lesson": [
+"school"
+],
+"lest": [
+"function"
+],
+"let": [
+"function"
+],
+"let's...": [
+"function"
+],
+"lethal": [
+"body"
+],
+"letter": [
+"talk"
+],
+"lettuce": [
+"food"
+],
+"level": [
+"describe"
+],
+"liability": [
+"law",
+"money"
+],
+"liable": [
+"law",
+"describe"
+],
+"liar": [
+"talk",
+"feelings"
+],
+"liberal": [
+"law",
+"feelings"
+],
+"liberate": [
+"law"
+],
+"liberation": [
+"law"
+],
+"liberty": [
+"law"
+],
+"librarian": [
+"school",
+"work"
+],
+"library": [
+"places",
+"school"
+],
+"license": [
+"law"
+],
+"lick": [
+"action",
+"body"
+],
+"lid": [
+"home"
+],
+"lie": [
+"talk",
+"action"
+],
+"lieutenant": [
+"law",
+"work"
+],
+"life": [
+"people"
+],
+"lifeguard": [
+"work",
+"leisure"
+],
+"lifelong": [
+"time"
+],
+"lifetime": [
+"time"
+],
+"lift": [
+"action",
+"travel"
+],
+"light": [
+"home",
+"describe"
+],
+"lighten": [
+"action"
+],
+"lighthouse": [
+"places"
+],
+"lightning": [
+"nature"
+],
+"like": [
+"feelings",
+"function"
+],
+"likelihood": [
+"mind"
+],
+"likely": [
+"mind",
+"describe"
+],
+"likewise": [
+"function"
+],
+"lily": [
+"animals"
+],
+"limb": [
+"body"
+],
+"limit": [
+"mind"
+],
+"limitation": [
+"mind"
+],
+"limp": [
+"body"
+],
+"line": [
+"describe"
+],
+"linen": [
+"clothes",
+"home"
+],
+"liner": [
+"travel"
+],
+"linger": [
+"action"
+],
+"lining": [
+"clothes"
+],
+"link": [
+"tech",
+"action"
+],
+"lion": [
+"animals"
+],
+"lip": [
+"body"
+],
+"lipstick": [
+"clothes"
+],
+"liquid": [
+"science"
+],
+"liquor": [
+"food"
+],
+"list": [
+"talk"
+],
+"listen": [
+"talk"
+],
+"listener": [
+"talk"
+],
+"liter": [
+"time"
+],
+"literacy": [
+"school"
+],
+"literal": [
+"talk"
+],
+"literary": [
+"arts"
+],
+"literate": [
+"school"
+],
+"literature": [
+"arts"
+],
+"litter": [
+"nature"
+],
+"little": [
+"describe",
+"time"
+],
+"live": [
+"home"
+],
+"lively": [
+"feelings",
+"describe"
+],
+"liver": [
+"body"
+],
+"livestock": [
+"animals"
+],
+"living room": [
+"home"
+],
+"lizard": [
+"animals"
+],
+"load": [
+"action"
+],
+"loaf": [
+"food"
+],
+"loan": [
+"money"
+],
+"lobby": [
+"places",
+"law"
+],
+"lobster": [
+"food",
+"animals"
+],
+"local": [
+"places"
+],
+"locate": [
+"places"
+],
+"location": [
+"places"
+],
+"lock": [
+"home"
+],
+"locker": [
+"school"
+],
+"lodge": [
+"travel"
+],
+"lofty": [
+"describe"
+],
+"log": [
+"tech",
+"nature"
+],
+"logic": [
+"mind"
+],
+"logical": [
+"mind"
+],
+"logo": [
+"business"
+],
+"lollipop": [
+"food"
+],
+"lone": [
+"feelings"
+],
+"lonely": [
+"feelings"
+],
+"lonesome": [
+"feelings"
+],
+"long": [
+"describe",
+"time"
+],
+"longevity": [
+"body"
+],
+"longitude": [
+"places",
+"science"
+],
+"look": [
+"action",
+"clothes"
+],
+"look after": [
+"people"
+],
+"look for": [
+"action"
+],
+"look forward to": [
+"feelings"
+],
+"loop": [
+"describe"
+],
+"loose": [
+"clothes",
+"describe"
+],
+"loosen": [
+"action"
+],
+"lord": [
+"law"
+],
+"lose": [
+"action",
+"leisure"
+],
+"loser": [
+"leisure"
+],
+"loss": [
+"money"
+],
+"lot": [
+"time"
+],
+"lotion": [
+"clothes",
+"body"
+],
+"lottery": [
+"money"
+],
+"lotus": [
+"animals"
+],
+"loud": [
+"describe"
+],
+"loudspeaker": [
+"tech"
+],
+"lounge": [
+"places",
+"leisure"
+],
+"lousy": [
+"describe"
+],
+"love": [
+"feelings"
+],
+"lovely": [
+"describe"
+],
+"lover": [
+"people"
+],
+"low": [
+"describe"
+],
+"lower": [
+"action"
+],
+"loyal": [
+"feelings"
+],
+"loyalty": [
+"feelings"
+],
+"luck": [
+"mind"
+],
+"lucky": [
+"describe"
+],
+"lucrative": [
+"business"
+],
+"luggage": [
+"travel"
+],
+"lullaby": [
+"arts"
+],
+"lump": [
+"body"
+],
+"lunar": [
+"nature",
+"time"
+],
+"lunch": [
+"food"
+],
+"lung": [
+"body"
+],
+"lure": [
+"action"
+],
+"lush": [
+"nature"
+],
+"luxurious": [
+"money"
+],
+"luxury": [
+"money"
+],
+"ma'am": [
+"people"
+],
+"machine": [
+"tech"
+],
+"machinery": [
+"tech"
+],
+"mad": [
+"feelings"
+],
+"madam/ma’am": [
+"people"
+],
+"magazine": [
+"arts"
+],
+"magic": [
+"leisure"
+],
+"magical": [
+"describe"
+],
+"magician": [
+"leisure",
+"work"
+],
+"magnet": [
+"science"
+],
+"magnetic": [
+"science"
+],
+"magnificent": [
+"describe"
+],
+"magnify": [
+"action"
+],
+"maid": [
+"work",
+"home"
+],
+"maiden": [
+"people"
+],
+"mail": [
+"talk"
+],
+"mailman (mail carrier)": [
+"work"
+],
+"main": [
+"describe"
+],
+"mainland": [
+"places"
+],
+"mainstream": [
+"society"
+],
+"maintain": [
+"action"
+],
+"maintenance": [
+"action"
+],
+"majestic": [
+"describe"
+],
+"majesty": [
+"law"
+],
+"major": [
+"describe",
+"school"
+],
+"majority": [
+"time"
+],
+"make": [
+"action"
+],
+"makeup": [
+"clothes"
+],
+"male": [
+"people"
+],
+"mall": [
+"money",
+"places"
+],
+"mammal": [
+"animals"
+],
+"man": [
+"people"
+],
+"manage": [
+"action"
+],
+"manage(ment)": [
+"work",
+"business"
+],
+"manager": [
+"work"
+],
+"mandate": [
+"law"
+],
+"mango": [
+"food"
+],
+"manifest": [
+"action"
+],
+"manipulate": [
+"action"
+],
+"mankind/humankind": [
+"people"
+],
+"manner": [
+"society"
+],
+"mansion": [
+"home"
+],
+"manual": [
+"tech",
+"work"
+],
+"manufacture": [
+"business"
+],
+"manufacturer": [
+"business"
+],
+"manuscript": [
+"arts"
+],
+"many": [
+"time",
+"function"
+],
+"map": [
+"travel"
+],
+"maple": [
+"animals"
+],
+"mar": [
+"action"
+],
+"marathon": [
+"leisure"
+],
+"marble": [
+"science",
+"leisure"
+],
+"march": [
+"time",
+"law"
+],
+"margin": [
+"describe"
+],
+"marginal": [
+"describe"
+],
+"marine": [
+"nature"
+],
+"mark": [
+"school"
+],
+"marker": [
+"school"
+],
+"market": [
+"money",
+"business"
+],
+"marriage": [
+"people"
+],
+"married": [
+"people"
+],
+"marry": [
+"people"
+],
+"martial": [
+"law",
+"leisure"
+],
+"marvel": [
+"feelings"
+],
+"marvelous": [
+"describe"
+],
+"masculine": [
+"people"
+],
+"mask": [
+"clothes",
+"body"
+],
+"mass": [
+"time"
+],
+"massage": [
+"body"
+],
+"massive": [
+"describe"
+],
+"master": [
+"work",
+"mind"
+],
+"masterpiece": [
+"arts"
+],
+"mastery": [
+"mind"
+],
+"mat": [
+"home"
+],
+"match": [
+"leisure"
+],
+"mate": [
+"people"
+],
+"material": [
+"science"
+],
+"math (mathematics)": [
+"school",
+"science"
+],
+"mathematical": [
+"science"
+],
+"mathematics/math": [
+"school",
+"science"
+],
+"matter": [
+"mind"
+],
+"mattress": [
+"home"
+],
+"mature": [
+"people"
+],
+"maturity": [
+"people"
+],
+"maximum": [
+"time"
+],
+"may": [
+"function"
+],
+"may (might)": [
+"function"
+],
+"maybe": [
+"function"
+],
+"mayor": [
+"law"
+],
+"meadow": [
+"nature"
+],
+"meal": [
+"food"
+],
+"mean": [
+"talk",
+"feelings"
+],
+"meaning": [
+"talk"
+],
+"meaningful": [
+"mind"
+],
+"means": [
+"mind"
+],
+"meantime": [
+"time"
+],
+"meanwhile": [
+"time"
+],
+"measurable": [
+"time"
+],
+"measure": [
+"time"
+],
+"measure(ment)": [
+"time"
+],
+"measure(s)": [
+"law"
+],
+"meat": [
+"food"
+],
+"mechanic": [
+"work",
+"tech"
+],
+"mechanical": [
+"tech"
+],
+"mechanism": [
+"tech"
+],
+"medal": [
+"leisure"
+],
+"media": [
+"arts"
+],
+"mediate": [
+"society"
+],
+"medical": [
+"body"
+],
+"medication": [
+"body"
+],
+"medicine": [
+"body"
+],
+"medieval": [
+"law"
+],
+"meditate": [
+"mind"
+],
+"meditation": [
+"mind"
+],
+"medium": [
+"describe",
+"arts"
+],
+"medium/media": [
+"arts"
+],
+"meet": [
+"people"
+],
+"meeting": [
+"work"
+],
+"melancholy": [
+"feelings"
+],
+"melody": [
+"arts"
+],
+"melon": [
+"food"
+],
+"melt": [
+"nature",
+"action"
+],
+"member": [
+"society"
+],
+"membership": [
+"society"
+],
+"memorable": [
+"mind"
+],
+"memorial": [
+"law",
+"places"
+],
+"memorize": [
+"school",
+"mind"
+],
+"memory": [
+"mind",
+"tech"
+],
+"men's room": [
+"places"
+],
+"mend": [
+"action"
+],
+"mental": [
+"mind",
+"body"
+],
+"mentality": [
+"mind"
+],
+"mention": [
+"talk"
+],
+"mentor": [
+"school",
+"work"
+],
+"menu": [
+"food"
+],
+"merchandise": [
+"money"
+],
+"merchant": [
+"business"
+],
+"mercy": [
+"feelings"
+],
+"mere": [
+"describe"
+],
+"merge": [
+"business",
+"action"
+],
+"merit": [
+"mind"
+],
+"mermaid": [
+"arts"
+],
+"merry": [
+"feelings"
+],
+"mess": [
+"home"
+],
+"message": [
+"talk"
+],
+"messenger": [
+"talk"
+],
+"messy": [
+"home",
+"describe"
+],
+"metal": [
+"science"
+],
+"metaphor": [
+"talk"
+],
+"meter": [
+"time"
+],
+"method": [
+"mind"
+],
+"metro": [
+"travel"
+],
+"metropolitan": [
+"places"
+],
+"microphone/mike": [
+"tech"
+],
+"microscope": [
+"science"
+],
+"microwave": [
+"home",
+"food"
+],
+"middle": [
+"places"
+],
+"midnight": [
+"time"
+],
+"midst": [
+"places"
+],
+"mighty": [
+"describe"
+],
+"migrant": [
+"society"
+],
+"migration": [
+"society",
+"animals"
+],
+"mild": [
+"describe"
+],
+"mile": [
+"time"
+],
+"milestone": [
+"time"
+],
+"military": [
+"law"
+],
+"milk": [
+"food"
+],
+"mill": [
+"business"
+],
+"million": [
+"time"
+],
+"millionaire": [
+"money"
+],
+"mimic": [
+"action"
+],
+"mind": [
+"mind"
+],
+"mine": [
+"business",
+"nature"
+],
+"miner": [
+"work"
+],
+"mineral": [
+"science"
+],
+"mingle": [
+"society"
+],
+"miniature": [
+"describe"
+],
+"minimal": [
+"time"
+],
+"minimize": [
+"action"
+],
+"minimum": [
+"time"
+],
+"minister": [
+"law"
+],
+"ministry": [
+"law"
+],
+"minor": [
+"describe",
+"people"
+],
+"minority": [
+"society"
+],
+"mint": [
+"food"
+],
+"minus": [
+"science"
+],
+"minute": [
+"time"
+],
+"miracle": [
+"mind"
+],
+"miraculous": [
+"describe"
+],
+"mirror": [
+"home"
+],
+"miscellaneous": [
+"describe"
+],
+"mischief": [
+"feelings"
+],
+"mischievous": [
+"feelings"
+],
+"miserable": [
+"feelings"
+],
+"misery": [
+"feelings"
+],
+"misfortune": [
+"mind"
+],
+"mislead": [
+"talk"
+],
+"miss": [
+"feelings",
+"action"
+],
+"missile": [
+"law"
+],
+"missing": [
+"describe"
+],
+"mission": [
+"work"
+],
+"missionary": [
+"society"
+],
+"mist": [
+"nature"
+],
+"mistake": [
+"mind"
+],
+"mistress": [
+"people"
+],
+"misunderstand": [
+"mind",
+"talk"
+],
+"mix": [
+"food",
+"action"
+],
+"mixture": [
+"science"
+],
+"moan": [
+"talk"
+],
+"mob": [
+"society"
+],
+"mobile": [
+"tech"
+],
+"mobilize": [
+"law"
+],
+"mock": [
+"talk",
+"school"
+],
+"mode": [
+"mind"
+],
+"model": [
+"clothes",
+"work"
+],
+"moderate": [
+"describe"
+],
+"modern": [
+"time"
+],
+"modernization": [
+"society"
+],
+"modernize": [
+"action"
+],
+"modest": [
+"feelings"
+],
+"modesty": [
+"feelings"
+],
+"modify": [
+"action"
+],
+"moist": [
+"nature",
+"describe"
+],
+"moisture": [
+"nature"
+],
+"molecule": [
+"science"
+],
+"moment": [
+"time"
+],
+"momentum": [
+"science"
+],
+"monarch": [
+"law"
+],
+"monday": [
+"time"
+],
+"monetary": [
+"money",
+"business"
+],
+"money": [
+"money"
+],
+"monitor": [
+"tech"
+],
+"monk": [
+"society"
+],
+"monkey": [
+"animals"
+],
+"monopoly": [
+"business"
+],
+"monotony": [
+"describe"
+],
+"monster": [
+"arts"
+],
+"monstrous": [
+"describe"
+],
+"month": [
+"time"
+],
+"monthly": [
+"time"
+],
+"monument": [
+"places",
+"law"
+],
+"mood": [
+"feelings"
+],
+"moody": [
+"feelings"
+],
+"moon": [
+"nature"
+],
+"mop": [
+"home"
+],
+"moral": [
+"society",
+"mind"
+],
+"morale": [
+"feelings"
+],
+"morality": [
+"society",
+"mind"
+],
+"more": [
+"time",
+"function"
+],
+"moreover": [
+"function"
+],
+"morning": [
+"time"
+],
+"mortal": [
+"body"
+],
+"mortality": [
+"body"
+],
+"mortgage": [
+"money",
+"home"
+],
+"mosquito": [
+"animals"
+],
+"most": [
+"time",
+"function"
+],
+"mostly": [
+"describe"
+],
+"motel": [
+"travel"
+],
+"moth": [
+"animals"
+],
+"mother": [
+"people"
+],
+"mother (mom, mommy)": [
+"people"
+],
+"motherhood": [
+"people"
+],
+"motion": [
+"action"
+],
+"motivate": [
+"mind"
+],
+"motivation": [
+"mind"
+],
+"motive": [
+"mind"
+],
+"motor": [
+"tech"
+],
+"motorcycle": [
+"travel"
+],
+"motto": [
+"talk"
+],
+"mound": [
+"nature"
+],
+"mount": [
+"action",
+"nature"
+],
+"mountain": [
+"nature"
+],
+"mountainous": [
+"nature"
+],
+"mourn": [
+"feelings"
+],
+"mournful": [
+"feelings"
+],
+"mouse": [
+"animals",
+"tech"
+],
+"mouth": [
+"body"
+],
+"move": [
+"action",
+"home"
+],
+"move(ment)": [
+"action"
+],
+"movement": [
+"action"
+],
+"movie": [
+"arts"
+],
+"movie/film": [
+"arts"
+],
+"mow": [
+"home"
+],
+"mr.": [
+"people"
+],
+"mr./mister": [
+"people"
+],
+"mrs.": [
+"people"
+],
+"mrt": [
+"travel"
+],
+"ms.": [
+"people"
+],
+"much": [
+"time",
+"function"
+],
+"mud": [
+"nature"
+],
+"muddy": [
+"nature"
+],
+"mug": [
+"home",
+"food"
+],
+"mule": [
+"animals"
+],
+"multiple": [
+"time"
+],
+"multiply": [
+"science",
+"action"
+],
+"mumble": [
+"talk"
+],
+"municipal": [
+"law",
+"places"
+],
+"murder": [
+"law"
+],
+"murderer": [
+"law"
+],
+"murmur": [
+"talk"
+],
+"muscle": [
+"body"
+],
+"muscular": [
+"body"
+],
+"muse": [
+"arts"
+],
+"museum": [
+"places",
+"arts"
+],
+"mushroom": [
+"food"
+],
+"music": [
+"arts"
+],
+"musical": [
+"arts"
+],
+"musician": [
+"arts",
+"work"
+],
+"must": [
+"function"
+],
+"mustache": [
+"clothes",
+"body"
+],
+"mustard": [
+"food"
+],
+"mute": [
+"talk"
+],
+"mutual": [
+"society"
+],
+"mysterious": [
+"describe"
+],
+"mystery": [
+"mind"
+],
+"myth": [
+"arts"
+],
+"nag": [
+"talk"
+],
+"nail": [
+"body",
+"home"
+],
+"naive": [
+"feelings"
+],
+"naked": [
+"body"
+],
+"name": [
+"people"
+],
+"namely": [
+"function"
+],
+"nap": [
+"home"
+],
+"napkin": [
+"food"
+],
+"narrate": [
+"talk",
+"arts"
+],
+"narrative": [
+"arts",
+"talk"
+],
+"narrator": [
+"arts"
+],
+"narrow": [
+"describe"
+],
+"nasty": [
+"describe"
+],
+"nation": [
+"places",
+"law"
+],
+"national": [
+"law",
+"places"
+],
+"nationalism": [
+"law"
+],
+"nationality": [
+"places"
+],
+"native": [
+"places"
+],
+"natural": [
+"nature"
+],
+"nature": [
+"nature"
+],
+"naughty": [
+"feelings"
+],
+"navigate": [
+"travel"
+],
+"navigation": [
+"travel"
+],
+"navy": [
+"law"
+],
+"near": [
+"places"
+],
+"nearby": [
+"places"
+],
+"nearly": [
+"describe"
+],
+"nearsighted": [
+"body"
+],
+"neat": [
+"describe"
+],
+"necessary": [
+"describe"
+],
+"necessity": [
+"mind"
+],
+"neck": [
+"body"
+],
+"necklace": [
+"clothes"
+],
+"necktie": [
+"clothes"
+],
+"need": [
+"function"
+],
+"needle": [
+"home"
+],
+"needy": [
+"money"
+],
+"negative": [
+"describe"
+],
+"neglect": [
+"action"
+],
+"negotiate": [
+"business",
+"talk"
+],
+"negotiation": [
+"business",
+"talk"
+],
+"neighbor": [
+"people"
+],
+"neighborhood": [
+"places"
+],
+"neither": [
+"function"
+],
+"neither...nor": [
+"function"
+],
+"nephew": [
+"people"
+],
+"nerve": [
+"body"
+],
+"nervous": [
+"feelings"
+],
+"nest": [
+"animals"
+],
+"net": [
+"leisure"
+],
+"network": [
+"tech"
+],
+"neutral": [
+"law"
+],
+"never": [
+"time"
+],
+"nevertheless": [
+"function"
+],
+"new": [
+"describe"
+],
+"news": [
+"arts"
+],
+"newspaper": [
+"arts"
+],
+"next": [
+"time"
+],
+"next to": [
+"places"
+],
+"nice": [
+"describe",
+"feelings"
+],
+"nice to meet you.": [
+"talk"
+],
+"nice-looking": [
+"clothes"
+],
+"nickel": [
+"money"
+],
+"nickname": [
+"people"
+],
+"niece": [
+"people"
+],
+"night": [
+"time"
+],
+"nightmare": [
+"feelings"
+],
+"nine": [
+"time"
+],
+"nineteen": [
+"time"
+],
+"ninety": [
+"time"
+],
+"no": [
+"function"
+],
+"no way!": [
+"talk"
+],
+"no/nope": [
+"function"
+],
+"noble": [
+"law",
+"feelings"
+],
+"nobody": [
+"function"
+],
+"nod": [
+"body",
+"talk"
+],
+"noise": [
+"describe"
+],
+"noisy": [
+"describe"
+],
+"nominate": [
+"law"
+],
+"nomination": [
+"law"
+],
+"nominee": [
+"law"
+],
+"none": [
+"function"
+],
+"nonprofit": [
+"business",
+"society"
+],
+"nonsense": [
+"talk"
+],
+"noodle": [
+"food"
+],
+"noon": [
+"time"
+],
+"nor": [
+"function"
+],
+"norm": [
+"society"
+],
+"normal": [
+"describe"
+],
+"north": [
+"places"
+],
+"northern": [
+"places"
+],
+"nose": [
+"body"
+],
+"nostril": [
+"body"
+],
+"not": [
+"function"
+],
+"not only...but also": [
+"function"
+],
+"notable": [
+"describe"
+],
+"note": [
+"school",
+"talk"
+],
+"notebook": [
+"school",
+"tech"
+],
+"nothing": [
+"function"
+],
+"notice": [
+"action",
+"talk"
+],
+"noticeable": [
+"describe"
+],
+"notify": [
+"talk"
+],
+"notion": [
+"mind"
+],
+"notorious": [
+"describe"
+],
+"nourish(ment)": [
+"food",
+"body"
+],
+"novel": [
+"arts"
+],
+"novelist": [
+"arts",
+"work"
+],
+"november": [
+"time"
+],
+"novice": [
+"people"
+],
+"now": [
+"time"
+],
+"nowadays": [
+"time"
+],
+"nowhere": [
+"places"
+],
+"nuclear": [
+"science"
+],
+"nucleus": [
+"science"
+],
+"nude": [
+"body",
+"arts"
+],
+"number": [
+"time"
+],
+"numerous": [
+"time"
+],
+"nun": [
+"society"
+],
+"nurse": [
+"body",
+"work"
+],
+"nursery": [
+"people"
+],
+"nurture": [
+"people"
+],
+"nut": [
+"food"
+],
+"nutrient": [
+"food",
+"body"
+],
+"nutrition": [
+"food",
+"body"
+],
+"nutritious": [
+"food"
+],
+"o'clock": [
+"time"
+],
+"o.k./ok/okay": [
+"talk"
+],
+"oak": [
+"animals"
+],
+"oasis": [
+"nature"
+],
+"oath": [
+"law"
+],
+"oatmeal": [
+"food"
+],
+"obedience": [
+"feelings"
+],
+"obedient": [
+"feelings"
+],
+"obey": [
+"law"
+],
+"object": [
+"mind"
+],
+"objection": [
+"talk"
+],
+"objective": [
+"mind"
+],
+"obligation": [
+"law"
+],
+"oblige": [
+"action"
+],
+"obscure": [
+"describe"
+],
+"observation": [
+"science",
+"mind"
+],
+"observe": [
+"action",
+"science"
+],
+"observer": [
+"people"
+],
+"obsess": [
+"mind"
+],
+"obstacle": [
+"mind"
+],
+"obstinate": [
+"feelings"
+],
+"obtain": [
+"action"
+],
+"obvious": [
+"describe"
+],
+"occasion": [
+"time"
+],
+"occasional": [
+"time"
+],
+"occupation": [
+"work"
+],
+"occupy": [
+"action"
+],
+"occur": [
+"action"
+],
+"occurrence": [
+"action"
+],
+"ocean": [
+"nature"
+],
+"october": [
+"time"
+],
+"octopus": [
+"animals"
+],
+"odd": [
+"describe"
+],
+"odds": [
+"mind"
+],
+"odor": [
+"describe"
+],
+"of": [
+"function"
+],
+"of course": [
+"talk"
+],
+"off": [
+"function"
+],
+"offend": [
+"feelings"
+],
+"offense": [
+"law"
+],
+"offensive": [
+"feelings"
+],
+"offer": [
+"action",
+"money"
+],
+"offering": [
+"society"
+],
+"office": [
+"work"
+],
+"officer": [
+"law",
+"work"
+],
+"official": [
+"law"
+],
+"offshore": [
+"places",
+"business"
+],
+"offspring": [
+"people",
+"animals"
+],
+"often": [
+"time"
+],
+"oil": [
+"food",
+"science"
+],
+"ok": [
+"talk"
+],
+"old": [
+"describe",
+"people"
+],
+"olive": [
+"food"
+],
+"omit": [
+"action"
+],
+"on": [
+"function"
+],
+"on foot": [
+"travel"
+],
+"once": [
+"time"
+],
+"one": [
+"time"
+],
+"oneself": [
+"function"
+],
+"ongoing": [
+"time"
+],
+"onion": [
+"food"
+],
+"online": [
+"tech"
+],
+"only": [
+"function"
+],
+"onto": [
+"function"
+],
+"open": [
+"action"
+],
+"opera": [
+"arts"
+],
+"operate": [
+"tech",
+"body"
+],
+"operation": [
+"body"
+],
+"operational": [
+"tech"
+],
+"operative": [
+"describe"
+],
+"operator": [
+"work"
+],
+"opinion": [
+"mind",
+"talk"
+],
+"opponent": [
+"leisure"
+],
+"opportunity": [
+"mind"
+],
+"oppose": [
+"talk"
+],
+"opposite": [
+"places"
+],
+"opposition": [
+"law"
+],
+"oppress": [
+"law"
+],
+"oppression": [
+"law"
+],
+"opt": [
+"mind"
+],
+"optimism": [
+"feelings"
+],
+"optimistic": [
+"feelings"
+],
+"option": [
+"mind"
+],
+"optional": [
+"describe"
+],
+"or": [
+"function"
+],
+"oral": [
+"talk",
+"school"
+],
+"orange": [
+"food",
+"describe"
+],
+"orbit": [
+"science"
+],
+"orchard": [
+"nature"
+],
+"orchestra": [
+"arts"
+],
+"ordeal": [
+"feelings"
+],
+"order": [
+"food",
+"money"
+],
+"orderly": [
+"describe"
+],
+"ordinary": [
+"describe"
+],
+"organ": [
+"body",
+"arts"
+],
+"organic": [
+"food"
+],
+"organism": [
+"science"
+],
+"organization": [
+"society"
+],
+"organize": [
+"action"
+],
+"organizer": [
+"work"
+],
+"orient": [
+"places"
+],
+"oriental": [
+"places"
+],
+"orientation": [
+"school"
+],
+"origin": [
+"time"
+],
+"original": [
+"arts"
+],
+"originality": [
+"arts"
+],
+"originate": [
+"action"
+],
+"ornament": [
+"home"
+],
+"orphan": [
+"people"
+],
+"orphanage": [
+"places",
+"people"
+],
+"orthodox": [
+"society"
+],
+"other": [
+"function"
+],
+"otherwise": [
+"function"
+],
+"ounce": [
+"time"
+],
+"out": [
+"function"
+],
+"outbreak": [
+"body"
+],
+"outcome": [
+"mind"
+],
+"outdoor": [
+"leisure"
+],
+"outdoors": [
+"leisure"
+],
+"outer": [
+"places"
+],
+"outfit": [
+"clothes"
+],
+"outgoing": [
+"feelings"
+],
+"outing": [
+"leisure"
+],
+"outlaw": [
+"law"
+],
+"outlet": [
+"home",
+"money"
+],
+"outline": [
+"school"
+],
+"outlook": [
+"mind"
+],
+"outnumber": [
+"time"
+],
+"output": [
+"business"
+],
+"outrage": [
+"feelings"
+],
+"outrageous": [
+"feelings"
+],
+"outright": [
+"describe"
+],
+"outset": [
+"time"
+],
+"outside": [
+"places"
+],
+"outsider": [
+"society"
+],
+"outskirts": [
+"places"
+],
+"outstanding": [
+"describe"
+],
+"outward": [
+"places"
+],
+"outward/outwards": [
+"places"
+],
+"oval": [
+"describe"
+],
+"oven": [
+"home",
+"food"
+],
+"over": [
+"function"
+],
+"over there": [
+"places"
+],
+"over-weight": [
+"body"
+],
+"overall": [
+"describe",
+"clothes"
+],
+"overcoat": [
+"clothes"
+],
+"overcome": [
+"action"
+],
+"overdo": [
+"action"
+],
+"overflow": [
+"action"
+],
+"overhead": [
+"places",
+"business"
+],
+"overhear": [
+"talk"
+],
+"overlap": [
+"action"
+],
+"overlook": [
+"mind"
+],
+"overnight": [
+"time"
+],
+"overpass": [
+"travel"
+],
+"overseas": [
+"places",
+"travel"
+],
+"oversee": [
+"work"
+],
+"overtake": [
+"travel",
+"action"
+],
+"overthrow": [
+"law"
+],
+"overturn": [
+"action",
+"law"
+],
+"overwhelm": [
+"feelings"
+],
+"overwork": [
+"work"
+],
+"owe": [
+"money"
+],
+"owl": [
+"animals"
+],
+"own": [
+"function",
+"money"
+],
+"owner": [
+"money"
+],
+"ownership": [
+"law",
+"money"
+],
+"ox": [
+"animals"
+],
+"oxygen": [
+"science"
+],
+"oyster": [
+"food",
+"animals"
+],
+"ozone": [
+"nature",
+"science"
+],
+"o’clock": [
+"time"
+],
+"p.m.": [
+"time"
+],
+"pace": [
+"time",
+"action"
+],
+"pack": [
+"travel",
+"action"
+],
+"package": [
+"money"
+],
+"packet": [
+"time"
+],
+"pad": [
+"home"
+],
+"paddle": [
+"leisure"
+],
+"page": [
+"school"
+],
+"pain": [
+"body"
+],
+"painful": [
+"body"
+],
+"paint": [
+"arts",
+"home"
+],
+"painter": [
+"arts",
+"work"
+],
+"painting": [
+"arts"
+],
+"pair": [
+"time"
+],
+"pajamas": [
+"clothes"
+],
+"pal": [
+"people"
+],
+"palace": [
+"places"
+],
+"pale": [
+"body",
+"describe"
+],
+"palm": [
+"body",
+"animals"
+],
+"pan": [
+"food"
+],
+"pancake": [
+"food"
+],
+"panda": [
+"animals"
+],
+"panel": [
+"work"
+],
+"panic": [
+"feelings"
+],
+"pants": [
+"clothes"
+],
+"papaya": [
+"food"
+],
+"paper": [
+"school",
+"arts"
+],
+"paperback": [
+"arts"
+],
+"parachute": [
+"travel",
+"leisure"
+],
+"parade": [
+"leisure"
+],
+"paradise": [
+"places",
+"society"
+],
+"paradox": [
+"mind"
+],
+"paragraph": [
+"talk",
+"school"
+],
+"parallel": [
+"describe",
+"science"
+],
+"paralyze": [
+"body"
+],
+"parcel": [
+"money"
+],
+"pardon": [
+"law",
+"talk"
+],
+"parent": [
+"people"
+],
+"parent(s)": [
+"people"
+],
+"park": [
+"places",
+"travel"
+],
+"parking lot": [
+"travel",
+"places"
+],
+"parliament": [
+"law"
+],
+"parrot": [
+"animals"
+],
+"part": [
+"time"
+],
+"partial": [
+"describe"
+],
+"participant": [
+"society"
+],
+"participate": [
+"society",
+"action"
+],
+"participation": [
+"society"
+],
+"particle": [
+"science"
+],
+"particular": [
+"describe"
+],
+"partly": [
+"describe"
+],
+"partner": [
+"people",
+"work"
+],
+"partnership": [
+"business"
+],
+"party": [
+"leisure",
+"law"
+],
+"pass": [
+"action",
+"school"
+],
+"passage": [
+"talk",
+"places"
+],
+"passenger": [
+"travel"
+],
+"passion": [
+"feelings"
+],
+"passionate": [
+"feelings"
+],
+"passive": [
+"feelings"
+],
+"passport": [
+"travel"
+],
+"password": [
+"tech"
+],
+"past": [
+"time"
+],
+"pasta": [
+"food"
+],
+"paste": [
+"tech",
+"action"
+],
+"pastime": [
+"leisure"
+],
+"pastry": [
+"food"
+],
+"pat": [
+"action"
+],
+"patch": [
+"clothes"
+],
+"patent": [
+"business",
+"law"
+],
+"path": [
+"travel"
+],
+"pathetic": [
+"feelings"
+],
+"patience": [
+"feelings"
+],
+"patient": [
+"body",
+"feelings"
+],
+"patriot": [
+"law"
+],
+"patriotic": [
+"law"
+],
+"patrol": [
+"law"
+],
+"patron": [
+"business"
+],
+"pattern": [
+"arts",
+"mind"
+],
+"pause": [
+"action"
+],
+"pave(ment)": [
+"travel"
+],
+"paw": [
+"animals"
+],
+"pay": [
+"money",
+"work"
+],
+"pay(ment)": [
+"money"
+],
+"pe (physical education)": [
+"school",
+"leisure"
+],
+"pea": [
+"food"
+],
+"peace": [
+"law",
+"feelings"
+],
+"peaceful": [
+"feelings"
+],
+"peach": [
+"food"
+],
+"peacock": [
+"animals"
+],
+"peak": [
+"nature"
+],
+"peanut": [
+"food"
+],
+"pear": [
+"food"
+],
+"pearl": [
+"clothes"
+],
+"peasant": [
+"work"
+],
+"pebble": [
+"nature"
+],
+"peculiar": [
+"describe"
+],
+"pedal": [
+"travel"
+],
+"pedestrian": [
+"travel"
+],
+"peek": [
+"action"
+],
+"peel": [
+"food"
+],
+"peep": [
+"action"
+],
+"peer": [
+"people"
+],
+"pen": [
+"school"
+],
+"penalty": [
+"law",
+"leisure"
+],
+"pencil": [
+"school"
+],
+"pending": [
+"time"
+],
+"penetrate": [
+"action"
+],
+"penguin": [
+"animals"
+],
+"peninsula": [
+"nature",
+"places"
+],
+"penny": [
+"money"
+],
+"pension": [
+"money",
+"work"
+],
+"people": [
+"people"
+],
+"pepper": [
+"food"
+],
+"per": [
+"function",
+"time"
+],
+"perceive": [
+"mind"
+],
+"percent": [
+"time"
+],
+"percentage": [
+"time"
+],
+"perception": [
+"mind"
+],
+"perch": [
+"animals"
+],
+"perfect": [
+"describe"
+],
+"perfection": [
+"describe"
+],
+"perform": [
+"arts"
+],
+"performance": [
+"arts",
+"school"
+],
+"performer": [
+"arts"
+],
+"perfume": [
+"clothes"
+],
+"perhaps": [
+"describe"
+],
+"peril": [
+"mind"
+],
+"period": [
+"time",
+"school"
+],
+"perish": [
+"action"
+],
+"permanent": [
+"time"
+],
+"permissible": [
+"law"
+],
+"permission": [
+"law"
+],
+"permit": [
+"law"
+],
+"persevere": [
+"feelings"
+],
+"persist": [
+"action"
+],
+"persistence": [
+"feelings"
+],
+"persistent": [
+"feelings"
+],
+"person": [
+"people"
+],
+"personal": [
+"people"
+],
+"personality": [
+"feelings"
+],
+"personnel": [
+"work"
+],
+"perspective": [
+"mind"
+],
+"persuade": [
+"talk"
+],
+"persuasion": [
+"talk"
+],
+"persuasive": [
+"talk"
+],
+"pessimism": [
+"feelings"
+],
+"pessimistic": [
+"feelings"
+],
+"pest": [
+"animals"
+],
+"pet": [
+"animals"
+],
+"petition": [
+"law"
+],
+"petrol": [
+"travel"
+],
+"petroleum": [
+"nature",
+"business"
+],
+"petty": [
+"describe"
+],
+"pharmacist": [
+"body",
+"work"
+],
+"pharmacy": [
+"body"
+],
+"phase": [
+"time"
+],
+"phenomenon": [
+"science"
+],
+"philosopher": [
+"mind"
+],
+"philosophical": [
+"mind"
+],
+"philosophy": [
+"mind"
+],
+"photo": [
+"arts"
+],
+"photograph/photo": [
+"arts"
+],
+"photographer": [
+"arts",
+"work"
+],
+"photographic": [
+"arts"
+],
+"photography": [
+"arts"
+],
+"phrase": [
+"talk"
+],
+"physical": [
+"body"
+],
+"physician": [
+"body",
+"work"
+],
+"physicist": [
+"science"
+],
+"physics": [
+"science",
+"school"
+],
+"pianist": [
+"arts"
+],
+"piano": [
+"arts"
+],
+"pick": [
+"action"
+],
+"pickle": [
+"food"
+],
+"pickpocket": [
+"law"
+],
+"pickup": [
+"travel"
+],
+"picnic": [
+"leisure",
+"food"
+],
+"picture": [
+"arts"
+],
+"pie": [
+"food"
+],
+"piece": [
+"time"
+],
+"pier": [
+"travel"
+],
+"pig": [
+"animals"
+],
+"pigeon": [
+"animals"
+],
+"pile": [
+"time"
+],
+"pilgrim": [
+"society"
+],
+"pill": [
+"body"
+],
+"pillar": [
+"home"
+],
+"pillow": [
+"home"
+],
+"pilot": [
+"travel",
+"work"
+],
+"pimple": [
+"body"
+],
+"pin": [
+"clothes"
+],
+"pinch": [
+"action"
+],
+"pine": [
+"animals"
+],
+"pineapple": [
+"food"
+],
+"pink": [
+"describe"
+],
+"pint": [
+"time"
+],
+"pioneer": [
+"society"
+],
+"pipe": [
+"home"
+],
+"pipeline": [
+"tech"
+],
+"pirate": [
+"law"
+],
+"pit": [
+"nature"
+],
+"pitch": [
+"leisure",
+"arts"
+],
+"pitcher": [
+"leisure"
+],
+"pity": [
+"feelings"
+],
+"pizza": [
+"food"
+],
+"place": [
+"places"
+],
+"placement": [
+"school",
+"work"
+],
+"plague": [
+"body"
+],
+"plain": [
+"describe",
+"nature"
+],
+"plan": [
+"mind"
+],
+"planet": [
+"science",
+"nature"
+],
+"plant": [
+"animals"
+],
+"plantation": [
+"nature",
+"business"
+],
+"plastic": [
+"home"
+],
+"plate": [
+"food"
+],
+"platform": [
+"travel"
+],
+"play": [
+"leisure",
+"arts"
+],
+"play the guitar": [
+"arts"
+],
+"play the role of...": [
+"arts"
+],
+"player": [
+"leisure"
+],
+"playful": [
+"feelings"
+],
+"playground": [
+"school",
+"leisure"
+],
+"playwright": [
+"arts"
+],
+"plea": [
+"talk",
+"law"
+],
+"plead": [
+"talk",
+"law"
+],
+"pleasant": [
+"feelings"
+],
+"please": [
+"function",
+"feelings"
+],
+"pleased": [
+"feelings"
+],
+"pleasure": [
+"feelings"
+],
+"pledge": [
+"talk"
+],
+"plentiful": [
+"time"
+],
+"plenty": [
+"time"
+],
+"plot": [
+"arts"
+],
+"plow": [
+"nature"
+],
+"plug": [
+"tech",
+"home"
+],
+"plum": [
+"food"
+],
+"plumber": [
+"work",
+"home"
+],
+"plunge": [
+"action"
+],
+"plural": [
+"talk"
+],
+"plus": [
+"science"
+],
+"pm/p.m.": [
+"time"
+],
+"pneumonia": [
+"body"
+],
+"pocket": [
+"clothes"
+],
+"poem": [
+"arts"
+],
+"poet": [
+"arts"
+],
+"poetic": [
+"arts"
+],
+"poetry": [
+"arts"
+],
+"point": [
+"school"
+],
+"poison": [
+"body"
+],
+"poisonous": [
+"body"
+],
+"poke": [
+"action"
+],
+"polar": [
+"nature"
+],
+"pole": [
+"nature"
+],
+"police": [
+"law"
+],
+"policeman/cop": [
+"law",
+"work"
+],
+"policy": [
+"law"
+],
+"polish": [
+"home",
+"action"
+],
+"polite": [
+"feelings"
+],
+"political": [
+"law"
+],
+"politician": [
+"law"
+],
+"politics": [
+"law"
+],
+"poll": [
+"law"
+],
+"pollute": [
+"nature"
+],
+"pollution": [
+"nature"
+],
+"pond": [
+"nature"
+],
+"ponder": [
+"mind"
+],
+"pony": [
+"animals"
+],
+"pool": [
+"leisure"
+],
+"poor": [
+"money"
+],
+"pop": [
+"arts"
+],
+"pop music": [
+"arts"
+],
+"popcorn": [
+"food"
+],
+"popular": [
+"describe",
+"arts"
+],
+"popularity": [
+"society"
+],
+"populate": [
+"society"
+],
+"population": [
+"society"
+],
+"porcelain": [
+"arts",
+"home"
+],
+"porch": [
+"home"
+],
+"pork": [
+"food"
+],
+"port": [
+"travel",
+"places"
+],
+"portable": [
+"tech"
+],
+"porter": [
+"work",
+"travel"
+],
+"portfolio": [
+"school",
+"arts"
+],
+"portion": [
+"food",
+"time"
+],
+"portrait": [
+"arts"
+],
+"portray": [
+"arts"
+],
+"pose": [
+"arts"
+],
+"position": [
+"places",
+"work"
+],
+"positive": [
+"feelings"
+],
+"possess": [
+"money"
+],
+"possession": [
+"money"
+],
+"possibility": [
+"mind"
+],
+"possible": [
+"mind"
+],
+"post": [
+"tech",
+"talk"
+],
+"post office": [
+"places"
+],
+"postage": [
+"talk"
+],
+"postcard": [
+"talk"
+],
+"poster": [
+"arts"
+],
+"postpone(ment)": [
+"time"
+],
+"posture": [
+"body"
+],
+"pot": [
+"food",
+"home"
+],
+"potato": [
+"food"
+],
+"potent": [
+"describe"
+],
+"potential": [
+"mind"
+],
+"pottery": [
+"arts"
+],
+"poultry": [
+"food",
+"animals"
+],
+"pound": [
+"money",
+"time"
+],
+"pour": [
+"food",
+"action"
+],
+"poverty": [
+"society",
+"money"
+],
+"powder": [
+"home"
+],
+"power": [
+"law",
+"tech"
+],
+"powerful": [
+"describe"
+],
+"practical": [
+"describe"
+],
+"practice": [
+"school"
+],
+"practitioner": [
+"work",
+"body"
+],
+"praise": [
+"talk"
+],
+"pray": [
+"society"
+],
+"prayer": [
+"society"
+],
+"preach": [
+"society"
+],
+"precaution": [
+"body"
+],
+"precede": [
+"time"
+],
+"precedent": [
+"law"
+],
+"precious": [
+"money",
+"describe"
+],
+"precise": [
+"describe"
+],
+"precision": [
+"describe"
+],
+"predator": [
+"animals"
+],
+"predecessor": [
+"work"
+],
+"predict": [
+"mind"
+],
+"prediction": [
+"mind"
+],
+"prefer": [
+"mind"
+],
+"preference": [
+"mind"
+],
+"pregnancy": [
+"body"
+],
+"pregnant": [
+"body"
+],
+"prehistoric": [
+"law"
+],
+"prejudice": [
+"society"
+],
+"preliminary": [
+"time"
+],
+"premature": [
+"time"
+],
+"premier": [
+"law"
+],
+"premiere": [
+"arts"
+],
+"premise": [
+"mind"
+],
+"premium": [
+"money"
+],
+"preparation": [
+"action"
+],
+"prepare": [
+"action"
+],
+"prepare for": [
+"action",
+"school"
+],
+"prescribe": [
+"body"
+],
+"prescription": [
+"body"
+],
+"presence": [
+"mind"
+],
+"present": [
+"time",
+"leisure"
+],
+"presentation": [
+"school",
+"talk"
+],
+"preservation": [
+"nature"
+],
+"preserve": [
+"nature"
+],
+"preside": [
+"work"
+],
+"presidency": [
+"law"
+],
+"president": [
+"law",
+"school"
+],
+"presidential": [
+"law"
+],
+"press": [
+"arts",
+"action"
+],
+"pressure": [
+"feelings"
+],
+"prestige": [
+"society"
+],
+"presumably": [
+"mind"
+],
+"presume": [
+"mind"
+],
+"pretend": [
+"action"
+],
+"pretty": [
+"describe",
+"clothes"
+],
+"prevail": [
+"action"
+],
+"prevent": [
+"action"
+],
+"prevention": [
+"body"
+],
+"preventive": [
+"body"
+],
+"preview": [
+"school",
+"arts"
+],
+"previous": [
+"time"
+],
+"prey": [
+"animals"
+],
+"price": [
+"money"
+],
+"priceless": [
+"money"
+],
+"pride": [
+"feelings"
+],
+"priest": [
+"society"
+],
+"primary": [
+"describe",
+"school"
+],
+"prime": [
+"describe"
+],
+"primitive": [
+"describe"
+],
+"prince": [
+"people",
+"law"
+],
+"prince/princess": [
+"people",
+"law"
+],
+"princess": [
+"people",
+"law"
+],
+"principal": [
+"school",
+"describe"
+],
+"principle": [
+"mind"
+],
+"print": [
+"tech"
+],
+"printer": [
+"tech"
+],
+"prior": [
+"time"
+],
+"priority": [
+"mind"
+],
+"prison": [
+"law"
+],
+"prisoner": [
+"law"
+],
+"privacy": [
+"tech",
+"society"
+],
+"private": [
+"describe"
+],
+"privatize": [
+"business"
+],
+"privilege": [
+"society"
+],
+"prize": [
+"leisure"
+],
+"probable": [
+"mind"
+],
+"probably": [
+"describe"
+],
+"probe": [
+"science"
+],
+"problem": [
+"mind"
+],
+"procedure": [
+"work"
+],
+"proceed": [
+"action"
+],
+"process": [
+"action"
+],
+"procession": [
+"leisure"
+],
+"proclaim": [
+"talk"
+],
+"produce": [
+"business",
+"food"
+],
+"producer": [
+"business",
+"arts"
+],
+"product": [
+"business"
+],
+"production": [
+"business"
+],
+"productive": [
+"work"
+],
+"productivity": [
+"work",
+"business"
+],
+"profession": [
+"work"
+],
+"professional": [
+"work"
+],
+"professor": [
+"school",
+"work"
+],
+"proficiency": [
+"school"
+],
+"profile": [
+"people"
+],
+"profit": [
+"business"
+],
+"profitable": [
+"business"
+],
+"profound": [
+"describe"
+],
+"program": [
+"arts",
+"tech"
+],
+"progress": [
+"action"
+],
+"progressive": [
+"society"
+],
+"prohibit": [
+"law"
+],
+"prohibition": [
+"law"
+],
+"project": [
+"school",
+"work"
+],
+"projection": [
+"mind"
+],
+"prolong": [
+"time"
+],
+"prominent": [
+"describe"
+],
+"promise": [
+"talk"
+],
+"promising": [
+"describe"
+],
+"promote": [
+"business",
+"work"
+],
+"promotion": [
+"business",
+"work"
+],
+"prompt": [
+"time"
+],
+"prone": [
+"describe"
+],
+"pronounce": [
+"talk"
+],
+"pronunciation": [
+"talk"
+],
+"proof": [
+"mind",
+"law"
+],
+"propaganda": [
+"law"
+],
+"propel": [
+"action"
+],
+"proper": [
+"describe"
+],
+"property": [
+"money"
+],
+"prophet": [
+"society"
+],
+"proportion": [
+"time"
+],
+"proposal": [
+"talk"
+],
+"propose": [
+"talk"
+],
+"prose": [
+"arts"
+],
+"prosecute": [
+"law"
+],
+"prosecution": [
+"law"
+],
+"prospect": [
+"mind"
+],
+"prospective": [
+"time"
+],
+"prosper": [
+"business"
+],
+"prosperity": [
+"business"
+],
+"prosperous": [
+"business",
+"money"
+],
+"protect": [
+"action"
+],
+"protection": [
+"action"
+],
+"protective": [
+"action"
+],
+"protein": [
+"food",
+"body"
+],
+"protest": [
+"law",
+"society"
+],
+"prototype": [
+"tech"
+],
+"proud": [
+"feelings"
+],
+"prove": [
+"mind"
+],
+"proverb": [
+"talk"
+],
+"provide": [
+"action"
+],
+"province": [
+"places"
+],
+"provincial": [
+"places"
+],
+"provision": [
+"food"
+],
+"provisional": [
+"time"
+],
+"provoke": [
+"feelings"
+],
+"psychiatry": [
+"body"
+],
+"psychic": [
+"mind"
+],
+"psychological": [
+"mind"
+],
+"psychologist": [
+"science",
+"work"
+],
+"psychology": [
+"science"
+],
+"psychotherapy": [
+"body"
+],
+"pub": [
+"food",
+"places"
+],
+"public": [
+"society"
+],
+"publication": [
+"arts"
+],
+"publicity": [
+"arts",
+"business"
+],
+"publicize": [
+"arts"
+],
+"publish": [
+"arts"
+],
+"publisher": [
+"arts",
+"business"
+],
+"pudding": [
+"food"
+],
+"puff": [
+"action",
+"food"
+],
+"pull": [
+"action"
+],
+"pulse": [
+"body"
+],
+"pump": [
+"tech"
+],
+"pumpkin": [
+"food"
+],
+"punch": [
+"action"
+],
+"punctual": [
+"time"
+],
+"punish": [
+"law"
+],
+"punish(ment)": [
+"law"
+],
+"pupil": [
+"school",
+"body"
+],
+"puppet": [
+"arts",
+"leisure"
+],
+"puppy": [
+"animals"
+],
+"purchase": [
+"money"
+],
+"pure": [
+"describe"
+],
+"purify": [
+"science"
+],
+"purity": [
+"describe"
+],
+"purple": [
+"describe"
+],
+"purpose": [
+"mind"
+],
+"purse": [
+"clothes",
+"money"
+],
+"pursue": [
+"action"
+],
+"pursuit": [
+"action"
+],
+"push": [
+"action"
+],
+"put": [
+"action"
+],
+"puzzle": [
+"leisure"
+],
+"pyramid": [
+"places"
+],
+"quake": [
+"nature"
+],
+"qualification": [
+"work",
+"school"
+],
+"qualify": [
+"work"
+],
+"quality": [
+"describe"
+],
+"quantity": [
+"time"
+],
+"quarrel": [
+"talk"
+],
+"quarter": [
+"time",
+"money"
+],
+"queen": [
+"law",
+"people"
+],
+"queer": [
+"describe",
+"society"
+],
+"quest": [
+"action"
+],
+"question": [
+"talk"
+],
+"questionnaire": [
+"talk"
+],
+"quick": [
+"describe"
+],
+"quiet": [
+"describe"
+],
+"quilt": [
+"home"
+],
+"quit": [
+"action",
+"work"
+],
+"quite": [
+"describe"
+],
+"quiver": [
+"body"
+],
+"quiz": [
+"school"
+],
+"quota": [
+"time"
+],
+"quotation": [
+"talk",
+"money"
+],
+"quote": [
+"talk"
+],
+"r.o.c./roc": [
+"places"
+],
+"rabbit": [
+"animals"
+],
+"race": [
+"leisure",
+"society"
+],
+"racial": [
+"society"
+],
+"racism": [
+"society"
+],
+"rack": [
+"home"
+],
+"radar": [
+"tech"
+],
+"radiant": [
+"feelings"
+],
+"radiate": [
+"science"
+],
+"radiation": [
+"science"
+],
+"radical": [
+"describe",
+"law"
+],
+"radio": [
+"arts",
+"tech"
+],
+"radioactive": [
+"science"
+],
+"radish": [
+"food"
+],
+"radius": [
+"science"
+],
+"rag": [
+"home"
+],
+"rage": [
+"feelings"
+],
+"ragged": [
+"clothes"
+],
+"raid": [
+"law"
+],
+"rail": [
+"travel"
+],
+"railroad": [
+"travel"
+],
+"railroad/railway": [
+"travel"
+],
+"railway": [
+"travel"
+],
+"rain": [
+"nature"
+],
+"rainbow": [
+"nature"
+],
+"raincoat": [
+"clothes"
+],
+"rainfall": [
+"nature"
+],
+"rainy": [
+"nature"
+],
+"raise": [
+"action",
+"people"
+],
+"raisin": [
+"food"
+],
+"rally": [
+"law"
+],
+"ranch": [
+"animals"
+],
+"random": [
+"describe"
+],
+"range": [
+"describe",
+"nature"
+],
+"rank": [
+"time"
+],
+"rap": [
+"arts"
+],
+"rapid": [
+"describe"
+],
+"rare": [
+"describe"
+],
+"rash": [
+"body"
+],
+"rat": [
+"animals"
+],
+"rate": [
+"time"
+],
+"rather": [
+"describe"
+],
+"ratify": [
+"law"
+],
+"ratio": [
+"time"
+],
+"rational": [
+"mind"
+],
+"rattle": [
+"action"
+],
+"raw": [
+"food"
+],
+"ray": [
+"science"
+],
+"razor": [
+"home"
+],
+"reach": [
+"action"
+],
+"react": [
+"action"
+],
+"reaction": [
+"action"
+],
+"read": [
+"school"
+],
+"ready": [
+"describe"
+],
+"real": [
+"describe"
+],
+"realism": [
+"arts",
+"mind"
+],
+"realistic": [
+"mind"
+],
+"reality": [
+"mind"
+],
+"realization": [
+"mind"
+],
+"realize": [
+"mind"
+],
+"really": [
+"describe"
+],
+"realm": [
+"places"
+],
+"reap": [
+"nature"
+],
+"rear": [
+"places"
+],
+"reason": [
+"mind"
+],
+"reasonable": [
+"mind"
+],
+"reassure": [
+"feelings"
+],
+"rebel": [
+"law"
+],
+"rebellion": [
+"law"
+],
+"recall": [
+"mind"
+],
+"receipt": [
+"money"
+],
+"receive": [
+"action"
+],
+"receiver": [
+"tech"
+],
+"recent": [
+"time"
+],
+"recently": [
+"time"
+],
+"reception": [
+"work"
+],
+"recession": [
+"business"
+],
+"recipe": [
+"food"
+],
+"recipient": [
+"society"
+],
+"recite": [
+"school"
+],
+"reckless": [
+"feelings"
+],
+"reckon": [
+"mind"
+],
+"recognition": [
+"mind"
+],
+"recognize": [
+"mind"
+],
+"recommend": [
+"talk"
+],
+"recommendation": [
+"talk"
+],
+"reconcile": [
+"society"
+],
+"record": [
+"arts"
+],
+"recorder": [
+"tech",
+"arts"
+],
+"recover": [
+"body"
+],
+"recovery": [
+"body"
+],
+"recreation": [
+"leisure"
+],
+"recreational": [
+"leisure"
+],
+"recruit": [
+"work"
+],
+"rectangle": [
+"describe"
+],
+"recycle": [
+"nature"
+],
+"red": [
+"describe"
+],
+"reduce": [
+"action"
+],
+"reduction": [
+"action"
+],
+"redundancy": [
+"talk",
+"work"
+],
+"reef": [
+"nature"
+],
+"refer": [
+"talk"
+],
+"referee": [
+"leisure"
+],
+"reference": [
+"school"
+],
+"referendum": [
+"law"
+],
+"refine(ment)": [
+"action"
+],
+"reflect": [
+"mind",
+"science"
+],
+"reflection": [
+"mind",
+"science"
+],
+"reflective": [
+"mind"
+],
+"reform": [
+"law"
+],
+"refresh(ment)": [
+"feelings",
+"food"
+],
+"refreshment(s)": [
+"food"
+],
+"refrigerator (fridge)": [
+"home"
+],
+"refrigerator/fridge": [
+"home"
+],
+"refuge": [
+"society"
+],
+"refugee": [
+"society"
+],
+"refund": [
+"money"
+],
+"refusal": [
+"talk"
+],
+"refuse": [
+"talk"
+],
+"refute": [
+"talk"
+],
+"regard": [
+"mind"
+],
+"regarding": [
+"function"
+],
+"regardless": [
+"describe"
+],
+"regime": [
+"law"
+],
+"region": [
+"places"
+],
+"regional": [
+"places"
+],
+"register": [
+"school"
+],
+"registration": [
+"school"
+],
+"regret": [
+"feelings"
+],
+"regular": [
+"time"
+],
+"regulate": [
+"law"
+],
+"regulation": [
+"law"
+],
+"rehabilitate": [
+"body"
+],
+"rehearsal": [
+"arts"
+],
+"rehearse": [
+"arts"
+],
+"reign": [
+"law"
+],
+"reinforce": [
+"action"
+],
+"reject": [
+"talk"
+],
+"rejection": [
+"talk"
+],
+"rejoice": [
+"feelings"
+],
+"relate": [
+"mind"
+],
+"relation": [
+"society"
+],
+"relationship": [
+"society"
+],
+"relative": [
+"people"
+],
+"relax": [
+"leisure"
+],
+"relaxation": [
+"leisure"
+],
+"relaxed": [
+"feelings"
+],
+"relay": [
+"leisure"
+],
+"release": [
+"action",
+"arts"
+],
+"relentless": [
+"describe"
+],
+"relevant": [
+"mind"
+],
+"reliable": [
+"feelings"
+],
+"reliance": [
+"society"
+],
+"reliant": [
+"society"
+],
+"relic": [
+"law"
+],
+"relief": [
+"feelings"
+],
+"relieve": [
+"feelings"
+],
+"religion": [
+"society"
+],
+"religious": [
+"society"
+],
+"reluctant": [
+"feelings"
+],
+"rely": [
+"society"
+],
+"remain": [
+"action"
+],
+"remainder": [
+"time"
+],
+"remark": [
+"talk"
+],
+"remarkable": [
+"describe"
+],
+"remedy": [
+"body"
+],
+"remember": [
+"mind"
+],
+"remind": [
+"mind"
+],
+"reminder": [
+"mind"
+],
+"reminiscent": [
+"mind"
+],
+"remote": [
+"places"
+],
+"removal": [
+"action"
+],
+"remove": [
+"action"
+],
+"render": [
+"action"
+],
+"renew": [
+"action"
+],
+"renowned": [
+"describe"
+],
+"rent": [
+"money",
+"home"
+],
+"rental": [
+"money"
+],
+"repair": [
+"home"
+],
+"repay": [
+"money"
+],
+"repeat": [
+"talk"
+],
+"repetition": [
+"talk"
+],
+"replace(ment)": [
+"action"
+],
+"reply": [
+"talk"
+],
+"report": [
+"school",
+"arts"
+],
+"reporter": [
+"arts",
+"work"
+],
+"represent": [
+"talk"
+],
+"representation": [
+"talk"
+],
+"representative": [
+"law"
+],
+"reproduce": [
+"science"
+],
+"reptile": [
+"animals"
+],
+"republic": [
+"law"
+],
+"republican": [
+"law"
+],
+"reputation": [
+"society"
+],
+"request": [
+"talk"
+],
+"require(ment)": [
+"action"
+],
+"rescue": [
+"action"
+],
+"research": [
+"science"
+],
+"researcher": [
+"science",
+"work"
+],
+"resemblance": [
+"describe"
+],
+"resemble": [
+"describe"
+],
+"resent(ment)": [
+"feelings"
+],
+"reservation": [
+"travel",
+"food"
+],
+"reserve": [
+"travel",
+"nature"
+],
+"reservoir": [
+"nature"
+],
+"reside": [
+"home"
+],
+"residence": [
+"home"
+],
+"resident": [
+"places"
+],
+"residential": [
+"home"
+],
+"resign": [
+"work"
+],
+"resignation": [
+"work"
+],
+"resist": [
+"action"
+],
+"resistance": [
+"action"
+],
+"resistant": [
+"describe"
+],
+"resolution": [
+"mind"
+],
+"resolve": [
+"mind"
+],
+"resort": [
+"travel"
+],
+"resource": [
+"nature"
+],
+"respect": [
+"feelings"
+],
+"respectable": [
+"society"
+],
+"respectful": [
+"feelings"
+],
+"respective": [
+"describe"
+],
+"respond": [
+"talk"
+],
+"respondent": [
+"talk"
+],
+"response": [
+"talk"
+],
+"responsibility": [
+"work"
+],
+"responsible": [
+"work",
+"feelings"
+],
+"rest": [
+"body"
+],
+"restaurant": [
+"food"
+],
+"restoration": [
+"action"
+],
+"restore": [
+"action"
+],
+"restrain": [
+"action"
+],
+"restraint": [
+"feelings"
+],
+"restrict": [
+"law"
+],
+"restriction": [
+"law"
+],
+"restroom": [
+"home",
+"places"
+],
+"result": [
+"mind",
+"school"
+],
+"resume": [
+"work"
+],
+"retail": [
+"business",
+"money"
+],
+"retain": [
+"action",
+"mind"
+],
+"retire(ment)": [
+"work"
+],
+"retort": [
+"talk"
+],
+"retreat": [
+"law",
+"action"
+],
+"retrieve": [
+"action",
+"tech"
+],
+"return": [
+"action",
+"travel"
+],
+"reunion": [
+"people",
+"society"
+],
+"reveal": [
+"action",
+"talk"
+],
+"revelation": [
+"mind"
+],
+"revenge": [
+"society",
+"feelings"
+],
+"revenue": [
+"business",
+"money"
+],
+"reverse": [
+"action",
+"describe"
+],
+"review": [
+"school",
+"arts"
+],
+"revise": [
+"school",
+"talk"
+],
+"revision": [
+"school",
+"talk"
+],
+"revival": [
+"society"
+],
+"revive": [
+"action",
+"body"
+],
+"revolt": [
+"law"
+],
+"revolution": [
+"law"
+],
+"revolutionary": [
+"law",
+"describe"
+],
+"revolve": [
+"action",
+"science"
+],
+"reward": [
+"money"
+],
+"rhetoric": [
+"talk"
+],
+"rhyme": [
+"arts",
+"talk"
+],
+"rhythm": [
+"arts"
+],
+"rib": [
+"body",
+"food"
+],
+"ribbon": [
+"clothes"
+],
+"rice": [
+"food"
+],
+"rich": [
+"money",
+"describe"
+],
+"riches": [
+"money"
+],
+"rid": [
+"action"
+],
+"riddle": [
+"leisure",
+"talk"
+],
+"ride": [
+"travel"
+],
+"ridge": [
+"nature"
+],
+"ridiculous": [
+"describe"
+],
+"rifle": [
+"law"
+],
+"right": [
+"describe",
+"places"
+],
+"rigid": [
+"describe"
+],
+"rigorous": [
+"describe"
+],
+"rim": [
+"describe"
+],
+"ring": [
+"clothes"
+],
+"riot": [
+"law"
+],
+"rip": [
+"action"
+],
+"ripe": [
+"food"
+],
+"ripple": [
+"nature"
+],
+"rise": [
+"action"
+],
+"risk": [
+"mind"
+],
+"risky": [
+"describe"
+],
+"ritual": [
+"society"
+],
+"rival": [
+"society"
+],
+"rivalry": [
+"society"
+],
+"river": [
+"nature"
+],
+"road": [
+"travel"
+],
+"roam": [
+"travel"
+],
+"roar": [
+"animals"
+],
+"roast": [
+"food"
+],
+"rob": [
+"law"
+],
+"robber": [
+"law"
+],
+"robbery": [
+"law"
+],
+"robe": [
+"clothes"
+],
+"robot": [
+"tech"
+],
+"robust": [
+"describe"
+],
+"rock": [
+"nature",
+"arts"
+],
+"rocket": [
+"tech",
+"science"
+],
+"rocky": [
+"nature"
+],
+"rod": [
+"home"
+],
+"role": [
+"society",
+"arts"
+],
+"roll": [
+"action"
+],
+"roller skate (roller blade)": [
+"leisure"
+],
+"romance": [
+"feelings",
+"arts"
+],
+"romantic": [
+"feelings"
+],
+"roof": [
+"home"
+],
+"room": [
+"home"
+],
+"roommate": [
+"people",
+"home"
+],
+"rooster": [
+"animals"
+],
+"root": [
+"animals",
+"mind"
+],
+"rope": [
+"home"
+],
+"rose": [
+"animals"
+],
+"rot": [
+"food"
+],
+"rotate": [
+"action"
+],
+"rotation": [
+"action",
+"science"
+],
+"rotten": [
+"food"
+],
+"rough": [
+"describe"
+],
+"roughly": [
+"time",
+"describe"
+],
+"round": [
+"describe"
+],
+"route": [
+"travel"
+],
+"routine": [
+"home"
+],
+"row": [
+"describe"
+],
+"royal": [
+"law"
+],
+"royalty": [
+"law"
+],
+"rub": [
+"action"
+],
+"rubber": [
+"school"
+],
+"rubbish": [
+"home"
+],
+"rude": [
+"feelings"
+],
+"rug": [
+"home"
+],
+"rugged": [
+"nature",
+"describe"
+],
+"ruin": [
+"action"
+],
+"rule": [
+"law"
+],
+"ruler": [
+"school",
+"law"
+],
+"rumor": [
+"talk"
+],
+"run": [
+"leisure",
+"work"
+],
+"runner": [
+"leisure"
+],
+"rural": [
+"places"
+],
+"rush": [
+"action"
+],
+"rust": [
+"science"
+],
+"rusty": [
+"describe"
+],
+"ruthless": [
+"feelings"
+],
+"sack": [
+"home",
+"work"
+],
+"sacred": [
+"society"
+],
+"sacrifice": [
+"society"
+],
+"sad": [
+"feelings"
+],
+"saddle": [
+"travel",
+"animals"
+],
+"safe": [
+"describe"
+],
+"safety": [
+"describe"
+],
+"sail": [
+"travel"
+],
+"sailor": [
+"work",
+"travel"
+],
+"saint": [
+"society"
+],
+"sake": [
+"mind"
+],
+"salad": [
+"food"
+],
+"salary": [
+"work",
+"money"
+],
+"sale": [
+"money"
+],
+"salesman": [
+"work",
+"money"
+],
+"salesperson/salesman/saleswoman": [
+"work",
+"money"
+],
+"salmon": [
+"food",
+"animals"
+],
+"salon": [
+"clothes"
+],
+"salt": [
+"food"
+],
+"salty": [
+"food"
+],
+"salute": [
+"law"
+],
+"salvage": [
+"action"
+],
+"same": [
+"describe"
+],
+"sample": [
+"money"
+],
+"sand": [
+"nature"
+],
+"sandal": [
+"clothes"
+],
+"sandwich": [
+"food"
+],
+"sanitation": [
+"body",
+"society"
+],
+"satellite": [
+"tech",
+"science"
+],
+"satisfaction": [
+"feelings"
+],
+"satisfactory": [
+"describe"
+],
+"satisfy": [
+"feelings"
+],
+"saturday": [
+"time"
+],
+"sauce": [
+"food"
+],
+"saucer": [
+"food",
+"home"
+],
+"sausage": [
+"food"
+],
+"savage": [
+"describe"
+],
+"save": [
+"money",
+"action"
+],
+"saving(s)": [
+"money"
+],
+"saw": [
+"action",
+"home"
+],
+"say": [
+"talk"
+],
+"scale(s)": [
+"time",
+"science"
+],
+"scan": [
+"body",
+"tech"
+],
+"scandal": [
+"society"
+],
+"scar": [
+"body"
+],
+"scarce": [
+"describe"
+],
+"scarcely": [
+"describe"
+],
+"scare": [
+"feelings"
+],
+"scared": [
+"feelings"
+],
+"scarf": [
+"clothes"
+],
+"scary": [
+"feelings"
+],
+"scatter": [
+"action"
+],
+"scenario": [
+"mind",
+"arts"
+],
+"scene": [
+"arts",
+"places"
+],
+"scenery": [
+"nature",
+"travel"
+],
+"scenic": [
+"nature",
+"travel"
+],
+"scent": [
+"describe"
+],
+"schedule": [
+"time"
+],
+"scheme": [
+"mind"
+],
+"scholar": [
+"school"
+],
+"scholarship": [
+"school"
+],
+"school": [
+"school"
+],
+"science": [
+"science",
+"school"
+],
+"scientific": [
+"science"
+],
+"scientist": [
+"science",
+"work"
+],
+"scissors": [
+"school"
+],
+"scold": [
+"talk"
+],
+"scoop": [
+"food",
+"arts"
+],
+"scooter": [
+"travel"
+],
+"scope": [
+"mind"
+],
+"score": [
+"school",
+"leisure"
+],
+"scorn": [
+"feelings"
+],
+"scout": [
+"people",
+"leisure"
+],
+"scramble": [
+"action",
+"food"
+],
+"scrap": [
+"describe"
+],
+"scrape": [
+"action"
+],
+"scratch": [
+"body"
+],
+"scream": [
+"talk"
+],
+"screen": [
+"tech",
+"arts"
+],
+"screw": [
+"tech"
+],
+"screwdriver": [
+"tech"
+],
+"script": [
+"arts"
+],
+"scroll": [
+"arts"
+],
+"scrub": [
+"home"
+],
+"scrutiny": [
+"mind"
+],
+"sculptor": [
+"arts",
+"work"
+],
+"sculpture": [
+"arts"
+],
+"sea": [
+"nature"
+],
+"seafood": [
+"food"
+],
+"seagull/gull": [
+"animals"
+],
+"seal": [
+"animals"
+],
+"search": [
+"action",
+"tech"
+],
+"season": [
+"nature",
+"time"
+],
+"seat": [
+"travel"
+],
+"second": [
+"time"
+],
+"secondary": [
+"school",
+"describe"
+],
+"secret": [
+"talk"
+],
+"secretary": [
+"work"
+],
+"section": [
+"describe"
+],
+"sector": [
+"business"
+],
+"secure": [
+"action",
+"describe"
+],
+"security": [
+"law"
+],
+"seduce": [
+"feelings"
+],
+"see": [
+"body",
+"action"
+],
+"seed": [
+"animals"
+],
+"seek": [
+"action"
+],
+"seem": [
+"mind"
+],
+"seesaw": [
+"leisure"
+],
+"segment": [
+"describe"
+],
+"seize": [
+"action",
+"law"
+],
+"seldom": [
+"time"
+],
+"select": [
+"action"
+],
+"selection": [
+"action"
+],
+"selective": [
+"describe"
+],
+"self": [
+"people"
+],
+"selfish": [
+"feelings"
+],
+"sell": [
+"money"
+],
+"semester": [
+"school"
+],
+"seminar": [
+"school"
+],
+"senator": [
+"law"
+],
+"send": [
+"action",
+"talk"
+],
+"senior": [
+"people",
+"school"
+],
+"senior high school": [
+"school"
+],
+"sensation": [
+"feelings"
+],
+"sense": [
+"body",
+"mind"
+],
+"sensible": [
+"mind"
+],
+"sensitive": [
+"feelings"
+],
+"sensitivity": [
+"feelings"
+],
+"sensor": [
+"tech"
+],
+"sentence": [
+"talk",
+"law"
+],
+"sentiment": [
+"feelings"
+],
+"sentimental": [
+"feelings"
+],
+"separate": [
+"describe"
+],
+"separation": [
+"people"
+],
+"september": [
+"time"
+],
+"sequence": [
+"time"
+],
+"serene": [
+"feelings"
+],
+"sergeant": [
+"law"
+],
+"serial": [
+"arts"
+],
+"series": [
+"arts"
+],
+"serious": [
+"feelings",
+"describe"
+],
+"sermon": [
+"society"
+],
+"servant": [
+"work"
+],
+"serve": [
+"food",
+"work"
+],
+"server": [
+"food",
+"tech"
+],
+"service": [
+"work"
+],
+"serving": [
+"food"
+],
+"session": [
+"time"
+],
+"set": [
+"action"
+],
+"setback": [
+"mind"
+],
+"setting": [
+"arts"
+],
+"settle(ment)": [
+"action",
+"places"
+],
+"settler": [
+"law",
+"places"
+],
+"seven": [
+"time"
+],
+"seventeen": [
+"time"
+],
+"seventy": [
+"time"
+],
+"several": [
+"time"
+],
+"severe": [
+"describe"
+],
+"sew": [
+"clothes"
+],
+"sex": [
+"people"
+],
+"sexual": [
+"people"
+],
+"sexy": [
+"clothes"
+],
+"shabby": [
+"clothes"
+],
+"shade": [
+"nature"
+],
+"shadow": [
+"nature"
+],
+"shady": [
+"nature"
+],
+"shake": [
+"action"
+],
+"shall": [
+"function"
+],
+"shallow": [
+"describe"
+],
+"shame": [
+"feelings"
+],
+"shameful": [
+"feelings"
+],
+"shampoo": [
+"home",
+"body"
+],
+"shape": [
+"describe"
+],
+"share": [
+"action"
+],
+"shareholder": [
+"business"
+],
+"shark": [
+"animals"
+],
+"sharp": [
+"describe"
+],
+"sharpen": [
+"action"
+],
+"shatter": [
+"action"
+],
+"shave": [
+"body",
+"clothes"
+],
+"shaver": [
+"body",
+"home"
+],
+"she (her, hers, herself)": [
+"function"
+],
+"shed": [
+"action"
+],
+"sheep": [
+"animals"
+],
+"sheer": [
+"describe"
+],
+"sheet": [
+"school",
+"home"
+],
+"shelf": [
+"home"
+],
+"shell": [
+"animals"
+],
+"shelter": [
+"places"
+],
+"shepherd": [
+"work",
+"animals"
+],
+"sheriff": [
+"law"
+],
+"shield": [
+"law"
+],
+"shift": [
+"action",
+"work"
+],
+"shine": [
+"nature"
+],
+"shiny": [
+"describe"
+],
+"ship": [
+"travel"
+],
+"shirt": [
+"clothes"
+],
+"shiver": [
+"body"
+],
+"shock": [
+"feelings"
+],
+"shoe (s)": [
+"clothes"
+],
+"shoe(s)": [
+"clothes"
+],
+"shoot": [
+"law",
+"leisure"
+],
+"shop": [
+"money"
+],
+"shopkeeper": [
+"money",
+"work"
+],
+"shopping": [
+"money"
+],
+"shore": [
+"nature"
+],
+"short": [
+"describe",
+"clothes"
+],
+"shortage": [
+"business"
+],
+"shortcoming": [
+"feelings"
+],
+"shorten": [
+"action"
+],
+"shortly": [
+"time"
+],
+"shorts": [
+"clothes"
+],
+"shortsighted": [
+"mind",
+"body"
+],
+"shot": [
+"leisure",
+"body"
+],
+"should": [
+"function"
+],
+"shoulder": [
+"body"
+],
+"shout": [
+"talk"
+],
+"shove": [
+"action"
+],
+"shovel": [
+"home"
+],
+"show": [
+"action",
+"arts"
+],
+"shower": [
+"home",
+"nature"
+],
+"shred": [
+"describe"
+],
+"shriek": [
+"talk"
+],
+"shrimp": [
+"food",
+"animals"
+],
+"shrink": [
+"action"
+],
+"shrub": [
+"animals"
+],
+"shrug": [
+"body"
+],
+"shuffle": [
+"leisure",
+"action"
+],
+"shut": [
+"action"
+],
+"shutter": [
+"home",
+"arts"
+],
+"shuttle": [
+"travel"
+],
+"shy": [
+"feelings"
+],
+"sibling": [
+"people"
+],
+"sick": [
+"body"
+],
+"side": [
+"places"
+],
+"sidewalk": [
+"travel"
+],
+"siege": [
+"law"
+],
+"sigh": [
+"feelings"
+],
+"sight": [
+"body",
+"travel"
+],
+"sightseeing": [
+"travel"
+],
+"sign": [
+"travel"
+],
+"signal": [
+"tech"
+],
+"signature": [
+"talk"
+],
+"significance": [
+"mind"
+],
+"significant": [
+"describe"
+],
+"silence": [
+"describe"
+],
+"silent": [
+"describe"
+],
+"silk": [
+"clothes"
+],
+"silly": [
+"mind"
+],
+"silver": [
+"describe",
+"money"
+],
+"similar": [
+"describe"
+],
+"similarity": [
+"describe"
+],
+"simple": [
+"describe"
+],
+"simplicity": [
+"describe"
+],
+"simplify": [
+"action"
+],
+"simply": [
+"describe"
+],
+"simultaneous": [
+"time"
+],
+"sin": [
+"society"
+],
+"since": [
+"function",
+"time"
+],
+"sincere": [
+"feelings"
+],
+"sincerity": [
+"feelings"
+],
+"sing": [
+"arts"
+],
+"singer": [
+"arts",
+"work"
+],
+"single": [
+"describe",
+"people"
+],
+"singular": [
+"talk"
+],
+"sink": [
+"home"
+],
+"sip": [
+"food"
+],
+"sir": [
+"people"
+],
+"sister": [
+"people"
+],
+"sit": [
+"action"
+],
+"sit down": [
+"action"
+],
+"site": [
+"places",
+"tech"
+],
+"situation": [
+"mind"
+],
+"six": [
+"time"
+],
+"sixteen": [
+"time"
+],
+"sixty": [
+"time"
+],
+"size": [
+"describe",
+"clothes"
+],
+"skate": [
+"leisure"
+],
+"skeleton": [
+"body",
+"science"
+],
+"skeptical": [
+"mind"
+],
+"sketch": [
+"arts"
+],
+"ski": [
+"leisure"
+],
+"skill": [
+"work"
+],
+"skilled": [
+"work"
+],
+"skillful": [
+"work"
+],
+"skim": [
+"school"
+],
+"skin": [
+"body"
+],
+"skinny": [
+"body"
+],
+"skip": [
+"action",
+"school"
+],
+"skirt": [
+"clothes"
+],
+"skull": [
+"body"
+],
+"sky": [
+"nature"
+],
+"skyscraper": [
+"places"
+],
+"slam": [
+"action"
+],
+"slang": [
+"talk"
+],
+"slap": [
+"action",
+"body"
+],
+"slash": [
+"action"
+],
+"slaughter": [
+"law",
+"animals"
+],
+"slave": [
+"law",
+"society"
+],
+"slavery": [
+"law",
+"society"
+],
+"slay": [
+"law"
+],
+"sleep": [
+"home",
+"body"
+],
+"sleepy": [
+"body"
+],
+"sleeve": [
+"clothes"
+],
+"slender": [
+"body"
+],
+"slice": [
+"food"
+],
+"slide": [
+"leisure",
+"school"
+],
+"slight": [
+"describe"
+],
+"slim": [
+"body"
+],
+"slip": [
+"action"
+],
+"slipper(s)": [
+"clothes"
+],
+"slippers": [
+"clothes"
+],
+"slippery": [
+"describe"
+],
+"slogan": [
+"talk"
+],
+"slope": [
+"nature"
+],
+"sloppy": [
+"describe"
+],
+"slot": [
+"time"
+],
+"slow": [
+"describe"
+],
+"slum": [
+"places",
+"society"
+],
+"slump": [
+"business"
+],
+"sly": [
+"feelings"
+],
+"small": [
+"describe"
+],
+"smart": [
+"mind"
+],
+"smash": [
+"action"
+],
+"smell": [
+"body"
+],
+"smile": [
+"feelings",
+"body"
+],
+"smog": [
+"nature"
+],
+"smoke": [
+"nature",
+"body"
+],
+"smooth": [
+"describe"
+],
+"smuggle": [
+"law"
+],
+"snack": [
+"food"
+],
+"snail": [
+"animals"
+],
+"snake": [
+"animals"
+],
+"snap": [
+"action"
+],
+"snatch": [
+"action"
+],
+"sneak": [
+"action"
+],
+"sneaker(s)": [
+"clothes"
+],
+"sneakers": [
+"clothes"
+],
+"sneaky": [
+"feelings"
+],
+"sneeze": [
+"body"
+],
+"sniff": [
+"body"
+],
+"snore": [
+"body"
+],
+"snow": [
+"nature"
+],
+"snowman": [
+"leisure",
+"nature"
+],
+"snowy": [
+"nature"
+],
+"so": [
+"function",
+"describe"
+],
+"so far": [
+"time"
+],
+"so...that": [
+"function"
+],
+"soak": [
+"action"
+],
+"soap": [
+"home"
+],
+"soar": [
+"action"
+],
+"sob": [
+"feelings"
+],
+"sober": [
+"body"
+],
+"soccer": [
+"leisure"
+],
+"sociable": [
+"feelings",
+"society"
+],
+"social": [
+"society"
+],
+"socialism": [
+"law"
+],
+"socialist": [
+"law"
+],
+"socialize": [
+"society"
+],
+"society": [
+"society"
+],
+"sociology": [
+"society",
+"school"
+],
+"sock(s)": [
+"clothes"
+],
+"socket": [
+"home",
+"tech"
+],
+"socks": [
+"clothes"
+],
+"soda": [
+"food"
+],
+"sofa": [
+"home"
+],
+"soft": [
+"describe"
+],
+"soft drink": [
+"food"
+],
+"softball": [
+"leisure"
+],
+"soften": [
+"action"
+],
+"software": [
+"tech"
+],
+"soil": [
+"nature"
+],
+"solar": [
+"nature",
+"science"
+],
+"soldier": [
+"law",
+"work"
+],
+"sole": [
+"describe"
+],
+"solemn": [
+"describe"
+],
+"solid": [
+"describe",
+"science"
+],
+"solidarity": [
+"society"
+],
+"solitary": [
+"feelings"
+],
+"solitude": [
+"feelings"
+],
+"solo": [
+"arts"
+],
+"solution": [
+"mind",
+"science"
+],
+"solve": [
+"mind"
+],
+"some": [
+"function"
+],
+"someday": [
+"time"
+],
+"somehow": [
+"describe"
+],
+"someone (somebody)": [
+"function"
+],
+"someone/somebody": [
+"function"
+],
+"something": [
+"function"
+],
+"sometime": [
+"time"
+],
+"sometimes": [
+"time"
+],
+"somewhat": [
+"describe"
+],
+"somewhere": [
+"places"
+],
+"son": [
+"people"
+],
+"song": [
+"arts"
+],
+"soon": [
+"time"
+],
+"soothe": [
+"feelings"
+],
+"sophisticated": [
+"describe",
+"tech"
+],
+"sophomore": [
+"school"
+],
+"sore": [
+"body"
+],
+"sorrow": [
+"feelings"
+],
+"sorrowful": [
+"feelings"
+],
+"sorry": [
+"feelings",
+"talk"
+],
+"sort": [
+"mind"
+],
+"soul": [
+"mind",
+"society"
+],
+"sound": [
+"arts"
+],
+"soup": [
+"food"
+],
+"sour": [
+"food"
+],
+"source": [
+"mind"
+],
+"south": [
+"places"
+],
+"southern": [
+"places"
+],
+"souvenir": [
+"travel",
+"money"
+],
+"sovereign": [
+"law"
+],
+"sovereignty": [
+"law"
+],
+"sow": [
+"animals"
+],
+"soy-sauce": [
+"food"
+],
+"soybean": [
+"food"
+],
+"space": [
+"science",
+"places"
+],
+"spacecraft/spaceship": [
+"science",
+"tech"
+],
+"spacious": [
+"home",
+"describe"
+],
+"spade": [
+"home",
+"leisure"
+],
+"spaghetti": [
+"food"
+],
+"span": [
+"time"
+],
+"spare": [
+"time",
+"describe"
+],
+"spark": [
+"nature"
+],
+"sparkle": [
+"describe"
+],
+"sparrow": [
+"animals"
+],
+"speak": [
+"talk"
+],
+"speaker": [
+"talk",
+"tech"
+],
+"spear": [
+"law"
+],
+"special": [
+"describe"
+],
+"specialist": [
+"work",
+"body"
+],
+"specialize": [
+"work"
+],
+"specialty": [
+"work",
+"food"
+],
+"species": [
+"animals",
+"science"
+],
+"specific": [
+"describe"
+],
+"specify": [
+"talk"
+],
+"specimen": [
+"science"
+],
+"spectacle": [
+"travel",
+"clothes"
+],
+"spectacular": [
+"describe"
+],
+"spectator": [
+"leisure"
+],
+"spectrum": [
+"science"
+],
+"speculate": [
+"mind"
+],
+"speech": [
+"talk"
+],
+"speed": [
+"travel"
+],
+"spell": [
+"school",
+"talk"
+],
+"spelling": [
+"school",
+"talk"
+],
+"spend": [
+"money",
+"time"
+],
+"sphere": [
+"science"
+],
+"spice": [
+"food"
+],
+"spicy": [
+"food"
+],
+"spider": [
+"animals"
+],
+"spill": [
+"action"
+],
+"spin": [
+"action"
+],
+"spinach": [
+"food"
+],
+"spine": [
+"body"
+],
+"spiral": [
+"describe"
+],
+"spirit": [
+"mind",
+"society"
+],
+"spiritual": [
+"society",
+"mind"
+],
+"spit": [
+"body"
+],
+"spite": [
+"feelings",
+"function"
+],
+"splash": [
+"action"
+],
+"splendid": [
+"describe"
+],
+"splendor": [
+"describe"
+],
+"split": [
+"action"
+],
+"spoil": [
+"action",
+"food"
+],
+"spokesperson/spokesman/spokeswoman": [
+"talk",
+"work"
+],
+"sponge": [
+"home"
+],
+"sponsor": [
+"business"
+],
+"sponsorship": [
+"business"
+],
+"spontaneous": [
+"describe"
+],
+"spoon": [
+"food"
+],
+"sport": [
+"leisure"
+],
+"sports": [
+"leisure"
+],
+"sports field": [
+"leisure",
+"places"
+],
+"sportsman/sportswoman": [
+"leisure"
+],
+"sportsmanship": [
+"leisure"
+],
+"spot": [
+"places"
+],
+"spotlight": [
+"arts"
+],
+"spouse": [
+"people"
+],
+"spray": [
+"action"
+],
+"spread": [
+"action"
+],
+"spring": [
+"nature",
+"time"
+],
+"sprinkle": [
+"action",
+"food"
+],
+"spur": [
+"action"
+],
+"spy": [
+"law"
+],
+"squad": [
+"leisure",
+"law"
+],
+"square": [
+"describe",
+"places"
+],
+"squash": [
+"food",
+"leisure"
+],
+"squat": [
+"body"
+],
+"squeeze": [
+"action"
+],
+"squirrel": [
+"animals"
+],
+"stab": [
+"law",
+"body"
+],
+"stability": [
+"describe"
+],
+"stabilize": [
+"action"
+],
+"stable": [
+"describe"
+],
+"stack": [
+"time"
+],
+"stadium": [
+"leisure",
+"places"
+],
+"staff": [
+"work"
+],
+"stage": [
+"arts",
+"time"
+],
+"stagger": [
+"action"
+],
+"stain": [
+"clothes",
+"home"
+],
+"stair": [
+"home"
+],
+"stairs": [
+"home"
+],
+"stake": [
+"business"
+],
+"stale": [
+"food"
+],
+"stall": [
+"money"
+],
+"stamp": [
+"talk"
+],
+"stance": [
+"mind"
+],
+"stand": [
+"action"
+],
+"stand in line": [
+"action"
+],
+"stand up": [
+"action"
+],
+"standard": [
+"describe"
+],
+"staple": [
+"food",
+"school"
+],
+"star": [
+"nature",
+"arts"
+],
+"stare": [
+"action"
+],
+"start": [
+"action"
+],
+"startle": [
+"feelings"
+],
+"starvation": [
+"body"
+],
+"starve": [
+"body"
+],
+"state": [
+"places",
+"law"
+],
+"state(ment)": [
+"talk"
+],
+"statesman": [
+"law"
+],
+"station": [
+"travel"
+],
+"stationary": [
+"describe"
+],
+"stationery": [
+"school"
+],
+"statistic(s)": [
+"science"
+],
+"statistical": [
+"science"
+],
+"statue": [
+"arts"
+],
+"stature": [
+"body",
+"society"
+],
+"status": [
+"society"
+],
+"statute": [
+"law"
+],
+"stay": [
+"action",
+"travel"
+],
+"steady": [
+"describe"
+],
+"steak": [
+"food"
+],
+"steal": [
+"law"
+],
+"steam": [
+"science",
+"food"
+],
+"steel": [
+"science"
+],
+"steep": [
+"nature",
+"describe"
+],
+"steer": [
+"travel"
+],
+"stem": [
+"animals"
+],
+"step": [
+"action"
+],
+"stepchild": [
+"people"
+],
+"stepfather": [
+"people"
+],
+"stepmother": [
+"people"
+],
+"stereo": [
+"tech",
+"arts"
+],
+"stereotype": [
+"society"
+],
+"stew": [
+"food"
+],
+"stick": [
+"action"
+],
+"sticky": [
+"describe"
+],
+"stiff": [
+"describe",
+"body"
+],
+"still": [
+"time"
+],
+"stimulate": [
+"action"
+],
+"stimulation": [
+"action"
+],
+"stimulus": [
+"science"
+],
+"sting": [
+"body",
+"animals"
+],
+"stingy": [
+"feelings",
+"money"
+],
+"stink": [
+"describe"
+],
+"stir": [
+"food"
+],
+"stitch": [
+"clothes",
+"body"
+],
+"stock": [
+"business",
+"money"
+],
+"stocking(s)": [
+"clothes"
+],
+"stomach": [
+"body"
+],
+"stomachache": [
+"body"
+],
+"stone": [
+"nature"
+],
+"stool": [
+"home"
+],
+"stop": [
+"action"
+],
+"storage": [
+"home"
+],
+"store": [
+"money"
+],
+"storm": [
+"nature"
+],
+"stormy": [
+"nature"
+],
+"story": [
+"arts",
+"places"
+],
+"storybook": [
+"arts"
+],
+"stove": [
+"home",
+"food"
+],
+"straight": [
+"describe"
+],
+"straighten": [
+"action"
+],
+"straightforward": [
+"describe"
+],
+"strain": [
+"body"
+],
+"strait": [
+"nature",
+"places"
+],
+"strand": [
+"action"
+],
+"strange": [
+"describe"
+],
+"stranger": [
+"people"
+],
+"strangle": [
+"law"
+],
+"strap": [
+"clothes"
+],
+"strategic": [
+"mind"
+],
+"strategy": [
+"mind"
+],
+"straw": [
+"food",
+"animals"
+],
+"strawberry": [
+"food"
+],
+"stray": [
+"animals"
+],
+"stream": [
+"nature"
+],
+"street": [
+"travel",
+"places"
+],
+"strength": [
+"body",
+"describe"
+],
+"strengthen": [
+"action"
+],
+"stress": [
+"feelings",
+"talk"
+],
+"stretch": [
+"body",
+"leisure"
+],
+"strict": [
+"feelings",
+"school"
+],
+"stride": [
+"action"
+],
+"strike": [
+"action"
+],
+"striking": [
+"describe"
+],
+"string": [
+"home",
+"arts"
+],
+"strip": [
+"describe"
+],
+"stripe": [
+"clothes",
+"describe"
+],
+"strive": [
+"action"
+],
+"stroke": [
+"body",
+"leisure"
+],
+"stroll": [
+"leisure"
+],
+"strong": [
+"body",
+"describe"
+],
+"structural": [
+"science"
+],
+"structure": [
+"science",
+"places"
+],
+"struggle": [
+"action"
+],
+"stubborn": [
+"feelings"
+],
+"student": [
+"school"
+],
+"studio": [
+"arts"
+],
+"study": [
+"school"
+],
+"stuff": [
+"home"
+],
+"stumble": [
+"action"
+],
+"stun": [
+"feelings"
+],
+"stupid": [
+"mind"
+],
+"sturdy": [
+"describe"
+],
+"stutter": [
+"talk"
+],
+"style": [
+"clothes",
+"arts"
+],
+"stylish": [
+"clothes"
+],
+"subject": [
+"school"
+],
+"subjective": [
+"mind"
+],
+"submarine": [
+"travel",
+"law"
+],
+"submit": [
+"action",
+"school"
+],
+"subordinate": [
+"work",
+"describe"
+],
+"subscribe": [
+"arts",
+"money"
+],
+"subscription": [
+"arts",
+"money"
+],
+"subsequent": [
+"time"
+],
+"subsidize": [
+"money",
+"law"
+],
+"subsidy": [
+"money",
+"law"
+],
+"substance": [
+"science"
+],
+"substantial": [
+"describe"
+],
+"substitute": [
+"school",
+"action"
+],
+"subtle": [
+"describe"
+],
+"subtract": [
+"science"
+],
+"suburb": [
+"places"
+],
+"suburban": [
+"places"
+],
+"subway": [
+"travel"
+],
+"subway/underground/metro": [
+"travel"
+],
+"succeed": [
+"mind"
+],
+"success": [
+"mind"
+],
+"successful": [
+"mind"
+],
+"succession": [
+"time"
+],
+"successive": [
+"time"
+],
+"successor": [
+"work",
+"law"
+],
+"such": [
+"function"
+],
+"suck": [
+"action",
+"body"
+],
+"sudden": [
+"describe"
+],
+"suddenly": [
+"describe"
+],
+"sue": [
+"law"
+],
+"suffer": [
+"body",
+"feelings"
+],
+"sufficient": [
+"describe"
+],
+"suffocate": [
+"body"
+],
+"sugar": [
+"food"
+],
+"suggest": [
+"talk"
+],
+"suggestion": [
+"talk"
+],
+"suicide": [
+"body",
+"society"
+],
+"suit": [
+"clothes"
+],
+"suitable": [
+"describe"
+],
+"suitcase": [
+"travel"
+],
+"suite": [
+"travel",
+"arts"
+],
+"sum": [
+"time",
+"money"
+],
+"summarize": [
+"talk",
+"school"
+],
+"summary": [
+"talk",
+"school"
+],
+"summer": [
+"nature",
+"time"
+],
+"summit": [
+"nature",
+"law"
+],
+"summon": [
+"action"
+],
+"sun": [
+"nature"
+],
+"sunday": [
+"time"
+],
+"sunny": [
+"nature"
+],
+"super": [
+"describe"
+],
+"superb": [
+"describe"
+],
+"superficial": [
+"describe"
+],
+"superintendent": [
+"work",
+"school"
+],
+"superior": [
+"describe",
+"work"
+],
+"superiority": [
+"describe"
+],
+"supermarket": [
+"money"
+],
+"superstition": [
+"society"
+],
+"superstitious": [
+"society"
+],
+"supervise": [
+"work"
+],
+"supervision": [
+"work"
+],
+"supervisor": [
+"work"
+],
+"supper": [
+"food"
+],
+"supplement": [
+"food"
+],
+"supply": [
+"business"
+],
+"support": [
+"action",
+"society"
+],
+"suppose": [
+"mind"
+],
+"supposedly": [
+"describe"
+],
+"suppress": [
+"action",
+"law"
+],
+"supreme": [
+"describe"
+],
+"sure": [
+"mind"
+],
+"surf": [
+"leisure",
+"tech"
+],
+"surface": [
+"describe"
+],
+"surge": [
+"action"
+],
+"surgeon": [
+"body",
+"work"
+],
+"surgery": [
+"body"
+],
+"surgical": [
+"body"
+],
+"surname": [
+"people"
+],
+"surpass": [
+"action"
+],
+"surplus": [
+"business"
+],
+"surprise": [
+"feelings"
+],
+"surprised": [
+"feelings"
+],
+"surrender": [
+"law"
+],
+"surround": [
+"action"
+],
+"surroundings": [
+"places",
+"nature"
+],
+"surveillance": [
+"law"
+],
+"survey": [
+"science"
+],
+"survival": [
+"action"
+],
+"survive": [
+"action"
+],
+"survivor": [
+"people"
+],
+"suspect": [
+"law",
+"mind"
+],
+"suspend": [
+"school"
+],
+"suspense": [
+"arts",
+"feelings"
+],
+"suspension": [
+"school",
+"work"
+],
+"suspicion": [
+"mind"
+],
+"suspicious": [
+"mind"
+],
+"sustain": [
+"action"
+],
+"sustainable": [
+"nature"
+],
+"swallow": [
+"body",
+"animals"
+],
+"swamp": [
+"nature"
+],
+"swan": [
+"animals"
+],
+"swap": [
+"action"
+],
+"swarm": [
+"animals"
+],
+"sway": [
+"action"
+],
+"swear": [
+"talk"
+],
+"sweat": [
+"body"
+],
+"sweater": [
+"clothes"
+],
+"sweep": [
+"home"
+],
+"sweet": [
+"food",
+"feelings"
+],
+"swell": [
+"body"
+],
+"swift": [
+"describe"
+],
+"swim": [
+"leisure"
+],
+"swimming": [
+"leisure"
+],
+"swimsuit": [
+"clothes"
+],
+"swing": [
+"action",
+"leisure"
+],
+"switch": [
+"tech",
+"action"
+],
+"sword": [
+"law"
+],
+"syllable": [
+"talk"
+],
+"symbol": [
+"mind"
+],
+"symbolic": [
+"mind"
+],
+"symbolize": [
+"mind"
+],
+"symmetry": [
+"science"
+],
+"sympathetic": [
+"feelings"
+],
+"sympathize": [
+"feelings"
+],
+"sympathy": [
+"feelings"
+],
+"symphony": [
+"arts"
+],
+"symptom": [
+"body"
+],
+"syndrome": [
+"body"
+],
+"synonym": [
+"talk"
+],
+"synthetic": [
+"science"
+],
+"syrup": [
+"food"
+],
+"system": [
+"society"
+],
+"systematic": [
+"describe"
+],
+"t-shirt": [
+"clothes"
+],
+"table": [
+"home"
+],
+"table tennis": [
+"leisure"
+],
+"tablet": [
+"body",
+"tech"
+],
+"tackle": [
+"action",
+"leisure"
+],
+"tactic(s)": [
+"mind"
+],
+"tag": [
+"clothes",
+"tech"
+],
+"tail": [
+"animals"
+],
+"tailor": [
+"work",
+"clothes"
+],
+"taiwan": [
+"places"
+],
+"take": [
+"action"
+],
+"take a bath": [
+"home"
+],
+"take a seat": [
+"action"
+],
+"take a shower": [
+"home"
+],
+"take care of": [
+"people"
+],
+"take out": [
+"action"
+],
+"tale": [
+"arts"
+],
+"talent": [
+"mind"
+],
+"talented": [
+"describe"
+],
+"talk": [
+"talk"
+],
+"talkative": [
+"feelings"
+],
+"tall": [
+"describe"
+],
+"tame": [
+"animals"
+],
+"tan": [
+"body"
+],
+"tangerine": [
+"food"
+],
+"tangle": [
+"action"
+],
+"tank": [
+"law"
+],
+"tap": [
+"action",
+"home"
+],
+"tape": [
+"school"
+],
+"target": [
+"mind"
+],
+"task": [
+"work"
+],
+"taste": [
+"food"
+],
+"tasty": [
+"food"
+],
+"tax": [
+"money",
+"law"
+],
+"taxi": [
+"travel"
+],
+"taxicab/taxi/cab": [
+"travel"
+],
+"tea": [
+"food"
+],
+"teach": [
+"school"
+],
+"teacher": [
+"school",
+"work"
+],
+"team": [
+"leisure",
+"society"
+],
+"teapot": [
+"food",
+"home"
+],
+"tear": [
+"body",
+"action"
+],
+"tease": [
+"society"
+],
+"technical": [
+"tech"
+],
+"technician": [
+"work",
+"tech"
+],
+"technique": [
+"mind"
+],
+"technological": [
+"tech"
+],
+"technology": [
+"tech"
+],
+"tedious": [
+"describe"
+],
+"teenage": [
+"people"
+],
+"teenager": [
+"people"
+],
+"teens": [
+"people"
+],
+"telecommunications": [
+"tech"
+],
+"telegraph": [
+"tech"
+],
+"telephone (phone)": [
+"tech"
+],
+"telephone/phone": [
+"tech"
+],
+"telescope": [
+"science"
+],
+"television (tv)": [
+"tech",
+"arts"
+],
+"television/tv": [
+"tech",
+"arts"
+],
+"tell": [
+"talk"
+],
+"teller": [
+"money",
+"work"
+],
+"temper": [
+"feelings"
+],
+"temperature": [
+"nature",
+"body"
+],
+"temple": [
+"places",
+"society"
+],
+"tempo": [
+"arts"
+],
+"temporary": [
+"time"
+],
+"tempt": [
+"feelings"
+],
+"temptation": [
+"feelings"
+],
+"ten": [
+"time"
+],
+"tenant": [
+"home"
+],
+"tend": [
+"mind"
+],
+"tendency": [
+"mind"
+],
+"tender": [
+"food",
+"feelings"
+],
+"tennis": [
+"leisure"
+],
+"tense": [
+"feelings"
+],
+"tension": [
+"feelings",
+"society"
+],
+"tent": [
+"leisure"
+],
+"tentative": [
+"describe"
+],
+"term": [
+"school",
+"talk"
+],
+"terminal": [
+"travel"
+],
+"terrace": [
+"places"
+],
+"terrible": [
+"describe"
+],
+"terrific": [
+"describe"
+],
+"terrify": [
+"feelings"
+],
+"territory": [
+"places"
+],
+"terror": [
+"feelings"
+],
+"terrorism": [
+"law"
+],
+"terrorist": [
+"law"
+],
+"test": [
+"school"
+],
+"testify": [
+"law"
+],
+"text": [
+"school",
+"tech"
+],
+"textbook": [
+"school"
+],
+"textile": [
+"clothes",
+"business"
+],
+"texture": [
+"describe",
+"food"
+],
+"than": [
+"function"
+],
+"thank": [
+"talk"
+],
+"thankful": [
+"feelings"
+],
+"that": [
+"function"
+],
+"the": [
+"function"
+],
+"the day before yesterday": [
+"time"
+],
+"theater": [
+"arts",
+"places"
+],
+"theft": [
+"law"
+],
+"theme": [
+"arts"
+],
+"then": [
+"time"
+],
+"theology": [
+"society"
+],
+"theoretical": [
+"mind"
+],
+"theory": [
+"mind"
+],
+"therapist": [
+"body",
+"work"
+],
+"therapy": [
+"body"
+],
+"there": [
+"function"
+],
+"thereafter": [
+"time"
+],
+"thereby": [
+"function"
+],
+"therefore": [
+"function"
+],
+"thermometer": [
+"science",
+"body"
+],
+"these": [
+"function"
+],
+"thesis": [
+"school"
+],
+"they (them, their, theirs, themselves)": [
+"function"
+],
+"thick": [
+"describe"
+],
+"thief": [
+"law"
+],
+"thigh": [
+"body"
+],
+"thin": [
+"describe"
+],
+"thing": [
+"mind"
+],
+"think": [
+"mind"
+],
+"third": [
+"time"
+],
+"thirst": [
+"body"
+],
+"thirsty": [
+"body"
+],
+"thirteen": [
+"time"
+],
+"thirty": [
+"time"
+],
+"this": [
+"function"
+],
+"thorough": [
+"describe"
+],
+"those": [
+"function"
+],
+"though": [
+"function"
+],
+"though (although)": [
+"function"
+],
+"thought": [
+"mind"
+],
+"thoughtful": [
+"feelings"
+],
+"thousand": [
+"time"
+],
+"thread": [
+"clothes",
+"tech"
+],
+"threat": [
+"law"
+],
+"threaten": [
+"law"
+],
+"three": [
+"time"
+],
+"threshold": [
+"mind"
+],
+"thrill": [
+"feelings"
+],
+"thriller": [
+"arts"
+],
+"thrive": [
+"action"
+],
+"throat": [
+"body"
+],
+"throne": [
+"law"
+],
+"through": [
+"function"
+],
+"throughout": [
+"function"
+],
+"throw": [
+"action"
+],
+"thrust": [
+"action"
+],
+"thumb": [
+"body"
+],
+"thunder": [
+"nature"
+],
+"thursday": [
+"time"
+],
+"thus": [
+"function"
+],
+"tick": [
+"time"
+],
+"ticket": [
+"travel"
+],
+"tickle": [
+"body"
+],
+"tide": [
+"nature"
+],
+"tidy": [
+"home"
+],
+"tie": [
+"clothes",
+"action"
+],
+"tiger": [
+"animals"
+],
+"tight": [
+"describe"
+],
+"tighten": [
+"action"
+],
+"tile": [
+"home"
+],
+"till": [
+"function"
+],
+"tilt": [
+"action"
+],
+"timber": [
+"nature"
+],
+"time": [
+"time"
+],
+"timetable": [
+"time",
+"school"
+],
+"timid": [
+"feelings"
+],
+"tin": [
+"science",
+"food"
+],
+"tiny": [
+"describe"
+],
+"tip": [
+"money"
+],
+"tiptoe": [
+"body",
+"action"
+],
+"tire": [
+"travel",
+"feelings"
+],
+"tired": [
+"feelings",
+"body"
+],
+"tiresome": [
+"feelings"
+],
+"tissue": [
+"home",
+"body"
+],
+"title": [
+"arts"
+],
+"to": [
+"function"
+],
+"toast": [
+"food"
+],
+"tobacco": [
+"body"
+],
+"today": [
+"time"
+],
+"toe": [
+"body"
+],
+"tofu": [
+"food"
+],
+"together": [
+"function"
+],
+"toilet": [
+"home"
+],
+"token": [
+"money"
+],
+"tolerable": [
+"describe"
+],
+"tolerance": [
+"society"
+],
+"tolerant": [
+"feelings"
+],
+"tolerate": [
+"feelings"
+],
+"toll": [
+"travel"
+],
+"tomato": [
+"food"
+],
+"tomb": [
+"places"
+],
+"tomorrow": [
+"time"
+],
+"ton": [
+"time"
+],
+"tone": [
+"talk"
+],
+"tongue": [
+"body"
+],
+"tonight": [
+"time"
+],
+"too": [
+"function"
+],
+"too...to": [
+"function"
+],
+"tool": [
+"home",
+"tech"
+],
+"tooth": [
+"body"
+],
+"toothache": [
+"body"
+],
+"toothbrush": [
+"home",
+"body"
+],
+"top": [
+"places"
+],
+"topic": [
+"talk"
+],
+"torch": [
+"tech"
+],
+"torment": [
+"feelings"
+],
+"tornado": [
+"nature"
+],
+"torrent": [
+"nature"
+],
+"tortoise": [
+"animals"
+],
+"torture": [
+"law"
+],
+"toss": [
+"action"
+],
+"total": [
+"time"
+],
+"touch": [
+"action",
+"feelings"
+],
+"tough": [
+"describe"
+],
+"tour": [
+"travel"
+],
+"tourism": [
+"travel",
+"business"
+],
+"tourist": [
+"travel"
+],
+"tournament": [
+"leisure"
+],
+"tow": [
+"travel"
+],
+"toward": [
+"function"
+],
+"toward/towards": [
+"function"
+],
+"towel": [
+"home"
+],
+"tower": [
+"places"
+],
+"town": [
+"places"
+],
+"toxic": [
+"science",
+"nature"
+],
+"toy": [
+"leisure"
+],
+"trace": [
+"action"
+],
+"track": [
+"leisure",
+"travel"
+],
+"trade": [
+"business"
+],
+"trademark": [
+"business"
+],
+"trader": [
+"business",
+"work"
+],
+"tradition": [
+"society"
+],
+"traditional": [
+"society"
+],
+"traffic": [
+"travel"
+],
+"traffic light": [
+"travel"
+],
+"tragedy": [
+"arts"
+],
+"tragic": [
+"feelings"
+],
+"trail": [
+"travel",
+"nature"
+],
+"train": [
+"travel",
+"leisure"
+],
+"trait": [
+"feelings"
+],
+"traitor": [
+"law"
+],
+"transaction": [
+"money",
+"business"
+],
+"transcript": [
+"school"
+],
+"transfer": [
+"travel"
+],
+"transform": [
+"action"
+],
+"transformation": [
+"action"
+],
+"transit": [
+"travel"
+],
+"transition": [
+"action"
+],
+"translate": [
+"talk"
+],
+"translation": [
+"talk"
+],
+"translator": [
+"talk",
+"work"
+],
+"transmission": [
+"tech"
+],
+"transmit": [
+"tech"
+],
+"transparent": [
+"describe"
+],
+"transplant": [
+"body"
+],
+"transport": [
+"travel"
+],
+"transportation": [
+"travel"
+],
+"trap": [
+"action"
+],
+"trash": [
+"home",
+"nature"
+],
+"trauma": [
+"body",
+"feelings"
+],
+"travel": [
+"travel"
+],
+"traveler": [
+"travel"
+],
+"tray": [
+"food",
+"home"
+],
+"treasure": [
+"money"
+],
+"treasury": [
+"law",
+"money"
+],
+"treat": [
+"body",
+"society"
+],
+"treat(ment)": [
+"body",
+"society"
+],
+"treaty": [
+"law"
+],
+"tree": [
+"animals"
+],
+"trek": [
+"travel"
+],
+"tremble": [
+"body"
+],
+"tremendous": [
+"describe"
+],
+"trend": [
+"society"
+],
+"trial": [
+"law",
+"science"
+],
+"triangle": [
+"science"
+],
+"tribal": [
+"society"
+],
+"tribe": [
+"society"
+],
+"tribute": [
+"society"
+],
+"trick": [
+"mind",
+"leisure"
+],
+"tricky": [
+"describe"
+],
+"trifle": [
+"mind"
+],
+"trigger": [
+"action"
+],
+"trillion": [
+"time"
+],
+"trim": [
+"action"
+],
+"trip": [
+"travel"
+],
+"triple": [
+"time"
+],
+"triumph": [
+"leisure"
+],
+"trivial": [
+"describe"
+],
+"troop": [
+"law"
+],
+"trophy": [
+"leisure"
+],
+"tropic": [
+"nature"
+],
+"tropical": [
+"nature"
+],
+"trouble": [
+"feelings"
+],
+"troublesome": [
+"feelings"
+],
+"trousers": [
+"clothes"
+],
+"trout": [
+"animals",
+"food"
+],
+"truck": [
+"travel"
+],
+"true": [
+"mind"
+],
+"trumpet": [
+"arts"
+],
+"trunk": [
+"animals",
+"travel"
+],
+"trust": [
+"society"
+],
+"trustee": [
+"business",
+"law"
+],
+"truth": [
+"mind"
+],
+"truthful": [
+"feelings"
+],
+"try": [
+"action"
+],
+"tub": [
+"home"
+],
+"tube": [
+"science"
+],
+"tuck": [
+"clothes"
+],
+"tuesday": [
+"time"
+],
+"tug": [
+"action"
+],
+"tuition": [
+"school",
+"money"
+],
+"tumble": [
+"action"
+],
+"tumor": [
+"body"
+],
+"tuna": [
+"food",
+"animals"
+],
+"tune": [
+"arts"
+],
+"tunnel": [
+"travel"
+],
+"turkey": [
+"animals",
+"food"
+],
+"turmoil": [
+"society"
+],
+"turn": [
+"action"
+],
+"turtle": [
+"animals"
+],
+"tutor": [
+"school",
+"work"
+],
+"twelve": [
+"time"
+],
+"twenty": [
+"time"
+],
+"twice": [
+"time"
+],
+"twig": [
+"animals"
+],
+"twilight": [
+"time"
+],
+"twin": [
+"people"
+],
+"twinkle": [
+"nature"
+],
+"twist": [
+"action",
+"body"
+],
+"two": [
+"time"
+],
+"type": [
+"mind",
+"tech"
+],
+"typhoon": [
+"nature"
+],
+"typical": [
+"describe"
+],
+"u.s.a./usa": [
+"places"
+],
+"ugly": [
+"clothes"
+],
+"ultimate": [
+"describe"
+],
+"umbrella": [
+"nature",
+"clothes"
+],
+"unanimous": [
+"law"
+],
+"uncle": [
+"people"
+],
+"unconditional": [
+"describe"
+],
+"uncover": [
+"action"
+],
+"under": [
+"function"
+],
+"underestimate": [
+"mind"
+],
+"undergo": [
+"action",
+"body"
+],
+"undergraduate": [
+"school"
+],
+"underline": [
+"school"
+],
+"underlying": [
+"mind"
+],
+"undermine": [
+"action"
+],
+"underneath": [
+"function"
+],
+"underpass": [
+"travel"
+],
+"understand": [
+"mind"
+],
+"undertake": [
+"work"
+],
+"underway": [
+"time"
+],
+"underwear": [
+"clothes"
+],
+"undo": [
+"action"
+],
+"undoubtedly": [
+"describe"
+],
+"unemployment": [
+"work",
+"society"
+],
+"unfold": [
+"action"
+],
+"unhappy": [
+"feelings"
+],
+"unification": [
+"law"
+],
+"uniform": [
+"clothes",
+"school"
+],
+"unify": [
+"law"
+],
+"union": [
+"work",
+"society"
+],
+"unique": [
+"describe"
+],
+"unit": [
+"school",
+"time"
+],
+"unite": [
+"society"
+],
+"unity": [
+"society"
+],
+"universal": [
+"describe"
+],
+"universe": [
+"science"
+],
+"university": [
+"school"
+],
+"unless": [
+"function"
+],
+"unlock": [
+"action",
+"home"
+],
+"unprecedented": [
+"describe"
+],
+"until": [
+"function"
+],
+"unveil": [
+"action"
+],
+"up": [
+"function"
+],
+"update": [
+"tech"
+],
+"upgrade": [
+"tech"
+],
+"upload": [
+"tech"
+],
+"upon": [
+"function"
+],
+"upper": [
+"places"
+],
+"upright": [
+"describe"
+],
+"uprising": [
+"law"
+],
+"upset": [
+"feelings"
+],
+"upstairs": [
+"home"
+],
+"upward": [
+"places"
+],
+"upward/upwards": [
+"places"
+],
+"urban": [
+"places"
+],
+"urge": [
+"feelings",
+"talk"
+],
+"urgency": [
+"time"
+],
+"urgent": [
+"time"
+],
+"usage": [
+"action"
+],
+"use": [
+"action"
+],
+"used": [
+"money"
+],
+"useful": [
+"describe"
+],
+"user": [
+"tech"
+],
+"usher": [
+"arts",
+"work"
+],
+"usual": [
+"time"
+],
+"usually": [
+"time"
+],
+"utensil": [
+"food",
+"home"
+],
+"utility": [
+"home"
+],
+"utilize": [
+"action"
+],
+"utter": [
+"describe",
+"talk"
+],
+"vacancy": [
+"travel",
+"work"
+],
+"vacant": [
+"describe"
+],
+"vacation": [
+"travel",
+"leisure"
+],
+"vaccine": [
+"body"
+],
+"vacuum": [
+"home",
+"science"
+],
+"vague": [
+"describe"
+],
+"vain": [
+"feelings"
+],
+"valid": [
+"law"
+],
+"valley": [
+"nature"
+],
+"valuable": [
+"money"
+],
+"value": [
+"money",
+"mind"
+],
+"van": [
+"travel"
+],
+"vanilla": [
+"food"
+],
+"vanish": [
+"action"
+],
+"vanity": [
+"feelings"
+],
+"vapor": [
+"science",
+"nature"
+],
+"variable": [
+"science"
+],
+"variation": [
+"describe"
+],
+"variety": [
+"describe"
+],
+"various": [
+"describe"
+],
+"vary": [
+"action"
+],
+"vase": [
+"home"
+],
+"vast": [
+"describe"
+],
+"vegetable": [
+"food"
+],
+"vegetarian": [
+"food"
+],
+"vehicle": [
+"travel"
+],
+"veil": [
+"clothes"
+],
+"vein": [
+"body"
+],
+"velvet": [
+"clothes"
+],
+"vendor": [
+"money"
+],
+"venture": [
+"business"
+],
+"venue": [
+"places"
+],
+"verbal": [
+"talk"
+],
+"verdict": [
+"law"
+],
+"versatile": [
+"describe"
+],
+"verse": [
+"arts"
+],
+"version": [
+"arts"
+],
+"versus": [
+"function"
+],
+"vertical": [
+"describe"
+],
+"very": [
+"describe"
+],
+"vessel": [
+"travel",
+"body"
+],
+"vest": [
+"clothes"
+],
+"veteran": [
+"work",
+"law"
+],
+"veterinarian/vet": [
+"animals",
+"work"
+],
+"veto": [
+"law"
+],
+"via": [
+"function"
+],
+"viable": [
+"describe"
+],
+"vibrate": [
+"science"
+],
+"vibration": [
+"science"
+],
+"vice": [
+"society"
+],
+"vicious": [
+"feelings"
+],
+"victim": [
+"law"
+],
+"victor": [
+"leisure",
+"law"
+],
+"victory": [
+"leisure",
+"law"
+],
+"video": [
+"arts",
+"tech"
+],
+"video game": [
+"leisure",
+"tech"
+],
+"view": [
+"nature",
+"mind"
+],
+"viewer": [
+"arts"
+],
+"viewpoint": [
+"mind"
+],
+"vigor": [
+"body"
+],
+"vigorous": [
+"describe"
+],
+"villa": [
+"home"
+],
+"village": [
+"places"
+],
+"villain": [
+"arts"
+],
+"vine": [
+"animals"
+],
+"vinegar": [
+"food"
+],
+"vineyard": [
+"food",
+"places"
+],
+"violate": [
+"law"
+],
+"violation": [
+"law"
+],
+"violence": [
+"law"
+],
+"violent": [
+"law"
+],
+"violet": [
+"describe",
+"animals"
+],
+"violin": [
+"arts"
+],
+"violinist": [
+"arts"
+],
+"virgin": [
+"society",
+"nature"
+],
+"virtual": [
+"tech"
+],
+"virtue": [
+"mind"
+],
+"virus": [
+"body",
+"tech"
+],
+"visa": [
+"travel"
+],
+"visible": [
+"describe"
+],
+"vision": [
+"body",
+"mind"
+],
+"visit": [
+"travel"
+],
+"visitor": [
+"travel"
+],
+"visual": [
+"arts"
+],
+"vital": [
+"describe"
+],
+"vitality": [
+"body"
+],
+"vitamin": [
+"food",
+"body"
+],
+"vivid": [
+"describe"
+],
+"vocabulary": [
+"school",
+"talk"
+],
+"vocal": [
+"arts"
+],
+"vocation": [
+"work"
+],
+"vocational": [
+"work",
+"school"
+],
+"voice": [
+"talk"
+],
+"volcano": [
+"nature"
+],
+"volleyball": [
+"leisure"
+],
+"volume": [
+"time"
+],
+"voluntary": [
+"society"
+],
+"volunteer": [
+"society"
+],
+"vomit": [
+"body"
+],
+"vote": [
+"law"
+],
+"voter": [
+"law"
+],
+"voucher": [
+"money"
+],
+"vow": [
+"talk"
+],
+"vowel": [
+"talk"
+],
+"voyage": [
+"travel"
+],
+"vulnerable": [
+"describe"
+],
+"wag": [
+"animals"
+],
+"wage(s)": [
+"work",
+"money"
+],
+"wagon": [
+"travel"
+],
+"waist": [
+"body"
+],
+"wait": [
+"action"
+],
+"waiter": [
+"food",
+"work"
+],
+"waiter/waitress": [
+"food",
+"work"
+],
+"waitress": [
+"food",
+"work"
+],
+"wake": [
+"home"
+],
+"waken": [
+"home"
+],
+"walk": [
+"action",
+"leisure"
+],
+"wall": [
+"home"
+],
+"wallet": [
+"money"
+],
+"walnut": [
+"food"
+],
+"wander": [
+"travel"
+],
+"want": [
+"mind"
+],
+"war": [
+"law"
+],
+"ward": [
+"body"
+],
+"wardrobe": [
+"clothes",
+"home"
+],
+"warehouse": [
+"business"
+],
+"warm": [
+"nature",
+"feelings"
+],
+"warmth": [
+"feelings"
+],
+"warn": [
+"talk"
+],
+"warrant": [
+"law"
+],
+"warranty": [
+"money"
+],
+"warrior": [
+"law"
+],
+"wary": [
+"feelings"
+],
+"wash": [
+"home"
+],
+"waste": [
+"nature"
+],
+"watch": [
+"action",
+"clothes"
+],
+"watch out.": [
+"talk"
+],
+"water": [
+"food",
+"nature"
+],
+"waterfall": [
+"nature"
+],
+"waterfalls": [
+"nature"
+],
+"watermelon": [
+"food"
+],
+"waterproof": [
+"clothes"
+],
+"wave": [
+"nature",
+"action"
+],
+"wax": [
+"home"
+],
+"way": [
+"travel",
+"mind"
+],
+"we (us, our, ours, ourselves)": [
+"function"
+],
+"weak": [
+"body"
+],
+"weaken": [
+"action"
+],
+"wealth": [
+"money"
+],
+"wealthy": [
+"money"
+],
+"weapon": [
+"law"
+],
+"wear": [
+"clothes"
+],
+"weary": [
+"feelings"
+],
+"weather": [
+"nature"
+],
+"weather forecast": [
+"nature"
+],
+"weave": [
+"clothes"
+],
+"web": [
+"tech"
+],
+"website": [
+"tech"
+],
+"wed": [
+"people"
+],
+"wedding": [
+"people"
+],
+"wednesday": [
+"time"
+],
+"weed": [
+"animals"
+],
+"week": [
+"time"
+],
+"weekday": [
+"time"
+],
+"weekend": [
+"time"
+],
+"weekly": [
+"time"
+],
+"weep": [
+"feelings"
+],
+"weigh": [
+"time"
+],
+"weight": [
+"body",
+"time"
+],
+"weird": [
+"describe"
+],
+"welcome": [
+"talk"
+],
+"welfare": [
+"society"
+],
+"well": [
+"describe",
+"body"
+],
+"west": [
+"places"
+],
+"western": [
+"places",
+"arts"
+],
+"wet": [
+"nature"
+],
+"whale": [
+"animals"
+],
+"wharf": [
+"travel"
+],
+"what": [
+"function"
+],
+"what about...?": [
+"talk"
+],
+"whatever": [
+"function"
+],
+"whatsoever": [
+"function"
+],
+"wheat": [
+"food"
+],
+"wheel": [
+"travel"
+],
+"wheelchair": [
+"body"
+],
+"when": [
+"function"
+],
+"whenever": [
+"function"
+],
+"where": [
+"function"
+],
+"whereabouts": [
+"places"
+],
+"whereas": [
+"function"
+],
+"wherever": [
+"function"
+],
+"whether": [
+"function"
+],
+"which": [
+"function"
+],
+"while": [
+"function"
+],
+"whine": [
+"talk"
+],
+"whip": [
+"action",
+"food"
+],
+"whiskey/whisky": [
+"food"
+],
+"whisper": [
+"talk"
+],
+"whistle": [
+"leisure"
+],
+"white": [
+"describe"
+],
+"who": [
+"function"
+],
+"whoever": [
+"function"
+],
+"whole": [
+"describe"
+],
+"wholesale": [
+"business"
+],
+"wholesome": [
+"body"
+],
+"whom": [
+"function"
+],
+"whose": [
+"function"
+],
+"why": [
+"function"
+],
+"wicked": [
+"feelings"
+],
+"wide": [
+"describe"
+],
+"widen": [
+"action"
+],
+"widespread": [
+"describe"
+],
+"widow/widower": [
+"people"
+],
+"width": [
+"time"
+],
+"wife": [
+"people"
+],
+"wig": [
+"clothes"
+],
+"wild": [
+"animals",
+"nature"
+],
+"wilderness": [
+"nature"
+],
+"wildlife": [
+"animals"
+],
+"will": [
+"function"
+],
+"will (would)": [
+"function"
+],
+"willing": [
+"feelings"
+],
+"win": [
+"leisure"
+],
+"wind": [
+"nature"
+],
+"window": [
+"home"
+],
+"windshield": [
+"travel"
+],
+"windy": [
+"nature"
+],
+"wine": [
+"food"
+],
+"wing": [
+"animals"
+],
+"wink": [
+"body"
+],
+"winner": [
+"leisure"
+],
+"winter": [
+"nature",
+"time"
+],
+"wipe": [
+"home"
+],
+"wire": [
+"tech"
+],
+"wisdom": [
+"mind"
+],
+"wise": [
+"mind"
+],
+"wish": [
+"mind"
+],
+"wit": [
+"mind"
+],
+"witch/wizard": [
+"arts"
+],
+"with": [
+"function"
+],
+"withdraw": [
+"money",
+"action"
+],
+"wither": [
+"animals"
+],
+"withhold": [
+"action"
+],
+"within": [
+"function"
+],
+"without": [
+"function"
+],
+"witness": [
+"law"
+],
+"witty": [
+"feelings"
+],
+"woe": [
+"feelings"
+],
+"wok": [
+"food",
+"home"
+],
+"wolf": [
+"animals"
+],
+"woman": [
+"people"
+],
+"women's room": [
+"places"
+],
+"wonder": [
+"mind"
+],
+"wonderful": [
+"describe"
+],
+"wood": [
+"nature"
+],
+"wood(s)": [
+"nature"
+],
+"wooden": [
+"describe"
+],
+"woodpecker": [
+"animals"
+],
+"woods": [
+"nature"
+],
+"wool": [
+"clothes"
+],
+"word": [
+"talk"
+],
+"work": [
+"work"
+],
+"workbook": [
+"school"
+],
+"worker": [
+"work"
+],
+"workforce": [
+"work",
+"business"
+],
+"workout": [
+"leisure",
+"body"
+],
+"workplace": [
+"work"
+],
+"workshop": [
+"work",
+"school"
+],
+"world": [
+"places"
+],
+"worm": [
+"animals"
+],
+"worried": [
+"feelings"
+],
+"worry": [
+"feelings"
+],
+"worse": [
+"describe"
+],
+"worship": [
+"society"
+],
+"worst": [
+"describe"
+],
+"worth": [
+"money"
+],
+"worthwhile": [
+"describe"
+],
+"worthy": [
+"describe"
+],
+"wound": [
+"body"
+],
+"wrap": [
+"action"
+],
+"wreck": [
+"travel"
+],
+"wrestle": [
+"leisure"
+],
+"wrinkle": [
+"body"
+],
+"wrist": [
+"body"
+],
+"write": [
+"talk"
+],
+"writer": [
+"arts",
+"work"
+],
+"wrong": [
+"mind"
+],
+"yacht": [
+"travel"
+],
+"yam": [
+"food"
+],
+"yard": [
+"home",
+"time"
+],
+"yawn": [
+"body"
+],
+"year": [
+"time"
+],
+"year(s) old": [
+"people",
+"time"
+],
+"yearly": [
+"time"
+],
+"yearn": [
+"feelings"
+],
+"yell": [
+"talk"
+],
+"yellow": [
+"describe"
+],
+"yes (yeah)": [
+"talk"
+],
+"yes/yeah": [
+"talk"
+],
+"yesterday": [
+"time"
+],
+"yet": [
+"function"
+],
+"yield": [
+"nature",
+"business"
+],
+"yoga": [
+"leisure",
+"body"
+],
+"yogurt": [
+"food"
+],
+"yolk": [
+"food"
+],
+"you (your, yours, yourself, yourselves)": [
+"function"
+],
+"young": [
+"people"
+],
+"youngster": [
+"people"
+],
+"youth": [
+"people"
+],
+"youthful": [
+"people"
+],
+"yummy": [
+"food"
+],
+"zebra": [
+"animals"
+],
+"zero": [
+"time"
+],
+"zipper": [
+"clothes"
+],
+"zone": [
+"places"
+],
+"zoo": [
+"places",
+"animals"
+],
+"zoom": [
+"tech"
+]
+}
