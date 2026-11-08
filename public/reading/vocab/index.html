@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>高中單字 — 大考中心參考詞彙表</title>
+<meta name="description" content="大考中心《高中英文參考詞彙表》第一、二級，2,004 個字，每個字都有中文、例句和中譯。可以聽發音、依級別或字母練習、翻閃卡、做小測驗。">
+<!-- noindex: the list is 大考中心's (著作權屬大考中心基金會，僅供非營利目的使用), so the
+     page is handed out by URL rather than offered to search, the same call as /reading/. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='12' fill='%231d5c63'/%3E%3Ctext x='32' y='42' font-family='Helvetica,Arial,sans-serif' font-size='24' font-weight='700' fill='white' text-anchor='middle'%3EL1%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="vocab.css">
+</head>
+<body>
+
+<nav class="gnav" aria-label="網站">
+  <div class="wrap">
+    <div class="brand">高中單字 <span>大考中心參考詞彙表</span></div>
+    <div class="seg" id="modeseg" role="group" aria-label="模式">
+      <button id="m-self" data-mode="self">自學</button>
+      <button id="m-teach" data-mode="teach">教學</button>
+    </div>
+    <button id="stagebtn" class="link" aria-label="投影模式">投影</button>
+    <button id="setbtn" class="link" aria-label="設定">設定</button>
+  </div>
+</nav>
+
+<header class="opener wrap">
+  <a class="up" href="../">‹ 高中英文閱讀</a>
+  <div class="kicker">大考中心 · 高中英文參考詞彙表</div>
+  <h1>The words the GSAT is written from, one level at a time.</h1>
+  <p class="dek">大考中心《高中英文參考詞彙表》第一、二級，共 2,004 個字。每個字都有中文、一句例句和中譯；可以聽發音、依級別或字母練習、翻閃卡，也可以自我測驗。第三到第六級還沒加進來。</p>
+  <details class="about">
+    <summary>關於這份字表</summary>
+    <p>英文單字、詞性和級別，都照大考中心公布的<a href="https://www.ceec.edu.tw/xmdoc?xsmsid=0K213553204833715309" target="_blank" rel="noopener">《高中英文參考詞彙表（111 學年度起適用）》</a>，中華民國 109 年 7 月版。著作權屬財團法人大學入學考試中心基金會所有。中文、例句和例句的中譯是這個網站補上的，不是大考中心的內容。</p>
+    <p>字表共六級、每級 1,002 個字。依大考中心的說明，學測以第一到第五級為主，偶爾會出現第六級；英聽以第一到第四級為主。</p>
+    <p>字表的寫法照抄：<i>agree(ment)</i> 表示 agree 加上 -ment 就是名詞 agreement；<i>chopstick(s)</i> 表示通常用複數；斜線隔開的是同一個字的不同說法，例如 <i>bicycle/bike</i>。</p>
+    <p>原表有一處筆誤，<i>calm</i> 的詞性少了一個點（v./adj./n），這裡已經補上。</p>
+  </details>
+</header>
+
+<div class="lnav">
+  <div class="wrap">
+    <div class="row">
+      <div class="seg" role="group" aria-label="檢視">
+        <button data-view="list">單字表</button>
+        <button data-view="cards">閃卡</button>
+        <button data-view="quiz">測驗</button>
+      </div>
+      <div class="lv" id="scope" role="group" aria-label="範圍"></div>
+    </div>
+    <div class="row">
+      <div class="search"><input id="q" type="search" placeholder="搜尋英文或中文" autocomplete="off" aria-label="搜尋"></div>
+      <select id="letter" class="sm" aria-label="字母"></select>
+      <select id="markf" class="sm self-only" aria-label="標記">
+        <option value="all">全部的字</option>
+        <option value="review">還不熟的</option>
+        <option value="new">還沒標記的</option>
+        <option value="known">記住了的</option>
+      </select>
+      <button id="zhbtn" class="sm" aria-pressed="true">中文</button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap" id="main"></main>
+<nav class="rail" id="rail" aria-label="字母索引" hidden></nav>
+<div class="toast" id="toast" role="status" hidden></div>
+<section class="stage" id="stage" aria-label="投影" tabindex="-1" hidden></section>
+
+<dialog class="panel" id="panel">
+  <h2>設定</h2>
+  <label for="voice">發音</label>
+  <select id="voice"></select>
+  <label for="rate">語速 <span id="ratev"></span></label>
+  <input id="rate" type="range" min="0.6" max="1.2" step="0.05">
+  <div id="teacherflag">
+    <label>老師裝置</label>
+    <p>這台裝置會顯示「自學／教學」切換和「投影」。學生用一般連結打開時看不到這些按鈕。</p>
+    <div class="row" style="justify-content:flex-start"><button class="btn" id="unteach">在這台裝置隱藏</button></div>
+  </div>
+  <div id="teachtools">
+    <label>教學模式</label>
+    <p>教學模式不記錄任何東西。換下一位學生前，按「重新開始」把畫面和測驗清空。</p>
+    <div class="row" style="justify-content:flex-start"><button class="btn" id="fresh">重新開始</button></div>
+  </div>
+  <div id="selftools">
+    <label>自學紀錄</label>
+    <p id="markinfo"></p>
+    <div class="row" style="justify-content:flex-start"><button class="btn" id="clearmarks">清除所有標記</button></div>
+  </div>
+  <div class="row"><button class="btn primary" id="closepanel">關閉</button></div>
+</dialog>
+
+<script>
+  const EXAM = { url: 'https://english-exercises-6e4.pages.dev/reading/vocab/', store: 'hsv' };
+</script>
+<script src="words.js"></script>
+<script src="vocab.js"></script>
+</body>
+</html>

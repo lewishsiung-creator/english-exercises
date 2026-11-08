@@ -2761,6 +2761,32 @@ lines that needed a subject became "we", "us", "your" or 公司, and the
 characters keep their names. It also carries `noindex`, which keeps it out of
 search results and does not make the URL private.
 
+### `/reading/vocab/` — 高中單字, 大考中心's list
+
+A subpage of the reading page, linked from its cover: 大考中心《高中英文參考詞彙表
+（111學年度起適用）》, 109 年 7 月版, one level at a time. Levels 1–2 are in (2,004
+words); 3–6 sit on the level bar as 「還沒進來」 until their Chinese is written.
+
+- **The engine is a copy of `/cambridge/lists.js` and `lists.css`**, as
+  `vocab.js` and `vocab.css`, so 自學／教學 with `#teach`, 今天這一組, the
+  four-type quiz, 投影 and the A–Z rail all behave as on A2 Key. It is a copy,
+  not a third consumer of the shared file, because the data differs in shape:
+  levels instead of topics, no 2025 additions, an example on every word, and
+  American English as the default voice (the list spells American).
+- **`tools/ceec/extract.py` reads the PDF twice.** The list prints every entry
+  both by level and A–Z with its level; the script parses both and stops unless
+  they agree entry for entry. Two slips in the PDF are mended in the script,
+  not in the data: `calm v./adj./n` (missing dot) and `sportsman/sportswoma n`
+  (a space inside the word). The PDF itself is not committed.
+- **`tools/ceec/zh.json` is this site's**: `say`, one Chinese sense per printed
+  part of speech (in the printed order — `build.py` refuses otherwise), and one
+  example with the word in `*asterisks*` for the quiz. A `(n.)` after `v./` is
+  the -ment noun, so `agree(ment)`'s n sense starts with `agreement`.
+- **To add a level**, write its entries into `zh.json` and run
+  `python3 tools/ceec/build.py`; only entries with Chinese reach `words.js`.
+- **`noindex`**, like the reading page: the list is 大考中心's, published for
+  non-commercial use with credit, and the page credits it in 關於這份字表.
+
 ## Landscape Architecture Portfolio — a student's own work
 
 The odd one out. Not a lesson and not bilingual: a portfolio a landscape
@@ -4188,6 +4214,7 @@ public/recording-practice/        passages to read aloud and record
 public/robot-helper/      the 113 學年度 writing worksheet
 public/exam-writing/      the 109–115 學測 essay survey
 public/reading/           three high school texts, with his word tables
+public/reading/vocab/     高中單字: 大考中心's list, Levels 1–2 so far
 public/keep-speaking/     the practice page for the course handbook, five tabs
 public/ielts-part3/       the IELTS Part 3 structure practice
 public/anny/              Anny's notebook — one entry per discussion

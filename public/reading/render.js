@@ -367,6 +367,8 @@ function buildCover() {
         <p class="lead-zh">${text(RD.intro.zh)}</p>
         <p class="lead-en">${text(RD.intro.en)}</p>
       </div>
+      ${RD.vocab ? `<a class="cover-link" href="${text(RD.vocab.href)}">${text(RD.vocab.zh)}
+        <span>${text(RD.vocab.en)}</span></a>` : ''}
     </header>`;
 }
 
