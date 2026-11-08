@@ -43,10 +43,10 @@
   .fam .fam-home { margin-right: 6px; }
   .fam a { padding: 0 9px; }
 }
-/* On a 375-point iPhone all six fit without scrolling, the current one
-   included: 12px, the size apple.com's own global nav uses. Narrower than
-   that (an iPhone SE) the row scrolls sideways. */
-@media (max-width: 400px) {
+/* On every iPhone up to the 440-point Pro Max all six fit without scrolling,
+   the current one included: 12px, the size apple.com's own global nav uses.
+   Narrower than 375 (an iPhone SE) the row scrolls sideways. */
+@media (max-width: 480px) {
   .fam { font-size: 12px; }
   .fam-in { gap: 0; padding-left: max(12px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); }
   .fam a { padding: 0 5px; }

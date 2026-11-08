@@ -889,9 +889,9 @@ function renderIntro() {
   $('#stat-basic').textContent = ENTRIES.filter(e => e.lessons.length).length.toLocaleString();
   const blurb = {
     basic: '教育部表一，國中一定要會的字。',
-    more: '教育部表二，閱讀和寫作常用。',
-    g7: `七年級講義，${BOOK.g7.lessons.length} 課，照課次排，每課連到文法。`,
-    g8: `八年級講義，${BOOK.g8.lessons.length} 個文法主題，照主題排。`,
+    more: '教育部表二，閱讀和寫作常用到的字。',
+    g7: `七年級講義共 ${BOOK.g7.lessons.length} 課，照課次排，每課都連到文法說明。`,
+    g8: `八年級講義共 ${BOOK.g8.lessons.length} 個文法主題，照主題排。`,
   };
   $('#tiles').innerHTML = SETS.map(([k, , long]) => `<button class="tile rise" data-pick="${k}">
       <span class="tile-n">${SET_COUNT[k].toLocaleString()}</span>

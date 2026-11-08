@@ -60,17 +60,17 @@ function drawToday() {
   const rows = pages.map(p => `
     <li class="td-row">
       <span class="td-name">${esc(p.zh)}</span>
-      <span class="td-meta">${p.due ? `<b>${p.due}</b> 個要複習 · ` : ''}已記住 ${p.known.toLocaleString()} 個${p.strong ? ` · 穩固 ${p.strong.toLocaleString()} 個` : ''}</span>
+      <span class="td-meta">${p.due ? `<b>${p.due}</b> 個該複習 · ` : ''}已記住 ${p.known.toLocaleString()} 個${p.strong ? ` · 穩固 ${p.strong.toLocaleString()} 個` : ''}</span>
       <a class="td-go" href="${esc(p.href)}#today">${p.due ? '複習' : '學新字'} ›</a>
     </li>`).join('');
   box.innerHTML = due
     ? `<p class="td-eyebrow">今天的複習</p>
-       <h2 class="td-title" id="todayTitle"><span class="td-num">${due}</span> 個字<br>到了該複習的時候</h2>
-       <p class="td-why">隔一段時間再看一次，是讓字記得久的關鍵。每次約 20 個，到期的字先出。</p>
+       <h2 class="td-title" id="todayTitle"><span class="td-num">${due}</span> 個字<br>該複習了</h2>
+       <p class="td-why">隔幾天再看一次，字才記得牢。一次大約 20 個，該複習的字會先出來。</p>
        <ul class="td-rows">${rows}</ul>`
     : `<p class="td-eyebrow">今天的複習</p>
        <h2 class="td-title" id="todayTitle">${doneToday ? '今天完成 ✓' : '今天的複習<br>都做完了'}</h2>
-       <p class="td-why">記住的字會隔幾天再回來。今天還有時間，可以學幾個新字。</p>
+       <p class="td-why">記住的字過幾天會再出現。今天還有時間的話，可以多學幾個新字。</p>
        <ul class="td-rows">${rows}</ul>`;
   box.insertAdjacentHTML('beforeend', weekHTML(days));
   box.insertAdjacentHTML('beforeend', `<button class="td-report" id="openReport">產生學習報告，傳給老師 ›</button>`);
@@ -108,7 +108,7 @@ function reportText() {
   const week = new Set(PAGES.flatMap(p => read(p.store + '.days', [])).filter(d => d >= monday && d < monday + 7));
   lines.push(`這週練習：${week.size} 天`);
   const essays = Object.values(read('ew.done', {})).filter(d => d && d.m && d.o).length;
-  if (essays) lines.push(`學測寫作：拆解過 ${essays} / 7 篇範文`);
+  if (essays) lines.push(`學測寫作：已拆解 ${essays} / 7 篇範文`);
   PAGES.map(tally).forEach(p => {
     if (!p.used) { lines.push(`${p.zh}：還沒開始`); return; }
     lines.push(`${p.zh}：已記住 ${p.known} 個（穩固 ${p.strong} 個）、還不熟 ${p.shaky} 個、今天到期 ${p.due} 個`);
@@ -237,7 +237,7 @@ function taskState() {
     const known = (d.m ? 1 : 0) + (d.o ? 1 : 0);
     return { ...t, kind, n: 2, known, done: known === 2,
       label: `學測寫作 ${e[0]} 年`, title: `〈${e[1]}〉拆解練習`, href: `../exam-writing/#${t.key}`,
-      prog: `${d.m ? '✓' : '○'} 動作配對　${d.o ? '✓' : '○'} 句子排序`, doneLine: '✓ 任務完成，這篇拆解過了', go: '開始拆解', report: `學測寫作 ${e[0]} 年拆解練習` };
+      prog: `${d.m ? '✓' : '○'} 動作配對　${d.o ? '✓' : '○'} 句子排序`, doneLine: '✓ 任務完成，這篇已經拆解完了', go: '開始拆解', report: `學測寫作 ${e[0]} 年拆解練習` };
   }
   return null;
 }
@@ -295,7 +295,7 @@ function paintTiles() {
     } else {
       const done = read(t.dataset.essays, {});
       n = Object.values(done).filter(d => d && d.m && d.o).length;
-      line = n >= total ? '七篇都拆解過了 ✓' : `拆解過 ${n} / ${total} 篇`;
+      line = n >= total ? '七篇都拆解完了 ✓' : `已拆解 ${n} / ${total} 篇`;
     }
     t.querySelector('.tp')?.remove();
     if (!n) return;
@@ -384,7 +384,7 @@ async function openBackup() {
   const keys = {}; bkKeys().forEach(k => { keys[k] = localStorage.getItem(k); });
   const dlg = bkDialog(`
     <h2 id="bkH">你的備份碼</h2>
-    <p class="bk-msg">內容：${esc(bkSummary(keys))}。把整段複製起來，存在 LINE 的 Keep 或手機備忘錄。到新裝置打開「英文學習」，按「貼上備份碼還原」。</p>
+    <p class="bk-msg">內容：${esc(bkSummary(keys))}。把整段複製下來，存在 LINE 的 Keep 或手機的備忘錄。換到新裝置時，打開「英文學習」，按「貼上備份碼還原」就可以了。</p>
     <textarea class="bk-code" id="bkCode" readonly aria-label="備份碼">${esc(code)}</textarea>
     <p class="bk-msg" id="bkMsg"></p>
     <div class="rp-row">
@@ -401,7 +401,7 @@ async function openBackup() {
 function openRestore() {
   const dlg = bkDialog(`
     <h2 id="bkH">貼上備份碼還原</h2>
-    <p class="bk-msg">把之前存下的備份碼整段貼在下面。還原會用備份碼裡的紀錄，取代這台裝置上現在的紀錄。</p>
+    <p class="bk-msg">把之前存下來的備份碼整段貼在下面。還原後，這台裝置上現在的紀錄會被備份碼裡的紀錄取代。</p>
     <textarea class="bk-code" id="bkIn" aria-label="備份碼" placeholder="EL1z.…"></textarea>
     <p class="bk-msg" id="bkMsg"></p>
     <div class="rp-row">

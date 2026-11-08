@@ -31,7 +31,7 @@ const BANDS = [
 ];
 // known out of 8: 7–8 已掌握, 5–6 大致掌握, 0–4 還需要練
 const grade = n => n >= PER_BAND - 1 ? 'good' : n >= PER_BAND - 3 ? 'fair' : 'low';
-const GRADE_ZH = { good: '已掌握', fair: '大致掌握', low: '還需要練' };
+const GRADE_ZH = { good: '已掌握', fair: '大致掌握', low: '還要加強' };
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -89,9 +89,9 @@ function showIntro() {
       <h1>程度檢測</h1>
       <p class="sub">4 到 8 分鐘，找到你該從哪裡開始。</p>
       <ul class="how">
-        <li><b>${PER_BAND * BANDS.length} 題以內</b>：看英文，選它的中文意思。程度到了才會往下考，多數人不用做完。</li>
-        <li><b>不確定就按「不知道」</b>。猜對的字會讓結果不準。</li>
-        <li><b>過程中不告訴你對錯</b>，最後一次看，也會列出值得先看的字。</li>
+        <li><b>${PER_BAND * BANDS.length} 題以內</b>：看英文，選出中文意思。答得好才會繼續往下考，大部分的人不用全部做完。</li>
+        <li><b>不確定就按「不知道」</b>。用猜的會讓結果不準。</li>
+        <li><b>作答時不會告訴你對錯</b>，做完再一起看，還會列出建議先背的字。</li>
       </ul>
       <button class="btn-primary" id="go">開始檢測</button>
       ${last && last.path ? `<p class="last">上次（${esc(last.date)}）的建議：從 <a href="../../${esc(last.path)}">${esc(last.zh)}</a> 開始。</p>` : ''}
@@ -142,11 +142,11 @@ function recommend() {
     const b = BANDS[at];
     const why = grade(T.known[b.key]) === 'fair'
       ? `你已經認得大部分的${b.zh}，先把剩下的補齊，再往上走。`
-      : `${b.zh}還有不少字不熟，這裡打好底，後面會輕鬆很多。`;
+      : `${b.zh}還有不少字不熟，先把這裡的基礎打好，後面會輕鬆很多。`;
     return { zh: b.zh, href: b.href, page: b.page, why };
   }
   return { zh: '高中英文閱讀', href: '../../reading/', page: '高中英文閱讀',
-    why: '五組字你都掌握了，大考中心六級的字對你都不陌生。接下來用文章練閱讀，再到學測英文寫作練寫。' };
+    why: '五組字你都掌握了，大考中心六個級別的字對你來說都不陌生。接下來可以讀文章練閱讀，再到學測英文寫作練習寫作。' };
 }
 
 /* Before and after. Every result is kept here (lc.history, the last 12), so a
@@ -197,7 +197,7 @@ function showResult() {
         ${ups.map(u => `<p class="g-v">${esc(u)}</p>`).join('')}</div>` : ''}
       <a class="btn-primary" href="${esc(rec.href)}">開始練習 ›</a>
       <ul class="bands">${rows}</ul>
-      ${missed.length ? `<h2>值得先看的字</h2>
+      ${missed.length ? `<h2>建議先背的字</h2>
         <ul class="missed">${missed.map(m => `<li><span lang="en">${esc(m.w)}</span>
           <button class="say" data-say="${esc(m.say)}" aria-label="聽 ${esc(m.w)} 的發音">&#9654;&#xFE0E;</button>
           <span class="m-zh">${esc(m.zh)}</span></li>`).join('')}</ul>` : ''}

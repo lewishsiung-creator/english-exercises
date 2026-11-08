@@ -58,22 +58,22 @@
   <div class="wrap">
     <div class="stats">
       <div class="stat rise"><span class="num" id="stat-words">6,012</span><span class="lab">個字<span class="lab-x">都有中文與例句</span></span></div>
-      <div class="stat rise"><span class="num" id="stat-levels">6</span><span class="lab" id="stat-levels-lab">個級別<span class="lab-x">全表都在這裡</span></span></div>
+      <div class="stat rise"><span class="num" id="stat-levels">6</span><span class="lab" id="stat-levels-lab">個級別<span class="lab-x">整份字表都在這裡</span></span></div>
       <div class="stat rise"><span class="num">4</span><span class="lab">種題型<span class="lab-x">從字義到拼字</span></span></div>
     </div>
     <!-- What finishing gets a student, how much a day, and how long. The weeks
          are worked out in vocab.js from the real counts, so they stay true. -->
     <div class="plan">
-      <div class="plan-col rise"><p class="plan-k">學完能做到</p>
-        <p class="plan-v">大考中心說，學測以第一到第五級的字為主。從最常見的第一級開始，一級一級往上。</p></div>
-      <div class="plan-col rise"><p class="plan-k">每天</p>
-        <p class="plan-v">做一次「今天這一組」：約 20 個字、15 分鐘。到期要複習的字先出，其餘補新字。</p></div>
-      <div class="plan-col rise"><p class="plan-k">多久</p>
-        <p class="plan-v">只算新字，第一級約 <b id="wk-a">8</b> 週見過一輪，六級全部約 <b id="wk-b">43</b> 週。之後每個字依你記得的程度，隔 2 到 60 天回來複習。</p></div>
+      <div class="plan-col rise"><p class="plan-k">為什麼從這裡學</p>
+        <p class="plan-v">大考中心說，學測的字以第一到第五級為主。從最常見的第一級開始，一級一級往上學。</p></div>
+      <div class="plan-col rise"><p class="plan-k">每天練多少</p>
+        <p class="plan-v">做一次「今天這一組」，大約 20 個字、15 分鐘。該複習的字會先出現，其他的再補新字。</p></div>
+      <div class="plan-col rise"><p class="plan-k">要多久</p>
+        <p class="plan-v">只算新字的話，第一級大約 <b id="wk-a">8</b> 週可以全部看過一遍，六級全部大約 <b id="wk-b">43</b> 週。之後每個字會依你記得多熟，隔 2 到 60 天再出現讓你複習。</p></div>
     </div>
     <h2 class="band-title rise">從哪一級開始？</h2>
     <div class="tiles" id="tiles"></div>
-    <h2 class="band-title rise">或是，從主題開始</h2>
+    <h2 class="band-title rise">也可以從主題開始</h2>
     <div class="topics rise" id="topics"></div>
     <p class="band-next rise">國中的字還不熟？<a href="../junior-vocab/">先看國中單字 ›</a></p>
   </div>
@@ -113,7 +113,7 @@
       <summary>關於這份字表</summary>
       <p>英文單字、詞性和級別，都照大考中心公布的<a href="https://www.ceec.edu.tw/xmdoc?xsmsid=0K213553204833715309" target="_blank" rel="noopener">《高中英文參考詞彙表（111 學年度起適用）》</a>，中華民國 109 年 7 月版。著作權屬財團法人大學入學考試中心基金會所有。中文、例句和例句的中譯是這個網站補上的，不是大考中心的內容。</p>
       <p>字表共六級、每級 1,002 個字。依大考中心的說明，學測以第一到第五級為主，偶爾會出現第六級；英聽以第一到第四級為主。</p>
-      <p>字表的寫法照抄：<i>agree(ment)</i> 表示 agree 加上 -ment 就是名詞 agreement；<i>chopstick(s)</i> 表示通常用複數；斜線隔開的是同一個字的不同說法，例如 <i>bicycle/bike</i>。</p>
+      <p>字表的寫法和原表一樣：<i>agree(ment)</i> 表示 agree 加上 -ment 就是名詞 agreement；<i>chopstick(s)</i> 表示通常用複數；斜線隔開的是同一個字的不同說法，例如 <i>bicycle/bike</i>。</p>
       <p>原表有一處筆誤，<i>calm</i> 的詞性少了一個點（v./adj./n），這裡已經補上。</p>
     </details>
     <p class="fine">更多教材與課程 · <a href="https://lewistoeic.com/" target="_blank" rel="noopener">lewistoeic.com</a></p>
@@ -130,7 +130,7 @@
   <label for="rate">語速 <span id="ratev"></span></label>
   <input id="rate" type="range" min="0.6" max="1.2" step="0.05">
   <div id="teacherflag">
-    <label>老師裝置</label>
+    <label>老師用的裝置</label>
     <p>這台裝置會顯示「自學／教學」切換和「投影」。學生用一般連結打開時看不到這些按鈕。</p>
     <div class="row" style="justify-content:flex-start"><button class="btn" id="unteach">在這台裝置隱藏</button></div>
   </div>

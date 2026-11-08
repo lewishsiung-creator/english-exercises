@@ -46,10 +46,10 @@
     const n = ESSAYS.filter((e) => isDone(e.id)).length;
     box.innerHTML = `
       <p class="ds-k">拆解進度</p>
-      <p class="ds-v">${n === ESSAYS.length ? `七篇都拆解過了 ✓` : `${n} / ${ESSAYS.length} 篇拆解過了`}</p>
+      <p class="ds-v">${n === ESSAYS.length ? `七篇都拆解完了 ✓` : `已拆解 ${n} / ${ESSAYS.length} 篇`}</p>
       <ol class="ds-dots">${ESSAYS.map((e) => `<li><a href="#${e.id}" class="${isDone(e.id) ? 'on' : ''}"
-        aria-label="${text(e.year)} ${isDone(e.id) ? '拆解過了' : '還沒拆解'}">${text(e.year)}</a></li>`).join('')}</ol>
-      <p class="ds-note">每篇範文底下都有「動作配對」和「句子排序」，兩個都做完就算拆解過了。題目每年換，句子在做的事不換。</p>`;
+        aria-label="${text(e.year)} ${isDone(e.id) ? '已拆解' : '還沒拆解'}">${text(e.year)}</a></li>`).join('')}</ol>
+      <p class="ds-note">每篇範文上方都有「動作配對」和「句子排序」，兩個都做完就算拆解完成。題目每年都不一樣，但每個句子負責的工作都一樣。</p>`;
   }
 
   /* ---------- one essay's drill box ---------- */
@@ -61,7 +61,7 @@
     const d = DONE[e.id] || {};
     return `
       <div class="dr-head">
-        <p class="dr-h">拆解練習${isDone(e.id) ? '<span class="dr-done">✓ 拆解過了</span>' : ''}</p>
+        <p class="dr-h">拆解練習${isDone(e.id) ? '<span class="dr-done">✓ 已拆解</span>' : ''}</p>
         ${running(e) ? `<div class="dr-btns"><button class="dr-btn" data-stop="1" data-essay="${e.id}">結束練習，看範文</button></div>` : `
         <div class="dr-btns">
           <button class="dr-btn" data-drill="m" data-essay="${e.id}">${d.m ? '✓ ' : ''}動作配對</button>
@@ -76,7 +76,7 @@
     let body = '';
     if (st && st.kind === 'm') body = matchHTML(e, st);
     else if (st && st.kind === 'o') body = orderHTML(e, st);
-    else body = `<p class="dr-intro">讀範文之前，先自己拆一次。「動作配對」：一句一句認出它在做 15 種動作裡的哪一種；「句子排序」：把打亂的句子排回原本的順序。練習時範文會先收起來，不計分，答錯可以再試。</p>`;
+    else body = `<p class="dr-intro">讀範文之前，先自己拆一次看看。「動作配對」：一句一句判斷它在 15 種動作裡做的是哪一種；「句子排序」：把打亂的句子排回原來的順序。練習時範文會先收起來；不計分，答錯可以再試。</p>`;
     box.innerHTML = head(e) + `<div class="dr-body">${body}</div>`;
     box.closest('.essay').classList.toggle('drilling', running(e));
   }
@@ -97,7 +97,7 @@
   function matchHTML(e, st) {
     if (st.i >= st.items.length) {
       return `<div class="dr-end"><p class="dr-end-h">動作配對完成 ✓</p>
-        <p>${st.items.length} 句，每一句都認出來了。${DONE[e.id] && DONE[e.id].o ? '這篇拆解過了。' : '再做「句子排序」，這篇就拆解完成。'}</p>
+        <p>${st.items.length} 句，每一句都認出來了。${DONE[e.id] && DONE[e.id].o ? '這篇拆解完成了。' : '再做「句子排序」，這篇就拆解完成了。'}</p>
         <button class="dr-go" data-drill="o" data-essay="${e.id}">${DONE[e.id] && DONE[e.id].o ? '再排一次' : '做句子排序'} ›</button></div>`;
     }
     const it = st.items[st.i];
@@ -130,14 +130,14 @@
   function orderHTML(e, st) {
     if (st.p >= e.paras.length) {
       return `<div class="dr-end"><p class="dr-end-h">句子排序完成 ✓</p>
-        <p>${e.paras.length} 段都排回原來的順序了。${DONE[e.id] && DONE[e.id].m ? '這篇拆解過了。' : '再做「動作配對」，這篇就拆解完成。'}</p>
+        <p>${e.paras.length} 段都排回原來的順序了。${DONE[e.id] && DONE[e.id].m ? '這篇拆解完成了。' : '再做「動作配對」，這篇就拆解完成了。'}</p>
         <button class="dr-go" data-drill="m" data-essay="${e.id}">${DONE[e.id] && DONE[e.id].m ? '再配一次' : '做動作配對'} ›</button></div>`;
     }
     const para = e.paras[st.p];
     const done = st.placed.length === para.sentences.length;
     return `
       <p class="dr-count">第 ${st.p + 1} 段，共 ${e.paras.length} 段 · ${text(para.labelZh)}</p>
-      <p class="dr-ask">${done ? '這一段排好了。' : '依照範文的順序，點下一句。'}</p>
+      <p class="dr-ask">${done ? '這一段排好了。' : '照範文的順序，點出下一句。'}</p>
       <ol class="dr-placed">${st.placed.map((k) => `<li><span class="dr-mv">${text(moveOf(para.sentences[k]))}</span>${text(para.sentences[k].en)}</li>`).join('')}</ol>
       ${done ? `<button class="dr-go" data-next="o" data-essay="${e.id}">${st.p + 1 < e.paras.length ? '下一段' : '看結果'} ›</button>` : `
       <div class="dr-deck">${st.deck.filter((k) => !st.placed.includes(k)).map((k) => `

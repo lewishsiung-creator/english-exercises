@@ -2943,6 +2943,14 @@ so the five pages read as one product rather than five neighbours:
   the card, with the two buttons on the right, the way a phone already had it.
   The word gets the card's full width on a laptop. Both `vocab.css` copies.
 
+**The Chinese copy, reworded (2026-11-08)**, at Lewis's request (「中文的說明再修改成
+自然的台灣中文」): about 60 lines of interface and explanation text across the
+six pages — the word pages' 為什麼從這裡學／每天練多少／要多久 (was 學完能做到／
+每天／多久), /learn/'s tile blurbs and review card, 程度檢測's instructions, the
+reading cover's plan, 學測寫作's panel and drill. Word glosses, examples and
+the reading texts were not touched. The global nav's 12px phone size now
+reaches 480px, so all six links fit on a 440-point iPhone Pro Max too.
+
 **The opener's numbers and plan on an iPhone (2026-11-08)**, both word pages,
 from Lewis's screenshot. Three numbers across left labels like 「個字，都有中文與例句」
 running edge to edge, and the plan was three long paragraphs. Each label is
