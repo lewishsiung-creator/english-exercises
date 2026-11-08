@@ -2951,6 +2951,24 @@ so the five pages read as one product rather than five neighbours:
   the card, with the two buttons on the right, the way a phone already had it.
   The word gets the card's full width on a laptop. Both `vocab.css` copies.
 
+**Designer review, items 5–8 (2026-11-08):**
+
+5. **One name for each switch.** The settings button reads 「設定」 on every
+   page: 閱讀 and 學測寫作 dropped the bare ⚙. The Chinese switch reads 「中文」
+   on every page: 學測寫作's 「中譯」 and the word pages' 「中文：顯示／藏起來」
+   are gone, and on or off now shows only in the button's colour.
+6. **13px is the smallest text.** Every text size under 13px in the family's
+   stylesheets was raised to 13px (75 rules), checked by measuring every
+   visible text node at phone width. house.css loads after 閱讀 and 學測寫作
+   and keeps two labels small, so those two are raised at the end of each
+   page's style.css. Three things are smaller on purpose: glyph-only buttons
+   (🔊 ▶︎ ▣), the A–Z rail (as in iOS Contacts), and the family nav on a
+   phone (12px, apple.com's own size, so all six links fit).
+7. **/learn/ says what it is** under the title: 「從國中到學測，單字、閱讀、
+   寫作都在這裡練」 and 「免費、不用登入，紀錄只存在你的裝置上。」
+8. **The A–Z rail no longer flashes on load.** It starts with `away` in the
+   HTML, so it is hidden before the first paint instead of fading out after.
+
 **Designer review, items 1–4 (2026-11-08)**, after a top-tier UI/UX review
 of the six pages (nine recommendations; Lewis chose 1–4):
 

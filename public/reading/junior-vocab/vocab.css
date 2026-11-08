@@ -161,7 +161,7 @@ details.about[open] summary::after { content: " ⌄"; }
 details.about p { margin: 10px 0 0; }
 details.about i { font-style: italic; color: var(--ink); }
 details.about a { color: var(--accent); }
-.notes .fine { margin: 18px 0 0; font-size: 12px; color: var(--muted); }
+.notes .fine { margin: 18px 0 0; font-size: 13px; color: var(--muted); }
 .notes .fine a { color: var(--accent); text-decoration: none; }
 
 /* ---------- local bar ---------- */
@@ -177,7 +177,7 @@ details.about a { color: var(--accent); }
   border: 0; background: var(--tile); border-radius: 980px; padding: 5px 13px; font-size: 14px;
   font-variant-numeric: tabular-nums; color: var(--ink);
 }
-.lv button small { color: var(--muted); font-size: 12px; margin-left: 5px; }
+.lv button small { color: var(--muted); font-size: 13px; margin-left: 5px; }
 .lv button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 .lv button[aria-pressed="true"] small { color: inherit; opacity: .7; }
 .search { flex: 1 1 220px; min-width: 0; }
@@ -201,7 +201,7 @@ button.sm[aria-pressed="true"] { background: var(--accent-soft); color: var(--ac
 /* ---------- list ---------- */
 main.wrap { padding-block: 24px 80px; }
 .status {
-  color: var(--muted); font: 600 12px/1.4 var(--font-ui); letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); font: 600 13px/1.4 var(--font-ui); letter-spacing: .08em; text-transform: uppercase;
   margin: 0 0 6px; font-variant-numeric: tabular-nums;
 }
 .entry {
@@ -214,13 +214,13 @@ main.wrap { padding-block: 24px 80px; }
    and the two buttons stacked where the eye never went. One column at every
    width now, the way a phone already had it. */
 .meta { display: flex; flex-direction: row; align-items: center; flex-wrap: wrap; gap: 8px 12px; padding: 0 0 14px; border-bottom: 1px solid var(--hair); }
-.meta .tag { font: 700 12px/1 var(--font-ui); letter-spacing: .1em; color: var(--red); }
+.meta .tag { font: 700 13px/1 var(--font-ui); letter-spacing: .1em; color: var(--red); }
 .meta .tops { display: flex; flex-wrap: wrap; gap: 4px 10px; font: 13px/1.35 var(--font-zh); color: var(--muted); letter-spacing: 0; }
 .meta .new, .new, .lvtag {
   display: inline-block; background: var(--ok-soft); color: var(--ok); border-radius: 980px;
-  padding: 2px 9px; font: 600 12px/1.5 var(--font-zh); letter-spacing: 0; white-space: nowrap;
+  padding: 2px 9px; font: 600 13px/1.5 var(--font-zh); letter-spacing: 0; white-space: nowrap;
 }
-.meta .num { font: 12px/1 var(--font-ui); color: var(--muted); letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+.meta .num { font: 13px/1 var(--font-ui); color: var(--muted); letter-spacing: .06em; font-variant-numeric: tabular-nums; }
 .meta .mark { display: flex; flex-direction: row; gap: 6px; margin-left: auto; }
 .entry.known .tag::after { content: " · 記住了"; color: var(--ok); letter-spacing: 0; font-weight: 600; }
 .entry.review .tag::after { content: " · 還不熟"; color: var(--warn); letter-spacing: 0; font-weight: 600; }
@@ -246,7 +246,7 @@ main.wrap { padding-block: 24px 80px; }
 @media (hover: hover) { .say:hover { background: var(--accent); color: var(--on-button); } }
 .sense { display: grid; grid-template-columns: 4.2rem minmax(0, 1fr); gap: 4px 12px; margin-top: 16px; }
 .pos {
-  font: 700 11px/1 var(--font-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+  font: 700 13px/1 var(--font-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
   padding-top: 7px; white-space: nowrap;
 }
 .sense + .sense { margin-top: 6px; }
@@ -259,7 +259,7 @@ main.wrap { padding-block: 24px 80px; }
 .note { font: italic 15px/1.5 var(--font-en); color: var(--muted); margin-top: 10px; }
 .fixed {
   border: 0; background: var(--tile); color: var(--muted); border-radius: 980px; margin-left: 8px;
-  padding: 1px 8px; font: 600 11px/1.6 var(--font-zh); vertical-align: 2px; white-space: nowrap;
+  padding: 1px 8px; font: 600 13px/1.6 var(--font-zh); vertical-align: 2px; white-space: nowrap;
 }
 @media (hover: hover) { .fixed:hover { color: var(--accent); } }
 
@@ -338,7 +338,7 @@ body.has-rail main.wrap { padding-right: max(36px, env(safe-area-inset-right, 0p
 
 /* ---------- quiz ---------- */
 .qcard { background: var(--card); border-radius: 28px; padding: 32px clamp(20px, 5vw, 48px); }
-.qtype { font: 700 12px/1.2 var(--font-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--red); }
+.qtype { font: 700 13px/1.2 var(--font-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--red); }
 .prompt { margin: 14px 0 24px; }
 .prompt .w { font: 700 52px/1.05 var(--font-display); letter-spacing: -0.025em; }
 .prompt .sent { font: 24px/1.5 var(--font-en); letter-spacing: 0; text-wrap: pretty; }
@@ -372,7 +372,7 @@ dialog.panel {
 }
 dialog.panel::backdrop { background: rgb(0 0 0 / .4); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
 .panel h2 { margin: 0 0 8px; font: 600 24px/1.2 var(--font-display); letter-spacing: -0.02em; }
-.panel label { display: block; font: 600 12px/1.2 var(--font-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 20px 0 8px; }
+.panel label { display: block; font: 600 13px/1.2 var(--font-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 20px 0 8px; }
 .panel select { -webkit-appearance: none; appearance: none; width: 100%; border: 0; background: var(--tile); border-radius: 10px; padding: 10px 12px; font-size: 15px; }
 .panel input[type=range] { width: 100%; accent-color: var(--button); }
 .panel p { font-size: 14px; color: var(--muted); margin: 0 0 10px; }
@@ -457,7 +457,7 @@ body.staged { overflow: hidden; }
 .stage:focus { outline: none; }
 .st-bar { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 14px; }
 .st-bar .btn { font-size: 16px; }
-.st-keys { color: var(--muted); font-size: 12px; text-align: center; margin-top: 8px; }
+.st-keys { color: var(--muted); font-size: 13px; text-align: center; margin-top: 8px; }
 @media (pointer: coarse) { .st-keys { display: none; } }
 
 @media (max-height: 520px) {
@@ -565,7 +565,7 @@ body.staged { overflow: hidden; }
    and a sentence that uses it. Set like the examples above it, so the card
    reads as one entry; a hairline and a small label mark where they start. */
 .cols { margin-top: 18px; padding-top: 14px; padding-left: calc(4.2rem + 12px); border-top: 1px solid var(--hair); display: flex; flex-direction: column; gap: 14px; }
-.cols-k { margin: 0; font: 700 11px/1 var(--font-ui), var(--font-zh); letter-spacing: .1em; color: var(--muted); }
+.cols-k { margin: 0; font: 700 13px/1 var(--font-ui), var(--font-zh); letter-spacing: .1em; color: var(--muted); }
 .col-c { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
 .col-c b { font: 700 18px/1.35 var(--font-display); letter-spacing: -0.01em; color: var(--accent); }
 .col-zh { font: 600 15px/1.5 var(--font-zh); }
@@ -583,7 +583,7 @@ body.staged { overflow: hidden; }
 .dots i.on { background: var(--accent); }
 .week { margin: 14px 0 6px; }
 .wk-row { display: flex; gap: 8px; flex-wrap: wrap; }
-.wk-day { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; font: 12px/1 var(--font-zh); color: var(--muted); }
+.wk-day { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; font: 13px/1 var(--font-zh); color: var(--muted); }
 .wk-day i { width: 26px; height: 26px; border-radius: 50%; background: var(--hair); }
 .wk-day.on i { background: var(--grad, var(--accent)); }
 .wk-day.is-today { color: var(--ink); font-weight: 700; }
@@ -638,7 +638,7 @@ body.staged { overflow: hidden; }
 .tp-bar > span { position: absolute; inset: 0 auto 0 0; background: var(--grad); border-radius: 3px; }
 .tp-bar i { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--card); }
 .tp-t { font: 13px/1.4 var(--font-zh); color: var(--muted); letter-spacing: 0; font-variant-numeric: tabular-nums; }
-@media (max-width: 560px) { .tp-t { font-size: 12px; } .tile-p { margin-top: 8px; } }
+@media (max-width: 560px) { .tp-t { font-size: 13px; } .tile-p { margin-top: 8px; } }
 
 /* 主題 on the opener: 26 chips, each a topic and its count (renderTopics). */
 .topics { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
@@ -669,7 +669,7 @@ body.staged { overflow: hidden; }
   .stat { gap: 4px; }
   .stat .num { font-size: clamp(34px, 10vw, 42px); }
   .stat .lab { font: 600 14px/1.35 var(--font-zh); color: var(--ink); max-width: none; }
-  .stat .lab-x { display: block; margin-top: 3px; font: 400 12px/1.45 var(--font-zh); color: var(--muted); }
+  .stat .lab-x { display: block; margin-top: 3px; font: 400 13px/1.45 var(--font-zh); color: var(--muted); }
   .stat .lab-x::before { content: none; }
   .plan { margin-top: 32px; gap: 10px; }
   .plan-col { background: var(--card); border-radius: 18px; padding: 16px 18px 17px; }

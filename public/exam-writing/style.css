@@ -119,7 +119,7 @@ body.zh-all .zh { display: block; }
 }
 .bar-title span {
   font-family: var(--font-ui);
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 400;
   color: var(--ink-faint);
   margin-left: 8px;
@@ -170,7 +170,7 @@ body.zh-all .zh { display: block; }
 .toc-head {
   margin: 0 0 10px;
   font-family: var(--font-ui);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -192,7 +192,7 @@ body.zh-all .zh { display: block; }
   line-height: 1.4;
 }
 .toc a:hover { background: var(--navy-soft); color: var(--ink); }
-.toc a .n { font-size: 12px; color: var(--ink-faint); text-align: right; }
+.toc a .n { font-size: 13px; color: var(--ink-faint); text-align: right; }
 .toc a .t { font-size: 14px; }
 .toc a.here {
   background: var(--navy-soft);
@@ -266,7 +266,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
 
 .source {
   margin: 22px 0 0;
-  font-size: .8rem;
+  font-size: .8125rem;
   line-height: 1.8;
   color: var(--ink-faint);
 }
@@ -361,7 +361,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
   text-align: left;
   padding: 0 12px 8px;
   border-bottom: 1px solid var(--rule);
-  font-size: .78rem;
+  font-size: .8125rem;
   font-weight: 700;
   color: var(--navy);
   white-space: nowrap;
@@ -413,7 +413,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
 .trend-n {
   flex: none;
   font-family: var(--font-ui);
-  font-size: .8rem;
+  font-size: .8125rem;
   color: #fff;
   background: var(--gold-line);
   width: 1.5rem;
@@ -474,7 +474,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
 .type-y { margin: 8px 0; display: flex; flex-wrap: wrap; gap: 5px; }
 .ychip {
   font-family: var(--font-ui);
-  font-size: .78rem;
+  font-size: .8125rem;
   font-weight: 700;
   color: var(--gold);
   background: var(--gold-soft);
@@ -518,7 +518,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
 
 .essay-meta { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 14px; }
 .chip {
-  font-size: .78rem;
+  font-size: .8125rem;
   color: var(--good);
   background: var(--good-soft);
   border: 1px solid var(--good-mid);
@@ -544,7 +544,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
 .step-btn .s2 {
   display: block;
   font-family: var(--font-en);
-  font-size: .76rem;
+  font-size: .8125rem;
   font-style: italic;
   color: var(--ink-faint);
 }
@@ -565,7 +565,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
 .para-label { display: flex; align-items: center; gap: 9px; margin: 0 0 3px; }
 .para-label .tag {
   font-family: var(--font-ui);
-  font-size: .66rem;
+  font-size: .8125rem;
   font-weight: 700;
   letter-spacing: .09em;
   text-transform: uppercase;
@@ -615,7 +615,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
   border: 1px solid var(--gold-mid);
   border-radius: 10px;
 }
-.keybox-h { margin: 0 0 5px; font-size: .72rem; font-weight: 700; letter-spacing: .08em; color: var(--gold); }
+.keybox-h { margin: 0 0 5px; font-size: .8125rem; font-weight: 700; letter-spacing: .08em; color: var(--gold); }
 .keybox-b { margin: 0; font-size: .9rem; color: var(--ink-soft); }
 
 .caution {
@@ -634,7 +634,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
   border: 1px solid var(--good-mid);
   border-radius: 10px;
 }
-.takeaway-h { margin: 0 0 5px; font-size: .72rem; font-weight: 700; letter-spacing: .08em; color: var(--good); }
+.takeaway-h { margin: 0 0 5px; font-size: .8125rem; font-weight: 700; letter-spacing: .08em; color: var(--good); }
 .takeaway-b { margin: 0; font-size: .92rem; font-weight: 600; }
 .takeaway-en {
   margin: 8px 0 0;
@@ -692,7 +692,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
 }
 .es-base-y {
   font-family: var(--font-ui);
-  font-size: .68rem;
+  font-size: .8125rem;
   font-weight: 700;
   color: var(--navy);
   border: 1px solid var(--navy-line);
@@ -710,7 +710,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
   border: 1px solid var(--line);
   border-radius: 10px;
 }
-.keypat-h { margin: 0 0 8px; font-size: .72rem; font-weight: 700; letter-spacing: .08em; color: var(--navy); }
+.keypat-h { margin: 0 0 8px; font-size: .8125rem; font-weight: 700; letter-spacing: .08em; color: var(--navy); }
 .keypat ul { list-style: none; margin: 0; padding: 0; }
 .keypat li { padding: 8px 0; border-top: 1px solid var(--line); }
 .keypat li:first-child { border-top: none; padding-top: 0; }
@@ -734,7 +734,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
 .pat-n { display: flex; align-items: baseline; gap: 9px; margin: 0 0 6px; font-size: 1.02rem; font-weight: 700; }
 .hit {
   font-family: var(--font-ui);
-  font-size: .72rem;
+  font-size: .8125rem;
   font-weight: 700;
   color: var(--gold);
   background: var(--gold-soft);
@@ -749,7 +749,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
 .egs li { display: grid; grid-template-columns: 2.3rem 1fr; gap: 9px; margin: 0 0 7px; align-items: baseline; }
 .egy {
   font-family: var(--font-ui);
-  font-size: .74rem;
+  font-size: .8125rem;
   font-weight: 700;
   color: var(--navy);
   text-decoration: none;
@@ -782,7 +782,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
   transition: border-color .12s, box-shadow .12s;
 }
 .card:hover { border-color: var(--navy-line); box-shadow: 0 2px 8px rgba(28, 36, 48, .06); }
-.card-name { margin: 0 0 7px; font-size: .74rem; font-weight: 700; letter-spacing: .06em; color: var(--navy); }
+.card-name { margin: 0 0 7px; font-size: .8125rem; font-weight: 700; letter-spacing: .06em; color: var(--navy); }
 .card-zh { margin: 0; font-size: .98rem; font-weight: 600; line-height: 1.75; }
 
 /* 蓋起來的地方畫一條線，讓關著的卡片看起來像一道題。 */
@@ -815,7 +815,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
 .steps-chain li:first-child { border-top: none; }
 .sc-n {
   font-family: var(--font-ui);
-  font-size: .8rem;
+  font-size: .8125rem;
   font-weight: 700;
   color: #fff;
   background: var(--navy);
@@ -848,14 +848,14 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
 
 .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
 .panel-head h2 { margin: 0 0 4px; font-size: .95rem; }
-.panel-head h2 span { font-family: var(--font-en); font-size: .8rem; font-weight: 400; color: var(--ink-faint); margin-left: 6px; }
+.panel-head h2 span { font-family: var(--font-en); font-size: .8125rem; font-weight: 400; color: var(--ink-faint); margin-left: 6px; }
 .panel-x { background: transparent; border: 0; color: var(--ink-faint); font-size: 15px; cursor: pointer; padding: 2px 4px; }
 
 .panel .row { margin-top: 18px; }
-.panel label { display: block; font-size: .8rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 6px; }
+.panel label { display: block; font-size: .8125rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 6px; }
 .row-check { display: flex; align-items: center; gap: 9px; cursor: pointer; margin-top: 16px; }
 .row-check span { font-size: .9rem; font-weight: 600; color: var(--ink); }
-.row-check em { font-family: var(--font-en); font-style: normal; font-weight: 400; font-size: .78rem; color: var(--ink-faint); margin-left: 5px; }
+.row-check em { font-family: var(--font-en); font-style: normal; font-weight: 400; font-size: .8125rem; color: var(--ink-faint); margin-left: 5px; }
 .row-check input { width: 17px; height: 17px; accent-color: var(--navy); }
 
 .panel select {
@@ -885,7 +885,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
 .panel-btn-quiet { color: var(--ink-soft); background: var(--paper); border-color: var(--line); }
 .panel-btn-quiet:hover { filter: none; border-color: var(--rule); }
 
-.row-note { margin: 7px 0 0; font-size: .77rem; line-height: 1.75; color: var(--ink-faint); }
+.row-note { margin: 7px 0 0; font-size: .8125rem; line-height: 1.75; color: var(--ink-faint); }
 
 /* ---------------- 小螢幕 ---------------- */
 
@@ -947,7 +947,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
   /* 換行之後（手機）文字會落到標誌下面一整行，置中才不會左右不對稱。 */
   text-align: center;
   font-family: var(--font-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif);
-  font-size: .8rem;
+  font-size: .8125rem;
   line-height: 1.7;
   color: var(--ink-faint, var(--ink-soft, #7a8290));
 }
@@ -1015,7 +1015,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
   margin: 18px 0 8px; padding: 18px 20px;
   background: var(--card); border-radius: 18px;
 }
-.ds-k { margin: 0; font-family: var(--font-ui); font-size: 12px; font-weight: 700; letter-spacing: .08em; color: var(--gold); }
+.ds-k { margin: 0; font-family: var(--font-ui); font-size: 13px; font-weight: 700; letter-spacing: .08em; color: var(--gold); }
 .ds-v { margin: 4px 0 12px; font-size: 1.15rem; font-weight: 700; }
 .ds-dots { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .ds-dots a {
@@ -1045,7 +1045,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
 .dr-go { margin-top: 14px; border-color: var(--navy); background: var(--navy); color: #fff; }
 .dr-body { margin-top: 14px; }
 .dr-intro { margin: 0; font-size: .9rem; line-height: 1.75; color: var(--ink-soft); }
-.dr-count { margin: 0 0 8px; font-family: var(--font-ui); font-size: .8rem; font-weight: 600; color: var(--ink-faint); }
+.dr-count { margin: 0 0 8px; font-family: var(--font-ui); font-size: .8125rem; font-weight: 600; color: var(--ink-faint); }
 .dr-sent { margin: 0 0 10px; font-family: var(--font-en); font-size: 1.12rem; line-height: 1.65; }
 .dr-ask { margin: 0 0 10px; font-size: .92rem; font-weight: 600; color: var(--ink-soft); }
 .dr-opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
@@ -1069,9 +1069,9 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
 }
 .dr-placed li::before {
   content: counter(placed); position: absolute; left: 12px; top: 10px;
-  font-family: var(--font-ui); font-size: .8rem; font-weight: 700; color: var(--good);
+  font-family: var(--font-ui); font-size: .8125rem; font-weight: 700; color: var(--good);
 }
-.dr-mv { display: block; font-family: var(--font-zh); font-size: .78rem; font-weight: 700; color: var(--good); }
+.dr-mv { display: block; font-family: var(--font-zh); font-size: .8125rem; font-weight: 700; color: var(--good); }
 .dr-deck { display: flex; flex-direction: column; gap: 8px; }
 .dr-card {
   padding: 12px 14px; border-radius: 12px; cursor: pointer; text-align: left;
@@ -1097,3 +1097,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
 /* While a drill runs, the model essay and its structure switch step aside --
    the paragraph plan above each paragraph is the answer to both drills. */
 .essay.drilling .para, .essay.drilling .steps { display: none; }
+
+/* 13px is the smallest text on the 英文學習 pages (designer review item 6,
+   2026-11-08). house.css loads after this file and sets the kicker at 12px. */
+.cover .kicker { font-size: 13px; }

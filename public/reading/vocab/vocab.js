@@ -909,7 +909,8 @@ function render() {
   document.querySelectorAll('.self-only').forEach(el => el.hidden = S.mode !== 'self');
   document.body.classList.toggle('zh-off', !S.zh);
   $('#zhbtn').setAttribute('aria-pressed', S.zh);
-  $('#zhbtn').textContent = S.zh ? '中文：顯示' : '中文：藏起來';
+  /* Named 中文 like the switch on 閱讀 and 學測寫作; on or off shows in its colour. */
+  $('#zhbtn').textContent = '中文';
   renderScope();
   if (S.view !== 'list') { $('#rail').hidden = true; document.body.classList.remove('has-rail'); }
   ({ list: renderList, cards: renderCards, quiz: renderQuiz })[S.view]();

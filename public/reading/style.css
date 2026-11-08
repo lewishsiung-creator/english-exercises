@@ -208,10 +208,10 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
   border-bottom: 1px solid var(--line);
   font-size: 13.5px; font-weight: 600; line-height: 1.45; color: var(--ink);
 }
-.toc-point .n { font-size: 11px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+.toc-point .n { font-size: 13px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
 .toc a { display: block; text-decoration: none; }
 .toc .t-zh { display: block; font-size: 14px; line-height: 1.4; color: var(--ink-soft); }
-.toc .t-en { display: block; font-size: 11.5px; line-height: 1.4; color: var(--ink-faint); }
+.toc .t-en { display: block; font-size: 13px; line-height: 1.4; color: var(--ink-faint); }
 .toc a.here .t-zh { font-weight: 600; color: var(--ink); }
 
 /* ---------------- cover ---------------- */
@@ -219,7 +219,7 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 .eyebrow {
   margin: 0 0 10px;
   font-family: var(--font-ui);
-  font-size: 12px; font-weight: 600;
+  font-size: 13px; font-weight: 600;
   letter-spacing: .08em; text-transform: uppercase;
   color: var(--red);
 }
@@ -268,7 +268,7 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 .part-head .p-zh { font-size: 1.2rem; font-weight: 700; }
 .part-head .p-en {
   display: block; margin-top: 2px;
-  font-family: var(--font-ui); font-size: .78rem; font-weight: 500;
+  font-family: var(--font-ui); font-size: .8125rem; font-weight: 500;
   letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint);
 }
 
@@ -311,7 +311,7 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 .n-zh { font-size: .98rem; font-weight: 700; }
 .n-en {
   display: block; margin-top: 2px;
-  font-family: var(--font-ui); font-size: .72rem; font-weight: 500;
+  font-family: var(--font-ui); font-size: .8125rem; font-weight: 500;
   letter-spacing: .05em; text-transform: uppercase; color: var(--ink-faint);
 }
 .note-zh { margin: 0; font-size: .95rem; line-height: 1.85; }
@@ -336,12 +336,12 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 .activity .q + .q { margin-top: 10px; }
 .q.solved { border-color: var(--good-line); background: color-mix(in srgb, var(--good-soft) 55%, var(--tile)); }
 .cloze { margin: -4px 0 1.5rem; }
-.q-n { margin: 0 0 9px; font-size: .8rem; font-weight: 600; color: var(--ink-faint); }
+.q-n { margin: 0 0 9px; font-size: .8125rem; font-weight: 600; color: var(--ink-faint); }
 
 .q-stem { display: flex; gap: 10px; margin-bottom: 11px; }
 .q-num {
   flex: none;
-  font-family: var(--font-ui); font-size: .8rem; font-weight: 600;
+  font-family: var(--font-ui); font-size: .8125rem; font-weight: 600;
   line-height: 1.95; color: var(--ink-faint);
 }
 .q-stem .pair { flex: 1 1 auto; min-width: 0; }
@@ -361,7 +361,7 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
   cursor: pointer;
   transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease);
 }
-.opt-k { flex: none; font-family: var(--font-ui); font-size: .76rem; font-weight: 600; color: var(--ink-faint); }
+.opt-k { flex: none; font-family: var(--font-ui); font-size: .8125rem; font-weight: 600; color: var(--ink-faint); }
 .opt:hover:not(:disabled) { border-color: var(--gold-line); background: var(--gold-soft); }
 .opt:disabled { cursor: default; color: var(--ink-faint); }
 .opt.is-wrong { background: var(--bad-soft); border-color: var(--bad-line); color: var(--bad); }
@@ -450,7 +450,7 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
   font-family: var(--font-zh); font-size: .84rem; cursor: pointer;
   transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease);
 }
-.s-btn em { font-family: var(--font-ui); font-style: normal; font-size: .74rem; color: var(--ink-faint); }
+.s-btn em { font-family: var(--font-ui); font-style: normal; font-size: .8125rem; color: var(--ink-faint); }
 .s-btn:hover { border-color: var(--gold-line); background: var(--gold-soft); }
 .s-check { background: var(--button); border-color: var(--button); color: #fff; }
 .s-check em { color: inherit; opacity: .75; }
@@ -492,7 +492,7 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
   border-radius: 14px;
 }
 .word .en { margin: 0; line-height: 1.5; }
-.pos { font-family: var(--font-ui); font-size: .74rem; color: var(--ink-faint); }
+.pos { font-family: var(--font-ui); font-size: .8125rem; color: var(--ink-faint); }
 .star { color: var(--a3); }
 .word > .zh { margin: 3px 0 0; color: var(--ink); }
 .w-line { margin: 4px 0 0; font-size: .9rem; line-height: 1.55; color: var(--ink-soft); }
@@ -508,7 +508,7 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 .v-zh { font-family: var(--font-zh); font-size: .95rem; font-weight: 700; }
 .v-en {
   margin-left: 8px;
-  font-family: var(--font-ui); font-size: .72rem; font-weight: 500;
+  font-family: var(--font-ui); font-size: .8125rem; font-weight: 500;
   letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint);
 }
 
@@ -546,7 +546,7 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 
 .source { margin: 54px 0 0; padding-top: 22px; border-top: 1px solid var(--line); }
 .src-zh { margin: 0 0 4px; font-size: .82rem; line-height: 1.75; color: var(--ink-faint); }
-.src-en { margin: 0; font-size: .78rem; line-height: 1.65; color: var(--ink-faint); }
+.src-en { margin: 0; font-size: .8125rem; line-height: 1.65; color: var(--ink-faint); }
 
 /* ---------------- settings panel ---------------- */
 
@@ -572,7 +572,7 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 .panel label { display: block; font-weight: 600; margin-bottom: 6px; }
 .panel label em { font-style: normal; font-weight: 500; color: var(--ink-faint); margin-left: 5px; }
 .panel select { width: 100%; padding: 9px 11px; border: 1px solid var(--line); border-radius: 10px; font: inherit; background: var(--tile); color: var(--ink); }
-.row-note { margin: 7px 0 0; font-size: 12.5px; line-height: 1.6; color: var(--ink-faint); }
+.row-note { margin: 7px 0 0; font-size: 13px; line-height: 1.6; color: var(--ink-faint); }
 .row-note em { font-style: normal; display: block; }
 .panel-btn {
   margin-top: 10px; width: 100%; padding: 9px 14px;
@@ -588,7 +588,7 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
   border-top: 1px solid var(--line);
   display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
   gap: 6px 14px; text-align: center;
-  font-family: var(--font-ui); font-size: .8rem; line-height: 1.7; color: var(--ink-faint);
+  font-family: var(--font-ui); font-size: .8125rem; line-height: 1.7; color: var(--ink-faint);
 }
 .site-foot p { margin: 0; }
 .site-foot .site-mark { flex: none; line-height: 0; border-radius: 50%; }
@@ -648,7 +648,7 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
   text-decoration: none;
   transition: border-color var(--fast) var(--ease);
 }
-.cover-link span { font-family: var(--font-ui); font-size: .78rem; font-weight: 500; color: var(--ink-faint); }
+.cover-link span { font-family: var(--font-ui); font-size: .8125rem; font-weight: 500; color: var(--ink-faint); }
 .cover-link:hover { border-color: var(--gold-line); }
 .cover-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
 
@@ -663,3 +663,10 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 /* A part finished by the student: a ✓ in the contents, kept after a reload
    (render.js paintDone). */
 .toc a.done .t-zh::after { content: " ✓"; color: var(--good); font-weight: 700; }
+
+/* 13px is the smallest text on the 英文學習 pages (designer review item 6,
+   2026-11-08). house.css loads after this file and sets the contents head at
+   10.5px, so it is raised here with a selector house.css does not outrank.
+   Glyph-only buttons (🔊) keep their size; their tap area is what matters. */
+.toc .toc-head { font-size: 13px; }
+.zh-chip { font-size: 13px; }
