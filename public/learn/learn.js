@@ -103,7 +103,7 @@ function reportText() {
   const r = read('lc.result', null);
   if (r && r.zh) lines.push(`程度檢測（${r.date}）：建議從${r.zh}開始`);
   const task = taskState();
-  if (task) lines.push(`老師任務（${task.l.code} ${task.l.title}）：${task.done ? '完成 ✓' : `已記住 ${task.known} / ${task.n}`}`);
+  if (task) lines.push(`老師任務（${task.report}）：${task.done ? '完成 ✓' : task.prog}`);
   const monday = today - ((today + 3) % 7);
   const week = new Set(PAGES.flatMap(p => read(p.store + '.days', [])).filter(d => d >= monday && d < monday + 7));
   lines.push(`這週練習：${week.size} 天`);
@@ -185,20 +185,61 @@ function drawLastCheck() {
    the card shows how much of that lesson is 記住了 on 國中單字, with a way
    straight in (#lesson/... on that page). Done is every word of the lesson
    記住了. The student can remove it; a new link replaces it. */
+/* 老師指定的任務. A teacher device copies a link to /learn/#task/<key>; the
+   student opens it once, and the task is kept here as lc.task until they
+   drop it or a new one replaces it. Three kinds (the last two added
+   2026-11-08):
+     g7/b1-l1   a 國中 textbook lesson     progress from jhv.marks, LESSONS
+     hs/3/a     高中單字 第三級, A 開頭     progress from hsv.marks, HS_TASKS
+     ew/e114    a 學測寫作 essay's drills   progress from ew.done
+   A task saved before kinds existed has no kind and is a lesson. */
+// exam-writing/content.js's seven essays, year and topic -- add a year there, add it here
+const EW_ESSAYS = {
+  e115: ['115', '養寵物風氣與寵物角色改變'], e114: ['114', '颱風假'], e113: ['113', '青少年困擾與機器人小幫手'],
+  e112: ['112', '表情符號的使用'], e111: ['111', '比較兩種公園'], e110: ['110', '遊客賞花不守規定'], e109: ['109', '賣場週年慶'],
+};
+const LEVEL_ZH = ['', '第一級', '第二級', '第三級', '第四級', '第五級', '第六級'];
 function takeTask() {
-  const m = decodeURIComponent(location.hash).match(/^#task\/(g\d\/[\w-]+)$/);
-  if (!m || typeof LESSONS === 'undefined' || !LESSONS[m[1]]) return;
+  const h = decodeURIComponent(location.hash);
+  let task = null, m;
+  if ((m = h.match(/^#task\/(g\d\/[\w-]+)$/)) && typeof LESSONS !== 'undefined' && LESSONS[m[1]]) task = { kind: 'jh', key: m[1] };
+  else if ((m = h.match(/^#task\/hs\/([1-6]\/[a-z])$/)) && typeof HS_TASKS !== 'undefined' && HS_TASKS[m[1]]) task = { kind: 'hs', key: m[1] };
+  else if ((m = h.match(/^#task\/ew\/(e\d+)$/)) && EW_ESSAYS[m[1]]) task = { kind: 'ew', key: m[1] };
+  if (!task) return;
   const d = new Date();
-  try { localStorage.setItem('lc.task', JSON.stringify({ key: m[1], date: `${d.getMonth() + 1}/${d.getDate()}` })); } catch (e) {}
+  try { localStorage.setItem('lc.task', JSON.stringify({ ...task, date: `${d.getMonth() + 1}/${d.getDate()}` })); } catch (e) {}
   try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
 }
 function taskState() {
   const t = read('lc.task', null);
-  if (!t || typeof LESSONS === 'undefined' || !LESSONS[t.key]) return null;
-  const l = LESSONS[t.key], marks = read('jhv.marks', {});
-  const ids = [...new Set(l.ids)];
-  const known = ids.filter(id => marks[id] === 'k').length;
-  return { ...t, l, n: ids.length, known, done: known === ids.length };
+  if (!t) return null;
+  const kind = t.kind || 'jh';
+  if (kind === 'jh') {
+    if (typeof LESSONS === 'undefined' || !LESSONS[t.key]) return null;
+    const l = LESSONS[t.key], marks = read('jhv.marks', {});
+    const ids = [...new Set(l.ids)];
+    const known = ids.filter(id => marks[id] === 'k').length;
+    return { ...t, kind, n: ids.length, known, done: known === ids.length,
+      label: `${l.grade} ${l.code}`, title: l.title, href: `../reading/junior-vocab/#lesson/${t.key}`,
+      prog: `已記住 ${known} / ${ids.length}`, doneLine: '✓ 任務完成，這一課都記住了', go: '開始這一課', report: `${l.code} ${l.title}` };
+  }
+  if (kind === 'hs') {
+    if (typeof HS_TASKS === 'undefined' || !HS_TASKS[t.key]) return null;
+    const [lv, L] = t.key.split('/'), ids = HS_TASKS[t.key], marks = read('hsv.marks', {});
+    const known = ids.filter(id => marks[id] === 'k').length;
+    return { ...t, kind, n: ids.length, known, done: known === ids.length,
+      label: `高中單字 ${LEVEL_ZH[+lv]}`, title: `${L.toUpperCase()} 開頭的 ${ids.length} 個字`, href: `../reading/vocab/#set/${lv}/${L}`,
+      prog: `已記住 ${known} / ${ids.length}`, doneLine: '✓ 任務完成，這一組都記住了', go: '開始這一組', report: `高中單字 ${LEVEL_ZH[+lv]} ${L.toUpperCase()} 開頭` };
+  }
+  if (kind === 'ew') {
+    const e = EW_ESSAYS[t.key]; if (!e) return null;
+    const d = read('ew.done', {})[t.key] || {};
+    const known = (d.m ? 1 : 0) + (d.o ? 1 : 0);
+    return { ...t, kind, n: 2, known, done: known === 2,
+      label: `學測寫作 ${e[0]} 年`, title: `〈${e[1]}〉拆解練習`, href: `../exam-writing/#${t.key}`,
+      prog: `${d.m ? '✓' : '○'} 動作配對　${d.o ? '✓' : '○'} 句子排序`, doneLine: '✓ 任務完成，這篇拆解過了', go: '開始拆解', report: `學測寫作 ${e[0]} 年拆解練習` };
+  }
+  return null;
 }
 function drawTask() {
   const box = document.getElementById('task');
@@ -207,11 +248,11 @@ function drawTask() {
   if (!t) { box.hidden = true; return; }
   box.innerHTML = `
     <p class="td-eyebrow">老師指定的任務 · ${esc(t.date)}</p>
-    <h2 class="tk-title" id="taskTitle">${esc(t.l.grade)} ${esc(t.l.code)}<br><span>${esc(t.l.title)}</span></h2>
+    <h2 class="tk-title" id="taskTitle">${esc(t.label)}<br><span>${esc(t.title)}</span></h2>
     <div class="tk-prog ${t.done ? 'done' : ''}"><span class="tk-bar" aria-hidden="true"><span style="width:${t.known / t.n * 100}%"></span></span>
-      <span class="tk-n">${t.done ? '✓ 任務完成，這一課都記住了' : `已記住 ${t.known} / ${t.n}`}</span></div>
+      <span class="tk-n">${t.done ? t.doneLine : esc(t.prog)}</span></div>
     <div class="tk-row">
-      <a class="td-go" href="../reading/junior-vocab/#lesson/${esc(t.key)}">${t.done ? '再複習一次' : '開始這一課'} ›</a>
+      <a class="td-go" href="${esc(t.href)}">${t.done ? '再練一次' : t.go} ›</a>
       <button class="tk-drop" id="dropTask">移除這個任務</button>
     </div>`;
   box.hidden = false;
@@ -224,15 +265,29 @@ document.addEventListener('click', ev => {
 
 takeTask();
 drawTask();
+// a task link opened while this page is already open in the tab
+window.addEventListener('hashchange', () => { takeTask(); drawTask(); });
 drawToday();
 drawLastCheck();
 
 /* Progress on the four tiles: a bar and one line, only on a tile this student
    has started. The totals are the tiles' own big numbers. */
 function paintTiles() {
-  document.querySelectorAll('.tile[data-store], .tile[data-essays]').forEach(t => {
+  document.querySelectorAll('.tile[data-store], .tile[data-essays], .tile[data-reading]').forEach(t => {
     const total = parseInt(t.querySelector('.num').textContent.replace(/,/g, ''), 10);
     let n, line;
+    if (t.dataset.reading) {
+      const done = read('rd.done', {}), parts = read('rd.parts', 0);
+      n = Object.keys(done).length;
+      if (!parts) return;
+      t.querySelector('.tp')?.remove();
+      if (!n) return;
+      const p = document.createElement('span');
+      p.className = 'tp';
+      p.innerHTML = `<span class="tp-bar" aria-hidden="true"><span style="width:${Math.min(100, n / parts * 100)}%"></span></span><span class="tp-t">${n >= parts ? '每一關都完成過了 ✓' : `完成 ${n} / ${parts} 關`}</span>`;
+      t.insertBefore(p, t.querySelector('.go'));
+      return;
+    }
     if (t.dataset.store) {
       const marks = read(t.dataset.store + '.marks', {});
       n = Object.values(marks).filter(m => m === 'k').length;
@@ -251,3 +306,126 @@ function paintTiles() {
   });
 }
 paintTiles();
+
+/* 備份碼 (2026-11-08). Every page in this family keeps its records in this
+   browser only -- months of 記住了 and review dates, the check history, the
+   task, the essays taken apart, the reading parts finished. A new phone, a
+   different browser or cleared site data loses all of it, and the longer the
+   student has practised the worse that is. There is no server and no
+   account, so the way across is a code the student keeps (in LINE Keep, in
+   Notes) and pastes on the new device.
+
+   The code is the progress keys only, JSON, deflated when the browser can
+   (CompressionStream) and base64url-encoded, behind a prefix that says how:
+   EL1z. (deflated) or EL1j. (plain). Restoring replaces this browser's
+   progress with the code's, after a confirm; voices, speeds and the teacher
+   switch stay as they are on this device. */
+const BK_PREFIXES = ['hsv.', 'jhv.', 'lc.', 'ew.', 'rd.'];
+const BK_SKIP = /\.(voice|rate|mode|teacher|deckkind|zh)$/;   // this device's settings, not progress
+function bkKeys() {
+  const keys = [];
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (BK_PREFIXES.some(p => k.startsWith(p)) && !BK_SKIP.test(k)) keys.push(k);
+    }
+  } catch (e) {}
+  return keys.sort();
+}
+const b64u = bytes => { let s = ''; bytes.forEach(b => { s += String.fromCharCode(b); }); return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); };
+const unb64u = str => { const s = atob(str.replace(/-/g, '+').replace(/_/g, '/')); return Uint8Array.from(s, c => c.charCodeAt(0)); };
+async function pipe(bytes, stream) {
+  return new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(stream)).arrayBuffer());
+}
+async function makeCode() {
+  const data = { v: 1, at: new Date().toISOString().slice(0, 10), keys: {} };
+  bkKeys().forEach(k => { data.keys[k] = localStorage.getItem(k); });
+  const raw = new TextEncoder().encode(JSON.stringify(data));
+  if ('CompressionStream' in window) {
+    try { return 'EL1z.' + b64u(await pipe(raw, new CompressionStream('deflate-raw'))); } catch (e) {}
+  }
+  return 'EL1j.' + b64u(raw);
+}
+async function readCode(code) {
+  code = code.replace(/\s+/g, '');
+  const m = code.match(/^EL1([zj])\.([\w-]+)$/);
+  if (!m) throw new Error('這不是英文學習的備份碼。');
+  let bytes = unb64u(m[2]);
+  if (m[1] === 'z') {
+    if (!('DecompressionStream' in window)) throw new Error('這個瀏覽器太舊，讀不了這個備份碼。請換新版的 Safari 或 Chrome。');
+    bytes = await pipe(bytes, new DecompressionStream('deflate-raw'));
+  }
+  const data = JSON.parse(new TextDecoder().decode(bytes));
+  if (!data || data.v !== 1 || typeof data.keys !== 'object') throw new Error('備份碼不完整，請重新複製一次。');
+  return data;
+}
+function bkSummary(keys) {
+  const marks = k => { try { return Object.values(JSON.parse(keys[k] || '{}')).filter(m => m === 'k').length; } catch (e) { return 0; } };
+  const parts = [];
+  const j = marks('jhv.marks'), h = marks('hsv.marks');
+  if (j) parts.push(`國中單字 記住 ${j.toLocaleString()} 個`);
+  if (h) parts.push(`高中單字 記住 ${h.toLocaleString()} 個`);
+  try { const e = Object.values(JSON.parse(keys['ew.done'] || '{}')).filter(d => d && d.m && d.o).length; if (e) parts.push(`學測寫作 拆解 ${e} 篇`); } catch (e) {}
+  try { const r = Object.keys(JSON.parse(keys['rd.done'] || '{}')).length; if (r) parts.push(`高中閱讀 完成 ${r} 關`); } catch (e) {}
+  return parts.length ? parts.join('、') : '還沒有練習紀錄';
+}
+function bkDialog(html) {
+  let dlg = document.getElementById('bk');
+  if (!dlg) {
+    document.body.insertAdjacentHTML('beforeend', '<dialog class="report" id="bk" aria-labelledby="bkH"></dialog>');
+    dlg = document.getElementById('bk');
+  }
+  dlg.innerHTML = html;
+  if (!dlg.open) dlg.showModal();
+  return dlg;
+}
+async function openBackup() {
+  const code = await makeCode();
+  const keys = {}; bkKeys().forEach(k => { keys[k] = localStorage.getItem(k); });
+  const dlg = bkDialog(`
+    <h2 id="bkH">你的備份碼</h2>
+    <p class="bk-msg">內容：${esc(bkSummary(keys))}。把整段複製起來，存在 LINE 的 Keep 或手機備忘錄。到新裝置打開「英文學習」，按「貼上備份碼還原」。</p>
+    <textarea class="bk-code" id="bkCode" readonly aria-label="備份碼">${esc(code)}</textarea>
+    <p class="bk-msg" id="bkMsg"></p>
+    <div class="rp-row">
+      <button class="rp-copy" id="bkCopy">複製備份碼</button>
+      <button class="rp-close" id="bkClose">關閉</button>
+    </div>`);
+  dlg.querySelector('#bkCopy').addEventListener('click', () => {
+    const box = dlg.querySelector('#bkCode'), msg = dlg.querySelector('#bkMsg');
+    const fallback = () => { box.focus(); box.select(); msg.textContent = '已選取，請按「拷貝」。'; };
+    try { navigator.clipboard.writeText(code).then(() => { msg.textContent = '已複製 ✓'; }, fallback); } catch (e) { fallback(); }
+  });
+  dlg.querySelector('#bkClose').addEventListener('click', () => dlg.close());
+}
+function openRestore() {
+  const dlg = bkDialog(`
+    <h2 id="bkH">貼上備份碼還原</h2>
+    <p class="bk-msg">把之前存下的備份碼整段貼在下面。還原會用備份碼裡的紀錄，取代這台裝置上現在的紀錄。</p>
+    <textarea class="bk-code" id="bkIn" aria-label="備份碼" placeholder="EL1z.…"></textarea>
+    <p class="bk-msg" id="bkMsg"></p>
+    <div class="rp-row">
+      <button class="rp-copy" id="bkGo">還原</button>
+      <button class="rp-close" id="bkClose">取消</button>
+    </div>`);
+  const msg = dlg.querySelector('#bkMsg');
+  dlg.querySelector('#bkClose').addEventListener('click', () => dlg.close());
+  dlg.querySelector('#bkGo').addEventListener('click', async () => {
+    msg.classList.remove('bad');
+    let data;
+    try { data = await readCode(dlg.querySelector('#bkIn').value); }
+    catch (e) { msg.classList.add('bad'); msg.textContent = e.message && /[一-鿿]/.test(e.message) ? e.message : '讀不出這個備份碼，請確認整段都貼上了。'; return; }
+    const here = {}; bkKeys().forEach(k => { here[k] = localStorage.getItem(k); });
+    const ok = confirm(`備份碼（${data.at}）：${bkSummary(data.keys)}\n\n這台裝置現在：${bkSummary(here)}\n\n要用備份碼取代這台裝置的紀錄嗎？`);
+    if (!ok) return;
+    try {
+      bkKeys().forEach(k => localStorage.removeItem(k));
+      Object.entries(data.keys).forEach(([k, v]) => {
+        if (BK_PREFIXES.some(p => k.startsWith(p)) && !BK_SKIP.test(k) && typeof v === 'string') localStorage.setItem(k, v);
+      });
+    } catch (e) { msg.classList.add('bad'); msg.textContent = '這個瀏覽器不允許儲存資料（可能是無痕模式），沒辦法還原。'; return; }
+    location.reload();
+  });
+}
+document.getElementById('bkMake')?.addEventListener('click', openBackup);
+document.getElementById('bkRestore')?.addEventListener('click', openRestore);

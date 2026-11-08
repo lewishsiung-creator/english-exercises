@@ -2973,9 +2973,34 @@ no score, no points, no leaderboard, nothing timed, nothing that resets.
    a row of the seven years at the top of the section fills in. Stored as
    `ew.done`. The transfer essay has no drill.
 
-Not chosen yet: a backup code for moving progress between devices; ✓ on the
-reading page's finished rounds (reverses its "save nothing" rule — his call);
-teacher tasks for 高中單字 and 學測寫作.
+Then 4–6, the same day ("let's work on 4, 5, 6"):
+
+4. **備份碼** (`/learn/`, learn.js). A card under the tiles, 換手機也帶得走:
+   產生備份碼 / 貼上備份碼還原. The code is every progress key (`hsv.`, `jhv.`,
+   `lc.`, `ew.`, `rd.` — not voices, speeds, the teacher switch or other
+   per-device settings) as JSON, deflated with CompressionStream where the
+   browser has it and base64url-encoded behind `EL1z.` (or `EL1j.` plain).
+   1,500 marked words come to about 12,500 characters, so the dialog says
+   to keep it in LINE Keep or Notes rather than send it as a message.
+   Restoring shows both sides' totals in a confirm, then replaces this
+   browser's progress and reloads. No server, no account.
+5. **The reading page remembers finished parts.** A part whose questions the
+   student has all answered right gets a ✓ in the contents and keeps it
+   (`rd.done`); 顯示所有答案 does not count, and answers are still not saved.
+   This reverses the page's original "save nothing but the voice" — Lewis
+   chose it. `/learn/`'s reading tile shows 完成 n / 7 關 (`rd.parts`).
+6. **Teacher tasks for 高中單字 and 學測寫作.** `lc.task` now has a `kind`:
+   `hs` — a level's words under one letter (`/learn/#task/hs/3/a`), handed out
+   from a teacher device on 高中單字 with a level and a letter chosen; progress
+   from `public/learn/hstasks.js`, which `tools/ceec/build.py` now writes
+   (every level × letter as ids), and the student's 開始 opens
+   `reading/vocab/#set/3/a`. `ew` — one essay's 拆解練習
+   (`/learn/#task/ew/e114`), handed out from 學測寫作's teacher panel
+   (指定任務); progress from `ew.done`. The essay names on `/learn/` are typed
+   in learn.js's `EW_ESSAYS` — add a year to `exam-writing/content.js`, add it
+   there. A task saved before kinds existed is still read as a 國中 lesson.
+   A task link opened in a tab that already shows /learn/ is taken too
+   (`hashchange`).
 
 **學測英文寫作 joins the family (2026-11-08)**, at Lewis's request ("add this
 into this website too"). `/exam-writing/` keeps its URL and its own indexing

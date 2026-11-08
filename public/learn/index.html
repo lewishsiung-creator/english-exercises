@@ -83,7 +83,7 @@
         <span class="desc">大考中心《高中英文參考詞彙表》全表六級，每個字都有中文、例句和搭配詞。從第一級開始，一級一級來。</span>
         <span class="go">開始 ›</span>
       </a>
-      <a class="tile" href="../reading/">
+      <a class="tile" href="../reading/" data-reading="rd">
         <span class="step">第三步</span>
         <span class="num">3</span>
         <span class="unit">篇文章</span>
@@ -100,6 +100,19 @@
         <span class="go">開始 ›</span>
       </a>
     </div>
+
+    <!-- 備份碼: everything above lives in this browser only. A student who
+         changes phone or browser carries it across as a code. learn.js. -->
+    <section class="backup" aria-labelledby="bkTitle">
+      <div class="bk-text">
+        <h2 id="bkTitle">換手機也帶得走</h2>
+        <p>你的進度只存在這台裝置的瀏覽器裡。換手機、換瀏覽器或清除資料之前，先產生備份碼存起來；到新裝置上貼上就能還原。</p>
+      </div>
+      <div class="bk-btns">
+        <button class="bk-btn" id="bkMake">產生備份碼</button>
+        <button class="bk-btn bk-quiet" id="bkRestore">貼上備份碼還原</button>
+      </div>
+    </section>
   </div>
 </main>
 
@@ -110,6 +123,7 @@
 </footer>
 
 <script src="lessons.js"></script>
+<script src="hstasks.js"></script>
 <script src="learn.js"></script>
 </body>
 </html>

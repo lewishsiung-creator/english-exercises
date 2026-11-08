@@ -630,3 +630,7 @@ body.staged { overflow: hidden; }
 .tp-bar i { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--card); }
 .tp-t { font: 13px/1.4 var(--font-zh); color: var(--muted); letter-spacing: 0; font-variant-numeric: tabular-nums; }
 @media (max-width: 560px) { .tp-t { font-size: 12px; } .tile-p { margin-top: 8px; } }
+
+/* A teacher device's way to hand out one level's words under one letter as
+   this week's task (taskBtn() in vocab.js). */
+.lh-task { display: block; margin: -2px 0 10px; padding-inline: 0; font-family: var(--font-zh); text-align: left; }

@@ -230,10 +230,29 @@ function where() {
   }
   return parts.join(' · ');
 }
+/* A teacher device can hand out one level's words under one letter as this
+   week's task: the link opens /learn/, which keeps it as lc.task and shows
+   its progress (2026-11-08; 國中單字 hands out lessons the same way). Shown
+   only with a level and a letter chosen, and no search -- the task is the
+   whole level-letter group, whatever the list is filtered to. */
+function taskBtn() {
+  if (!TEACHER || !/^[1-6]$/.test(S.scope) || !/^[a-z]$/.test(S.letter) || S.q.trim()) return '';
+  const n = ENTRIES.filter(e => e.lv === +S.scope && letterOf(e) === S.letter).length;
+  return `<button class="link lh-task" data-task="hs/${S.scope}/${S.letter}">複製任務連結：${LEVEL_ZH[+S.scope]} ${S.letter.toUpperCase()} 開頭（${n} 字），傳給學生</button>`;
+}
+function copyTask(key) {
+  const url = EXAM.url.replace(/reading\/vocab\/$/, 'learn/') + '#task/' + key;
+  const [, lv, L] = key.split('/');
+  const fallback = () => {
+    toast(`<span>把這個連結傳給學生：</span><input id="toasturl" readonly value="${esc(url)}" aria-label="任務連結">`, 9000);
+    const f = $('#toasturl'); f.focus(); f.select();
+  };
+  try { navigator.clipboard.writeText(url).then(() => toast(`已複製「${LEVEL_ZH[+lv]} ${L.toUpperCase()} 開頭」的任務連結`), fallback); } catch (err) { fallback(); }
+}
 function renderList() {
   const list = searchSort(pool());
   const shown = list.slice(0, S.shown);
-  $('#main').innerHTML = `<p class="status">${where()} · ${list.length} 個字${list.length > shown.length ? `，目前顯示前 ${shown.length} 個` : ''}</p>` +
+  $('#main').innerHTML = `<p class="status">${where()} · ${list.length} 個字${list.length > shown.length ? `，目前顯示前 ${shown.length} 個` : ''}</p>` + taskBtn() +
     (list.length ? shown.map(entryHTML).join('') : `<p class="empty">沒有符合的字。換個級別、字母或關鍵字試試。</p>`) +
     (list.length > shown.length ? `<button class="btn more" id="more">再顯示 40 個</button>` : '');
   observeMore();
@@ -312,9 +331,11 @@ function openFromHash() {
   // #set/<set> opens the list at one set: the 程度檢測 on /learn/check/ sends a
   // student straight to the set it recommends. The hash is then dropped, so a
   // reload is the ordinary page.
-  const set = location.hash.match(/^#set\/([\w-]+)$/);
+  // #set/<level>/<letter> narrows it to one letter: a teacher task from /learn/.
+  const set = location.hash.match(/^#set\/([\w-]+)(?:\/([a-z]))?$/);
   if (set && /^[1-6]$/.test(set[1]) && LEVEL_COUNT[+set[1] - 1]) {
-    S.view = 'list'; S.scope = set[1]; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = ''; S.shown = 40;
+    const L = set[2] && [...$('#letter').options].some(o => o.value === set[2]) ? set[2] : 'all';
+    S.view = 'list'; S.scope = set[1]; S.letter = L; $('#letter').value = L; S.q = ''; $('#q').value = ''; S.shown = 40;
     render();
     try { history.replaceState(null, '', location.pathname + location.search); } catch (err) {}
     setTimeout(goToList, 60);
@@ -841,6 +862,7 @@ document.addEventListener('click', ev => {
   const t = ev.target.closest('button'); if (!t) return;
   if (t.dataset.say != null) { say(t.dataset.say); return; }
   if (t.dataset.copy) { copyLink(t.dataset.copy); return; }
+  if (t.dataset.task) { copyTask(t.dataset.task); return; }
   if (t.dataset.go) { S.view = t.dataset.go; render(); goToWork(); return; }
   if (t.dataset.pick) { S.view = 'list'; S.scope = t.dataset.pick; S.shown = 40; S.q = ''; $('#q').value = ''; render(); goToList(); return; }
   if (t.dataset.orig != null) { toast(`<span>原表寫法：${esc(t.dataset.orig)}</span>`, 5000); return; }

@@ -16,6 +16,7 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 OUT = HERE.parent.parent / 'public' / 'reading' / 'vocab' / 'words.js'
+TASKS = HERE.parent.parent / 'public' / 'learn' / 'hstasks.js'
 
 
 # Collocations, shared by both word pages and keyed by the headword as printed,
@@ -63,6 +64,22 @@ def main():
         f'const RAW = [\n{lines}\n];\n', encoding='utf-8')
     levels = sorted({r[2] for r in rows})
     print(f'{len(rows)} words (levels {levels}), {len(missing)} still without Chinese -> {OUT}')
+
+    # The teacher-task index for /learn/: every level × first letter, as the
+    # ids the word page uses, so /learn/ can show a task's progress without
+    # loading the whole word file. Keys are "<level>/<letter>", e.g. "3/a";
+    # the letter is the word page's letterOf(): the first a-z in the headword.
+    tasks = {}
+    for r in rows:
+        m = re.search(r'[a-z]', r[1].lower())
+        if m:
+            tasks.setdefault(f'{r[2]}/{m.group(0)}', []).append(r[0])
+    TASKS.write_text(
+        '/* 高中單字 teacher tasks for /learn/ -- built by tools/ceec/build.py. Every\n'
+        '   level × first letter as word ids, keyed "<level>/<letter>". Edit the data\n'
+        '   and rebuild, not this. */\n'
+        f'const HS_TASKS = {json.dumps(tasks, ensure_ascii=False, separators=(",", ":"))};\n', encoding='utf-8')
+    print(f'{len(tasks)} level/letter tasks -> {TASKS}')
 
 
 if __name__ == '__main__':

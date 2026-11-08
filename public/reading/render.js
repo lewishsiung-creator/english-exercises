@@ -12,10 +12,16 @@
       The dotted words are this page's own list; the 字彙表 is the teacher's.
    3. **A wrong answer stays open.** It wobbles, says why, and the question
       waits for another try. Only the right answer closes it. Nothing is scored
-      and nothing is saved, so a reload is a clean lesson. A review round ends
-      by naming what to look at again, never with a mark.
+      and no answer is saved, so a reload is a clean lesson. A review round
+      ends by naming what to look at again, never with a mark.
+   4. **Only the fact of finishing is kept** (since 2026-11-08, Lewis's choice
+      in the second gamification review). A part whose questions have all been
+      answered right, by the student, gets a ✓ in the contents, and keeps it
+      after a reload; the answers themselves still are not saved. 顯示所有答案
+      does not count. /learn/ reads the same record for its reading tile.
 
-   Everything kept in localStorage is under `rd.`, and it is only the voice. */
+   Everything kept in localStorage is under `rd.`: the voice, `rd.done`
+   ({ part id: 1 }) and `rd.parts` (how many parts have questions). */
 
 const $  = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -449,9 +455,31 @@ function miss(q, message) {
   q.classList.add('wobble');
 }
 
+/* A part is finished when every question in it has been answered right by the
+   student. Called only from the student's own answers, never from 顯示所有答案. */
+const QPARTS = $$('.part').filter((pt) => $('.q', pt));
+store.set('parts', QPARTS.length);
+let DONE = store.get('done', {});
+function paintDone() {
+  QPARTS.forEach((pt) => {
+    const a = $(`.toc a[data-target="${pt.id}"]`);
+    if (a) a.classList.toggle('done', !!DONE[pt.id]);
+  });
+}
+function partDone(q) {
+  const pt = q.closest('.part');
+  if (!pt || DONE[pt.id]) return;
+  if ($$('.q', pt).every((x) => x.classList.contains('solved'))) {
+    DONE[pt.id] = 1;
+    store.set('done', DONE);
+    paintDone();
+  }
+}
+paintDone();
+
 function choose(q, btn) {
   if (q.classList.contains('solved') || btn.disabled) return;
-  if (btn.dataset.i === q.dataset.answer) { solve(q); roundDone(q); return; }
+  if (btn.dataset.i === q.dataset.answer) { solve(q); roundDone(q); partDone(q); return; }
   btn.classList.add('is-wrong');
   miss(q, btn.dataset.no);
 }
@@ -464,7 +492,7 @@ function plain(s) {
 function checkSpelling(q) {
   const typed = $('.s-in', q).value;
   if (!plain(typed)) return;
-  if (plain(typed) === plain(q.dataset.word)) { solve(q); roundDone(q); return; }
+  if (plain(typed) === plain(q.dataset.word)) { solve(q); roundDone(q); partDone(q); return; }
   miss(q, '還不對，再試一次，或按「再給一個字母」。');
 }
 

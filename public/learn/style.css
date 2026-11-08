@@ -241,3 +241,30 @@ dialog.report::backdrop { background: rgb(0 0 0 / .4); -webkit-backdrop-filter: 
 .tile .tp-bar { position: relative; display: block; height: 6px; border-radius: 3px; background: var(--ground); overflow: hidden; }
 .tile .tp-bar > span { position: absolute; inset: 0 auto 0 0; border-radius: 3px; background: var(--grad); }
 .tile .tp-t { font: 600 14px/1.4 var(--font-zh); color: var(--ink); letter-spacing: 0; font-variant-numeric: tabular-nums; }
+
+/* ---------- 備份碼 ---------- */
+.backup {
+  margin-top: 20px; padding: 26px 30px; border-radius: 28px; background: var(--card);
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 28px;
+}
+.bk-text { flex: 1 1 320px; min-width: 0; }
+.bk-text h2 { margin: 0; font: 700 22px/1.25 var(--font-zh); letter-spacing: 0; }
+.bk-text p { margin: 8px 0 0; font: 15px/1.7 var(--font-zh); color: var(--muted); letter-spacing: 0; }
+.bk-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.bk-btn {
+  min-height: 44px; padding: 10px 20px; border-radius: 980px; border: 0; cursor: pointer;
+  background: #0071e3; color: #fff; font: 600 15px/1.2 var(--font-zh);
+}
+.bk-btn.bk-quiet { background: var(--ground); color: var(--accent); }
+.bk-code {
+  width: 100%; min-height: 120px; margin: 12px 0 0; padding: 12px; border-radius: 12px;
+  border: 1px solid var(--line); background: var(--ground); color: var(--ink);
+  font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; resize: vertical;
+}
+.bk-msg { margin: 10px 0 0; font: 14px/1.6 var(--font-zh); color: var(--muted); }
+.bk-msg.bad { color: #d70015; }
+@media (max-width: 560px) {
+  .backup { padding: 22px 20px; border-radius: 24px; }
+  .bk-btns { width: 100%; }
+  .bk-btn { flex: 1 1 0; }
+}

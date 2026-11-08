@@ -625,3 +625,7 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 .cp-k { margin: 0; font-family: var(--font-zh); font-size: .82rem; font-weight: 600; color: var(--red); }
 .cp-v { margin: 4px 0 0; font-family: var(--font-zh); font-size: .9rem; line-height: 1.75; color: var(--ink-soft); }
 @media (max-width: 720px) { .cover-plan { grid-template-columns: 1fr; gap: 10px; } }
+
+/* A part finished by the student: a ✓ in the contents, kept after a reload
+   (render.js paintDone). */
+.toc a.done .t-zh::after { content: " ✓"; color: var(--good); font-weight: 700; }
