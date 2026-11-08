@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>程度檢測 — 英文學習</title>
+<meta name="description" content="24 題、約 4 分鐘的單字程度檢測：看英文選中文，最後告訴你該從國中基本字、國中常用字，還是高中單字開始。">
+<!-- noindex, like everything under /learn/. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='12' fill='%231d1d1f'/%3E%3Ctext x='32' y='43' font-family='Helvetica,Arial,sans-serif' font-size='26' font-weight='700' fill='white' text-anchor='middle'%3EAa%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="check.css">
+</head>
+<body>
+
+<nav class="gnav" aria-label="網站">
+  <div class="wrap"><a class="brand brand-link" href="../">英文學習</a></div>
+</nav>
+
+<!-- One screen at a time: the intro, a question, the result. check.js draws
+     each into #screen; nothing here is a form, so nothing is submitted. -->
+<main class="check">
+  <div class="wrap">
+    <div id="screen" aria-live="polite"></div>
+  </div>
+</main>
+
+<footer class="notes">
+  <div class="wrap">
+    <p>題目從國中單字、高中單字兩頁的字表隨機抽出，每次都不一樣。結果只存在這台裝置上。 · <a href="https://lewistoeic.com/" target="_blank" rel="noopener">lewistoeic.com</a></p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="check.js"></script>
+</body>
+</html>

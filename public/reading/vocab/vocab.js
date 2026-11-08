@@ -245,6 +245,17 @@ function openFromHash() {
     becomeTeacher(); D.key = Q.key = ''; render();
     return true;
   }
+  // #set/<set> opens the list at one set: the 程度檢測 on /learn/check/ sends a
+  // student straight to the set it recommends. The hash is then dropped, so a
+  // reload is the ordinary page.
+  const set = location.hash.match(/^#set\/([\w-]+)$/);
+  if (set && /^[1-6]$/.test(set[1]) && LEVEL_COUNT[+set[1] - 1]) {
+    S.view = 'list'; S.scope = set[1]; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = ''; S.shown = 40;
+    render();
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (err) {}
+    setTimeout(goToList, 60);
+    return true;
+  }
   const id = decodeURIComponent(location.hash.slice(1));
   const e = id && ENTRIES.find(x => x.id === id); if (!e) return false;
   S.view = 'list'; S.scope = 'all'; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = '';

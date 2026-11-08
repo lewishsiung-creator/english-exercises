@@ -2777,6 +2777,31 @@ nothing with a student or client in it is ever added here.
   when 高中單字 gains a level or the reading page a text.
 - Same Apple language and tokens as the word pages, `noindex` like all three.
 
+**`/learn/check/` — 程度檢測 (2026-11-08).** The first of the recommendations
+from a review "by the standard of a top trainer": a student should be told
+where to start, not handed three doors. Linked from a strip above the tiles,
+which also shows the last result kept in this browser (`lc.result`).
+
+- **Three bands, eight words each, easiest first:** 國中基本字, 國中常用字,
+  高中 (大考中心 第一、二級 *minus everything on 教育部's list*). Only 10 of
+  第一級's 1,002 words are not already 國中 vocabulary, so 第一級 cannot be a
+  band of its own; the 高中 band in practice measures 第二級, and its result
+  links to `#set/2`.
+- **See the English, pick the Chinese, or 不知道.** 不知道 is there so a
+  student does not guess; a quarter of guesses land and would read as known.
+  Distractors come from the same band and part of speech.
+- **No right or wrong during the test, and no score after it.** A band comes
+  back as 已掌握 (7–8 of 8), 大致掌握 (5–6) or 還需要練; the first band not
+  mastered is where to start. Missed words are listed at the end with their
+  meanings. It **stops early** once a band has four or fewer known.
+- **The result opens the right set.** Both word pages now accept
+  `#set/<set>` (`basic`, `more`, `g7`, `g8` on 國中單字; `1`–`6` on 高中單字),
+  open the list there, and drop the hash so a reload is the ordinary page.
+- **The pools are built, not hand-picked:** `python3 tools/learn/build_check.py`
+  reads both pages' data (plain single lower-case words only, one gloss per
+  word, first meaning of the first sense) into `learn/check/data.js`. Rebuild
+  it after either word list changes.
+
 **Tuned for iPhone, iPad and desktop together (2026-11-08)**, all four pages.
 What was measured and changed, so a later edit does not undo it:
 
