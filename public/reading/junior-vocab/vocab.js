@@ -294,6 +294,18 @@ function openFromHash() {
     becomeTeacher(); D.key = Q.key = ''; render();
     return true;
   }
+  // #today opens 今天這一組 over the whole list: the words due for review first,
+  // then new ones. The 今天的複習 panel on /learn/ links here.
+  if (location.hash === '#today') {
+    S.view = 'cards'; S.scope = 'all'; S.lesson = 'all'; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = '';
+    S.markf = 'all'; $('#markf').value = 'all';
+    if (S.mode === 'self') { D.kind = 'set'; store.set('deckkind', 'set'); }
+    D.key = '';
+    render();
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (err) {}
+    setTimeout(goToList, 60);
+    return true;
+  }
   // #set/<set> opens the list at one set: the 程度檢測 on /learn/check/ sends a
   // student straight to the set it recommends. The hash is then dropped, so a
   // reload is the ordinary page.

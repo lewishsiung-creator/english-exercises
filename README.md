@@ -2777,6 +2777,22 @@ nothing with a student or client in it is ever added here.
   when 高中單字 gains a level or the reading page a text.
 - Same Apple language and tokens as the word pages, `noindex` like all three.
 
+**今天的複習 on `/learn/` (2026-11-08)** — the second recommendation from the
+review: a reason to come back every day, in one place, across both word pages.
+
+- **It reads what the word pages already keep** in the student's own browser:
+  their 自學 marks and review schedule (`jhv.marks`/`jhv.sched` for 國中單字,
+  `hsv.*` for 高中單字). Nothing new is stored and nothing leaves the device.
+  "Due" is the pages' own `isDue()`, copied into `learn/learn.js` — change one,
+  change the other.
+- **It shows the total due and one row per page** with a 「複習 ›」 button that
+  opens that page at `#today`: flashcards, 今天這一組, over the whole list, so
+  the due words come first and new words fill the set to 20. When nothing is
+  due it says so and the buttons become 「學新字 ›」.
+- **Hidden for a student with no marks on either page**; for them the 程度檢測
+  strip below it is the way in. Teaching mode records nothing, so a teacher's
+  device never shows it either.
+
 **`/learn/check/` — 程度檢測 (2026-11-08).** The first of the recommendations
 from a review "by the standard of a top trainer": a student should be told
 where to start, not handed three doors. Linked from a strip above the tiles,

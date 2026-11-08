@@ -37,6 +37,12 @@
      text). -->
 <main class="band">
   <div class="wrap">
+    <!-- 今天的複習: the words due today on both word pages, read from this
+         browser's own records (hsv.* and jhv.*, the pages' self-study marks).
+         Drawn by learn.js; stays hidden for a student who has not used either
+         page yet, for whom the check below is the way in. -->
+    <section class="today" id="today" aria-labelledby="todayTitle" hidden></section>
+
     <!-- The way in for a student who does not know where to start. After a
          check, the line under it names where the check said to begin; that
          result lives only in this browser (lc.result, written by check/). -->
@@ -80,18 +86,6 @@
   </div>
 </footer>
 
-<script>
-  (function () {
-    try {
-      var r = JSON.parse(localStorage.getItem('lc.result') || 'null');
-      if (!r || !r.path) return;
-      var p = document.getElementById('checkLast');
-      var a = document.createElement('a');
-      a.href = '../' + r.path; a.textContent = r.zh;
-      p.append('上次檢測（' + r.date + '）建議從 ', a, ' 開始。');
-      p.hidden = false;
-    } catch (e) { /* storage blocked: the line just stays hidden */ }
-  })();
-</script>
+<script src="learn.js"></script>
 </body>
 </html>
