@@ -2927,8 +2927,9 @@ so the five pages read as one product rather than five neighbours:
   scrolls away above the page's own sticky bar; the reading page nudges the
   bar to the top before its drawer or settings panel opens, since both are
   placed from the bar's height. All five fit on a 375-point iPhone without
-  scrolling. **Only these five carry it** — adding a link to anything else
-  would break the no-site-wide-index rule.
+  scrolling. **Only the family's pages carry it** (six since 學測英文寫作 joined) — never
+  a page with a student or client in it, which would break the
+  no-site-wide-index rule.
 - **The reading page joins the Apple language.** It was the one page still in
   the old teal-on-cream editorial palette. Now: white page, grey tiles for
   questions, word cards and the cover's plan, SF for everything around the
@@ -2941,6 +2942,24 @@ so the five pages read as one product rather than five neighbours:
   topics, number, 記住了 / 還不熟 stacked) became a header row across the top of
   the card, with the two buttons on the right, the way a phone already had it.
   The word gets the card's full width on a laptop. Both `vocab.css` copies.
+
+**學測英文寫作 joins the family (2026-11-08)**, at Lewis's request ("add this
+into this website too"). `/exam-writing/` keeps its URL and its own indexing
+(it was never `noindex`, and joining did not change that). It is general
+material with no student in it, which is what lets it into the family.
+
+- **A fourth tile on `/learn/`**, 第四步, after reading; the tiles are now two
+  by two at every width above a phone (three and an orphan looked unfinished).
+- **The global nav has six links**: 英文學習 · 國中單字 · 高中單字 · 高中閱讀 ·
+  學測寫作 · 程度檢測. On a 375-point iPhone the strip drops to 12px (apple.com's
+  own global-nav size) so all six still fit; narrower than that it scrolls.
+- **The page itself moved into the Apple look by tokens**, as `/reading/` did:
+  `exam-writing/apple.css`, linked after `house.css`, redefines the palette
+  (`--navy`, the interactive colour, becomes blue; `--gold`, the attention
+  colour, becomes Apple's orange), adds dark mode, sets headings in SF and
+  turns the 學習目標 box into a grey tile. `style.css` is untouched; the essays
+  and sentence bank keep the serif. Its drawer and teacher panel nudge the bar
+  to the top before opening, because the strip above it scrolls away.
 
 **UX check after Levels 3–6 (2026-11-08)**, both word pages:
 

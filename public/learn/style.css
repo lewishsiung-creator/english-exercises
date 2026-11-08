@@ -65,11 +65,13 @@ body {
 
 /* ---------- the three tiles ---------- */
 .band { padding-block: clamp(40px, 6vw, 80px); }
-.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+/* Four tiles, two by two: the four steps read as a square rather than three
+   and an orphan. */
+.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .tile {
   display: flex; flex-direction: column; align-items: flex-start;
   background: var(--card); color: var(--ink); text-decoration: none;
-  border-radius: 28px; padding: 34px 32px 30px; min-height: 400px;
+  border-radius: 28px; padding: 34px 32px 30px; min-height: 320px;
   -webkit-tap-highlight-color: transparent;
   transition: transform .25s cubic-bezier(.4, 0, .2, 1), box-shadow .25s cubic-bezier(.4, 0, .2, 1);
 }
@@ -96,11 +98,11 @@ body {
 .notes p { margin: 0; }
 .notes a { color: var(--accent); text-decoration: none; display: inline-block; padding-block: 10px; }
 
-/* An iPad held upright still has room for three across; only a phone stacks
-   them. Between the two, the tiles lose height rather than columns. */
+/* An iPad held upright keeps two across; only a phone stacks them. Between
+   the two, the tiles lose height rather than columns. */
 @media (max-width: 1023px) {
   .tiles { gap: 14px; }
-  .tile { min-height: 340px; padding: 28px 24px 26px; border-radius: 24px; }
+  .tile { min-height: 300px; padding: 28px 24px 26px; border-radius: 24px; }
   .num { margin-top: 18px; font-size: clamp(44px, 6.4vw, 64px); }
   .title { margin-top: 18px; font-size: 24px; }
   .desc { font-size: 15px; }

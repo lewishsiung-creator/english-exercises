@@ -1,12 +1,13 @@
 /* The 英文學習 global nav: one thin dark strip across the top of every page in
-   this family -- /learn/, /learn/check/, /reading/, /reading/vocab/ and
-   /reading/junior-vocab/ -- the way apple.com runs one global nav above each
+   this family -- /learn/, /learn/check/, /reading/, /reading/vocab/,
+   /reading/junior-vocab/ and /exam-writing/ -- the way apple.com runs one global nav above each
    product's own local bar. It scrolls away; each page's own bar below it stays
    pinned. Self-contained: it reads none of the page's tokens, so it looks the
    same on all five, light theme or dark.
 
-   Only these five pages carry it. The rest of the site stays unlinked on
-   purpose (students must not find each other's material). */
+   Only these six pages carry it, all general material with no student in it.
+   /exam-writing/ joined at Lewis's request on 2026-11-08. The rest of the site
+   stays unlinked on purpose (students must not find each other's material). */
 
 .fam {
   position: relative; z-index: 40;
@@ -42,10 +43,13 @@
   .fam .fam-home { margin-right: 6px; }
   .fam a { padding: 0 9px; }
 }
-/* On a 375-point iPhone all five fit without scrolling, the current one included. */
+/* On a 375-point iPhone all six fit without scrolling, the current one
+   included: 12px, the size apple.com's own global nav uses. Narrower than
+   that (an iPhone SE) the row scrolls sideways. */
 @media (max-width: 400px) {
-  .fam-in { gap: 0; padding-left: max(14px, env(safe-area-inset-left, 0px)); padding-right: max(10px, env(safe-area-inset-right, 0px)); }
-  .fam a { padding: 0 7px; }
-  .fam .fam-home { padding-left: 0; }
+  .fam { font-size: 12px; }
+  .fam-in { gap: 0; padding-left: max(12px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); }
+  .fam a { padding: 0 5px; }
+  .fam .fam-home { padding-left: 0; margin-right: 2px; font-size: 13px; }
 }
 @media print { .fam { display: none; } }

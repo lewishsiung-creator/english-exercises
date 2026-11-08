@@ -466,7 +466,16 @@ $('#rate').value = store.get('rate', '0.95');
 const panel = $('#panel');
 const panelBtn = $('#panelToggle');
 
+/* The 英文學習 strip sits above the bar and scrolls away. The drawer and the
+   teacher panel are placed from the bar's height, so before either opens the
+   page is nudged until the bar is pinned at the top -- same as /reading/. */
+function pinBar() {
+  const y = $('.bar').getBoundingClientRect().top;
+  if (y > 0) window.scrollBy(0, y);
+}
+
 function setPanel(open) {
+  if (open) pinBar();
   panel.hidden = !open;
   panelBtn.setAttribute('aria-expanded', String(open));
 }
@@ -520,6 +529,7 @@ const spy = new IntersectionObserver((entries) => {
 
 const navToggle = $('#navToggle');
 navToggle.addEventListener('click', () => {
+  if (!document.body.classList.contains('nav-open')) pinBar();
   const open = document.body.classList.toggle('nav-open');
   navToggle.setAttribute('aria-expanded', String(open));
 });

@@ -10,7 +10,8 @@
      colours must be percent-encoded, since a bare "#" would be read as the
      start of the URL fragment. -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d3f6e'/%3E%3Cpath d='M22 40 L38 16 L46 22 L30 46 L20 48 Z' fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linejoin='round'/%3E%3Cpath d='M14 55h36' stroke='%23f2c14e' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
-<meta name="theme-color" content="#f7f6f2">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 
 <link rel="stylesheet" href="style.css">
 
@@ -28,11 +29,26 @@
      and it deliberately sets no body size, no measure and no colour of its
      own. See ../house.css. -->
 <link rel="stylesheet" href="../house.css">
+<link rel="stylesheet" href="../learn/fam.css">
+<!-- The 英文學習 family's Apple look and dark mode, by tokens. Linked last. -->
+<link rel="stylesheet" href="apple.css">
 
 </head>
 <body>
 
 <a class="skip" href="#doc">跳到內容</a>
+
+<!-- The 英文學習 global nav, the same on every page of this family. See ../learn/fam.css. -->
+<nav class="fam" aria-label="英文學習">
+  <div class="fam-in">
+    <a class="fam-home" href="../learn/">英文學習</a>
+    <a href="../reading/junior-vocab/">國中單字</a>
+    <a href="../reading/vocab/">高中單字</a>
+    <a href="../reading/">高中閱讀</a>
+    <a href="./" aria-current="page">學測寫作</a>
+    <a href="../learn/check/">程度檢測</a>
+  </div>
+</nav>
 
 <header class="bar">
   <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
