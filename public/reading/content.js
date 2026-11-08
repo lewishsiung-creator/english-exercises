@@ -39,6 +39,9 @@ const RD = {
     zh: '三篇文章，一次讀一篇。先試著直接讀英文，點虛線字看字義，整段卡住再點「中」。讀完後，最後一節可以複習單字、片語和搭配詞。',
     en: 'Three texts, one at a time. Read the English first, tap a dotted word for its meaning, and open the 中 only when a whole paragraph has stopped you. The last section reviews the words, phrases and collocations.',
   },
+  /* Up to the top page over this page and its two word lists. */
+  up: { href: '../learn/', zh: '‹ 英文學習' },
+
   /* The two word-list subpages, linked from the cover. */
   vocab: [
     { href: 'vocab/', zh: '高中單字：大考中心參考詞彙表 →', en: 'The CEEC word list, Levels 1–2' },

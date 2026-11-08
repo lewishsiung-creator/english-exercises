@@ -557,3 +557,10 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 .cover-link span { font-family: var(--font-ui); font-size: .78rem; font-weight: 500; color: var(--ink-faint); }
 .cover-link:hover { border-color: var(--gold); }
 .cover-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+
+/* Up to 英文學習, above the eyebrow. */
+.cover-up {
+  display: inline-block; margin-bottom: 14px;
+  font-family: var(--font-zh); font-size: .86rem; color: var(--gold); text-decoration: none;
+}
+.cover-up:hover { text-decoration: underline; }

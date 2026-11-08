@@ -361,6 +361,7 @@ function buildPassage(p, n) {
 function buildCover() {
   return `
     <header class="cover" id="top">
+      ${RD.up ? `<a class="cover-up" href="${text(RD.up.href)}">${text(RD.up.zh)}</a>` : ''}
       <p class="eyebrow">${text(RD.kicker)}</p>
       <h1><span class="h-zh">${text(RD.titleZh)}</span><span class="h-sub">${text(RD.title)}</span></h1>
       <div class="lead cover-intro">

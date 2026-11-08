@@ -2761,6 +2761,22 @@ lines that needed a subject became "we", "us", "your" or 公司, and the
 characters keep their names. It also carries `noindex`, which keeps it out of
 search results and does not make the URL private.
 
+### `/learn/` — 英文學習, the top page over these three
+
+Asked for 2026-11-08 ("a top page, and put the other pages under it"). It
+collects **exactly three pages** — 國中單字, 高中單字, 高中英文閱讀, in the
+order a student climbs — and Lewis chose that scope knowing his October rule:
+no site-wide index, because students must not find each other's material. So
+nothing with a student or client in it is ever added here.
+
+- **The three keep their URLs.** He chose a new top page over moving them, so
+  links already handed out still work; each page gained a 「‹ 英文學習」 link up
+  (the word pages' `.up`, the reading page's `RD.up`).
+- **The numbers on the tiles are typed**, not read from the pages' data, which
+  would mean loading two large word files to print two numbers. Update them
+  when 高中單字 gains a level or the reading page a text.
+- Same Apple language and tokens as the word pages, `noindex` like all three.
+
 ### `/reading/vocab/` — 高中單字, 大考中心's list
 
 A subpage of the reading page, linked from its cover: 大考中心《高中英文參考詞彙表
@@ -4251,6 +4267,7 @@ public/sentence-upgrades/2026-10-17/  the 2026/10/17 set, with assessment and a 
 public/recording-practice/        passages to read aloud and record
 public/robot-helper/      the 113 學年度 writing worksheet
 public/exam-writing/      the 109–115 學測 essay survey
+public/learn/             英文學習: the top page over the three below, and only them
 public/reading/           three high school texts, with his word tables
 public/reading/vocab/     高中單字: 大考中心's list, Levels 1–2 so far
 public/reading/junior-vocab/  國中單字: 教育部's 2,000 words
