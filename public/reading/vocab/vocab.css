@@ -510,3 +510,33 @@ body.staged { overflow: hidden; }
 .band-next { margin: 26px 0 0; text-align: center; font: 17px/1.5 var(--font-zh); color: var(--muted); }
 .band-next a { color: var(--accent); text-decoration: none; margin-left: 6px; }
 @media (hover: hover) { .band-next a:hover { text-decoration: underline; } }
+
+/* ---------- iPhone, iPad and a mouse (2026-11-08) ----------
+
+   The base rules above were measured with a mouse. On a touch screen
+   (an iPhone, and an iPad too -- both report a coarse pointer) the small
+   links grow to a 44px target, and anything pressable gives a little when
+   pressed, since there is no hover to tell a finger it hit something. */
+@media (pointer: coarse) {
+  .hero .up, .band-next a, details.about summary, .notes .fine a { display: inline-block; padding-block: 11px; }
+  .meta .copy { padding: 11px 2px; }
+  .mark button { min-height: 40px; }
+  .seg button { min-height: 40px; }
+  .lv button { min-height: 42px; }
+  .gnav .link { min-height: 44px; }
+}
+.tile, .btn, .opt, .lv button, .seg button, .mark button, .cta-link { -webkit-tap-highlight-color: transparent; }
+.tile:active { transform: scale(.985); }
+.btn:active, .lv button:active, .mark button:active { transform: scale(.97); }
+.opt:active:not(:disabled) { transform: scale(.99); }
+@media (prefers-reduced-motion: reduce) {
+  .tile:active, .btn:active, .lv button:active, .mark button:active, .opt:active { transform: none; }
+}
+/* On a phone the meta row (letter, level, 記住了, 還不熟, 複製連結) just fails to
+   fit and 複製連結 drops to a line of its own above every word. Tighter gaps
+   keep it on the row. */
+@media (max-width: 560px) {
+  .meta { column-gap: 6px; }
+  .meta .mark { gap: 5px; }
+  .mark button { padding-inline: 11px; }
+}

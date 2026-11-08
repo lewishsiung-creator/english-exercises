@@ -77,9 +77,12 @@ body {
 .tile {
   display: flex; flex-direction: column; align-items: flex-start;
   background: var(--card); color: var(--ink); text-decoration: none;
-  border-radius: 28px; padding: 34px 32px 30px; min-height: 420px;
+  border-radius: 28px; padding: 34px 32px 30px; min-height: 400px;
+  -webkit-tap-highlight-color: transparent;
   transition: transform .25s cubic-bezier(.4, 0, .2, 1), box-shadow .25s cubic-bezier(.4, 0, .2, 1);
 }
+/* A finger gets the feedback a pointer gets from hover: the tile gives a little. */
+.tile:active { transform: scale(.985); }
 @media (hover: hover) {
   .tile:hover { transform: scale(1.015); box-shadow: 0 14px 40px rgb(0 0 0 / .09); }
   .tile:hover .go { text-decoration: underline; }
@@ -99,13 +102,20 @@ body {
 /* ---------- footnotes ---------- */
 .notes { border-top: 1px solid var(--line); padding-block: 22px 48px; font: 12px/1.6 var(--font-zh); color: var(--muted); }
 .notes p { margin: 0; }
-.notes a { color: var(--accent); text-decoration: none; }
+.notes a { color: var(--accent); text-decoration: none; display: inline-block; padding-block: 10px; }
 
-@media (max-width: 860px) {
+/* An iPad held upright still has room for three across; only a phone stacks
+   them. Between the two, the tiles lose height rather than columns. */
+@media (max-width: 1023px) {
+  .tiles { gap: 14px; }
+  .tile { min-height: 340px; padding: 28px 24px 26px; border-radius: 24px; }
+  .num { margin-top: 18px; font-size: clamp(44px, 6.4vw, 64px); }
+  .title { margin-top: 18px; font-size: 24px; }
+  .desc { font-size: 15px; }
+}
+@media (max-width: 699px) {
   .tiles { grid-template-columns: 1fr; }
-  .tile { min-height: 0; padding: 28px 24px 26px; }
-  .num { margin-top: 18px; }
-  .title { margin-top: 18px; }
+  .tile { min-height: 0; }
 }
 @media (max-width: 560px) {
   .wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }

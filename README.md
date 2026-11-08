@@ -2777,6 +2777,25 @@ nothing with a student or client in it is ever added here.
   when 高中單字 gains a level or the reading page a text.
 - Same Apple language and tokens as the word pages, `noindex` like all three.
 
+**Tuned for iPhone, iPad and desktop together (2026-11-08)**, all four pages.
+What was measured and changed, so a later edit does not undo it:
+
+- **Touch targets.** An iPad reports a coarse pointer just as an iPhone does,
+  so every `(pointer: coarse)` rule applies to both. The reading page's bar
+  buttons (house.css draws them 32px) are 44px there; the small text links —
+  「‹ 英文學習」, 「複製連結」, 關於這份字表, the footer — grow padding to ~44px.
+- **The notch.** Every page sets `viewport-fit=cover`, so on an iPhone held
+  sideways the page runs under the notch unless it adds
+  `env(safe-area-inset-*)`. The word pages and `/learn/` did already; the
+  reading page's shell, bar and footer now do too.
+- **iPad upright.** `/learn/` keeps three tiles across down to 700px and
+  shortens them instead; the reading page centres its one column below 950px.
+- **Press feedback.** Tiles, buttons and answers scale slightly while pressed,
+  because a finger gets no hover. Off under reduced motion.
+- **`100dvh`** after every `100vh` max-height, so the reading page's settings
+  panel is not cut off by Safari's address bar.
+- On a phone the word cards' meta row is tightened so 「複製連結」 stays on it.
+
 ### `/reading/vocab/` — 高中單字, 大考中心's list
 
 A subpage of the reading page, linked from its cover: 大考中心《高中英文參考詞彙表

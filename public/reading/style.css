@@ -115,12 +115,18 @@ body.zh-all .zh-chip { display: none; }
 .bar-btn { flex: none; cursor: pointer; }
 .bar-btn-zh { font-family: var(--font-zh); }
 
+/* The page is drawn edge to edge (viewport-fit=cover), so on an iPhone held
+   sideways the notch side needs its inset added, or the text runs under it. */
 .shell {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   max-width: 72rem;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 max(20px, env(safe-area-inset-right, 0px)) 0 max(20px, env(safe-area-inset-left, 0px));
+}
+header.bar {
+  padding-left: max(clamp(16px, 3vw, 28px), env(safe-area-inset-left, 0px));
+  padding-right: max(clamp(16px, 3vw, 28px), env(safe-area-inset-right, 0px));
 }
 main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 
@@ -130,6 +136,9 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 }
 
 @media (max-width: 949px) {
+  /* One column on an iPad held upright: the column sits in the middle instead
+     of leaving the right third of the screen empty. */
+  main { justify-self: center; width: 100%; }
   #nav {
     position: fixed; z-index: 35; inset: var(--bar-h) auto 0 0;
     width: min(19rem, 84vw); overflow-y: auto;
@@ -149,7 +158,7 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 
 .toc { font-family: var(--font-ui); }
 @media (min-width: 950px) {
-  .toc { position: sticky; top: var(--bar-h); max-height: calc(100vh - var(--bar-h));
+  .toc { position: sticky; top: var(--bar-h); max-height: calc(100vh - var(--bar-h)); max-height: calc(100dvh - var(--bar-h));
          overflow-y: auto; padding: 28px 0 40px; }
 }
 .toc-head em { font-style: normal; margin-left: 4px; }
@@ -475,6 +484,9 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
   top: calc(var(--bar-h) + 8px); right: 14px;
   width: min(22rem, calc(100vw - 28px));
   max-height: calc(100vh - var(--bar-h) - 24px); overflow-y: auto;
+  /* 100vh on an iPhone counts the address bar, which can cut off the panel's
+     last button; dvh is the height actually on screen. */
+  max-height: calc(100dvh - var(--bar-h) - 24px);
   padding: 18px 20px 22px;
   border: 1px solid var(--line);
   font-family: var(--font-ui); font-size: 14px;
@@ -500,7 +512,8 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 .panel-btn-quiet { background: transparent; color: var(--ink); }
 
 .site-foot {
-  max-width: 46rem; margin: 0 auto; padding: 26px 20px 40px;
+  max-width: 46rem; margin: 0 auto;
+  padding: 26px max(20px, env(safe-area-inset-right, 0px)) max(40px, env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px));
   border-top: 1px solid var(--line);
   display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
   gap: 6px 14px; text-align: center;
@@ -520,7 +533,18 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
   .say, .zh-chip { position: relative; }
   .say::after, .zh-chip::after { content: ""; position: absolute; inset: -9px; }
   .opt { min-height: 44px; }
+  /* house.css draws the bar buttons 32px tall, a size for a pointer. On a
+     phone or an iPad they get 44 -- the bar is 56, so there is room. */
+  header.bar .bar-btn { min-height: 44px; }
+  header.bar .bar-btn-quiet { min-width: 44px; justify-content: center; }
+  .cover-up { padding-block: 10px; margin-bottom: 4px; }
+  .s-btn { min-height: 44px; }
+  .again-btn { min-height: 44px; }
 }
+
+/* Touch feedback where hover has none. */
+.cover-link, .opt, .s-btn, .again-btn { -webkit-tap-highlight-color: transparent; }
+.cover-link:active, .s-btn:active, .again-btn:active { transform: scale(.98); }
 
 /* A phone has no room for the English half of the title. */
 @media (max-width: 520px) {
