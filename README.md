@@ -2943,6 +2943,14 @@ so the five pages read as one product rather than five neighbours:
   the card, with the two buttons on the right, the way a phone already had it.
   The word gets the card's full width on a laptop. Both `vocab.css` copies.
 
+**The opener's numbers and plan on an iPhone (2026-11-08)**, both word pages,
+from Lewis's screenshot. Three numbers across left labels like 「個字，都有中文與例句」
+running edge to edge, and the plan was three long paragraphs. Each label is
+now split at its comma in the HTML (`.lab` + `.lab-x`; the comma comes back
+with `::before` on wider screens), so a phone shows the unit under the number
+and the rest as a smaller second line; the plan becomes three white cards set
+at 15px. Desktop and iPad look as before.
+
 **主題 — words by topic (2026-11-08)**, both word pages. Lewis asked for
 「以主題分類單字」 and chose, from options, both lists and inside the existing
 pages (not a new page), so the cards, quiz, 熟練度 and progress all work on a

@@ -817,7 +817,7 @@ function renderIntro() {
   $('#wk-b').textContent = weeks(ENTRIES.length);
   $('#stat-words').textContent = ENTRIES.length.toLocaleString();
   $('#stat-levels').textContent = have;
-  $('#stat-levels-lab').textContent = have === 6 ? '個級別，全表都在這裡' : '個級別已加入，共 6 級';
+  $('#stat-levels-lab').innerHTML = have === 6 ? '個級別<span class="lab-x">全表都在這裡</span>' : '個級別已加入<span class="lab-x">共 6 級</span>';
   const span = n => { const l = ENTRIES.filter(e => e.lv === n); return [l[0].w, l[l.length - 1].w]; };
   const waiting = LEVEL_COUNT.map((c, i) => c ? 0 : i + 1).filter(Boolean);
   $('#tiles').innerHTML = LEVEL_COUNT.map((c, i) => {

@@ -650,3 +650,25 @@ body.staged { overflow: hidden; }
   .topics { gap: 8px; justify-content: flex-start; }
   .topic { padding: 9px 14px; font-size: 15px; }
 }
+
+/* ---------- the numbers and the plan on a phone (2026-11-08) ----------
+   Three numbers across left their labels running edge to edge -- 「個字，都有
+   中文與例句」 is ten characters in a column a third of the screen wide -- so
+   the label is split at its comma: the unit stays under the number, the rest
+   drops to a second, quieter line. The plan's three paragraphs become three
+   white cards, set a size smaller, so the band reads as blocks rather than a
+   long column of text. */
+.stat .lab-x::before { content: "，"; }
+@media (max-width: 560px) {
+  .stats { gap: 6px; align-items: start; }
+  .stat { gap: 4px; }
+  .stat .num { font-size: clamp(34px, 10vw, 42px); }
+  .stat .lab { font: 600 14px/1.35 var(--font-zh); color: var(--ink); max-width: none; }
+  .stat .lab-x { display: block; margin-top: 3px; font: 400 12px/1.45 var(--font-zh); color: var(--muted); }
+  .stat .lab-x::before { content: none; }
+  .plan { margin-top: 32px; gap: 10px; }
+  .plan-col { background: var(--card); border-radius: 18px; padding: 16px 18px 17px; }
+  .plan-k { font-size: 13px; }
+  .plan-v { margin-top: 6px; font-size: 15px; line-height: 1.7; }
+  .plan-v b { font-size: 1.12em; }
+}
