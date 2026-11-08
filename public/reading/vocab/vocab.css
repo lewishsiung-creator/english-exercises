@@ -672,3 +672,14 @@ body.staged { overflow: hidden; }
   .plan-v { margin-top: 6px; font-size: 15px; line-height: 1.7; }
   .plan-v b { font-size: 1.12em; }
 }
+
+/* 今天這一組, findable: the opener's main button, a line under it saying how
+   many are due, and the plan's 「今天這一組」 as a link (openToday()). */
+.today-note { margin: 14px 0 0; text-align: center; font: 15px/1.5 var(--font-zh); color: var(--muted); letter-spacing: 0; }
+.today-note[hidden] { display: none; }
+.plan-link {
+  display: inline; padding: 0; border: 0; background: none; cursor: pointer;
+  font: inherit; color: var(--accent); font-weight: 600;
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;
+  -webkit-tap-highlight-color: transparent;
+}

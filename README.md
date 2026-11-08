@@ -2943,6 +2943,13 @@ so the five pages read as one product rather than five neighbours:
   the card, with the two buttons on the right, the way a phone already had it.
   The word gets the card's full width on a laptop. Both `vocab.css` copies.
 
+**今天這一組, findable (2026-11-08)**, both word pages. Lewis: 「今天這一組」不好找 —
+the plan told students to do it every day, but the opener's button said only
+開始練閃卡 (which did open it). The main button now reads 開始今天這一組, a line
+under it says how many words are due (自學, once there is a record), and
+「今天這一組」 in the plan is a link. All three call `openToday()`, which is
+also what `#today` runs.
+
 **The Chinese copy, reworded (2026-11-08)**, at Lewis's request (「中文的說明再修改成
 自然的台灣中文」): about 60 lines of interface and explanation text across the
 six pages — the word pages' 為什麼從這裡學／每天練多少／要多久 (was 學完能做到／

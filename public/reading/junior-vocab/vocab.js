@@ -361,6 +361,28 @@ $('#rail').addEventListener('pointermove', ev => {
 ['pointerup', 'pointercancel'].forEach(t => $('#rail').addEventListener(t, () => { railLast = null; }));
 
 /* a word's own address: #bank opens the full list at that word */
+/* 今天這一組 over the whole list: the words due for review first, then new
+   ones. Opened by #today (the 今天的複習 card on /learn/), by the opener's main
+   button and by the 「今天這一組」 link in the plan -- until 2026-11-08 the
+   opener said only 開始練閃卡, and a student told to do 今天這一組 every day
+   could not find it. */
+function openToday() {
+  S.view = 'cards'; S.scope = 'all'; S.topic = 'all'; $('#topic').value = 'all'; S.lesson = 'all'; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = '';
+  S.markf = 'all'; $('#markf').value = 'all';
+  if (S.mode === 'self') { D.kind = 'set'; store.set('deckkind', 'set'); }
+  D.key = '';
+  render();
+}
+/* Under the opener's button: how many are due today, so the button means
+   something before it is pressed. 自學 only, and only once there is a record. */
+function paintTodayNote() {
+  const el = $('#todaynote'); if (!el) return;
+  const due = ENTRIES.filter(e => isDue(e.id)).length;
+  const started = Object.keys(MARKS).length;
+  el.hidden = S.mode !== 'self' || !started;
+  el.textContent = !due ? '今天沒有要複習的字，這一組都是新字。'
+    : due >= 20 ? `今天有 ${due} 個字該複習，一組先練其中 20 個。` : `今天有 ${due} 個字該複習，再補新字湊滿約 20 個。`;
+}
 function openFromHash() {
   if (location.hash === '#teach') {
     becomeTeacher(); D.key = Q.key = ''; render();
@@ -378,11 +400,7 @@ function openFromHash() {
   // #today opens 今天這一組 over the whole list: the words due for review first,
   // then new ones. The 今天的複習 panel on /learn/ links here.
   if (location.hash === '#today') {
-    S.view = 'cards'; S.scope = 'all'; S.topic = 'all'; $('#topic').value = 'all'; S.lesson = 'all'; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = '';
-    S.markf = 'all'; $('#markf').value = 'all';
-    if (S.mode === 'self') { D.kind = 'set'; store.set('deckkind', 'set'); }
-    D.key = '';
-    render();
+    openToday();
     try { history.replaceState(null, '', location.pathname + location.search); } catch (err) {}
     setTimeout(goToWork, 60);
     return true;
@@ -938,6 +956,7 @@ function goToWork() {
 }
 
 function render() {
+  paintTodayNote();
   paintTileProgress();
   $('#modeseg').hidden = !TEACHER; $('#stagebtn').hidden = !TEACHER;
   document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === S.mode));
@@ -962,6 +981,7 @@ document.addEventListener('click', ev => {
     render(); goToList(); return;
   }
   if (t.dataset.task) { copyTask(t.dataset.task); return; }
+  if (t.dataset.go === 'today') { openToday(); goToWork(); return; }
   if (t.dataset.go) { S.view = t.dataset.go; render(); goToWork(); return; }
   if (t.dataset.pick) { S.view = 'list'; S.scope = t.dataset.pick; S.lesson = 'all'; S.shown = 40; S.q = ''; $('#q').value = ''; render(); goToList(); return; }
   if (t.dataset.orig != null) { toast(`<span>原表寫法：${esc(t.dataset.orig)}</span>`, 5000); return; }

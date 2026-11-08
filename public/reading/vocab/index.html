@@ -48,9 +48,10 @@
     <p class="hero-sub">學測的字，一級一級來。</p>
     <p class="hero-en">The words the GSAT is written from.</p>
     <div class="hero-cta">
-      <button class="btn primary" data-go="cards">開始練閃卡</button>
+      <button class="btn primary" data-go="today">開始今天這一組</button>
       <button class="cta-link" data-go="quiz">做一輪測驗 ›</button>
     </div>
+    <p class="today-note" id="todaynote" hidden></p>
   </div>
 </header>
 
@@ -67,7 +68,7 @@
       <div class="plan-col rise"><p class="plan-k">為什麼從這裡學</p>
         <p class="plan-v">大考中心說，學測的字以第一到第五級為主。從最常見的第一級開始，一級一級往上學。</p></div>
       <div class="plan-col rise"><p class="plan-k">每天練多少</p>
-        <p class="plan-v">做一次「今天這一組」，大約 20 個字、15 分鐘。該複習的字會先出現，其他的再補新字。</p></div>
+        <p class="plan-v">做一次<button class="plan-link" data-go="today">「今天這一組」</button>，大約 20 個字、15 分鐘。該複習的字會先出現，其他的再補新字。</p></div>
       <div class="plan-col rise"><p class="plan-k">要多久</p>
         <p class="plan-v">只算新字的話，第一級大約 <b id="wk-a">8</b> 週可以全部看過一遍，六級全部大約 <b id="wk-b">43</b> 週。之後每個字會依你記得多熟，隔 2 到 60 天再出現讓你複習。</p></div>
     </div>

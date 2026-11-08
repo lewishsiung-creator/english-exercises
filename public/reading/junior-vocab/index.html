@@ -48,9 +48,10 @@
     <p class="hero-sub">教育部 2,000 字，加上七、八年級課本單字。</p>
     <p class="hero-en">The 2,000 words of Taiwan's junior-high curriculum.</p>
     <div class="hero-cta">
-      <button class="btn primary" data-go="cards">開始練閃卡</button>
+      <button class="btn primary" data-go="today">開始今天這一組</button>
       <button class="cta-link" data-go="quiz">做一輪測驗 ›</button>
     </div>
+    <p class="today-note" id="todaynote" hidden></p>
   </div>
 </header>
 
@@ -67,7 +68,7 @@
       <div class="plan-col rise"><p class="plan-k">為什麼從這裡學</p>
         <p class="plan-v">教育部的基本字，是國中課本和會考閱讀裡最常出現的字。七、八年級的課本單字照課次排，可以跟著學校的進度一起學。</p></div>
       <div class="plan-col rise"><p class="plan-k">每天練多少</p>
-        <p class="plan-v">做一次「今天這一組」，大約 20 個字、15 分鐘。該複習的字會先出現，其他的再補新字。</p></div>
+        <p class="plan-v">做一次<button class="plan-link" data-go="today">「今天這一組」</button>，大約 20 個字、15 分鐘。該複習的字會先出現，其他的再補新字。</p></div>
       <div class="plan-col rise"><p class="plan-k">要多久</p>
         <p class="plan-v">只算新字的話，基本字大約 <b id="wk-a">9</b> 週可以全部看過一遍，全部大約 <b id="wk-b">16</b> 週。之後每個字會依你記得多熟，隔 2 到 60 天再出現讓你複習。</p></div>
     </div>
