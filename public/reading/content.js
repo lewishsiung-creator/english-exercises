@@ -39,6 +39,14 @@ const RD = {
     zh: '三篇文章，一次讀一篇。先試著直接讀英文，點虛線字看字義，整段卡住再點「中」。讀完後，最後一節可以複習單字、片語和搭配詞。',
     en: 'Three texts, one at a time. Read the English first, tap a dotted word for its meaning, and open the 中 only when a whole paragraph has stopped you. The last section reviews the words, phrases and collocations.',
   },
+  /* What a student can do after this page, and how to pace it. Shown on the
+     cover as three short columns, like the word pages' plan. */
+  plan: [
+    { k: '讀完能做到', v: '抓出一篇文章的主旨、判斷作者的立場、從上下文猜出生字，正是學測閱讀測驗和克漏字考的能力。' },
+    { k: '每次', v: '一篇文章約 30 分鐘：先讀英文、做閱讀測驗，卡住再看中譯。最後的複習四關約 20 分鐘。' },
+    { k: '多久', v: '三篇加複習，一週內可以完成。隔幾天再回來做一次複習四關，答錯的字會記得更牢。' },
+  ],
+
   /* Up to the top page over this page and its two word lists. */
   up: { href: '../learn/', zh: '‹ 英文學習' },
 

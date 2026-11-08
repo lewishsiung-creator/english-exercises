@@ -588,3 +588,10 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
   font-family: var(--font-zh); font-size: .86rem; color: var(--gold); text-decoration: none;
 }
 .cover-up:hover { text-decoration: underline; }
+
+/* What the page gets a student and how to pace it: three short columns under
+   the standfirst, the reading page's version of the word pages' plan. */
+.cover-plan { margin-top: 22px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.cp-k { margin: 0; font-family: var(--font-zh); font-size: .82rem; font-weight: 600; color: var(--gold); }
+.cp-v { margin: 4px 0 0; font-family: var(--font-zh); font-size: .9rem; line-height: 1.75; color: var(--ink-soft); }
+@media (max-width: 720px) { .cover-plan { grid-template-columns: 1fr; gap: 12px; } }

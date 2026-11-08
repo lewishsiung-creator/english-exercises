@@ -675,8 +675,12 @@ function renderScope() {
 }
 /* The opener's numbers and tiles, from the data, so they show the tables as
    printed (1,211 and 794) rather than the titles' round numbers. */
+// weeks to meet every new word once, at the 20 a day 今天這一組 deals
+const weeks = n => Math.ceil(n / 20 / 7);
 function renderIntro() {
   $('#stat-words').textContent = ENTRIES.length.toLocaleString();
+  $('#wk-a').textContent = weeks(SET_COUNT.basic);
+  $('#wk-b').textContent = weeks(ENTRIES.length);
   // a word taught in both grades counts once
   $('#stat-basic').textContent = ENTRIES.filter(e => e.lessons.length).length.toLocaleString();
   const blurb = {

@@ -368,6 +368,8 @@ function buildCover() {
         <p class="lead-zh">${text(RD.intro.zh)}</p>
         <p class="lead-en">${text(RD.intro.en)}</p>
       </div>
+      ${(RD.plan || []).length ? `<div class="cover-plan">${RD.plan.map((p) => `
+        <div><p class="cp-k">${text(p.k)}</p><p class="cp-v">${text(p.v)}</p></div>`).join('')}</div>` : ''}
       ${(RD.vocab || []).length ? `<div class="cover-links">${RD.vocab.map((v) => `
         <a class="cover-link" href="${text(v.href)}">${text(v.zh)}
           <span>${text(v.en)}</span></a>`).join('')}</div>` : ''}

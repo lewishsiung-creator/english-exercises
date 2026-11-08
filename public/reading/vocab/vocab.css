@@ -540,3 +540,13 @@ body.staged { overflow: hidden; }
   .meta .mark { gap: 5px; }
   .mark button { padding-inline: 11px; }
 }
+
+/* ---------- the plan: what, how much a day, how long ----------
+   Three short columns under the numbers, the way a product page lays out
+   "what you get". Plain text on the grey band, so the numbers above stay the
+   loudest thing. */
+.plan { margin-top: clamp(40px, 6vw, 64px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 3vw, 36px); }
+.plan-k { margin: 0; font: 600 14px/1.3 var(--font-zh); color: var(--red); letter-spacing: 0; }
+.plan-v { margin: 8px 0 0; font: 16px/1.7 var(--font-zh); color: var(--ink); letter-spacing: 0; }
+.plan-v b { font: 700 1.25em/1 var(--font-display); color: var(--accent); }
+@media (max-width: 720px) { .plan { grid-template-columns: 1fr; } }

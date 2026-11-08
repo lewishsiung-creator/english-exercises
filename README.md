@@ -2777,6 +2777,30 @@ nothing with a student or client in it is ever added here.
   when 高中單字 gains a level or the reading page a text.
 - Same Apple language and tokens as the word pages, `noindex` like all three.
 
+**Goals, a daily dose, and a report for the teacher (2026-11-08)** — the next
+two recommendations from the review.
+
+- **「學完能做到／每天／多久」** sits under the numbers on both word pages
+  (`.plan`) and on the reading page's cover (`RD.plan`). The daily dose is one
+  今天這一組 — about 20 words, 15 minutes, due words first. The weeks are
+  computed in `renderIntro()` as new words ÷ 20 a day, so they follow the data
+  when a level is added. The 學測 line on 高中單字 quotes only what 大考中心's
+  own 編修說明 says (學測 draws mainly on 第一到第五級); no figure is claimed
+  that the site cannot check.
+- **學習報告** is a button under 今天的複習 on `/learn/`: a dialog with an
+  optional name (kept as `lc.name`) and a few lines of text — 程度檢測 result,
+  per page 已記住 / 還不熟 / 今天到期, and up to 20 還不熟 words — copied for
+  the student to paste into LINE. There is no server; this is the one way a
+  teacher sees a student's practice, and the student decides when to send it.
+  A word appears by its id made readable (`tb-how-old` → `how old`), since
+  `/learn/` does not load the word lists.
+- The third recommendation, a human check of the AI-written Chinese, is a
+  **private** claude.ai page for Lewis, not part of this repo: 200 entries, 50
+  drawn (seeded) from each of 國中基本字, 國中常用字, 高中第一級, 高中第二級,
+  each marked 沒問題 / 有問題 with a note, copied back as `QA-RESULT {...}`
+  keyed `moe:<id>` / `ceec:<id>`. Apply the fixes to `tools/moe/zh.json` or
+  `tools/ceec/zh.json` and rebuild.
+
 **今天的複習 on `/learn/` (2026-11-08)** — the second recommendation from the
 review: a reason to come back every day, in one place, across both word pages.
 

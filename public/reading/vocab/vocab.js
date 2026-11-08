@@ -625,8 +625,12 @@ function renderScope() {
 /* The opener's numbers and level tiles, from the data: a level added later
    changes them without anyone editing the HTML. A tile opens the list at its
    level; the levels still to come share one tile, like the bar's one pill. */
+// weeks to meet every new word once, at the 20 a day 今天這一組 deals
+const weeks = n => Math.ceil(n / 20 / 7);
 function renderIntro() {
   const have = LEVEL_COUNT.filter(Boolean).length;
+  $('#wk-a').textContent = weeks(LEVEL_COUNT[0]);
+  $('#wk-b').textContent = weeks(ENTRIES.length);
   $('#stat-words').textContent = ENTRIES.length.toLocaleString();
   $('#stat-levels').textContent = have;
   $('#stat-levels-lab').textContent = have === 6 ? '個級別，全表都在這裡' : '個級別已加入，共 6 級';
