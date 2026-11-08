@@ -370,7 +370,7 @@ function openFromHash() {
     D.key = '';
     render();
     try { history.replaceState(null, '', location.pathname + location.search); } catch (err) {}
-    setTimeout(goToList, 60);
+    setTimeout(goToWork, 60);
     return true;
   }
   // #lesson/<grade>/<lesson> opens a grade at one lesson: a teacher's task on
@@ -785,9 +785,19 @@ $('#stage').addEventListener('touchend', ev => {
 /* One button per set. The 課次 select appears only inside a grade, and lists
    that grade's lessons. */
 const SET_COUNT = Object.fromEntries(SETS.map(([k]) => [k, ENTRIES.filter(e => e.sets.includes(k)).length]));
+/* On a phone the level pills are one sliding row; keep the chosen one in view
+   without moving the page itself (scrollIntoView would). */
+function keepPillInView() {
+  const bar = $('#scope'), on = bar.querySelector('[aria-pressed="true"]');
+  if (!on || bar.scrollWidth <= bar.clientWidth) return;
+  const left = on.offsetLeft - bar.offsetLeft, right = left + on.offsetWidth;
+  if (left < bar.scrollLeft + 16 || right > bar.scrollLeft + bar.clientWidth - 28) bar.scrollLeft = Math.max(0, left - 16);
+}
+
 function renderScope() {
   $('#scope').innerHTML = `<button data-scope="all" aria-pressed="${S.scope === 'all'}">全部<small>${ENTRIES.length.toLocaleString()}</small></button>` +
     SETS.map(([k, short]) => `<button data-scope="${k}" aria-pressed="${S.scope === k}">${short}${isGrade(k) ? '課本' : ''}<small>${SET_COUNT[k].toLocaleString()}</small></button>`).join('');
+  keepPillInView();
   const sel = $('#lesson');
   sel.hidden = !isGrade(S.scope);
   if (isGrade(S.scope)) {
@@ -839,6 +849,21 @@ function goToList() {
   window.scrollTo(0, bar.getBoundingClientRect().top + window.scrollY - $('.gnav').offsetHeight);
 }
 
+/* Where the work is: the first card, flashcard or question, just under the
+   sticky bars. Every control that changes what the page shows lands the reader
+   here or at the controls -- never back at the top. The engine came from the
+   Cambridge pages, which jump to the top of the page after each change; that
+   was right when the controls were the top of the page, but with the opener
+   above them it threw the student three screens up after every quiz question
+   (fixed 2026-11-08). */
+function goToWork() {
+  const lnav = document.querySelector('.lnav');
+  const pinned = getComputedStyle(lnav).position === 'sticky';
+  const above = $('.gnav').offsetHeight + (pinned ? lnav.offsetHeight : 0) + 8;
+  const y = $('#main').getBoundingClientRect().top + window.scrollY - above;
+  if (Math.abs(window.scrollY - y) > 4) window.scrollTo(0, y);
+}
+
 function render() {
   $('#modeseg').hidden = !TEACHER; $('#stagebtn').hidden = !TEACHER;
   document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === S.mode));
@@ -858,7 +883,7 @@ document.addEventListener('click', ev => {
   if (t.dataset.say != null) { say(t.dataset.say); return; }
   if (t.dataset.copy) { copyLink(t.dataset.copy); return; }
   if (t.dataset.task) { copyTask(t.dataset.task); return; }
-  if (t.dataset.go) { S.view = t.dataset.go; render(); goToList(); return; }
+  if (t.dataset.go) { S.view = t.dataset.go; render(); goToWork(); return; }
   if (t.dataset.pick) { S.view = 'list'; S.scope = t.dataset.pick; S.lesson = 'all'; S.shown = 40; S.q = ''; $('#q').value = ''; render(); goToList(); return; }
   if (t.dataset.orig != null) { toast(`<span>原表寫法：${esc(t.dataset.orig)}</span>`, 5000); return; }
   if (t.dataset.letter) { if (ev.detail === 0) jumpLetter(t.dataset.letter); return; }  // keyboard; touch and mouse go through pointer events
@@ -869,8 +894,8 @@ document.addEventListener('click', ev => {
     D.key = Q.key = ''; S.shown = 40; render(); return;
   }
   if (t.dataset.kind) { D.kind = t.dataset.kind; store.set('deckkind', D.kind); D.key = ''; renderCards(); return; }
-  if (t.dataset.view) { S.view = t.dataset.view; render(); window.scrollTo(0, 0); return; }
-  if (t.dataset.scope) { S.scope = t.dataset.scope; S.lesson = 'all'; S.shown = 40; S.q = ''; $('#q').value = ''; render(); window.scrollTo(0, 0); return; }
+  if (t.dataset.view) { S.view = t.dataset.view; render(); goToWork(); return; }
+  if (t.dataset.scope) { S.scope = t.dataset.scope; S.lesson = 'all'; S.shown = 40; S.q = ''; $('#q').value = ''; render(); goToList(); return; }
   if (t.dataset.mark) {
     markWord(t.dataset.id, t.dataset.mark, true);
     const art = t.closest('.entry');
@@ -895,7 +920,7 @@ document.addEventListener('click', ev => {
     case 'next': D.i++; D.flipped = false; renderCards(); break;
     case 'nextK': answerCard(true); break;
     case 'nextR': answerCard(false); break;
-    case 'nextset': buildDeck(false); renderCards(); window.scrollTo(0, 0); break;
+    case 'nextset': buildDeck(false); renderCards(); goToWork(); break;
     case 'stagebtn': openStage(); break;
     case 'st-close': closeStage(); break;
     case 'st-full': document.documentElement.requestFullscreen?.().catch(() => {}); break;
@@ -906,14 +931,14 @@ document.addEventListener('click', ev => {
     case 'qskip': Q.missed.add(Q.i); Q.solved = true; SP.msg = ''; renderQuiz(); break;
     case 'spcheck': checkSpell(); break;
     case 'sphint': spellHint(); break;
-    case 'qnext': Q.i++; Q.tried = new Set(); Q.solved = false; resetSpell(); if (Q.i >= Q.items.length) Q.done = true; renderQuiz(); window.scrollTo(0, 0); break;
+    case 'qnext': Q.i++; Q.tried = new Set(); Q.solved = false; resetSpell(); if (Q.i >= Q.items.length) Q.done = true; renderQuiz(); goToWork(); break;
     case 'qagain': buildQuiz(); renderQuiz(); break;
     case 'markmissed': Q.items.forEach((q, i) => { if (Q.missed.has(i)) markWord(q.e.id, 'r'); }); t.textContent = '已標成「還不熟」'; t.disabled = true; break;
     case 'setbtn': openPanel(); break;
     case 'closepanel': $('#panel').close(); break;
     case 'fresh':
       S.q = ''; $('#q').value = ''; S.scope = 'all'; S.lesson = 'all'; S.letter = 'all'; $('#letter').value = 'all';
-      S.zh = false; D.key = Q.key = ''; S.shown = 40; $('#panel').close(); render(); window.scrollTo(0, 0); break;
+      S.zh = false; D.key = Q.key = ''; S.shown = 40; $('#panel').close(); render(); goToList(); break;
     case 'clearmarks':
       if (t.dataset.sure) { MARKS = {}; SCHED = {}; store.set('marks', MARKS); store.set('sched', SCHED); D.key = ''; $('#panel').close(); delete t.dataset.sure; t.textContent = '清除所有標記'; render(); }
       else { t.dataset.sure = '1'; t.textContent = '確定清除？再按一次'; }
@@ -939,7 +964,7 @@ $('#q').addEventListener('input', ev => { clearTimeout(qt); qt = setTimeout(() =
   const letters = [...new Set(ENTRIES.map(letterOf))].filter(L => L !== '#').sort();
   const lsel = $('#letter');
   lsel.innerHTML = '<option value="all">字母：A–Z</option>' + letters.map(L => `<option value="${L}">${L.toUpperCase()} 開頭</option>`).join('');
-  lsel.addEventListener('change', ev => { S.letter = ev.target.value; S.shown = 40; window.scrollTo(0, 0); render(); });
+  lsel.addEventListener('change', ev => { S.letter = ev.target.value; S.shown = 40; render(); goToList(); });
   $('#lesson').addEventListener('change', ev => { S.lesson = ev.target.value; S.shown = 40; render(); goToList(); });
 })();
 $('#markf').addEventListener('change', ev => { S.markf = ev.target.value; S.shown = 40; render(); });

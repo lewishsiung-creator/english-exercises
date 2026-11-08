@@ -2942,6 +2942,24 @@ so the five pages read as one product rather than five neighbours:
   the card, with the two buttons on the right, the way a phone already had it.
   The word gets the card's full width on a laptop. Both `vocab.css` copies.
 
+**UX check after Levels 3–6 (2026-11-08)**, both word pages:
+
+- **Fixed: every control threw the student back to the top of the page.**
+  The engine came from the Cambridge pages, which call a jump-to-top after a
+  view, set or letter change, after 下一題 and after the next flashcard set —
+  right when the controls were the top of the page, wrong once the opener sat
+  above them: on a phone each quiz question meant scrolling three screens
+  back down. Now `goToWork()` lands on the card or question just under the
+  sticky bars (view switch, hero buttons, 下一題, next set, `#today`) and
+  `goToList()` on the controls (level, letter, 重新開始).
+- **The phone opener is shorter**: the three numbers sit three across, the
+  level tiles two across, and the level pills are one sideways-sliding row
+  (`keepPillInView()` scrolls the chosen one into view) instead of four rows.
+  With six levels the opener had run to about five screens.
+- Looked at and left: the A–Z rail looked visible over the opener in the
+  preview, but only because the preview pane was hidden and paused its fade;
+  it hides correctly. On an iPad held upright 第六級 wraps to a second row.
+
 **Tuned for iPhone, iPad and desktop together (2026-11-08)**, all four pages.
 What was measured and changed, so a later edit does not undo it:
 

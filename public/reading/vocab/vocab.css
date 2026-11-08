@@ -591,3 +591,32 @@ body.staged { overflow: hidden; }
 .lh-prog.full .lp-bar span { background: var(--ok); }
 .lp-n { font: 600 14px/1.3 var(--font-zh); color: var(--muted); letter-spacing: 0; }
 .lh-prog.full .lp-n { color: var(--ok); }
+
+/* ---------- phone, 2026-11-08 UX pass ----------
+   With all six levels in, the opener on a phone ran to five screens before
+   the first word: three numbers stacked, six level tiles stacked, then seven
+   level pills over four rows. Now the numbers sit three across, the tiles two
+   across, and the level pills are one row that slides sideways (the selected
+   one is scrolled into view by renderScope). */
+@media (max-width: 560px) {
+  .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .stat { gap: 6px; }
+  .stat .num { font-size: 40px; }
+  .stat .lab { font-size: 13px; line-height: 1.4; }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .tile { padding: 20px 18px 18px; border-radius: 22px; gap: 4px; }
+  .tile-n { font-size: 44px; margin-bottom: 4px; }
+  .tile-t { font-size: 19px; }
+  .tile-d { font-size: 13px; }
+  .tile-go { font-size: 15px; padding-top: 10px; }
+  .lv {
+    flex: 1 1 100%; min-width: 0; flex-wrap: nowrap; overflow-x: auto;
+    margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))) calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+    padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(44px, env(safe-area-inset-right, 0px));   /* the last pill clears the fade */
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
+            mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
+  }
+  .lv::-webkit-scrollbar { display: none; }
+  .lv button { flex: none; white-space: nowrap; }
+}
