@@ -25,19 +25,34 @@
   </div>
 </nav>
 
-<header class="opener wrap">
-  <a class="up" href="../">‹ 高中英文閱讀</a>
-  <div class="kicker">大考中心 · 高中英文參考詞彙表</div>
-  <h1>The words the GSAT is written from, one level at a time.</h1>
-  <p class="dek">大考中心《高中英文參考詞彙表》第一、二級，共 2,004 個字。每個字都有中文、一句例句和中譯；可以聽發音、依級別或字母練習、翻閃卡，也可以自我測驗。第三到第六級還沒加進來。</p>
-  <details class="about">
-    <summary>關於這份字表</summary>
-    <p>英文單字、詞性和級別，都照大考中心公布的<a href="https://www.ceec.edu.tw/xmdoc?xsmsid=0K213553204833715309" target="_blank" rel="noopener">《高中英文參考詞彙表（111 學年度起適用）》</a>，中華民國 109 年 7 月版。著作權屬財團法人大學入學考試中心基金會所有。中文、例句和例句的中譯是這個網站補上的，不是大考中心的內容。</p>
-    <p>字表共六級、每級 1,002 個字。依大考中心的說明，學測以第一到第五級為主，偶爾會出現第六級；英聽以第一到第四級為主。</p>
-    <p>字表的寫法照抄：<i>agree(ment)</i> 表示 agree 加上 -ment 就是名詞 agreement；<i>chopstick(s)</i> 表示通常用複數；斜線隔開的是同一個字的不同說法，例如 <i>bicycle/bike</i>。</p>
-    <p>原表有一處筆誤，<i>calm</i> 的詞性少了一個點（v./adj./n），這裡已經補上。</p>
-  </details>
+<!-- The opener is built the way Apple builds a product page: a white hero with
+     one large line, a grey band of big numbers, then a row of tiles. Counts are
+     filled in by vocab.js from the data, so they stay true as levels are added. -->
+<header class="hero">
+  <div class="wrap">
+    <a class="up" href="../">‹ 高中英文閱讀</a>
+    <p class="eyebrow">大考中心 · 高中英文參考詞彙表</p>
+    <h1 class="hero-title">高中單字</h1>
+    <p class="hero-sub">學測的字，一級一級來。</p>
+    <p class="hero-en">The words the GSAT is written from.</p>
+    <div class="hero-cta">
+      <button class="btn primary" data-go="cards">開始練閃卡</button>
+      <button class="cta-link" data-go="quiz">做一輪測驗 ›</button>
+    </div>
+  </div>
 </header>
+
+<section class="band" aria-label="這份字表">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat rise"><span class="num" id="stat-words">2,004</span><span class="lab">個字，都有中文與例句</span></div>
+      <div class="stat rise"><span class="num" id="stat-levels">2</span><span class="lab" id="stat-levels-lab">個級別已加入，共 6 級</span></div>
+      <div class="stat rise"><span class="num">4</span><span class="lab">種題型，從字義到拼字</span></div>
+    </div>
+    <h2 class="band-title rise">從哪一級開始？</h2>
+    <div class="tiles" id="tiles"></div>
+  </div>
+</section>
 
 <div class="lnav">
   <div class="wrap">
@@ -64,6 +79,20 @@
 </div>
 
 <main class="wrap" id="main"></main>
+
+<!-- Where the list comes from, as Apple sets its footnotes: small, grey, last. -->
+<footer class="notes">
+  <div class="wrap">
+    <details class="about">
+      <summary>關於這份字表</summary>
+      <p>英文單字、詞性和級別，都照大考中心公布的<a href="https://www.ceec.edu.tw/xmdoc?xsmsid=0K213553204833715309" target="_blank" rel="noopener">《高中英文參考詞彙表（111 學年度起適用）》</a>，中華民國 109 年 7 月版。著作權屬財團法人大學入學考試中心基金會所有。中文、例句和例句的中譯是這個網站補上的，不是大考中心的內容。</p>
+      <p>字表共六級、每級 1,002 個字。依大考中心的說明，學測以第一到第五級為主，偶爾會出現第六級；英聽以第一到第四級為主。</p>
+      <p>字表的寫法照抄：<i>agree(ment)</i> 表示 agree 加上 -ment 就是名詞 agreement；<i>chopstick(s)</i> 表示通常用複數；斜線隔開的是同一個字的不同說法，例如 <i>bicycle/bike</i>。</p>
+      <p>原表有一處筆誤，<i>calm</i> 的詞性少了一個點（v./adj./n），這裡已經補上。</p>
+    </details>
+    <p class="fine">更多教材與課程 · <a href="https://lewistoeic.com/" target="_blank" rel="noopener">lewistoeic.com</a></p>
+  </div>
+</footer>
 <nav class="rail" id="rail" aria-label="字母索引" hidden></nav>
 <div class="toast" id="toast" role="status" hidden></div>
 <section class="stage" id="stage" aria-label="投影" tabindex="-1" hidden></section>

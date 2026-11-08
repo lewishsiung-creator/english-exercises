@@ -2786,6 +2786,18 @@ words); 3–6 sit on the level bar as 「還沒進來」 until their Chinese is 
   `python3 tools/ceec/build.py`; only entries with Chinese reach `words.js`.
 - **`noindex`**, like the reading page: the list is 大考中心's, published for
   non-commercial use with credit, and the page credits it in 關於這份字表.
+- **Set in Apple's product-page language, not the Cambridge pages' HBR +
+  Apple pairing** (asked for 2026-11-08, "參考 apple 網頁"). One face for
+  everything (the system SF stands in; the Charter serif is gone), a white hero
+  with one large line and a blue pill, then a grey band: three big gradient
+  numbers, a row of level tiles, and the word list as white cards. Orange for
+  the small eyebrows where Cambridge uses red; blue for everything pressable.
+  The numbers and tiles are filled from the data by `renderIntro()`, so adding
+  a level updates them. Motion is one fade-and-rise on the opener, switched on
+  by the script and off under reduced motion. The hero and tile buttons *jump*
+  to the controls rather than scroll smoothly: a smooth scroll that long is cut
+  short by the render that runs with it. 關於這份字表 moved to footnotes at
+  the bottom of the page.
 
 ## Landscape Architecture Portfolio — a student's own work
 

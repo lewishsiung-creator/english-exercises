@@ -599,6 +599,50 @@ function renderScope() {
     LEVEL_COUNT.map((c, i) => c ? `<button data-scope="${i + 1}" aria-pressed="${S.scope === String(i + 1)}">${LEVEL_ZH[i + 1]}<small>${c.toLocaleString()}</small></button>` : '').join('') +
     (waiting.length ? `<button disabled>${range}<small>還沒進來</small></button>` : '');
 }
+/* The opener's numbers and level tiles, from the data: a level added later
+   changes them without anyone editing the HTML. A tile opens the list at its
+   level; the levels still to come share one tile, like the bar's one pill. */
+function renderIntro() {
+  const have = LEVEL_COUNT.filter(Boolean).length;
+  $('#stat-words').textContent = ENTRIES.length.toLocaleString();
+  $('#stat-levels').textContent = have;
+  $('#stat-levels-lab').textContent = have === 6 ? '個級別，全表都在這裡' : '個級別已加入，共 6 級';
+  const span = n => { const l = ENTRIES.filter(e => e.lv === n); return [l[0].w, l[l.length - 1].w]; };
+  const waiting = LEVEL_COUNT.map((c, i) => c ? 0 : i + 1).filter(Boolean);
+  $('#tiles').innerHTML = LEVEL_COUNT.map((c, i) => {
+    if (!c) return '';
+    const [a, z] = span(i + 1);
+    return `<button class="tile rise" data-pick="${i + 1}">
+      <span class="tile-n">${i + 1}</span>
+      <span class="tile-t">${LEVEL_ZH[i + 1]}</span>
+      <span class="tile-d">${c.toLocaleString()} 個字，從 <i>${esc(a)}</i> 到 <i>${esc(z)}</i></span>
+      <span class="tile-go">看這一級 ›</span></button>`;
+  }).join('') + (waiting.length ? `<div class="tile tile-wait rise">
+      <span class="tile-n">${waiting[0]}${waiting.length > 1 ? '–' + waiting[waiting.length - 1] : ''}</span>
+      <span class="tile-t">${waiting.length > 1 ? `第${CN[waiting[0] - 1]}～${CN[waiting[waiting.length - 1] - 1]}級` : LEVEL_ZH[waiting[0]]}</span>
+      <span class="tile-d">即將加入。學測以第一到第五級為主。</span></div>` : '');
+}
+
+/* Fade-and-rise as the opener scrolls into view. Only with JS and only when the
+   reader has not asked for less motion: without either, everything just shows. */
+function riseIn() {
+  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.documentElement.classList.add('motion');
+  const seen = new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add('in'); seen.unobserve(en.target); }
+  }), { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.rise').forEach((el, i) => { el.style.transitionDelay = `${(i % 3) * 70}ms`; seen.observe(el); });
+}
+
+/* From the hero and the tiles straight to the controls, with the list already
+   where the button said it would be. A jump, not an animation: a smooth scroll
+   this long is cut short by the render that runs alongside it, the same reason
+   /grammar-notes/ jumps. */
+function goToList() {
+  const bar = document.querySelector('.lnav');
+  window.scrollTo(0, bar.getBoundingClientRect().top + window.scrollY - $('.gnav').offsetHeight);
+}
+
 function render() {
   $('#modeseg').hidden = !TEACHER; $('#stagebtn').hidden = !TEACHER;
   document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === S.mode));
@@ -617,6 +661,8 @@ document.addEventListener('click', ev => {
   const t = ev.target.closest('button'); if (!t) return;
   if (t.dataset.say != null) { say(t.dataset.say); return; }
   if (t.dataset.copy) { copyLink(t.dataset.copy); return; }
+  if (t.dataset.go) { S.view = t.dataset.go; render(); goToList(); return; }
+  if (t.dataset.pick) { S.view = 'list'; S.scope = t.dataset.pick; S.shown = 40; S.q = ''; $('#q').value = ''; render(); goToList(); return; }
   if (t.dataset.orig != null) { toast(`<span>原表寫法：${esc(t.dataset.orig)}</span>`, 5000); return; }
   if (t.dataset.letter) { if (ev.detail === 0) jumpLetter(t.dataset.letter); return; }  // keyboard; touch and mouse go through pointer events
   if (t.classList.contains('chip')) { t.parentElement.classList.add('open'); return; }
@@ -725,5 +771,7 @@ document.addEventListener('keydown', ev => {
   else if (S.view === 'cards' && ev.key === 'ArrowLeft') { D.i = Math.max(0, D.i - 1); D.flipped = false; renderCards(); }
 });
 
+renderIntro();
 render();
+riseIn();
 openFromHash();
