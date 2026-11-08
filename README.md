@@ -2964,8 +2964,10 @@ What was measured and changed, so a later edit does not undo it:
 ### `/reading/vocab/` — 高中單字, 大考中心's list
 
 A subpage of the reading page, linked from its cover: 大考中心《高中英文參考詞彙表
-（111學年度起適用）》, 109 年 7 月版, one level at a time. Levels 1–2 are in (2,004
-words); 3–6 sit on the level bar as 「還沒進來」 until their Chinese is written.
+（111學年度起適用）》, 109 年 7 月版, one level at a time. **All six levels are in
+(6,012 words)**: 1–2 on 2026-11-08, 3–6 later the same day when Lewis asked
+「加入第三級到第六級」. The 「還沒進來」 pill and tile are still in the code for a
+level with no data, but no level shows them now.
 
 - **The engine is a copy of `/cambridge/lists.js` and `lists.css`**, as
   `vocab.js` and `vocab.css`, so 自學／教學 with `#teach`, 今天這一組, the
@@ -2984,6 +2986,28 @@ words); 3–6 sit on the level bar as 「還沒進來」 until their Chinese is 
   the -ment noun, so `agree(ment)`'s n sense starts with `agreement`.
 - **To add a level**, write its entries into `zh.json` and run
   `python3 tools/ceec/build.py`; only entries with Chinese reach `words.js`.
+- **How Levels 3–6 were written.** 4,008 entries in 20 batches of ~200 (five
+  per level), each writer doing the Chinese, the example and the collocations
+  together, then 10 reviewers (two batches each) who changed 238 entries:
+  wrong or secondary first meanings, British usage (*mobile phone*, *mock
+  exam*, *change gear*), compound words passed off as collocations
+  (*firefighter*, *dodgeball*), weak chunks (*famous inventor*), a
+  mistranslation or two, and content not fit for teenagers — crude idioms
+  out, violent examples softened, offensive senses labelled （冒犯用語）, no real
+  people (one example had named Jill, a real student; one alluded to a real
+  missionary). 214 of the new words already had collocations from 國中單字 and
+  kept them; the other 3,794 got their own (7,214 collocations, 73 words with
+  none because nothing natural exists). As a side effect 14 textbook-only
+  words on 國中單字 that share a headword with Levels 3–6 now show
+  collocations too.
+- **The list's own oddities stay as printed**: `underlying` is listed as a
+  verb, so its v sense explains *underlie*; `content(ment)` is v./(n.) only, so
+  the adjective 滿足的 is not on its card.
+- **Size.** `words.js` is 2.9 MB (≈1.1 MB gzipped; both hosts compress it). The
+  list renders 40 cards at a time, so the page stays quick; the cost is the
+  one download.
+- **程度檢測 still draws its 高中 band from Levels 1–2 only.** A band for 3–6
+  would need its own design (which levels, how many questions); not done.
 - **`noindex`**, like the reading page: the list is 大考中心's, published for
   non-commercial use with credit, and the page credits it in 關於這份字表.
 - **Set in Apple's product-page language, not the Cambridge pages' HBR +

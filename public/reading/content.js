@@ -50,7 +50,7 @@ const RD = {
 
   /* The two word-list subpages, linked from the cover. */
   vocab: [
-    { href: 'vocab/', zh: '高中單字：大考中心參考詞彙表 →', en: 'The CEEC word list, Levels 1–2' },
+    { href: 'vocab/', zh: '高中單字：大考中心參考詞彙表 →', en: 'The CEEC word list, Levels 1–6' },
     { href: 'junior-vocab/', zh: '國中單字：教育部 2,000 字 →', en: 'The junior-high curriculum list' },
   ],
   sourceNote: {
