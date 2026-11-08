@@ -101,6 +101,7 @@ let SCHED = store.get('sched', {});    // id -> { due: day number, step }
 const STEPS = [2, 5, 12, 30, 60];
 const today = () => Math.floor((Date.now() - new Date().getTimezoneOffset() * 60000) / 864e5);
 function markWord(id, m, toggle) {
+  const before = stopsOf(id);
   if (toggle && MARKS[id] === m) { delete MARKS[id]; delete SCHED[id]; }
   else if (m === 'r') { MARKS[id] = 'r'; SCHED[id] = { due: today() + 1, step: -1 }; }
   else {
@@ -109,6 +110,7 @@ function markWord(id, m, toggle) {
   }
   store.set('marks', MARKS); store.set('sched', SCHED);
   practiced();
+  announceStops(before);
 }
 function isDue(id) {
   if (!MARKS[id]) return false;
@@ -719,6 +721,48 @@ function renderScope() {
    level; the levels still to come share one tile, like the bar's one pill. */
 // weeks to meet every new word once, at the 20 a day 今天這一組 deals
 const weeks = n => Math.ceil(n / 20 / 7);
+const GROUPS = [1, 2, 3, 4, 5, 6].map(n => {
+  const list = ENTRIES.filter(e => e.lv === n);
+  const ids = new Set(list.map(e => e.id));
+  return { key: String(n), name: LEVEL_ZH[n], list, has: id => ids.has(id) };
+}).filter(g => g.list.length);
+/* ---------- progress on the tiles, and the milestones ----------
+   Each tile shows how much of its set this student has marked 記住了, with a
+   stop every quarter -- ¼, ½, ¾, 全部. Passing a stop gets one line in the
+   toast: no points and no badge, just the news that a quarter of a set is in.
+   43 weeks of 高中單字 needed stations on the way (2026-11-08). This device
+   only, and 自學 only: 教學 keeps no marks, so its tiles show nothing. */
+const QUARTER = ['¼', '½', '¾', '全部'];
+const knownIn = g => g.list.reduce((n, e) => n + (MARKS[e.id] === 'k' ? 1 : 0), 0);
+const stopOf = (n, total) => Math.floor(n * 4 / total);          // 0 to 4 stops passed
+function paintTileProgress() {
+  document.querySelectorAll('#tiles [data-pick]').forEach(t => {
+    const g = GROUPS.find(x => x.key === t.dataset.pick); if (!g) return;
+    let p = t.querySelector('.tile-p');
+    if (!p) { p = document.createElement('span'); p.className = 'tile-p'; t.insertBefore(p, t.querySelector('.tile-go')); }
+    const n = knownIn(g), total = g.list.length, s = stopOf(n, total);
+    p.hidden = S.mode !== 'self' || !n;            // only on a set this student has started
+    if (p.hidden) return;
+    const next = s < 4 ? `下一站 ${QUARTER[s]}（${Math.ceil(total * (s + 1) / 4).toLocaleString()}）` : '全部記住 ✓';
+    p.innerHTML = `<span class="tp-bar" aria-hidden="true"><span style="width:${n / total * 100}%"></span><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i></span>
+      <span class="tp-t">已記住 ${n.toLocaleString()} · ${next}</span>`;
+  });
+}
+/* Called by markWord with the stops each of the word's sets had passed before. */
+function stopsOf(id) {
+  return GROUPS.filter(g => g.has(id)).map(g => [g, stopOf(knownIn(g), g.list.length)]);
+}
+function announceStops(before) {
+  for (const [g, was] of before) {
+    const n = knownIn(g), now = stopOf(n, g.list.length);
+    if (now > was) {
+      toast(`<span>${esc(g.name)} ${QUARTER[now - 1]} 到站：已記住 ${n.toLocaleString()} 個字${now === 4 ? '，全部記住了 ✓' : ''}</span>`, 4200);
+      break;
+    }
+  }
+  paintTileProgress();
+}
+
 function renderIntro() {
   const have = LEVEL_COUNT.filter(Boolean).length;
   $('#wk-a').textContent = weeks(LEVEL_COUNT[0]);
@@ -740,6 +784,7 @@ function renderIntro() {
       <span class="tile-n">${waiting[0]}${waiting.length > 1 ? '–' + waiting[waiting.length - 1] : ''}</span>
       <span class="tile-t">${waiting.length > 1 ? `第${CN[waiting[0] - 1]}～${CN[waiting[waiting.length - 1] - 1]}級` : LEVEL_ZH[waiting[0]]}</span>
       <span class="tile-d">即將加入。學測以第一到第五級為主。</span></div>` : '');
+  paintTileProgress();
 }
 
 /* Fade-and-rise as the opener scrolls into view. Only with JS and only when the
@@ -778,6 +823,7 @@ function goToWork() {
 }
 
 function render() {
+  paintTileProgress();
   $('#modeseg').hidden = !TEACHER; $('#stagebtn').hidden = !TEACHER;
   document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === S.mode));
   document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === S.view));

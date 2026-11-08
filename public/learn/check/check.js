@@ -1,8 +1,10 @@
 /* 程度檢測 — where should this student start?
 
-   A vocabulary-size check in three bands, easiest first: 國中基本字, 國中常用字,
-   then 高中 (第一、二級 minus everything already on the 國中 list). Eight
-   words a band, each "see the English, pick the Chinese", with a fifth
+   A vocabulary-size check in five bands, easiest first: 國中基本字, 國中常用字,
+   then 高中 in three steps -- 第一、二級 (minus everything already on the 國中
+   list), 第三、四級, 第五、六級; the last two were added on 2026-11-08 when
+   高中單字 gained Levels 3–6, so a strong student is placed in the list
+   rather than sent past it. Eight words a band, each "see the English, pick the Chinese", with a fifth
    choice, 不知道.
 
    Four decisions it rests on:
@@ -23,7 +25,9 @@ const PER_BAND = 8;
 const BANDS = [
   { key: 'basic', zh: '國中基本字', href: '../../reading/junior-vocab/#set/basic', page: '國中單字' },
   { key: 'more', zh: '國中常用字', href: '../../reading/junior-vocab/#set/more', page: '國中單字' },
-  { key: 'hs', zh: '高中單字', href: '../../reading/vocab/#set/2', page: '高中單字' },
+  { key: 'hs', zh: '高中第一、二級', href: '../../reading/vocab/#set/2', page: '高中單字' },
+  { key: 'hs34', zh: '高中第三、四級', href: '../../reading/vocab/#set/3', page: '高中單字' },
+  { key: 'hs56', zh: '高中第五、六級', href: '../../reading/vocab/#set/5', page: '高中單字' },
 ];
 // known out of 8: 7–8 已掌握, 5–6 大致掌握, 0–4 還需要練
 const grade = n => n >= PER_BAND - 1 ? 'good' : n >= PER_BAND - 3 ? 'fair' : 'low';
@@ -83,9 +87,9 @@ function showIntro() {
     <section class="intro">
       <p class="eyebrow">英文學習</p>
       <h1>程度檢測</h1>
-      <p class="sub">約 4 分鐘，找到你該從哪裡開始。</p>
+      <p class="sub">4 到 8 分鐘，找到你該從哪裡開始。</p>
       <ul class="how">
-        <li><b>${PER_BAND * BANDS.length} 題以內</b>：看英文，選它的中文意思。</li>
+        <li><b>${PER_BAND * BANDS.length} 題以內</b>：看英文，選它的中文意思。程度到了才會往下考，多數人不用做完。</li>
         <li><b>不確定就按「不知道」</b>。猜對的字會讓結果不準。</li>
         <li><b>過程中不告訴你對錯</b>，最後一次看，也會列出值得先看的字。</li>
       </ul>
@@ -130,7 +134,8 @@ function answer(k) {
 }
 
 /* The first band not yet mastered is where to start. If every band is, the
-   next thing is reading -- and 第三級, when it arrives. */
+   student knows the whole 大考中心 list well: the next thing is reading and
+   writing. */
 function recommend() {
   const at = BANDS.findIndex((b, i) => i <= T.band && grade(T.known[b.key]) !== 'good');
   if (at >= 0) {
@@ -141,7 +146,7 @@ function recommend() {
     return { zh: b.zh, href: b.href, page: b.page, why };
   }
   return { zh: '高中英文閱讀', href: '../../reading/', page: '高中英文閱讀',
-    why: '三組字你都掌握了。接下來用文章練閱讀，高中單字第三級起也會陸續加入。' };
+    why: '五組字你都掌握了，大考中心六級的字對你都不陌生。接下來用文章練閱讀，再到學測英文寫作練寫。' };
 }
 
 /* Before and after. Every result is kept here (lc.history, the last 12), so a

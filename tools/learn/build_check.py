@@ -7,6 +7,8 @@ Three bands, easiest first, each a pool the page draws 8 questions from:
   basic  教育部 表一 基本字                       tools/moe/
   more   教育部 表二 其他常用字                   tools/moe/
   hs     大考中心 第一、二級, minus 教育部's list   tools/ceec/
+  hs34   大考中心 第三、四級 (added 2026-11-08, when Levels 3–6 joined the page)
+  hs56   大考中心 第五、六級
 
 The 高中 band leaves out every word 教育部's list already has: a band that
 repeats an easier one cannot tell the two levels apart. That leaves almost
@@ -46,6 +48,10 @@ def gloss(z):
     first = z['senses'][0]
     meaning = re.split(r'[；;]', first[1])[0]
     meaning = re.sub(r'^[A-Za-z ]+\s', '', meaning).strip()   # "agreement 同意" -> "同意"
+    meaning = re.sub(r'^（[^）]*）', '', meaning).strip()       # "（英）汽油" -> "汽油"
+    meaning = re.sub(r'（[^）]*）$', '', meaning).strip()       # a trailing note is not part of the option
+    if meaning.count('（') > meaning.count('）'):                # a note cut in half by the ； split
+        meaning = meaning[:meaning.rindex('（')].strip()
     return first[0], meaning
 
 
@@ -59,16 +65,20 @@ def main():
     ceec_words, ceec_zh = load('ceec')
     on_moe = set().union(*(heads(e['w']) for e in moe_words))
 
-    bands = {'basic': [], 'more': [], 'hs': []}
+    bands = {'basic': [], 'more': [], 'hs': [], 'hs34': [], 'hs56': []}
+    band_of = {1: 'hs', 2: 'hs', 3: 'hs34', 4: 'hs34', 5: 'hs56', 6: 'hs56'}
     for e in moe_words:
         if plain(e['w']):
             bands[e['set']].append(item(e['w'], moe_zh[e['id']]))
     for e in ceec_words:
-        if e['level'] > 2 or e['id'] not in ceec_zh or not plain(e['w']):
+        if e['id'] not in ceec_zh or not plain(e['w']):
             continue
         if e['w'] in on_moe:
             continue
-        bands['hs'].append(item(e['w'], ceec_zh[e['id']]))
+        # a word whose first sense is labelled offensive is not a test item
+        if '冒犯' in ceec_zh[e['id']]['senses'][0][1]:
+            continue
+        bands[band_of[e['level']]].append(item(e['w'], ceec_zh[e['id']]))
 
     # one gloss per band is one option: two words sharing a gloss could both be "right"
     for k, items in bands.items():

@@ -11,7 +11,11 @@
       to that page's 今天這一組 (#today), which deals the due words first. The
       rule for "due" is the pages' own isDue(), copied, not reinvented.
    2. The last 程度檢測 result, written by check/ as lc.result.
-   3. 學習報告: the same numbers as a few lines of text the student copies and
+   3. Progress on the tiles: how many words of each word page this student
+      has marked 記住了, and how many of 學測英文寫作's seven essays are
+      拆解過了 (ew.done, written by exam-writing/drill.js). A tile shows it only
+      once there is something to show.
+   4. 學習報告: the same numbers as a few lines of text the student copies and
       sends the teacher (on LINE, usually). The site keeps no server and sends
       nothing, so this is the one way a teacher sees a student's practice --
       and the student decides when it goes. The optional name is kept here as
@@ -103,6 +107,8 @@ function reportText() {
   const monday = today - ((today + 3) % 7);
   const week = new Set(PAGES.flatMap(p => read(p.store + '.days', [])).filter(d => d >= monday && d < monday + 7));
   lines.push(`這週練習：${week.size} 天`);
+  const essays = Object.values(read('ew.done', {})).filter(d => d && d.m && d.o).length;
+  if (essays) lines.push(`學測寫作：拆解過 ${essays} / 7 篇範文`);
   PAGES.map(tally).forEach(p => {
     if (!p.used) { lines.push(`${p.zh}：還沒開始`); return; }
     lines.push(`${p.zh}：已記住 ${p.known} 個（穩固 ${p.strong} 個）、還不熟 ${p.shaky} 個、今天到期 ${p.due} 個`);
@@ -220,3 +226,28 @@ takeTask();
 drawTask();
 drawToday();
 drawLastCheck();
+
+/* Progress on the four tiles: a bar and one line, only on a tile this student
+   has started. The totals are the tiles' own big numbers. */
+function paintTiles() {
+  document.querySelectorAll('.tile[data-store], .tile[data-essays]').forEach(t => {
+    const total = parseInt(t.querySelector('.num').textContent.replace(/,/g, ''), 10);
+    let n, line;
+    if (t.dataset.store) {
+      const marks = read(t.dataset.store + '.marks', {});
+      n = Object.values(marks).filter(m => m === 'k').length;
+      line = n >= total ? '全部記住了 ✓' : `已記住 ${n.toLocaleString()} / ${total.toLocaleString()}`;
+    } else {
+      const done = read(t.dataset.essays, {});
+      n = Object.values(done).filter(d => d && d.m && d.o).length;
+      line = n >= total ? '七篇都拆解過了 ✓' : `拆解過 ${n} / ${total} 篇`;
+    }
+    t.querySelector('.tp')?.remove();
+    if (!n) return;
+    const p = document.createElement('span');
+    p.className = 'tp';
+    p.innerHTML = `<span class="tp-bar" aria-hidden="true"><span style="width:${Math.min(100, n / total * 100)}%"></span></span><span class="tp-t">${line}</span>`;
+    t.insertBefore(p, t.querySelector('.go'));
+  });
+}
+paintTiles();

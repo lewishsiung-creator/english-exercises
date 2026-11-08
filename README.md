@@ -2943,6 +2943,40 @@ so the five pages read as one product rather than five neighbours:
   the card, with the two buttons on the right, the way a phone already had it.
   The word gets the card's full width on a laptop. Both `vocab.css` copies.
 
+**Second gamification review (2026-11-08)**, after Levels 3–6 and 學測寫作
+joined. Six recommendations; Lewis chose the first three. Same house rules:
+no score, no points, no leaderboard, nothing timed, nothing that resets.
+
+1. **程度檢測 places into Levels 3–6.** It had stopped at 第一、二級, so a
+   strong student was sent past 4,008 words straight to reading, with a line
+   saying Levels 3–6 were still to come. Now five bands: 國中基本字, 國中常用字,
+   高中第一、二級, 第三、四級 (`#set/3`), 第五、六級 (`#set/5`), 40 questions at
+   most and most students stop early. `tools/learn/build_check.py` builds the
+   two new pools from `tools/ceec/` (minus 教育部's list, no word whose first
+   sense is labelled 冒犯用語, notes stripped from the option text). Old
+   `lc.history` entries simply lack the new bands.
+2. **Stations on the way.** Every level tile on 高中單字, and every set tile on
+   國中單字, shows a bar with a tick at each quarter and 「已記住 n · 下一站 ½
+   （501）」 — only on a set the student has started, only in 自學. Passing a
+   quarter puts one line in the toast (「第三級 ¼ 到站：已記住 251 個字」).
+   `paintTileProgress()`, `announceStops()` in both `vocab.js`; `markWord()`
+   records the stops before a mark and compares after. On `/learn/`, the 國中
+   and 高中 tiles show 已記住 n / total and the 學測寫作 tile 拆解過 n / 7 篇,
+   again only once started; the 學習報告 gains the 學測寫作 line.
+3. **學測寫作 gets a practice loop** (`exam-writing/drill.js`). Under each of
+   the seven essays, 拆解練習: 動作配對 (each sentence: which of the 15 jobs
+   does it do? four choices, a wrong one greys out, the right one shows the
+   page's own explanation) and 句子排序 (each paragraph shuffled; tap the
+   sentences in order, a wrong tap shakes). While a drill runs, the essay's
+   paragraphs and the structure switch are hidden — each paragraph's plan
+   lists the jobs in order, which would be the answer. Both done = 拆解過了;
+   a row of the seven years at the top of the section fills in. Stored as
+   `ew.done`. The transfer essay has no drill.
+
+Not chosen yet: a backup code for moving progress between devices; ✓ on the
+reading page's finished rounds (reverses its "save nothing" rule — his call);
+teacher tasks for 高中單字 and 學測寫作.
+
 **學測英文寫作 joins the family (2026-11-08)**, at Lewis's request ("add this
 into this website too"). `/exam-writing/` keeps its URL and its own indexing
 (it was never `noindex`, and joining did not change that). It is general

@@ -234,3 +234,10 @@ dialog.report::backdrop { background: rgb(0 0 0 / .4); -webkit-backdrop-filter: 
 .tk-row { margin-top: 18px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 .tk-drop { border: 0; background: none; color: var(--muted); font: 14px/1.4 var(--font-zh); cursor: pointer; padding: 10px 0; min-height: 44px; }
 @media (hover: hover) { .tk-drop:hover { text-decoration: underline; } }
+
+/* This student's progress on a tile (learn.js paintTiles): only on a tile
+   that has been started. */
+.tile .tp { display: flex; flex-direction: column; gap: 6px; width: 100%; margin-top: 16px; }
+.tile .tp-bar { position: relative; display: block; height: 6px; border-radius: 3px; background: var(--ground); overflow: hidden; }
+.tile .tp-bar > span { position: absolute; inset: 0 auto 0 0; border-radius: 3px; background: var(--grad); }
+.tile .tp-t { font: 600 14px/1.4 var(--font-zh); color: var(--ink); letter-spacing: 0; font-variant-numeric: tabular-nums; }
