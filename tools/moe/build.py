@@ -200,6 +200,14 @@ def main():
         '   public/junior-high/words.js (路老師講義, 康軒版). Edit those, not this. */\n'
         f'const RAW = [\n{lines}\n];\n'
         f'const BOOK = {json.dumps(book, ensure_ascii=False)};\n', encoding='utf-8')
+    # /learn/ shows a teacher's task -- one lesson -- without loading 2,000 words,
+    # so it gets just the lessons: code, title and the ids each one teaches.
+    lessons = {l['key']: {'grade': b['zh'], 'code': l['code'], 'title': l['title'], 'ids': l['ids']}
+               for b in book.values() for l in b['lessons']}
+    (ROOT / 'public' / 'learn' / 'lessons.js').write_text(
+        '/* 國中課本的課次, for the teacher-task card on /learn/ -- built by\n'
+        '   tools/moe/build.py from public/junior-high/words.js. Edit that, not this. */\n'
+        f'const LESSONS = {json.dumps(lessons, ensure_ascii=False)};\n', encoding='utf-8')
     in_book = sum(1 for e in entries.values() if e['lessons'])
     print(f'{len(rows)} entries ({len(words)} from the list, {unmatched} textbook-only); '
           f'{in_book} carry a lesson -> {OUT}')

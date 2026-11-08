@@ -41,6 +41,11 @@
          browser's own records (hsv.* and jhv.*, the pages' self-study marks).
          Drawn by learn.js; stays hidden for a student who has not used either
          page yet, for whom the check below is the way in. -->
+    <!-- A teacher's task: one 國中 lesson, handed out as /learn/#task/<grade>/<lesson>
+         from a teacher device on 國中單字. Kept in this browser (lc.task) until
+         the student removes it; drawn by learn.js. -->
+    <section class="task" id="task" aria-labelledby="taskTitle" hidden></section>
+
     <section class="today" id="today" aria-labelledby="todayTitle" hidden></section>
 
     <!-- The way in for a student who does not know where to start. After a
@@ -86,6 +91,7 @@
   </div>
 </footer>
 
+<script src="lessons.js"></script>
 <script src="learn.js"></script>
 </body>
 </html>

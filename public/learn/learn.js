@@ -98,6 +98,8 @@ function reportText() {
   lines.push(`日期：${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}`);
   const r = read('lc.result', null);
   if (r && r.zh) lines.push(`程度檢測（${r.date}）：建議從${r.zh}開始`);
+  const task = taskState();
+  if (task) lines.push(`老師任務（${task.l.code} ${task.l.title}）：${task.done ? '完成 ✓' : `已記住 ${task.known} / ${task.n}`}`);
   const monday = today - ((today + 3) % 7);
   const week = new Set(PAGES.flatMap(p => read(p.store + '.days', [])).filter(d => d >= monday && d < monday + 7));
   lines.push(`這週練習：${week.size} 天`);
@@ -171,5 +173,50 @@ function drawLastCheck() {
   p.hidden = false;
 }
 
+/* ---------- 老師指定任務 ----------
+   A link from a teacher -- /learn/#task/g7/b1-l3 -- names one lesson of the 國中
+   textbook. The first visit keeps it (lc.task) and drops the hash; from then on
+   the card shows how much of that lesson is 記住了 on 國中單字, with a way
+   straight in (#lesson/... on that page). Done is every word of the lesson
+   記住了. The student can remove it; a new link replaces it. */
+function takeTask() {
+  const m = decodeURIComponent(location.hash).match(/^#task\/(g\d\/[\w-]+)$/);
+  if (!m || typeof LESSONS === 'undefined' || !LESSONS[m[1]]) return;
+  const d = new Date();
+  try { localStorage.setItem('lc.task', JSON.stringify({ key: m[1], date: `${d.getMonth() + 1}/${d.getDate()}` })); } catch (e) {}
+  try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+}
+function taskState() {
+  const t = read('lc.task', null);
+  if (!t || typeof LESSONS === 'undefined' || !LESSONS[t.key]) return null;
+  const l = LESSONS[t.key], marks = read('jhv.marks', {});
+  const ids = [...new Set(l.ids)];
+  const known = ids.filter(id => marks[id] === 'k').length;
+  return { ...t, l, n: ids.length, known, done: known === ids.length };
+}
+function drawTask() {
+  const box = document.getElementById('task');
+  const t = taskState();
+  if (!box) return;
+  if (!t) { box.hidden = true; return; }
+  box.innerHTML = `
+    <p class="td-eyebrow">老師指定的任務 · ${esc(t.date)}</p>
+    <h2 class="tk-title" id="taskTitle">${esc(t.l.grade)} ${esc(t.l.code)}<br><span>${esc(t.l.title)}</span></h2>
+    <div class="tk-prog ${t.done ? 'done' : ''}"><span class="tk-bar" aria-hidden="true"><span style="width:${t.known / t.n * 100}%"></span></span>
+      <span class="tk-n">${t.done ? '✓ 任務完成，這一課都記住了' : `已記住 ${t.known} / ${t.n}`}</span></div>
+    <div class="tk-row">
+      <a class="td-go" href="../reading/junior-vocab/#lesson/${esc(t.key)}">${t.done ? '再複習一次' : '開始這一課'} ›</a>
+      <button class="tk-drop" id="dropTask">移除這個任務</button>
+    </div>`;
+  box.hidden = false;
+}
+document.addEventListener('click', ev => {
+  if (!ev.target.closest('#dropTask')) return;
+  try { localStorage.removeItem('lc.task'); } catch (e) {}
+  drawTask();
+});
+
+takeTask();
+drawTask();
 drawToday();
 drawLastCheck();

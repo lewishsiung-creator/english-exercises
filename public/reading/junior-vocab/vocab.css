@@ -594,3 +594,6 @@ body.staged { overflow: hidden; }
 .lh-prog.full .lp-bar span { background: var(--ok); }
 .lp-n { font: 600 14px/1.3 var(--font-zh); color: var(--muted); letter-spacing: 0; }
 .lh-prog.full .lp-n { color: var(--ok); }
+
+/* A teacher device's way to hand out a lesson as this week's task. */
+.lh-task { margin-top: 6px; padding-inline: 0; font-family: var(--font-zh); }

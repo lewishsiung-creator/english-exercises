@@ -2777,6 +2777,28 @@ nothing with a student or client in it is ever added here.
   when 高中單字 gains a level or the reading page a text.
 - Same Apple language and tokens as the word pages, `noindex` like all three.
 
+**The other three from the gamification review (2026-11-08).**
+
+- **搭配詞挑戰** in both word pages' quiz. A word marked 記住了 has a 40%
+  chance of coming up as one of its collocations cut out of its example, to
+  pick from four collocations of about the same length that share no word
+  with the sentence (`collocQuestion()`). A wrong pick shows that
+  collocation's meaning; a right one fills the gap and reads the sentence.
+  Unmarked words never get one, so it reads as earned, not as harder.
+- **老師指定任務.** On a teacher device (`#teach` once), every 國中 lesson head
+  has 「複製任務連結，傳給學生」: a link to `/learn/#task/<grade>/<lesson>`.
+  The student's first visit keeps it (`lc.task`) and drops the hash; a card at
+  the top of `/learn/` shows 已記住 x / n for that lesson, a way straight in
+  (`#lesson/<grade>/<lesson>` on 國中單字), and 「✓ 任務完成」 once every word
+  is 記住了. The student can remove it; a new link replaces it. The report
+  carries a line for it. `/learn/` gets the lessons from `learn/lessons.js`,
+  which `tools/moe/build.py` now writes, so it never loads the word list.
+  国中 only for now: 高中單字 has levels of 1,002 words, not lessons.
+- **程度檢測 before and after.** Every result is kept (`lc.history`, last 12).
+  A retest marks each band with where it stood last time, and a green box
+  names the bands that moved up. A band that slipped is not called out: eight
+  words is a small sample, and one bad draw is not news.
+
 **Progress a student can see (2026-11-08)** — the first three of a gamification
 review, chosen to fit the house rules: no score, no penalty, nothing timed, no
 comparing students. All three read records the pages already keep, on the

@@ -264,6 +264,7 @@ function lessonHead(k) {
     <p class="lh-code">${SET_ZH[g]} · ${esc(l.code)}</p>
     <h3 class="lh-title">${esc(l.title)}</h3>
     <p class="lh-prog" data-lesson="${esc(k)}" hidden></p>
+    ${TEACHER ? `<button class="link lh-task" data-task="${esc(k)}">複製任務連結，傳給學生</button>` : ''}
     ${l.grammar ? `<p class="lh-gram">文法：${esc(l.grammar)}${l.unit
       ? ` <a href="${GRAMMAR_URL}#g/${g}/${esc(l.unit)}" title="${esc(l.unitTitle)}">看這一課的文法 ›</a>` : ''}</p>` : ''}
   </header>`;
@@ -372,6 +373,17 @@ function openFromHash() {
     setTimeout(goToList, 60);
     return true;
   }
+  // #lesson/<grade>/<lesson> opens a grade at one lesson: a teacher's task on
+  // /learn/ sends the student here
+  const les = decodeURIComponent(location.hash).match(/^#lesson\/(g\d\/[\w-]+)$/);
+  if (les && LESSON[les[1]]) {
+    S.view = 'list'; S.scope = les[1].split('/')[0]; S.lesson = les[1]; S.letter = 'all'; $('#letter').value = 'all';
+    S.q = ''; $('#q').value = ''; S.shown = 40;
+    render();
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (err) {}
+    setTimeout(goToList, 60);
+    return true;
+  }
   // #set/<set> opens the list at one set: the 程度檢測 on /learn/check/ sends a
   // student straight to the set it recommends. The hash is then dropped, so a
   // reload is the ordinary page.
@@ -407,6 +419,18 @@ function copyLink(id) {
     const f = $('#toasturl'); f.focus(); f.select();
   };
   try { navigator.clipboard.writeText(url).then(() => toast('已複製這個字的連結'), fallback); } catch (err) { fallback(); }
+}
+/* A teacher's task is a link to /learn/ naming one lesson. The student opens it
+   once; /learn/ keeps it and shows the lesson's progress until it is done or
+   removed. Only a teacher device sees the button. */
+function copyTask(key) {
+  const url = EXAM.url.replace(/reading\/junior-vocab\/$/, 'learn/') + '#task/' + key;
+  const l = LESSON[key];
+  const fallback = () => {
+    toast(`<span>把這個連結傳給學生：</span><input id="toasturl" readonly value="${esc(url)}" aria-label="任務連結">`, 9000);
+    const f = $('#toasturl'); f.focus(); f.select();
+  };
+  try { navigator.clipboard.writeText(url).then(() => toast(`已複製「${esc(l.code)} ${esc(l.title)}」的任務連結`), fallback); } catch (err) { fallback(); }
 }
 let io;
 function observeMore() {
@@ -518,7 +542,37 @@ function suffixOf(base, ans) {
   return 'other';
 }
 const ANSWERS = ENTRIES.flatMap(e => examplesOf(e).map(x => ({ t: x.ans, e, suf: suffixOf(e.sayAs, x.ans) })));
+/* 搭配詞挑戰. A word the student has marked 記住了 has earned a harder question:
+   one of its collocations cut out of its example sentence, to be picked from
+   four collocations. The wrong three are other words' collocations of about
+   the same length, none sharing a word with the sentence, so the answer is
+   found by meaning, not by shape. 自學 only -- 教學 keeps no marks. */
+const COLLOCS = ENTRIES.flatMap(e => e.co.map(c => ({ c: c.c, zh: c.zh, e })));
+function collocQuestion(e) {
+  const usable = e.co.filter(c => /\*[^*]+\*/.test(c.en));
+  if (!usable.length) return null;
+  const c = usable[Math.floor(Math.random() * usable.length)];
+  const ans = c.en.match(/\*([^*]+)\*/)[1];
+  const sent = c.en.replace(/\*[^*]+\*/, ' ').toLowerCase();
+  const words = ans.split(/\s+/).length;
+  const opts = [];
+  for (const o of shuffle(COLLOCS)) {
+    if (o.e === e) continue;
+    const n = o.c.split(/\s+/).length;
+    if (Math.abs(n - words) > 1 || /[.…]{2,}|\.\.\.|\bsth\b|\bsb\b/.test(o.c)) continue;
+    if (o.c.toLowerCase().split(/\s+/).some(w => w.length > 2 && sent.includes(w))) continue;
+    if (opts.some(p => p.t.toLowerCase() === o.c.toLowerCase()) || o.c.toLowerCase() === ans.toLowerCase()) continue;
+    opts.push({ t: o.c, z: o.zh });
+    if (opts.length === 3) break;
+  }
+  if (opts.length < 3) return null;
+  return { type: 'colloc', e, c, x: { en: c.en, zh: c.ezh, ans }, opts: shuffle([{ t: ans, right: true, z: c.zh }, ...opts]) };
+}
 function makeQuestion(e, all) {
+  if (S.mode === 'self' && MARKS[e.id] === 'k' && e.co.length && Math.random() < 0.4) {
+    const q = collocQuestion(e);
+    if (q) return q;
+  }
   const others = all.filter(o => o.id !== e.id && o.sayAs.toLowerCase() !== e.sayAs.toLowerCase());
   const exs = examplesOf(e);
   const fs = firstSense(e);
@@ -589,8 +643,8 @@ function renderQuiz() {
     ? `<div class="qtype">聽力 · 你聽到的是哪一個字？</div><div class="prompt">
          <button class="btn primary bigplay" data-say="${esc(q.e.sayAs)}">&#9654;&#xFE0E; 再聽一次</button>
          ${Q.solved ? `<div class="reveal"><span class="w">${esc(q.e.w)}</span></div>` : ''}</div>`
-    : q.type === 'gap'
-    ? `<div class="qtype">例句填空 · 選出空格裡的字</div><div class="prompt"><div class="sent">${esc(q.x.en).replace(/\*([^*]+)\*/, `<span class="gap ${Q.solved ? 'filled' : ''}">${Q.solved ? esc(q.x.ans) : '&nbsp;'}</span>`).replace(/\*/g, '')}</div>
+    : q.type === 'gap' || q.type === 'colloc'
+    ? `<div class="qtype">${q.type === 'colloc' ? `搭配詞挑戰 · ${esc(q.e.w)} 記住了，這題考它的搭配` : '例句填空 · 選出空格裡的字'}</div><div class="prompt"><div class="sent">${esc(q.x.en).replace(/\*([^*]+)\*/, `<span class="gap ${Q.solved ? 'filled' : ''}">${Q.solved ? esc(q.x.ans) : '&nbsp;'}</span>`).replace(/\*/g, '')}</div>
        <div class="zh" style="margin-top:6px">${zhw(esc(q.x.zh))}</div></div>`
     : `<div class="qtype">看英文選中文 · 這個字是什麼意思？</div><div class="prompt"><span class="w">${esc(q.e.w)}</span> ${sayBtn(q.e.sayAs)}
        <div style="color:var(--muted)">${q.e.lab ? `<span class="lab">${esc(q.e.lab)}</span> ` : ''}${posTag(q.s.p)}</div></div>`;
@@ -659,6 +713,7 @@ function feedbackHTML(q) {
   const x = q.e.x[0];
   const exLine = x => `<div style="font-family:var(--font-en);font-size:17px;margin-top:6px">${hl(x.en)} ${sayBtn(x.en, '播放例句')}</div><div class="zh">${esc(x.zh)}</div>`;
   if (q.type === 'listen') return `<div class="zhf" style="font-weight:600">${esc(q.s.p)} ${esc(q.s.z)}</div>` + (x ? exLine(x) : '');
+  if (q.type === 'colloc') return `<b style="font-family:var(--font-en)">${esc(q.c.c)}</b> <span class="zh">${esc(q.c.zh)}</span> ${sayBtn(q.x.en, '播放例句')}`;
   if (q.type === 'gap') return `<b style="font-family:var(--font-en)">${esc(q.e.w)}</b> ${sayBtn(q.x.en, '播放例句')} <span class="zh">${esc(q.e.firstZh)}</span>`;
   return x ? exLine(x) : '';
 }
@@ -802,6 +857,7 @@ document.addEventListener('click', ev => {
   const t = ev.target.closest('button'); if (!t) return;
   if (t.dataset.say != null) { say(t.dataset.say); return; }
   if (t.dataset.copy) { copyLink(t.dataset.copy); return; }
+  if (t.dataset.task) { copyTask(t.dataset.task); return; }
   if (t.dataset.go) { S.view = t.dataset.go; render(); goToList(); return; }
   if (t.dataset.pick) { S.view = 'list'; S.scope = t.dataset.pick; S.lesson = 'all'; S.shown = 40; S.q = ''; $('#q').value = ''; render(); goToList(); return; }
   if (t.dataset.orig != null) { toast(`<span>原表寫法：${esc(t.dataset.orig)}</span>`, 5000); return; }
@@ -825,7 +881,7 @@ document.addEventListener('click', ev => {
   if (t.dataset.opt != null) {
     const q = Q.items[Q.i], k = +t.dataset.opt, o = q.opts[k];
     Q.tried.add(k);
-    if (o.right) { Q.solved = true; if (q.type === 'gap') say(q.x.en); }
+    if (o.right) { Q.solved = true; if (q.type === 'gap' || q.type === 'colloc') say(q.x.en); }
     else Q.missed.add(Q.i);
     renderQuiz(); return;
   }

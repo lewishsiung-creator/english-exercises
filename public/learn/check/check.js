@@ -144,19 +144,43 @@ function recommend() {
     why: '三組字你都掌握了。接下來用文章練閱讀，高中單字第三級起也會陸續加入。' };
 }
 
+/* Before and after. Every result is kept here (lc.history, the last 12), so a
+   retest can say what moved: a band compared with the last time it was tested.
+   Only a change upward is called out; a band that slipped just shows where it
+   is now, since the test samples eight words and one bad draw is not news. */
+const RANK = { low: 0, fair: 1, good: 2 };
+function lastResult() {
+  const h = store.get('history', []);
+  return h.length ? h[h.length - 1] : null;
+}
+function saveResult() {
+  const h = store.get('history', []);
+  const d = new Date();
+  const known = {};
+  BANDS.forEach((b, i) => { known[b.key] = i <= T.band ? T.known[b.key] : null; });
+  store.set('history', h.concat({ date: `${d.getMonth() + 1}/${d.getDate()}`, known }).slice(-12));
+}
+
 function showResult() {
   const rec = recommend();
+  const prev = lastResult();
+  saveResult();
   const today = new Date();
   // kept as a path from the site root, so this page and /learn/ can each put their own ../ in front
   store.set('result', { date: `${today.getMonth() + 1}/${today.getDate()}`, zh: rec.zh, path: rec.href.replace('../../', '') });
+  const ups = [];
   const rows = BANDS.map((b, i) => {
     const done = i <= T.band;
     const g = done ? grade(T.known[b.key]) : 'skip';
     const label = done ? GRADE_ZH[g] : '這次沒測';
+    const was = prev && prev.known[b.key] != null ? grade(prev.known[b.key]) : null;
+    const up = done && was && RANK[g] > RANK[was];
+    if (up) ups.push(`${b.zh}：${GRADE_ZH[was]} → ${GRADE_ZH[g]}`);
     return `<li class="lvl ${g}">
       <span class="b-name">${esc(b.zh)}</span>
       <span class="b-bar" aria-hidden="true"><span style="width:${done ? T.known[b.key] / PER_BAND * 100 : 0}%"></span></span>
-      <span class="b-grade">${label}</span></li>`;
+      <span class="b-grade">${label}</span>
+      ${was && done ? `<span class="b-prev ${up ? 'up' : ''}">${up ? '↑ ' : ''}上次 ${GRADE_ZH[was]}</span>` : ''}</li>`;
   }).join('');
   const missed = T.missed.slice(0, 12);
   $('#screen').innerHTML = `
@@ -164,6 +188,8 @@ function showResult() {
       <p class="eyebrow">檢測結果</p>
       <h1>建議從<br><span class="grad">${esc(rec.zh)}</span>開始</h1>
       <p class="why">${esc(rec.why)}</p>
+      ${ups.length ? `<div class="growth"><p class="g-k">比上次（${esc(prev.date)}）進步了</p>
+        ${ups.map(u => `<p class="g-v">${esc(u)}</p>`).join('')}</div>` : ''}
       <a class="btn-primary" href="${esc(rec.href)}">開始練習 ›</a>
       <ul class="bands">${rows}</ul>
       ${missed.length ? `<h2>值得先看的字</h2>

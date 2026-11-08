@@ -452,7 +452,37 @@ function suffixOf(base, ans) {
   return 'other';
 }
 const ANSWERS = ENTRIES.flatMap(e => examplesOf(e).map(x => ({ t: x.ans, e, suf: suffixOf(e.sayAs, x.ans) })));
+/* 搭配詞挑戰. A word the student has marked 記住了 has earned a harder question:
+   one of its collocations cut out of its example sentence, to be picked from
+   four collocations. The wrong three are other words' collocations of about
+   the same length, none sharing a word with the sentence, so the answer is
+   found by meaning, not by shape. 自學 only -- 教學 keeps no marks. */
+const COLLOCS = ENTRIES.flatMap(e => e.co.map(c => ({ c: c.c, zh: c.zh, e })));
+function collocQuestion(e) {
+  const usable = e.co.filter(c => /\*[^*]+\*/.test(c.en));
+  if (!usable.length) return null;
+  const c = usable[Math.floor(Math.random() * usable.length)];
+  const ans = c.en.match(/\*([^*]+)\*/)[1];
+  const sent = c.en.replace(/\*[^*]+\*/, ' ').toLowerCase();
+  const words = ans.split(/\s+/).length;
+  const opts = [];
+  for (const o of shuffle(COLLOCS)) {
+    if (o.e === e) continue;
+    const n = o.c.split(/\s+/).length;
+    if (Math.abs(n - words) > 1 || /[.…]{2,}|\.\.\.|\bsth\b|\bsb\b/.test(o.c)) continue;
+    if (o.c.toLowerCase().split(/\s+/).some(w => w.length > 2 && sent.includes(w))) continue;
+    if (opts.some(p => p.t.toLowerCase() === o.c.toLowerCase()) || o.c.toLowerCase() === ans.toLowerCase()) continue;
+    opts.push({ t: o.c, z: o.zh });
+    if (opts.length === 3) break;
+  }
+  if (opts.length < 3) return null;
+  return { type: 'colloc', e, c, x: { en: c.en, zh: c.ezh, ans }, opts: shuffle([{ t: ans, right: true, z: c.zh }, ...opts]) };
+}
 function makeQuestion(e, all) {
+  if (S.mode === 'self' && MARKS[e.id] === 'k' && e.co.length && Math.random() < 0.4) {
+    const q = collocQuestion(e);
+    if (q) return q;
+  }
   const others = all.filter(o => o.id !== e.id && o.sayAs.toLowerCase() !== e.sayAs.toLowerCase());
   const exs = examplesOf(e);
   const fs = firstSense(e);
@@ -523,8 +553,8 @@ function renderQuiz() {
     ? `<div class="qtype">聽力 · 你聽到的是哪一個字？</div><div class="prompt">
          <button class="btn primary bigplay" data-say="${esc(q.e.sayAs)}">&#9654;&#xFE0E; 再聽一次</button>
          ${Q.solved ? `<div class="reveal"><span class="w">${esc(q.e.w)}</span></div>` : ''}</div>`
-    : q.type === 'gap'
-    ? `<div class="qtype">例句填空 · 選出空格裡的字</div><div class="prompt"><div class="sent">${esc(q.x.en).replace(/\*([^*]+)\*/, `<span class="gap ${Q.solved ? 'filled' : ''}">${Q.solved ? esc(q.x.ans) : '&nbsp;'}</span>`).replace(/\*/g, '')}</div>
+    : q.type === 'gap' || q.type === 'colloc'
+    ? `<div class="qtype">${q.type === 'colloc' ? `搭配詞挑戰 · ${esc(q.e.w)} 記住了，這題考它的搭配` : '例句填空 · 選出空格裡的字'}</div><div class="prompt"><div class="sent">${esc(q.x.en).replace(/\*([^*]+)\*/, `<span class="gap ${Q.solved ? 'filled' : ''}">${Q.solved ? esc(q.x.ans) : '&nbsp;'}</span>`).replace(/\*/g, '')}</div>
        <div class="zh" style="margin-top:6px">${zhw(esc(q.x.zh))}</div></div>`
     : `<div class="qtype">看英文選中文 · 這個字是什麼意思？</div><div class="prompt"><span class="w">${esc(q.e.w)}</span> ${sayBtn(q.e.sayAs)}
        <div style="color:var(--muted)">${q.e.lab ? `<span class="lab">${esc(q.e.lab)}</span> ` : ''}${posTag(q.s.p)}</div></div>`;
@@ -593,6 +623,7 @@ function feedbackHTML(q) {
   const x = q.e.x[0];
   const exLine = x => `<div style="font-family:var(--font-en);font-size:17px;margin-top:6px">${hl(x.en)} ${sayBtn(x.en, '播放例句')}</div><div class="zh">${esc(x.zh)}</div>`;
   if (q.type === 'listen') return `<div class="zhf" style="font-weight:600">${esc(q.s.p)} ${esc(q.s.z)}</div>` + (x ? exLine(x) : '');
+  if (q.type === 'colloc') return `<b style="font-family:var(--font-en)">${esc(q.c.c)}</b> <span class="zh">${esc(q.c.zh)}</span> ${sayBtn(q.x.en, '播放例句')}`;
   if (q.type === 'gap') return `<b style="font-family:var(--font-en)">${esc(q.e.w)}</b> ${sayBtn(q.x.en, '播放例句')} <span class="zh">${esc(q.e.firstZh)}</span>`;
   return x ? exLine(x) : '';
 }
@@ -762,7 +793,7 @@ document.addEventListener('click', ev => {
   if (t.dataset.opt != null) {
     const q = Q.items[Q.i], k = +t.dataset.opt, o = q.opts[k];
     Q.tried.add(k);
-    if (o.right) { Q.solved = true; if (q.type === 'gap') say(q.x.en); }
+    if (o.right) { Q.solved = true; if (q.type === 'gap' || q.type === 'colloc') say(q.x.en); }
     else Q.missed.add(Q.i);
     renderQuiz(); return;
   }
