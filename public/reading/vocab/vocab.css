@@ -505,3 +505,8 @@ body.staged { overflow: hidden; }
 
 /* A level that has no words yet: on the bar, but not pressable. */
 #scope button:disabled { opacity: .45; cursor: default; }
+
+/* The way down to 國中單字, under the tiles. */
+.band-next { margin: 26px 0 0; text-align: center; font: 17px/1.5 var(--font-zh); color: var(--muted); }
+.band-next a { color: var(--accent); text-decoration: none; margin-left: 6px; }
+@media (hover: hover) { .band-next a:hover { text-decoration: underline; } }

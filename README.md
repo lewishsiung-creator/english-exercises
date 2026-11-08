@@ -2799,6 +2799,32 @@ words); 3–6 sit on the level bar as 「還沒進來」 until their Chinese is 
   short by the render that runs with it. 關於這份字表 moved to footnotes at
   the bottom of the page.
 
+### `/reading/junior-vocab/` — 國中單字, 教育部's 2,000 words
+
+The 高中單字 page's sibling, asked for 2026-11-08: 教育部 108 課綱《英語文參考字
+彙表（2,000 字）》, 附錄五 of the English curriculum PDF from 國家教育研究院. The
+two pages link to each other under their tiles, and the reading page's cover
+links both. Public, `noindex` (Lewis's choice, though the list is a curriculum
+appendix).
+
+- **Another copy of the engine**, from `/reading/vocab/`, Apple look included.
+  The six levels become the list's two tables, 基本字 and 其他常用字, and there
+  is no 還沒進來: both tables are in.
+- **The tables are counted as printed, not as titled.** The titles say 1,200
+  and 800; the tables hold 1,211 and 794 (*can* and *could*, *Miss* and *miss*
+  are separate items). `tools/moe/extract.py` prints both numbers and keeps
+  every item; the page shows the real counts and says why in 關於這份字表.
+- **The PDF puts spaces inside words** (`cart oon`, `har dly`, `soy -sauce`).
+  The script closes a space when the joined form is a dictionary word and one
+  half is not, so `hot dog` keeps its space; `blo use` is listed by hand,
+  because *blo* happens to be a word. A letter head must be followed by a
+  space, or `T-shirt` opens a T section.
+- **The list prints no part of speech**, so the ones on the page are this
+  site's: 1–3 senses per word, most common first, in `tools/moe/zh.json`,
+  written by eight subagents and read by two reviewers, as for 高中單字.
+  Examples are kept to 5–12 words of A1–A2 English. `python3
+  tools/moe/build.py` refuses to build while any word lacks Chinese.
+
 ## Landscape Architecture Portfolio — a student's own work
 
 The odd one out. Not a lesson and not bilingual: a portfolio a landscape
@@ -4227,6 +4253,7 @@ public/robot-helper/      the 113 學年度 writing worksheet
 public/exam-writing/      the 109–115 學測 essay survey
 public/reading/           three high school texts, with his word tables
 public/reading/vocab/     高中單字: 大考中心's list, Levels 1–2 so far
+public/reading/junior-vocab/  國中單字: 教育部's 2,000 words
 public/keep-speaking/     the practice page for the course handbook, five tabs
 public/ielts-part3/       the IELTS Part 3 structure practice
 public/anny/              Anny's notebook — one entry per discussion

@@ -1,0 +1,10027 @@
+[
+{
+"id": "a-an",
+"w": "a/an",
+"set": "basic"
+},
+{
+"id": "a-few",
+"w": "a few",
+"set": "basic"
+},
+{
+"id": "a-little",
+"w": "a little",
+"set": "basic"
+},
+{
+"id": "a-lot",
+"w": "a lot",
+"set": "basic"
+},
+{
+"id": "a-m",
+"w": "a.m.",
+"set": "basic"
+},
+{
+"id": "able",
+"w": "able",
+"set": "basic"
+},
+{
+"id": "about",
+"w": "about",
+"set": "basic"
+},
+{
+"id": "above",
+"w": "above",
+"set": "basic"
+},
+{
+"id": "abroad",
+"w": "abroad",
+"set": "basic"
+},
+{
+"id": "across",
+"w": "across",
+"set": "basic"
+},
+{
+"id": "act",
+"w": "act",
+"set": "basic"
+},
+{
+"id": "action",
+"w": "action",
+"set": "basic"
+},
+{
+"id": "actor",
+"w": "actor",
+"set": "basic"
+},
+{
+"id": "actress",
+"w": "actress",
+"set": "basic"
+},
+{
+"id": "actually",
+"w": "actually",
+"set": "basic"
+},
+{
+"id": "afraid",
+"w": "afraid",
+"set": "basic"
+},
+{
+"id": "after",
+"w": "after",
+"set": "basic"
+},
+{
+"id": "afternoon",
+"w": "afternoon",
+"set": "basic"
+},
+{
+"id": "again",
+"w": "again",
+"set": "basic"
+},
+{
+"id": "age",
+"w": "age",
+"set": "basic"
+},
+{
+"id": "ago",
+"w": "ago",
+"set": "basic"
+},
+{
+"id": "agree",
+"w": "agree",
+"set": "basic"
+},
+{
+"id": "ahead",
+"w": "ahead",
+"set": "basic"
+},
+{
+"id": "air",
+"w": "air",
+"set": "basic"
+},
+{
+"id": "airplane",
+"w": "airplane (plane)",
+"set": "basic"
+},
+{
+"id": "airport",
+"w": "airport",
+"set": "basic"
+},
+{
+"id": "all",
+"w": "all",
+"set": "basic"
+},
+{
+"id": "allow",
+"w": "allow",
+"set": "basic"
+},
+{
+"id": "almost",
+"w": "almost",
+"set": "basic"
+},
+{
+"id": "along",
+"w": "along",
+"set": "basic"
+},
+{
+"id": "already",
+"w": "already",
+"set": "basic"
+},
+{
+"id": "also",
+"w": "also",
+"set": "basic"
+},
+{
+"id": "always",
+"w": "always",
+"set": "basic"
+},
+{
+"id": "america",
+"w": "America",
+"set": "basic"
+},
+{
+"id": "american",
+"w": "American",
+"set": "basic"
+},
+{
+"id": "and",
+"w": "and",
+"set": "basic"
+},
+{
+"id": "angle",
+"w": "angle",
+"set": "basic"
+},
+{
+"id": "angry",
+"w": "angry",
+"set": "basic"
+},
+{
+"id": "animal",
+"w": "animal",
+"set": "basic"
+},
+{
+"id": "another",
+"w": "another",
+"set": "basic"
+},
+{
+"id": "answer",
+"w": "answer",
+"set": "basic"
+},
+{
+"id": "ant",
+"w": "ant",
+"set": "basic"
+},
+{
+"id": "any",
+"w": "any",
+"set": "basic"
+},
+{
+"id": "anyone",
+"w": "anyone (anybody)",
+"set": "basic"
+},
+{
+"id": "anything",
+"w": "anything",
+"set": "basic"
+},
+{
+"id": "apartment",
+"w": "apartment",
+"set": "basic"
+},
+{
+"id": "appear",
+"w": "appear",
+"set": "basic"
+},
+{
+"id": "apple",
+"w": "apple",
+"set": "basic"
+},
+{
+"id": "april",
+"w": "April",
+"set": "basic"
+},
+{
+"id": "area",
+"w": "area",
+"set": "basic"
+},
+{
+"id": "arm",
+"w": "arm",
+"set": "basic"
+},
+{
+"id": "around",
+"w": "around",
+"set": "basic"
+},
+{
+"id": "arrive",
+"w": "arrive",
+"set": "basic"
+},
+{
+"id": "art",
+"w": "art",
+"set": "basic"
+},
+{
+"id": "as",
+"w": "as",
+"set": "basic"
+},
+{
+"id": "ask",
+"w": "ask",
+"set": "basic"
+},
+{
+"id": "at",
+"w": "at",
+"set": "basic"
+},
+{
+"id": "attack",
+"w": "attack",
+"set": "basic"
+},
+{
+"id": "august",
+"w": "August",
+"set": "basic"
+},
+{
+"id": "aunt",
+"w": "aunt",
+"set": "basic"
+},
+{
+"id": "autumn",
+"w": "autumn (fall)",
+"set": "basic"
+},
+{
+"id": "away",
+"w": "away",
+"set": "basic"
+},
+{
+"id": "baby",
+"w": "baby",
+"set": "basic"
+},
+{
+"id": "back",
+"w": "back",
+"set": "basic"
+},
+{
+"id": "bad",
+"w": "bad",
+"set": "basic"
+},
+{
+"id": "badminton",
+"w": "badminton",
+"set": "basic"
+},
+{
+"id": "bag",
+"w": "bag",
+"set": "basic"
+},
+{
+"id": "bake",
+"w": "bake",
+"set": "basic"
+},
+{
+"id": "bakery",
+"w": "bakery",
+"set": "basic"
+},
+{
+"id": "balcony",
+"w": "balcony",
+"set": "basic"
+},
+{
+"id": "banana",
+"w": "banana",
+"set": "basic"
+},
+{
+"id": "band",
+"w": "band",
+"set": "basic"
+},
+{
+"id": "bank",
+"w": "bank",
+"set": "basic"
+},
+{
+"id": "baseball",
+"w": "baseball",
+"set": "basic"
+},
+{
+"id": "basket",
+"w": "basket",
+"set": "basic"
+},
+{
+"id": "basketball",
+"w": "basketball",
+"set": "basic"
+},
+{
+"id": "bat",
+"w": "bat",
+"set": "basic"
+},
+{
+"id": "bath",
+"w": "bath",
+"set": "basic"
+},
+{
+"id": "bathroom",
+"w": "bathroom",
+"set": "basic"
+},
+{
+"id": "be",
+"w": "be (am, is, are, was, were, been)",
+"set": "basic"
+},
+{
+"id": "beach",
+"w": "beach",
+"set": "basic"
+},
+{
+"id": "bean",
+"w": "bean",
+"set": "basic"
+},
+{
+"id": "bear",
+"w": "bear",
+"set": "basic"
+},
+{
+"id": "beautiful",
+"w": "beautiful",
+"set": "basic"
+},
+{
+"id": "because",
+"w": "because",
+"set": "basic"
+},
+{
+"id": "become",
+"w": "become",
+"set": "basic"
+},
+{
+"id": "bed",
+"w": "bed",
+"set": "basic"
+},
+{
+"id": "bedroom",
+"w": "bedroom",
+"set": "basic"
+},
+{
+"id": "bee",
+"w": "bee",
+"set": "basic"
+},
+{
+"id": "beef",
+"w": "beef",
+"set": "basic"
+},
+{
+"id": "before",
+"w": "before",
+"set": "basic"
+},
+{
+"id": "begin",
+"w": "begin",
+"set": "basic"
+},
+{
+"id": "behind",
+"w": "behind",
+"set": "basic"
+},
+{
+"id": "believe",
+"w": "believe",
+"set": "basic"
+},
+{
+"id": "bell",
+"w": "bell",
+"set": "basic"
+},
+{
+"id": "belong",
+"w": "belong",
+"set": "basic"
+},
+{
+"id": "below",
+"w": "below",
+"set": "basic"
+},
+{
+"id": "belt",
+"w": "belt",
+"set": "basic"
+},
+{
+"id": "bench",
+"w": "bench",
+"set": "basic"
+},
+{
+"id": "beside",
+"w": "beside",
+"set": "basic"
+},
+{
+"id": "between",
+"w": "between",
+"set": "basic"
+},
+{
+"id": "bicycle",
+"w": "bicycle (bike)",
+"set": "basic"
+},
+{
+"id": "big",
+"w": "big",
+"set": "basic"
+},
+{
+"id": "bird",
+"w": "bird",
+"set": "basic"
+},
+{
+"id": "birthday",
+"w": "birthday",
+"set": "basic"
+},
+{
+"id": "bite",
+"w": "bite",
+"set": "basic"
+},
+{
+"id": "black",
+"w": "black",
+"set": "basic"
+},
+{
+"id": "blackboard",
+"w": "blackboard",
+"set": "basic"
+},
+{
+"id": "blank",
+"w": "blank",
+"set": "basic"
+},
+{
+"id": "blanket",
+"w": "blanket",
+"set": "basic"
+},
+{
+"id": "blind",
+"w": "blind",
+"set": "basic"
+},
+{
+"id": "block",
+"w": "block",
+"set": "basic"
+},
+{
+"id": "blow",
+"w": "blow",
+"set": "basic"
+},
+{
+"id": "blue",
+"w": "blue",
+"set": "basic"
+},
+{
+"id": "boat",
+"w": "boat",
+"set": "basic"
+},
+{
+"id": "body",
+"w": "body",
+"set": "basic"
+},
+{
+"id": "boil",
+"w": "boil",
+"set": "basic"
+},
+{
+"id": "book",
+"w": "book",
+"set": "basic"
+},
+{
+"id": "bookstore",
+"w": "bookstore",
+"set": "basic"
+},
+{
+"id": "bored",
+"w": "bored",
+"set": "basic"
+},
+{
+"id": "boring",
+"w": "boring",
+"set": "basic"
+},
+{
+"id": "born",
+"w": "born",
+"set": "basic"
+},
+{
+"id": "borrow",
+"w": "borrow",
+"set": "basic"
+},
+{
+"id": "boss",
+"w": "boss",
+"set": "basic"
+},
+{
+"id": "both",
+"w": "both",
+"set": "basic"
+},
+{
+"id": "bottle",
+"w": "bottle",
+"set": "basic"
+},
+{
+"id": "bottom",
+"w": "bottom",
+"set": "basic"
+},
+{
+"id": "bow",
+"w": "bow",
+"set": "basic"
+},
+{
+"id": "bowl",
+"w": "bowl",
+"set": "basic"
+},
+{
+"id": "box",
+"w": "box",
+"set": "basic"
+},
+{
+"id": "boy",
+"w": "boy",
+"set": "basic"
+},
+{
+"id": "brave",
+"w": "brave",
+"set": "basic"
+},
+{
+"id": "bread",
+"w": "bread",
+"set": "basic"
+},
+{
+"id": "break",
+"w": "break",
+"set": "basic"
+},
+{
+"id": "breakfast",
+"w": "breakfast",
+"set": "basic"
+},
+{
+"id": "bridge",
+"w": "bridge",
+"set": "basic"
+},
+{
+"id": "bright",
+"w": "bright",
+"set": "basic"
+},
+{
+"id": "bring",
+"w": "bring",
+"set": "basic"
+},
+{
+"id": "brother",
+"w": "brother",
+"set": "basic"
+},
+{
+"id": "brown",
+"w": "brown",
+"set": "basic"
+},
+{
+"id": "brush",
+"w": "brush",
+"set": "basic"
+},
+{
+"id": "bug",
+"w": "bug",
+"set": "basic"
+},
+{
+"id": "build",
+"w": "build",
+"set": "basic"
+},
+{
+"id": "bun",
+"w": "bun",
+"set": "basic"
+},
+{
+"id": "burn",
+"w": "burn",
+"set": "basic"
+},
+{
+"id": "bus",
+"w": "bus",
+"set": "basic"
+},
+{
+"id": "business",
+"w": "business",
+"set": "basic"
+},
+{
+"id": "businessman",
+"w": "businessman",
+"set": "basic"
+},
+{
+"id": "busy",
+"w": "busy",
+"set": "basic"
+},
+{
+"id": "but",
+"w": "but",
+"set": "basic"
+},
+{
+"id": "butter",
+"w": "butter",
+"set": "basic"
+},
+{
+"id": "butterfly",
+"w": "butterfly",
+"set": "basic"
+},
+{
+"id": "button",
+"w": "button",
+"set": "basic"
+},
+{
+"id": "buy",
+"w": "buy",
+"set": "basic"
+},
+{
+"id": "by",
+"w": "by",
+"set": "basic"
+},
+{
+"id": "cake",
+"w": "cake",
+"set": "basic"
+},
+{
+"id": "call",
+"w": "call",
+"set": "basic"
+},
+{
+"id": "camera",
+"w": "camera",
+"set": "basic"
+},
+{
+"id": "camp",
+"w": "camp",
+"set": "basic"
+},
+{
+"id": "can",
+"w": "can",
+"set": "basic"
+},
+{
+"id": "could",
+"w": "could",
+"set": "basic"
+},
+{
+"id": "candle",
+"w": "candle",
+"set": "basic"
+},
+{
+"id": "candy",
+"w": "candy",
+"set": "basic"
+},
+{
+"id": "cap",
+"w": "cap",
+"set": "basic"
+},
+{
+"id": "car",
+"w": "car",
+"set": "basic"
+},
+{
+"id": "card",
+"w": "card",
+"set": "basic"
+},
+{
+"id": "care",
+"w": "care",
+"set": "basic"
+},
+{
+"id": "careful",
+"w": "careful",
+"set": "basic"
+},
+{
+"id": "carry",
+"w": "carry",
+"set": "basic"
+},
+{
+"id": "case",
+"w": "case",
+"set": "basic"
+},
+{
+"id": "castle",
+"w": "castle",
+"set": "basic"
+},
+{
+"id": "cat",
+"w": "cat",
+"set": "basic"
+},
+{
+"id": "catch",
+"w": "catch",
+"set": "basic"
+},
+{
+"id": "celebrate",
+"w": "celebrate",
+"set": "basic"
+},
+{
+"id": "cellphone",
+"w": "cellphone",
+"set": "basic"
+},
+{
+"id": "cent",
+"w": "cent",
+"set": "basic"
+},
+{
+"id": "center",
+"w": "center",
+"set": "basic"
+},
+{
+"id": "centimeter",
+"w": "centimeter",
+"set": "basic"
+},
+{
+"id": "chair",
+"w": "chair",
+"set": "basic"
+},
+{
+"id": "chalk",
+"w": "chalk",
+"set": "basic"
+},
+{
+"id": "chance",
+"w": "chance",
+"set": "basic"
+},
+{
+"id": "change",
+"w": "change",
+"set": "basic"
+},
+{
+"id": "cheap",
+"w": "cheap",
+"set": "basic"
+},
+{
+"id": "cheat",
+"w": "cheat",
+"set": "basic"
+},
+{
+"id": "check",
+"w": "check",
+"set": "basic"
+},
+{
+"id": "cheer",
+"w": "cheer",
+"set": "basic"
+},
+{
+"id": "cheese",
+"w": "cheese",
+"set": "basic"
+},
+{
+"id": "chicken",
+"w": "chicken",
+"set": "basic"
+},
+{
+"id": "child",
+"w": "child",
+"set": "basic"
+},
+{
+"id": "china",
+"w": "China",
+"set": "basic"
+},
+{
+"id": "chinese",
+"w": "Chinese",
+"set": "basic"
+},
+{
+"id": "chocolate",
+"w": "chocolate",
+"set": "basic"
+},
+{
+"id": "choice",
+"w": "choice",
+"set": "basic"
+},
+{
+"id": "choose",
+"w": "choose",
+"set": "basic"
+},
+{
+"id": "chopsticks",
+"w": "chopsticks",
+"set": "basic"
+},
+{
+"id": "christmas",
+"w": "Christmas",
+"set": "basic"
+},
+{
+"id": "church",
+"w": "church",
+"set": "basic"
+},
+{
+"id": "circle",
+"w": "circle",
+"set": "basic"
+},
+{
+"id": "city",
+"w": "city",
+"set": "basic"
+},
+{
+"id": "clap",
+"w": "clap",
+"set": "basic"
+},
+{
+"id": "class",
+"w": "class",
+"set": "basic"
+},
+{
+"id": "classmate",
+"w": "classmate",
+"set": "basic"
+},
+{
+"id": "classroom",
+"w": "classroom",
+"set": "basic"
+},
+{
+"id": "clean",
+"w": "clean",
+"set": "basic"
+},
+{
+"id": "clear",
+"w": "clear",
+"set": "basic"
+},
+{
+"id": "clerk",
+"w": "clerk",
+"set": "basic"
+},
+{
+"id": "climb",
+"w": "climb",
+"set": "basic"
+},
+{
+"id": "clock",
+"w": "clock",
+"set": "basic"
+},
+{
+"id": "close",
+"w": "close",
+"set": "basic"
+},
+{
+"id": "clothes",
+"w": "clothes",
+"set": "basic"
+},
+{
+"id": "cloud",
+"w": "cloud",
+"set": "basic"
+},
+{
+"id": "cloudy",
+"w": "cloudy",
+"set": "basic"
+},
+{
+"id": "club",
+"w": "club",
+"set": "basic"
+},
+{
+"id": "coat",
+"w": "coat",
+"set": "basic"
+},
+{
+"id": "coffee",
+"w": "coffee",
+"set": "basic"
+},
+{
+"id": "cold",
+"w": "cold",
+"set": "basic"
+},
+{
+"id": "collect",
+"w": "collect",
+"set": "basic"
+},
+{
+"id": "color",
+"w": "color",
+"set": "basic"
+},
+{
+"id": "comb",
+"w": "comb",
+"set": "basic"
+},
+{
+"id": "come",
+"w": "come",
+"set": "basic"
+},
+{
+"id": "comfortable",
+"w": "comfortable",
+"set": "basic"
+},
+{
+"id": "comic",
+"w": "comic",
+"set": "basic"
+},
+{
+"id": "common",
+"w": "common",
+"set": "basic"
+},
+{
+"id": "computer",
+"w": "computer",
+"set": "basic"
+},
+{
+"id": "convenient",
+"w": "convenient",
+"set": "basic"
+},
+{
+"id": "cook",
+"w": "cook",
+"set": "basic"
+},
+{
+"id": "cookie",
+"w": "cookie",
+"set": "basic"
+},
+{
+"id": "cool",
+"w": "cool",
+"set": "basic"
+},
+{
+"id": "copy",
+"w": "copy",
+"set": "basic"
+},
+{
+"id": "corner",
+"w": "corner",
+"set": "basic"
+},
+{
+"id": "correct",
+"w": "correct",
+"set": "basic"
+},
+{
+"id": "cost",
+"w": "cost",
+"set": "basic"
+},
+{
+"id": "couch",
+"w": "couch",
+"set": "basic"
+},
+{
+"id": "count",
+"w": "count",
+"set": "basic"
+},
+{
+"id": "country",
+"w": "country",
+"set": "basic"
+},
+{
+"id": "course",
+"w": "course",
+"set": "basic"
+},
+{
+"id": "cousin",
+"w": "cousin",
+"set": "basic"
+},
+{
+"id": "cover",
+"w": "cover",
+"set": "basic"
+},
+{
+"id": "cow",
+"w": "cow",
+"set": "basic"
+},
+{
+"id": "crazy",
+"w": "crazy",
+"set": "basic"
+},
+{
+"id": "cross",
+"w": "cross",
+"set": "basic"
+},
+{
+"id": "cry",
+"w": "cry",
+"set": "basic"
+},
+{
+"id": "cup",
+"w": "cup",
+"set": "basic"
+},
+{
+"id": "cut",
+"w": "cut",
+"set": "basic"
+},
+{
+"id": "cute",
+"w": "cute",
+"set": "basic"
+},
+{
+"id": "dance",
+"w": "dance",
+"set": "basic"
+},
+{
+"id": "dangerous",
+"w": "dangerous",
+"set": "basic"
+},
+{
+"id": "dark",
+"w": "dark",
+"set": "basic"
+},
+{
+"id": "date",
+"w": "date",
+"set": "basic"
+},
+{
+"id": "daughter",
+"w": "daughter",
+"set": "basic"
+},
+{
+"id": "day",
+"w": "day",
+"set": "basic"
+},
+{
+"id": "dead",
+"w": "dead",
+"set": "basic"
+},
+{
+"id": "deal",
+"w": "deal",
+"set": "basic"
+},
+{
+"id": "dear",
+"w": "dear",
+"set": "basic"
+},
+{
+"id": "death",
+"w": "death",
+"set": "basic"
+},
+{
+"id": "december",
+"w": "December",
+"set": "basic"
+},
+{
+"id": "decide",
+"w": "decide",
+"set": "basic"
+},
+{
+"id": "deep",
+"w": "deep",
+"set": "basic"
+},
+{
+"id": "define",
+"w": "define",
+"set": "basic"
+},
+{
+"id": "delicious",
+"w": "delicious",
+"set": "basic"
+},
+{
+"id": "dentist",
+"w": "dentist",
+"set": "basic"
+},
+{
+"id": "department-store",
+"w": "department store",
+"set": "basic"
+},
+{
+"id": "desk",
+"w": "desk",
+"set": "basic"
+},
+{
+"id": "dictionary",
+"w": "dictionary",
+"set": "basic"
+},
+{
+"id": "die",
+"w": "die",
+"set": "basic"
+},
+{
+"id": "different",
+"w": "different",
+"set": "basic"
+},
+{
+"id": "difficult",
+"w": "difficult",
+"set": "basic"
+},
+{
+"id": "dig",
+"w": "dig",
+"set": "basic"
+},
+{
+"id": "dining-room",
+"w": "dining room",
+"set": "basic"
+},
+{
+"id": "dinner",
+"w": "dinner",
+"set": "basic"
+},
+{
+"id": "dirty",
+"w": "dirty",
+"set": "basic"
+},
+{
+"id": "dish",
+"w": "dish",
+"set": "basic"
+},
+{
+"id": "do",
+"w": "do (does, did, done)",
+"set": "basic"
+},
+{
+"id": "doctor",
+"w": "doctor (Dr.)",
+"set": "basic"
+},
+{
+"id": "dog",
+"w": "dog",
+"set": "basic"
+},
+{
+"id": "doll",
+"w": "doll",
+"set": "basic"
+},
+{
+"id": "dollar",
+"w": "dollar",
+"set": "basic"
+},
+{
+"id": "door",
+"w": "door",
+"set": "basic"
+},
+{
+"id": "dot",
+"w": "dot",
+"set": "basic"
+},
+{
+"id": "down",
+"w": "down",
+"set": "basic"
+},
+{
+"id": "download",
+"w": "download",
+"set": "basic"
+},
+{
+"id": "dozen",
+"w": "dozen",
+"set": "basic"
+},
+{
+"id": "draw",
+"w": "draw",
+"set": "basic"
+},
+{
+"id": "drawer",
+"w": "drawer",
+"set": "basic"
+},
+{
+"id": "dream",
+"w": "dream",
+"set": "basic"
+},
+{
+"id": "dress",
+"w": "dress",
+"set": "basic"
+},
+{
+"id": "drink",
+"w": "drink",
+"set": "basic"
+},
+{
+"id": "drive",
+"w": "drive",
+"set": "basic"
+},
+{
+"id": "driver",
+"w": "driver",
+"set": "basic"
+},
+{
+"id": "drop",
+"w": "drop",
+"set": "basic"
+},
+{
+"id": "drum",
+"w": "drum",
+"set": "basic"
+},
+{
+"id": "dry",
+"w": "dry",
+"set": "basic"
+},
+{
+"id": "duck",
+"w": "duck",
+"set": "basic"
+},
+{
+"id": "during",
+"w": "during",
+"set": "basic"
+},
+{
+"id": "each",
+"w": "each",
+"set": "basic"
+},
+{
+"id": "ear",
+"w": "ear",
+"set": "basic"
+},
+{
+"id": "early",
+"w": "early",
+"set": "basic"
+},
+{
+"id": "earth",
+"w": "earth",
+"set": "basic"
+},
+{
+"id": "earthquake",
+"w": "earthquake",
+"set": "basic"
+},
+{
+"id": "east",
+"w": "east",
+"set": "basic"
+},
+{
+"id": "easter",
+"w": "Easter",
+"set": "basic"
+},
+{
+"id": "easy",
+"w": "easy",
+"set": "basic"
+},
+{
+"id": "eat",
+"w": "eat",
+"set": "basic"
+},
+{
+"id": "egg",
+"w": "egg",
+"set": "basic"
+},
+{
+"id": "eight",
+"w": "eight",
+"set": "basic"
+},
+{
+"id": "eighteen",
+"w": "eighteen",
+"set": "basic"
+},
+{
+"id": "eighty",
+"w": "eighty",
+"set": "basic"
+},
+{
+"id": "either",
+"w": "either",
+"set": "basic"
+},
+{
+"id": "elementary-school",
+"w": "elementary school",
+"set": "basic"
+},
+{
+"id": "elephant",
+"w": "elephant",
+"set": "basic"
+},
+{
+"id": "eleven",
+"w": "eleven",
+"set": "basic"
+},
+{
+"id": "else",
+"w": "else",
+"set": "basic"
+},
+{
+"id": "e-mail",
+"w": "e-mail",
+"set": "basic"
+},
+{
+"id": "end",
+"w": "end",
+"set": "basic"
+},
+{
+"id": "engineer",
+"w": "engineer",
+"set": "basic"
+},
+{
+"id": "english",
+"w": "English",
+"set": "basic"
+},
+{
+"id": "enjoy",
+"w": "enjoy",
+"set": "basic"
+},
+{
+"id": "enough",
+"w": "enough",
+"set": "basic"
+},
+{
+"id": "enter",
+"w": "enter",
+"set": "basic"
+},
+{
+"id": "envelope",
+"w": "envelope",
+"set": "basic"
+},
+{
+"id": "eraser",
+"w": "eraser",
+"set": "basic"
+},
+{
+"id": "error",
+"w": "error",
+"set": "basic"
+},
+{
+"id": "eve",
+"w": "eve",
+"set": "basic"
+},
+{
+"id": "even",
+"w": "even",
+"set": "basic"
+},
+{
+"id": "evening",
+"w": "evening",
+"set": "basic"
+},
+{
+"id": "ever",
+"w": "ever",
+"set": "basic"
+},
+{
+"id": "every",
+"w": "every",
+"set": "basic"
+},
+{
+"id": "everyone",
+"w": "everyone (everybody)",
+"set": "basic"
+},
+{
+"id": "everything",
+"w": "everything",
+"set": "basic"
+},
+{
+"id": "example",
+"w": "example",
+"set": "basic"
+},
+{
+"id": "excellent",
+"w": "excellent",
+"set": "basic"
+},
+{
+"id": "except",
+"w": "except",
+"set": "basic"
+},
+{
+"id": "excited",
+"w": "excited",
+"set": "basic"
+},
+{
+"id": "exciting",
+"w": "exciting",
+"set": "basic"
+},
+{
+"id": "excuse",
+"w": "excuse",
+"set": "basic"
+},
+{
+"id": "exercise",
+"w": "exercise",
+"set": "basic"
+},
+{
+"id": "expect",
+"w": "expect",
+"set": "basic"
+},
+{
+"id": "expensive",
+"w": "expensive",
+"set": "basic"
+},
+{
+"id": "experience",
+"w": "experience",
+"set": "basic"
+},
+{
+"id": "explain",
+"w": "explain",
+"set": "basic"
+},
+{
+"id": "eye",
+"w": "eye",
+"set": "basic"
+},
+{
+"id": "face",
+"w": "face",
+"set": "basic"
+},
+{
+"id": "fact",
+"w": "fact",
+"set": "basic"
+},
+{
+"id": "factory",
+"w": "factory",
+"set": "basic"
+},
+{
+"id": "fail",
+"w": "fail",
+"set": "basic"
+},
+{
+"id": "fall",
+"w": "fall",
+"set": "basic"
+},
+{
+"id": "family",
+"w": "family",
+"set": "basic"
+},
+{
+"id": "famous",
+"w": "famous",
+"set": "basic"
+},
+{
+"id": "fan",
+"w": "fan",
+"set": "basic"
+},
+{
+"id": "far",
+"w": "far",
+"set": "basic"
+},
+{
+"id": "farm",
+"w": "farm",
+"set": "basic"
+},
+{
+"id": "farmer",
+"w": "farmer",
+"set": "basic"
+},
+{
+"id": "fast",
+"w": "fast",
+"set": "basic"
+},
+{
+"id": "fat",
+"w": "fat",
+"set": "basic"
+},
+{
+"id": "father",
+"w": "father (dad, daddy)",
+"set": "basic"
+},
+{
+"id": "favorite",
+"w": "favorite",
+"set": "basic"
+},
+{
+"id": "february",
+"w": "February",
+"set": "basic"
+},
+{
+"id": "feed",
+"w": "feed",
+"set": "basic"
+},
+{
+"id": "feel",
+"w": "feel",
+"set": "basic"
+},
+{
+"id": "festival",
+"w": "festival",
+"set": "basic"
+},
+{
+"id": "fever",
+"w": "fever",
+"set": "basic"
+},
+{
+"id": "few",
+"w": "few",
+"set": "basic"
+},
+{
+"id": "fifteen",
+"w": "fifteen",
+"set": "basic"
+},
+{
+"id": "fifty",
+"w": "fifty",
+"set": "basic"
+},
+{
+"id": "fight",
+"w": "fight",
+"set": "basic"
+},
+{
+"id": "file",
+"w": "file",
+"set": "basic"
+},
+{
+"id": "fill",
+"w": "fill",
+"set": "basic"
+},
+{
+"id": "finally",
+"w": "finally",
+"set": "basic"
+},
+{
+"id": "find",
+"w": "find",
+"set": "basic"
+},
+{
+"id": "fine",
+"w": "fine",
+"set": "basic"
+},
+{
+"id": "finger",
+"w": "finger",
+"set": "basic"
+},
+{
+"id": "finish",
+"w": "finish",
+"set": "basic"
+},
+{
+"id": "fire",
+"w": "fire",
+"set": "basic"
+},
+{
+"id": "first",
+"w": "first",
+"set": "basic"
+},
+{
+"id": "fish",
+"w": "fish",
+"set": "basic"
+},
+{
+"id": "fisherman",
+"w": "fisherman",
+"set": "basic"
+},
+{
+"id": "five",
+"w": "five",
+"set": "basic"
+},
+{
+"id": "fix",
+"w": "fix",
+"set": "basic"
+},
+{
+"id": "floor",
+"w": "floor",
+"set": "basic"
+},
+{
+"id": "flower",
+"w": "flower",
+"set": "basic"
+},
+{
+"id": "fly",
+"w": "fly",
+"set": "basic"
+},
+{
+"id": "follow",
+"w": "follow",
+"set": "basic"
+},
+{
+"id": "food",
+"w": "food",
+"set": "basic"
+},
+{
+"id": "fool",
+"w": "fool",
+"set": "basic"
+},
+{
+"id": "foot",
+"w": "foot",
+"set": "basic"
+},
+{
+"id": "for",
+"w": "for",
+"set": "basic"
+},
+{
+"id": "foreign",
+"w": "foreign",
+"set": "basic"
+},
+{
+"id": "foreigner",
+"w": "foreigner",
+"set": "basic"
+},
+{
+"id": "forget",
+"w": "forget",
+"set": "basic"
+},
+{
+"id": "fork",
+"w": "fork",
+"set": "basic"
+},
+{
+"id": "forty",
+"w": "forty",
+"set": "basic"
+},
+{
+"id": "four",
+"w": "four",
+"set": "basic"
+},
+{
+"id": "fourteen",
+"w": "fourteen",
+"set": "basic"
+},
+{
+"id": "fox",
+"w": "fox",
+"set": "basic"
+},
+{
+"id": "free",
+"w": "free",
+"set": "basic"
+},
+{
+"id": "fresh",
+"w": "fresh",
+"set": "basic"
+},
+{
+"id": "friday",
+"w": "Friday",
+"set": "basic"
+},
+{
+"id": "friend",
+"w": "friend",
+"set": "basic"
+},
+{
+"id": "friendly",
+"w": "friendly",
+"set": "basic"
+},
+{
+"id": "fries",
+"w": "fries (French fries)",
+"set": "basic"
+},
+{
+"id": "frog",
+"w": "frog",
+"set": "basic"
+},
+{
+"id": "from",
+"w": "from",
+"set": "basic"
+},
+{
+"id": "front",
+"w": "front",
+"set": "basic"
+},
+{
+"id": "fruit",
+"w": "fruit",
+"set": "basic"
+},
+{
+"id": "fry",
+"w": "fry",
+"set": "basic"
+},
+{
+"id": "full",
+"w": "full",
+"set": "basic"
+},
+{
+"id": "fun",
+"w": "fun",
+"set": "basic"
+},
+{
+"id": "funny",
+"w": "funny",
+"set": "basic"
+},
+{
+"id": "future",
+"w": "future",
+"set": "basic"
+},
+{
+"id": "game",
+"w": "game",
+"set": "basic"
+},
+{
+"id": "garden",
+"w": "garden",
+"set": "basic"
+},
+{
+"id": "garbage",
+"w": "garbage",
+"set": "basic"
+},
+{
+"id": "gas",
+"w": "gas",
+"set": "basic"
+},
+{
+"id": "gate",
+"w": "gate",
+"set": "basic"
+},
+{
+"id": "get",
+"w": "get",
+"set": "basic"
+},
+{
+"id": "ghost",
+"w": "ghost",
+"set": "basic"
+},
+{
+"id": "giant",
+"w": "giant",
+"set": "basic"
+},
+{
+"id": "gift",
+"w": "gift",
+"set": "basic"
+},
+{
+"id": "girl",
+"w": "girl",
+"set": "basic"
+},
+{
+"id": "give",
+"w": "give",
+"set": "basic"
+},
+{
+"id": "glad",
+"w": "glad",
+"set": "basic"
+},
+{
+"id": "glass",
+"w": "glass",
+"set": "basic"
+},
+{
+"id": "glasses",
+"w": "glasses",
+"set": "basic"
+},
+{
+"id": "glove",
+"w": "glove",
+"set": "basic"
+},
+{
+"id": "glue",
+"w": "glue",
+"set": "basic"
+},
+{
+"id": "go",
+"w": "go",
+"set": "basic"
+},
+{
+"id": "goat",
+"w": "goat",
+"set": "basic"
+},
+{
+"id": "god",
+"w": "god",
+"set": "basic"
+},
+{
+"id": "good",
+"w": "good",
+"set": "basic"
+},
+{
+"id": "good-bye",
+"w": "good-bye (goodbye, bye)",
+"set": "basic"
+},
+{
+"id": "goose",
+"w": "goose",
+"set": "basic"
+},
+{
+"id": "grade",
+"w": "grade",
+"set": "basic"
+},
+{
+"id": "gram",
+"w": "gram",
+"set": "basic"
+},
+{
+"id": "grandfather",
+"w": "grandfather (grandpa)",
+"set": "basic"
+},
+{
+"id": "grandmother",
+"w": "grandmother (grandma)",
+"set": "basic"
+},
+{
+"id": "grape",
+"w": "grape",
+"set": "basic"
+},
+{
+"id": "grass",
+"w": "grass",
+"set": "basic"
+},
+{
+"id": "gray",
+"w": "gray",
+"set": "basic"
+},
+{
+"id": "great",
+"w": "great",
+"set": "basic"
+},
+{
+"id": "green",
+"w": "green",
+"set": "basic"
+},
+{
+"id": "ground",
+"w": "ground",
+"set": "basic"
+},
+{
+"id": "group",
+"w": "group",
+"set": "basic"
+},
+{
+"id": "grow",
+"w": "grow",
+"set": "basic"
+},
+{
+"id": "guava",
+"w": "guava",
+"set": "basic"
+},
+{
+"id": "guess",
+"w": "guess",
+"set": "basic"
+},
+{
+"id": "guitar",
+"w": "guitar",
+"set": "basic"
+},
+{
+"id": "guy",
+"w": "guy",
+"set": "basic"
+},
+{
+"id": "gym",
+"w": "gym",
+"set": "basic"
+},
+{
+"id": "habit",
+"w": "habit",
+"set": "basic"
+},
+{
+"id": "hair",
+"w": "hair",
+"set": "basic"
+},
+{
+"id": "half",
+"w": "half",
+"set": "basic"
+},
+{
+"id": "halloween",
+"w": "Halloween",
+"set": "basic"
+},
+{
+"id": "ham",
+"w": "ham",
+"set": "basic"
+},
+{
+"id": "hamburger",
+"w": "hamburger (burger)",
+"set": "basic"
+},
+{
+"id": "hand",
+"w": "hand",
+"set": "basic"
+},
+{
+"id": "handsome",
+"w": "handsome",
+"set": "basic"
+},
+{
+"id": "hang",
+"w": "hang",
+"set": "basic"
+},
+{
+"id": "happen",
+"w": "happen",
+"set": "basic"
+},
+{
+"id": "happy",
+"w": "happy",
+"set": "basic"
+},
+{
+"id": "hard",
+"w": "hard",
+"set": "basic"
+},
+{
+"id": "hard-working",
+"w": "hard-working",
+"set": "basic"
+},
+{
+"id": "hat",
+"w": "hat",
+"set": "basic"
+},
+{
+"id": "hate",
+"w": "hate",
+"set": "basic"
+},
+{
+"id": "have",
+"w": "have (has, had)",
+"set": "basic"
+},
+{
+"id": "he",
+"w": "he (him, his, himself)",
+"set": "basic"
+},
+{
+"id": "head",
+"w": "head",
+"set": "basic"
+},
+{
+"id": "headache",
+"w": "headache",
+"set": "basic"
+},
+{
+"id": "health",
+"w": "health",
+"set": "basic"
+},
+{
+"id": "healthy",
+"w": "healthy",
+"set": "basic"
+},
+{
+"id": "hear",
+"w": "hear",
+"set": "basic"
+},
+{
+"id": "heart",
+"w": "heart",
+"set": "basic"
+},
+{
+"id": "heat",
+"w": "heat",
+"set": "basic"
+},
+{
+"id": "heavy",
+"w": "heavy",
+"set": "basic"
+},
+{
+"id": "height",
+"w": "height",
+"set": "basic"
+},
+{
+"id": "hello",
+"w": "hello",
+"set": "basic"
+},
+{
+"id": "help",
+"w": "help",
+"set": "basic"
+},
+{
+"id": "helpful",
+"w": "helpful",
+"set": "basic"
+},
+{
+"id": "hen",
+"w": "hen",
+"set": "basic"
+},
+{
+"id": "here",
+"w": "here",
+"set": "basic"
+},
+{
+"id": "hey",
+"w": "hey",
+"set": "basic"
+},
+{
+"id": "hi",
+"w": "hi",
+"set": "basic"
+},
+{
+"id": "hide",
+"w": "hide",
+"set": "basic"
+},
+{
+"id": "high",
+"w": "high",
+"set": "basic"
+},
+{
+"id": "hike",
+"w": "hike",
+"set": "basic"
+},
+{
+"id": "hill",
+"w": "hill",
+"set": "basic"
+},
+{
+"id": "history",
+"w": "history",
+"set": "basic"
+},
+{
+"id": "hit",
+"w": "hit",
+"set": "basic"
+},
+{
+"id": "hobby",
+"w": "hobby",
+"set": "basic"
+},
+{
+"id": "hold",
+"w": "hold",
+"set": "basic"
+},
+{
+"id": "holiday",
+"w": "holiday",
+"set": "basic"
+},
+{
+"id": "home",
+"w": "home",
+"set": "basic"
+},
+{
+"id": "homework",
+"w": "homework",
+"set": "basic"
+},
+{
+"id": "honest",
+"w": "honest",
+"set": "basic"
+},
+{
+"id": "honey",
+"w": "honey",
+"set": "basic"
+},
+{
+"id": "hope",
+"w": "hope",
+"set": "basic"
+},
+{
+"id": "horse",
+"w": "horse",
+"set": "basic"
+},
+{
+"id": "hospital",
+"w": "hospital",
+"set": "basic"
+},
+{
+"id": "hot",
+"w": "hot",
+"set": "basic"
+},
+{
+"id": "hot-dog",
+"w": "hot dog",
+"set": "basic"
+},
+{
+"id": "hotel",
+"w": "hotel",
+"set": "basic"
+},
+{
+"id": "hour",
+"w": "hour",
+"set": "basic"
+},
+{
+"id": "house",
+"w": "house",
+"set": "basic"
+},
+{
+"id": "housewife",
+"w": "housewife",
+"set": "basic"
+},
+{
+"id": "how",
+"w": "how",
+"set": "basic"
+},
+{
+"id": "however",
+"w": "however",
+"set": "basic"
+},
+{
+"id": "hundred",
+"w": "hundred",
+"set": "basic"
+},
+{
+"id": "hungry",
+"w": "hungry",
+"set": "basic"
+},
+{
+"id": "hunt",
+"w": "hunt",
+"set": "basic"
+},
+{
+"id": "hurry",
+"w": "hurry",
+"set": "basic"
+},
+{
+"id": "hurt",
+"w": "hurt",
+"set": "basic"
+},
+{
+"id": "husband",
+"w": "husband",
+"set": "basic"
+},
+{
+"id": "i",
+"w": "I (me, my, mine, myself)",
+"set": "basic"
+},
+{
+"id": "ice",
+"w": "ice",
+"set": "basic"
+},
+{
+"id": "ice-cream",
+"w": "ice cream",
+"set": "basic"
+},
+{
+"id": "idea",
+"w": "idea",
+"set": "basic"
+},
+{
+"id": "if",
+"w": "if",
+"set": "basic"
+},
+{
+"id": "important",
+"w": "important",
+"set": "basic"
+},
+{
+"id": "in",
+"w": "in",
+"set": "basic"
+},
+{
+"id": "inch",
+"w": "inch",
+"set": "basic"
+},
+{
+"id": "insect",
+"w": "insect",
+"set": "basic"
+},
+{
+"id": "inside",
+"w": "inside",
+"set": "basic"
+},
+{
+"id": "interest",
+"w": "interest",
+"set": "basic"
+},
+{
+"id": "interested",
+"w": "interested",
+"set": "basic"
+},
+{
+"id": "interesting",
+"w": "interesting",
+"set": "basic"
+},
+{
+"id": "internet",
+"w": "Internet (Net)",
+"set": "basic"
+},
+{
+"id": "interview",
+"w": "interview",
+"set": "basic"
+},
+{
+"id": "into",
+"w": "into",
+"set": "basic"
+},
+{
+"id": "invite",
+"w": "invite",
+"set": "basic"
+},
+{
+"id": "island",
+"w": "island",
+"set": "basic"
+},
+{
+"id": "it",
+"w": "it (its, itself)",
+"set": "basic"
+},
+{
+"id": "item",
+"w": "item",
+"set": "basic"
+},
+{
+"id": "jacket",
+"w": "jacket",
+"set": "basic"
+},
+{
+"id": "january",
+"w": "January",
+"set": "basic"
+},
+{
+"id": "jeans",
+"w": "jeans",
+"set": "basic"
+},
+{
+"id": "job",
+"w": "job",
+"set": "basic"
+},
+{
+"id": "jog",
+"w": "jog",
+"set": "basic"
+},
+{
+"id": "join",
+"w": "join",
+"set": "basic"
+},
+{
+"id": "joke",
+"w": "joke",
+"set": "basic"
+},
+{
+"id": "joy",
+"w": "joy",
+"set": "basic"
+},
+{
+"id": "juice",
+"w": "juice",
+"set": "basic"
+},
+{
+"id": "july",
+"w": "July",
+"set": "basic"
+},
+{
+"id": "jump",
+"w": "jump",
+"set": "basic"
+},
+{
+"id": "june",
+"w": "June",
+"set": "basic"
+},
+{
+"id": "junior-high-school",
+"w": "junior high school",
+"set": "basic"
+},
+{
+"id": "just",
+"w": "just",
+"set": "basic"
+},
+{
+"id": "keep",
+"w": "keep",
+"set": "basic"
+},
+{
+"id": "key",
+"w": "key",
+"set": "basic"
+},
+{
+"id": "kick",
+"w": "kick",
+"set": "basic"
+},
+{
+"id": "kid",
+"w": "kid",
+"set": "basic"
+},
+{
+"id": "kill",
+"w": "kill",
+"set": "basic"
+},
+{
+"id": "kilogram",
+"w": "kilogram",
+"set": "basic"
+},
+{
+"id": "kind",
+"w": "kind",
+"set": "basic"
+},
+{
+"id": "king",
+"w": "king",
+"set": "basic"
+},
+{
+"id": "kiss",
+"w": "kiss",
+"set": "basic"
+},
+{
+"id": "kitchen",
+"w": "kitchen",
+"set": "basic"
+},
+{
+"id": "kite",
+"w": "kite",
+"set": "basic"
+},
+{
+"id": "knee",
+"w": "knee",
+"set": "basic"
+},
+{
+"id": "knife",
+"w": "knife",
+"set": "basic"
+},
+{
+"id": "knock",
+"w": "knock",
+"set": "basic"
+},
+{
+"id": "know",
+"w": "know",
+"set": "basic"
+},
+{
+"id": "knowledge",
+"w": "knowledge",
+"set": "basic"
+},
+{
+"id": "lake",
+"w": "lake",
+"set": "basic"
+},
+{
+"id": "lamp",
+"w": "lamp",
+"set": "basic"
+},
+{
+"id": "land",
+"w": "land",
+"set": "basic"
+},
+{
+"id": "language",
+"w": "language",
+"set": "basic"
+},
+{
+"id": "large",
+"w": "large",
+"set": "basic"
+},
+{
+"id": "last",
+"w": "last",
+"set": "basic"
+},
+{
+"id": "late",
+"w": "late",
+"set": "basic"
+},
+{
+"id": "later",
+"w": "later",
+"set": "basic"
+},
+{
+"id": "laugh",
+"w": "laugh",
+"set": "basic"
+},
+{
+"id": "lawyer",
+"w": "lawyer",
+"set": "basic"
+},
+{
+"id": "lazy",
+"w": "lazy",
+"set": "basic"
+},
+{
+"id": "lead",
+"w": "lead",
+"set": "basic"
+},
+{
+"id": "leader",
+"w": "leader",
+"set": "basic"
+},
+{
+"id": "learn",
+"w": "learn",
+"set": "basic"
+},
+{
+"id": "least",
+"w": "least",
+"set": "basic"
+},
+{
+"id": "leave",
+"w": "leave",
+"set": "basic"
+},
+{
+"id": "left",
+"w": "left",
+"set": "basic"
+},
+{
+"id": "leg",
+"w": "leg",
+"set": "basic"
+},
+{
+"id": "lemon",
+"w": "lemon",
+"set": "basic"
+},
+{
+"id": "lend",
+"w": "lend",
+"set": "basic"
+},
+{
+"id": "less",
+"w": "less",
+"set": "basic"
+},
+{
+"id": "lesson",
+"w": "lesson",
+"set": "basic"
+},
+{
+"id": "let",
+"w": "let",
+"set": "basic"
+},
+{
+"id": "letter",
+"w": "letter",
+"set": "basic"
+},
+{
+"id": "level",
+"w": "level",
+"set": "basic"
+},
+{
+"id": "library",
+"w": "library",
+"set": "basic"
+},
+{
+"id": "lie",
+"w": "lie",
+"set": "basic"
+},
+{
+"id": "life",
+"w": "life",
+"set": "basic"
+},
+{
+"id": "light",
+"w": "light",
+"set": "basic"
+},
+{
+"id": "like",
+"w": "like",
+"set": "basic"
+},
+{
+"id": "line",
+"w": "line",
+"set": "basic"
+},
+{
+"id": "lion",
+"w": "lion",
+"set": "basic"
+},
+{
+"id": "lip",
+"w": "lip",
+"set": "basic"
+},
+{
+"id": "list",
+"w": "list",
+"set": "basic"
+},
+{
+"id": "listen",
+"w": "listen",
+"set": "basic"
+},
+{
+"id": "little",
+"w": "little",
+"set": "basic"
+},
+{
+"id": "live",
+"w": "live",
+"set": "basic"
+},
+{
+"id": "living-room",
+"w": "living room",
+"set": "basic"
+},
+{
+"id": "lonely",
+"w": "lonely",
+"set": "basic"
+},
+{
+"id": "long",
+"w": "long",
+"set": "basic"
+},
+{
+"id": "look",
+"w": "look",
+"set": "basic"
+},
+{
+"id": "lose",
+"w": "lose",
+"set": "basic"
+},
+{
+"id": "loud",
+"w": "loud",
+"set": "basic"
+},
+{
+"id": "love",
+"w": "love",
+"set": "basic"
+},
+{
+"id": "lovely",
+"w": "lovely",
+"set": "basic"
+},
+{
+"id": "low",
+"w": "low",
+"set": "basic"
+},
+{
+"id": "lucky",
+"w": "lucky",
+"set": "basic"
+},
+{
+"id": "lunch",
+"w": "lunch",
+"set": "basic"
+},
+{
+"id": "machine",
+"w": "machine",
+"set": "basic"
+},
+{
+"id": "mad",
+"w": "mad",
+"set": "basic"
+},
+{
+"id": "magic",
+"w": "magic",
+"set": "basic"
+},
+{
+"id": "mail",
+"w": "mail",
+"set": "basic"
+},
+{
+"id": "mailman",
+"w": "mailman (mail carrier)",
+"set": "basic"
+},
+{
+"id": "main",
+"w": "main",
+"set": "basic"
+},
+{
+"id": "make",
+"w": "make",
+"set": "basic"
+},
+{
+"id": "man",
+"w": "man",
+"set": "basic"
+},
+{
+"id": "many",
+"w": "many",
+"set": "basic"
+},
+{
+"id": "map",
+"w": "map",
+"set": "basic"
+},
+{
+"id": "march",
+"w": "March",
+"set": "basic"
+},
+{
+"id": "mark",
+"w": "mark",
+"set": "basic"
+},
+{
+"id": "marker",
+"w": "marker",
+"set": "basic"
+},
+{
+"id": "market",
+"w": "market",
+"set": "basic"
+},
+{
+"id": "married",
+"w": "married",
+"set": "basic"
+},
+{
+"id": "mask",
+"w": "mask",
+"set": "basic"
+},
+{
+"id": "math",
+"w": "math (mathematics)",
+"set": "basic"
+},
+{
+"id": "matter",
+"w": "matter",
+"set": "basic"
+},
+{
+"id": "may",
+"w": "may (might)",
+"set": "basic"
+},
+{
+"id": "may-2",
+"w": "May",
+"set": "basic"
+},
+{
+"id": "maybe",
+"w": "maybe",
+"set": "basic"
+},
+{
+"id": "meal",
+"w": "meal",
+"set": "basic"
+},
+{
+"id": "mean",
+"w": "mean",
+"set": "basic"
+},
+{
+"id": "meat",
+"w": "meat",
+"set": "basic"
+},
+{
+"id": "medicine",
+"w": "medicine",
+"set": "basic"
+},
+{
+"id": "medium",
+"w": "medium",
+"set": "basic"
+},
+{
+"id": "meet",
+"w": "meet",
+"set": "basic"
+},
+{
+"id": "meeting",
+"w": "meeting",
+"set": "basic"
+},
+{
+"id": "member",
+"w": "member",
+"set": "basic"
+},
+{
+"id": "menu",
+"w": "menu",
+"set": "basic"
+},
+{
+"id": "metro",
+"w": "metro",
+"set": "basic"
+},
+{
+"id": "middle",
+"w": "middle",
+"set": "basic"
+},
+{
+"id": "mile",
+"w": "mile",
+"set": "basic"
+},
+{
+"id": "milk",
+"w": "milk",
+"set": "basic"
+},
+{
+"id": "million",
+"w": "million",
+"set": "basic"
+},
+{
+"id": "mind",
+"w": "mind",
+"set": "basic"
+},
+{
+"id": "minute",
+"w": "minute",
+"set": "basic"
+},
+{
+"id": "miss",
+"w": "Miss",
+"set": "basic"
+},
+{
+"id": "miss-2",
+"w": "miss",
+"set": "basic"
+},
+{
+"id": "mistake",
+"w": "mistake",
+"set": "basic"
+},
+{
+"id": "modern",
+"w": "modern",
+"set": "basic"
+},
+{
+"id": "moment",
+"w": "moment",
+"set": "basic"
+},
+{
+"id": "monday",
+"w": "Monday",
+"set": "basic"
+},
+{
+"id": "money",
+"w": "money",
+"set": "basic"
+},
+{
+"id": "monkey",
+"w": "monkey",
+"set": "basic"
+},
+{
+"id": "month",
+"w": "month",
+"set": "basic"
+},
+{
+"id": "moon",
+"w": "moon",
+"set": "basic"
+},
+{
+"id": "more",
+"w": "more",
+"set": "basic"
+},
+{
+"id": "morning",
+"w": "morning",
+"set": "basic"
+},
+{
+"id": "mop",
+"w": "mop",
+"set": "basic"
+},
+{
+"id": "most",
+"w": "most",
+"set": "basic"
+},
+{
+"id": "mother",
+"w": "mother (mom, mommy)",
+"set": "basic"
+},
+{
+"id": "motorcycle",
+"w": "motorcycle",
+"set": "basic"
+},
+{
+"id": "mountain",
+"w": "mountain",
+"set": "basic"
+},
+{
+"id": "mouse",
+"w": "mouse",
+"set": "basic"
+},
+{
+"id": "mouth",
+"w": "mouth",
+"set": "basic"
+},
+{
+"id": "move",
+"w": "move",
+"set": "basic"
+},
+{
+"id": "movie",
+"w": "movie",
+"set": "basic"
+},
+{
+"id": "mr",
+"w": "Mr.",
+"set": "basic"
+},
+{
+"id": "mrs",
+"w": "Mrs.",
+"set": "basic"
+},
+{
+"id": "ms",
+"w": "Ms.",
+"set": "basic"
+},
+{
+"id": "much",
+"w": "much",
+"set": "basic"
+},
+{
+"id": "mud",
+"w": "mud",
+"set": "basic"
+},
+{
+"id": "museum",
+"w": "museum",
+"set": "basic"
+},
+{
+"id": "music",
+"w": "music",
+"set": "basic"
+},
+{
+"id": "must",
+"w": "must",
+"set": "basic"
+},
+{
+"id": "nail",
+"w": "nail",
+"set": "basic"
+},
+{
+"id": "name",
+"w": "name",
+"set": "basic"
+},
+{
+"id": "national",
+"w": "national",
+"set": "basic"
+},
+{
+"id": "nature",
+"w": "nature",
+"set": "basic"
+},
+{
+"id": "near",
+"w": "near",
+"set": "basic"
+},
+{
+"id": "neck",
+"w": "neck",
+"set": "basic"
+},
+{
+"id": "need",
+"w": "need",
+"set": "basic"
+},
+{
+"id": "neighbor",
+"w": "neighbor",
+"set": "basic"
+},
+{
+"id": "never",
+"w": "never",
+"set": "basic"
+},
+{
+"id": "new",
+"w": "new",
+"set": "basic"
+},
+{
+"id": "news",
+"w": "news",
+"set": "basic"
+},
+{
+"id": "newspaper",
+"w": "newspaper",
+"set": "basic"
+},
+{
+"id": "next",
+"w": "next",
+"set": "basic"
+},
+{
+"id": "nice",
+"w": "nice",
+"set": "basic"
+},
+{
+"id": "night",
+"w": "night",
+"set": "basic"
+},
+{
+"id": "nine",
+"w": "nine",
+"set": "basic"
+},
+{
+"id": "nineteen",
+"w": "nineteen",
+"set": "basic"
+},
+{
+"id": "ninety",
+"w": "ninety",
+"set": "basic"
+},
+{
+"id": "no",
+"w": "no",
+"set": "basic"
+},
+{
+"id": "nobody",
+"w": "nobody",
+"set": "basic"
+},
+{
+"id": "noise",
+"w": "noise",
+"set": "basic"
+},
+{
+"id": "noisy",
+"w": "noisy",
+"set": "basic"
+},
+{
+"id": "noodle",
+"w": "noodle",
+"set": "basic"
+},
+{
+"id": "noon",
+"w": "noon",
+"set": "basic"
+},
+{
+"id": "north",
+"w": "north",
+"set": "basic"
+},
+{
+"id": "nose",
+"w": "nose",
+"set": "basic"
+},
+{
+"id": "not",
+"w": "not",
+"set": "basic"
+},
+{
+"id": "note",
+"w": "note",
+"set": "basic"
+},
+{
+"id": "notebook",
+"w": "notebook",
+"set": "basic"
+},
+{
+"id": "nothing",
+"w": "nothing",
+"set": "basic"
+},
+{
+"id": "notice",
+"w": "notice",
+"set": "basic"
+},
+{
+"id": "november",
+"w": "November",
+"set": "basic"
+},
+{
+"id": "now",
+"w": "now",
+"set": "basic"
+},
+{
+"id": "number",
+"w": "number",
+"set": "basic"
+},
+{
+"id": "nurse",
+"w": "nurse",
+"set": "basic"
+},
+{
+"id": "o-clock",
+"w": "o'clock",
+"set": "basic"
+},
+{
+"id": "october",
+"w": "October",
+"set": "basic"
+},
+{
+"id": "of",
+"w": "of",
+"set": "basic"
+},
+{
+"id": "off",
+"w": "off",
+"set": "basic"
+},
+{
+"id": "office",
+"w": "office",
+"set": "basic"
+},
+{
+"id": "officer",
+"w": "officer",
+"set": "basic"
+},
+{
+"id": "often",
+"w": "often",
+"set": "basic"
+},
+{
+"id": "oil",
+"w": "oil",
+"set": "basic"
+},
+{
+"id": "ok",
+"w": "OK",
+"set": "basic"
+},
+{
+"id": "old",
+"w": "old",
+"set": "basic"
+},
+{
+"id": "on",
+"w": "on",
+"set": "basic"
+},
+{
+"id": "once",
+"w": "once",
+"set": "basic"
+},
+{
+"id": "one",
+"w": "one",
+"set": "basic"
+},
+{
+"id": "only",
+"w": "only",
+"set": "basic"
+},
+{
+"id": "open",
+"w": "open",
+"set": "basic"
+},
+{
+"id": "or",
+"w": "or",
+"set": "basic"
+},
+{
+"id": "orange",
+"w": "orange",
+"set": "basic"
+},
+{
+"id": "order",
+"w": "order",
+"set": "basic"
+},
+{
+"id": "other",
+"w": "other",
+"set": "basic"
+},
+{
+"id": "out",
+"w": "out",
+"set": "basic"
+},
+{
+"id": "outside",
+"w": "outside",
+"set": "basic"
+},
+{
+"id": "over",
+"w": "over",
+"set": "basic"
+},
+{
+"id": "own",
+"w": "own",
+"set": "basic"
+},
+{
+"id": "p-m",
+"w": "p.m.",
+"set": "basic"
+},
+{
+"id": "pack",
+"w": "pack",
+"set": "basic"
+},
+{
+"id": "package",
+"w": "package",
+"set": "basic"
+},
+{
+"id": "page",
+"w": "page",
+"set": "basic"
+},
+{
+"id": "paint",
+"w": "paint",
+"set": "basic"
+},
+{
+"id": "pair",
+"w": "pair",
+"set": "basic"
+},
+{
+"id": "pants",
+"w": "pants",
+"set": "basic"
+},
+{
+"id": "papaya",
+"w": "papaya",
+"set": "basic"
+},
+{
+"id": "paper",
+"w": "paper",
+"set": "basic"
+},
+{
+"id": "parent",
+"w": "parent",
+"set": "basic"
+},
+{
+"id": "park",
+"w": "park",
+"set": "basic"
+},
+{
+"id": "part",
+"w": "part",
+"set": "basic"
+},
+{
+"id": "party",
+"w": "party",
+"set": "basic"
+},
+{
+"id": "pass",
+"w": "pass",
+"set": "basic"
+},
+{
+"id": "past",
+"w": "past",
+"set": "basic"
+},
+{
+"id": "paste",
+"w": "paste",
+"set": "basic"
+},
+{
+"id": "pay",
+"w": "pay",
+"set": "basic"
+},
+{
+"id": "pe",
+"w": "PE (physical education)",
+"set": "basic"
+},
+{
+"id": "peach",
+"w": "peach",
+"set": "basic"
+},
+{
+"id": "pear",
+"w": "pear",
+"set": "basic"
+},
+{
+"id": "pen",
+"w": "pen",
+"set": "basic"
+},
+{
+"id": "pencil",
+"w": "pencil",
+"set": "basic"
+},
+{
+"id": "people",
+"w": "people",
+"set": "basic"
+},
+{
+"id": "perhaps",
+"w": "perhaps",
+"set": "basic"
+},
+{
+"id": "person",
+"w": "person",
+"set": "basic"
+},
+{
+"id": "pet",
+"w": "pet",
+"set": "basic"
+},
+{
+"id": "photo",
+"w": "photo",
+"set": "basic"
+},
+{
+"id": "piano",
+"w": "piano",
+"set": "basic"
+},
+{
+"id": "pick",
+"w": "pick",
+"set": "basic"
+},
+{
+"id": "picnic",
+"w": "picnic",
+"set": "basic"
+},
+{
+"id": "picture",
+"w": "picture",
+"set": "basic"
+},
+{
+"id": "pie",
+"w": "pie",
+"set": "basic"
+},
+{
+"id": "piece",
+"w": "piece",
+"set": "basic"
+},
+{
+"id": "pig",
+"w": "pig",
+"set": "basic"
+},
+{
+"id": "pin",
+"w": "pin",
+"set": "basic"
+},
+{
+"id": "pink",
+"w": "pink",
+"set": "basic"
+},
+{
+"id": "pipe",
+"w": "pipe",
+"set": "basic"
+},
+{
+"id": "pizza",
+"w": "pizza",
+"set": "basic"
+},
+{
+"id": "place",
+"w": "place",
+"set": "basic"
+},
+{
+"id": "plan",
+"w": "plan",
+"set": "basic"
+},
+{
+"id": "planet",
+"w": "planet",
+"set": "basic"
+},
+{
+"id": "plant",
+"w": "plant",
+"set": "basic"
+},
+{
+"id": "plate",
+"w": "plate",
+"set": "basic"
+},
+{
+"id": "play",
+"w": "play",
+"set": "basic"
+},
+{
+"id": "player",
+"w": "player",
+"set": "basic"
+},
+{
+"id": "playground",
+"w": "playground",
+"set": "basic"
+},
+{
+"id": "please",
+"w": "please",
+"set": "basic"
+},
+{
+"id": "pleasure",
+"w": "pleasure",
+"set": "basic"
+},
+{
+"id": "pocket",
+"w": "pocket",
+"set": "basic"
+},
+{
+"id": "point",
+"w": "point",
+"set": "basic"
+},
+{
+"id": "police",
+"w": "police",
+"set": "basic"
+},
+{
+"id": "polite",
+"w": "polite",
+"set": "basic"
+},
+{
+"id": "pond",
+"w": "pond",
+"set": "basic"
+},
+{
+"id": "pool",
+"w": "pool",
+"set": "basic"
+},
+{
+"id": "poor",
+"w": "poor",
+"set": "basic"
+},
+{
+"id": "pop",
+"w": "pop",
+"set": "basic"
+},
+{
+"id": "popcorn",
+"w": "popcorn",
+"set": "basic"
+},
+{
+"id": "popular",
+"w": "popular",
+"set": "basic"
+},
+{
+"id": "pork",
+"w": "pork",
+"set": "basic"
+},
+{
+"id": "possible",
+"w": "possible",
+"set": "basic"
+},
+{
+"id": "post-office",
+"w": "post office",
+"set": "basic"
+},
+{
+"id": "postcard",
+"w": "postcard",
+"set": "basic"
+},
+{
+"id": "pot",
+"w": "pot",
+"set": "basic"
+},
+{
+"id": "pound",
+"w": "pound",
+"set": "basic"
+},
+{
+"id": "power",
+"w": "power",
+"set": "basic"
+},
+{
+"id": "probably",
+"w": "probably",
+"set": "basic"
+},
+{
+"id": "practice",
+"w": "practice",
+"set": "basic"
+},
+{
+"id": "pray",
+"w": "pray",
+"set": "basic"
+},
+{
+"id": "prepare",
+"w": "prepare",
+"set": "basic"
+},
+{
+"id": "present",
+"w": "present",
+"set": "basic"
+},
+{
+"id": "pretty",
+"w": "pretty",
+"set": "basic"
+},
+{
+"id": "price",
+"w": "price",
+"set": "basic"
+},
+{
+"id": "prize",
+"w": "prize",
+"set": "basic"
+},
+{
+"id": "problem",
+"w": "problem",
+"set": "basic"
+},
+{
+"id": "program",
+"w": "program",
+"set": "basic"
+},
+{
+"id": "proud",
+"w": "proud",
+"set": "basic"
+},
+{
+"id": "public",
+"w": "public",
+"set": "basic"
+},
+{
+"id": "pull",
+"w": "pull",
+"set": "basic"
+},
+{
+"id": "pumpkin",
+"w": "pumpkin",
+"set": "basic"
+},
+{
+"id": "puppy",
+"w": "puppy",
+"set": "basic"
+},
+{
+"id": "purple",
+"w": "purple",
+"set": "basic"
+},
+{
+"id": "push",
+"w": "push",
+"set": "basic"
+},
+{
+"id": "put",
+"w": "put",
+"set": "basic"
+},
+{
+"id": "quarter",
+"w": "quarter",
+"set": "basic"
+},
+{
+"id": "queen",
+"w": "queen",
+"set": "basic"
+},
+{
+"id": "question",
+"w": "question",
+"set": "basic"
+},
+{
+"id": "quick",
+"w": "quick",
+"set": "basic"
+},
+{
+"id": "quiet",
+"w": "quiet",
+"set": "basic"
+},
+{
+"id": "quite",
+"w": "quite",
+"set": "basic"
+},
+{
+"id": "quiz",
+"w": "quiz",
+"set": "basic"
+},
+{
+"id": "rabbit",
+"w": "rabbit",
+"set": "basic"
+},
+{
+"id": "race",
+"w": "race",
+"set": "basic"
+},
+{
+"id": "radio",
+"w": "radio",
+"set": "basic"
+},
+{
+"id": "rain",
+"w": "rain",
+"set": "basic"
+},
+{
+"id": "rainbow",
+"w": "rainbow",
+"set": "basic"
+},
+{
+"id": "rainy",
+"w": "rainy",
+"set": "basic"
+},
+{
+"id": "raise",
+"w": "raise",
+"set": "basic"
+},
+{
+"id": "rat",
+"w": "rat",
+"set": "basic"
+},
+{
+"id": "reach",
+"w": "reach",
+"set": "basic"
+},
+{
+"id": "read",
+"w": "read",
+"set": "basic"
+},
+{
+"id": "ready",
+"w": "ready",
+"set": "basic"
+},
+{
+"id": "real",
+"w": "real",
+"set": "basic"
+},
+{
+"id": "really",
+"w": "really",
+"set": "basic"
+},
+{
+"id": "reason",
+"w": "reason",
+"set": "basic"
+},
+{
+"id": "red",
+"w": "red",
+"set": "basic"
+},
+{
+"id": "refrigerator",
+"w": "refrigerator (fridge)",
+"set": "basic"
+},
+{
+"id": "relative",
+"w": "relative",
+"set": "basic"
+},
+{
+"id": "remember",
+"w": "remember",
+"set": "basic"
+},
+{
+"id": "repeat",
+"w": "repeat",
+"set": "basic"
+},
+{
+"id": "report",
+"w": "report",
+"set": "basic"
+},
+{
+"id": "reporter",
+"w": "reporter",
+"set": "basic"
+},
+{
+"id": "rest",
+"w": "rest",
+"set": "basic"
+},
+{
+"id": "restaurant",
+"w": "restaurant",
+"set": "basic"
+},
+{
+"id": "restroom",
+"w": "restroom",
+"set": "basic"
+},
+{
+"id": "rice",
+"w": "rice",
+"set": "basic"
+},
+{
+"id": "rich",
+"w": "rich",
+"set": "basic"
+},
+{
+"id": "ride",
+"w": "ride",
+"set": "basic"
+},
+{
+"id": "right",
+"w": "right",
+"set": "basic"
+},
+{
+"id": "ring",
+"w": "ring",
+"set": "basic"
+},
+{
+"id": "rise",
+"w": "rise",
+"set": "basic"
+},
+{
+"id": "river",
+"w": "river",
+"set": "basic"
+},
+{
+"id": "road",
+"w": "road",
+"set": "basic"
+},
+{
+"id": "robot",
+"w": "robot",
+"set": "basic"
+},
+{
+"id": "r-o-c-roc",
+"w": "R.O.C./ROC",
+"set": "basic"
+},
+{
+"id": "rock",
+"w": "rock",
+"set": "basic"
+},
+{
+"id": "roll",
+"w": "roll",
+"set": "basic"
+},
+{
+"id": "room",
+"w": "room",
+"set": "basic"
+},
+{
+"id": "root",
+"w": "root",
+"set": "basic"
+},
+{
+"id": "rope",
+"w": "rope",
+"set": "basic"
+},
+{
+"id": "rose",
+"w": "rose",
+"set": "basic"
+},
+{
+"id": "round",
+"w": "round",
+"set": "basic"
+},
+{
+"id": "row",
+"w": "row",
+"set": "basic"
+},
+{
+"id": "rule",
+"w": "rule",
+"set": "basic"
+},
+{
+"id": "ruler",
+"w": "ruler",
+"set": "basic"
+},
+{
+"id": "run",
+"w": "run",
+"set": "basic"
+},
+{
+"id": "sad",
+"w": "sad",
+"set": "basic"
+},
+{
+"id": "safe",
+"w": "safe",
+"set": "basic"
+},
+{
+"id": "sail",
+"w": "sail",
+"set": "basic"
+},
+{
+"id": "salad",
+"w": "salad",
+"set": "basic"
+},
+{
+"id": "sale",
+"w": "sale",
+"set": "basic"
+},
+{
+"id": "salesman",
+"w": "salesman",
+"set": "basic"
+},
+{
+"id": "salt",
+"w": "salt",
+"set": "basic"
+},
+{
+"id": "same",
+"w": "same",
+"set": "basic"
+},
+{
+"id": "sandwich",
+"w": "sandwich",
+"set": "basic"
+},
+{
+"id": "saturday",
+"w": "Saturday",
+"set": "basic"
+},
+{
+"id": "save",
+"w": "save",
+"set": "basic"
+},
+{
+"id": "say",
+"w": "say",
+"set": "basic"
+},
+{
+"id": "scared",
+"w": "scared",
+"set": "basic"
+},
+{
+"id": "school",
+"w": "school",
+"set": "basic"
+},
+{
+"id": "science",
+"w": "science",
+"set": "basic"
+},
+{
+"id": "scooter",
+"w": "scooter",
+"set": "basic"
+},
+{
+"id": "screen",
+"w": "screen",
+"set": "basic"
+},
+{
+"id": "sea",
+"w": "sea",
+"set": "basic"
+},
+{
+"id": "season",
+"w": "season",
+"set": "basic"
+},
+{
+"id": "seat",
+"w": "seat",
+"set": "basic"
+},
+{
+"id": "second",
+"w": "second",
+"set": "basic"
+},
+{
+"id": "secretary",
+"w": "secretary",
+"set": "basic"
+},
+{
+"id": "see",
+"w": "see",
+"set": "basic"
+},
+{
+"id": "seed",
+"w": "seed",
+"set": "basic"
+},
+{
+"id": "seesaw",
+"w": "seesaw",
+"set": "basic"
+},
+{
+"id": "seldom",
+"w": "seldom",
+"set": "basic"
+},
+{
+"id": "sell",
+"w": "sell",
+"set": "basic"
+},
+{
+"id": "send",
+"w": "send",
+"set": "basic"
+},
+{
+"id": "senior-high-school",
+"w": "senior high school",
+"set": "basic"
+},
+{
+"id": "sentence",
+"w": "sentence",
+"set": "basic"
+},
+{
+"id": "september",
+"w": "September",
+"set": "basic"
+},
+{
+"id": "serious",
+"w": "serious",
+"set": "basic"
+},
+{
+"id": "service",
+"w": "service",
+"set": "basic"
+},
+{
+"id": "set",
+"w": "set",
+"set": "basic"
+},
+{
+"id": "seven",
+"w": "seven",
+"set": "basic"
+},
+{
+"id": "seventeen",
+"w": "seventeen",
+"set": "basic"
+},
+{
+"id": "seventy",
+"w": "seventy",
+"set": "basic"
+},
+{
+"id": "several",
+"w": "several",
+"set": "basic"
+},
+{
+"id": "shake",
+"w": "shake",
+"set": "basic"
+},
+{
+"id": "shape",
+"w": "shape",
+"set": "basic"
+},
+{
+"id": "share",
+"w": "share",
+"set": "basic"
+},
+{
+"id": "sharp",
+"w": "sharp",
+"set": "basic"
+},
+{
+"id": "she",
+"w": "she (her, hers, herself)",
+"set": "basic"
+},
+{
+"id": "sheep",
+"w": "sheep",
+"set": "basic"
+},
+{
+"id": "shine",
+"w": "shine",
+"set": "basic"
+},
+{
+"id": "ship",
+"w": "ship",
+"set": "basic"
+},
+{
+"id": "shirt",
+"w": "shirt",
+"set": "basic"
+},
+{
+"id": "shoe",
+"w": "shoe (s)",
+"set": "basic"
+},
+{
+"id": "shop",
+"w": "shop",
+"set": "basic"
+},
+{
+"id": "shopkeeper",
+"w": "shopkeeper",
+"set": "basic"
+},
+{
+"id": "short",
+"w": "short",
+"set": "basic"
+},
+{
+"id": "shorts",
+"w": "shorts",
+"set": "basic"
+},
+{
+"id": "should",
+"w": "should",
+"set": "basic"
+},
+{
+"id": "shoulder",
+"w": "shoulder",
+"set": "basic"
+},
+{
+"id": "shout",
+"w": "shout",
+"set": "basic"
+},
+{
+"id": "show",
+"w": "show",
+"set": "basic"
+},
+{
+"id": "shower",
+"w": "shower",
+"set": "basic"
+},
+{
+"id": "shy",
+"w": "shy",
+"set": "basic"
+},
+{
+"id": "sick",
+"w": "sick",
+"set": "basic"
+},
+{
+"id": "side",
+"w": "side",
+"set": "basic"
+},
+{
+"id": "sidewalk",
+"w": "sidewalk",
+"set": "basic"
+},
+{
+"id": "sight",
+"w": "sight",
+"set": "basic"
+},
+{
+"id": "sign",
+"w": "sign",
+"set": "basic"
+},
+{
+"id": "simple",
+"w": "simple",
+"set": "basic"
+},
+{
+"id": "since",
+"w": "since",
+"set": "basic"
+},
+{
+"id": "sing",
+"w": "sing",
+"set": "basic"
+},
+{
+"id": "singer",
+"w": "singer",
+"set": "basic"
+},
+{
+"id": "sir",
+"w": "sir",
+"set": "basic"
+},
+{
+"id": "sister",
+"w": "sister",
+"set": "basic"
+},
+{
+"id": "sit",
+"w": "sit",
+"set": "basic"
+},
+{
+"id": "six",
+"w": "six",
+"set": "basic"
+},
+{
+"id": "sixteen",
+"w": "sixteen",
+"set": "basic"
+},
+{
+"id": "sixty",
+"w": "sixty",
+"set": "basic"
+},
+{
+"id": "size",
+"w": "size",
+"set": "basic"
+},
+{
+"id": "skirt",
+"w": "skirt",
+"set": "basic"
+},
+{
+"id": "sky",
+"w": "sky",
+"set": "basic"
+},
+{
+"id": "sleep",
+"w": "sleep",
+"set": "basic"
+},
+{
+"id": "slide",
+"w": "slide",
+"set": "basic"
+},
+{
+"id": "slim",
+"w": "slim",
+"set": "basic"
+},
+{
+"id": "slow",
+"w": "slow",
+"set": "basic"
+},
+{
+"id": "small",
+"w": "small",
+"set": "basic"
+},
+{
+"id": "smart",
+"w": "smart",
+"set": "basic"
+},
+{
+"id": "smell",
+"w": "smell",
+"set": "basic"
+},
+{
+"id": "smile",
+"w": "smile",
+"set": "basic"
+},
+{
+"id": "smoke",
+"w": "smoke",
+"set": "basic"
+},
+{
+"id": "snack",
+"w": "snack",
+"set": "basic"
+},
+{
+"id": "snake",
+"w": "snake",
+"set": "basic"
+},
+{
+"id": "snow",
+"w": "snow",
+"set": "basic"
+},
+{
+"id": "snowy",
+"w": "snowy",
+"set": "basic"
+},
+{
+"id": "so",
+"w": "so",
+"set": "basic"
+},
+{
+"id": "soccer",
+"w": "soccer",
+"set": "basic"
+},
+{
+"id": "socks",
+"w": "socks",
+"set": "basic"
+},
+{
+"id": "sofa",
+"w": "sofa",
+"set": "basic"
+},
+{
+"id": "soldier",
+"w": "soldier",
+"set": "basic"
+},
+{
+"id": "some",
+"w": "some",
+"set": "basic"
+},
+{
+"id": "someone",
+"w": "someone (somebody)",
+"set": "basic"
+},
+{
+"id": "something",
+"w": "something",
+"set": "basic"
+},
+{
+"id": "sometimes",
+"w": "sometimes",
+"set": "basic"
+},
+{
+"id": "somewhere",
+"w": "somewhere",
+"set": "basic"
+},
+{
+"id": "son",
+"w": "son",
+"set": "basic"
+},
+{
+"id": "song",
+"w": "song",
+"set": "basic"
+},
+{
+"id": "soon",
+"w": "soon",
+"set": "basic"
+},
+{
+"id": "sore",
+"w": "sore",
+"set": "basic"
+},
+{
+"id": "sorry",
+"w": "sorry",
+"set": "basic"
+},
+{
+"id": "sound",
+"w": "sound",
+"set": "basic"
+},
+{
+"id": "soup",
+"w": "soup",
+"set": "basic"
+},
+{
+"id": "south",
+"w": "south",
+"set": "basic"
+},
+{
+"id": "space",
+"w": "space",
+"set": "basic"
+},
+{
+"id": "speak",
+"w": "speak",
+"set": "basic"
+},
+{
+"id": "special",
+"w": "special",
+"set": "basic"
+},
+{
+"id": "spell",
+"w": "spell",
+"set": "basic"
+},
+{
+"id": "spend",
+"w": "spend",
+"set": "basic"
+},
+{
+"id": "spider",
+"w": "spider",
+"set": "basic"
+},
+{
+"id": "spoon",
+"w": "spoon",
+"set": "basic"
+},
+{
+"id": "sports",
+"w": "sports",
+"set": "basic"
+},
+{
+"id": "spring",
+"w": "spring",
+"set": "basic"
+},
+{
+"id": "square",
+"w": "square",
+"set": "basic"
+},
+{
+"id": "stairs",
+"w": "stairs",
+"set": "basic"
+},
+{
+"id": "stamp",
+"w": "stamp",
+"set": "basic"
+},
+{
+"id": "stand",
+"w": "stand",
+"set": "basic"
+},
+{
+"id": "star",
+"w": "star",
+"set": "basic"
+},
+{
+"id": "start",
+"w": "start",
+"set": "basic"
+},
+{
+"id": "station",
+"w": "station",
+"set": "basic"
+},
+{
+"id": "stay",
+"w": "stay",
+"set": "basic"
+},
+{
+"id": "steak",
+"w": "steak",
+"set": "basic"
+},
+{
+"id": "still",
+"w": "still",
+"set": "basic"
+},
+{
+"id": "stomach",
+"w": "stomach",
+"set": "basic"
+},
+{
+"id": "stop",
+"w": "stop",
+"set": "basic"
+},
+{
+"id": "store",
+"w": "store",
+"set": "basic"
+},
+{
+"id": "story",
+"w": "story",
+"set": "basic"
+},
+{
+"id": "straight",
+"w": "straight",
+"set": "basic"
+},
+{
+"id": "strange",
+"w": "strange",
+"set": "basic"
+},
+{
+"id": "stranger",
+"w": "stranger",
+"set": "basic"
+},
+{
+"id": "strawberry",
+"w": "strawberry",
+"set": "basic"
+},
+{
+"id": "street",
+"w": "street",
+"set": "basic"
+},
+{
+"id": "string",
+"w": "string",
+"set": "basic"
+},
+{
+"id": "strong",
+"w": "strong",
+"set": "basic"
+},
+{
+"id": "student",
+"w": "student",
+"set": "basic"
+},
+{
+"id": "study",
+"w": "study",
+"set": "basic"
+},
+{
+"id": "stupid",
+"w": "stupid",
+"set": "basic"
+},
+{
+"id": "subject",
+"w": "subject",
+"set": "basic"
+},
+{
+"id": "successful",
+"w": "successful",
+"set": "basic"
+},
+{
+"id": "sugar",
+"w": "sugar",
+"set": "basic"
+},
+{
+"id": "summer",
+"w": "summer",
+"set": "basic"
+},
+{
+"id": "sun",
+"w": "sun",
+"set": "basic"
+},
+{
+"id": "sunday",
+"w": "Sunday",
+"set": "basic"
+},
+{
+"id": "sunny",
+"w": "sunny",
+"set": "basic"
+},
+{
+"id": "supermarket",
+"w": "supermarket",
+"set": "basic"
+},
+{
+"id": "sure",
+"w": "sure",
+"set": "basic"
+},
+{
+"id": "surf",
+"w": "surf",
+"set": "basic"
+},
+{
+"id": "surprise",
+"w": "surprise",
+"set": "basic"
+},
+{
+"id": "surprised",
+"w": "surprised",
+"set": "basic"
+},
+{
+"id": "sweater",
+"w": "sweater",
+"set": "basic"
+},
+{
+"id": "sweet",
+"w": "sweet",
+"set": "basic"
+},
+{
+"id": "swim",
+"w": "swim",
+"set": "basic"
+},
+{
+"id": "swing",
+"w": "swing",
+"set": "basic"
+},
+{
+"id": "table",
+"w": "table",
+"set": "basic"
+},
+{
+"id": "tail",
+"w": "tail",
+"set": "basic"
+},
+{
+"id": "taiwan",
+"w": "Taiwan",
+"set": "basic"
+},
+{
+"id": "take",
+"w": "take",
+"set": "basic"
+},
+{
+"id": "talk",
+"w": "talk",
+"set": "basic"
+},
+{
+"id": "tall",
+"w": "tall",
+"set": "basic"
+},
+{
+"id": "tape",
+"w": "tape",
+"set": "basic"
+},
+{
+"id": "taste",
+"w": "taste",
+"set": "basic"
+},
+{
+"id": "taxi",
+"w": "taxi",
+"set": "basic"
+},
+{
+"id": "tea",
+"w": "tea",
+"set": "basic"
+},
+{
+"id": "teach",
+"w": "teach",
+"set": "basic"
+},
+{
+"id": "teacher",
+"w": "teacher",
+"set": "basic"
+},
+{
+"id": "team",
+"w": "team",
+"set": "basic"
+},
+{
+"id": "teenager",
+"w": "teenager",
+"set": "basic"
+},
+{
+"id": "telephone",
+"w": "telephone (phone)",
+"set": "basic"
+},
+{
+"id": "television",
+"w": "television (TV)",
+"set": "basic"
+},
+{
+"id": "tell",
+"w": "tell",
+"set": "basic"
+},
+{
+"id": "temple",
+"w": "temple",
+"set": "basic"
+},
+{
+"id": "ten",
+"w": "ten",
+"set": "basic"
+},
+{
+"id": "tennis",
+"w": "tennis",
+"set": "basic"
+},
+{
+"id": "terrible",
+"w": "terrible",
+"set": "basic"
+},
+{
+"id": "test",
+"w": "test",
+"set": "basic"
+},
+{
+"id": "than",
+"w": "than",
+"set": "basic"
+},
+{
+"id": "thank",
+"w": "thank",
+"set": "basic"
+},
+{
+"id": "that",
+"w": "that",
+"set": "basic"
+},
+{
+"id": "the",
+"w": "the",
+"set": "basic"
+},
+{
+"id": "theater",
+"w": "theater",
+"set": "basic"
+},
+{
+"id": "then",
+"w": "then",
+"set": "basic"
+},
+{
+"id": "there",
+"w": "there",
+"set": "basic"
+},
+{
+"id": "these",
+"w": "these",
+"set": "basic"
+},
+{
+"id": "they",
+"w": "they (them, their, theirs, themselves)",
+"set": "basic"
+},
+{
+"id": "thick",
+"w": "thick",
+"set": "basic"
+},
+{
+"id": "thin",
+"w": "thin",
+"set": "basic"
+},
+{
+"id": "thing",
+"w": "thing",
+"set": "basic"
+},
+{
+"id": "think",
+"w": "think",
+"set": "basic"
+},
+{
+"id": "third",
+"w": "third",
+"set": "basic"
+},
+{
+"id": "thirsty",
+"w": "thirsty",
+"set": "basic"
+},
+{
+"id": "thirteen",
+"w": "thirteen",
+"set": "basic"
+},
+{
+"id": "thirty",
+"w": "thirty",
+"set": "basic"
+},
+{
+"id": "this",
+"w": "this",
+"set": "basic"
+},
+{
+"id": "those",
+"w": "those",
+"set": "basic"
+},
+{
+"id": "though",
+"w": "though (although)",
+"set": "basic"
+},
+{
+"id": "thousand",
+"w": "thousand",
+"set": "basic"
+},
+{
+"id": "three",
+"w": "three",
+"set": "basic"
+},
+{
+"id": "throat",
+"w": "throat",
+"set": "basic"
+},
+{
+"id": "through",
+"w": "through",
+"set": "basic"
+},
+{
+"id": "throw",
+"w": "throw",
+"set": "basic"
+},
+{
+"id": "thursday",
+"w": "Thursday",
+"set": "basic"
+},
+{
+"id": "ticket",
+"w": "ticket",
+"set": "basic"
+},
+{
+"id": "tidy",
+"w": "tidy",
+"set": "basic"
+},
+{
+"id": "tie",
+"w": "tie",
+"set": "basic"
+},
+{
+"id": "tiger",
+"w": "tiger",
+"set": "basic"
+},
+{
+"id": "time",
+"w": "time",
+"set": "basic"
+},
+{
+"id": "tip",
+"w": "tip",
+"set": "basic"
+},
+{
+"id": "tired",
+"w": "tired",
+"set": "basic"
+},
+{
+"id": "to",
+"w": "to",
+"set": "basic"
+},
+{
+"id": "toast",
+"w": "toast",
+"set": "basic"
+},
+{
+"id": "today",
+"w": "today",
+"set": "basic"
+},
+{
+"id": "toe",
+"w": "toe",
+"set": "basic"
+},
+{
+"id": "together",
+"w": "together",
+"set": "basic"
+},
+{
+"id": "tomato",
+"w": "tomato",
+"set": "basic"
+},
+{
+"id": "tomorrow",
+"w": "tomorrow",
+"set": "basic"
+},
+{
+"id": "tonight",
+"w": "tonight",
+"set": "basic"
+},
+{
+"id": "too",
+"w": "too",
+"set": "basic"
+},
+{
+"id": "tool",
+"w": "tool",
+"set": "basic"
+},
+{
+"id": "tooth",
+"w": "tooth",
+"set": "basic"
+},
+{
+"id": "top",
+"w": "top",
+"set": "basic"
+},
+{
+"id": "topic",
+"w": "topic",
+"set": "basic"
+},
+{
+"id": "total",
+"w": "total",
+"set": "basic"
+},
+{
+"id": "touch",
+"w": "touch",
+"set": "basic"
+},
+{
+"id": "towel",
+"w": "towel",
+"set": "basic"
+},
+{
+"id": "town",
+"w": "town",
+"set": "basic"
+},
+{
+"id": "toy",
+"w": "toy",
+"set": "basic"
+},
+{
+"id": "traffic",
+"w": "traffic",
+"set": "basic"
+},
+{
+"id": "train",
+"w": "train",
+"set": "basic"
+},
+{
+"id": "trash",
+"w": "trash",
+"set": "basic"
+},
+{
+"id": "treat",
+"w": "treat",
+"set": "basic"
+},
+{
+"id": "tree",
+"w": "tree",
+"set": "basic"
+},
+{
+"id": "trick",
+"w": "trick",
+"set": "basic"
+},
+{
+"id": "trip",
+"w": "trip",
+"set": "basic"
+},
+{
+"id": "trouble",
+"w": "trouble",
+"set": "basic"
+},
+{
+"id": "truck",
+"w": "truck",
+"set": "basic"
+},
+{
+"id": "true",
+"w": "true",
+"set": "basic"
+},
+{
+"id": "try",
+"w": "try",
+"set": "basic"
+},
+{
+"id": "t-shirt",
+"w": "T-shirt",
+"set": "basic"
+},
+{
+"id": "tuesday",
+"w": "Tuesday",
+"set": "basic"
+},
+{
+"id": "turn",
+"w": "turn",
+"set": "basic"
+},
+{
+"id": "turtle",
+"w": "turtle",
+"set": "basic"
+},
+{
+"id": "twelve",
+"w": "twelve",
+"set": "basic"
+},
+{
+"id": "twenty",
+"w": "twenty",
+"set": "basic"
+},
+{
+"id": "twice",
+"w": "twice",
+"set": "basic"
+},
+{
+"id": "two",
+"w": "two",
+"set": "basic"
+},
+{
+"id": "type",
+"w": "type",
+"set": "basic"
+},
+{
+"id": "typhoon",
+"w": "typhoon",
+"set": "basic"
+},
+{
+"id": "ugly",
+"w": "ugly",
+"set": "basic"
+},
+{
+"id": "umbrella",
+"w": "umbrella",
+"set": "basic"
+},
+{
+"id": "uncle",
+"w": "uncle",
+"set": "basic"
+},
+{
+"id": "under",
+"w": "under",
+"set": "basic"
+},
+{
+"id": "understand",
+"w": "understand",
+"set": "basic"
+},
+{
+"id": "unhappy",
+"w": "unhappy",
+"set": "basic"
+},
+{
+"id": "uniform",
+"w": "uniform",
+"set": "basic"
+},
+{
+"id": "until",
+"w": "until",
+"set": "basic"
+},
+{
+"id": "up",
+"w": "up",
+"set": "basic"
+},
+{
+"id": "upload",
+"w": "upload",
+"set": "basic"
+},
+{
+"id": "u-s-a-usa",
+"w": "U.S.A./USA",
+"set": "basic"
+},
+{
+"id": "use",
+"w": "use",
+"set": "basic"
+},
+{
+"id": "useful",
+"w": "useful",
+"set": "basic"
+},
+{
+"id": "usually",
+"w": "usually",
+"set": "basic"
+},
+{
+"id": "vacation",
+"w": "vacation",
+"set": "basic"
+},
+{
+"id": "vegetable",
+"w": "vegetable",
+"set": "basic"
+},
+{
+"id": "very",
+"w": "very",
+"set": "basic"
+},
+{
+"id": "video",
+"w": "video",
+"set": "basic"
+},
+{
+"id": "violin",
+"w": "violin",
+"set": "basic"
+},
+{
+"id": "visit",
+"w": "visit",
+"set": "basic"
+},
+{
+"id": "visitor",
+"w": "visitor",
+"set": "basic"
+},
+{
+"id": "voice",
+"w": "voice",
+"set": "basic"
+},
+{
+"id": "wait",
+"w": "wait",
+"set": "basic"
+},
+{
+"id": "waiter",
+"w": "waiter",
+"set": "basic"
+},
+{
+"id": "waitress",
+"w": "waitress",
+"set": "basic"
+},
+{
+"id": "wake",
+"w": "wake",
+"set": "basic"
+},
+{
+"id": "walk",
+"w": "walk",
+"set": "basic"
+},
+{
+"id": "wall",
+"w": "wall",
+"set": "basic"
+},
+{
+"id": "wallet",
+"w": "wallet",
+"set": "basic"
+},
+{
+"id": "want",
+"w": "want",
+"set": "basic"
+},
+{
+"id": "warm",
+"w": "warm",
+"set": "basic"
+},
+{
+"id": "wash",
+"w": "wash",
+"set": "basic"
+},
+{
+"id": "watch",
+"w": "watch",
+"set": "basic"
+},
+{
+"id": "water",
+"w": "water",
+"set": "basic"
+},
+{
+"id": "watermelon",
+"w": "watermelon",
+"set": "basic"
+},
+{
+"id": "wave",
+"w": "wave",
+"set": "basic"
+},
+{
+"id": "way",
+"w": "way",
+"set": "basic"
+},
+{
+"id": "we",
+"w": "we (us, our, ours, ourselves)",
+"set": "basic"
+},
+{
+"id": "weak",
+"w": "weak",
+"set": "basic"
+},
+{
+"id": "wear",
+"w": "wear",
+"set": "basic"
+},
+{
+"id": "weather",
+"w": "weather",
+"set": "basic"
+},
+{
+"id": "wednesday",
+"w": "Wednesday",
+"set": "basic"
+},
+{
+"id": "week",
+"w": "week",
+"set": "basic"
+},
+{
+"id": "weekend",
+"w": "weekend",
+"set": "basic"
+},
+{
+"id": "welcome",
+"w": "welcome",
+"set": "basic"
+},
+{
+"id": "well",
+"w": "well",
+"set": "basic"
+},
+{
+"id": "west",
+"w": "west",
+"set": "basic"
+},
+{
+"id": "wet",
+"w": "wet",
+"set": "basic"
+},
+{
+"id": "what",
+"w": "what",
+"set": "basic"
+},
+{
+"id": "when",
+"w": "when",
+"set": "basic"
+},
+{
+"id": "where",
+"w": "where",
+"set": "basic"
+},
+{
+"id": "whether",
+"w": "whether",
+"set": "basic"
+},
+{
+"id": "which",
+"w": "which",
+"set": "basic"
+},
+{
+"id": "while",
+"w": "while",
+"set": "basic"
+},
+{
+"id": "white",
+"w": "white",
+"set": "basic"
+},
+{
+"id": "who",
+"w": "who",
+"set": "basic"
+},
+{
+"id": "whose",
+"w": "whose",
+"set": "basic"
+},
+{
+"id": "why",
+"w": "why",
+"set": "basic"
+},
+{
+"id": "wide",
+"w": "wide",
+"set": "basic"
+},
+{
+"id": "wife",
+"w": "wife",
+"set": "basic"
+},
+{
+"id": "will",
+"w": "will (would)",
+"set": "basic"
+},
+{
+"id": "win",
+"w": "win",
+"set": "basic"
+},
+{
+"id": "wind",
+"w": "wind",
+"set": "basic"
+},
+{
+"id": "window",
+"w": "window",
+"set": "basic"
+},
+{
+"id": "windy",
+"w": "windy",
+"set": "basic"
+},
+{
+"id": "winter",
+"w": "winter",
+"set": "basic"
+},
+{
+"id": "wise",
+"w": "wise",
+"set": "basic"
+},
+{
+"id": "wish",
+"w": "wish",
+"set": "basic"
+},
+{
+"id": "with",
+"w": "with",
+"set": "basic"
+},
+{
+"id": "without",
+"w": "without",
+"set": "basic"
+},
+{
+"id": "woman",
+"w": "woman",
+"set": "basic"
+},
+{
+"id": "wonderful",
+"w": "wonderful",
+"set": "basic"
+},
+{
+"id": "word",
+"w": "word",
+"set": "basic"
+},
+{
+"id": "work",
+"w": "work",
+"set": "basic"
+},
+{
+"id": "workbook",
+"w": "workbook",
+"set": "basic"
+},
+{
+"id": "worker",
+"w": "worker",
+"set": "basic"
+},
+{
+"id": "world",
+"w": "world",
+"set": "basic"
+},
+{
+"id": "worry",
+"w": "worry",
+"set": "basic"
+},
+{
+"id": "write",
+"w": "write",
+"set": "basic"
+},
+{
+"id": "writer",
+"w": "writer",
+"set": "basic"
+},
+{
+"id": "wrong",
+"w": "wrong",
+"set": "basic"
+},
+{
+"id": "yard",
+"w": "yard",
+"set": "basic"
+},
+{
+"id": "year",
+"w": "year",
+"set": "basic"
+},
+{
+"id": "yellow",
+"w": "yellow",
+"set": "basic"
+},
+{
+"id": "yes",
+"w": "yes (yeah)",
+"set": "basic"
+},
+{
+"id": "yesterday",
+"w": "yesterday",
+"set": "basic"
+},
+{
+"id": "yet",
+"w": "yet",
+"set": "basic"
+},
+{
+"id": "you",
+"w": "you (your, yours, yourself, yourselves)",
+"set": "basic"
+},
+{
+"id": "young",
+"w": "young",
+"set": "basic"
+},
+{
+"id": "yummy",
+"w": "yummy",
+"set": "basic"
+},
+{
+"id": "zebra",
+"w": "zebra",
+"set": "basic"
+},
+{
+"id": "zero",
+"w": "zero",
+"set": "basic"
+},
+{
+"id": "zoo",
+"w": "zoo",
+"set": "basic"
+},
+{
+"id": "absent",
+"w": "absent",
+"set": "more"
+},
+{
+"id": "accept",
+"w": "accept",
+"set": "more"
+},
+{
+"id": "accident",
+"w": "accident",
+"set": "more"
+},
+{
+"id": "active",
+"w": "active",
+"set": "more"
+},
+{
+"id": "activity",
+"w": "activity",
+"set": "more"
+},
+{
+"id": "add",
+"w": "add",
+"set": "more"
+},
+{
+"id": "address",
+"w": "address",
+"set": "more"
+},
+{
+"id": "admire",
+"w": "admire",
+"set": "more"
+},
+{
+"id": "adult",
+"w": "adult",
+"set": "more"
+},
+{
+"id": "advertisement",
+"w": "advertisement",
+"set": "more"
+},
+{
+"id": "advice",
+"w": "advice",
+"set": "more"
+},
+{
+"id": "advise",
+"w": "advise",
+"set": "more"
+},
+{
+"id": "affect",
+"w": "affect",
+"set": "more"
+},
+{
+"id": "against",
+"w": "against",
+"set": "more"
+},
+{
+"id": "aim",
+"w": "aim",
+"set": "more"
+},
+{
+"id": "air-conditioner",
+"w": "air conditioner",
+"set": "more"
+},
+{
+"id": "airlines",
+"w": "airlines",
+"set": "more"
+},
+{
+"id": "alarm",
+"w": "alarm",
+"set": "more"
+},
+{
+"id": "album",
+"w": "album",
+"set": "more"
+},
+{
+"id": "alike",
+"w": "alike",
+"set": "more"
+},
+{
+"id": "alive",
+"w": "alive",
+"set": "more"
+},
+{
+"id": "alone",
+"w": "alone",
+"set": "more"
+},
+{
+"id": "aloud",
+"w": "aloud",
+"set": "more"
+},
+{
+"id": "alphabet",
+"w": "alphabet",
+"set": "more"
+},
+{
+"id": "altogether",
+"w": "altogether",
+"set": "more"
+},
+{
+"id": "ambulance",
+"w": "ambulance",
+"set": "more"
+},
+{
+"id": "among",
+"w": "among",
+"set": "more"
+},
+{
+"id": "amount",
+"w": "amount",
+"set": "more"
+},
+{
+"id": "ancient",
+"w": "ancient",
+"set": "more"
+},
+{
+"id": "angel",
+"w": "angel",
+"set": "more"
+},
+{
+"id": "anger",
+"w": "anger",
+"set": "more"
+},
+{
+"id": "ankle",
+"w": "ankle",
+"set": "more"
+},
+{
+"id": "anywhere",
+"w": "anywhere",
+"set": "more"
+},
+{
+"id": "apologize",
+"w": "apologize",
+"set": "more"
+},
+{
+"id": "appreciate",
+"w": "appreciate",
+"set": "more"
+},
+{
+"id": "argue",
+"w": "argue",
+"set": "more"
+},
+{
+"id": "armchair",
+"w": "armchair",
+"set": "more"
+},
+{
+"id": "army",
+"w": "army",
+"set": "more"
+},
+{
+"id": "arrange",
+"w": "arrange",
+"set": "more"
+},
+{
+"id": "artist",
+"w": "artist",
+"set": "more"
+},
+{
+"id": "asleep",
+"w": "asleep",
+"set": "more"
+},
+{
+"id": "assistant",
+"w": "assistant",
+"set": "more"
+},
+{
+"id": "assume",
+"w": "assume",
+"set": "more"
+},
+{
+"id": "attention",
+"w": "attention",
+"set": "more"
+},
+{
+"id": "available",
+"w": "available",
+"set": "more"
+},
+{
+"id": "avoid",
+"w": "avoid",
+"set": "more"
+},
+{
+"id": "baby-sitter",
+"w": "baby sitter",
+"set": "more"
+},
+{
+"id": "backpack",
+"w": "backpack",
+"set": "more"
+},
+{
+"id": "backward",
+"w": "backward",
+"set": "more"
+},
+{
+"id": "ball",
+"w": "ball",
+"set": "more"
+},
+{
+"id": "balloon",
+"w": "balloon",
+"set": "more"
+},
+{
+"id": "barbecue",
+"w": "barbecue",
+"set": "more"
+},
+{
+"id": "barber",
+"w": "barber",
+"set": "more"
+},
+{
+"id": "bark",
+"w": "bark",
+"set": "more"
+},
+{
+"id": "base",
+"w": "base",
+"set": "more"
+},
+{
+"id": "basement",
+"w": "basement",
+"set": "more"
+},
+{
+"id": "basic",
+"w": "basic",
+"set": "more"
+},
+{
+"id": "bathe",
+"w": "bathe",
+"set": "more"
+},
+{
+"id": "beard",
+"w": "beard",
+"set": "more"
+},
+{
+"id": "beat",
+"w": "beat",
+"set": "more"
+},
+{
+"id": "beauty",
+"w": "beauty",
+"set": "more"
+},
+{
+"id": "beer",
+"w": "beer",
+"set": "more"
+},
+{
+"id": "beginner",
+"w": "beginner",
+"set": "more"
+},
+{
+"id": "beginning",
+"w": "beginning",
+"set": "more"
+},
+{
+"id": "behave",
+"w": "behave",
+"set": "more"
+},
+{
+"id": "besides",
+"w": "besides",
+"set": "more"
+},
+{
+"id": "beyond",
+"w": "beyond",
+"set": "more"
+},
+{
+"id": "bill",
+"w": "bill",
+"set": "more"
+},
+{
+"id": "biology",
+"w": "biology",
+"set": "more"
+},
+{
+"id": "bitter",
+"w": "bitter",
+"set": "more"
+},
+{
+"id": "blame",
+"w": "blame",
+"set": "more"
+},
+{
+"id": "bless",
+"w": "bless",
+"set": "more"
+},
+{
+"id": "blood",
+"w": "blood",
+"set": "more"
+},
+{
+"id": "blouse",
+"w": "blouse",
+"set": "more"
+},
+{
+"id": "board",
+"w": "board",
+"set": "more"
+},
+{
+"id": "bomb",
+"w": "bomb",
+"set": "more"
+},
+{
+"id": "bone",
+"w": "bone",
+"set": "more"
+},
+{
+"id": "bookcase",
+"w": "bookcase",
+"set": "more"
+},
+{
+"id": "bother",
+"w": "bother",
+"set": "more"
+},
+{
+"id": "bowling",
+"w": "bowling",
+"set": "more"
+},
+{
+"id": "branch",
+"w": "branch",
+"set": "more"
+},
+{
+"id": "brick",
+"w": "brick",
+"set": "more"
+},
+{
+"id": "broad",
+"w": "broad",
+"set": "more"
+},
+{
+"id": "broadcast",
+"w": "broadcast",
+"set": "more"
+},
+{
+"id": "brunch",
+"w": "brunch",
+"set": "more"
+},
+{
+"id": "bucket",
+"w": "bucket",
+"set": "more"
+},
+{
+"id": "buffet",
+"w": "buffet",
+"set": "more"
+},
+{
+"id": "building",
+"w": "building",
+"set": "more"
+},
+{
+"id": "bundle",
+"w": "bundle",
+"set": "more"
+},
+{
+"id": "burger",
+"w": "burger",
+"set": "more"
+},
+{
+"id": "burst",
+"w": "burst",
+"set": "more"
+},
+{
+"id": "cabbage",
+"w": "cabbage",
+"set": "more"
+},
+{
+"id": "cable",
+"w": "cable",
+"set": "more"
+},
+{
+"id": "cafeteria",
+"w": "cafeteria",
+"set": "more"
+},
+{
+"id": "cage",
+"w": "cage",
+"set": "more"
+},
+{
+"id": "calendar",
+"w": "calendar",
+"set": "more"
+},
+{
+"id": "calm",
+"w": "calm",
+"set": "more"
+},
+{
+"id": "campus",
+"w": "campus",
+"set": "more"
+},
+{
+"id": "cancel",
+"w": "cancel",
+"set": "more"
+},
+{
+"id": "cancer",
+"w": "cancer",
+"set": "more"
+},
+{
+"id": "captain",
+"w": "captain",
+"set": "more"
+},
+{
+"id": "careless",
+"w": "careless",
+"set": "more"
+},
+{
+"id": "carpet",
+"w": "carpet",
+"set": "more"
+},
+{
+"id": "carrot",
+"w": "carrot",
+"set": "more"
+},
+{
+"id": "cartoon",
+"w": "cartoon",
+"set": "more"
+},
+{
+"id": "cash",
+"w": "cash",
+"set": "more"
+},
+{
+"id": "cause",
+"w": "cause",
+"set": "more"
+},
+{
+"id": "ceiling",
+"w": "ceiling",
+"set": "more"
+},
+{
+"id": "central",
+"w": "central",
+"set": "more"
+},
+{
+"id": "century",
+"w": "century",
+"set": "more"
+},
+{
+"id": "cereal",
+"w": "cereal",
+"set": "more"
+},
+{
+"id": "certain",
+"w": "certain",
+"set": "more"
+},
+{
+"id": "channel",
+"w": "channel",
+"set": "more"
+},
+{
+"id": "character",
+"w": "character",
+"set": "more"
+},
+{
+"id": "charge",
+"w": "charge",
+"set": "more"
+},
+{
+"id": "chart",
+"w": "chart",
+"set": "more"
+},
+{
+"id": "chase",
+"w": "chase",
+"set": "more"
+},
+{
+"id": "chemistry",
+"w": "chemistry",
+"set": "more"
+},
+{
+"id": "chess",
+"w": "chess",
+"set": "more"
+},
+{
+"id": "childhood",
+"w": "childhood",
+"set": "more"
+},
+{
+"id": "childish",
+"w": "childish",
+"set": "more"
+},
+{
+"id": "childlike",
+"w": "childlike",
+"set": "more"
+},
+{
+"id": "chin",
+"w": "chin",
+"set": "more"
+},
+{
+"id": "chubby",
+"w": "chubby",
+"set": "more"
+},
+{
+"id": "classical",
+"w": "classical",
+"set": "more"
+},
+{
+"id": "clever",
+"w": "clever",
+"set": "more"
+},
+{
+"id": "climate",
+"w": "climate",
+"set": "more"
+},
+{
+"id": "closet",
+"w": "closet",
+"set": "more"
+},
+{
+"id": "coach",
+"w": "coach",
+"set": "more"
+},
+{
+"id": "coast",
+"w": "coast",
+"set": "more"
+},
+{
+"id": "cockroach",
+"w": "cockroach",
+"set": "more"
+},
+{
+"id": "coin",
+"w": "coin",
+"set": "more"
+},
+{
+"id": "cola",
+"w": "cola",
+"set": "more"
+},
+{
+"id": "college",
+"w": "college",
+"set": "more"
+},
+{
+"id": "colorful",
+"w": "colorful",
+"set": "more"
+},
+{
+"id": "command",
+"w": "command",
+"set": "more"
+},
+{
+"id": "comment",
+"w": "comment",
+"set": "more"
+},
+{
+"id": "company",
+"w": "company",
+"set": "more"
+},
+{
+"id": "compare",
+"w": "compare",
+"set": "more"
+},
+{
+"id": "complain",
+"w": "complain",
+"set": "more"
+},
+{
+"id": "complete",
+"w": "complete",
+"set": "more"
+},
+{
+"id": "concern",
+"w": "concern",
+"set": "more"
+},
+{
+"id": "confident",
+"w": "confident",
+"set": "more"
+},
+{
+"id": "confuse",
+"w": "confuse",
+"set": "more"
+},
+{
+"id": "congratulation",
+"w": "congratulation",
+"set": "more"
+},
+{
+"id": "consider",
+"w": "consider",
+"set": "more"
+},
+{
+"id": "considerate",
+"w": "considerate",
+"set": "more"
+},
+{
+"id": "contact-lens",
+"w": "contact lens",
+"set": "more"
+},
+{
+"id": "continue",
+"w": "continue",
+"set": "more"
+},
+{
+"id": "contract",
+"w": "contract",
+"set": "more"
+},
+{
+"id": "control",
+"w": "control",
+"set": "more"
+},
+{
+"id": "convenience-store",
+"w": "convenience store",
+"set": "more"
+},
+{
+"id": "conversation",
+"w": "conversation",
+"set": "more"
+},
+{
+"id": "corn",
+"w": "corn",
+"set": "more"
+},
+{
+"id": "cotton",
+"w": "cotton",
+"set": "more"
+},
+{
+"id": "cough",
+"w": "cough",
+"set": "more"
+},
+{
+"id": "couple",
+"w": "couple",
+"set": "more"
+},
+{
+"id": "courage",
+"w": "courage",
+"set": "more"
+},
+{
+"id": "court",
+"w": "court",
+"set": "more"
+},
+{
+"id": "cowboy",
+"w": "cowboy",
+"set": "more"
+},
+{
+"id": "crab",
+"w": "crab",
+"set": "more"
+},
+{
+"id": "crayon",
+"w": "crayon",
+"set": "more"
+},
+{
+"id": "cream",
+"w": "cream",
+"set": "more"
+},
+{
+"id": "create",
+"w": "create",
+"set": "more"
+},
+{
+"id": "credit-card",
+"w": "credit card",
+"set": "more"
+},
+{
+"id": "crime",
+"w": "crime",
+"set": "more"
+},
+{
+"id": "crowd",
+"w": "crowd",
+"set": "more"
+},
+{
+"id": "crowded",
+"w": "crowded",
+"set": "more"
+},
+{
+"id": "cruel",
+"w": "cruel",
+"set": "more"
+},
+{
+"id": "culture",
+"w": "culture",
+"set": "more"
+},
+{
+"id": "cure",
+"w": "cure",
+"set": "more"
+},
+{
+"id": "curious",
+"w": "curious",
+"set": "more"
+},
+{
+"id": "current",
+"w": "current",
+"set": "more"
+},
+{
+"id": "curtain",
+"w": "curtain",
+"set": "more"
+},
+{
+"id": "curve",
+"w": "curve",
+"set": "more"
+},
+{
+"id": "custom",
+"w": "custom",
+"set": "more"
+},
+{
+"id": "customer",
+"w": "customer",
+"set": "more"
+},
+{
+"id": "daily",
+"w": "daily",
+"set": "more"
+},
+{
+"id": "damage",
+"w": "damage",
+"set": "more"
+},
+{
+"id": "danger",
+"w": "danger",
+"set": "more"
+},
+{
+"id": "dawn",
+"w": "dawn",
+"set": "more"
+},
+{
+"id": "deaf",
+"w": "deaf",
+"set": "more"
+},
+{
+"id": "debate",
+"w": "debate",
+"set": "more"
+},
+{
+"id": "decision",
+"w": "decision",
+"set": "more"
+},
+{
+"id": "decorate",
+"w": "decorate",
+"set": "more"
+},
+{
+"id": "decrease",
+"w": "decrease",
+"set": "more"
+},
+{
+"id": "deer",
+"w": "deer",
+"set": "more"
+},
+{
+"id": "degree",
+"w": "degree",
+"set": "more"
+},
+{
+"id": "deliver",
+"w": "deliver",
+"set": "more"
+},
+{
+"id": "department",
+"w": "department",
+"set": "more"
+},
+{
+"id": "depend",
+"w": "depend",
+"set": "more"
+},
+{
+"id": "describe",
+"w": "describe",
+"set": "more"
+},
+{
+"id": "desert",
+"w": "desert",
+"set": "more"
+},
+{
+"id": "design",
+"w": "design",
+"set": "more"
+},
+{
+"id": "desire",
+"w": "desire",
+"set": "more"
+},
+{
+"id": "dessert",
+"w": "dessert",
+"set": "more"
+},
+{
+"id": "detect",
+"w": "detect",
+"set": "more"
+},
+{
+"id": "develop",
+"w": "develop",
+"set": "more"
+},
+{
+"id": "dial",
+"w": "dial",
+"set": "more"
+},
+{
+"id": "diamond",
+"w": "diamond",
+"set": "more"
+},
+{
+"id": "diary",
+"w": "diary",
+"set": "more"
+},
+{
+"id": "diet",
+"w": "diet",
+"set": "more"
+},
+{
+"id": "difference",
+"w": "difference",
+"set": "more"
+},
+{
+"id": "difficulty",
+"w": "difficulty",
+"set": "more"
+},
+{
+"id": "diligent",
+"w": "diligent",
+"set": "more"
+},
+{
+"id": "diplomat",
+"w": "diplomat",
+"set": "more"
+},
+{
+"id": "dinosaur",
+"w": "dinosaur",
+"set": "more"
+},
+{
+"id": "direct",
+"w": "direct",
+"set": "more"
+},
+{
+"id": "direction",
+"w": "direction",
+"set": "more"
+},
+{
+"id": "disappear",
+"w": "disappear",
+"set": "more"
+},
+{
+"id": "discover",
+"w": "discover",
+"set": "more"
+},
+{
+"id": "discuss",
+"w": "discuss",
+"set": "more"
+},
+{
+"id": "discussion",
+"w": "discussion",
+"set": "more"
+},
+{
+"id": "dishonest",
+"w": "dishonest",
+"set": "more"
+},
+{
+"id": "distance",
+"w": "distance",
+"set": "more"
+},
+{
+"id": "distant",
+"w": "distant",
+"set": "more"
+},
+{
+"id": "divide",
+"w": "divide",
+"set": "more"
+},
+{
+"id": "dizzy",
+"w": "dizzy",
+"set": "more"
+},
+{
+"id": "dodge-ball",
+"w": "dodge ball",
+"set": "more"
+},
+{
+"id": "dolphin",
+"w": "dolphin",
+"set": "more"
+},
+{
+"id": "donkey",
+"w": "donkey",
+"set": "more"
+},
+{
+"id": "double",
+"w": "double",
+"set": "more"
+},
+{
+"id": "doubt",
+"w": "doubt",
+"set": "more"
+},
+{
+"id": "doughnut",
+"w": "doughnut",
+"set": "more"
+},
+{
+"id": "downstairs",
+"w": "downstairs",
+"set": "more"
+},
+{
+"id": "downtown",
+"w": "downtown",
+"set": "more"
+},
+{
+"id": "dragon",
+"w": "dragon",
+"set": "more"
+},
+{
+"id": "drama",
+"w": "drama",
+"set": "more"
+},
+{
+"id": "dresser",
+"w": "dresser",
+"set": "more"
+},
+{
+"id": "drugstore",
+"w": "drugstore",
+"set": "more"
+},
+{
+"id": "dryer",
+"w": "dryer",
+"set": "more"
+},
+{
+"id": "dumb",
+"w": "dumb",
+"set": "more"
+},
+{
+"id": "dumpling",
+"w": "dumpling",
+"set": "more"
+},
+{
+"id": "duty",
+"w": "duty",
+"set": "more"
+},
+{
+"id": "eagle",
+"w": "eagle",
+"set": "more"
+},
+{
+"id": "earn",
+"w": "earn",
+"set": "more"
+},
+{
+"id": "earrings",
+"w": "earrings",
+"set": "more"
+},
+{
+"id": "ease",
+"w": "ease",
+"set": "more"
+},
+{
+"id": "edge",
+"w": "edge",
+"set": "more"
+},
+{
+"id": "education",
+"w": "education",
+"set": "more"
+},
+{
+"id": "effort",
+"w": "effort",
+"set": "more"
+},
+{
+"id": "elder",
+"w": "elder",
+"set": "more"
+},
+{
+"id": "elect",
+"w": "elect",
+"set": "more"
+},
+{
+"id": "electric",
+"w": "electric",
+"set": "more"
+},
+{
+"id": "embarrass",
+"w": "embarrass",
+"set": "more"
+},
+{
+"id": "emotion",
+"w": "emotion",
+"set": "more"
+},
+{
+"id": "emphasize",
+"w": "emphasize",
+"set": "more"
+},
+{
+"id": "employ",
+"w": "employ",
+"set": "more"
+},
+{
+"id": "empty",
+"w": "empty",
+"set": "more"
+},
+{
+"id": "enemy",
+"w": "enemy",
+"set": "more"
+},
+{
+"id": "energetic",
+"w": "energetic",
+"set": "more"
+},
+{
+"id": "energy",
+"w": "energy",
+"set": "more"
+},
+{
+"id": "engine",
+"w": "engine",
+"set": "more"
+},
+{
+"id": "entrance",
+"w": "entrance",
+"set": "more"
+},
+{
+"id": "environment",
+"w": "environment",
+"set": "more"
+},
+{
+"id": "envy",
+"w": "envy",
+"set": "more"
+},
+{
+"id": "equal",
+"w": "equal",
+"set": "more"
+},
+{
+"id": "especially",
+"w": "especially",
+"set": "more"
+},
+{
+"id": "event",
+"w": "event",
+"set": "more"
+},
+{
+"id": "everywhere",
+"w": "everywhere",
+"set": "more"
+},
+{
+"id": "evil",
+"w": "evil",
+"set": "more"
+},
+{
+"id": "exam",
+"w": "exam",
+"set": "more"
+},
+{
+"id": "excite",
+"w": "excite",
+"set": "more"
+},
+{
+"id": "exist",
+"w": "exist",
+"set": "more"
+},
+{
+"id": "exit",
+"w": "exit",
+"set": "more"
+},
+{
+"id": "express",
+"w": "express",
+"set": "more"
+},
+{
+"id": "extra",
+"w": "extra",
+"set": "more"
+},
+{
+"id": "fair",
+"w": "fair",
+"set": "more"
+},
+{
+"id": "false",
+"w": "false",
+"set": "more"
+},
+{
+"id": "fancy",
+"w": "fancy",
+"set": "more"
+},
+{
+"id": "fantastic",
+"w": "fantastic",
+"set": "more"
+},
+{
+"id": "fashionable",
+"w": "fashionable",
+"set": "more"
+},
+{
+"id": "faucet",
+"w": "faucet",
+"set": "more"
+},
+{
+"id": "fault",
+"w": "fault",
+"set": "more"
+},
+{
+"id": "fear",
+"w": "fear",
+"set": "more"
+},
+{
+"id": "fee",
+"w": "fee",
+"set": "more"
+},
+{
+"id": "feeling",
+"w": "feeling",
+"set": "more"
+},
+{
+"id": "female",
+"w": "female",
+"set": "more"
+},
+{
+"id": "fence",
+"w": "fence",
+"set": "more"
+},
+{
+"id": "film",
+"w": "film",
+"set": "more"
+},
+{
+"id": "final",
+"w": "final",
+"set": "more"
+},
+{
+"id": "fit",
+"w": "fit",
+"set": "more"
+},
+{
+"id": "flag",
+"w": "flag",
+"set": "more"
+},
+{
+"id": "flashlight",
+"w": "flashlight",
+"set": "more"
+},
+{
+"id": "flat-tire",
+"w": "flat tire",
+"set": "more"
+},
+{
+"id": "flight",
+"w": "flight",
+"set": "more"
+},
+{
+"id": "flour",
+"w": "flour",
+"set": "more"
+},
+{
+"id": "flu",
+"w": "flu",
+"set": "more"
+},
+{
+"id": "flute",
+"w": "flute",
+"set": "more"
+},
+{
+"id": "focus",
+"w": "focus",
+"set": "more"
+},
+{
+"id": "fog",
+"w": "fog",
+"set": "more"
+},
+{
+"id": "foggy",
+"w": "foggy",
+"set": "more"
+},
+{
+"id": "foolish",
+"w": "foolish",
+"set": "more"
+},
+{
+"id": "football",
+"w": "football",
+"set": "more"
+},
+{
+"id": "forest",
+"w": "forest",
+"set": "more"
+},
+{
+"id": "forgive",
+"w": "forgive",
+"set": "more"
+},
+{
+"id": "form",
+"w": "form",
+"set": "more"
+},
+{
+"id": "formal",
+"w": "formal",
+"set": "more"
+},
+{
+"id": "former",
+"w": "former",
+"set": "more"
+},
+{
+"id": "forward",
+"w": "forward",
+"set": "more"
+},
+{
+"id": "frank",
+"w": "frank",
+"set": "more"
+},
+{
+"id": "freedom",
+"w": "freedom",
+"set": "more"
+},
+{
+"id": "freezer",
+"w": "freezer",
+"set": "more"
+},
+{
+"id": "freezing",
+"w": "freezing",
+"set": "more"
+},
+{
+"id": "friendship",
+"w": "friendship",
+"set": "more"
+},
+{
+"id": "frighten",
+"w": "frighten",
+"set": "more"
+},
+{
+"id": "frisbee",
+"w": "frisbee",
+"set": "more"
+},
+{
+"id": "furniture",
+"w": "furniture",
+"set": "more"
+},
+{
+"id": "gain",
+"w": "gain",
+"set": "more"
+},
+{
+"id": "garage",
+"w": "garage",
+"set": "more"
+},
+{
+"id": "gather",
+"w": "gather",
+"set": "more"
+},
+{
+"id": "general",
+"w": "general",
+"set": "more"
+},
+{
+"id": "generous",
+"w": "generous",
+"set": "more"
+},
+{
+"id": "genius",
+"w": "genius",
+"set": "more"
+},
+{
+"id": "gentle",
+"w": "gentle",
+"set": "more"
+},
+{
+"id": "gentleman",
+"w": "gentleman",
+"set": "more"
+},
+{
+"id": "geography",
+"w": "geography",
+"set": "more"
+},
+{
+"id": "gesture",
+"w": "gesture",
+"set": "more"
+},
+{
+"id": "goal",
+"w": "goal",
+"set": "more"
+},
+{
+"id": "gold",
+"w": "gold",
+"set": "more"
+},
+{
+"id": "golden",
+"w": "golden",
+"set": "more"
+},
+{
+"id": "golf",
+"w": "golf",
+"set": "more"
+},
+{
+"id": "goodness",
+"w": "goodness",
+"set": "more"
+},
+{
+"id": "government",
+"w": "government",
+"set": "more"
+},
+{
+"id": "granddaughter",
+"w": "granddaughter",
+"set": "more"
+},
+{
+"id": "grandson",
+"w": "grandson",
+"set": "more"
+},
+{
+"id": "greedy",
+"w": "greedy",
+"set": "more"
+},
+{
+"id": "greet",
+"w": "greet",
+"set": "more"
+},
+{
+"id": "guard",
+"w": "guard",
+"set": "more"
+},
+{
+"id": "guest",
+"w": "guest",
+"set": "more"
+},
+{
+"id": "guide",
+"w": "guide",
+"set": "more"
+},
+{
+"id": "gun",
+"w": "gun",
+"set": "more"
+},
+{
+"id": "hair-dresser",
+"w": "hair dresser",
+"set": "more"
+},
+{
+"id": "haircut",
+"w": "haircut",
+"set": "more"
+},
+{
+"id": "hall",
+"w": "hall",
+"set": "more"
+},
+{
+"id": "hammer",
+"w": "hammer",
+"set": "more"
+},
+{
+"id": "handkerchief",
+"w": "handkerchief",
+"set": "more"
+},
+{
+"id": "handle",
+"w": "handle",
+"set": "more"
+},
+{
+"id": "hanger",
+"w": "hanger",
+"set": "more"
+},
+{
+"id": "hardly",
+"w": "hardly",
+"set": "more"
+},
+{
+"id": "heater",
+"w": "heater",
+"set": "more"
+},
+{
+"id": "helicopter",
+"w": "helicopter",
+"set": "more"
+},
+{
+"id": "hero",
+"w": "hero",
+"set": "more"
+},
+{
+"id": "highway",
+"w": "highway",
+"set": "more"
+},
+{
+"id": "hip",
+"w": "hip",
+"set": "more"
+},
+{
+"id": "hippo",
+"w": "hippo",
+"set": "more"
+},
+{
+"id": "hire",
+"w": "hire",
+"set": "more"
+},
+{
+"id": "hole",
+"w": "hole",
+"set": "more"
+},
+{
+"id": "homesick",
+"w": "homesick",
+"set": "more"
+},
+{
+"id": "honesty",
+"w": "honesty",
+"set": "more"
+},
+{
+"id": "hop",
+"w": "hop",
+"set": "more"
+},
+{
+"id": "horrible",
+"w": "horrible",
+"set": "more"
+},
+{
+"id": "host",
+"w": "host",
+"set": "more"
+},
+{
+"id": "housework",
+"w": "housework",
+"set": "more"
+},
+{
+"id": "hug",
+"w": "hug",
+"set": "more"
+},
+{
+"id": "human",
+"w": "human",
+"set": "more"
+},
+{
+"id": "humble",
+"w": "humble",
+"set": "more"
+},
+{
+"id": "humid",
+"w": "humid",
+"set": "more"
+},
+{
+"id": "humor",
+"w": "humor",
+"set": "more"
+},
+{
+"id": "humorous",
+"w": "humorous",
+"set": "more"
+},
+{
+"id": "hunger",
+"w": "hunger",
+"set": "more"
+},
+{
+"id": "hunter",
+"w": "hunter",
+"set": "more"
+},
+{
+"id": "ignore",
+"w": "ignore",
+"set": "more"
+},
+{
+"id": "ill",
+"w": "ill",
+"set": "more"
+},
+{
+"id": "imagine",
+"w": "imagine",
+"set": "more"
+},
+{
+"id": "impolite",
+"w": "impolite",
+"set": "more"
+},
+{
+"id": "importance",
+"w": "importance",
+"set": "more"
+},
+{
+"id": "impossible",
+"w": "impossible",
+"set": "more"
+},
+{
+"id": "improve",
+"w": "improve",
+"set": "more"
+},
+{
+"id": "include",
+"w": "include",
+"set": "more"
+},
+{
+"id": "income",
+"w": "income",
+"set": "more"
+},
+{
+"id": "increase",
+"w": "increase",
+"set": "more"
+},
+{
+"id": "independent",
+"w": "independent",
+"set": "more"
+},
+{
+"id": "indicate",
+"w": "indicate",
+"set": "more"
+},
+{
+"id": "influence",
+"w": "influence",
+"set": "more"
+},
+{
+"id": "information",
+"w": "information",
+"set": "more"
+},
+{
+"id": "ink",
+"w": "ink",
+"set": "more"
+},
+{
+"id": "insist",
+"w": "insist",
+"set": "more"
+},
+{
+"id": "inspire",
+"w": "inspire",
+"set": "more"
+},
+{
+"id": "instant",
+"w": "instant",
+"set": "more"
+},
+{
+"id": "instrument",
+"w": "instrument",
+"set": "more"
+},
+{
+"id": "intelligent",
+"w": "intelligent",
+"set": "more"
+},
+{
+"id": "international",
+"w": "international",
+"set": "more"
+},
+{
+"id": "interrupt",
+"w": "interrupt",
+"set": "more"
+},
+{
+"id": "introduce",
+"w": "introduce",
+"set": "more"
+},
+{
+"id": "invent",
+"w": "invent",
+"set": "more"
+},
+{
+"id": "invitation",
+"w": "invitation",
+"set": "more"
+},
+{
+"id": "iron",
+"w": "iron",
+"set": "more"
+},
+{
+"id": "jam",
+"w": "jam",
+"set": "more"
+},
+{
+"id": "jazz",
+"w": "jazz",
+"set": "more"
+},
+{
+"id": "jealous",
+"w": "jealous",
+"set": "more"
+},
+{
+"id": "jeep",
+"w": "jeep",
+"set": "more"
+},
+{
+"id": "journalist",
+"w": "journalist",
+"set": "more"
+},
+{
+"id": "judge",
+"w": "judge",
+"set": "more"
+},
+{
+"id": "kangaroo",
+"w": "kangaroo",
+"set": "more"
+},
+{
+"id": "ketchup",
+"w": "ketchup",
+"set": "more"
+},
+{
+"id": "kilometer",
+"w": "kilometer",
+"set": "more"
+},
+{
+"id": "kindergarten",
+"w": "kindergarten",
+"set": "more"
+},
+{
+"id": "kingdom",
+"w": "kingdom",
+"set": "more"
+},
+{
+"id": "kitten",
+"w": "kitten",
+"set": "more"
+},
+{
+"id": "koala",
+"w": "koala",
+"set": "more"
+},
+{
+"id": "lack",
+"w": "lack",
+"set": "more"
+},
+{
+"id": "lady",
+"w": "lady",
+"set": "more"
+},
+{
+"id": "lamb",
+"w": "lamb",
+"set": "more"
+},
+{
+"id": "lantern",
+"w": "lantern",
+"set": "more"
+},
+{
+"id": "latest",
+"w": "latest",
+"set": "more"
+},
+{
+"id": "latter",
+"w": "latter",
+"set": "more"
+},
+{
+"id": "law",
+"w": "law",
+"set": "more"
+},
+{
+"id": "lay",
+"w": "lay",
+"set": "more"
+},
+{
+"id": "leaf",
+"w": "leaf",
+"set": "more"
+},
+{
+"id": "lettuce",
+"w": "lettuce",
+"set": "more"
+},
+{
+"id": "lick",
+"w": "lick",
+"set": "more"
+},
+{
+"id": "lid",
+"w": "lid",
+"set": "more"
+},
+{
+"id": "lift",
+"w": "lift",
+"set": "more"
+},
+{
+"id": "lightning",
+"w": "lightning",
+"set": "more"
+},
+{
+"id": "likely",
+"w": "likely",
+"set": "more"
+},
+{
+"id": "limit",
+"w": "limit",
+"set": "more"
+},
+{
+"id": "link",
+"w": "link",
+"set": "more"
+},
+{
+"id": "liquid",
+"w": "liquid",
+"set": "more"
+},
+{
+"id": "liter",
+"w": "liter",
+"set": "more"
+},
+{
+"id": "loaf",
+"w": "loaf",
+"set": "more"
+},
+{
+"id": "local",
+"w": "local",
+"set": "more"
+},
+{
+"id": "lock",
+"w": "lock",
+"set": "more"
+},
+{
+"id": "locker",
+"w": "locker",
+"set": "more"
+},
+{
+"id": "loser",
+"w": "loser",
+"set": "more"
+},
+{
+"id": "ma-am",
+"w": "ma'am",
+"set": "more"
+},
+{
+"id": "magazine",
+"w": "magazine",
+"set": "more"
+},
+{
+"id": "magician",
+"w": "magician",
+"set": "more"
+},
+{
+"id": "major",
+"w": "major",
+"set": "more"
+},
+{
+"id": "male",
+"w": "male",
+"set": "more"
+},
+{
+"id": "mall",
+"w": "mall",
+"set": "more"
+},
+{
+"id": "manager",
+"w": "manager",
+"set": "more"
+},
+{
+"id": "mango",
+"w": "mango",
+"set": "more"
+},
+{
+"id": "manner",
+"w": "manner",
+"set": "more"
+},
+{
+"id": "marry",
+"w": "marry",
+"set": "more"
+},
+{
+"id": "marvelous",
+"w": "marvelous",
+"set": "more"
+},
+{
+"id": "mass",
+"w": "mass",
+"set": "more"
+},
+{
+"id": "master",
+"w": "master",
+"set": "more"
+},
+{
+"id": "mat",
+"w": "mat",
+"set": "more"
+},
+{
+"id": "match",
+"w": "match",
+"set": "more"
+},
+{
+"id": "maximum",
+"w": "maximum",
+"set": "more"
+},
+{
+"id": "meaning",
+"w": "meaning",
+"set": "more"
+},
+{
+"id": "measure",
+"w": "measure",
+"set": "more"
+},
+{
+"id": "mechanic",
+"w": "mechanic",
+"set": "more"
+},
+{
+"id": "memory",
+"w": "memory",
+"set": "more"
+},
+{
+"id": "men-s-room",
+"w": "men's room",
+"set": "more"
+},
+{
+"id": "message",
+"w": "message",
+"set": "more"
+},
+{
+"id": "metal",
+"w": "metal",
+"set": "more"
+},
+{
+"id": "meter",
+"w": "meter",
+"set": "more"
+},
+{
+"id": "method",
+"w": "method",
+"set": "more"
+},
+{
+"id": "microwave",
+"w": "microwave",
+"set": "more"
+},
+{
+"id": "midnight",
+"w": "midnight",
+"set": "more"
+},
+{
+"id": "minor",
+"w": "minor",
+"set": "more"
+},
+{
+"id": "minus",
+"w": "minus",
+"set": "more"
+},
+{
+"id": "mirror",
+"w": "mirror",
+"set": "more"
+},
+{
+"id": "mix",
+"w": "mix",
+"set": "more"
+},
+{
+"id": "model",
+"w": "model",
+"set": "more"
+},
+{
+"id": "monster",
+"w": "monster",
+"set": "more"
+},
+{
+"id": "mosquito",
+"w": "mosquito",
+"set": "more"
+},
+{
+"id": "motion",
+"w": "motion",
+"set": "more"
+},
+{
+"id": "movement",
+"w": "movement",
+"set": "more"
+},
+{
+"id": "mrt",
+"w": "MRT",
+"set": "more"
+},
+{
+"id": "musician",
+"w": "musician",
+"set": "more"
+},
+{
+"id": "napkin",
+"w": "napkin",
+"set": "more"
+},
+{
+"id": "narrow",
+"w": "narrow",
+"set": "more"
+},
+{
+"id": "nation",
+"w": "nation",
+"set": "more"
+},
+{
+"id": "natural",
+"w": "natural",
+"set": "more"
+},
+{
+"id": "naughty",
+"w": "naughty",
+"set": "more"
+},
+{
+"id": "nearly",
+"w": "nearly",
+"set": "more"
+},
+{
+"id": "necessary",
+"w": "necessary",
+"set": "more"
+},
+{
+"id": "necklace",
+"w": "necklace",
+"set": "more"
+},
+{
+"id": "needle",
+"w": "needle",
+"set": "more"
+},
+{
+"id": "negative",
+"w": "negative",
+"set": "more"
+},
+{
+"id": "neither",
+"w": "neither",
+"set": "more"
+},
+{
+"id": "nephew",
+"w": "nephew",
+"set": "more"
+},
+{
+"id": "nervous",
+"w": "nervous",
+"set": "more"
+},
+{
+"id": "nest",
+"w": "nest",
+"set": "more"
+},
+{
+"id": "net",
+"w": "net",
+"set": "more"
+},
+{
+"id": "nice-looking",
+"w": "nice-looking",
+"set": "more"
+},
+{
+"id": "niece",
+"w": "niece",
+"set": "more"
+},
+{
+"id": "nod",
+"w": "nod",
+"set": "more"
+},
+{
+"id": "none",
+"w": "none",
+"set": "more"
+},
+{
+"id": "nor",
+"w": "nor",
+"set": "more"
+},
+{
+"id": "novel",
+"w": "novel",
+"set": "more"
+},
+{
+"id": "nut",
+"w": "nut",
+"set": "more"
+},
+{
+"id": "obey",
+"w": "obey",
+"set": "more"
+},
+{
+"id": "object",
+"w": "object",
+"set": "more"
+},
+{
+"id": "ocean",
+"w": "ocean",
+"set": "more"
+},
+{
+"id": "offer",
+"w": "offer",
+"set": "more"
+},
+{
+"id": "omit",
+"w": "omit",
+"set": "more"
+},
+{
+"id": "oneself",
+"w": "oneself",
+"set": "more"
+},
+{
+"id": "onion",
+"w": "onion",
+"set": "more"
+},
+{
+"id": "operation",
+"w": "operation",
+"set": "more"
+},
+{
+"id": "opinion",
+"w": "opinion",
+"set": "more"
+},
+{
+"id": "ordinary",
+"w": "ordinary",
+"set": "more"
+},
+{
+"id": "oven",
+"w": "oven",
+"set": "more"
+},
+{
+"id": "overpass",
+"w": "overpass",
+"set": "more"
+},
+{
+"id": "overseas",
+"w": "overseas",
+"set": "more"
+},
+{
+"id": "over-weight",
+"w": "over-weight",
+"set": "more"
+},
+{
+"id": "owner",
+"w": "owner",
+"set": "more"
+},
+{
+"id": "ox",
+"w": "ox",
+"set": "more"
+},
+{
+"id": "pain",
+"w": "pain",
+"set": "more"
+},
+{
+"id": "painful",
+"w": "painful",
+"set": "more"
+},
+{
+"id": "painter",
+"w": "painter",
+"set": "more"
+},
+{
+"id": "pajamas",
+"w": "pajamas",
+"set": "more"
+},
+{
+"id": "pale",
+"w": "pale",
+"set": "more"
+},
+{
+"id": "pan",
+"w": "pan",
+"set": "more"
+},
+{
+"id": "panda",
+"w": "panda",
+"set": "more"
+},
+{
+"id": "pardon",
+"w": "pardon",
+"set": "more"
+},
+{
+"id": "parking-lot",
+"w": "parking lot",
+"set": "more"
+},
+{
+"id": "parrot",
+"w": "parrot",
+"set": "more"
+},
+{
+"id": "partner",
+"w": "partner",
+"set": "more"
+},
+{
+"id": "passenger",
+"w": "passenger",
+"set": "more"
+},
+{
+"id": "path",
+"w": "path",
+"set": "more"
+},
+{
+"id": "patient",
+"w": "patient",
+"set": "more"
+},
+{
+"id": "pattern",
+"w": "pattern",
+"set": "more"
+},
+{
+"id": "pause",
+"w": "pause",
+"set": "more"
+},
+{
+"id": "peace",
+"w": "peace",
+"set": "more"
+},
+{
+"id": "peaceful",
+"w": "peaceful",
+"set": "more"
+},
+{
+"id": "pepper",
+"w": "pepper",
+"set": "more"
+},
+{
+"id": "perfect",
+"w": "perfect",
+"set": "more"
+},
+{
+"id": "period",
+"w": "period",
+"set": "more"
+},
+{
+"id": "personal",
+"w": "personal",
+"set": "more"
+},
+{
+"id": "physics",
+"w": "physics",
+"set": "more"
+},
+{
+"id": "pigeon",
+"w": "pigeon",
+"set": "more"
+},
+{
+"id": "pile",
+"w": "pile",
+"set": "more"
+},
+{
+"id": "pillow",
+"w": "pillow",
+"set": "more"
+},
+{
+"id": "pineapple",
+"w": "pineapple",
+"set": "more"
+},
+{
+"id": "plain",
+"w": "plain",
+"set": "more"
+},
+{
+"id": "platform",
+"w": "platform",
+"set": "more"
+},
+{
+"id": "pleasant",
+"w": "pleasant",
+"set": "more"
+},
+{
+"id": "pleased",
+"w": "pleased",
+"set": "more"
+},
+{
+"id": "plus",
+"w": "plus",
+"set": "more"
+},
+{
+"id": "poem",
+"w": "poem",
+"set": "more"
+},
+{
+"id": "poison",
+"w": "poison",
+"set": "more"
+},
+{
+"id": "pollute",
+"w": "pollute",
+"set": "more"
+},
+{
+"id": "pollution",
+"w": "pollution",
+"set": "more"
+},
+{
+"id": "pop-music",
+"w": "pop music",
+"set": "more"
+},
+{
+"id": "population",
+"w": "population",
+"set": "more"
+},
+{
+"id": "position",
+"w": "position",
+"set": "more"
+},
+{
+"id": "positive",
+"w": "positive",
+"set": "more"
+},
+{
+"id": "potato",
+"w": "potato",
+"set": "more"
+},
+{
+"id": "powder",
+"w": "powder",
+"set": "more"
+},
+{
+"id": "praise",
+"w": "praise",
+"set": "more"
+},
+{
+"id": "precious",
+"w": "precious",
+"set": "more"
+},
+{
+"id": "president",
+"w": "president",
+"set": "more"
+},
+{
+"id": "pressure",
+"w": "pressure",
+"set": "more"
+},
+{
+"id": "priest",
+"w": "priest",
+"set": "more"
+},
+{
+"id": "primary",
+"w": "primary",
+"set": "more"
+},
+{
+"id": "prince",
+"w": "prince",
+"set": "more"
+},
+{
+"id": "princess",
+"w": "princess",
+"set": "more"
+},
+{
+"id": "principal",
+"w": "principal",
+"set": "more"
+},
+{
+"id": "principle",
+"w": "principle",
+"set": "more"
+},
+{
+"id": "print",
+"w": "print",
+"set": "more"
+},
+{
+"id": "printer",
+"w": "printer",
+"set": "more"
+},
+{
+"id": "private",
+"w": "private",
+"set": "more"
+},
+{
+"id": "produce",
+"w": "produce",
+"set": "more"
+},
+{
+"id": "production",
+"w": "production",
+"set": "more"
+},
+{
+"id": "professor",
+"w": "professor",
+"set": "more"
+},
+{
+"id": "progress",
+"w": "progress",
+"set": "more"
+},
+{
+"id": "project",
+"w": "project",
+"set": "more"
+},
+{
+"id": "promise",
+"w": "promise",
+"set": "more"
+},
+{
+"id": "pronounce",
+"w": "pronounce",
+"set": "more"
+},
+{
+"id": "protect",
+"w": "protect",
+"set": "more"
+},
+{
+"id": "provide",
+"w": "provide",
+"set": "more"
+},
+{
+"id": "pump",
+"w": "pump",
+"set": "more"
+},
+{
+"id": "punish",
+"w": "punish",
+"set": "more"
+},
+{
+"id": "purpose",
+"w": "purpose",
+"set": "more"
+},
+{
+"id": "purse",
+"w": "purse",
+"set": "more"
+},
+{
+"id": "puzzle",
+"w": "puzzle",
+"set": "more"
+},
+{
+"id": "quit",
+"w": "quit",
+"set": "more"
+},
+{
+"id": "railroad",
+"w": "railroad",
+"set": "more"
+},
+{
+"id": "railway",
+"w": "railway",
+"set": "more"
+},
+{
+"id": "raincoat",
+"w": "raincoat",
+"set": "more"
+},
+{
+"id": "rare",
+"w": "rare",
+"set": "more"
+},
+{
+"id": "rather",
+"w": "rather",
+"set": "more"
+},
+{
+"id": "realize",
+"w": "realize",
+"set": "more"
+},
+{
+"id": "receive",
+"w": "receive",
+"set": "more"
+},
+{
+"id": "record",
+"w": "record",
+"set": "more"
+},
+{
+"id": "recover",
+"w": "recover",
+"set": "more"
+},
+{
+"id": "rectangle",
+"w": "rectangle",
+"set": "more"
+},
+{
+"id": "recycle",
+"w": "recycle",
+"set": "more"
+},
+{
+"id": "refuse",
+"w": "refuse",
+"set": "more"
+},
+{
+"id": "regret",
+"w": "regret",
+"set": "more"
+},
+{
+"id": "regular",
+"w": "regular",
+"set": "more"
+},
+{
+"id": "reject",
+"w": "reject",
+"set": "more"
+},
+{
+"id": "remind",
+"w": "remind",
+"set": "more"
+},
+{
+"id": "rent",
+"w": "rent",
+"set": "more"
+},
+{
+"id": "repair",
+"w": "repair",
+"set": "more"
+},
+{
+"id": "respect",
+"w": "respect",
+"set": "more"
+},
+{
+"id": "responsible",
+"w": "responsible",
+"set": "more"
+},
+{
+"id": "result",
+"w": "result",
+"set": "more"
+},
+{
+"id": "return",
+"w": "return",
+"set": "more"
+},
+{
+"id": "review",
+"w": "review",
+"set": "more"
+},
+{
+"id": "revise",
+"w": "revise",
+"set": "more"
+},
+{
+"id": "rob",
+"w": "rob",
+"set": "more"
+},
+{
+"id": "role",
+"w": "role",
+"set": "more"
+},
+{
+"id": "roller-skate",
+"w": "roller skate (roller blade)",
+"set": "more"
+},
+{
+"id": "roof",
+"w": "roof",
+"set": "more"
+},
+{
+"id": "rub",
+"w": "rub",
+"set": "more"
+},
+{
+"id": "rubber",
+"w": "rubber",
+"set": "more"
+},
+{
+"id": "rude",
+"w": "rude",
+"set": "more"
+},
+{
+"id": "ruin",
+"w": "ruin",
+"set": "more"
+},
+{
+"id": "rush",
+"w": "rush",
+"set": "more"
+},
+{
+"id": "safety",
+"w": "safety",
+"set": "more"
+},
+{
+"id": "sailor",
+"w": "sailor",
+"set": "more"
+},
+{
+"id": "sample",
+"w": "sample",
+"set": "more"
+},
+{
+"id": "sand",
+"w": "sand",
+"set": "more"
+},
+{
+"id": "satisfy",
+"w": "satisfy",
+"set": "more"
+},
+{
+"id": "saucer",
+"w": "saucer",
+"set": "more"
+},
+{
+"id": "scarf",
+"w": "scarf",
+"set": "more"
+},
+{
+"id": "scene",
+"w": "scene",
+"set": "more"
+},
+{
+"id": "scenery",
+"w": "scenery",
+"set": "more"
+},
+{
+"id": "scientist",
+"w": "scientist",
+"set": "more"
+},
+{
+"id": "score",
+"w": "score",
+"set": "more"
+},
+{
+"id": "seafood",
+"w": "seafood",
+"set": "more"
+},
+{
+"id": "search",
+"w": "search",
+"set": "more"
+},
+{
+"id": "secondary",
+"w": "secondary",
+"set": "more"
+},
+{
+"id": "secret",
+"w": "secret",
+"set": "more"
+},
+{
+"id": "section",
+"w": "section",
+"set": "more"
+},
+{
+"id": "seek",
+"w": "seek",
+"set": "more"
+},
+{
+"id": "seem",
+"w": "seem",
+"set": "more"
+},
+{
+"id": "select",
+"w": "select",
+"set": "more"
+},
+{
+"id": "selfish",
+"w": "selfish",
+"set": "more"
+},
+{
+"id": "semester",
+"w": "semester",
+"set": "more"
+},
+{
+"id": "sense",
+"w": "sense",
+"set": "more"
+},
+{
+"id": "servant",
+"w": "servant",
+"set": "more"
+},
+{
+"id": "serve",
+"w": "serve",
+"set": "more"
+},
+{
+"id": "shall",
+"w": "shall",
+"set": "more"
+},
+{
+"id": "shark",
+"w": "shark",
+"set": "more"
+},
+{
+"id": "sheet",
+"w": "sheet",
+"set": "more"
+},
+{
+"id": "shelf",
+"w": "shelf",
+"set": "more"
+},
+{
+"id": "shoot",
+"w": "shoot",
+"set": "more"
+},
+{
+"id": "shore",
+"w": "shore",
+"set": "more"
+},
+{
+"id": "shrimp",
+"w": "shrimp",
+"set": "more"
+},
+{
+"id": "shut",
+"w": "shut",
+"set": "more"
+},
+{
+"id": "silence",
+"w": "silence",
+"set": "more"
+},
+{
+"id": "silent",
+"w": "silent",
+"set": "more"
+},
+{
+"id": "silly",
+"w": "silly",
+"set": "more"
+},
+{
+"id": "silver",
+"w": "silver",
+"set": "more"
+},
+{
+"id": "similar",
+"w": "similar",
+"set": "more"
+},
+{
+"id": "sincere",
+"w": "sincere",
+"set": "more"
+},
+{
+"id": "single",
+"w": "single",
+"set": "more"
+},
+{
+"id": "sink",
+"w": "sink",
+"set": "more"
+},
+{
+"id": "skate",
+"w": "skate",
+"set": "more"
+},
+{
+"id": "ski",
+"w": "ski",
+"set": "more"
+},
+{
+"id": "skill",
+"w": "skill",
+"set": "more"
+},
+{
+"id": "skillful",
+"w": "skillful",
+"set": "more"
+},
+{
+"id": "skin",
+"w": "skin",
+"set": "more"
+},
+{
+"id": "skinny",
+"w": "skinny",
+"set": "more"
+},
+{
+"id": "sleepy",
+"w": "sleepy",
+"set": "more"
+},
+{
+"id": "slender",
+"w": "slender",
+"set": "more"
+},
+{
+"id": "slice",
+"w": "slice",
+"set": "more"
+},
+{
+"id": "slippers",
+"w": "slippers",
+"set": "more"
+},
+{
+"id": "snail",
+"w": "snail",
+"set": "more"
+},
+{
+"id": "sneakers",
+"w": "sneakers",
+"set": "more"
+},
+{
+"id": "sneaky",
+"w": "sneaky",
+"set": "more"
+},
+{
+"id": "snowman",
+"w": "snowman",
+"set": "more"
+},
+{
+"id": "soap",
+"w": "soap",
+"set": "more"
+},
+{
+"id": "social",
+"w": "social",
+"set": "more"
+},
+{
+"id": "society",
+"w": "society",
+"set": "more"
+},
+{
+"id": "soda",
+"w": "soda",
+"set": "more"
+},
+{
+"id": "soft-drink",
+"w": "soft drink",
+"set": "more"
+},
+{
+"id": "softball",
+"w": "softball",
+"set": "more"
+},
+{
+"id": "solve",
+"w": "solve",
+"set": "more"
+},
+{
+"id": "soul",
+"w": "soul",
+"set": "more"
+},
+{
+"id": "sour",
+"w": "sour",
+"set": "more"
+},
+{
+"id": "soy-sauce",
+"w": "soy-sauce",
+"set": "more"
+},
+{
+"id": "spaghetti",
+"w": "spaghetti",
+"set": "more"
+},
+{
+"id": "speaker",
+"w": "speaker",
+"set": "more"
+},
+{
+"id": "speech",
+"w": "speech",
+"set": "more"
+},
+{
+"id": "speed",
+"w": "speed",
+"set": "more"
+},
+{
+"id": "spirit",
+"w": "spirit",
+"set": "more"
+},
+{
+"id": "spot",
+"w": "spot",
+"set": "more"
+},
+{
+"id": "spread",
+"w": "spread",
+"set": "more"
+},
+{
+"id": "state",
+"w": "state",
+"set": "more"
+},
+{
+"id": "stationery",
+"w": "stationery",
+"set": "more"
+},
+{
+"id": "steal",
+"w": "steal",
+"set": "more"
+},
+{
+"id": "steam",
+"w": "steam",
+"set": "more"
+},
+{
+"id": "step",
+"w": "step",
+"set": "more"
+},
+{
+"id": "stingy",
+"w": "stingy",
+"set": "more"
+},
+{
+"id": "stomachache",
+"w": "stomachache",
+"set": "more"
+},
+{
+"id": "stone",
+"w": "stone",
+"set": "more"
+},
+{
+"id": "storm",
+"w": "storm",
+"set": "more"
+},
+{
+"id": "stormy",
+"w": "stormy",
+"set": "more"
+},
+{
+"id": "stove",
+"w": "stove",
+"set": "more"
+},
+{
+"id": "straw",
+"w": "straw",
+"set": "more"
+},
+{
+"id": "stream",
+"w": "stream",
+"set": "more"
+},
+{
+"id": "strike",
+"w": "strike",
+"set": "more"
+},
+{
+"id": "style",
+"w": "style",
+"set": "more"
+},
+{
+"id": "subway",
+"w": "subway",
+"set": "more"
+},
+{
+"id": "succeed",
+"w": "succeed",
+"set": "more"
+},
+{
+"id": "success",
+"w": "success",
+"set": "more"
+},
+{
+"id": "such",
+"w": "such",
+"set": "more"
+},
+{
+"id": "sudden",
+"w": "sudden",
+"set": "more"
+},
+{
+"id": "suggest",
+"w": "suggest",
+"set": "more"
+},
+{
+"id": "suit",
+"w": "suit",
+"set": "more"
+},
+{
+"id": "super",
+"w": "super",
+"set": "more"
+},
+{
+"id": "supper",
+"w": "supper",
+"set": "more"
+},
+{
+"id": "support",
+"w": "support",
+"set": "more"
+},
+{
+"id": "survive",
+"w": "survive",
+"set": "more"
+},
+{
+"id": "swallow",
+"w": "swallow",
+"set": "more"
+},
+{
+"id": "swan",
+"w": "swan",
+"set": "more"
+},
+{
+"id": "sweep",
+"w": "sweep",
+"set": "more"
+},
+{
+"id": "swimsuit",
+"w": "swimsuit",
+"set": "more"
+},
+{
+"id": "symbol",
+"w": "symbol",
+"set": "more"
+},
+{
+"id": "system",
+"w": "system",
+"set": "more"
+},
+{
+"id": "table-tennis",
+"w": "table tennis",
+"set": "more"
+},
+{
+"id": "talent",
+"w": "talent",
+"set": "more"
+},
+{
+"id": "talkative",
+"w": "talkative",
+"set": "more"
+},
+{
+"id": "tangerine",
+"w": "tangerine",
+"set": "more"
+},
+{
+"id": "tank",
+"w": "tank",
+"set": "more"
+},
+{
+"id": "teapot",
+"w": "teapot",
+"set": "more"
+},
+{
+"id": "tear",
+"w": "tear",
+"set": "more"
+},
+{
+"id": "temperature",
+"w": "temperature",
+"set": "more"
+},
+{
+"id": "tent",
+"w": "tent",
+"set": "more"
+},
+{
+"id": "term",
+"w": "term",
+"set": "more"
+},
+{
+"id": "terrific",
+"w": "terrific",
+"set": "more"
+},
+{
+"id": "textbook",
+"w": "textbook",
+"set": "more"
+},
+{
+"id": "therefore",
+"w": "therefore",
+"set": "more"
+},
+{
+"id": "thief",
+"w": "thief",
+"set": "more"
+},
+{
+"id": "thought",
+"w": "thought",
+"set": "more"
+},
+{
+"id": "thumb",
+"w": "thumb",
+"set": "more"
+},
+{
+"id": "thunder",
+"w": "thunder",
+"set": "more"
+},
+{
+"id": "till",
+"w": "till",
+"set": "more"
+},
+{
+"id": "tiny",
+"w": "tiny",
+"set": "more"
+},
+{
+"id": "title",
+"w": "title",
+"set": "more"
+},
+{
+"id": "tofu",
+"w": "tofu",
+"set": "more"
+},
+{
+"id": "toilet",
+"w": "toilet",
+"set": "more"
+},
+{
+"id": "tongue",
+"w": "tongue",
+"set": "more"
+},
+{
+"id": "toothache",
+"w": "toothache",
+"set": "more"
+},
+{
+"id": "toothbrush",
+"w": "toothbrush",
+"set": "more"
+},
+{
+"id": "toward",
+"w": "toward",
+"set": "more"
+},
+{
+"id": "tower",
+"w": "tower",
+"set": "more"
+},
+{
+"id": "trace",
+"w": "trace",
+"set": "more"
+},
+{
+"id": "trade",
+"w": "trade",
+"set": "more"
+},
+{
+"id": "tradition",
+"w": "tradition",
+"set": "more"
+},
+{
+"id": "traditional",
+"w": "traditional",
+"set": "more"
+},
+{
+"id": "trap",
+"w": "trap",
+"set": "more"
+},
+{
+"id": "travel",
+"w": "travel",
+"set": "more"
+},
+{
+"id": "treasure",
+"w": "treasure",
+"set": "more"
+},
+{
+"id": "triangle",
+"w": "triangle",
+"set": "more"
+},
+{
+"id": "trousers",
+"w": "trousers",
+"set": "more"
+},
+{
+"id": "trumpet",
+"w": "trumpet",
+"set": "more"
+},
+{
+"id": "trust",
+"w": "trust",
+"set": "more"
+},
+{
+"id": "truth",
+"w": "truth",
+"set": "more"
+},
+{
+"id": "tub",
+"w": "tub",
+"set": "more"
+},
+{
+"id": "tube",
+"w": "tube",
+"set": "more"
+},
+{
+"id": "tunnel",
+"w": "tunnel",
+"set": "more"
+},
+{
+"id": "turkey",
+"w": "turkey",
+"set": "more"
+},
+{
+"id": "underline",
+"w": "underline",
+"set": "more"
+},
+{
+"id": "underpass",
+"w": "underpass",
+"set": "more"
+},
+{
+"id": "underwear",
+"w": "underwear",
+"set": "more"
+},
+{
+"id": "unique",
+"w": "unique",
+"set": "more"
+},
+{
+"id": "universe",
+"w": "universe",
+"set": "more"
+},
+{
+"id": "university",
+"w": "university",
+"set": "more"
+},
+{
+"id": "upon",
+"w": "upon",
+"set": "more"
+},
+{
+"id": "upper",
+"w": "upper",
+"set": "more"
+},
+{
+"id": "upstairs",
+"w": "upstairs",
+"set": "more"
+},
+{
+"id": "usual",
+"w": "usual",
+"set": "more"
+},
+{
+"id": "valley",
+"w": "valley",
+"set": "more"
+},
+{
+"id": "valuable",
+"w": "valuable",
+"set": "more"
+},
+{
+"id": "value",
+"w": "value",
+"set": "more"
+},
+{
+"id": "vendor",
+"w": "vendor",
+"set": "more"
+},
+{
+"id": "vest",
+"w": "vest",
+"set": "more"
+},
+{
+"id": "victory",
+"w": "victory",
+"set": "more"
+},
+{
+"id": "village",
+"w": "village",
+"set": "more"
+},
+{
+"id": "vinegar",
+"w": "vinegar",
+"set": "more"
+},
+{
+"id": "vocabulary",
+"w": "vocabulary",
+"set": "more"
+},
+{
+"id": "volleyball",
+"w": "volleyball",
+"set": "more"
+},
+{
+"id": "vote",
+"w": "vote",
+"set": "more"
+},
+{
+"id": "waist",
+"w": "waist",
+"set": "more"
+},
+{
+"id": "war",
+"w": "war",
+"set": "more"
+},
+{
+"id": "waste",
+"w": "waste",
+"set": "more"
+},
+{
+"id": "waterfalls",
+"w": "waterfalls",
+"set": "more"
+},
+{
+"id": "wedding",
+"w": "wedding",
+"set": "more"
+},
+{
+"id": "weekday",
+"w": "weekday",
+"set": "more"
+},
+{
+"id": "weight",
+"w": "weight",
+"set": "more"
+},
+{
+"id": "whale",
+"w": "whale",
+"set": "more"
+},
+{
+"id": "wheel",
+"w": "wheel",
+"set": "more"
+},
+{
+"id": "whole",
+"w": "whole",
+"set": "more"
+},
+{
+"id": "wild",
+"w": "wild",
+"set": "more"
+},
+{
+"id": "wing",
+"w": "wing",
+"set": "more"
+},
+{
+"id": "winner",
+"w": "winner",
+"set": "more"
+},
+{
+"id": "wok",
+"w": "wok",
+"set": "more"
+},
+{
+"id": "wolf",
+"w": "wolf",
+"set": "more"
+},
+{
+"id": "women-s-room",
+"w": "women's room",
+"set": "more"
+},
+{
+"id": "wood",
+"w": "wood",
+"set": "more"
+},
+{
+"id": "woods",
+"w": "woods",
+"set": "more"
+},
+{
+"id": "worm",
+"w": "worm",
+"set": "more"
+},
+{
+"id": "wound",
+"w": "wound",
+"set": "more"
+},
+{
+"id": "wrist",
+"w": "wrist",
+"set": "more"
+},
+{
+"id": "yell",
+"w": "yell",
+"set": "more"
+},
+{
+"id": "youth",
+"w": "youth",
+"set": "more"
+}
+]

@@ -39,12 +39,11 @@ const RD = {
     zh: '三篇文章，一次讀一篇。先試著直接讀英文，點虛線字看字義，整段卡住再點「中」。讀完後，最後一節可以複習單字、片語和搭配詞。',
     en: 'Three texts, one at a time. Read the English first, tap a dotted word for its meaning, and open the 中 only when a whole paragraph has stopped you. The last section reviews the words, phrases and collocations.',
   },
-  /* The subpage at /reading/vocab/, linked from the cover. */
-  vocab: {
-    href: 'vocab/',
-    zh: '高中單字：大考中心參考詞彙表 →',
-    en: 'The CEEC word list, Levels 1–2',
-  },
+  /* The two word-list subpages, linked from the cover. */
+  vocab: [
+    { href: 'vocab/', zh: '高中單字：大考中心參考詞彙表 →', en: 'The CEEC word list, Levels 1–2' },
+    { href: 'junior-vocab/', zh: '國中單字：教育部 2,000 字 →', en: 'The junior-high curriculum list' },
+  ],
   sourceNote: {
     zh: '三篇文章的英文與中譯、字彙表和寫作句型來自老師提供的資料，第二篇的原文在第二段中途中斷。閱讀測驗、第三篇的選項、筆記與單字複習是本頁另外編寫的，不是原出處的題目。',
     en: 'The English and Chinese of the three texts, the word tables and the writing patterns come from material supplied by the teacher; the second text breaks off partway through its second paragraph. The questions, the choices for the third text, the notes and the review were written for this page and are not from the original source.',
