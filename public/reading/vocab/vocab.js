@@ -48,6 +48,48 @@ let TEACHER = store.get('teacher', false);
 if (location.hash === '#teach') becomeTeacher();
 if (!TEACHER) S.mode = 'self';
 S.zh = S.mode === 'self';
+/* ---------- 熟練度 and practice days (自學 only) ----------
+   Two things a student could not see before, both read from records the page
+   already keeps -- nothing here is a score, and nothing is lost by a missed day.
+
+   熟練度 is how far a word's review has been pushed out, as five dots:
+   還不熟 is one; 記住了 starts at two and gains one each time it is remembered
+   again, as its gap grows 2 → 5 → 12 → 30 days. Five means the word now comes
+   back only every month or two.
+
+   Practice days are the days a word was marked here, kept for the last 60.
+   They are shown as this week, Monday to Sunday: a week counts the days
+   practised and never resets to zero the way a streak does. /learn/ reads the
+   same list (<store>.days) to show the week across both word pages. */
+function strength(id) {
+  const m = MARKS[id];
+  if (!m) return 0;
+  if (m === 'r') return 1;
+  const s = SCHED[id];
+  return Math.min(5, (s ? s.step : 0) + 2);
+}
+function dots(id) {
+  const n = S.mode === 'self' ? strength(id) : 0;
+  if (!n) return '';
+  return `<span class="dots" role="img" aria-label="熟練度 ${n}/5" title="熟練度 ${n}/5">${'<i class="on"></i>'.repeat(n)}${'<i></i>'.repeat(5 - n)}</span>`;
+}
+let DAYS = store.get('days', []);
+function practiced() {
+  const t = today();
+  if (DAYS.includes(t)) return;
+  DAYS = DAYS.concat(t).slice(-60);
+  store.set('days', DAYS);
+}
+// this week, Monday first: day 0 of the count (1 Jan 1970) was a Thursday
+function weekHTML(days) {
+  const t = today(), monday = t - ((t + 3) % 7);
+  const cells = '一二三四五六日'.split('').map((d, i) => {
+    const day = monday + i, on = days.includes(day);
+    return `<span class="wk-day ${on ? 'on' : ''} ${day === t ? 'is-today' : ''}" aria-label="星期${d}${on ? '，有練習' : ''}"><i></i>${d}</span>`;
+  }).join('');
+  const n = days.filter(d => d >= monday && d < monday + 7).length;
+  return `<div class="week"><div class="wk-row">${cells}</div><p class="wk-n">這週練了 <b>${n}</b> 天</p></div>`;
+}
 function becomeTeacher() {
   TEACHER = true; store.set('teacher', true); S.mode = 'teach'; store.set('mode', 'teach'); S.zh = false;
   // take #teach out of the address bar so it is not copied to a student by accident
@@ -66,6 +108,7 @@ function markWord(id, m, toggle) {
     MARKS[id] = 'k'; SCHED[id] = { due: today() + STEPS[step], step };
   }
   store.set('marks', MARKS); store.set('sched', SCHED);
+  practiced();
 }
 function isDue(id) {
   if (!MARKS[id]) return false;
@@ -169,7 +212,7 @@ function markBtns(e) {
 function entryHTML(e) {
   const m = S.mode === 'self' ? MARKS[e.id] : '';
   return `<article class="entry ${m === 'k' ? 'known' : m === 'r' ? 'review' : ''}" id="e-${e.id}">
-    <div class="meta"><span class="tag">${letterOf(e).toUpperCase()}</span><span class="lvtag">${LEVEL_ZH[e.lv]}</span>
+    <div class="meta"><span class="tag">${letterOf(e).toUpperCase()}</span><span class="lvtag">${LEVEL_ZH[e.lv]}</span>${dots(e.id)}
       ${markBtns(e)}<button class="link copy" data-copy="${e.id}" aria-label="複製 ${esc(e.w)} 的連結">複製連結</button></div>
     <div class="body">${headHTML(e)}</div>
   </article>`;
@@ -349,7 +392,8 @@ function renderCards() {
     const again = [...new Set(D.again)].map(id => ENTRIES.find(x => x.id === id));
     $('#main').innerHTML = head + (set
       ? (D.deck.length
-        ? `<section class="qcard cardend"><div class="qtype">這一組結束</div><h2>這一組練完了。</h2>
+        ? `<section class="qcard cardend"><div class="qtype">這一組結束</div><h2>今天完成 ✓</h2>
+           ${weekHTML(DAYS)}
            ${again.length ? `<p>這幾個字明天會再出現：</p><ul class="endlist">${again.map(x => `<li><span class="w">${esc(x.w)}</span>${sayBtn(x.sayAs)} <span class="zhf">${esc(x.firstZh)}</span></li>`).join('')}</ul>` : `<p>這一組每個字都記住了，它們會隔幾天再回來複習。</p>`}
            </section><div class="actions"><button class="btn primary" id="nextset">再來一組</button></div>`
         : `<p class="empty">這個範圍今天沒有要複習的字，新字也都標記過了。<br>可以改練「這個範圍全部」，或換一個級別。</p>`)
@@ -357,7 +401,7 @@ function renderCards() {
     return;
   }
   $('#main').innerHTML = head + `<section class="card">
-    <div class="meta"><span class="tag">${letterOf(e).toUpperCase()}</span><span class="lvtag">${LEVEL_ZH[e.lv]}</span>${set ? (isDue(e.id) ? '<span class="num" style="color:var(--warn)">複習</span>' : '<span class="num" style="color:var(--accent)">新字</span>') : markBtns(e)}</div>
+    <div class="meta"><span class="tag">${letterOf(e).toUpperCase()}</span><span class="lvtag">${LEVEL_ZH[e.lv]}</span>${dots(e.id)}${set ? (isDue(e.id) ? '<span class="num" style="color:var(--warn)">複習</span>' : '<span class="num" style="color:var(--accent)">新字</span>') : markBtns(e)}</div>
     <div class="front"><span class="w">${esc(e.w)}</span>${e.lab ? `<span class="lab">${esc(e.lab)}</span>` : ''}
       <div>${sayBtn(e.sayAs)}</div></div>
     ${D.flipped ? `<div class="back">${headHTML(e)}</div>` : `<button class="btn primary flip" id="flip">翻面</button>`}

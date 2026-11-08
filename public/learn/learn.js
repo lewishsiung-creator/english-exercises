@@ -31,13 +31,16 @@ const PAGES = [
 function tally(p) {
   const marks = read(p.store + '.marks', {});
   const sched = read(p.store + '.sched', {});
-  let due = 0, known = 0, shaky = 0;
+  let due = 0, known = 0, shaky = 0, strong = 0;
   for (const id in marks) {
     if (marks[id] === 'k') known++; else if (marks[id] === 'r') shaky++;
     const s = sched[id];
     if (s ? s.due <= today : marks[id] === 'r') due++;
+    // 穩固: remembered at least three times, so now back only every 12 days or more --
+    // four or five of the word pages' five 熟練度 dots
+    if (marks[id] === 'k' && s && s.step >= 2) strong++;
   }
-  return { ...p, due, known, shaky, used: known + shaky > 0 };
+  return { ...p, due, known, shaky, strong, days: read(p.store + '.days', []), used: known + shaky > 0 };
 }
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -47,10 +50,13 @@ function drawToday() {
   const pages = PAGES.map(tally).filter(p => p.used);
   if (!box || !pages.length) return;
   const due = pages.reduce((n, p) => n + p.due, 0);
+  // practice days from both word pages, as one week: a day counts once
+  const days = [...new Set(pages.flatMap(p => p.days))];
+  const doneToday = days.includes(today);
   const rows = pages.map(p => `
     <li class="td-row">
       <span class="td-name">${esc(p.zh)}</span>
-      <span class="td-meta">${p.due ? `<b>${p.due}</b> 個要複習 · ` : ''}已記住 ${p.known.toLocaleString()} 個</span>
+      <span class="td-meta">${p.due ? `<b>${p.due}</b> 個要複習 · ` : ''}已記住 ${p.known.toLocaleString()} 個${p.strong ? ` · 穩固 ${p.strong.toLocaleString()} 個` : ''}</span>
       <a class="td-go" href="${esc(p.href)}#today">${p.due ? '複習' : '學新字'} ›</a>
     </li>`).join('');
   box.innerHTML = due
@@ -59,11 +65,25 @@ function drawToday() {
        <p class="td-why">隔一段時間再看一次，是讓字記得久的關鍵。每次約 20 個，到期的字先出。</p>
        <ul class="td-rows">${rows}</ul>`
     : `<p class="td-eyebrow">今天的複習</p>
-       <h2 class="td-title" id="todayTitle">今天的複習<br>都做完了</h2>
+       <h2 class="td-title" id="todayTitle">${doneToday ? '今天完成 ✓' : '今天的複習<br>都做完了'}</h2>
        <p class="td-why">記住的字會隔幾天再回來。今天還有時間，可以學幾個新字。</p>
        <ul class="td-rows">${rows}</ul>`;
+  box.insertAdjacentHTML('beforeend', weekHTML(days));
   box.insertAdjacentHTML('beforeend', `<button class="td-report" id="openReport">產生學習報告，傳給老師 ›</button>`);
   box.hidden = false;
+}
+
+/* This week, Monday to Sunday, the days practised on either word page lit --
+   the same drawing as the word pages' 今天完成 screen. A week counts days; it
+   never resets to zero the way a streak does. */
+function weekHTML(days) {
+  const monday = today - ((today + 3) % 7);   // day 0 of the count was a Thursday
+  const cells = '一二三四五六日'.split('').map((d, i) => {
+    const day = monday + i, on = days.includes(day);
+    return `<span class="wk-day ${on ? 'on' : ''} ${day === today ? 'is-today' : ''}" aria-label="星期${d}${on ? '，有練習' : ''}"><i></i>${d}</span>`;
+  }).join('');
+  const n = days.filter(d => d >= monday && d < monday + 7).length;
+  return `<div class="week"><div class="wk-row">${cells}</div><p class="wk-n">這週練了 <b>${n}</b> 天</p></div>`;
 }
 
 /* ---------- 學習報告 ---------- */
@@ -78,9 +98,12 @@ function reportText() {
   lines.push(`日期：${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}`);
   const r = read('lc.result', null);
   if (r && r.zh) lines.push(`程度檢測（${r.date}）：建議從${r.zh}開始`);
+  const monday = today - ((today + 3) % 7);
+  const week = new Set(PAGES.flatMap(p => read(p.store + '.days', [])).filter(d => d >= monday && d < monday + 7));
+  lines.push(`這週練習：${week.size} 天`);
   PAGES.map(tally).forEach(p => {
     if (!p.used) { lines.push(`${p.zh}：還沒開始`); return; }
-    lines.push(`${p.zh}：已記住 ${p.known} 個、還不熟 ${p.shaky} 個、今天到期 ${p.due} 個`);
+    lines.push(`${p.zh}：已記住 ${p.known} 個（穩固 ${p.strong} 個）、還不熟 ${p.shaky} 個、今天到期 ${p.due} 個`);
     const marks = read(p.store + '.marks', {});
     const shaky = Object.keys(marks).filter(id => marks[id] === 'r');
     if (shaky.length) {

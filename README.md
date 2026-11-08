@@ -2777,6 +2777,30 @@ nothing with a student or client in it is ever added here.
   when 高中單字 gains a level or the reading page a text.
 - Same Apple language and tokens as the word pages, `noindex` like all three.
 
+**Progress a student can see (2026-11-08)** — the first three of a gamification
+review, chosen to fit the house rules: no score, no penalty, nothing timed, no
+comparing students. All three read records the pages already keep, on the
+student's own device, and appear only in 自學.
+
+- **熟練度**, five dots on every word card and flashcard: 還不熟 is one,
+  記住了 starts at two and gains one each time the word is remembered again
+  (its review gap 2 → 5 → 12 → 30 days). `/learn/` counts the words at four
+  or five dots as 穩固. `strength()` in both `vocab.js`.
+- **Practice days and a done moment.** A day counts when any word is marked;
+  the last 60 are kept as `<store>.days`. Finishing 今天這一組 now says
+  「今天完成 ✓」 over a Monday-to-Sunday strip with the days practised lit, and
+  `/learn/` shows the same week across both pages. It counts days in the week
+  and never resets to zero: a streak's fear of losing it is a penalty, which
+  the house rules rule out. The report carries 「這週練習：N 天」.
+- **課次收集冊** on 國中單字's 七年級／八年級: under each lesson head, a bar
+  and 「已記住 22 / 28」, turning to 「✓ 這一課都記住了」. It counts every word
+  the lesson teaches, including one first met earlier, and repaints the moment
+  a word is marked.
+- Two class-name collisions were hit and fixed on the way, both silent: the
+  result rows of 程度檢測 were `.band` and the week's today cell was `.today`,
+  each also a section class in `/learn/style.css`. Check a new class against
+  that file before reusing a short name.
+
 **常用搭配 on both word pages (2026-11-08).** Every word on 國中單字 and
 高中單字 now shows up to three high-frequency collocations under its own
 example, each with its 中文, an example sentence that uses it (the chunk

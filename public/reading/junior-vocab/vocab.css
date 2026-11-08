@@ -571,3 +571,26 @@ body.staged { overflow: hidden; }
 .col .zh { margin-top: 2px; font: 15px/1.65 var(--font-zh); color: var(--muted); letter-spacing: 0; }
 @media (max-width: 560px) { .cols { padding-left: 0; } .col .en { font-size: 16px; } }
 @media print { .cols { padding-left: 0; } }
+
+/* ---------- 熟練度, the week, lesson progress ----------
+   Quiet by design: five small dots, seven small days, one thin bar. They show
+   a student is getting somewhere without turning practice into a score. */
+.dots { display: inline-flex; gap: 3px; align-items: center; }
+.dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--hair); }
+.dots i.on { background: var(--accent); }
+.week { margin: 14px 0 6px; }
+.wk-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.wk-day { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; font: 12px/1 var(--font-zh); color: var(--muted); }
+.wk-day i { width: 26px; height: 26px; border-radius: 50%; background: var(--hair); }
+.wk-day.on i { background: var(--grad, var(--accent)); }
+.wk-day.is-today { color: var(--ink); font-weight: 700; }
+.wk-day.is-today i { box-shadow: 0 0 0 2px var(--paper), 0 0 0 3.5px var(--accent); }
+.wk-n { margin: 10px 0 0; font: 15px/1.5 var(--font-zh); color: var(--muted); }
+.wk-n b { color: var(--ink); font-family: var(--font-display); }
+.lh-prog { margin: 10px 0 0; display: flex; align-items: center; gap: 10px; }
+.lh-prog[hidden] { display: none; }
+.lp-bar { flex: 0 1 220px; height: 6px; border-radius: 6px; background: var(--hair); overflow: hidden; }
+.lp-bar span { display: block; height: 100%; border-radius: 6px; background: var(--accent); }
+.lh-prog.full .lp-bar span { background: var(--ok); }
+.lp-n { font: 600 14px/1.3 var(--font-zh); color: var(--muted); letter-spacing: 0; }
+.lh-prog.full .lp-n { color: var(--ok); }

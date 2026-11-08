@@ -210,3 +210,15 @@ dialog.report::backdrop { background: rgb(0 0 0 / .4); -webkit-backdrop-filter: 
 .rp-copy { background: #0071e3; color: #fff; }
 .rp-close { background: var(--ground); color: var(--ink); }
 .rp-copy:active, .rp-close:active { transform: scale(.97); }
+
+/* ---------- this week, on 今天的複習 ---------- */
+.week { margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--hair); }
+.wk-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.wk-day { display: inline-flex; flex-direction: column; align-items: center; gap: 5px; font: 12px/1 var(--font-zh); color: var(--muted); }
+.wk-day i { width: 30px; height: 30px; border-radius: 50%; background: var(--ground); }
+.wk-day.on i { background: var(--grad); }
+.wk-day.is-today { color: var(--ink); font-weight: 700; }
+.wk-day.is-today i { box-shadow: 0 0 0 2px var(--card), 0 0 0 3.5px var(--accent); }
+.wk-n { margin: 10px 0 0; font: 15px/1.5 var(--font-zh); color: var(--muted); }
+.wk-n b { color: var(--ink); font-family: var(--font-display); }
+@media (max-width: 380px) { .wk-row { gap: 6px; } .wk-day i { width: 26px; height: 26px; } }
