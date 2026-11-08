@@ -151,6 +151,12 @@ dialog .btn.primary { background: var(--lv); color: #fff; }
   .card .w { font-size: 22px; }
   .tiles { gap: 8px; }
 }
+/* The Lewis Biz English mark, for the parent or teacher (2026-11-08). */
+.cam-foot { display: flex; align-items: center; gap: 12px; margin-top: -54px; padding-bottom: 72px; font: 14px/1.6 var(--zh); color: var(--muted); }
+.cam-foot p { margin: 0; }
+.cam-foot p a { color: var(--m); text-decoration: none; }
+.cam-mark { flex: none; line-height: 0; border-radius: 50%; }
+.cam-mark img { display: block; width: 34px; height: 34px; }
 </style>
 </head>
 <body data-lv="0">
@@ -170,6 +176,10 @@ dialog .btn.primary { background: var(--lv); color: #fff; }
     <button data-view="game">👂 聽聽看，點一點</button>
   </div>
   <main id="main"></main>
+  <footer class="cam-foot">
+    <a class="cam-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener" aria-label="Lewis Biz English"><img src="../../logo.png" alt="" width="34" height="34"></a>
+    <p>更多教材與課程 · <a href="https://lewistoeic.com/" target="_blank" rel="noopener">lewistoeic.com</a></p>
+  </footer>
 </div>
 
 <button class="gear" id="gear" aria-label="老師設定">⚙</button>

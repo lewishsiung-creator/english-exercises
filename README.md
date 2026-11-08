@@ -3002,6 +3002,11 @@ of the six pages (nine recommendations; Lewis chose 1–4):
 Also: the Lewis Biz English mark (`public/logo.png`, 34px, linked to
 lewistoeic.com) is now in the footer of /learn/, 程度檢測, 國中單字 and 高中單字,
 as it already was on 閱讀, 學測寫作 and the rest of the site (`.fam-foot`).
+Later the same day it went on the four Cambridge pages too (/cambridge/, A2
+Key, B1 Preliminary, Starters–Flyers), as `.cam-foot` (in lists.css, and in
+young-learners' own `<style>`). Every page with content now carries it; the
+pages still without it are only redirects (/a2-key/, /junior-high-grammar/,
+/junior-high-words/, /riva-rex-practice/, /wealth-habits/), whose targets do.
 
 **今天這一組, findable (2026-11-08)**, both word pages. Lewis: 「今天這一組」不好找 —
 the plan told students to do it every day, but the opener's button said only

@@ -431,3 +431,13 @@ body.staged { overflow: hidden; }
   .ex .en { font-size: 15px; }
   .mean { font-size: 15px; }
 }
+
+/* The Lewis Biz English mark at the foot of the Cambridge pages (2026-11-08),
+   the same 34px circle, public/logo.png, the rest of the site carries. */
+.cam-foot { display: flex; align-items: center; gap: 12px; padding-bottom: 48px; font: 13px/1.6 var(--font-zh); color: var(--muted); letter-spacing: 0; }
+.cam-foot p { margin: 0; }
+.cam-foot p a { color: var(--accent); text-decoration: none; }
+.cam-mark { flex: none; line-height: 0; border-radius: 50%; }
+.cam-mark img { display: block; width: 34px; height: 34px; }
+@media (hover: hover) { .cam-mark:hover { opacity: .78; } .cam-foot p a:hover { text-decoration: underline; } }
+@media print { .cam-foot { display: none; } }
