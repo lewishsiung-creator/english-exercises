@@ -556,3 +556,18 @@ body.staged { overflow: hidden; }
 .plan-v { margin: 8px 0 0; font: 16px/1.7 var(--font-zh); color: var(--ink); letter-spacing: 0; }
 .plan-v b { font: 700 1.25em/1 var(--font-display); color: var(--accent); }
 @media (max-width: 720px) { .plan { grid-template-columns: 1fr; } }
+
+/* ---------- 常用搭配 ----------
+   Under a word's own example: the chunks it is used in, each with its meaning
+   and a sentence that uses it. Set like the examples above it, so the card
+   reads as one entry; a hairline and a small label mark where they start. */
+.cols { margin-top: 18px; padding-top: 14px; padding-left: calc(4.2rem + 12px); border-top: 1px solid var(--hair); display: flex; flex-direction: column; gap: 14px; }
+.cols-k { margin: 0; font: 700 11px/1 var(--font-ui), var(--font-zh); letter-spacing: .1em; color: var(--muted); }
+.col-c { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.col-c b { font: 700 18px/1.35 var(--font-display); letter-spacing: -0.01em; color: var(--accent); }
+.col-zh { font: 600 15px/1.5 var(--font-zh); }
+.col .en { margin-top: 4px; font: 17px/1.55 var(--font-en); max-width: 40em; }
+.col .en b { font-weight: 700; color: var(--accent); }
+.col .zh { margin-top: 2px; font: 15px/1.65 var(--font-zh); color: var(--muted); letter-spacing: 0; }
+@media (max-width: 560px) { .cols { padding-left: 0; } .col .en { font-size: 16px; } }
+@media print { .cols { padding-left: 0; } }

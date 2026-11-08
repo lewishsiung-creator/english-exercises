@@ -1,0 +1,130 @@
+{
+ "China": {
+  "collocs": [
+   {
+    "c": "in China",
+    "zh": "在中國",
+    "ex": [
+     "My cousin is working *in China* now.",
+     "我表哥現在在中國工作。"
+    ]
+   },
+   {
+    "c": "made in China",
+    "zh": "中國製造",
+    "ex": [
+     "This phone case was *made in China*.",
+     "這個手機殼是中國製造的。"
+    ]
+   }
+  ]
+ },
+ "china": {
+  "collocs": [
+   {
+    "c": "a china cup",
+    "zh": "瓷杯",
+    "ex": [
+     "Grandma serves tea in *a china cup*.",
+     "奶奶用瓷杯奉茶。"
+    ]
+   },
+   {
+    "c": "a set of china",
+    "zh": "一套瓷器",
+    "ex": [
+     "My aunt bought *a set of china* for her new home.",
+     "我阿姨為新家買了一套瓷器。"
+    ]
+   }
+  ]
+ },
+ "May": {
+  "collocs": [
+   {
+    "c": "in May",
+    "zh": "在五月",
+    "ex": [
+     "The school sports day is *in May*.",
+     "學校運動會在五月。"
+    ]
+   },
+   {
+    "c": "early May",
+    "zh": "五月初",
+    "ex": [
+     "Our class trip is in *early May* this year.",
+     "我們班今年的校外教學在五月初。"
+    ]
+   }
+  ]
+ },
+ "Miss": {
+  "collocs": [
+   {
+    "c": "Miss Chen",
+    "zh": "陳小姐；陳老師（女老師的稱呼）",
+    "ex": [
+     "*Miss Chen* teaches us English on Mondays.",
+     "陳老師每週一教我們英文。"
+    ]
+   }
+  ]
+ },
+ "miss": {
+  "collocs": [
+   {
+    "c": "miss the bus",
+    "zh": "錯過公車",
+    "ex": [
+     "Hurry up, or we will *miss the bus*.",
+     "快一點，不然我們會錯過公車。"
+    ]
+   },
+   {
+    "c": "miss a class",
+    "zh": "缺一堂課",
+    "ex": [
+     "I *missed a class* because I was sick.",
+     "我因為生病缺了一堂課。"
+    ]
+   },
+   {
+    "c": "miss someone",
+    "zh": "想念某人",
+    "ex": [
+     "I really *miss my grandparents* in Tainan.",
+     "我好想念住在台南的爺爺奶奶。"
+    ]
+   }
+  ]
+ },
+ "may": {
+  "collocs": [
+   {
+    "c": "May I...?",
+    "zh": "我可以…嗎？",
+    "ex": [
+     "*May I* use the bathroom, please?",
+     "請問我可以去上廁所嗎？"
+    ]
+   },
+   {
+    "c": "may as well",
+    "zh": "不妨；倒不如",
+    "ex": [
+     "The bus is late, so we *may as well* walk.",
+     "公車誤點了，我們不如走路吧。"
+    ]
+   },
+   {
+    "c": "may be",
+    "zh": "可能是",
+    "ex": [
+     "That *may be* the right answer, but check again.",
+     "那可能是正確答案，但再檢查一次。"
+    ]
+   }
+  ]
+ }
+}

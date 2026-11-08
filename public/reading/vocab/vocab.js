@@ -14,12 +14,15 @@ const POSZH = { n: '名詞', v: '動詞', adj: '形容詞', adv: '副詞', prep:
 /* ---------- data ---------- */
 const LEVEL_ZH = ['', '第一級', '第二級', '第三級', '第四級', '第五級', '第六級'];
 // [id, word as printed, level, spoken as, senses [[pos, 中文]], examples [[en, 中譯]]]
-const ENTRIES = RAW.map(([id, w, lv, sayAs, senses, exs], n) => {
+const ENTRIES = RAW.map(([id, w, lv, sayAs, senses, exs, cols = []], n) => {
   const se = senses.map(([p, z]) => ({ p, z }));
   const x = exs.map(([en, zh]) => ({ en, zh }));
   const firstZh = (se.find(s => s.z) || {}).z || '';
-  const text = (w + ' ' + sayAs + ' ' + se.map(s => s.z).join(' ')).toLowerCase();
-  return { id, n, w, lab: '', sayAs, se, vari: '', x, lv, fixes: {}, firstZh, text, w0: w };
+  // collocations: [collocation, 中文, example with it in *asterisks*, 中譯]
+  const co = cols.map(([c, zh, en, ezh]) => ({ c, zh, en, ezh }));
+  // search finds a word by its collocations too: "make a decision" turns up decision
+  const text = (w + ' ' + sayAs + ' ' + se.map(s => s.z).join(' ') + ' ' + co.map(c => c.c + ' ' + c.zh).join(' ')).toLowerCase();
+  return { id, n, w, lab: '', sayAs, se, vari: '', x, lv, co, fixes: {}, firstZh, text, w0: w };
 });
 
 /* ---------- device settings & self-study marks (try/catch: storage may be blocked) ---------- */
@@ -151,6 +154,10 @@ function headHTML(e) {
     ${e.se.map((s, si) => `<div class="sense">${posTag(s.p)}<div class="sb">
       ${s.z ? `<div class="mean">${zhw(esc(s.z))}${si === 0 ? fixTag(e, 'pos') : ''}</div>` : ''}</div></div>`).join('')}
     ${e.x.length ? `<div class="exs">${e.x.map((x, xi) => `<div class="ex"><div class="en">${hl(x.en)} ${sayBtn(x.en, '播放例句')}${fixTag(e, 'x' + xi)}</div>${x.zh ? `<div class="zh">${zhw(esc(x.zh))}</div>` : ''}</div>`).join('')}</div>` : ''}
+    ${e.co.length ? `<div class="cols"><p class="cols-k">常用搭配</p>${e.co.map(c => `<div class="col">
+      <div class="col-c"><b>${esc(c.c)}</b> <span class="col-zh">${zhw(esc(c.zh))}</span></div>
+      <div class="en">${hl(c.en)} ${sayBtn(c.en, '播放例句')}</div>
+      <div class="zh">${zhw(esc(c.ezh))}</div></div>`).join('')}</div>` : ''}
     ${e.vari ? `<div class="vari">${it(e.vari)}${fixTag(e, 'note')}</div>` : ''}
   </div>`;
 }

@@ -38,6 +38,23 @@ ROOT = HERE.parent.parent
 OUT = ROOT / 'public' / 'reading' / 'junior-vocab' / 'words.js'
 TEXTBOOK = ROOT / 'public' / 'junior-high' / 'words.js'
 GRAMMAR = ROOT / 'public' / 'junior-high' / 'grammar.js'
+
+
+# Collocations, shared by both word pages and keyed by the headword as printed,
+# lower-cased: tools/collocations/collocations.json, one entry per word a
+# student meets on either page. Each is [collocation, 中文, example, 中譯].
+COLLOC_FILE = HERE.parent / 'collocations' / 'collocations.json'
+
+
+def collocations():
+    if not COLLOC_FILE.exists():
+        return {}
+    data = json.loads(COLLOC_FILE.read_text(encoding='utf-8'))
+    return {k: [[c['c'], c['zh'], c['ex'][0], c['ex'][1]] for c in v.get('collocs', [])] for k, v in data.items()}
+
+
+def colloc_key(w):
+    return re.sub(r'\s+', ' ', w.strip().lower())
 SETS = {'basic': 'basic', 'more': 'more'}
 # 講義 headword -> the list's id, where the 講義 uses a plural or a set phrase
 PLURALS = {'teeth': 'tooth', 'fishermen': 'fisherman', 'businessmen': 'businessman',
@@ -172,7 +189,9 @@ def main():
     # One A-Z run for the whole page. Left in table order, 全部 read 基本字 a-z
     # and then started again at a for 常用字, and the A-Z rail could not follow.
     order = sorted(entries.values(), key=lambda e: (re.sub(r'[^a-z]', '', e['w'].lower()) or e['w'].lower(), e['w']))
-    rows = [[e['id'], e['w'], e['sets'], e['say'], e['senses'], e['ex'], e['kk'], e['lessons']]
+    cols = collocations()
+    rows = [[e['id'], e['w'], e['sets'], e['say'], e['senses'], e['ex'], e['kk'], e['lessons'],
+             cols.get(e['w'].strip()) or cols.get(colloc_key(e['w']), [])]
             for e in order]
     lines = ',\n'.join(json.dumps(r, ensure_ascii=False) for r in rows)
     OUT.write_text(

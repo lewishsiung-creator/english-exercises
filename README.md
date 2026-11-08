@@ -2777,6 +2777,32 @@ nothing with a student or client in it is ever added here.
   when 高中單字 gains a level or the reading page a text.
 - Same Apple language and tokens as the word pages, `noindex` like all three.
 
+**常用搭配 on both word pages (2026-11-08).** Every word on 國中單字 and
+高中單字 now shows up to three high-frequency collocations under its own
+example, each with its 中文, an example sentence that uses it (the chunk
+marked, with 🔊) and that sentence's 中譯 — 5,237 collocations for 2,438
+headwords.
+
+- **One file for both pages:** `tools/collocations/collocations.json`, keyed by
+  the headword as printed, lower-cased. 1,573 words are on both lists and were
+  written once. Both `build.py` scripts look a word up there; edit the file
+  and rebuild both.
+- **Capitals matter for three words.** *China/china*, *May/may* and
+  *Miss/miss* are different words that lower-case to the same key, so their
+  entries live under their exact spelling (also kept in
+  `tools/collocations/case.json`) and the builds look up the exact spelling
+  first.
+- **Not on the 141 textbook-only cards** — those are already phrases.
+  Function words carry one or two patterns or none; proper nouns and numbers
+  usually none.
+- Written by ten subagents against a brief (A2–B1 examples, the senses the
+  page teaches, American usage), then read by three reviewers, who changed 64
+  words. A first checker insisted that a collocation spell its headword and so
+  pushed writers away from *brush your teeth*, *by plane*, *at 3 p.m.*; the
+  rule was dropped and the reviewers restored those.
+- Search now matches collocations too: *make a decision* finds *decision*.
+  The quiz still draws only on each word's own example.
+
 **Goals, a daily dose, and a report for the teacher (2026-11-08)** — the next
 two recommendations from the review.
 
