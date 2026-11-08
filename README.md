@@ -2654,6 +2654,14 @@ English from a Chinese sentence, first letter given.
   `after: <blank>` and read 「完成第 N 題後顯示」 until that blank is solved.
 - **`noindex`**, because the texts are someone else's writing and their source
   is unknown.
+- **看文中線索 (2026-11-08).** Each 閱讀測驗 question carries `ev`: the passage's
+  own words that answer it, quoted exactly (a main-idea or attitude question
+  quotes several places). `markEvidence()` wraps them in the text at load —
+  one span per text node, so a quote can run through a glossed word — but
+  they stay plain until the question is solved and the button under it is
+  pressed. Then they are lit and scrolled to, and 「回到第 N 題」 (a pill at the
+  bottom, or a tap on the lit words) goes back. A quote that no longer matches
+  the text logs a warning and is skipped, so edit `ev` with the paragraph.
 
 ## Keep Speaking — adult, self-study, a course handbook to rehearse
 

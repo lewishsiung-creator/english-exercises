@@ -182,6 +182,11 @@ const RD = {
                     3: '文中完全沒有提到野放。',
                   },
                   why: '三段都指向同一件事：第一段說這是行銷，第二段舉出更務實的科技，第三段說它讓人忽略真正的保育工作。',
+                  ev: [
+                    'what Colossal did is not genuine de-extinction, but a case of conservation-washing.',
+                    'This is where technology can genuinely support biodiversity restoration',
+                    'This may create a dangerous distraction from proven solutions to the biodiversity crisis.',
+                  ],
                 },
                 {
                   en: 'According to the passage, what are the pups, biologically speaking?',
@@ -199,6 +204,10 @@ const RD = {
                     3: '被編輯的只有灰狼，沒有第二種現存的狼。',
                   },
                   why: '線索是 “edited those into the genomes of modern grey wolves”，所以作者才說 at best, hybrids。',
+                  ev: [
+                    'They then edited those into the genomes of modern grey wolves.',
+                    'these pups are, at best, hybrids.',
+                  ],
                 },
                 {
                   en: 'Which shows the correct order of what Colossal’s scientists did?',
@@ -216,6 +225,9 @@ const RD = {
                     2: '胚胎是用「修改過的細胞」做的，所以編輯要在胚胎之前。',
                   },
                   why: '留意文中的順序標記：After careful analysis、then、The modified cells were used to create、which were implanted。',
+                  ev: [
+                    'Its scientists extracted dire wolf DNA from ancient fossilized remains. After careful analysis, they isolated a handful of genes by identifying key genetic markers. They then edited those into the genomes of modern grey wolves. The modified cells were used to create embryos, which were implanted into surrogate dogs.',
+                  ],
                 },
                 {
                   en: 'What does the word “ploy” in the first paragraph mean?',
@@ -233,6 +245,9 @@ const RD = {
                     3: '前面的 simply 帶著貶意，說的是手段，不是承諾。',
                   },
                   why: 'ploy 指為了占便宜而用的計謀。simply a ploy 的語氣是「不過是一種手段」。',
+                  ev: [
+                    'It’s simply a ploy of clever marketing and emotional appeal.',
+                  ],
                 },
                 {
                   en: 'Why does the author mention Stream Ocean and Soilytix?',
@@ -250,6 +265,9 @@ const RD = {
                     3: '重點在科技的用法，不是比較哪種生物重要。',
                   },
                   why: '例子後面緊接著 This is where technology can genuinely support biodiversity restoration，這句就是舉例的目的。',
+                  ev: [
+                    'This is where technology can genuinely support biodiversity restoration — not through Frankensteinian genetic manipulations.',
+                  ],
                 },
                 {
                   en: 'Which word best describes the author’s attitude toward Colossal?',
@@ -267,6 +285,12 @@ const RD = {
                     3: '“dire-ish” 有一點諷刺，但作者談的是 dangerous distraction，態度是認真的。',
                   },
                   why: '判斷態度時看作者挑的字。下一節就來看這些字。',
+                  ev: [
+                    'misleading',
+                    'a ploy of clever marketing and emotional appeal',
+                    'dangerous distraction',
+                    'playing God',
+                  ],
                 },
               ],
             },
@@ -419,6 +443,9 @@ const RD = {
                     3: '東印度公司只是僱用韋茅斯的單位，不是信的內容。',
                   },
                   why: '第一句就說了：in the hope of opening up a trade route and starting friendly relations。',
+                  ev: [
+                    'in the hope of opening up a trade route and starting friendly relations',
+                  ],
                 },
                 {
                   en: 'Which language was NOT among the copies Weymouth carried?',
@@ -436,6 +463,9 @@ const RD = {
                     3: '文中列出了 Italian。',
                   },
                   why: '一封寫給中國皇帝的信，卻沒有中文版本。這點可以留到「說說看」討論。',
+                  ev: [
+                    'Weymouth carried the letter in English, accompanied by copies in Latin, Spanish and Italian.',
+                  ],
                 },
                 {
                   en: 'What does “held a strong grip on trade” most nearly mean?',
@@ -453,6 +483,9 @@ const RD = {
                     3: '正因為對方抓得緊，英格蘭才要另找航線。',
                   },
                   why: 'grip 是緊握。英格蘭要找 alternative route，就是因為舊路掌握在別人手裡。',
+                  ev: [
+                    'This was part of England’s broader effort to find an alternative trade route to the east, where the Portuguese and Dutch held a strong grip on trade.',
+                  ],
                 },
                 {
                   en: 'The Atlantic crossing was “uneventful”. What does this tell us?',
@@ -470,6 +503,9 @@ const RD = {
                     2: 'un- 表示否定，所以是沒有 event。',
                   },
                   why: '後面的 but the waters beyond proved far more challenging 形成對比，可見前半段很順利。',
+                  ev: [
+                    'The westward crossing of the Atlantic was uneventful, but the waters beyond proved far more challenging.',
+                  ],
                 },
               ],
             },

@@ -43,6 +43,8 @@
   --bad-soft: #fcecea;
   --bad-line: #efb7b2;
 
+  --hl: #ffe98a;                    /* 看文中線索: a highlighter on the passage */
+  --hl-strong: #ffd426;
   --line: #d2d2d7;
   --rule: #c7c7cc;
 
@@ -63,6 +65,7 @@
     --gold: #2997ff; --gold-soft: #0f2a47; --gold-line: #1f5a99; --red: #ff8a3d; --button: #0a84ff;
     --good: #30d158; --good-soft: #10301b; --good-line: #1f6b37;
     --bad: #ff6961; --bad-soft: #3a1513; --bad-line: #7a2b26;
+    --hl: #524100; --hl-strong: #7a6200;
     --line: #424245; --rule: #545458;
     --a1: #2997ff; --a2: #c18cff; --a3: #ff8a3d;
     color-scheme: dark;
@@ -74,6 +77,7 @@
   --gold: #2997ff; --gold-soft: #0f2a47; --gold-line: #1f5a99; --red: #ff8a3d; --button: #0a84ff;
   --good: #30d158; --good-soft: #10301b; --good-line: #1f6b37;
   --bad: #ff6961; --bad-soft: #3a1513; --bad-line: #7a2b26;
+  --hl: #524100; --hl-strong: #7a6200;
   --line: #424245; --rule: #545458;
   --a1: #2997ff; --a2: #c18cff; --a3: #ff8a3d;
   color-scheme: dark;
@@ -372,6 +376,36 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
    there is one. */
 .why { display: none; margin: 11px 0 0; font-size: .9rem; line-height: 1.8; color: var(--ink-soft); }
 .q.solved .why { display: block; }
+
+/* 看文中線索 (render.js): the passage's own words that answer a question.
+   Marked in the text from the start but drawn only once asked for, after the
+   question is solved, so they never give an answer away. */
+.ev-go {
+  display: none; margin-top: 12px; min-height: 36px; padding: 6px 14px;
+  border: 1px solid var(--gold-line); border-radius: 980px;
+  background: var(--card); color: var(--gold);
+  font: 600 .86rem/1.3 var(--font-zh); cursor: pointer;
+}
+.q.solved .ev-go { display: inline-flex; align-items: center; gap: 5px; }
+@media (hover: hover) { .ev-go:hover { background: var(--gold-soft); } }
+/* No rounded corners or side spread: a quote is several spans when it runs
+   through a glossed word, and they must meet without a seam. */
+.ev.on { background: var(--hl); padding: .1em 0; cursor: pointer; }
+.ev.flash { animation: evflash 1.6s var(--ease); }
+@keyframes evflash {
+  0%, 35% { background: var(--hl-strong); }
+  100% { background: var(--hl); }
+}
+.ev-back {
+  position: fixed; z-index: 40; left: 50%; transform: translateX(-50%);
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  min-height: 44px; padding: 10px 20px; border: 0; border-radius: 980px;
+  background: var(--button); color: #fff;
+  font: 600 .95rem/1.2 var(--font-zh); cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .22);
+}
+.ev-back[hidden] { display: none; }
+@media print { .ev-go, .ev-back { display: none !important; } }
 
 .wobble { animation: wobble .3s var(--ease); }
 @keyframes wobble {

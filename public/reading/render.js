@@ -213,15 +213,19 @@ const BLOCKS = {
       ${(b.good || []).map((g) => `<p class="ex">${text(g)} ${say(g)}</p>`).join('')}
     </aside>`,
 
-  mcq: (b) => `
+  /* `ev` is the passage's own words that answer the question. They are marked
+     in the text (markEvidence) but stay plain until the question is solved and
+     看文中線索 is pressed, so the marks never give an answer away. */
+  mcq: (b, passage) => `
     <div class="activity">
       ${b.items.map((q, n) => `
-        <div class="q mq" data-answer="${q.answer}">
+        <div class="q mq" data-answer="${q.answer}"${q.ev ? ` data-ev="${text(passage.id)}-${n + 1}" data-num="${n + 1}"` : ''}>
           <div class="q-stem">
             <span class="q-num">${n + 1}</span>
             ${pair(q.en, q.zh)}
           </div>
           ${options(q, 'choice-list')}
+          ${q.ev ? '<button class="ev-go">看文中線索 <span aria-hidden="true">↑</span></button>' : ''}
         </div>`).join('')}
     </div>`,
 
@@ -413,6 +417,95 @@ doc.appendChild(el(buildCover()));
 RD.passages.forEach((p, i) => doc.appendChild(el(buildPassage(p, i + 1))));
 doc.appendChild(el(buildSource()));
 
+// ----------------------------------------------------------------- evidence
+
+/* The text of a paragraph as a reader sees it, with the text node each stretch
+   came from. The hidden glosses, the 🔊／中 buttons and the blank numbers are
+   left out, so a quote from content.js matches word for word. */
+function textRuns(root) {
+  const runs = [];
+  let all = '';
+  const walk = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode: (n) => (n.parentElement.closest('.gl-zh, .para-tools, .slot')
+      ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
+  });
+  for (let n = walk.nextNode(); n; n = walk.nextNode()) { runs.push({ n, at: all.length }); all += n.data; }
+  return { runs, all };
+}
+
+/* Wraps characters start..end of a paragraph, one span per text node, so a
+   quote can run through a glossed word or an italic without breaking either. */
+function wrapRange(root, start, end, key) {
+  textRuns(root).runs.forEach(({ n, at }) => {
+    const a = Math.max(start - at, 0);
+    const b = Math.min(end - at, n.data.length);
+    if (a >= b) return;
+    let node = n;
+    if (b < node.data.length) node.splitText(b);
+    if (a > 0) node = node.splitText(a);
+    const span = document.createElement('span');
+    span.className = 'ev';
+    span.dataset.ev = key;
+    node.replaceWith(span);
+    span.appendChild(node);
+  });
+}
+
+function markEvidence() {
+  RD.passages.forEach((p) => p.parts.forEach((pt) => pt.blocks.forEach((b) => {
+    if (b.t !== 'mcq') return;
+    const paras = $$(`#${p.id} .passage .para > .en`);
+    b.items.forEach((q, n) => (q.ev || []).forEach((quote) => {
+      const root = paras.find((r) => textRuns(r).all.includes(quote));
+      if (!root) { console.warn(`reading: "${quote}" is not in ${p.id}`); return; }
+      const at = textRuns(root).all.indexOf(quote);
+      wrapRange(root, at, at + quote.length, `${p.id}-${n + 1}`);
+    }));
+  })));
+}
+markEvidence();
+
+/* 看文中線索 lights the question's words in the passage and goes there; a pill
+   at the bottom, or a tap on the lit words, comes back. The pill leaves by
+   itself once the question is on screen again. */
+const evBack = el('<button class="ev-back" id="evBack" hidden></button>');
+document.body.appendChild(evBack);
+let evQ = null, evLeft = false;
+
+function showEvidence(q) {
+  const marks = $$(`.ev[data-ev="${q.dataset.ev}"]`);
+  if (!marks.length) return;
+  $$('.ev.on').forEach((m) => m.classList.remove('on', 'flash'));
+  void doc.offsetWidth;
+  marks.forEach((m) => m.classList.add('on', 'flash'));
+  evQ = q; evLeft = false;
+  evBack.innerHTML = `回到第 ${q.dataset.num} 題 <span aria-hidden="true">↓</span>`;
+  evBack.hidden = false;
+  marks[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function backToQuestion() {
+  if (!evQ) return;
+  evQ.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  evBack.hidden = true;
+  evQ = null;
+}
+
+function clearEvidence() {
+  $$('.ev.on').forEach((m) => m.classList.remove('on', 'flash'));
+  evBack.hidden = true;
+  evQ = null;
+}
+
+evBack.addEventListener('click', backToQuestion);
+addEventListener('scroll', () => {
+  if (!evQ) return;
+  const r = evQ.getBoundingClientRect();
+  const inView = r.bottom > 80 && r.top < innerHeight - 80;
+  if (!inView) evLeft = true;
+  else if (evLeft) { evBack.hidden = true; evQ = null; }
+}, { passive: true });
+
 // ------------------------------------------------------------------ answers
 
 function fillBlank(n) {
@@ -573,6 +666,7 @@ function clearAll() {
   $$('.unlocked').forEach((w) => w.classList.remove('unlocked'));
   $$('.pair.open').forEach((p) => p.classList.remove('open'));
   $$('.gl[aria-expanded="true"]').forEach(toggleGloss);
+  clearEvidence();
   setAllZh(false);
 }
 
@@ -601,6 +695,11 @@ doc.addEventListener('click', (e) => {
 
   const opt = e.target.closest('.opt');
   if (opt) { choose(opt.closest('.q'), opt); return; }
+
+  const evGo = e.target.closest('.ev-go');
+  if (evGo) { showEvidence(evGo.closest('.q')); return; }
+
+  if (e.target.closest('.ev.on') && evQ) { backToQuestion(); return; }
 
   const again = e.target.closest('.again-btn');
   if (again) { retryRound(again.closest('.round')); return; }
