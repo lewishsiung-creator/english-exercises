@@ -1,0 +1,51 @@
+/* The 英文學習 global nav: one thin dark strip across the top of every page in
+   this family -- /learn/, /learn/check/, /reading/, /reading/vocab/ and
+   /reading/junior-vocab/ -- the way apple.com runs one global nav above each
+   product's own local bar. It scrolls away; each page's own bar below it stays
+   pinned. Self-contained: it reads none of the page's tokens, so it looks the
+   same on all five, light theme or dark.
+
+   Only these five pages carry it. The rest of the site stays unlinked on
+   purpose (students must not find each other's material). */
+
+.fam {
+  position: relative; z-index: 40;
+  background: rgb(22 22 23 / .94);
+  -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px);
+  font: 13px/1 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial,
+        "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  letter-spacing: 0;
+}
+/* On /learn/ and the check page there is no bar below it, so it stays pinned. */
+.fam-pin { position: sticky; top: 0; }
+/* The strip carries the notch inset itself, so a page's own bar can stay at top: 0. */
+.fam-in {
+  max-width: 1080px; margin: 0 auto;
+  min-height: 44px;
+  padding: env(safe-area-inset-top, 0px) max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px));
+  display: flex; align-items: center; gap: 4px;
+  overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+}
+.fam-in::-webkit-scrollbar { display: none; }
+.fam a {
+  flex: none; display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px;
+  color: rgb(232 232 237 / .8); text-decoration: none; white-space: nowrap;
+  transition: color .2s cubic-bezier(.4, 0, .2, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+.fam a:hover, .fam a:focus-visible { color: #fff; }
+.fam a:focus-visible { outline: 2px solid #2997ff; outline-offset: -4px; border-radius: 8px; }
+.fam a[aria-current="page"] { color: #fff; font-weight: 600; }
+.fam .fam-home { padding-left: 0; margin-right: auto; color: #fff; font-weight: 600; font-size: 14px; letter-spacing: -0.01em; }
+/* On a phone the home name keeps its place and the four links scroll beside it. */
+@media (max-width: 560px) {
+  .fam .fam-home { margin-right: 6px; }
+  .fam a { padding: 0 9px; }
+}
+/* On a 375-point iPhone all five fit without scrolling, the current one included. */
+@media (max-width: 400px) {
+  .fam-in { gap: 0; padding-left: max(14px, env(safe-area-inset-left, 0px)); padding-right: max(10px, env(safe-area-inset-right, 0px)); }
+  .fam a { padding: 0 7px; }
+  .fam .fam-home { padding-left: 0; }
+}
+@media print { .fam { display: none; } }

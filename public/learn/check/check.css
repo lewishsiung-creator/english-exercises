@@ -3,7 +3,6 @@
    options as full-width pills a thumb can hit, and a thin bar for how far
    along the test is -- progress, not a score. */
 
-.brand-link { color: var(--ink); text-decoration: none; }
 .check { padding-block: clamp(24px, 5vw, 56px) clamp(40px, 6vw, 72px); }
 #screen { max-width: 640px; margin: 0 auto; }
 #screen > section {

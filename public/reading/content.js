@@ -47,8 +47,6 @@ const RD = {
     { k: '多久', v: '三篇加複習，一週內可以完成。隔幾天再回來做一次複習四關，答錯的字會記得更牢。' },
   ],
 
-  /* Up to the top page over this page and its two word lists. */
-  up: { href: '../learn/', zh: '‹ 英文學習' },
 
   /* The two word-list subpages, linked from the cover. */
   vocab: [

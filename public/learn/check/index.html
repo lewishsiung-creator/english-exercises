@@ -10,12 +10,20 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='12' fill='%231d1d1f'/%3E%3Ctext x='32' y='43' font-family='Helvetica,Arial,sans-serif' font-size='26' font-weight='700' fill='white' text-anchor='middle'%3EAa%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#ffffff">
 <link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../fam.css">
 <link rel="stylesheet" href="check.css">
 </head>
 <body>
 
-<nav class="gnav" aria-label="網站">
-  <div class="wrap"><a class="brand brand-link" href="../">英文學習</a></div>
+<!-- The 英文學習 global nav, the same on all five pages of this family. See ../fam.css. -->
+<nav class="fam fam-pin" aria-label="英文學習">
+  <div class="fam-in">
+    <a class="fam-home" href="../">英文學習</a>
+    <a href="../../reading/junior-vocab/">國中單字</a>
+    <a href="../../reading/vocab/">高中單字</a>
+    <a href="../../reading/">高中閱讀</a>
+    <a href="./" aria-current="page">程度檢測</a>
+  </div>
 </nav>
 
 <!-- One screen at a time: the intro, a question, the result. check.js draws

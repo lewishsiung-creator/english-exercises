@@ -15,35 +15,68 @@
    takes the next accent without this file being edited. Same arrangement as
    /body-words/ and /grammar-notes/. */
 
+/* Since 2026-11-08 in the same Apple language as the rest of the 英文學習 family
+   (/learn/ and the two word pages): white page, grey cards, San Francisco for
+   everything around the text, blue for what can be pressed, orange for the
+   small eyebrows. The passages alone stay in the serif -- New York on an Apple
+   device -- because the English is the page and long text reads better in it.
+   Dark mode follows the system, with the same tokens the word pages use. */
 :root {
-  --paper: #f7f6f3;
-  --card: #ffffff;
-  --ink: #1e2430;
-  --ink-soft: #49505f;
-  --ink-faint: #636a79;
+  --paper: #ffffff;                 /* the page */
+  --card: #ffffff;                  /* the settings panel and the drawer */
+  --tile: #f5f5f7;                  /* question cards, word cards, the cover's plan */
+  --ink: #1d1d1f;
+  --ink-soft: #424245;
+  --ink-faint: #6e6e73;
 
-  /* house.css paints its accent with --gold. Here that is a deep teal. */
-  --gold: #1d5c63;
-  --gold-soft: #e6f0f0;
-  --gold-line: #a9cdd0;
+  /* house.css paints its accent with --gold. Here that is Apple's link blue. */
+  --gold: #0066cc;
+  --gold-soft: #e8f1fb;
+  --gold-line: #a8c8ef;
+  --red: #b64400;                   /* Apple's orange: the small eyebrows */
+  --button: #0071e3;
 
-  --good: #27694a;
-  --good-soft: #ecf5f0;
-  --good-line: #a8d0ba;
-  --bad: #9e3320;
-  --bad-soft: #fbeeea;
-  --bad-line: #e8b6a9;
+  --good: #1d7a4b;
+  --good-soft: #e6f4ec;
+  --good-line: #a6d4b9;
+  --bad: #b3261e;
+  --bad-soft: #fcecea;
+  --bad-line: #efb7b2;
 
-  --line: #e2dfd8;
-  --rule: #c9c5bc;
+  --line: #d2d2d7;
+  --rule: #c7c7cc;
+
+  --a1: #0066cc;
+  --a2: #8944ab;
+  --a3: #b64400;
 
   --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
+  --font-sf: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   --measure: 42rem;
-
-  --a1: #1d5c63;
-  --a2: #8a3b63;
-  --a3: #9c5318;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #000000; --card: #1c1c1e; --tile: #1c1c1e;
+    --ink: #f5f5f7; --ink-soft: #c7c7cc; --ink-faint: #a1a1a6;
+    --gold: #2997ff; --gold-soft: #0f2a47; --gold-line: #1f5a99; --red: #ff8a3d; --button: #0a84ff;
+    --good: #30d158; --good-soft: #10301b; --good-line: #1f6b37;
+    --bad: #ff6961; --bad-soft: #3a1513; --bad-line: #7a2b26;
+    --line: #424245; --rule: #545458;
+    --a1: #2997ff; --a2: #c18cff; --a3: #ff8a3d;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #000000; --card: #1c1c1e; --tile: #1c1c1e;
+  --ink: #f5f5f7; --ink-soft: #c7c7cc; --ink-faint: #a1a1a6;
+  --gold: #2997ff; --gold-soft: #0f2a47; --gold-line: #1f5a99; --red: #ff8a3d; --button: #0a84ff;
+  --good: #30d158; --good-soft: #10301b; --good-line: #1f6b37;
+  --bad: #ff6961; --bad-soft: #3a1513; --bad-line: #7a2b26;
+  --line: #424245; --rule: #545458;
+  --a1: #2997ff; --a2: #c18cff; --a3: #ff8a3d;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -54,9 +87,10 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-en);
-  font-size: 18px;
-  line-height: 1.7;
+  font-family: var(--font-sf), var(--font-zh);
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: -.01em;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -145,13 +179,14 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
     padding: 16px 18px 28px;
     background: var(--card);
     border-right: 1px solid var(--line);
+    padding-left: max(18px, env(safe-area-inset-left, 0px));
     transform: translateX(-102%);
     transition: transform var(--fast) var(--ease);
   }
   body.nav-open #nav { transform: none; }
   .nav-scrim {
     position: fixed; inset: 0; z-index: 30;
-    background: rgba(30, 36, 48, .3);
+    background: rgb(0 0 0 / .32);
   }
 }
 .nav-scrim[hidden] { display: none; }
@@ -180,9 +215,9 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 .eyebrow {
   margin: 0 0 10px;
   font-family: var(--font-ui);
-  font-size: 11.5px; font-weight: 600;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--gold);
+  font-size: 12px; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--red);
 }
 .cover h1 .h-zh { display: block; }
 .cover h1 .h-sub {
@@ -202,13 +237,16 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 .point:nth-of-type(3n+2) { --accent: var(--a2); }
 .point:nth-of-type(3n+3) { --accent: var(--a3); }
 
-.point-head { border-top: 2px solid var(--accent, var(--gold)); padding-top: 18px; }
+.point { padding-top: 64px; }
+.point-head { border-top: 1px solid var(--line); padding-top: 28px; }
 .point .eyebrow { display: flex; align-items: center; gap: 8px; color: var(--accent, var(--gold)); }
 .p-icon { font-size: 1.15rem; }
 
 .point-head h2 { margin: 0 0 6px; line-height: 1.15; }
+.cover h1, .point-head h2 { font-family: var(--font-display), var(--font-zh); }
+.cover h1 { font-weight: 700; letter-spacing: -.03em; }
 .point-head h2 .h-en {
-  display: block;
+  display: block; font-weight: 700 !important; letter-spacing: -.025em !important;
   font-size: clamp(1.7rem, 4.6vw, 2.2rem); font-weight: 600; letter-spacing: -.015em;
 }
 .point-head h2 .h-zh {
@@ -233,7 +271,7 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 /* ---------------- the text ---------------- */
 
 .para { margin: 0 0 1.5rem; }
-.para > .en { margin: 0; font-size: 1.1rem; line-height: 1.85; }
+.para > .en { margin: 0; font-family: var(--font-en); font-size: 1.16rem; line-height: 1.8; letter-spacing: 0; }
 .para > .zh { margin: 12px 0 0; padding-left: 14px; border-left: 2px solid var(--gold-line); }
 .para-tools { white-space: nowrap; margin-left: 4px; }
 
@@ -286,13 +324,13 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 /* ---------------- questions ---------------- */
 
 .q {
-  padding: 15px 16px;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--round);
+  padding: clamp(16px, 2.4vw, 22px) clamp(16px, 2.6vw, 24px);
+  background: var(--tile);
+  border: 1px solid transparent;
+  border-radius: 18px;
 }
 .activity .q + .q { margin-top: 10px; }
-.q.solved { border-color: var(--good-line); }
+.q.solved { border-color: var(--good-line); background: color-mix(in srgb, var(--good-soft) 55%, var(--tile)); }
 .cloze { margin: -4px 0 1.5rem; }
 .q-n { margin: 0 0 9px; font-size: .8rem; font-weight: 600; color: var(--ink-faint); }
 
@@ -313,8 +351,8 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 .opt {
   display: inline-flex; align-items: baseline; gap: 8px;
   padding: 8px 14px; min-height: 40px;
-  border: 1px solid var(--line); border-radius: 12px;
-  background: var(--paper); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 14px;
+  background: var(--card); color: var(--ink);
   font: inherit; font-size: .96rem; line-height: 1.45; text-align: left;
   cursor: pointer;
   transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease);
@@ -374,15 +412,15 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 .s-btn {
   min-height: 36px; padding: 6px 13px;
   border: 1px solid var(--line); border-radius: var(--pill);
-  background: var(--paper); color: var(--ink);
+  background: var(--card); color: var(--ink);
   font-family: var(--font-zh); font-size: .84rem; cursor: pointer;
   transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease);
 }
 .s-btn em { font-family: var(--font-ui); font-style: normal; font-size: .74rem; color: var(--ink-faint); }
 .s-btn:hover { border-color: var(--gold-line); background: var(--gold-soft); }
-.s-check { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-.s-check em { color: inherit; opacity: .7; }
-.s-check:hover { background: var(--ink); border-color: var(--ink); }
+.s-check { background: var(--button); border-color: var(--button); color: #fff; }
+.s-check em { color: inherit; opacity: .75; }
+.s-check:hover { background: var(--button); border-color: var(--button); filter: brightness(1.08); }
 
 .again { margin-top: 14px; padding: 13px 16px; border-radius: var(--round); background: var(--gold-soft); }
 .again[hidden] { display: none; }
@@ -390,7 +428,7 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 .again-btn {
   margin-top: 9px; padding: 8px 16px; min-height: 38px;
   border: 0; border-radius: var(--pill);
-  background: var(--ink); color: var(--paper);
+  background: var(--button); color: #fff;
   font-family: var(--font-zh); font-size: .86rem; cursor: pointer;
 }
 .again-btn[hidden] { display: none; }
@@ -415,10 +453,9 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
 }
 .word {
-  padding: 10px 13px;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 12px;
+  padding: 12px 15px;
+  background: var(--tile);
+  border-radius: 14px;
 }
 .word .en { margin: 0; line-height: 1.5; }
 .pos { font-family: var(--font-ui); font-size: .74rem; color: var(--ink-faint); }
@@ -500,16 +537,16 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 .panel .row:first-of-type { border-top: 0; }
 .panel label { display: block; font-weight: 600; margin-bottom: 6px; }
 .panel label em { font-style: normal; font-weight: 500; color: var(--ink-faint); margin-left: 5px; }
-.panel select { width: 100%; padding: 7px 9px; border: 1px solid var(--line); border-radius: 8px; font: inherit; }
+.panel select { width: 100%; padding: 9px 11px; border: 1px solid var(--line); border-radius: 10px; font: inherit; background: var(--tile); color: var(--ink); }
 .row-note { margin: 7px 0 0; font-size: 12.5px; line-height: 1.6; color: var(--ink-faint); }
 .row-note em { font-style: normal; display: block; }
 .panel-btn {
   margin-top: 10px; width: 100%; padding: 9px 14px;
-  border: 1px solid var(--line);
-  background: var(--ink); color: #fff; font: inherit; cursor: pointer;
+  border: 1px solid var(--button);
+  background: var(--button); color: #fff; font: inherit; cursor: pointer;
 }
 .panel-btn em { font-style: normal; opacity: .7; margin-left: 4px; }
-.panel-btn-quiet { background: transparent; color: var(--ink); }
+.panel-btn-quiet { background: transparent; border-color: var(--line); color: var(--ink); }
 
 .site-foot {
   max-width: 46rem; margin: 0 auto;
@@ -537,7 +574,6 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
      phone or an iPad they get 44 -- the bar is 56, so there is room. */
   header.bar .bar-btn { min-height: 44px; }
   header.bar .bar-btn-quiet { min-width: 44px; justify-content: center; }
-  .cover-up { padding-block: 10px; margin-bottom: 4px; }
   .s-btn { min-height: 44px; }
   .again-btn { min-height: 44px; }
 }
@@ -572,26 +608,20 @@ main { max-width: var(--measure); padding-bottom: 5rem; min-width: 0; }
 .cover-link {
   display: inline-flex; flex-direction: column; gap: 2px;
   padding: 11px 16px;
-  border: 1px solid var(--gold-line); border-radius: var(--round);
-  background: var(--gold-soft); color: var(--gold);
+  border: 1px solid transparent; border-radius: 18px;
+  background: var(--tile); color: var(--gold);
   font-family: var(--font-zh); font-size: .98rem; font-weight: 600;
   text-decoration: none;
   transition: border-color var(--fast) var(--ease);
 }
 .cover-link span { font-family: var(--font-ui); font-size: .78rem; font-weight: 500; color: var(--ink-faint); }
-.cover-link:hover { border-color: var(--gold); }
+.cover-link:hover { border-color: var(--gold-line); }
 .cover-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
-
-/* Up to 英文學習, above the eyebrow. */
-.cover-up {
-  display: inline-block; margin-bottom: 14px;
-  font-family: var(--font-zh); font-size: .86rem; color: var(--gold); text-decoration: none;
-}
-.cover-up:hover { text-decoration: underline; }
 
 /* What the page gets a student and how to pace it: three short columns under
    the standfirst, the reading page's version of the word pages' plan. */
-.cover-plan { margin-top: 22px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-.cp-k { margin: 0; font-family: var(--font-zh); font-size: .82rem; font-weight: 600; color: var(--gold); }
+.cover-plan { margin-top: 26px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.cover-plan > div { padding: 16px 18px; border-radius: 18px; background: var(--tile); }
+.cp-k { margin: 0; font-family: var(--font-zh); font-size: .82rem; font-weight: 600; color: var(--red); }
 .cp-v { margin: 4px 0 0; font-family: var(--font-zh); font-size: .9rem; line-height: 1.75; color: var(--ink-soft); }
-@media (max-width: 720px) { .cover-plan { grid-template-columns: 1fr; gap: 12px; } }
+@media (max-width: 720px) { .cover-plan { grid-template-columns: 1fr; gap: 10px; } }

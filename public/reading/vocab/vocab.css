@@ -216,17 +216,22 @@ main.wrap { padding-block: 24px 80px; }
 }
 .entry {
   background: var(--card); border-radius: 22px; padding: 28px clamp(20px, 3vw, 34px);
-  margin-top: 14px; display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 0 26px;
+  margin-top: 14px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px;
 }
-.meta { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 6px; }
+/* The card's header row: the table it is from, its topics and number on the
+   left, 記住了 / 還不熟 on the right. Until 2026-11-08 this was a 9rem column
+   down the card's left side, which on a laptop left the word itself squeezed
+   and the two buttons stacked where the eye never went. One column at every
+   width now, the way a phone already had it. */
+.meta { display: flex; flex-direction: row; align-items: center; flex-wrap: wrap; gap: 8px 12px; padding: 0 0 14px; border-bottom: 1px solid var(--hair); }
 .meta .tag { font: 700 12px/1 var(--font-ui); letter-spacing: .1em; color: var(--red); }
-.meta .tops { display: flex; flex-direction: column; gap: 4px; font: 13px/1.35 var(--font-zh); color: var(--muted); letter-spacing: 0; }
+.meta .tops { display: flex; flex-wrap: wrap; gap: 4px 10px; font: 13px/1.35 var(--font-zh); color: var(--muted); letter-spacing: 0; }
 .meta .new, .new, .lvtag {
   display: inline-block; background: var(--ok-soft); color: var(--ok); border-radius: 980px;
   padding: 2px 9px; font: 600 12px/1.5 var(--font-zh); letter-spacing: 0; white-space: nowrap;
 }
 .meta .num { font: 12px/1 var(--font-ui); color: var(--muted); letter-spacing: .06em; font-variant-numeric: tabular-nums; }
-.meta .mark { display: flex; flex-direction: column; gap: 6px; }
+.meta .mark { display: flex; flex-direction: row; gap: 6px; margin-left: auto; }
 .entry.known .tag::after { content: " · 記住了"; color: var(--ok); letter-spacing: 0; font-weight: 600; }
 .entry.review .tag::after { content: " · 還不熟"; color: var(--warn); letter-spacing: 0; font-weight: 600; }
 .mark button {
@@ -333,7 +338,7 @@ body.has-rail main.wrap { padding-right: max(36px, env(safe-area-inset-right, 0p
   background: var(--card); border-radius: 28px; min-height: 360px; padding: 32px clamp(20px, 5vw, 56px) 40px;
   display: flex; flex-direction: column; gap: 18px;
 }
-.card .meta { flex-direction: row; align-items: center; padding: 0; }
+.card .meta { flex-direction: row; align-items: center; padding: 0; border-bottom: 0; }
 .card .meta .mark { flex-direction: row; margin-left: auto; }
 .card .mark button { background: var(--tile); }
 .card .front { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; padding-block: 28px 8px; }
@@ -384,9 +389,7 @@ dialog.panel::backdrop { background: rgb(0 0 0 / .4); backdrop-filter: blur(4px)
 .panel .row { margin-top: 22px; justify-content: flex-end; }
 
 @media (max-width: 720px) {
-  .entry { grid-template-columns: minmax(0, 1fr); gap: 10px; }
-  .meta { flex-direction: row; align-items: center; flex-wrap: wrap; padding: 0; }
-  .meta .mark { flex-direction: row; margin-left: auto; }
+  .entry { gap: 12px; }
   .lv { margin-left: 0; }
 }
 @media (max-width: 560px) {

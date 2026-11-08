@@ -666,8 +666,19 @@ $('#voicePick').addEventListener('change', (e) => {
 
 // ------------------------------------------------------------------- chrome
 
+/* The 英文學習 strip sits above the bar and scrolls away. The drawer and the
+   settings panel are placed from the bar's height, so before either opens the
+   page is nudged until the bar is pinned at the top -- otherwise, at the top
+   of the page, they would open over the bar itself. */
+const bar = $('.bar');
+function pinBar() {
+  const y = bar.getBoundingClientRect().top;
+  if (y > 0) window.scrollBy(0, y);
+}
+
 const panel = $('#panel');
 function setPanel(on) {
+  if (on) pinBar();
   panel.hidden = !on;
   $('#panelToggle').setAttribute('aria-expanded', String(on));
 }
@@ -678,6 +689,7 @@ $('#closepanel').addEventListener('click', () => setPanel(false));
 const navToggle = $('#navToggle');
 const scrim = $('.nav-scrim');
 function setNav(on) {
+  if (on) pinBar();
   document.body.classList.toggle('nav-open', on);
   navToggle.setAttribute('aria-expanded', String(on));
   scrim.hidden = !on;

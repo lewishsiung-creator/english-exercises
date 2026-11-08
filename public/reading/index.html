@@ -13,9 +13,11 @@
 <!-- Inline SVG mark: an open book. The colours must be percent-encoded — a
      bare "#" would be read as the URL fragment. -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d5c63'/%3E%3Cpath d='M32 20c-5-4-11-5-18-5v32c7 0 13 1 18 5 5-4 11-5 18-5V15c-7 0-13 1-18 5z' fill='%23f7f6f3'/%3E%3Cpath d='M32 20v32' stroke='%231d5c63' stroke-width='2.5'/%3E%3C/svg%3E">
-<meta name="theme-color" content="#f7f6f3">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../learn/fam.css">
 
 <!-- The house typography, shared by every page. Linked AFTER this page's own
      stylesheet so its definitions win. It carries no colour; this page keeps
@@ -30,6 +32,17 @@
 <body>
 
 <a class="skip" href="#doc">跳到內容 Skip to the texts</a>
+
+<!-- The 英文學習 global nav, the same on all five pages of this family. See ../learn/fam.css. -->
+<nav class="fam" aria-label="英文學習">
+  <div class="fam-in">
+    <a class="fam-home" href="../learn/">英文學習</a>
+    <a href="junior-vocab/">國中單字</a>
+    <a href="vocab/">高中單字</a>
+    <a href="./" aria-current="page">高中閱讀</a>
+    <a href="../learn/check/">程度檢測</a>
+  </div>
+</nav>
 
 <header class="bar">
   <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">

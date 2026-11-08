@@ -2770,8 +2770,8 @@ no site-wide index, because students must not find each other's material. So
 nothing with a student or client in it is ever added here.
 
 - **The three keep their URLs.** He chose a new top page over moving them, so
-  links already handed out still work; each page gained a 「‹ 英文學習」 link up
-  (the word pages' `.up`, the reading page's `RD.up`).
+  links already handed out still work. Each page first gained a 「‹ 英文學習」
+  link up; since the design pass below, the global nav does that job.
 - **The numbers on the tiles are typed**, not read from the pages' data, which
   would mean loading two large word files to print two numbers. Update them
   when 高中單字 gains a level or the reading page a text.
@@ -2914,13 +2914,41 @@ which also shows the last result kept in this browser (`lc.result`).
   word, first meaning of the first sense) into `learn/check/data.js`. Rebuild
   it after either word list changes.
 
+**The design pass (2026-11-08), "as a top-tier web designer".** Three changes,
+so the five pages read as one product rather than five neighbours:
+
+- **One global nav, `public/learn/fam.css`.** A thin dark strip across the top
+  of all five pages — 英文學習 · 國中單字 · 高中單字 · 高中閱讀 · 程度檢測 — the way
+  apple.com runs one global nav above each product's own bar. The current page
+  is marked `aria-current`. Links are relative (GitHub Pages serves the site
+  under `/english-exercises/`). It replaces `/learn/`'s and the check page's
+  own bar (there it is pinned, `.fam-pin`), and the 「‹ 英文學習」 links on the
+  word pages and the reading cover. On the word pages and the reading page it
+  scrolls away above the page's own sticky bar; the reading page nudges the
+  bar to the top before its drawer or settings panel opens, since both are
+  placed from the bar's height. All five fit on a 375-point iPhone without
+  scrolling. **Only these five carry it** — adding a link to anything else
+  would break the no-site-wide-index rule.
+- **The reading page joins the Apple language.** It was the one page still in
+  the old teal-on-cream editorial palette. Now: white page, grey tiles for
+  questions, word cards and the cover's plan, SF for everything around the
+  text, blue for buttons, orange eyebrows, and dark mode from the system with
+  the word pages' tokens. **The passages alone stay in the serif** (New York on
+  Apple devices) — long English reads better in it, and the English is the page.
+  Done by retokening `reading/style.css`; house.css and type.css still link
+  after it and needed no change.
+- **Word cards are one column at every width.** The 9rem left column (table,
+  topics, number, 記住了 / 還不熟 stacked) became a header row across the top of
+  the card, with the two buttons on the right, the way a phone already had it.
+  The word gets the card's full width on a laptop. Both `vocab.css` copies.
+
 **Tuned for iPhone, iPad and desktop together (2026-11-08)**, all four pages.
 What was measured and changed, so a later edit does not undo it:
 
 - **Touch targets.** An iPad reports a coarse pointer just as an iPhone does,
   so every `(pointer: coarse)` rule applies to both. The reading page's bar
   buttons (house.css draws them 32px) are 44px there; the small text links —
-  「‹ 英文學習」, 「複製連結」, 關於這份字表, the footer — grow padding to ~44px.
+  「複製連結」, 關於這份字表, the footer — grow padding to ~44px.
 - **The notch.** Every page sets `viewport-fit=cover`, so on an iPhone held
   sideways the page runs under the notch unless it adds
   `env(safe-area-inset-*)`. The word pages and `/learn/` did already; the
