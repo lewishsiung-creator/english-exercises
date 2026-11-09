@@ -2279,6 +2279,11 @@ PDF"; on iPhone/iPad, Share → Save to Files). No PDF is ever published: it is
 made on the reader's device from the unlocked page. The print styles open
 everything — the Chinese, lines Cover hid, every cue card's hints and answer —
 start each section on a new page and drop the buttons; about 44 A4 pages.
+Each section heading also has a **PDF ↓** button that prints that section
+alone (`body.print-one` + `.print-this`), with the title — the browser's
+suggested file name — set to "Meeting Prep 06 Cue cards" and so on, put back
+on `afterprint`. In print, the notes and Q&A grids become plain blocks: Chrome
+moves a grid to the next page whole, which left half-empty pages.
 
 **Content rules.** The firm and the visitor are never named (slots and "our
 firm"); the visitor's organisation is, as the subject of the meeting. Facts

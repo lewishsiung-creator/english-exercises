@@ -474,7 +474,8 @@ const num = (n) => String(n + 1).padStart(2, '0');
 function buildSection(s, i) {
   return `
   <section class="sec" id="${s.id}">
-    <h2 class="sec-head"><span class="num">${num(i)}</span><span>${rich(s.en)}<span class="zh">${rich(s.zh)}</span></span></h2>
+    <h2 class="sec-head"><span class="num">${num(i)}</span><span>${rich(s.en)}<span class="zh">${rich(s.zh)}</span></span><button class="sec-pdf" data-pdf
+      aria-label="Download this section as a PDF 下載這一節的 PDF" title="只下載這一節的 PDF">PDF <span aria-hidden="true">↓</span></button></h2>
     ${s.note ? `<p class="sec-note">${rich(s.note.en)}<span class="zh">${rich(s.note.zh)}</span></p>` : ''}
     ${s.blocks.map((b) => `<div class="block block-${b.t}">${BLOCK[b.t](b)}</div>`).join('')}
   </section>`;
@@ -661,6 +662,33 @@ function setNav(open) {
 
 // ------------------------------------------------------------------- start
 
+/* Download PDF: the browser's print window, "Save as PDF". With a section,
+   only that section prints (body.print-one) and the title — which browsers
+   offer as the file name — names it. Undone after printing; the ⚙ button
+   (whole page) also clears anything a missed afterprint left behind. */
+function savePdf(sec) {
+  setPanel(false);
+  stopPlay(); stopWhole(); stopRec();
+  if (canSpeak) speechSynthesis.cancel();
+  const title = document.title;
+  $$('.sec.print-this').forEach((s) => s.classList.remove('print-this'));
+  document.body.classList.toggle('print-one', !!sec);
+  if (sec) {
+    sec.classList.add('print-this');
+    const n = $('.sec-head .num', sec).textContent;
+    const en = $('.sec-head > span:not(.num)', sec).firstChild.textContent.trim();
+    document.title = `Meeting Prep ${n} ${en}`;
+  }
+  const done = () => {
+    removeEventListener('afterprint', done);
+    document.body.classList.remove('print-one');
+    if (sec) sec.classList.remove('print-this');
+    document.title = title;
+  };
+  addEventListener('afterprint', done);
+  setTimeout(() => window.print(), 80);   // let the panel close first
+}
+
 function start(C) {
   document.title = `${C.title} — ${C.titleZh}`;
   document.body.classList.remove('locked');
@@ -690,6 +718,9 @@ function start(C) {
       sayLine(li, said, () => say.classList.remove('saying'));
       return;
     }
+
+    const pdf = t.closest('[data-pdf]');
+    if (pdf) { savePdf(pdf.closest('.sec')); return; }
 
     const wh = t.closest('[data-whole]');
     if (wh) { playWhole(wh); return; }
@@ -778,12 +809,7 @@ function start(C) {
     $$('[data-check]').forEach((c) => { c.checked = false; });
   });
   $('#lockNow').addEventListener('click', () => { store.del('key'); location.reload(); });
-  $('#savePdf').addEventListener('click', () => {
-    setPanel(false);
-    stopPlay(); stopWhole(); stopRec();
-    if (canSpeak) speechSynthesis.cancel();
-    setTimeout(() => window.print(), 80);   // let the panel close first
-  });
+  $('#savePdf').addEventListener('click', () => savePdf(null));
 
   $('#navToggle').addEventListener('click', () => setNav(!document.body.classList.contains('nav-open')));
   $('.nav-scrim').addEventListener('click', () => setNav(false));

@@ -963,6 +963,34 @@ body.locked main { margin: 0 auto; }
   .sec { break-before: page; }
   .sec-head, .sec-note, .aside-h, .piece-title, .qa-n, .note-h { break-inside: avoid; break-after: avoid; }
   .line, .qa, .notes li, .flow li, .card-answer { break-inside: avoid; }
+  /* Grids move to the next page whole in Chrome; plain blocks flow on. */
+  .notes, .qas { display: block; }
+  .notes li + li { margin-top: 10px; }
+  .qas .qa + .qa { margin-top: 20px; }
+  .table-wrap { overflow: visible; }
   .line { box-shadow: none !important; }
   a { color: inherit; text-decoration: none; }
+}
+
+/* One section's own PDF: the button on its heading. */
+.sec-head { grid-template-columns: 2.4rem 1fr auto; }
+.sec-pdf {
+  align-self: center;
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 7px;
+  font: 600 12px/1 var(--font-ui);
+  letter-spacing: .04em;
+  padding: 6px 8px;
+  cursor: pointer;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.sec-pdf:hover { background: var(--navy-soft); border-color: var(--navy-line); }
+@media (max-width: 620px) { .sec-head { grid-template-columns: 1.9rem 1fr auto; } }
+@media print {
+  .sec-pdf { display: none !important; }
+  body.print-one .cover,
+  body.print-one .sec:not(.print-this) { display: none !important; }
+  body.print-one .sec.print-this { break-before: auto; }
 }
