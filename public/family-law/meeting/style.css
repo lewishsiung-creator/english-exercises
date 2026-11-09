@@ -874,3 +874,56 @@ body.cover-Y .who-Y:not(.shown) .slot { background: transparent; border-color: t
   .bar .bar-btn { padding-left: 9px; padding-right: 9px; }
   .seg.modeseg button { padding: 6px 9px; }
 }
+
+/* Cue cards: one of the visitor's questions at a time, the way Lewis asks
+   them with the screen off. Hints and the model answer stay closed until
+   asked for; the card is the page's only large type, so it also reads when
+   the page is shared on a call. */
+.deck-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 12px; }
+.deck-bar .btn { padding: 9px 16px; }
+.deck-bar .btn em, .card-acts .btn em { font-family: var(--font-zh); font-style: normal; font-weight: 400; margin-left: 4px; opacity: .85; }
+.deck-step { min-width: 48px; }
+.deck-count { margin: 0 4px; font-family: var(--font-ui); font-size: .9rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.deck-count b { color: var(--ink); }
+[data-deck-all][aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+.cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+.card {
+  padding: 18px 18px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--gold-line);
+  border-radius: 11px;
+}
+.card > .lines { border: 0; background: transparent; }
+.card > .lines .line { padding: 4px 0 8px; }
+.card > .lines .line:hover { background: transparent; }
+.card > .lines .line-en { font-size: 1.32rem; line-height: 1.4; color: var(--ink); }
+.deck.all .card > .lines .line-en { font-size: 1.08rem; }
+.card-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.card-acts .btn[aria-expanded="true"] { background: var(--navy-soft); border-color: var(--navy-line); color: var(--navy); }
+
+.card-hints { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 7px; }
+.card-hints li {
+  padding: 5px 12px;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-line);
+  border-radius: 980px;
+  font-size: .92rem;
+  line-height: 1.45;
+}
+.card-hints .slot { background: transparent; border-bottom-color: var(--gold); }
+.card-answer { margin-top: 14px; }
+
+@media (max-width: 620px) {
+  .card { padding: 16px 14px 14px; }
+  .card > .lines .line-en { font-size: 1.18rem; }
+  .deck-bar .btn { padding: 9px 12px; }
+}
+
+@media print {
+  .deck-bar, .card-acts { display: none !important; }
+  .deck .card[hidden], .deck [data-part][hidden] { display: block !important; }
+  .deck .card-hints[hidden] { display: flex !important; }
+  .card { break-inside: avoid; }
+}

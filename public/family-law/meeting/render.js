@@ -33,6 +33,10 @@
      flow      the meeting's running order: {min, en, zh, d}
      lines     things to say, with an optional heading `h: {en, zh}`
      qa        a question the visitor may ask, then answers to choose from
+     cards     cue cards for practising without the script: the visitor's
+               question, `hints` (English keywords) and a short model answer
+               `a`, both closed until asked for. One card at a time, with
+               ◀ ▶, Random and Show all; ← → move the deck while it is in view
      dialogue  a role-play read by Play all, the visitor and the student in
                their two voices; with Cover on it stops for the student
      words     key terms: {w, p, zh, ex, zhEx}
@@ -253,6 +257,32 @@ const BLOCK = {
       </div>`).join('')}
     </div>`,
 
+  cards: (b) => `
+    <div class="deck" data-deck>
+      <div class="deck-bar">
+        <button class="btn deck-step" data-deck-go="-1" aria-label="上一張 Previous">◀&#xFE0E;</button>
+        <p class="deck-count" aria-live="polite"><b data-deck-n>1</b> / ${b.items.length}</p>
+        <button class="btn deck-step" data-deck-go="1" aria-label="下一張 Next">▶&#xFE0E;</button>
+        <button class="btn" data-deck-go="random">Random <em>隨機</em></button>
+        <button class="btn" data-deck-all aria-pressed="false">Show all <em>全部列出</em></button>
+      </div>
+      <ol class="cards">${b.items.map((c, i) => `
+        <li class="card"${i ? ' hidden' : ''}>
+          <p class="qa-n">Card ${i + 1}</p>
+          <ul class="lines">${lineHtml({ ...c.q, who: 'V' }, 'V', false)}</ul>
+          <div class="card-acts">
+            <button class="btn" data-card="hints" aria-expanded="false">Hints <em>提示</em></button>
+            <button class="btn" data-card="answer" aria-expanded="false">Model answer <em>參考說法</em></button>
+          </div>
+          <ul class="card-hints" data-part="hints" hidden>${c.hints.map((h) => `<li>${rich(h)}</li>`).join('')}</ul>
+          <div class="card-answer" data-part="answer" hidden>
+            <ul class="lines">${c.a.map((a) => lineHtml({ ...a, who: 'Y' }, 'Y', false)).join('')}</ul>
+            ${c.tip ? `<p class="qa-tip">${rich(c.tip)}</p>` : ''}
+          </div>
+        </li>`).join('')}
+      </ol>
+    </div>`,
+
   dialogue: (b) => `
     <div class="piece" id="p-${b.id}">
       ${b.note ? `<p class="piece-note">${rich(b.note.en)}<span class="zh">${rich(b.note.zh)}</span></p>` : ''}
@@ -398,6 +428,50 @@ function playButton(id) {
   playStep();
 }
 
+// ------------------------------------------------------------------- cue cards
+/* One card at a time unless Show all is on. Moving on closes the card left
+   behind — hints, answer, any line tapped open — so the next question starts
+   bare, the way it is asked in the meeting. */
+
+function closeCard(card) {
+  $$('[data-part]', card).forEach((p) => { p.hidden = true; });
+  $$('[data-card]', card).forEach((b) => b.setAttribute('aria-expanded', 'false'));
+  $$('.line.shown, .line.open', card).forEach((l) => l.classList.remove('shown', 'open'));
+}
+
+function deckGo(deck, to) {
+  const cards = $$('.card', deck);
+  const now = cards.findIndex((c) => !c.hidden);
+  let i = (now + Number(to) + cards.length) % cards.length;
+  if (to === 'random' && cards.length > 1) {
+    do { i = Math.floor(Math.random() * cards.length); } while (i === now);
+  }
+  stopPlay();
+  if (canSpeak) speechSynthesis.cancel();
+  if (now >= 0) closeCard(cards[now]);
+  cards.forEach((c, k) => { c.hidden = k !== i; });
+  $('[data-deck-n]', deck).textContent = String(i + 1);
+  const top = $('.bar').getBoundingClientRect().bottom + 12;
+  const r = deck.getBoundingClientRect();
+  if (r.top < top) window.scrollBy(0, r.top - top);
+}
+
+function deckAll(deck, on) {
+  deck.classList.toggle('all', on);
+  $('[data-deck-all]', deck).setAttribute('aria-pressed', String(on));
+  $$('.deck-step, .deck-count, [data-deck-go="random"]', deck).forEach((e) => { e.hidden = on; });
+  $$('.card', deck).forEach((c, k) => {
+    closeCard(c);
+    c.hidden = on ? false : k !== 0;
+  });
+  $('[data-deck-n]', deck).textContent = '1';
+}
+
+const inView = (n) => {
+  const r = n.getBoundingClientRect();
+  return r.top < window.innerHeight && r.bottom > $('.bar').getBoundingClientRect().bottom;
+};
+
 // ------------------------------------------------------------------- chrome
 
 const S = { mode: TEACHER ? store.get('mode', 'teach') : 'self' };
@@ -479,6 +553,18 @@ function start(C) {
     const pb = t.closest('[data-play]');
     if (pb) { playButton(pb.dataset.play); return; }
 
+    const cb = t.closest('[data-card]');
+    if (cb) {
+      const part = $(`[data-part="${cb.dataset.card}"]`, cb.closest('.card'));
+      part.hidden = !part.hidden;
+      cb.setAttribute('aria-expanded', String(!part.hidden));
+      return;
+    }
+    const go = t.closest('[data-deck-go]');
+    if (go) { deckGo(go.closest('[data-deck]'), go.dataset.deckGo); return; }
+    const all = t.closest('[data-deck-all]');
+    if (all) { const d = all.closest('[data-deck]'); deckAll(d, !d.classList.contains('all')); return; }
+
     const line = t.closest('.line');
     if (line) {
       if (P.waiting && line.classList.contains('yourturn')) { yourTurnDone(); return; }
@@ -517,6 +603,16 @@ function start(C) {
   $('#panelToggle').addEventListener('click', () => setPanel(panel.hidden));
   $('#panelClose').addEventListener('click', () => setPanel(false));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { setPanel(false); setNav(false); } });
+
+  // ← → turn the cue cards while they are on screen (handy when sharing it).
+  document.addEventListener('keydown', (e) => {
+    if ((e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') || e.altKey || e.metaKey || e.ctrlKey) return;
+    if (e.target.closest && e.target.closest('input, select, textarea')) return;
+    const deck = $('[data-deck]');
+    if (!deck || deck.classList.contains('all') || !inView(deck)) return;
+    e.preventDefault();
+    deckGo(deck, e.key === 'ArrowRight' ? 1 : -1);
+  });
 
   $('#voicePick').addEventListener('change', (e) => {
     voice = voices.find((v) => v.name === e.target.value) || voice;
