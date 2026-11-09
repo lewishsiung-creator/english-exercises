@@ -32,6 +32,8 @@
      table     a two-column reference table, `head` and `rows`. Always shown
      flow      the meeting's running order: {min, en, zh, d}
      lines     things to say, with an optional heading `h: {en, zh}`
+               (any line may carry `rec: [file, start, end]`: a span of
+               Lewis's recording, played instead of the computer voice)
      qa        a question the visitor may ask, then answers to choose from
      cards     cue cards for practising without the script: the visitor's
                question, `hints` (English keywords) and a short model answer
@@ -100,8 +102,11 @@ async function keyFrom(pass) {
     base, { name: 'AES-GCM', length: 256 }, true, ['decrypt']);
 }
 
+let KEY = null;            // kept after unlock: the recordings are sealed with it too
+
 async function open(key) {
   const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(SEALED.iv) }, key, b64(SEALED.data));
+  KEY = key;
   return JSON.parse(new TextDecoder().decode(plain));
 }
 
@@ -187,6 +192,7 @@ loadVoices();
 if (canSpeak) speechSynthesis.onvoiceschanged = loadVoices;
 
 function speak(sentence, v, onend) {
+  stopRec();
   if (!canSpeak) { if (onend) onend(); return; }
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(spoken(sentence));
@@ -198,6 +204,132 @@ function speak(sentence, v, onend) {
 }
 
 const lineVoice = (li) => (li.classList.contains('who-V') ? visitor : voice);
+
+// ------------------------------------------------------------------- recordings
+/* Some lines carry Lewis's own reading: `rec: [file, start, end]`, a span of
+   audio/<file>.bin, which is sealed with the page's key (tools/seal-files.mjs:
+   12 bytes of IV, then AES-GCM). They are fetched and opened in the
+   background after unlock, so a tap can start one at once — iOS only lets a
+   tap start sound if play() is called within the tap. A line whose file has
+   not arrived (or will not open) uses the computer voice instead.
+
+   One <audio> element for every file: once a tap has started it, iOS lets it
+   play on by itself, which Play the whole part needs. */
+
+const REC = { urls: {}, el: null, run: 0, timer: 0 };
+const WHOLE = { btn: null };
+
+async function loadRecordings(C) {
+  const files = new Set();
+  const walk = (o) => {
+    if (Array.isArray(o)) o.forEach(walk);
+    else if (o && typeof o === 'object') { if (o.rec) files.add(o.rec[0]); Object.values(o).forEach(walk); }
+  };
+  walk(C);
+  for (const f of [...files].sort()) {
+    try {
+      const r = await fetch(`audio/${f}.bin`);
+      if (!r.ok) continue;
+      const u8 = new Uint8Array(await r.arrayBuffer());
+      const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: u8.slice(0, 12) }, KEY, u8.slice(12));
+      REC.urls[f] = URL.createObjectURL(new Blob([plain], { type: 'audio/mp4' }));
+    } catch (e) { /* this file stays on the computer voice */ }
+  }
+}
+
+function stopRec() {
+  REC.run++;
+  clearInterval(REC.timer);
+  if (REC.el) REC.el.pause();
+}
+
+/* Play one span; false if its file is not ready. A stopped span never calls
+   `onend`, so a chain of them simply ends. If the browser refuses to play,
+   `onfail` runs instead (the computer voice). */
+function playRec(rec, onend, onfail) {
+  const [f, s, e] = rec.split(' ');
+  const url = REC.urls[f];
+  if (!url) return false;
+  if (canSpeak) speechSynthesis.cancel();
+  stopRec();
+  const run = REC.run;
+  const a = REC.el || (REC.el = new Audio());
+  const done = () => {
+    if (run !== REC.run) return;
+    stopRec();
+    if (onend) onend();
+  };
+  // Muted until it has landed on the span, so nothing before it is heard
+  // (a part's spoken title, or the end of the line played last).
+  a.muted = true;
+  const seek = () => {
+    if (run !== REC.run) return;
+    a.addEventListener('seeked', () => { if (run === REC.run) a.muted = false; }, { once: true });
+    a.currentTime = Number(s);
+  };
+  a.playbackRate = (Number($("#rate").value) || 0.95) / 0.95;   // "Normal" is his own pace
+  if (a.src !== url) {
+    a.src = url;
+    a.addEventListener('loadedmetadata', seek, { once: true });
+  } else {
+    seek();
+  }
+  a.play().catch(() => {
+    if (run !== REC.run) return;
+    stopRec();
+    if (onfail) onfail(); else if (onend) onend();
+  });
+  REC.timer = setInterval(() => {
+    if (run !== REC.run) return;
+    if (a.ended || (!a.muted && a.currentTime >= Number(e))) done();
+  }, 40);
+  return true;
+}
+
+/* Say one line: Lewis's recording if it has one, else the computer voice. */
+function sayLine(li, sentence, onend) {
+  const tts = () => speak(sentence, lineVoice(li), onend);
+  if (li.dataset.rec && playRec(li.dataset.rec, onend, tts)) return;
+  tts();
+}
+
+/* Play the whole part: every line under a heading, one after another with no
+   gap — the spans meet halfway through each pause, so it sounds like the
+   original reading — each lit and kept in view as it plays. */
+function stopWhole() {
+  if (!WHOLE.btn) return;
+  WHOLE.btn.innerHTML = WHOLE_LABEL.idle;
+  WHOLE.btn.setAttribute('aria-pressed', 'false');
+  $$('.line.playing').forEach((l) => l.classList.remove('playing'));
+  WHOLE.btn = null;
+}
+
+function playWhole(btn) {
+  const was = WHOLE.btn;
+  stopPlay();
+  stopWhole();
+  stopRec();
+  if (canSpeak) speechSynthesis.cancel();
+  if (was === btn) return;
+  const lines = $$('.line', btn.closest('.aside-h').nextElementSibling);
+  WHOLE.btn = btn;
+  btn.innerHTML = WHOLE_LABEL.playing;
+  btn.setAttribute('aria-pressed', 'true');
+  const step = (i) => {
+    if (WHOLE.btn !== btn) return;
+    $$('.line.playing').forEach((l) => l.classList.remove('playing'));
+    if (i >= lines.length) { stopWhole(); return; }
+    lines[i].classList.add('playing');
+    keepInView(lines[i]);
+    sayLine(lines[i], $('.line-en', lines[i]).textContent, () => step(i + 1));
+  };
+  step(0);
+}
+
+const WHOLE_LABEL = {
+  idle: '▶&#xFE0E; Hear the whole part <em>聽整段</em>',
+  playing: '■ Stop <em>停止</em>',
+};
 
 // ------------------------------------------------------------------- build
 
@@ -211,7 +343,8 @@ const sayBtn = () => (canSpeak
 function lineHtml(l, who, label) {
   const w = l.who || who || 'Y';
   const tag = label ? `<span class="who">${WHO[w][0]}<em>${WHO[w][1]}</em></span>` : '';
-  return `<li class="line who-${w}${l.head ? ' head' : ''}" tabindex="0">${tag}
+  const rec = l.rec && !l.head ? ` data-rec="${text(l.rec.join(' '))}"` : '';
+  return `<li class="line who-${w}${l.head ? ' head' : ''}"${rec} tabindex="0">${tag}
     <div class="line-body"><p class="line-en">${rich(l.en)}</p>${l.zh ? `<p class="zh">${rich(l.zh)}</p>` : ''}
     ${l.tip ? `<p class="tip">${rich(l.tip)}</p>` : ''}</div>${l.head ? '' : sayBtn()}</li>`;
 }
@@ -242,7 +375,9 @@ const BLOCK = {
     </ol>`,
 
   lines: (b) => `
-    ${b.h ? `<p class="aside-h">${rich(b.h.en)} <span>${rich(b.h.zh)}</span></p>` : ''}
+    ${b.h ? `<p class="aside-h">${rich(b.h.en)} <span>${rich(b.h.zh)}</span>${
+      b.items.length > 1 && b.items.every((l) => l.rec)
+        ? `<button class="whole" data-whole aria-pressed="false">${WHOLE_LABEL.idle}</button>` : ''}</p>` : ''}
     <ul class="lines">${b.items.map((l) => lineHtml(l, b.who || 'Y', false)).join('')}</ul>`,
 
   qa: (b) => `
@@ -379,6 +514,7 @@ function stopPlay() {
   $$('.line.playing, .line.yourturn').forEach((l) => l.classList.remove('playing', 'yourturn'));
   playLabel(P.id, 'idle');
   P.id = null; P.waiting = false;
+  stopRec();
   if (canSpeak) speechSynthesis.cancel();
 }
 
@@ -402,7 +538,7 @@ function playStep() {
     return;
   }
   const run = P.run;
-  speak($('.line-en', li).textContent, lineVoice(li), () => {
+  sayLine(li, $('.line-en', li).textContent, () => {
     if (run !== P.run) return;
     P.i++;
     setTimeout(() => { if (run === P.run) playStep(); }, 450);
@@ -423,6 +559,7 @@ function playButton(id) {
   if (P.id === id && P.waiting) { yourTurnDone(); return; }
   if (P.id === id) { stopPlay(); return; }
   stopPlay();
+  stopWhole();
   P.id = id; P.i = 0;
   playLabel(id, 'playing');
   playStep();
@@ -447,6 +584,8 @@ function deckGo(deck, to) {
     do { i = Math.floor(Math.random() * cards.length); } while (i === now);
   }
   stopPlay();
+  stopWhole();
+  stopRec();
   if (canSpeak) speechSynthesis.cancel();
   if (now >= 0) closeCard(cards[now]);
   cards.forEach((c, k) => { c.hidden = k !== i; });
@@ -544,11 +683,16 @@ function start(C) {
       e.stopPropagation();
       const li = say.closest('.line');
       stopPlay();
+      stopWhole();
+      $$('.say.saying').forEach((b) => b.classList.remove('saying'));
       say.classList.add('saying');
       const said = li.querySelector('.ex') ? li.querySelector('.ex').textContent : $('.line-en', li).textContent;
-      speak(said, lineVoice(li), () => say.classList.remove('saying'));
+      sayLine(li, said, () => say.classList.remove('saying'));
       return;
     }
+
+    const wh = t.closest('[data-whole]');
+    if (wh) { playWhole(wh); return; }
 
     const pb = t.closest('[data-play]');
     if (pb) { playButton(pb.dataset.play); return; }
@@ -653,6 +797,7 @@ function start(C) {
     });
   }, { rootMargin: '-20% 0px -70% 0px' });
   $$('.sec').forEach((s) => spy.observe(s));
+  loadRecordings(C);
 
   if (location.hash && $(location.hash)) $(location.hash).scrollIntoView();
 }

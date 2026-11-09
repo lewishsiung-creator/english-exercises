@@ -927,3 +927,20 @@ body.cover-Y .who-Y:not(.shown) .slot { background: transparent; border-color: t
   .deck .card-hints[hidden] { display: flex !important; }
   .card { break-inside: avoid; }
 }
+
+/* Lewis's recordings: "Hear the whole part" sits on the part's heading. */
+.aside-h:has(.whole) { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 4px; }
+.whole {
+  margin-left: auto;
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 7px;
+  font: 600 13px/1 var(--font-ui);
+  padding: 6px 9px;
+  cursor: pointer;
+  color: var(--ink-soft);
+}
+.whole em { font-style: normal; font-family: var(--font-zh); font-weight: 400; margin-left: 3px; }
+.whole:hover { background: var(--navy-soft); border-color: var(--navy-line); }
+.whole[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+@media print { .whole { display: none; } }

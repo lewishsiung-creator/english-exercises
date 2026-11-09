@@ -2256,6 +2256,24 @@ plaintext exists only on Lewis's machine — **if `private/` is lost, decrypt
 `sealed.js` with the password; there is no other copy.** It is as strong as
 the password: anyone can copy `sealed.js` and guess offline.
 
+**Lewis's recordings.** The "firm" section plays Lewis's own reading
+(2026-11-09) instead of the computer voice. One m4a per part, mono AAC, is
+kept in git-ignored `private/family-law-meeting/audio/`; `recordings.mjs`
+beside the content maps each line's exact English to `[file, start, end]`
+(Whisper word timings, cut mid-pause), and the content wraps its export in
+`withRecordings()`. Edit a line's English and its recording drops out to the
+computer voice, by design. The audio is sealed with the page's own key into
+`public/family-law/meeting/audio/rNN.bin` (neutral names, IV + AES-GCM):
+
+```
+node tools/seal-files.mjs public/family-law/meeting/sealed.js private/family-law-meeting/.pass public/family-law/meeting/audio private/family-law-meeting/audio/*.m4a
+```
+
+Re-run that after a password change. The page opens the files in the
+background after unlock, so a tap can start sound at once (iOS needs play()
+inside the tap); a part whose lines all have a recording gets "Hear the whole
+part 聽整段" on its heading.
+
 **Content rules.** The firm and the visitor are never named (slots and "our
 firm"); the visitor's organisation is, as the subject of the meeting. Facts
 about it come from its own pages, read 2026-11-05, and the plaintext's header
