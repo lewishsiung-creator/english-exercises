@@ -1042,22 +1042,85 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
    A handout: the lesson without the machinery. Everything hidden behind a tap
    is opened, and anything that only works with a mouse is dropped. */
 
+/* ---------------- the two PDFs ----------------
+
+   Printing is how a reading becomes a handout, and a teacher needs two of
+   them: a blank copy to give out, and the same pages with the answers to keep.
+   The panel's two buttons put `pdf-blank` or `pdf-key` on <body> and every
+   rule below reads that class, so neither PDF depends on how much was
+   revealed during the lesson — a blank copy prints blank even after "Reveal
+   every answer". A plain Cmd+P carries no class and prints the answer key,
+   which is what the teacher's own copy should be.
+
+   Shared by both: the machinery goes — the bar, the contents, the panel, the
+   🔊 and 中 buttons, the reveal buttons, the tallies, the interaction hints
+   and the end-of-lesson links — and every line of Chinese comes out, since
+   nothing can be tapped on paper. Photographs are dropped: the handout is for
+   the language, and a classroom printer should not spend its toner on stock
+   photography. */
+
+@page { margin: 16mm 14mm; }
+
 @media print {
-  /* Photographs are dropped: the handout is for the language, and a classroom
-     printer should not spend its toner on stock photography. */
   .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .reveal, .tally, .hint,
-  .photo { display: none !important; }
-  body { font-size: 11pt; background: #fff; }
+  .photo, .step-next, .lesson-end, .skip { display: none !important; }
+
+  body { font-size: 11pt; background: #fff; color: #000; }
   .shell { display: block; padding: 0; }
-  main { max-width: none; }
-  .zh, .card-back, .starters, .why, .gloss, .model { display: block !important; }
-  .q.solved .qopt:not(.done) { opacity: 1; }
+  main { max-width: none; padding-bottom: 0; }
+
+  /* Everything that waits behind a tap on screen is simply there on paper. */
+  .zh, .card-back, .starters, .gloss { display: block !important; }
   .term { border-bottom: 1px solid #999; color: inherit; }
+
+  /* One step to a page, and nothing split across a fold. */
   .step { break-before: page; padding-top: 0; }
   .cards { grid-template-columns: repeat(2, 1fr); }
-  .card, .gap, .ask, .task, .role, .note, .goals { break-inside: avoid; }
+  .card, .gap, .q, .ask, .task, .role, .note, .goals, .para, .check,
+  .sstep, .rung, .summary-point, .poll-row { break-inside: avoid; }
+
+  /* The options are the question, so they stay in both PDFs. */
   .gap.solved .opts { display: flex; }
-  .slot { min-width: 9rem; border-bottom: 1px solid #999; color: transparent; }
+  .q.solved .qopt:not(.done) { opacity: 1; }
+  .slot { min-width: 9rem; border-bottom: 1px solid #999; }
+}
+
+/* The student copy: every answer withheld, however much is revealed on screen. */
+@media print {
+  body.pdf-blank .why,
+  body.pdf-blank .model,
+  body.pdf-blank .match-key { display: none !important; }
+
+  body.pdf-blank .slot { color: transparent !important; }
+
+  /* A chip answered during the lesson prints like any other. */
+  body.pdf-blank .chip.done,
+  body.pdf-blank .qopt.done,
+  body.pdf-blank .chip.picked {
+    background: transparent !important;
+    border-color: var(--line) !important;
+    color: inherit !important;
+    font-weight: inherit !important;
+  }
+  body.pdf-blank .tick.on .box::after { content: none !important; }
+}
+
+/* The answer key: blanks filled, the right option ticked, the reasons and the
+   model answers printed, and the matching pairs listed — a line cannot be
+   drawn between two columns on paper. Marks are bold and ticked rather than
+   coloured, so they survive a black-and-white printer. */
+@media print {
+  body:not(.pdf-blank) .why,
+  body:not(.pdf-blank) .model { display: block !important; }
+
+  body:not(.pdf-blank) .slot { color: #000 !important; font-weight: 700; }
+  /* A gap nobody answered on screen still prints its answer. */
+  body:not(.pdf-blank) .gap:not(.solved) .slot::after { content: attr(data-a); }
+
+  body:not(.pdf-blank) .qopt[data-right] { border-color: #000 !important; font-weight: 700; }
+  body:not(.pdf-blank) .qopt[data-right]::before { content: "\2713\00a0"; }
+
+  body:not(.pdf-blank) .match-key { display: block; }
 }
 
 /* ---------------- 站尾 / site footer ----------------
@@ -1824,3 +1887,35 @@ button, a, .card, .pair[data-zh], select, label { touch-action: manipulation; }
 .q.solved .qopt:hover:not(.done) { border-color: var(--line); background: var(--card); }
 .q.solved .why { display: block; }
 .q .why { margin-left: 1.6rem; }
+
+/* The matching exercise's pairs, written out. Paper only — on screen the
+   columns and the tally already say which pairs have been found. */
+.match-key { display: none; }
+@media print {
+  .match-key {
+    margin: 12px 0 0;
+    padding-left: 1.3rem;
+    font-size: .9rem;
+    line-height: 1.6;
+    color: #000;
+  }
+  .match-key li { margin-bottom: 2px; }
+}
+
+/* The panel's two PDF buttons, side by side under one label. */
+.row-lab {
+  margin: 0 0 6px;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.row-lab em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  color: var(--ink-faint);
+  margin-left: 5px;
+}
+.pdf-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.pdf-pair .panel-btn { width: 100%; }
+.pdf-pair .panel-btn em { display: block; margin-left: 0; margin-top: 1px; }

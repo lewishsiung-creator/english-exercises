@@ -206,6 +206,11 @@ const BLOCKS = {
           </ul>
         </div>
         <p class="tally"><span class="done">0</span> / ${b.pairs.length}</p>
+        <!-- Lines cannot be drawn on paper, so the printed answer key gets the
+             pairs as a list instead. Hidden on screen and in the blank copy. -->
+        <ol class="match-key" aria-hidden="true">
+          ${b.pairs.map((p) => `<li>${text(p.a)} — ${text(p.b)}</li>`).join('')}
+        </ol>
       </div>`;
   },
 
@@ -220,7 +225,7 @@ const BLOCKS = {
           <div class="gap" data-answer="${it.answer}">
             <div class="gap-line pair" ${it.textZh ? 'data-zh' : ''}>
               <p class="en"><span class="gap-n">${n + 1}</span>
-                <span class="gap-text">${before}<span class="slot"></span>${after || ''}${
+                <span class="gap-text">${before}<span class="slot" data-a="${text(it.options[it.answer])}"></span>${after || ''}${
                   it.textZh ? '<button class="zh-chip" title="顯示中文">中</button>' : ''}</span></p>
               ${it.textZh ? `<p class="zh">${text(it.textZh)}</p>` : ''}
             </div>
@@ -417,7 +422,7 @@ const BLOCKS = {
           </div>
           <ul class="qopts">
             ${it.options.map((o, i) => `
-              <li><button class="chip qopt" data-i="${i}">${text(o)}</button></li>`).join('')}
+              <li><button class="chip qopt" data-i="${i}"${i === it.answer ? ' data-right' : ''}>${text(o)}</button></li>`).join('')}
           </ul>
           <p class="why"><span class="en">${text(it.why.en)}</span>
             <span class="zh">${text(it.why.zh)}</span></p>
@@ -902,6 +907,48 @@ $('#showAll').addEventListener('click', () => {
   $$('.reveal').forEach((r) => r.setAttribute('aria-expanded', 'true'));
   setPanel(false);
 });
+
+/* ---- the two PDFs ----
+
+   A teacher needs both: a blank copy to hand out, and the same pages with the
+   answers filled in to keep. Which one you get is a class on <body> that the
+   print stylesheet reads, so neither button disturbs what is on screen — the
+   blank copy prints blank even when every answer has already been revealed in
+   the session.
+
+   The title is swapped for the duration because the browser offers it as the
+   filename, so the two PDFs do not both arrive called the same thing. */
+function printAs(mode) {
+  const was = document.title;
+  document.body.classList.add(mode === 'key' ? 'pdf-key' : 'pdf-blank');
+  document.title = `${LESSON.title} ${LESSON.titleZh} ${
+    mode === 'key' ? '— answer key 解答' : '— student copy 練習'}`;
+
+  let done = false;
+  const restore = () => {
+    if (done) return;
+    done = true;
+    document.body.classList.remove('pdf-key', 'pdf-blank');
+    document.title = was;
+  };
+  window.addEventListener('afterprint', restore, { once: true });
+
+  setPanel(false);
+
+  /* A timer rather than requestAnimationFrame: rAF is paused in a tab that is
+     not visible, and the dialog would then never open. The panel does not need
+     to finish closing first — the print stylesheet hides it either way.
+     window.print() blocks until the dialog is dismissed, so the second timer
+     is queued behind it and only acts as a net for browsers that fire no
+     afterprint at all. */
+  setTimeout(() => {
+    window.print();
+    setTimeout(restore, 500);
+  }, 0);
+}
+
+$('#pdfBlank').addEventListener('click', () => printAs('blank'));
+$('#pdfKey').addEventListener('click', () => printAs('key'));
 
 // A reload is the reset: nothing is stored except the two device settings.
 $('#reset').addEventListener('click', () => location.reload());

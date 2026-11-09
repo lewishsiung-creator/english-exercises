@@ -916,6 +916,20 @@ with the latest the way a front page leads with its top story.
   `--navy` holds the teal and `--gold` the red.
 - **`/wealth-habits/` is a redirect** to `/business-journal/wealth-habits/`,
   carrying its hash, because that URL had already gone out.
+- **Two PDFs, from the teacher panel.** A reading becomes a handout by
+  printing it, and a teacher needs both halves of that: a *student copy* with
+  every blank empty and the answers, reasons and model answers held back, and
+  an *answer key* with the blanks filled, the right option ticked and the
+  matching pairs listed — a line cannot be drawn between two columns on paper.
+  Each button puts `pdf-blank` or `pdf-key` on `<body>` and the print
+  stylesheet reads that, so **neither PDF depends on how much was revealed
+  during the lesson**: the student copy prints blank even after "Reveal every
+  answer", and neither button changes what is on screen. The document title is
+  swapped for the duration, since the browser offers it as the filename, so the
+  two do not both arrive called the same thing. A plain Cmd+P carries no class
+  and prints the answer key. The gap's own answer rides in `data-a` on its
+  blank and the right option carries `data-right`, so the key needs no
+  JavaScript to assemble itself.
 - **Every reading ends its sections with the way on.** The cover closes on
   *Begin → 1 …*, each step on *Next → n …*, and the last step on *End of the
   lesson*, with the neighbouring reading in the series (the next one, or else
