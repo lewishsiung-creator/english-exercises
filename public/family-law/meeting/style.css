@@ -480,15 +480,18 @@ body.mode-teach .self-only { display: none !important; }
 @media (max-width: 620px) { .line.yourturn .who::after { content: "Your turn 換你說"; display: inline; margin: 0 0 0 6px; } }
 
 /* Role-play: the lawyer's English is covered until tapped. */
-body.cover-Y .who-Y:not(.shown) .line-en,
-body.cover-Y .who-Y:not(.shown) .zh {
-  color: transparent;
-  text-shadow: none;
-  background: repeating-linear-gradient(0deg, var(--line) 0 1.2em, transparent 1.2em 1.55em);
-  border-radius: 4px;
-  user-select: none;
+/* Screen only: a PDF or printout always shows every line. */
+@media screen {
+  body.cover-Y .who-Y:not(.shown) .line-en,
+  body.cover-Y .who-Y:not(.shown) .zh {
+    color: transparent;
+    text-shadow: none;
+    background: repeating-linear-gradient(0deg, var(--line) 0 1.2em, transparent 1.2em 1.55em);
+    border-radius: 4px;
+    user-select: none;
+  }
+  body.cover-Y .who-Y:not(.shown) .say { visibility: hidden; }
 }
-body.cover-Y .who-Y:not(.shown) .say { visibility: hidden; }
 
 .aside { margin-top: 16px; }
 .aside-h {
@@ -830,7 +833,7 @@ body.locked main { margin: 0 auto; }
 .block-dialogue .piece { margin-top: 0; padding-top: 0; border-top: 0; }
 
 /* Cover hides the student's lines everywhere, not only in the role-play. */
-body.cover-Y .who-Y:not(.shown) .tip { visibility: hidden; }
+@media screen { body.cover-Y .who-Y:not(.shown) .tip { visibility: hidden; } }
 
 @media (max-width: 620px) {
   .bar-btn-cover span { display: none; }
@@ -862,7 +865,7 @@ body.cover-Y .who-Y:not(.shown) .tip { visibility: hidden; }
 .toc-up { margin-bottom: 26px; }
 
 /* A covered line hides its slots too — their highlight gave the words away. */
-body.cover-Y .who-Y:not(.shown) .slot { background: transparent; border-color: transparent; }
+@media screen { body.cover-Y .who-Y:not(.shown) .slot { background: transparent; border-color: transparent; } }
 
 /* A phone holds ☰, the 自學／教學 switch, Cover, 中文 and ⚙ only if ☰ drops
    its label and the title goes. */
@@ -944,3 +947,22 @@ body.cover-Y .who-Y:not(.shown) .slot { background: transparent; border-color: t
 .whole:hover { background: var(--navy-soft); border-color: var(--navy-line); }
 .whole[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
 @media print { .whole { display: none; } }
+
+/* Download PDF (⚙): the browser's own print window, "Save as PDF". The page
+   is never published as a PDF — it is made on the reader's device, from the
+   unlocked page, so nothing readable leaves the password. Everything opens:
+   the Chinese, every line Cover hid, every cue card with its hints and answer. */
+@page { margin: 14mm 13mm; }
+@media print {
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .skip, .zh-chip, .whole, .nav-scrim, #lock { display: none !important; }
+  .doc, main, .shell > * { max-width: none !important; }
+  :root { font-size: 13px; }
+  .intro-how { display: none !important; }
+  /* Each section starts a page, and a heading never leaves its first lines. */
+  .sec { break-before: page; }
+  .sec-head, .sec-note, .aside-h, .piece-title, .qa-n, .note-h { break-inside: avoid; break-after: avoid; }
+  .line, .qa, .notes li, .flow li, .card-answer { break-inside: avoid; }
+  .line { box-shadow: none !important; }
+  a { color: inherit; text-decoration: none; }
+}

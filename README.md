@@ -2274,6 +2274,12 @@ background after unlock, so a tap can start sound at once (iOS needs play()
 inside the tap); a part whose lines all have a recording gets "Hear the whole
 part 聽整段" on its heading.
 
+**Download PDF.** ⚙ → 下載 PDF opens the browser's print window ("Save as
+PDF"; on iPhone/iPad, Share → Save to Files). No PDF is ever published: it is
+made on the reader's device from the unlocked page. The print styles open
+everything — the Chinese, lines Cover hid, every cue card's hints and answer —
+start each section on a new page and drop the buttons; about 44 A4 pages.
+
 **Content rules.** The firm and the visitor are never named (slots and "our
 firm"); the visitor's organisation is, as the subject of the meeting. Facts
 about it come from its own pages, read 2026-11-05, and the plaintext's header

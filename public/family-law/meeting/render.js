@@ -778,6 +778,12 @@ function start(C) {
     $$('[data-check]').forEach((c) => { c.checked = false; });
   });
   $('#lockNow').addEventListener('click', () => { store.del('key'); location.reload(); });
+  $('#savePdf').addEventListener('click', () => {
+    setPanel(false);
+    stopPlay(); stopWhole(); stopRec();
+    if (canSpeak) speechSynthesis.cancel();
+    setTimeout(() => window.print(), 80);   // let the panel close first
+  });
 
   $('#navToggle').addEventListener('click', () => setNav(!document.body.classList.contains('nav-open')));
   $('.nav-scrim').addEventListener('click', () => setNav(false));
