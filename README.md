@@ -2641,6 +2641,114 @@ numbering, the accent colour and the anchors all follow from the array, so a
 new point needs no code. `id` becomes the anchor, on the point and on every
 part: `/grammar-notes/#both-ways`.
 
+## Grammar Practice — adults, 自學 and 教學, grammar exercises a chapter at a time
+
+`public/grammar-practice/` — grammar **exercises** for adult learners, where
+Grammar Notes above is grammar *explained*. Each point opens with a short
+recap and is then drilled. `noindex` for now; Lewis has not yet said whether
+it is public.
+
+| | | |
+| --- | --- | --- |
+| 過去時間 Past Time | 01 過去簡單式 | 問句與簡答 · 不規則動詞 · 對話填空 · 否定與更正 |
+| | 02 -ing 和 -ed 的拼法 | 拼字表 · 短文填空 · 三種時態對照 |
+| | 03 過去進行式 | 形式 · 用字庫完成句子 · 進行中的事，插進來的事 · 配對 · 二選一 |
+| | 04 時間子句與 used to | 合併句子 · used to |
+| | 05 總複習 | 改錯 · 短文填空 · 選擇 |
+| 完成式 The perfect | 06 現在完成式，還是過去簡單式？ | 選擇 · 填空 · 改錯 · 重組與改寫 |
+
+274 questions in 24 sets.
+
+### Where the exercises come from
+
+Lewis handed over ten scanned pages of the workbook he teaches from — the
+Past Time chapter of the Azar–Hagen series, its Practices 7 to 30. The page
+follows that chapter's **order and exercise formats**, practice by practice,
+and **reproduces none of it**: every sentence, dialogue, story and table was
+written for this page and moved out of the book's classroom into adult working
+life in Taiwan (a product launch, a 尾牙, the High Speed Rail, a cat on a
+video call). The same rule as `/grammar/` and Grammar Notes. The scans are not
+in the repo. Point 06 was written before any material arrived and follows no
+source at all.
+
+### The shape
+
+```
+public/grammar-practice/
+  content.js           the cover, an empty `points`, and the block reference
+  past-time.js         過去時間 — five points
+  perfect-or-past.js   完成式 — one point
+  render.js            the block renderers, the two modes, the practice
+  style.css            the palette and the look of each kind of question
+  index.html           the shell; lists the chapter files in reading order
+tools/check_grammar_practice.js   run before pushing
+```
+
+**One file per chapter.** A chapter file does `GP.points.push({...})`; adding
+a chapter is a new file and one `<script>` line. A point's `group` names its
+chapter, and the 目錄 prints the name wherever it changes.
+
+Recap blocks: `lead`, `rule`, `cols`, `pairs`, `note`, and `table` with no
+blanks in it. Practice blocks:
+
+| Block | What it is |
+| --- | --- |
+| `mcq` | choose the form; one `___` |
+| `match` | clause to clause; options printed once, lettered, answered with a letter |
+| `gap` | one typed blank per card, with an optional tappable word box |
+| `blanks` | a card with any number of blanks or choices in it |
+| `cloze` | a dialogue or story on one card, blanks numbered through |
+| `table` | a table whose cells are sentences with blanks |
+| `fix` | edit the sentence until it is right |
+| `order` | build the sentence from tiles |
+| `rewrite` | say it again with the word given |
+
+`blanks`, `cloze` and `table` share one way of writing a question into a
+sentence, documented at the top of
+[`content.js`](public/grammar-practice/content.js):
+
+```
+{{went}}   {{didn’t go|did not go}}    a typed blank and what it accepts
+{{went}} (go)                          brackets after a blank are its cue
+[[was waiting*|waited]]                choose one; the star is the answer
+**go**                                 bold
+```
+
+`didn’t` / `did not`, `I’m` / `I am`, capitals, full stops and commas never
+make a right answer wrong. `’s` is deliberately not expanded — it is "is" as
+often as "has" — so a short form with `’s` has to be listed.
+
+### How a question behaves
+
+The adult rules, with one departure. A wrong try wobbles and the question
+**stays open**; on a card it also opens a hint that points at the clue and
+never at the answer. There is no score and no timer. A question that took more
+than one try is marked in amber, and a finished set lists those under
+「值得再看一次」 — that list is the only feedback there is.
+
+- **自學** (the plain URL): Chinese on screen; 看答案 appears only after two
+  tries; finished questions are kept on the learner's own device under `gp.`.
+  That last part is the departure from "adults save nothing", made the way
+  `/fab-english/` made it: a learner alone needs their place kept.
+- **教學** (`#teach`, once per device): Chinese behind 中 chips, a 看答案 on
+  every card and a small `?` beside every blank, 全部答案 under a set of
+  blanks, and nothing recorded.
+
+A wrong sentence gets no 🔊 and no 中譯, as everywhere in the family. Before a
+`fix` question is answered a wrong sentence and a right one look identical;
+every `fix` set carries one sentence that is already correct, so "find the
+mistake" cannot be done as "change the verb" without reading.
+
+### Two things that were bugs once
+
+- A finished set looked up its "look again" line with the same class name the
+  questions use for "took more than one try", found a question instead, and
+  hid it. The line is `.again-line`; the question state is `.again`.
+- A table wider than a phone made the **whole page** scroll sideways: a grid
+  column defaults to `min-width: auto` and grew to fit the table. `.shell`'s
+  column is `minmax(0, 1fr)` and `main` has `min-width: 0`, so the table
+  scrolls inside its own box.
+
 ## High School Reading — 高中, three texts read closely
 
 `/reading/` holds three texts Lewis supplied in English and Chinese — Colossal

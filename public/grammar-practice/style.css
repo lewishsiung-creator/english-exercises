@@ -1,0 +1,938 @@
+/* Grammar Practice — 文法練習.
+
+   Grammar exercises for adults in the two-mode shape of /grammar-notes/ and
+   /fab-english/. type.css gives it the house type and house.css the house
+   interface; both are linked after this file, so this one sets only what is
+   its own: the palette, the measure, the shape of a grammar point, and the
+   five kinds of question.
+
+   WHAT HIDES AND WHAT DOES NOT
+
+   `.pair > .zh` is the only Chinese that hides, and it holds one thing: a
+   sentence's 中譯. Rules, notes, hints, reasons, headings and the contents
+   list are in the Chinese face too and stay on screen in both modes. So does
+   the Chinese on a sentence-building question, because there it is the task.
+
+   A QUESTION HAS THREE LOOKS
+
+     open       paper-white card, the controls live.
+     nudged     a wrong try: the control wobbles and the hint opens under it.
+                Nothing turns red and stays red — the question is still open.
+     done       the answer goes green, the reason opens, and the controls go
+                away. One that took more than one try wears a small amber dot,
+                which is all the record there is.
+
+   WRONG ENGLISH
+
+   Before a fix question is answered, a wrong sentence and a right one look
+   alike. Once it is answered the wrong one is struck through in the warning
+   colour; it never gets a 🔊 or a 中譯. */
+
+:root {
+  --paper: #f6f6f3;
+  --card: #ffffff;
+  --ink: #1c2529;
+  --ink-soft: #465157;
+  --ink-faint: #5f6a70;
+
+  /* house.css paints its accent with --gold. Here that is a deep teal. */
+  --gold: #1f5d63;
+  --gold-soft: #e7f0f0;
+  --gold-line: #a9c9cb;
+
+  --good: #27694a;
+  --good-soft: #ecf5f0;
+  --good-line: #a8d0ba;
+  --bad: #9e3320;
+  --bad-soft: #fbeeea;
+  --bad-line: #e8b6a9;
+  --amber: #8a5a0b;
+  --amber-soft: #fbf3e1;
+  --amber-line: #e6cf9c;
+
+  --line: #e1dfd9;
+  --rule: #c8c5bd;
+
+  --font-zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans CNS", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --bar-h: 54px;
+  --measure: 44rem;
+  --round: 12px;
+  --pill: 999px;
+  --ease: cubic-bezier(.4, 0, .2, 1);
+  --fast: .18s;
+
+  /* The cycle. A new point takes the next one on its own. */
+  --a1: #1f5d63;
+  --a2: #8a3b63;
+  --a3: #3f4f8f;
+  --a4: #9c5318;
+}
+
+* { box-sizing: border-box; }
+
+/* No root scroll-behavior: smooth. It animates scrolls nobody asked for —
+   the browser bringing a focused answer box into view, for one. */
+html { scroll-padding-top: calc(var(--bar-h) + 16px); }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus {
+  left: 12px; top: 12px; z-index: 40;
+  background: var(--card); padding: 10px 16px; border-radius: 8px;
+}
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* ---------------- the Chinese layer ---------------- */
+
+.pair > .zh {
+  display: none;
+  font-family: var(--font-zh);
+  font-size: .86em;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+.pair.open > .zh,
+body.zh-all .pair > .zh { display: block; }
+body.zh-all .zh-chip { display: none; }
+.pair.open > .en > .zh-chip { opacity: .35; }
+
+
+/* Anything in the Chinese face that is NOT the hideable layer. */
+.h-zh, .p-zh, .l-zh, .n-zh, .t-zh, .lead-zh, .r-zh, .note-zh,
+.w-zh, .src-zh, .hint, .toc-point { font-family: var(--font-zh); }
+
+/* ---------------- layout ---------------- */
+
+.shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+main { max-width: var(--measure); padding-bottom: 5rem; }
+
+@media (min-width: 950px) {
+  .shell { grid-template-columns: 15rem minmax(0, 1fr); gap: 40px; }
+  #navToggle { display: none; }
+  main { padding-top: 8px; }
+}
+
+@media (max-width: 949px) {
+  #nav {
+    position: fixed; z-index: 35; inset: var(--bar-h) auto 0 0;
+    width: min(19rem, 84vw); overflow-y: auto;
+    padding: 16px 18px 28px;
+    background: var(--card);
+    border-right: 1px solid var(--line);
+    transform: translateX(-102%);
+    transition: transform var(--fast) var(--ease);
+  }
+  body.nav-open #nav { transform: none; }
+  .nav-scrim {
+    position: fixed; inset: 0; z-index: 30;
+    background: rgba(30, 36, 48, .3);
+  }
+}
+
+.toc { font-family: var(--font-ui); }
+@media (min-width: 950px) {
+  .toc { position: sticky; top: var(--bar-h); max-height: calc(100vh - var(--bar-h));
+         overflow-y: auto; padding: 28px 0 40px; }
+}
+.toc ul { list-style: none; margin: 0 0 20px; padding: 0; }
+.toc-point {
+  display: flex; align-items: baseline; gap: 7px;
+  margin: 10px 0 6px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px; font-weight: 600; color: var(--ink);
+}
+.toc-point .n { font-size: 11px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+.toc a { display: block; padding: 7px 10px 7px 6px; text-decoration: none;
+         border-left: 2px solid transparent; }
+.toc .t-zh { display: block; font-size: 14px; color: var(--ink-soft); }
+.toc .t-en { display: block; font-size: 11.5px; color: var(--ink-faint); }
+.toc a.here { border-left-color: var(--gold); }
+.toc a.here .t-zh { font-weight: 600; color: var(--ink); }
+
+/* ---------------- cover ---------------- */
+
+.cover { padding: clamp(40px, 6vw, 68px) 0 10px; }
+.eyebrow {
+  margin: 0 0 10px;
+  font-family: var(--font-ui);
+  font-size: 11.5px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gold);
+}
+.cover h1 { margin: 0 0 14px; line-height: 1.12; }
+.cover h1 .h-zh { display: block; font-size: clamp(2.1rem, 6vw, 3rem); letter-spacing: .02em; }
+.cover h1 .h-en {
+  display: block; margin-top: 6px;
+  font-family: var(--font-ui); font-size: .95rem; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint);
+}
+
+/* ---------------- a point ---------------- */
+
+.point { padding-top: 46px; }
+.point:nth-of-type(4n+1) { --accent: var(--a1); }
+.point:nth-of-type(4n+2) { --accent: var(--a2); }
+.point:nth-of-type(4n+3) { --accent: var(--a3); }
+.point:nth-of-type(4n+4) { --accent: var(--a4); }
+
+.point-head { border-top: 2px solid var(--accent, var(--gold)); padding-top: 18px; }
+.point .eyebrow { display: flex; align-items: center; gap: 8px; color: var(--accent, var(--gold)); }
+.p-icon { font-size: 1.15rem; }
+
+.point-head h2 { margin: 0 0 4px; line-height: 1.15; }
+.point-head h2 .h-zh { display: block; font-size: clamp(1.8rem, 5vw, 2.3rem); }
+.point-head h2 .h-en {
+  display: block; margin-top: 4px;
+  font-family: var(--font-ui); font-size: .85rem; font-weight: 500;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint);
+}
+.point-sub {
+  margin: 0 0 14px;
+  font-family: var(--font-zh); font-size: 1rem; color: var(--ink-soft);
+}
+
+/* ---------------- a part ---------------- */
+
+.part { padding-top: 34px; }
+.part-head {
+  margin: 0 0 14px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+  line-height: 1.3;
+}
+.part-head .p-zh { font-size: 1.22rem; font-weight: 700; }
+.part-head .p-en {
+  display: block; margin-top: 2px;
+  font-family: var(--font-ui); font-size: .78rem; font-weight: 500;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint);
+}
+
+/* ---------------- lead and rule ---------------- */
+
+.lead { margin: 0 0 20px; }
+.lead-zh { margin: 0 0 6px; font-size: 1rem; line-height: 1.85; color: var(--ink); }
+.lead-en { margin: 0; font-size: .92rem; line-height: 1.7; color: var(--ink-soft); }
+.point-lead { margin-bottom: 0; }
+
+/* A rule is the sentence the whole part is there to deliver, so it is the one
+   thing on the page drawn as a block of colour. Neither mode hides it. */
+.ruleline {
+  margin: 20px 0;
+  padding: 15px 18px;
+  background: var(--gold-soft);
+  border-left: 3px solid var(--accent, var(--gold));
+  border-radius: 0 var(--round) var(--round) 0;
+}
+.r-zh { margin: 0 0 5px; font-size: 1.04rem; font-weight: 600; line-height: 1.75; }
+.r-en { margin: 0; font-size: .88rem; color: var(--ink-soft); }
+
+/* ---------------- right beside wrong ---------------- */
+
+.pairs { margin: 22px 0; }
+.pairs ul { list-style: none; margin: 0; padding: 0; }
+.pairs li {
+  display: grid; grid-template-columns: 1.4rem minmax(0, 1fr); gap: 10px;
+  padding: 9px 12px; border-radius: 9px;
+}
+.pairs li + li { margin-top: 4px; }
+.pairs .good { background: var(--good-soft); }
+.pairs .bad  { background: var(--bad-soft); }
+.pairs .tick { font-weight: 700; line-height: 1.6; }
+.pairs .good .tick { color: var(--good); }
+.pairs .bad .tick  { color: var(--bad); }
+.pairs .en { margin: 0; }
+/* No 中譯 and no speaker: a sentence that is not English should leave neither
+   a meaning nor a sound behind. */
+.bad-en { margin: 0; color: var(--bad); text-decoration: line-through;
+          text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+/* ---------------- the teacher's voice ---------------- */
+
+.note {
+  margin: 24px 0;
+  padding: 16px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--round);
+}
+.note h4 { margin: 0 0 9px; line-height: 1.4; }
+.note .n-zh { font-size: .98rem; font-weight: 700; }
+.note .n-en {
+  display: block; margin-top: 2px;
+  font-family: var(--font-ui); font-size: .72rem; font-weight: 500;
+  letter-spacing: .05em; text-transform: uppercase; color: var(--ink-faint);
+}
+.note-zh { margin: 0 0 7px; font-size: .95rem; line-height: 1.85; color: var(--ink); }
+.note-en { margin: 0; font-size: .86rem; line-height: 1.7; color: var(--ink-soft); }
+.note-egs { margin-top: 12px; padding-top: 11px; border-top: 1px solid var(--line); }
+.ex { margin: 0 0 4px; font-size: .9rem; }
+.ex:last-child { margin-bottom: 0; }
+.ex-good { color: var(--good); }
+.ex-good .say { margin-left: 6px; }
+.ex-bad { color: var(--bad); text-decoration: line-through;
+          text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+/* A wide table scrolls inside its own box. Without these two lines the grid
+   column grows to the table's width instead, and the whole page scrolls
+   sideways on a phone. */
+.shell { grid-template-columns: minmax(0, 1fr); }
+main { min-width: 0; }
+@media (min-width: 950px) {
+  .shell { grid-template-columns: 15rem minmax(0, 1fr); }
+}
+
+/* ---------------- chapters ----------------
+
+   A point may name the chapter it belongs to. The contents list prints the
+   name wherever it changes, and each point wears it in its eyebrow. */
+
+.toc-group {
+  margin: 22px 0 2px; padding: 3px 9px;
+  display: inline-block; border-radius: var(--pill);
+  background: var(--gold-soft); color: var(--gold);
+  font-family: var(--font-zh); font-size: 12px; font-weight: 700;
+}
+.toc-group:first-of-type { margin-top: 4px; }
+.toc-group em { margin-left: 4px; font-style: normal; font-family: var(--font-ui); font-weight: 500;
+  font-size: 10.5px; letter-spacing: .05em; text-transform: uppercase; }
+.p-group { margin-left: 4px; font-family: var(--font-zh); letter-spacing: .04em; opacity: .85; }
+.col-eg-only { margin-top: 11px; }
+
+/* ---------------- two tenses side by side ---------------- */
+
+.cols { margin: 24px 0; }
+.cols-grid { display: grid; gap: 12px; }
+@media (min-width: 620px) {
+  .cols-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+}
+.col {
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent, var(--gold));
+  border-radius: var(--round);
+}
+.col-head { margin: 0; display: flex; align-items: baseline; flex-wrap: wrap; gap: 9px; line-height: 1.4; }
+.c-zh { font-family: var(--font-zh); font-size: 1rem; font-weight: 700; }
+.col-head code {
+  font-family: var(--font-mono); font-size: .8rem;
+  padding: 1px 7px; border-radius: 6px;
+  background: var(--gold-soft); color: var(--gold);
+}
+.col-note { margin: 2px 0 0; font-family: var(--font-zh); font-size: .8rem; color: var(--ink-faint); }
+.col-words { margin: 11px 0 12px; display: flex; flex-wrap: wrap; gap: 5px; }
+.col-words span {
+  padding: 2px 9px; border-radius: var(--pill);
+  border: 1px solid var(--line); background: var(--paper);
+  font-size: .82rem; line-height: 1.6;
+}
+.col-eg { padding-top: 10px; border-top: 1px solid var(--line); }
+.col-eg .en { margin: 0; font-size: .94rem; }
+.col-eg > .zh { margin: 3px 0 0; }
+
+/* ---------------- practice ---------------- */
+
+.activity { margin: 26px 0 34px; }
+.label { margin: 0 0 6px; line-height: 1.4; }
+.label .l-zh { font-size: 1.02rem; font-weight: 700; }
+.label .l-en {
+  margin-left: 9px;
+  font-family: var(--font-ui); font-size: .72rem; font-weight: 500;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint);
+}
+.hint { margin: 0 0 14px; font-size: .86rem; line-height: 1.7; color: var(--ink-soft); }
+.hint-en { display: block; font-family: var(--font-ui); font-size: .78rem; color: var(--ink-faint); }
+
+.q {
+  position: relative;
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--round);
+}
+.q + .q { margin-top: 8px; }
+.q.answered { border-color: var(--good-line); }
+/* The only record a question keeps: it took more than one go. */
+.q.again::after {
+  content: ""; position: absolute; top: 24px; left: 5px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--amber); opacity: .8;
+}
+
+.q-line { display: flex; align-items: baseline; gap: 9px; margin: 0 0 10px; }
+.q-n {
+  flex: none;
+  font-family: var(--font-mono); font-size: .76rem;
+  color: var(--ink-faint); font-variant-numeric: tabular-nums;
+}
+.q-text { flex: 1 1 auto; min-width: 0; }
+.q-line .say, .q-line .zh-chip { flex: none; }
+.q-pair > .zh { margin: -4px 0 10px 1.45rem; }
+
+/* A sentence with a hole in it is not yet a model, so it has no speaker
+   until the hole is filled. */
+.q:not(.answered) .q-pair .say,
+.q:not(.answered) .o-line .say { display: none; }
+
+.slot {
+  display: inline-block; min-width: 5.5rem;
+  border-bottom: 2px solid var(--rule);
+  text-align: center;
+}
+.slot.filled { border-bottom-color: var(--good); font-weight: 600; color: var(--good); }
+
+.choice { display: flex; flex-wrap: wrap; gap: 7px; }
+.opt {
+  padding: 7px 16px; min-height: 40px;
+  border: 1px solid var(--line); border-radius: var(--pill);
+  background: var(--paper); color: var(--ink);
+  font: inherit; font-size: .94rem; cursor: pointer;
+  transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease);
+}
+.opt:hover:not(:disabled) { border-color: var(--gold-line); background: var(--gold-soft); }
+.opt:disabled { cursor: default; opacity: 1; }
+.opt.is-answer { background: var(--good-soft); border-color: var(--good-line); color: var(--good); font-weight: 600; }
+.opt.is-wrong { background: transparent; border-style: dashed; color: var(--ink-faint); text-decoration: line-through; }
+.q.answered .opt:not(.is-answer) { opacity: .55; }
+
+/* ---- typed answers ---- */
+
+.gap-in, .line-in {
+  font: inherit; color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule); border-radius: 8px;
+  transition: border-color var(--fast) var(--ease), background var(--fast) var(--ease);
+}
+.gap-in:focus, .line-in:focus { outline: none; border-color: var(--gold); background: var(--card);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 16%, transparent); }
+.gap-in {
+  width: 9.5rem; max-width: 100%;
+  margin: 0 5px; padding: 2px 9px;
+  text-align: center;
+}
+.gap-in.filled {
+  /* Its width is set to the answer's own length by render.js. */
+  margin: 0 2px; padding: 0 3px;
+  background: transparent; border-color: transparent;
+  border-bottom: 2px solid var(--good); border-radius: 0;
+  font-weight: 600; color: var(--good); box-shadow: none;
+}
+.cue { color: var(--ink-faint); font-size: .92em; }
+.q.answered .cue { display: none; }
+.gq.active:not(.answered) { border-color: var(--gold-line); }
+
+.line-in { display: block; width: 100%; padding: 9px 12px; resize: none; overflow: hidden; line-height: 1.5; }
+.q.answered .line-in { display: none; }
+
+.cue-line {
+  margin: -4px 0 9px 1.45rem;
+  font-family: var(--font-zh); font-size: .86rem; font-weight: 600; color: var(--gold);
+}
+.cue-line em { margin-left: 8px; font-style: normal; font-weight: 500;
+  font-family: var(--font-ui); font-size: .78rem; color: var(--ink-faint); }
+
+/* ---- the word box ---- */
+
+.bank {
+  display: flex; flex-wrap: wrap; gap: 7px;
+  margin: 0 0 12px; padding: 11px 13px;
+  background: var(--gold-soft);
+  border: 1px dashed var(--gold-line); border-radius: var(--round);
+}
+.bank-w {
+  padding: 5px 15px; min-height: 36px;
+  border: 1px solid var(--gold-line); border-radius: var(--pill);
+  background: var(--card); color: var(--gold);
+  font: inherit; font-size: .94rem; font-weight: 600; cursor: pointer;
+}
+.bank-w:hover { border-color: var(--gold); }
+.bank-w:active { transform: scale(.96); }
+
+/* ---- find and fix ---- */
+
+.fq.answered[data-ok="0"] .f-shown {
+  color: var(--bad); text-decoration: line-through;
+  text-decoration-thickness: 1px; text-underline-offset: 2px;
+}
+.fixline {
+  padding: 9px 12px;
+  background: var(--good-soft); border-radius: 9px;
+}
+.fix-k {
+  display: block; margin-bottom: 1px;
+  font-family: var(--font-zh); font-size: .74rem; font-weight: 600; color: var(--good);
+}
+.fix-pair .en { margin: 0; font-weight: 600; color: var(--good); }
+.fix-pair > .zh { margin: 3px 0 0; }
+.fix-pair .say, .fix-pair .zh-chip { margin-left: 7px; }
+
+/* ---- build the sentence ---- */
+
+.o-zh { font-family: var(--font-zh); font-size: .98rem; }
+.o-line {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+  min-height: 52px; margin: 0 0 9px; padding: 8px 11px;
+  background: var(--paper);
+  border: 1px dashed var(--rule); border-radius: 10px;
+}
+.o-placed { display: contents; }
+.o-lead { font-weight: 600; }
+.o-end { margin-left: -3px; font-weight: 600; }
+.o-line .say { margin-left: 6px; }
+.o-pool { display: flex; flex-wrap: wrap; gap: 6px; min-height: 40px; }
+.tile {
+  padding: 6px 13px; min-height: 38px;
+  border: 1px solid var(--rule); border-radius: 9px;
+  background: var(--card); color: var(--ink);
+  font: inherit; font-size: .94rem; cursor: pointer;
+  box-shadow: 0 1px 0 var(--rule);
+  transition: transform var(--fast) var(--ease), border-color var(--fast) var(--ease);
+}
+.tile:hover:not(:disabled) { border-color: var(--gold); }
+.tile:active:not(:disabled) { transform: scale(.96); }
+.o-line .tile { border-color: var(--gold-line); background: var(--gold-soft); box-shadow: none; }
+.oq.answered .o-line { border-style: solid; border-color: var(--good-line); background: var(--good-soft); }
+.oq.answered .tile {
+  padding: 0; min-height: 0; border: 0; background: transparent;
+  color: var(--good); font-weight: 600; font-size: inherit; cursor: default; opacity: 1;
+  box-shadow: none;
+}
+.oq.answered .o-line { gap: 0 .3em; }
+.oq.answered .o-end { margin-left: -.3em; }
+.oq.answered .o-lead, .oq.answered .o-end { color: var(--good); }
+.oq.answered .o-pool { display: none; }
+
+/* ---- the hint, the reason, the buttons under a question ---- */
+
+.nudge {
+  margin: 11px 0 0; padding: 9px 12px;
+  background: var(--amber-soft);
+  border-left: 3px solid var(--amber-line); border-radius: 0 9px 9px 0;
+}
+.nudge[hidden] { display: none; }
+.nudge-k {
+  display: block; margin-bottom: 1px;
+  font-family: var(--font-zh); font-size: .72rem; font-weight: 700; color: var(--amber);
+}
+.w-zh { display: block; font-size: .88rem; line-height: 1.75; color: var(--ink-soft); }
+.w-en { display: block; font-size: .8rem; line-height: 1.65; color: var(--ink-faint); }
+
+/* Written for after the answer, so shut until there is one. */
+.after { display: none; }
+.q.answered .after { display: block; margin-top: 11px; }
+.after:empty { display: none !important; }
+.why { margin: 10px 0 0; }
+.after > .why:first-child { margin-top: 0; }
+
+.q-foot { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 11px; }
+.q-foot:empty { display: none; }
+.q.answered .q-foot { display: none; }
+.q-btn {
+  padding: 6px 15px; min-height: 36px;
+  border: 1px solid var(--line); border-radius: var(--pill);
+  background: transparent; color: var(--ink);
+  font-family: var(--font-zh); font-size: .86rem; cursor: pointer;
+  transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease);
+}
+.q-btn em { margin-left: 6px; font-style: normal; font-family: var(--font-ui); font-size: .76rem; color: var(--ink-faint); }
+.q-btn:hover { border-color: var(--ink-faint); }
+.q-btn.check { background: var(--ink); border-color: var(--ink); color: #fff; }
+.q-btn.check em { color: rgb(255 255 255 / .7); }
+.q-btn.check:hover { background: color-mix(in srgb, var(--ink) 86%, #fff); }
+
+/* 看答案 is the teacher's to press whenever they like. Alone, a learner gets
+   it only after two honest tries. */
+.show-ans { display: none; margin-left: auto; color: var(--ink-soft); }
+body.mode-teach .show-ans, .q.stuck .show-ans { display: inline-block; }
+/* A multiple-choice or tile question has nothing else in its foot. */
+.mq .q-foot, .oq .q-foot { margin-top: 0; }
+body.mode-teach .mq .q-foot, .mq.stuck .q-foot,
+body.mode-teach .oq .q-foot, .oq.stuck .q-foot { margin-top: 11px; }
+
+@keyframes wob {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+.wob { animation: wob .34s var(--ease); }
+
+/* ---- questions that sit inside a line of text ----
+
+   A blank or a pick-one is a `.q` like any card, so that it is checked,
+   remembered and listed the same way — but it must not LOOK like a card. */
+
+.bq, .pq {
+  position: static; display: inline; padding: 0; margin: 0;
+  background: none; border: 0; border-radius: 0;
+}
+.q.bq + .q, .q.pq + .q { margin-top: 0; }
+.bq.again::after, .pq.again::after { content: none; }
+.bq { white-space: nowrap; }
+
+.bq > .q-n {
+  margin-right: 1px;
+  font-size: .64rem; vertical-align: super; color: var(--ink-faint);
+}
+.bq > .q-n[hidden] { display: none; }
+
+.b-in {
+  margin: 2px 3px; padding: 1px 8px;
+  font: inherit; line-height: 1.45; color: var(--ink); text-align: center;
+  background: var(--paper);
+  border: 1px solid var(--rule); border-radius: 7px;
+  max-width: 100%;
+  transition: border-color var(--fast) var(--ease), background var(--fast) var(--ease);
+}
+.b-in:focus { outline: none; border-color: var(--gold); background: var(--card);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 16%, transparent); }
+.b-s { width: 6.2rem; }
+.b-m { width: 9.5rem; }
+.b-l { width: 14rem; }
+.b-xl { width: 22rem; }
+.b-in.filled {
+  margin: 0 1px; padding: 0 2px;
+  background: transparent; border-color: transparent;
+  border-bottom: 2px solid var(--good); border-radius: 0;
+  font-weight: 600; color: var(--good); box-shadow: none;
+}
+/* Took more than one go: the answer is as green as any other, the line under
+   it is amber. */
+.bq.again .b-in.filled { border-bottom-color: var(--amber); }
+.bq.answered + .cue { display: none; }
+
+/* 看答案 for one blank. The teacher always has it; a learner alone gets it on
+   a blank they have tried twice. */
+.b-show {
+  display: none; width: 20px; height: 20px; margin-right: 2px; padding: 0;
+  border: 1px solid var(--line); border-radius: 50%;
+  background: var(--card); color: var(--ink-faint);
+  font: 600 11px/1 var(--font-ui); vertical-align: middle; cursor: pointer;
+}
+.b-show:hover { border-color: var(--gold); color: var(--gold); }
+body.mode-teach .bq:not(.answered) .b-show,
+.bq.stuck:not(.answered) .b-show { display: inline-block; }
+
+/* A pair stays on one line where there is room for it, so the two forms are
+   read against each other; on a phone it may break at the slash. */
+.pq { white-space: nowrap; }
+@media (max-width: 520px) { .pq { white-space: normal; } }
+.p-opt {
+  padding: 1px 10px; margin: 2px 0;
+  border: 1px solid var(--gold-line); border-radius: var(--pill);
+  background: var(--gold-soft); color: var(--gold);
+  font: inherit; font-size: .94em; cursor: pointer;
+  transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease);
+}
+.p-opt:hover:not(:disabled) { border-color: var(--gold); }
+.p-opt.is-wrong { background: transparent; border-style: dashed; border-color: var(--line);
+  color: var(--ink-faint); text-decoration: line-through; cursor: default; }
+.p-sep { margin: 0 4px; color: var(--ink-faint); }
+.pq.answered .p-opt:not(.is-answer), .pq.answered .p-sep { display: none; }
+.pq.answered .p-opt.is-answer {
+  padding: 0 2px; border: 0; border-bottom: 2px solid var(--good); border-radius: 0;
+  background: transparent; color: var(--good); font-weight: 600; font-size: 1em; cursor: default; opacity: 1;
+}
+.pq.answered.again .p-opt.is-answer { border-bottom-color: var(--amber); }
+
+/* ---- a card, or a line, that holds several of them ---- */
+
+.item {
+  padding: 13px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--round);
+}
+.item + .item { margin-top: 8px; }
+.item.done { border-color: var(--good-line); }
+.item-line { display: flex; align-items: baseline; gap: 9px; margin: 0; line-height: 2.05; }
+.item-line .q-text { flex: 1 1 auto; min-width: 0; }
+.item-line .say, .item-line .zh-chip { flex: none; }
+.it-n {
+  flex: none;
+  font-family: var(--font-mono); font-size: .76rem;
+  color: var(--ink-faint); font-variant-numeric: tabular-nums;
+}
+.ln { display: block; }
+.who {
+  display: inline-block; min-width: 1.5em;
+  font-family: var(--font-ui); font-size: .78em; font-weight: 700; color: var(--accent, var(--gold));
+}
+.item-pair > .zh { margin: 2px 0 0 1.45rem; }
+.item:not(.done) .item-line .say { display: none; }
+.item > .why { display: none; }
+.item.done > .why { display: block; margin: 9px 0 0 1.45rem; }
+
+/* What to work from: a sentence above the card, or the words to build with. */
+.from { margin: 0 0 4px 1.45rem; font-size: .92rem; color: var(--ink-soft); }
+.pool { margin: 0 0 5px 1.45rem; display: flex; flex-wrap: wrap; gap: 5px; }
+.pool span {
+  padding: 0 9px; border-radius: var(--pill);
+  border: 1px dashed var(--gold-line); background: var(--gold-soft); color: var(--gold);
+  font-size: .82rem; font-style: italic; line-height: 1.7;
+}
+.pool-block { margin: 0 0 12px; padding: 10px 12px;
+  border: 1px dashed var(--gold-line); border-radius: var(--round); background: var(--gold-soft); }
+.pool-block span { border-style: solid; background: var(--card); font-style: normal; font-weight: 600; font-size: .9rem; }
+
+/* A dialogue or a story: one card, its lines close together. */
+.cz {
+  padding: 15px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--round);
+}
+.cz .item { padding: 0; border: 0; border-radius: 0; background: none; }
+.cz .item + .item { margin-top: 9px; }
+.cz .item-pair > .zh, .cz .item > .why { margin-left: 0; }
+.cz .item-line { line-height: 2.2; }
+
+/* ---- tables ---- */
+
+.chart { margin: 24px 0; }
+.t-wrap {
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  background: var(--card);
+  border: 1px solid var(--line); border-radius: var(--round);
+}
+.gtable { width: 100%; border-collapse: collapse; font-size: .94rem; }
+.gtable th {
+  padding: 9px 12px; text-align: left; white-space: nowrap;
+  font-family: var(--font-zh); font-size: .8rem; font-weight: 700;
+  color: var(--accent, var(--gold)); background: var(--gold-soft);
+  border-bottom: 1px solid var(--gold-line);
+}
+.gtable td { padding: 6px 12px; vertical-align: middle; border-top: 1px solid var(--line); }
+.gtable tbody tr:first-child td { border-top: 0; }
+.gtable tr.g-start td { border-top: 2px solid var(--rule); }
+.gtable tbody tr.g-start:first-child td { border-top: 0; }
+.gtable .t-n { width: 1%; font-family: var(--font-mono); font-size: .76rem; color: var(--ink-faint); }
+.gtable b { color: var(--accent, var(--gold)); }
+/* In a table the boxes are narrower and a choice never breaks in two, so
+   three columns of sentences fit the measure; below that width the table
+   keeps its shape and scrolls sideways instead of squeezing. */
+.activity[data-act="table"] .gtable { min-width: 33rem; }
+.activity[data-act="table"] .gtable td:first-child:not(.t-n) { min-width: 7.5em; }
+.gtable .b-s { width: 5.2rem; }
+.gtable .b-m { width: 7.4rem; }
+.gtable .pq, .gtable .p-opt { white-space: nowrap; }
+.gtable .p-opt { font-family: var(--font-zh); font-size: .84rem; }
+
+/* ---- matching ---- */
+
+.m-opts {
+  list-style: none; margin: 0 0 12px; padding: 12px 14px;
+  background: var(--gold-soft);
+  border: 1px dashed var(--gold-line); border-radius: var(--round);
+}
+.m-opts li { display: flex; gap: 10px; align-items: baseline; font-size: .94rem; line-height: 1.6; }
+.m-opts li + li { margin-top: 4px; }
+.m-l {
+  flex: none; width: 1.5rem; height: 1.5rem; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--card); border: 1px solid var(--gold-line); color: var(--gold);
+  font-family: var(--font-mono); font-size: .78rem; font-weight: 700;
+}
+.letters .opt { min-width: 42px; padding-inline: 0; font-family: var(--font-mono); font-weight: 600; }
+.mtq.answered .letters { display: none; }
+.mtq .slot { min-width: 7rem; }
+.mtq .slot.filled { display: inline; border-bottom-width: 2px; text-align: left; }
+
+/* ---- check everything / show everything ---- */
+
+.act-tools { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+.act-tools[hidden], .q-btn[hidden] { display: none; }
+.q-btn.check-all { background: var(--ink); border-color: var(--ink); color: #fff; }
+.q-btn.check-all em { color: rgb(255 255 255 / .7); }
+.show-all { display: none; margin-left: auto; color: var(--ink-soft); }
+body.mode-teach .show-all { display: inline-block; }
+
+/* ---- under a set ---- */
+
+.act-end {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px 14px;
+  margin-top: 12px;
+}
+.tally {
+  order: 3; margin: 0;
+  font-family: var(--font-zh); font-size: .8rem; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+.tally .done { font-weight: 700; color: var(--ink-soft); }
+.again-line {
+  flex: 1 1 14rem; margin: 0;
+  font-family: var(--font-zh); font-size: .86rem; color: var(--ink-soft);
+}
+.again-line[hidden], .redo[hidden] { display: none; }
+.again-line em { margin: 0 6px 0 4px; font-style: normal; font-family: var(--font-ui); font-size: .76rem; color: var(--ink-faint); }
+.again-n {
+  min-width: 30px; min-height: 30px; margin-left: 4px; padding: 2px 8px;
+  border: 1px solid var(--amber-line); border-radius: var(--pill);
+  background: var(--amber-soft); color: var(--amber);
+  font-family: var(--font-mono); font-size: .8rem; cursor: pointer;
+}
+.again-n:hover { border-color: var(--amber); }
+
+/* ---------------- where it comes from ---------------- */
+
+.source {
+  margin: 54px 0 0; padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.src-zh { margin: 0 0 4px; font-size: .82rem; line-height: 1.75; color: var(--ink-faint); }
+.src-en { margin: 0; font-size: .78rem; line-height: 1.65; color: var(--ink-faint); }
+
+/* ---------------- the bar ----------------
+
+   house.css restyles the bar's skin — the glass, the border, the control pills —
+   but deliberately sets no layout, so every page lays out its own. Without
+   this block the bar is a static block box with a fixed height and its four
+   controls stack and spill over the page beneath. */
+
+.bar {
+  position: sticky; top: 0; z-index: 30;
+  display: flex; align-items: center; gap: 10px;
+  height: var(--bar-h);
+  padding: 0 16px;
+  background: rgba(247, 246, 243, .93);
+  -webkit-backdrop-filter: saturate(1.6) blur(10px);
+  backdrop-filter: saturate(1.6) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.bar-title {
+  flex: 1 1 auto; min-width: 0; margin: 0;
+  font-size: 15px; font-weight: 600;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.bar-title span {
+  margin-left: 8px;
+  font-family: var(--font-ui); font-size: 12.5px; font-weight: 400;
+  color: var(--ink-faint);
+}
+.bar-btn { flex: none; }
+.bar-btn-zh { font-family: var(--font-zh); }
+
+/* The 自學／教學 switch. Teacher devices only, so it is hidden until the page
+   says otherwise and must not reappear as an inline-flex when it is. */
+.seg.modeseg {
+  flex: none; display: inline-flex; gap: 2px;
+  padding: 2px; border-radius: 9px;
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
+}
+.seg.modeseg[hidden] { display: none; }
+.seg.modeseg button {
+  font-family: var(--font-zh); font-size: 12.5px;
+  padding: 5px 11px; border: 0; border-radius: 7px;
+  background: transparent; color: var(--ink-soft); cursor: pointer;
+}
+.seg.modeseg button[aria-pressed="true"] {
+  background: var(--card); color: var(--ink); font-weight: 600;
+  box-shadow: 0 1px 3px rgb(0 0 0 / .12);
+}
+
+/* ---------------- settings panel ---------------- */
+
+.panel {
+  position: fixed; z-index: 40;
+  top: calc(var(--bar-h) + 8px); right: 14px;
+  width: min(22rem, calc(100vw - 28px));
+  max-height: calc(100vh - var(--bar-h) - 24px); overflow-y: auto;
+  padding: 18px 20px 22px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(30, 36, 48, .18);
+  font-family: var(--font-ui); font-size: 14px;
+}
+.panel[hidden] { display: none; }
+.panel-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.panel-head h2 { margin: 0; font-size: 1rem; }
+.panel-head h2 span { margin-left: 6px; font-weight: 500; font-size: .85rem; color: var(--ink-faint); }
+.panel-x { border: 0; background: transparent; font-size: 16px; cursor: pointer; color: var(--ink-faint); }
+.panel .row { padding: 12px 0; border-top: 1px solid var(--line); }
+
+.panel .row:first-of-type { border-top: 0; }
+.panel label { display: block; font-weight: 600; margin-bottom: 6px; }
+.panel label em { font-style: normal; font-weight: 500; color: var(--ink-faint); margin-left: 5px; }
+.panel select { width: 100%; padding: 7px 9px; border: 1px solid var(--line); border-radius: 8px; font: inherit; }
+.row-note { margin: 7px 0 0; font-size: 12.5px; line-height: 1.6; color: var(--ink-faint); }
+.row-note em { font-style: normal; display: block; }
+.panel-btn {
+  margin-top: 10px; width: 100%; padding: 9px 14px;
+  border: 1px solid var(--line); border-radius: var(--pill);
+  background: var(--ink); color: #fff; font: inherit; cursor: pointer;
+}
+.panel-btn-quiet { background: transparent; color: var(--ink); }
+
+.site-foot {
+  max-width: 46rem; margin: 0 auto; padding: 26px 20px 40px;
+  border-top: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+  gap: 6px 14px; text-align: center;
+  font-family: var(--font-ui); font-size: .8rem; line-height: 1.7; color: var(--ink-faint);
+}
+.site-foot p { margin: 0; }
+.site-foot .site-mark { flex: none; line-height: 0; border-radius: 50%; }
+.site-foot a { color: var(--gold); margin-left: 8px; }
+
+/* ---------------- touch ----------------
+
+   On a phone the small controls keep the size they look and grow an invisible
+   hit area instead; the things you are meant to press get real height. An
+   input is set at 16px or more so iOS does not zoom the page on focus. */
+
+@media (pointer: coarse) {
+  .say, .zh-chip { position: relative; }
+  .say::after, .zh-chip::after { content: ""; position: absolute; inset: -9px; }
+  .opt, .tile, .bank-w, .q-btn { min-height: 44px; }
+  .gap-in, .line-in, .b-in { font-size: max(1em, 16px); }
+  /* Inline, so they cannot be 44px tall without pushing the lines apart; they
+     get a taller line and a hit area that reaches into it instead. */
+  .p-opt { position: relative; padding-block: 3px; }
+  .p-opt::after { content: ""; position: absolute; inset: -8px -2px; }
+  .b-show { width: 26px; height: 26px; }
+  .item-line { line-height: 2.5; }
+  .cz .item-line { line-height: 2.6; }
+  .seg.modeseg button { min-height: 40px; padding-inline: 14px; }
+}
+
+/* ---------------- print ----------------
+
+   Untouched, the page prints as a worksheet: blanks empty, hints and reasons
+   gone, the Chinese open. Finish the questions first and the same page prints
+   the key, because a finished question keeps its answer and its reason. */
+
+@media print {
+  .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .skip, .site-foot,
+  .act-end, .act-tools, .q-foot, .nudge, .b-show { display: none !important; }
+  body { background: #fff; font-size: 11pt; }
+  .shell { display: block; max-width: none; padding: 0; }
+  main { max-width: none; }
+  .pair > .zh { display: block !important; }
+  .q, .item, .note, .col, .ruleline, .pairs li, .gtable tr { break-inside: avoid; border-color: #ccc; }
+  .bq, .pq { break-inside: auto; }
+  .opt, .tile, .gap-in, .line-in, .b-in, .p-opt { border-color: #bbb; }
+  .point { break-before: page; padding-top: 0; }
+  .point:first-of-type { break-before: auto; }
+}
+
+/* ---------------- spacing the 🔊 ---------------- */
+.pairs .en .say, .col-eg .en .say, .pairs .en .zh-chip, .col-eg .en .zh-chip { margin-left: 7px; }
