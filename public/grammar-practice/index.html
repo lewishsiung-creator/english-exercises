@@ -45,6 +45,11 @@
     <button data-mode="teach">教學</button>
   </div>
 
+  <!-- Teacher-only, and only where the bar has room for it; on a phone the
+       same sheet opens from 設定. -->
+  <button class="bar-btn bar-btn-hw" id="hwToggle" aria-expanded="false"
+          aria-controls="hwpanel" hidden>作業</button>
+
   <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="false">中文</button>
   <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
           aria-controls="panel" title="設定" aria-label="設定">⚙</button>
@@ -87,6 +92,7 @@
     <label>老師裝置 <em>Teacher device</em></label>
     <p class="row-note">這台裝置會顯示「自學／教學」切換。學生用一般連結打開時看不到。
       <em>This device shows the 自學／教學 switch. A student opening the plain link never sees it.</em></p>
+    <button class="panel-btn" id="hwFromPanel">Lewis 指定作業 <em>Assign homework</em></button>
     <button class="panel-btn panel-btn-quiet" id="unteach">在這台裝置隱藏 <em>Hide here</em></button>
   </div>
 
@@ -112,6 +118,31 @@
   </div>
 </div>
 
+<!-- Lewis 指定作業. Teacher devices only: tick exercises, copy a link, send it.
+     A student who opens the link sees those exercises and nothing else. The
+     list is filled in by render.js from whatever chapters are on the page. -->
+<div class="panel hw-panel" id="hwpanel" role="dialog" aria-label="Lewis 指定作業" hidden>
+  <div class="panel-head">
+    <h2>Lewis 指定作業 <span>Assign homework</span></h2>
+    <button class="panel-x" id="hwClose" aria-label="關閉">✕</button>
+  </div>
+  <p class="row-note hw-how">勾選要指定的練習，再把下面的連結傳給學員。學員打開後只會看到這幾組。
+    <em>Tick the exercises, then send the link below. The student sees only those.</em></p>
+
+  <div class="hw-pick" id="hwPick"></div>
+
+  <div class="hw-out">
+    <p class="hw-sum" id="hwSum"></p>
+    <label for="hwTitle">作業名稱 <em>Title, optional</em></label>
+    <input id="hwTitle" type="text" maxlength="40" autocomplete="off" placeholder="例：第 3 週作業">
+    <input id="hwLink" type="text" readonly aria-label="作業連結" placeholder="連結會出現在這裡">
+    <div class="hw-btns">
+      <button class="panel-btn" id="hwCopy">複製連結 <em>Copy link</em></button>
+      <a class="panel-btn panel-btn-quiet" id="hwOpen" target="_blank" rel="noopener">預覽 <em>Preview</em></a>
+      <button class="panel-btn panel-btn-quiet" id="hwNone">全部取消 <em>Clear</em></button>
+    </div>
+  </div>
+</div>
 
 <!-- Site footer. Identical on every page. -->
 <footer class="site-foot">

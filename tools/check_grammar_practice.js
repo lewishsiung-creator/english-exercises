@@ -17,6 +17,9 @@
      - a rewrite whose answers do not begin with its `start`
      - a fix whose "correction" is the wrong sentence itself
      - two parts with the same id
+     - an id a homework link cannot carry: anything but a-z, 0-9 and "-"
+       (`_` and `.` are the link's own punctuation), or a point and a part
+       sharing one id
 */
 
 const fs = require('fs');
@@ -51,9 +54,15 @@ function tokens(str, where) {
   return s;
 }
 
+const linkable = (id) => /^[a-z0-9-]+$/.test(id);
+const pointIds = new Set(GP.points.map((p) => p.id));
+
 for (const p of GP.points) {
+  if (!linkable(p.id)) bad.push(`point id cannot go in a homework link: ${p.id}`);
   for (const part of p.parts) {
     if (ids.has(part.id)) bad.push(`part id used twice: ${part.id}`);
+    if (!linkable(part.id)) bad.push(`part id cannot go in a homework link: ${part.id}`);
+    if (pointIds.has(part.id)) bad.push(`a point and a part share the id: ${part.id}`);
     ids.add(part.id);
     part.blocks.forEach((b, bi) => {
       const at = `${p.id}/${part.id}/${b.t}#${bi + 1}`;

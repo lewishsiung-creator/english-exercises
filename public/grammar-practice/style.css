@@ -881,6 +881,131 @@ body.mode-teach .show-all { display: inline-block; }
   background: var(--ink); color: #fff; font: inherit; cursor: pointer;
 }
 .panel-btn-quiet { background: transparent; color: var(--ink); }
+.panel-btn em { margin-left: 5px; font-style: normal; font-size: .9em; opacity: .7; }
+
+/* ---------------- Lewis 指定作業: the sheet ----------------
+
+   Teacher devices only. It is the settings sheet made wider and cut in three:
+   a head, a list that scrolls, and a foot that does not — so the link and its
+   button are in reach however far down the list has been scrolled. */
+
+.bar-btn-hw { font-family: var(--font-zh); }
+.bar-btn[hidden] { display: none; }
+/* Two classes, because house.css comes later and gives every .bar-btn a
+   display of its own. */
+@media (max-width: 639px) { .bar .bar-btn-hw { display: none; } }
+
+.hw-panel {
+  display: flex; flex-direction: column;
+  width: min(30rem, calc(100vw - 28px));
+  max-height: calc(100vh - var(--bar-h) - 24px);
+  max-height: calc(100dvh - var(--bar-h) - 24px);
+  overflow: hidden;
+  padding: 18px 0 0;
+}
+.hw-panel .panel-head, .hw-how { flex: none; margin-inline: 20px; }
+.hw-how { margin-top: 0; margin-bottom: 12px; }
+
+.hw-pick {
+  flex: 1 1 auto; min-height: 7rem; overflow-y: auto;
+  padding: 0 20px 10px;
+  border-top: 1px solid var(--line);
+}
+.hw-group {
+  margin: 14px 0 0;
+  font-size: 11px; font-weight: 600; letter-spacing: .1em; color: var(--gold);
+}
+.hw-group em { margin-left: 4px; font-style: normal; font-weight: 500; text-transform: uppercase; }
+.hw-pt { padding: 6px 0 8px; border-bottom: 1px solid var(--line); }
+.hw-pt:last-child { border-bottom: 0; }
+
+/* `.panel label` is a field's caption — a block, in bold. A row here is a
+   whole line to tick, so it is undone and laid out again. */
+.panel .hw-row {
+  display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; gap: 10px;
+  align-items: center;
+  margin: 0; padding: 7px 6px 7px 22px; border-radius: 8px;
+  font-weight: 400; cursor: pointer;
+}
+.panel .hw-row:hover { background: color-mix(in srgb, var(--ink) 4%, transparent); }
+.panel .hw-row-pt { padding-left: 6px; font-family: var(--font-zh); font-weight: 600; }
+.hw-row input { width: 18px; height: 18px; margin: 0; accent-color: var(--gold); cursor: pointer; }
+.hw-row .n { margin-right: 4px; font-family: var(--font-ui); font-size: 11px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+.hw-row .t-zh { display: block; font-family: var(--font-zh); line-height: 1.4; }
+.hw-row .t-en { display: block; font-size: 11.5px; line-height: 1.4; color: var(--ink-faint); }
+.hw-c { font-size: 11.5px; font-weight: 400; color: var(--ink-faint); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+.hw-out {
+  flex: none; padding: 12px 20px 18px;
+  border-top: 1px solid var(--line);
+  background: color-mix(in srgb, var(--gold-soft) 60%, transparent);
+}
+.hw-sum { margin: 0 0 10px; font-family: var(--font-zh); color: var(--ink-soft); }
+.hw-sum b { color: var(--gold); }
+.hw-out label { font-size: 12.5px; }
+.hw-out input {
+  width: 100%; padding: 8px 10px; margin-bottom: 8px;
+  border: 1px solid var(--line); border-radius: 8px;
+  background: var(--card); color: var(--ink); font: inherit;
+}
+#hwLink { font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); }
+.hw-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.hw-btns .panel-btn { margin: 0; text-align: center; text-decoration: none; }
+#hwCopy { grid-column: 1 / -1; }
+.panel-btn:disabled, .panel-btn.is-off { opacity: .4; pointer-events: none; }
+
+@media (pointer: coarse) {
+  .hw-out input { font-size: 16px; }
+  #hwLink { font-size: 14px; }
+  .panel .hw-row { padding-block: 10px; }
+}
+
+/* ---------------- Lewis 指定作業: what the student sees ----------------
+
+   The same page with the rest put away. Nothing is removed from the document
+   — an exercise that was not set is simply not shown — so the questions keep
+   the ids they are remembered by. */
+
+body.hw .point:not(.hw-on),
+body.hw .part:not(.hw-on),
+body.hw .activity:not(.hw-on) { display: none; }
+body.hw .point.rules-open .part.no-ex { display: block; }
+.rules-btn { margin-top: 14px; }
+
+.hw-list { list-style: none; margin: 0 0 14px; padding: 0; border-top: 1px solid var(--rule); }
+.hw-list a {
+  display: grid; grid-template-columns: 1.5rem minmax(0, 1fr) auto; gap: 12px;
+  align-items: center;
+  padding: 12px 4px; border-bottom: 1px solid var(--line);
+  color: inherit; text-decoration: none;
+}
+.hw-list a:hover { background: color-mix(in srgb, var(--ink) 3%, transparent); }
+.hw-tick {
+  width: 1.5rem; height: 1.5rem; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1.5px solid var(--rule);
+  font-family: var(--font-ui); font-size: .8rem; font-weight: 700; color: #fff;
+}
+.hw-list li.done .hw-tick { background: var(--good); border-color: var(--good); }
+.hw-list li.done .hw-tick::before { content: "✓"; }
+.hw-name .t-zh { display: block; font-family: var(--font-zh); font-weight: 600; line-height: 1.45; }
+.hw-name .t-en { display: block; font-family: var(--font-zh); font-size: .82rem; line-height: 1.5; color: var(--ink-faint); }
+.hw-count {
+  font-family: var(--font-ui); font-size: .84rem; color: var(--ink-faint);
+  white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+.hw-list li.done .hw-count { color: var(--good); }
+.hw-total { margin: 0 0 6px; font-family: var(--font-zh); font-size: .95rem; color: var(--ink-soft); }
+.hw-total b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.hw-total.done { color: var(--good); font-weight: 600; }
+.hw-total em, .hw-all em, .toc-all em {
+  margin-left: 5px; font-style: normal; font-family: var(--font-ui); font-size: .82em; font-weight: 400;
+  color: var(--ink-faint);
+}
+.hw-all { margin: 0; font-family: var(--font-zh); font-size: .86rem; }
+.hw-all a, .toc-all a { color: var(--gold); }
+.toc-all { margin: 4px 0 0; padding-top: 12px; border-top: 1px solid var(--line); font-size: 13px; }
+.toc .toc-all a { display: inline; padding: 0; border: 0; }
 
 .site-foot {
   max-width: 46rem; margin: 0 auto; padding: 26px 20px 40px;

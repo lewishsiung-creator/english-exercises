@@ -2722,7 +2722,7 @@ it is public.
 | | 05 總複習 | 改錯 · 短文填空 · 選擇 |
 | 完成式 The perfect | 06 現在完成式，還是過去簡單式？ | 選擇 · 填空 · 改錯 · 重組與改寫 |
 
-274 questions in 24 sets.
+274 questions in 23 sets.
 
 ### Where the exercises come from
 
@@ -2804,8 +2804,49 @@ A wrong sentence gets no 🔊 and no 中譯, as everywhere in the family. Before
 every `fix` set carries one sentence that is already correct, so "find the
 mistake" cannot be done as "change the verb" without reading.
 
-### Two things that were bugs once
+### Lewis 指定作業 — a link to a chosen few exercises
 
+Lewis asked to be able to pick several exercises at once and send a student a
+link to them. On a teacher device the bar has a **作業** button (on a phone,
+where the bar has no room, the same sheet opens from 設定). The sheet lists
+every exercise with a box beside it and a box on each point that takes the
+whole point; under the list is the link, rewritten on every tick, with 複製連結,
+預覽 and an optional 作業名稱.
+
+```
+/grammar-practice/?hw=past-simple_pg-two_pp-fill.2&t=第 3 週作業
+```
+
+`hw` is a list joined by `_`. Each entry is a **point id** (all its
+exercises), a **part id** (all its exercises) or **`part.N`** (the Nth set in
+that part). `t` is the title. Ids nothing answers to are skipped; if none
+answers, the page opens whole.
+
+Opened with the link, it is the same page with the rest put away
+(`body.hw`, and `hw-on` on what was set — nothing is removed from the
+document, so questions keep the ids they are remembered by). The cover
+becomes the list of what was set with `3 / 12` beside each and a tick when one
+is finished; the 目錄 becomes that list; each point gets a 先看重點整理 button
+that opens its recap; 看全部練習 leaves for the whole page.
+
+- **Nothing is sent to Lewis.** The page has no server. A student's progress
+  is kept where 自學 keeps it, on their own device, so the same link opens
+  where they stopped — and the ticks on the cover are what they can show.
+- **A part's id, and the order of the sets inside a part, are now in links
+  that have been sent.** Rename `pg-two` and last month's homework quietly
+  loses an exercise. Add new sets at the end of a part, not the front. The
+  checker refuses an id containing anything but `a-z 0-9 -`, because `_` and
+  `.` are the link's own punctuation, and refuses a point and a part sharing
+  an id.
+- The ticks and title are kept on the teacher's device (`gp.hw`). Opened on a
+  homework link, the sheet starts from that link instead.
+
+### Three things that were bugs once
+
+- The 作業 button would not hide on a phone: `house.css` is linked last and
+  gives every `.bar-btn` a `display`, so the rule that hides it needs two
+  classes (`.bar .bar-btn-hw`). Left visible, it pushed the bar 11px wider
+  than the screen.
 - A finished set looked up its "look again" line with the same class name the
   questions use for "took more than one try", found a question instead, and
   hid it. The line is `.again-line`; the question state is `.again`.

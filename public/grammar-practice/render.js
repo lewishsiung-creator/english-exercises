@@ -75,8 +75,7 @@ claimTeacher();
 
 addEventListener('hashchange', () => {
   if (claimTeacher()) {
-    $('#modeseg').hidden = false;
-    $('#teacherflag').hidden = false;
+    showTeacherTools(true);
     setMode('teach', true);
   }
 });
@@ -612,7 +611,6 @@ function buildNav() {
 }
 
 document.title = `${GP.titleZh} — ${GP.title}`;
-$('#nav').appendChild(el(buildNav()));
 
 const doc = $('#doc');
 doc.appendChild(el(buildCover()));
@@ -621,12 +619,172 @@ doc.appendChild(el(buildSource()));
 
 /* Every question gets a stable id from where it sits, so a finished question
    kept on a learner's device still finds itself after the page is edited
-   around it. */
-$$('.part').forEach((part) => {
-  $$('.activity', part).forEach((act, a) => {
-    $$('.q', act).forEach((q, i) => { q.dataset.qid = `${part.id}-${a}-${i}`; });
+   around it.
+
+   Every exercise — one set of questions with its own 完成 x / y — gets a name
+   the same way: `ps-questions.1` is the first set in the part `ps-questions`.
+   That name is what a homework link carries, so a part's id, and the order of
+   the sets inside a part, are now things a link out in the world depends on. */
+const EX = [];
+GP.points.forEach((p, pi) => {
+  const point = document.getElementById(p.id);
+  $$('.part', point).forEach((part) => {
+    const acts = $$('.activity', part);
+    part.classList.toggle('no-ex', !acts.length);
+    acts.forEach((act, a) => {
+      $$('.q', act).forEach((q, i) => { q.dataset.qid = `${part.id}-${a}-${i}`; });
+      act.id = `ex-${part.id}-${a + 1}`;
+      const sub = (cls) => { const s = $(`.label ${cls}`, act); return s ? s.textContent : ''; };
+      EX.push({
+        id: `${part.id}.${a + 1}`, act, part, point, p, pn: pi + 1,
+        zh: $('.part-head .p-zh', part).textContent,
+        en: $('.part-head .p-en', part).textContent,
+        subZh: sub('.l-zh'), subEn: sub('.l-en'),
+        n: $$('.q', act).length,
+      });
+    });
   });
 });
+
+// ------------------------------------------------------------- the homework
+
+/* LEWIS 指定作業 — a link that opens the page on a chosen few exercises.
+
+     ?hw=past-simple_pg-two_pp-fill.2&t=第 3 週作業
+
+   `hw` is a list joined by `_`. Each entry is a point's id (every exercise in
+   it), a part's id (every exercise in it) or `part.N` (one exercise). `t` is
+   an optional title. The link is made on a teacher device, in the 作業 sheet;
+   a student only ever opens one.
+
+   Opened with such a link the page is the same page with the rest put away:
+   the cover becomes the list of what was set, with a count beside each, and
+   the contents list becomes that list too. The rules of a point are one tap
+   away rather than gone — homework is where they get looked up.
+
+   Nothing is sent anywhere. What a student has finished is kept where 自學
+   always keeps it, on their own device, so the same link opens where they
+   left off, and the ticks on the cover are what they can show their teacher. */
+
+function hwResolve(tokens) {
+  const want = new Set();
+  tokens.forEach((t) => EX.forEach((x) => {
+    if (t === x.id || t === x.part.id || t === x.p.id) want.add(x);
+  }));
+  return EX.filter((x) => want.has(x));
+}
+
+function groupBy(list, key) {
+  const m = new Map();
+  list.forEach((x) => { if (!m.has(x[key])) m.set(x[key], []); m.get(x[key]).push(x); });
+  return m;
+}
+
+/* The shortest way to write a selection: a whole point is one word, a whole
+   part is one word, and only a part taken in pieces is spelled out. */
+function hwTokens(picked) {
+  const out = [];
+  groupBy(EX, 'p').forEach((inPoint, p) => {
+    if (inPoint.every((x) => picked.has(x.id))) { out.push(p.id); return; }
+    groupBy(inPoint, 'part').forEach((inPart, part) => {
+      if (inPart.every((x) => picked.has(x.id))) out.push(part.id);
+      else inPart.forEach((x) => { if (picked.has(x.id)) out.push(x.id); });
+    });
+  });
+  return out;
+}
+
+function hwUrl(picked, title) {
+  const t = String(title || '').trim();
+  return `${location.origin}${location.pathname}?hw=${hwTokens(picked).join('_')}${
+    t ? `&t=${encodeURIComponent(t)}` : ''}`;
+}
+
+const HW = (() => {
+  const q = new URLSearchParams(location.search);
+  const list = hwResolve((q.get('hw') || '').split('_').filter(Boolean));
+  return list.length ? { list, title: (q.get('t') || '').trim().slice(0, 40) } : null;
+})();
+
+const exName = (x) => `
+  <span class="t-zh">${text(x.zh)}</span>
+  <span class="t-en">${text([x.subZh, x.subEn].filter(Boolean).join(' · ') || x.en)}</span>`;
+
+function buildHwCover() {
+  const total = HW.list.reduce((n, x) => n + x.n, 0);
+  return `
+    <header class="cover hw-cover" id="top">
+      <p class="eyebrow">Lewis 指定作業 · Homework from Lewis</p>
+      <h1><span class="h-zh">${text(HW.title || '這次的作業')}</span><span class="h-en">${text(GP.title)}</span></h1>
+      <div class="lead cover-intro">
+        <p class="lead-zh">Lewis 幫你挑了 ${HW.list.length} 組練習，一共 ${total} 題。不用一次做完：做過的題目會留在這台裝置上，下次用同一個連結打開，就從上次停下來的地方繼續。</p>
+        <p class="lead-en">Lewis has picked ${HW.list.length} ${HW.list.length === 1 ? 'exercise' : 'exercises'} for you, ${total} questions in all. No need to finish in one sitting: what you have done stays on this device, and the same link opens where you left off.</p>
+      </div>
+      <ol class="hw-list">
+        ${HW.list.map((x) => `
+          <li data-ex="${text(x.id)}"><a href="#${text(x.act.id)}">
+            <span class="hw-tick" aria-hidden="true"></span>
+            <span class="hw-name">${exName(x)}</span>
+            <span class="hw-count"></span></a></li>`).join('')}
+      </ol>
+      <p class="hw-total"></p>
+      <p class="hw-all"><a href="./">看全部練習 <em>See every exercise</em></a></p>
+    </header>`;
+}
+
+function buildHwNav() {
+  return `
+    <nav class="toc" aria-label="作業目錄">
+      <p class="toc-head">指定作業 <em>Homework</em></p>
+      ${[...groupBy(HW.list, 'p')].map(([p, list]) => `
+        <p class="toc-point"><span class="n">${String(list[0].pn).padStart(2, '0')}</span>
+          <span aria-hidden="true">${text(p.icon)}</span> ${text(p.zh)}</p>
+        <ul>
+          ${list.map((x) => `
+            <li><a href="#${text(x.act.id)}" data-target="${text(x.act.id)}">${exName(x)}</a></li>`).join('')}
+        </ul>`).join('')}
+      <p class="toc-all"><a href="./">看全部練習 <em>See every exercise</em></a></p>
+    </nav>`;
+}
+
+if (HW) {
+  document.body.classList.add('hw');
+  document.title = `${HW.title || 'Lewis 指定作業'} — ${GP.titleZh}`;
+  $('.bar-title').innerHTML = '指定作業 <span>Homework</span>';
+  HW.list.forEach((x) => [x.act, x.part, x.point].forEach((n) => n.classList.add('hw-on')));
+  $('.cover').replaceWith(el(buildHwCover()));
+
+  /* The rules, one tap away. Only a point that has a part with no exercise
+     in it — its 重點整理 — gets the button. */
+  $$('.point.hw-on').forEach((point) => {
+    if (!$('.part.no-ex', point)) return;
+    $('.point-head', point).appendChild(el(
+      `<button class="q-btn rules-btn" type="button" aria-expanded="false">先看重點整理 <em>Review the rules</em></button>`));
+  });
+}
+
+$('#nav').appendChild(el(HW ? buildHwNav() : buildNav()));
+
+/* The cover of a homework link: a count beside each exercise, a tick when it
+   is finished, and one line for the lot. Counted off the page rather than the
+   store, so it is right in 教學 too, where nothing is stored. */
+function paintHw() {
+  if (!HW) return;
+  let done = 0, total = 0;
+  HW.list.forEach((x) => {
+    const qs = $$('.q', x.act);
+    const d = qs.filter((q) => q.classList.contains('answered')).length;
+    done += d; total += qs.length;
+    const li = $(`.hw-list li[data-ex="${x.id}"]`);
+    $('.hw-count', li).textContent = `${d} / ${qs.length}`;
+    li.classList.toggle('done', d === qs.length);
+  });
+  const line = $('.hw-total');
+  line.classList.toggle('done', done === total);
+  line.innerHTML = done === total
+    ? '這次的作業全部完成了。 <em>All done.</em>'
+    : `完成 <b>${done}</b> / ${total} 題`;
+}
 
 /* 檢查 is for typed blanks. A set made only of choices has nothing for it to
    check, so there it is not shown. */
@@ -880,6 +1038,7 @@ function paintInfo() {
       ? `已完成 ${n} / ${total} 題，只存在這台裝置。`
       : '還沒有作答。完成的題目只會存在這台裝置。';
   }
+  paintHw();
 }
 
 // ------------------------------------------------------------------- modes
@@ -912,7 +1071,15 @@ function setMode(m, remember) {
   paintInfo();
 }
 
-if (TEACHER) { $('#modeseg').hidden = false; $('#teacherflag').hidden = false; }
+/* Everything only a teacher's device shows: the mode switch, the 作業 button
+   and the row in 設定 that explains them. */
+function showTeacherTools(on) {
+  $('#modeseg').hidden = !on;
+  $('#teacherflag').hidden = !on;
+  $('#hwToggle').hidden = !on;
+}
+
+showTeacherTools(TEACHER);
 setMode(S.mode, false);
 
 const fitAll = () => $$('.line-in').forEach(fit);
@@ -1000,6 +1167,14 @@ doc.addEventListener('click', (e) => {
     return;
   }
 
+  const rules = t.closest('.rules-btn');
+  if (rules) {
+    const open = rules.closest('.point').classList.toggle('rules-open');
+    rules.setAttribute('aria-expanded', String(open));
+    rules.innerHTML = open ? '收起重點整理 <em>Hide the rules</em>' : '先看重點整理 <em>Review the rules</em>';
+    return;
+  }
+
   const back = t.closest('.again-n');
   if (back) {
     const q = $(`.q[data-qid="${back.dataset.qid}"]`);
@@ -1054,13 +1229,13 @@ $('#zhToggle').addEventListener('click', () =>
   setAllZh(!document.body.classList.contains('zh-all')));
 
 $('#clearmarks').addEventListener('click', () => { clearScreen(true); paintInfo(); });
-$('#fresh').addEventListener('click', () => clearScreen(false));
+$('#fresh').addEventListener('click', () => { clearScreen(false); paintInfo(); });
 
 $('#unteach').addEventListener('click', () => {
   TEACHER = false;
   store.set('teacher', false);
-  $('#modeseg').hidden = true;
-  $('#teacherflag').hidden = true;
+  showTeacherTools(false);
+  setHwPanel(false);
   setMode('self', true);
 });
 
@@ -1109,10 +1284,117 @@ const panel = $('#panel');
 function setPanel(on) {
   panel.hidden = !on;
   $('#panelToggle').setAttribute('aria-expanded', String(on));
+  if (on) setHwPanel(false);
 }
 $('#panelToggle').addEventListener('click', () => setPanel(panel.hidden));
 $('#panelClose').addEventListener('click', () => setPanel(false));
 $('#closepanel').addEventListener('click', () => setPanel(false));
+
+// ------------------------------------------------- the 作業 sheet (teacher)
+
+/* Where a homework link is made. A list of every exercise on the page with a
+   box beside it, a box on each point that takes the whole point, and under
+   the list the link itself, rewritten on every tick so that what is copied is
+   always what is ticked.
+
+   The ticks and the title are kept on this device (`gp.hw`) so the sheet
+   opens the way it was left. Opened on a homework link, it starts from that
+   link instead — which is how last week's homework becomes this week's. */
+
+const hwPanel = $('#hwpanel');
+const kept = store.get('hw', {});
+const PICK = new Set(HW ? HW.list.map((x) => x.id)
+  : EX.filter((x) => (kept.ids || []).includes(x.id)).map((x) => x.id));
+$('#hwTitle').value = HW ? HW.title : (kept.title || '');
+
+function buildPick() {
+  const box = $('#hwPick');
+  if (box.firstChild) return;
+  let group = '';
+  box.innerHTML = [...groupBy(EX, 'p')].map(([p, list]) => {
+    const head = p.group && p.group.en !== group
+      ? `<p class="hw-group">${text(p.group.zh)} <em>${text(p.group.en)}</em></p>` : '';
+    group = p.group ? p.group.en : '';
+    return `${head}
+      <div class="hw-pt">
+        <label class="hw-row hw-row-pt"><input type="checkbox" data-point="${text(p.id)}">
+          <span class="hw-t"><span class="n">${String(list[0].pn).padStart(2, '0')}</span> ${text(p.zh)}</span>
+          <span class="hw-c">${list.length} 組 · ${list.reduce((n, x) => n + x.n, 0)} 題</span></label>
+        ${list.map((x) => `
+          <label class="hw-row"><input type="checkbox" data-ex="${text(x.id)}">
+            <span class="hw-t">${exName(x)}</span>
+            <span class="hw-c">${x.n} 題</span></label>`).join('')}
+      </div>`;
+  }).join('');
+}
+
+function paintPick() {
+  $$('#hwPick input[data-ex]').forEach((c) => { c.checked = PICK.has(c.dataset.ex); });
+  $$('#hwPick input[data-point]').forEach((c) => {
+    const list = EX.filter((x) => x.p.id === c.dataset.point);
+    const n = list.filter((x) => PICK.has(x.id)).length;
+    c.checked = n === list.length;
+    c.indeterminate = n > 0 && n < list.length;
+  });
+
+  const list = EX.filter((x) => PICK.has(x.id));
+  const title = $('#hwTitle').value;
+  const url = list.length ? hwUrl(PICK, title) : '';
+  $('#hwSum').innerHTML = list.length
+    ? `已選 <b>${list.length}</b> 組練習 · ${list.reduce((n, x) => n + x.n, 0)} 題`
+    : '還沒有選。勾選上面的練習，連結就會出現在這裡。';
+  $('#hwLink').value = url;
+  $('#hwCopy').disabled = !url;
+  $('#hwNone').disabled = !url;
+  const open = $('#hwOpen');
+  open.classList.toggle('is-off', !url);
+  if (url) open.href = url; else open.removeAttribute('href');
+  store.set('hw', { ids: [...PICK], title });
+}
+
+function setHwPanel(on) {
+  hwPanel.hidden = !on;
+  $('#hwToggle').setAttribute('aria-expanded', String(on));
+  if (!on) return;
+  setPanel(false);
+  buildPick();
+  paintPick();
+}
+
+$('#hwToggle').addEventListener('click', () => setHwPanel(hwPanel.hidden));
+$('#hwFromPanel').addEventListener('click', () => setHwPanel(true));
+$('#hwClose').addEventListener('click', () => setHwPanel(false));
+
+$('#hwPick').addEventListener('change', (e) => {
+  const c = e.target;
+  if (c.dataset.ex) { if (c.checked) PICK.add(c.dataset.ex); else PICK.delete(c.dataset.ex); }
+  if (c.dataset.point) {
+    EX.filter((x) => x.p.id === c.dataset.point)
+      .forEach((x) => { if (c.checked) PICK.add(x.id); else PICK.delete(x.id); });
+  }
+  paintPick();
+});
+
+$('#hwTitle').addEventListener('input', paintPick);
+$('#hwLink').addEventListener('focus', (e) => e.target.select());
+$('#hwNone').addEventListener('click', () => { PICK.clear(); paintPick(); });
+
+/* The clipboard API needs a secure page and a willing browser; the old way —
+   select the box and copy — covers the in-app browsers that have neither. If
+   both fail the link is left selected, ready for a long press. */
+$('#hwCopy').addEventListener('click', async () => {
+  const btn = $('#hwCopy');
+  const field = $('#hwLink');
+  let ok = false;
+  try { await navigator.clipboard.writeText(field.value); ok = true; } catch (e) { /* fall through */ }
+  if (!ok) {
+    field.focus(); field.select();
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+  }
+  btn.innerHTML = ok ? '已複製 ✓ <em>Copied</em>' : '請長按上面的連結來複製';
+  clearTimeout(btn.t);
+  btn.t = setTimeout(() => { btn.innerHTML = '複製連結 <em>Copy link</em>'; }, 2200);
+});
 
 const navToggle = $('#navToggle');
 const scrim = $('.nav-scrim');
@@ -1129,21 +1411,24 @@ $('#nav').addEventListener('click', (e) => {
 });
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') { setPanel(false); setNav(false); }
+  if (e.key === 'Escape') { setPanel(false); setHwPanel(false); setNav(false); }
 });
 
 /* Which part is in view, for the contents list. The pending frame id is held
    rather than a boolean: a frame requested just before the tab is hidden never
    runs, and a stuck flag would kill the highlighting for the rest of the
    visit. Same fix as /grammar-notes/ and /jill/. */
-const links = new Map($$('.toc a').map((a) => [a.dataset.target, a]));
+const links = new Map($$('.toc a[data-target]').map((a) => [a.dataset.target, a]));
 let frame = 0;
 
+/* On a homework link the contents list is the exercises that were set, so
+   those are what is watched — and the parts that were put away, which sit at
+   0,0 and would always look "passed", are never asked. */
 function spy() {
   frame = 0;
   const line = 120;
   let here = '';
-  $$('.part').forEach((s) => {
+  $$(HW ? '.activity.hw-on' : '.part').forEach((s) => {
     if (s.getBoundingClientRect().top <= line) here = s.id;
   });
   links.forEach((a, id) => a.classList.toggle('here', id === here));
