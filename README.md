@@ -916,7 +916,7 @@ with the latest the way a front page leads with its top story.
   `--navy` holds the teal and `--gold` the red.
 - **`/wealth-habits/` is a redirect** to `/business-journal/wealth-habits/`,
   carrying its hash, because that URL had already gone out.
-- **Two PDFs, on a band under the headline.** A reading becomes a handout by
+- **Two PDFs, from the teacher panel.** A reading becomes a handout by
   printing it, and a teacher needs both halves of that: a *student copy* with
   every blank empty and the answers, reasons and model answers held back, and
   an *answer key* with the blanks filled, the right option ticked and the
@@ -930,19 +930,6 @@ with the latest the way a front page leads with its top story.
   and prints the answer key. The gap's own answer rides in `data-a` on its
   blank and the right option carries `data-right`, so the key needs no
   JavaScript to assemble itself.
-
-  The two buttons sit on a hairline band directly under the article's headline
-  — where a press page keeps its byline and its print button — rather than in
-  the teacher panel, where they were built. Paper is wanted on the way into a
-  lesson, not three taps down a drawer. They are emitted by `pdfRow()` in
-  `render.js` with the rest of the cover, not written into each reading's
-  `index.html`, and the band is bilingual on its face like the contents list
-  and the *Next* link, because it is interface rather than article. The band
-  is in the print stylesheet's hide list, so it never prints itself. Clicking
-  twice before the dialog opens is a no-op the second time: the `printing`
-  flag in `render.js` holds the door, since the second call would otherwise
-  capture the already-swapped title as the one to put back and leave the
-  reading named after a PDF for the rest of the session.
 - **Every reading ends its sections with the way on.** The cover closes on
   *Begin → 1 …*, each step on *Next → n …*, and the last step on *End of the
   lesson*, with the neighbouring reading in the series (the next one, or else
