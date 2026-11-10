@@ -18,6 +18,7 @@
       <button id="m-teach" data-mode="teach">教學</button>
     </div>
     <button id="stagebtn" class="link" aria-label="投影模式">投影</button>
+    <button id="pdfbtn" class="link" aria-label="下載 PDF">PDF</button>
     <button id="setbtn" class="link" aria-label="設定">設定</button>
   </div>
 </nav>
@@ -105,5 +106,16 @@
 </script>
 <script src="words.js"></script>
 <script src="../lists.js"></script>
+<script src="../../learn/wordpdf.js"></script>
+<script>
+  /* 下載 PDF: see learn/wordpdf.js */
+  WordPDF({
+    title: 'A2 Key', source: ' Cambridge English A2 Key 官方字表（2025 年 8 月版，© UCLES）', logo: '../../logo.png', button: '#pdfbtn',
+    topics: TOPICS.map(([en, zh], i) => ({ k: String(i), zh, has: e => e.t.includes(i) })),
+    rangeLabel: '範圍',
+    ranges: [{ k: 'all', zh: '全部', has: () => true }].concat(ENTRIES.some(e => e.nw) ? [{ k: 'new', zh: '2025 新增', has: e => e.nw }] : []),
+    tagOf: e => e.nw ? '2025 新增' : '', colloc: false
+  });
+</script>
 </body>
 </html>

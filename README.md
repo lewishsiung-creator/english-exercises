@@ -3274,6 +3274,27 @@ level with no data, but no level shows them now.
   short by the render that runs with it. 關於這份字表 moved to footnotes at
   the bottom of the page.
 
+### 下載 PDF on the word lists (2026-11-10)
+
+國中單字, 高中單字, A2 Key and B1 Preliminary each have a 「PDF」 button beside
+設定. It opens one dialog, `public/learn/wordpdf.js`, shared by all four: pick
+依主題 or 依字母, one topic or letter (or every one, a section each, each on a
+new page), a range (a level, a set, 2025 新增), and what to show — 中文, 中文留空
+(a line to write on, which makes the sheet a test), 例句, 常用搭配. 產生 PDF
+builds a print-only sheet from the page's own `ENTRIES` and opens the browser's
+print window, where 「儲存為 PDF」 saves it (on an iPhone: the print sheet's
+share icon → 儲存到檔案). The document title becomes the file name, e.g.
+「高中單字－人物與家庭－第二級」.
+
+- **Built on the page, not stored as files** (Lewis's choice): any combination
+  works, nothing has to be regenerated when the lists change, and the PDF's
+  text is real text. The cost is the print window instead of a plain download.
+- Each page passes its own config in a `WordPDF({...})` call after its script:
+  topics, ranges, the tag after a word, whether it has collocations. A field
+  the four lists share (`w`, `lab`, `se`, `x`, `co`, `vari`) is read directly.
+- A4, two columns, black on white whatever the page's theme. Checked by
+  printing with headless Chrome (all 26 topics of 第二級, 中文留空: 53 pages).
+
 ### `/reading/junior-vocab/` — 國中單字, 教育部's 2,000 words
 
 The 高中單字 page's sibling, asked for 2026-11-08: 教育部 108 課綱《英語文參考字

@@ -43,6 +43,7 @@
       <button id="m-teach" data-mode="teach">教學</button>
     </div>
     <button id="stagebtn" class="link" aria-label="投影模式">投影</button>
+    <button id="pdfbtn" class="link" aria-label="下載 PDF">PDF</button>
     <button id="setbtn" class="link" aria-label="設定">設定</button>
   </div>
 </nav>
@@ -164,5 +165,16 @@
 </script>
 <script src="words.js"></script>
 <script src="vocab.js"></script>
+<script src="../../learn/wordpdf.js"></script>
+<script>
+  /* 下載 PDF: see learn/wordpdf.js */
+  WordPDF({
+    title: '高中單字', source: '大考中心《高中英文參考詞彙表》（111 學年度起適用）', logo: '../../logo.png', button: '#pdfbtn',
+    topics: TOPIC_LIST.map(([k, zh]) => ({ k, zh, has: e => e.tp.includes(k) })),
+    rangeLabel: '級別',
+    ranges: [{ k: 'all', zh: '第一到第六級', has: () => true }].concat([1, 2, 3, 4, 5, 6].map(n => ({ k: String(n), zh: LEVEL_ZH[n], has: e => e.lv === n }))),
+    tagOf: e => LEVEL_ZH[e.lv], colloc: true
+  });
+</script>
 </body>
 </html>
