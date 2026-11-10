@@ -7,7 +7,7 @@
 (function () {
   if (!('serviceWorker' in navigator) || !document.currentScript) return;
   const root = new URL('../', document.currentScript.src).href;           // the site root, on either host
-  const scope = ['learn/', 'reading/', 'exam-writing/'].map((s) => root + s).find((s) => location.href.startsWith(s));
+  const scope = ['learn/', 'reading/'].map((s) => root + s).find((s) => location.href.startsWith(s));
   if (!scope) return;
   window.addEventListener('load', async () => {
     try {

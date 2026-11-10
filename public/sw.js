@@ -2,9 +2,9 @@
    no connection, once a page has been opened online.
 
    It lives at the site root only so it can be registered for the family's
-   three folders -- learn/, reading/ and exam-writing/ -- each as its own
+   two folders -- learn/ and reading/ (學測寫作 is learn/writing/) -- each as its own
    scope (learn/app.js does that). It never controls any other page on the
-   site: a scope is a folder, and no student's notebook is under these three.
+   site: a scope is a folder, and no student's notebook is under these two.
 
    Network first, always: online, every request goes to the server exactly
    as before, so a new deploy shows at once and nothing can go stale. A copy

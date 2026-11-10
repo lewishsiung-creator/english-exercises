@@ -17,7 +17,7 @@ sentences at `/sentence-upgrades/` and a second, longer set from the same
 student at `/sentence-upgrades/2026-10-17/`, passages to read aloud and record
 at `/recording-practice/`, a high-school writing worksheet
 at `/robot-helper/`, a survey of seven years of the 學測 essay at
-`/exam-writing/`, an IELTS Speaking Part 3 practice at `/ielts-part3/`, a
+`/learn/writing/` (moved from `/exam-writing/`, which redirects), an IELTS Speaking Part 3 practice at `/ielts-part3/`, a
 growing IELTS Speaking course covering all three parts at `/ielts-speaking/`,
 a semiconductor plant's own vocabulary sheet rebuilt for one-to-one adult
 lessons at `/fab-english/`,
@@ -3295,6 +3295,28 @@ share icon → 儲存到檔案). The document title becomes the file name, e.g.
 - A4, two columns, black on white whatever the page's theme. Checked by
   printing with headless Chrome (all 26 topics of 第二級, 中文留空: 53 pages).
 
+### 學測英文寫作 moves to `/learn/writing/` (2026-11-10)
+
+Lewis saw the page as "the one made before" and the family's 學測寫作 as two
+things; offered the choices (match the look, move the URL, rewrite the
+content), he chose to move the URL under `/learn/`. Content and look are
+unchanged: `git mv public/exam-writing public/learn/writing`, then one more
+`../` on every shared file (type, editorial, house, logo) and one fewer on the
+family's own (`fam.css`, `teacher.js`, `app.js`, the manifest).
+
+- **`/exam-writing/` is now a redirect** in the `/a2-key/` pattern
+  (`location.replace` + `noindex` + canonical), carrying the hash, so a task
+  link like `#e114` handed out earlier still lands on that essay.
+- **Offline needs no scope of its own now**: `learn/app.js` registers only
+  `learn/` and `reading/`, and `learn/` covers `learn/writing/`. A phone that
+  registered the old `exam-writing/` scope keeps it harmlessly — network first,
+  it just fetches the redirect.
+- Links changed in the global nav on every family page, the /learn/ tile,
+  `learn.js`'s task card (`writing/#e114`), and drill.js's copied task link.
+  `ew.done` and the other progress keys are per site, not per folder, so no
+  one's progress was lost.
+- Older sections below still say `/exam-writing/`; they describe it as it was.
+
 ### `/reading/junior-vocab/` — 國中單字, 教育部's 2,000 words
 
 The 高中單字 page's sibling, asked for 2026-11-08: 教育部 108 課綱《英語文參考字
@@ -4773,8 +4795,9 @@ public/sentence-upgrades/ the 2026/07/25 homework review
 public/sentence-upgrades/2026-10-17/  the 2026/10/17 set, with assessment and a recording passage
 public/recording-practice/        passages to read aloud and record
 public/robot-helper/      the 113 學年度 writing worksheet
-public/exam-writing/      the 109–115 學測 essay survey
-public/learn/             英文學習: the top page over the three below, and only them
+public/exam-writing/      a redirect to learn/writing/ (moved 2026-11-10)
+public/learn/             英文學習: the top page over the three below and writing/, and only them
+public/learn/writing/     學測英文寫作: the 109–115 學測 essay survey
 public/reading/           three high school texts, with his word tables
 public/reading/vocab/     高中單字: 大考中心's list, Levels 1–2 so far
 public/reading/junior-vocab/  國中單字: 教育部's 2,000 words
@@ -5081,10 +5104,10 @@ the page a worksheet for a different year's task with no change to the
 renderer.
 
 **學測英文寫作.** Same shape as Robot Helper — a `parts` array in
-[`public/exam-writing/content.js`](public/exam-writing/content.js), each part
+[`public/learn/writing/content.js`](public/learn/writing/content.js), each part
 naming its `kind` (`years`, `trends`, `types`, `essays`, `patterns`, `frames`,
 `toolkit`, `method`), one builder each in
-[`render.js`](public/exam-writing/render.js), and a throw on an unknown kind.
+[`render.js`](public/learn/writing/render.js), and a throw on an unknown kind.
 The seven annotated essays sit in a separate `ESSAYS` const at the top of the
 file so the year data and the page furniture stay apart.
 
@@ -5579,7 +5602,7 @@ Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/sentence-upgrades/> and
 <http://localhost:8000/sentence-upgrades/2026-10-17/> for the two homework reviews,
 <http://localhost:8000/robot-helper/> for the writing worksheet,
-<http://localhost:8000/exam-writing/> for the 學測 essay survey,
+<http://localhost:8000/learn/writing/> for the 學測 essay survey,
 <http://localhost:8000/ielts-part3/> for the IELTS Part 3 practice,
 <http://localhost:8000/junior-high/> for the 國中 words and grammar,
 <http://localhost:8000/body-words/> for 身體的那些字, or

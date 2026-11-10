@@ -1,12 +1,12 @@
 /* The 英文學習 global nav: one thin dark strip across the top of every page in
    this family -- /learn/, /learn/check/, /reading/, /reading/vocab/,
-   /reading/junior-vocab/ and /exam-writing/ -- the way apple.com runs one global nav above each
+   /reading/junior-vocab/ and /learn/writing/ -- the way apple.com runs one global nav above each
    product's own local bar. It scrolls away; each page's own bar below it stays
    pinned. Self-contained: it reads none of the page's tokens, so it looks the
    same on all five, light theme or dark.
 
    Only these six pages carry it, all general material with no student in it.
-   /exam-writing/ joined at Lewis's request on 2026-11-08. The rest of the site
+   學測寫作 (/exam-writing/, since 2026-11-10 /learn/writing/) joined at Lewis's request on 2026-11-08. The rest of the site
    stays unlinked on purpose (students must not find each other's material). */
 
 .fam {

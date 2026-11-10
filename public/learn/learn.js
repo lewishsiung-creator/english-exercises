@@ -13,7 +13,7 @@
    2. The last 程度檢測 result, written by check/ as lc.result.
    3. Progress on the tiles: how many words of each word page this student
       has marked 記住了, and how many of 學測英文寫作's seven essays are
-      拆解過了 (ew.done, written by exam-writing/drill.js). A tile shows it only
+      拆解過了 (ew.done, written by learn/writing/drill.js). A tile shows it only
       once there is something to show.
    4. 學習報告: the same numbers as a few lines of text the student copies and
       sends the teacher (on LINE, usually). The site keeps no server and sends
@@ -193,7 +193,7 @@ function drawLastCheck() {
      hs/3/a     高中單字 第三級, A 開頭     progress from hsv.marks, HS_TASKS
      ew/e114    a 學測寫作 essay's drills   progress from ew.done
    A task saved before kinds existed has no kind and is a lesson. */
-// exam-writing/content.js's seven essays, year and topic -- add a year there, add it here
+// learn/writing/content.js's seven essays, year and topic -- add a year there, add it here
 const EW_ESSAYS = {
   e115: ['115', '養寵物風氣與寵物角色改變'], e114: ['114', '颱風假'], e113: ['113', '青少年困擾與機器人小幫手'],
   e112: ['112', '表情符號的使用'], e111: ['111', '比較兩種公園'], e110: ['110', '遊客賞花不守規定'], e109: ['109', '賣場週年慶'],
@@ -236,7 +236,7 @@ function taskState() {
     const d = read('ew.done', {})[t.key] || {};
     const known = (d.m ? 1 : 0) + (d.o ? 1 : 0);
     return { ...t, kind, n: 2, known, done: known === 2,
-      label: `學測寫作 ${e[0]} 年`, title: `〈${e[1]}〉拆解練習`, href: `../exam-writing/#${t.key}`,
+      label: `學測寫作 ${e[0]} 年`, title: `〈${e[1]}〉拆解練習`, href: `writing/#${t.key}`,
       prog: `${d.m ? '✓' : '○'} 動作配對　${d.o ? '✓' : '○'} 句子排序`, doneLine: '✓ 任務完成，這篇已經拆解完了', go: '開始拆解', report: `學測寫作 ${e[0]} 年拆解練習` };
   }
   return null;

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>學測英文寫作</title>
+<meta name="description" content="七年的學測英文作文一次看懂：題目一覽、題型趨勢、五大類型、必練句型，還有七篇範文的逐句結構。">
+
+<!-- Inline SVG mark: a pen nib over a ruled line — writing, measured. The
+     colours must be percent-encoded, since a bare "#" would be read as the
+     start of the URL fragment. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d3f6e'/%3E%3Cpath d='M22 40 L38 16 L46 22 L30 46 L20 48 Z' fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linejoin='round'/%3E%3Cpath d='M14 55h36' stroke='%23f2c14e' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+
+<link rel="stylesheet" href="style.css">
+
+<!-- The house typography, shared by every page. Linked AFTER this
+     page's own stylesheet so its definitions win. Colour is NOT in
+     it — this page keeps its own. See ../../type.css. -->
+<link rel="stylesheet" href="../../type.css">
+
+<!-- The house palette and type, shared by every adult page. Linked AFTER
+     this page's own stylesheet so its token definitions win; nothing in
+     style.css had to change. See ../../editorial.css. -->
+<link rel="stylesheet" href="../../editorial.css">
+<!-- The house interface, shared by every page in the family: the bar, the
+     controls, the display type and the hairlines. Linked LAST so it wins,
+     and it deliberately sets no body size, no measure and no colour of its
+     own. See ../../house.css. -->
+<link rel="stylesheet" href="../../house.css">
+<link rel="stylesheet" href="../fam.css">
+<script src="../teacher.js"></script>
+<!-- The 英文學習 family's Apple look and dark mode, by tokens. Linked last. -->
+<link rel="stylesheet" href="apple.css">
+
+<!-- 英文學習 as an app: the home-screen icon and name, and offline use (learn/app.js, sw.js). -->
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<meta name="apple-mobile-web-app-title" content="英文學習">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<script src="../app.js" defer></script>
+</head>
+<body>
+
+<a class="skip" href="#doc">跳到內容</a>
+
+<!-- The 英文學習 global nav, the same on every page of this family. See ../learn/fam.css. -->
+<nav class="fam" aria-label="英文學習">
+  <div class="fam-in">
+    <a class="fam-home" href="../" aria-label="首頁：英文學習">首頁</a>
+    <a href="../../reading/junior-vocab/">國中單字</a>
+    <a href="../../reading/vocab/">高中單字</a>
+    <a href="../../reading/">高中閱讀</a>
+    <a href="./" aria-current="page">學測寫作</a>
+    <a href="../check/">程度檢測</a>
+  </div>
+</nav>
+
+<header class="bar">
+  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
+    <span aria-hidden="true">☰</span> 目錄
+  </button>
+
+  <p class="bar-title">學測英文寫作 <span>109–115 學年度</span></p>
+
+  <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="false">中文</button>
+  <button class="bar-btn" id="panelToggle" aria-expanded="false"
+          aria-controls="panel">設定</button>
+</header>
+
+<div class="shell">
+  <div id="nav"></div>
+  <main id="doc"></main>
+</div>
+
+<div class="nav-scrim" hidden></div>
+
+<!-- Teacher panel. Opens over the page rather than replacing it, so a
+     discussion in progress is never lost. -->
+<div class="panel" id="panel" role="dialog" aria-label="設定" hidden>
+  <div class="panel-head">
+    <h2>設定 <span>Settings</span></h2>
+    <button class="panel-x" id="panelClose" aria-label="關閉">✕</button>
+  </div>
+
+  <label class="row row-check">
+    <input type="checkbox" id="zhAll">
+    <span>顯示全部中文 <em>Show all Chinese</em></span>
+  </label>
+
+  <!-- Teacher-only rows: shown on a teacher's device (learn/teacher.js). -->
+  <div class="row teacher-only">
+    <button class="panel-btn" id="showAll">全部展開</button>
+    <p class="row-note">一次打開七篇範文的逐句結構，以及所有句型和句庫的英文。適合上課一起複習，
+      或印成解答本。</p>
+  </div>
+
+  <div class="row teacher-only">
+    <button class="panel-btn panel-btn-quiet" id="hideAll">全部收起</button>
+    <p class="row-note">把答案收起來，回到只看得到中文提示的樣子。</p>
+  </div>
+
+  <!-- A teacher hands out one essay's 拆解練習 as this week's task: the link
+       opens /learn/, which keeps it and shows the student's progress.
+       Filled by drill.js. -->
+  <div class="row teacher-only">
+    <label for="taskPick">指定任務 <em>Assign as a task</em></label>
+    <select id="taskPick"></select>
+    <button class="panel-btn panel-btn-quiet" id="taskCopy">複製任務連結，傳給學生</button>
+    <p class="row-note" id="taskNote">學生打開連結後，「英文學習」首頁會出現這個任務和進度。動作配對、句子排序都做完，就算完成。</p>
+  </div>
+
+  <div class="row">
+    <label for="voicePick">朗讀聲音</label>
+    <select id="voicePick"></select>
+    <p class="row-note">🔊 按鈕用的聲音，選好會立刻試聽。</p>
+  </div>
+
+  <div class="row">
+    <label for="rate">語速</label>
+    <select id="rate">
+      <option value="0.75">慢</option>
+      <option value="0.95">正常</option>
+      <option value="1.1">快</option>
+    </select>
+  </div>
+</div>
+
+
+<!-- Site footer. Identical on every page, so a reader who lands on any one
+     sheet can find the rest. -->
+<footer class="site-foot">
+  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
+     aria-label="Lewis Biz English"><img src="../../logo.png" alt="" width="34" height="34"></a>
+  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
+    target="_blank" rel="noopener">lewistoeic.com</a></p>
+</footer>
+<script src="content.js"></script>
+<script src="render.js"></script>
+<script src="drill.js"></script>
+</body>
+</html>

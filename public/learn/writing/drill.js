@@ -171,8 +171,8 @@
     pick.innerHTML = ESSAYS.map((e) => `<option value="${e.id}">${text(e.year)}〈${text(e.title)}〉${text(e.aim)}</option>`).join('');
     document.getElementById('taskCopy').addEventListener('click', () => {
       // the live address, so a link copied from localhost still works for a student
-      const base = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 'https://english-exercises-6e4.pages.dev/exam-writing/' : location.href;
-      const url = new URL('../learn/#task/ew/' + pick.value, base).href;
+      const base = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 'https://english-exercises-6e4.pages.dev/learn/writing/' : location.href;
+      const url = new URL('../#task/ew/' + pick.value, base).href;
       const note = document.getElementById('taskNote');
       const show = () => { note.textContent = url; };
       try { navigator.clipboard.writeText(url).then(() => { note.textContent = `已複製：${url}`; }, show); } catch { show(); }

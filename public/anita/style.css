@@ -1254,7 +1254,7 @@ body.zh-all .card-back { display: block; }
 
    Everything else moved to ../house.css when the look was taken site-wide.
    The column stays here because a measure is a per-page decision: this page is
-   prose and reads best narrow, where /exam-writing/ needs 48rem for its tables
+   prose and reads best narrow, where /learn/writing/ needs 48rem for its tables
    and /english-brain/ chose 36rem on purpose. */
 
 :root { --measure: 40rem; }

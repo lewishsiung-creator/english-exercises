@@ -854,7 +854,7 @@ const LESSON = {
   // 深入練習的連結：113 那一年在本站有一整頁的逐句翻譯練習。
   practice: {
     year: '113',
-    href: '../robot-helper/',
+    href: '../../robot-helper/',
     label: 'Robot Helper：113 學年度逐句練習',
     note: '這一題在本站另有一整頁：十八句中翻英、整段挑戰、句型、單字，以及自己寫一篇。',
   },

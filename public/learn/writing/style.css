@@ -930,7 +930,7 @@ main { max-width: var(--measure); min-width: 0; padding-bottom: 6rem; }
    同一段樣式複製到每一頁。各頁的色票變數名稱不一樣（兒童頁沒有 --ink-faint、
    成人頁沒有 --blue），所以每個顏色都串一條 fallback，缺哪一個都還是看得到。
 
-   標誌是全站唯一的共用圖檔，放在 public/logo.png，子頁用 ../logo.png 取用。
+   標誌是全站唯一的共用圖檔，放在 public/logo.png，這一頁用 ../../logo.png 取用。
    它本身就是連結，所以要把文字連結那條底線和左邊距擋掉——文字連結的樣式因此
    收窄成 .site-foot p a，不再套用到整個站尾裡的每個 a。 */
 
