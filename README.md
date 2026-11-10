@@ -916,7 +916,7 @@ with the latest the way a front page leads with its top story.
   `--navy` holds the teal and `--gold` the red.
 - **`/wealth-habits/` is a redirect** to `/business-journal/wealth-habits/`,
   carrying its hash, because that URL had already gone out.
-- **Two PDFs, from the teacher panel.** A reading becomes a handout by
+- **Two PDFs, on a band under the headline.** A reading becomes a handout by
   printing it, and a teacher needs both halves of that: a *student copy* with
   every blank empty and the answers, reasons and model answers held back, and
   an *answer key* with the blanks filled, the right option ticked and the
@@ -930,6 +930,68 @@ with the latest the way a front page leads with its top story.
   and prints the answer key. The gap's own answer rides in `data-a` on its
   blank and the right option carries `data-right`, so the key needs no
   JavaScript to assemble itself.
+
+  The two buttons sit on a hairline band directly under the article's headline
+  — where a press page keeps its byline and its print button — rather than in
+  the teacher panel, where they were built. Paper is wanted on the way into a
+  lesson, not three taps down a drawer. The band is emitted by `coverTools()`
+  in `render.js` with the rest of the cover, not written into each reading's
+  `index.html`, and is bilingual on its face like the contents list and the
+  *Next* link, because it is interface rather than article. The band is in the
+  print stylesheet's hide list, so it never prints itself. Clicking twice
+  before the dialog opens is a no-op the second time: the `printing` flag in
+  `render.js` holds the door, since the second call would otherwise capture
+  the already-swapped title as the one to put back and leave the reading named
+  after a PDF for the rest of the session.
+- **Presentation mode: the same lesson as slides.** *Present 投影片* is the
+  band's left-hand control, and the series' third form — the page is the
+  lesson on a screen, the print stylesheet makes it paper, and this makes it
+  slides for a room with a projector.
+
+  **Nothing is re-rendered and nothing moves.** A slide is a run of elements
+  already in the document, and showing one is a matter of hiding its
+  neighbours: `buildSlides()` reads the rendered lesson, and `showSlide()`
+  marks the slide's own elements `.sl-on`, every ancestor of them `.sl-path`,
+  and anything shown alongside (a block's heading standing over one of its six
+  questions) `.sl-keep`. Two rules in the stylesheet do the rest, at any
+  depth. So **every exercise keeps its handlers and its state**: a gap filled
+  in on a slide is still filled in when the lesson comes back out, the 🔊
+  buttons still speak, the 中 chips still open, and *Reveal every answer*
+  still reaches the whole lesson. A second renderer would have meant two
+  copies to keep in step and every answer lost at the door.
+
+  **A step is not a slide.** The cover gives three — the headline, what the
+  lesson is, the goals — then each step opens on its number, name and
+  photograph, and each of its blocks takes a slide. Blocks that are really a
+  list of independent things are dealt out one to a slide, the block's heading
+  kept above each: comprehension questions, gap-fills (each carries its own
+  options), the steps of a procedure, the paragraphs of a passage, cards to
+  sort, discussion questions. The thresholds are the `SPLIT` table in
+  `render.js`. Blocks whose point is the comparison — the politeness ladder, a
+  grid of phrase cards, a tick-list — are deliberately left whole, and the few
+  that then overrun say so in the bar (*↓ scrolls 可往下捲*).
+
+  **The scale is one number on the root.** Everything on a slide is set in rem
+  or em, so `html.present { font-size: clamp(…) }` brings headings, body,
+  chips and the hidden Chinese up to projector size together, in the
+  proportions the page already has — and `fitSlide()` then takes that number
+  up or down per slide, largest size that still fits, so a single summary
+  point grows into the room and a long task comes down. Both ends are capped:
+  a four-word slide would otherwise arrive in circus type, and much below two
+  thirds nobody at the back can read it. If even the floor does not fit, the
+  shrinking is undone — a slide that must be scrolled either way is better
+  read large than small.
+
+  **Driving it.** → ← and Page Down / Page Up (what a presenter's remote
+  sends), space and Backspace, Home and End, `F` for full screen, `C` for the
+  Chinese, Esc to leave. ↑ and ↓ are left alone so a long slide can scroll.
+  Space and Backspace stand down when the focus is on a control, or a tap on a
+  gap-fill chip would arm the space bar to press that chip again instead of
+  moving on. The foot bar carries the same, for touch. Leaving full screen
+  leaves the slides, but only if the slides turned it on. Printing drops out
+  of presentation first, so Cmd+P mid-lecture still gives the whole lesson.
+  The closing slide keeps *End of the lesson* but not its links — in front of
+  a room those are a trap, not a courtesy.
 - **Every reading ends its sections with the way on.** The cover closes on
   *Begin → 1 …*, each step on *Next → n …*, and the last step on *End of the
   lesson*, with the neighbouring reading in the series (the next one, or else

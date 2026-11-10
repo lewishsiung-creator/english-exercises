@@ -328,6 +328,132 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 .cover h1 .en { display: inline; }
 .cover h1 .zh { font-size: .95rem; font-weight: 400; margin-top: 8px; }
 
+/* ---------------- the tool band ----------------
+
+   A hairline band directly under the headline: the place a press page keeps
+   its byline and its print button. It holds the lesson's two other forms —
+   the projector on the left, the printer on the right. The page itself is the
+   third and needs no button.
+
+   On a wide screen it reads as one line of furniture rather than a stack of
+   controls; on a phone it folds into three rows. It is interface, not article,
+   so it is set in the UI face and stays quiet — nothing here should compete
+   with the headline above it. */
+
+.cover-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin: -6px 0 26px;
+  padding: 9px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-ui);
+}
+
+/* The one filled control on the page, and the only teal. A lecture starts
+   here, so it should be findable without reading the band. */
+.present-btn {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  /* Holds the left edge and pushes the printing half to the right edge of the
+     text column, while there is room on the line for both. */
+  margin-right: auto;
+  min-height: 36px;
+  padding: 7px 16px;
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #fff;
+  background: var(--navy);
+  border: 1px solid var(--navy);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: filter .15s var(--ease);
+}
+.present-btn::before { content: "\25b6"; font-size: .72em; opacity: .85; }
+.present-btn em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  font-size: .95em;
+  color: rgba(255, 255, 255, .82);
+}
+@media (hover: hover) { .present-btn:hover { filter: brightness(1.14); } }
+
+.cover-tools-lab {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.cover-tools-lab em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  color: var(--ink-faint);
+  margin-left: 6px;
+}
+
+/* The two downloads travel together, so they wrap together. */
+.pdf-pair { display: flex; align-items: center; gap: 8px; }
+
+.pdf-btn {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  min-height: 36px;
+  padding: 7px 14px;
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink-soft);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color .15s var(--ease), color .15s var(--ease);
+}
+.pdf-btn em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  font-size: .95em;
+  color: var(--ink-faint);
+}
+@media (hover: hover) {
+  .pdf-btn:hover { border-color: var(--rule); color: var(--ink); }
+  .pdf-btn:hover em { color: var(--ink-soft); }
+}
+/* No `:active` press here, for either of the band's kinds of button: every
+   button on the page already gets one from "the Apple feel" below, which is
+   behind prefers-reduced-motion where it belongs. */
+
+/* Below the width where all three fit on one line, the band folds into three
+   rows: Present, then the label, then the two downloads sharing a row. Half a
+   phone's width is not enough for "Student copy 學生練習版" on one line, and
+   left to itself it breaks mid-phrase and leaves the two buttons at different
+   heights — so there the Chinese goes deliberately onto a second line, centred,
+   and both buttons stretch to match. */
+@media (max-width: 680px) {
+  .cover-tools { gap: 8px; align-items: stretch; }
+  .present-btn { flex: 1 0 100%; justify-content: center; margin-right: 0; }
+  .cover-tools-lab { flex: 1 0 100%; }
+  .pdf-pair { flex: 1 0 100%; align-items: stretch; }
+  .pdf-btn {
+    flex: 1 1 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    padding: 7px 10px;
+    text-align: center;
+  }
+}
+
 .cover-intro { margin-bottom: 26px; font-size: 1.06rem; }
 
 .goals {
@@ -1046,15 +1172,16 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 
    Printing is how a reading becomes a handout, and a teacher needs two of
    them: a blank copy to give out, and the same pages with the answers to keep.
-   The panel's two buttons put `pdf-blank` or `pdf-key` on <body> and every
+   The band's two buttons put `pdf-blank` or `pdf-key` on <body> and every
    rule below reads that class, so neither PDF depends on how much was
    revealed during the lesson — a blank copy prints blank even after "Reveal
    every answer". A plain Cmd+P carries no class and prints the answer key,
    which is what the teacher's own copy should be.
 
    Shared by both: the machinery goes — the bar, the contents, the panel, the
-   🔊 and 中 buttons, the reveal buttons, the tallies, the interaction hints
-   and the end-of-lesson links — and every line of Chinese comes out, since
+   tool band under the headline, the presentation controls, the 🔊 and 中
+   buttons, the reveal buttons, the tallies, the interaction hints and the
+   end-of-lesson links — and every line of Chinese comes out, since
    nothing can be tapped on paper. Photographs are dropped: the handout is for
    the language, and a classroom printer should not spend its toner on stock
    photography. */
@@ -1063,7 +1190,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 
 @media print {
   .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .reveal, .tally, .hint,
-  .photo, .step-next, .lesson-end, .skip { display: none !important; }
+  .photo, .step-next, .lesson-end, .skip, .cover-tools, .pbar { display: none !important; }
 
   body { font-size: 11pt; background: #fff; color: #000; }
   .shell { display: block; padding: 0; }
@@ -1902,20 +2029,220 @@ button, a, .card, .pair[data-zh], select, label { touch-action: manipulation; }
   .match-key li { margin-bottom: 2px; }
 }
 
-/* The panel's two PDF buttons, side by side under one label. */
-.row-lab {
-  margin: 0 0 6px;
-  font-size: .78rem;
-  font-weight: 600;
+/* The two PDF buttons were in the teacher panel when they were first built,
+   under a `.row-lab` label and in a `.pdf-pair` grid. They sit on the hairline
+   band under the headline now — see "the tool band" up with the cover — and
+   `.row-lab` went with them rather than staying here unused. */
+
+/* ================================================================
+   Presentation mode — the lesson as slides
+   ================================================================
+
+   A room with a projector wants one thing at a time, set large. Nothing here
+   rebuilds the lesson: `html.present` hides the furniture, turns the page into
+   a single centred stage, and lets exactly one slide through — the elements
+   the renderer marked `.sl-on`, inside the section it marked `.sl-box`.
+
+   The scale is a single rem change on the root. Everything in this stylesheet
+   that matters on a slide is set in rem or em, so one number brings headings,
+   body, chips and the hidden Chinese up to projector size together, in the
+   proportions the page already has. Anything still set in fixed pixels is
+   either furniture that is hidden in here, or is given its own size below.
+
+   The controls at the foot are the exception: they stay in fixed pixels,
+   because chrome that grew with the slide would be shouting the page number
+   at the back row. */
+
+html.present,
+html.present body { height: 100%; overflow: hidden; }
+
+html.present { font-size: clamp(19px, 2vw, 31px); }
+html.present body { font-size: 1.05rem; }
+
+html.present .bar,
+html.present #nav,
+html.present .nav-scrim,
+html.present .panel,
+html.present .site-foot,
+html.present .skip,
+html.present .cover-tools,
+html.present .step-next,
+/* The last slide is "End of the lesson", which on the page carries links out
+   of it. In front of a room those are a trap, not a courtesy: a tap lands on
+   another reading with the projector still on. The closing line stays; the
+   ways out go. */
+html.present .lesson-end-links { display: none !important; }
+
+html.present .shell { display: block; max-width: none; padding: 0; margin: 0; }
+
+/* The stage: one screen, the slide centred in it, and room at the foot for
+   the control bar. */
+html.present main#doc {
+  max-width: none;
+  margin: 0;
+  height: 100dvh;
+  padding: 4vh 5vw calc(4vh + 54px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* The slide, in two rules. The renderer marks the elements of the current
+   slide `.sl-on` and every ancestor of them `.sl-path`; anything shown
+   alongside — a block's heading standing over one of its six questions — is
+   marked `.sl-keep`.
+
+   So: of the sections, only the one on the path; and at every level below it,
+   only the children that are themselves on the path, are the slide, or are
+   kept. Depth does not matter, which is what lets a single question out of a
+   block, or a single paragraph out of a passage, onto the screen alone.
+   Everything else keeps its place in the document and all of its state — it
+   is simply not on screen. */
+html.present #doc > :not(.sl-path) { display: none !important; }
+html.present .sl-path > :not(.sl-path):not(.sl-on):not(.sl-keep) { display: none !important; }
+
+html.present .cover,
+html.present .step {
+  width: 100%;
+  max-width: min(94vw, 1180px);
+  max-height: 100%;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* A block normally eases up as it is scrolled to. A slide is shown rather than
+   scrolled to, so without this the animation would leave it invisible — the
+   same reason the print stylesheet has to say it. */
+html.present .step > :not(.step-head) { opacity: 1 !important; transform: none !important; }
+
+/* The kicker is the one thing on the cover set in fixed pixels; at projector
+   size it would otherwise be a caption under a 90px headline. */
+html.present .kicker { font-size: .8rem; margin-bottom: .5em; }
+html.present .cover h1 { margin-bottom: .4em; }
+html.present .source { margin-top: 1.2em; }
+
+/* A photograph rides with its section heading and must not push it off. */
+html.present .step-head { margin-bottom: .7em; }
+html.present .photo { margin-bottom: 0; }
+html.present .photo img { max-height: 44vh; }
+
+/* A grid that has been dealt out one item at a time has one column, or the
+   single card left showing would keep the narrow width it had among four and
+   sit in the corner of the screen. */
+html.present .sl-path.roles,
+html.present .sl-path.cards { grid-template-columns: 1fr; }
+
+/* A slide that still has more below the fold says so, at the foot of the
+   stage and in the bar, rather than leaving a presenter to find out by
+   running out of sentence. */
+.pmore { display: none; }
+html.present.sl-more .pmore { display: block; margin: 0; flex: none; color: var(--gold); }
+
+html.present.sl-more main#doc::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 54px;
+  height: 54px;
+  background: linear-gradient(transparent, var(--paper));
+  pointer-events: none;
+}
+
+/* ---------------- the control bar ----------------
+
+   Fixed to the foot, quiet, and always there: a presenter should not have to
+   find it. The progress line across the top of the bar is the one glance that
+   says how much is left. */
+
+.pbar { display: none; }
+
+html.present .pbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-top: 1px solid var(--line);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.25;
   color: var(--ink-soft);
 }
-.row-lab em {
+
+.pprog {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: 2px;
+  background: var(--line);
+}
+.pprog i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--gold);
+  transition: width .2s var(--ease);
+}
+
+.pbtn {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  min-height: 32px;
+  cursor: pointer;
+  transition: border-color .15s var(--ease), color .15s var(--ease);
+}
+.pbtn em {
   font-family: var(--font-zh);
   font-style: normal;
   font-weight: 400;
+  font-size: .92em;
   color: var(--ink-faint);
   margin-left: 5px;
 }
-.pdf-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.pdf-pair .panel-btn { width: 100%; }
-.pdf-pair .panel-btn em { display: block; margin-left: 0; margin-top: 1px; }
+@media (hover: hover) { .pbtn:hover:not(:disabled) { border-color: var(--rule); color: var(--ink); } }
+.pbtn:disabled { opacity: .35; cursor: default; }
+.pbtn[aria-pressed="true"] { color: #fff; background: var(--navy); border-color: var(--navy); }
+.pbtn[aria-pressed="true"] em { color: rgba(255, 255, 255, .8); }
+
+.pbtn-arrow { font-size: 15px; padding: 6px 14px; }
+.pbtn-out { margin-left: 0; }
+
+.pnum { margin: 0; flex: none; font-variant-numeric: tabular-nums; }
+.pnum b { color: var(--ink); font-weight: 700; }
+
+/* The step being presented. It takes the slack in the middle of the bar, and
+   is the first thing to go when there is none. */
+.plab {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 620px) {
+  html.present .pbar { gap: 7px; padding: 7px 10px; }
+  .plab { display: none; }
+  .pbtn em { display: none; }
+}

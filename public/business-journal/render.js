@@ -500,6 +500,7 @@ function buildCover() {
       <h1><span class="en">${text(LESSON.title)}</span>
         <button class="zh-chip" title="顯示中文">中</button>
         <span class="zh">${text(LESSON.titleZh)}</span></h1>
+      ${coverTools()}
       ${photo(LESSON.photo, 'photo-hero')}
       ${pair(i.en, i.zh, 'cover-intro')}
       <div class="goals">
@@ -516,6 +517,42 @@ function buildCover() {
         <span class="zh">${text(LESSON.source.zh)}</span></p>` : ''}
       ${nextLink(LESSON.steps[0], 'Begin', '開始')}
     </header>`;
+}
+
+/* The lesson's three ways out, on a hairline band under the headline — where a
+   newspaper puts a byline and a print button, and where a teacher looks for
+   them before the lesson starts. The PDFs were in the teacher panel first; a
+   teacher who wants paper wants it on the way in, not three taps down a
+   drawer, and the same is true of the slides.
+
+   Left: the projector. Right: the printer. The page itself is the third, and
+   needs no button.
+
+   The buttons live in the rendered cover rather than in index.html, so their
+   labels stay with every other string the renderer owns. The handlers are
+   wired further down, after the cover is in the document. The explanation that
+   used to sit under the PDF buttons in the panel is on `title` instead: the
+   band is a utility line, not another thing to read.
+
+   The band is navigation-ish, so its Chinese is plain `<em>` rather than a
+   hidden `.zh` — the same rule the contents list and the Next link follow. */
+function coverTools() {
+  const note = '會開啟瀏覽器的列印視窗，請選擇「另存為 PDF」。不會改變螢幕上的畫面。';
+  return `
+    <div class="cover-tools">
+      <button class="present-btn" id="present"
+        title="Show this lesson as slides — one thing at a time, set large, driven from the keyboard. 把這堂課變成投影片，一次一件事，用方向鍵前進。">
+        Present<em>投影片</em></button>
+      <span class="cover-tools-lab" id="pdf-lab">Download PDF<em>下載 PDF</em></span>
+      <span class="pdf-pair" role="group" aria-labelledby="pdf-lab">
+        <button class="pdf-btn" id="pdfBlank"
+          title="Blanks left empty, answers and model answers held back — ${note}">
+          Student copy<em>學生練習版</em></button>
+        <button class="pdf-btn" id="pdfKey"
+          title="Blanks filled in, the right option ticked, reasons printed — ${note}">
+          Answer key<em>解答版</em></button>
+      </span>
+    </div>`;
 }
 
 /* The way on, at the foot of the cover and of every step but the last. On a
@@ -918,7 +955,17 @@ $('#showAll').addEventListener('click', () => {
 
    The title is swapped for the duration because the browser offers it as the
    filename, so the two PDFs do not both arrive called the same thing. */
+let printing = false;
+
 function printAs(mode) {
+  /* One at a time. The dialog is opened from a timer, so two clicks landing in
+     the same tick — a double-click, or one button then the other — would both
+     get through: the page would carry both classes at once, and the second
+     call would have captured the already-swapped title as the one to put back,
+     leaving the reading named after a PDF for the rest of the session. */
+  if (printing) return;
+  printing = true;
+
   const was = document.title;
   document.body.classList.add(mode === 'key' ? 'pdf-key' : 'pdf-blank');
   document.title = `${LESSON.title} ${LESSON.titleZh} ${
@@ -930,6 +977,7 @@ function printAs(mode) {
     done = true;
     document.body.classList.remove('pdf-key', 'pdf-blank');
     document.title = was;
+    printing = false;
   };
   window.addEventListener('afterprint', restore, { once: true });
 
@@ -949,6 +997,293 @@ function printAs(mode) {
 
 $('#pdfBlank').addEventListener('click', () => printAs('blank'));
 $('#pdfKey').addEventListener('click', () => printAs('key'));
+
+/* ---- presentation mode ----
+
+   A third way out of the same lesson. The page is the lesson on a screen, the
+   print stylesheet turns it into paper, and this turns it into slides for a
+   room with a projector: one thing at a time, set large, driven from the
+   keyboard.
+
+   Nothing is re-rendered and nothing is moved. A slide is simply a run of
+   elements that are already in the document, and showing one is a matter of
+   hiding its neighbours — so every exercise keeps its handlers and its state.
+   A gap filled in on a slide is still filled in when the lesson comes back out
+   of presentation mode, the 🔊 buttons still speak, the 中 chips still open,
+   and "Reveal every answer" still reaches the whole lesson. The alternative,
+   building a second deck out of the same content, would have meant two
+   renderers to keep in step and every answer lost at the door.
+
+   The class goes on <html> rather than <body> because the type scale is set on
+   the root: one rem change and the whole lesson — every heading, every chip,
+   every hidden Chinese line — comes up to projector size together, without a
+   second set of sizes to maintain. */
+
+/* Some blocks are not one thing but a list of independent things: six
+   comprehension questions, the five steps of a procedure, the paragraphs of
+   the reading, three questions to argue about. Whole, they are a slide that
+   has to be scrolled, which is no slide at all — so they are dealt out one to
+   a slide, with the block's own heading kept above each one.
+
+   `min` is where a list becomes too much for one screen. Below it the block
+   stays whole, because seeing two questions together costs nothing and saves
+   a click. Blocks whose point is the comparison — the politeness ladder, a
+   grid of phrase cards — are deliberately not in this list. */
+const SPLIT = [
+  { sel: '.q', min: 3 },      // multiple choice on a reading
+  { sel: '.gap', min: 3 },    // choose the phrase that fits — each gap
+                              // carries its own options, so one travels alone
+  { sel: '.sstep', min: 3 },  // a numbered procedure
+  { sel: '.para', min: 3 },   // the paragraphs of a passage
+  { sel: '.role', min: 3 },   // cards to sort into two piles, one at a time
+  { sel: '.ask', min: 2 },    // discussion questions
+];
+
+function splitOf(block) {
+  for (const rule of SPLIT) {
+    const items = $$(rule.sel, block);
+    if (items.length >= rule.min) return items;
+  }
+  return null;
+}
+
+/* A slide is { box, els, keep, label }: the section it lives in, the elements
+   that make it up, anything shown alongside them (a block heading standing
+   over one of its items), and what the control bar calls it. Read off the
+   rendered lesson, in the order the lesson is in. */
+function buildSlides() {
+  const slides = [];
+  const push = (box, els, label, keep = []) => {
+    const list = els.filter(Boolean);
+    if (list.length) slides.push({ box, els: list, keep: keep.filter(Boolean), label });
+  };
+
+  /* The cover gives three: the headline, what the lesson is, and what the
+     student will be able to do. The tool band and the Begin link are furniture
+     and stay behind; so does the hero photograph, which has already done its
+     work on the page and would only crowd the title. */
+  const cover = $('.cover');
+  const start = 'Start 開始';
+  push(cover, [$('.kicker', cover), $('h1', cover), $('.source', cover)], start);
+  push(cover, [$('.cover-intro', cover)], start);
+  push(cover, [$('.goals', cover)], start);
+
+  $$('.step').forEach((step) => {
+    const s = LESSON.steps.find((x) => x.id === step.id);
+    const label = s ? `${s.n} · ${s.en} ${s.zh}` : '';
+    // The section opener: its number and name, with its photograph if it has
+    // one — a picture earns its place at the top of a section.
+    push(step, [$(':scope > .step-head', step), $(':scope > .photo', step)], label);
+    // Then every block of the step, in order — whole, or dealt out item by
+    // item when the block is really a list.
+    $$(':scope > *', step).forEach((b) => {
+      if (b.matches('.step-head, .photo, .step-next')) return;
+      const items = splitOf(b);
+      if (!items) { push(step, [b], label); return; }
+      const head = $(':scope > .label, :scope > h3, :scope > h4', b);
+      items.forEach((it) => push(step, [it], label, [head]));
+    });
+  });
+
+  return slides;
+}
+
+const SLIDES = buildSlides();
+
+/* The bar along the foot: where you are, the way forward and back, and the two
+   switches a presenter reaches for mid-sentence. Built here rather than in
+   index.html so that adding presentation mode changed no reading's page. */
+const pbar = el(`
+  <div class="pbar" id="pbar" role="group" aria-label="Presentation controls">
+    <div class="pprog" aria-hidden="true"><i></i></div>
+    <button class="pbtn pbtn-arrow" id="pPrev" aria-label="Previous slide 上一張">←</button>
+    <button class="pbtn pbtn-arrow" id="pNext" aria-label="Next slide 下一張">→</button>
+    <p class="pnum" aria-live="polite"><b id="pAt">1</b> / <span id="pOf">1</span></p>
+    <p class="plab" id="pLab"></p>
+    <p class="pmore" aria-hidden="true">↓ scrolls 可往下捲</p>
+    <button class="pbtn" id="pZh" aria-pressed="false">中文</button>
+    <button class="pbtn" id="pFull">Full screen<em>全螢幕</em></button>
+    <button class="pbtn pbtn-out" id="pExit">Exit<em>離開</em></button>
+  </div>`);
+document.body.appendChild(pbar);
+$('#pOf', pbar).textContent = String(SLIDES.length);
+
+const root = document.documentElement;
+const presenting = () => root.classList.contains('present');
+
+let at = 0;
+/* Whether this page put itself into full screen. Esc leaves full screen
+   without reaching any key handler, so that is also how a presenter expects to
+   leave the slides — but only if the slides were what turned it on. */
+let wentFull = false;
+
+function showSlide(i) {
+  if (!SLIDES.length) return;
+  at = Math.max(0, Math.min(SLIDES.length - 1, i));
+
+  /* Clear everything first, then light up the one. Several slides share a
+     section — the cover holds three, and six questions share one block — so
+     marking and unmarking in a single pass would have a later slide rub out
+     the marks its own neighbour just claimed, and the stage would come up
+     empty.
+
+     Each slide marks itself and every ancestor up to the stage. The
+     stylesheet then hides, at every level, the children that are neither on
+     that path nor kept — which is what lets one question out of a block of
+     six onto the screen with its heading and nothing else. */
+  clearSlides();
+  const s = SLIDES[at];
+  s.els.forEach((e) => {
+    e.classList.add('sl-on');
+    for (let p = e.parentElement; p && p !== doc; p = p.parentElement) p.classList.add('sl-path');
+  });
+  s.keep.forEach((e) => e.classList.add('sl-keep'));
+
+  s.box.scrollTop = 0;
+  fitSlide(s.box);
+  $('#pAt', pbar).textContent = String(at + 1);
+  $('#pLab', pbar).textContent = s.label;
+  $('.pprog i', pbar).style.width = `${((at + 1) / SLIDES.length) * 100}%`;
+  $('#pPrev', pbar).disabled = at === 0;
+  $('#pNext', pbar).disabled = at === SLIDES.length - 1;
+}
+
+function clearSlides() {
+  $$('.sl-on, .sl-path, .sl-keep')
+    .forEach((e) => e.classList.remove('sl-on', 'sl-path', 'sl-keep'));
+}
+
+/* Fit the slide to the screen. The whole lesson is sized from one number on
+   the root, so a slide can be taken up or down as a whole: the largest size
+   that still fits wins. A single summary point grows until it has the room,
+   and a long passage comes down until it stops running off the bottom.
+
+   Both ends are capped. A little over its natural size is as far up as it
+   goes, or a slide of four words would arrive in circus type and the lesson
+   would lurch from size to size. Downwards, much below two thirds and nobody
+   at the back of the room can read it — and if even that does not fit, the
+   shrinking is undone rather than kept, because a slide that has to be
+   scrolled either way is better read large than small.
+
+   Measuring forces a reflow per step, which is a handful of milliseconds on a
+   key press and invisible. */
+const FIT = [1.25, 1.16, 1.08, 1, 0.93, 0.86, 0.79, 0.72, 0.64];
+
+function fitSlide(box) {
+  const fits = () => box.scrollHeight <= box.clientHeight + 2;
+
+  root.style.removeProperty('font-size');
+  const base = parseFloat(getComputedStyle(root).fontSize);
+
+  for (const k of FIT) {
+    if (k === 1) root.style.removeProperty('font-size');
+    else root.style.fontSize = `${(base * k).toFixed(1)}px`;
+    if (fits()) break;
+  }
+  if (!fits()) root.style.removeProperty('font-size');
+
+  // Tell the bar, and the stage, when there is more below the fold.
+  root.classList.toggle('sl-more', !fits());
+}
+
+function setPresent(on) {
+  if (on === presenting()) return;
+
+  if (on) {
+    setPanel(false);
+    closeNav();
+    root.classList.add('present');
+    showSlide(0);
+  } else {
+    const back = SLIDES[at] && SLIDES[at].box;
+    root.classList.remove('present');
+    root.style.removeProperty('font-size');
+    clearSlides();
+    leaveFull();
+    // Come out of the slides where the slides left off, not at the top.
+    if (back) back.scrollIntoView({ block: 'start' });
+  }
+}
+
+const go = (by) => showSlide(at + by);
+
+function goFull() {
+  const req = root.requestFullscreen || root.webkitRequestFullscreen;
+  if (!req || document.fullscreenElement || document.webkitFullscreenElement) return;
+  // A refusal is not worth reporting: the slides work in a window just as well.
+  Promise.resolve(req.call(root)).then(() => { wentFull = true; }, () => {});
+}
+
+function leaveFull() {
+  wentFull = false;
+  const out = document.exitFullscreen || document.webkitExitFullscreen;
+  if (out && (document.fullscreenElement || document.webkitFullscreenElement)) {
+    Promise.resolve(out.call(document)).catch(() => {});
+  }
+}
+
+['fullscreenchange', 'webkitfullscreenchange'].forEach((ev) =>
+  document.addEventListener(ev, () => {
+    const full = document.fullscreenElement || document.webkitFullscreenElement;
+    if (!full && wentFull && presenting()) setPresent(false);
+    if (full) wentFull = true;
+  }));
+
+$('#present').addEventListener('click', () => { setPresent(true); goFull(); });
+$('#pExit', pbar).addEventListener('click', () => setPresent(false));
+$('#pPrev', pbar).addEventListener('click', () => go(-1));
+$('#pNext', pbar).addEventListener('click', () => go(1));
+$('#pFull', pbar).addEventListener('click', () => {
+  if (document.fullscreenElement || document.webkitFullscreenElement) leaveFull();
+  else goFull();
+});
+$('#pZh', pbar).addEventListener('click', () => {
+  const on = !document.body.classList.contains('zh-all');
+  setAllZh(on);
+  $('#pZh', pbar).setAttribute('aria-pressed', String(on));
+});
+
+/* The keys. A presenter's remote sends Page Down and Page Up, or the arrows;
+   both are here, and so is the space bar — but only when the focus is not on
+   something that answers to it, or a tap on a gap-fill chip would arm the
+   space bar to press that chip again instead of moving on. The up and down
+   arrows are left alone on purpose: a long slide scrolls with them. */
+document.addEventListener('keydown', (e) => {
+  if (!presenting() || e.metaKey || e.ctrlKey || e.altKey) return;
+  const onControl = e.target.closest('button, a, input, select, textarea, [contenteditable]');
+
+  switch (e.key) {
+    case 'ArrowRight': case 'PageDown': go(1); break;
+    case 'ArrowLeft': case 'PageUp': go(-1); break;
+    case ' ': if (onControl) return; go(1); break;
+    case 'Backspace': if (onControl) return; go(-1); break;
+    case 'Home': showSlide(0); break;
+    case 'End': showSlide(SLIDES.length - 1); break;
+    case 'Escape': setPresent(false); break;
+    case 'f': case 'F':
+      if (onControl) return;
+      if (document.fullscreenElement || document.webkitFullscreenElement) leaveFull();
+      else goFull();
+      break;
+    case 'c': case 'C':
+      if (onControl) return;
+      $('#pZh', pbar).click();
+      break;
+    default: return;
+  }
+  e.preventDefault();
+});
+
+/* Printing wants the whole lesson, not the slide that happens to be up. */
+window.addEventListener('beforeprint', () => setPresent(false));
+
+/* A projector plugged in mid-lesson changes the screen under the slide. */
+let refit;
+addEventListener('resize', () => {
+  if (!presenting()) return;
+  cancelAnimationFrame(refit);
+  refit = requestAnimationFrame(() => showSlide(at));
+});
 
 // A reload is the reset: nothing is stored except the two device settings.
 $('#reset').addEventListener('click', () => location.reload());
