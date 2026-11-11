@@ -937,8 +937,12 @@ with the latest the way a front page leads with its top story.
   lesson, not three taps down a drawer. The band is emitted by `coverTools()`
   in `render.js` with the rest of the cover, not written into each reading's
   `index.html`, and is bilingual on its face like the contents list and the
-  *Next* link, because it is interface rather than article. The band is in the
-  print stylesheet's hide list, so it never prints itself. Clicking twice
+  *Next* link, because it is interface rather than article. The pair is
+  labelled *Print or save as PDF 列印／存成 PDF*, not "Download": both buttons
+  open the browser's print window, which is also how a reading reaches a
+  classroom printer, and nobody should be left waiting for a file that is
+  never coming. The band is in the print stylesheet's hide list, so it never
+  prints itself. Clicking twice
   before the dialog opens is a no-op the second time: the `printing` flag in
   `render.js` holds the door, since the second call would otherwise capture
   the already-swapped title as the one to put back and leave the reading named

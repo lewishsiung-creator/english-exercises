@@ -543,7 +543,7 @@ function coverTools() {
       <button class="present-btn" id="present"
         title="Show this lesson as slides — one thing at a time, set large, driven from the keyboard. 把這堂課變成投影片，一次一件事，用方向鍵前進。">
         Present<em>投影片</em></button>
-      <span class="cover-tools-lab" id="pdf-lab">Download PDF<em>下載 PDF</em></span>
+      <span class="cover-tools-lab" id="pdf-lab">Print or save as PDF<em>列印／存成 PDF</em></span>
       <span class="pdf-pair" role="group" aria-labelledby="pdf-lab">
         <button class="pdf-btn" id="pdfBlank"
           title="Blanks left empty, answers and model answers held back — ${note}">

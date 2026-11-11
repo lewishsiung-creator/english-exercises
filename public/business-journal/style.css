@@ -437,8 +437,14 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
    phone's width is not enough for "Student copy 學生練習版" on one line, and
    left to itself it breaks mid-phrase and leaves the two buttons at different
    heights — so there the Chinese goes deliberately onto a second line, centred,
-   and both buttons stretch to match. */
-@media (max-width: 680px) {
+   and both buttons stretch to match.
+
+   The number is set from the content, not from a round figure: on one line the
+   band needs 140 + 218 + 332 and three 14px gaps, which is 732 of the 736 the
+   text column ever gets. Fold any later and there is a band of widths where
+   the wide layout wraps on its own and orphans a button on a row of its own —
+   which is exactly the fault this breakpoint was moved once already to fix. */
+@media (max-width: 820px) {
   .cover-tools { gap: 8px; align-items: stretch; }
   .present-btn { flex: 1 0 100%; justify-content: center; margin-right: 0; }
   .cover-tools-lab { flex: 1 0 100%; }
