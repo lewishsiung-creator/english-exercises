@@ -36,6 +36,7 @@ const S = {
   scope: 'all',             // 'all' | '1'…'6'
   topic: 'all',             // 'all' | a topic id from TOPIC_LIST
   letter: 'all',
+  affix: 'all',             // 'all' | a key from AFFIX_LIST (../../learn/affixweb.js)
   q: '',
   markf: 'all',
   zh: true,
@@ -170,6 +171,7 @@ function pool(ignoreSearch, ignoreMark) {
       if (S.scope !== 'all' && e.lv !== +S.scope) return false;
       if (S.topic !== 'all' && !e.tp.includes(S.topic)) return false;
       if (S.letter !== 'all' && letterOf(e) !== S.letter) return false;
+      if (!affixHas(e)) return false;
     }
     if (S.mode === 'self' && S.markf !== 'all' && !ignoreMark) {
       const m = MARKS[e.id];
@@ -241,6 +243,7 @@ function where() {
     parts.push(S.scope === 'all' ? '全部' : LEVEL_ZH[+S.scope]);
     if (S.topic !== 'all') parts.push(esc(TOPIC_ZH[S.topic]));
     if (S.letter !== 'all') parts.push(S.letter.toUpperCase() + ' 開頭');
+    if (S.affix !== 'all') parts.push(affixWhere());
   }
   return parts.join(' · ');
 }
@@ -266,7 +269,7 @@ function copyTask(key) {
 function renderList() {
   const list = searchSort(pool());
   const shown = list.slice(0, S.shown);
-  $('#main').innerHTML = `<p class="status">${where()} · ${list.length} 個字${list.length > shown.length ? `，目前顯示前 ${shown.length} 個` : ''}</p>` + taskBtn() +
+  $('#main').innerHTML = affixWeb(list) + `<p class="status">${where()} · ${list.length} 個字${list.length > shown.length ? `，目前顯示前 ${shown.length} 個` : ''}</p>` + taskBtn() +
     (list.length ? shown.map(entryHTML).join('') : `<p class="empty">沒有符合的字。換個級別、字母或關鍵字試試。</p>`) +
     (list.length > shown.length ? `<button class="btn more" id="more">再顯示 40 個</button>` : '');
   observeMore();
@@ -331,7 +334,7 @@ $('#rail').addEventListener('pointermove', ev => {
    opener said only 開始練閃卡, and a student told to do 今天這一組 every day
    could not find it. */
 function openToday() {
-  S.view = 'cards'; S.scope = 'all'; S.topic = 'all'; $('#topic').value = 'all'; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = '';
+  S.view = 'cards'; S.scope = 'all'; S.topic = 'all'; $('#topic').value = 'all'; S.affix = 'all'; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = '';
   S.markf = 'all'; $('#markf').value = 'all';
   if (S.mode === 'self') { D.kind = 'set'; store.set('deckkind', 'set'); }
   D.key = '';
@@ -355,10 +358,17 @@ function openFromHash() {
   // #topic/<id> opens the whole list at one topic
   const tm = location.hash.match(/^#topic\/([a-z]+)$/);
   if (tm && TOPIC_COUNT[tm[1]]) {
-    S.view = 'list'; S.scope = 'all'; S.topic = tm[1]; $('#topic').value = tm[1]; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = ''; S.shown = 40;
+    S.view = 'list'; S.scope = 'all'; S.topic = tm[1]; $('#topic').value = tm[1]; S.affix = 'all'; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = ''; S.shown = 40;
     render();
     try { history.replaceState(null, '', location.pathname + location.search); } catch (err) {}
     setTimeout(goToList, 60);
+    return true;
+  }
+  // #affix/<key> opens one prefix's or suffix's web (../../learn/affixweb.js)
+  const am = location.hash.match(/^#affix\/([\w-]+)$/);
+  if (am && AFX[am[1]]) {
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (err) {}
+    setTimeout(() => openAffix(am[1]), 60);
     return true;
   }
   // #today opens 今天這一組 over the whole list: the words due for review first,
@@ -376,7 +386,7 @@ function openFromHash() {
   const set = location.hash.match(/^#set\/([\w-]+)(?:\/([a-z]))?$/);
   if (set && /^[1-6]$/.test(set[1]) && LEVEL_COUNT[+set[1] - 1]) {
     const L = set[2] && [...$('#letter').options].some(o => o.value === set[2]) ? set[2] : 'all';
-    S.view = 'list'; S.scope = set[1]; S.topic = 'all'; $('#topic').value = 'all'; S.letter = L; $('#letter').value = L; S.q = ''; $('#q').value = ''; S.shown = 40;
+    S.view = 'list'; S.scope = set[1]; S.topic = 'all'; $('#topic').value = 'all'; S.affix = 'all'; S.letter = L; $('#letter').value = L; S.q = ''; $('#q').value = ''; S.shown = 40;
     render();
     try { history.replaceState(null, '', location.pathname + location.search); } catch (err) {}
     setTimeout(goToList, 60);
@@ -384,7 +394,7 @@ function openFromHash() {
   }
   const id = decodeURIComponent(location.hash.slice(1));
   const e = id && ENTRIES.find(x => x.id === id); if (!e) return false;
-  S.view = 'list'; S.scope = 'all'; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = '';
+  S.view = 'list'; S.scope = 'all'; S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = ''; S.affix = 'all';
   S.markf = 'all'; $('#markf').value = 'all';
   render();
   jumpTo(pool().indexOf(e), true);
@@ -427,7 +437,7 @@ function appendMore() {
    then new words in list order. 還不熟 sends a card back a few places in the same set. */
 const D = { deck: [], i: 0, flipped: false, key: '', kind: store.get('deckkind', 'set'), again: [], info: null };
 function deckKind() { return S.mode === 'self' ? D.kind : 'all'; }
-function deckKey() { return [S.scope, S.topic, S.letter, S.q, S.markf, S.mode, deckKind()].join('|'); }
+function deckKey() { return [S.scope, S.topic, S.letter, S.affix, S.q, S.markf, S.mode, deckKind()].join('|'); }
 function buildSet() {
   const range = searchSort(pool(false, true));
   const due = range.filter(e => isDue(e.id)).sort((a, b) => (SCHED[a.id]?.due ?? 0) - (SCHED[b.id]?.due ?? 0));
@@ -448,7 +458,7 @@ function renderCards() {
   const set = deckKind() === 'set';
   const kinds = S.mode === 'self' ? `<div class="seg" role="group" aria-label="練習範圍">
       <button data-kind="set" aria-pressed="${set}">今天這一組</button><button data-kind="all" aria-pressed="${!set}">這個範圍全部</button></div>` : '';
-  const head = `<div class="setbar">${kinds}
+  const head = `<div class="setbar">${kinds}${cwSeg()}
       <p class="status" style="margin:0 ${kinds ? '0' : 'auto'} 0 0">${D.deck.length && e ? `第 ${D.i + 1} 張 / 共 ${D.deck.length} 張` : ''}</p>
       <button class="btn" id="shuf" style="padding:7px 16px;font-size:14px">洗牌</button><button class="btn" id="restart" style="padding:7px 16px;font-size:14px">從頭開始</button></div>` +
     (set && D.info && e ? `<p class="setinfo">這一組有 <b>${D.info.due}</b> 個要複習、<b>${D.info.fresh}</b> 個新字。按「還不熟」的字會在這一組裡再出現一次，明天也會回來。</p>` : '');
@@ -466,9 +476,9 @@ function renderCards() {
   }
   $('#main').innerHTML = head + `<section class="card">
     <div class="meta"><span class="tag">${letterOf(e).toUpperCase()}</span><span class="lvtag">${LEVEL_ZH[e.lv]}</span>${dots(e.id)}${set ? (isDue(e.id) ? '<span class="num" style="color:var(--warn)">複習</span>' : '<span class="num" style="color:var(--accent)">新字</span>') : markBtns(e)}</div>
-    <div class="front"><span class="w">${esc(e.w)}</span>${e.lab ? `<span class="lab">${esc(e.lab)}</span>` : ''}
-      <div>${sayBtn(e.sayAs)}</div></div>
-    ${D.flipped ? `<div class="back">${headHTML(e)}</div>` : `<button class="btn primary flip" id="flip">翻面</button>`}
+    ${cwZhFront(e) && !D.flipped ? cwFrontHTML(e) : `<div class="front"><span class="w">${esc(e.w)}</span>${e.lab ? `<span class="lab">${esc(e.lab)}</span>` : ''}
+      <div>${sayBtn(e.sayAs)}</div></div>`}
+    ${D.flipped ? `<div class="back">${headHTML(e)}${cwOwnHTML(e)}</div>` : `<button class="btn primary flip" id="flip">翻面</button>`}
   </section>
   <div class="actions">
     <button class="btn" id="prev" ${D.i ? '' : 'disabled'}>上一張</button>
@@ -476,6 +486,7 @@ function renderCards() {
       ? `<button class="btn again" id="nextR">還不熟，下一張</button><button class="btn good" id="nextK">記住了，下一張</button>`
       : `<button class="btn primary" id="next">下一張</button>`}
   </div>`;
+  cwAfter(e);
 }
 function answerCard(known) {
   const e = D.deck[D.i]; if (!e) return;
@@ -863,6 +874,7 @@ function renderIntro() {
       <span class="tile-d">即將加入。學測以第一到第五級為主。</span></div>` : '');
   paintTileProgress();
   renderTopics();
+  renderAffixes();
 }
 
 /* Fade-and-rise as the opener scrolls into view. Only with JS and only when the
@@ -922,14 +934,14 @@ document.addEventListener('click', ev => {
   if (t.dataset.say != null) { say(t.dataset.say); return; }
   if (t.dataset.copy) { copyLink(t.dataset.copy); return; }
   if (t.dataset.topic) {
-    S.view = 'list'; S.scope = 'all'; S.topic = t.dataset.topic; $('#topic').value = S.topic;
+    S.view = 'list'; S.scope = 'all'; S.topic = t.dataset.topic; $('#topic').value = S.topic; S.affix = 'all';
     S.letter = 'all'; $('#letter').value = 'all'; S.q = ''; $('#q').value = ''; S.shown = 40;
     render(); goToList(); return;
   }
   if (t.dataset.task) { copyTask(t.dataset.task); return; }
   if (t.dataset.go === 'today') { openToday(); goToWork(); return; }
   if (t.dataset.go) { S.view = t.dataset.go; render(); goToWork(); return; }
-  if (t.dataset.pick) { S.view = 'list'; S.scope = t.dataset.pick; S.shown = 40; S.q = ''; $('#q').value = ''; render(); goToList(); return; }
+  if (t.dataset.pick) { S.view = 'list'; S.affix = 'all'; S.scope = t.dataset.pick; S.shown = 40; S.q = ''; $('#q').value = ''; render(); goToList(); return; }
   if (t.dataset.orig != null) { toast(`<span>原表寫法：${esc(t.dataset.orig)}</span>`, 5000); return; }
   if (t.dataset.letter) { if (ev.detail === 0) jumpLetter(t.dataset.letter); return; }  // keyboard; touch and mouse go through pointer events
   if (t.classList.contains('chip')) { t.parentElement.classList.add('open'); return; }
@@ -982,7 +994,7 @@ document.addEventListener('click', ev => {
     case 'setbtn': openPanel(); break;
     case 'closepanel': $('#panel').close(); break;
     case 'fresh':
-      S.q = ''; $('#q').value = ''; S.scope = 'all'; S.letter = 'all'; $('#letter').value = 'all';
+      S.affix = 'all'; S.q = ''; $('#q').value = ''; S.scope = 'all'; S.letter = 'all'; $('#letter').value = 'all';
       S.zh = false; D.key = Q.key = ''; S.shown = 40; $('#panel').close(); render(); goToList(); break;
     case 'clearmarks':
       if (t.dataset.sure) { MARKS = {}; SCHED = {}; store.set('marks', MARKS); store.set('sched', SCHED); D.key = ''; $('#panel').close(); delete t.dataset.sure; t.textContent = '清除所有標記'; render(); }

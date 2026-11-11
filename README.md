@@ -3509,6 +3509,70 @@ share icon → 儲存到檔案). The document title becomes the file name, e.g.
 - A4, two columns, black on white whatever the page's theme. Checked by
   printing with headless Chrome (all 26 topics of 第二級, 中文留空: 53 pages).
 
+### 字首字尾單字網 on the word pages (2026-11-11)
+
+Lewis: 「單字部分，幫我增加用 prefix, suffix 單字網」. He chose both word pages
+(each with only its own list's words) and cards that open a word group over a
+radial diagram. On the opener, under the topics: 「或從字首字尾開始」, a row of
+字首 cards (un- 不；相反 · 5) and the 字尾 cards under 變成「人」/ 名詞 / 形容詞 /
+動詞 / 副詞. A card narrows the list the way a topic does, so 閃卡, 測驗 and
+今天這一組 work on that group too; above the list sits the web: the affix, its
+meaning, one line on how it works, and every word as base → word with the
+affix part in colour (agree → agree**ment**). A pair jumps to its word.
+高中單字 has 51 cards over 977 words, 國中單字 18 over 132. `#affix/<key>`
+opens one (e.g. `#affix/ment`).
+
+- **The pairs are read by hand, not computed.** `tools/affix/candidates.py`
+  proposes every pair a spelling rule finds with a base on either list (1,571
+  unique); `tools/affix/build.py` holds the ones kept, and writes
+  `reading/vocab/affix.js` and `reading/junior-vocab/affix.js`. The test was
+  whether the parts still tell a student the meaning: un + happy yes; uncle,
+  repair (re + pair), apartment, university, understand, generation, hardly,
+  invaluable no. An affix shows on a page with at least three words there.
+- **大考中心's list omits most obvious derived words** (no happiness,
+  kindness, homeless, useless), so -ness has no card and -less only three
+  words. Its own `agree(ment)` notation is read as two forms, agree and
+  agreement, so those 60-odd entries sit in -ment.
+- **One shared file, `learn/affixweb.js`**, loaded before each page's
+  `vocab.js`, renders the cards and the web, adds its own CSS, and handles its
+  clicks. Each `vocab.js` got small hooks only: `S.affix`, `affixHas(e)` in
+  `pool()`, `affixWhere()` in the status line, `affixWeb(list)` above the list,
+  `S.affix` in the deck key, `renderAffixes()` on the opener, the hash, and
+  `S.affix = 'all'` wherever the topic or level is reset.
+- The highlighted part is the affix's own spelling where the word ends with
+  it (comput**er**, not compute**r**), or more when the whole base is kept
+  (consider**ation**, add**ition**). In 教學 the Chinese under each pair hides
+  with the rest.
+
+### 中翻英閃卡 and 說一句自己的話 on the word pages (2026-11-11)
+
+Lewis asked what else the research says works for vocabulary. Of the gaps
+named — the cards only went English → Chinese, and nothing asked for the word
+in a sentence of the student's own — he chose both. One shared file,
+`learn/cardway.js`, loaded before each page's `vocab.js` like `affixweb.js`.
+
+- **英→中 / 中→英**, a switch in the card's top bar, remembered per page on
+  this device (`carddir`), in 自學 and 教學 alike. A 中→英 front shows every
+  meaning with its part of speech in Chinese (動詞 同意；意見一致) under
+  「說出英文」; 「給我提示」 shows the first starred example with the word
+  gapped to its first letter (I a____ with you.) and its 中譯; 翻面 shows the
+  English front and the usual back, and says the word once. A word with no
+  Chinese keeps the English front. 國中's KK is left off the 中→英 front.
+- **English inside a meaning is gapped too.** Both lists write words into the
+  Chinese (agreement 同意；協議, 演員（actress 指女演員）, 許多的（= lots）),
+  which would give a 中→英 card away; 108 meanings on 高中. Three letters or
+  more keep the first, two letters are all gap, a lone letter stays (T恤).
+- **說一句自己的話** on every card's back, after the collocations: one of six
+  prompts (about yourself, your week, family or friends, school/work/hobbies,
+  ask someone a question, the last time it happened), the same one each time
+  for a word until 「換一個題目」. The word is `sayAs`, so agree(ment) reads
+  「用 agree 或 agreement」. Spoken only — no input box, nothing checked —
+  following the no-input rule; in 教學 it is the teacher's cue.
+- Hooks in each `vocab.js`: `cwSeg()` in the setbar, the front chosen by
+  `cwZhFront(e)`, `cwOwnHTML(e)` after `headHTML(e)` on the back, `cwAfter(e)`
+  after a card is drawn. 投影 and the quiz are untouched; `/cambridge/` (the
+  same engine, copied) does not have this.
+
 ### 學測英文寫作 moves to `/learn/writing/` (2026-11-10)
 
 Lewis saw the page as "the one made before" and the family's 學測寫作 as two
