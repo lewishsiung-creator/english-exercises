@@ -3573,6 +3573,36 @@ in a sentence of the student's own — he chose both. One shared file,
   after a card is drawn. 投影 and the quiz are untouched; `/cambridge/` (the
   same engine, copied) does not have this.
 
+### 遊戲 on the word pages (2026-11-11)
+
+Lewis: 「Let's gamify the vocab pages」. The six from 2026-11-08 were already
+there, so the offer was new ones under the same rules — no points, leaderboard,
+timer or streak that resets. He chose three. A fourth view, 遊戲, sits after 測驗
+(and 「玩單字遊戲 ›」 under the opener's button); `learn/wordgame.js`, shared and
+loaded before `vocab.js`, which calls `renderGame()` from `render()`. Both games
+use the range the page is set to, like the cards and the quiz, and end with
+the words worth another look (and 「標成還不熟」 in 自學), never a mark.
+
+- **字首字尾組字**: 「agree + ？ = 同意；協議」 under 「字尾組字 · 變成名詞」, pick
+  the affix from four, ten a round, from the hand-read pairs in `affix.js`.
+  The wrong options are built so they cannot also be right: a suffix's make
+  another part of speech (人 and 名詞 count as one; -ant/-ent counts as both and
+  is never a wrong option), a prefix's mean something else (un-/dis-/in-/mis-,
+  under-/sub-, over-/out- are one family each), and a label any affix of the
+  answer's family wears is left out (-y, -al, -ly and in- are each two
+  affixes). They come from `AFFIX_ALL`, every affix in `build.py`, now also
+  written into each `affix.js`, so 國中's 18 groups still get three. A wrong
+  pick wobbles and says what that affix does, and when it makes another real
+  word on the page, which: 「creative 是另一個字：有創意的」.
+- **配對翻牌**: six words, twelve face-down tiles (four across, three on a
+  phone), English and its first Chinese meaning; a pair stays up in green, the
+  English says itself. In 自學 the student's 還不熟 and due words go in first.
+  A word turned more than twice past its pair is listed at the end.
+- **字首字尾收集進度** (in `learn/affixweb.js`): in 自學, a card reads 「12/65」
+  once a word in it is 記住了, and fills green with 「✓ 4」 when all are; the
+  web says 「已記住 12 / 65」 and ticks each known pair. `render()` now redraws
+  the cards, so a mark shows at once. 教學 shows the plain count.
+
 ### 學測英文寫作 moves to `/learn/writing/` (2026-11-10)
 
 Lewis saw the page as "the one made before" and the family's 學測寫作 as two

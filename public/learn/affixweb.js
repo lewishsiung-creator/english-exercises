@@ -21,6 +21,12 @@
 const AFX = Object.fromEntries((typeof AFFIX_LIST === 'undefined' ? [] : AFFIX_LIST).map(([key, label, kind, grp, zh, note, pairs]) =>
   [key, { key, label, kind, grp, zh, note, pairs: pairs.map(([id, base, w]) => ({ id, base, w })), ids: new Set(pairs.map(p => p[0])) }]));
 const AFX_KIND = { pre: '字首', suf: '字尾' };
+/* 字首字尾收集進度 (2026-11-11, with learn/wordgame.js): in 自學, how many of a
+   group's words this student has marked 記住了 -- 「12/65」 on its card, a ✓
+   and a filled card when the whole group is, 「已記住 12 / 65」 in the web and
+   a ✓ on each known pair. 教學 shows the plain count: several students share
+   that laptop. Called on every render(), so a mark shows at once. */
+const afxKnown = a => typeof MARKS !== 'undefined' && S.mode === 'self' ? a.pairs.filter(p => MARKS[p.id] === 'k').length : 0;
 let awAll = false;   // the web shows its first 24 pairs until 「全部顯示」
 
 function affixHas(e) { return S.affix === 'all' || !AFX[S.affix] || AFX[S.affix].ids.has(e.id); }
@@ -61,9 +67,10 @@ function affixWeb(list) {
       <span class="aw-kind">${AFX_KIND[a.kind]}${a.grp ? ' · ' + grpZh(a.grp) : ''}</span>
       <span class="aw-l">${esc(a.label)}</span>
       <span class="aw-zh">${esc(a.zh)}</span>
+      ${afxKnown(a) ? `<span class="aw-got">已記住 ${afxKnown(a)} / ${a.pairs.length}${afxKnown(a) === a.pairs.length ? ' ✓' : ''}</span>` : ''}
     </div>
     <p class="aw-note">${esc(a.note)}</p>
-    ${pairs.length ? `<div class="aw-pairs">${shown.map(p => `<button class="aw-p" data-jump="${esc(p.id)}" aria-label="${esc(p.base)} 變成 ${esc(p.w)}，看這個字">
+    ${pairs.length ? `<div class="aw-pairs">${shown.map(p => `<button class="aw-p ${afxKnown(a) && MARKS[p.id] === 'k' ? 'known' : ''}" data-jump="${esc(p.id)}" aria-label="${esc(p.base)} 變成 ${esc(p.w)}，看這個字">
       <span class="aw-b">${esc(p.base)}<span class="aw-ar" aria-hidden="true">→</span></span>
       <span class="aw-d">${affixSplit(a, p)}</span>
       <span class="aw-m">${esc(byId.get(p.id).firstZh || '')}</span></button>`).join('')}</div>` : '<p class="aw-note">這個範圍裡沒有這一組的字。</p>'}
@@ -78,7 +85,10 @@ function renderAffixes() {
   const box = document.getElementById('affixes'); if (!box) return;
   const list = AFFIX_LIST.map(([k]) => AFX[k]);
   const row = (kind, grp) => list.filter(a => a.kind === kind && (grp == null || a.grp === grp)).map(a =>
-    `<button class="affix" data-affix="${a.key}"><span class="af-l">${esc(a.label)}</span><span class="af-zh">${esc(a.zh)}</span><span class="af-n">${a.pairs.length}</span></button>`).join('');
+    {
+    const k = afxKnown(a), n = a.pairs.length, full = k === n;
+    return `<button class="affix ${full ? 'full' : ''}" data-affix="${a.key}"${k ? ` aria-label="${esc(a.label)} ${esc(a.zh)}，已記住 ${k} / ${n}"` : ''}><span class="af-l">${esc(a.label)}</span><span class="af-zh">${esc(a.zh)}</span><span class="af-n">${k ? (full ? `✓ ${n}` : `${k}/${n}`) : n}</span></button>`;
+  }).join('');
   box.innerHTML = `<p class="af-k">字首 <span>加在前面，多半改變意思</span></p><div class="af-row">${row('pre')}</div>` +
     `<p class="af-k">字尾 <span>加在後面，多半改變詞性</span></p>` +
     AFX_GRP.filter(g => list.some(a => a.grp === g)).map(g => `<p class="af-g">${grpZh(g)}</p><div class="af-row">${row('suf', g)}</div>`).join('');
@@ -122,6 +132,11 @@ document.addEventListener('click', ev => {
 .affix .af-l { font: 600 17px/1 var(--font-en); color: var(--accent); }
 .affix .af-zh { color: var(--ink); }
 .affix .af-n { font: 500 13px/1 var(--font-ui); color: var(--muted); font-variant-numeric: tabular-nums; }
+.affix.full { background: var(--ok-soft, var(--accent-soft)); }
+.affix.full .af-n { color: var(--ok); font-weight: 600; }
+.aw-got { margin-left: auto; font: 600 14px/1 var(--font-zh); color: var(--ok); }
+.aw-p.known { position: relative; }
+.aw-p.known::after { content: '✓'; position: absolute; top: 8px; right: 10px; font: 600 13px/1 var(--font-ui); color: var(--ok); }
 @media (hover: hover) { .affix:hover { transform: scale(1.03); box-shadow: 0 8px 24px rgb(0 0 0 / .08); } }
 .affix:active { transform: scale(.97); }
 @media (max-width: 560px) { .af-row { gap: 8px; justify-content: flex-start; } .af-k, .af-g { text-align: left; } .af-k span { display: block; margin: 2px 0 0; } .affix { padding: 9px 14px; } }

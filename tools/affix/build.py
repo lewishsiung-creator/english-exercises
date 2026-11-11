@@ -304,10 +304,16 @@ def main():
                 out.append([key, label, kind, grp, mean, note, got])
         path = PAGES[page].with_name('affix.js')
         body = ',\n'.join(json.dumps(a, ensure_ascii=False) for a in out)
+        # every affix, on this page or not: learn/wordgame.js draws its wrong options from
+        # these, so 國中單字's 18 groups still get three that make another part of speech
+        every = ',\n'.join(json.dumps([key, label, kind, *(zh.partition('：')[::2] if kind == 'suf' else ('', zh))], ensure_ascii=False)
+                            for key, label, kind, zh, note, pairs in AFFIXES)
         path.write_text(
             '/* 字首字尾 word webs — built by tools/affix/build.py from a hand-read list of\n'
             '   pairs. Edit that, not this. [key, label, pre|suf, makes (人/名詞/…, suffixes only), 中文, note, [[entry id, base, word]]] */\n'
-            f'const AFFIX_LIST = [\n{body}\n];\n', encoding='utf-8')
+            f'const AFFIX_LIST = [\n{body}\n];\n'
+            '// every affix in the list, for the 組字 game\'s wrong options: [key, label, pre|suf, makes, 中文]\n'
+            f'const AFFIX_ALL = [\n{every}\n];\n', encoding='utf-8')
         print(page, len(out), 'affixes,', sum(len(a[6]) for a in out), 'words ->', path.relative_to(ROOT))
     # every derived word should be on at least one page
     allw = set()

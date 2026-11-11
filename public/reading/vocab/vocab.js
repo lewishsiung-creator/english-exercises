@@ -915,6 +915,7 @@ function goToWork() {
 function render() {
   paintTodayNote();
   paintTileProgress();
+  renderAffixes();   // 字首字尾收集進度 follows the marks
   $('#modeseg').hidden = !TEACHER; $('#stagebtn').hidden = !TEACHER;
   document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === S.mode));
   document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === S.view));
@@ -925,7 +926,7 @@ function render() {
   $('#zhbtn').textContent = '中文';
   renderScope();
   if (S.view !== 'list') { $('#rail').hidden = true; document.body.classList.remove('has-rail'); }
-  ({ list: renderList, cards: renderCards, quiz: renderQuiz })[S.view]();
+  ({ list: renderList, cards: renderCards, quiz: renderQuiz, game: renderGame })[S.view]();   // renderGame: ../../learn/wordgame.js
 }
 
 /* ---------- events ---------- */
