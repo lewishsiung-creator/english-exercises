@@ -1058,8 +1058,9 @@ with the latest the way a front page leads with its top story.
   is hidden while presenting, and its *Reveal every answer* would hand the
   room the answers to exercises it has not reached. `revealAll()` takes a root
   for that reason: the panel's button passes the document, the `A` key passes
-  the slide. The scope may *be* the exercise rather than contain it, since a
-  gap or a question is dealt out on its own, so the selectors match the root
+  the slide, and the *Answers 答案* button beside an exercise's heading passes
+  that exercise. The scope may *be* the exercise rather than contain it, since
+  a gap or a question is dealt out on its own, so the selectors match the root
   as well as its descendants.
 
   **The rest of what a lecture needs.** A slide dealt out from a block carries
@@ -1158,8 +1159,23 @@ a summary written for the lesson, and then the language work.
   sentence frames are all spoken by the browser, with the voice and speed set
   in the teacher panel.
 - The faint 👩‍🏫 button opens the teacher panel over the lesson (not a new
-  screen): show all Chinese, reveal every answer at once for going over an
-  exercise together, pick a voice, or reset for the next student.
+  screen): show all Chinese, reveal every answer in the whole lesson, pick a
+  voice, or reset for the next student.
+- **An *Answers 答案* button beside the heading of each exercise that has
+  answers** — the gap-fill, the matching, the multiple choice and the
+  model-answer checks, and nothing else: the phrase cards, the poll, the
+  sort-into-two-piles and the discussion hide reference language, not answers,
+  and what they hide already has its own button on each item. Added in
+  `render.js` after the lesson is built rather than in the four block
+  builders, because it is the same button in all of them and because the
+  heading is the one part of a block that stays on screen when the block is
+  dealt out one item at a time in presentation mode. It answers its own
+  exercise and no other — the panel's button is the one that opens everything
+  — and on a slide it narrows again to the single question on screen, leaving
+  the ones the class has not seen. Once an exercise is open its button goes,
+  rather than standing there inert. The headings are `display: flow-root` so
+  the floated button is contained by the heading it belongs to instead of the
+  instruction line wrapping around it.
 - **One photograph opens the lesson and each habit**, and no more. They are
   illustration, not content, so they carry no lesson text and are dropped from
   the print handout.

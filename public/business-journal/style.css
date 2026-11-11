@@ -622,6 +622,11 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
    case, near-black — not the tracked capitals of a form. */
 .label {
   margin: 34px 0 12px;
+  /* A block formatting context, so the floated "Answers 答案" button is
+     contained by the heading it belongs to. Left to itself the float reaches
+     past the heading and the instruction line underneath wraps around it,
+     which reads as a mistake rather than a control. */
+  display: flow-root;
   font-family: var(--font-head);
   font-size: 1.1rem;
   font-weight: 700;
@@ -857,6 +862,35 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 }
 @media (hover: hover) { .reveal:hover { color: var(--navy); border-color: var(--navy-line); } }
 .reveal[aria-expanded="true"] { color: var(--navy); border-style: solid; border-color: var(--navy-line); }
+
+/* "Answers 答案", beside the heading of an exercise that has them. Quiet, and
+   set in the interface face rather than the heading's, so it reads as a
+   control the teacher reaches for and not as part of the exercise's title.
+   It sits on the baseline of the heading and floats to the right of it, which
+   keeps it out of the way of the 中 chip the heading already carries. */
+.peek {
+  float: right;
+  margin: 2px 0 0 12px;
+  font-family: var(--font-ui);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--ink-faint);
+  background: transparent;
+  border: 1px dashed var(--rule);
+  border-radius: 999px;
+  padding: 4px 11px;
+  cursor: pointer;
+}
+.peek em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  margin-left: 5px;
+}
+@media (hover: hover) {
+  .peek:hover { color: var(--navy); border-color: var(--navy-line); border-style: solid; }
+}
 
 .starters { list-style: none; margin: 12px 0 0; padding: 0; }
 .starters li {
@@ -1195,7 +1229,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 @page { margin: 16mm 14mm; }
 
 @media print {
-  .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .reveal, .tally, .hint,
+  .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .reveal, .peek, .tally, .hint,
   .photo, .step-next, .lesson-end, .skip, .cover-tools, .pbar, .pmenu,
   .psr { display: none !important; }
 

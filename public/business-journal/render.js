@@ -646,6 +646,26 @@ const doc = $('#doc');
 doc.appendChild(el(buildCover()));
 LESSON.steps.forEach((s, i) => doc.appendChild(el(buildStep(s, LESSON.steps[i + 1]))));
 
+/* An "answers" button on each exercise that has answers — the four blocks
+   where something is either right or wrong, or where a model answer is
+   waiting: the gap-fill, the matching, the multiple choice and the write-an-
+   answer checks. Not the phrase cards, the poll, the sort-into-two-piles or
+   the discussion: nothing in those is an answer, and the reference language
+   they hide already has its own button on each item.
+
+   It is added here rather than in the block builders because it is the same
+   button in all four, and because the heading is the one part of a block that
+   stays on screen when the block is dealt out one item at a time — which is
+   what makes this work on a projector, where the teacher panel is hidden.
+
+   Scoped to its own block. "Reveal every answer" in the panel opens the whole
+   lesson, which in front of a room hands out the answers to exercises nobody
+   has reached yet. */
+$$('.activity.gaps, .activity.match, .activity.quiz, .activity.checks').forEach((a) => {
+  const head = $(':scope > .label', a);
+  if (head) head.appendChild(el('<button class="peek">Answers<em>答案</em></button>'));
+});
+
 // ---------------------------------------------------------------- Chinese
 
 /* One prefix for the whole series — the contents page uses it too — so the
@@ -686,6 +706,22 @@ doc.addEventListener('click', (e) => {
   // ---- speak
   const say = t.closest('.say');
   if (say) { e.stopPropagation(); speak(say.dataset.say); return; }
+
+  // ---- the answers to this exercise, and no other
+  const peek = t.closest('.peek');
+  if (peek) {
+    e.stopPropagation();
+    /* On the page it answers the whole exercise, which is what "go over it
+       together" means. On a slide, where the exercise has been dealt out one
+       question at a time, it answers the question on screen and leaves the
+       ones the class has not seen — the same thing the A key does. */
+    if (presenting() && SLIDES[at] && SLIDES[at].part) {
+      SLIDES[at].els.forEach((elm) => revealAll(elm));
+    } else {
+      revealAll(peek.closest('.activity'));
+    }
+    return;
+  }
 
   // ---- a target word in the reading passage
   const term = t.closest('.term');
@@ -972,6 +1008,11 @@ function revealAll(scope) {
   $$in('.starters').forEach((s) => { s.hidden = false; });
   $$in('.model').forEach((m) => { m.hidden = false; });
   $$in('.reveal').forEach((r) => r.setAttribute('aria-expanded', 'true'));
+  /* An exercise whose answers are out has nothing left to ask for, so its own
+     button goes rather than sitting there inert. This covers the panel's
+     whole-lesson button too, which would otherwise leave every one of them
+     standing over an exercise that is already open. */
+  $$in('.peek').forEach((p) => { p.hidden = true; });
 }
 
 $('#showAll').addEventListener('click', () => {
