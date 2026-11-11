@@ -983,15 +983,94 @@ with the latest the way a front page leads with its top story.
   read large than small.
 
   **Driving it.** → ← and Page Down / Page Up (what a presenter's remote
-  sends), space and Backspace, Home and End, `F` for full screen, `C` for the
-  Chinese, Esc to leave. ↑ and ↓ are left alone so a long slide can scroll.
-  Space and Backspace stand down when the focus is on a control, or a tap on a
-  gap-fill chip would arm the space bar to press that chip again instead of
-  moving on. The foot bar carries the same, for touch. Leaving full screen
-  leaves the slides, but only if the slides turned it on. Printing drops out
-  of presentation first, so Cmd+P mid-lecture still gives the whole lesson.
-  The closing slide keeps *End of the lesson* but not its links — in front of
-  a room those are a trap, not a courtesy.
+  sends), space and Backspace, Home and End, `1`–`9` for a section and `0` for
+  the cover, `C` for the Chinese, `B` to blank the screen, `F` for full
+  screen, `?` for the menu, `A` for the answers, `S` to stop the voice, Esc to
+  leave. ↑ and ↓ scroll a long slide and are handled rather than left alone:
+  the stage is `overflow: hidden` and the real scroller is the section inside
+  it, so the browser's own scrolling never reaches it from where the focus
+  sits. On a slide that fits they do nothing, as before. Space and Backspace —
+  and only those two — stand down when the focus is on a chip or link inside
+  the lesson, or a tap on a gap-fill option would arm the space bar to press
+  that option again instead of moving on; a letter or a digit means the same
+  thing wherever the focus happens to be sitting, and the broader guard they
+  started with killed the jump keys the first time anybody answered a
+  question. Every control in the bar hands the keyboard back to the stage when
+  it is done, for the same reason. A swipe across the stage does the same on
+  an iPad, standing down on anything the finger might have meant to press and
+  on anything closer to a vertical drag. Leaving full screen leaves the
+  slides, but only if the slides turned it on. Printing drops out of
+  presentation first, so Cmd+P mid-lecture still gives the whole lesson. The
+  closing slide keeps *End of the lesson* but not its links — in front of a
+  room those are a trap, not a courtesy.
+
+  **Presenting starts where you are.** A teacher scrolled to the reading
+  section and reaching for the projector means to show the reading section,
+  not the title page, so `slideInView()` reads the scroll position — before
+  the class goes on, since the moment it does, the lesson collapses into a
+  one-screen stage and every section reports the same position — and opens at
+  the top of whatever part of the lesson was on screen. Home is still one key
+  away. Leaving puts the page back at the slide the lecture stopped on, and
+  lands rather than glides: a smooth scroll across a whole lesson is a long
+  way to watch when you only wanted the page back.
+
+  **One menu, behind the step's name.** A sixty-slide lesson is thirty-five
+  key presses from its reading section, which is no way to answer "can we skip
+  to the discussion?" in front of a room. The step name in the bar is a button
+  with a caret — the caret is the whole of that control's advertising — and it
+  opens the sections with the slide each one starts at, the section being
+  presented marked, and under them the keys, which are written down nowhere
+  else. Esc closes the menu before it closes the slides: one key, the nearest
+  thing first.
+
+  **The bar gets out of the way**, fading to a fifth after four seconds of
+  nothing and coming back on the first sign of life — it is the only thing on
+  the projector that is not the lesson. It never leaves entirely, because a
+  presenter glancing down for "where am I?" should find it rather than have to
+  wave at the screen. `B` draws a curtain over the slide for the oldest move
+  in lecturing; the lesson is untouched underneath and the next slide key
+  takes it away again.
+
+  **Focus goes to the stage** when the slides open, because the button that
+  opened them is hidden by then and a hidden element cannot hold it — without
+  that a keyboard user's next Tab would start from the top of the document —
+  and back to that button on the way out. Every slide change is announced once
+  through a visually hidden live region, rather than letting a reader
+  interrupt itself over the three separate pieces the bar shows. The arrows at
+  the ends of the deck are `aria-disabled`, not `disabled`: disabling the
+  control a finger is resting on makes it unfocusable and throws the keyboard
+  back to `<body>`, and the renderer clamps anyway, so a press at either end
+  is a harmless no-op.
+
+  **A slide does not hold still, so it is measured again when it grows.**
+  Opening the Chinese adds a line under every English one; a phrase card, a
+  model answer, a gloss and a solved gap's reason all come out of hiding
+  mid-exercise. `fitSlide()` used to run only on a slide change, so the slide
+  quietly grew past the bottom of the projector — and even the ↓ cue stayed
+  silent, because the cue is set inside `fitSlide`. It now runs again on the
+  next frame after anything in the lesson is tapped.
+
+  **`A` opens the answers to the slide, not to the lesson.** The teacher panel
+  is hidden while presenting, and its *Reveal every answer* would hand the
+  room the answers to exercises it has not reached. `revealAll()` takes a root
+  for that reason: the panel's button passes the document, the `A` key passes
+  the slide. The scope may *be* the exercise rather than contain it, since a
+  gap or a question is dealt out on its own, so the selectors match the root
+  as well as its descendants.
+
+  **The rest of what a lecture needs.** A slide dealt out from a block carries
+  its block's instruction, not just its heading, or the teacher says "tap each
+  one…" six times instead; it also carries *3 / 6* in the bar, which the bar's
+  own *47 / 59* cannot say. Those slides anchor to the top rather than the
+  centre, so a run of six questions keeps its heading in one place instead of
+  moving it on every press. The headline slide lost the source credit, which
+  was deciding how big the lesson's name could be. A quiet **▶** joins the
+  sticky top bar, because the band's Present button is inside the cover and a
+  teacher at step five should not scroll back up a sixty-slide lesson to
+  start. Moving to a slide cancels the voice, which otherwise reads on over
+  the next one. And the bar holds at two thirds instead of a fifth while part
+  of a slide is below the fold, because the ↓ cue and the progress line are
+  the two things in it that are not chrome.
 - **Every reading ends its sections with the way on.** The cover closes on
   *Begin → 1 …*, each step on *Next → n …*, and the last step on *End of the
   lesson*, with the neighbouring reading in the series (the next one, or else
@@ -1053,6 +1132,14 @@ a summary written for the lesson, and then the language work.
   the 中文 switch in the bar reveals the lot. Instructions, task prompts, the
   contents list and anything already sitting behind a deliberate reveal stay
   bilingual — those are scaffolding, not comprehension practice.
+
+  Tapping the line opens it, but **a drag that selects text does not**: a
+  mouse selection ends in a click on the line it selected, so highlighting
+  three words to talk about them used to throw the translation on screen at
+  the moment the student was working the English out. The handler opens the
+  Chinese only when the selection is collapsed, which is what a tap leaves
+  behind. The 中 chip is a button and is handled before that, so a deliberate
+  reveal still takes one tap.
 - **The gap-fill Chinese is a complete sentence.** A translated gap sentence
   expresses the missing phrase in full rather than leaving a blank, so it reads
   as Chinese rather than as a puzzle. It therefore carries the answer: on those

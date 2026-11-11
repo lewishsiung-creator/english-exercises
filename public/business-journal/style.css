@@ -1190,7 +1190,8 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 
 @media print {
   .bar, #nav, .nav-scrim, .panel, .say, .zh-chip, .reveal, .tally, .hint,
-  .photo, .step-next, .lesson-end, .skip, .cover-tools, .pbar { display: none !important; }
+  .photo, .step-next, .lesson-end, .skip, .cover-tools, .pbar, .pmenu,
+  .psr { display: none !important; }
 
   body { font-size: 11pt; background: #fff; color: #000; }
   .shell { display: block; padding: 0; }
@@ -1787,6 +1788,15 @@ button, a, .card, .pair[data-zh], select, label { touch-action: manipulation; }
 .step { padding-top: 80px; }
 
 @media (prefers-reduced-motion: no-preference) {
+  /* A slide arrives rather than snaps. The whole stage fades, not its parts:
+     the stage is the one element in presentation mode that no other rule is
+     fighting over, and fading it cannot disturb the `position: fixed` scroll
+     hint inside it the way a transform would. The renderer re-triggers the
+     animation on every slide, since a class removed and re-added in the same
+     breath would otherwise never be seen to change. */
+  @keyframes bj-slide { from { opacity: 0; } to { opacity: 1; } }
+  html.present main#doc.sl-in { animation: bj-slide .2s var(--ease-out); }
+
   /* Press: sink under the finger or the click. */
   button, .card, .step-next {
     transition-property: border-color, background-color, color, box-shadow, transform, opacity;
@@ -2088,6 +2098,14 @@ html.present main#doc {
   overflow: hidden;
 }
 
+/* A slide dealt out from a block keeps its heading, and six questions in a
+   row share it. Centred, each of them would set that heading at a different
+   height — the longer the question, the further up — and the eye would have
+   to re-find the page on every press. Anchored to the top, the heading stays
+   put and only the question under it changes, which is what a run of six is
+   supposed to look like. A slide standing on its own stays centred. */
+html.present main#doc:has(.sl-keep) { align-items: flex-start; }
+
 /* The slide, in two rules. The renderer marks the elements of the current
    slide `.sl-on` and every ancestor of them `.sl-path`; anything shown
    alongside — a block's heading standing over one of its six questions — is
@@ -2219,15 +2237,202 @@ html.present .pbar {
   margin-left: 5px;
 }
 @media (hover: hover) { .pbtn:hover:not(:disabled) { border-color: var(--rule); color: var(--ink); } }
-.pbtn:disabled { opacity: .35; cursor: default; }
+/* Spent, not disabled. A `disabled` attribute on the control the finger is
+   resting on makes it unfocusable and throws the keyboard back to <body>; and
+   at 35% on white the arrow simply vanished from the back of the room. The
+   renderer clamps, so a press at either end does nothing and costs nothing. */
+.pbtn[aria-disabled="true"] {
+  color: #8a8a8a;
+  border-color: #dcdcdc;
+  cursor: default;
+}
 .pbtn[aria-pressed="true"] { color: #fff; background: var(--navy); border-color: var(--navy); }
 .pbtn[aria-pressed="true"] em { color: rgba(255, 255, 255, .8); }
 
 .pbtn-arrow { font-size: 15px; padding: 6px 14px; }
 .pbtn-out { margin-left: 0; }
 
+/* The stage takes the focus when the slides open, and should not wear a ring
+   for it — the focus is on a container, not on anything to press. */
+html.present main#doc:focus,
+html.present main#doc:focus-visible { outline: none; }
+
+/* The bar is the only thing on the projector that is not the lesson, so it
+   fades when nothing has been touched for a few seconds. It never goes: a
+   presenter glancing down for "where am I?" should find it, faint, rather
+   than have to wave at the screen to call it back. */
+html.present .pbar { transition: opacity .5s var(--ease); }
+html.present .pbar.idle { opacity: .22; }
+html.present .pbar.idle:hover,
+html.present .pbar:focus-within { opacity: 1; }
+/* Except when part of the slide is below the fold. The ↓ cue and the progress
+   line are the two things in the bar that are not chrome, and they were being
+   faded out exactly when a teacher who has been talking for a while is most
+   likely to glance down. */
+html.present.sl-more .pbar.idle { opacity: .66; }
+
+/* Blanking: the curtain, not a state. The lesson is untouched underneath, and
+   any key that moves the slides draws it back. */
+html.present.sl-blank body { background: #0f0f0f; }
+html.present.sl-blank main#doc { visibility: hidden; }
+html.present.sl-blank .pbar {
+  background: rgba(20, 20, 20, .85);
+  border-top-color: #333;
+  color: #9a9a9a;
+}
+
+/* ---------------- the presenter's menu ----------------
+
+   Everything a presenter needs mid-sentence, behind the one control they are
+   already looking at: the sections with the slide each one starts at, and the
+   keys, which are written down nowhere else. */
+
+.pmenu { display: none; }
+
+html.present .pmenu[hidden] { display: none; }
+html.present .pmenu {
+  position: fixed;
+  left: 14px;
+  bottom: 58px;
+  z-index: 61;
+  display: block;
+  width: min(440px, calc(100vw - 28px));
+  /* Everything between the bar and the top of the screen: the keys are the
+     half a presenter has never read, and they are at the bottom. */
+  max-height: min(calc(100vh - 76px), 700px);
+  overflow-y: auto;
+  padding: 14px 16px 16px;
+  background: color-mix(in srgb, var(--paper) 94%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
+  backdrop-filter: saturate(180%) blur(18px);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .18), 0 2px 6px rgba(0, 0, 0, .06);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.pmenu-h {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.pmenu-h em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-left: 6px;
+}
+
+.pmenu-steps { list-style: none; margin: 0 0 16px; padding: 0; }
+
+.pmenu-go {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr auto;
+  align-items: baseline;
+  gap: 10px;
+  width: 100%;
+  padding: 6px 8px;
+  text-align: left;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.pmenu-go .n { font-weight: 700; color: var(--gold); font-variant-numeric: tabular-nums; }
+.pmenu-go .t em {
+  display: block;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  margin-top: 1px;
+}
+/* The slide a section starts at, so a presenter can see how far off it is. */
+.pmenu-go .s { font-size: 11px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+@media (hover: hover) { .pmenu-go:hover { background: var(--card); } }
+
+/* Where the presenter is standing, so the menu answers "where am I?" as well
+   as "where can I go?". */
+.pmenu-go[aria-current="true"] { background: var(--navy-soft); }
+.pmenu-go[aria-current="true"] .t { font-weight: 700; }
+
+.pmenu-keys { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; }
+.pmenu-keys li {
+  display: grid;
+  grid-template-columns: 6.2rem 1fr;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 11.5px;
+  color: var(--ink-soft);
+}
+.pmenu-keys kbd {
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 1px 5px;
+  text-align: center;
+}
+
+/* The step name is the control that opens all of that, so it looks like a
+   control rather than a caption — but only just, since it is also the line a
+   presenter reads to find out where they are. */
+html.present .plab {
+  /* Sized to its own text, not to the gap in the bar: a bordered control
+     stretched across half a projector reads as a text field. The auto margin
+     keeps the switches at the right edge all the same. */
+  flex: 0 1 auto;
+  margin-right: auto;
+  max-width: 46%;
+  background: transparent;
+  font-weight: 400;
+  text-align: left;
+}
+/* The caret is the whole of this control's advertising. Without it the step
+   name reads as a caption, and the one place the keys are written down is
+   behind something nobody knows they can press. */
+html.present .plab::after {
+  content: "\25be";
+  margin-left: 7px;
+  font-size: .9em;
+  color: var(--ink-faint);
+}
+@media (hover: hover) { html.present .plab:hover { border-color: var(--rule); color: var(--ink); } }
+html.present .plab[aria-expanded="true"] { border-color: var(--rule); color: var(--ink); }
+
+/* Read by a screen reader on every slide change, and by nobody else. */
+.psr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .pnum { margin: 0; flex: none; font-variant-numeric: tabular-nums; }
 .pnum b { color: var(--ink); font-weight: 700; }
+/* "· 3/6" when the slide is one of a set dealt out from a block: the bar's own
+   count cannot say which question of six this is, and that is the sentence a
+   teacher says most while working through an exercise. */
+.ppart { color: var(--gold); font-weight: 600; }
 
 /* The step being presented. It takes the slack in the middle of the bar, and
    is the first thing to go when there is none. */
@@ -2241,8 +2446,35 @@ html.present .pbar {
   color: var(--ink-faint);
 }
 
+/* On a phone the bar keeps everything that matters and loses only the step's
+   name. Two things it must not lose: the Chinese on the buttons, which is the
+   one layer of this page that is never allowed to hide on interface, and the
+   step button itself — it is the only door to the jump menu and the only
+   written list of the keys, and a tablet has no keyboard to reach them with.
+   So the name's text goes and the ▾ stays. */
 @media (max-width: 620px) {
-  html.present .pbar { gap: 7px; padding: 7px 10px; }
-  .plab { display: none; }
-  .pbtn em { display: none; }
+  html.present .pbar { gap: 6px; padding: 7px 10px; }
+  html.present .plab { max-width: none; padding-left: 10px; padding-right: 10px; }
+  .plab-t { display: none; }
+  html.present .plab::after { margin-left: 0; }
+  .pbtn em { font-size: .8em; margin-left: 3px; }
+  .pnum { font-size: 12px; }
+
+  /* Full screen goes: on an iPhone the API it calls does not exist, so the
+     button was asking for 120px of a 390px bar to do nothing. Exit keeps its
+     place as a glyph with its name on `aria-label`, the way ☰ and 👩‍🏫 in the
+     top bar already do — the alternative, truncating "Exit 離開" to "Exit",
+     would drop the Chinese off a piece of interface, which this page does
+     not do anywhere. */
+  html.present #pFull { display: none; }
+  #pExit .pbtn-t { display: none; }
+  #pExit::after { content: "\2715"; font-size: 14px; }
+}
+
+/* Where there is a finger rather than a cursor, the bar's buttons are the
+   size a finger needs. */
+@media (pointer: coarse) {
+  .pbtn { min-height: 44px; padding: 10px 14px; }
+  .pbtn-arrow { padding: 10px 18px; }
+  .pmenu-go { padding: 11px 8px; }
 }

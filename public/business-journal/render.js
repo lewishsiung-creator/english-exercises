@@ -664,6 +664,13 @@ function setAllZh(on) {
   document.body.classList.toggle('zh-all', on);
   zhToggle.setAttribute('aria-pressed', String(on));
   $('#zhAll').checked = on;
+  /* The presentation bar's 中文 is the third face of the same switch. It is
+     built later than this function first runs, hence the guard — without it
+     the bar could open reading "off" over a lesson whose Chinese was already
+     showing from the last student, and the presenter's first press would turn
+     the Chinese off in front of the room. */
+  const pz = document.getElementById('pZh');
+  if (pz) pz.setAttribute('aria-pressed', String(on));
   store.set('zh', on ? '1' : '0');
 }
 
@@ -695,8 +702,17 @@ doc.addEventListener('click', (e) => {
     if (host) host.classList.toggle('open');
     return;
   }
+  /* Tapping a line opens its Chinese — but a mouse drag that selects a phrase
+     also ends in a click on that line, and throwing the translation up at the
+     moment the teacher highlighted three words to talk about them gives away
+     the very thing the student was working out. A collapsed selection means
+     a tap; anything else means they were selecting. */
   const line = t.closest('.pair[data-zh]');
-  if (line && !t.closest('button')) { line.classList.toggle('open'); return; }
+  const sel = getSelection();
+  if (line && !t.closest('button') && (!sel || sel.isCollapsed)) {
+    line.classList.toggle('open');
+    return;
+  }
 
   // ---- collocation card
   const card = t.closest('.card');
@@ -918,30 +934,48 @@ $('#panelClose').addEventListener('click', () => setPanel(false));
 $('#zhAll').addEventListener('change', (e) => setAllZh(e.target.checked));
 
 /* Reveal every answer at once — for going over an exercise together, or for
-   picking the lesson up in the middle. */
-$('#showAll').addEventListener('click', () => {
-  $$('.gap:not(.solved)').forEach((gap) => {
+   picking the lesson up in the middle.
+
+   It takes a root because presentation mode wants the same thing for the one
+   exercise on screen and nothing else: opening the whole lesson from the
+   projector would hand the room the answers to exercises it has not reached.
+   The panel's button passes the document; the A key passes the slide. */
+function revealAll(scope) {
+  /* The scope may BE the exercise rather than contain it: on a slide, a gap
+     or a question is dealt out on its own, and a descendant search would walk
+     straight past it. */
+  const $$in = (sel) => {
+    const out = $$(sel, scope);
+    if (scope.matches && scope.matches(sel)) out.unshift(scope);
+    return out;
+  };
+
+  $$in('.gap:not(.solved)').forEach((gap) => {
     const right = $$('.opts .chip', gap)[Number(gap.dataset.answer)];
     $('.slot', gap).textContent = right.textContent;
     right.classList.add('done');
     gap.classList.add('solved');
   });
 
-  $$('.match').forEach((act) => {
+  $$in('.match').forEach((act) => {
     $$('.chip', act).forEach((c) => { c.classList.remove('picked'); c.classList.add('done'); });
     $('.tally .done', act).textContent = $$('.col-a .chip', act).length;
     act.classList.add('all-done');
   });
 
-  $$('.q:not(.solved)').forEach((q) => {
+  $$in('.q:not(.solved)').forEach((q) => {
     $$('.qopts .qopt', q)[Number(q.dataset.answer)].classList.add('done');
     q.classList.add('solved');
   });
 
-  $$('.card').forEach((c) => { c.classList.add('open'); c.setAttribute('aria-expanded', 'true'); });
-  $$('.starters').forEach((s) => { s.hidden = false; });
-  $$('.model').forEach((m) => { m.hidden = false; });
-  $$('.reveal').forEach((r) => r.setAttribute('aria-expanded', 'true'));
+  $$in('.card').forEach((c) => { c.classList.add('open'); c.setAttribute('aria-expanded', 'true'); });
+  $$in('.starters').forEach((s) => { s.hidden = false; });
+  $$in('.model').forEach((m) => { m.hidden = false; });
+  $$in('.reveal').forEach((r) => r.setAttribute('aria-expanded', 'true'));
+}
+
+$('#showAll').addEventListener('click', () => {
+  revealAll(document);
   setPanel(false);
 });
 
@@ -1053,9 +1087,9 @@ function splitOf(block) {
    rendered lesson, in the order the lesson is in. */
 function buildSlides() {
   const slides = [];
-  const push = (box, els, label, keep = []) => {
+  const push = (box, els, label, keep = [], part = null) => {
     const list = els.filter(Boolean);
-    if (list.length) slides.push({ box, els: list, keep: keep.filter(Boolean), label });
+    if (list.length) slides.push({ box, els: list, keep: keep.filter(Boolean), label, part });
   };
 
   /* The cover gives three: the headline, what the lesson is, and what the
@@ -1064,9 +1098,13 @@ function buildSlides() {
      work on the page and would only crowd the title. */
   const cover = $('.cover');
   const start = 'Start 開始';
-  push(cover, [$('.kicker', cover), $('h1', cover), $('.source', cover)], start);
+  /* The headline alone. The source credit used to ride with it, and since the
+     slide is sized as one thing, forty words of attribution decided how big
+     the lesson's name was. Nobody reads a credit off a projector; it travels
+     with the goals instead, and is on the page and in both PDFs regardless. */
+  push(cover, [$('.kicker', cover), $('h1', cover)], start);
   push(cover, [$('.cover-intro', cover)], start);
-  push(cover, [$('.goals', cover)], start);
+  push(cover, [$('.goals', cover), $('.source', cover)], start);
 
   $$('.step').forEach((step) => {
     const s = LESSON.steps.find((x) => x.id === step.id);
@@ -1080,8 +1118,15 @@ function buildSlides() {
       if (b.matches('.step-head, .photo, .step-next')) return;
       const items = splitOf(b);
       if (!items) { push(step, [b], label); return; }
+      /* The heading AND the instruction under it. "Tap each one: do you
+         already do it?" is the half of a block that tells the room what to
+         do, and dealing the items out without it leaves the teacher saying it
+         six times instead. It is small, quiet and already bilingual, so it
+         costs the slide almost nothing. */
       const head = $(':scope > .label, :scope > h3, :scope > h4', b);
-      items.forEach((it) => push(step, [it], label, [head]));
+      const hint = $(':scope > .hint', b);
+      items.forEach((it, i) =>
+        push(step, [it], label, [head, hint], { i: i + 1, of: items.length }));
     });
   });
 
@@ -1090,36 +1135,116 @@ function buildSlides() {
 
 const SLIDES = buildSlides();
 
-/* The bar along the foot: where you are, the way forward and back, and the two
+/* Where each step's slides begin, so the presenter can be put at the top of a
+   section rather than walked to it. A sixty-slide lesson is thirty-five key
+   presses from its reading section, which is no way to answer "can we skip to
+   the discussion?" in front of a room. */
+function stepStarts() {
+  const marks = [{ n: '·', en: 'Start', zh: '開始', at: 0 }];
+  LESSON.steps.forEach((s) => {
+    const step = document.getElementById(s.id);
+    const at = SLIDES.findIndex((sl) => sl.box === step);
+    if (at >= 0) marks.push({ n: s.n, en: s.en, zh: s.zh, at });
+  });
+  return marks;
+}
+
+const MARKS = stepStarts();
+
+/* The bar along the foot: where you are, the way forward and back, and the
    switches a presenter reaches for mid-sentence. Built here rather than in
-   index.html so that adding presentation mode changed no reading's page. */
+   index.html so that adding presentation mode changed no reading's page.
+
+   The step's name is a button, not a caption: it opens the one menu this mode
+   has — every section with the slide it starts at, and the keys underneath,
+   because a presenter who has to be told about the keys will never find them
+   on a bar that cannot afford to list them. */
 const pbar = el(`
-  <div class="pbar" id="pbar" role="group" aria-label="Presentation controls">
+  <div class="pbar" id="pbar" role="group" aria-label="Presentation controls 投影片控制">
     <div class="pprog" aria-hidden="true"><i></i></div>
     <button class="pbtn pbtn-arrow" id="pPrev" aria-label="Previous slide 上一張">←</button>
     <button class="pbtn pbtn-arrow" id="pNext" aria-label="Next slide 下一張">→</button>
-    <p class="pnum" aria-live="polite"><b id="pAt">1</b> / <span id="pOf">1</span></p>
-    <p class="plab" id="pLab"></p>
+    <p class="pnum"><b id="pAt">1</b> / <span id="pOf">1</span><span class="ppart" id="pPart"></span></p>
+    <button class="pbtn plab" id="pLab" aria-haspopup="true" aria-expanded="false"
+            aria-controls="pMenu"><span class="plab-t"></span></button>
     <p class="pmore" aria-hidden="true">↓ scrolls 可往下捲</p>
     <button class="pbtn" id="pZh" aria-pressed="false">中文</button>
-    <button class="pbtn" id="pFull">Full screen<em>全螢幕</em></button>
-    <button class="pbtn pbtn-out" id="pExit">Exit<em>離開</em></button>
+    <button class="pbtn" id="pFull"><span class="pbtn-t">Full screen<em>全螢幕</em></span></button>
+    <button class="pbtn pbtn-out" id="pExit" aria-label="Leave the slides 離開投影片"
+      ><span class="pbtn-t">Exit<em>離開</em></span></button>
   </div>`);
 document.body.appendChild(pbar);
 $('#pOf', pbar).textContent = String(SLIDES.length);
+
+/* The only place the keys are written down. Anything the keydown handler
+   answers to belongs here — a key nobody can find is a key nobody has. */
+const KEYS = [
+  ['→ space', 'Next 下一張'],
+  ['←', 'Back 上一張'],
+  ['1 – 9', 'Jump to a section 跳到該段'],
+  ['0 · Home', 'Back to the start 回到開頭'],
+  ['↑ ↓', 'Scroll a long slide 捲動長投影片'],
+  ['A', 'Answers for this slide 顯示本張答案'],
+  ['C', 'Chinese on and off 中文開關'],
+  ['S', 'Stop the voice 停止朗讀'],
+  ['B', 'Blank the screen 暫時黑幕'],
+  ['F', 'Full screen 全螢幕'],
+  ['?', 'This menu 這個選單'],
+  ['Esc', 'Leave the slides 離開投影片'],
+];
+
+/* One menu: where to go, and how. It is the only place the keys are written
+   down, so it is also what the step name opens — the presenter asking "where
+   am I?" and the presenter asking "how do I skip ahead?" are the same person,
+   a second apart. */
+const pmenu = el(`
+  <div class="pmenu" id="pMenu" hidden>
+    <p class="pmenu-h">Jump to<em>跳到</em></p>
+    <ul class="pmenu-steps">
+      ${MARKS.map((m) => `
+        <li><button class="pmenu-go" data-go="${m.at}">
+          <span class="n">${text(String(m.n))}</span>
+          <span class="t">${text(m.en)}<em>${text(m.zh)}</em></span>
+          <span class="s">${m.at + 1}</span>
+        </button></li>`).join('')}
+    </ul>
+    <p class="pmenu-h">Keys<em>快速鍵</em></p>
+    <ul class="pmenu-keys">
+      ${KEYS.map(([k, what]) => `<li><kbd>${text(k)}</kbd><span>${text(what)}</span></li>`).join('')}
+    </ul>
+  </div>`);
+document.body.appendChild(pmenu);
+
+/* One line for a screen reader on every slide change. The bar says the same
+   thing in three separate pieces, which a reader would announce as three
+   interruptions, so the pieces stay quiet and this speaks instead. */
+const psr = el('<p class="psr" aria-live="polite" aria-atomic="true"></p>');
+document.body.appendChild(psr);
+
+/* The stage can take the focus, though it is never in the tab order: when the
+   slides open, the button that opened them is hidden, and the focus has to go
+   somewhere that still exists. */
+doc.tabIndex = -1;
 
 const root = document.documentElement;
 const presenting = () => root.classList.contains('present');
 
 let at = 0;
+/* Which control opened the slides — the band's or the top bar's — so leaving
+   hands the focus back to the one the teacher actually pressed. */
+let opener = null;
 /* Whether this page put itself into full screen. Esc leaves full screen
    without reaching any key handler, so that is also how a presenter expects to
    leave the slides — but only if the slides were what turned it on. */
 let wentFull = false;
 
-function showSlide(i) {
+function showSlide(i, keepScroll) {
   if (!SLIDES.length) return;
   at = Math.max(0, Math.min(SLIDES.length - 1, i));
+  /* A sentence being read aloud belongs to the slide that asked for it. Left
+     alone it carries on over the next one, and the only stop was Escape —
+     which in here also ends the lecture. */
+  speechSynthesis.cancel();
 
   /* Clear everything first, then light up the one. Several slides share a
      section — the cover holds three, and six questions share one block — so
@@ -1139,18 +1264,40 @@ function showSlide(i) {
   });
   s.keep.forEach((e) => e.classList.add('sl-keep'));
 
-  s.box.scrollTop = 0;
+  if (!keepScroll) s.box.scrollTop = 0;
   fitSlide(s.box);
   $('#pAt', pbar).textContent = String(at + 1);
-  $('#pLab', pbar).textContent = s.label;
+  $('.plab-t', pbar).textContent = s.label;
+  /* "3 / 6" when the slide is one of a set dealt out from a block. The bar's
+     own 47 / 59 cannot say that, and "so, the third one" is the sentence a
+     teacher says most often while presenting an exercise. */
+  $('#pPart', pbar).textContent = s.part ? ` · ${s.part.i}/${s.part.of}` : '';
   $('.pprog i', pbar).style.width = `${((at + 1) / SLIDES.length) * 100}%`;
-  $('#pPrev', pbar).disabled = at === 0;
-  $('#pNext', pbar).disabled = at === SLIDES.length - 1;
+  /* aria-disabled, not disabled: disabling the control the finger is on makes
+     it unfocusable, and the browser throws the focus back to <body>. go()
+     clamps anyway, so a press at either end is a harmless no-op. */
+  setArrow($('#pPrev', pbar), at === 0);
+  setArrow($('#pNext', pbar), at === SLIDES.length - 1);
+  psr.textContent = `${at + 1} / ${SLIDES.length}${
+    s.part ? ` (${s.part.i} of ${s.part.of})` : ''} — ${s.label}`;
+  setBlank(false);
+  wake();
+
+  // Re-trigger the stage's fade. The class has to be seen to go before it can
+  // be seen to come back, hence the forced recalc between the two.
+  doc.classList.remove('sl-in');
+  void doc.offsetWidth;
+  doc.classList.add('sl-in');
 }
 
 function clearSlides() {
   $$('.sl-on, .sl-path, .sl-keep')
     .forEach((e) => e.classList.remove('sl-on', 'sl-path', 'sl-keep'));
+}
+
+function setArrow(b, off) {
+  b.classList.toggle('pbtn-off', off);
+  b.setAttribute('aria-disabled', String(off));
 }
 
 /* Fit the slide to the screen. The whole lesson is sized from one number on
@@ -1186,26 +1333,124 @@ function fitSlide(box) {
   root.classList.toggle('sl-more', !fits());
 }
 
+/* A slide does not hold still. Opening the Chinese adds a line under every
+   English one; a phrase card, a model answer, a gloss and a solved gap's
+   reason all come out of hiding mid-exercise. Without this the slide quietly
+   grows past the bottom of the projector and even the ↓ cue stays silent,
+   because the cue is set inside fitSlide. Measured on the next frame, after
+   the thing that grew has been laid out. */
+function refitSoon() {
+  if (!presenting() || !SLIDES[at]) return;
+  requestAnimationFrame(() => {
+    if (presenting() && SLIDES[at]) fitSlide(SLIDES[at].box);
+  });
+}
+
+/* Where to start. A teacher scrolled to the reading section and reaching for
+   the projector means to show the reading section, not the title page — so
+   presentation starts at the top of whatever part of the lesson is on screen.
+   The whole deck is still one Home away. */
+function slideInView() {
+  const line = innerHeight * 0.35;
+  let found = 0;
+  [$('.cover'), ...$$('.step')].forEach((b) => {
+    if (b.getBoundingClientRect().top > line) return;
+    const i = SLIDES.findIndex((s) => s.box === b);
+    if (i >= 0) found = i;
+  });
+  return found;
+}
+
 function setPresent(on) {
   if (on === presenting()) return;
 
   if (on) {
+    /* Read where the page is BEFORE the class goes on. The moment it does,
+       the lesson collapses into a one-screen stage and every section reports
+       the same position, which would land every lecture on the last slide. */
+    const start = slideInView();
     setPanel(false);
     closeNav();
     root.classList.add('present');
-    showSlide(0);
+    showSlide(start);
+    /* The button that opened the slides is now hidden, and a hidden element
+       cannot hold the focus — so hand it to the stage, which is what the keys
+       talk to anyway. Without this a keyboard user's next Tab starts from the
+       top of the document. */
+    doc.focus();
   } else {
     const back = SLIDES[at] && SLIDES[at].box;
+    setMenu(false);
+    setBlank(false);
     root.classList.remove('present');
     root.style.removeProperty('font-size');
     clearSlides();
     leaveFull();
-    // Come out of the slides where the slides left off, not at the top.
-    if (back) back.scrollIntoView({ block: 'start' });
+    /* Come out of the slides where the slides left off, not at the top — and
+       land there rather than gliding, since a smooth scroll across a whole
+       lesson is a long way to watch when you only wanted the page back. */
+    if (back) back.scrollIntoView({ block: 'start', behavior: 'instant' });
+    // Back to whichever of the two Present buttons opened the slides.
+    (opener || $('#present')).focus({ preventScroll: true });
   }
 }
 
-const go = (by) => showSlide(at + by);
+const go = (by) => { setMenu(false); showSlide(at + by); };
+
+/* ---- the menu ---- */
+
+function setMenu(open) {
+  pmenu.hidden = !open;
+  $('#pLab', pbar).setAttribute('aria-expanded', String(open));
+  if (!open) return;
+
+  /* Mark the section being presented, so the menu answers "where am I?" on
+     the way to answering "where can I go?" — and open on it rather than at
+     the top, so the first arrow key moves from here. */
+  let here = 0;
+  MARKS.forEach((m, i) => { if (m.at <= at) here = i; });
+  const go = $$('.pmenu-go', pmenu);
+  go.forEach((b, i) => b.setAttribute('aria-current', String(i === here)));
+  wake();
+  (go[here] || go[0]).focus();
+}
+
+$('#pLab', pbar).addEventListener('click', () => setMenu(pmenu.hidden));
+pmenu.addEventListener('click', (e) => {
+  const b = e.target.closest('.pmenu-go');
+  if (!b) return;
+  setMenu(false);
+  showSlide(Number(b.dataset.go));
+  doc.focus();
+});
+document.addEventListener('click', (e) => {
+  if (!pmenu.hidden && !e.target.closest('#pMenu, #pLab')) setMenu(false);
+});
+
+/* ---- blanking the screen ----
+
+   The oldest move in lecturing: take the slide away so the room looks at you.
+   The lesson is untouched underneath — this is a curtain, not a state. */
+function setBlank(on) {
+  root.classList.toggle('sl-blank', !!on);
+}
+
+/* ---- the bar gets out of the way ----
+
+   It is the only thing on the projector that is not the lesson, so it fades
+   when nobody has touched anything for a few seconds and comes back on the
+   first sign of life. It never leaves entirely: a presenter glancing down for
+   "where am I?" should find it there, not have to wave at the screen. */
+let idle;
+function wake() {
+  pbar.classList.remove('idle');
+  clearTimeout(idle);
+  idle = setTimeout(() => {
+    if (presenting() && pmenu.hidden) pbar.classList.add('idle');
+  }, 4000);
+}
+['mousemove', 'keydown', 'pointerdown', 'wheel'].forEach((ev) =>
+  addEventListener(ev, () => { if (presenting()) wake(); }, { passive: true }));
 
 function goFull() {
   const req = root.requestFullscreen || root.webkitRequestFullscreen;
@@ -1226,22 +1471,44 @@ function leaveFull() {
   document.addEventListener(ev, () => {
     const full = document.fullscreenElement || document.webkitFullscreenElement;
     if (!full && wentFull && presenting()) setPresent(false);
-    if (full) wentFull = true;
+    // The button says what pressing it will do, not what state the page is in.
+    $('#pFull .pbtn-t', pbar).innerHTML = full
+      ? 'Leave full screen<em>離開全螢幕</em>' : 'Full screen<em>全螢幕</em>';
   }));
 
-$('#present').addEventListener('click', () => { setPresent(true); goFull(); });
-$('#pExit', pbar).addEventListener('click', () => setPresent(false));
-$('#pPrev', pbar).addEventListener('click', () => go(-1));
-$('#pNext', pbar).addEventListener('click', () => go(1));
-$('#pFull', pbar).addEventListener('click', () => {
+/* Every control in the bar hands the keyboard back to the stage when it is
+   done. A click leaves the focus on the button it landed on, and from there
+   the keys that are guarded against a focused control — the digits, A, B, C,
+   F — would quietly stop working for the rest of the lecture. */
+const barDoes = (id, fn) => $(id, pbar).addEventListener('click', () => {
+  fn();
+  // Unless that was Exit, which has already handed the focus to the button
+  // the teacher opened the slides with.
+  if (presenting()) doc.focus({ preventScroll: true });
+});
+
+$('#present').addEventListener('click', (e) => {
+  opener = e.currentTarget;
+  setPresent(true);
+  goFull();
+});
+barDoes('#pExit', () => setPresent(false));
+barDoes('#pPrev', () => go(-1));
+barDoes('#pNext', () => go(1));
+barDoes('#pFull', () => {
   if (document.fullscreenElement || document.webkitFullscreenElement) leaveFull();
   else goFull();
 });
-$('#pZh', pbar).addEventListener('click', () => {
-  const on = !document.body.classList.contains('zh-all');
-  setAllZh(on);
-  $('#pZh', pbar).setAttribute('aria-pressed', String(on));
+barDoes('#pZh', () => {
+  setAllZh(!document.body.classList.contains('zh-all'));
+  // Showing the Chinese is the commonest way to make a slide outgrow its screen.
+  refitSoon();
 });
+
+/* Anything tapped inside the lesson can change how tall the slide is — a card
+   opens, a gloss appears, an answer explains itself. One listener, after the
+   renderer's own, rather than threading a refit through every branch of it. */
+doc.addEventListener('click', refitSoon);
 
 /* The keys. A presenter's remote sends Page Down and Page Up, or the arrows;
    both are here, and so is the space bar — but only when the focus is not on
@@ -1250,29 +1517,102 @@ $('#pZh', pbar).addEventListener('click', () => {
    arrows are left alone on purpose: a long slide scrolls with them. */
 document.addEventListener('keydown', (e) => {
   if (!presenting() || e.metaKey || e.ctrlKey || e.altKey) return;
-  const onControl = e.target.closest('button, a, input, select, textarea, [contenteditable]');
+
+  /* Two guards, not one. `typing` is where a key is literally being written,
+     and nothing here may take those. `onLessonControl` is narrower: a chip or
+     a link inside the slide, which keeps the focus after a tap — that is the
+     gap-fill problem, and it is only the space bar and Backspace that it
+     would turn into a second press of that chip. A letter or a digit means
+     the same thing wherever the focus happens to be sitting, which is what
+     made the jump keys die the first time anybody answered a question. */
+  const typing = e.target.closest('input, select, textarea, [contenteditable]');
+  const onLessonControl = e.target.closest('#doc button, #doc a');
+  if (typing) return;
+
+  // A digit is a section: 1–9 open the step of that number, 0 the cover.
+  if (/^[0-9]$/.test(e.key)) {
+    const m = MARKS.find((x) => String(x.n) === e.key);
+    if (e.key === '0') showSlide(0);
+    else if (m) showSlide(m.at);
+    else return;
+    e.preventDefault();
+    return;
+  }
 
   switch (e.key) {
     case 'ArrowRight': case 'PageDown': go(1); break;
     case 'ArrowLeft': case 'PageUp': go(-1); break;
-    case ' ': if (onControl) return; go(1); break;
-    case 'Backspace': if (onControl) return; go(-1); break;
-    case 'Home': showSlide(0); break;
-    case 'End': showSlide(SLIDES.length - 1); break;
-    case 'Escape': setPresent(false); break;
+    case ' ': if (onLessonControl) return; go(1); break;
+    case 'Backspace': if (onLessonControl) return; go(-1); break;
+    case 'Home': go(-at); break;
+    case 'End': go(SLIDES.length - 1 - at); break;
+
+    /* Up and down scroll the slide, and the slide only. The stage is
+       `overflow: hidden` and the scroller is the section inside it, so the
+       browser's own scrolling never reaches it from where the focus sits —
+       which made the ↓ cue in the bar a promise nothing kept. On a slide that
+       fits, these keys are left alone exactly as before. */
+    case 'ArrowDown': case 'ArrowUp': {
+      if (!pmenu.hidden) return;
+      const b = SLIDES[at] && SLIDES[at].box;
+      if (!b || b.scrollHeight <= b.clientHeight + 2) return;
+      b.scrollBy({ top: (e.key === 'ArrowDown' ? 0.8 : -0.8) * b.clientHeight, behavior: 'smooth' });
+      break;
+    }
+
+    // Esc closes the menu if it is open, and otherwise leaves the slides —
+    // one key, the nearest thing first.
+    case 'Escape': if (!pmenu.hidden) setMenu(false); else setPresent(false); break;
     case 'f': case 'F':
-      if (onControl) return;
       if (document.fullscreenElement || document.webkitFullscreenElement) leaveFull();
       else goFull();
       break;
     case 'c': case 'C':
-      if (onControl) return;
       $('#pZh', pbar).click();
+      break;
+    case 'b': case 'B':
+      setBlank(!root.classList.contains('sl-blank'));
+      break;
+    /* The answers to the exercise on screen, and nothing else. The panel that
+       holds "Reveal every answer" is hidden in here, and it would open the
+       whole lesson anyway — including the exercises the room has not reached. */
+    case 'a': case 'A':
+      SLIDES[at].els.forEach((elm) => revealAll(elm));
+      refitSoon();
+      break;
+    // Stopping the voice needs a key of its own: Escape ends the lecture.
+    case 's': case 'S': case '.':
+      speechSynthesis.cancel();
+      break;
+    case '?':
+      setMenu(pmenu.hidden);
       break;
     default: return;
   }
   e.preventDefault();
 });
+
+/* A swipe across the slide, for the iPad a one-to-one lesson is often run
+   from. It stands down on anything the finger might have meant to press, and
+   on anything closer to a vertical drag, because a long slide scrolls. */
+let tx = 0, ty = 0, swiping = false;
+
+doc.addEventListener('touchstart', (e) => {
+  swiping = presenting() && e.touches.length === 1
+    && !e.target.closest('button, a, input, select, .term');
+  if (!swiping) return;
+  tx = e.touches[0].clientX;
+  ty = e.touches[0].clientY;
+}, { passive: true });
+
+doc.addEventListener('touchend', (e) => {
+  if (!swiping) return;
+  swiping = false;
+  const dx = e.changedTouches[0].clientX - tx;
+  const dy = e.changedTouches[0].clientY - ty;
+  if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.6) return;
+  go(dx < 0 ? 1 : -1);
+}, { passive: true });
 
 /* Printing wants the whole lesson, not the slide that happens to be up. */
 window.addEventListener('beforeprint', () => setPresent(false));
@@ -1282,7 +1622,23 @@ let refit;
 addEventListener('resize', () => {
   if (!presenting()) return;
   cancelAnimationFrame(refit);
-  refit = requestAnimationFrame(() => showSlide(at));
+  // Keep the scroll: a half-read long slide should not jump back to the top
+  // because the projector changed the screen under it.
+  refit = requestAnimationFrame(() => showSlide(at, true));
+});
+
+/* A second way in, for when the lesson is not at the top. The band's labelled
+   Present button is the discoverable one, but it is inside the cover — and a
+   teacher who has scrolled to step five, or who left the slides by accident,
+   should not have to scroll back up a sixty-slide lesson to start again.
+   Injected here so no reading's index.html had to change. */
+const presentTop = el(`<button class="bar-btn bar-btn-quiet" id="presentTop"
+  title="Present 投影片" aria-label="Present 投影片"><span aria-hidden="true">▶</span></button>`);
+$('.bar').insertBefore(presentTop, zhToggle);
+presentTop.addEventListener('click', (e) => {
+  opener = e.currentTarget;
+  setPresent(true);
+  goFull();
 });
 
 // A reload is the reset: nothing is stored except the two device settings.
