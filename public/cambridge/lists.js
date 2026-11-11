@@ -543,6 +543,7 @@ function renderQuizEnd() {
       `<li><span class="w">${esc(q.e.w)}</span>${sayBtn(q.e.sayAs)} <span class="zhf">${esc(q.e.firstZh)}</span></li>`).join('')}</ul>
     ${S.mode === 'self' ? `<div class="actions" style="justify-content:flex-start"><button class="btn again" id="markmissed">把這幾個標成「還不熟」</button></div>` : ''}`
     : `<p>這一輪每一題都第一次就選對了。</p>`}
+    ${HW && S.mode === 'self' ? doneCard([[`${Q.items.length - missed.length} / ${Q.items.length}`, '這一輪第一次就答對'], [hwRounds(), '做完的測驗輪數']]) : ''}
   </section><div class="actions"><button class="btn primary" id="qagain">再來一輪</button></div>`;
 }
 
@@ -621,6 +622,8 @@ function render() {
   if (S.view !== 'list') { $('#rail').hidden = true; document.body.classList.remove('has-rail'); }
   $('#hwbtn').hidden = !TEACHER;
   renderHWBar();
+  renderToday();
+  renderChips();
   ({ list: renderList, topics: renderTopics, cards: renderCards, quiz: renderQuiz })[S.view]();
   railAway();
 }
@@ -655,7 +658,79 @@ function renderHWBar() {
     <h2>${esc(HW.title || '這次要複習的單字')}</h2>
     <p class="hw-topics">${HW.topics.map(i => `<button class="hw-chip" data-opentopic="${i}">${esc(TOPICS[i][1])}<small>${words.filter(e => e.t.includes(i)).length}</small></button>`).join('')}</p>
     <p class="hw-line">共 <b>${words.length}</b> 個字${S.mode === 'self' ? `，這台裝置上記住了 <b>${k}</b> 個` : ''}。單字表、閃卡和測驗都只出這些字。
-      <a href="${location.pathname}">看全部單字 ›</a></p>`;
+      <a href="${location.pathname}">看全部單字 ›</a></p>
+    ${S.mode === 'self' && words.length && k === words.length
+      ? `<div class="hw-done"><p class="hw-donehead">全部記住了！</p>${doneCard([[hwRounds(), '做完的測驗輪數']])}</div>` : ''}`;
+}
+
+/* ---------- 完成卡: what a student screenshots and sends to Lewis. The page has no server,
+   so this card is the whole report: the date, the assignment, and what this device has done. ---------- */
+const HWKEY = HW ? new URLSearchParams(location.search).get('hw') : '';
+const hwRounds = () => (store.get('hwlog', {})[HWKEY] || {}).rounds || 0;
+function logRound() {
+  if (!HW) return;
+  const log = store.get('hwlog', {});
+  log[HWKEY] = { rounds: (log[HWKEY] ? log[HWKEY].rounds : 0) + 1, last: Date.now() };
+  store.set('hwlog', log);
+}
+function doneCard(lines) {
+  const words = ENTRIES.filter(inHW), k = words.filter(e => MARKS[e.id] === 'k').length;
+  const d = new Date(), two = n => String(n).padStart(2, '0');
+  const date = `${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()} ${two(d.getHours())}:${two(d.getMinutes())}`;
+  return `<div class="donecard">
+    <div class="dc-top"><span>Cambridge Vocab · ${esc(EXAM_NAME)}</span><span>${date}</span></div>
+    <div class="dc-k">本週指定學習單字</div>
+    <h3>${esc(HW.title || '這次要複習的單字')}</h3>
+    <p class="dc-topics">${HW.topics.map(i => esc(TOPICS[i][1])).join('、')} · ${words.length} 個字</p>
+    <ul class="dc-stats">${lines.map(([n, l]) => `<li><b>${n}</b><span>${l}</span></li>`).join('')}<li><b>${k} / ${words.length}</b><span>記住了</span></li></ul>
+    <p class="dc-hint">截圖這張卡，傳給 Lewis 老師</p>
+  </div>`;
+}
+const EXAM_NAME = ($('.brand').firstChild.textContent || '').trim();
+
+/* ---------- 今天這一組, up front: the first thing a returning student sees ---------- */
+const RETURNING = Object.keys(MARKS).length > 0;     // has marked a word on this device before
+function renderToday() {
+  const el = $('#today');
+  if (S.mode !== 'self') { el.hidden = true; return; }
+  const base = ENTRIES.filter(inHW);
+  const due = Math.min(base.filter(e => isDue(e.id)).length, 20);
+  const fresh = Math.min(base.filter(e => !MARKS[e.id]).length, 20 - due);
+  const known = base.filter(e => MARKS[e.id] === 'k').length, pct = base.length ? Math.round(100 * known / base.length) : 0;
+  el.hidden = false;
+  el.innerHTML = due + fresh
+    ? `<div class="td-text"><div class="td-k">${RETURNING ? '歡迎回來' : '從這裡開始'} · 今天這一組</div>
+        <p class="td-line">${due ? `<b>${due}</b> 個要複習、` : ''}<b>${fresh}</b> 個新字</p>
+        <p class="td-prog"><span class="td-bar" aria-hidden="true"><i style="width:${pct}%"></i></span>記住了 ${known.toLocaleString()} / ${base.length.toLocaleString()}</p></div>
+       <button class="btn primary" id="starttoday">開始 →</button>`
+    : `<div class="td-text"><div class="td-k">今天這一組</div><p class="td-line">今天沒有要複習的字</p>
+        <p class="td-prog">${HW ? '這份指定的字' : '這份字表'}都標記過了，記住了 ${known.toLocaleString()} / ${base.length.toLocaleString()}。</p></div>`;
+}
+
+/* ---------- 篩選中: every filter that narrows the list, as a chip with × ---------- */
+function activeFilters() {
+  const f = [];
+  if (S.q.trim()) f.push(['q', `搜尋「${S.q.trim()}」`]);
+  if (S.scope === 'new') f.push(['scope', EXAM.newLabel]);
+  if (S.topic !== 'all') f.push(['topic', '主題：' + topicZh(+S.topic)]);
+  if (S.letter !== 'all' && !S.q.trim()) f.push(['letter', S.letter.toUpperCase() + ' 開頭']);
+  if (S.mode === 'self' && S.markf !== 'all') f.push(['markf', $('#markf').selectedOptions[0].textContent]);
+  return f;
+}
+function renderChips() {
+  const f = activeFilters(), el = $('#fchips');
+  el.hidden = !f.length;
+  el.innerHTML = f.length ? `<span class="fc-label">篩選中</span>` +
+    f.map(([k, t]) => `<button class="fchip" data-clear="${k}" aria-label="取消篩選：${esc(t)}">${esc(t)}<span aria-hidden="true">×</span></button>`).join('') +
+    (f.length > 1 ? `<button class="link" data-clear="all">全部清除</button>` : '') : '';
+}
+function clearFilter(k) {
+  if (k === 'q' || k === 'all') { S.q = ''; $('#q').value = ''; }
+  if (k === 'scope' || k === 'all') S.scope = 'all';
+  if (k === 'topic' || k === 'all') { S.topic = 'all'; $('#topic').value = 'all'; if (!HW) store.set('topic', 'all'); }
+  if (k === 'letter' || k === 'all') { S.letter = 'all'; $('#letter').value = 'all'; }
+  if (k === 'markf' || k === 'all') { S.markf = 'all'; $('#markf').value = 'all'; }
+  S.shown = 40; render();
 }
 
 /* ---------- the teacher's side: the 指定 sheet ---------- */
@@ -695,6 +770,11 @@ document.addEventListener('click', ev => {
   }
   if (t.dataset.kind) { D.kind = t.dataset.kind; store.set('deckkind', D.kind); D.key = ''; renderCards(); return; }
   if (t.dataset.view) { S.view = t.dataset.view; render(); window.scrollTo(0, 0); return; }
+  if (t.dataset.clear) { clearFilter(t.dataset.clear); return; }
+  if (t.id === 'starttoday') {    // today's set over the whole list (or the whole assignment), not whatever is filtered
+    clearFilter('all'); S.view = 'cards'; D.kind = 'set'; store.set('deckkind', 'set'); D.key = '';
+    render(); window.scrollTo(0, $('.lnav').offsetTop); return;
+  }
   if (t.dataset.opentopic != null) {   // a topic tile or an assignment chip: that topic's words, as a list
     S.topic = t.dataset.opentopic; $('#topic').value = S.topic; if (!HW) store.set('topic', S.topic);
     S.view = 'list'; S.q = ''; $('#q').value = ''; S.letter = 'all'; $('#letter').value = 'all'; S.shown = 40;
@@ -736,7 +816,7 @@ document.addEventListener('click', ev => {
     case 'qskip': Q.missed.add(Q.i); Q.solved = true; SP.msg = ''; renderQuiz(); break;
     case 'spcheck': checkSpell(); break;
     case 'sphint': spellHint(); break;
-    case 'qnext': Q.i++; Q.tried = new Set(); Q.solved = false; resetSpell(); if (Q.i >= Q.items.length) Q.done = true; renderQuiz(); window.scrollTo(0, 0); break;
+    case 'qnext': Q.i++; Q.tried = new Set(); Q.solved = false; resetSpell(); if (Q.i >= Q.items.length) { Q.done = true; logRound(); } renderQuiz(); window.scrollTo(0, 0); break;
     case 'qagain': buildQuiz(); renderQuiz(); break;
     case 'markmissed': Q.items.forEach((q, i) => { if (Q.missed.has(i)) markWord(q.e.id, 'r'); }); t.textContent = '已標成「還不熟」'; t.disabled = true; break;
     case 'setbtn': openPanel(); break;
@@ -797,7 +877,10 @@ $('#hwpick').addEventListener('change', ev => {
   ev.target.checked ? HWPICK.add(+i) : HWPICK.delete(+i); updateHWPanel();
 });
 $('#hwtitle').addEventListener('input', updateHWPanel);
-if (HW) { document.body.classList.add('hw'); document.title = `${HW.title || '本週指定學習單字'} · ${document.title}`; }
+$('.lnav').insertAdjacentHTML('beforebegin', '<section class="today wrap" id="today" aria-label="今天這一組" hidden></section>');
+$('.lnav .wrap').insertAdjacentHTML('beforeend', '<div class="row fchips" id="fchips" aria-label="篩選中" hidden></div>');
+if (RETURNING) document.body.classList.add('returning');   // a returning student: the introduction folds away
+if (HW) { document.body.classList.add('assigned'); document.title = `${HW.title || '本週指定學習單字'} · ${document.title}`; }
 $('#markf').addEventListener('change', ev => { S.markf = ev.target.value; S.shown = 40; render(); });
 $('#voice').addEventListener('change', ev => { S.voice = ev.target.value; store.set('voice', S.voice); say('Hello, this is how the words will sound.'); });
 $('#rate').addEventListener('input', ev => { S.rate = +ev.target.value; $('#ratev').textContent = '×' + S.rate.toFixed(2); store.set('rate', S.rate); });

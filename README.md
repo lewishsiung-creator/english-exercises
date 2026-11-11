@@ -2592,6 +2592,38 @@ its first day; Lewis renamed it to 「本週指定學習單字」 the same day.
 - Inside an assignment the page never remembers a topic choice, so the link
   always opens on all of its topics.
 
+### Sharing, returning, filters, finishing (added 2026-11-11)
+
+Four changes from a design review Lewis asked for, built the same day:
+
+- **Link previews.** Each of the four pages carries `og:` tags and its own
+  1200×630 card (`og-hub.png`, `og-a2-key.png`, …, drawn by
+  `tools/cambridge/make_images.py` along with the home-screen icon), so a link
+  pasted into LINE shows a card instead of a bare URL. A static page cannot draw
+  one per assignment: a 本週指定學習單字 link shows its exam's card.
+- **今天這一組 up front.** A2 Key and B1 open with a strip — 「今天這一組：3 個要
+  複習、17 個新字」, a 記住了 bar, 開始 → — above the controls. 開始 clears every
+  filter and opens today's set over the whole list (or the whole assignment).
+  Once a device has marked any word (`body.returning`), the headline and blurb
+  fold away so the strip is on the first screen.
+- **篩選中 chips.** Search, 新增, topic, letter and the 記住了 filter each show as
+  a chip with × under the controls, plus 全部清除. The page remembers the last
+  topic, and a student coming back to "107 個字" had no way to see why.
+- **完成卡.** Inside an assignment, the end of a quiz round (and the banner, once
+  every assigned word is 記住了) shows a blue card: date and time, the
+  assignment's title and topics, first-try score, rounds done on this device,
+  記住了 n / N, and 「截圖這張卡，傳給 Lewis 老師」. The young learners game shows
+  the same card at the end of a round. With no server, the screenshot *is* the
+  report. Rounds are counted per assignment in `a2k.hwlog` / `b1p.hwlog` / `yl.hwlog`.
+
+**A class-name collision, found here.** Assignments put a class on `<body>`; it
+was `hw` — which is also the class of every headword row (`.hw { display: flex;
+flex-wrap: wrap; align-items: baseline }`). For a day, an assignment page laid
+the whole body out as a flex row; on a phone it mostly wrapped back into place,
+on a wider screen the sections came out of order. The body classes are now
+`assigned` and `returning`. Before adding a class to `<body>` here, grep
+`lists.css` for it.
+
 ### Starters, Movers, Flyers
 
 Its own page, built to the children's house rules rather than on the list
