@@ -2521,6 +2521,20 @@ the role-play; the visitor (`who-V`) gets an en-HK voice where the device has
 one, else en-GB. The checklist is the one thing saved (`flm.check`). The page
 is not linked from `/family-law/`.
 
+**Finding your way (2026-11-12).** Unlocked, the page is about 55,000px tall
+on a phone, and section 04 has thirteen parts. So every headed `lines` block
+is a numbered **part** (`h3.part-h`, id `<section>-<n>`). A section with three
+or more parts opens with a strip of them; the contents list the parts of the
+section being read. One scroll handler (`watchPlace`) lights the section and
+part, names them on ☰ ("04.3 Our firm in one minute"; on a phone ☰ keeps its
+label for this), and draws a gold progress line under the bar. Every section
+ends with a card to the next. A `notes` block of four or more folds to its
+headlines (Open all 全部展開). Print opens the notes and drops all of this.
+Also: ▶ is a 34–38px round target, the cue-card controls fit one row on a
+phone, and the cards follow a swipe. The fix that matters if this is copied:
+`main#doc { min-width: 0 }`. Without it the sideways strip widens the grid
+column, and the whole page with it.
+
 ## Cambridge 核心單字 — the official lists, from Starters to B1 Preliminary
 
 `/cambridge/` is a hub with one page per Cambridge vocabulary list, every word

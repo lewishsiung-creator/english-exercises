@@ -994,3 +994,299 @@ body.locked main { margin: 0 auto; }
   body.print-one .sec:not(.print-this) { display: none !important; }
   body.print-one .sec.print-this { break-before: auto; }
 }
+
+
+/* ================================================================
+   Finding your way, 12 Nov 2026
+   ================================================================
+
+   On a phone the unlocked page is about 55,000px tall and section 04 alone
+   has thirteen parts. Before this pass the only way round it was ☰, which on
+   a phone said nothing about where you were. Now:
+
+   - a gold hairline under the bar shows how far down the page you are;
+   - the ☰ button names the section and part being read ("04.3 Our firm in
+     one minute"), on a phone too;
+   - each part has a real, numbered heading, and a section with three parts
+     or more opens with a strip of them to jump to;
+   - the contents list the parts of the section being read;
+   - every section ends with a card to the next one;
+   - a long list of coaching notes folds to its headlines.
+
+   Also: ▶ is a round target big enough for a thumb, the cue-card controls
+   fit one row on a phone, and the cards follow a swipe. */
+
+/* The hairline. The bar is sticky, so it positions this. */
+.bar-progress {
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  pointer-events: none;
+}
+.bar-progress i {
+  display: block;
+  height: 100%;
+  background: var(--gold-line);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+
+/* A phone: ☰ keeps its label (the title has gone, so there is room), cut
+   short with an ellipsis rather than pushing the other buttons off. */
+@media (max-width: 620px) {
+  body:not(.locked) #navToggle { flex: 0 1 auto; min-width: 0; }
+  #navLab {
+    display: inline;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+/* A part's heading: a gold numeral, the title in the text face, its Chinese
+   beside it, and "Hear the whole part" at the end of the row. */
+.aside-h.part-h {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 10px;
+  margin: 30px 0 12px;
+  font-family: var(--font-en);
+  font-size: 1.14rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink);
+  scroll-margin-top: calc(var(--bar-h) + 16px);
+}
+.block:first-of-type > .part-h { margin-top: 14px; }
+.part-h .part-n {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  margin: 0;
+  border: 1px solid var(--gold-line);
+  border-radius: 50%;
+  font: 700 .72rem/1 var(--font-ui);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+.part-h .part-t { flex: 1 1 14rem; min-width: 0; margin: 0; font-family: var(--font-en); }
+.part-h .zh-i {
+  display: inline-block;
+  margin-left: 6px;
+  font-family: var(--font-zh);
+  font-size: .76em;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+.part-h .whole {
+  margin-left: auto;
+  padding: 8px 13px;
+  border-radius: var(--pill, 980px);
+  background: var(--navy-soft);
+  border-color: var(--navy-line);
+  color: var(--navy);
+  font-size: 12.5px;
+}
+.part-h .whole:hover { background: color-mix(in srgb, var(--navy-soft) 60%, var(--navy-line)); }
+.part-h .whole[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+@media (max-width: 620px) {
+  .aside-h.part-h { font-size: 1.08rem; }
+  .part-h .whole { margin-left: calc(1.55rem + 10px); }
+}
+
+/* The strip of parts under a section's note. It wraps on a wide screen; on a
+   phone it is one row that scrolls sideways, fading at the edge to say so. */
+.parts { margin: 2px 0 6px; }
+.parts ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.parts a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px 5px 5px;
+  border-radius: var(--pill, 980px);
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+  color: var(--ink);
+  text-decoration: none;
+  font: 500 13px/1.3 var(--font-ui);
+  transition: background var(--fast, .18s) var(--ease, ease);
+}
+.parts a:hover { background: color-mix(in srgb, var(--ink) 10%, transparent); }
+.parts a b {
+  display: inline-grid;
+  place-items: center;
+  width: 21px; height: 21px;
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 700;
+}
+@media (max-width: 620px) {
+  .parts {
+    margin-left: -20px;
+    margin-right: -20px;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 32px), transparent);
+            mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 32px), transparent);
+  }
+  .parts ol {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 2px 20px 6px;
+    scrollbar-width: none;
+  }
+  .parts ol::-webkit-scrollbar { display: none; }
+  .parts li { flex: none; }
+}
+
+/* The contents: the parts of the section being read, under it. */
+.toc-sub {
+  display: none;
+  list-style: none;
+  margin: 2px 0 8px 2.55rem;
+  padding: 0 0 0 10px;
+  border-left: 1px solid var(--line);
+}
+.toc li.cur > .toc-sub { display: block; }
+.toc .toc-sub a {
+  display: block;
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  line-height: 1.35;
+  color: var(--ink-faint);
+}
+.toc .toc-sub a:hover { color: var(--ink); }
+.toc .toc-sub a.on { color: var(--ink); font-weight: 600; }
+
+/* The way on, at the end of every section. */
+.sec-next { margin: 30px 0 8px; }
+.sec-next a {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "k a" "t a";
+  align-items: center;
+  gap: 3px 14px;
+  padding: 14px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--round, 14px);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color var(--fast, .18s) var(--ease, ease), box-shadow var(--fast, .18s) var(--ease, ease);
+}
+.sec-next a:hover { border-color: var(--rule); box-shadow: 0 6px 20px rgba(26, 26, 28, .06); }
+.sec-next-k {
+  grid-area: k;
+  font: 600 11px/1.3 var(--font-ui);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.sec-next-t { grid-area: t; font-size: 1.02rem; font-weight: 600; line-height: 1.35; }
+.sec-next-t b { margin-right: 5px; font: 700 .78rem var(--font-ui); color: var(--gold); }
+.sec-next .zh { display: block; font-size: .78em; font-weight: 400; margin-top: 1px; }
+.sec-next-a { grid-area: a; font: 20px/1 var(--font-ui); color: var(--ink-faint); transition: transform var(--fast, .18s) var(--ease, ease); }
+.sec-next a:hover .sec-next-a { transform: translateX(3px); color: var(--ink); }
+
+/* Coaching notes, folded: the headline is a button, the chevron turns. */
+.notes-bar { display: flex; justify-content: flex-end; margin: 0 0 8px; }
+.notes-all {
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: var(--pill, 980px);
+  font: 600 12.5px/1 var(--font-ui);
+  padding: 7px 12px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.notes-all em { font-style: normal; font-family: var(--font-zh); font-weight: 400; margin-left: 4px; }
+.notes-all:hover { background: var(--navy-soft); border-color: var(--navy-line); }
+.notes-fold { gap: 8px; }
+.notes-fold li { padding: 0; }
+.note-btn {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  width: 100%;
+  margin: 0;
+  padding: 12px 16px;
+  background: transparent;
+  border: 0;
+  border-radius: 0 8px 8px 0;
+  text-align: left;
+  font-family: var(--font-zh);
+  color: var(--ink);
+  cursor: pointer;
+}
+.note-btn:hover { background: color-mix(in srgb, var(--navy-soft) 55%, transparent); }
+.note-btn::after {
+  content: "";
+  flex: none;
+  margin-left: auto;
+  width: 7px; height: 7px;
+  border-right: 1.5px solid var(--ink-faint);
+  border-bottom: 1.5px solid var(--ink-faint);
+  transform: translateY(-3px) rotate(45deg);
+  transition: transform var(--fast, .18s) var(--ease, ease);
+}
+.is-open > .note-btn::after { transform: translateY(1px) rotate(-135deg); }
+.notes-fold .note-d { margin: -4px 0 0; padding: 0 16px 13px; }
+@media screen { .notes-fold li:not(.is-open) > .note-d { display: none; } }
+
+/* ▶: a round target, a thumb's width, in the accent. */
+.say {
+  display: inline-grid;
+  place-items: center;
+  align-self: flex-start;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  border-color: var(--navy-line);
+  background: var(--card);
+  color: var(--navy);
+  font-size: 11px;
+  transition: background var(--fast, .18s) var(--ease, ease), border-color var(--fast, .18s) var(--ease, ease);
+}
+.line .say { margin-top: -3px; }
+.say:hover { background: var(--navy-soft); }
+.say:active { transform: scale(.94); }
+.say.saying { background: var(--navy); border-color: var(--navy); color: #fff; }
+@media (max-width: 620px) { .say { width: 38px; height: 38px; } }
+
+/* Cue cards: one row of controls on a phone (the Chinese labels stay, the
+   English ones step aside), and the two buttons share a row. */
+.deck-bar { gap: 6px; }
+.deck-gap { flex: 1 1 0; }
+.deck-count { min-width: 3.6em; margin: 0; text-align: center; }
+.card-acts .btn { flex: 1 1 auto; }
+@media (max-width: 620px) {
+  .deck-bar { flex-wrap: nowrap; }
+  .deck-bar .btn { min-height: 42px; padding: 8px 13px; }
+  .deck-bar .deck-step { min-width: 42px; padding: 0; }
+  .deck-bar .en-l { display: none; }
+  .deck-bar .btn em { margin-left: 0; }
+}
+/* On a touch screen, say that a swipe works. */
+@media (hover: none) {
+  .deck:not(.all) .cards::after {
+    content: "← 左右滑動換一張 Swipe for the next card →";
+    text-align: center;
+    font: 12px/1.4 var(--font-ui);
+    color: var(--ink-faint);
+  }
+}
+
+@media print {
+  .bar-progress, .parts, .sec-next, .notes-bar, .note-btn::after { display: none !important; }
+  .cards::after { content: none !important; }
+  .note-btn { padding: 12px 16px 0; }
+}
+
+/* The grid column is 1fr, which will not shrink below its content; the
+   sideways strip of parts would otherwise widen the whole page on a phone. */
+main#doc { min-width: 0; }

@@ -326,6 +326,11 @@ function playWhole(btn) {
   step(0);
 }
 
+const NOTES_LABEL = {
+  open: 'Open all <em>全部展開</em>',
+  close: 'Close all <em>全部收起</em>',
+};
+
 const WHOLE_LABEL = {
   idle: '▶&#xFE0E; Hear the whole part <em>聽整段</em>',
   playing: '■ Stop <em>停止</em>',
@@ -356,10 +361,19 @@ const PLAY_LABEL = {
 };
 
 const BLOCK = {
-  notes: (b) => `
-    <ul class="notes">${b.items.map((n) => `
-      <li><p class="note-h">${rich(n.h)}</p>${n.d ? `<p class="note-d">${rich(n.d)}</p>` : ''}</li>`).join('')}
-    </ul>`,
+  /* Four notes or more fold to their headlines — each headline is the whole
+     message in short — and a tap opens the detail. A long list had pushed the
+     section's real content a phone-screen or two down. Print opens them all. */
+  notes: (b) => {
+    const fold = b.items.length >= 4;
+    return `
+    ${fold ? `<div class="notes-bar"><button class="notes-all" data-notes-all aria-pressed="false">${NOTES_LABEL.open}</button></div>` : ''}
+    <ul class="notes${fold ? ' notes-fold' : ''}">${b.items.map((n) => (fold && n.d ? `
+      <li><button class="note-h note-btn" data-note aria-expanded="false">${rich(n.h)}</button>
+        <p class="note-d">${rich(n.d)}</p></li>` : `
+      <li><p class="note-h">${rich(n.h)}</p>${n.d ? `<p class="note-d">${rich(n.d)}</p>` : ''}</li>`)).join('')}
+    </ul>`;
+  },
 
   table: (b) => `
     <div class="table-wrap"><table class="ref">
@@ -374,10 +388,10 @@ const BLOCK = {
         ${r.d ? `<p class="flow-d">${rich(r.d)}</p>` : ''}</div></li>`).join('')}
     </ol>`,
 
-  lines: (b) => `
-    ${b.h ? `<p class="aside-h">${rich(b.h.en)} <span>${rich(b.h.zh)}</span>${
+  lines: (b, c = {}) => `
+    ${b.h ? `<h3 class="aside-h part-h"${c.id ? ` id="${c.id}"` : ''}>${c.n ? `<span class="part-n">${c.n}</span>` : ''}<span class="part-t">${rich(b.h.en)} <span class="zh-i">${rich(b.h.zh)}</span></span>${
       b.items.length > 1 && b.items.every((l) => l.rec)
-        ? `<button class="whole" data-whole aria-pressed="false">${WHOLE_LABEL.idle}</button>` : ''}</p>` : ''}
+        ? `<button class="whole" data-whole aria-pressed="false">${WHOLE_LABEL.idle}</button>` : ''}</h3>` : ''}
     <ul class="lines">${b.items.map((l) => lineHtml(l, b.who || 'Y', false)).join('')}</ul>`,
 
   qa: (b) => `
@@ -398,8 +412,9 @@ const BLOCK = {
         <button class="btn deck-step" data-deck-go="-1" aria-label="上一張 Previous">◀&#xFE0E;</button>
         <p class="deck-count" aria-live="polite"><b data-deck-n>1</b> / ${b.items.length}</p>
         <button class="btn deck-step" data-deck-go="1" aria-label="下一張 Next">▶&#xFE0E;</button>
-        <button class="btn" data-deck-go="random">Random <em>隨機</em></button>
-        <button class="btn" data-deck-all aria-pressed="false">Show all <em>全部列出</em></button>
+        <span class="deck-gap"></span>
+        <button class="btn" data-deck-go="random"><span class="en-l">Random</span> <em>隨機</em></button>
+        <button class="btn" data-deck-all aria-pressed="false"><span class="en-l">Show all</span> <em>全部列出</em></button>
       </div>
       <ol class="cards">${b.items.map((c, i) => `
         <li class="card"${i ? ' hidden' : ''}>
@@ -458,7 +473,7 @@ const BLOCK = {
 function buildCover(C) {
   const c = C.cover;
   return `
-  <header class="cover">
+  <header class="cover" id="top">
     <p class="kicker">${rich(c.kicker)}</p>
     <h1>${rich(c.h1.en)}<span class="zh">${rich(c.h1.zh)}</span></h1>
     <p class="intro">${rich(c.lead.en)}<span class="zh">${rich(c.lead.zh)}</span></p>
@@ -471,13 +486,32 @@ function buildCover(C) {
 
 const num = (n) => String(n + 1).padStart(2, '0');
 
-function buildSection(s, i) {
+/* A section's parts: its headed `lines` blocks, numbered from 1, in block
+   order (null for a block that is not a part). */
+function partsOf(s) {
+  let n = 0;
+  return s.blocks.map((b) => (b.t === 'lines' && b.h ? { id: `${s.id}-${++n}`, n, h: b.h } : null));
+}
+
+function buildSection(s, i, all) {
+  const parts = partsOf(s);
+  const list = parts.filter(Boolean);
+  const strip = list.length >= 3 ? `
+    <nav class="parts" aria-label="Parts of this section 本節段落"><ol>${list.map((p) => `
+      <li><a href="#${p.id}"><b>${p.n}</b>${text(spoken(p.h.en))}</a></li>`).join('')}
+    </ol></nav>` : '';
+  const next = all[i + 1];
+  const on = next
+    ? `<a href="#${next.id}"><span class="sec-next-k">Next 下一節</span><span class="sec-next-t"><b>${num(i + 1)}</b> ${text(next.en)}<span class="zh">${text(next.zh)}</span></span><span class="sec-next-a" aria-hidden="true">→</span></a>`
+    : `<a href="#top"><span class="sec-next-k">The end 最後一節</span><span class="sec-next-t">Back to the top<span class="zh">回到最上面</span></span><span class="sec-next-a" aria-hidden="true">↑</span></a>`;
   return `
   <section class="sec" id="${s.id}">
     <h2 class="sec-head"><span class="num">${num(i)}</span><span>${rich(s.en)}<span class="zh">${rich(s.zh)}</span></span><button class="sec-pdf" data-pdf
       aria-label="Download this section as a PDF 下載這一節的 PDF" title="只下載這一節的 PDF">PDF <span aria-hidden="true">↓</span></button></h2>
     ${s.note ? `<p class="sec-note">${rich(s.note.en)}<span class="zh">${rich(s.note.zh)}</span></p>` : ''}
-    ${s.blocks.map((b) => `<div class="block block-${b.t}">${BLOCK[b.t](b)}</div>`).join('')}
+    ${strip}
+    ${s.blocks.map((b, k) => `<div class="block block-${b.t}">${BLOCK[b.t](b, parts[k] || {})}</div>`).join('')}
+    <p class="sec-next">${on}</p>
   </section>`;
 }
 
@@ -485,9 +519,13 @@ function buildNav(C) {
   return `
   <nav class="toc" aria-label="Contents 目錄">
     <p class="toc-head">Contents 目錄</p>
-    <ul>${C.sections.map((s, i) => `
+    <ul>${C.sections.map((s, i) => {
+      const list = partsOf(s).filter(Boolean);
+      return `
       <li><a href="#${s.id}" data-sec="${s.id}"><span class="n">${num(i)}</span>
-        <span class="t"><span class="en">${text(s.en)}</span><span class="zh">${text(s.zh)}</span></span></a></li>`).join('')}
+        <span class="t"><span class="en">${text(s.en)}</span><span class="zh">${text(s.zh)}</span></span></a>${list.length >= 2 ? `
+        <ol class="toc-sub">${list.map((p) => `<li><a href="#${p.id}" data-sub="${p.id}">${text(spoken(p.h.en))}</a></li>`).join('')}</ol>` : ''}</li>`;
+    }).join('')}
     </ul>
   </nav>`;
 }
@@ -658,6 +696,9 @@ function setNav(open) {
   document.body.classList.toggle('nav-open', open);
   $('#navToggle').setAttribute('aria-expanded', String(open));
   $('.nav-scrim').hidden = !open;
+  // Opened on a phone, the list starts at the section being read, not at the top.
+  const here = open && $('#nav .toc a.here');
+  if (here) $('#nav').scrollTop = Math.max(0, here.offsetTop - $('#nav').offsetTop - 70);
 }
 
 // ------------------------------------------------------------------- start
@@ -716,6 +757,25 @@ function start(C) {
       say.classList.add('saying');
       const said = li.querySelector('.ex') ? li.querySelector('.ex').textContent : $('.line-en', li).textContent;
       sayLine(li, said, () => say.classList.remove('saying'));
+      return;
+    }
+
+    const note = t.closest('[data-note]');
+    if (note) {
+      const open = note.getAttribute('aria-expanded') !== 'true';
+      note.setAttribute('aria-expanded', String(open));
+      note.parentElement.classList.toggle('is-open', open);
+      return;
+    }
+    const na = t.closest('[data-notes-all]');
+    if (na) {
+      const open = na.getAttribute('aria-pressed') !== 'true';
+      na.setAttribute('aria-pressed', String(open));
+      na.innerHTML = open ? NOTES_LABEL.close : NOTES_LABEL.open;
+      $$('[data-note]', na.closest('.block')).forEach((n) => {
+        n.setAttribute('aria-expanded', String(open));
+        n.parentElement.classList.toggle('is-open', open);
+      });
       return;
     }
 
@@ -815,23 +875,87 @@ function start(C) {
   $('.nav-scrim').addEventListener('click', () => setNav(false));
   $('#nav').addEventListener('click', (e) => { if (e.target.closest('a')) setNav(false); });
 
-  // Contents: light the section being read, and name it on the ☰ button.
-  const links = new Map($$('.toc a[data-sec]').map((a) => [a.dataset.sec, a]));
-  const navLab = $('#navLab');
-  const spy = new IntersectionObserver((rows) => {
-    rows.filter((r) => r.isIntersecting).forEach((r) => {
-      links.forEach((a) => { a.classList.remove('here'); a.removeAttribute('aria-current'); });
-      const a = links.get(r.target.id);
-      if (!a) return;
-      a.classList.add('here');
-      a.setAttribute('aria-current', 'true');
-      navLab.textContent = $('.en', a).textContent;
-    });
-  }, { rootMargin: '-20% 0px -70% 0px' });
-  $$('.sec').forEach((s) => spy.observe(s));
+  watchPlace();
+  bindSwipe();
   loadRecordings(C);
 
   if (location.hash && $(location.hash)) $(location.hash).scrollIntoView();
+}
+
+/* Where am I. The page is very long on a phone (section 04 alone has thirteen
+   parts), so one scroll handler keeps three things true: the contents light
+   the section and the part being read, the ☰ button names them (on a phone it
+   is the only place that can), and a hairline under the bar shows how far
+   down the page you are. A section or part counts as "being read" once its
+   heading is a quarter of the way down the screen. */
+function watchPlace() {
+  const secs = $$('.sec');
+  const heads = $$('.part-h[id]');
+  const links = new Map($$('.toc a[data-sec]').map((a) => [a.dataset.sec, a]));
+  const subs = new Map($$('.toc a[data-sub]').map((a) => [a.dataset.sub, a]));
+  const navLab = $('#navLab');
+  const bar = $('.bar');
+  bar.insertAdjacentHTML('beforeend', '<span class="bar-progress" aria-hidden="true"><i></i></span>');
+  const fill = $('.bar-progress i');
+  let last = null;
+  let queued = false;
+
+  const update = () => {
+    queued = false;
+    const mark = bar.getBoundingClientRect().bottom + window.innerHeight * 0.25;
+    let sec = null;
+    for (const s of secs) { if (s.getBoundingClientRect().top <= mark) sec = s; else break; }
+    let part = null;
+    if (sec) for (const h of heads) { if (sec.contains(h) && h.getBoundingClientRect().top <= mark) part = h; }
+
+    const room = document.documentElement.scrollHeight - window.innerHeight;
+    fill.style.transform = `scaleX(${room > 0 ? Math.min(1, Math.max(0, window.scrollY / room)) : 0})`;
+
+    const key = `${sec ? sec.id : ''}|${part ? part.id : ''}`;
+    if (key === last) return;
+    last = key;
+    links.forEach((a) => { a.classList.remove('here'); a.removeAttribute('aria-current'); a.parentElement.classList.remove('cur'); });
+    subs.forEach((a) => { a.classList.remove('on'); a.removeAttribute('aria-current'); });
+    if (!sec) { navLab.textContent = 'Contents 目錄'; return; }
+    const a = links.get(sec.id);
+    if (!a) return;
+    a.classList.add('here');
+    a.setAttribute('aria-current', 'true');
+    a.parentElement.classList.add('cur');
+    const n = $('.n', a).textContent;
+    const sub = part && subs.get(part.id);
+    if (sub) {
+      sub.classList.add('on');
+      sub.setAttribute('aria-current', 'true');
+      navLab.textContent = `${n}.${$('.part-n', part).textContent} ${sub.textContent}`;
+    } else {
+      navLab.textContent = `${n} ${$('.en', a).textContent}`;
+    }
+  };
+  const later = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+  addEventListener('scroll', later, { passive: true });
+  addEventListener('resize', later);
+  update();
+}
+
+/* Cue cards follow a swipe on a phone, as cards do everywhere else. A swipe
+   is mostly sideways and at least 50px; anything else is a scroll. */
+function bindSwipe() {
+  const deck = $('[data-deck]');
+  if (!deck) return;
+  let x = 0, y = 0, on = false;
+  deck.addEventListener('touchstart', (e) => {
+    on = !deck.classList.contains('all') && e.touches.length === 1 && !e.target.closest('button');
+    x = e.touches[0].clientX; y = e.touches[0].clientY;
+  }, { passive: true });
+  deck.addEventListener('touchend', (e) => {
+    if (!on) return;
+    on = false;
+    const dx = e.changedTouches[0].clientX - x;
+    const dy = e.changedTouches[0].clientY - y;
+    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    deckGo(deck, dx < 0 ? 1 : -1);
+  }, { passive: true });
 }
 
 // Open at once on a device that remembered the key.
