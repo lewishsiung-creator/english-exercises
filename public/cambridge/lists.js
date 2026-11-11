@@ -651,7 +651,7 @@ function renderHWBar() {
   if (!HW) { bar.hidden = true; return; }
   const words = ENTRIES.filter(inHW), k = words.filter(e => MARKS[e.id] === 'k').length;
   bar.hidden = false;
-  bar.innerHTML = `<div class="kicker">Lewis 指定學習單字 · Assigned by Lewis</div>
+  bar.innerHTML = `<div class="kicker">本週指定學習單字 · This week's words</div>
     <h2>${esc(HW.title || '這次要複習的單字')}</h2>
     <p class="hw-topics">${HW.topics.map(i => `<button class="hw-chip" data-opentopic="${i}">${esc(TOPICS[i][1])}<small>${words.filter(e => e.t.includes(i)).length}</small></button>`).join('')}</p>
     <p class="hw-line">共 <b>${words.length}</b> 個字${S.mode === 'self' ? `，這台裝置上記住了 <b>${k}</b> 個` : ''}。單字表、閃卡和測驗都只出這些字。
@@ -797,7 +797,7 @@ $('#hwpick').addEventListener('change', ev => {
   ev.target.checked ? HWPICK.add(+i) : HWPICK.delete(+i); updateHWPanel();
 });
 $('#hwtitle').addEventListener('input', updateHWPanel);
-if (HW) { document.body.classList.add('hw'); document.title = `${HW.title || 'Lewis 指定學習單字'} · ${document.title}`; }
+if (HW) { document.body.classList.add('hw'); document.title = `${HW.title || '本週指定學習單字'} · ${document.title}`; }
 $('#markf').addEventListener('change', ev => { S.markf = ev.target.value; S.shown = 40; render(); });
 $('#voice').addEventListener('change', ev => { S.voice = ev.target.value; store.set('voice', S.voice); say('Hello, this is how the words will sound.'); });
 $('#rate').addEventListener('input', ev => { S.rate = +ev.target.value; $('#ratev').textContent = '×' + S.rate.toFixed(2); store.set('rate', S.rate); });

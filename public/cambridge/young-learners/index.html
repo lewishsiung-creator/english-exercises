@@ -152,7 +152,7 @@ dialog .btn.primary { background: var(--lv); color: #fff; }
   .tiles { gap: 8px; }
 }
 /* The Lewis Biz English mark, for the parent or teacher (2026-11-08). */
-/* Lewis 指定學習單字: the child's banner, and the teacher's picks inside ⚙ */
+/* 本週指定學習單字: the child's banner, and the teacher's picks inside ⚙ */
 .hwbar { background: var(--card); border-radius: 22px; box-shadow: var(--shadow); padding: 18px 22px; margin: 18px 0 6px; }
 .hwbar .hwk { color: var(--lv); font: 700 13px/1.2 var(--zh); letter-spacing: .06em; }
 .hwbar h2 { margin: 6px 0 6px; font: 700 26px/1.25 var(--zh); }
@@ -185,7 +185,7 @@ dialog input[type=text] { width: 100%; border: 2px solid var(--line); border-rad
     <p class="sub">Cambridge 兒童英檢官方字表。點一下就唸給你聽；能畫成圖的字都有圖。中文藏在「中」後面，給爸媽和老師看。</p>
   </header>
 
-  <section class="hwbar" id="hwbar" aria-label="Lewis 指定學習單字" hidden></section>
+  <section class="hwbar" id="hwbar" aria-label="本週指定學習單字" hidden></section>
   <div class="levels" role="group" aria-label="等級"></div>
   <label class="cumul"><input type="checkbox" id="cumul"> <span id="cumultext">也放進前面等級的字</span></label>
   <div class="topics" id="topics" role="group" aria-label="主題"></div>
@@ -211,9 +211,9 @@ dialog input[type=text] { width: 100%; border: 2px solid var(--line); border-rad
   <div class="row"><button class="btn" id="zhall"></button></div>
   <label>這一輪第一次就點對的</label>
   <p id="record">還沒有開始遊戲。</p>
-  <!-- Lewis 指定學習單字: tick levels and topics, copy a link, send it. The child's link
+  <!-- 本週指定學習單字: tick levels and topics, copy a link, send it. The child's link
        shows those words alone, in the cards and in the game. -->
-  <label>Lewis 指定學習單字</label>
+  <label>本週指定學習單字</label>
   <p>勾選等級和主題（可以選好幾個），把連結傳給學員。打開後只會看到這些字。</p>
   <div class="hwlv" id="hwlv"></div>
   <div class="hwtopics" id="hwtopics"></div>
@@ -269,7 +269,7 @@ function say(text) {
 }
 if ('speechSynthesis' in window) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
 
-/* ---------- Lewis 指定學習單字: ?hw=animals_food-drink&lv=01&t=標題 opens the page on those
+/* ---------- 本週指定學習單字: ?hw=animals_food-drink&lv=01&t=標題 opens the page on those
    topics and levels alone. Topics go by a slug of the English name, so links survive a reorder. ---------- */
 const topicSlug = en => en.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z]+/g, '-').replace(/^-|-$/g, '');
 const HW = (() => {
@@ -431,7 +431,7 @@ function renderHWBar(words) {
   const bar = $('#hwbar');
   if (!HW) { bar.hidden = true; return; }
   bar.hidden = false;
-  bar.innerHTML = `<div class="hwk">Lewis 指定學習單字</div><h2>${esc(HW.title || '這次要練習的字')}</h2>
+  bar.innerHTML = `<div class="hwk">本週指定學習單字</div><h2>${esc(HW.title || '這次要練習的字')}</h2>
     <p>${HW.lv.map(i => LEVELS[i][0]).join('、')} · ${HW.topics.map(i => TOPICS[i][2] + ' ' + esc(TOPICS[i][1])).join('、')} · 共 <b>${words.length}</b> 個字
       <a href="${location.pathname}">看全部的字 ›</a></p>`;
 }

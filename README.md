@@ -2469,7 +2469,7 @@ A–Z rail, one link per word (`/cambridge/a2-key/#borrow`).
   reviewers who were not the writers; nine fixes came back (*post* had its
   noun and verb glosses swapped). A2's were read line by line.
 
-### 主題 and Lewis 指定學習單字 (added 2026-11-11)
+### 主題 and 本週指定學習單字 (added 2026-11-11)
 
 **主題** is a fourth view on A2 Key and B1 beside 單字表／閃卡／測驗: one tile
 per Cambridge topic with its word count and, in 自學, a 記住了 bar. A tile
@@ -2478,9 +2478,10 @@ topic lists cover only part of each list (A2: 909 of 1,727) — the rest are
 mostly function words, reached through 單字表. The young learners page already
 led with its topic chips, so it gained only the assignment link.
 
-**Lewis 指定學習單字** — a link that opens a list on several chosen topics, for
+**本週指定學習單字** — a link that opens a list on several chosen topics, for
 a student to review. Asked for on 2026-11-11, built the way Grammar
-Practice's 指定作業 works (`?hw=`):
+Practice's 指定作業 works (`?hw=`). It was named 「Lewis 指定學習單字」 for
+its first day; Lewis renamed it to 「本週指定學習單字」 the same day.
 
 | | A2 Key / B1 | Starters, Movers, Flyers |
 | --- | --- | --- |

@@ -18,7 +18,7 @@
       <button id="m-teach" data-mode="teach">教學</button>
     </div>
     <button id="stagebtn" class="link" aria-label="投影模式">投影</button>
-    <button id="hwbtn" class="link" aria-label="Lewis 指定學習單字" hidden>指定</button>
+    <button id="hwbtn" class="link" aria-label="本週指定學習單字" hidden>指定</button>
     <button id="pdfbtn" class="link" aria-label="下載 PDF">PDF</button>
     <button id="setbtn" class="link" aria-label="設定">設定</button>
   </div>
@@ -44,7 +44,7 @@
   </details>
 </header>
 
-<section class="hwbar wrap" id="hwbar" aria-label="Lewis 指定學習單字" hidden></section>
+<section class="hwbar wrap" id="hwbar" aria-label="本週指定學習單字" hidden></section>
 
 <div class="lnav">
   <div class="wrap">
@@ -81,10 +81,10 @@
 <div class="toast" id="toast" role="status" hidden></div>
 <section class="stage" id="stage" aria-label="投影" tabindex="-1" hidden></section>
 
-<!-- Lewis 指定學習單字. Teacher devices only: tick topics, copy a link, send it.
+<!-- 本週指定學習單字. Teacher devices only: tick topics, copy a link, send it.
      The student's link opens the list on those topics alone. -->
 <dialog class="panel hwpanel" id="hwpanel">
-  <h2>Lewis 指定學習單字</h2>
+  <h2>本週指定學習單字</h2>
   <p>勾選要學員複習的主題，可以一次選好幾個。把下面的連結傳給學員，他打開後只會看到這些主題的字，閃卡和測驗也只出這些字。</p>
   <div class="row hw-quick"><button class="btn" id="hwall">全選</button><button class="btn" id="hwnone">全部取消</button></div>
   <div class="hw-pick" id="hwpick"></div>
