@@ -1682,6 +1682,276 @@ presentTop.addEventListener('click', (e) => {
   goFull();
 });
 
+/* ---- 重點複習 · the review sheet ----
+
+   What a student takes away. The teacher ticks what the lesson actually
+   covered, and the button gives them a link to send: the same page, opened at
+   `#review`, which puts the lesson aside and lays out its language on one
+   sheet. The student reads it, or saves it as a PDF.
+
+   The whole thing is in the link. There is no server here and nothing is
+   stored, so the selection travels in the hash — `#review=v,m,s` — which also
+   means the link keeps working for as long as the page does, and the teacher
+   can see exactly what they are sending before they send it.
+
+   Unlike the lesson, the review shows its Chinese. Nobody is sitting next to
+   the student to tap the chips, and this is reading to remember rather than
+   comprehension practice. */
+
+const blocksOfType = (t) => LESSON.steps.flatMap((s) => (s.blocks || []).filter((b) => b.t === t));
+
+/* The parts, in the order a student would read them: what the article said,
+   then how to do the thing it describes, then the language, then what to go
+   away and think about. Each names the blocks it is made of and how to set
+   them out; a part with no blocks in this reading simply never appears. */
+const REVIEW = [
+  {
+    key: 'k',
+    en: 'The main points',
+    zh: '重點整理',
+    // Only the numbered points. A summary without a title is a teaching
+    // paragraph inside a flow, and reads as a fragment on its own.
+    get: () => blocksOfType('summary').filter((b) => b.titleEn),
+    body: (bs) => `
+      <ol class="rv-lines rv-points">
+        ${bs.map((b) => `
+          <li>
+            <p class="rv-point">${text(b.titleEn)}<em>${text(b.titleZh)}</em></p>
+            <p class="rv-en">${text(b.en)}</p>
+            <p class="rv-zh">${text(b.zh)}</p>
+          </li>`).join('')}
+      </ol>`,
+  },
+  {
+    key: 't',
+    en: 'Step by step',
+    zh: '步驟',
+    get: () => blocksOfType('steps'),
+    body: (bs) => `
+      <ol class="rv-lines">
+        ${bs.flatMap((b) => b.items).map((i) => `
+          <li>
+            <p class="rv-point">${text(i.en)}<em>${text(i.zh)}</em></p>
+            <p class="rv-en">${text(i.descEn)}</p>
+            <p class="rv-zh">${text(i.descZh)}</p>
+          </li>`).join('')}
+      </ol>`,
+  },
+  {
+    key: 'v',
+    en: 'Words and phrases',
+    zh: '重點單字與片語',
+    get: () => blocksOfType('phrases'),
+    body: (bs) => `
+    <ul class="rv-terms">
+      ${bs.flatMap((b) => b.items).map((i) => `
+        <li>
+          <p class="rv-term">${text(i.en)}${i.pos ? `<span class="rv-pos">${text(i.pos)}</span>` : ''}</p>
+          <p class="rv-zh">${text(i.zh)}</p>
+          <p class="rv-eg">${text(i.eg)}</p>
+          ${i.egZh ? `<p class="rv-eg-zh">${text(i.egZh)}</p>` : ''}
+        </li>`).join('')}
+      </ul>`,
+  },
+  {
+    key: 'm',
+    en: 'Collocations',
+    zh: '搭配詞',
+    get: () => blocksOfType('match'),
+    body: (bs) => `
+      <ul class="rv-pairs">
+        ${bs.flatMap((b) => b.pairs).map((p) => `
+          <li><span class="rv-a">${text(p.a)}</span><span class="rv-join">+</span>${text(p.b)}</li>`).join('')}
+      </ul>`,
+  },
+  {
+    key: 's',
+    en: 'Key sentences',
+    zh: '關鍵句',
+    get: () => blocksOfType('gap'),
+    // The gap-fill sentences, with the answer written in where the blank was.
+    body: (bs) => `
+      <ol class="rv-lines">
+        ${bs.flatMap((b) => b.items).map((i) => `
+          <li>
+            <p class="rv-en">${text(i.text).replace('___', `<b>${text(i.options[i.answer])}</b>`)}</p>
+            ${i.textZh ? `<p class="rv-zh">${text(i.textZh)}</p>` : ''}
+          </li>`).join('')}
+      </ol>`,
+  },
+  {
+    key: 'p',
+    en: 'Saying it softly or strongly',
+    zh: '語氣階梯',
+    get: () => blocksOfType('ladder'),
+    body: (bs) => `
+      <ul class="rv-rungs">
+        ${bs.flatMap((b) => b.rows).map((r) => `
+          <li class="rung-${text(r.level)}">
+            <p class="rv-level">${text(r.levelEn)}<em>${text(r.levelZh)}</em></p>
+            <p class="rv-pattern">${text(r.pattern)}</p>
+            <p class="rv-en">${text(r.eg)}</p>
+            <p class="rv-zh">${text(r.egZh)}</p>
+          </li>`).join('')}
+      </ul>`,
+  },
+  {
+    key: 'a',
+    en: 'Model answers',
+    zh: '參考答案',
+    get: () => blocksOfType('check'),
+    body: (bs) => `
+      <ol class="rv-lines">
+        ${bs.flatMap((b) => b.items).map((i) => `
+          <li>
+            <p class="rv-en">${text(i.en)}</p>
+            <p class="rv-zh">${text(i.zh)}</p>
+            <p class="rv-answer">${text(i.answer.en)}</p>
+            <p class="rv-zh">${text(i.answer.zh)}</p>
+          </li>`).join('')}
+      </ol>`,
+  },
+  {
+    key: 'd',
+    en: 'Questions to think about',
+    zh: '延伸思考',
+    get: () => blocksOfType('discuss'),
+    body: (bs) => `
+      <ol class="rv-lines">
+        ${bs.flatMap((b) => b.items).map((i) => `
+          <li>
+            <p class="rv-en">${text(i.en)}</p>
+            <p class="rv-zh">${text(i.zh)}</p>
+            ${i.starters && i.starters.length ? `
+              <ul class="rv-starters">
+                ${i.starters.map(bilingual).map((s) => `
+                  <li>${text(s.en)}${s.zh ? `<span class="rv-zh">${text(s.zh)}</span>` : ''}</li>`).join('')}
+              </ul>` : ''}
+          </li>`).join('')}
+      </ol>`,
+  },
+];
+
+// Only the parts this reading actually has.
+const REVIEW_HAS = REVIEW.filter((p) => p.get().length);
+
+/* Which parts the hash asks for. `#review` on its own means all of them, so a
+   link that loses its query still gives the student the whole sheet. */
+function reviewWanted() {
+  const m = /^#review(?:=(.*))?$/.exec(location.hash);
+  if (!m) return null;
+  if (!m[1]) return REVIEW_HAS.map((p) => p.key);
+  const asked = decodeURIComponent(m[1]).split(',').filter(Boolean);
+  const keys = REVIEW_HAS.filter((p) => asked.includes(p.key)).map((p) => p.key);
+  return keys.length ? keys : REVIEW_HAS.map((p) => p.key);
+}
+
+/* The sheet's class must not be the mode's class. `review` on <html> is the
+   mode; naming the element the same thing made `.review { display: none }`
+   match the document element and take the whole page down with it. */
+const reviewSheet = el('<div class="rv-sheet" id="rvSheet" hidden></div>');
+// Before the site footer, not after it: appended to the end of <body> the
+// sheet would open underneath "more materials and lessons".
+document.body.insertBefore(reviewSheet, $('.site-foot'));
+
+function buildReview(keys) {
+  const parts = REVIEW_HAS.filter((p) => keys.includes(p.key));
+  reviewSheet.innerHTML = `
+    <header class="rv-head">
+      <p class="rv-kicker">${text(COURSE.titleZh)}${N ? ` · No. ${N}` : ''}</p>
+      <h1>${text(LESSON.title)}<span>${text(LESSON.titleZh)}</span></h1>
+      <p class="rv-what">Key review<em>重點複習</em></p>
+      <div class="rv-tools">
+        <button class="rv-btn" id="rvPrint">Save as PDF<em>下載 PDF</em></button>
+        <a class="rv-btn rv-btn-quiet" href="${text(location.pathname)}">The whole lesson<em>完整課程</em></a>
+      </div>
+    </header>
+    ${parts.map((p) => `
+      <section class="rv-part">
+        <h2>${text(p.en)}<em>${text(p.zh)}</em></h2>
+        ${p.body(p.get())}
+      </section>`).join('')}
+    <footer class="rv-foot">
+      <p>${text(COURSE.titleZh)} · ${text(LESSON.titleZh)}</p>
+    </footer>`;
+
+  $('#rvPrint', reviewSheet).addEventListener('click', () => window.print());
+}
+
+function setReview() {
+  const keys = reviewWanted();
+  root.classList.toggle('review', !!keys);
+  reviewSheet.hidden = !keys;
+  if (!keys) {
+    document.title = `${LESSON.title} · ${LESSON.titleZh} — ${COURSE.titleZh}`;
+    return;
+  }
+  // Presentation and a review sheet are two different pages; only one at a time.
+  setPresent(false);
+  buildReview(keys);
+  // The browser offers the title as the PDF's filename.
+  document.title = `${LESSON.title} ${LESSON.titleZh} — 重點複習`;
+  scrollTo({ top: 0, behavior: 'instant' });
+}
+
+setReview();
+addEventListener('hashchange', setReview);
+
+/* The teacher's half: tick what the lesson covered, copy the link. Built here
+   rather than written into each reading's index.html, like the presentation
+   bar — adding this changed no reading's page. */
+if (REVIEW_HAS.length) {
+  const row = el(`
+    <div class="row">
+      <p class="row-lab">Key review<em>重點複習</em></p>
+      <ul class="rv-pick">
+        ${REVIEW_HAS.map((p) => `
+          <li><label><input type="checkbox" value="${p.key}" checked>
+            <span>${text(p.en)}<em>${text(p.zh)}</em></span></label></li>`).join('')}
+      </ul>
+      <input class="rv-url" id="rvUrl" readonly aria-label="Link to share 分享連結">
+      <div class="pdf-pair">
+        <button class="panel-btn" id="rvCopy">Copy link<em>複製連結</em></button>
+        <button class="panel-btn panel-btn-quiet" id="rvSee">Open it<em>開啟看看</em></button>
+      </div>
+      <p class="row-note">A one-page sheet of the language this lesson taught,
+        for the student to keep. Send them the link; the page has its own
+        Save as PDF. Nothing is stored — the ticks travel in the link itself.
+        <em>把這堂課教過的語言整理成一頁，給學員留著複習。把連結傳給他們即可，頁面上有「下載 PDF」。不會儲存任何紀錄——勾選的內容就寫在連結裡。</em></p>
+    </div>`);
+  $('#reset').closest('.row').before(row);
+
+  const picks = () => $$('.rv-pick input:checked', row).map((i) => i.value);
+  const urlNow = () => {
+    const keys = picks();
+    const all = keys.length === REVIEW_HAS.length || !keys.length;
+    return `${location.origin}${location.pathname}#review${all ? '' : `=${keys.join(',')}`}`;
+  };
+  const showUrl = () => { $('#rvUrl', row).value = urlNow(); };
+
+  showUrl();
+  row.addEventListener('change', showUrl);
+
+  $('#rvCopy', row).addEventListener('click', async () => {
+    const btn = $('#rvCopy', row);
+    const url = urlNow();
+    try {
+      await navigator.clipboard.writeText(url);
+      btn.innerHTML = 'Copied<em>已複製</em>';
+    } catch {
+      // No clipboard permission: select it instead, so ⌘C still works.
+      $('#rvUrl', row).select();
+      btn.innerHTML = 'Press ⌘C<em>請按 ⌘C</em>';
+    }
+    setTimeout(() => { btn.innerHTML = 'Copy link<em>複製連結</em>'; }, 2200);
+  });
+
+  $('#rvSee', row).addEventListener('click', () => {
+    setPanel(false);
+    location.hash = urlNow().split('#')[1];
+  });
+}
+
 // A reload is the reset: nothing is stored except the two device settings.
 $('#reset').addEventListener('click', () => location.reload());
 

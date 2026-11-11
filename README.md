@@ -1181,6 +1181,40 @@ a summary written for the lesson, and then the language work.
   the print handout.
 - **Print** gives a handout: everything behind a tap is opened, and anything
   that needs a mouse is dropped.
+- **重點複習 — a sheet to send the student afterwards.** The fourth form of the
+  same lesson: the page is the lesson on a screen, presentation mode is the
+  projector, the two PDFs are the classroom printer, and this is what the
+  student keeps. In the teacher panel, tick what the lesson covered and copy
+  the link; it opens the reading's own address at `#review`, which puts the
+  lesson aside and lays its language out on one page, with its own *Save as
+  PDF*.
+
+  **The link is the whole feature.** There is no server here and nothing is
+  stored, so the ticks travel in the hash — `#review=v,s` — which means the
+  teacher can see exactly what they are sending before they send it, the link
+  keeps working for as long as the page does, and a student who loses the
+  query still gets the whole sheet, because `#review` on its own means all of
+  it.
+
+  **The parts are read off `content.js`, not off the rendered page**, so the
+  sheet cannot drift from what was taught: the numbered summary points, the
+  procedure, the phrase cards, the matched collocations, the gap-fill
+  sentences *with the answer written in where the blank was*, the politeness
+  ladder, the model answers and the discussion questions with their useful
+  language. A part with no blocks in a reading never appears — No. 1 has four
+  of them, No. 2 has six, No. 3 has four — and a `summary` without a title is
+  left out, since a teaching paragraph from the middle of a flow reads as a
+  fragment on its own.
+
+  **Every line shows its Chinese**, unlike the lesson. Nobody is sitting next
+  to the student to tap the 中 chips, and this is reading to remember rather
+  than comprehension practice.
+
+  One trap worth recording: the sheet's class must not be the mode's class.
+  `review` on `<html>` is the mode, and naming the element `.review` too made
+  the base rule `.review { display: none }` match the document element and
+  take the whole page down with it — a blank screen with 15KB of correct HTML
+  inside it. The element is `.rv-sheet`.
 
 Photographs are from [Pexels](https://www.pexels.com/license/), whose licence
 allows commercial use and requires no attribution; the photographers — Lara
