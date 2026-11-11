@@ -152,6 +152,23 @@ dialog .btn.primary { background: var(--lv); color: #fff; }
   .tiles { gap: 8px; }
 }
 /* The Lewis Biz English mark, for the parent or teacher (2026-11-08). */
+/* Lewis 指定學習單字: the child's banner, and the teacher's picks inside ⚙ */
+.hwbar { background: var(--card); border-radius: 22px; box-shadow: var(--shadow); padding: 18px 22px; margin: 18px 0 6px; }
+.hwbar .hwk { color: var(--lv); font: 700 13px/1.2 var(--zh); letter-spacing: .06em; }
+.hwbar h2 { margin: 6px 0 6px; font: 700 26px/1.25 var(--zh); }
+.hwbar p { margin: 0; color: var(--muted); font: 15px/1.7 var(--zh); }
+.hwbar b { color: var(--ink); }
+.hwbar a { color: var(--lv); margin-left: 6px; white-space: nowrap; }
+dialog { max-height: calc(100vh - 32px); }
+.hwlv { display: flex; gap: 14px; flex-wrap: wrap; margin: 10px 0 6px; font: 16px var(--font); }
+.hwtopics { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 4px 10px; max-height: 32vh; overflow: auto; padding: 6px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.hwlv label, .hwtopics label { display: flex; align-items: center; gap: 6px; min-height: 40px; margin: 0; color: var(--ink); font: 15px/1.3 var(--zh); cursor: pointer; }
+.hwtopics label.none { opacity: .4; }
+.hwtopics small { color: var(--muted); }
+.hwlv input, .hwtopics input { width: 20px; height: 20px; accent-color: var(--lv); }
+.hwsum { margin: 10px 0 !important; color: var(--ink) !important; }
+dialog input[type=text] { width: 100%; border: 2px solid var(--line); border-radius: 12px; padding: 10px; margin-top: 8px; background: var(--bg); color: var(--ink); font: 15px var(--font), var(--zh); }
+#hwlink { color: var(--m); }
 .cam-foot { display: flex; align-items: center; gap: 12px; margin-top: -54px; padding-bottom: 72px; font: 14px/1.6 var(--zh); color: var(--muted); }
 .cam-foot p { margin: 0; }
 .cam-foot p a { color: var(--m); text-decoration: none; }
@@ -168,6 +185,7 @@ dialog .btn.primary { background: var(--lv); color: #fff; }
     <p class="sub">Cambridge 兒童英檢官方字表。點一下就唸給你聽；能畫成圖的字都有圖。中文藏在「中」後面，給爸媽和老師看。</p>
   </header>
 
+  <section class="hwbar" id="hwbar" aria-label="Lewis 指定學習單字" hidden></section>
   <div class="levels" role="group" aria-label="等級"></div>
   <label class="cumul"><input type="checkbox" id="cumul"> <span id="cumultext">也放進前面等級的字</span></label>
   <div class="topics" id="topics" role="group" aria-label="主題"></div>
@@ -193,6 +211,16 @@ dialog .btn.primary { background: var(--lv); color: #fff; }
   <div class="row"><button class="btn" id="zhall"></button></div>
   <label>這一輪第一次就點對的</label>
   <p id="record">還沒有開始遊戲。</p>
+  <!-- Lewis 指定學習單字: tick levels and topics, copy a link, send it. The child's link
+       shows those words alone, in the cards and in the game. -->
+  <label>Lewis 指定學習單字</label>
+  <p>勾選等級和主題（可以選好幾個），把連結傳給學員。打開後只會看到這些字。</p>
+  <div class="hwlv" id="hwlv"></div>
+  <div class="hwtopics" id="hwtopics"></div>
+  <p class="hwsum" id="hwsum"></p>
+  <input id="hwtitle" type="text" maxlength="40" autocomplete="off" placeholder="標題（可不填），例：動物和食物">
+  <input id="hwlink" type="text" readonly placeholder="勾選後，連結會出現在這裡">
+  <div class="row"><button class="btn" id="hwopen">預覽</button><button class="btn primary" id="hwcopy">複製連結</button></div>
   <div class="row" style="justify-content:flex-end;margin-top:22px"><button class="btn primary" id="closepanel">關閉</button></div>
 </dialog>
 
@@ -241,21 +269,36 @@ function say(text) {
 }
 if ('speechSynthesis' in window) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
 
+/* ---------- Lewis 指定學習單字: ?hw=animals_food-drink&lv=01&t=標題 opens the page on those
+   topics and levels alone. Topics go by a slug of the English name, so links survive a reorder. ---------- */
+const topicSlug = en => en.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z]+/g, '-').replace(/^-|-$/g, '');
+const HW = (() => {
+  const q = new URLSearchParams(location.search);
+  const topics = (q.get('hw') || '').split('_').map(id => TOPICS.findIndex(([en]) => topicSlug(en) === id)).filter(i => i >= 0);
+  if (!topics.length) return null;
+  const lv = [...new Set((q.get('lv') || '012').split('').map(Number).filter(n => n >= 0 && n <= 2))].sort();
+  return { topics: [...new Set(topics)], lv: lv.length ? lv : [0, 1, 2], title: (q.get('t') || '').trim().slice(0, 40) };
+})();
+if (HW) S.lv = HW.lv[0];          // the page takes the colour of the first assigned level
+
 /* ---------- which words ---------- */
-const inLevel = w => S.cumul ? w.lv <= S.lv : w.lv === S.lv;
-const pool = () => W.filter(w => inLevel(w) && (S.topic === 'all' || w.t.includes(+S.topic)));
+const inLevel = w => HW ? HW.lv.includes(w.lv) : S.cumul ? w.lv <= S.lv : w.lv === S.lv;
+const inHW = w => !HW || w.t.some(t => HW.topics.includes(t));
+const pool = () => W.filter(w => inLevel(w) && inHW(w) && (S.topic === 'all' || w.t.includes(+S.topic)));
 const zhLine = w => w.se.map(([p, z]) => `${p ? `<span class="p">${esc(p)}</span>` : ''}${esc(z)}`).join('<br>');
 
 function renderChrome() {
   document.body.dataset.lv = S.lv;
   $('.levels').innerHTML = LEVELS.map(([name, cefr], i) =>
     `<button data-lv="${i}" aria-pressed="${S.lv === i}"><b>${name}</b><small>${cefr} · ${W.filter(w => w.lv === i).length} 個字</small></button>`).join('');
-  $('#cumul').checked = S.cumul; $('#cumul').parentElement.hidden = S.lv === 0;
+  $('.levels').hidden = !!HW;
+  $('#cumul').checked = S.cumul; $('#cumul').parentElement.hidden = S.lv === 0 || !!HW;
   $('#cumultext').textContent = S.lv === 1 ? '也放進 Starters 的字（Movers 考生也要會）' : '也放進 Starters 和 Movers 的字（Flyers 考生也要會）';
-  const inLv = W.filter(inLevel);
+  const inLv = W.filter(w => inLevel(w) && inHW(w));
+  renderHWBar(inLv);
   $('#topics').innerHTML = `<button data-topic="all" aria-pressed="${S.topic === 'all'}"><span class="e">✨</span>全部<small>${inLv.length}</small></button>` +
     TOPICS.map(([en, zh, e], i) => {
-      const n = inLv.filter(w => w.t.includes(i)).length;
+      const n = HW && !HW.topics.includes(i) ? 0 : inLv.filter(w => w.t.includes(i)).length;
       return n ? `<button data-topic="${i}" aria-pressed="${S.topic === String(i)}" title="${esc(en)}"><span class="e">${e}</span>${esc(zh)}<small>${n}</small></button>` : '';
     }).join('');
   document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === S.view));
@@ -370,6 +413,13 @@ document.addEventListener('click', ev => {
     case 'next': G.i++; G.tried = new Set(); G.solved = false; renderGame(); if (G.items[G.i]) say(G.items[G.i].w.sayAs); break;
     case 'again': G.key = ''; render(); break;
     case 'gear': openPanel(); break;
+    case 'hwopen': if (hwLink()) window.open(hwLink(), '_blank', 'noopener'); break;
+    case 'hwcopy': {
+      const url = hwLink(); if (!url) break;
+      const done = () => { t.textContent = '已複製'; setTimeout(() => { t.textContent = '複製連結'; }, 1600); };
+      try { navigator.clipboard.writeText(url).then(done, () => $('#hwlink').select()); } catch (err) { $('#hwlink').select(); }
+      break;
+    }
     case 'closepanel': $('#panel').close(); break;
     case 'zhall': S.zhAll = !S.zhAll; store.set('zhAll', S.zhAll); t.textContent = S.zhAll ? '字卡上直接顯示中文（按一下改回藏起來）' : '中文藏在「中」後面（按一下改成直接顯示）'; if (S.view === 'cards') renderCards(); break;
   }
@@ -377,7 +427,45 @@ document.addEventListener('click', ev => {
 $('#cumul').addEventListener('change', ev => { S.cumul = ev.target.checked; store.set('cumul', S.cumul); S.topic = 'all'; render(); });
 $('#voice').addEventListener('change', ev => { S.voice = ev.target.value; store.set('voice', S.voice); say('Hello! This is my voice.'); });
 $('#rate').addEventListener('input', ev => { S.rate = +ev.target.value; store.set('rate', S.rate); $('#ratev').textContent = '×' + S.rate.toFixed(2); });
+function renderHWBar(words) {
+  const bar = $('#hwbar');
+  if (!HW) { bar.hidden = true; return; }
+  bar.hidden = false;
+  bar.innerHTML = `<div class="hwk">Lewis 指定學習單字</div><h2>${esc(HW.title || '這次要練習的字')}</h2>
+    <p>${HW.lv.map(i => LEVELS[i][0]).join('、')} · ${HW.topics.map(i => TOPICS[i][2] + ' ' + esc(TOPICS[i][1])).join('、')} · 共 <b>${words.length}</b> 個字
+      <a href="${location.pathname}">看全部的字 ›</a></p>`;
+}
+/* the teacher's side, inside ⚙ */
+const PICK = { lv: new Set(store.get('hwlv', [S.lv])), t: new Set(store.get('hwt', [])) };
+function hwLink() {
+  if (!PICK.t.size || !PICK.lv.size) return '';
+  const ids = TOPICS.map(([en], i) => PICK.t.has(i) ? topicSlug(en) : null).filter(Boolean);
+  const t = $('#hwtitle').value.trim();
+  return `${location.origin}${location.pathname}?hw=${ids.join('_')}&lv=${[...PICK.lv].sort().join('')}${t ? '&t=' + encodeURIComponent(t) : ''}`;
+}
+function renderHWPick() {
+  $('#hwlv').innerHTML = LEVELS.map(([name], i) => `<label><input type="checkbox" data-hwlv="${i}" ${PICK.lv.has(i) ? 'checked' : ''}> ${name}</label>`).join('');
+  $('#hwtopics').innerHTML = TOPICS.map(([en, zh, e], i) => {
+    const n = W.filter(w => PICK.lv.has(w.lv) && w.t.includes(i)).length;
+    return `<label class="${n ? '' : 'none'}"><input type="checkbox" data-hwt="${i}" ${PICK.t.has(i) ? 'checked' : ''} ${n ? '' : 'disabled'}> ${e} ${esc(zh)} <small>${n}</small></label>`;
+  }).join('');
+  updateHWPick();
+}
+function updateHWPick() {
+  const n = W.filter(w => PICK.lv.has(w.lv) && w.t.some(t => PICK.t.has(t))).length;
+  $('#hwsum').textContent = PICK.t.size && PICK.lv.size ? `共 ${n} 個字。` : '先勾選至少一個等級和一個主題。';
+  $('#hwlink').value = hwLink();
+  $('#hwcopy').disabled = $('#hwopen').disabled = !hwLink();
+  store.set('hwlv', [...PICK.lv]); store.set('hwt', [...PICK.t]); store.set('hwtitle', $('#hwtitle').value);
+}
+$('#panel').addEventListener('change', ev => {
+  const d = ev.target.dataset;
+  if (d.hwlv != null) { ev.target.checked ? PICK.lv.add(+d.hwlv) : PICK.lv.delete(+d.hwlv); renderHWPick(); }
+  else if (d.hwt != null) { ev.target.checked ? PICK.t.add(+d.hwt) : PICK.t.delete(+d.hwt); updateHWPick(); }
+});
+$('#hwtitle').addEventListener('input', updateHWPick);
 function openPanel() {
+  $('#hwtitle').value = store.get('hwtitle', ''); renderHWPick();
   $('#rate').value = S.rate; $('#ratev').textContent = '×' + (+S.rate).toFixed(2);
   $('#zhall').textContent = S.zhAll ? '字卡上直接顯示中文（按一下改回藏起來）' : '中文藏在「中」後面（按一下改成直接顯示）';
   const r = G.first;

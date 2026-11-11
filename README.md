@@ -2469,6 +2469,37 @@ A–Z rail, one link per word (`/cambridge/a2-key/#borrow`).
   reviewers who were not the writers; nine fixes came back (*post* had its
   noun and verb glosses swapped). A2's were read line by line.
 
+### 主題 and Lewis 指定學習單字 (added 2026-11-11)
+
+**主題** is a fourth view on A2 Key and B1 beside 單字表／閃卡／測驗: one tile
+per Cambridge topic with its word count and, in 自學, a 記住了 bar. A tile
+opens the list on that topic. The view also says plainly that Cambridge's
+topic lists cover only part of each list (A2: 909 of 1,727) — the rest are
+mostly function words, reached through 單字表. The young learners page already
+led with its topic chips, so it gained only the assignment link.
+
+**Lewis 指定學習單字** — a link that opens a list on several chosen topics, for
+a student to review. Asked for on 2026-11-11, built the way Grammar
+Practice's 指定作業 works (`?hw=`):
+
+| | A2 Key / B1 | Starters, Movers, Flyers |
+| --- | --- | --- |
+| Where Lewis makes it | the 指定 button in the bar (teacher devices only — `#teach` once) | inside ⚙ |
+| What he picks | topics, any number; a title | levels and topics, any number; a title |
+| Link | `?hw=food-and-drink_sport&t=第 3 週複習` | `?hw=animals_food-and-drink&lv=01&t=…` |
+| What the student sees | a banner with the title and topic chips; 單字表, 主題, 閃卡 (今天這一組 too) and 測驗 all stay inside the set | the level buttons go; only those topics' chips; the cards and the game stay inside the set |
+
+- **Topics go by a slug of Cambridge's English topic name** (`food-and-drink`,
+  `the-natural-world`), not by position, so a link already sent stays right
+  if the topic list is reordered. Renaming a topic in `exams.py` /
+  `young_learners.py` *would* break links already sent — don't.
+- An unknown slug is ignored; a link with none left is the ordinary page.
+- Nothing is stored anywhere but the URL. The student's 記住了 marks are the
+  same ones as on the full list (same device, same browser), so a word learnt
+  in an assignment counts on the full list too; nothing reports back to Lewis.
+- Inside an assignment the page never remembers a topic choice, so the link
+  always opens on all of its topics.
+
 ### Starters, Movers, Flyers
 
 Its own page, built to the children's house rules rather than on the list

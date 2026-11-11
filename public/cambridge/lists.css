@@ -441,3 +441,50 @@ body.staged { overflow: hidden; }
 .cam-mark img { display: block; width: 34px; height: 34px; }
 @media (hover: hover) { .cam-mark:hover { opacity: .78; } .cam-foot p a:hover { text-decoration: underline; } }
 @media print { .cam-foot { display: none; } }
+
+/* ---------- 主題: one tile per Cambridge topic ---------- */
+.tgrid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr)); margin-top: 8px; }
+.ttile {
+  border: 0; background: var(--tile); border-radius: 18px; padding: 18px 18px 16px; text-align: left;
+  display: flex; flex-direction: column; gap: 4px; min-height: 120px; color: var(--ink);
+}
+@media (hover: hover) { .ttile:hover { box-shadow: inset 0 0 0 2px var(--accent); } }
+.ttile .tz { font: 600 19px/1.3 var(--font-zh); letter-spacing: 0; }
+.ttile .te { font: italic 14px/1.3 var(--font-en); color: var(--muted); letter-spacing: 0; }
+.ttile .tn { margin-top: auto; padding-top: 8px; font: 13px/1.4 var(--font-zh); color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; }
+.ttile .tn b { color: var(--ink); font: 600 15px var(--font-ui); font-variant-numeric: tabular-nums; margin-right: 2px; }
+.ttile .tk { color: var(--ok); }
+.ttile .tbar { display: block; height: 4px; border-radius: 4px; background: var(--line); overflow: hidden; }
+.ttile .tbar i { display: block; height: 100%; background: var(--ok); }
+.tnote { margin: 22px 0 0; max-width: 40em; color: var(--muted); font: 14px/1.7 var(--font-zh); }
+.tnote i { font: italic 15px var(--font-en); color: var(--ink); }
+
+/* ---------- Lewis 指定學習單字: the student's banner ---------- */
+.hwbar { padding-block: 4px 22px; }
+.hwbar h2 { margin: 8px 0 12px; font: 700 clamp(24px, 3.6vw, 32px)/1.2 var(--font-zh); letter-spacing: 0; }
+.hw-topics { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.hw-chip { border: 0; background: var(--accent-soft); color: var(--accent); border-radius: 980px; padding: 6px 14px; font: 15px/1.3 var(--font-zh); }
+.hw-chip small { margin-left: 6px; opacity: .75; font-size: 12px; }
+.hw-line { margin: 0; color: var(--muted); font: 15px/1.6 var(--font-zh); }
+.hw-line b { color: var(--ink); font-weight: 600; }
+.hw-line a { color: var(--accent); margin-left: 6px; white-space: nowrap; }
+/* an assignment's banner is the page's heading; the list's own headline would claim all 1,727 words */
+body.hw .opener .dek, body.hw .opener details.about, body.hw .opener h1, body.hw .opener .kicker { display: none; }
+body.hw .opener { padding-bottom: 0; }
+body.hw .hwbar { padding-top: 0; }
+
+/* ---------- the teacher's 指定 sheet ---------- */
+dialog.hwpanel { width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 48px); }
+.hwpanel .hw-quick { justify-content: flex-start; margin-top: 12px; }
+.hwpanel .btn { font-size: 15px; padding: 9px 18px; }
+.hw-pick { margin-top: 12px; max-height: 42vh; overflow: auto; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+.hw-row { display: flex !important; align-items: center; gap: 12px; padding: 10px 2px; margin: 0 !important; border-top: 1px solid var(--hair);
+  text-transform: none !important; letter-spacing: 0 !important; color: var(--ink) !important; font: 16px/1.35 var(--font-zh) !important; cursor: pointer; }
+.hw-row:first-child { border-top: 0; }
+.hw-row input { width: 20px; height: 20px; accent-color: var(--button); flex: none; }
+.hw-row .hw-t { flex: 1; min-width: 0; }
+.hw-row .hw-t em { display: block; font: italic 13px var(--font-en); color: var(--muted); }
+.hw-row .hw-c { color: var(--muted); font: 13px var(--font-ui); font-variant-numeric: tabular-nums; }
+.hw-sum { margin: 12px 0 0 !important; color: var(--ink) !important; }
+.hwpanel input[type=text] { width: 100%; border: 0; background: var(--tile); border-radius: 10px; padding: 10px 12px; font-size: 15px; color: var(--ink); }
+#hwlink { font-family: var(--font-ui); color: var(--accent); }

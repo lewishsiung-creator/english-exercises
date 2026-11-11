@@ -47,6 +47,19 @@ function becomeTeacher() {
   try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
 }
 
+/* LEWIS 指定學習單字 — a link that opens the list on a few chosen topics:
+     ?hw=food-and-drink_sport&t=第 3 週複習
+   Topics go by a slug of Cambridge's English topic name, not by position, so a link
+   already sent stays right if the topic list is ever reordered. The link is made on a
+   teacher device in the 指定 sheet; nothing about it is stored anywhere but the URL. */
+const topicSlug = en => en.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z]+/g, '-').replace(/^-|-$/g, '');
+const HW = (() => {
+  const q = new URLSearchParams(location.search);
+  const topics = (q.get('hw') || '').split('_').map(id => TOPICS.findIndex(([en]) => topicSlug(en) === id)).filter(i => i >= 0);
+  return topics.length ? { topics: [...new Set(topics)].sort((a, b) => a - b), title: (q.get('t') || '').trim().slice(0, 40) } : null;
+})();
+const inHW = e => !HW || e.t.some(t => HW.topics.includes(t));
+
 /* review schedule for 自學: 還不熟 comes back tomorrow; each 記住了 pushes it further out */
 let SCHED = store.get('sched', {});    // id -> { due: day number, step }
 const STEPS = [2, 5, 12, 30, 60];
@@ -112,6 +125,7 @@ const letterOf = e => (e.w.toLowerCase().match(/[a-z]/) || ['#'])[0];
 function pool(ignoreSearch, ignoreMark) {
   const q = ignoreSearch ? '' : S.q.trim().toLowerCase();
   return ENTRIES.filter(e => {
+    if (!inHW(e)) return false;
     if (q) { if (!e.text.includes(q)) return false; }
     else {
       if (S.scope === 'new' && !e.nw) return false;
@@ -589,8 +603,11 @@ $('#stage').addEventListener('touchend', ev => {
 /* ---------- chrome ---------- */
 const NEW_COUNT = ENTRIES.filter(e => e.nw).length;
 function renderScope() {
-  $('#scope').innerHTML = `<button data-scope="all" aria-pressed="${S.scope === 'all'}">全部<small>${ENTRIES.length.toLocaleString()}</small></button>` +
-    `<button data-scope="new" aria-pressed="${S.scope === 'new'}">${EXAM.newLabel}<small>${NEW_COUNT}</small></button>`;
+  // inside an assignment the counts are the assignment's own; 新增 goes if none of its words are new
+  const all = HW ? ENTRIES.filter(inHW).length : ENTRIES.length, nw = HW ? ENTRIES.filter(e => inHW(e) && e.nw).length : NEW_COUNT;
+  if (!nw && S.scope === 'new') S.scope = 'all';
+  $('#scope').innerHTML = `<button data-scope="all" aria-pressed="${S.scope === 'all'}">${HW ? '指定的全部' : '全部'}<small>${all.toLocaleString()}</small></button>` +
+    (nw ? `<button data-scope="new" aria-pressed="${S.scope === 'new'}">${EXAM.newLabel}<small>${nw}</small></button>` : '');
 }
 function render() {
   $('#modeseg').hidden = !TEACHER; $('#stagebtn').hidden = !TEACHER;
@@ -602,7 +619,65 @@ function render() {
   $('#zhbtn').textContent = S.zh ? '中文：顯示' : '中文：藏起來';
   renderScope();
   if (S.view !== 'list') { $('#rail').hidden = true; document.body.classList.remove('has-rail'); }
-  ({ list: renderList, cards: renderCards, quiz: renderQuiz })[S.view]();
+  $('#hwbtn').hidden = !TEACHER;
+  renderHWBar();
+  ({ list: renderList, topics: renderTopics, cards: renderCards, quiz: renderQuiz })[S.view]();
+  railAway();
+}
+
+/* ---------- 主題: Cambridge's topic lists as tiles. Tap one to read its words. ---------- */
+function topicStats() {
+  const base = ENTRIES.filter(e => inHW(e) && (S.scope !== 'new' || e.nw));
+  return TOPICS.map(([en, zh], i) => {
+    const list = base.filter(e => e.t.includes(i));
+    return { i, en, zh, n: list.length, k: list.filter(e => MARKS[e.id] === 'k').length, r: list.filter(e => MARKS[e.id] === 'r').length };
+  }).filter(t => t.n && (!HW || HW.topics.includes(t.i)));
+}
+function renderTopics() {
+  const ts = topicStats(), self = S.mode === 'self';
+  const loose = ENTRIES.filter(e => !e.t.length).length;
+  $('#main').innerHTML = `<p class="status">${HW ? '指定的主題' : 'Cambridge 主題表'} · ${ts.length} 個主題</p>
+    <div class="tgrid">${ts.map(t => `<button class="ttile" data-opentopic="${t.i}">
+      <span class="tz">${esc(t.zh)}</span><span class="te">${esc(t.en)}</span>
+      <span class="tn"><b>${t.n}</b> 個字${self && (t.k || t.r) ? `<span class="tk">記住了 ${t.k}</span>` : ''}</span>
+      ${self ? `<span class="tbar" aria-hidden="true"><i style="width:${Math.round(100 * t.k / t.n)}%"></i></span>` : ''}
+    </button>`).join('')}</div>
+    ${HW ? '' : `<p class="tnote">Cambridge 的主題表只收了 ${(ENTRIES.length - loose).toLocaleString()} 個字。其餘 ${loose.toLocaleString()} 個字不屬於任何主題，多半是 <i>about</i>、<i>already</i> 這類功能字，在「單字表」裡看。</p>`}`;
+}
+
+/* ---------- the student's side of an assignment: a banner over the list ---------- */
+function renderHWBar() {
+  const bar = $('#hwbar');
+  if (!HW) { bar.hidden = true; return; }
+  const words = ENTRIES.filter(inHW), k = words.filter(e => MARKS[e.id] === 'k').length;
+  bar.hidden = false;
+  bar.innerHTML = `<div class="kicker">Lewis 指定學習單字 · Assigned by Lewis</div>
+    <h2>${esc(HW.title || '這次要複習的單字')}</h2>
+    <p class="hw-topics">${HW.topics.map(i => `<button class="hw-chip" data-opentopic="${i}">${esc(TOPICS[i][1])}<small>${words.filter(e => e.t.includes(i)).length}</small></button>`).join('')}</p>
+    <p class="hw-line">共 <b>${words.length}</b> 個字${S.mode === 'self' ? `，這台裝置上記住了 <b>${k}</b> 個` : ''}。單字表、閃卡和測驗都只出這些字。
+      <a href="${location.pathname}">看全部單字 ›</a></p>`;
+}
+
+/* ---------- the teacher's side: the 指定 sheet ---------- */
+const HWPICK = new Set(store.get('hwpick', []));
+function hwLink() {
+  const ids = TOPICS.map(([en], i) => HWPICK.has(i) ? topicSlug(en) : null).filter(Boolean);
+  if (!ids.length) return '';
+  const t = $('#hwtitle').value.trim();
+  return `${EXAM.url}?hw=${ids.join('_')}${t ? '&t=' + encodeURIComponent(t) : ''}`;
+}
+function renderHWPanel() {
+  const counts = TOPICS.map((_, i) => ENTRIES.filter(e => e.t.includes(i)).length);
+  $('#hwpick').innerHTML = TOPICS.map(([en, zh], i) => `<label class="hw-row"><input type="checkbox" data-hwtopic="${i}" ${HWPICK.has(i) ? 'checked' : ''}>
+    <span class="hw-t">${esc(zh)}<em>${esc(en)}</em></span><span class="hw-c">${counts[i]}</span></label>`).join('');
+  updateHWPanel();
+}
+function updateHWPanel() {
+  const n = new Set(ENTRIES.filter(e => e.t.some(t => HWPICK.has(t))).map(e => e.id)).size;
+  $('#hwsum').textContent = HWPICK.size ? `已選 ${HWPICK.size} 個主題，共 ${n} 個字（一個字在兩個主題裡只算一次）。` : '還沒選主題。';
+  $('#hwlink').value = hwLink();
+  $('#hwcopy').disabled = $('#hwopen').disabled = !HWPICK.size;
+  store.set('hwpick', [...HWPICK]); store.set('hwtitle', $('#hwtitle').value);
 }
 
 /* ---------- events ---------- */
@@ -620,6 +695,11 @@ document.addEventListener('click', ev => {
   }
   if (t.dataset.kind) { D.kind = t.dataset.kind; store.set('deckkind', D.kind); D.key = ''; renderCards(); return; }
   if (t.dataset.view) { S.view = t.dataset.view; render(); window.scrollTo(0, 0); return; }
+  if (t.dataset.opentopic != null) {   // a topic tile or an assignment chip: that topic's words, as a list
+    S.topic = t.dataset.opentopic; $('#topic').value = S.topic; if (!HW) store.set('topic', S.topic);
+    S.view = 'list'; S.q = ''; $('#q').value = ''; S.letter = 'all'; $('#letter').value = 'all'; S.shown = 40;
+    render(); window.scrollTo(0, $('#main').offsetTop - 140); return;
+  }
   if (t.dataset.scope) { S.scope = t.dataset.scope; S.shown = 40; S.q = ''; $('#q').value = ''; render(); window.scrollTo(0, 0); return; }
   if (t.dataset.mark) {
     markWord(t.dataset.id, t.dataset.mark, true);
@@ -660,6 +740,17 @@ document.addEventListener('click', ev => {
     case 'qagain': buildQuiz(); renderQuiz(); break;
     case 'markmissed': Q.items.forEach((q, i) => { if (Q.missed.has(i)) markWord(q.e.id, 'r'); }); t.textContent = '已標成「還不熟」'; t.disabled = true; break;
     case 'setbtn': openPanel(); break;
+    case 'hwbtn': $('#hwtitle').value = store.get('hwtitle', ''); renderHWPanel(); $('#hwpanel').showModal(); break;
+    case 'hwclose': $('#hwpanel').close(); break;
+    case 'hwall': TOPICS.forEach((_, i) => HWPICK.add(i)); renderHWPanel(); break;
+    case 'hwnone': HWPICK.clear(); renderHWPanel(); break;
+    case 'hwopen': if (hwLink()) window.open(hwLink(), '_blank', 'noopener'); break;
+    case 'hwcopy': {
+      const url = hwLink(); if (!url) break;
+      const done = () => { t.textContent = '已複製'; setTimeout(() => { t.textContent = '複製連結'; }, 1600); };
+      try { navigator.clipboard.writeText(url).then(done, () => { $('#hwlink').select(); }); } catch (err) { $('#hwlink').select(); }
+      break;
+    }
     case 'closepanel': $('#panel').close(); break;
     case 'fresh':
       S.q = ''; $('#q').value = ''; S.scope = 'all'; S.letter = 'all'; $('#letter').value = 'all'; S.topic = 'all'; $('#topic').value = 'all';
@@ -688,16 +779,25 @@ $('#q').addEventListener('input', ev => { clearTimeout(qt); qt = setTimeout(() =
 (function initFilters() {
   const counts = TOPICS.map((_, i) => ENTRIES.filter(e => e.t.includes(i)).length);
   const sel = $('#topic');
-  sel.innerHTML = '<option value="all">主題：全部</option>' +
-    TOPICS.map(([en, zh], i) => `<option value="${i}">${esc(zh)}（${counts[i]}）</option>`).join('');
-  if (S.topic !== 'all' && !TOPICS[+S.topic]) S.topic = 'all';
+  // an assignment narrows the menu to its own topics
+  const shownTopics = TOPICS.map((t, i) => i).filter(i => !HW || HW.topics.includes(i));
+  if (HW) S.topic = 'all';      // an assignment always opens on all of its topics
+  sel.innerHTML = `<option value="all">${HW ? '主題：指定的全部' : '主題：全部'}</option>` +
+    shownTopics.map(i => `<option value="${i}">${esc(TOPICS[i][1])}（${counts[i]}）</option>`).join('');
+  if (S.topic !== 'all' && !shownTopics.includes(+S.topic)) S.topic = 'all';
   sel.value = S.topic;
-  sel.addEventListener('change', ev => { S.topic = ev.target.value; store.set('topic', S.topic); S.shown = 40; window.scrollTo(0, 0); render(); });
+  sel.addEventListener('change', ev => { S.topic = ev.target.value; if (!HW) store.set('topic', S.topic); S.shown = 40; window.scrollTo(0, 0); render(); });
   const letters = [...new Set(ENTRIES.map(letterOf))].filter(L => L !== '#').sort();
   const lsel = $('#letter');
   lsel.innerHTML = '<option value="all">字母：A–Z</option>' + letters.map(L => `<option value="${L}">${L.toUpperCase()} 開頭</option>`).join('');
   lsel.addEventListener('change', ev => { S.letter = ev.target.value; S.shown = 40; window.scrollTo(0, 0); render(); });
 })();
+$('#hwpick').addEventListener('change', ev => {
+  const i = ev.target.dataset.hwtopic; if (i == null) return;
+  ev.target.checked ? HWPICK.add(+i) : HWPICK.delete(+i); updateHWPanel();
+});
+$('#hwtitle').addEventListener('input', updateHWPanel);
+if (HW) { document.body.classList.add('hw'); document.title = `${HW.title || 'Lewis 指定學習單字'} · ${document.title}`; }
 $('#markf').addEventListener('change', ev => { S.markf = ev.target.value; S.shown = 40; render(); });
 $('#voice').addEventListener('change', ev => { S.voice = ev.target.value; store.set('voice', S.voice); say('Hello, this is how the words will sound.'); });
 $('#rate').addEventListener('input', ev => { S.rate = +ev.target.value; $('#ratev').textContent = '×' + S.rate.toFixed(2); store.set('rate', S.rate); });
