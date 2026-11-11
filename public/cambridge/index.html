@@ -46,6 +46,38 @@
 main.wrap { padding-bottom: 40px; }
 .foot { max-width: 40em; padding-bottom: 8px; font: 14px/1.7 var(--font-zh); color: var(--muted); letter-spacing: 0; }
 .foot a { color: var(--accent); }
+/* the learning path: five stops on one line (a column on a phone); 你在這裡 marks the
+   list this browser opened last; 不知道從哪開始 suggests a stop by grade */
+.path { margin: 0 0 40px; }
+.path h2, .start h2 { margin: 0 0 14px; font: 700 13px/1.2 var(--font-ui); letter-spacing: .1em; color: var(--red); }
+.stops { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); position: relative; }
+.stops::before { content: ""; position: absolute; left: 10%; right: 10%; top: 13px; height: 3px; border-radius: 3px; background: var(--hair); }
+.stop a { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; color: var(--ink); text-decoration: none; padding: 0 4px; }
+.stop .txt { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.stop .pin { width: 29px; height: 29px; border-radius: 50%; background: var(--paper); border: 3px solid var(--line); display: grid; place-items: center; font: 700 12px/1 var(--font-ui); color: var(--muted); }
+.stop .cefr { font: 700 11px/1.2 var(--font-ui); letter-spacing: .08em; color: var(--muted); }
+.stop b { font: 700 18px/1.2 var(--font-en); letter-spacing: -0.01em; }
+.stop .who { font: 13px/1.4 var(--font-zh); color: var(--muted); }
+.stop .mine { font: 600 12px/1.4 var(--font-zh); color: var(--ok); }
+.stop.here .pin { background: var(--button); border-color: var(--button); color: #fff; }
+.stop .herelabel { display: none; font: 700 12px/1.2 var(--font-zh); color: #fff; background: var(--button); border-radius: 980px; padding: 3px 10px; }
+.stop.here .herelabel { display: inline-block; }
+.stop.suggest .pin { border-color: var(--ok); box-shadow: 0 0 0 5px var(--ok-soft); }
+@media (hover: hover) { .stop a:hover b { color: var(--accent); } }
+.start { margin: 0 0 44px; }
+.grades { display: flex; flex-wrap: wrap; gap: 8px; }
+.grades button { border: 0; background: var(--tile); border-radius: 980px; padding: 8px 16px; font: 15px/1.3 var(--font-zh); color: var(--ink); }
+.grades button[aria-pressed="true"] { background: var(--ok-soft); color: var(--ok); font-weight: 600; }
+.advice { margin: 14px 0 0; min-height: 1.6em; font: 16px/1.7 var(--font-zh); color: var(--ink); }
+.advice a { color: var(--accent); }
+.tilesh { margin: 0 0 14px; font: 700 13px/1.2 var(--font-ui); letter-spacing: .1em; color: var(--red); }
+@media (max-width: 640px) {
+  .stops { grid-template-columns: 1fr; gap: 14px; }
+  .stops::before { left: 13px; right: auto; top: 14px; bottom: 14px; width: 3px; height: auto; }
+  .stop a { flex-direction: row; flex-wrap: wrap; align-items: center; text-align: left; gap: 4px 12px; padding: 0; }
+  .stop .txt { align-items: flex-start; }
+  .stop .herelabel { order: 3; }          /* after the name, so every stop's text lines up */
+}
 </style>
 </head>
 <body>
@@ -61,6 +93,27 @@ main.wrap { padding-bottom: 40px; }
 </header>
 
 <main class="wrap">
+  <section class="path" aria-label="學習路線">
+    <h2>學習路線 · The path</h2>
+    <ol class="stops">
+      <li class="stop" data-stop="yl0"><a href="young-learners/?level=0"><span class="pin">1</span><span class="herelabel">你在這裡</span><span class="txt"><span class="cefr">Pre A1</span><b>Starters</b><span class="who">小一～小二</span></span></a></li>
+      <li class="stop" data-stop="yl1"><a href="young-learners/?level=1"><span class="pin">2</span><span class="herelabel">你在這裡</span><span class="txt"><span class="cefr">A1</span><b>Movers</b><span class="who">小三～小四</span></span></a></li>
+      <li class="stop" data-stop="yl2"><a href="young-learners/?level=2"><span class="pin">3</span><span class="herelabel">你在這裡</span><span class="txt"><span class="cefr">A2</span><b>Flyers</b><span class="who">小五～小六</span></span></a></li>
+      <li class="stop" data-stop="a2k"><a href="a2-key/"><span class="pin">4</span><span class="herelabel">你在這裡</span><span class="txt"><span class="cefr">A2</span><b>A2 Key</b><span class="who">國中</span><span class="mine" data-store="a2k"></span></span></a></li>
+      <li class="stop" data-stop="b1p"><a href="b1-preliminary/"><span class="pin">5</span><span class="herelabel">你在這裡</span><span class="txt"><span class="cefr">B1</span><b>B1 Preliminary</b><span class="who">國三～高中</span><span class="mine" data-store="b1p"></span></span></a></li>
+    </ol>
+  </section>
+
+  <section class="start" aria-label="不知道從哪開始">
+    <h2>不知道從哪開始？</h2>
+    <div class="grades" role="group" aria-label="年級">
+      <button data-grade="yl0">幼兒園～小二</button><button data-grade="yl1">小三～小四</button><button data-grade="yl2">小五～小六</button>
+      <button data-grade="a2k">國一～國二</button><button data-grade="b1p">國三～高中</button>
+    </div>
+    <p class="advice" id="advice" aria-live="polite">選孩子的年級，我們建議從哪一關開始。</p>
+  </section>
+
+  <h2 class="tilesh">三份字表 · The lists</h2>
   <ul class="exams">
     <li><a class="exam" href="young-learners/">
       <div class="kicker">Pre A1 – A2 · 6 到 12 歲</div>
@@ -95,6 +148,26 @@ main.wrap { padding-bottom: 40px; }
 </footer>
 
 <script>
+  // 你在這裡: the list this browser opened last (each page writes cam.last when it opens)
+  let last = '';
+  try { last = localStorage.getItem('cam.last') || ''; } catch (e) {}
+  document.querySelector(`.stop[data-stop="${last}"]`)?.classList.add('here');
+  // 不知道從哪開始: a rough guide by grade — a child who finds the words easy moves one stop on
+  const ADVICE = {
+    yl0: ['Starters', 'young-learners/?level=0', '從 Starters 開始：495 個最基本的字，每個都能點了聽，有圖的字先看。'],
+    yl1: ['Movers', 'young-learners/?level=1', '從 Movers 開始。如果 Starters 的字還不熟，先回 Starters 玩幾輪。'],
+    yl2: ['Flyers', 'young-learners/?level=2', '從 Flyers 開始；準備考 A2 Key 的孩子，Flyers 的字熟了就可以接 A2 Key。'],
+    a2k: ['A2 Key', 'a2-key/', '從 A2 Key 開始，每天「今天這一組」20 個字。'],
+    b1p: ['B1 Preliminary', 'b1-preliminary/', '從 B1 Preliminary 開始；如果常遇到不認識的基本字，先把 A2 Key 補齊。'],
+  };
+  document.querySelector('.grades').addEventListener('click', ev => {
+    const b = ev.target.closest('[data-grade]'); if (!b) return;
+    document.querySelectorAll('[data-grade]').forEach(x => x.setAttribute('aria-pressed', x === b));
+    document.querySelectorAll('.stop').forEach(x => x.classList.toggle('suggest', x.dataset.stop === b.dataset.grade));
+    const [name, href, text] = ADVICE[b.dataset.grade];
+    document.getElementById('advice').innerHTML = `${text} <a href="${href}">打開 ${name} ›</a>`;
+  });
+
   // Each list keeps 自學 marks in this browser under its own prefix; show the count on its tile.
   document.querySelectorAll('[data-store]').forEach(el => {
     let n = 0;

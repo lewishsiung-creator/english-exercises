@@ -59,6 +59,7 @@ const HW = (() => {
   return topics.length ? { topics: [...new Set(topics)].sort((a, b) => a - b), title: (q.get('t') || '').trim().slice(0, 40) } : null;
 })();
 const inHW = e => !HW || e.t.some(t => HW.topics.includes(t));
+try { localStorage.setItem('cam.last', EXAM.store); } catch (e) {}   // the hub's 你在這裡
 
 /* review schedule for 自學: 還不熟 comes back tomorrow; each 記住了 pushes it further out */
 let SCHED = store.get('sched', {});    // id -> { due: day number, step }
@@ -171,15 +172,41 @@ function markBtns(e) {
   const m = MARKS[e.id];
   return `<span class="mark"><button data-mark="k" data-id="${e.id}" class="${m === 'k' ? 'on-k' : ''}" aria-pressed="${m === 'k'}">記住了</button><button data-mark="r" data-id="${e.id}" class="${m === 'r' ? 'on-r' : ''}" aria-pressed="${m === 'r'}">還不熟</button></span>`;
 }
+/* One quiet control per row instead of three buttons: a dot that steps through
+   未標記 → 記住了 → 還不熟 → 未標記, and a ⋯ for the rest (the word's link). The
+   flashcards keep their two big buttons, since marking is the point there. */
+const MARKNAME = { k: '記住了', r: '還不熟' };
+function statusDot(e) {
+  if (S.mode !== 'self') return '';
+  const m = MARKS[e.id] || '';
+  const next = !m ? '記住了' : m === 'k' ? '還不熟' : '取消標記';
+  return `<button class="dot ${m ? 'on-' + m : ''}" data-cycle="${e.id}" aria-label="${esc(e.w)}：${m ? MARKNAME[m] : '還沒標記'}。按一下改成「${next}」" title="按一下：${next}"><i aria-hidden="true"></i><span>${m ? MARKNAME[m] : '標記'}</span></button>`;
+}
 function entryHTML(e) {
   const m = S.mode === 'self' ? MARKS[e.id] : '';
   return `<article class="entry ${m === 'k' ? 'known' : m === 'r' ? 'review' : ''}" id="e-${e.id}">
     <div class="meta"><span class="tag">${letterOf(e).toUpperCase()}</span>${e.nw ? `<span class="new">${EXAM.newLabel}</span>` : ''}
       ${e.t.length ? `<span class="tops">${e.t.map(t => `<span>${esc(topicZh(t))}</span>`).join('')}</span>` : ''}
-      ${markBtns(e)}<button class="link copy" data-copy="${e.id}" aria-label="複製 ${esc(e.w)} 的連結">複製連結</button></div>
+      <span class="rowctl">${statusDot(e)}<button class="more-btn" data-menu="${e.id}" aria-label="${esc(e.w)}：更多" aria-haspopup="menu">⋯</button></span></div>
     <div class="body">${headHTML(e)}</div>
   </article>`;
 }
+
+/* the ⋯ menu: one small popover, shared by every row */
+function openRowMenu(btn) {
+  closeRowMenu();
+  const id = btn.dataset.menu, r = btn.getBoundingClientRect();
+  const menu = document.createElement('div');
+  menu.className = 'rowmenu'; menu.id = 'rowmenu'; menu.setAttribute('role', 'menu');
+  menu.innerHTML = `<button role="menuitem" data-copy="${id}">複製這個字的連結</button>`;
+  document.body.appendChild(menu);
+  menu.style.top = `${r.bottom + scrollY + 6}px`;
+  menu.style.left = `${Math.max(12, Math.min(r.left + scrollX, innerWidth - menu.offsetWidth - 12))}px`;
+  menu.querySelector('button').focus({ preventScroll: true });
+}
+function closeRowMenu() { document.getElementById('rowmenu')?.remove(); }
+document.addEventListener('pointerdown', ev => { if (!ev.target.closest('#rowmenu, [data-menu]')) closeRowMenu(); });
+document.addEventListener('keydown', ev => { if (ev.key === 'Escape') closeRowMenu(); });
 
 /* ---------- views ---------- */
 function where() {
@@ -719,6 +746,9 @@ function activeFilters() {
 }
 function renderChips() {
   const f = activeFilters(), el = $('#fchips');
+  const n = f.filter(([k]) => k !== 'q').length;      // the search box stays in the bar, so it is not counted here
+  $('#filterbtn').innerHTML = n ? `篩選 <b>${n}</b>` : '篩選';
+  $('#filterbtn').classList.toggle('on', !!n);
   el.hidden = !f.length;
   el.innerHTML = f.length ? `<span class="fc-label">篩選中</span>` +
     f.map(([k, t]) => `<button class="fchip" data-clear="${k}" aria-label="取消篩選：${esc(t)}">${esc(t)}<span aria-hidden="true">×</span></button>`).join('') +
@@ -759,7 +789,7 @@ function updateHWPanel() {
 document.addEventListener('click', ev => {
   const t = ev.target.closest('button'); if (!t) return;
   if (t.dataset.say != null) { say(t.dataset.say); return; }
-  if (t.dataset.copy) { copyLink(t.dataset.copy); return; }
+  if (t.dataset.copy) { copyLink(t.dataset.copy); closeRowMenu(); return; }
   if (t.dataset.orig != null) { toast(`<span>原表寫法：${esc(t.dataset.orig)}</span>`, 5000); return; }
   if (t.dataset.letter) { if (ev.detail === 0) jumpLetter(t.dataset.letter); return; }  // keyboard; touch and mouse go through pointer events
   if (t.classList.contains('chip')) { t.parentElement.classList.add('open'); return; }
@@ -771,6 +801,8 @@ document.addEventListener('click', ev => {
   if (t.dataset.kind) { D.kind = t.dataset.kind; store.set('deckkind', D.kind); D.key = ''; renderCards(); return; }
   if (t.dataset.view) { S.view = t.dataset.view; render(); window.scrollTo(0, 0); return; }
   if (t.dataset.clear) { clearFilter(t.dataset.clear); return; }
+  if (t.id === 'filterbtn') { openSheet(); return; }
+  if (t.id === 'fsdone') { closeSheet(); return; }
   if (t.id === 'starttoday') {    // today's set over the whole list (or the whole assignment), not whatever is filtered
     clearFilter('all'); S.view = 'cards'; D.kind = 'set'; store.set('deckkind', 'set'); D.key = '';
     render(); window.scrollTo(0, $('.lnav').offsetTop); return;
@@ -781,6 +813,16 @@ document.addEventListener('click', ev => {
     render(); window.scrollTo(0, $('#main').offsetTop - 140); return;
   }
   if (t.dataset.scope) { S.scope = t.dataset.scope; S.shown = 40; S.q = ''; $('#q').value = ''; render(); window.scrollTo(0, 0); return; }
+  if (t.dataset.cycle) {
+    const id = t.dataset.cycle, m = MARKS[id];
+    if (!m) markWord(id, 'k'); else if (m === 'k') markWord(id, 'r'); else markWord(id, 'r', true);
+    const art = t.closest('.entry'), e = ENTRIES.find(x => x.id === id);
+    art.outerHTML = entryHTML(e);
+    document.querySelector(`#e-${CSS.escape(id)} .dot`)?.focus({ preventScroll: true });
+    renderToday(); renderHWBar();
+    return;
+  }
+  if (t.dataset.menu) { openRowMenu(t); return; }
   if (t.dataset.mark) {
     markWord(t.dataset.id, t.dataset.mark, true);
     const art = t.closest('.entry');
@@ -878,6 +920,35 @@ $('#hwpick').addEventListener('change', ev => {
 });
 $('#hwtitle').addEventListener('input', updateHWPanel);
 $('.lnav').insertAdjacentHTML('beforebegin', '<section class="today wrap" id="today" aria-label="今天這一組" hidden></section>');
+
+/* On a phone the bar keeps the views and the search box; everything else sits behind 篩選,
+   in a sheet that slides up. The controls themselves move into the sheet while it is open
+   and back after, so there is one set of them and nothing to keep in step. */
+$('.search').insertAdjacentHTML('afterend', '<button id="filterbtn" class="sm filterbtn" aria-haspopup="dialog">篩選</button>');
+document.body.insertAdjacentHTML('beforeend', `<dialog class="panel sheet" id="fsheet" aria-label="篩選">
+  <h2>篩選</h2>
+  <div class="fs-sec"><label>範圍</label><div data-slot="scope"></div></div>
+  <div class="fs-sec"><label>主題</label><div data-slot="topic"></div></div>
+  <div class="fs-sec"><label>字母</label><div data-slot="letter"></div></div>
+  <div class="fs-sec self-only"><label>標記</label><div data-slot="markf"></div></div>
+  <div class="fs-sec"><label>中文</label><div data-slot="zhbtn"></div></div>
+  <div class="row"><button class="btn" data-clear="all">全部清除</button><button class="btn primary" id="fsdone">完成</button></div>
+</dialog>`);
+const SHEET_IDS = ['scope', 'topic', 'letter', 'markf', 'zhbtn'];
+function openSheet() {
+  SHEET_IDS.forEach(id => {
+    const el = document.getElementById(id), ph = document.createElement('span');
+    ph.hidden = true; ph.dataset.ph = id; el.before(ph);           // where it goes back to
+    $(`#fsheet [data-slot="${id}"]`).appendChild(el);
+  });
+  $('#fsheet').showModal();
+}
+function closeSheet() { $('#fsheet').close(); }
+// however the sheet closes (完成, Esc, the backdrop), the controls go back to the bar
+$('#fsheet').addEventListener('close', () => SHEET_IDS.forEach(id => {
+  const ph = document.querySelector(`[data-ph="${id}"]`); if (ph) ph.replaceWith(document.getElementById(id));
+}));
+$('#fsheet').addEventListener('click', ev => { if (ev.target === $('#fsheet')) closeSheet(); });   // a tap on the backdrop
 $('.lnav .wrap').insertAdjacentHTML('beforeend', '<div class="row fchips" id="fchips" aria-label="篩選中" hidden></div>');
 if (RETURNING) document.body.classList.add('returning');   // a returning student: the introduction folds away
 if (HW) { document.body.classList.add('assigned'); document.title = `${HW.title || '本週指定學習單字'} · ${document.title}`; }

@@ -163,6 +163,10 @@ dialog .btn.primary { background: var(--lv); color: #fff; }
   .topics button { flex: none; }
 }
 @media (max-width: 520px) {
+  /* three views side by side on a phone: equal columns, one line each */
+  .views { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
+  .views button { padding: 10px 4px; font-size: 16px; white-space: nowrap; }
+  .views .long { display: none; }
   .levels button { min-height: 80px; border-radius: 18px; }
   .levels small { font-size: 13px; }
   .card .pic { font-size: 54px; }
@@ -198,6 +202,26 @@ dialog input[type=text] { width: 100%; border: 2px solid var(--line); border-rad
 .dc-stats b { display: block; font: 700 24px/1.2 var(--font); }
 .dc-stats span { font: 12px/1.4 var(--zh); }
 .dc-hint { margin: 12px 0 0; font: 13px/1.4 var(--zh); opacity: .9; }
+/* Fluent pictures as images */
+img.pic { display: block; object-fit: contain; }
+.card img.pic { width: 76px; height: 76px; }
+.tile img.pic { width: clamp(64px, 14vw, 104px); height: clamp(64px, 14vw, 104px); }
+.endlist img.pic { width: 40px; height: 40px; }
+.gotsticker { display: block; margin-top: 6px; color: var(--lv); font: 700 18px/1.4 var(--zh); animation: pop .5s ease-out; }
+@keyframes pop { 0% { transform: scale(.6); opacity: 0; } 70% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); } }
+/* 貼紙本 */
+.book { background: var(--card); border-radius: 28px; box-shadow: var(--shadow); padding: clamp(20px, 4vw, 36px); margin-bottom: 90px; }
+.book-head { text-align: center; margin-bottom: 18px; }
+.book-head h2 { margin: 4px 0; font-size: 30px; }
+.book-head b { color: var(--lv); }
+.stickers { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 10px; }
+.sticker { border: 0; background: var(--bg); border-radius: 20px; padding: 10px 6px 8px; display: flex; flex-direction: column; align-items: center; gap: 4px; min-height: 112px; }
+.sticker img.pic, .sticker .pic { width: 64px; height: 64px; font-size: 52px; line-height: 64px; }
+.sticker span:last-child { font: 700 14px/1.2 var(--font); overflow-wrap: anywhere; text-align: center; }
+.sticker:not(.got) .pic { filter: grayscale(1); opacity: .25; }
+.sticker:not(.got) span:last-child { color: var(--muted); }
+.sticker.got { background: var(--lv-soft); }
+@media (prefers-reduced-motion: reduce) { .gotsticker { animation: none; } }
 .cam-foot { display: flex; align-items: center; gap: 12px; margin-top: -54px; padding-bottom: 72px; font: 14px/1.6 var(--zh); color: var(--muted); }
 .cam-foot p { margin: 0; }
 .cam-foot p a { color: var(--m); text-decoration: none; }
@@ -220,7 +244,8 @@ dialog input[type=text] { width: 100%; border: 2px solid var(--line); border-rad
   <div class="topics" id="topics" role="group" aria-label="主題"></div>
   <div class="views" role="group" aria-label="檢視">
     <button data-view="cards">👀 字卡</button>
-    <button data-view="game">👂 聽聽看，點一點</button>
+    <button data-view="game">👂 聽聽看<span class="long">，點一點</span></button>
+    <button data-view="stickers">⭐ 貼紙本</button>
   </div>
   <main id="main"></main>
   <footer class="cam-foot">
@@ -262,7 +287,9 @@ const store = {
   get(k, d) { try { const v = localStorage.getItem('yl.' + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
   set(k, v) { try { localStorage.setItem('yl.' + k, JSON.stringify(v)); } catch (e) {} }
 };
-const S = { lv: store.get('lv', 0), cumul: store.get('cumul', false), topic: 'all', view: 'cards', zhAll: store.get('zhAll', false),
+// ?level=0|1|2 (from the hub's path) opens that level; otherwise the one this device used last
+const URL_LV = new URLSearchParams(location.search).get('level');
+const S = { lv: /^[012]$/.test(URL_LV || '') ? +URL_LV : store.get('lv', 0), cumul: store.get('cumul', false), topic: 'all', view: 'cards', zhAll: store.get('zhAll', false),
   voice: store.get('voice', ''), rate: store.get('rate', 0.8) };
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -318,6 +345,7 @@ const zhLine = w => w.se.map(([p, z]) => `${p ? `<span class="p">${esc(p)}</span
 
 function renderChrome() {
   document.body.dataset.lv = S.lv;
+  try { if (!HW) localStorage.setItem('cam.last', 'yl' + S.lv); } catch (e) {}   // the hub's 你在這裡
   $('.levels').innerHTML = LEVELS.map(([name, cefr], i) =>
     `<button data-lv="${i}" aria-pressed="${S.lv === i}"><b>${name}</b><small>${cefr} · ${W.filter(w => w.lv === i).length} 個字</small></button>`).join('');
   $('.levels').hidden = !!HW;
@@ -346,7 +374,7 @@ function cardHTML(w) {
   const lvc = ['var(--s)', 'var(--m)', 'var(--f)'][w.lv];
   return `<article class="card" id="c-${w.id}">
     <button class="hear ${w.pic ? '' : 'nopic'}" data-say="${esc(w.sayAs)}" aria-label="聽 ${esc(w.w)}">
-      ${w.pic ? `<span class="pic" aria-hidden="true">${w.pic}</span>` : ''}<span class="w">${esc(w.w)}</span>${w.note ? `<span class="note">${it(w.note)}</span>` : ''}
+      ${picHTML(w)}<span class="w">${esc(w.w)}</span>${w.note ? `<span class="note">${it(w.note)}</span>` : ''}
     </button>
     <div class="foot"><span class="lvdot" style="background:${lvc}" title="${LEVELS[w.lv][0]}"></span>
       ${S.zhAll ? `<span class="zh">${zhLine(w)}</span>` : `<button class="chip" data-zh="${w.n}" aria-label="顯示中文">中</button>`}</div>
@@ -388,9 +416,9 @@ function renderGame() {
     <div class="tiles">${q.opts.map((o, k) => {
       const cls = G.solved && o === q.w ? 'right' : G.tried.has(k) ? 'tried' : '';
       return `<button class="tile ${cls}" data-tile="${k}" ${G.solved ? 'disabled' : ''} aria-label="${G.kind === 'pic' ? '圖 ' + (k + 1) : esc(o.w)}">
-        ${G.kind === 'pic' ? `<span class="pic" aria-hidden="true">${o.pic}</span>` : ''}${G.kind === 'word' || (G.solved && o === q.w) ? `<span class="w">${esc(o.w)}</span>` : ''}</button>`;
+        ${G.kind === 'pic' ? picHTML(o) : ''}${G.kind === 'word' || (G.solved && o === q.w) ? `<span class="w">${esc(o.w)}</span>` : ''}</button>`;
     }).join('')}</div>
-    <div class="said">${G.solved ? `<span class="en">${esc(q.w.w)}</span>${esc(q.w.se.map(s => s[1]).join('；'))}` : G.tried.size ? '<span class="again">再聽一次，再試試看！</span>' : ''}</div>
+    <div class="said">${G.solved ? `<span class="en">${esc(q.w.w)}</span>${esc(q.w.se.map(s => s[1]).join('；'))}${G.newSticker ? '<span class="gotsticker">⭐ 收進貼紙本！</span>' : ''}` : G.tried.size ? '<span class="again">再聽一次，再試試看！</span>' : ''}</div>
     ${G.solved ? `<button class="next" id="next">${G.i + 1 < G.items.length ? '下一個 →' : '做完了！'}</button>` : ''}
   </section>`;
 }
@@ -399,7 +427,7 @@ function renderEnd(kinds) {
   $('#main').innerHTML = `<section class="game">${kinds}
     <div style="font-size:72px">🎉</div><h2 style="margin:6px 0 4px;font-size:30px">做完了！</h2>
     ${again.length ? `<p class="sub">這幾個字再聽一次：</p><ul class="endlist">${again.map(w =>
-      `<li><button data-say="${esc(w.sayAs)}">${w.pic ? `<span class="pic">${w.pic}</span>` : ''}${esc(w.w)}</button></li>`).join('')}</ul>` : '<p class="sub">每一個都找到了！</p>'}
+      `<li><button data-say="${esc(w.sayAs)}">${picHTML(w)}${esc(w.w)}</button></li>`).join('')}</ul>` : '<p class="sub">每一個都找到了！</p>'}
     ${HW ? doneCard() : ''}
     <button class="next" id="again" style="margin-top:22px">再玩一次</button>
   </section>`;
@@ -426,6 +454,9 @@ function tapTile(k) {
   if (q.opts[k] === q.w) {
     G.solved = true;
     if (firstTry || !G.first.some(r => r.w === q.w)) G.first.push({ w: q.w, ok: firstTry });
+    // every word found goes into the sticker book, whatever the number of tries: no failure state
+    G.newSticker = q.w.pic && !STICKERS.has(q.w.id);
+    if (G.newSticker) { STICKERS.add(q.w.id); store.set('stickers', [...STICKERS]); }
     say(q.w.sayAs);
   } else {
     G.tried.add(k);
@@ -435,10 +466,33 @@ function tapTile(k) {
   renderGame();
 }
 
+/* ---------- pictures: Microsoft's Fluent Emoji 3D art (pics/, MIT licence), so every device shows the
+   same picture; the emoji itself only if a file is missing ---------- */
+function picHTML(w) {
+  if (!w.pic) return '';
+  const f = typeof PICS !== 'undefined' && PICS[w.pic];
+  return f ? `<img class="pic" src="pics/${f}.webp" alt="" loading="lazy" decoding="async" width="192" height="192">`
+           : `<span class="pic" aria-hidden="true">${w.pic}</span>`;
+}
+
+/* ---------- 貼紙本: every word found in the game, kept on this device. Collected stickers in colour,
+   the rest of this level's pictures greyed out to find. Tapping any of them says the word. ---------- */
+const STICKERS = new Set(store.get('stickers', []));
+function renderStickers() {
+  const all = pool().filter(w => w.pic), got = all.filter(w => STICKERS.has(w.id));
+  $('#main').innerHTML = `<section class="book">
+    <div class="book-head"><div style="font-size:48px">⭐</div>
+      <h2>貼紙本</h2>
+      <p class="sub">在「聽聽看，點一點」找到一個字，就多一張貼紙。這裡收集了 <b>${got.length}</b> / ${all.length} 張。</p></div>
+    ${all.length ? `<div class="stickers">${all.map(w => `<button class="sticker ${STICKERS.has(w.id) ? 'got' : ''}" data-say="${esc(w.sayAs)}" aria-label="${esc(w.w)}${STICKERS.has(w.id) ? '（已收集）' : '（還沒收集）'}">${picHTML(w)}<span>${STICKERS.has(w.id) ? esc(w.w) : '?'}</span></button>`).join('')}</div>`
+      : '<p class="empty">這裡沒有可以收集的貼紙，換一個主題吧。</p>'}
+  </section>`;
+}
+
 /* ---------- render, events ---------- */
 function render() {
   renderChrome();
-  if (S.view === 'cards') renderCards(); else renderGame();
+  ({ cards: renderCards, game: renderGame, stickers: renderStickers })[S.view]();
   if (S.view === 'game' && G.items[G.i] && !G.solved && !G.tried.size) say(G.items[G.i].w.sayAs);
 }
 document.addEventListener('click', ev => {

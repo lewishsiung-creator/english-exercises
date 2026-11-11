@@ -198,6 +198,8 @@ def speakable(w):
 def build():
     words = json.load(open(HERE / 'young-learners' / 'words.json'))
     zh = json.load(open(HERE / 'young-learners' / 'zh.json'))
+    pics_file = HERE / 'young-learners' / 'pics.json'
+    pics = json.load(open(pics_file)) if pics_file.exists() else {}
     topics = list(TOPICS_ZH)
     rows, seen = [], {}
     for w, z in zip(words, zh):
@@ -214,6 +216,8 @@ def build():
     js = ('/* Pre A1 Starters, A1 Movers, A2 Flyers — built by tools/cambridge/young_learners.py build from\n'
           '   Cambridge\'s wordlists (2018 syllabus) and the Chinese and pictures in young-learners/zh.json. */\n'
           'const TOPICS = ' + json.dumps([[t, *TOPICS_ZH[t]] for t in topics], ensure_ascii=False) + ';\n'
+          '// emoji -> its Fluent Emoji picture in pics/ (tools/cambridge/kid_pictures.py)\n'
+          'const PICS = ' + json.dumps(pics, ensure_ascii=False, sort_keys=True) + ';\n'
           '// [id, word, note, spoken as, level 0-2 (Starters, Movers, Flyers), senses [[pos, 中文]], emoji, topics]\n'
           'const RAW = [\n' + ',\n'.join(json.dumps(r, ensure_ascii=False, separators=(',', ':')) for r in rows) + '\n];\n')
     out = HERE.parent.parent / 'public' / 'cambridge' / 'young-learners' / 'words.js'

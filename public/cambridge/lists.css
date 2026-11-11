@@ -163,8 +163,6 @@ main.wrap { padding-block: 24px 80px; }
 }
 .meta .num { font: 12px/1 var(--font-ui); color: var(--muted); letter-spacing: .06em; font-variant-numeric: tabular-nums; }
 .meta .mark { display: flex; flex-direction: column; gap: 6px; }
-.entry.known .tag::after { content: " · 記住了"; color: var(--ok); letter-spacing: 0; font-weight: 600; }
-.entry.review .tag::after { content: " · 還不熟"; color: var(--warn); letter-spacing: 0; font-weight: 600; }
 .mark button {
   border: 0; background: var(--tile); border-radius: 980px; padding: 4px 12px; font-size: 13px; color: var(--ink);
 }
@@ -533,3 +531,53 @@ body.returning .opener { padding-block: 22px 14px; }
 .hw-done { margin-top: 10px; }
 .hw-donehead { margin: 0; color: var(--ok); font: 700 18px/1.4 var(--font-zh); }
 .qend .donecard { margin-top: 26px; }
+
+/* ---------- a word row's one control: the status dot, and ⋯ ---------- */
+.rowctl { display: flex; align-items: center; gap: 4px; margin-top: 2px; }
+.dot {
+  border: 0; background: none; display: inline-flex; align-items: center; gap: 7px; padding: 4px 6px 4px 0;
+  font: 13px/1.2 var(--font-zh); color: var(--muted); letter-spacing: 0;
+}
+.dot i { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--line); flex: none; transition: background .15s, border-color .15s; }
+.dot.on-k i { background: var(--ok); border-color: var(--ok); }
+.dot.on-k span { color: var(--ok); font-weight: 600; }
+.dot.on-r i { background: var(--warn); border-color: var(--warn); }
+.dot.on-r span { color: var(--warn); font-weight: 600; }
+@media (hover: hover) { .dot:hover i { border-color: var(--accent); } .dot:hover span { color: var(--accent); } }
+.more-btn { border: 0; background: none; color: var(--muted); font: 700 18px/1 var(--font-ui); padding: 4px 8px; border-radius: 8px; }
+@media (hover: hover) { .more-btn:hover { background: var(--tile); color: var(--ink); } }
+.rowmenu {
+  position: absolute; z-index: 40; min-width: 200px; padding: 6px; border-radius: 14px;
+  background: var(--paper); border: 1px solid var(--line); box-shadow: 0 12px 32px rgb(0 0 0 / .16);
+}
+.rowmenu button { display: block; width: 100%; text-align: left; border: 0; background: none; border-radius: 9px; padding: 11px 14px; font: 15px/1.3 var(--font-zh); color: var(--ink); }
+@media (hover: hover) { .rowmenu button:hover { background: var(--tile); } }
+@media (pointer: coarse) {
+  .dot, .more-btn { min-height: 44px; }
+  .dot { padding-right: 10px; }
+  .more-btn { min-width: 44px; }
+}
+@media (max-width: 720px) { .rowctl { margin-left: auto; margin-top: 0; } }
+@media print { .rowctl { display: none !important; } }
+
+/* ---------- phones: 篩選 behind one button, in a sheet that slides up ---------- */
+.filterbtn { display: none; }
+.filterbtn b { display: inline-block; min-width: 20px; margin-left: 4px; padding: 0 6px; border-radius: 10px; background: var(--accent); color: var(--on-button); font: 600 12px/20px var(--font-ui); }
+.filterbtn.on { background: var(--accent-soft); color: var(--accent); }
+@media (max-width: 560px) {
+  .filterbtn { display: inline-flex; align-items: center; }
+  .lnav #scope, .lnav #topic, .lnav #letter, .lnav #markf, .lnav #zhbtn { display: none; }
+  .lnav .search { flex: 1 1 0; }
+}
+dialog.sheet {
+  margin: auto 0 0; width: 100%; max-width: 100%; max-height: 86vh; border-radius: 22px 22px 0 0;
+  padding: 22px max(20px, env(safe-area-inset-left, 0px)) max(22px, env(safe-area-inset-bottom, 0px));
+  animation: sheetup .22s ease-out;
+}
+@keyframes sheetup { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { dialog.sheet { animation: none; } }
+.sheet .fs-sec label { margin: 18px 0 8px; }
+.sheet .fs-sec select, .sheet #zhbtn { width: 100%; text-align: left; }
+.sheet #scope { margin: 0; }
+.sheet .row { justify-content: space-between; margin-top: 26px; }
+.sheet .row .btn { flex: 1; }

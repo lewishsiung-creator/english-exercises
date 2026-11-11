@@ -2640,6 +2640,39 @@ on a wider screen the sections came out of order. The body classes are now
 `assigned` and `returning`. Before adding a class to `<body>` here, grep
 `lists.css` for it.
 
+### Path, quieter rows, a filter sheet, pictures and stickers (added 2026-11-11)
+
+The second half of the same design review, all four built:
+
+- **學習路線 on the hub.** Five stops — Starters, Movers, Flyers, A2 Key, B1
+  Preliminary — on one line (a column on a phone), each with its CEFR level and
+  a rough grade, A2 Key and B1 with this browser's 記住了 count. 「你在這裡」 marks
+  the list this browser opened last: every page writes `cam.last` (`yl0`–`yl2`,
+  `a2k`, `b1p`) when it opens. 「不知道從哪開始？」 is five grade buttons that
+  highlight a stop and suggest where to begin. The young learners page accepts
+  `?level=0|1|2` so the path can open a level.
+- **One control per word row** on A2 Key and B1: a dot that steps 未標記 →
+  記住了 → 還不熟 → 未標記, with its label beside it, and a ⋯ menu holding
+  「複製這個字的連結」. The two buttons and the link that used to repeat on every
+  row are gone; the flashcards keep their big 記住了／還不熟 buttons.
+- **篩選 sheet on phones** (≤ 560 px): the bar keeps the views and the search
+  box; range, topic, letter, marks and 中文 sit behind 「篩選」 (with a count of
+  what is on) in a sheet that slides up. The controls themselves move into the
+  sheet and back when it closes — however it closes — so there is one set.
+- **Pictures for the young learners**, from Microsoft's Fluent Emoji (3D style,
+  MIT licence, notice in `pics/LICENSE`). `tools/cambridge/kid_pictures.py`
+  matches each word's emoji to its Fluent picture and saves it as a 192 px WebP
+  (~5 KB) in `public/cambridge/young-learners/pics/`; `pics.json` feeds `PICS` in
+  `words.js`. Same picture on every device, so an older iPad no longer shows a
+  box for newer emoji. A helper proposed pictures for 143 more words; 118 were
+  kept (44 of them Starters) and 25 dropped as misleading — *face* 🙂 reads as
+  happy, *queen* is a princess, *nurse*/*kitten*/*airport* sit too close to
+  *doctor*/*cat*/*plane*, *sausage* is a hot dog. 480 of 1,407 words now have a
+  picture.
+- **貼紙本.** Every word found in the game becomes a sticker (`yl.stickers`),
+  however many tries it took — no failure state. A third view shows the level's
+  pictures: found ones in colour with the word, the rest greyed with 「?」.
+
 ### Starters, Movers, Flyers
 
 Its own page, built to the children's house rules rather than on the list
