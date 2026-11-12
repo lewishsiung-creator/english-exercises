@@ -140,10 +140,31 @@ const PAGES = [
     ] },
 
   // ── Museum manners ─────────────────────────────────────────────
+  { ch: 'manners', kind: 'manners', art: '🚌',
+    lines: [
+      { en: 'On the bus: is it OK? Tap thumbs up or thumbs down.', zh: '坐遊覽車時，這樣可以嗎？請按 👍 或 👎。' },
+    ],
+    done: { en: 'You know the bus rules!', zh: '你知道坐遊覽車的規矩了！' },
+    items: [
+      { art: '🔒', ok: true,  en: 'Wear your seat belt.', zh: '繫好安全帶。',
+        why: { en: 'Seat belts keep us safe on the bus.', zh: '安全帶讓我們在車上很安全。' } },
+      { art: '🧍', ok: false, en: 'Stand up and walk around while the bus is moving.', zh: '車子開的時候，站起來走來走去。',
+        why: { en: 'Stay in your seat until the bus stops.', zh: '車子停好之前，都要坐在位子上。' } },
+      { art: '🤢', ok: true,  en: 'Tell your teacher if you feel sick.', zh: '不舒服的時候，告訴老師。',
+        why: { en: 'Your teacher can help you feel better.', zh: '老師可以幫助你。' } },
+      { art: '📢', ok: false, en: 'Shout and play loudly on the bus.', zh: '在車上大聲吵鬧。',
+        why: { en: 'The driver needs a quiet bus to drive safely.', zh: '司機需要安靜，才能安全開車。' } },
+      { art: '🗑️', ok: false, en: 'Leave your trash on the seat.', zh: '把垃圾留在座位上。',
+        why: { en: 'Take your trash with you.', zh: '垃圾要自己帶走。' } },
+      { art: '🙋', ok: true,  en: 'Wait for your teacher before you get off.', zh: '等老師說可以，再下車。',
+        why: { en: 'We get off together, one by one.', zh: '大家一起、一個一個下車。' } },
+    ] },
+
   { ch: 'manners', kind: 'manners', art: '🤫',
     lines: [
-      { en: 'How do we act in a museum? Tap thumbs up or thumbs down.', zh: '在博物館裡要怎麼做？請按 👍 或 👎。' },
+      { en: 'In the museum: is it OK? Tap thumbs up or thumbs down.', zh: '在博物館裡，這樣可以嗎？請按 👍 或 👎。' },
     ],
+    done: { en: 'You know the museum rules!', zh: '你知道博物館的規矩了！' },
     items: [
       { art: '🚶', ok: true,  en: 'Walk slowly.', zh: '慢慢走。',
         why: { en: 'We walk slowly, so everyone is safe.', zh: '我們慢慢走，大家才安全。' } },
@@ -161,6 +182,8 @@ const PAGES = [
         why: { en: 'We stay together, so nobody gets lost.', zh: '大家待在一起，才不會走丟。' } },
       { art: '📸', ok: false, en: 'Take photos with the flash on.', zh: '拍照時開閃光燈。',
         why: { en: 'No flash. Bright light can hurt old things.', zh: '不開閃光燈，強光會傷害老東西。' } },
+      { art: '🚻', ok: true,  en: 'Tell your teacher before you go to the bathroom.', zh: '要上廁所，先告訴老師。',
+        why: { en: 'Then your teacher always knows where you are.', zh: '這樣老師才知道你在哪裡。' } },
     ] },
 
   // ── I spy ──────────────────────────────────────────────────────

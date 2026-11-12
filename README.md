@@ -6206,10 +6206,12 @@ read with a grown-up before a class visit to 國立臺灣歷史博物館 in Tain
 Friday 13 November 2026. No child, school or teacher is named on it, and it
 is `noindex`.
 
-Seventeen pages in seven chapters: getting ready (the building, the solar
+Eighteen pages in seven chapters: getting ready (the building, the solar
 "cloud wall", the pool), the Story of Taiwan (the permanent exhibition's
-seven units retold in five pages), the Children's Hall, a 👍/👎 museum-manners
-game, an I Spy checklist, word cards and a picture quiz.
+seven units retold in five pages), the Children's Hall, two 👍/👎 rules
+games (on the bus, in the museum), an I Spy checklist, word cards and a
+picture quiz. The start screen carries one parents' reminder, at Lewis's
+request: 記得讓孩子帶健保卡 (pack the child's NHI card).
 
 ### Design notes
 

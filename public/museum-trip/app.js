@@ -514,7 +514,7 @@ function thumbsGame(p, root) {
   function show() {
     setDots(dots, k);
     card.innerHTML = '';
-    if (k >= p.items.length) { finishCard(card, '🏅', { en: 'You know the museum rules!', zh: '你知道博物館的規矩了！' }); return null; }
+    if (k >= p.items.length) { finishCard(card, '🏅', p.done || { en: 'You know the rules!', zh: '你知道規矩了！' }); return null; }
     const it = p.items[k];
     const sit = el('button', 'situation');
     sit.type = 'button';
