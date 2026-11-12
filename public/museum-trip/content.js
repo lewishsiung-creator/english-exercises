@@ -29,9 +29,9 @@
 
 const CHAPTERS = [
   { id: 'go',      icon: '🎒', en: 'Get ready',    zh: '出發前' },
+  { id: 'manners', icon: '🤫', en: 'Manners',      zh: '規矩' },
   { id: 'story',   icon: '📜', en: 'Story',        zh: '故事' },
   { id: 'hall',    icon: '🧸', en: 'Kids’ Hall',   zh: '兒童廳' },
-  { id: 'manners', icon: '🤫', en: 'Manners',      zh: '規矩' },
   { id: 'spy',     icon: '🔍', en: 'I spy',        zh: '找一找' },
   { id: 'words',   icon: '🔤', en: 'Words',        zh: '單字' },
   { id: 'quiz',    icon: '⭐', en: 'Quiz',         zh: '考考你' },
@@ -85,6 +85,53 @@ const PAGES = [
     ],
     talk: { en: 'Can you find Taiwan on a map or a globe?', zh: '你能在地圖或地球儀上找到台灣嗎？' } },
 
+  // ── Museum manners ─────────────────────────────────────────────
+  { ch: 'manners', kind: 'manners', art: '🚌',
+    lines: [
+      { en: 'On the bus: is it OK? Tap thumbs up or thumbs down.', zh: '坐遊覽車時，這樣可以嗎？請按 👍 或 👎。' },
+    ],
+    done: { en: 'You know the bus rules!', zh: '你知道坐遊覽車的規矩了！' },
+    items: [
+      { art: '🔒', ok: true,  en: 'Wear your seat belt.', zh: '繫好安全帶。',
+        why: { en: 'Seat belts keep us safe on the bus.', zh: '安全帶讓我們在車上很安全。' } },
+      { art: '🧍', ok: false, en: 'Stand up and walk around while the bus is moving.', zh: '車子開的時候，站起來走來走去。',
+        why: { en: 'Stay in your seat until the bus stops.', zh: '車子停好之前，都要坐在位子上。' } },
+      { art: '🤢', ok: true,  en: 'Tell your teacher if you feel sick.', zh: '不舒服的時候，告訴老師。',
+        why: { en: 'Your teacher can help you feel better.', zh: '老師可以幫助你。' } },
+      { art: '📢', ok: false, en: 'Shout and play loudly on the bus.', zh: '在車上大聲吵鬧。',
+        why: { en: 'The driver needs a quiet bus to drive safely.', zh: '司機需要安靜，才能安全開車。' } },
+      { art: '🗑️', ok: false, en: 'Leave your trash on the seat.', zh: '把垃圾留在座位上。',
+        why: { en: 'Take your trash with you.', zh: '垃圾要自己帶走。' } },
+      { art: '🙋', ok: true,  en: 'Wait for your teacher before you get off.', zh: '等老師說可以，再下車。',
+        why: { en: 'We get off together, one by one.', zh: '大家一起、一個一個下車。' } },
+    ] },
+
+  { ch: 'manners', kind: 'manners', art: '🤫',
+    lines: [
+      { en: 'In the museum: is it OK? Tap thumbs up or thumbs down.', zh: '在博物館裡，這樣可以嗎？請按 👍 或 👎。' },
+    ],
+    done: { en: 'You know the museum rules!', zh: '你知道博物館的規矩了！' },
+    items: [
+      { art: '🚶', ok: true,  en: 'Walk slowly.', zh: '慢慢走。',
+        why: { en: 'We walk slowly, so everyone is safe.', zh: '我們慢慢走，大家才安全。' } },
+      { art: '🏃', ok: false, en: 'Run and play chase.', zh: '跑來跑去、玩追追。',
+        why: { en: 'No running in the museum. Save it for the playground!', zh: '博物館裡不跑步，留到操場再跑！' } },
+      { art: '👀', ok: true,  en: 'Look with your eyes.', zh: '用眼睛看。',
+        why: { en: 'Our eyes do the looking.', zh: '用眼睛好好看就對了。' } },
+      { art: '✋', ok: false, en: 'Touch the things in the glass boxes.', zh: '摸展覽品、趴在玻璃上。',
+        why: { en: 'Only touch when a sign says you can.', zh: '只有標示「可以摸」的，才可以摸。' } },
+      { art: '🤫', ok: true,  en: 'Use a quiet voice.', zh: '小聲說話。',
+        why: { en: 'A quiet voice helps everyone look and listen.', zh: '小聲說話，大家才能好好看、好好聽。' } },
+      { art: '🍪', ok: false, en: 'Eat snacks in the exhibition room.', zh: '在展覽室裡吃零食。',
+        why: { en: 'No food inside. Snacks wait for snack time.', zh: '展覽室裡不吃東西，零食等點心時間再吃。' } },
+      { art: '🧑‍🏫', ok: true,  en: 'Stay with your teacher and class.', zh: '跟著老師和同學。',
+        why: { en: 'We stay together, so nobody gets lost.', zh: '大家待在一起，才不會走丟。' } },
+      { art: '📸', ok: false, en: 'Take photos with the flash on.', zh: '拍照時開閃光燈。',
+        why: { en: 'No flash. Bright light can hurt old things.', zh: '不開閃光燈，強光會傷害老東西。' } },
+      { art: '🚻', ok: true,  en: 'Tell your teacher before you go to the bathroom.', zh: '要上廁所，先告訴老師。',
+        why: { en: 'Then your teacher always knows where you are.', zh: '這樣老師才知道你在哪裡。' } },
+    ] },
+
   // ── The Story of Taiwan (斯土斯民：臺灣的故事) ──────────────────
   { ch: 'story', kind: 'story', art: '🏹🏺🦌',
     tag: { en: 'In the big exhibition: The Story of Taiwan', zh: '常設展「斯土斯民：臺灣的故事」' },
@@ -137,53 +184,6 @@ const PAGES = [
       { art: '🌾', en: 'Help bring in the rice with rolling marbles.', zh: '用滾來滾去的彈珠，幫忙收稻米。' },
       { art: '🐾', en: 'Find animal footprints in the forest.', zh: '在森林裡找動物的腳印。' },
       { art: '🛺', en: 'Take a photo on an old tricycle.', zh: '坐上老三輪車拍照。' },
-    ] },
-
-  // ── Museum manners ─────────────────────────────────────────────
-  { ch: 'manners', kind: 'manners', art: '🚌',
-    lines: [
-      { en: 'On the bus: is it OK? Tap thumbs up or thumbs down.', zh: '坐遊覽車時，這樣可以嗎？請按 👍 或 👎。' },
-    ],
-    done: { en: 'You know the bus rules!', zh: '你知道坐遊覽車的規矩了！' },
-    items: [
-      { art: '🔒', ok: true,  en: 'Wear your seat belt.', zh: '繫好安全帶。',
-        why: { en: 'Seat belts keep us safe on the bus.', zh: '安全帶讓我們在車上很安全。' } },
-      { art: '🧍', ok: false, en: 'Stand up and walk around while the bus is moving.', zh: '車子開的時候，站起來走來走去。',
-        why: { en: 'Stay in your seat until the bus stops.', zh: '車子停好之前，都要坐在位子上。' } },
-      { art: '🤢', ok: true,  en: 'Tell your teacher if you feel sick.', zh: '不舒服的時候，告訴老師。',
-        why: { en: 'Your teacher can help you feel better.', zh: '老師可以幫助你。' } },
-      { art: '📢', ok: false, en: 'Shout and play loudly on the bus.', zh: '在車上大聲吵鬧。',
-        why: { en: 'The driver needs a quiet bus to drive safely.', zh: '司機需要安靜，才能安全開車。' } },
-      { art: '🗑️', ok: false, en: 'Leave your trash on the seat.', zh: '把垃圾留在座位上。',
-        why: { en: 'Take your trash with you.', zh: '垃圾要自己帶走。' } },
-      { art: '🙋', ok: true,  en: 'Wait for your teacher before you get off.', zh: '等老師說可以，再下車。',
-        why: { en: 'We get off together, one by one.', zh: '大家一起、一個一個下車。' } },
-    ] },
-
-  { ch: 'manners', kind: 'manners', art: '🤫',
-    lines: [
-      { en: 'In the museum: is it OK? Tap thumbs up or thumbs down.', zh: '在博物館裡，這樣可以嗎？請按 👍 或 👎。' },
-    ],
-    done: { en: 'You know the museum rules!', zh: '你知道博物館的規矩了！' },
-    items: [
-      { art: '🚶', ok: true,  en: 'Walk slowly.', zh: '慢慢走。',
-        why: { en: 'We walk slowly, so everyone is safe.', zh: '我們慢慢走，大家才安全。' } },
-      { art: '🏃', ok: false, en: 'Run and play chase.', zh: '跑來跑去、玩追追。',
-        why: { en: 'No running in the museum. Save it for the playground!', zh: '博物館裡不跑步，留到操場再跑！' } },
-      { art: '👀', ok: true,  en: 'Look with your eyes.', zh: '用眼睛看。',
-        why: { en: 'Our eyes do the looking.', zh: '用眼睛好好看就對了。' } },
-      { art: '✋', ok: false, en: 'Touch the things in the glass boxes.', zh: '摸展覽品、趴在玻璃上。',
-        why: { en: 'Only touch when a sign says you can.', zh: '只有標示「可以摸」的，才可以摸。' } },
-      { art: '🤫', ok: true,  en: 'Use a quiet voice.', zh: '小聲說話。',
-        why: { en: 'A quiet voice helps everyone look and listen.', zh: '小聲說話，大家才能好好看、好好聽。' } },
-      { art: '🍪', ok: false, en: 'Eat snacks in the exhibition room.', zh: '在展覽室裡吃零食。',
-        why: { en: 'No food inside. Snacks wait for snack time.', zh: '展覽室裡不吃東西，零食等點心時間再吃。' } },
-      { art: '🧑‍🏫', ok: true,  en: 'Stay with your teacher and class.', zh: '跟著老師和同學。',
-        why: { en: 'We stay together, so nobody gets lost.', zh: '大家待在一起，才不會走丟。' } },
-      { art: '📸', ok: false, en: 'Take photos with the flash on.', zh: '拍照時開閃光燈。',
-        why: { en: 'No flash. Bright light can hurt old things.', zh: '不開閃光燈，強光會傷害老東西。' } },
-      { art: '🚻', ok: true,  en: 'Tell your teacher before you go to the bathroom.', zh: '要上廁所，先告訴老師。',
-        why: { en: 'Then your teacher always knows where you are.', zh: '這樣老師才知道你在哪裡。' } },
     ] },
 
   // ── I spy ──────────────────────────────────────────────────────
