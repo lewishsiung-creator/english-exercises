@@ -804,7 +804,7 @@ const marks = [$('#top'), ...$$('.session')];
    Scrolling the container by hand fixes all three at once: it moves only
    `.toc`, only when the link is actually outside its box, and instantly. */
 function keepLinkVisible(a) {
-  const box = a.closest('.toc');
+  const box = a.closest('#nav');
   if (!box || box.scrollHeight <= box.clientHeight) return;
   /* Rect deltas rather than offsetTop: the link's offsetParent is whichever
      ancestor happens to be positioned, which is not reliably the scroll box,

@@ -1,0 +1,139 @@
+/* The Intuitive palette, for Anny's pages.
+
+   Anny works at Intuitive and asked for her pages to look like the company's
+   own site, so this file holds what that site actually is once the photography
+   is taken away. It was measured off intuitive.com rather than guessed:
+
+     #1C1C1F  ink — headlines, body, the primary control
+     #55575C  muted text
+     #8A8A90  faint text, captions
+     #DCDCE0  hairline
+     #F2F3F5  the one grey ground: cards, panels, secondary buttons
+     #1C23BA  the one accent — eyebrows, links, the current thing
+     #FFFFFF  the page
+
+   The whole system is those seven values. There is no second accent, no warm
+   tone, and no coloured frame anywhere: a box is a hairline and a ground. The
+   shapes are equally few — a 16px card and a pill control.
+
+   WHO LINKS THIS, and why it is not editorial.css
+
+   ../editorial.css repaints the adult family near-black and red. These two
+   pages are in the same position as /winkle/ and /ielts-speaking/: their
+   colour is chosen on purpose, so they link this instead. Nothing else in the
+   repo should link it — it is one client's company livery, not a house style.
+
+     public/anny/            her notebook
+     public/anny/meeting/    her meeting guide
+
+   It is linked AFTER each page's own stylesheet and after ../type.css, so
+   these definitions win, exactly as editorial.css does for the pages it
+   serves. Both pages were already written against this set of variable names,
+   so not one rule in either had to change to take the new colour.
+
+   WHAT MAPS TO WHAT
+
+     --navy      was the interactive colour. It becomes ink, because their
+                 primary button is a black pill.
+     --gold      was the attention colour. It becomes the accent blue, which
+                 is where that site puts every eyebrow and link.
+     --good      stays GREEN, and only the notebook uses it. See below.
+     --here      is new: the current thing — a running clock, a ticked box.
+                 That is the accent blue. It exists so that "you are here" and
+                 "you are right" stop being the same colour, which they were
+                 when the only state colour was green.
+
+   WHY THERE IS STILL A GREEN
+
+   Intuitive's palette has no green, and on the meeting guide there is none:
+   nothing there is right or wrong, so its states are all the accent blue.
+
+   The notebook is a different matter. It marks answers, and the rule the repo
+   already set — in editorial.css, in the same breath as dropping every other
+   colour — is that a correct answer stays green, because no amount of
+   restraint should make being right look like being wrong. So --good survives
+   here, cooled to sit beside the blue, and it is the one borrowed colour on
+   the page. A mistake is still a grey ✕ and never red; --bad exists for the
+   one or two places that need a wrong-answer edge, and it is deliberately
+   quiet. */
+
+:root {
+  /* ground and ink */
+  --paper:      #ffffff;
+  --card:       #f2f3f5;
+  --ink:        #1c1c1f;
+  --ink-soft:   #55575c;
+  --ink-faint:  #8a8a90;
+
+  /* what used to be navy: the control colour, and their control is black */
+  --navy:       #1c1c1f;
+  --navy-soft:  #f2f3f5;
+  --navy-line:  #dcdce0;
+
+  /* what used to be gold: the one accent */
+  --gold:       #1c23ba;
+  --gold-soft:  #f2f3f5;
+  --gold-line:  #dcdce0;
+
+  /* a correct answer, on the page that marks answers */
+  --good:       #12684e;
+  --good-soft:  #eef5f2;
+  --good-line:  #b9d6c9;
+
+  /* a wrong one: an edge you can see, not a red pen */
+  --bad:        #8a8a90;
+  --bad-soft:   #f2f3f5;
+
+  /* the current thing — running clock, ticked box, you are here */
+  --here:       #1c23ba;
+  --here-soft:  #eef0fc;
+  --here-line:  #c9cdf2;
+
+  /* hairlines */
+  --line:       #e6e7ea;
+  --rule:       #dcdce0;
+
+  /* Their display face is BrownPro, a geometric sans not licensed for the
+     web, so this is the closest stack that needs no download — and no page in
+     this repo loads a webfont. That matters more than usual for these two:
+     Anny opens them in meeting rooms, and a page that needs a download to look
+     right looks wrong exactly when it counts.
+
+     --font-en is deliberately left alone. ../type.css defines it as a serif
+     and plenty of pages rely on that; this is a separate name, so a page opts
+     in by using it. */
+  --font-display: "Avenir Next", Avenir, "Century Gothic", Futura, "Trebuchet MS", system-ui, sans-serif;
+
+  /* Their UI face is Inter. Used if it happens to be installed; the system
+     sans behind it is close enough that nothing shifts if it is not. */
+  --font-ui: Inter, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+
+  /* their two shapes */
+  --r-card: 16px;
+  --r-pill: 980px;
+}
+
+/* ---------------- sentence case ----------------
+
+   The one rule on that site that is easy to miss and hardest to unsee once
+   noticed: nothing is set in letter-spaced capitals. Every eyebrow, label,
+   kicker and section head is sentence case at normal tracking, in the accent
+   blue, and the restraint is most of why the pages look calm.
+
+   ../house.css sets the opposite for the whole family, and it is linked after
+   this file, so these have to be specific enough to win rather than merely
+   later. `:root` adds a class's worth of specificity without changing what is
+   selected, which is all that is needed to beat a bare `.label`.
+
+   This is deliberately a short, closed list — every selector house.css
+   uppercases or tracks. If a label on one of these pages still shouts, it is
+   because house.css grew a new one and it belongs here too. */
+
+:root .toc-head,
+:root .label,
+:root .kicker,
+:root .goals-intro,
+:root .session-btn .date {
+  letter-spacing: normal;
+  text-transform: none;
+}

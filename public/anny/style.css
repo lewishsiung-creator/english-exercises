@@ -61,7 +61,11 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-en);
+  /* Sans, not the house serif. intuitive.com sets everything in a geometric
+     sans and has no serif body text anywhere, and the English on this page is
+     where that choice shows most. --font-display rather than --font-en because
+     ../type.css defines --font-en as a serif and is linked after this file. */
+  font-family: var(--font-display);
   font-size: 18px;
   line-height: 1.6;
   -webkit-text-size-adjust: 100%;
@@ -79,7 +83,7 @@ body {
   font-size: 0.82em;
   line-height: 1.7;
   color: var(--ink-soft);
-  letter-spacing: .01em;
+  letter-spacing: normal;
 }
 
 .open .zh,
@@ -95,7 +99,7 @@ body.zh-all .zh { display: block; }
   color: var(--ink-faint);
   background: transparent;
   border: 1px solid var(--line);
-  border-radius: 5px;
+  border-radius: var(--r-pill);
   cursor: pointer;
   transition: color .12s, border-color .12s, background .12s;
 }
@@ -119,7 +123,7 @@ body.zh-all .zh-chip { display: none; }
 .skip { position: absolute; left: -9999px; }
 .skip:focus {
   left: 12px; top: 12px; z-index: 40;
-  background: var(--card); padding: 10px 16px; border-radius: 8px;
+  background: var(--card); padding: 10px 16px; border-radius: var(--r-card);
 }
 
 :focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
@@ -135,7 +139,7 @@ body.zh-all .zh-chip { display: none; }
   align-items: center;
   gap: 10px;
   padding: 0 16px;
-  background: rgba(247, 246, 242, .93);
+  background: rgba(255, 255, 255, .88);
   backdrop-filter: saturate(1.6) blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -165,7 +169,7 @@ body.zh-all .zh-chip { display: none; }
   color: var(--navy);
   background: transparent;
   border: 1px solid var(--navy-line);
-  border-radius: 7px;
+  border-radius: var(--r-pill);
   padding: 6px 11px;
   cursor: pointer;
 }
@@ -192,8 +196,13 @@ body.zh-all .zh-chip { display: none; }
 
 .toc { font-family: var(--font-ui); }
 
+/* The column sticks, not each list inside it. When this was on .toc there was
+   only ever one of them; now that the meeting guide sits below the sessions
+   there are two, and two sticky siblings both pin to the top and print over
+   each other as soon as the page scrolls. The wrapper is the scroll box —
+   which is also what the meeting guide already does. */
 @media (min-width: 900px) {
-  .toc {
+  #nav {
     position: sticky;
     top: var(--bar-h);
     max-height: calc(100vh - var(--bar-h));
@@ -207,15 +216,19 @@ body.zh-all .zh-chip { display: none; }
   margin: 0 0 10px;
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  letter-spacing: normal;
   color: var(--ink-faint);
 }
 
-/* Pages of Anny's that are not sessions — the meeting guide. They are not part
-   of the notebook, so they sit above its contents with a rule between, and
-   their heading says so. */
-.toc-aside { margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+/* Pages of Anny's that are not sessions — the meeting guide. They sit BELOW
+   the contents, with a rule above them and their own heading, because the
+   sessions are what this page is and the guide is a thing beside it.
+
+   The markup cannot simply be moved: render.js appends the contents list to
+   #nav, so anything static has to be written first to survive. A flex column
+   and one `order` put it where it belongs without touching the renderer. */
+#nav { display: flex; flex-direction: column; }
+.toc-aside { order: 2; margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--line); }
 
 .toc ul { list-style: none; margin: 0; padding: 0; }
 
@@ -224,7 +237,7 @@ body.zh-all .zh-chip { display: none; }
   grid-template-columns: 1.4rem 1fr;
   gap: 8px;
   padding: 8px 10px 8px 6px;
-  border-radius: 7px;
+  border-radius: var(--r-pill);
   text-decoration: none;
   color: var(--ink-soft);
   border-left: 2px solid transparent;
@@ -257,17 +270,17 @@ body.zh-all .zh-chip { display: none; }
     overflow-y: auto;
     background: var(--card);
     border-bottom: 1px solid var(--line);
-    box-shadow: 0 12px 24px rgba(28, 36, 48, .12);
+    box-shadow: 0 12px 24px rgba(28, 28, 31, .10);
     padding: 14px 18px 18px;
     display: none;
   }
-  body.nav-open #nav { display: block; }
+  body.nav-open #nav { display: flex; }
   body.nav-open .nav-scrim {
     display: block;
     position: fixed;
     inset: var(--bar-h) 0 0;
     z-index: 20;
-    background: rgba(28, 36, 48, .25);
+    background: rgba(28, 28, 31, .22);
   }
 }
 
@@ -284,7 +297,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   font-family: var(--font-zh);
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: .16em;
+  letter-spacing: normal;
   color: var(--gold);
 }
 
@@ -299,7 +312,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   padding: 20px 22px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--r-card);
 }
 .goals-intro { font-family: var(--font-ui); font-size: .88rem; color: var(--ink-soft); }
 .goals ul { margin: 12px 0 0; padding-left: 1.1rem; }
@@ -316,7 +329,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   padding: 10px 16px;
   background: var(--gold-soft);
   border: 1px solid var(--gold-line);
-  border-radius: 10px;
+  border-radius: var(--r-card);
   font-family: var(--font-zh);
   font-size: .82rem;
   line-height: 1.6;
@@ -357,7 +370,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   font-weight: 700;
   color: #fff;
   background: var(--navy);
-  border-radius: 8px;
+  border-radius: var(--r-card);
   text-align: center;
   padding: 4px 0;
   margin-top: 6px;
@@ -370,8 +383,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   display: block;
   font-family: var(--font-ui);
   font-size: .72rem;
-  letter-spacing: .06em;
-  text-transform: uppercase;
+  letter-spacing: normal;
   color: var(--ink-faint);
   margin-bottom: 3px;
 }
@@ -379,7 +391,7 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   font-family: var(--font-zh);
   font-style: normal;
   text-transform: none;
-  letter-spacing: .02em;
+  letter-spacing: normal;
   margin-left: .6em;
 }
 
@@ -426,7 +438,7 @@ body.zh-all .session-btn .titles .zh { display: block; }
   padding: 5px 12px;
   background: var(--navy-soft);
   border: 1px solid var(--navy-line);
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   font-family: var(--font-ui);
   font-size: .78rem;
   color: var(--navy);
@@ -467,16 +479,15 @@ body.zh-all .session-btn .titles .zh { display: block; }
   margin: 26px 0;
   padding: 18px 22px;
   background: var(--gold-soft);
-  border: 1px solid #ecdcb4;
-  border-radius: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
 }
 .note h4 {
   margin: 0 0 8px;
   font-family: var(--font-ui);
   font-size: .84rem;
   font-weight: 700;
-  letter-spacing: .04em;
-  text-transform: uppercase;
+  letter-spacing: normal;
   color: var(--gold);
 }
 .note h4 .en { display: inline; }
@@ -492,7 +503,7 @@ body.zh-all .session-btn .titles .zh { display: block; }
   padding: 3px 5px;
   background: transparent;
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: var(--r-pill);
   cursor: pointer;
   opacity: .55;
   transition: opacity .12s, border-color .12s;
@@ -507,8 +518,7 @@ body.zh-all .session-btn .titles .zh { display: block; }
   font-family: var(--font-ui);
   font-size: .8rem;
   font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  letter-spacing: normal;
   color: var(--navy);
 }
 .label .en { display: inline; }
@@ -545,11 +555,11 @@ body.zh-all .session-btn .titles .zh { display: block; }
   padding: 12px 14px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--r-card);
   cursor: pointer;
   transition: border-color .12s, box-shadow .12s;
 }
-.card:hover { border-color: var(--navy-line); box-shadow: 0 2px 8px rgba(28, 36, 48, .06); }
+.card:hover { border-color: var(--navy-line); box-shadow: 0 2px 8px rgba(28, 28, 31, .05); }
 .card-en { margin: 0; font-size: 1rem; font-weight: 600; }
 .card-back { display: none; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line); }
 .card.open { border-color: var(--navy-line); background: var(--navy-soft); }
@@ -598,7 +608,7 @@ body.zh-all .card-back { display: block; }
   padding: 14px 16px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--r-card);
 }
 
 .cx-case {
@@ -606,14 +616,13 @@ body.zh-all .card-back { display: block; }
   font-family: var(--font-ui);
   font-size: .74rem;
   font-weight: 600;
-  letter-spacing: .08em;
-  text-transform: uppercase;
+  letter-spacing: normal;
   color: var(--ink-faint);
 }
 /* An absolute size, not the inherited .82em. .cx-case is .74rem (11.84px) and
    .82em of that put the Chinese at 9.7px — too small to read on a phone, and
    these are the session topics, not decoration. */
-.cx-case .zh { text-transform: none; letter-spacing: .02em; font-size: 12px; }
+.cx-case .zh { text-transform: none; letter-spacing: normal; font-size: 12px; }
 
 .cx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
@@ -624,7 +633,7 @@ body.zh-all .card-back { display: block; }
   margin: 0 0 6px;
   font-family: var(--font-ui);
   font-size: .7rem;
-  letter-spacing: .04em;
+  letter-spacing: normal;
   color: var(--ink-faint);
 }
 .cx-tag em { font-family: var(--font-zh); font-style: normal; margin-left: .4em; }
@@ -660,11 +669,11 @@ body.zh-all .card-back { display: block; }
   padding: 12px 14px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--r-card);
   cursor: pointer;
   transition: border-color .12s, box-shadow .12s;
 }
-.fix:hover { border-color: var(--navy-line); box-shadow: 0 2px 8px rgba(28, 36, 48, .06); }
+.fix:hover { border-color: var(--navy-line); box-shadow: 0 2px 8px rgba(28, 28, 31, .05); }
 .fix.open { border-color: var(--good-line); }
 
 .fix-wrong, .fix-right {
@@ -698,12 +707,12 @@ body.zh-all .card-back { display: block; }
 .activity { margin: 0 0 10px; }
 
 .chip {
-  font-family: var(--font-en);
+  font-family: var(--font-display);
   font-size: .95rem;
   color: var(--ink);
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 9px;
+  border-radius: var(--r-card);
   padding: 8px 13px;
   cursor: pointer;
   text-align: left;
@@ -725,7 +734,7 @@ body.zh-all .card-back { display: block; }
   45% { transform: translateX(4px); }
   70% { transform: translateX(-2px); }
 }
-.no { animation: wobble .4s ease; border-color: #d8a08a; }
+.no { animation: wobble .4s ease; border-color: var(--bad); }
 
 /* matching */
 
@@ -750,7 +759,7 @@ body.zh-all .card-back { display: block; }
   padding: 14px 16px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--r-card);
 }
 /* The number sits in its own narrow column so the sentence, and the Chinese
    under it, share one left edge. */
@@ -836,7 +845,7 @@ body.zh-all .card-back { display: block; }
   padding: 16px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--r-card);
 }
 .role-icon { margin: 0 0 6px; font-size: 1.4rem; line-height: 1; }
 
@@ -862,7 +871,7 @@ body.zh-all .card-back { display: block; }
   background: var(--card);
   border: 1px solid var(--line);
   border-left: 3px solid var(--navy-line);
-  border-radius: 10px;
+  border-radius: var(--r-card);
 }
 .ask .en { font-size: 1.04rem; }
 
@@ -870,11 +879,11 @@ body.zh-all .card-back { display: block; }
   margin-top: 12px;
   font-family: var(--font-ui);
   font-size: .78rem;
-  letter-spacing: .02em;
+  letter-spacing: normal;
   color: var(--ink-soft);
   background: transparent;
   border: 1px dashed var(--rule);
-  border-radius: 7px;
+  border-radius: var(--r-pill);
   padding: 5px 10px;
   cursor: pointer;
 }
@@ -886,7 +895,7 @@ body.zh-all .card-back { display: block; }
   margin: 0 0 8px;
   padding: 8px 12px;
   background: var(--navy-soft);
-  border-radius: 8px;
+  border-radius: var(--r-card);
   font-size: .95rem;
   font-style: italic;
   color: var(--ink-soft);
@@ -906,7 +915,7 @@ body.zh-all .card-back { display: block; }
   padding: 20px 22px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--r-card);
 }
 .task > .label { margin-top: 0; }
 .task-how { margin-bottom: 14px; font-size: .98rem; }
@@ -915,12 +924,12 @@ body.zh-all .card-back { display: block; }
 .prompt {
   width: 100%;
   text-align: left;
-  font-family: var(--font-en);
+  font-family: var(--font-display);
   font-size: .98rem;
   color: var(--ink);
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--r-card);
   padding: 11px 14px;
   cursor: pointer;
 }
@@ -940,8 +949,7 @@ body.zh-all .card-back { display: block; }
   font-family: var(--font-ui);
   font-size: .78rem;
   font-weight: 700;
-  letter-spacing: .08em;
-  text-transform: uppercase;
+  letter-spacing: normal;
   color: var(--ink-faint);
 }
 /* The Chinese belongs beside its English label, so it takes the free space and
@@ -962,19 +970,19 @@ body.zh-all .card-back { display: block; }
   align-items: center;
   gap: 8px;
   text-align: left;
-  font-family: var(--font-en);
+  font-family: var(--font-display);
   font-size: .92rem;
   color: var(--ink-soft);
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 20px;
+  border-radius: var(--r-pill);
   padding: 6px 13px 6px 9px;
   cursor: pointer;
 }
 .tick .box {
   width: 14px; height: 14px;
   border: 1.5px solid var(--rule);
-  border-radius: 4px;
+  border-radius: var(--r-pill);
   flex: none;
 }
 .tick:hover { border-color: var(--navy-line); }
@@ -1015,8 +1023,8 @@ body.zh-all .card-back { display: block; }
   padding: 18px 20px 22px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 14px;
-  box-shadow: 0 16px 40px rgba(28, 36, 48, .18);
+  border-radius: var(--r-card);
+  box-shadow: 0 16px 40px rgba(28, 28, 31, .14);
   font-family: var(--font-ui);
 }
 .panel[hidden] { display: none; }
@@ -1050,7 +1058,7 @@ body.zh-all .card-back { display: block; }
   font-size: .85rem;
   padding: 7px 9px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--r-card);
   background: var(--paper);
   color: var(--ink);
 }
@@ -1063,7 +1071,7 @@ body.zh-all .card-back { display: block; }
   color: #fff;
   background: var(--navy);
   border: 1px solid var(--navy);
-  border-radius: 8px;
+  border-radius: var(--r-card);
   padding: 9px 12px;
   cursor: pointer;
 }

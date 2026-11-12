@@ -60,10 +60,11 @@
 
   /* You-are-here. Green would be a second colour this system does not have,
      so the running clock and a ticked box are the accent blue, on the palest
-     tint of it the page allows itself. */
-  --good: #1c23ba;
-  --good-soft: #eef0fc;
-  --good-line: #c9cdf2;
+     tint of it the page allows itself. Nothing on this page is right or wrong,
+     which is why there is no --good here at all — see ../../intuitive.css. */
+  --here: #1c23ba;
+  --here-soft: #eef0fc;
+  --here-line: #c9cdf2;
 
   --line: #e6e7ea;
   --rule: #dcdce0;
@@ -219,9 +220,9 @@ p { margin: 0 0 1em; }
   gap: 10px;
   height: var(--now-h);
   padding: 0 clamp(16px, 3vw, 28px);
-  background: var(--good-soft);
+  background: var(--here-soft);
   border: 0;
-  border-bottom: 1px solid var(--good-line);
+  border-bottom: 1px solid var(--here-line);
   font-family: var(--font-zh);
   text-align: left;
   cursor: pointer;
@@ -236,7 +237,7 @@ body.clock-on .nowbar { display: flex; }
   font-size: .82rem;
   font-variant-numeric: tabular-nums lining-nums;
   font-weight: 600;
-  color: var(--good);
+  color: var(--here);
 }
 .now-what {
   flex: 1;
@@ -247,7 +248,7 @@ body.clock-on .nowbar { display: flex; }
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.now-go { flex: none; font-size: .78rem; color: var(--good); }
+.now-go { flex: none; font-size: .78rem; color: var(--here); }
 
 /* ---------------- back to top ---------------- */
 
@@ -608,10 +609,10 @@ h3 {
 /* The row the meeting is actually in. Marked only while the clock runs — see
    render.js — so a page nobody has started does not claim to be anywhere. */
 .clock-row.now {
-  background: var(--good-soft);
-  border-color: var(--good-line);
+  background: var(--here-soft);
+  border-color: var(--here-line);
 }
-.clock-row.now .clock-when { color: var(--good); font-weight: 600; }
+.clock-row.now .clock-when { color: var(--here); font-weight: 600; }
 
 /* ---------------- the draft band ----------------
 
@@ -881,8 +882,8 @@ h3 {
 }
 .tick:hover { border-color: var(--navy-line); }
 .tick input { width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--gold); cursor: pointer; }
-.tick.on { background: var(--good-soft); border-color: var(--good-line); }
-.tick.on span { color: var(--ink-soft); text-decoration: line-through; text-decoration-color: var(--good-line); }
+.tick.on { background: var(--here-soft); border-color: var(--here-line); }
+.tick.on span { color: var(--ink-soft); text-decoration: line-through; text-decoration-color: var(--here-line); }
 
 /* ---------------- things typed in ---------------- */
 
@@ -898,7 +899,7 @@ h3 {
   padding: 8px 10px;
   resize: vertical;
 }
-.fill:focus { background: #fff; border-color: var(--gold); box-shadow: 0 0 0 3px var(--good-soft); }
+.fill:focus { background: #fff; border-color: var(--gold); box-shadow: 0 0 0 3px var(--here-soft); }
 
 .tbl-plan tbody th { width: 14rem; }
 .tbl-plan td { width: 8rem; }

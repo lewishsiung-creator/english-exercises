@@ -521,7 +521,7 @@ const marks = [$('#top'), ...$$('.sec')];
    drift on its own. That bug was fixed across the other pages here; this one
    is written with the fix from the start. */
 function keepLinkVisible(a) {
-  const box = a.closest('.toc');
+  const box = a.closest('#nav');
   if (!box || box.scrollHeight <= box.clientHeight) return;
   const link = a.getBoundingClientRect();
   const view = box.getBoundingClientRect();

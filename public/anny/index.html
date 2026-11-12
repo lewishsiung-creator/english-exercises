@@ -22,10 +22,13 @@
      it — this page keeps its own. See ../type.css. -->
 <link rel="stylesheet" href="../type.css">
 
-<!-- The house palette and type, shared by every adult page. Linked AFTER
-     this page's own stylesheet so its token definitions win; nothing in
-     style.css had to change. See ../editorial.css. -->
-<link rel="stylesheet" href="../editorial.css">
+<!-- The Intuitive palette, shared with the meeting guide in this folder.
+     Linked AFTER this page's own stylesheet so its token definitions win;
+     nothing in style.css had to change to take it. It replaces
+     ../editorial.css, which repaints the adult family near-black and red —
+     Anny works at Intuitive and asked for her pages to follow that site.
+     See ../intuitive.css. -->
+<link rel="stylesheet" href="../intuitive.css">
 <!-- The house interface, shared by every page in the family: the bar, the
      controls, the display type and the hairlines. Linked LAST so it wins,
      and it deliberately sets no body size, no measure and no colour of its
@@ -52,8 +55,10 @@
 <div class="shell">
   <div id="nav">
     <!-- Static, so it survives render.js appending the contents list after it.
-         Pages that belong to Anny but are not sessions live here: they are not
-         part of the notebook, so they sit above it with their own heading. -->
+         Pages that belong to Anny but are not sessions live here. The markup
+         has to come first to survive that append, but it reads last: #nav is a
+         flex column and this block is ordered below the sessions, because the
+         sessions are what the page is and this is the thing beside it. -->
     <nav class="toc toc-aside" aria-label="Other pages 其他頁面">
       <p class="toc-head">Other pages 其他頁面</p>
       <ul><li><a href="meeting/"><span class="n">→</span>

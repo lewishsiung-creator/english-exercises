@@ -4109,6 +4109,22 @@ session, as a self-audit Anny marks for her manager and then for herself.
   written for the lesson. The closing `note` block says exactly which is which,
   **on the page** rather than only in the content file — a reader who cannot
   see this README is the one who needs to know.
+- **The company's livery, and the sessions first.** Both of Anny's pages follow
+  intuitive.com from November 2026 — see
+  [intuitive.css](#intuitivecss--one-clients-company-livery). On this one that
+  also means the English is set in a sans: that site has no serif body text
+  anywhere, and the English is where the change shows most. The meeting guide
+  sits **below** the sessions in the contents, because the sessions are what
+  this page is and the guide is a thing beside it; the markup has to come first
+  to survive `render.js` appending the list, so `#nav` is a flex column and one
+  `order` puts it where it reads.
+- **The column sticks, not the lists inside it.** `position: sticky` was on
+  `.toc`, which was fine while there was only one of them. Adding the meeting
+  guide made two, and two sticky siblings both pin to the top and print over
+  each other the moment the page scrolls. The wrapper is the scroll box now —
+  which is what the meeting guide already did — and `keepLinkVisible` was
+  pointed at `#nav` to match, since the box it used to scroll no longer scrolls
+  and it had quietly become a no-op on both pages.
 - **The contents list no longer scrolls the page.** `markHere` used to end with
   `a.scrollIntoView({ block: 'nearest' })`, which scrolls the nearest scrollable
   *ancestor* — the document, whenever the list is not itself scrolling — fired
@@ -5261,10 +5277,53 @@ The same passage also appears in
 they are kept deliberately: the notebook is the record of a session, this is
 the thing you read from.
 
+## intuitive.css — one client's company livery
+
+[`public/intuitive.css`](public/intuitive.css) sits in the same slot as
+`editorial.css` — after a page's own stylesheet and after `type.css`, so its
+tokens win — and exactly two pages link it: `/anny/` and `/anny/meeting/`.
+Anny works at Intuitive and asked in November 2026 for her pages to look like
+the company's own site, so the file holds what that site is once the
+photography is taken away. It was measured off intuitive.com rather than
+guessed: `#1C1C1F` ink, `#55575C` muted, `#8A8A90` faint, `#DCDCE0` hairline,
+`#F2F3F5` the one grey ground, `#1C23BA` the one accent, white the page. Two
+shapes — a 16px card and a pill control. Nothing else.
+
+Three things are worth knowing before copying it anywhere:
+
+- **It is not a house style.** It is one client's employer's livery on one
+  client's pages. Nothing else in the repo should link it. The page borrows the
+  visual language and deliberately carries none of the company's marks: a
+  private prep page that looked like official company material would be a
+  different thing from a page that looks nice.
+- **No webfont, and that is the point.** Their display face is BrownPro, which
+  is not licensed for the web, so `--font-display` is the closest stack that
+  needs no download. No page in this repo loads a webfont anyway, but here it
+  carries real weight: Anny opens these in meeting rooms, and a page that needs
+  a download to look right looks wrong exactly when it counts.
+- **Sentence case is the whole trick.** That site sets no label in
+  letter-spaced capitals — every eyebrow, kicker and section head is sentence
+  case at normal tracking, in the accent. `house.css` sets the opposite for the
+  whole family and is linked *after* this file, so the end of `intuitive.css`
+  carries a short, closed list of `:root`-prefixed overrides to win it back. If
+  a label on either page starts shouting again, `house.css` has grown a new one
+  and it belongs on that list.
+
+**Green survives, and only on the notebook.** Intuitive's palette has no green,
+and the meeting guide has none: nothing there is right or wrong, so its states
+are all the accent blue. The notebook marks answers, and the rule
+`editorial.css` already set — in the same breath as dropping every other colour
+— is that a correct answer stays green, because no amount of restraint should
+make being right look like being wrong. So the two pages have **separate state
+tokens**: `--good` is the green for a correct answer, `--here` is the blue for
+the current thing — a running clock, a ticked box. They were one token before,
+which is how "you are here" and "you are right" ended up the same colour.
+
 ## house.css — one interface for the family
 
 `type.css` gives these pages one typeface, `editorial.css` gives most of them
-one palette, and [`public/house.css`](public/house.css) gives them one
+one palette, `intuitive.css` gives Anny's two the company livery she asked for,
+and [`public/house.css`](public/house.css) gives them all one
 **interface**. It was worked out on `/anita/` in October 2026 and taken
 site-wide once Lewis had looked at it. Thirty-six pages link it, last, after
 their own stylesheet.
@@ -5363,6 +5422,7 @@ public/reading/vocab/     高中單字: 大考中心's list, Levels 1–2 so far
 public/reading/junior-vocab/  國中單字: 教育部's 2,000 words
 public/keep-speaking/     the practice page for the course handbook, five tabs
 public/ielts-part3/       the IELTS Part 3 structure practice
+public/intuitive.css      the Intuitive palette — Anny's two pages only
 public/anny/              Anny's notebook — one entry per discussion
 public/anny/meeting/      her co-planning guide for a team meeting — not a lesson
 public/aaron/             Aaron's notebook — same machinery, its own sessions
