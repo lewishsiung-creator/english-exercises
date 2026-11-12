@@ -1210,6 +1210,29 @@ a summary written for the lesson, and then the language work.
   to the student to tap the 中 chips, and this is reading to remember rather
   than comprehension practice.
 
+  **The contents page names it**, in a standing note at the foot — below the
+  stories, so nothing a reader came for moves, under the quieter `--rule`
+  hairline rather than a second copy of the 3px black rule that belongs to
+  "All readings". It is the one block of prose on that page addressed to both
+  readers at once: a teacher who has never opened the panel, and a student who
+  was sent a review link and came back up to find out what it was. Both
+  languages are always visible, like the story blurbs beside it and unlike the
+  cover's intro, under the rule in `style.css` — scaffolding and navigation
+  stay bilingual, because a note whose Chinese must be tapped before it can be
+  understood has not been read.
+
+  Two decisions in it are easy to undo by accident. **The example link is
+  pinned, not derived**: `NOTE.example` in `hub.js` points at `better-day`
+  because the copy names collocations and gap-fill key sentences, and only a
+  reading with `match` and `gap` blocks has them — No. 3 has neither, so a link
+  that always followed the newest reading would advertise two things the sheet
+  it opened could not show. **The panel is named in words, not by its 👩‍🏫
+  glyph**: at 15px, and 12px on the Chinese line, a ZWJ emoji is a smudge
+  rather than a picture of anything, it would be the only emoji on a page
+  modelled on a newspaper, and spelling it out keeps a public homepage from
+  printing a step-by-step route to a drawer whose first button is *Reveal every
+  answer in the lesson*.
+
   One trap worth recording: the sheet's class must not be the mode's class.
   `review` on `<html>` is the mode, and naming the element `.review` too made
   the base rule `.review { display: none }` match the document element and

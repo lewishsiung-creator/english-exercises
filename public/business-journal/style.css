@@ -1524,6 +1524,79 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   padding: 3px 9px;
 }
 
+/* 重點複習, named at the foot of the contents page. Standing matter, the way a
+   front page carries a box explaining how its section works: it sits below the
+   stories, takes the quieter --rule hairline rather than the 3px black one that
+   belongs to "All readings", and wears no fill and no horizontal padding, so it
+   keeps the same left edge as the stories at every width. This stylesheet's own
+   rule, at the top of the file: hairline rules in place of boxes. */
+
+.hub-note {
+  margin: 44px 0 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+}
+
+/* A label, not a department head: the grotesque at the size and weight the
+   story numbers use, in the same teal, so it reads as subordinate to
+   "All readings" above it. */
+.hub-note-head {
+  margin: 0 0 10px;
+  font-family: var(--font-head);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: var(--navy);
+}
+.hub-note-head em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  color: var(--ink-faint);
+  margin-left: 8px;
+}
+
+/* Capped well short of the 64rem shell: a 15px line run the full width of a
+   two-column grid is unreadable. */
+.hub-note-p {
+  margin: 0;
+  max-width: 44rem;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+/* The Chinese sits under the English and is always visible, matching
+   .lesson-blurb em on the cards above rather than the cover's 中 chip. */
+.hub-note-p em {
+  display: block;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-size: .82em;
+  line-height: 1.7;
+  color: var(--ink-faint);
+  margin-top: 4px;
+}
+.hub-note-how { margin-top: 12px; }
+
+.hub-note-eg { margin: 15px 0 0; }
+.hub-note-eg a {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+.hub-note-eg a em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  margin-left: 7px;
+  color: var(--ink-faint);
+}
+
 /* ================================================================
    Blocks added with No. 2 — the reading passage, model answers, and
    the advice scale — and the part of speech on a word card.
