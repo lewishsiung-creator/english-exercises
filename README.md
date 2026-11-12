@@ -6240,6 +6240,8 @@ request: 記得讓孩子帶健保卡 (pack the child's NHI card).
   CC BY-SA, so each carries a small credit and the 大人 panel lists the
   links; credits live in `PHOTOS` in `content.js`. Only use photos whose
   licence allows reuse — never the museum's own site or a Google image.
+- **🏠 Home** (首頁, 2026-11-12) leads the chapter strip and brings back the
+  start screen with its NHI-card reminder; "Let's go!" then starts at page 1.
 - The 大人 button is faint on purpose. It holds visitor info, a talk-about-it
   note, voice/speed/sound-effect settings and a reset for the I Spy stars.
   `localStorage` keeps only the stars, the pages seen and those settings.

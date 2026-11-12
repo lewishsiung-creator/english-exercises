@@ -273,6 +273,17 @@ const seen = new Set(store.get('seen', []));
 function chapterStart(id) { return PAGES.findIndex((p) => p.ch === id); }
 function chapterPages(id) { return PAGES.map((p, i) => (p.ch === id ? i : -1)).filter((i) => i >= 0); }
 
+// 首頁 (Lewis, 2026-11-12): first in the strip, it brings back the start
+// screen, with its NHI-card reminder; "Let's go!" then starts at page 1.
+{
+  const b = el('button', 'chap chap-home');
+  b.type = 'button';
+  b.innerHTML = '<span class="chap-i" aria-hidden="true">🏠</span><span class="chap-t" lang="en">Home</span>';
+  b.setAttribute('aria-label', 'Home 首頁');
+  b.addEventListener('click', () => home());
+  chapBox.appendChild(b);
+}
+
 CHAPTERS.forEach((c) => {
   const b = el('button', 'chap');
   b.type = 'button';
@@ -353,7 +364,7 @@ function render() {
   bar.style.width = `${((cur + 1) / PAGES.length) * 100}%`;
   prevBtn.disabled = cur === 0;
   nextBtn.disabled = cur === PAGES.length - 1;
-  chapBox.querySelectorAll('.chap').forEach((b) => {
+  chapBox.querySelectorAll('.chap[data-ch]').forEach((b) => {
     const on = b.dataset.ch === p.ch;
     b.classList.toggle('on', on);
     b.classList.toggle('done', chapterPages(b.dataset.ch).every((i) => seen.has(i)));
@@ -709,6 +720,17 @@ function begin() {
   render();
 }
 $('#startBtn').addEventListener('click', begin);
+function home() {
+  stopSpeech();
+  if (cur !== 0) sfx.flip();
+  cur = 0;
+  interacted = false;         // so page 1 is not read aloud behind the start
+  render();                   // screen; begin() turns it back on and reads it
+  startEl.classList.remove('leaving');
+  startEl.hidden = false;
+  startEl.scrollTop = 0;
+  $('#startBtn').focus({ preventScroll: true });
+}
 
 const h = parseInt(location.hash.slice(1), 10);
 if (h >= 1 && h <= PAGES.length) cur = h - 1;

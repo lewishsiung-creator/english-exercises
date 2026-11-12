@@ -57,7 +57,7 @@ const CHAPTERS = [
   { id: 'manners', icon: '🤫', en: 'Manners',      zh: '規矩' },
   { id: 'story',   icon: '📜', en: 'Story',        zh: '故事' },
   { id: 'hall',    icon: '🧸', en: 'Kids’ Hall',   zh: '兒童廳' },
-  { id: 'spy',     icon: '🔍', en: 'I spy',        zh: '找一找' },
+  { id: 'spy',     icon: '🔍', en: 'I\u00a0spy',        zh: '找一找' },
   { id: 'words',   icon: '🔤', en: 'Words',        zh: '單字' },
   { id: 'quiz',    icon: '⭐', en: 'Quiz',         zh: '考考你' },
 ];
