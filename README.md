@@ -6213,11 +6213,12 @@ game, an I Spy checklist, word cards and a picture quiz.
 
 ### Design notes
 
-- **Kids' house rules**: every line is spoken, English (Flo) then Chinese
-  (美佳), tap any line to hear it again; a wrong answer wobbles and says
-  "think again", only the right one moves on; big targets, no timers.
-- **Bilingual by request**: the Chinese is always shown, not hidden behind a
-  tap. The grown-up panel can switch speech to English only.
+- **Kids' house rules**: every English line is spoken (Flo), tap any English
+  line to hear it again; a wrong answer wobbles and says "think again", only
+  the right one moves on; big targets, no timers.
+- **Bilingual text, English voice only.** The Chinese is always shown, not
+  hidden behind a tap, but it is never spoken: Lewis had the Chinese voice
+  (美佳) taken out on 2026-11-12, the same day the page was built.
 - **Facts come from the museum's own site**, read 12 Nov 2026; the sources are
   listed at the top of `content.js`. The official exhibition page names no
   individual objects, so the I Spy list only asks for things sure to be

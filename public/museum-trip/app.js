@@ -1,7 +1,8 @@
 /* Museum Trip — renderer. Content lives in content.js.
 
    House rules for young learners (see README, Word Play):
-   - audio first: every line is spoken, English then Chinese, and replayable;
+   - audio first: every English line is spoken and replayable. The Chinese is
+     text only — Lewis took the Chinese voice out on 2026-11-12;
    - no failure states: a wrong tap wobbles and says "think again";
    - no timers, big touch targets, grown-up tools kept faint.
    Nothing is uploaded. Only the I Spy stamps and the sound settings are
@@ -25,35 +26,27 @@ const store = {
 
 const settings = {
   auto:    store.get('auto', true),      // read each page aloud when it opens
-  langs:   store.get('langs', 'both'),   // 'both' = English then Chinese, 'en' = English only
   rate:    store.get('rate', 0.9),
   enVoice: store.get('enVoice', ''),
-  zhVoice: store.get('zhVoice', ''),
 };
 
-/* ── Voices ─────────────────────────────────────────────────────────
-   American young female first (Lewis's choice for kids' pages); Mei-Jia
-   is the Taiwan Mandarin voice on Apple devices. Match on prefix: macOS
-   localises names, e.g. "Flo (英文（美國）)". */
+/* ── Voice ──────────────────────────────────────────────────────────
+   English only. American young female first (Lewis's choice for kids'
+   pages). Match on prefix: macOS localises names, e.g. "Flo (英文（美國）)". */
 const EN_PREF = ['Flo', 'Shelley', 'Samantha', 'Ava', 'Allison', 'Susan', 'Zoe', 'Nicky',
   'Google US English', 'Microsoft Aria', 'Microsoft Jenny', 'Microsoft Zira'];
-const ZH_PREF = ['Meijia', 'Mei-Jia', '美佳', 'Google 國語', 'Microsoft HsiaoChen', 'Microsoft HsiaoYu', 'Microsoft Yating', 'Microsoft Hanhan'];
 const HAS_TTS = 'speechSynthesis' in window;
 let voices = [];
 
-function voiceList(lang) {
-  if (lang === 'en') {
-    const us = voices.filter((v) => /^en[-_]US/i.test(v.lang));
-    return us.length ? us : voices.filter((v) => /^en/i.test(v.lang));
-  }
-  const tw = voices.filter((v) => /^zh[-_](TW|Hant)/i.test(v.lang));
-  return tw.length ? tw : voices.filter((v) => /^(zh|cmn)/i.test(v.lang) && !/HK|yue/i.test(v.lang));
+function voiceList() {
+  const us = voices.filter((v) => /^en[-_]US/i.test(v.lang));
+  return us.length ? us : voices.filter((v) => /^en/i.test(v.lang));
 }
-function pickVoice(lang) {
-  const list = voiceList(lang);
-  const saved = lang === 'en' ? settings.enVoice : settings.zhVoice;
+function pickVoice() {
+  const list = voiceList();
+  const saved = settings.enVoice;
   if (saved) { const v = list.find((x) => x.name === saved); if (v) return v; }
-  for (const p of (lang === 'en' ? EN_PREF : ZH_PREF)) {
+  for (const p of EN_PREF) {
     const v = list.find((x) => x.name.startsWith(p));
     if (v) return v;
   }
@@ -66,7 +59,7 @@ if (HAS_TTS) { loadVoices(); speechSynthesis.addEventListener('voiceschanged', l
 let seq = 0;
 function clearReading() { document.querySelectorAll('.reading').forEach((n) => n.classList.remove('reading')); }
 function stopSpeech() { seq++; if (HAS_TTS) speechSynthesis.cancel(); clearReading(); }
-// items: [{ text, lang: 'en'|'zh', el? }]
+// items: [{ text, el? }] — English only
 function say(items, onDone) {
   stopSpeech();
   if (!HAS_TTS) { onDone && onDone(); return; }
@@ -78,11 +71,11 @@ function say(items, onDone) {
     if (i >= items.length) { onDone && onDone(); return; }
     const it = items[i++];
     const u = new SpeechSynthesisUtterance(it.text);
-    const v = pickVoice(it.lang);
+    const v = pickVoice();
     if (v) u.voice = v;
-    u.lang = v ? v.lang : (it.lang === 'zh' ? 'zh-TW' : 'en-US');
+    u.lang = v ? v.lang : 'en-US';
     u.rate = settings.rate;
-    u.pitch = it.lang === 'en' ? 1.08 : 1;
+    u.pitch = 1.08;
     if (it.el) it.el.classList.add('reading');
     u.onend = next;
     u.onerror = next;
@@ -90,11 +83,9 @@ function say(items, onDone) {
   };
   setTimeout(next, 70);   // Safari drops a speak() issued straight after cancel()
 }
-// A pair {en, zh} as speech items, honouring the English-only setting.
-function pair(p, enEl, zhEl) {
-  const out = [{ text: p.en, lang: 'en', el: enEl }];
-  if (settings.langs === 'both' && p.zh) out.push({ text: p.zh, lang: 'zh', el: zhEl });
-  return out;
+// A pair {en, zh} as speech: only the English is read; the Chinese stays on screen.
+function pair(p, enEl) {
+  return [{ text: p.en, lang: 'en', el: enEl }];
 }
 
 /* ── Art ────────────────────────────────────────────────────────── */
@@ -184,30 +175,23 @@ function linesBlock(p) {
     const zh = el('p', 'zh', esc(ln.zh)); zh.lang = 'zh-Hant';
     row.append(en, zh);
     en.addEventListener('click', () => say([{ text: ln.en, lang: 'en', el: en }]));
-    zh.addEventListener('click', () => say([{ text: ln.zh, lang: 'zh', el: zh }]));
     box.appendChild(row);
     items.push({ ln, en, zh });
   });
   return { box, items };
 }
 
-function speakLines(items, which) {
-  const q = [];
-  items.forEach(({ ln, en, zh }) => {
-    if (which !== 'zh') q.push({ text: ln.en, lang: 'en', el: en });
-    if (which === 'zh' || (which === 'auto' && settings.langs === 'both')) q.push({ text: ln.zh, lang: 'zh', el: zh });
-  });
-  say(q);
+function speakLines(items) {
+  say(items.map(({ ln, en }) => ({ text: ln.en, lang: 'en', el: en })));
 }
 
 function soundBar(items) {
   const bar = el('div', 'sound');
-  const a = el('button', 'say say-en', '<span aria-hidden="true">🔊</span> English');
-  const b = el('button', 'say say-zh', '<span aria-hidden="true">🔊</span> 中文');
-  a.type = b.type = 'button';
-  a.addEventListener('click', () => speakLines(items, 'en'));
-  b.addEventListener('click', () => speakLines(items, 'zh'));
-  bar.append(a, b);
+  const a = el('button', 'say say-en', '<span aria-hidden="true">🔊</span> Listen');
+  a.type = 'button';
+  a.setAttribute('aria-label', 'Listen 聽英文');
+  a.addEventListener('click', () => speakLines(items));
+  bar.append(a);
   if (!HAS_TTS) bar.hidden = true;
   return bar;
 }
@@ -332,8 +316,7 @@ const KINDS = {
           found.add(it.id); b.setAttribute('aria-pressed', 'true'); pop(b);
           const all = found.size === p.items.length;
           const q = [{ text: `You found ${it.en}!`, lang: 'en', el: b.querySelector('.tile-en') }];
-          if (settings.langs === 'both') q.push({ text: `你找到${it.zh}了！`, lang: 'zh', el: b.querySelector('.tile-zh') });
-          if (all) { q.push({ text: 'You found them all! Super!', lang: 'en' }); if (settings.langs === 'both') q.push({ text: '全部都找到了，太厲害了！', lang: 'zh' }); }
+          if (all) q.push({ text: 'You found them all! Super!', lang: 'en' });
           say(q);
           if (all) celebrate();
         }
@@ -402,7 +385,6 @@ function thumbsGame(p, root) {
     sit.innerHTML = `<span class="sit-art" aria-hidden="true">${it.art}</span><span class="en" lang="en">${esc(it.en)}</span><span class="zh" lang="zh-Hant">${esc(it.zh)}</span>`;
     const ask = () => say([
       { text: 'Is this OK?', lang: 'en' }, { text: it.en, lang: 'en', el: sit.querySelector('.en') },
-      ...(settings.langs === 'both' ? [{ text: '這樣可以嗎？', lang: 'zh' }, { text: it.zh, lang: 'zh', el: sit.querySelector('.zh') }] : []),
     ]);
     sit.addEventListener('click', ask);
     const row = el('div', 'thumbs');
@@ -484,7 +466,7 @@ function pictureQuiz(p, root) {
           nx.type = 'button';
           nx.addEventListener('click', () => { k++; const a = show(); if (a && settings.auto) a(); });
           fb.appendChild(nx);
-          say([{ text: y.en, lang: 'en' }, { text: o.en, lang: 'en' }, ...(settings.langs === 'both' ? [{ text: y.zh + o.zh, lang: 'zh' }] : [])]);
+          say([{ text: y.en, lang: 'en' }, { text: o.en, lang: 'en' }]);
         } else {
           wobble(b);
           say(pair(TRY_AGAIN));
@@ -521,21 +503,19 @@ $('#grownupBtn').addEventListener('click', () => { stopSpeech(); dlg.showModal()
 $('#closeGrownup').addEventListener('click', () => dlg.close());
 dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
 
-const autoBox = $('#setAuto'), langSel = $('#setLangs'), rateIn = $('#setRate'), rateOut = $('#rateOut');
+const autoBox = $('#setAuto'), rateIn = $('#setRate'), rateOut = $('#rateOut');
 autoBox.checked = settings.auto;
-langSel.value = settings.langs;
 rateIn.value = settings.rate;
 rateOut.textContent = Number(settings.rate).toFixed(2);
 autoBox.addEventListener('change', () => { settings.auto = autoBox.checked; store.set('auto', settings.auto); });
-langSel.addEventListener('change', () => { settings.langs = langSel.value; store.set('langs', settings.langs); });
 rateIn.addEventListener('input', () => { settings.rate = Number(rateIn.value); rateOut.textContent = settings.rate.toFixed(2); store.set('rate', settings.rate); });
 
 function fillVoicePickers() {
-  [['en', '#setEnVoice', 'enVoice'], ['zh', '#setZhVoice', 'zhVoice']].forEach(([lang, sel, key]) => {
+  [['#setEnVoice', 'enVoice']].forEach(([sel, key]) => {
     const s = $(sel);
     if (!s) return;
-    const list = voiceList(lang);
-    const chosen = pickVoice(lang);
+    const list = voiceList();
+    const chosen = pickVoice();
     s.innerHTML = list.length ? '' : '<option value="">（這台裝置沒有這種語音）</option>';
     list.forEach((v) => {
       const o = el('option', null, esc(v.name));
@@ -548,7 +528,6 @@ function fillVoicePickers() {
 }
 if (!HAS_TTS) $('#voiceSection').insertAdjacentHTML('beforeend', '<p class="small">這個瀏覽器不支援朗讀。This browser cannot read aloud.</p>');
 $('#testEn').addEventListener('click', () => say([{ text: 'Hello! Let’s go to the museum.', lang: 'en' }]));
-$('#testZh').addEventListener('click', () => say([{ text: '你好！我們一起去博物館。', lang: 'zh' }]));
 $('#resetSpy').addEventListener('click', () => {
   store.set('spy', []);
   if (PAGES[cur].kind === 'spy') render();
