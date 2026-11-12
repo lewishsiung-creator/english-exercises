@@ -23,6 +23,7 @@
      kind   story | hall | manners | spy | words | quiz | end
      art    emoji string, or 'svg:cover' / 'svg:wall'
      photo  optional key into PHOTOS; a real photo takes the picture's place
+     video  optional YouTube video {id, title, by, mins}; takes the picture's place
      lines  [{en, zh}] — read aloud, English then Chinese
      tag    optional small label above the lines {en, zh}
      talk   optional grown-up question {en, zh}, behind 💬
@@ -195,6 +196,18 @@ const PAGES = [
       { en: "The museum is for everyone. Your story is part of Taiwan's story, too!", zh: '博物館是大家的。你的故事，也是台灣故事的一部分！' },
     ],
     talk: { en: 'What is a story from our family?', zh: '我們家有什麼故事可以說？' } },
+
+  // Added at Lewis's request (2026-11-12). A 22-minute English documentary
+  // made for adults, so the page says so: a grown-up decides whether to
+  // watch it with the child. Nothing loads from YouTube until it is tapped.
+  { ch: 'story', kind: 'story', art: '🎬',
+    video: { id: '5Wb7d8CbDsg', title: 'The ENTIRE History of Taiwan in 22 Minutes', by: 'History In 22 Mints', mins: 22 },
+    tag: { en: 'For grown-ups', zh: '給大人看' },
+    lines: [
+      { en: 'Do you want to know more? Here is a video about the history of Taiwan.', zh: '想知道更多嗎？這是一段介紹台灣歷史的影片。' },
+    ],
+    note: { icon: '👀', en: 'About 22 minutes, in English, made for adults. Watch it first, or watch it together.',
+            zh: '影片約 22 分鐘，英文，是給大人看的歷史介紹。建議大人先看過，或陪孩子一起看。' } },
 
   // ── Children's Hall (兒童廳) ───────────────────────────────────
   { ch: 'hall', kind: 'hall', art: '🧸🚂',

@@ -261,6 +261,35 @@ function photoHTML(ph) {
   </figure>`;
 }
 
+// A YouTube video, as a picture with a play button. The player (from the
+// privacy-enhanced youtube-nocookie.com) is only loaded when it is tapped.
+function videoHTML(v) {
+  return `<figure class="stage stage-photo stage-video">
+    <button type="button" class="video-play" data-id="${esc(v.id)}" aria-label="Play the video: ${esc(v.title)} 播放影片">
+      <img src="https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg" alt="" decoding="async">
+      <span class="play-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+    </button>
+    <span class="real-chip"><span aria-hidden="true">▶</span> <span lang="en">Video</span> · <span lang="zh-Hant">影片</span> · ${v.mins} min</span>
+    <figcaption class="credit">${esc(v.title)} · ${esc(v.by)} · YouTube</figcaption>
+  </figure>`;
+}
+function wireVideo(root) {
+  const b = root.querySelector('.video-play');
+  if (!b) return;
+  b.addEventListener('click', () => {
+    stopSpeech();
+    const f = document.createElement('iframe');
+    f.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(b.dataset.id)}?autoplay=1&rel=0&playsinline=1`;
+    f.title = b.getAttribute('aria-label');
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    f.referrerPolicy = 'strict-origin-when-cross-origin';
+    const fig = b.closest('figure');
+    fig.classList.add('playing');
+    b.replaceWith(f);
+  });
+}
+
 /* ── Page shell ─────────────────────────────────────────────────── */
 const main = $('#page');
 const chapBox = $('#chapters');
@@ -337,7 +366,9 @@ function render() {
   main.className = 'page kind-' + p.kind;
 
   const sheet = el('section', 'sheet' + (GAME[p.kind] || TILE[p.kind] ? ' compact' : ''));
-  if (!GAME[p.kind]) sheet.insertAdjacentHTML('beforeend', p.photo && PHOTOS[p.photo] ? photoHTML(PHOTOS[p.photo]) : artHTML(p.art));
+  if (!GAME[p.kind]) sheet.insertAdjacentHTML('beforeend',
+    p.video ? videoHTML(p.video) : p.photo && PHOTOS[p.photo] ? photoHTML(PHOTOS[p.photo]) : artHTML(p.art));
+  wireVideo(sheet);
   const compact = !!(GAME[p.kind] || TILE[p.kind]);
   const copy = el('div', 'copy');
   if (p.tag) copy.appendChild(el('p', 'tag', `<span lang="en">${esc(p.tag.en)}</span><span lang="zh-Hant">${esc(p.tag.zh)}</span>`));
@@ -353,7 +384,7 @@ function render() {
   let afterRead = null;
   if (builder) afterRead = builder(p, main);
 
-  if (p.note) main.appendChild(el('p', 'note', `<span aria-hidden="true">🙋</span> <span><span lang="en">${esc(p.note.en)}</span> <span lang="zh-Hant">${esc(p.note.zh)}</span></span>`));
+  if (p.note) main.appendChild(el('p', 'note', `<span aria-hidden="true">${p.note.icon || '🙋'}</span> <span><span lang="en">${esc(p.note.en)}</span> <span lang="zh-Hant">${esc(p.note.zh)}</span></span>`));
   if (p.talk) {
     const d = el('details', 'talk');
     d.innerHTML = `<summary><span aria-hidden="true">💬</span> <span lang="en">Talk about it</span> · <span lang="zh-Hant">與孩子討論</span></summary><p lang="en">${esc(p.talk.en)}</p><p lang="zh-Hant">${esc(p.talk.zh)}</p>`;

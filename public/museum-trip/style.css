@@ -482,3 +482,22 @@ dialog::backdrop { background: rgba(30, 20, 10, .45); }
 }
 .credits { padding-left: 18px; font-size: 13px; color: var(--ink-2); }
 .credits li { margin: 4px 0; }
+
+/* ── Video ───────────────────────────────────────────────
+   A thumbnail and a big play button; the YouTube player only
+   replaces it when tapped. Always 16:9. */
+.stage-video, .stage-video.stage-photo { aspect-ratio: 16 / 9; background: #000; }
+.video-play { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: #000; cursor: pointer; }
+.video-play img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .92; }
+.play-ico {
+  position: absolute; left: 50%; top: 50%; width: 76px; height: 54px; margin: -27px 0 0 -38px;
+  border-radius: 16px; background: #e62117; display: grid; place-items: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .35); transition: transform .15s;
+}
+.play-ico svg { width: 30px; height: 30px; fill: #fff; }
+.video-play:hover .play-ico, .video-play:focus-visible .play-ico { transform: scale(1.08); }
+.stage-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.stage-video.playing .real-chip, .stage-video.playing .credit { display: none; }
+.stage-video .credit { left: 8px; text-align: right; }
+@media (max-width: 600px) { .stage-video.stage-photo { aspect-ratio: 16 / 9; } }
+@media (min-width: 760px) { .kind-story .stage-video.stage-photo { aspect-ratio: 16 / 9; } }

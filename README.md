@@ -6206,7 +6206,7 @@ read with a grown-up before a class visit to 國立臺灣歷史博物館 in Tain
 Friday 13 November 2026. No child, school or teacher is named on it, and it
 is `noindex`.
 
-Eighteen pages in seven chapters: getting ready (the building, the solar
+Nineteen pages in seven chapters: getting ready (the building, the solar
 "cloud wall", the pool), two 👍/👎 rules games (on the bus, in the museum —
 moved up to second place at Lewis's request), the Story of Taiwan (the
 permanent exhibition's seven units retold in five pages), the Children's
@@ -6243,6 +6243,10 @@ request: 記得讓孩子帶健保卡 (pack the child's NHI card).
   CC BY-SA, so each carries a small credit and the 大人 panel lists the
   links; credits live in `PHOTOS` in `content.js`. Only use photos whose
   licence allows reuse — never the museum's own site or a Google image.
+- **A YouTube video for grown-ups** (2026-11-12, Lewis's choice): "The ENTIRE
+  History of Taiwan in 22 Minutes" closes the Story chapter, tagged 給大人看
+  with a note to preview it. A thumbnail until tapped, then the
+  youtube-nocookie player in place; turning the page removes it.
 - **🏠 Home** (首頁, 2026-11-12) leads the chapter strip and brings back the
   start screen with its NHI-card reminder; "Let's go!" then starts at page 1.
 - The 大人 button is faint on purpose. It holds visitor info, a talk-about-it
