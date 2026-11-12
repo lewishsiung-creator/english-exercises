@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Museum Trip · 博物館之旅</title>
+<meta name="description" content="A bilingual picture page for Grade 1 before a field trip to the National Museum of Taiwan History in Tainan. 一年級校外教學前的中英雙語預習：國立臺灣歷史博物館。">
+<!-- Made for one class trip, handed out by link; not meant for search. -->
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Museum Trip · 博物館之旅">
+<meta property="og:description" content="Get ready for the National Museum of Taiwan History! 校外教學前，先認識國立臺灣歷史博物館。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232f6fd6'/%3E%3Cpath d='M10 40 L54 30 L54 50 L10 50 Z' fill='%23ffffff' opacity='.9'/%3E%3Ccircle cx='48' cy='16' r='7' fill='%23ffd23f'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#fff7ea">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <p class="title"><span aria-hidden="true">🏛️</span> <span lang="en">Museum Trip</span> <span class="title-zh" lang="zh-Hant">博物館之旅</span></p>
+  <button type="button" class="grownup-btn" id="grownupBtn" aria-haspopup="dialog" aria-label="大人 Grown-ups">大人<span class="g-en"> · Grown-ups</span></button>
+</header>
+
+<nav class="chapters" id="chapters" aria-label="Chapters 章節"></nav>
+
+<main id="page" class="page" tabindex="-1" aria-live="polite"></main>
+
+<footer class="nav">
+  <button type="button" class="arrow" id="prev" aria-label="Back 上一頁">◀</button>
+  <span class="counter" id="counter"></span>
+  <button type="button" class="arrow next" id="next" aria-label="Next 下一頁">▶</button>
+</footer>
+
+<dialog id="grownup" aria-labelledby="gTitle">
+  <div class="g-inner">
+    <div class="g-head">
+      <h2 id="gTitle">給大人 · For grown-ups</h2>
+      <button type="button" class="g-close" id="closeGrownup" aria-label="Close 關閉">✕</button>
+    </div>
+
+    <section>
+      <h3>怎麼用 · How to use</h3>
+      <p>和孩子一起一頁一頁看。每句話都會先念英文、再念中文；點任何一句可以再聽一次。每頁下方的「💬 聊一聊」是給大人問孩子的問題。</p>
+      <p lang="en">Go through it page by page with your child. Each line is read in English, then Chinese; tap any line to hear it again. “💬 Talk about it” has a question for you to ask.</p>
+    </section>
+
+    <section id="voiceSection">
+      <h3>聲音 · Sound</h3>
+      <label class="row"><input type="checkbox" id="setAuto"> 翻頁時自動朗讀 · Read each page aloud</label>
+      <label class="row">朗讀語言 · Read in
+        <select id="setLangs"><option value="both">英文＋中文 English + Chinese</option><option value="en">只念英文 English only</option></select>
+      </label>
+      <label class="row">英文語音 · English voice <select id="setEnVoice"></select> <button type="button" class="mini" id="testEn">▶</button></label>
+      <label class="row">中文語音 · Chinese voice <select id="setZhVoice"></select> <button type="button" class="mini" id="testZh">▶</button></label>
+      <label class="row">速度 · Speed <input type="range" id="setRate" min="0.6" max="1.2" step="0.05"> <output id="rateOut"></output></label>
+      <p><button type="button" class="mini wide" id="resetSpy">清除「找一找」的星星 · Clear I Spy stars</button></p>
+    </section>
+
+    <section>
+      <h3>參觀資訊 · Visitor info</h3>
+      <ul>
+        <li><b>開放：</b>週二至週日 09:00–17:00（16:30 停止入館），週一休館。11/13（五）是一般開放日。<br><span lang="en">Open Tue–Sun 9:00–17:00 (last entry 16:30); closed Mondays. Fri 13 Nov is a normal open day.</span></li>
+        <li><b>兒童廳：</b>平日場次 09:30–12:00、14:00–16:30，現場排隊，每場限 100 人（含大人）。學校團體是否安排，請以老師通知為準。<br><span lang="en">Children’s Hall, weekdays 9:30–12:00 and 14:00–16:30, queue on site, 100 people per session. Whether the class goes is the school’s plan.</span></li>
+        <li><b>參觀須知：</b>展場內不飲食（可在飲水機喝水）、不奔跑追逐、不大聲喧嘩；沒有標示可以摸的展品不觸碰、不靠玻璃；不開閃光燈、不用自拍棒。六歲以下需大人陪同。<br><span lang="en">No food inside (water fountains are fine), no running or shouting, touch only where a sign says so, no flash or selfie sticks. Under-sixes must be with an adult.</span></li>
+        <li><b>地址：</b>臺南市安南區長和路一段 250 號 · 06-356-8889</li>
+      </ul>
+      <p class="small">資料整理自<a href="https://www.nmth.gov.tw/" target="_blank" rel="noopener">國立臺灣歷史博物館官網</a>（2026/11/12）。「台灣的故事」幾頁是寫給一年級孩子的簡化版，實際展品以現場為準；館方可能另行公告休館，出發前可再確認。<br><span lang="en">Facts from the museum’s official website, 12 Nov 2026. The “Story of Taiwan” pages are a simplified retelling for six-year-olds.</span></p>
+    </section>
+  </div>
+</dialog>
+
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

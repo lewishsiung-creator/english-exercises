@@ -1,0 +1,265 @@
+/* Museum Trip — a Grade 1 picture page. Big type, big targets, warm colours. */
+:root {
+  --bg: #fff7ea;
+  --card: #ffffff;
+  --ink: #2a2733;
+  --ink-2: #5a5566;
+  --line: #eadfcc;
+  --blue: #2f6fd6;
+  --blue-soft: #e5efff;
+  --orange: #e8701c;
+  --orange-soft: #ffeedd;
+  --green: #23874d;
+  --green-soft: #e1f5e8;
+  --red-soft: #ffe7e3;
+  --read: #fff0a8;
+  --shadow: 0 2px 0 rgba(60, 40, 10, .08), 0 6px 18px rgba(60, 40, 10, .07);
+  --en: ui-rounded, "SF Pro Rounded", "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --zh: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1d1b22; --card: #2a2731; --ink: #f3efe8; --ink-2: #c4bdcc; --line: #3d3946;
+    --blue: #8db4ff; --blue-soft: #263452; --orange: #ffab6b; --orange-soft: #43301f;
+    --green: #7fdba3; --green-soft: #1f3a2a; --red-soft: #45282a; --read: #5a4d14;
+    --shadow: 0 2px 0 rgba(0,0,0,.3), 0 6px 18px rgba(0,0,0,.25);
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; min-height: 100vh; min-height: 100dvh;
+  background: var(--bg); color: var(--ink);
+  font-family: var(--en);
+  display: flex; flex-direction: column;
+  -webkit-tap-highlight-color: transparent;
+}
+[lang="zh-Hant"] { font-family: var(--zh); }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+/* ── Top ─────────────────────────────────────────────── */
+.top {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 16px 4px; max-width: 860px; width: 100%; margin: 0 auto;
+}
+.title { margin: 0; font-weight: 800; font-size: 18px; }
+.title-zh { font-weight: 700; color: var(--ink-2); margin-left: 4px; }
+/* Deliberately faint: anything bright here becomes something else to tap. */
+.grownup-btn {
+  white-space: nowrap; flex: none;
+  background: none; border: 1px solid var(--line); border-radius: 999px;
+  padding: 6px 12px; font-size: 12px; color: var(--ink-2); opacity: .6;
+  font-family: var(--zh);
+}
+
+.chapters {
+  display: flex; gap: 6px; padding: 6px 16px 8px;
+  max-width: 860px; width: 100%; margin: 0 auto;
+  overflow-x: auto; scrollbar-width: none;
+}
+.chapters::-webkit-scrollbar { display: none; }
+.chap {
+  flex: 1 0 auto; min-width: 64px;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  background: var(--card); border: 2px solid var(--line); border-radius: 16px;
+  padding: 6px 8px; box-shadow: var(--shadow);
+}
+.chap-i { font-size: 24px; line-height: 1.1; }
+.chap-t { display: flex; flex-direction: column; align-items: center; font-size: 11px; line-height: 1.2; color: var(--ink-2); white-space: nowrap; }
+.chap.on { border-color: var(--orange); background: var(--orange-soft); }
+.chap.on .chap-t { color: var(--ink); font-weight: 700; }
+@media (max-width: 560px) {
+  .title { font-size: 16px; }
+  .chap { flex: 1 1 0; min-width: 0; padding: 6px 2px; }
+  .chap-t [lang="en"] { display: none; }
+}
+
+/* ── Page ────────────────────────────────────────────── */
+.page {
+  flex: 1; width: 100%; max-width: 860px; margin: 0 auto;
+  padding: 8px 16px 24px; outline: none;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+.tag {
+  margin: 6px 0 0; display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 4px 10px;
+  background: var(--blue-soft); color: var(--blue); border-radius: 999px; padding: 6px 14px;
+  font-weight: 700; font-size: 15px;
+}
+.art { font-size: clamp(72px, 18vw, 120px); line-height: 1.15; margin: 10px 0 4px; letter-spacing: .05em; }
+.art-svg { width: 100%; max-width: 520px; font-size: 0; }
+.scene { width: 100%; height: auto; border-radius: 22px; box-shadow: var(--shadow); display: block; }
+
+.lines { display: flex; flex-direction: column; gap: 14px; margin: 12px 0 6px; max-width: 720px; }
+.line .en, .line .zh { margin: 0; cursor: pointer; border-radius: 10px; padding: 2px 6px; transition: background .2s; }
+.line .en { font-size: clamp(24px, 5.2vw, 34px); font-weight: 800; line-height: 1.25; }
+.line .zh { font-size: clamp(19px, 4.2vw, 26px); font-weight: 500; line-height: 1.45; color: var(--ink-2); margin-top: 4px; }
+.reading { background: var(--read) !important; color: var(--ink) !important; }
+
+.sound { display: flex; gap: 12px; justify-content: center; margin: 10px 0 4px; flex-wrap: wrap; }
+.say {
+  min-height: 56px; min-width: 140px; padding: 10px 20px; border-radius: 999px;
+  border: 0; background: var(--blue); color: #fff; font-weight: 800; font-size: 19px;
+  box-shadow: var(--shadow);
+}
+.say-zh { background: var(--orange); font-family: var(--zh); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .say { color: #14121a; }
+}
+
+.note { margin: 14px 0 0; font-size: 16px; color: var(--ink-2); background: var(--card); border: 2px dashed var(--line); border-radius: 14px; padding: 10px 14px; }
+
+.talk { margin-top: 18px; max-width: 600px; width: 100%; text-align: left; font-size: 15px; color: var(--ink-2); }
+.talk summary { cursor: pointer; text-align: center; opacity: .75; list-style: none; padding: 8px; }
+.talk summary::-webkit-details-marker { display: none; }
+.talk p { margin: 4px 12px; }
+.talk[open] { background: var(--card); border-radius: 14px; padding-bottom: 10px; border: 1px solid var(--line); }
+
+/* ── Tiles (hall, spy, words) ────────────────────────── */
+.tiles {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 170px), 1fr));
+  gap: 12px; width: 100%; margin-top: 16px;
+}
+.tile {
+  position: relative; min-height: 132px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  background: var(--card); border: 2px solid var(--line); border-radius: 20px;
+  padding: 12px 10px; box-shadow: var(--shadow);
+}
+.tile-art { font-size: 48px; line-height: 1.1; }
+.tile-en { font-weight: 800; font-size: 17px; line-height: 1.25; border-radius: 6px; padding: 0 4px; }
+.tile-zh { font-size: 16px; color: var(--ink-2); line-height: 1.35; border-radius: 6px; padding: 0 4px; }
+.words .tile { min-height: 120px; }
+.words .tile-en { font-size: 22px; }
+.words .tile-zh { font-size: 19px; }
+@media (max-width: 420px) {
+  .tiles { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tile { min-height: 120px; }
+  .tile-art { font-size: 40px; }
+  .tile-en { font-size: 15px; }
+  .tile-zh { font-size: 14px; }
+  .words .tile-en { font-size: 19px; }
+  .words .tile-zh { font-size: 17px; }
+}
+.spy .stamp {
+  position: absolute; top: 6px; right: 8px; font-size: 30px;
+  opacity: 0; transform: scale(.4) rotate(-20deg); transition: .25s;
+}
+.spy .tile[aria-pressed="true"] { border-color: var(--green); background: var(--green-soft); }
+.spy .tile[aria-pressed="true"] .stamp { opacity: 1; transform: none; }
+.count { margin: 14px 0 0; font-weight: 800; font-size: 18px; color: var(--green); }
+
+/* ── Games (manners, quiz) ───────────────────────────── */
+.dots { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
+.dot { width: 14px; height: 14px; border-radius: 50%; background: var(--line); }
+.dot.done { background: var(--green); }
+.dot.now { background: var(--orange); transform: scale(1.25); }
+.game { width: 100%; max-width: 640px; margin-top: 12px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.situation, .question {
+  width: 100%; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  background: var(--card); border: 3px solid var(--line); border-radius: 24px;
+  padding: 16px; box-shadow: var(--shadow); transition: .25s;
+}
+.situation.good { border-color: var(--green); background: var(--green-soft); }
+.situation.bad { border-color: var(--orange); background: var(--red-soft); }
+.sit-art { font-size: 80px; line-height: 1.1; }
+.situation .en, .question .en { font-size: clamp(22px, 5vw, 30px); font-weight: 800; border-radius: 8px; padding: 0 6px; }
+.situation .zh, .question .zh { font-size: clamp(18px, 4vw, 24px); color: var(--ink-2); border-radius: 8px; padding: 0 6px; }
+.thumbs, .opts { display: flex; gap: 12px; width: 100%; justify-content: center; }
+.thumb, .opt {
+  flex: 1 1 0; min-height: 110px; max-width: 220px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  border-radius: 22px; border: 3px solid var(--line); background: var(--card);
+  box-shadow: var(--shadow); font-weight: 800; font-size: 17px;
+}
+.thumb > span:first-child { font-size: 48px; line-height: 1.1; }
+.thumb.up { border-color: #9fd8b5; }
+.thumb.down { border-color: #f2b9a6; }
+.opt-art { font-size: 54px; line-height: 1.1; }
+.opt [lang="zh-Hant"], .thumb [lang="zh-Hant"] { font-weight: 600; font-size: 15px; color: var(--ink-2); }
+.right { border-color: var(--green) !important; background: var(--green-soft) !important; transform: scale(1.04); }
+.why { display: flex; flex-direction: column; align-items: center; gap: 6px; min-height: 8px; }
+.why .en { margin: 0; font-size: 22px; font-weight: 800; color: var(--green); border-radius: 8px; padding: 0 6px; }
+.why .zh { margin: 0; font-size: 19px; color: var(--ink-2); border-radius: 8px; padding: 0 6px; }
+.done-art { font-size: 96px; line-height: 1.1; }
+.game > .en { margin: 0; font-size: 28px; font-weight: 800; }
+.game > .zh { margin: 0; font-size: 22px; color: var(--ink-2); }
+
+.big-btn {
+  min-height: 64px; padding: 12px 26px; border-radius: 999px; border: 0;
+  background: var(--blue); color: #fff; font-weight: 800; font-size: 19px;
+  box-shadow: var(--shadow); margin-top: 8px;
+}
+.big-btn.go { background: var(--green); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .big-btn { color: #14121a; }
+}
+
+/* ── Bottom nav ──────────────────────────────────────── */
+.nav {
+  position: sticky; bottom: 0; z-index: 5;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, var(--bg) 70%, transparent);
+  max-width: 860px; width: 100%; margin: 0 auto;
+}
+.arrow {
+  width: 92px; height: 72px; border-radius: 22px; border: 0;
+  background: var(--card); color: var(--blue); font-size: 30px;
+  box-shadow: var(--shadow);
+}
+.arrow.next { background: var(--orange); color: #fff; }
+.arrow:disabled { opacity: .3; cursor: default; }
+.counter { font-weight: 700; color: var(--ink-2); font-size: 16px; }
+
+/* ── Motion ──────────────────────────────────────────── */
+.wobble { animation: wobble .45s; }
+@keyframes wobble { 20% { transform: translateX(-8px) rotate(-3deg); } 40% { transform: translateX(8px) rotate(3deg); } 60% { transform: translateX(-5px); } 80% { transform: translateX(5px); } }
+.pop { animation: pop .3s; }
+@keyframes pop { 50% { transform: scale(1.06); } }
+.confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 20; }
+.confetti span { position: absolute; top: -40px; animation: fall 1.8s ease-in forwards; }
+@keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .wobble, .pop { animation: none; } }
+
+/* ── Grown-up dialog ─────────────────────────────────── */
+dialog {
+  border: 0; border-radius: 20px; padding: 0; width: min(640px, calc(100vw - 32px));
+  max-height: calc(100dvh - 40px); background: var(--card); color: var(--ink);
+  box-shadow: 0 20px 60px rgba(0,0,0,.3);
+}
+dialog::backdrop { background: rgba(30, 20, 10, .45); }
+.g-inner { padding: 16px 20px 20px; font-family: var(--zh); font-size: 15px; line-height: 1.6; }
+.g-inner [lang="en"] { font-family: var(--en); color: var(--ink-2); }
+.g-head { display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: var(--card); padding-bottom: 4px; }
+.g-head h2 { margin: 0; font-size: 19px; }
+.g-close { border: 0; background: var(--bg); border-radius: 50%; width: 40px; height: 40px; font-size: 18px; }
+.g-inner h3 { font-size: 15px; margin: 18px 0 6px; color: var(--orange); }
+.g-inner p { margin: 6px 0; }
+.g-inner ul { margin: 0; padding-left: 18px; }
+.g-inner li { margin-bottom: 8px; }
+.g-inner a { color: var(--blue); }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 8px 0; }
+.row select { max-width: 100%; font-size: 15px; padding: 6px; border-radius: 8px; }
+.row input[type="range"] { flex: 1; min-width: 120px; }
+.mini { border: 1px solid var(--line); background: var(--bg); border-radius: 10px; padding: 6px 12px; font-size: 14px; }
+.mini.wide { width: 100%; }
+.small { font-size: 13px; color: var(--ink-2); }
+
+/* Game pages: the instruction steps back so 👍 👎 and the answers sit on
+   the first screen of a phone, not below the bottom bar. */
+.kind-manners .art, .kind-quiz .art { display: none; }
+.kind-manners .lines, .kind-quiz .lines { margin-top: 4px; gap: 4px; }
+.kind-manners .line .en, .kind-quiz .line .en { font-size: clamp(19px, 4.4vw, 26px); }
+.kind-manners .line .zh, .kind-quiz .line .zh { font-size: clamp(16px, 3.8vw, 21px); }
+.kind-manners .say, .kind-quiz .say { min-height: 46px; font-size: 17px; }
+@media (max-width: 560px) {
+  .sit-art { font-size: 60px; }
+  .situation, .question { padding: 12px; }
+  .thumb, .opt { min-height: 100px; }
+}
+.title { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 420px) { .g-en { display: none; } }

@@ -6198,3 +6198,30 @@ Pushing to `main` publishes to both, with no further steps:
 - **GitHub Pages** — via [`.github/workflows/pages.yml`](.github/workflows/pages.yml)
 - **Cloudflare Pages** — via its GitHub integration (build command: none,
   output directory: `public`)
+
+## Museum Trip — Grade 1, before a class field trip
+
+`/museum-trip/` — a bilingual picture page for six- and seven-year-olds to
+read with a grown-up before a class visit to 國立臺灣歷史博物館 in Tainan on
+Friday 13 November 2026. No child, school or teacher is named on it, and it
+is `noindex`.
+
+Seventeen pages in seven chapters: getting ready (the building, the solar
+"cloud wall", the pool), the Story of Taiwan (the permanent exhibition's
+seven units retold in five pages), the Children's Hall, a 👍/👎 museum-manners
+game, an I Spy checklist, word cards and a picture quiz.
+
+### Design notes
+
+- **Kids' house rules**: every line is spoken, English (Flo) then Chinese
+  (美佳), tap any line to hear it again; a wrong answer wobbles and says
+  "think again", only the right one moves on; big targets, no timers.
+- **Bilingual by request**: the Chinese is always shown, not hidden behind a
+  tap. The grown-up panel can switch speech to English only.
+- **Facts come from the museum's own site**, read 12 Nov 2026; the sources are
+  listed at the top of `content.js`. The official exhibition page names no
+  individual objects, so the I Spy list only asks for things sure to be
+  there (the wall, the pool, the public art, the Children's Hall).
+- The 大人 button is faint on purpose. It holds visitor info, a talk-about-it
+  note, voice/speed settings and a reset for the I Spy stars (the only thing
+  kept, in this device's `localStorage`).
