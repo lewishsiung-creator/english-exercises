@@ -110,15 +110,15 @@ svg { display: block; }
   box-shadow: 0 0 0 2px var(--bg);
 }
 .chap.done .tick { transform: scale(1); }
-.chap-t { display: flex; flex-direction: column; align-items: center; font-size: 11.5px; line-height: 1.2; color: var(--ink-3); white-space: nowrap; }
-.chap-en { font-weight: 700; }
+/* Labels are English only (Lewis, 2026-11-13); the Chinese stays in aria-label. */
+.chap-t { font-size: 12.5px; font-weight: 700; line-height: 1.15; color: var(--ink-3); white-space: nowrap; text-align: center; }
 .chap.on { background: var(--tint); border-color: var(--accent); }
 .chap.on .chap-t { color: var(--ink); }
 .chap.on .tick { box-shadow: 0 0 0 2px var(--tint); }
 @media (max-width: 600px) {
   .chap { flex: 1 1 0; min-width: 0; padding: 6px 2px 5px; }
-  .chap-en { display: none; }
-  .chap-t { font-size: 12px; font-weight: 600; }
+  /* Two short lines on a phone: "Get / ready", "Kids’ / Hall". */
+  .chap-t { font-size: 11.5px; white-space: normal; min-height: 2.3em; display: flex; align-items: center; }
 }
 
 .progress { height: 4px; border-radius: 4px; background: var(--line); overflow: hidden; }

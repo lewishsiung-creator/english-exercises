@@ -249,7 +249,7 @@ CHAPTERS.forEach((c) => {
   const b = el('button', 'chap');
   b.type = 'button';
   b.dataset.ch = c.id;
-  b.innerHTML = `<span class="chap-i" aria-hidden="true">${c.icon}<span class="tick">✓</span></span><span class="chap-t"><span class="chap-en" lang="en">${esc(c.en)}</span><span lang="zh-Hant">${esc(c.zh)}</span></span>`;
+  b.innerHTML = `<span class="chap-i" aria-hidden="true">${c.icon}<span class="tick">✓</span></span><span class="chap-t" lang="en">${esc(c.en)}</span>`;
   b.setAttribute('aria-label', `${c.en} ${c.zh}`);
   b.addEventListener('click', () => go(chapterStart(c.id)));
   chapBox.appendChild(b);
