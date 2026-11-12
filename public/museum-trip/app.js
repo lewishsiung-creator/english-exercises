@@ -315,7 +315,7 @@ function render() {
   if (p.note) main.appendChild(el('p', 'note', `<span aria-hidden="true">🙋</span> <span><span lang="en">${esc(p.note.en)}</span> <span lang="zh-Hant">${esc(p.note.zh)}</span></span>`));
   if (p.talk) {
     const d = el('details', 'talk');
-    d.innerHTML = `<summary><span aria-hidden="true">💬</span> <span lang="en">Talk about it</span> · <span lang="zh-Hant">大人陪聊</span></summary><p lang="en">${esc(p.talk.en)}</p><p lang="zh-Hant">${esc(p.talk.zh)}</p>`;
+    d.innerHTML = `<summary><span aria-hidden="true">💬</span> <span lang="en">Talk about it</span> · <span lang="zh-Hant">與孩子討論</span></summary><p lang="en">${esc(p.talk.en)}</p><p lang="zh-Hant">${esc(p.talk.zh)}</p>`;
     main.appendChild(d);
   }
 
