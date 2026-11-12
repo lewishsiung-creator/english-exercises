@@ -33,7 +33,9 @@ const store = {
 };
 
 const settings = {
-  auto:    store.get('auto', true),      // read each page aloud when it opens
+  // Off unless a grown-up turns it on (Lewis, 2026-11-12: no speech that
+  // starts by itself). A new key, so an old saved "on" doesn't carry over.
+  auto:    store.get('autoRead', false), // read each page aloud when it opens
   sfx:     store.get('sfx', true),       // small chimes for right / try again / star
   rate:    store.get('rate', 0.9),
   enVoice: store.get('enVoice', ''),
@@ -676,7 +678,7 @@ autoBox.checked = settings.auto;
 sfxBox.checked = settings.sfx;
 rateIn.value = settings.rate;
 rateOut.textContent = Number(settings.rate).toFixed(2);
-autoBox.addEventListener('change', () => { settings.auto = autoBox.checked; store.set('auto', settings.auto); });
+autoBox.addEventListener('change', () => { settings.auto = autoBox.checked; store.set('autoRead', settings.auto); });
 sfxBox.addEventListener('change', () => { settings.sfx = sfxBox.checked; store.set('sfx', settings.sfx); if (settings.sfx) sfx.right(); });
 rateIn.addEventListener('input', () => { settings.rate = Number(rateIn.value); rateOut.textContent = settings.rate.toFixed(2); store.set('rate', settings.rate); });
 

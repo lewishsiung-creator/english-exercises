@@ -6215,8 +6215,11 @@ request: 記得讓孩子帶健保卡 (pack the child's NHI card).
 
 ### Design notes
 
-- **Kids' house rules**: every English line is spoken, tap any English
-  line to hear it again; a wrong answer wobbles and says "think again", only
+- **Kids' house rules**: every English line can be heard — tap Listen or
+  the line itself. **Nothing plays by itself** (Lewis, 2026-11-12): pages
+  and quiz questions are not read aloud on arrival unless a grown-up ticks
+  自動朗讀 in the 大人 panel (key `autoRead`, default off); only the reply
+  to a child's own tap (right / think again) is spoken unasked; a wrong answer wobbles and says "think again", only
   the right one moves on; big targets, no timers.
 - **The most natural voice on the device**, not a fixed one (2026-11-13; it
   had been Flo). Premium/Natural > Enhanced > ordinary, American women first

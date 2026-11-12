@@ -11,7 +11,7 @@
 <meta property="og:description" content="Get ready for the National Museum of Taiwan History! 校外教學前，先認識國立臺灣歷史博物館。">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232f6fd6'/%3E%3Cpath d='M10 40 L54 30 L54 50 L10 50 Z' fill='%23ffffff' opacity='.9'/%3E%3Ccircle cx='48' cy='16' r='7' fill='%23ffd23f'/%3E%3C/svg%3E">
 <meta name="theme-color" content="#fff7ea">
-<link rel="stylesheet" href="style.css?v=15">
+<link rel="stylesheet" href="style.css?v=16">
 </head>
 <body>
 
@@ -61,13 +61,13 @@
 
     <section>
       <h3>怎麼用 · How to use</h3>
-      <p>和孩子一起一頁一頁看。英文會念出來，點任何一句英文可以再聽一次；中文只顯示文字，方便大人一起看懂。每頁下方的「💬 與孩子討論」是給大人問孩子的問題。</p>
-      <p lang="en">Go through it page by page with your child. The English is read aloud; tap any English line to hear it again. The Chinese is there to read, not spoken. “💬 Talk about it” has a question for you to ask.</p>
+      <p>和孩子一起一頁一頁看。按「🔊 Listen」或點任何一句英文，就會念出來（不會自動播放）；中文只顯示文字，方便大人一起看懂。每頁下方的「💬 與孩子討論」是給大人問孩子的問題。</p>
+      <p lang="en">Go through it page by page with your child. Tap “Listen” or any English line to hear it; nothing plays by itself. The Chinese is there to read, not spoken. “💬 Talk about it” has a question for you to ask.</p>
     </section>
 
     <section id="voiceSection">
       <h3>聲音 · Sound</h3>
-      <label class="row"><input type="checkbox" id="setAuto"> 翻頁時自動朗讀 · Read each page aloud</label>
+      <label class="row"><input type="checkbox" id="setAuto"> 翻頁時自動朗讀（預設關閉）· Read each page aloud (off)</label>
       <label class="row">英文語音 · English voice <select id="setEnVoice"></select> <button type="button" class="mini" id="testEn">▶</button></label>
       <label class="row"><input type="checkbox" id="setSfx"> 答題音效 · Sound effects</label>
       <label class="row">速度 · Speed <input type="range" id="setRate" min="0.6" max="1.2" step="0.05"> <output id="rateOut"></output></label>
@@ -95,7 +95,7 @@
   </div>
 </dialog>
 
-<script src="content.js?v=15"></script>
-<script src="app.js?v=15"></script>
+<script src="content.js?v=16"></script>
+<script src="app.js?v=16"></script>
 </body>
 </html>
