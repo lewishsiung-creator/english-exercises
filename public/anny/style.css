@@ -61,13 +61,19 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  /* Sans, not the house serif. intuitive.com sets everything in a geometric
-     sans and has no serif body text anywhere, and the English on this page is
-     where that choice shows most. --font-display rather than --font-en because
-     ../type.css defines --font-en as a serif and is linked after this file. */
-  font-family: var(--font-display);
+  /* Sans, not the house serif: intuitive.com has no serif body text anywhere.
+     The TEXT face, though, not the display one. That site runs BrownPro for
+     headlines and Inter for everything you actually read, and this page had
+     the geometric face doing both — which looks right in a heading and costs
+     you on the fifth line of a paragraph. Headings and figures keep
+     --font-display; running text gets the face built for running text.
+     (Neither is --font-en: ../type.css defines that as a serif and is linked
+     after this file.) */
+  font-family: var(--font-ui);
   font-size: 18px;
-  line-height: 1.6;
+  /* 1.7, not 1.6. Every paragraph here can carry a Chinese line under it, and
+     CJK wants more leading than Latin does. */
+  line-height: 1.7;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -80,8 +86,11 @@ body {
 .zh {
   display: none;
   font-family: var(--font-zh);
-  font-size: 0.82em;
-  line-height: 1.7;
+  /* .88, not .82. At .82 of an 18px body this set at 14.8px, and Traditional
+     Chinese packs far more stroke into an em than Latin does, so it needs the
+     size Latin can do without. Still clearly the second voice. */
+  font-size: 0.88em;
+  line-height: 1.75;
   color: var(--ink-soft);
   letter-spacing: normal;
 }
@@ -251,7 +260,12 @@ body.zh-all .zh-chip { display: none; }
   padding-top: 3px;
 }
 .toc a .t .en { display: block; font-size: 13.5px; line-height: 1.35; }
-.toc a .t .zh { font-size: 11.5px; color: var(--ink-faint); }
+/* house.css sets both of these a size smaller and is linked after this file,
+   so they need the #nav to win. 10.5px and 11px were drawn for an all-caps
+   Latin label and a date; now that the capitals are gone and the line is
+   "Sessions 課程", the Chinese in it needs the size the script actually takes. */
+#nav .toc-head { font-size: 12px; }
+#nav .toc a .t .zh { font-size: 12.5px; color: var(--ink-faint); }
 .toc a.here {
   background: var(--navy-soft);
   border-left-color: var(--navy);
@@ -287,6 +301,17 @@ body.zh-all .zh-chip { display: none; }
 /* ---------------- cover ---------------- */
 
 main { max-width: var(--measure); padding-bottom: 6rem; }
+
+/* Measure, for prose only.
+
+   The column is 46rem because the two-up grids — phrase cards, matching, the
+   contrast pair — need the room. English prose at that width measured 74 to 91
+   characters a line, well past the 60–75 where the eye still finds the start
+   of the next line reliably. So the grids keep the column and the paragraphs
+   get their own ceiling: 36rem is about 70 characters of English, or 36 of
+   Chinese, which both land in range. A paragraph narrower than the cards under
+   it is the normal shape of a page that has both. */
+.lead, .summary, .cover-intro, .note p, .why { max-width: 36rem; }
 
 .cover { padding: 40px 0 10px; }
 
@@ -533,7 +558,7 @@ body.zh-all .session-btn .titles .zh { display: block; }
 .hint {
   margin: 0 0 14px;
   font-family: var(--font-ui);
-  font-size: .84rem;
+  font-size: .92rem;
   color: var(--ink-faint);
 }
 .hint-zh { font-family: var(--font-zh); font-size: .95em; margin-top: 2px; }

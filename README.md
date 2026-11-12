@@ -4109,6 +4109,20 @@ session, as a self-audit Anny marks for her manager and then for herself.
   written for the lesson. The closing `note` block says exactly which is which,
   **on the page** rather than only in the content file — a reader who cannot
   see this README is the one who needs to know.
+- **Readability, measured rather than eyeballed** (13 Nov 2026). Three things
+  came out of actually checking the page instead of looking at it. **The body
+  was set in the display face** — intuitive.com runs BrownPro for headlines and
+  Inter for everything you read, and this page had the geometric face doing
+  both, which looks right in a heading and costs you on the fifth line of a
+  paragraph. Headings and figures keep `--font-display`; running text moved to
+  the text face. **English ran 74–91 characters a line** at the full 46rem
+  column, past the 60–75 where the eye still finds the start of the next line.
+  The column stays wide because the two-up grids need it, so prose got its own
+  36rem ceiling instead; it now sets at 49–69. A paragraph narrower than the
+  cards under it is the normal shape of a page that has both. **The Chinese was
+  too small at `.82em`** — 14.8px, and Traditional Chinese packs far more
+  stroke into an em than Latin does. It is `.88em` now, still clearly the
+  second voice.
 - **The company's livery, and the sessions first.** Both of Anny's pages follow
   intuitive.com from November 2026 — see
   [intuitive.css](#intuitivecss--one-clients-company-livery). On this one that
@@ -5308,6 +5322,17 @@ Three things are worth knowing before copying it anywhere:
   carries a short, closed list of `:root`-prefixed overrides to win it back. If
   a label on either page starts shouting again, `house.css` has grown a new one
   and it belongs on that list.
+
+**One value is deliberately not theirs.** `--ink-faint` is `#6B6B73`, not the
+site's own `#8A8A90`. Measured on these two pages, `#8A8A90` gave 3.4:1 on
+white and 3.1:1 on the grey — under the 4.5:1 that text at these sizes needs,
+and it was carrying real text: exercise instructions, the contents list, every
+session date. Darkened until it passes on both grounds while still reading as
+the tier below `--ink-soft`. Their own pages get away with it because they use
+that grey for captions at larger sizes; these do not. Every text role on both
+pages was checked against its *composited* background afterwards — the tools
+panel is translucent, so a naive check reads the wrong ground and reports a
+failure that is not there.
 
 **Green survives, and only on the notebook.** Intuitive's palette has no green,
 and the meeting guide has none: nothing there is right or wrong, so its states

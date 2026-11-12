@@ -63,7 +63,15 @@
   --card:       #f2f3f5;
   --ink:        #1c1c1f;
   --ink-soft:   #55575c;
-  --ink-faint:  #8a8a90;
+
+  /* The one value here that is NOT the site's own. Theirs is #8A8A90, and on
+     these two pages that measured 3.4:1 on white and 3.1:1 on the grey — under
+     the 4.5:1 that text this size needs, and it was carrying real text:
+     exercise instructions, the contents list, every session date. Darkened
+     until it passes on both grounds (5.3:1 and 4.7:1) while still reading as
+     the quiet tier below --ink-soft. Their own pages get away with #8A8A90
+     because they use it for captions at larger sizes; these do not. */
+  --ink-faint:  #6b6b73;
 
   /* what used to be navy: the control colour, and their control is black */
   --navy:       #1c1c1f;

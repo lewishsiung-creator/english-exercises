@@ -44,7 +44,10 @@
   --card: #f2f3f5;
   --ink: #1c1c1f;
   --ink-soft: #55575c;
-  --ink-faint: #8a8a90;
+  /* Darkened from the site's own #8A8A90, which fails contrast at these
+     sizes — see ../../intuitive.css, which is where this actually comes from
+     now; this block is only the fallback if that file is missing. */
+  --ink-faint: #6b6b73;
 
   /* What used to be navy is the control colour, and their primary control is
      a black pill. */
@@ -464,7 +467,7 @@ h3 {
 
 .body { margin: 0 0 1.1em; }
 
-.small { margin: 12px 0 0; font-size: .8rem; line-height: 1.75; color: var(--ink-faint); }
+.small { margin: 12px 0 0; font-size: .88rem; line-height: 1.8; color: var(--ink-faint); }
 
 /* Only ever shown when content.js names a block type the renderer does not
    have. Deliberately ugly, and it prints. */
@@ -695,7 +698,7 @@ h3 {
 .day-rows li.fixed .day-mark { color: var(--ink-faint); }
 
 .day-what { margin: 0; font-weight: 600; font-size: .98rem; line-height: 1.65; }
-.day-why { margin: 5px 0 0; font-size: .9rem; color: var(--ink-soft); }
+.day-why { margin: 5px 0 0; font-size: .94rem; line-height: 1.8; color: var(--ink-soft); }
 
 /* Their "Read more →". The one row that points at another section of the page
    should be reachable from here rather than described. */
@@ -745,7 +748,7 @@ h3 {
   color: var(--gold);
 }
 .ag-what { margin: 0; font-weight: 600; font-size: .96rem; line-height: 1.6; }
-.ag-who { margin: 4px 0 0; font-size: .78rem; line-height: 1.6; color: var(--ink-faint); }
+.ag-who { margin: 4px 0 0; font-size: .84rem; line-height: 1.65; color: var(--ink-faint); }
 
 .ag-ask {
   margin: 0;
@@ -954,7 +957,7 @@ h3 {
 .panel-btn-quiet { color: var(--ink-soft); background: var(--paper); border-color: var(--line); }
 .panel-btn-quiet:hover { filter: none; border-color: var(--rule); }
 
-.row-note { margin: 7px 0 0; font-size: .74rem; line-height: 1.7; color: var(--ink-faint); }
+.row-note { margin: 7px 0 0; font-size: .82rem; line-height: 1.75; color: var(--ink-faint); }
 
 /* ---------------- small screens ---------------- */
 
