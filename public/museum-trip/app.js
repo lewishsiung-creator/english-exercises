@@ -40,25 +40,43 @@ const settings = {
 };
 
 /* ── Voice ──────────────────────────────────────────────────────────
-   English only. American young female first (Lewis's choice for kids'
-   pages). Match on prefix: macOS localises names, e.g. "Flo (英文（美國）)". */
-const EN_PREF = ['Flo', 'Shelley', 'Samantha', 'Ava', 'Allison', 'Susan', 'Zoe', 'Nicky',
-  'Google US English', 'Microsoft Aria', 'Microsoft Jenny', 'Microsoft Zira'];
+   English only, and the most natural voice the device has (Lewis,
+   2026-11-13 — he had first asked for an American young female voice,
+   which had resolved to Flo, an older and more robotic engine).
+   Ranking: Premium / Natural > Enhanced > the ordinary voice, and among
+   those American women first (Ava, Zoe, Samantha …). Flo and Shelley come
+   last of the ordinary voices; macOS's novelty voices (Bubbles, Zarvox …)
+   are never picked. Names are matched on their start, because macOS
+   localises them: "Ava（增強音質）", "Flo (英文（美國）)". A voice a grown-up
+   chooses in the 大人 panel always wins. */
+const VOICE_ORDER = ['Ava', 'Zoe', 'Samantha', 'Allison', 'Susan', 'Nicky', 'Joelle', 'Noelle',
+  'Jenny', 'Aria', 'Michelle', 'Emma', 'Google US English', 'Shelley', 'Flo'];
+const NOVELTY = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Junior|Ralph|Fred|Kathy|Grandma|Grandpa|Rocko|Eddy|Reed|Sandy)\b/i;
 const HAS_TTS = 'speechSynthesis' in window;
 let voices = [];
 
+function voiceScore(v) {
+  const n = v.name;
+  let s = 0;
+  if (/premium|高品質|優質/i.test(n)) s += 400;
+  else if (/enhanced|增強/i.test(n)) s += 300;
+  if (/natural|neural/i.test(n)) s += 350;            // Edge's online voices
+  const base = n.replace(/^Microsoft\s+/i, '');
+  const i = VOICE_ORDER.findIndex((p) => base.startsWith(p));
+  if (i >= 0) s += 100 - i * 5;
+  if (NOVELTY.test(base)) s -= 1000;
+  if (/^en[-_]US/i.test(v.lang)) s += 20;
+  return s;
+}
 function voiceList() {
   const us = voices.filter((v) => /^en[-_]US/i.test(v.lang));
-  return us.length ? us : voices.filter((v) => /^en/i.test(v.lang));
+  const list = us.length ? us : voices.filter((v) => /^en/i.test(v.lang));
+  return list.slice().sort((a, b) => voiceScore(b) - voiceScore(a));
 }
 function pickVoice() {
   const list = voiceList();
   const saved = settings.enVoice;
   if (saved) { const v = list.find((x) => x.name === saved); if (v) return v; }
-  for (const p of EN_PREF) {
-    const v = list.find((x) => x.name.startsWith(p));
-    if (v) return v;
-  }
   return list[0] || null;
 }
 function loadVoices() { voices = speechSynthesis.getVoices(); fillVoicePickers(); }
@@ -646,8 +664,8 @@ function fillVoicePickers() {
   const list = voiceList();
   const chosen = pickVoice();
   s.innerHTML = list.length ? '' : '<option value="">（這台裝置沒有英文語音）</option>';
-  list.forEach((v) => {
-    const o = el('option', null, esc(v.name));
+  list.filter((v, i) => i === 0 || voiceScore(v) > -500).forEach((v, i) => {
+    const o = el('option', null, esc(v.name) + (i === 0 ? ' ★ 建議' : ''));
     o.value = v.name;
     if (chosen && v.name === chosen.name) o.selected = true;
     s.appendChild(o);

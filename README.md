@@ -6215,9 +6215,13 @@ request: 記得讓孩子帶健保卡 (pack the child's NHI card).
 
 ### Design notes
 
-- **Kids' house rules**: every English line is spoken (Flo), tap any English
+- **Kids' house rules**: every English line is spoken, tap any English
   line to hear it again; a wrong answer wobbles and says "think again", only
   the right one moves on; big targets, no timers.
+- **The most natural voice on the device**, not a fixed one (2026-11-13; it
+  had been Flo). Premium/Natural > Enhanced > ordinary, American women first
+  (Ava, Zoe, Samantha …), Flo last, macOS novelty voices never. The 大人
+  panel marks the pick ★ 建議 and tells parents how to download Ava.
 - **Bilingual text, English voice only.** The Chinese is always shown, not
   hidden behind a tap, but it is never spoken: Lewis had the Chinese voice
   (美佳) taken out on 2026-11-12, the same day the page was built.
