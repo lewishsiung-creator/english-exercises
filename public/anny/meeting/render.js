@@ -177,7 +177,8 @@ const BLOCKS = {
                 </div>
                 <div class="day-main">
                   <p class="day-what">${text(r.t)}</p>
-                  ${r.why ? `<p class="day-why">${text(r.why)}</p>` : ''}
+                  ${r.why ? `<p class="day-why">${text(r.why)}${
+                    r.see ? ` <a class="day-see" href="#${text(r.see)}">看那一節 ↗</a>` : ''}</p>` : ''}
                   ${r.goal && r.goal.length
                     ? `<p class="day-goals">${r.goal.map((g) => `<span>${text(g)}</span>`).join('')}</p>`
                     : ''}
@@ -363,6 +364,15 @@ GUIDE.sections.forEach((s) => doc.appendChild(el(buildSection(s))));
    to keep. `since` of 0 means paused. */
 const clockBtn = $('#clockBtn');
 const clockRows = $$('.clock-row');
+const nowbar = $('#nowbar');
+const nowWhen = $('#nowWhen');
+const nowWhat = $('#nowWhat');
+
+/* The strip under the bar goes back to the plan it is reporting. */
+nowbar.addEventListener('click', () => {
+  const flow = document.getElementById('flow');
+  if (flow) flow.scrollIntoView();
+});
 
 function elapsed() {
   const c = store.clock;
@@ -389,12 +399,24 @@ function paintClock() {
      are here", which is exactly the wrong thing for a plan nobody has started. */
   const min = ms / 60000;
   const last = clockRows.length - 1;
+  let here = null;
   clockRows.forEach((r, i) => {
     const from = +r.dataset.from;
     const to = +r.dataset.to;
     const inside = running && (min >= from && (min < to || (i === last && min >= from)));
     r.classList.toggle('now', inside);
+    if (inside) here = r;
   });
+
+  /* Carry that row up to the strip under the bar, so the plan is readable from
+     anywhere on a page twenty screens long rather than only from section 02.
+     The strip is what makes the clock worth having during the conversation. */
+  document.body.classList.toggle('clock-on', running);
+  nowbar.hidden = !running;
+  if (here) {
+    nowWhen.textContent = `${here.dataset.from}–${here.dataset.to} 分`;
+    nowWhat.textContent = $('.clock-what', here).textContent;
+  }
 }
 
 clockBtn.addEventListener('click', () => {
@@ -507,6 +529,10 @@ function keepLinkVisible(a) {
   else if (link.bottom > view.bottom) box.scrollTop += link.bottom - view.bottom;
 }
 
+const progress = $('#progress');
+const toTop = $('#toTop');
+const navToggleLabel = $('#navToggleLabel');
+
 function markHere() {
   const line = 90;
   let here = marks[0];
@@ -514,10 +540,25 @@ function markHere() {
   links.forEach((a) => a.classList.remove('here'));
   const a = links.get(here.id);
   if (a) { a.classList.add('here'); keepLinkVisible(a); }
+
+  /* How far down. The contents list answers this on a wide screen; on a phone
+     it is behind the ☰, and the page runs to twenty-odd screens. */
+  const max = document.documentElement.scrollHeight - innerHeight;
+  progress.style.width = `${max > 0 ? Math.min(100, (scrollY / max) * 100) : 0}%`;
+
+  /* The ☰ is mobile-only, so it can carry the section number without costing
+     anything on a wide screen: where you are, next to the way to move. */
+  const sec = here.classList && here.classList.contains('sec') ? here : null;
+  navToggleLabel.textContent = sec ? $('.sec-n', sec).textContent : '目錄';
+
+  toTop.hidden = scrollY < innerHeight * 1.5;
 }
 
 markHere();
 addEventListener('scroll', markHere, { passive: true });
+addEventListener('resize', markHere, { passive: true });
+
+toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 
 const navToggle = $('#navToggle');
 navToggle.addEventListener('click', () => {

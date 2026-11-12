@@ -14,18 +14,24 @@
 <meta name="robots" content="noindex, nofollow">
 
 <!-- Inline SVG mark: two seats at one table — the page is about co-planning,
-     not presenting. Colours percent-encoded, or "#" ends the URL. -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d3f6e'/%3E%3Crect x='12' y='30' width='40' height='4' rx='2' fill='%23f7f6f2'/%3E%3Ccircle cx='22' cy='21' r='6' fill='%23f2c14e'/%3E%3Ccircle cx='42' cy='21' r='6' fill='%23f7f6f2'/%3E%3Crect x='17' y='38' width='10' height='11' rx='2' fill='%23c2d3e7'/%3E%3Crect x='37' y='38' width='10' height='11' rx='2' fill='%23c2d3e7'/%3E%3C/svg%3E">
-<meta name="theme-color" content="#f7f6f2">
+     not presenting. In the page's own palette: near-black ground, one accent
+     blue. Colours percent-encoded, or "#" ends the URL. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231c1c1f'/%3E%3Crect x='12' y='30' width='40' height='4' rx='2' fill='%23ffffff'/%3E%3Ccircle cx='22' cy='21' r='6' fill='%231c23ba'/%3E%3Ccircle cx='42' cy='21' r='6' fill='%23ffffff'/%3E%3Crect x='17' y='38' width='10' height='11' rx='2' fill='%2355575c'/%3E%3Crect x='37' y='38' width='10' height='11' rx='2' fill='%2355575c'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#ffffff">
 
 <link rel="stylesheet" href="style.css">
 
 <!-- The house typography, shared by every page. Linked AFTER this page's own
-     stylesheet so its definitions win. Colour is NOT in it — this page keeps
-     the notebook's navy. See ../../type.css. -->
+     stylesheet so its definitions win — which is why the display face here is
+     --font-display and not --font-en, a serif this file would lose to.
+     See ../../type.css. -->
 <link rel="stylesheet" href="../../type.css">
-<!-- The house palette and type for the adult pages. See ../../editorial.css. -->
-<link rel="stylesheet" href="../../editorial.css">
+
+<!-- ../../editorial.css is deliberately NOT linked. It repaints the adult
+     family near-black and red, and this page's colour was chosen on purpose:
+     it follows intuitive.com, where Anny works. Same footing as /winkle/ and
+     /ielts-speaking/, which keep their own colour for the same reason. -->
+
 <!-- The house interface, shared by every page in the family: the bar, the
      controls, the display type and the hairlines. Linked LAST so it wins, and
      it deliberately sets no body size, no measure and no colour of its own.
@@ -39,7 +45,7 @@
 
 <header class="bar">
   <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
-    <span aria-hidden="true">☰</span> 目錄
+    <span aria-hidden="true">☰</span> <span id="navToggleLabel">目錄</span>
   </button>
 
   <p class="bar-title">商務團隊會議 <span>共同籌辦指南</span></p>
@@ -51,7 +57,22 @@
 
   <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
           aria-controls="panel" title="工具" aria-label="工具">⚙</button>
+
+  <!-- How far down a page that runs to twenty-odd screens on a phone. Drawn
+       on the bar's own bottom edge, so it costs no height. -->
+  <div class="bar-progress" aria-hidden="true"><i id="progress"></i></div>
 </header>
+
+<!-- The running clock, following the reader down the page. The 30-minute plan
+     lives in section 02, and a clock that only tells you where you are while
+     you are parked on that one section is no use during the conversation it is
+     there to pace. Present only while the clock runs; tapping it goes back to
+     the plan. -->
+<button class="nowbar" id="nowbar" hidden>
+  <span class="now-when" id="nowWhen"></span>
+  <span class="now-what" id="nowWhat"></span>
+  <span class="now-go" aria-hidden="true">↗</span>
+</button>
 
 <div class="shell">
   <div id="nav">
@@ -92,6 +113,10 @@
     <p class="row-note">清掉這台裝置上的勾選、填寫與計時。指南內容不受影響。</p>
   </div>
 </div>
+
+<!-- Twenty-odd screens on a phone, and the contents list is behind the ☰.
+     Appears once there is a way back worth having. -->
+<button class="totop" id="toTop" hidden aria-label="回到最上面">↑</button>
 
 <!-- Site footer. Identical on every page, so a reader who lands on any one
      sheet can find the rest. -->
