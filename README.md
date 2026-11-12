@@ -6224,5 +6224,25 @@ game, an I Spy checklist, word cards and a picture quiz.
   individual objects, so the I Spy list only asks for things sure to be
   there (the wall, the pool, the public art, the Children's Hall).
 - The 大人 button is faint on purpose. It holds visitor info, a talk-about-it
-  note, voice/speed settings and a reset for the I Spy stars (the only thing
-  kept, in this device's `localStorage`).
+  note, voice/speed/sound-effect settings and a reset for the I Spy stars.
+  `localStorage` keeps only the stars, the pages seen and those settings.
+
+### Interaction design (redesign, 2026-11-12)
+
+- **A start screen** with one big "Let's go!" button. Phones and iPads play
+  no speech or sound before a touch, so without it the first page would sit
+  silent.
+- **Every page is one sheet**: a picture on a chapter-coloured stage, then
+  the words. Each chapter has its own tint, so a child can tell where they
+  are without reading. On a landscape iPad (≥ 760px) picture and words sit
+  side by side and nothing scrolls.
+- **The spoken word lights up** (speech-engine word boundaries). Browsers
+  that send none fall back to lighting the whole line.
+- **The orange Next arrow glows only when the page is done**: read aloud, or
+  its game finished. On game pages it stays soft so it never competes with
+  the green "Next question" button. It always works for a grown-up.
+- Synthesised chimes (no audio files) for right / try again / star, off in
+  the 大人 panel. Chapter chips get a ✓ once every page in them is seen.
+  The last page is a "Museum Explorer" badge with the I Spy star count.
+- Asset links carry `?v=N`; bump it on every change so a returning phone
+  never pairs a new `index.html` with an old cached `app.js`.
