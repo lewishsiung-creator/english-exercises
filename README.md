@@ -6210,7 +6210,7 @@ Eighteen pages in seven chapters: getting ready (the building, the solar
 "cloud wall", the pool), two 👍/👎 rules games (on the bus, in the museum —
 moved up to second place at Lewis's request), the Story of Taiwan (the
 permanent exhibition's seven units retold in five pages), the Children's
-Hall, an I Spy checklist, word cards and a picture quiz. The start screen carries one parents' reminder, at Lewis's
+Hall, an I Spy list to remember, word cards and a picture quiz. The start screen carries one parents' reminder, at Lewis's
 request: 記得讓孩子帶健保卡 (pack the child's NHI card).
 
 ### Design notes
@@ -6229,6 +6229,17 @@ request: 記得讓孩子帶健保卡 (pack the child's NHI card).
   listed at the top of `content.js`. The official exhibition page names no
   individual objects, so the I Spy list only asks for things sure to be
   there (the wall, the pool, the public art, the Children's Hall).
+- **Used before the trip, not at the museum.** The children won't have the
+  page with them on the day (Lewis, 2026-11-12), so nothing asks them to tap
+  things as they see them. An I Spy star means "I know to look for it"; the
+  talk prompt asks the grown-up to find out afterwards which ones they found.
+- **Real photos (2026-11-12)**: four freely licensed Wikimedia Commons
+  photos in `public/museum-trip/photos/` (the whole museum, the front, the
+  cloud wall with its English name, an Anping jar shot in the museum), on
+  pages 1, 2, 4 and 10, each with a "Real photo · 真實照片" chip. They are
+  CC BY-SA, so each carries a small credit and the 大人 panel lists the
+  links; credits live in `PHOTOS` in `content.js`. Only use photos whose
+  licence allows reuse — never the museum's own site or a Google image.
 - The 大人 button is faint on purpose. It holds visitor info, a talk-about-it
   note, voice/speed/sound-effect settings and a reset for the I Spy stars.
   `localStorage` keeps only the stars, the pages seen and those settings.

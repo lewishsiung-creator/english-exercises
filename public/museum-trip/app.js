@@ -249,6 +249,16 @@ function artHTML(art) {
   return `<div class="stage" aria-hidden="true">${glyphs.map((g, i) => `<span class="g" style="--d:${i * 90}ms">${g}</span>`).join('')}</div>`;
 }
 
+// A real photo fills the stage. The credit is plain text on the photo (a
+// link there would take a child off the page); the links are in 大人.
+function photoHTML(ph) {
+  return `<figure class="stage stage-photo${ph.fit === 'contain' ? ' contain' : ''}">
+    <img src="${ph.src}" alt="${esc(ph.alt)}" decoding="async">
+    <span class="real-chip"><span aria-hidden="true">📷</span> <span lang="en">Real photo</span> · <span lang="zh-Hant">真實照片</span></span>
+    <figcaption class="credit">Photo: ${esc(ph.by)} · ${esc(ph.lic)} · Wikimedia Commons</figcaption>
+  </figure>`;
+}
+
 /* ── Page shell ─────────────────────────────────────────────────── */
 const main = $('#page');
 const chapBox = $('#chapters');
@@ -314,7 +324,7 @@ function render() {
   main.className = 'page kind-' + p.kind;
 
   const sheet = el('section', 'sheet' + (GAME[p.kind] || TILE[p.kind] ? ' compact' : ''));
-  if (!GAME[p.kind]) sheet.insertAdjacentHTML('beforeend', artHTML(p.art));
+  if (!GAME[p.kind]) sheet.insertAdjacentHTML('beforeend', p.photo && PHOTOS[p.photo] ? photoHTML(PHOTOS[p.photo]) : artHTML(p.art));
   const compact = !!(GAME[p.kind] || TILE[p.kind]);
   const copy = el('div', 'copy');
   if (p.tag) copy.appendChild(el('p', 'tag', `<span lang="en">${esc(p.tag.en)}</span><span lang="zh-Hant">${esc(p.tag.zh)}</span>`));
@@ -436,7 +446,7 @@ const KINDS = {
     const meter = el('div', 'meter');
     const grid = el('div', 'tiles spy');
     const update = () => {
-      meter.innerHTML = `<div class="meter-bar"><span style="width:${(found.size / p.items.length) * 100}%"></span></div><p><b>⭐ ${found.size} / ${p.items.length}</b> <span lang="en">found</span> · <span lang="zh-Hant">找到了</span></p>`;
+      meter.innerHTML = `<div class="meter-bar"><span style="width:${(found.size / p.items.length) * 100}%"></span></div><p><b>⭐ ${found.size} / ${p.items.length}</b> <span lang="en">remembered</span> · <span lang="zh-Hant">記住了</span></p>`;
     };
     p.items.forEach((it) => {
       const b = el('button', 'tile');
@@ -444,15 +454,16 @@ const KINDS = {
       b.setAttribute('aria-pressed', found.has(it.id) ? 'true' : 'false');
       b.innerHTML = tileHTML(it.art, it.en, it.zh, '<span class="stamp" aria-hidden="true">⭐</span>');
       b.addEventListener('click', () => {
-        if (found.has(it.id)) { found.delete(it.id); b.setAttribute('aria-pressed', 'false'); stopSpeech(); }
-        else {
-          found.add(it.id); b.setAttribute('aria-pressed', 'true'); pop(b); sfx.star();
-          const all = found.size === p.items.length;
-          const q = [{ text: `You found ${it.en}!` }];
-          if (all) q.push({ text: 'You found them all! Super!' });
-          say(q);
-          if (all) celebrate();
-        }
+        // Used before the trip, so a tap means "I will look for it". Tapping
+        // again just says it again; the 大人 panel clears the stars.
+        pop(b);
+        if (found.has(it.id)) { say([{ text: `Look for ${it.en}!` }]); return; }
+        found.add(it.id); b.setAttribute('aria-pressed', 'true'); sfx.star();
+        const all = found.size === p.items.length;
+        const q = [{ text: `Look for ${it.en}!` }];
+        if (all) q.push({ text: 'Super! Now you know what to look for at the museum.' });
+        say(q);
+        if (all) celebrate();
         store.set('spy', [...found]);
         update();
       });
@@ -487,7 +498,7 @@ const KINDS = {
       <p class="badge-en" lang="en">Museum Explorer</p>
       <p class="badge-zh" lang="zh-Hant">博物館小探險家</p>
       <p class="badge-stars">${'⭐'.repeat(Math.min(n, total))}${'<i>☆</i>'.repeat(Math.max(total - n, 0))}</p>
-      <p class="badge-note"><span lang="en">${n === total ? 'You found everything on the I Spy list!' : 'Find the rest of the I Spy stars at the museum!'}</span><span lang="zh-Hant">${n === total ? '「找一找」全部找到了！' : '到了博物館，把「找一找」的星星找齊！'}</span></p>`;
+      <p class="badge-note"><span lang="en">${n === total ? 'At the museum, look for all ten things on your I Spy list!' : 'Go back to I Spy and learn the rest of the list.'}</span><span lang="zh-Hant">${n === total ? '到了博物館，把「找一找」的東西都找出來！' : '回到「找一找」，把清單記完！'}</span></p>`;
     const again = el('button', 'ghost-btn', '<span aria-hidden="true">↺</span> <span lang="en">Start again</span> · <span lang="zh-Hant">從頭再看</span>');
     again.type = 'button';
     again.addEventListener('click', () => go(0));
@@ -684,6 +695,11 @@ $('#resetSpy').addEventListener('click', () => {
 /* ── Start ──────────────────────────────────────────────────────── */
 const startEl = $('#start');
 $('#startArt').innerHTML = svgArt('cover');
+// Photo credits with links, for the grown-ups.
+$('#photoCredits').innerHTML = Object.values(PHOTOS).map((ph) =>
+  `<li>${esc(ph.what.zh)} · <span lang="en">${esc(ph.what.en)}</span><br><a href="${ph.url}" target="_blank" rel="noopener">${esc(ph.by)}</a>, ${esc(ph.lic)}, Wikimedia Commons</li>`).join('');
+// Fetch the photos early, so no page waits on one.
+Object.values(PHOTOS).forEach((ph) => { const i = new Image(); i.src = ph.src; });
 function begin() {
   if (startEl.hidden) return;
   interacted = true;

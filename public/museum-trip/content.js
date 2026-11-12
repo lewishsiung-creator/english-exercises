@@ -22,10 +22,35 @@
      ch     chapter id (see CHAPTERS)
      kind   story | hall | manners | spy | words | quiz | end
      art    emoji string, or 'svg:cover' / 'svg:wall'
+     photo  optional key into PHOTOS; a real photo takes the picture's place
      lines  [{en, zh}] — read aloud, English then Chinese
      tag    optional small label above the lines {en, zh}
      talk   optional grown-up question {en, zh}, behind 💬
 */
+
+/* Real photos of the museum, all freely licensed on Wikimedia Commons and
+   resized for this page (photos/). CC BY-SA asks for the photographer, the
+   licence and a link: a short credit sits on each photo and the full links
+   are in the 大人 panel. Nothing here may come from the museum's own site or
+   from Google Images: those are not ours to reuse. */
+const PHOTOS = {
+  museum: { src: 'photos/museum.jpg', by: 'Fcuk1203', lic: 'CC BY-SA 3.0',
+    url: 'https://commons.wikimedia.org/wiki/File:%E5%9C%8B%E7%AB%8B%E8%87%BA%E7%81%A3%E6%AD%B7%E5%8F%B2%E5%8D%9A%E7%89%A9%E9%A4%A8.jpg',
+    what: { en: 'The museum', zh: '博物館全景' },
+    alt: 'The National Museum of Taiwan History across green grass and ponds, under a blue sky' },
+  entrance: { src: 'photos/entrance.jpg', by: 'Pbdragonwang', lic: 'CC BY-SA 3.0',
+    url: 'https://commons.wikimedia.org/wiki/File:%E5%9C%8B%E7%AB%8B%E8%87%BA%E7%81%A3%E6%AD%B7%E5%8F%B2%E5%8D%9A%E7%89%A9%E9%A4%A8_01.jpg',
+    what: { en: 'The front of the museum', zh: '博物館正面' },
+    alt: 'The front of the museum: a big red-brown building with wide stairs' },
+  wall: { src: 'photos/cloud-wall.jpg', by: 'Pbdragonwang', lic: 'CC BY-SA 3.0',
+    url: 'https://commons.wikimedia.org/wiki/File:%E5%9C%8B%E7%AB%8B%E8%87%BA%E7%81%A3%E6%AD%B7%E5%8F%B2%E5%8D%9A%E7%89%A9%E9%A4%A8_02.jpg',
+    what: { en: 'The cloud wall', zh: '光電雲牆' },
+    alt: 'The long wall of solar panels with NATIONAL MUSEUM OF TAIWAN HISTORY across it' },
+  jar: { src: 'photos/anping-jar.jpg', by: 'Pbdragonwang', lic: 'CC BY-SA 4.0', fit: 'contain',
+    url: 'https://commons.wikimedia.org/wiki/File:%E5%AE%89%E5%B9%B3%E5%A3%BA.jpg',
+    what: { en: 'An Anping jar, photographed at the museum', zh: '安平壺（攝於臺史博）' },
+    alt: 'An old pale clay jar with a round mouth' },
+};
 
 const CHAPTERS = [
   { id: 'go',      icon: '🎒', en: 'Get ready',    zh: '出發前' },
@@ -39,16 +64,16 @@ const CHAPTERS = [
 
 const PAGES = [
   // ── Get ready ───────────────────────────────────────────────
-  { ch: 'go', kind: 'story', art: 'svg:cover',
+  { ch: 'go', kind: 'story', art: 'svg:cover', photo: 'museum',
     tag: { en: 'Friday, November 13, 2026', zh: '2026 年 11 月 13 日（星期五）' },
     lines: [
-      { en: "It's field trip day!", zh: '校外教學日到了！' },
+      { en: 'Field trip day is coming!', zh: '校外教學日快到了！' },
       { en: 'We are going to the National Museum of Taiwan History in Tainan.',
         zh: '我們要去台南的國立臺灣歷史博物館。' },
     ],
     talk: { en: 'What do you think we will see there?', zh: '你覺得我們會在那裡看到什麼？' } },
 
-  { ch: 'go', kind: 'story', art: '🏛️',
+  { ch: 'go', kind: 'story', art: '🏛️', photo: 'entrance',
     lines: [
       { en: 'A museum is a big house for special old things.', zh: '博物館是一棟大房子，裡面放著特別的老東西。' },
       { en: 'We go there to look and learn.', zh: '我們去那裡看一看、學一學。' },
@@ -62,7 +87,7 @@ const PAGES = [
     ],
     talk: { en: 'What was life like when Grandma and Grandpa were little?', zh: '爺爺奶奶小時候，生活是什麼樣子？' } },
 
-  { ch: 'go', kind: 'story', art: 'svg:wall',
+  { ch: 'go', kind: 'story', art: 'svg:wall', photo: 'wall',
     lines: [
       { en: 'Look at the big wall. It looks like clouds in the sky.', zh: '看看那面大牆，它好像天上的雲。' },
       { en: 'It has solar panels. They make power from the sun.', zh: '牆上有太陽能板，可以用太陽光來發電。' },
@@ -141,10 +166,12 @@ const PAGES = [
     ],
     talk: { en: 'If there were no shops, what would you make yourself?', zh: '如果沒有商店，你會自己做什麼東西？' } },
 
-  { ch: 'story', kind: 'story', art: '⛵🧭📦',
+  { ch: 'story', kind: 'story', art: '⛵🧭📦', photo: 'jar',
     lines: [
       { en: 'Later, big ships sailed here from far away.', zh: '後來，大船從很遠很遠的地方開到這裡。' },
       { en: 'People came to buy and sell things, like deer skins and sugar.', zh: '人們來這裡買東西、賣東西，像是鹿皮和糖。' },
+      // 安平壺: 17th-century jars carried on the ships, found all over Taiwan.
+      { en: 'Jars like this one came on the ships. It is very, very old!', zh: '像這樣的罐子，就是坐船來的。它非常非常老喔！' },
     ],
     talk: { en: 'If you could trade one toy, what would you trade it for?', zh: '如果可以拿一個玩具去交換，你想換什麼？' } },
 
@@ -189,8 +216,11 @@ const PAGES = [
   // ── I spy ──────────────────────────────────────────────────────
   { ch: 'spy', kind: 'spy', art: '🔍',
     lines: [
-      { en: 'At the museum, can you find these? Tap each one you see.', zh: '到了博物館，你找得到這些嗎？看到了就按一下。' },
+      { en: 'At the museum, look for these things! Tap each one to remember it.', zh: '到了博物館，要找找看這些東西！每一個都按一下，把它記起來。' },
     ],
+    // Learned here, before the trip: the children will not have the page with
+    // them at the museum, so a star means "I know to look for it", not "found".
+    talk: { en: 'After the trip, ask: which ones did you find?', zh: '回來以後問問孩子：你找到了哪幾個？' },
     items: [
       { id: 'wall',  art: '☁️', en: 'the cloud wall', zh: '像雲的大牆' },
       { id: 'name',  art: '🔤', en: "the museum's name on the wall", zh: '牆上的博物館英文名字' },
