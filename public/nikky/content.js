@@ -65,9 +65,28 @@
    Session 2 has NO `fix` block, for the same reason Anny's and Anna's first
    sessions do not: its source is the handout for the lesson, and the reflection
    in it is already the polished version of what Nikky wrote. A polished text
-   holds the ideas but not the mistakes, so there is nothing to correct. If her
-   original writing turns up, or the session was recorded, add the block then —
-   do not invent it from the polished sentences.
+   holds the ideas but not the mistakes, so there is nothing to correct.
+
+   Session 3's handout DOES carry her originals — it sets every revision beside
+   a "You wrote: …" line — and that is what makes its `fix` block possible. But
+   only three of the ten pairs are corrections. The handout itself says of two
+   of them that her sentence was already correct, and most of the rest are a
+   plain sentence raised to a professional register, not a mistake put right.
+   Those go in a `contrast` labelled 「What you wrote」 against 「The revised
+   version」, with a hint saying in both languages that the left column is not
+   wrong. Putting a correct sentence behind a ✕ teaches her to distrust English
+   that was fine, which costs more than the polish is worth. Same principle as
+   Ken's rule about an AI rewrite: a block is only worth having if every line in
+   it means what the mark says it means.
+
+   THE COMPANY IS NOT NAMED
+   ------------------------
+   Session 3's source names her employer in its title, its questions and
+   throughout. This page does not, anywhere — it is "the company". The notebook
+   is `noindex` but its URL is not secret, and session 3 is a named person
+   explaining why she was unhappy somewhere and left. The same rule the rest of
+   the repo follows for Mia's clinic, Keep Speaking's client and the family-law
+   firm. Keep it that way in later sessions.
 
    SAMPLE BANNER
    -------------
@@ -1126,6 +1145,576 @@ const NOTEBOOK = {
             { en: 'For example, ___. / Therefore, I would ___.', zh: '舉例來說，＿＿。／因此，我會＿＿。' },
             { en: 'I understand ___, but at the same time, we need to ___.', zh: '我理解＿＿，但同時，我們必須＿＿。' },
             { en: 'Instead of seeing ___ as ___, I want them to see it as ___.', zh: '與其把＿＿看成＿＿，我希望他們把它看成＿＿。' },
+          ],
+        },
+      ],
+    },
+
+    {
+      id: 's3',
+      n: 3,
+      date: '2026-11-13',
+      dateEn: '13 November 2026',
+      dateZh: '2026 年 11 月 13 日',
+      en: 'Capable, and a good fit — not the same thing',
+      zh: '有能力，和適合，不是同一件事',
+
+      focus: [
+        { en: 'Three months, reviewed', zh: '三個月的回顧' },
+        { en: 'Capable vs. a good fit', zh: '有能力與適合' },
+        { en: 'A beginner’s mindset', zh: '初學者心態' },
+        { en: 'The next chapter', zh: '下一個階段' },
+      ],
+
+      blocks: [
+        {
+          t: 'lead',
+          en: 'This one closes the chapter the first two sessions opened. In August you were in week two, working out where a new manager starts. Three months later the answer is written down — and so is the decision to leave.',
+          zh: '這一堂課，為前兩堂課開啟的那個章節收尾。八月的時候你還在第二週，在摸索一個新主管該從哪裡開始。三個月後，答案已經寫下來了——而離開的決定，也一樣。',
+        },
+
+        {
+          t: 'link',
+          href: '#s1',
+          en: 'Where this started',
+          zh: '這一切的起點',
+          noteEn: 'Session 1, back in August: the Excel files, the key account nobody else could handle, and the order of operations you set yourself — understand it, write it down, spread it across the team, then automate it. Worth rereading beside this one, because you did all four.',
+          noteZh: '八月的第一堂課：滿滿的 Excel 檔、沒有第二個人接得起來的重要客戶，還有你為自己定下的順序——先弄懂、寫下來、讓知識分散到團隊，最後才自動化。值得和這一堂課對照著重看一次，因為這四件事你都做到了。',
+        },
+
+        {
+          t: 'summary',
+          en: 'A three-month job can be written up two ways. One is a list of things that went wrong, which explains nothing and helps nobody. The other is what you wrote: here is what I built, here is what I learned about myself, and here is why I am leaving anyway. The second version is harder to write and far more useful, because it is the only one you can carry into the next interview.',
+          zh: '一份做了三個月的工作，可以有兩種寫法。一種是列出哪裡出了問題——那解釋不了什麼，對誰也沒有幫助。另一種就是你寫的這一種：這是我建立起來的東西，這是我對自己的認識，而這是為什麼我仍然選擇離開。第二種比較難寫，卻有用得多，因為那是唯一一個你能帶進下一場面試的版本。',
+        },
+
+        {
+          t: 'note',
+          en: 'What three months actually produced',
+          zh: '這三個月實際做出了什麼',
+          bodyEn: 'Worth stating plainly, because it is easy to lose in a reflection about leaving. You left a company after fifteen years and stepped into a different industry. You learned the order-processing procedures from scratch, using AI to build SOPs and step-by-step guides, and got up to speed quickly enough to take over your team members’ daily responsibilities for two full weeks. You recruited a strong new team member and eased the pressure on an understaffed team. And you used VBA to automate the monthly customer statement process, so that one click produced more than a hundred statements. That is not a list of attempts; it is a list of finished things.',
+          bodyZh: '這值得明白地說出來，因為在一篇談離開的反思裡，這些很容易被淹沒。你離開了一間待了十五年的公司，踏進一個完全不同的產業。你從零開始學會了訂單處理程序，用 AI 建立 SOP 與步驟指南，而且進入狀況的速度快到能夠整整兩個星期接手團隊成員的日常工作。你成功招募到一位優秀的新成員，減輕了人手不足的團隊的壓力。你還用 VBA 把每月客戶對帳單的流程自動化，一鍵就能產出一百多份對帳單。這不是一張「嘗試過什麼」的清單，而是一張「完成了什麼」的清單。',
+        },
+
+        {
+          t: 'quote',
+          en: 'Being capable of doing a job well and being a good fit for an organization are not necessarily the same thing.',
+          zh: '有能力把一份工作做好，和適合一個組織，不一定是同一件事。',
+          by: 'Nikky, in her own reflection 你自己寫下的反思',
+        },
+
+        {
+          t: 'note',
+          en: 'The lesson underneath it',
+          zh: '這句話底下的那個領悟',
+          bodyEn: 'This is the sentence the whole piece turns on, and it is worth noticing what it does not say. It does not say you were not good enough, and it does not say the company was bad. It separates two things that are usually treated as one: whether you can do the work, and whether the place suits you. Once they are separate, the conclusion you reached follows cleanly — you do not have to feel connected to every company you work for, and you do not have to stay somewhere you are unhappy simply to prove that you can adapt. Adapting was never in question. You had already proved it by week three.',
+          bodyZh: '這是整篇文章的軸心，而值得注意的，是它「沒有」說什麼。它沒有說你不夠好，也沒有說那間公司不好。它把兩件通常被混為一談的事分開了：你能不能做這份工作，以及這個地方適不適合你。一旦分開，你所得到的結論就順理成章——你不需要對每一間工作過的公司都有歸屬感，也不需要只為了證明自己能適應，就留在一個讓自己不快樂的環境裡。「能不能適應」從來就不是問題。那件事你在第三週就已經證明過了。',
+        },
+
+        {
+          t: 'fix',
+          en: 'Three real corrections',
+          zh: '三個真正的訂正',
+          hintEn: 'Only these three sentences were actually wrong. Tap one to see the correction — try to spot the problem yourself first.',
+          hintZh: '你寫的句子裡，真正有錯的只有這三句。點一下看訂正——先自己找找看問題在哪裡。',
+          items: [
+            {
+              wrong: 'I learned new order processes from the beginning.',
+              right: 'I had to learn the company’s order-processing procedures from scratch.',
+              whyEn: '“From the beginning” means starting at the start of something that has a sequence — watch the film from the beginning, read it from the beginning. “From scratch” means with nothing to build on and no prior knowledge, which is what actually happened.',
+              whyZh: 'from the beginning 是「從某件有順序的事情的開頭開始」——從頭看這部電影、從頭讀一遍。from scratch 則是「毫無基礎、沒有任何先備知識地開始」，而那才是你當時真正的處境。',
+            },
+            {
+              wrong: 'I used VBA to automate the monthly customer statements.',
+              right: 'I used VBA to automate the monthly customer statement process.',
+              whyEn: 'You automated the process, not the documents themselves — the statements are what the process produces. English is strict about this: you automate a process, a workflow, a report run, never the paper that comes out of it.',
+              whyZh: '你自動化的是「流程」，不是那些文件本身——對帳單是流程產出的結果。英文在這裡分得很清楚：你 automate 的是一個流程、一套工作流、一次報表作業，而不是跑出來的那疊紙。',
+            },
+            {
+              wrong: 'I want to start with a fresh mind.',
+              right: 'I want to approach this next chapter with a fresh perspective.',
+              whyEn: '“A fresh mind” means a rested brain — what you have after a good night’s sleep. The idea you wanted is a new way of looking at things, and the fixed phrase for that is “a fresh perspective”.',
+              whyZh: 'a fresh mind 指的是「腦袋很清醒」——睡飽之後的那種狀態。你想表達的是「看事情的方式煥然一新」，而那個固定說法是 a fresh perspective。',
+            },
+          ],
+        },
+
+        {
+          t: 'contrast',
+          en: 'Correct already — and the professional version',
+          zh: '本來就對了——以及更專業的說法',
+          coldEn: 'What you wrote',
+          coldZh: '你原本寫的',
+          warmEn: 'The revised version',
+          warmZh: '修改後的版本',
+          hintEn: 'Nothing in the left column is a mistake. Both sides are correct English; the right-hand version is what a manager writing about her own career would reach for. Read both aloud.',
+          hintZh: '左欄沒有任何一句是錯的。兩邊都是正確的英文，右欄只是一位主管在書寫自己職涯時會選用的說法。兩邊都請唸出聲。',
+          items: [
+            {
+              caseEn: 'Hiring someone',
+              caseZh: '找到人',
+              cold: {
+                en: 'I also hired a great new team member.',
+                zh: '我也雇用了一位很好的新團隊成員。',
+              },
+              warm: {
+                en: 'I also successfully recruited a strong new team member.',
+                zh: '我也成功招募到一位優秀的新團隊成員。',
+              },
+              whyEn: '“Hired” was already correct. “Recruited” names the work you did — searching, interviewing, persuading — where “hired” names only the final signature, and “successfully” marks it as something achieved rather than something that happened.',
+              whyZh: 'hired 本來就是對的。recruited 說出了你實際做的那些事——尋找、面試、說服；hired 只說到最後簽下去的那一刻。而 successfully 則把它標記成「被達成的事」，而不是「發生的事」。',
+            },
+            {
+              caseEn: 'How the SOPs helped',
+              caseZh: 'SOP 帶來的幫助',
+              cold: {
+                en: 'These helped me learn faster.',
+                zh: '這些幫助我學得更快。',
+              },
+              warm: {
+                en: 'These helped me get up to speed more quickly.',
+                zh: '這些幫助我更快進入狀況。',
+              },
+              whyEn: '“Learn faster” is about absorbing information. “Get up to speed” is about reaching the level the job requires — it implies a standard you had to meet, which is the more impressive claim and the one that is true.',
+              whyZh: 'learn faster 講的是吸收資訊的速度。get up to speed 講的是「達到這份工作要求的水準」——它隱含了一個你必須達到的標準，是比較有份量的說法，而且是事實。',
+            },
+            {
+              caseEn: 'Capability and fit',
+              caseZh: '能力與適配',
+              cold: {
+                en: 'Being good at a job and being a good fit for a company are two different things.',
+                zh: '擅長一份工作，和適合一間公司，是兩件不同的事。',
+              },
+              warm: {
+                en: 'Being capable of doing a job well and being a good fit for an organization are not necessarily the same thing.',
+                zh: '有能力把一份工作做好，和適合一個組織，不一定是同一件事。',
+              },
+              whyEn: '“Two different things” says they never overlap, which is not what you mean — sometimes they do. “Not necessarily the same thing” allows for both cases, and that precision is what makes the sentence hold up when someone pushes back on it.',
+              whyZh: 'two different things 的意思是「這兩者從不重疊」，而那不是你要說的——有時候它們是重疊的。not necessarily the same thing 把兩種情況都容納進來，而正是這份精準，讓這句話在被人反問時站得住腳。',
+            },
+            {
+              caseEn: 'Staying curious without starting over',
+              caseZh: '保持好奇，但不必從頭來過',
+              cold: {
+                en: 'I want to keep an open mind, like someone learning something new.',
+                zh: '我想保持開放的心態，像一個正在學新東西的人。',
+              },
+              warm: {
+                en: 'I hope to maintain a beginner’s mindset while drawing on the judgment and experience I’ve developed as a manager.',
+                zh: '我希望保持初學者的心態，同時運用我身為主管所累積的判斷力與經驗。',
+              },
+              whyEn: 'The simile needed a name, and “a beginner’s mindset” is it. The second half is the part worth adding: without it, the sentence sounds like you are throwing twenty years away, which is the opposite of the plan.',
+              whyZh: '那個比喻需要一個名字，而 a beginner’s mindset 就是。真正值得補上的是後半句：少了它，這句話聽起來像是你要把二十年的累積丟掉，而那正好和你的計畫相反。',
+            },
+            {
+              caseEn: 'Letting go of the need to prove it',
+              caseZh: '放下證明自己的需要',
+              cold: {
+                en: 'I no longer need to rush to prove how capable I am.',
+                zh: '我不再需要急著證明自己有多有能力。',
+              },
+              warm: {
+                en: 'I no longer feel the need to prove my abilities by constantly pushing myself.',
+                zh: '我不再覺得有必要透過不斷逼迫自己，來證明自己的能力。',
+              },
+              whyEn: '“I no longer need to” describes a fact about the world. “I no longer feel the need to” describes a change in you — and since nothing about the world changed, the second one is the accurate report.',
+              whyZh: 'I no longer need to 描述的是外在世界的事實。I no longer feel the need to 描述的是你內在的轉變——而既然外在世界什麼都沒變，第二句才是準確的陳述。',
+            },
+            {
+              caseEn: 'Naming the three months',
+              caseZh: '為這三個月定性',
+              cold: {
+                en: 'These three months were not a failure in my career.',
+                zh: '這三個月不是我職涯中的失敗。',
+              },
+              warm: {
+                en: 'I don’t see these three months as a career failure.',
+                zh: '我不把這三個月看成一次職涯上的失敗。',
+              },
+              whyEn: 'The first version argues with an accusation nobody made. The second says how you choose to read it, which is both stronger and harder to contradict — and it sets up the sentence that follows: I see them as a courageous step.',
+              whyZh: '第一種說法是在反駁一個根本沒有人提出的指控。第二種說的是「你選擇怎麼看它」，既更有力，也更難被反駁——而且它正好接上了後面那一句：我把它看成勇敢的一步。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Three months of work',
+          zh: '三個月的工作',
+          items: [
+            {
+              en: 'learn something from scratch',
+              zh: '從零開始學習某件事',
+              eg: 'I had to learn the entire compliance process from scratch when I joined the company.',
+              egZh: '我進公司時，必須從零開始學會整套合規流程。',
+            },
+            {
+              en: 'order-processing procedures',
+              zh: '訂單處理程序',
+              eg: 'The order-processing procedures existed, but they were not written down anywhere.',
+              egZh: '訂單處理程序是存在的，只是沒有被寫在任何地方。',
+            },
+            {
+              en: 'get up to speed',
+              zh: '快速進入狀況',
+              eg: 'My colleagues helped me get up to speed during my first month.',
+              egZh: '同事們在我的第一個月裡幫助我快速進入狀況。',
+            },
+            {
+              en: 'take over someone’s responsibilities',
+              zh: '接手某人的職責',
+              eg: 'I was able to take over my team members’ daily responsibilities for two weeks.',
+              egZh: '我能夠接手團隊成員的日常工作整整兩個星期。',
+            },
+            {
+              en: 'recruit a team member',
+              zh: '招募團隊成員',
+              eg: 'I successfully recruited a strong new team member.',
+              egZh: '我成功招募到一位優秀的新團隊成員。',
+            },
+            {
+              en: 'an understaffed team',
+              zh: '人手不足的團隊',
+              eg: 'One more person made a real difference to an understaffed team.',
+              egZh: '多一個人，對一個人手不足的團隊來說差別很大。',
+            },
+            {
+              en: 'ease the pressure on someone',
+              zh: '減輕某人的壓力',
+              eg: 'Hiring her eased the pressure on the rest of the team almost immediately.',
+              egZh: '她到職之後，團隊其他人的壓力幾乎立刻就減輕了。',
+            },
+            {
+              en: 'automate a process',
+              zh: '將流程自動化',
+              eg: 'We automated the reporting process and significantly reduced manual work.',
+              egZh: '我們把報表流程自動化，大幅減少了人工作業。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Growth, and career decisions',
+          zh: '成長，與職涯決定',
+          items: [
+            {
+              en: 'be capable of doing something',
+              zh: '有能力做某事',
+              eg: 'She is more than capable of running the department on her own.',
+              egZh: '她完全有能力獨自管理這個部門。',
+            },
+            {
+              en: 'be a good fit for something',
+              zh: '適合某個職位或組織',
+              eg: 'The role suited my skills, but I was not a good fit for the culture.',
+              egZh: '這個職位很符合我的能力，但我並不適合那裡的文化。',
+            },
+            {
+              en: 'not necessarily',
+              zh: '不一定',
+              eg: 'A longer interview process does not necessarily mean a better decision.',
+              egZh: '面試流程拖得比較久，不一定代表做出了比較好的決定。',
+            },
+            {
+              en: 'approach something with a fresh perspective',
+              zh: '以全新的觀點面對某件事',
+              eg: 'After changing jobs, I wanted to approach my new responsibilities with a fresh perspective.',
+              egZh: '換了工作之後，我想用全新的觀點來面對新的職責。',
+            },
+            {
+              en: 'a new chapter',
+              zh: '人生或職涯的新篇章',
+              eg: 'I am treating this as a new chapter rather than a continuation of the last one.',
+              egZh: '我把這件事當成一個新的篇章，而不是上一個篇章的延續。',
+            },
+            {
+              en: 'maintain a beginner’s mindset',
+              zh: '保持初學者的心態',
+              eg: 'Even in a familiar industry, I want to maintain a beginner’s mindset.',
+              egZh: '即使回到熟悉的產業，我仍然想保持初學者的心態。',
+            },
+            {
+              en: 'draw on your experience',
+              zh: '運用過往的經驗',
+              eg: 'I can draw on fifteen years of experience without assuming it all still applies.',
+              egZh: '我可以運用十五年的經驗，但不假設它們全部都還適用。',
+            },
+            {
+              en: 'let go of old assumptions',
+              zh: '放下舊有的假設',
+              eg: 'The hardest part of a new role is letting go of old assumptions.',
+              egZh: '一個新職位最難的部分，是放下舊有的假設。',
+            },
+            {
+              en: 'feel the need to do something',
+              zh: '覺得有必要做某事',
+              eg: 'I no longer feel the need to answer every message within the hour.',
+              egZh: '我不再覺得有必要在一小時內回覆每一則訊息。',
+            },
+            {
+              en: 'see A as B',
+              zh: '把 A 看成 B',
+              eg: 'I don’t see changing careers as a setback. I see it as an opportunity to grow.',
+              egZh: '我不把轉換職涯看成退步，我把它看成成長的機會。',
+            },
+            {
+              en: 'greater self-awareness',
+              zh: '更深入的自我認識',
+              eg: 'I left with new skills and greater self-awareness.',
+              egZh: '我帶著新的技能和更深入的自我認識離開。',
+            },
+            {
+              en: 'step outside your comfort zone',
+              zh: '踏出舒適圈',
+              eg: 'I was brave enough to step outside my comfort zone, and I would do it again.',
+              egZh: '我有足夠的勇氣踏出舒適圈，而且我還會再做一次。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Five sentence patterns',
+          zh: '五個實用句型',
+          items: [
+            {
+              en: 'I used to believe that…, but now I realize that…',
+              zh: '我過去相信……，但現在我了解到……',
+              eg: 'I used to believe that being a good manager meant solving every problem, but now I realize that empowering others is equally important.',
+              egZh: '我過去相信，當個好主管就是要解決每一個問題；但現在我了解到，讓別人有能力去做，同樣重要。',
+            },
+            {
+              en: 'Although I didn’t…, I managed to…',
+              zh: '雖然我沒有……，但我成功做到……',
+              eg: 'Although I didn’t achieve everything I planned, I managed to improve several important processes.',
+              egZh: '雖然我沒有達成原本計畫的每一件事，但我成功改善了幾個重要的流程。',
+            },
+            {
+              en: 'This experience taught me that…',
+              zh: '這段經驗教會我……',
+              eg: 'This experience taught me that professional success is not just about performance but also about finding the right environment.',
+              egZh: '這段經驗教會我，職涯上的成功不只關乎表現，也關乎找到對的環境。',
+            },
+            {
+              en: 'I no longer feel the need to…',
+              zh: '我不再覺得有必要……',
+              eg: 'I no longer feel the need to take responsibility for every problem to prove my value.',
+              egZh: '我不再覺得有必要承擔每一個問題，來證明自己的價值。',
+            },
+            {
+              en: 'Moving forward, I want to… while…',
+              zh: '展望未來，我希望……，同時……',
+              eg: 'Moving forward, I want to continue developing professionally while maintaining a healthier work-life balance.',
+              egZh: '展望未來，我希望在專業上持續成長，同時維持更健康的工作與生活平衡。',
+            },
+          ],
+        },
+
+        {
+          t: 'note',
+          en: 'What stands out',
+          zh: '你的反思亮點',
+          bodyEn: 'Three things, and they are worth being able to say about yourself in an interview. Adaptability: you entered an unfamiliar industry and made a measurable difference through process improvement, automation and recruitment. Self-awareness: you can see that performing well does not automatically make an organisation the right long-term fit. And leadership maturity: you are separating your professional value from the need to solve every problem yourself — which is the shift that took up most of session 1 and most of session 2, now stated as something you have actually done.',
+          bodyZh: '有三件事，而且這三件事值得你在面試時有能力說出口。適應能力：你進入一個陌生的產業，並且透過流程改善、自動化與招募，做出可衡量的改變。自我認識：你看得出來，表現好，並不會自動讓一個組織成為長期適合你的地方。還有領導的成熟度：你正在把「自己的專業價值」和「非得親自解決每一個問題不可」分開——而這正是第一堂課和第二堂課花了最多時間談的那個轉變，現在則成了一件你確實做到的事。',
+        },
+
+        {
+          t: 'note',
+          en: 'The one thing to push further',
+          zh: '還可以再推進的一件事',
+          bodyEn: '“It wasn’t the right fit” is true, and it is also where the story stops being convincing. Your decision may be entirely reasonable, but a listener cannot tell that from the phrase alone — it is the sentence someone says when they do not want to explain. The work is to name the specific parts of the environment that did not match your values: the pace, the way decisions were made, the communication style, how much of the week went on things nobody had decided were important. Two or three concrete examples turn a vague verdict into a clear, convincing explanation, and they are exactly what you will be asked for in the next interview.',
+          bodyZh: '「不適合」是真的，但故事也就在這裡失去了說服力。你的決定可能完全合理，然而光憑這四個字，聽的人無從判斷——那正是一個人不想解釋時會說的句子。該做的功課，是具體說出環境裡哪些部分與你的價值觀不符：節奏、決策的方式、溝通的風格、一週裡有多少時間花在沒有人真正決定它重要的事情上。兩、三個具體的例子，就能把一個含糊的結論變成清楚而有說服力的說明——而那正是下一場面試會問你的東西。',
+        },
+
+        {
+          t: 'match',
+          en: 'Match the phrase',
+          zh: '配對片語',
+          hintEn: 'Click the Chinese on the left, then its English partner on the right.',
+          hintZh: '先點左邊的中文，再點右邊對應的英文。',
+          pairs: [
+            { a: '從零開始學習', b: 'learn something from scratch' },
+            { a: '快速進入狀況', b: 'get up to speed' },
+            { a: '適合某個組織', b: 'be a good fit for' },
+            { a: '不一定', b: 'not necessarily' },
+            { a: '保持初學者的心態', b: 'maintain a beginner’s mindset' },
+            { a: '運用過往的經驗', b: 'draw on your experience' },
+            { a: '踏出舒適圈', b: 'step outside your comfort zone' },
+            { a: '更深入的自我認識', b: 'greater self-awareness' },
+          ],
+        },
+
+        {
+          t: 'gap',
+          en: 'Finish the sentence',
+          zh: '完成句子',
+          items: [
+            {
+              text: 'Nothing was written down, so I had to learn the order-processing procedures ___.',
+              textZh: '什麼都沒有被寫下來，所以我必須從零開始學會訂單處理程序。',
+              options: ['from scratch', 'from the beginning', 'from now on'],
+              answer: 0,
+              why: {
+                en: '“Nothing was written down” is what makes it from scratch: there was nothing to build on. “From the beginning” would only mean you started at step one of something that already existed.',
+                zh: '「什麼都沒有被寫下來」正是 from scratch 的意思：沒有任何東西可以作為基礎。from the beginning 只會表示你從一個已經存在的流程的第一步開始做起。',
+              },
+            },
+            {
+              text: 'Being capable of doing a job well and being a good fit for an organization are ___ the same thing.',
+              textZh: '有能力把一份工作做好，和適合一個組織，不一定是同一件事。',
+              options: ['not necessarily', 'not ever', 'not quite'],
+              answer: 0,
+              why: {
+                en: 'Sometimes they are the same thing, and sometimes they are not — which is exactly what “not necessarily” allows. “Not ever” would claim they never overlap, and “not quite” would say they almost do.',
+                zh: '有時候它們是同一件事，有時候不是——而這正是 not necessarily 所容許的。not ever 等於宣稱兩者從不重疊；not quite 則是說「幾乎是，但差一點」。',
+              },
+            },
+            {
+              text: 'I want to ___ this next chapter with a fresh perspective.',
+              textZh: '我想以全新的觀點面對下一個階段。',
+              options: ['approach', 'start', 'open'],
+              answer: 0,
+              why: {
+                en: '“Approach something with…” is the pattern for the attitude you bring to a thing. You can start a chapter, but you cannot start it with a perspective — the preposition has nowhere to attach.',
+                zh: 'approach something with… 是用來講「你帶著什麼態度去面對某件事」的句型。你可以 start a chapter，但不能 start it with a perspective——那個介系詞沒有地方可以掛。',
+              },
+            },
+            {
+              text: 'I hope to maintain a beginner’s mindset while ___ the judgment I’ve developed as a manager.',
+              textZh: '我希望保持初學者的心態，同時運用我身為主管所累積的判斷力。',
+              options: ['drawing on', 'drawing up', 'drawing out'],
+              answer: 0,
+              why: {
+                en: '“Draw on” is to make use of something you already have — experience, savings, a contact. “Draw up” is to write something formally, and “draw out” is to make something last longer.',
+                zh: 'draw on 是「運用你已經擁有的東西」——經驗、存款、人脈。draw up 是正式地擬定、草擬，draw out 則是把某件事拉長。',
+              },
+            },
+            {
+              text: 'I don’t see these three months ___ a career failure. I see them as a courageous step.',
+              textZh: '我不把這三個月看成一次職涯上的失敗，我把它看成勇敢的一步。',
+              options: ['as', 'like', 'for'],
+              answer: 0,
+              why: {
+                en: 'The pattern is “see A as B”. “Like” would be a comparison — it resembles a failure — and “for” would mean mistaking one thing for another, which is a different claim again.',
+                zh: '句型是 see A as B。like 會變成比較——「它像是一次失敗」；for 則是「把某樣東西誤認成另一樣」，又是另一回事了。',
+              },
+            },
+            {
+              text: 'I no longer ___ prove my abilities by constantly pushing myself.',
+              textZh: '我不再覺得有必要透過不斷逼迫自己，來證明自己的能力。',
+              options: ['feel the need to', 'need to', 'have to'],
+              answer: 0,
+              why: {
+                en: 'Nothing outside you changed — the job still has its demands. What changed is how you feel about them, and only the first option reports that. The other two describe the world instead of you.',
+                zh: '你外在的世界什麼都沒變——工作該有的要求還是在。改變的是你對它的感受，而只有第一個選項說出了這一點。另外兩個描述的是世界，不是你。',
+              },
+            },
+          ],
+        },
+
+        {
+          t: 'poll',
+          en: 'Where do you stand?',
+          zh: '你的立場是什麼？',
+          hintEn: 'There is no right answer — take a side and say why.',
+          hintZh: '沒有標準答案：選一邊，並說明理由。',
+          items: [
+            { en: 'Leaving after three months says more about the fit than about the person.', zh: '三個月就離開，說明的是適配問題，而不是這個人的問題。' },
+            { en: 'You should be able to explain exactly why an environment did not suit you, not only that it did not.', zh: '你應該能具體說出一個環境為什麼不適合你，而不只是說它不適合。' },
+            { en: 'Returning to an industry you already know is a step backwards.', zh: '回到一個你已經熟悉的產業，是一種退步。' },
+            { en: 'A manager who solves every problem personally is doing the job badly, not well.', zh: '一個親自解決每個問題的主管，是把工作做差了，而不是做好了。' },
+          ],
+        },
+
+        {
+          t: 'discuss',
+          en: 'Speaking practice',
+          zh: '口說練習',
+          items: [
+            {
+              en: 'Redefining professional success — how has your definition of professional success changed over these three months? Which matters more to you now, achievements or personal growth?',
+              zh: '重新定義職涯成功——這三個月下來，你對「職涯成功」的定義有什麼改變？現在對你來說，成就和個人成長，哪一個更重要？',
+              starters: [
+                { en: 'Looking back, I’ve realized that…', zh: '回顧過去，我了解到……' },
+                { en: 'I used to believe that…, but now I realize that…', zh: '我過去相信……，但現在我了解到……' },
+                { en: 'What matters more to me now is…', zh: '現在對我來說更重要的是……' },
+              ],
+            },
+            {
+              en: 'Understanding organisational fit — you wrote that being capable and being a good fit are not necessarily the same thing. What specific experiences made you realise that?',
+              zh: '了解組織適配度——你寫下「有能力」和「適合」不一定是同一件事。是哪些具體的經驗讓你有這樣的體會？',
+              starters: [
+                { en: 'The clearest example was when…', zh: '最清楚的一個例子，是當……的時候。' },
+                { en: 'The main reason is that…', zh: '主要原因是……' },
+                { en: 'The three things I will look for next time are…', zh: '下一次我會看的三件事是……' },
+              ],
+            },
+            {
+              en: 'Changing your mindset at work — you no longer feel the need to take responsibility for every problem. How will you put that into practice in the new role?',
+              zh: '改變工作思維——你不再覺得需要承擔每一個問題。在新職位上，你打算如何實踐這個想法？',
+              starters: [
+                { en: 'Moving forward, I plan to…', zh: '展望未來，我計畫……' },
+                { en: 'I would decide based on whether…', zh: '我會依據……來判斷。' },
+                { en: 'The problems I would hand over are the ones that…', zh: '我會交出去的，是那些……的問題。' },
+              ],
+            },
+            {
+              en: 'Experience and a beginner’s mindset — going back into an industry you know well, how will you balance the two? Which old assumptions might you need to let go of?',
+              zh: '經驗與初學者心態——回到一個你很熟悉的產業，你會如何平衡這兩者？有哪些舊的假設，可能需要放下？',
+              starters: [
+                { en: 'I can draw on my experience without assuming that…', zh: '我可以運用我的經驗，但不假設……' },
+                { en: 'One assumption I will need to let go of is…', zh: '有一個我需要放下的假設是……' },
+                { en: 'The industry has changed most in…', zh: '這個產業改變最多的地方是……' },
+              ],
+            },
+            {
+              en: 'Designing the next chapter — a year from now, what would make you feel that leaving and taking this new role was the right decision?',
+              zh: '規劃下一階段——一年之後，什麼會讓你覺得「離開、接下這個新職位」是正確的決定？',
+              starters: [
+                { en: 'I would know it was the right decision if…', zh: '如果……，我就知道這是正確的決定。' },
+                { en: 'One indicator of success would be…', zh: '一個成功的指標會是……' },
+                { en: 'Moving forward, I want to… while…', zh: '展望未來，我希望……，同時……' },
+              ],
+            },
+            {
+              en: 'Bringing your skills forward — which skill from these three months, such as building SOPs with AI or automating a process with VBA, do you most want to take into the new role, and how will you use it?',
+              zh: '帶著技能向前走——這三個月學到的哪項技能（例如用 AI 建立 SOP，或用 VBA 把流程自動化），是你最想帶進新職位的？你會怎麼運用它？',
+              starters: [
+                { en: 'The skill I most want to bring with me is…', zh: '我最想帶著走的那項技能是……' },
+                { en: 'In a compliance role, that would be useful for…', zh: '在合規的工作裡，那會很適合用來……' },
+                { en: 'The first thing I would try is…', zh: '我會先試的第一件事是……' },
+              ],
+            },
+          ],
+        },
+
+        {
+          t: 'task',
+          en: 'Homework: sixty to ninety seconds',
+          zh: '作業：六十到九十秒',
+          instructionEn: 'Pick one of the six questions above and record yourself answering it, out loud, in sixty to ninety seconds. Use the three-step structure — reflection, reason, future action — and at least three phrases from the tick-list. Send the recording on LINE. If you pick question two, take the note above seriously and name two specific things about the environment rather than saying it was not the right fit.',
+          instructionZh: '從上面六個問題中選一題，錄下自己回答的聲音，說六十到九十秒。請使用三步驟結構——反思、原因、未來行動——並至少用到清單上的三個片語。錄好用 LINE 傳給我。如果你選第二題，請認真看待上面那則提醒：具體說出環境裡的兩件事，而不要只說「不適合」。',
+          prompts: [
+            { en: 'Answer it as you would in an interview next month.', zh: '就當成下個月面試時會被問到那樣回答。' },
+            { en: 'Or answer question five, and keep it to listen to again in a year.', zh: '或者回答第五題，然後留著，一年後再聽一次。' },
+          ],
+          checklist: [
+            { en: 'learn something from scratch', zh: '從零開始學習' },
+            { en: 'get up to speed', zh: '快速進入狀況' },
+            { en: 'be a good fit for', zh: '適合某個組織' },
+            { en: 'not necessarily', zh: '不一定' },
+            { en: 'maintain a beginner’s mindset', zh: '保持初學者的心態' },
+            { en: 'draw on your experience', zh: '運用過往的經驗' },
+            { en: 'see A as B', zh: '把 A 看成 B' },
+            { en: 'step outside your comfort zone', zh: '踏出舒適圈' },
+          ],
+          frames: [
+            { en: 'Looking back, I’ve realized that ___.', zh: '回顧過去，我了解到＿＿。' },
+            { en: 'The main reason is that ___.', zh: '主要原因是＿＿。' },
+            { en: 'Moving forward, I plan to ___.', zh: '展望未來，我計畫＿＿。' },
+            { en: 'Although I didn’t ___, I managed to ___.', zh: '雖然我沒有＿＿，但我成功做到＿＿。' },
+            { en: 'This experience taught me that ___.', zh: '這段經驗教會我＿＿。' },
           ],
         },
       ],

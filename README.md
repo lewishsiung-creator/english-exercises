@@ -4629,6 +4629,36 @@ the *polished* version of what she wrote — a polished text holds the ideas but
 not the mistakes, so there is nothing to correct. The same rule as Anny's and
 Anna's first sessions. Her original writing, or a recording, would fill it.
 
+Session 3 (13 November 2026) closes the chapter the first two opened: she is
+leaving after three months and going back to healthcare logistics in a QA
+Compliance role. Its source handout is the one that *does* carry her originals,
+setting each revision beside a `You wrote: …` line, and the session is built
+around the sentence the whole reflection turns on — *being capable of doing a
+job well and being a good fit for an organization are not necessarily the same
+thing*. Its `link` block points at **`#s1`**, an in-page anchor rather than
+another page, which is safe because the click handler and the `hashchange`
+handler both unfold the target session before the jump.
+
+**Only three of that handout's ten pairs became `fix` items.** The handout
+itself says of two of them that her sentence was already correct, and most of
+the rest raise a plain sentence to a professional register rather than putting a
+mistake right. Those six sit in a `contrast` labelled *What you wrote* against
+*The revised version*, with a hint saying in both languages that the left column
+is not a mistake. A correct sentence behind a ✕ teaches a student to distrust
+English that was fine, which costs more than the polish is worth — the same
+principle as [Ken's rule](#kens-notebook--college-student-one-to-one-kept-over-time)
+about an AI rewrite. The three that remain are real: *from the beginning* for
+*from scratch*, automating the statements rather than the statement *process*,
+and *a fresh mind* for *a fresh perspective*.
+
+**The company is not named anywhere on the page.** Session 3's source names her
+employer in its title, its discussion questions and throughout; the page says
+"the company". The notebook is `noindex`, but that keeps it out of search
+results rather than making the URL private, and session 3 is a named person
+explaining why she was unhappy somewhere and left. The same rule the repo
+follows for Mia's clinic, Keep Speaking's client and the family-law firm, and it
+is written into the header comment so later sessions keep to it.
+
 
 ## Ken's Notebook — college student, one-to-one, kept over time
 
