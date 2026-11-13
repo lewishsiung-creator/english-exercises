@@ -6480,6 +6480,11 @@ a form where Lewis types a student's name and class time and gets that page.
   the note he wrote to Vicky on 2026-11-13 (the run-ons mended), with the
   student's first name and YYYY/MM/DD and __ left for the dates and hours;
   the link can't be copied while any of those placeholders are left in.
+  The note is set in **Newsreader** with a handwritten 「— Lewis」 in
+  **Caveat**, from Google Fonts — Lewis picked it from four on 2026-11-13,
+  because the system serif came out heavy on his iPhone. These are the first
+  web fonts on the site; everything else is still system type. Same on
+  `/vicky-course/`.
 - **`/course/`** holds no student. The form writes everything into the link as
   `#d=<base64url JSON>` (format documented at the top of
   `public/course/index.html`), so making a page for a new student needs **no

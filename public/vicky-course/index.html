@@ -47,6 +47,17 @@
      CoreGraphics script, 180px. -->
 <link rel="icon" href="../logo.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- The note's own type (2026-11-13, Lewis chose it from four): Newsreader,
+     a light screen serif, and Caveat for the handwritten 「— Lewis」. The
+     first web fonts on these pages — the house type is system fonts — taken
+     because the system serif came out heavy on his iPhone, and a web font
+     looks the same on every phone. Caveat is fetched for just the
+     characters of 「— Lewis」. If Google Fonts fails, the note falls back to the
+     house serif. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&text=%E2%80%94%20Lewis&display=swap">
 
 <style>
 :root {
@@ -145,16 +156,17 @@ ol li { margin: 2px 0; }
 /* ---------- Lewis's note to Vicky (added 2026-11-13, his words) ---------- */
 .note {
   border-left: 4px solid var(--gold);
-  font-family: var(--font-en);
-  font-size: 17.5px;
+  font-family: Newsreader, var(--font-en);
+  font-size: 18.5px;
   line-height: 1.65;
+  color: #2b2e40;
 }
 .note p { margin: 0 0 12px; }
-.note .hi { font-weight: 700; color: var(--navy); }
+.note .hi { font-weight: 600; color: var(--navy); }
 .note .d { font-family: var(--font-ui); font-size: .92em; white-space: nowrap; }
-.note strong { color: var(--navy); }
-.note .go { font-weight: 700; color: var(--copper); margin-bottom: 6px; }
-.note .sign { margin: 0; text-align: right; color: var(--ink-soft); font-style: italic; }
+.note strong { font-weight: 600; color: var(--navy); }
+.note .go { font-weight: 600; color: var(--copper); margin-bottom: 6px; }
+.note .sign { margin: 0; text-align: right; font-family: Caveat, var(--font-en); font-size: 26px; line-height: 1.3; color: var(--navy); }
 
 /* ---------- fees ---------- */
 .lead { color: var(--ink-soft); font-size: 15.5px; }
