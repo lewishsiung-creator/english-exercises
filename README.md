@@ -6437,10 +6437,11 @@ paying: her goals, the Tuesday Zoom slot, the two course packages with their
 data file. `noindex`, unlisted, like every student page. Not to be confused
 with her art-history decks, which live in their own repo.
 
-- **No bank account on this page** (Lewis, 2026-11-13). The Notion page
-  carries his account card, but this repo is public and a number committed
-  once stays in its history. The page says 匯款帳戶資訊請見 LINE instead.
-  Don't add the account details here, or to any other page in `public/`.
+- **The bank account is on the page**, as text with a 複製帳號 button —
+  Notion has it as an image card. It was left off for a few hours on
+  2026-11-13 because the repo is public; Lewis then asked for it back,
+  knowing that. So his account details appearing in `public/` is his
+  decision, not a leak to clean up.
 - The leave-rule image in Notion is set as text. The per-hour figures under
   each price are the only thing not in the source, worked out from the
   prices.
@@ -6483,6 +6484,6 @@ a form where Lewis types a student's name and class time and gets that page.
   hash shows 「這個連結不完整」.
 - The fixed text — the 💡 and 🎁 notes, 付款方式, 請假規則 — is Vicky's page's,
   in the page itself. Change it there and every student's link changes with
-  it. Still no bank account (see the section above).
+  it. The bank card is part of that fixed text, the same for every student.
 - The style is `public/course/course.css`, copied from `/vicky-course/`.
   Vicky's page was left as it is because its URL has already gone out.

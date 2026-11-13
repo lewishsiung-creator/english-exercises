@@ -142,6 +142,38 @@ ol li { margin: 2px 0; }
 .steps p { color: var(--ink-soft); font-size: 15.5px; }
 .steps strong { color: var(--ink); }
 
+/* ---------- bank card ---------- */
+.bank {
+  background: var(--navy);
+  color: #fff;
+  border-radius: 14px;
+  padding: 20px 22px;
+  position: relative;
+  overflow: hidden;
+}
+.bank::after {
+  content: ""; position: absolute; inset: 8px;
+  border: 1px solid rgba(255,255,255,.35); border-radius: 9px;
+  pointer-events: none;
+}
+.bank .title {
+  font-family: var(--font-ui); font-weight: 700; font-size: 18px;
+  color: var(--gold); margin-bottom: 10px;
+}
+.bank dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 0; }
+.bank dt { color: rgba(255,255,255,.7); font-size: 15px; }
+.bank dd { margin: 0; font-size: 17px; font-weight: 600; }
+.bank .acct { font-family: var(--font-ui); font-size: 22px; letter-spacing: .04em; }
+.copy {
+  position: relative; z-index: 1;
+  margin-top: 14px;
+  appearance: none; border: 0; cursor: pointer;
+  padding: 8px 18px; border-radius: var(--pill);
+  background: #fff; color: var(--navy);
+  font: 600 14px var(--font-zh);
+}
+.copy:active { transform: scale(.97); }
+
 /* ---------- leave ---------- */
 .rule { display: flex; gap: 14px; padding: 12px 0; }
 .rule + .rule { border-top: 1px solid var(--line); }
@@ -160,7 +192,7 @@ footer a { color: var(--ink-soft); }
 
 @media print {
   body { background: #fff; }
-  .hero .about { display: none; }
+  .copy, .hero .about { display: none; }
   section { break-inside: avoid; }
 }
 
