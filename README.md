@@ -6511,6 +6511,10 @@ a form where Lewis types a student's name and class time and gets that page.
   2026/12/01（二）. An end before the start blocks the link. Dates already
   in the form go straight into a note template's YYYY/MM/DD (start first,
   then end).
+- **上課時數** (optional, key `h`, same day) shows under 上課安排 as
+  「20 小時」 when it is a plain number, as typed otherwise; it also fills the
+  recap template's `__ hours`. When 上課安排 has an odd number of boxes the
+  last one runs full width.
 - **給學員的話** (optional, key `w`) is a note at the top of the page, signed
   「— Lewis」 automatically: paragraphs split by a blank line, `**bold**`
   allowed, dates like 2026/03/07 set in the UI font. 「套用進度回顧範本」 fills in

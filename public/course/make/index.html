@@ -17,7 +17,7 @@
 <title>課程說明頁產生器｜Lewis Biz English</title>
 <meta name="theme-color" content="#2f3c7e">
 <link rel="icon" href="../../logo.png">
-<link rel="stylesheet" href="../course.css?v=5">
+<link rel="stylesheet" href="../course.css?v=6">
 <link rel="stylesheet" href="../../type.css">
 <style>
 body { background: var(--paper); }
@@ -197,6 +197,9 @@ details .btns { margin-top: 8px; }
         <div><label for="ed">結束日期<span class="hint">選填</span></label><input id="ed" type="date"></div>
       </div>
       <button type="button" class="clear-dates" id="cleardates">清除日期</button>
+
+      <label for="hr">上課時數<span class="hint">選填，例如 20</span></label>
+      <input id="hr" inputmode="decimal" placeholder="例如：20" enterkeyhint="next">
     </section>
 
     <section>
@@ -352,6 +355,7 @@ details .btns { margin-top: 8px; }
       m: $('m').value.trim(),
       s: $('sd').value,
       e: $('ed').value,
+      h: $('hr').value.trim(),
       i: lines($('i').value),
       g: lines($('g').value),
       x: $('x').value.trim(),
@@ -417,6 +421,7 @@ details .btns { margin-top: 8px; }
     $('m').value = d.m || 'ZOOM 線上會議';
     $('sd').value = d.s || '';
     $('ed').value = d.e || '';
+    $('hr').value = d.h || '';
     $('i').value = (d.i || []).join('\n');
     $('g').value = (d.g || []).join('\n');
     $('x').value = d.x || '';
@@ -456,6 +461,9 @@ details .btns { margin-top: 8px; }
       [$('sd').value, $('ed').value].forEach(function (v) {
         if (v) text = text.replace('YYYY/MM/DD', v.replace(/-/g, '/'));
       });
+      // and the hours, when they are a plain number, into the recap's "__ hours"
+      var hrs = $('hr').value.trim();
+      if (/^\d+(\.\d+)?$/.test(hrs)) text = text.replace('**__ hours', '**' + hrs + ' hours');
       $('w').value = text;
       update();
       grow($('w'));

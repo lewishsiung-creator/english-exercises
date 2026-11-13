@@ -301,3 +301,6 @@ main .wrap { margin-top: 0; padding-top: 16px; }
   .jump { display: none; }
   .hero { padding-bottom: 32px; }
 }
+
+/* the last fact when the grid has an odd number of them (上課時數) */
+.facts .fact.wide { grid-column: 1 / -1; }

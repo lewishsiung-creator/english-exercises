@@ -22,6 +22,7 @@
      stays pasteable into LINE:
        v 1 · n name · t time · m mode · i info lines · g goals lines
        s start date · e end date (both optional, "YYYY-MM-DD")
+       h hours of class (optional; a plain number shows as "N 小時")
        p plans [[hours, span text, price, sale price or 0], …]
        x the sentence above the plans (may be empty)
        w Lewis's note at the top, one string per paragraph (optional;
@@ -59,7 +60,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&text=%E2%80%94%20Lewis&display=swap">
-<link rel="stylesheet" href="course.css?v=5">
+<link rel="stylesheet" href="course.css?v=6">
 <link rel="stylesheet" href="../type.css">
 </head>
 <body>
@@ -110,6 +111,7 @@
       <div class="fact"><div class="k">上課方式</div><div class="v multi" id="mode"></div></div>
       <div class="fact" id="start-f"><div class="k">開始日期</div><div class="v" id="start"></div></div>
       <div class="fact" id="end-f"><div class="k">結束日期</div><div class="v" id="end"></div></div>
+      <div class="fact" id="hours-f"><div class="k">上課時數</div><div class="v" id="hours"></div></div>
     </div>
   </section>
 
@@ -274,6 +276,15 @@ document.querySelectorAll('.copy').forEach(function (b) {
       set(k[1], t);
       document.getElementById(k[1] + '-f').hidden = !t;
     });
+    // hours: a plain number reads "20 小時"; anything else as he typed it
+    var h = str(d.h);
+    set('hours', /^\d+(\.\d+)?$/.test(h) ? h + ' 小時' : h);
+    document.getElementById('hours-f').hidden = !h;
+    // an odd one out at the end of the two-column grid takes the full width
+    var shown = [].filter.call(document.querySelectorAll('.facts .fact'), function (f) {
+      f.classList.remove('wide'); return !f.hidden;
+    });
+    if (shown.length % 2) shown[shown.length - 1].classList.add('wide');
 
     var intro = str(d.x);
     set('intro', intro);
