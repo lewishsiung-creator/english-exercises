@@ -6474,6 +6474,12 @@ a form where Lewis types a student's name and class time and gets that page.
   optional 優惠價, 期限說明). 「套用老學員優惠」 fills in what Vicky got: the
   June 2026 sentence and $16,000 / $28,000. A live preview sits beside it, and
   「編輯舊連結」 reads a link back into the form.
+- **給學員的話** (optional, key `w`) is a note at the top of the page, signed
+  「— Lewis」 automatically: paragraphs split by a blank line, `**bold**`
+  allowed, dates like 2026/03/07 set in the UI font. 「套用進度回顧範本」 fills in
+  the note he wrote to Vicky on 2026-11-13 (the run-ons mended), with the
+  student's first name and YYYY/MM/DD and __ left for the dates and hours;
+  the link can't be copied while any of those placeholders are left in.
 - **`/course/`** holds no student. The form writes everything into the link as
   `#d=<base64url JSON>` (format documented at the top of
   `public/course/index.html`), so making a page for a new student needs **no

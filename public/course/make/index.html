@@ -17,7 +17,7 @@
 <title>課程說明頁產生器｜Lewis Biz English</title>
 <meta name="theme-color" content="#2f3c7e">
 <link rel="icon" href="../../logo.png">
-<link rel="stylesheet" href="../course.css?v=2">
+<link rel="stylesheet" href="../course.css?v=3">
 <link rel="stylesheet" href="../../type.css">
 <style>
 body { background: var(--paper); }
@@ -135,6 +135,16 @@ details .btns { margin-top: 8px; }
     </section>
 
     <section>
+      <h2>給學員的話</h2>
+      <label for="w">放在頁面最上方<span class="hint">選填。空一行分段，**粗體**</span></label>
+      <textarea id="w" rows="6" placeholder="例如：&#10;Hi Vicky,&#10;&#10;From 2026/03/07 to 2026/11/10, we’ve completed **20 hours of class** together!"></textarea>
+      <div class="btns">
+        <button type="button" class="btn" id="recap">套用進度回顧範本</button>
+      </div>
+      <p class="status" style="margin-top:10px">範本是給 Vicky 的那段話。套用後，把 YYYY/MM/DD 和 __ 換成實際的日期與時數。最後會自動加上「— Lewis」。</p>
+    </section>
+
+    <section>
       <h2>學費方案</h2>
       <label for="x">方案上方的說明<span class="hint">選填</span></label>
       <textarea id="x" rows="2" placeholder="例如：2026 年 6 月開始，學費已做調整。"></textarea>
@@ -190,6 +200,20 @@ details .btns { margin-top: 8px; }
     x: '2026 年 6 月開始，學費已做調整。為了感謝您的長期信任，特別提供優惠：',
     sale: { 10: 16000, 20: 28000 }
   };
+  // The note Lewis wrote to Vicky after her 20 hours (2026-11-13), as a
+  // template: the name comes from the form, the dates and hours are his to
+  // fill — the link can't be copied while YYYY/MM/DD or __ is left in.
+  function recapNote(first) {
+    return [
+      'Hi ' + (first || '__') + ',',
+      'From YYYY/MM/DD to YYYY/MM/DD, we’ve completed **__ hours of class** together!',
+      'Looking back, I’ve genuinely seen your speaking improve: your word choice, fluency, and confidence in English conversations have all come a long way since we started.',
+      'Speaking is a skill that needs consistent practice to maintain and grow. Just like fitness, progress isn’t always linear, but it compounds with consistency.',
+      'I’d love to keep working with you and help take your speaking to the next level.',
+      'Let’s keep the momentum going.'
+    ].join('\n\n');
+  }
+  function paras(s) { return s.split(/\n\s*\n/).map(function (l) { return l.trim(); }).filter(Boolean); }
 
   function planRow(p) {
     var row = document.createElement('div');
@@ -228,6 +252,7 @@ details .btns { margin-top: 8px; }
       i: lines($('i').value),
       g: lines($('g').value),
       x: $('x').value.trim(),
+      w: paras($('w').value),
       p: plans
     };
   }
@@ -257,6 +282,11 @@ details .btns { margin-top: 8px; }
     $('t').classList.toggle('bad', false);
     if (!d.n) missing.push('學員姓名');
     if (!d.t) missing.push('上課時間');
+    $('w').classList.toggle('bad', false);
+    if (/YYYY|MM\/DD|__/.test(d.w.join(' '))) {
+      missing.push('給學員的話裡的 YYYY/MM/DD 或 __');
+      $('w').classList.add('bad');
+    }
     var url = BASE + '#d=' + encode(d);
     $('link').value = missing.length ? '' : url;
     $('copy').disabled = $('open').disabled = !!missing.length;
@@ -278,6 +308,7 @@ details .btns { margin-top: 8px; }
     $('i').value = (d.i || []).join('\n');
     $('g').value = (d.g || []).join('\n');
     $('x').value = d.x || '';
+    $('w').value = (d.w || []).join('\n\n');
     setPlans((d.p && d.p.length) ? d.p : DEFAULT_PLANS);
     update();
   }
@@ -290,6 +321,11 @@ details .btns { margin-top: 8px; }
       var s = LOYAL.sale[digits(r.querySelector('.ph').value)];
       if (s) r.querySelector('.ps').value = s;
     });
+    update();
+  };
+  $('recap').onclick = function () {
+    if ($('w').value.trim() && !confirm('要用範本取代目前寫的內容嗎？')) return;
+    $('w').value = recapNote($('n').value.trim().split(/\s+/)[0]);
     update();
   };
   $('load').onclick = function () {

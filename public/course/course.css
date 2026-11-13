@@ -202,3 +202,19 @@ footer a { color: var(--ink-soft); }
 .missing { text-align: center; padding: 48px 22px; color: var(--ink-soft); }
 .missing h2 { color: var(--ink); font-size: 20px; letter-spacing: 0; }
 [hidden] { display: none !important; }
+
+/* ---------- a note from Lewis, at the top (optional, key w) ----------
+   Same look as the note on /vicky-course/ (2026-11-13). */
+.note {
+  border-left: 4px solid var(--gold);
+  font-family: var(--font-en);
+  font-size: 17.5px;
+  line-height: 1.65;
+}
+.note.zh { font-family: var(--font-zh); font-size: 17px; }
+.note p { margin: 0 0 12px; white-space: pre-line; }
+.note .hi { font-weight: 700; color: var(--navy); }
+.note .d { font-family: var(--font-ui); font-size: .92em; white-space: nowrap; }
+.note strong { color: var(--navy); }
+.note .go { font-weight: 700; color: var(--copper); margin-bottom: 6px; }
+.note .sign { margin: 0; text-align: right; color: var(--ink-soft); font-style: italic; }

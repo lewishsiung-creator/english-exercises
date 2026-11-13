@@ -22,7 +22,9 @@
      stays pasteable into LINE:
        v 1 · n name · t time · m mode · i info lines · g goals lines
        p plans [[hours, span text, price, sale price or 0], …]
-       x the sentence above the plans (may be empty) -->
+       x the sentence above the plans (may be empty)
+       w Lewis's note at the top, one string per paragraph (optional;
+         **bold** allowed; signed 「— Lewis」 automatically) -->
 <meta name="robots" content="noindex, nofollow">
 <title>上課時間 & 學費說明｜Lewis Biz English</title>
 <!-- The card LINE (and others) draw for a shared link. Without its own
@@ -45,7 +47,7 @@
 <meta name="theme-color" content="#2f3c7e">
 <link rel="icon" href="../logo.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="course.css?v=2">
+<link rel="stylesheet" href="course.css?v=3">
 <link rel="stylesheet" href="../type.css">
 </head>
 <body>
@@ -68,6 +70,8 @@
   </section>
 
   <div id="page" hidden>
+
+  <section class="note" id="note" hidden></section>
 
   <section id="about">
     <h2 id="about-h">客製化課程說明</h2>
@@ -189,6 +193,29 @@ document.querySelectorAll('.copy').forEach(function (b) {
     set('name', name);
     var first = name.split(/\s+/)[0];
     set('about-h', (/^[A-Za-z]/.test(first) ? first.toUpperCase() : first) + ' 客製化課程說明');
+
+    // Lewis's note: paragraphs, **bold** and dates picked out, built with
+    // textContent like everything else. A short greeting first is styled
+    // as one, a short last line as the send-off, and he signs it.
+    var note = document.getElementById('note'), w = lines(d.w);
+    note.textContent = '';
+    var zh = /[　-鿿＀-￯]/.test(w.join(''));
+    note.className = 'note' + (zh ? ' zh' : '');
+    if (zh) note.removeAttribute('lang'); else note.setAttribute('lang', 'en');
+    w.forEach(function (t, k) {
+      var p = el('p');
+      if (k === 0 && w.length > 1 && t.length <= 40 && /[,，]$/.test(t)) p.className = 'hi';
+      else if (k === w.length - 1 && w.length > 2 && t.length <= 60) p.className = 'go';
+      t.split(/(\*\*[^*]+\*\*|\d{4}\/\d{1,2}\/\d{1,2})/).forEach(function (s, j) {
+        if (!s) return;
+        if (j % 2 === 0) p.appendChild(document.createTextNode(s));
+        else if (s.charAt(0) === '*') p.appendChild(el('strong', null, s.slice(2, -2)));
+        else p.appendChild(el('span', 'd', s));
+      });
+      note.appendChild(p);
+    });
+    if (w.length) note.appendChild(el('p', 'sign', '— Lewis'));
+    note.hidden = !w.length;
 
     var info = lines(d.i), goals = lines(d.g);
     set('info', info.join('\n'));
