@@ -4659,6 +4659,20 @@ explaining why she was unhappy somewhere and left. The same rule the repo
 follows for Mia's clinic, Keep Speaking's client and the family-law firm, and it
 is written into the header comment so later sessions keep to it.
 
+**The revised reflection is on the page in full**, as Part A: all twenty-eight
+sentences of it, verbatim, as nine `summary` blocks with the Chinese behind the
+usual chip. `summary` rather than `note` bodies for the reason Ken's session 3
+sets out — only `summary` carries a 🔊, and at B2 a model text is for reading
+aloud rather than for understanding. The only changes to her words are
+typographic: a spaced em dash, and a lower-case letter after the colon.
+
+That made the session long enough to need dividing, so **the `part` block and
+its stylesheet were ported here from [Ken's
+renderer](#kens-notebook--college-student-one-to-one-kept-over-time)** and
+session 3 runs A–F: the reflection, what changed in her English, the language,
+what stands out, practice, speaking. Sessions 1 and 2 have no parts and need
+none — the block is additive, and a session without one renders exactly as
+before.
 
 ## Ken's Notebook — college student, one-to-one, kept over time
 

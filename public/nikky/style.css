@@ -1225,3 +1225,53 @@ body.zh-all .card-back { display: block; }
   height: max(100%, 24px);
   transform: translate(-50%, -50%);
 }
+
+/* A divider INSIDE one session — Part A from Part B of the same lesson. It has
+   to read as a turn in the same lesson rather than the start of a new one, so
+   it is quieter than a session heading: a rule, a letter, and the title.
+   Signage, so both languages show at once and there is no 中 chip. */
+.part-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 46px 0 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.part-head:first-child { margin-top: 8px; }
+
+.part-n {
+  flex: none;
+  margin: 0;
+  min-width: 2.1em;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.part-head h3 {
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--navy);
+  display: flex;
+  align-items: baseline;
+  gap: .6em;
+  flex-wrap: wrap;
+}
+.part-head h3 .zh {
+  display: inline;
+  font-family: var(--font-zh);
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+/* A part opener should not be left stranded at the foot of a printed page. */
+@media print {
+  .part-head { break-after: avoid; break-inside: avoid; }
+}

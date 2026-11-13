@@ -84,6 +84,16 @@ function hint(b) {
 }
 
 const BLOCKS = {
+  /* A divider INSIDE one session — one turn of the same lesson from the next,
+     not the start of a new lesson. Ported from /ken/, where a handout that
+     arrives already cut into labelled sections needed it. Signage, so both
+     languages show at once and there is no 中 chip. */
+  part: (b) => `
+    <div class="part-head">
+      <p class="part-n" aria-hidden="true">${text(b.n || '')}</p>
+      <h3><span class="en">${text(b.en)}</span><span class="zh">${text(b.zh)}</span></h3>
+    </div>`,
+
   lead: (b) => `<div class="lead">${pair(b.en, b.zh)}</div>`,
 
   // A pointer to another page in this site. Signage, so it is bilingual at all

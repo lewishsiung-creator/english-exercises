@@ -1189,11 +1189,80 @@ const NOTEBOOK = {
         },
 
         {
+          t: 'part',
+          n: 'A',
+          en: 'Your revised reflection',
+          zh: '修改後的反思文章',
+        },
+
+        {
           t: 'note',
-          en: 'What three months actually produced',
-          zh: '這三個月實際做出了什麼',
-          bodyEn: 'Worth stating plainly, because it is easy to lose in a reflection about leaving. You left a company after fifteen years and stepped into a different industry. You learned the order-processing procedures from scratch, using AI to build SOPs and step-by-step guides, and got up to speed quickly enough to take over your team members’ daily responsibilities for two full weeks. You recruited a strong new team member and eased the pressure on an understaffed team. And you used VBA to automate the monthly customer statement process, so that one click produced more than a hundred statements. That is not a list of attempts; it is a list of finished things.',
-          bodyZh: '這值得明白地說出來，因為在一篇談離開的反思裡，這些很容易被淹沒。你離開了一間待了十五年的公司，踏進一個完全不同的產業。你從零開始學會了訂單處理程序，用 AI 建立 SOP 與步驟指南，而且進入狀況的速度快到能夠整整兩個星期接手團隊成員的日常工作。你成功招募到一位優秀的新成員，減輕了人手不足的團隊的壓力。你還用 VBA 把每月客戶對帳單的流程自動化，一鍵就能產出一百多份對帳單。這不是一張「嘗試過什麼」的清單，而是一張「完成了什麼」的清單。',
+          en: 'My Three-Month Journey · August – November 2026',
+          zh: '我的三個月 · 2026 年 8 月至 11 月',
+          bodyEn: 'What follows is your own reflection, in the revised version — your ideas and your voice, with the English made more natural and more professional. Every paragraph has a 🔊, because this is the text to read aloud: at B2 the point is no longer understanding it but being able to say it at speed, in an interview, without the page in front of you.',
+          bodyZh: '以下是你自己的反思，修改後的版本——想法和語氣都是你的，只是把英文調整得更自然、更專業。每一段都有 🔊，因為這是用來唸出聲的文本：到了 B2，重點已經不是看不看得懂，而是能不能在面試時流暢地說出來，而且手邊沒有這張紙。',
+        },
+
+        {
+          t: 'summary',
+          en: 'I made a bold decision to leave a company where I had worked for 15 years. I stepped into a completely different industry and began a new chapter filled with unfamiliar experiences and challenges.',
+          zh: '我做了一個大膽的決定，離開了一間我待了十五年的公司。我踏進一個完全不同的產業，展開了一個充滿陌生經驗與挑戰的新篇章。',
+        },
+
+        {
+          t: 'summary',
+          en: 'During these three months, I had to learn the company’s order-processing procedures from scratch. I used AI to create SOPs and step-by-step guides, which helped me get up to speed more quickly. As a result, I was able to take over my team members’ daily responsibilities for two weeks. I also successfully recruited a strong new team member, which helped ease the pressure on our understaffed team.',
+          zh: '在這三個月裡，我必須從零開始學會公司的訂單處理程序。我用 AI 製作 SOP 和步驟指南，這幫助我更快進入狀況。結果我能夠接手團隊成員的日常工作整整兩個星期。我也成功招募到一位優秀的新團隊成員，減輕了我們人手不足的團隊的壓力。',
+        },
+
+        {
+          t: 'summary',
+          en: 'I know I didn’t do everything perfectly, but I did my best to keep daily operations running smoothly while introducing positive changes to the team. Another achievement I’m particularly proud of was using VBA to automate the monthly customer statement process. With just one click, I could generate more than 100 statements. Even now, I feel a sense of satisfaction whenever I think about what I accomplished.',
+          zh: '我知道自己並沒有把每件事都做得完美，但我盡了最大的努力，一邊維持日常營運順暢運作，一邊為團隊帶進正面的改變。另一項讓我特別自豪的成果，是用 VBA 把每月客戶對帳單的流程自動化。只要按一下，我就能產出一百多份對帳單。直到現在，每當我想起自己完成的事，仍然有一種滿足感。',
+        },
+
+        {
+          t: 'summary',
+          en: 'These experiences reminded me that even when I step into unfamiliar territory, I can adapt, learn quickly, and draw on my previous experience to make complicated tasks simpler and more efficient.',
+          zh: '這些經驗提醒了我：即使踏進陌生的領域，我依然能夠適應、快速學習，並運用過往的經驗，把複雜的工作變得更簡單、更有效率。',
+        },
+
+        {
+          t: 'summary',
+          en: 'However, these three months also taught me an important lesson: being capable of doing a job well and being a good fit for an organization are not necessarily the same thing. I may have the skills and experience to perform well, but that doesn’t always mean the working environment is the right fit for me. I’ve come to realize that I don’t have to feel connected to every company I work for, nor do I need to remain in an environment where I’m unhappy simply to prove that I can adapt.',
+          zh: '然而，這三個月也教會了我一件重要的事：有能力把一份工作做好，和適合一個組織，不一定是同一件事。我也許具備把事情做好的技能與經驗，但那並不代表這個工作環境就適合我。我逐漸明白，我不需要對每一間工作過的公司都有歸屬感，也不需要只為了證明自己能適應，就留在一個讓自己不快樂的環境裡。',
+        },
+
+        {
+          t: 'summary',
+          en: 'Looking back, I feel proud of what I achieved, but I have no regrets about my decision to leave. These three months were exhausting, but they never took away my curiosity or willingness to learn. Although I didn’t accomplish everything I had hoped to, the experience gave me a clearer understanding of myself — what matters to me, what I truly want, and the kind of life I hope to build in the future.',
+          zh: '回頭看，我為自己達成的事感到驕傲，但對於離開的決定沒有任何後悔。這三個月很耗人，卻從來沒有奪走我的好奇心，也沒有奪走我想學習的意願。雖然我沒有完成原本希望達成的一切，這段經驗卻讓我對自己有了更清楚的認識——什麼對我重要、我真正想要什麼，以及我希望在未來建立什麼樣的生活。',
+        },
+
+        {
+          t: 'summary',
+          en: 'Next, I’ll return to the healthcare logistics industry, where I have many years of experience, and take on a new role in QA Compliance. I want to approach this next chapter with a fresh perspective. I want to let go of old assumptions without losing the valuable lessons I’ve learned throughout my career. I hope to maintain a beginner’s mindset while drawing on the judgment and experience I’ve developed as a manager.',
+          zh: '接下來，我會回到我有多年經驗的醫療物流產業，擔任一個 QA Compliance 的新職位。我想以全新的觀點來面對這個新的階段。我想放下舊有的假設，但不丟掉職涯一路走來所學到的寶貴經驗。我希望保持初學者的心態，同時運用我身為主管所累積的判斷力與經驗。',
+        },
+
+        {
+          t: 'summary',
+          en: 'I no longer feel the need to prove my abilities by constantly pushing myself or taking responsibility for every problem. In the next stage of my career, I want to continue learning, apply my strengths, and make a meaningful contribution. At the same time, I want to create more space for my family, my personal life, and the things that truly matter to me.',
+          zh: '我不再覺得有必要透過不斷逼迫自己、或承擔每一個問題，來證明自己的能力。在職涯的下一個階段，我想持續學習、發揮我的強項，並做出有意義的貢獻。同時，我也想為我的家人、我的個人生活，以及那些對我真正重要的事，留出更多空間。',
+        },
+
+        {
+          t: 'summary',
+          en: 'I don’t see these three months as a career failure. Instead, I see them as a courageous step toward discovering what I really want. I’m leaving with new skills, greater self-awareness, and the courage to make a different choice. I was brave enough to step outside my comfort zone, and now I have the clarity to choose my next direction with confidence.',
+          zh: '我不把這三個月看成一次職涯上的失敗。相反地，我把它看成一次勇敢的跨步，朝著「弄清楚自己真正想要什麼」走去。我帶著新的技能、更深入的自我認識，以及做出不同選擇的勇氣離開。我有足夠的勇氣踏出舒適圈，而現在，我有了足夠的清晰，能夠有信心地選擇下一個方向。',
+        },
+
+        {
+          t: 'note',
+          en: 'Read that list again',
+          zh: '把那份清單再讀一次',
+          bodyEn: 'It is easy to lose, in a reflection about leaving, what the first half of it actually says. Learned the procedures from scratch. Built the SOPs. Covered the whole team for two weeks. Recruited someone. Automated a process that now runs on one click. That is not a list of attempts — it is a list of finished things, delivered in twelve weeks, in an industry you had never worked in. Say those five out loud before you say anything about fit, because an interviewer will hear whichever half you lead with.',
+          bodyZh: '在一篇談離開的反思裡，很容易漏掉前半段真正說了什麼。從零開始學會流程。建立了 SOP。整整兩個星期接手整個團隊的工作。招募到一個人。把一個流程自動化，現在按一下就跑完。這不是一張「嘗試過什麼」的清單，而是一張「完成了什麼」的清單——在十二個星期內，在一個你從來沒待過的產業裡。在談「適不適合」之前，先把這五件事唸出聲，因為面試官會記得你先講的是哪一半。',
         },
 
         {
@@ -1209,6 +1278,13 @@ const NOTEBOOK = {
           zh: '這句話底下的那個領悟',
           bodyEn: 'This is the sentence the whole piece turns on, and it is worth noticing what it does not say. It does not say you were not good enough, and it does not say the company was bad. It separates two things that are usually treated as one: whether you can do the work, and whether the place suits you. Once they are separate, the conclusion you reached follows cleanly — you do not have to feel connected to every company you work for, and you do not have to stay somewhere you are unhappy simply to prove that you can adapt. Adapting was never in question. You had already proved it by week three.',
           bodyZh: '這是整篇文章的軸心，而值得注意的，是它「沒有」說什麼。它沒有說你不夠好，也沒有說那間公司不好。它把兩件通常被混為一談的事分開了：你能不能做這份工作，以及這個地方適不適合你。一旦分開，你所得到的結論就順理成章——你不需要對每一間工作過的公司都有歸屬感，也不需要只為了證明自己能適應，就留在一個讓自己不快樂的環境裡。「能不能適應」從來就不是問題。那件事你在第三週就已經證明過了。',
+        },
+
+        {
+          t: 'part',
+          n: 'B',
+          en: 'What changed in your English',
+          zh: '你的英文被改了什麼',
         },
 
         {
@@ -1335,6 +1411,13 @@ const NOTEBOOK = {
               whyZh: '第一種說法是在反駁一個根本沒有人提出的指控。第二種說的是「你選擇怎麼看它」，既更有力，也更難被反駁——而且它正好接上了後面那一句：我把它看成勇敢的一步。',
             },
           ],
+        },
+
+        {
+          t: 'part',
+          n: 'C',
+          en: 'The language, card by card',
+          zh: '語言，一張一張看',
         },
 
         {
@@ -1512,6 +1595,13 @@ const NOTEBOOK = {
         },
 
         {
+          t: 'part',
+          n: 'D',
+          en: 'What stands out, and what to push further',
+          zh: '亮點，以及還能再推進的地方',
+        },
+
+        {
           t: 'note',
           en: 'What stands out',
           zh: '你的反思亮點',
@@ -1525,6 +1615,13 @@ const NOTEBOOK = {
           zh: '還可以再推進的一件事',
           bodyEn: '“It wasn’t the right fit” is true, and it is also where the story stops being convincing. Your decision may be entirely reasonable, but a listener cannot tell that from the phrase alone — it is the sentence someone says when they do not want to explain. The work is to name the specific parts of the environment that did not match your values: the pace, the way decisions were made, the communication style, how much of the week went on things nobody had decided were important. Two or three concrete examples turn a vague verdict into a clear, convincing explanation, and they are exactly what you will be asked for in the next interview.',
           bodyZh: '「不適合」是真的，但故事也就在這裡失去了說服力。你的決定可能完全合理，然而光憑這四個字，聽的人無從判斷——那正是一個人不想解釋時會說的句子。該做的功課，是具體說出環境裡哪些部分與你的價值觀不符：節奏、決策的方式、溝通的風格、一週裡有多少時間花在沒有人真正決定它重要的事情上。兩、三個具體的例子，就能把一個含糊的結論變成清楚而有說服力的說明——而那正是下一場面試會問你的東西。',
+        },
+
+        {
+          t: 'part',
+          n: 'E',
+          en: 'Practice',
+          zh: '練習',
         },
 
         {
@@ -1625,6 +1722,13 @@ const NOTEBOOK = {
             { en: 'Returning to an industry you already know is a step backwards.', zh: '回到一個你已經熟悉的產業，是一種退步。' },
             { en: 'A manager who solves every problem personally is doing the job badly, not well.', zh: '一個親自解決每個問題的主管，是把工作做差了，而不是做好了。' },
           ],
+        },
+
+        {
+          t: 'part',
+          n: 'F',
+          en: 'Speaking',
+          zh: '口說',
         },
 
         {
