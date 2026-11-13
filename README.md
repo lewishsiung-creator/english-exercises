@@ -5539,7 +5539,7 @@ public/health/            Health Notes — bilingual notes, one topic per subjec
 public/vicky-course/      Vicky's 上課時間 & 學費說明 — schedule, fees, leave rule
 public/course/            the same page for any student, drawn from the link's #hash
 public/course/make/       Lewis's form that writes those links
-make-icon.py              regenerates public/apple-touch-icon.png
+make-icon.py              regenerates public/star-icon.png, the kids' home-screen star
 tools/                    the scripts that turn a 講義 PDF into either of those
 ```
 
@@ -6452,6 +6452,13 @@ with her art-history decks, which live in their own repo.
   LINE then showed a square and he asked for the circle. The logo's lettering
   is cut out and its corners are transparent, so it must be drawn over white:
   left transparent, LINE and iOS fill those parts grey or black.
+- **The site-wide home-screen icon is now the round logo too** (2026-11-13,
+  Lewis's request after seeing the star on his phone). `public/apple-touch-icon.png`
+  is what iOS uses for every page that names no icon of its own — most of
+  the site. The gold star moved to `public/star-icon.png` and is linked by
+  name from the children's pages: Word Play (`/`), `/phonics/`,
+  `/phonics-handbook/`, `/math/` and `/museum-trip/`. A new page for young
+  children should link it the same way; a new adult page needs nothing.
 - **`og:description` is fixed text on `/course/`**: a preview reader never
   gets the #hash, and otherwise quotes the hidden 「這個連結不完整」.
 

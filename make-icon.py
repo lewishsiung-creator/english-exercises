@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Render public/apple-touch-icon.png (180x180) — the same gold star as the favicon.
+"""Render public/star-icon.png (180x180) — the same gold star as the favicon.
+
+The kids' pages link it by name. It used to BE public/apple-touch-icon.png,
+the site-wide default; since 2026-11-13 that default is Lewis's round logo.
 
 No image library is available on this machine, and `qlmanage` letterboxes the
 artwork into part of the canvas, so the PNG is rasterised and encoded here.
@@ -105,7 +108,7 @@ png = (b'\x89PNG\r\n\x1a\n'
        + chunk(b'IDAT', zlib.compress(raw, 9))
        + chunk(b'IEND', b''))
 
-with open('public/apple-touch-icon.png', 'wb') as fh:
+with open('public/star-icon.png', 'wb') as fh:
     fh.write(png)
 
-print(f'wrote public/apple-touch-icon.png  {SIZE}x{SIZE}  {len(png)} bytes')
+print(f'wrote public/star-icon.png  {SIZE}x{SIZE}  {len(png)} bytes')
