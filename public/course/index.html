@@ -58,7 +58,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&text=%E2%80%94%20Lewis&display=swap">
-<link rel="stylesheet" href="course.css?v=4">
+<link rel="stylesheet" href="course.css?v=5">
 <link rel="stylesheet" href="../type.css">
 </head>
 <body>
@@ -71,6 +71,12 @@
     <a class="about" href="https://campsite.bio/lewistoeic" target="_blank" rel="noopener">關於 Lewis 教練 →</a>
   </div>
 </header>
+
+<nav class="jump" aria-label="頁面段落">
+  <div class="wrap">
+    <a href="#s-time">上課安排</a><a href="#s-fee">學費</a><a href="#s-pay">付款</a><a href="#s-leave">請假</a>
+  </div>
+</nav>
 
 <main>
 <div class="wrap">
@@ -96,7 +102,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="s-time">
     <h2>上課安排</h2>
     <div class="facts">
       <div class="fact"><div class="k">上課時間</div><div class="v multi" id="time"></div></div>
@@ -104,10 +110,10 @@
     </div>
   </section>
 
-  <section>
+  <section id="s-fee">
     <h2>學費說明</h2>
     <p class="lead">網站公告學費：<a href="https://lewistoeic.com/course_packages/" target="_blank" rel="noopener">客製化課程方案 · Course Packages</a></p>
-    <h3>1-on-1 課程選項</h3>
+    <h3><span class="en">1-on-1</span> 課程選項</h3>
     <p class="lead" id="intro"></p>
     <div class="plans" id="plans"></div>
 
@@ -115,12 +121,13 @@
     <div class="callout"><span class="i">🎁</span><p><strong>特別優惠：</strong>關於您的課程，我會另外提供上課重點筆記，並且提供 <span class="en">LINE</span> 線上解惑。只要是與英文相關的問題，您可以直接傳訊給我，晚上 9 點前，我都會盡快回答您的疑惑，提供協助。</p></div>
   </section>
 
-  <section>
+  <section id="s-pay">
     <h2>付款方式</h2>
+    <div class="pay">
     <div class="bank">
       <div class="title">Lewis’ Bank Account</div>
       <dl>
-        <dt>銀行</dt><dd>台灣銀行（代號 004）五福分行</dd>
+        <dt>銀行</dt><dd><span class="nb">台灣銀行</span> <span class="nb">五福分行</span> <span class="nb sub">（代號 004）</span></dd>
         <dt>帳號</dt><dd class="acct">271 004 096 719</dd>
         <dt>戶名</dt><dd>林義雄</dd>
       </dl>
@@ -130,9 +137,10 @@
       <p>轉帳後，<strong>請主動告知您的帳號末五碼</strong>，以便確認。也可使用 <span class="en">LINE Pay</span> 轉帳。</p>
       <p>確認轉帳後，即會開始準備為您客製的<strong>課程內容</strong>，並且提供<strong>課前作業</strong>。</p>
     </div>
+    </div>
   </section>
 
-  <section>
+  <section id="s-leave">
     <h2>請假規則</h2>
     <div class="rule">
       <div class="when">2 日前</div>
@@ -151,6 +159,18 @@
 
 <footer><a href="https://lewistoeic.com/" target="_blank" rel="noopener">Lewis 多益職場力</a> · #職場英語教練</footer>
 
+<script>
+// The jump bar scrolls without touching the address: on /course/ the
+// student's details ARE the #hash, and a link to #s-pay would replace them.
+document.querySelectorAll('.jump a').forEach(function (a) {
+  a.addEventListener('click', function (e) {
+    var t = document.getElementById(a.getAttribute('href').slice(1));
+    if (!t) return;
+    e.preventDefault();
+    t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
 <script>
 document.querySelectorAll('.copy').forEach(function (b) {
   b.addEventListener('click', function () {

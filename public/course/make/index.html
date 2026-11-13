@@ -17,7 +17,7 @@
 <title>課程說明頁產生器｜Lewis Biz English</title>
 <meta name="theme-color" content="#2f3c7e">
 <link rel="icon" href="../../logo.png">
-<link rel="stylesheet" href="../course.css?v=4">
+<link rel="stylesheet" href="../course.css?v=5">
 <link rel="stylesheet" href="../../type.css">
 <style>
 body { background: var(--paper); }
@@ -63,7 +63,8 @@ input:focus, textarea:focus { outline: 2px solid var(--navy); outline-offset: -1
 .plan-row input { padding: 7px 9px; font-size: 15px; }
 .plan-row .del {
   grid-column: 1 / -1; justify-self: end;
-  background: none; border: 0; color: var(--ink-faint); font-size: 13px; cursor: pointer; padding: 2px 4px;
+  background: none; border: 0; color: var(--ink-faint); font-size: 14px; cursor: pointer;
+  padding: 10px 6px; margin: -6px -6px -10px;
 }
 .plan-row .del:hover { color: #b0202a; }
 
@@ -71,14 +72,21 @@ input:focus, textarea:focus { outline: 2px solid var(--navy); outline-offset: -1
   appearance: none; cursor: pointer;
   border: 1px solid var(--line); background: #fff; color: var(--ink);
   border-radius: var(--pill);
-  padding: 8px 16px; font: 600 14px var(--font-zh);
+  padding: 10px 18px; min-height: 44px; font: 600 15px var(--font-zh);
 }
+.btn:disabled { opacity: .45; cursor: default; }
 .btn:hover { border-color: var(--navy); }
 .btn.primary { background: var(--navy); border-color: var(--navy); color: #fff; }
 .btn.primary:hover { background: var(--navy-deep); }
 .btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 
-.out { position: sticky; top: 16px; }
+/* Computer and iPad sideways: the link and the preview stay beside the
+   form, filling the window's height. */
+.out {
+  position: sticky; top: 16px;
+  height: calc(100vh - 32px);
+  display: flex; flex-direction: column;
+}
 .linkbox {
   background: var(--card); border: 1px solid var(--line); border-radius: var(--round);
   padding: 16px 18px; margin-bottom: 14px;
@@ -88,12 +96,56 @@ input:focus, textarea:focus { outline: 2px solid var(--navy); outline-offset: -1
 .status { font-size: 13px; color: var(--ink-faint); margin-top: 8px; min-height: 1.4em; }
 .status.warn { color: #b0202a; }
 .frame {
+  flex: 1; min-height: 0;
   border: 1px solid var(--line); border-radius: var(--round);
-  overflow: hidden; background: #fff;
-  height: 78vh;
+  overflow: hidden; background: #e9e6df;
+  display: flex; justify-content: center;
 }
-.frame iframe { width: 100%; height: 100%; border: 0; display: block; }
-.frame-h { font-size: 13px; color: var(--ink-faint); margin: 0 0 6px 4px; }
+.frame iframe { width: 100%; height: 100%; border: 0; display: block; background: #fff; transition: width .2s; }
+.frame.phone iframe { width: 390px; max-width: 100%; box-shadow: 0 0 0 1px var(--line); }
+.frame-h { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-faint); margin: 0 0 8px 4px; }
+.seg { margin-left: auto; display: inline-flex; background: #e9e6df; border-radius: var(--pill); padding: 3px; }
+.seg button {
+  appearance: none; border: 0; background: none; cursor: pointer;
+  padding: 6px 14px; border-radius: var(--pill);
+  font: 600 13px var(--font-zh); color: var(--ink-soft);
+}
+.seg button[aria-pressed="true"] { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+.only-narrow { display: none; }
+
+/* iPhone and iPad upright: the form takes the screen; a bar at the bottom
+   holds 預覽 and 複製連結, and 預覽 opens the page full-screen. */
+.bar { display: none; }
+@media (max-width: 900px) {
+  .layout { max-width: 680px; padding-bottom: calc(110px + env(safe-area-inset-bottom)); }
+  .out {
+    position: fixed; inset: 0; z-index: 20; height: auto;
+    background: var(--paper);
+    padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+    visibility: hidden; transform: translateY(100%);
+    transition: transform .25s ease, visibility 0s .25s;
+  }
+  body.pv .out { visibility: visible; transform: none; transition: transform .25s ease; }
+  body.pv { overflow: hidden; }
+  .linkbox { margin-bottom: 10px; padding: 12px 14px; }
+  .linkbox h2, .linkbox #link, .frame-h .seg { display: none; }
+  .linkbox .status { margin-top: 6px; }
+  .frame-h { display: none; }
+  .only-narrow { display: inline-flex; }
+  .linkbox .btns { margin-top: 0; flex-wrap: nowrap; }
+  #close { order: -1; margin: 0 auto 0 0 !important; }
+  #open { display: none; }
+  .bar {
+    display: flex; align-items: center; gap: 10px;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+    padding: 10px max(16px, env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    background: rgba(255,255,255,.94);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    border-top: 1px solid var(--line);
+  }
+  .bar .status { flex: 1; margin: 0; min-width: 0; line-height: 1.4; }
+}
+.layout { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
 
 details { margin-top: 4px; }
 summary { cursor: pointer; font-size: 14px; color: var(--ink-soft); }
@@ -116,7 +168,7 @@ details .btns { margin-top: 8px; }
     <section>
       <h2>學員</h2>
       <label for="n">學員姓名<span class="req">*</span></label>
-      <input id="n" placeholder="例如：Vicky Hung">
+      <input id="n" placeholder="例如：Vicky Hung" autocapitalize="words" autocorrect="off" spellcheck="false" enterkeyhint="next">
 
       <label for="i">學員相關資訊<span class="hint">選填，一行一項</span></label>
       <textarea id="i" rows="2" placeholder="例如：長榮大學美術學系（副教授）"></textarea>
@@ -128,10 +180,10 @@ details .btns { margin-top: 8px; }
     <section>
       <h2>上課安排</h2>
       <label for="t">上課時間<span class="req">*</span></label>
-      <input id="t" placeholder="例如：每週二早上 8:00 – 9:00 am">
+      <input id="t" placeholder="例如：每週二早上 8:00 – 9:00 am" enterkeyhint="next">
 
       <label for="m">上課方式</label>
-      <input id="m" value="ZOOM 線上會議">
+      <input id="m" value="ZOOM 線上會議" enterkeyhint="next">
     </section>
 
     <section>
@@ -161,7 +213,7 @@ details .btns { margin-top: 8px; }
       <details>
         <summary>編輯舊連結</summary>
         <label for="old" style="margin-top:10px">貼上之前產生的連結</label>
-        <input id="old" placeholder="https://…/course/#d=…">
+        <input id="old" type="url" inputmode="url" placeholder="https://…/course/#d=…" autocapitalize="off" autocorrect="off" spellcheck="false">
         <div class="btns">
           <button type="button" class="btn" id="load">載入到表單</button>
           <button type="button" class="btn" id="clear">清空表單</button>
@@ -177,11 +229,23 @@ details .btns { margin-top: 8px; }
       <div class="btns">
         <button type="button" class="btn primary" id="copy">複製連結</button>
         <button type="button" class="btn" id="open">開新分頁看</button>
+        <button type="button" class="btn only-narrow" id="close">← 回到表單</button>
       </div>
       <p class="status" id="status"></p>
     </div>
-    <p class="frame-h">預覽（學員看到的樣子）</p>
-    <div class="frame"><iframe id="pv" title="預覽"></iframe></div>
+    <div class="frame-h">預覽（學員看到的樣子）
+      <span class="seg" role="group" aria-label="預覽寬度">
+        <button type="button" id="w-phone" aria-pressed="true">手機</button>
+        <button type="button" id="w-full" aria-pressed="false">全寬</button>
+      </span>
+    </div>
+    <div class="frame phone" id="frame"><iframe id="pv" title="預覽"></iframe></div>
+  </div>
+
+  <div class="bar">
+    <p class="status" id="status2"></p>
+    <button type="button" class="btn" id="show">預覽</button>
+    <button type="button" class="btn primary" id="copy2">複製連結</button>
   </div>
 
 </div>
@@ -290,9 +354,13 @@ details .btns { margin-top: 8px; }
     var url = BASE + '#d=' + encode(d);
     $('link').value = missing.length ? '' : url;
     $('copy').disabled = $('open').disabled = !!missing.length;
-    var st = $('status');
-    st.className = 'status' + (missing.length ? ' warn' : '');
-    st.textContent = missing.length ? '還需要填：' + missing.join('、') : '連結長度 ' + url.length + ' 字元，可以直接貼到 LINE。';
+    $('copy2').disabled = !!missing.length;
+    ['status', 'status2'].forEach(function (id) {
+      var st = $(id);
+      st.className = 'status' + (missing.length ? ' warn' : '');
+      st.textContent = missing.length ? '還需要填：' + missing.join('、')
+        : id === 'status' ? '連結長度 ' + url.length + ' 字元，可以直接貼到 LINE。' : '連結已準備好，可以複製。';
+    });
     clearTimeout(timer);
     timer = setTimeout(function () {
       // the preview shows the page even before the required fields are in
@@ -311,7 +379,17 @@ details .btns { margin-top: 8px; }
     $('w').value = (d.w || []).join('\n\n');
     setPlans((d.p && d.p.length) ? d.p : DEFAULT_PLANS);
     update();
+    document.querySelectorAll('textarea').forEach(grow);
   }
+
+  // Text boxes grow with what is typed, so nothing hides behind a scrollbar
+  // inside a scrolling page — awkward on a phone.
+  function grow(t) {
+    t.style.overflowY = 'hidden';
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight + 2) + 'px';
+  }
+  document.addEventListener('input', function (e) { if (e.target.tagName === 'TEXTAREA') grow(e.target); });
 
   $('f').addEventListener('input', update);
   $('add').onclick = function () { planRow(['', '', '', '']); update(); };
@@ -327,6 +405,7 @@ details .btns { margin-top: 8px; }
     if ($('w').value.trim() && !confirm('要用範本取代目前寫的內容嗎？')) return;
     $('w').value = recapNote($('n').value.trim().split(/\s+/)[0]);
     update();
+    grow($('w'));
   };
   $('load').onclick = function () {
     var d = decode($('old').value);
@@ -335,8 +414,8 @@ details .btns { margin-top: 8px; }
     $('old').value = '';
   };
   $('clear').onclick = function () { fill({}); };
-  $('copy').onclick = function () {
-    var v = $('link').value, b = $('copy');
+  function copyLink(b) {
+    var v = $('link').value;
     function done(ok) {
       b.textContent = ok ? '已複製 ✓' : '請手動選取連結複製';
       setTimeout(function () { b.textContent = '複製連結'; }, 1800);
@@ -344,7 +423,23 @@ details .btns { margin-top: 8px; }
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(v).then(function () { done(true); }, function () { $('link').select(); done(false); });
     } else { $('link').select(); done(false); }
-  };
+  }
+  $('copy').onclick = function () { copyLink($('copy')); };
+  $('copy2').onclick = function () { copyLink($('copy2')); };
+
+  // phone: the preview opens over the form, and closes back to it
+  $('show').onclick = function () { document.body.classList.add('pv'); };
+  $('close').onclick = function () { document.body.classList.remove('pv'); };
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') document.body.classList.remove('pv'); });
+
+  // computer: see the page at phone width (most students) or full width
+  function width(phone) {
+    $('frame').classList.toggle('phone', phone);
+    $('w-phone').setAttribute('aria-pressed', phone);
+    $('w-full').setAttribute('aria-pressed', !phone);
+  }
+  $('w-phone').onclick = function () { width(true); };
+  $('w-full').onclick = function () { width(false); };
   $('open').onclick = function () { window.open($('link').value, '_blank', 'noopener'); };
 
   fill({});

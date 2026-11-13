@@ -6485,6 +6485,17 @@ a form where Lewis types a student's name and class time and gets that page.
   because the system serif came out heavy on his iPhone. These are the first
   web fonts on the site; everything else is still system type. Same on
   `/vicky-course/`.
+- **iPhone, iPad, computer** (gone over 2026-11-13). `/vicky-course/` now
+  links `course/course.css` instead of keeping its own copy, so the two never
+  drift. Student pages: a navy jump bar (上課安排 · 學費 · 付款 · 請假) stays
+  at the top — its links scroll by script and never set the #hash, because on
+  `/course/` the hash *is* the student; 44px tap targets; the sides keep
+  clear of the notch on a sideways iPhone; from 760px wide the column is
+  roomier and the bank card sits beside the after-paying steps. The form: on
+  a phone or upright iPad a bar at the bottom holds 預覽 and 複製連結, and
+  預覽 opens the page full-screen; on a computer the preview fills the
+  window's height beside the form, with a 手機 / 全寬 switch (手機 first, since
+  students read it on phones); text boxes grow as he types.
 - **`/course/`** holds no student. The form writes everything into the link as
   `#d=<base64url JSON>` (format documented at the top of
   `public/course/index.html`), so making a page for a new student needs **no

@@ -1,6 +1,7 @@
 /* The course-and-fee page: the look worked out on /vicky-course/ (2026-11-13),
    in Lewis's colours — the navy of his bank and leave-rule cards and the
-   copper of his logo. Used by /course/ only; /vicky-course/ keeps its own copy. */
+   copper of his logo. Used by /course/, /course/make/ and, since 2026-11-13,
+   /vicky-course/ too (it had its own copy until then). */
 
 :root {
   --paper: #f7f5f0;
@@ -219,3 +220,84 @@ footer a { color: var(--ink-soft); }
 .note strong { font-weight: 600; color: var(--navy); }
 .note .go { font-weight: 600; color: var(--copper); margin-bottom: 6px; }
 .note .sign { margin: 0; text-align: right; font-family: Caveat, var(--font-en); font-size: 26px; line-height: 1.3; color: var(--navy); }
+
+/* ---------- iPhone, iPad, computer (2026-11-13) ----------
+   Lewis asked for the pages to be gone over for all three. */
+html {
+  color-scheme: light;
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+  scroll-padding-top: 64px;            /* the jump bar's height */
+}
+/* viewport-fit=cover lets the page run under the notch on a sideways
+   iPhone, so the sides keep clear of it themselves. */
+.hero, .jump {
+  padding-left: max(20px, env(safe-area-inset-left));
+  padding-right: max(20px, env(safe-area-inset-right));
+}
+main {
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+  padding-bottom: calc(40px + env(safe-area-inset-bottom));
+}
+footer { padding-bottom: calc(32px + env(safe-area-inset-bottom)); }
+footer a { display: inline-block; padding: 10px 4px; }
+
+/* Things a thumb presses are at least 44px tall. */
+.hero .about { padding: 10px 18px; }
+.copy { padding: 12px 22px; font-size: 15px; }
+@media (hover: none) { .hero .about:hover { background: none; } }
+
+/* The jump bar: four links that stay at the top while reading, so the
+   prices and the bank account are one tap away. It continues the hero. */
+.hero { padding-bottom: 22px; }
+.jump {
+  position: sticky; top: 0; z-index: 5;
+  background: var(--navy);
+  padding-top: 0; padding-bottom: 12px;
+  margin-top: -1px;                    /* no seam against the hero */
+  box-shadow: 0 1px 0 rgba(0,0,0,.06);
+}
+.jump .wrap { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+.jump .wrap::-webkit-scrollbar { display: none; }
+.jump a {
+  flex: none;
+  padding: 8px 16px; min-height: 40px;
+  display: inline-flex; align-items: center;
+  border-radius: var(--pill);
+  background: rgba(255,255,255,.12);
+  color: #fff; text-decoration: none;
+  font-size: 15px; font-weight: 600;
+}
+.jump a:active { background: rgba(255,255,255,.25); }
+@media (hover: hover) { .jump a:hover { background: rgba(255,255,255,.22); } }
+main .wrap { margin-top: 0; padding-top: 16px; }
+
+/* The bank line breaks between its parts, never inside one. */
+.nb { white-space: nowrap; }
+.bank .sub { font-weight: 400; font-size: 15px; color: rgba(255,255,255,.75); }
+
+/* Prices never break across lines. */
+.plan .now, .plan .per, .plan .was { white-space: nowrap; }
+
+/* iPad and computer: a little wider and roomier, and the bank card
+   beside what to do after paying. */
+@media (min-width: 760px) {
+  .wrap { max-width: 46rem; }
+  .hero { padding-top: 36px; }
+  .hero h1 { margin-top: 40px; font-size: 42px; }
+  section { padding: 30px 34px 32px; margin-bottom: 20px; }
+  main .wrap { padding-top: 22px; }
+  .note { font-size: 19.5px; }
+  .pay { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+  .pay .steps { margin-top: 4px; }
+}
+@media (min-width: 1200px) {
+  body { font-size: 18px; }
+  .wrap { max-width: 50rem; }
+}
+
+@media print {
+  .jump { display: none; }
+  .hero { padding-bottom: 32px; }
+}
