@@ -940,5 +940,390 @@ const NOTEBOOK = {
         },
       ],
     },
+
+    {
+      id: 's3',
+      n: 3,
+      date: '2026-11-14',
+      dateEn: '14 November 2026',
+      dateZh: '2026 年 11 月 14 日',
+      en: 'The three-minute leadership update',
+      zh: '三分鐘的領導簡報',
+
+      focus: [
+        { en: 'The four Cs', zh: '四個 C' },
+        { en: 'Story before numbers', zh: '先講故事，再給數字' },
+        { en: 'Ending with an ask', zh: '用明確的請求收尾' },
+      ],
+
+      blocks: [
+        {
+          t: 'lead',
+          en: 'The last two sessions were about one conversation at a time. This one is about the other kind of three minutes — the room is looking at you, and they have to leave knowing what to do.',
+          zh: '前兩堂課談的是一次一場的對話。這一堂談的是另一種三分鐘——整個會議室看著你，而他們離開時必須知道該做什麼。',
+        },
+
+        {
+          t: 'summary',
+          en: 'A leadership presentation answers one question: how do you turn a sound strategy into a message people understand, believe in, and act on? That is a different job from reporting. A report moves information; a leadership update creates alignment and drives a decision. Everything below is in service of that one difference.',
+          zh: '領導簡報要回答的是一個問題：你要怎麼把一個好策略，變成別人聽得懂、願意相信、而且真的會去做的訊息？這跟「報告」是不同的工作。報告傳遞資訊；領導簡報建立共識，並推動一個決定。下面所有內容，都是為了這一個差別。',
+        },
+
+        {
+          t: 'cards',
+          en: 'The four Cs',
+          zh: '四個 C',
+          hintEn: 'Each one is something the audience does, not something you do. Mark the one that is already working for you, and the one that is not.',
+          hintZh: '每一個講的都是「聽眾會怎樣」，而不是「你做了什麼」。標出已經做得不錯的，以及還沒做到的那一個。',
+          haveEn: 'Already strong',
+          haveZh: '已經夠強',
+          needEn: 'The weak one',
+          needZh: '這一塊最弱',
+          items: [
+            {
+              icon: '📊',
+              en: 'Credibility — they believe the strategy.',
+              zh: '可信——他們相信這個策略。',
+              descEn: 'Real data, measurable objectives, and a plan that would survive contact with an actual quarter. The question behind it: can we actually deliver this?',
+              descZh: '真實的數據、可衡量的目標，以及一個真的撐得過一季的計畫。背後的問題是：這件事我們真的做得到嗎？',
+            },
+            {
+              icon: '🧲',
+              en: 'Connection — they care about the outcome.',
+              zh: '共鳴——他們在乎這個結果。',
+              descEn: 'The strategy is tied to what this particular audience is already worried about or hoping for. The question behind it: why should these people care?',
+              descZh: '策略要接上「這一群聽眾」本來就在擔心或期待的事。背後的問題是：他們為什麼要在乎？',
+            },
+            {
+              icon: '🔎',
+              en: 'Clarity — they grasp it quickly.',
+              zh: '清晰——他們很快就看懂。',
+              descEn: 'One message per slide, with the insight on top instead of the whole dataset. The question behind it: can people get this at a glance?',
+              descZh: '一張投影片一個訊息，把洞察放在最上面，而不是整份數據。背後的問題是：別人一眼看得懂嗎？',
+            },
+            {
+              icon: '✅',
+              en: 'Commitment — they take action.',
+              zh: '行動——他們真的去做。',
+              descEn: 'They leave knowing what decision is needed, who owns it, and what happens next. The question behind it: what do we need these people to do?',
+              descZh: '他們離開時知道要做什麼決定、誰負責、接下來會怎樣。背後的問題是：我們需要他們做什麼？',
+            },
+          ],
+        },
+
+        {
+          t: 'note',
+          en: 'Where each one usually breaks, and the order that prevents it',
+          zh: '每一個 C 通常壞在哪裡，以及防止它的順序',
+          bodyEn: 'The four failures are predictable. Credibility goes when there are numbers everywhere and no "so what". Connection goes when you open straight into data, before anyone knows why they are listening. Clarity goes when a slide carries paragraphs and a chart too small to read. Commitment goes when you finish on "Any questions?" and nobody has been asked for anything. The order that prevents most of this is story, then strategy, then one clear slide, then the ask — which is almost the reverse of how a report is built.',
+          bodyZh: '這四種失敗是可以預測的。數字到處都是、卻沒有說出「所以呢」，可信就沒了。一開場就進數據、聽眾還不知道自己為什麼要聽，共鳴就沒了。一張投影片塞滿整段文字和看不清的圖表，清晰就沒了。最後以「有沒有問題？」收尾、卻沒有向任何人提出請求，行動就沒了。能擋掉大部分問題的順序是：先故事、再策略、再一張清楚的投影片、最後提出請求——這幾乎和一般寫報告的順序相反。',
+        },
+
+        {
+          t: 'contrast',
+          en: 'The same point, upgraded',
+          zh: '同一句話，升級版',
+          hintEn: 'Both sides are correct English. The right-hand version is the one that sounds like a decision has been made.',
+          hintZh: '兩邊的英文都是對的。右邊那個版本，聽起來像是已經下了決定。',
+          coldEn: 'Instead of',
+          coldZh: '不要說',
+          warmEn: 'Try',
+          warmZh: '改說',
+          items: [
+            {
+              caseEn: 'Reporting the quarter',
+              caseZh: '報告這一季',
+              cold: { en: 'Procedure volume increased a lot this year.', zh: '今年手術量增加了很多。' },
+              warm: {
+                en: 'Procedure volume grew significantly — up 18% year over year.',
+                zh: '手術量顯著成長——較去年同期增加 18%。',
+              },
+              whyEn: '"A lot" is your opinion of the number. The figure is the number. Senior audiences hear the first as padding and the second as evidence, and it costs you nothing to say the second.',
+              whyZh: '「很多」是你對這個數字的感想，數字本身才是數字。高階聽眾會把前者當成填充，把後者當成證據——而說後者並不花你任何力氣。',
+            },
+            {
+              caseEn: 'Flagging a priority',
+              caseZh: '指出優先順序',
+              cold: { en: 'This is very important for next year.', zh: '這件事明年非常重要。' },
+              warm: {
+                en: 'This is our top priority for next year.',
+                zh: '這是我們明年的首要任務。',
+              },
+              whyEn: 'Everything in a leadership deck is "very important" by the third slide, so the phrase has stopped meaning anything. "Top priority" ranks it, and ranking is what they came for.',
+              whyZh: '在領導簡報裡，到第三張投影片為止，每件事都「非常重要」，這個說法已經失去意義。「首要任務」是在排序，而排序正是他們來聽的東西。',
+            },
+            {
+              caseEn: 'Committing to something',
+              caseZh: '做出承諾',
+              cold: { en: 'We will try to lift utilisation at the quieter sites.', zh: '我們會試著提高使用率較低的院所的使用量。' },
+              warm: {
+                en: 'We’re committed to lifting utilisation to four cases a week.',
+                zh: '我們承諾把使用率提高到每週四台。',
+              },
+              whyEn: '"We will try" is a sentence that survives failure, and everyone in the room knows it. The upgrade is not louder — it just names the number you are willing to be held to.',
+              whyZh: '「我們會試著」是一句失敗了也活得下來的話，在場每個人都聽得出來。升級版並不是講得更大聲，它只是把你願意被追究的那個數字講出來。',
+            },
+            {
+              caseEn: 'Introducing a chart',
+              caseZh: '帶出一張圖表',
+              cold: { en: 'This slide shows utilisation by hospital.', zh: '這張投影片顯示各院所的使用率。' },
+              warm: {
+                en: 'The key takeaway here is that our growth is in the systems we already have.',
+                zh: '這裡最重要的一點是：我們的成長空間，在我們已經裝機的設備上。',
+              },
+              whyEn: 'They can see what the slide shows. What they cannot see is what you concluded from it. Saying the conclusion out loud is the whole job of the sentence.',
+              whyZh: '投影片顯示什麼，他們看得見；他們看不見的是你從中得出了什麼結論。把結論說出口，就是這句話唯一的工作。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Opening, and the numbers',
+          zh: '開場，以及數字',
+          items: [
+            {
+              en: 'Let me start with a story.',
+              zh: '我先從一個故事開始。',
+              eg: 'Let me start with a story from last quarter.',
+              egZh: '我先從上一季的一個故事開始。',
+            },
+            {
+              en: 'Picture this: …',
+              zh: '想像一下：⋯⋯',
+              eg: 'Picture this: a surgeon who had never touched a robotic system.',
+              egZh: '想像一下：一位從來沒碰過手術機器人的外科醫師。',
+            },
+            {
+              en: 'Here’s why this matters.',
+              zh: '這件事之所以重要，是因為⋯⋯',
+              eg: 'Here’s why this matters for our patients.',
+              egZh: '這件事對我們的病人之所以重要，是因為⋯⋯',
+            },
+            {
+              en: 'The numbers tell a clear story.',
+              zh: '數字說得很清楚。',
+              eg: 'The numbers tell a clear story: we are growing, but unevenly.',
+              egZh: '數字說得很清楚：我們在成長，但成長得不平均。',
+            },
+            {
+              en: 'year over year',
+              zh: '較去年同期',
+              eg: 'We grew procedure volume by 18% year over year.',
+              egZh: '我們的手術量較去年同期成長 18%。',
+            },
+            {
+              en: 'This is driven mainly by …',
+              zh: '這主要是由⋯⋯帶動的',
+              eg: 'This is driven mainly by three hospitals in the north.',
+              egZh: '這主要是由北部三家醫院帶動的。',
+            },
+            {
+              en: 'Our priority is threefold.',
+              zh: '我們的優先順序有三項。',
+              eg: 'Our priority for next year is threefold: train, lift, and build.',
+              egZh: '我們明年的優先順序有三項：訓練、提升、培養。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Guiding them, and the ask',
+          zh: '帶著他們走，以及提出請求',
+          items: [
+            {
+              en: 'As you can see here, …',
+              zh: '你在這裡可以看到⋯⋯',
+              eg: 'As you can see here, three sites account for most of the growth.',
+              egZh: '你在這裡可以看到，三家院所佔了大部分的成長。',
+            },
+            {
+              en: 'The key takeaway is …',
+              zh: '最重要的一點是⋯⋯',
+              eg: 'The key takeaway is that the opportunity is already installed.',
+              egZh: '最重要的一點是：機會就在已經裝好的設備裡。',
+            },
+            {
+              en: 'I’ll come back to this.',
+              zh: '這一點我等一下會再回來講。',
+              eg: 'I’ll come back to this in a moment.',
+              egZh: '這一點我等一下會再回來講。',
+            },
+            {
+              en: 'So what I’m asking for today is …',
+              zh: '所以我今天要請大家支持的是⋯⋯',
+              eg: 'So what I’m asking for today is two more training specialists.',
+              egZh: '所以我今天要請大家支持的是：再增加兩位臨床訓練專員。',
+            },
+            {
+              en: 'If we get this right, …',
+              zh: '如果這件事我們做對了，⋯⋯',
+              eg: 'If we get this right, more surgeons will have that same experience.',
+              egZh: '如果這件事我們做對了，會有更多醫師經歷同樣的過程。',
+            },
+            {
+              en: 'Let’s make this happen together.',
+              zh: '讓我們一起把它做成。',
+              eg: 'That’s the plan. Let’s make this happen together.',
+              egZh: '這就是計畫。讓我們一起把它做成。',
+            },
+            {
+              en: 'a clear win',
+              zh: '一個明確的成果',
+              eg: 'Shorter recovery is a clear win for the hospital and the patient.',
+              egZh: '恢復期縮短，對醫院和病人都是一個明確的成果。',
+            },
+          ],
+        },
+
+        {
+          t: 'note',
+          en: 'A model three-minute update',
+          zh: '一份三分鐘簡報的示範',
+          bodyEn: 'Story. Last month, a colorectal surgeon in Taichung did her 50th robotic case. A year ago she told us she would never switch. What changed? Her patients went home a day earlier, and she saw it. Strategy. That story is happening across Taiwan: volume grew 18% this year, but unevenly — three hospitals account for 60% of cases. Our priority for next year is threefold: expand training in central and southern Taiwan, lift utilisation at under-used sites to four cases a week, and build two new surgeon champions per region. Slides. On the next slide you will see one chart: utilisation by hospital. The key takeaway is simple — our growth opportunity is not new systems, it is the systems we already have. The ask. So what I am asking for today is support for two additional clinical training specialists. If we get this right, more surgeons will have that same experience, and so will their patients.',
+          bodyZh: '故事。上個月，台中一位大腸直腸外科醫師完成了她的第 50 台機器人手術。一年前她跟我們說，她絕對不會換。是什麼改變了？她的病人早一天回家，而且這是她自己看見的。策略。同樣的事正在全台灣發生：今年手術量成長 18%，但成長不平均——三家醫院就佔了六成。我們明年的優先順序有三項：擴大中南部的訓練、把使用率偏低院所提升到每週四台、每區再培養兩位種子醫師。投影片。下一張你會看到一張圖：各院所的使用率。最重要的一點很簡單——我們的成長機會不在新機器，而在已經裝好的機器上。請求。所以我今天要請大家支持的是：再增加兩位臨床訓練專員。如果這件事我們做對了，會有更多醫師經歷同樣的過程，他們的病人也是。',
+        },
+
+        {
+          t: 'discuss',
+          en: 'Read the model, then answer',
+          zh: '讀完示範，回答這幾題',
+          items: [
+            {
+              en: 'Why does it open with one surgeon instead of the 18% figure?',
+              zh: '為什麼開場是一位醫師，而不是那個 18%？',
+              starters: [
+                { en: 'Because nobody argues with a person.', zh: '因為沒有人會跟一個「人」爭論。' },
+                { en: 'The number means more once you know who it happened to.', zh: '知道那是發生在誰身上之後，數字才有意義。' },
+                { en: 'It buys you the attention to spend on the data.', zh: '它替你換來注意力，之後才有本錢講數據。' },
+              ],
+            },
+            {
+              en: 'What makes that strategy executable rather than just ambitious?',
+              zh: '是什麼讓那個策略「做得到」，而不只是「有企圖心」？',
+              starters: [
+                { en: 'Each priority has a number attached to it.', zh: '每一項優先事項後面都接著一個數字。' },
+                { en: 'It says where, how many, and by when.', zh: '它說了在哪裡、多少、到什麼時候。' },
+                { en: 'Nothing in it depends on something we do not control.', zh: '裡面沒有一項是靠我們控制不了的東西。' },
+              ],
+            },
+            {
+              en: 'Of your own audiences — regional leadership, your sales team, surgeons — which is hardest in English, and is it the numbers, the story, or keeping the slides simple?',
+              zh: '面對你自己的聽眾——區域主管、你的業務團隊、外科醫師——哪一種用英文最難？難的是數字、故事，還是把投影片保持簡單？',
+              starters: [
+                { en: 'With leadership it’s the numbers; with surgeons it’s the story.', zh: '對主管是數字難，對醫師是故事難。' },
+                { en: 'The hardest part is cutting, not writing.', zh: '最難的不是寫，是刪。' },
+                { en: 'In Chinese I would never put it this directly.', zh: '用中文我不會講得這麼直接。' },
+              ],
+            },
+          ],
+        },
+
+        {
+          t: 'gap',
+          en: 'Choose the phrase that fits',
+          zh: '選出適合的片語',
+          items: [
+            {
+              text: 'So what I’m ___ for today is two more training specialists.',
+              textZh: '所以我今天要請大家支持的是：再增加兩位訓練專員。',
+              options: ['asking', 'telling', 'hoping'],
+              answer: 0,
+              why: {
+                en: 'Ask for it in words. A leadership update that ends without a request is a report, and the room will treat it as one.',
+                zh: '請求要說出口。沒有提出請求就結束的領導簡報，就是一份報告，在場的人也會把它當報告處理。',
+              },
+            },
+            {
+              text: 'The key ___ here is that our growth is in the systems we already have.',
+              textZh: '這裡最重要的一點是：我們的成長空間，在已經裝機的設備上。',
+              options: ['takeaway', 'number', 'slide'],
+              answer: 0,
+              why: {
+                en: 'The takeaway is the conclusion you drew, not the thing on screen. They can already see the thing on screen.',
+                zh: '「takeaway」是你得出的結論，不是螢幕上的東西——螢幕上的東西他們已經看得到了。',
+              },
+            },
+            {
+              text: 'We grew procedure volume by 18% ___ over year.',
+              textZh: '我們的手術量較去年同期成長 18%。',
+              options: ['year', 'month', 'quarter'],
+              answer: 0,
+              why: {
+                en: '“Year over year” is fixed — it compares the same period in two consecutive years, which is why it survives a seasonal business.',
+                zh: '「year over year」是固定用法，比較的是連續兩年的同一段期間，所以季節性強的生意也適用。',
+              },
+            },
+            {
+              text: 'We’re ___ to lifting utilisation to four cases a week.',
+              textZh: '我們承諾把使用率提高到每週四台。',
+              options: ['committed', 'trying', 'planning'],
+              answer: 0,
+              why: {
+                en: '“Committed to” takes a noun or an -ing form, never a bare verb. It is also the version you cannot quietly walk away from.',
+                zh: '「committed to」後面接名詞或 -ing，不能直接接原形動詞。它同時也是那個你沒辦法默默走開的版本。',
+              },
+            },
+          ],
+        },
+
+        {
+          t: 'match',
+          en: 'Which half goes with which',
+          zh: '配對：哪一半接哪一半',
+          hintEn: 'Tap a phrase on the left, then its partner on the right.',
+          hintZh: '先點左邊的字詞，再點右邊配對的字詞。',
+          pairs: [
+            { a: 'the key', b: 'takeaway' },
+            { a: 'year over', b: 'year' },
+            { a: 'driven mainly', b: 'by' },
+            { a: 'a top', b: 'priority' },
+            { a: 'committed', b: 'to lifting it' },
+            { a: 'come back', b: 'to this' },
+            { a: 'a clear', b: 'win' },
+          ],
+        },
+
+        {
+          t: 'task',
+          en: 'Three minutes: your own update',
+          zh: '三分鐘：你自己的簡報',
+          instructionEn: 'Pick one real topic — a quarterly result, a new initiative, or a team challenge. Plan the four boxes in notes, not sentences. Then deliver it for three minutes from the notes, record it on your phone, take one piece of feedback, and deliver it again.',
+          instructionZh: '挑一個真實的主題——一季的成果、一項新計畫，或團隊的一個難題。用筆記寫下四個框，不要寫成完整句子。然後看著筆記講三分鐘，用手機錄下來，接受一項回饋，再講一次。',
+          prompts: [
+            { en: 'A quarterly result you already have the numbers for.', zh: '一個你已經有數字的季度成果。' },
+            { en: 'A new initiative you want resourced.', zh: '一項你希望拿到資源的新計畫。' },
+            { en: 'A team challenge you have not raised upwards yet.', zh: '一個你還沒有往上提的團隊難題。' },
+          ],
+          checklist: [
+            { en: 'Let me start with a story.', zh: '我先從一個故事開始。' },
+            { en: 'The numbers tell a clear story.', zh: '數字說得很清楚。' },
+            { en: 'year over year', zh: '較去年同期' },
+            { en: 'The key takeaway is…', zh: '最重要的一點是⋯⋯' },
+            { en: 'So what I’m asking for today is…', zh: '所以我今天要請大家支持的是⋯⋯' },
+            { en: 'If we get this right, …', zh: '如果這件事我們做對了，⋯⋯' },
+          ],
+          frames: [
+            { en: 'Story — one person this affected, and what happened: ___', zh: '故事——這件事影響到的一個人，以及發生了什麼：＿＿' },
+            { en: 'Strategy — the one to three numbers that prove it, and the plan: ___', zh: '策略——能證明它的一到三個數字，以及計畫：＿＿' },
+            { en: 'Slide — if you had one slide, its title would say: ___', zh: '投影片——如果只能有一張，它的標題會寫：＿＿' },
+            { en: 'Ask — what you need from this audience: ___', zh: '請求——你需要這群聽眾做什麼：＿＿' },
+          ],
+        },
+
+        /* Sourcing, on the page rather than only in this file. This lesson is
+           Lewis's own, and the only thing a reader could mistake for reported
+           fact is the model update — so the numbers in it are called invented
+           where they can be seen, not just in the lesson plan. */
+        {
+          t: 'note',
+          en: 'About the example',
+          zh: '關於這個示範',
+          bodyEn: 'The model update above is written for practice and every figure in it is invented — the 18%, the 60%, the four cases a week, the 50th case. Do not reuse them. The exercise is to swap in your own real numbers, which is also the only way the credibility half of this lesson does anything for you. The four Cs are a common business-communication framing rather than one author’s model; the examples, the language and the exercises on this page were written for this lesson.',
+          bodyZh: '上面那份示範是為了練習而寫的，裡面每一個數字都是虛構的——18%、六成、每週四台、第 50 台，都是。請不要沿用。這個練習的重點是換成你自己的真實數字，而這也是這堂課「可信」那一半唯一能對你產生作用的方式。四個 C 是商業溝通常見的歸納方式，不是某一位作者的專屬模型；本頁的例子、語言與練習，都是為這堂課而寫。',
+        },
+      ],
+    },
   ],
 };

@@ -56,8 +56,9 @@ function bilingual(x) {
   return typeof x === 'string' ? { en: x, zh: '' } : x;
 }
 
-/* Fisher–Yates, used only to scramble the right-hand column of a matching
-   exercise so the pairs are not sitting on the same row. */
+/* Fisher–Yates. Scrambles the right-hand column of a matching exercise so the
+   pairs are not sitting on the same row, and the options of a gap-fill so the
+   answer is not always the chip the author wrote first. */
 function shuffled(list) {
   const a = [...list];
   for (let i = a.length - 1; i > 0; i--) {
@@ -211,8 +212,17 @@ const BLOCKS = {
       ${hint(b)}
       ${b.items.map((it, n) => {
         const [before, after] = text(it.text).split('___');
+        /* The options are scrambled on render and the answer index moves with
+           them. Written out in source order the correct one sits wherever the
+           author happened to put it first — which, across three sessions, was
+           the leftmost chip almost every time. A learner spots that pattern
+           long before she spots the English, and from then on the exercise is
+           testing nothing. Authoring stays as it was: `answer` is still the
+           index into `options` as written. */
+        const opts = shuffled(it.options.map((o, i) => ({ o, was: i })));
+        const answer = opts.findIndex((x) => x.was === it.answer);
         return `
-          <div class="gap" data-answer="${it.answer}">
+          <div class="gap" data-answer="${answer}">
             <div class="gap-line pair" ${it.textZh ? 'data-zh' : ''}>
               <p class="en"><span class="gap-n">${n + 1}</span>
                 <span class="gap-text">${before}<span class="slot"></span>${after || ''}${
@@ -220,8 +230,8 @@ const BLOCKS = {
               ${it.textZh ? `<p class="zh">${text(it.textZh)}</p>` : ''}
             </div>
             <ul class="opts">
-              ${it.options.map((o, i) => `
-                <li><button class="chip" data-i="${i}">${text(o)}</button></li>`).join('')}
+              ${opts.map((x, i) => `
+                <li><button class="chip" data-i="${i}">${text(x.o)}</button></li>`).join('')}
             </ul>
             <p class="why"><span class="en">${text(it.why.en)}</span>
               <span class="zh">${text(it.why.zh)}</span></p>
