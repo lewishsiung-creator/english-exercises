@@ -5492,6 +5492,7 @@ public/landscape-portfolio/      the portfolio — filled in as the Ando study
 public/landscape-portfolio/content.starter.js  the same page, emptied
 public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS.md
 public/health/            Health Notes — bilingual notes, one topic per subject
+public/vicky-course/      Vicky's 上課時間 & 學費說明 — schedule, fees, leave rule
 make-icon.py              regenerates public/apple-touch-icon.png
 tools/                    the scripts that turn a 講義 PDF into either of those
 ```
@@ -6380,3 +6381,20 @@ request: 記得讓孩子帶健保卡 (pack the child's NHI card).
   The last page is a "Museum Explorer" badge with the I Spy star count.
 - Asset links carry `?v=N`; bump it on every change so a returning phone
   never pairs a new `index.html` with an old cached `app.js`.
+
+## Vicky's course page — 上課時間 & 學費說明
+
+`/vicky-course/` — the page Vicky Hung (an adult 1-on-1 client) reads before
+paying: her goals, the Tuesday Zoom slot, the two course packages with their
+優惠價, how to pay, and the leave rule. Built 2026-11-13 from the Notion page
+「上課時間 & 學費說明 (Vicky Hung)」; one self-contained `index.html`, no
+data file. `noindex`, unlisted, like every student page. Not to be confused
+with her art-history decks, which live in their own repo.
+
+- **No bank account on this page** (Lewis, 2026-11-13). The Notion page
+  carries his account card, but this repo is public and a number committed
+  once stays in its history. The page says 匯款帳戶資訊請見 LINE instead.
+  Don't add the account details here, or to any other page in `public/`.
+- The leave-rule image in Notion is set as text. The per-hour figures under
+  each price are the only thing not in the source, worked out from the
+  prices.

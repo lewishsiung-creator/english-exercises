@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- Vicky's course page: schedule, fees, how to pay, and the leave rule.
+
+     Built 2026-11-13 from the Notion page 「上課時間 & 學費說明 (Vicky Hung)」
+     in the lewisbizenglish workspace. Everything on it is that page's content;
+     the leave-rule image card there is set here as text so it reads on a
+     phone. The only addition is the per-hour figure under each price, worked
+     out from the prices themselves.
+
+     The Notion page also carries Lewis's bank account card. It is LEFT OFF
+     here on purpose (Lewis, 2026-11-13): this repo is public on GitHub, so a
+     number committed once stays in its history. The page points to LINE for
+     the account details instead. Do not add it back.
+
+     Not a lesson and not a notebook: it is the page a client reads before
+     paying. Unlisted and noindex like every student page. -->
+<meta name="robots" content="noindex, nofollow">
+<title>上課時間 & 學費說明｜Vicky Hung</title>
+<meta name="theme-color" content="#2f3c7e">
+<link rel="icon" href="../logo.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+
+<style>
+:root {
+  --paper: #f7f5f0;
+  --card: #ffffff;
+  --ink: #1d2033;
+  --ink-soft: #565a70;
+  --ink-faint: #8a8da0;
+  --line: #e3e0d8;
+  --navy: #2f3c7e;
+  --navy-deep: #232e66;
+  --copper: #c08540;
+  --copper-soft: #f8efe4;
+  --gold: #f4b63f;
+  --round: 16px;
+  --pill: 980px;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-zh);
+  font-size: 17px;
+  line-height: 1.7;
+}
+.en { font-family: var(--font-ui); }
+a { color: var(--navy); text-underline-offset: 3px; }
+
+/* ---------- hero ---------- */
+.hero {
+  background: var(--navy);
+  color: #fff;
+  padding: 28px 20px 44px;
+}
+.wrap { max-width: 40rem; margin: 0 auto; }
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-ui); font-size: 14px; font-weight: 600;
+  letter-spacing: .01em; color: rgba(255,255,255,.88);
+}
+.brand img { width: 36px; height: 36px; border-radius: 50%; }
+.hero h1 {
+  margin: 34px 0 6px;
+  font-size: clamp(28px, 7vw, 38px);
+  line-height: 1.25;
+  letter-spacing: .02em;
+}
+.hero .for {
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: 20px;
+  color: var(--gold);
+}
+.hero .about {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 7px 16px;
+  border: 1px solid rgba(255,255,255,.4);
+  border-radius: var(--pill);
+  color: #fff; text-decoration: none;
+  font-size: 14px;
+}
+.hero .about:hover { background: rgba(255,255,255,.1); }
+
+/* ---------- sections ---------- */
+main { padding: 0 16px 56px; }
+main .wrap { margin-top: -22px; }
+section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--round);
+  padding: 22px 22px 24px;
+  margin-bottom: 16px;
+}
+h2 {
+  margin: 0 0 14px;
+  font-size: 15px;
+  letter-spacing: .08em;
+  color: var(--copper);
+}
+h3 { margin: 18px 0 6px; font-size: 16px; }
+h3:first-of-type { margin-top: 0; }
+p { margin: 0 0 10px; }
+ol { margin: 0; padding-left: 1.4em; }
+ol li { margin: 2px 0; }
+
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.fact { background: var(--paper); border-radius: 12px; padding: 14px 16px; }
+.fact .k { font-size: 13px; color: var(--ink-faint); }
+.fact .v { font-size: 18px; font-weight: 600; line-height: 1.45; }
+@media (max-width: 420px) { .facts { grid-template-columns: 1fr; } }
+
+/* ---------- fees ---------- */
+.lead { color: var(--ink-soft); font-size: 15.5px; }
+.plans { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0 16px; }
+@media (max-width: 520px) { .plans { grid-template-columns: 1fr; } }
+.plan {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px 18px;
+}
+.plan .hours { font-size: 20px; font-weight: 700; }
+.plan .span { font-size: 14px; color: var(--ink-soft); }
+.plan .was {
+  margin-top: 12px;
+  font-size: 14px; color: var(--ink-faint);
+}
+.plan .was s { text-decoration-thickness: 1.5px; }
+.plan .now {
+  font-family: var(--font-ui);
+  font-size: 30px; font-weight: 700; letter-spacing: -.01em;
+  color: var(--navy);
+  line-height: 1.2;
+}
+.plan .now small { font-size: 14px; font-weight: 600; margin-right: 4px; }
+.plan .tag {
+  display: inline-block; margin-left: 6px; vertical-align: 4px;
+  padding: 1px 8px; border-radius: var(--pill);
+  background: var(--copper-soft); color: var(--copper);
+  font-family: var(--font-zh); font-size: 12px; font-weight: 600;
+}
+.plan .per { font-size: 13px; color: var(--ink-faint); margin-top: 2px; }
+
+.callout {
+  display: flex; gap: 10px;
+  background: var(--copper-soft);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-top: 10px;
+  font-size: 15.5px;
+}
+.callout .i { flex: none; }
+.callout p { margin: 0; }
+.callout strong { color: var(--ink); }
+
+.steps { margin-top: 14px; }
+.steps p { color: var(--ink-soft); font-size: 15.5px; }
+.steps strong { color: var(--ink); }
+
+/* ---------- leave ---------- */
+.rule { display: flex; gap: 14px; padding: 12px 0; }
+.rule + .rule { border-top: 1px solid var(--line); }
+.rule .when {
+  flex: none; width: 4.6em;
+  font-weight: 700; color: var(--navy);
+}
+.rule p { margin: 0; }
+.hl { background: linear-gradient(transparent 58%, #fbe3b0 58%); font-weight: 600; }
+
+footer {
+  text-align: center; font-size: 13px; color: var(--ink-faint);
+  padding: 8px 16px 40px;
+}
+footer a { color: var(--ink-soft); }
+
+@media print {
+  body { background: #fff; }
+  .hero .about { display: none; }
+  section { break-inside: avoid; }
+}
+</style>
+<link rel="stylesheet" href="../type.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand"><img src="../logo.png" alt=""><span class="en">Lewis Biz English · 1-on-1 課程</span></div>
+    <h1>上課時間 &amp; 學費說明</h1>
+    <p class="for">Vicky Hung</p>
+    <a class="about" href="https://campsite.bio/lewistoeic" target="_blank" rel="noopener">關於 Lewis 教練 →</a>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+  <section>
+    <h2>VICKY 客製化課程說明</h2>
+    <h3>學員相關資訊</h3>
+    <p>長榮大學美術學系（副教授）</p>
+    <h3>學習目標</h3>
+    <ol>
+      <li>提升英語交談的自在感</li>
+      <li>英語授課（<span class="en">Contemporary Art</span>）</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>上課安排</h2>
+    <div class="facts">
+      <div class="fact"><div class="k">上課時間</div><div class="v">每週二早上<br><span class="en">8:00 – 9:00 am</span></div></div>
+      <div class="fact"><div class="k">上課方式</div><div class="v"><span class="en">ZOOM</span> 線上會議</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>學費說明</h2>
+    <p class="lead">網站公告學費：<a href="https://lewistoeic.com/course_packages/" target="_blank" rel="noopener">客製化課程方案 · Course Packages</a></p>
+    <h3>1-on-1 課程選項</h3>
+    <p class="lead">2026 年 6 月開始，學費已做調整。為了感謝您的長期信任，特別提供優惠：</p>
+
+    <div class="plans">
+      <div class="plan">
+        <div class="hours">10 小時課程</div>
+        <div class="span">12 週內完成課程（約 3 個月）</div>
+        <div class="was">原價 <s>$18,000</s></div>
+        <div class="now"><small>優惠價</small>$16,000</div>
+        <div class="per">平均每小時 $1,600</div>
+      </div>
+      <div class="plan">
+        <div class="hours">20 小時課程</div>
+        <div class="span">22 週內完成課程（約 6 個月）</div>
+        <div class="was">原價 <s>$30,000</s></div>
+        <div class="now"><small>優惠價</small>$28,000</div>
+        <div class="per">平均每小時 $1,400</div>
+      </div>
+    </div>
+
+    <div class="callout"><span class="i">💡</span><p><strong>請主動告知您想安排的課程選項。</strong></p></div>
+    <div class="callout"><span class="i">🎁</span><p><strong>特別優惠：</strong>關於您的課程，我會另外提供上課重點筆記，並且提供 <span class="en">LINE</span> 線上解惑。只要是與英文相關的問題，您可以直接傳訊給我，晚上 9 點前，我都會盡快回答您的疑惑，提供協助。</p></div>
+  </section>
+
+  <section>
+    <h2>付款方式</h2>
+    <div class="callout"><span class="i">🏦</span><p><strong>匯款帳戶資訊請見 <span class="en">LINE</span></strong>，也可使用 <span class="en">LINE Pay</span> 轉帳。</p></div>
+    <div class="steps">
+      <p>轉帳後，<strong>請主動告知您的帳號末五碼</strong>，以便確認。</p>
+      <p>確認轉帳後，即會開始準備為您客製的<strong>課程內容</strong>，並且提供<strong>課前作業</strong>。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>請假規則</h2>
+    <div class="rule">
+      <div class="when">2 日前</div>
+      <p>如需請假或更動上課時間，<span class="hl">請於 2 日前告知</span>，我會配合另外安排時間。</p>
+    </div>
+    <div class="rule">
+      <div class="when">2 日內</div>
+      <p>若於 2 日內告知，會針對您的課程進度額外準備學習內容，供您學習，不另行補課。</p>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer><a href="https://lewistoeic.com/" target="_blank" rel="noopener">Lewis 多益職場力</a> · #職場英語教練</footer>
+
+</body>
+</html>
