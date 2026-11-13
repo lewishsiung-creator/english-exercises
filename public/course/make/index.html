@@ -192,10 +192,11 @@ details .btns { margin-top: 8px; }
       <label for="w">放在頁面最上方<span class="hint">選填。空一行分段，**粗體**</span></label>
       <textarea id="w" rows="6" placeholder="例如：&#10;Hi Vicky,&#10;&#10;From 2026/03/07 to 2026/11/10, we’ve completed **20 hours of class** together!"></textarea>
       <div class="btns">
-        <button type="button" class="btn" data-note="welcome">套用新學員範本</button>
-        <button type="button" class="btn" data-note="recap">套用進度回顧範本</button>
+        <button type="button" class="btn" data-note="welcome">新學員範本（英文）</button>
+        <button type="button" class="btn" data-note="welcomeZh">新學員範本（中文）</button>
+        <button type="button" class="btn" data-note="recap">進度回顧範本</button>
       </div>
-      <p class="status" style="margin-top:10px">新學員範本：開始上課前的歡迎。進度回顧範本：給 Vicky 的那段話。套用後，把 YYYY/MM/DD 和 __ 換成實際的日期與時數。最後會自動加上「— Lewis」。</p>
+      <p class="status" style="margin-top:10px">新學員範本：開始上課前的歡迎，有英文和中文兩版。進度回顧範本：給 Vicky 的那段話。套用後，把 YYYY/MM/DD 和 __ 換成實際的日期與時數。最後會自動加上「— Lewis」。</p>
     </section>
 
     <section>
@@ -290,6 +291,15 @@ details .btns { margin-top: 8px; }
       'Don’t worry about making mistakes. That’s exactly what class is for, and the more you speak, the faster you’ll grow.',
       'If you have any questions along the way, just send me a message on LINE.',
       'Let’s get started!'
+    ]; },
+    // the welcome in Chinese, asked for the same day; 您 like the rest of the page
+    welcomeZh: function (first) { return [
+      (first ? first + (/^[A-Za-z]/.test(first) ? ' ' : '') : '__ ') + '您好，',
+      '歡迎您加入！很高興您決定開始這段學習旅程，期待我們在 **YYYY/MM/DD** 的第一堂課。',
+      '這門課是為您量身打造的：從您的工作、您的目標，到您真正需要用到英文的場合。開始上課前，我會為您準備課程內容，並提供簡短的課前作業，讓我們的第一堂課就能發揮最大的效果。',
+      '不用擔心說錯，課堂就是練習的地方。開口說得越多，進步就越快。',
+      '上課期間有任何問題，都歡迎直接用 LINE 傳訊息給我。',
+      '我們開始吧！'
     ]; }
   };
   function paras(s) { return s.split(/\n\s*\n/).map(function (l) { return l.trim(); }).filter(Boolean); }
