@@ -6444,12 +6444,16 @@ with her art-history decks, which live in their own repo.
 - The leave-rule image in Notion is set as text. The per-hour figures under
   each price are the only thing not in the source, worked out from the
   prices.
-- **Icons are Lewis's logo** (2026-11-13), not the site's star: the tab uses
-  the shared `public/logo.png`; the home-screen icon is the folder's own
-  `apple-touch-icon.png`, his 512px lewistoeic.com logo on a full copper
-  square. That logo's corners are transparent (iOS fills them black) and its
-  lettering is cut out, so it needed white behind the letters and copper to
-  the corners — a plain resize will not do.
+- **Icons are Lewis's logo, kept round** (2026-11-13), not the site's star.
+  The tab uses the shared `public/logo.png`. The home-screen icon and the
+  link-preview image (`public/course/apple-touch-icon.png`, `share.png`, 600px,
+  named in `og:image` on both pages) are his 512px lewistoeic.com logo — a
+  copper circle — on opaque white. A first version filled the corners copper;
+  LINE then showed a square and he asked for the circle. The logo's lettering
+  is cut out and its corners are transparent, so it must be drawn over white:
+  left transparent, LINE and iOS fill those parts grey or black.
+- **`og:description` is fixed text on `/course/`**: a preview reader never
+  gets the #hash, and otherwise quotes the hidden 「這個連結不完整」.
 
 ## Course pages from a form — `/course/` and `/course/make/`
 
