@@ -6512,6 +6512,10 @@ a form where Lewis types a student's name and class time and gets that page.
   the note he wrote to Vicky on 2026-11-13 (the run-ons mended), with the
   student's first name and YYYY/MM/DD and __ left for the dates and hours;
   the link can't be copied while any of those placeholders are left in.
+  「套用新學員範本」 (added the same day) is a welcome before the first class —
+  written by Claude in the recap's voice from what the page promises (a
+  course built round them, the 課前作業, LINE questions), with the first
+  class's date as YYYY/MM/DD.
   The note is set in **Newsreader** with a handwritten 「— Lewis」 in
   **Caveat**, from Google Fonts — Lewis picked it from four on 2026-11-13,
   because the system serif came out heavy on his iPhone. These are the first

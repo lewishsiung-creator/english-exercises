@@ -192,9 +192,10 @@ details .btns { margin-top: 8px; }
       <label for="w">放在頁面最上方<span class="hint">選填。空一行分段，**粗體**</span></label>
       <textarea id="w" rows="6" placeholder="例如：&#10;Hi Vicky,&#10;&#10;From 2026/03/07 to 2026/11/10, we’ve completed **20 hours of class** together!"></textarea>
       <div class="btns">
-        <button type="button" class="btn" id="recap">套用進度回顧範本</button>
+        <button type="button" class="btn" data-note="welcome">套用新學員範本</button>
+        <button type="button" class="btn" data-note="recap">套用進度回顧範本</button>
       </div>
-      <p class="status" style="margin-top:10px">範本是給 Vicky 的那段話。套用後，把 YYYY/MM/DD 和 __ 換成實際的日期與時數。最後會自動加上「— Lewis」。</p>
+      <p class="status" style="margin-top:10px">新學員範本：開始上課前的歡迎。進度回顧範本：給 Vicky 的那段話。套用後，把 YYYY/MM/DD 和 __ 換成實際的日期與時數。最後會自動加上「— Lewis」。</p>
     </section>
 
     <section>
@@ -265,19 +266,32 @@ details .btns { margin-top: 8px; }
     x: '2026 年 6 月開始，學費已做調整。為了感謝您的長期信任，特別提供優惠：',
     sale: { 10: 16000, 20: 28000 }
   };
-  // The note Lewis wrote to Vicky after her 20 hours (2026-11-13), as a
-  // template: the name comes from the form, the dates and hours are his to
-  // fill — the link can't be copied while YYYY/MM/DD or __ is left in.
-  function recapNote(first) {
-    return [
+  // Notes to start from. The name comes from the form; the dates and hours
+  // are his to fill — the link can't be copied while YYYY/MM/DD or __ is
+  // left in.
+  //
+  // recap: the note Lewis wrote to Vicky after her 20 hours (2026-11-13).
+  // welcome: for a new student before the first class, asked for the same
+  // day; written by Claude in the recap's voice, from what the page itself
+  // promises (a course built round them, the 課前作業, LINE questions).
+  var NOTES = {
+    recap: function (first) { return [
       'Hi ' + (first || '__') + ',',
       'From YYYY/MM/DD to YYYY/MM/DD, we’ve completed **__ hours of class** together!',
       'Looking back, I’ve genuinely seen your speaking improve: your word choice, fluency, and confidence in English conversations have all come a long way since we started.',
       'Speaking is a skill that needs consistent practice to maintain and grow. Just like fitness, progress isn’t always linear, but it compounds with consistency.',
       'I’d love to keep working with you and help take your speaking to the next level.',
       'Let’s keep the momentum going.'
-    ].join('\n\n');
-  }
+    ]; },
+    welcome: function (first) { return [
+      'Hi ' + (first || '__') + ',',
+      'Welcome! I’m really glad you’ve decided to start this journey, and I’m looking forward to our first class on **YYYY/MM/DD**.',
+      'This course is built around you: your work, your goals, and the moments when you actually need English. Before we begin, I’ll prepare your course content and send you a short pre-class task, so we can make the most of our very first session.',
+      'Don’t worry about making mistakes. That’s exactly what class is for, and the more you speak, the faster you’ll grow.',
+      'If you have any questions along the way, just send me a message on LINE.',
+      'Let’s get started!'
+    ]; }
+  };
   function paras(s) { return s.split(/\n\s*\n/).map(function (l) { return l.trim(); }).filter(Boolean); }
 
   function planRow(p) {
@@ -402,12 +416,14 @@ details .btns { margin-top: 8px; }
     });
     update();
   };
-  $('recap').onclick = function () {
-    if ($('w').value.trim() && !confirm('要用範本取代目前寫的內容嗎？')) return;
-    $('w').value = recapNote($('n').value.trim().split(/\s+/)[0]);
-    update();
-    grow($('w'));
-  };
+  document.querySelectorAll('[data-note]').forEach(function (b) {
+    b.onclick = function () {
+      if ($('w').value.trim() && !confirm('要用範本取代目前寫的內容嗎？')) return;
+      $('w').value = NOTES[b.getAttribute('data-note')]($('n').value.trim().split(/\s+/)[0]).join('\n\n');
+      update();
+      grow($('w'));
+    };
+  });
   $('load').onclick = function () {
     var d = decode($('old').value);
     if (!d) { $('status').className = 'status warn'; $('status').textContent = '這個連結讀不到資料，請確認是完整的連結。'; return; }
