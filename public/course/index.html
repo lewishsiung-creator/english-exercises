@@ -60,7 +60,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&text=%E2%80%94%20Lewis&display=swap">
-<link rel="stylesheet" href="course.css?v=7">
+<link rel="stylesheet" href="course.css?v=8">
 <link rel="stylesheet" href="../type.css">
 </head>
 <body>
@@ -100,18 +100,18 @@
     </div>
     <div id="goals-wrap">
       <h3>學習目標</h3>
-      <ol id="goals"></ol>
+      <ol class="goals" id="goals"></ol>
     </div>
   </section>
 
   <section id="s-time">
     <h2>上課安排</h2>
     <div class="facts">
-      <div class="fact"><div class="k">上課時間</div><div class="v multi" id="time"></div></div>
-      <div class="fact"><div class="k">上課方式</div><div class="v multi" id="mode"></div></div>
-      <div class="fact" id="start-f"><div class="k">開始日期</div><div class="v" id="start"></div></div>
-      <div class="fact" id="end-f"><div class="k">結束日期</div><div class="v" id="end"></div></div>
-      <div class="fact" id="hours-f"><div class="k">上課時數</div><div class="v" id="hours"></div></div>
+      <div class="fact i-time"><div class="k">上課時間</div><div class="v multi" id="time"></div></div>
+      <div class="fact i-mode"><div class="k">上課方式</div><div class="v multi" id="mode"></div></div>
+      <div class="fact i-start" id="start-f"><div class="k">開始日期</div><div class="v" id="start"></div></div>
+      <div class="fact i-end" id="end-f"><div class="k">結束日期</div><div class="v" id="end"></div></div>
+      <div class="fact i-hours" id="hours-f"><div class="k">上課時數</div><div class="v" id="hours"></div></div>
     </div>
   </section>
 
@@ -122,8 +122,14 @@
     <p class="lead" id="intro"></p>
     <div class="plans" id="plans"></div>
 
-    <div class="callout"><span class="i">💡</span><p><strong>請主動告知您想安排的課程選項。</strong></p></div>
-    <div class="callout"><span class="i">🎁</span><p><strong>特別優惠：</strong>關於您的課程，我會另外提供上課重點筆記，並且提供 <span class="en">LINE</span> 線上解惑。只要是與英文相關的問題，您可以直接傳訊給我，晚上 9 點前，我都會盡快回答您的疑惑，提供協助。</p></div>
+    <div class="callout ask"><span class="i" aria-hidden="true">💡</span><p><strong>請主動告知您想安排的課程選項。</strong></p></div>
+    <div class="perks">
+      <div class="perks-h"><span aria-hidden="true">🎁</span> 特別優惠</div>
+      <ul>
+        <li><strong>上課重點筆記</strong>關於您的課程，我會另外提供上課重點筆記。</li>
+        <li><strong><span class="en">LINE</span> 線上解惑</strong>只要是與英文相關的問題，您可以直接傳訊給我，晚上 9 點前，我都會盡快回答您的疑惑，提供協助。</li>
+      </ul>
+    </div>
   </section>
 
   <section id="s-pay">
@@ -132,27 +138,29 @@
     <div class="bank">
       <div class="title">Lewis’ Bank Account</div>
       <dl>
-        <dt>銀行</dt><dd><span class="nb">台灣銀行</span> <span class="nb">五福分行</span> <span class="nb sub">（代號 004）</span></dd>
+        <dt>銀行</dt><dd><span class="nb">台灣銀行</span> <span class="nb">五福分行</span></dd>
+        <dt>代號</dt><dd class="code">004</dd>
         <dt>帳號</dt><dd class="acct">271 004 096 719</dd>
         <dt>戶名</dt><dd>林義雄</dd>
       </dl>
       <button class="copy" type="button" data-copy="271004096719">複製帳號</button>
     </div>
-    <div class="steps">
-      <p>轉帳後，<strong>請主動告知您的帳號末五碼</strong>，以便確認。也可使用 <span class="en">LINE Pay</span> 轉帳。</p>
-      <p>確認轉帳後，即會開始準備為您客製的<strong>課程內容</strong>，並且提供<strong>課前作業</strong>。</p>
-    </div>
+    <ol class="steps">
+      <li><strong>轉帳</strong>到 Lewis 的帳戶，也可使用 <span class="en">LINE Pay</span> 轉帳。</li>
+      <li>轉帳後，<strong>請主動告知您的帳號末五碼</strong>，以便確認。</li>
+      <li>確認轉帳後，即會開始準備為您客製的<strong>課程內容</strong>，並且提供<strong>課前作業</strong>。</li>
+    </ol>
     </div>
   </section>
 
   <section id="s-leave">
     <h2>請假規則</h2>
     <div class="rule">
-      <div class="when">2 日前</div>
+      <div class="when ok">2 日前</div>
       <p>如需請假或更動上課時間，<span class="hl">請於 2 日前告知</span>，我會配合另外安排時間。</p>
     </div>
     <div class="rule">
-      <div class="when">2 日內</div>
+      <div class="when late">2 日內</div>
       <p>若於 2 日內告知，會針對您的課程進度額外準備學習內容，供您學習，不另行補課。</p>
     </div>
   </section>
@@ -175,6 +183,24 @@ document.querySelectorAll('.jump a').forEach(function (a) {
     t.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
+// …and shows which section is on screen.
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.jump a'));
+  function spy() {
+    var line = 90, cur = null;
+    links.forEach(function (a) {
+      var t = document.getElementById(a.getAttribute('href').slice(1));
+      if (t && !t.closest('[hidden]') && t.getBoundingClientRect().top <= line) cur = a;
+    });
+    if (scrollY > 0 && innerHeight + scrollY >= document.documentElement.scrollHeight - 4) cur = links[links.length - 1];
+    links.forEach(function (a) { a.classList.toggle('on', a === cur); });
+  }
+  addEventListener('scroll', spy, { passive: true });
+  addEventListener('resize', spy);
+  addEventListener('load', spy);
+  addEventListener('hashchange', function () { setTimeout(spy, 0); });
+  spy();
+})();
 </script>
 <script>
 document.querySelectorAll('.copy').forEach(function (b) {
@@ -292,17 +318,25 @@ document.querySelectorAll('.copy').forEach(function (b) {
 
     var box = document.getElementById('plans');
     box.textContent = '';
-    (Array.isArray(d.p) ? d.p : []).forEach(function (p) {
-      if (!Array.isArray(p)) return;
-      var hours = num(p[0]), span = str(p[1]), price = num(p[2]), sale = num(p[3]);
-      if (!hours || !price) return;
-      var card = el('div', 'plan');
+    var plans = (Array.isArray(d.p) ? d.p : []).filter(Array.isArray).map(function (p) {
+      var hours = num(p[0]), price = num(p[2]), sale = num(p[3]);
+      return { hours: hours, span: str(p[1]), price: price, sale: sale,
+               rate: hours && price ? Math.round((sale && sale < price ? sale : price) / hours) : 0 };
+    }).filter(function (p) { return p.rate; });
+    // the plan that is cheapest per hour is marked — only when it alone is
+    var rates = plans.map(function (p) { return p.rate; }), best = Math.min.apply(null, rates);
+    var marked = plans.length > 1 && rates.filter(function (r) { return r === best; }).length === 1;
+    plans.forEach(function (p) {
+      var hours = p.hours, span = p.span, price = p.price, sale = p.sale;
+      var card = el('div', 'plan' + (marked && p.rate === best ? ' best' : ''));
+      if (marked && p.rate === best) card.appendChild(el('div', 'badge', '每小時最划算'));
       card.appendChild(el('div', 'hours', hours + ' 小時課程'));
       if (span) card.appendChild(el('div', 'span', span));
       var pay = price;
       if (sale && sale < price) {
         var was = el('div', 'was', '原價 ');
         was.appendChild(el('s', null, money(price)));
+        was.appendChild(el('span', 'save', '省 ' + money(price - sale)));
         card.appendChild(was);
         var now = el('div', 'now');
         now.appendChild(el('small', null, '優惠價'));
@@ -311,7 +345,6 @@ document.querySelectorAll('.copy').forEach(function (b) {
         pay = sale;
       } else {
         var only = el('div', 'now only');
-        only.style.marginTop = '12px';
         only.appendChild(document.createTextNode(money(price)));
         card.appendChild(only);
       }

@@ -311,3 +311,149 @@ main .wrap { margin-top: 0; padding-top: 16px; }
   .jump .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
   .jump a { justify-content: center; padding: 8px 2px; font-size: 14px; }
 }
+
+/* =====================================================================
+   Design pass (2026-11-13). Lewis asked for the page to be gone over "as a
+   top-tier web designer". Everything below refines what is above it; the
+   colours are still his navy, copper and gold.
+   ===================================================================== */
+
+/* hero: a warm light in the corner, so the navy isn't a flat slab */
+.hero {
+  background:
+    radial-gradient(90% 120% at 100% 0%, rgba(244,182,63,.16), rgba(244,182,63,0) 55%),
+    var(--navy);
+}
+.hero h1 { letter-spacing: .03em; }
+
+/* cards: lifted by a soft shadow instead of a hard outline */
+section {
+  border-color: rgba(29,32,51,.06);
+  border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(29,32,51,.04), 0 10px 30px -18px rgba(29,32,51,.22);
+}
+
+/* section titles: ink, larger, with a copper bar — a real hierarchy */
+section > h2 {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 19px; letter-spacing: .04em; color: var(--ink);
+  margin-bottom: 18px;
+}
+section > h2::before {
+  content: ""; flex: none;
+  width: 4px; height: 19px; border-radius: 2px; background: var(--copper);
+}
+section.missing > h2 { justify-content: center; }
+section.missing > h2::before { display: none; }
+h3 { color: var(--ink-soft); font-size: 14px; letter-spacing: .06em; font-weight: 600; }
+
+/* goals: a check list rather than 1. 2. */
+ol.goals { list-style: none; padding: 0; margin: 4px 0 0; display: grid; gap: 8px; }
+ol.goals li { position: relative; padding-left: 32px; margin: 0; }
+ol.goals li::before {
+  content: ""; position: absolute; left: 0; top: .28em;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--copper-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c08540' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center / 14px no-repeat;
+}
+
+/* 上課安排: each fact gets a small line icon */
+.fact { border: 1px solid rgba(29,32,51,.04); }
+.fact .k { display: flex; align-items: center; gap: 6px; margin-bottom: 2px; }
+.fact .k::before {
+  content: ""; width: 15px; height: 15px; flex: none; background: var(--copper);
+  -webkit-mask: var(--ic) center / contain no-repeat; mask: var(--ic) center / contain no-repeat;
+}
+.fact:not([class*="i-"]) .k::before { display: none; }
+.i-time  { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E"); }
+.i-mode  { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linejoin='round'%3E%3Crect x='2.5' y='6' width='13' height='12' rx='2.5'/%3E%3Cpath d='M15.5 10.5l6-3.5v10l-6-3.5z'/%3E%3C/svg%3E"); }
+.i-start, .i-end { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'%3E%3Crect x='3' y='5' width='18' height='16' rx='2.5'/%3E%3Cpath d='M3 10h18M8 3v4M16 3v4'/%3E%3C/svg%3E"); }
+.i-hours { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 3h12M6 21h12M7 3c0 5 10 5 10 9s-10 4-10 9M17 3c0 5-10 5-10 9s10 4 10 9'/%3E%3C/svg%3E"); }
+
+/* plans: the cheaper-per-hour plan stands out; savings said in money */
+.plans { align-items: stretch; }
+.plan {
+  position: relative;
+  border-radius: 16px; padding: 18px 20px 16px;
+  display: flex; flex-direction: column;
+  background: #fff;
+}
+.plan .hours { font-size: 21px; }
+.plan .was { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 14px; }
+.plan .now.only { margin-top: auto; padding-top: 14px; }
+.plan .save {
+  padding: 1px 9px; border-radius: var(--pill);
+  background: #e7f3ec; color: #1f7a4d;
+  font-size: 12.5px; font-weight: 700; text-decoration: none;
+}
+.plan .per {
+  margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line);
+  font-size: 14px; color: var(--ink-soft);
+}
+.plan.best {
+  border: 2px solid var(--navy);
+  background: linear-gradient(180deg, #f4f5fb, #fff 60%);
+  padding-top: 26px;
+}
+.plan .badge {
+  position: absolute; top: -12px; left: 18px;
+  padding: 3px 12px; border-radius: var(--pill);
+  background: var(--navy); color: #fff;
+  font-size: 12.5px; font-weight: 700; letter-spacing: .04em;
+  box-shadow: 0 4px 10px -4px rgba(47,60,126,.5);
+}
+@media (max-width: 520px) { .plans { gap: 22px; } }
+
+/* 💡: the one thing to do next */
+.callout.ask { background: #eef0f8; color: var(--navy); }
+.callout.ask strong { color: var(--navy); }
+
+/* 🎁 perks: two benefits you can scan */
+.perks {
+  margin-top: 12px; padding: 14px 18px 16px;
+  border-radius: 14px; background: var(--copper-soft);
+}
+.perks-h { font-weight: 700; margin-bottom: 8px; }
+.perks ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.perks li { font-size: 15.5px; color: var(--ink-soft); padding-left: 14px; border-left: 3px solid rgba(192,133,64,.45); }
+.perks li strong { display: block; color: var(--ink); font-size: 16px; }
+
+/* bank card: a card, with depth */
+.bank {
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgba(244,182,63,.18), rgba(244,182,63,0) 50%),
+    linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+  box-shadow: 0 14px 30px -16px rgba(35,46,102,.7);
+}
+.bank dl { align-items: baseline; }
+.bank .code { font-family: var(--font-ui); letter-spacing: .06em; }
+.copy { box-shadow: 0 2px 6px rgba(0,0,0,.18); }
+
+/* after paying: three numbered steps */
+ol.steps { list-style: none; counter-reset: st; margin: 18px 0 0; padding: 0; display: grid; gap: 12px; }
+ol.steps li { counter-increment: st; position: relative; padding-left: 38px; font-size: 15.5px; color: var(--ink-soft); line-height: 1.65; }
+ol.steps li::before {
+  content: counter(st);
+  position: absolute; left: 0; top: 0;
+  width: 26px; height: 26px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--navy); color: #fff;
+  font: 700 13px var(--font-ui);
+}
+ol.steps strong { color: var(--ink); }
+@media (min-width: 760px) { ol.steps { margin-top: 2px; } }
+
+/* leave rule: the two cases as coloured tags */
+.rule { align-items: flex-start; padding: 14px 0; }
+.rule .when {
+  width: auto; padding: 3px 12px; border-radius: var(--pill);
+  font-size: 14.5px; white-space: nowrap; margin-top: 2px;
+}
+.rule .when.ok { background: #e7f3ec; color: #1f7a4d; }
+.rule .when.late { background: #fbefe2; color: #a5621c; }
+
+/* jump bar: the section on screen is marked */
+.jump a { transition: background .15s, color .15s; }
+.jump a.on { background: #fff; color: var(--navy); }
+
+/* footer */
+footer { font-size: 13.5px; }

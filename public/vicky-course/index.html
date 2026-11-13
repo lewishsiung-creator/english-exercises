@@ -61,7 +61,7 @@
 
 <!-- The look lives in ../course/course.css, shared with every page the
      course form makes, so a change there reaches Vicky's page too. -->
-<link rel="stylesheet" href="../course/course.css?v=7">
+<link rel="stylesheet" href="../course/course.css?v=8">
 <link rel="stylesheet" href="../type.css">
 </head>
 <body>
@@ -99,7 +99,7 @@
     <h3>學員相關資訊</h3>
     <p>長榮大學美術學系（副教授）</p>
     <h3>學習目標</h3>
-    <ol>
+    <ol class="goals">
       <li>提升英語交談的自在感</li>
       <li>英語授課（<span class="en">Contemporary Art</span>）</li>
     </ol>
@@ -108,8 +108,8 @@
   <section id="s-time">
     <h2>上課安排</h2>
     <div class="facts">
-      <div class="fact"><div class="k">上課時間</div><div class="v">每週二早上<br><span class="en">8:00 – 9:00 am</span></div></div>
-      <div class="fact"><div class="k">上課方式</div><div class="v"><span class="en">ZOOM</span> 線上會議</div></div>
+      <div class="fact i-time"><div class="k">上課時間</div><div class="v">每週二早上<br><span class="en">8:00 – 9:00 am</span></div></div>
+      <div class="fact i-mode"><div class="k">上課方式</div><div class="v"><span class="en">ZOOM</span> 線上會議</div></div>
     </div>
   </section>
 
@@ -123,21 +123,28 @@
       <div class="plan">
         <div class="hours">10 小時課程</div>
         <div class="span">12 週內完成課程（約 3 個月）</div>
-        <div class="was">原價 <s>$18,000</s></div>
+        <div class="was">原價 <s>$18,000</s><span class="save">省 $2,000</span></div>
         <div class="now"><small>優惠價</small>$16,000</div>
         <div class="per">平均每小時 $1,600</div>
       </div>
-      <div class="plan">
+      <div class="plan best">
+        <div class="badge">每小時最划算</div>
         <div class="hours">20 小時課程</div>
         <div class="span">22 週內完成課程（約 6 個月）</div>
-        <div class="was">原價 <s>$30,000</s></div>
+        <div class="was">原價 <s>$30,000</s><span class="save">省 $2,000</span></div>
         <div class="now"><small>優惠價</small>$28,000</div>
         <div class="per">平均每小時 $1,400</div>
       </div>
     </div>
 
-    <div class="callout"><span class="i">💡</span><p><strong>請主動告知您想安排的課程選項。</strong></p></div>
-    <div class="callout"><span class="i">🎁</span><p><strong>特別優惠：</strong>關於您的課程，我會另外提供上課重點筆記，並且提供 <span class="en">LINE</span> 線上解惑。只要是與英文相關的問題，您可以直接傳訊給我，晚上 9 點前，我都會盡快回答您的疑惑，提供協助。</p></div>
+    <div class="callout ask"><span class="i" aria-hidden="true">💡</span><p><strong>請主動告知您想安排的課程選項。</strong></p></div>
+    <div class="perks">
+      <div class="perks-h"><span aria-hidden="true">🎁</span> 特別優惠</div>
+      <ul>
+        <li><strong>上課重點筆記</strong>關於您的課程，我會另外提供上課重點筆記。</li>
+        <li><strong><span class="en">LINE</span> 線上解惑</strong>只要是與英文相關的問題，您可以直接傳訊給我，晚上 9 點前，我都會盡快回答您的疑惑，提供協助。</li>
+      </ul>
+    </div>
   </section>
 
   <section id="s-pay">
@@ -146,27 +153,29 @@
     <div class="bank">
       <div class="title">Lewis’ Bank Account</div>
       <dl>
-        <dt>銀行</dt><dd><span class="nb">台灣銀行</span> <span class="nb">五福分行</span> <span class="nb sub">（代號 004）</span></dd>
+        <dt>銀行</dt><dd><span class="nb">台灣銀行</span> <span class="nb">五福分行</span></dd>
+        <dt>代號</dt><dd class="code">004</dd>
         <dt>帳號</dt><dd class="acct">271 004 096 719</dd>
         <dt>戶名</dt><dd>林義雄</dd>
       </dl>
       <button class="copy" type="button" data-copy="271004096719">複製帳號</button>
     </div>
-    <div class="steps">
-      <p>轉帳後，<strong>請主動告知您的帳號末五碼</strong>，以便確認。也可使用 <span class="en">LINE Pay</span> 轉帳。</p>
-      <p>確認轉帳後，即會開始準備為您客製的<strong>課程內容</strong>，並且提供<strong>課前作業</strong>。</p>
-    </div>
+    <ol class="steps">
+      <li><strong>轉帳</strong>到 Lewis 的帳戶，也可使用 <span class="en">LINE Pay</span> 轉帳。</li>
+      <li>轉帳後，<strong>請主動告知您的帳號末五碼</strong>，以便確認。</li>
+      <li>確認轉帳後，即會開始準備為您客製的<strong>課程內容</strong>，並且提供<strong>課前作業</strong>。</li>
+    </ol>
     </div>
   </section>
 
   <section id="s-leave">
     <h2>請假規則</h2>
     <div class="rule">
-      <div class="when">2 日前</div>
+      <div class="when ok">2 日前</div>
       <p>如需請假或更動上課時間，<span class="hl">請於 2 日前告知</span>，我會配合另外安排時間。</p>
     </div>
     <div class="rule">
-      <div class="when">2 日內</div>
+      <div class="when late">2 日內</div>
       <p>若於 2 日內告知，會針對您的課程進度額外準備學習內容，供您學習，不另行補課。</p>
     </div>
   </section>
@@ -187,6 +196,24 @@ document.querySelectorAll('.jump a').forEach(function (a) {
     t.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
+// …and shows which section is on screen.
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.jump a'));
+  function spy() {
+    var line = 90, cur = null;
+    links.forEach(function (a) {
+      var t = document.getElementById(a.getAttribute('href').slice(1));
+      if (t && !t.closest('[hidden]') && t.getBoundingClientRect().top <= line) cur = a;
+    });
+    if (scrollY > 0 && innerHeight + scrollY >= document.documentElement.scrollHeight - 4) cur = links[links.length - 1];
+    links.forEach(function (a) { a.classList.toggle('on', a === cur); });
+  }
+  addEventListener('scroll', spy, { passive: true });
+  addEventListener('resize', spy);
+  addEventListener('load', spy);
+  addEventListener('hashchange', function () { setTimeout(spy, 0); });
+  spy();
+})();
 </script>
 <script>
 document.querySelectorAll('.copy').forEach(function (b) {

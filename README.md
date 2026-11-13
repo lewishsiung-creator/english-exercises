@@ -6544,6 +6544,16 @@ a form where Lewis types a student's name and class time and gets that page.
   預覽 opens the page full-screen; on a computer the preview fills the
   window's height beside the form, with a 手機 / 全寬 switch (手機 first, since
   students read it on phones); text boxes grow as he types.
+- **Design pass** (2026-11-13, "as a top-tier web designer"): the refinements
+  sit at the end of `course.css`. Section titles in ink with a copper bar;
+  cards lifted by shadow; goals as a check list; a line icon per fact
+  (`i-time`, `i-mode`, `i-start`, `i-end`, `i-hours`); plan cards show
+  「省 $…」 and the plan alone cheapest per hour gets 「每小時最划算」 (worked
+  out by `/course/`, written by hand on Vicky's page; no badge on a tie or a
+  single plan); 🎁 split into its two benefits; the bank code on its own row;
+  the after-paying text as three numbered steps (step 1 reworded to 「轉帳到
+  Lewis 的帳戶」); leave-rule cases as green/amber tags; the jump bar marks the
+  section on screen. The form's sections are numbered.
 - **Short links** (2026-11-13, Lewis's choice over plain compression, which
   only took 1,400 characters to about 1,080). On Cloudflare, 複製連結 stores
   the page's data in KV and copies `/c/<7-letter code>` instead. Code in
