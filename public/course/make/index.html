@@ -12,6 +12,15 @@
      top of ../index.html for the format). To change a page later, paste its
      link into 「編輯舊連結」 and the form fills back in.
 
+     Short links (2026-11-13): on Cloudflare, 複製連結 stores the page's data
+     in KV through /api/c and copies /c/<code> instead of the ~1,400-character
+     link (see functions/_course.js). It needs Lewis's passcode, which he sets
+     himself the first time and this browser then remembers. Anywhere the API
+     is missing (GitHub Pages, the plain local server) the long link is copied
+     as before. A link loaded back from /c/<code> is updated in place unless
+     he unticks 「複製時更新這個連結」 — and changing the student's name
+     unticks it, so one student's link is never overwritten with another's.
+
      Requested 2026-11-13, right after /vicky-course/ was built by hand. -->
 <meta name="robots" content="noindex, nofollow">
 <title>課程說明頁產生器｜Lewis Biz English</title>
@@ -134,7 +143,7 @@ input:focus, textarea:focus { outline: 2px solid var(--navy); outline-offset: -1
   body.pv .out { visibility: visible; transform: none; transition: transform .25s ease; }
   body.pv { overflow: hidden; }
   .linkbox { margin-bottom: 10px; padding: 12px 14px; }
-  .linkbox h2, .linkbox #link, .frame-h .seg { display: none; }
+  .linkbox h2, .frame-h .seg { display: none; }
   .linkbox .status { margin-top: 6px; }
   .frame-h { display: none; }
   .frame.phone iframe { width: 100%; box-shadow: none; }   /* full-screen: the device's own width */
@@ -155,6 +164,11 @@ input:focus, textarea:focus { outline: 2px solid var(--navy); outline-offset: -1
 .layout { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
 
 details { margin-top: 4px; }
+.editing { background: var(--copper-soft); border-color: #ecd9c0; }
+.editing p { margin: 0 0 6px; font-size: 15px; }
+.editing code { font-family: var(--font-ui); font-size: 14px; }
+.chk { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; font-size: 15px; margin: 8px 0 0; cursor: pointer; }
+.chk input { width: 22px; height: 22px; flex: none; margin: 1px 0 0; accent-color: var(--navy); }
 summary { cursor: pointer; font-size: 14px; color: var(--ink-soft); }
 details .btns { margin-top: 8px; }
 </style>
@@ -172,6 +186,11 @@ details .btns { margin-top: 8px; }
 <div class="layout">
 
   <form id="f" autocomplete="off" novalidate>
+    <section class="editing" id="editing" hidden>
+      <p><strong>正在編輯短連結</strong> <code id="ed-code"></code></p>
+      <label class="chk"><input type="checkbox" id="keep" checked><span>複製時更新這個連結（學員打開原本的連結，就會看到新內容）</span></label>
+      <p class="status">要給另一位學員做新的連結，請取消勾選，或到下面「編輯舊連結」按「清空表單」。</p>
+    </section>
     <section>
       <h2>學員</h2>
       <label for="n">學員姓名<span class="req">*</span></label>
@@ -231,7 +250,7 @@ details .btns { margin-top: 8px; }
       <details>
         <summary>編輯舊連結</summary>
         <label for="old" style="margin-top:10px">貼上之前產生的連結</label>
-        <input id="old" type="url" inputmode="url" placeholder="https://…/course/#d=…" autocapitalize="off" autocorrect="off" spellcheck="false">
+        <input id="old" type="url" inputmode="url" placeholder="https://…/c/… 或 https://…/course/#d=…" autocapitalize="off" autocorrect="off" spellcheck="false">
         <div class="btns">
           <button type="button" class="btn" id="load">載入到表單</button>
           <button type="button" class="btn" id="clear">清空表單</button>
@@ -243,7 +262,7 @@ details .btns { margin-top: 8px; }
   <div class="out">
     <div class="linkbox">
       <h2>學員的連結</h2>
-      <input id="link" readonly>
+      <input id="link" readonly placeholder="按「複製連結」產生短連結">
       <div class="btns">
         <button type="button" class="btn primary" id="copy">複製連結</button>
         <button type="button" class="btn" id="open">開新分頁看</button>
@@ -381,7 +400,50 @@ details .btns { margin-top: 8px; }
     } catch (e) { return null; }
   }
 
-  var timer;
+  var timer, curH = '', longUrl = '';
+
+  // ---- short links (functions/_course.js) ----
+  var SHORT = /\.pages\.dev$|^localhost$|^127\.0\.0\.1$/.test(location.hostname);
+  var last = null;      // { h, code }: the short link made for the page as it was
+  var editing = null;   // { code, name }: the short link this form is changing
+  function shortUrl(code) { return location.origin + '/c/' + code; }
+  function getPass() { try { return localStorage.getItem('course-pass') || ''; } catch (e) { return ''; } }
+  function savePass(p) { try { localStorage.setItem('course-pass', p); } catch (e) {} }
+  function forgetPass() { try { localStorage.removeItem('course-pass'); } catch (e) {} }
+  function setEditing(e) {
+    editing = e;
+    $('editing').hidden = !e;
+    if (e) { $('ed-code').textContent = '/c/' + e.code; $('keep').checked = true; }
+  }
+  // → Promise of { url, code } — or { url: long link, fallback } when the API isn't there
+  function makeShort() {
+    var h = curH, code = editing && $('keep').checked ? editing.code : null;
+    if (last && last.h === h && (!code || last.code === code)) return Promise.resolve({ url: shortUrl(last.code), code: last.code });
+    var pass = getPass();
+    if (!pass) {
+      pass = (prompt('請輸入短連結密碼。\n第一次使用時，你輸入的就會成為密碼（至少 6 個字），之後這台裝置會記住。') || '').trim();
+      if (!pass) return Promise.reject('cancel');
+    }
+    return fetch(location.origin + '/api/c', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-course-pass': pass },
+      body: JSON.stringify(code ? { h: h, code: code } : { h: h })
+    }).then(function (r) {
+      return r.json().catch(function () { return { error: 'down' }; }).then(function (j) {
+        if (r.ok && j.code) return j;
+        throw (j.error === 'wrong' || j.error === 'short' || j.error === 'need') ? j.error : 'down';
+      });
+    }).then(function (j) {
+      savePass(pass);
+      last = { h: h, code: j.code };
+      if (!editing || editing.code !== j.code) setEditing({ code: j.code, name: $('n').value.trim() });
+      return { url: shortUrl(j.code), code: j.code };
+    }, function (err) {
+      if (err === 'wrong' || err === 'short' || err === 'need' || err === 'cancel') { if (err !== 'cancel') forgetPass(); throw err; }
+      return { url: longUrl, fallback: true };   // no API here, or offline: the long link still works
+    });
+  }
+
   function update() {
     var d = collect();
     var missing = [];
@@ -397,15 +459,28 @@ details .btns { margin-top: 8px; }
       missing.push('給學員的話裡的 YYYY/MM/DD 或 __');
       $('w').classList.add('bad');
     }
-    var url = BASE + '#d=' + encode(d);
-    $('link').value = missing.length ? '' : url;
+    curH = encode(d);
+    var url = BASE + '#d=' + curH;
+    longUrl = missing.length ? '' : url;
+
+    // a loaded short link stops being updated once the name changes
+    if (editing && !editing.warned && d.n && d.n !== editing.name) {
+      $('keep').checked = false;
+      editing.warned = true;
+    }
+    var ready = !missing.length && last && last.h === curH;   // this exact page already has a short link
+    var target = editing && $('keep').checked ? editing.code : null;
+    $('link').value = missing.length ? '' : ready ? shortUrl(last.code) : SHORT ? '' : url;
     $('copy').disabled = $('open').disabled = !!missing.length;
     $('copy2').disabled = !!missing.length;
     ['status', 'status2'].forEach(function (id) {
-      var st = $(id);
+      var st = $(id), wide = id === 'status';
       st.className = 'status' + (missing.length ? ' warn' : '');
       st.textContent = missing.length ? '還需要填：' + missing.join('、')
-        : id === 'status' ? '連結長度 ' + url.length + ' 字元，可以直接貼到 LINE。' : '連結已準備好，可以複製。';
+        : !SHORT ? (wide ? '連結長度 ' + url.length + ' 字元，可以直接貼到 LINE。' : '連結已準備好，可以複製。')
+        : ready ? '短連結：' + shortUrl(last.code).replace(/^https?:\/\//, '')
+        : target ? (wide ? '按「複製連結」會更新原本的短連結 /c/' + target + '，學員打開就會看到新內容。' : '按「複製連結」更新 /c/' + target)
+        : (wide ? '按「複製連結」會產生短連結。' : '按「複製連結」產生短連結。');
     });
     clearTimeout(timer);
     timer = setTimeout(function () {
@@ -469,22 +544,69 @@ details .btns { margin-top: 8px; }
       grow($('w'));
     };
   });
+  function cannotRead() {
+    ['status', 'status2'].forEach(function (id) { $(id).className = 'status warn'; $(id).textContent = '這個連結讀不到資料，請確認是完整的連結。'; });
+  }
   $('load').onclick = function () {
-    var d = decode($('old').value);
-    if (!d) { $('status').className = 'status warn'; $('status').textContent = '這個連結讀不到資料，請確認是完整的連結。'; return; }
+    var v = $('old').value.trim(), m = /\/c\/([a-hjkmnp-z2-9]{7})(?:[?#\/]|$)/.exec(v);
+    if (m) {   // a short link: ask the site for what it holds
+      fetch(location.origin + '/api/c/' + m[1]).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+        var d = j && j.h ? decode('#d=' + j.h) : null;
+        if (!d) return cannotRead();
+        fill(d);
+        last = { h: curH, code: m[1] };
+        setEditing({ code: m[1], name: (d.n || '').trim() });
+        update();
+        $('old').value = '';
+      }, cannotRead);
+      return;
+    }
+    var d = decode(v);
+    if (!d) return cannotRead();
+    setEditing(null); last = null;
     fill(d);
     $('old').value = '';
   };
-  $('clear').onclick = function () { fill({}); };
+  $('clear').onclick = function () { setEditing(null); last = null; fill({}); };
+  // The clipboard is written inside the tap even though the short link
+  // arrives a moment later — iPhone Safari only allows that through a
+  // ClipboardItem holding a promise; elsewhere writeText after the fetch works.
   function copyLink(b) {
-    var v = $('link').value;
-    function done(ok) {
-      b.textContent = ok ? '已複製 ✓' : '請手動選取連結複製';
-      setTimeout(function () { b.textContent = '複製連結'; }, 1800);
+    if (!longUrl) return;
+    var job = SHORT ? makeShort() : Promise.resolve({ url: longUrl });
+    var text = job.then(function (r) { return r.url; });
+    var wrote;
+    if (window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
+      wrote = navigator.clipboard.write([new ClipboardItem({
+        'text/plain': text.then(function (t) { return new Blob([t], { type: 'text/plain' }); })
+      })]).catch(function (e) {
+        return job.then(function () { return text; }).then(function (t) { return navigator.clipboard.writeText(t); });
+      });
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      wrote = text.then(function (t) { return navigator.clipboard.writeText(t); });
+    } else {
+      wrote = Promise.reject('no clipboard');
     }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(v).then(function () { done(true); }, function () { $('link').select(); done(false); });
-    } else { $('link').select(); done(false); }
+    b.textContent = '產生中…';
+    function say(msg) { b.textContent = msg; setTimeout(function () { b.textContent = '複製連結'; }, 2200); }
+    job.then(function (r) {
+      update();
+      if (r.fallback) $('link').value = r.url;
+      wrote.then(function () {
+        say(r.fallback ? '已複製（長連結）' : '已複製 ✓');
+        if (r.fallback) { $('status').textContent = $('status2').textContent = '短連結暫時無法產生，已複製原本的長連結（一樣可以用）。'; }
+      }, function () {
+        say('請手動複製');
+        $('link').value = r.url; $('link').select();
+        $('status2').textContent = r.url;
+      });
+    }, function (err) {
+      var msg = err === 'wrong' ? '密碼不對，請再按一次「複製連結」重新輸入。'
+        : err === 'short' ? '密碼至少要 6 個字，請再按一次「複製連結」。'
+        : err === 'cancel' ? '' : '沒有產生連結，請再試一次。';
+      say('複製連結');
+      if (msg) ['status', 'status2'].forEach(function (id) { $(id).className = 'status warn'; $(id).textContent = msg; });
+    });
   }
   $('copy').onclick = function () { copyLink($('copy')); };
   $('copy2').onclick = function () { copyLink($('copy2')); };
@@ -502,7 +624,7 @@ details .btns { margin-top: 8px; }
   }
   $('w-phone').onclick = function () { width(true); };
   $('w-full').onclick = function () { width(false); };
-  $('open').onclick = function () { window.open($('link').value, '_blank', 'noopener'); };
+  $('open').onclick = function () { window.open(longUrl, '_blank', 'noopener'); };
 
   fill({});
 })();

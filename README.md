@@ -6543,6 +6543,32 @@ a form where Lewis types a student's name and class time and gets that page.
   預覽 opens the page full-screen; on a computer the preview fills the
   window's height beside the form, with a 手機 / 全寬 switch (手機 first, since
   students read it on phones); text boxes grow as he types.
+- **Short links** (2026-11-13, Lewis's choice over plain compression, which
+  only took 1,400 characters to about 1,080). On Cloudflare, 複製連結 stores
+  the page's data in KV and copies `/c/<7-letter code>` instead. Code in
+  `functions/` (Cloudflare Pages Functions; GitHub Pages ignores it):
+  `functions/_course.js` explains the KV keys; `POST /api/c` makes or updates
+  a link, `GET /api/c/<code>` reads one back for 編輯舊連結, and `/c/<code>`
+  redirects to `/course/#d=…`, so the page itself is unchanged. KV namespace
+  `english-exercises-course-links` (id `f5851bc1b4134e6290701d5e17ac319a`),
+  bound as `COURSE` on the Pages project through the API, not a wrangler.toml.
+  - **Passcode:** making or changing a link needs it. Lewis sets it himself
+    the first time he presses 複製連結 (at least 6 characters); KV `auth`
+    keeps a salted hash, never the passcode, and his browser remembers it.
+    If he forgets it, deleting the KV key `auth` lets him set a new one.
+  - **Updating:** a link loaded back from `/c/…`, or just made, is updated in
+    place on the next copy, so the student's old link shows the change.
+    Changing the student's name unticks that, so one student's link can never
+    be overwritten with another's. 清空表單 starts a fresh one.
+  - **Fallback:** where the API is missing (GitHub Pages, the plain local
+    server) or unreachable, the long link is copied, as before.
+  - iPhone Safari only lets a page copy text inside the tap, and the code
+    arrives a moment later, so the copy goes through a `ClipboardItem` that
+    holds a promise. The in-app browser pane refuses every clipboard write;
+    test copying in Chrome.
+  - Local test: `journal-desk/node_modules/.bin/wrangler pages dev public
+    --port 8796 --kv COURSE` from the repo root (local KV, separate from the
+    live one).
 - **`/course/`** holds no student. The form writes everything into the link as
   `#d=<base64url JSON>` (format documented at the top of
   `public/course/index.html`), so making a page for a new student needs **no
