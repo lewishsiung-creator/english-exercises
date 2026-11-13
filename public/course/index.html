@@ -21,6 +21,7 @@
      Hash format: #d=<base64url of UTF-8 JSON>, keys kept short so the link
      stays pasteable into LINE:
        v 1 · n name · t time · m mode · i info lines · g goals lines
+       s start date · e end date (both optional, "YYYY-MM-DD")
        p plans [[hours, span text, price, sale price or 0], …]
        x the sentence above the plans (may be empty)
        w Lewis's note at the top, one string per paragraph (optional;
@@ -107,6 +108,8 @@
     <div class="facts">
       <div class="fact"><div class="k">上課時間</div><div class="v multi" id="time"></div></div>
       <div class="fact"><div class="k">上課方式</div><div class="v multi" id="mode"></div></div>
+      <div class="fact" id="start-f"><div class="k">開始日期</div><div class="v" id="start"></div></div>
+      <div class="fact" id="end-f"><div class="k">結束日期</div><div class="v" id="end"></div></div>
     </div>
   </section>
 
@@ -204,6 +207,13 @@ document.querySelectorAll('.copy').forEach(function (b) {
     return (Array.isArray(x) ? x : []).map(str).filter(Boolean);
   }
   function num(x) { x = Number(x); return isFinite(x) && x > 0 ? x : 0; }
+  // "2026-12-02" → "2026/12/02（三）"; anything else → ''
+  function day(x) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(str(x));
+    if (!m) return '';
+    var w = new Date(+m[1], m[2] - 1, +m[3]).getDay();
+    return m[1] + '/' + m[2] + '/' + m[3] + '（' + '日一二三四五六'.charAt(w) + '）';
+  }
   function money(x) { return '$' + Math.round(x).toLocaleString('en-US'); }
   function el(tag, cls, text) {
     var e = document.createElement(tag);
@@ -259,6 +269,11 @@ document.querySelectorAll('.copy').forEach(function (b) {
 
     set('time', str(d.t));
     set('mode', str(d.m) || 'ZOOM 線上會議');
+    [['s', 'start'], ['e', 'end']].forEach(function (k) {
+      var t = day(d[k[0]]);
+      set(k[1], t);
+      document.getElementById(k[1] + '-f').hidden = !t;
+    });
 
     var intro = str(d.x);
     set('intro', intro);

@@ -50,6 +50,12 @@ input, textarea {
   background: #fff;
 }
 textarea { resize: vertical; min-height: 64px; line-height: 1.55; }
+/* dates: the phone's own date picker, looking like the other boxes */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.two label { margin-top: 14px; }
+input[type="date"] { -webkit-appearance: none; appearance: none; min-height: 44px; text-align: left; }
+input[type="date"]::-webkit-date-and-time-value { text-align: left; }
+.clear-dates { background: none; border: 0; padding: 8px 2px 0; color: var(--ink-faint); font-size: 13px; cursor: pointer; }
 input:focus, textarea:focus { outline: 2px solid var(--navy); outline-offset: -1px; border-color: transparent; }
 .bad { border-color: #b0202a !important; background: #fdf3f2; }
 
@@ -185,6 +191,12 @@ details .btns { margin-top: 8px; }
 
       <label for="m">上課方式</label>
       <input id="m" value="ZOOM 線上會議" enterkeyhint="next">
+
+      <div class="two">
+        <div><label for="sd">開始日期<span class="hint">選填</span></label><input id="sd" type="date"></div>
+        <div><label for="ed">結束日期<span class="hint">選填</span></label><input id="ed" type="date"></div>
+      </div>
+      <button type="button" class="clear-dates" id="cleardates">清除日期</button>
     </section>
 
     <section>
@@ -338,6 +350,8 @@ details .btns { margin-top: 8px; }
       n: $('n').value.trim(),
       t: $('t').value.trim(),
       m: $('m').value.trim(),
+      s: $('sd').value,
+      e: $('ed').value,
       i: lines($('i').value),
       g: lines($('g').value),
       x: $('x').value.trim(),
@@ -371,6 +385,9 @@ details .btns { margin-top: 8px; }
     $('t').classList.toggle('bad', false);
     if (!d.n) missing.push('學員姓名');
     if (!d.t) missing.push('上課時間');
+    var badDates = d.s && d.e && d.e < d.s;
+    $('ed').classList.toggle('bad', !!badDates);
+    if (badDates) missing.push('結束日期要在開始日期之後');
     $('w').classList.toggle('bad', false);
     if (/YYYY|MM\/DD|__/.test(d.w.join(' '))) {
       missing.push('給學員的話裡的 YYYY/MM/DD 或 __');
@@ -398,6 +415,8 @@ details .btns { margin-top: 8px; }
     $('n').value = d.n || '';
     $('t').value = d.t || '';
     $('m').value = d.m || 'ZOOM 線上會議';
+    $('sd').value = d.s || '';
+    $('ed').value = d.e || '';
     $('i').value = (d.i || []).join('\n');
     $('g').value = (d.g || []).join('\n');
     $('x').value = d.x || '';
@@ -417,6 +436,8 @@ details .btns { margin-top: 8px; }
   document.addEventListener('input', function (e) { if (e.target.tagName === 'TEXTAREA') grow(e.target); });
 
   $('f').addEventListener('input', update);
+  $('f').addEventListener('change', update);   // some date pickers only fire change
+  $('cleardates').onclick = function () { $('sd').value = $('ed').value = ''; update(); };
   $('add').onclick = function () { planRow(['', '', '', '']); update(); };
   $('loyal').onclick = function () {
     $('x').value = LOYAL.x;
@@ -429,7 +450,13 @@ details .btns { margin-top: 8px; }
   document.querySelectorAll('[data-note]').forEach(function (b) {
     b.onclick = function () {
       if ($('w').value.trim() && !confirm('要用範本取代目前寫的內容嗎？')) return;
-      $('w').value = NOTES[b.getAttribute('data-note')]($('n').value.trim().split(/\s+/)[0]).join('\n\n');
+      var text = NOTES[b.getAttribute('data-note')]($('n').value.trim().split(/\s+/)[0]).join('\n\n');
+      // dates already in the form go straight into the template: the first
+      // YYYY/MM/DD is the start, the next (the recap's "to …") the end
+      [$('sd').value, $('ed').value].forEach(function (v) {
+        if (v) text = text.replace('YYYY/MM/DD', v.replace(/-/g, '/'));
+      });
+      $('w').value = text;
       update();
       grow($('w'));
     };

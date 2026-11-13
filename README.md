@@ -6506,6 +6506,11 @@ a form where Lewis types a student's name and class time and gets that page.
   optional 優惠價, 期限說明). 「套用老學員優惠」 fills in what Vicky got: the
   June 2026 sentence and $16,000 / $28,000. A live preview sits beside it, and
   「編輯舊連結」 reads a link back into the form.
+- **開始日期 / 結束日期** (optional, keys `s` and `e`, added 2026-11-13) use
+  the phone's own date picker and show under 上課安排 with the weekday, as
+  2026/12/01（二）. An end before the start blocks the link. Dates already
+  in the form go straight into a note template's YYYY/MM/DD (start first,
+  then end).
 - **給學員的話** (optional, key `w`) is a note at the top of the page, signed
   「— Lewis」 automatically: paragraphs split by a blank line, `**bold**`
   allowed, dates like 2026/03/07 set in the UI font. 「套用進度回顧範本」 fills in
