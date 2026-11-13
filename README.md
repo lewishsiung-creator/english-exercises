@@ -4674,43 +4674,36 @@ what stands out, practice, speaking. Sessions 1 and 2 have no parts and need
 none — the block is additive, and a session without one renders exactly as
 before.
 
-### The notebook is sealed
+### It was sealed for a day, and the filename still shows it
 
-Added 13 November 2026, at Lewis's request, on the same machinery as
-[`/family-law/meeting/`](#family-law-english--adult-自學-and-教學-the-english-of-a-family-case): PBKDF2 →
-AES-GCM through `tools/seal.mjs`. **Her words are no longer in this repo.** The
-plaintext is `private/nikky/content.mjs`, which `private/.gitignore` ignores
-wholesale; what is committed is `public/nikky/sealed.js`, which is ciphertext.
+On 13 November the notebook was put behind a passcode — `tools/seal.mjs`,
+PBKDF2 → AES-GCM, the same machinery as
+[`/family-law/meeting/`](#family-law-english--adult-自學-and-教學-the-english-of-a-family-case)
+— and the passcode was removed again the same day at Lewis's request. The page
+is plain again: `notebook.js` and `render.js`, no lock, nothing encrypted.
 
-The lock is a **separate file rather than a change inside the renderer**.
-`lock.js` asks for the passcode, decrypts in the browser, sets `window.NOTEBOOK`
-and only then appends `render.js` — which is untouched and still expects that
-global. So the page behind the lock is byte for byte the page that was there
-before it, and a later session is added exactly as it always was, with one new
-step at the end:
+**One scar is deliberate: the content file is `notebook.js`, not
+`content.js`.** Sealing the page meant deleting `content.js`, and that turned
+out not to be enough — Cloudflare still served the old plaintext from the edge
+for hours afterwards (`cf-cache-status: HIT`, `s-maxage` seven days), because a
+*removed* file does not invalidate a cached one. Publishing a different file at
+that path is what replaced it, so `/nikky/content.js` now answers with a stub
+whose cache does not expire until around 20 November. Putting the sessions back
+under the old name would have served that stub and drawn an empty page. The new
+name sidesteps the cache entirely.
 
-```
-node tools/seal.mjs private/nikky/content.mjs public/nikky/sealed.js
-```
+The general rule, worth carrying to any page here: **if a file has to be taken
+out of circulation, overwrite it rather than delete it, and never reuse its
+name afterwards** — a 404 at the origin is not a 404 at the edge.
 
-**Both files declare `$`, and they share one global scope.** `lock.js` and
-`render.js` are classic scripts, so a second top-level `const $` is a
-`SyntaxError` that kills the whole of `render.js`: the lock opens, the notebook
-never draws, and the only sign is one line in the console. `lock.js` is
-therefore wrapped in an IIFE and hands over exactly one name, `window.NOTEBOOK`.
-Keep it that way.
-
-`「記住這台裝置」` stores the **derived key, never the passcode**, under
-`nikky.key`. A re-seal keeps the salt, so a remembered device survives a new
-session; changing the passcode derives a different key and the page asks again.
-WebCrypto exists only on https or localhost, so the lock cannot open over plain
-http on a LAN address — it says so rather than failing silently.
-
-Two limits worth being honest about. The seal is only as strong as the
-passcode, because `sealed.js` can be copied and guessed against offline — hence
-four random words rather than anything chosen by hand. And **it protects the
-live page, not the past**: sessions 1–3 were committed in plaintext between 24
-August and 13 November, so they remain in this repo's history.
+If the lock is ever wanted again, it is two commits back from
+`0ef063a`: `public/nikky/lock.js`, `sealed.js`, the lock markup in
+`index.html` and the `.lock` rules in `style.css`. The one trap it hit is worth
+reading before reviving it — `lock.js` and `render.js` are both classic scripts
+sharing one global scope, and both declare `$`, so the lock must stay inside an
+IIFE and hand over exactly one name, `window.NOTEBOOK`. Without that, the lock
+opens and the notebook never draws, with a single console line as the only
+sign.
 
 ## Ken's Notebook — college student, one-to-one, kept over time
 
@@ -5558,10 +5551,8 @@ public/anny/meeting/      her co-planning guide for a team meeting — not a les
 public/aaron/             Aaron's notebook — same machinery, its own sessions
 public/aaron/book-club/   the four-book discussion guide, under that notebook
 public/anita/             Anita's notebook — same machinery again, two sessions
-public/nikky/             Nikky's notebook — sealed; its words are not in this repo
-public/nikky/sealed.js    the encrypted notebook; lock.js opens it in the browser
-private/nikky/content.mjs the plaintext — git-ignored, never committed
-private/nikky/.pass       the passcode — git-ignored
+public/nikky/             Nikky's notebook — the same, with the scroll fix in
+public/nikky/notebook.js  its sessions — NOT content.js, see the note below
 public/eason/             Eason's notebook — the same, for a teenager
 public/anna/              Anna's notebook — the same again, for a young adult
 public/ken/               Ken's notebook — the same, for a college student
