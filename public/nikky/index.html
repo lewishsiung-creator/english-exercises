@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Nikky’s English Notebook</title>
-<meta name="description" content="A running notebook of one-to-one English sessions — phrases, ideas and speaking tasks, kept in one place and added to after every lesson.">
+<meta name="description" content="A passcode-protected notebook for one student.">
 
 <!-- This page carries a named student and her own sessions, so it is kept out
      of search results. It stays reachable by its URL for her. -->
@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="../house.css">
 
 </head>
-<body>
+<body class="locked">
 
 <a class="skip" href="#doc">Skip to the notebook 跳到筆記</a>
 
@@ -51,7 +51,25 @@
 
 <div class="shell">
   <div id="nav"></div>
-  <main id="doc"></main>
+  <main id="doc">
+    <!-- The lock. The notebook itself is encrypted in sealed.js and does not
+         exist in the page until the passcode has opened it. -->
+    <section class="lock" id="lock">
+      <p class="kicker">Private 不公開</p>
+      <h1>Nikky’s English Notebook <span class="zh">Nikky 的英文筆記</span></h1>
+      <p class="lock-note">This page is for one student. Enter the passcode to open it.
+        <span class="zh">這一頁只給一位學員使用，請輸入密碼開啟。</span></p>
+      <form id="lockForm" autocomplete="off">
+        <label for="pw">Passcode <em>密碼</em></label>
+        <input id="pw" type="password" autocomplete="current-password"
+               autocapitalize="none" spellcheck="false" required>
+        <label class="row-check"><input type="checkbox" id="remember" checked>
+          <span>Remember this device <em>記住這台裝置</em></span></label>
+        <button class="panel-btn" type="submit" id="unlockBtn">Open <em>開啟</em></button>
+        <p class="lock-msg" id="lockMsg" role="alert"></p>
+      </form>
+    </section>
+  </main>
 </div>
 
 <div class="nav-scrim" hidden></div>
@@ -116,7 +134,10 @@
   <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
     target="_blank" rel="noopener">lewistoeic.com</a></p>
 </footer>
-<script src="content.js"></script>
-<script src="render.js"></script>
+<!-- The notebook's words, encrypted (tools/seal.mjs). The plaintext lives
+     under private/ and is never committed. lock.js asks for the passcode,
+     decrypts it here in the browser, and only then loads render.js. -->
+<script src="sealed.js"></script>
+<script src="lock.js"></script>
 </body>
 </html>

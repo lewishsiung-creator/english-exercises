@@ -4674,6 +4674,44 @@ what stands out, practice, speaking. Sessions 1 and 2 have no parts and need
 none — the block is additive, and a session without one renders exactly as
 before.
 
+### The notebook is sealed
+
+Added 13 November 2026, at Lewis's request, on the same machinery as
+[`/family-law/meeting/`](#family-law-english--adult-自學-and-教學-the-english-of-a-family-case): PBKDF2 →
+AES-GCM through `tools/seal.mjs`. **Her words are no longer in this repo.** The
+plaintext is `private/nikky/content.mjs`, which `private/.gitignore` ignores
+wholesale; what is committed is `public/nikky/sealed.js`, which is ciphertext.
+
+The lock is a **separate file rather than a change inside the renderer**.
+`lock.js` asks for the passcode, decrypts in the browser, sets `window.NOTEBOOK`
+and only then appends `render.js` — which is untouched and still expects that
+global. So the page behind the lock is byte for byte the page that was there
+before it, and a later session is added exactly as it always was, with one new
+step at the end:
+
+```
+node tools/seal.mjs private/nikky/content.mjs public/nikky/sealed.js
+```
+
+**Both files declare `$`, and they share one global scope.** `lock.js` and
+`render.js` are classic scripts, so a second top-level `const $` is a
+`SyntaxError` that kills the whole of `render.js`: the lock opens, the notebook
+never draws, and the only sign is one line in the console. `lock.js` is
+therefore wrapped in an IIFE and hands over exactly one name, `window.NOTEBOOK`.
+Keep it that way.
+
+`「記住這台裝置」` stores the **derived key, never the passcode**, under
+`nikky.key`. A re-seal keeps the salt, so a remembered device survives a new
+session; changing the passcode derives a different key and the page asks again.
+WebCrypto exists only on https or localhost, so the lock cannot open over plain
+http on a LAN address — it says so rather than failing silently.
+
+Two limits worth being honest about. The seal is only as strong as the
+passcode, because `sealed.js` can be copied and guessed against offline — hence
+four random words rather than anything chosen by hand. And **it protects the
+live page, not the past**: sessions 1–3 were committed in plaintext between 24
+August and 13 November, so they remain in this repo's history.
+
 ## Ken's Notebook — college student, one-to-one, kept over time
 
 The ninth notebook, copied from
@@ -5520,7 +5558,10 @@ public/anny/meeting/      her co-planning guide for a team meeting — not a les
 public/aaron/             Aaron's notebook — same machinery, its own sessions
 public/aaron/book-club/   the four-book discussion guide, under that notebook
 public/anita/             Anita's notebook — same machinery again, two sessions
-public/nikky/             Nikky's notebook — the same, with the scroll fix in
+public/nikky/             Nikky's notebook — sealed; its words are not in this repo
+public/nikky/sealed.js    the encrypted notebook; lock.js opens it in the browser
+private/nikky/content.mjs the plaintext — git-ignored, never committed
+private/nikky/.pass       the passcode — git-ignored
 public/eason/             Eason's notebook — the same, for a teenager
 public/anna/              Anna's notebook — the same again, for a young adult
 public/ken/               Ken's notebook — the same, for a college student

@@ -71,6 +71,32 @@ function shuffled(list) {
 let uid = 0;
 
 /* The heading every activity block shares: English, a 中 chip, the Chinese. */
+/* A pointer away from the text being read: to another session on this page, to
+   another page in this site, or off the site entirely. Signage, so it is
+   bilingual at all times and never hides behind a chip.
+
+   An off-site href opens in a new tab. Without that the notebook is replaced by
+   whatever was linked, and the reader's place in a session several thousand
+   pixels long is gone — a cost an in-page jump does not have. `rel` goes with
+   `target` because `noopener` is what stops the opened page reaching back
+   through `window.opener`. The arrow says which kind of jump it is before the
+   tap, rather than leaving it as a surprise. */
+function cross(b) {
+  const href = b.href || '';
+  const away = /^https?:\/\//i.test(href);
+  return `
+    <a class="cross${away ? ' cross-away' : ''}" href="${text(href)}"${
+      away ? ' target="_blank" rel="noopener"' : ''}>
+      <span class="cross-go" aria-hidden="true">${away ? '\u2197' : '\u2192'}</span>
+      <span class="cross-t">
+        <span class="cross-en">${text(b.en)}</span>
+        <span class="cross-zh">${text(b.zh)}</span>
+        <span class="cross-note">${text(b.noteEn)}</span>
+        <span class="cross-note cross-note-zh">${text(b.noteZh)}</span>
+      </span>
+    </a>`;
+}
+
 function label(b) {
   return `
     <h4 class="label"><span class="en">${text(b.en)}</span>
@@ -98,16 +124,7 @@ const BLOCKS = {
 
   // A pointer to another page in this site. Signage, so it is bilingual at all
   // times and never hides behind a chip.
-  link: (b) => `
-    <a class="cross" href="${text(b.href)}">
-      <span class="cross-go" aria-hidden="true">→</span>
-      <span class="cross-t">
-        <span class="cross-en">${text(b.en)}</span>
-        <span class="cross-zh">${text(b.zh)}</span>
-        <span class="cross-note">${text(b.noteEn)}</span>
-        <span class="cross-note cross-note-zh">${text(b.noteZh)}</span>
-      </span>
-    </a>`,
+  link: (b) => cross(b),
 
   quote: (b) => `
     <figure class="quote">
@@ -410,6 +427,7 @@ function buildCover() {
             </li>`).join('')}
         </ul>
       </div>
+      ${i.link ? cross(i.link) : ''}
     </header>`;
 }
 
