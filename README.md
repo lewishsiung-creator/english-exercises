@@ -6534,7 +6534,8 @@ a form where Lewis types a student's name and class time and gets that page.
   `/vicky-course/`.
 - **iPhone, iPad, computer** (gone over 2026-11-13). `/vicky-course/` now
   links `course/course.css` instead of keeping its own copy, so the two never
-  drift. Student pages: a navy jump bar (上課安排 · 學費 · 付款 · 請假) stays
+  drift. Student pages: a navy jump bar (上課安排 · 學費說明 · 付款方式 · 請假規則 — full
+  section names since 2026-11-13, an equal four-way row on phones) stays
   at the top — its links scroll by script and never set the #hash, because on
   `/course/` the hash *is* the student; 44px tap targets; the sides keep
   clear of the notch on a sideways iPhone; from 760px wide the column is

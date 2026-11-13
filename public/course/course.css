@@ -304,3 +304,10 @@ main .wrap { margin-top: 0; padding-top: 16px; }
 
 /* the last fact when the grid has an odd number of them (上課時數) */
 .facts .fact.wide { grid-column: 1 / -1; }
+
+/* Phones: the four jump links (all four characters long since 2026-11-13)
+   share the row equally instead of running off the edge. */
+@media (max-width: 480px) {
+  .jump .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .jump a { justify-content: center; padding: 8px 2px; font-size: 14px; }
+}
