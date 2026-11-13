@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- 上課時間 & 學費說明, for any student, from a link.
+
+     The page holds no student. Everything that changes per student — name,
+     schedule, goals, prices — travels in the link's #hash, which /course/make/
+     writes. A hash is never sent to the server, so no student's details are
+     in this public repo, in Cloudflare's logs, or in anyone's analytics.
+
+     Rules that keep it safe, because anyone can hand-craft a link:
+       - every value is set with textContent, never innerHTML;
+       - links on the page are fixed here, never taken from the hash.
+
+     NO BANK ACCOUNT, ever (Lewis, 2026-11-13): the repo is public. The page
+     points to LINE for the account details.
+
+     Hash format: #d=<base64url of UTF-8 JSON>, keys kept short so the link
+     stays pasteable into LINE:
+       v 1 · n name · t time · m mode · i info lines · g goals lines
+       p plans [[hours, span text, price, sale price or 0], …]
+       x the sentence above the plans (may be empty) -->
+<meta name="robots" content="noindex, nofollow">
+<title>上課時間 & 學費說明｜Lewis Biz English</title>
+<meta name="theme-color" content="#2f3c7e">
+<link rel="icon" href="../logo.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="course.css?v=1">
+<link rel="stylesheet" href="../type.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand"><img src="../logo.png" alt=""><span class="en">Lewis Biz English · 1-on-1 課程</span></div>
+    <h1>上課時間 &amp; 學費說明</h1>
+    <p class="for" id="name"></p>
+    <a class="about" href="https://campsite.bio/lewistoeic" target="_blank" rel="noopener">關於 Lewis 教練 →</a>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+  <section class="missing" id="missing" hidden>
+    <h2>這個連結不完整</h2>
+    <p>請向 Lewis 索取完整的課程連結。</p>
+  </section>
+
+  <div id="page" hidden>
+
+  <section id="about">
+    <h2 id="about-h">客製化課程說明</h2>
+    <div id="info-wrap">
+      <h3>學員相關資訊</h3>
+      <p class="multi" id="info"></p>
+    </div>
+    <div id="goals-wrap">
+      <h3>學習目標</h3>
+      <ol id="goals"></ol>
+    </div>
+  </section>
+
+  <section>
+    <h2>上課安排</h2>
+    <div class="facts">
+      <div class="fact"><div class="k">上課時間</div><div class="v multi" id="time"></div></div>
+      <div class="fact"><div class="k">上課方式</div><div class="v multi" id="mode"></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>學費說明</h2>
+    <p class="lead">網站公告學費：<a href="https://lewistoeic.com/course_packages/" target="_blank" rel="noopener">客製化課程方案 · Course Packages</a></p>
+    <h3>1-on-1 課程選項</h3>
+    <p class="lead" id="intro"></p>
+    <div class="plans" id="plans"></div>
+
+    <div class="callout"><span class="i">💡</span><p><strong>請主動告知您想安排的課程選項。</strong></p></div>
+    <div class="callout"><span class="i">🎁</span><p><strong>特別優惠：</strong>關於您的課程，我會另外提供上課重點筆記，並且提供 <span class="en">LINE</span> 線上解惑。只要是與英文相關的問題，您可以直接傳訊給我，晚上 9 點前，我都會盡快回答您的疑惑，提供協助。</p></div>
+  </section>
+
+  <section>
+    <h2>付款方式</h2>
+    <div class="callout"><span class="i">🏦</span><p><strong>匯款帳戶資訊請見 <span class="en">LINE</span></strong>，也可使用 <span class="en">LINE Pay</span> 轉帳。</p></div>
+    <div class="steps">
+      <p>轉帳後，<strong>請主動告知您的帳號末五碼</strong>，以便確認。</p>
+      <p>確認轉帳後，即會開始準備為您客製的<strong>課程內容</strong>，並且提供<strong>課前作業</strong>。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>請假規則</h2>
+    <div class="rule">
+      <div class="when">2 日前</div>
+      <p>如需請假或更動上課時間，<span class="hl">請於 2 日前告知</span>，我會配合另外安排時間。</p>
+    </div>
+    <div class="rule">
+      <div class="when">2 日內</div>
+      <p>若於 2 日內告知，會針對您的課程進度額外準備學習內容，供您學習，不另行補課。</p>
+    </div>
+  </section>
+
+  </div>
+
+</div>
+</main>
+
+<footer><a href="https://lewistoeic.com/" target="_blank" rel="noopener">Lewis 多益職場力</a> · #職場英語教練</footer>
+
+<script>
+(function () {
+  function decode(h) {
+    var m = /(?:^|[#&])d=([A-Za-z0-9_-]+)/.exec(h || '');
+    if (!m) return null;
+    try {
+      var b = m[1].replace(/-/g, '+').replace(/_/g, '/');
+      while (b.length % 4) b += '=';
+      var bin = atob(b), bytes = new Uint8Array(bin.length);
+      for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      var d = JSON.parse(new TextDecoder().decode(bytes));
+      return d && typeof d === 'object' && str(d.n) ? d : null;
+    } catch (e) { return null; }
+  }
+  function str(x) { return typeof x === 'string' ? x.trim() : ''; }
+  function lines(x) {
+    return (Array.isArray(x) ? x : []).map(str).filter(Boolean);
+  }
+  function num(x) { x = Number(x); return isFinite(x) && x > 0 ? x : 0; }
+  function money(x) { return '$' + Math.round(x).toLocaleString('en-US'); }
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function set(id, text) { document.getElementById(id).textContent = text; }
+
+  function render() {
+    var d = decode(location.hash);
+    document.getElementById('missing').hidden = !!d;
+    document.getElementById('page').hidden = !d;
+    if (!d) { set('name', ''); document.title = '上課時間 & 學費說明｜Lewis Biz English'; return; }
+
+    var name = str(d.n);
+    document.title = '上課時間 & 學費說明｜' + name;
+    set('name', name);
+    var first = name.split(/\s+/)[0];
+    set('about-h', (/^[A-Za-z]/.test(first) ? first.toUpperCase() : first) + ' 客製化課程說明');
+
+    var info = lines(d.i), goals = lines(d.g);
+    set('info', info.join('\n'));
+    document.getElementById('info-wrap').hidden = !info.length;
+    var ol = document.getElementById('goals');
+    ol.textContent = '';
+    goals.forEach(function (g) { ol.appendChild(el('li', null, g)); });
+    document.getElementById('goals-wrap').hidden = !goals.length;
+    document.getElementById('about').hidden = !info.length && !goals.length;
+
+    set('time', str(d.t));
+    set('mode', str(d.m) || 'ZOOM 線上會議');
+
+    var intro = str(d.x);
+    set('intro', intro);
+    document.getElementById('intro').hidden = !intro;
+
+    var box = document.getElementById('plans');
+    box.textContent = '';
+    (Array.isArray(d.p) ? d.p : []).forEach(function (p) {
+      if (!Array.isArray(p)) return;
+      var hours = num(p[0]), span = str(p[1]), price = num(p[2]), sale = num(p[3]);
+      if (!hours || !price) return;
+      var card = el('div', 'plan');
+      card.appendChild(el('div', 'hours', hours + ' 小時課程'));
+      if (span) card.appendChild(el('div', 'span', span));
+      var pay = price;
+      if (sale && sale < price) {
+        var was = el('div', 'was', '原價 ');
+        was.appendChild(el('s', null, money(price)));
+        card.appendChild(was);
+        var now = el('div', 'now');
+        now.appendChild(el('small', null, '優惠價'));
+        now.appendChild(document.createTextNode(money(sale)));
+        card.appendChild(now);
+        pay = sale;
+      } else {
+        var only = el('div', 'now only');
+        only.style.marginTop = '12px';
+        only.appendChild(document.createTextNode(money(price)));
+        card.appendChild(only);
+      }
+      card.appendChild(el('div', 'per', '平均每小時 ' + money(pay / hours)));
+      box.appendChild(card);
+    });
+    box.hidden = !box.children.length;
+  }
+
+  render();
+  window.addEventListener('hashchange', render);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- Lewis's form for making a student's 上課時間 & 學費說明 page.
+
+     Fill in the student, copy the link, send it on LINE. Nothing is saved
+     and nothing is uploaded: the link itself carries the student's details
+     in its #hash, and /course/ draws the page from it (see the comment at the
+     top of ../index.html for the format). To change a page later, paste its
+     link into 「編輯舊連結」 and the form fills back in.
+
+     Requested 2026-11-13, right after /vicky-course/ was built by hand. -->
+<meta name="robots" content="noindex, nofollow">
+<title>課程說明頁產生器｜Lewis Biz English</title>
+<meta name="theme-color" content="#2f3c7e">
+<link rel="icon" href="../../logo.png">
+<link rel="stylesheet" href="../course.css?v=1">
+<link rel="stylesheet" href="../../type.css">
+<style>
+body { background: var(--paper); }
+.top {
+  background: var(--navy); color: #fff;
+  padding: 18px 20px;
+}
+.top .row { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
+.top img { width: 32px; height: 32px; border-radius: 50%; }
+.top h1 { margin: 0; font-size: 19px; letter-spacing: .02em; }
+.top p { margin: 0 0 0 auto; font-size: 13px; color: rgba(255,255,255,.75); }
+
+.layout {
+  max-width: 1200px; margin: 0 auto; padding: 20px 16px 60px;
+  display: grid; grid-template-columns: minmax(0, 440px) minmax(0, 1fr); gap: 22px;
+  align-items: start;
+}
+@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } .top p { display: none; } }
+
+form section { padding: 18px 18px 20px; }
+label { display: block; font-size: 14px; font-weight: 600; margin: 14px 0 6px; }
+label:first-of-type { margin-top: 0; }
+label .req { color: #b0202a; margin-left: 2px; }
+label .hint { font-weight: 400; color: var(--ink-faint); margin-left: 6px; font-size: 13px; }
+input, textarea {
+  width: 100%;
+  font: inherit; font-size: 16px; color: var(--ink);
+  padding: 9px 12px;
+  border: 1px solid var(--line); border-radius: 10px;
+  background: #fff;
+}
+textarea { resize: vertical; min-height: 64px; line-height: 1.55; }
+input:focus, textarea:focus { outline: 2px solid var(--navy); outline-offset: -1px; border-color: transparent; }
+.bad { border-color: #b0202a !important; background: #fdf3f2; }
+
+.plan-row {
+  border: 1px solid var(--line); border-radius: 12px;
+  padding: 12px; margin-top: 10px;
+  display: grid; grid-template-columns: 70px 1fr 1fr; gap: 8px;
+}
+.plan-row .wide { grid-column: 1 / -1; }
+.plan-row small { display: block; font-size: 12px; color: var(--ink-faint); margin-bottom: 3px; }
+.plan-row input { padding: 7px 9px; font-size: 15px; }
+.plan-row .del {
+  grid-column: 1 / -1; justify-self: end;
+  background: none; border: 0; color: var(--ink-faint); font-size: 13px; cursor: pointer; padding: 2px 4px;
+}
+.plan-row .del:hover { color: #b0202a; }
+
+.btn {
+  appearance: none; cursor: pointer;
+  border: 1px solid var(--line); background: #fff; color: var(--ink);
+  border-radius: var(--pill);
+  padding: 8px 16px; font: 600 14px var(--font-zh);
+}
+.btn:hover { border-color: var(--navy); }
+.btn.primary { background: var(--navy); border-color: var(--navy); color: #fff; }
+.btn.primary:hover { background: var(--navy-deep); }
+.btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+
+.out { position: sticky; top: 16px; }
+.linkbox {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--round);
+  padding: 16px 18px; margin-bottom: 14px;
+}
+.linkbox h2 { margin-bottom: 8px; }
+.linkbox input { font-family: var(--font-ui); font-size: 13px; color: var(--ink-soft); }
+.status { font-size: 13px; color: var(--ink-faint); margin-top: 8px; min-height: 1.4em; }
+.status.warn { color: #b0202a; }
+.frame {
+  border: 1px solid var(--line); border-radius: var(--round);
+  overflow: hidden; background: #fff;
+  height: 78vh;
+}
+.frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+.frame-h { font-size: 13px; color: var(--ink-faint); margin: 0 0 6px 4px; }
+
+details { margin-top: 4px; }
+summary { cursor: pointer; font-size: 14px; color: var(--ink-soft); }
+details .btns { margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="row">
+    <img src="../../logo.png" alt="">
+    <h1>課程說明頁產生器</h1>
+    <p>填好學員資料 → 複製連結 → 用 LINE 傳給學員</p>
+  </div>
+</header>
+
+<div class="layout">
+
+  <form id="f" autocomplete="off" novalidate>
+    <section>
+      <h2>學員</h2>
+      <label for="n">學員姓名<span class="req">*</span></label>
+      <input id="n" placeholder="例如：Vicky Hung">
+
+      <label for="i">學員相關資訊<span class="hint">選填，一行一項</span></label>
+      <textarea id="i" rows="2" placeholder="例如：長榮大學美術學系（副教授）"></textarea>
+
+      <label for="g">學習目標<span class="hint">選填，一行一項</span></label>
+      <textarea id="g" rows="3" placeholder="例如：&#10;提升英語交談的自在感&#10;英語授課 (Contemporary Art)"></textarea>
+    </section>
+
+    <section>
+      <h2>上課安排</h2>
+      <label for="t">上課時間<span class="req">*</span></label>
+      <input id="t" placeholder="例如：每週二早上 8:00 – 9:00 am">
+
+      <label for="m">上課方式</label>
+      <input id="m" value="ZOOM 線上會議">
+    </section>
+
+    <section>
+      <h2>學費方案</h2>
+      <label for="x">方案上方的說明<span class="hint">選填</span></label>
+      <textarea id="x" rows="2" placeholder="例如：2026 年 6 月開始，學費已做調整。"></textarea>
+
+      <div id="plans"></div>
+      <div class="btns">
+        <button type="button" class="btn" id="add">＋ 新增方案</button>
+        <button type="button" class="btn" id="loyal">套用老學員優惠</button>
+      </div>
+      <p class="status" style="margin-top:10px">優惠價留空，就只顯示原價。</p>
+    </section>
+
+    <section>
+      <details>
+        <summary>編輯舊連結</summary>
+        <label for="old" style="margin-top:10px">貼上之前產生的連結</label>
+        <input id="old" placeholder="https://…/course/#d=…">
+        <div class="btns">
+          <button type="button" class="btn" id="load">載入到表單</button>
+          <button type="button" class="btn" id="clear">清空表單</button>
+        </div>
+      </details>
+    </section>
+  </form>
+
+  <div class="out">
+    <div class="linkbox">
+      <h2>學員的連結</h2>
+      <input id="link" readonly>
+      <div class="btns">
+        <button type="button" class="btn primary" id="copy">複製連結</button>
+        <button type="button" class="btn" id="open">開新分頁看</button>
+      </div>
+      <p class="status" id="status"></p>
+    </div>
+    <p class="frame-h">預覽（學員看到的樣子）</p>
+    <div class="frame"><iframe id="pv" title="預覽"></iframe></div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var BASE = new URL('../', location.href).href;   // …/course/
+
+  var DEFAULT_PLANS = [
+    [10, '12 週內完成課程（約 3 個月）', 18000, ''],
+    [20, '22 週內完成課程（約 6 個月）', 30000, '']
+  ];
+  // What Vicky got: the June 2026 price rise, with a thank-you price.
+  var LOYAL = {
+    x: '2026 年 6 月開始，學費已做調整。為了感謝您的長期信任，特別提供優惠：',
+    sale: { 10: 16000, 20: 28000 }
+  };
+
+  function planRow(p) {
+    var row = document.createElement('div');
+    row.className = 'plan-row';
+    row.innerHTML =
+      '<div><small>時數</small><input class="ph" inputmode="numeric"></div>' +
+      '<div><small>原價</small><input class="pp" inputmode="numeric"></div>' +
+      '<div><small>優惠價（選填）</small><input class="ps" inputmode="numeric"></div>' +
+      '<div class="wide"><small>期限說明</small><input class="pt"></div>' +
+      '<button type="button" class="del">刪除這個方案</button>';
+    row.querySelector('.ph').value = p[0] || '';
+    row.querySelector('.pt').value = p[1] || '';
+    row.querySelector('.pp').value = p[2] || '';
+    row.querySelector('.ps').value = p[3] || '';
+    row.querySelector('.del').onclick = function () { row.remove(); update(); };
+    $('plans').appendChild(row);
+  }
+  function setPlans(list) {
+    $('plans').textContent = '';
+    list.forEach(planRow);
+  }
+  function digits(s) { return Number(String(s).replace(/[^\d.]/g, '')) || 0; }
+  function lines(s) { return s.split('\n').map(function (l) { return l.trim(); }).filter(Boolean); }
+
+  function collect() {
+    var plans = [];
+    $('plans').querySelectorAll('.plan-row').forEach(function (r) {
+      var h = digits(r.querySelector('.ph').value), pr = digits(r.querySelector('.pp').value);
+      if (h && pr) plans.push([h, r.querySelector('.pt').value.trim(), pr, digits(r.querySelector('.ps').value)]);
+    });
+    return {
+      v: 1,
+      n: $('n').value.trim(),
+      t: $('t').value.trim(),
+      m: $('m').value.trim(),
+      i: lines($('i').value),
+      g: lines($('g').value),
+      x: $('x').value.trim(),
+      p: plans
+    };
+  }
+
+  function encode(d) {
+    var bytes = new TextEncoder().encode(JSON.stringify(d)), bin = '';
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+  function decode(url) {
+    var m = /[#&]d=([A-Za-z0-9_-]+)/.exec(url || '');
+    if (!m) return null;
+    try {
+      var b = m[1].replace(/-/g, '+').replace(/_/g, '/');
+      while (b.length % 4) b += '=';
+      var bin = atob(b), bytes = new Uint8Array(bin.length);
+      for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      return JSON.parse(new TextDecoder().decode(bytes));
+    } catch (e) { return null; }
+  }
+
+  var timer;
+  function update() {
+    var d = collect();
+    var missing = [];
+    $('n').classList.toggle('bad', false);
+    $('t').classList.toggle('bad', false);
+    if (!d.n) missing.push('學員姓名');
+    if (!d.t) missing.push('上課時間');
+    var url = BASE + '#d=' + encode(d);
+    $('link').value = missing.length ? '' : url;
+    $('copy').disabled = $('open').disabled = !!missing.length;
+    var st = $('status');
+    st.className = 'status' + (missing.length ? ' warn' : '');
+    st.textContent = missing.length ? '還需要填：' + missing.join('、') : '連結長度 ' + url.length + ' 字元，可以直接貼到 LINE。';
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      // the preview shows the page even before the required fields are in
+      var pd = Object.assign({}, d, { n: d.n || '學員姓名' });
+      $('pv').src = BASE + '#d=' + encode(pd);
+    }, 250);
+  }
+
+  function fill(d) {
+    $('n').value = d.n || '';
+    $('t').value = d.t || '';
+    $('m').value = d.m || 'ZOOM 線上會議';
+    $('i').value = (d.i || []).join('\n');
+    $('g').value = (d.g || []).join('\n');
+    $('x').value = d.x || '';
+    setPlans((d.p && d.p.length) ? d.p : DEFAULT_PLANS);
+    update();
+  }
+
+  $('f').addEventListener('input', update);
+  $('add').onclick = function () { planRow(['', '', '', '']); update(); };
+  $('loyal').onclick = function () {
+    $('x').value = LOYAL.x;
+    $('plans').querySelectorAll('.plan-row').forEach(function (r) {
+      var s = LOYAL.sale[digits(r.querySelector('.ph').value)];
+      if (s) r.querySelector('.ps').value = s;
+    });
+    update();
+  };
+  $('load').onclick = function () {
+    var d = decode($('old').value);
+    if (!d) { $('status').className = 'status warn'; $('status').textContent = '這個連結讀不到資料，請確認是完整的連結。'; return; }
+    fill(d);
+    $('old').value = '';
+  };
+  $('clear').onclick = function () { fill({}); };
+  $('copy').onclick = function () {
+    var v = $('link').value, b = $('copy');
+    function done(ok) {
+      b.textContent = ok ? '已複製 ✓' : '請手動選取連結複製';
+      setTimeout(function () { b.textContent = '複製連結'; }, 1800);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(v).then(function () { done(true); }, function () { $('link').select(); done(false); });
+    } else { $('link').select(); done(false); }
+  };
+  $('open').onclick = function () { window.open($('link').value, '_blank', 'noopener'); };
+
+  fill({});
+})();
+</script>
+</body>
+</html>

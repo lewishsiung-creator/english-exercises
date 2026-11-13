@@ -5493,6 +5493,8 @@ public/landscape-portfolio/content.starter.js  the same page, emptied
 public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS.md
 public/health/            Health Notes — bilingual notes, one topic per subject
 public/vicky-course/      Vicky's 上課時間 & 學費說明 — schedule, fees, leave rule
+public/course/            the same page for any student, drawn from the link's #hash
+public/course/make/       Lewis's form that writes those links
 make-icon.py              regenerates public/apple-touch-icon.png
 tools/                    the scripts that turn a 講義 PDF into either of those
 ```
@@ -6404,3 +6406,28 @@ with her art-history decks, which live in their own repo.
   square. That logo's corners are transparent (iOS fills them black) and its
   lettering is cut out, so it needed white behind the letters and copper to
   the corners — a plain resize will not do.
+
+## Course pages from a form — `/course/` and `/course/make/`
+
+Asked for 2026-11-13, straight after `/vicky-course/` was built by hand:
+a form where Lewis types a student's name and class time and gets that page.
+
+- **`/course/make/`** is the form: 學員姓名 and 上課時間 (required), 學員相關
+  資訊 and 學習目標 (optional, one per line), 上課方式 (defaults to ZOOM 線上
+  會議), the sentence above the plans, and any number of plans (時數, 原價,
+  optional 優惠價, 期限說明). 「套用老學員優惠」 fills in what Vicky got: the
+  June 2026 sentence and $16,000 / $28,000. A live preview sits beside it, and
+  「編輯舊連結」 reads a link back into the form.
+- **`/course/`** holds no student. The form writes everything into the link as
+  `#d=<base64url JSON>` (format documented at the top of
+  `public/course/index.html`), so making a page for a new student needs **no
+  commit and no deploy**, and no student's details end up in this public repo
+  or in server logs — a hash is never sent to the server.
+- Anyone can hand-craft a link, so the page sets every value with
+  `textContent` and takes no link targets from the hash. A missing or broken
+  hash shows 「這個連結不完整」.
+- The fixed text — the 💡 and 🎁 notes, 付款方式, 請假規則 — is Vicky's page's,
+  in the page itself. Change it there and every student's link changes with
+  it. Still no bank account (see the section above).
+- The style is `public/course/course.css`, copied from `/vicky-course/`.
+  Vicky's page was left as it is because its URL has already gone out.

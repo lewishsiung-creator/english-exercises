@@ -1,0 +1,172 @@
+/* The course-and-fee page: the look worked out on /vicky-course/ (2026-11-13),
+   in Lewis's colours — the navy of his bank and leave-rule cards and the
+   copper of his logo. Used by /course/ only; /vicky-course/ keeps its own copy. */
+
+:root {
+  --paper: #f7f5f0;
+  --card: #ffffff;
+  --ink: #1d2033;
+  --ink-soft: #565a70;
+  --ink-faint: #8a8da0;
+  --line: #e3e0d8;
+  --navy: #2f3c7e;
+  --navy-deep: #232e66;
+  --copper: #c08540;
+  --copper-soft: #f8efe4;
+  --gold: #f4b63f;
+  --round: 16px;
+  --pill: 980px;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-zh);
+  font-size: 17px;
+  line-height: 1.7;
+}
+.en { font-family: var(--font-ui); }
+a { color: var(--navy); text-underline-offset: 3px; }
+
+/* ---------- hero ---------- */
+.hero {
+  background: var(--navy);
+  color: #fff;
+  padding: 28px 20px 44px;
+}
+.wrap { max-width: 40rem; margin: 0 auto; }
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-ui); font-size: 14px; font-weight: 600;
+  letter-spacing: .01em; color: rgba(255,255,255,.88);
+}
+.brand img { width: 36px; height: 36px; border-radius: 50%; }
+.hero h1 {
+  margin: 34px 0 6px;
+  font-size: clamp(28px, 7vw, 38px);
+  line-height: 1.25;
+  letter-spacing: .02em;
+}
+.hero .for {
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: 20px;
+  color: var(--gold);
+}
+.hero .about {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 7px 16px;
+  border: 1px solid rgba(255,255,255,.4);
+  border-radius: var(--pill);
+  color: #fff; text-decoration: none;
+  font-size: 14px;
+}
+.hero .about:hover { background: rgba(255,255,255,.1); }
+
+/* ---------- sections ---------- */
+main { padding: 0 16px 56px; }
+main .wrap { margin-top: -22px; }
+section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--round);
+  padding: 22px 22px 24px;
+  margin-bottom: 16px;
+}
+h2 {
+  margin: 0 0 14px;
+  font-size: 15px;
+  letter-spacing: .08em;
+  color: var(--copper);
+}
+h3 { margin: 18px 0 6px; font-size: 16px; }
+h3:first-of-type { margin-top: 0; }
+p { margin: 0 0 10px; }
+ol { margin: 0; padding-left: 1.4em; }
+ol li { margin: 2px 0; }
+
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.fact { background: var(--paper); border-radius: 12px; padding: 14px 16px; }
+.fact .k { font-size: 13px; color: var(--ink-faint); }
+.fact .v { font-size: 18px; font-weight: 600; line-height: 1.45; }
+@media (max-width: 420px) { .facts { grid-template-columns: 1fr; } }
+
+/* ---------- fees ---------- */
+.lead { color: var(--ink-soft); font-size: 15.5px; }
+.plans { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0 16px; }
+@media (max-width: 520px) { .plans { grid-template-columns: 1fr; } }
+.plan {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px 18px;
+}
+.plan .hours { font-size: 20px; font-weight: 700; }
+.plan .span { font-size: 14px; color: var(--ink-soft); }
+.plan .was {
+  margin-top: 12px;
+  font-size: 14px; color: var(--ink-faint);
+}
+.plan .was s { text-decoration-thickness: 1.5px; }
+.plan .now {
+  font-family: var(--font-ui);
+  font-size: 30px; font-weight: 700; letter-spacing: -.01em;
+  color: var(--navy);
+  line-height: 1.2;
+}
+.plan .now small { font-size: 14px; font-weight: 600; margin-right: 4px; }
+.plan .tag {
+  display: inline-block; margin-left: 6px; vertical-align: 4px;
+  padding: 1px 8px; border-radius: var(--pill);
+  background: var(--copper-soft); color: var(--copper);
+  font-family: var(--font-zh); font-size: 12px; font-weight: 600;
+}
+.plan .per { font-size: 13px; color: var(--ink-faint); margin-top: 2px; }
+
+.callout {
+  display: flex; gap: 10px;
+  background: var(--copper-soft);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-top: 10px;
+  font-size: 15.5px;
+}
+.callout .i { flex: none; }
+.callout p { margin: 0; }
+.callout strong { color: var(--ink); }
+
+.steps { margin-top: 14px; }
+.steps p { color: var(--ink-soft); font-size: 15.5px; }
+.steps strong { color: var(--ink); }
+
+/* ---------- leave ---------- */
+.rule { display: flex; gap: 14px; padding: 12px 0; }
+.rule + .rule { border-top: 1px solid var(--line); }
+.rule .when {
+  flex: none; width: 4.6em;
+  font-weight: 700; color: var(--navy);
+}
+.rule p { margin: 0; }
+.hl { background: linear-gradient(transparent 58%, #fbe3b0 58%); font-weight: 600; }
+
+footer {
+  text-align: center; font-size: 13px; color: var(--ink-faint);
+  padding: 8px 16px 40px;
+}
+footer a { color: var(--ink-soft); }
+
+@media print {
+  body { background: #fff; }
+  .hero .about { display: none; }
+  section { break-inside: avoid; }
+}
+
+/* ---------- what /vicky-course/ did not need ---------- */
+.plan .now.only small { display: none; }
+.multi { white-space: pre-line; }
+.missing { text-align: center; padding: 48px 22px; color: var(--ink-soft); }
+.missing h2 { color: var(--ink); font-size: 20px; letter-spacing: 0; }
+[hidden] { display: none !important; }
