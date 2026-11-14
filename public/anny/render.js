@@ -120,6 +120,38 @@ const FIGURES = {
     footZh: '報告的順序剛好相反：先數據，故事擺最後、甚至不放，也沒有請求。這個顛倒，就是「報告」和「領導」之間的全部差別。',
   },
 
+  /* Session 1. The spine of that hour was an order, and it was split across
+     two places: the note says the conversation has to start with what she
+     keeps, and the task instruction says reinforce first, then name the next
+     challenge. Neither says it as a sequence, which is what it is. */
+  coach: {
+    steps: [
+      {
+        en: 'Keep', zh: '先講保留',
+        list: [
+          { en: 'Name the strengths, specifically', zh: '具體說出她的強項' },
+          { en: 'Persistence, preparation, standards', zh: '堅持、準備、標準' },
+        ],
+      },
+      {
+        en: 'Reframe', zh: '再轉向',
+        list: [
+          { en: 'Leadership is their next use', zh: '領導力是這些強項的下一個用法' },
+          { en: 'Not a replacement for them', zh: '不是用來取代它們' },
+        ],
+      },
+      {
+        en: 'Challenge', zh: '最後指出',
+        list: [
+          { en: 'Put the next thing as a question', zh: '把下一個挑戰講成問題' },
+          { en: 'A verdict cannot be picked up', zh: '判決，對方接不住' },
+        ],
+      },
+    ],
+    footEn: 'Open with the meeting and she hears that twelve years of what worked was wrong. The sentences can be the same ones; the order is what makes them survivable.',
+    footZh: '一開口就談那場會議，她聽到的會是「我過去做對的事其實都是錯的」。句子可以完全一樣，但順序才決定她接不接得住。',
+  },
+
   /* Session 2. Three stages, two steps each, and the order is the point —
      which a paragraph states and a diagram shows. */
   stages: {

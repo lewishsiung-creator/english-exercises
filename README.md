@@ -4186,10 +4186,13 @@ session, as a self-audit Anny marks for her manager and then for herself.
   written for the lesson. The closing `note` block says exactly which is which,
   **on the page** rather than only in the content file — a reader who cannot
   see this README is the one who needs to know.
-- **Two diagrams, laid out rather than drawn** (14 Nov 2026). Two things on
-  this page are shapes, not sentences — the order you deliver a leadership
-  update in, and the three stages of working on a belief — and both were
-  buried in a paragraph. They are figures now, named by key from `content.js`
+- **One diagram per session, laid out rather than drawn** (14 Nov 2026).
+  Each session had one thing in it that was a shape rather than a sentence,
+  and in all three cases it was buried in a paragraph: the order of the
+  coaching conversation (keep → reframe → challenge), the three stages of
+  working on a belief, and the order you deliver a leadership update in. One
+  each is the ceiling, not a quota — the seven blockers and the four Cs are
+  already card grids, and a second figure beside either would be decoration. They are figures now, named by key from `content.js`
   (`{ t: 'figure', fig: 'order' }`) with the drawing itself in `render.js`, so
   the content file stays pure data. They are **HTML and CSS, not SVG with text
   inside it**: text in an SVG does not reflow, does not grow when the reader

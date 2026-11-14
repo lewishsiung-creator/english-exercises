@@ -203,6 +203,15 @@ const NOTEBOOK = {
         },
 
         {
+          t: 'figure',
+          fig: 'coach',
+          en: 'The order of the conversation',
+          zh: '這段對話的順序',
+          hintEn: 'The same three moves the paragraph above describes, in the order you have to make them.',
+          hintZh: '上面那段講的就是這三步，這裡把必須遵守的順序排出來。',
+        },
+
+        {
           t: 'phrases',
           en: 'Coaching and feedback',
           zh: '指導與回饋',
