@@ -4700,6 +4700,28 @@ Below 640px the tiles wrap, the first row runs the full width, and no amount of
 masking saves a drawing lying across it — so the art moves to the bottom-right
 corner, beside the short second row.
 
+**The cover art.** Hank's page puts a basketball court behind its title because
+basketball is what his notebook is about. This one is about a diving
+certificate, a Greek poem, a self-introduction and a personality quiz, so there
+is no single subject to draw — what the page *is*, is a record that gets
+another layer every time they meet. So the cover carries **depth contours**:
+five nested irregular rings, one picked out in orange so the set reads as a
+drawing rather than as wallpaper. They suggest water without belonging to the
+diving session.
+
+They are generated rather than drawn — twenty-four points per ring, the radius
+modulated by three sine terms, joined as a closed Catmull-Rom spline — because
+nested organic curves are the one thing that is genuinely easier to compute
+than to hand-write. The outermost ring runs off the right of its viewBox on
+purpose and the box is placed so that edge falls outside the cover.
+
+`.cover` becomes `position: relative` with `overflow: hidden`, and
+`.cover > :not(.cover-art)` lifts everything else above the drawing — without
+that the title sits under the lines in stacking order and the 中 chips stop
+taking clicks. The art is `pointer-events: none` as well. It is fainter than
+the posters' (`#2e2e30`, and the orange ring at 55%) because it sits behind
+running text rather than behind four numerals, and it has to lose.
+
 
 ## Anna's Notebook — young adult, one-to-one, kept over time
 

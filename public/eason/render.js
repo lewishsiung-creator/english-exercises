@@ -65,6 +65,29 @@ function speakBtn(sentence, cls = 'say') {
    `.court-lines` and so on, after basketball; nothing on this page is a court,
    so they are renamed here and the two files stay independent. */
 const ART = {
+  /* The cover. Hank's page puts a basketball court behind its title because
+     basketball is what his notebook is about; this one is about a diving
+     certificate, a Greek poem, a self-introduction and a quiz, so there is no
+     single subject to draw. What the page actually is, is a record that gets
+     another layer every time we meet — so the cover is depth contours. They
+     read as water without being about the diving trip, and the one ring picked
+     out in orange is there to stop five grey lines being wallpaper.
+
+     Generated rather than drawn by hand: twenty-four points per ring with the
+     radius modulated by three sine terms, joined as a closed Catmull-Rom
+     spline. The outermost ring runs off the right of the viewBox on purpose,
+     and the box is placed so that edge falls outside the cover. */
+  cover: `
+    <svg viewBox="0 0 600 460" aria-hidden="true" focusable="false">
+      <g class="art-lines" fill="none">
+        <path d="M480 220C480 224 482 229 481 234C481 238 479 243 476 247C473 250 469 253 464 254C460 256 455 256 451 257C447 258 444 258 441 260C437 261 434 263 430 264C426 266 422 267 417 267C413 267 409 266 405 264C401 262 397 259 394 256C391 253 388 250 385 246C383 242 381 238 380 233C379 229 380 224 381 220C382 216 385 212 387 209C389 205 392 202 393 199C395 195 396 191 398 188C400 184 401 179 405 176C408 173 412 170 416 170C421 169 426 170 430 171C434 172 438 174 442 176C446 177 449 179 453 180C456 182 460 184 463 187C466 190 469 193 471 196C473 200 474 204 476 208C477 212 479 216 480 220Z"/>
+        <path class="art-ring" d="M521 220C523 228 525 237 524 245C523 253 520 263 515 269C510 275 501 280 493 283C485 286 476 286 469 288C462 289 456 290 449 293C443 295 437 299 430 301C423 304 415 307 407 306C399 306 391 304 384 300C377 297 370 291 364 286C358 280 352 274 348 267C344 260 340 252 339 244C337 237 338 228 341 220C343 212 348 206 352 199C356 193 360 188 363 181C366 175 367 168 371 161C374 154 378 145 383 139C389 134 397 129 405 128C413 126 422 128 430 130C438 132 445 136 452 138C459 141 465 144 472 147C478 151 485 154 491 159C496 164 501 170 505 177C509 183 511 190 514 198C516 205 519 212 521 220Z"/>
+        <path d="M563 220C566 232 569 245 568 257C566 269 562 282 554 292C547 301 533 308 522 312C511 317 498 317 487 319C477 321 468 323 458 326C449 330 440 336 430 339C420 343 407 347 396 347C385 346 372 343 362 338C352 333 342 325 333 317C325 308 316 299 310 289C304 279 298 267 296 256C294 244 296 231 299 220C302 209 310 199 315 189C321 180 327 172 331 163C336 154 338 143 343 133C348 123 353 110 362 102C370 94 382 87 394 85C405 82 419 85 430 88C441 90 452 96 462 100C472 105 482 108 491 114C501 119 511 124 519 131C527 138 534 147 540 157C545 166 549 177 553 187C557 198 561 208 563 220Z"/>
+        <path d="M605 220C609 235 613 253 611 269C609 284 604 302 594 315C584 327 566 336 552 342C537 348 519 347 505 351C491 354 480 356 468 360C455 365 444 373 430 377C416 382 400 387 385 387C370 386 354 382 340 375C327 368 314 358 303 347C291 337 280 325 272 311C264 298 256 283 253 267C251 252 253 235 257 220C261 205 272 192 279 180C286 167 294 157 300 145C306 133 309 119 315 105C322 92 329 75 340 64C351 54 367 45 382 41C397 38 415 42 430 46C445 49 459 57 472 62C486 68 498 73 511 80C524 86 537 93 547 103C558 112 567 124 575 137C582 149 586 163 592 177C597 191 602 205 605 220Z"/>
+        <path d="M647 220C651 239 657 261 654 280C652 300 645 322 632 337C620 352 598 363 580 370C562 378 540 377 523 381C506 385 492 388 476 393C461 399 447 409 430 414C413 420 393 427 375 426C356 426 336 420 319 412C302 403 287 390 273 377C259 364 245 349 235 333C225 316 215 297 212 278C209 260 211 238 217 220C222 202 235 185 244 170C252 155 262 143 270 127C277 112 280 95 289 79C297 62 305 41 319 28C333 14 352 3 371 -1C389 -4 411 0 430 5C449 9 465 18 482 25C499 32 515 38 530 47C546 55 562 63 575 75C588 87 599 102 609 117C618 132 623 149 630 167C636 184 643 201 647 220Z"/>
+      </g>
+    </svg>`,
+
   /* The dive. Depth lines opening out under the surface, and the one thing he
      actually came back talking about: the whale shark. A person was drawn here
      first and thrown away — a diver in four strokes reads as a stick figure
@@ -543,6 +566,7 @@ function buildCover() {
   const i = NOTEBOOK.intro;
   return `
     <header class="cover" id="top">
+      <div class="cover-art">${ART.cover}</div>
       <p class="kicker">${text(NOTEBOOK.kicker)}</p>
       <h1><span class="en">${text(NOTEBOOK.title)}</span>
         <button class="zh-chip" title="顯示中文">中</button>
