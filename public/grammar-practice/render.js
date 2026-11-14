@@ -241,7 +241,11 @@ function inline(str, ctx) {
       const opts = part.slice(2, -2).split('|');
       const right = opts.findIndex((o) => o.endsWith('*'));
       if (right < 0) throw new Error(`grammar-practice: a choice needs a starred answer: ${part}`);
-      return `<span class="q pq" data-answer="${right}"><span class="q-n" hidden>${text(ctx.label())}</span>${
+      /* A choice is numbered on the same terms as a typed blank: shown inside
+         a cloze, where the numbering is the whole point of reading a story
+         with thirteen questions in it, and off inside a table, where the row
+         already names itself. */
+      return `<span class="q pq" data-answer="${right}"><span class="q-n"${ctx.show ? '' : ' hidden'}>${text(ctx.label())}</span>${
         opts.map((o, i) => `${i ? '<span class="p-sep">/</span>' : ''}<button class="p-opt" type="button"
           data-i="${i}">${text(o.replace(/\*$/, ''))}</button>`).join('')}</span>`;
     }
@@ -339,7 +343,9 @@ const BLOCKS = {
     </div>`,
 
   /* The teacher's voice. Never hidden. `good` sentences take a speaker; `bad`
-     ones never do. */
+     ones never do. `more` is the one place a note may point somewhere else on
+     the site — a point this page recaps in three lines and another page
+     teaches in full. It opens in the same tab: it is a detour, not an exit. */
   note: (b) => `
     <aside class="note">
       <h4><span class="n-zh">${text(b.zh)}</span><span class="n-en">${text(b.en)}</span></h4>
@@ -352,6 +358,10 @@ const BLOCKS = {
           ${(b.bad || []).map((x) => `
             <p class="ex ex-bad"><span aria-hidden="true">✗</span> ${text(x)}</p>`).join('')}
         </div>` : ''}
+      ${b.more ? `
+        <p class="note-more"><a href="${text(b.more.href)}">${text(b.more.zh)}
+          <span class="more-en">${text(b.more.en)}</span>
+          <span class="more-arrow" aria-hidden="true">→</span></a></p>` : ''}
     </aside>`,
 
   /* Choose the form. The sentence is its own model: once the blank is filled
@@ -422,14 +432,24 @@ const BLOCKS = {
   },
 
   /* A table whose cells are sentences. With blanks in it, it is an exercise;
-     with none, it is a chart to read from. */
+     with none, it is a chart to read from.
+
+     `zhCol` names a column that is Chinese in its own right — a meaning — and
+     so is an answer rather than a label. It goes behind a 中 chip like any
+     other answer, which is what lets a teacher point at a word list and ask
+     what the word means. Without it a vocabulary chart hands over every gloss
+     the moment it is on screen, and 教學 mode has nothing left to ask. Named
+     after the same field in /grammar/, which solved this first. A column of
+     explanation — a 判斷關鍵, a reason — is NOT one of these and stays up. */
   table: (b) => {
     const rows = b.rows.map((r, i) => {
       const cells = r.cells || r;
       const lab = r.label || String(i + 1);
       const ctx = { label: () => lab, show: false };
       return `<tr${r.group ? ' class="g-start"' : ''}>${b.numbered ? `<td class="t-n">${i + 1}</td>` : ''}${
-        cells.map((c) => `<td>${inline(c, ctx)}</td>`).join('')}</tr>`;
+        cells.map((c, col) => col === b.zhCol
+          ? `<td class="td-zh"><div class="pair" data-zh><p class="en">${zhChip}</p><p class="zh">${text(c)}</p></div></td>`
+          : `<td>${inline(c, ctx)}</td>`).join('')}</tr>`;
     });
     const html = `
       <div class="t-wrap"><table class="gtable">

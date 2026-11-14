@@ -284,6 +284,19 @@ main { max-width: var(--measure); padding-bottom: 5rem; }
 .note-zh { margin: 0 0 7px; font-size: .95rem; line-height: 1.85; color: var(--ink); }
 .note-en { margin: 0; font-size: .86rem; line-height: 1.7; color: var(--ink-soft); }
 .note-egs { margin-top: 12px; padding-top: 11px; border-top: 1px solid var(--line); }
+
+/* A note may point at the page that teaches the same thing in full. It is a
+   detour rather than an exit, so it is a quiet line at the foot of the note
+   and not a button. */
+.note-more { margin: 11px 0 0; font-family: var(--font-ui); font-size: .82rem; }
+.note-more a {
+  display: inline-flex; align-items: baseline; gap: 7px; flex-wrap: wrap;
+  color: var(--gold); text-decoration: none;
+  border-bottom: 1px solid transparent; padding-bottom: 1px;
+}
+.note-more a:hover { border-bottom-color: currentColor; }
+.note-more .more-en { font-size: .88em; color: var(--ink-faint); }
+.note-more .more-arrow { font-size: .9em; }
 .ex { margin: 0 0 4px; font-size: .9rem; }
 .ex:last-child { margin-bottom: 0; }
 .ex-good { color: var(--good); }

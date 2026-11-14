@@ -34,6 +34,13 @@
      hint   { zh, en }  opened by a wrong try; points at the clue, never
                         gives the answer. Optional: there is a default.
      why    { zh, en }  shown once the question is done. `en` is optional.
+                        On a cloze it belongs to the LINE, and appears when
+                        the last blank in that line is answered — so a long
+                        story gives its reasons a paragraph at a time.
+
+   A `note` may carry `more: { href, zh, en }`, one quiet link at its foot to
+   the page that teaches the same thing in full. It is the only link a block
+   may have, and it opens in the same tab: a detour, not an exit.
 
    BLANKS INSIDE A SENTENCE — used by blanks, cloze and table
      {{went}}                    a typed blank. List every accepted form with
@@ -44,6 +51,9 @@
      {{went}} (go)               brackets straight after a blank are its cue.
      [[was waiting*|waited]]     choose one; the star marks the right one.
      **go**                      bold, for the word the item turns on.
+   Inside a cloze every blank and every choice is numbered on screen, straight
+   through the whole story, so a teacher can say "number seven". Inside a
+   table they are not: the row already names itself.
 
    THE PRACTICE BLOCKS
 
@@ -72,6 +82,10 @@
             Cells are sentences with blanks in them. With no blanks at all it
             is a plain chart. `label` is how a row is named in the
             "值得再看一次" list; `group: true` rules a line above the row.
+            `zhCol: 1` names a column that is a MEANING — it is an answer, so
+            it goes behind a 中 chip and 教學 can ask for it. A column of
+            explanation (a reason, a 判斷關鍵) is not one of these: it stays on
+            screen, like every other explanation on these pages.
 
    fix      { bad: 'She works here since 2020.', answers: [...] }
             The learner edits the sentence. `answers[0]` is the correction

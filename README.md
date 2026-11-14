@@ -2990,14 +2990,15 @@ it is public.
 
 | | | |
 | --- | --- | --- |
-| 過去時間 Past Time | 01 過去簡單式 | 問句與簡答 · 不規則動詞 · 對話填空 · 否定與更正 |
-| | 02 -ing 和 -ed 的拼法 | 拼字表 · 短文填空 · 三種時態對照 |
-| | 03 過去進行式 | 形式 · 用字庫完成句子 · 進行中的事，插進來的事 · 配對 · 二選一 |
-| | 04 時間子句與 used to | 合併句子 · used to |
-| | 05 總複習 | 改錯 · 短文填空 · 選擇 |
-| 完成式 The perfect | 06 現在完成式，還是過去簡單式？ | 選擇 · 填空 · 改錯 · 重組與改寫 |
+| 現在時間 Present time | 01 現在簡單式，還是現在進行式？ | 重點整理 · 閱讀填空 · 判斷關鍵 · 重點單字 |
+| 過去時間 Past Time | 02 過去簡單式 | 問句與簡答 · 不規則動詞 · 對話填空 · 否定與更正 |
+| | 03 -ing 和 -ed 的拼法 | 拼字表 · 短文填空 · 三種時態對照 |
+| | 04 過去進行式 | 形式 · 用字庫完成句子 · 進行中的事，插進來的事 · 配對 · 二選一 |
+| | 05 時間子句與 used to | 合併句子 · used to |
+| | 06 總複習 | 改錯 · 短文填空 · 選擇 |
+| 完成式 The perfect | 07 現在完成式，還是過去簡單式？ | 選擇 · 填空 · 改錯 · 重組與改寫 |
 
-274 questions in 23 sets.
+287 questions in 24 sets.
 
 ### Where the exercises come from
 
@@ -3008,14 +3009,32 @@ and **reproduces none of it**: every sentence, dialogue, story and table was
 written for this page and moved out of the book's classroom into adult working
 life in Taiwan (a product launch, a 尾牙, the High Speed Rail, a cat on a
 video call). The same rule as `/grammar/` and Grammar Notes. The scans are not
-in the repo. Point 06 was written before any material arrived and follows no
+in the repo. Point 07 was written before any material arrived and follows no
 source at all.
+
+**Point 01 is the exception, and it is the one that needed no rule.** It is
+Lewis's own handout — *Exercise 31 · Reading & Grammar: Simple Present vs.
+Present Progressive* — so the four paragraphs, their 中譯, the thirteen
+choices, the 判斷關鍵 for each and the sixteen-item vocabulary list are
+reproduced exactly as he wrote them. There is nothing to write around when the
+source is the author's own. What was added around it: the 重點整理 that opens
+the point, worked up from his own Grammar Focus box, and the pairs under it
+that draw out the comparison his worksheet flags in a footnote — 2 `is
+looking` against 13 `look`, and 9 `is folding` against 12 `folds`: the same two
+verbs twice, with the time word the only difference.
+
+The 判斷關鍵 are kept twice over on purpose. Grouped by paragraph they are the
+reason shown the moment that paragraph is finished; the chart in 判斷關鍵 is
+page 2 of the worksheet, item by item, which is what a teacher reads from and
+what a learner comes back to. Note that the chart is a chart in both modes —
+教學 does not hide an answer key, the same way the worksheet does not.
 
 ### The shape
 
 ```
 public/grammar-practice/
   content.js           the cover, an empty `points`, and the block reference
+  present-time.js      現在時間 — one point
   past-time.js         過去時間 — five points
   perfect-or-past.js   完成式 — one point
   render.js            the block renderers, the two modes, the practice
