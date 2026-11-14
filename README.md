@@ -5113,6 +5113,34 @@ colour from `court.css` and nothing is downloaded.
 | `timeline` | A day as stops on a line: a pictogram, the signpost word the essay uses there, a caption. Both sessions open their essay with one. |
 | `steps` | A pattern as numbered tiles with arrows. Replaced four `summary` paragraphs for Experience → Problem → Action Plan → Expected Result, and carries the three moves of the archery story in session 2. |
 
+**The play diagram moves (added 2026-11-15).** Lewis sent a screenshot of the
+pick and roll and asked for it as an animation. It is the same SVG, rebuilt
+from named pieces, and driven by a small tween engine in `render.js` ("the
+play, animated") — no library, no video, no GIF:
+
+- **Play** runs the four moves with a breath between them: the teammate walks
+  up and sets the screen, Hank drives past it with the ball, the teammate rolls
+  to the basket, the ball is passed. Each line draws itself behind the player
+  making it, and the legend row for the move in progress lights up while the
+  later ones dim — the picture and the phrase arrive together.
+- **A legend number plays that one move and holds**, so a lesson can stop on
+  *sets a screen* for as long as the sentence needs.
+- **In 自學 it plays itself once**, the first time it scrolls into view. Not in
+  教學, where the teacher decides when things move, and not for a reader who
+  has asked for reduced motion — for them it is the still diagram until they
+  press Play.
+- **Left alone it is the still diagram it always was**, which is also what
+  prints.
+
+Three details that were bugs first. An arrowhead is an SVG marker and ignores
+dashes, so it sat at the far end of a line that had not been drawn yet; it is
+taken off until the line arrives. The players travel along separate invisible
+*tracks* rather than the drawn lines, because a drawn line starts at a player's
+edge and stops at an arrowhead; the tracks are `visibility: hidden`, never
+`display: none`, since an unrendered path has no length. And lengths are
+measured on first play, not on load, and never inside a folded session — a
+zero would otherwise be cached for good.
+
 **Ways to get around**
 
 - **The contents list shows the parts of the open session**, with their own

@@ -128,7 +128,23 @@ const ART = {
    legend's four lines are four of his own collocations — so the diagram is a
    way of remembering phrases, not a lesson in basketball. Orange is him, white
    is the teammate; a solid line is a player moving and the dashed one is the
-   ball. */
+   ball.
+
+   It is also an animation (see "the play, animated" below), so it is built
+   from named pieces rather than as one flat picture:
+
+     .ln-1 … .ln-4   the four drawn lines, in the order they happen
+     .ln-bar         the short bar that means "a screen is set here"
+     .tr-*           invisible tracks the players' CENTRES travel along. They
+                     are separate from the drawn lines because a drawn line
+                     starts at the edge of a player and stops at an arrowhead,
+                     and a player has to arrive somewhere slightly different
+     .pl-mate, .pl-you, .pl-ball   the things that move, each a <g> placed by
+                     its `transform`
+     .pn             the four number badges
+
+   Left alone it is exactly the still diagram it was: every line drawn, both
+   players at their starting spots. That is also what prints. */
 const PICKROLL = `
   <svg class="play" viewBox="0 0 400 300" role="img"
        aria-label="A diagram of a pick and roll. A teammate sets a screen beside your defender, you drive past it, the teammate rolls toward the basket, and you pass to him.">
@@ -140,25 +156,38 @@ const PICKROLL = `
     </defs>
     ${COURT}
     <g fill="none" stroke-linecap="round" stroke-width="2.5">
-      <path stroke="#ffffff" d="M240 110L186 210"/>
-      <path stroke="#ffffff" stroke-width="3.5" d="M177.5 205.4L194.5 214.6"/>
-      <path stroke="#ffffff" d="M176 198C172 160 183 108 197 68" marker-end="url(#ah-w)"/>
-      <path stroke="#fa5400" d="M187 252C148 250 116 214 136 160" marker-end="url(#ah-o)"/>
-      <path stroke="#fa5400" stroke-dasharray="2 7" d="M143 149L176 92" marker-end="url(#ah-o)"/>
+      <path class="ln ln-1" stroke="#ffffff" d="M240 110L186 210"/>
+      <path class="ln-bar" stroke="#ffffff" stroke-width="3.5" d="M177.5 205.4L194.5 214.6"/>
+      <path class="ln ln-3" stroke="#ffffff" d="M176 198C172 160 183 108 197 68" data-marker="url(#ah-w)" marker-end="url(#ah-w)"/>
+      <path class="ln ln-2" stroke="#fa5400" d="M187 252C148 250 116 214 136 160" data-marker="url(#ah-o)" marker-end="url(#ah-o)"/>
+      <path class="ln ln-4" stroke="#fa5400" stroke-dasharray="2 7" d="M144 147L185 89" data-marker="url(#ah-o)" marker-end="url(#ah-o)"/>
     </g>
-    <circle cx="245" cy="100" r="11" fill="#ffffff"/>
-    <circle cx="200" cy="258" r="14" fill="#fa5400"/>
-    <text class="play-you" x="200" y="261.5" text-anchor="middle">YOU</text>
+    <g class="tracks" fill="none" stroke="none">
+      <path class="tr-mate1" d="M245 100L190 203"/>
+      <path class="tr-mate3" d="M190 203C181 160 187 110 199 78"/>
+      <path class="tr-you" d="M200 258C158 258 122 220 133 152"/>
+    </g>
     <text class="play-x" x="200" y="234" text-anchor="middle">×</text>
+    <g class="pl-mate" transform="translate(245 100)"><circle r="11" fill="#ffffff"/></g>
+    <g class="pl-you" transform="translate(200 258)">
+      <circle r="14" fill="#fa5400"/>
+      <text class="play-you" y="3.5" text-anchor="middle">YOU</text>
+    </g>
+    <g class="pl-ball" transform="translate(211 247)"><circle r="5" fill="#fa5400" stroke="#ffffff" stroke-width="2"/></g>
     <g class="play-n">
-      <circle cx="229" cy="166" r="10" fill="#ffffff"/><text x="229" y="170" text-anchor="middle" fill="#111111">1</text>
-      <circle cx="150" cy="271" r="10" fill="#fa5400"/><text x="150" y="275" text-anchor="middle" fill="#111111">2</text>
-      <circle cx="197" cy="140" r="10" fill="#ffffff"/><text x="197" y="144" text-anchor="middle" fill="#111111">3</text>
-      <circle cx="146" cy="104" r="10" fill="#fa5400"/><text x="146" y="108" text-anchor="middle" fill="#111111">4</text>
+      <g class="pn"><circle cx="229" cy="166" r="10" fill="#ffffff"/><text x="229" y="170" text-anchor="middle" fill="#111111">1</text></g>
+      <g class="pn"><circle cx="150" cy="271" r="10" fill="#fa5400"/><text x="150" y="275" text-anchor="middle" fill="#111111">2</text></g>
+      <g class="pn"><circle cx="197" cy="140" r="10" fill="#ffffff"/><text x="197" y="144" text-anchor="middle" fill="#111111">3</text></g>
+      <g class="pn"><circle cx="146" cy="104" r="10" fill="#fa5400"/><text x="146" y="108" text-anchor="middle" fill="#111111">4</text></g>
     </g>
   </svg>`;
 
 const FIGURES = { pickroll: PICKROLL };
+
+/* Which drawings can be played. A figure whose `art` is listed here gets a
+   Play button under the picture, and its legend numbers become buttons that
+   play one move each. */
+const ANIMATED = { pickroll: true };
 
 /* Pictograms for a timeline: one weight, one grid, no fills. */
 const icon = (d) => `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none"
@@ -212,15 +241,28 @@ const BLOCKS = {
   /* A drawing with a numbered legend. The legend is real text — spoken, glossed
      and readable by a screen reader — and the picture is what makes the four
      lines stick. `art` names a drawing in FIGURES. */
-  figure: (b) => `
-    <figure class="figure">
+  figure: (b) => {
+    const moves = ANIMATED[b.art];
+    return `
+    <figure class="figure"${moves ? ` data-anim="${text(b.art)}"` : ''}>
       ${label(b)}
       ${hint(b)}
-      <div class="figure-art">${FIGURES[b.art] || ''}</div>
+      <div class="figure-art">
+        ${FIGURES[b.art] || ''}
+        ${moves ? `
+          <div class="play-bar">
+            <button class="play-btn"><span class="play-ico" aria-hidden="true">▶</span>
+              <span class="play-lbl">Play <em>播放</em></span></button>
+            <p class="play-now" aria-live="polite"></p>
+          </div>` : ''}
+      </div>
       <ol class="legend">
         ${b.items.map((i, n) => `
           <li class="legend-row${i.you ? ' you' : ''}">
-            <span class="legend-n" aria-hidden="true">${n + 1}</span>
+            ${moves
+              ? `<button class="legend-n" data-step="${n}" title="Play this move 播放這一步"
+                   aria-label="Play move ${n + 1}">${n + 1}</button>`
+              : `<span class="legend-n" aria-hidden="true">${n + 1}</span>`}
             <div class="pair" data-zh>
               <p class="en"><strong>${text(i.en)}</strong>${speakBtn(i.en)}
                 <button class="zh-chip" title="顯示中文">中</button></p>
@@ -229,7 +271,8 @@ const BLOCKS = {
           </li>`).join('')}
       </ol>
       ${b.keyEn ? `<figcaption class="figure-key">${text(b.keyEn)}<span>${text(b.keyZh || '')}</span></figcaption>` : ''}
-    </figure>`,
+    </figure>`;
+  },
 
   /* A pattern drawn as a row of numbered steps with arrows between them — the
      shape of the idea is the point, so it should not be four paragraphs. The
@@ -1011,6 +1054,12 @@ doc.addEventListener('click', (e) => {
   const say = t.closest('.say');
   if (say) { e.stopPropagation(); speak(say.dataset.say, say); return; }
 
+  // ---- the play: the whole thing, or one move
+  const playBtn = t.closest('.play-btn');
+  if (playBtn) { playFor(playBtn).all(); return; }
+  const move = t.closest('.legend-n[data-step]');
+  if (move) { playFor(move).one(Number(move.dataset.step)); return; }
+
   // ---- the how-to fold
   if (t.closest('.how-btn')) { setHow(how.classList.contains('closed'), true); return; }
 
@@ -1095,6 +1144,194 @@ doc.addEventListener('keydown', (e) => {
   const item = e.target.closest('.card, .fix');
   if (item && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); item.click(); }
 });
+
+// ---------------------------------------------------------------- the play, animated
+
+/* The pick and roll, played rather than only drawn. Four moves, each a tween:
+
+     0  the teammate walks up and sets the screen      (line 1 draws behind him)
+     1  you drive past it, ball in hand                (line 2)
+     2  the teammate rolls to the basket               (line 3)
+     3  the ball goes from you to him                  (line 4)
+
+   Three ways it runs, and they are deliberate:
+
+   - Play runs all four with a breath between them, and the legend row for the
+     move in progress lights up — the picture and the phrase arrive together,
+     which is the whole reason for drawing it.
+   - A legend NUMBER plays that one move from where it starts, so a teacher can
+     stop on "sets a screen" for as long as the sentence needs.
+   - In 自學 it plays itself once, the first time it scrolls into view. Not in
+     教學, where the teacher decides when things move, and not for a reader who
+     has asked the system for less motion — for them it stays the still
+     diagram until they press Play themselves.
+
+   Everything is positioned by `transform` on a <g> and by a dash offset on a
+   line, so a frame costs a handful of attribute writes. Lengths are measured
+   on first play rather than on load: the figure may be inside a folded session
+   then, and a path that is not being rendered has no length to report. */
+const PLAY = { gap: 380, dur: [1150, 1250, 1050, 650] };
+const players = new WeakMap();
+
+function playFor(node) {
+  const fig = node.closest('.figure');
+  if (!players.has(fig)) players.set(fig, makePlay(fig));
+  return players.get(fig);
+}
+
+function makePlay(fig) {
+  const svg = $('svg.play', fig);
+  const q = (sel) => $(sel, svg);
+  const mate = q('.pl-mate');
+  const you = q('.pl-you');
+  const ball = q('.pl-ball');
+  const bar = q('.ln-bar');
+  const lines = [q('.ln-1'), q('.ln-2'), q('.ln-3'), q('.ln-4')];
+  const tracks = [q('.tr-mate1'), q('.tr-you'), q('.tr-mate3')];
+  const badges = $$('.pn', svg);
+  const rows = $$('.legend-row', fig);
+  const btn = $('.play-btn', fig);
+  const now = $('.play-now', fig);
+
+  const HELD = { x: 11, y: -11 };    // where the ball sits on whoever has it
+  let len = null;
+  let run = 0;
+
+  const at = (track, t) => track.getPointAtLength(t * len.track.get(track));
+  const put = (node, pt, off = { x: 0, y: 0 }) =>
+    node.setAttribute('transform', `translate(${(pt.x + off.x).toFixed(1)} ${(pt.y + off.y).toFixed(1)})`);
+  const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+  function measure() {
+    if (len) return;
+    len = { track: new Map(), line: new Map() };
+    tracks.forEach((tr) => len.track.set(tr, tr.getTotalLength()));
+    lines.forEach((ln) => len.line.set(ln, ln.getTotalLength()));
+  }
+
+  /* How much of a line is drawn, 0 to 1. A solid line is drawn with a dash as
+     long as itself, slid along; the pass is already dashed, so it fades in
+     instead. An arrowhead is a marker, and a marker ignores dashes — it would
+     sit at the far end of a line that had not been drawn yet — so it is taken
+     off until the line arrives. */
+  function draw(i, t) {
+    const ln = lines[i];
+    const whole = len.line.get(ln);
+    ln.style.visibility = t > 0 ? 'visible' : 'hidden';
+    if (i === 3) ln.style.opacity = String(t);
+    else { ln.style.strokeDasharray = `${whole} ${whole}`; ln.style.strokeDashoffset = String(whole * (1 - t)); }
+    if (ln.dataset.marker) ln.setAttribute('marker-end', t >= 1 ? ln.dataset.marker : 'none');
+  }
+
+  /* The still picture as it stands BEFORE move `k` (4 = after the last one). */
+  function pose(k) {
+    measure();
+    put(mate, at(tracks[k >= 3 ? 2 : 0], k >= 3 ? 1 : (k >= 1 ? 1 : 0)));
+    const youAt = at(tracks[1], k >= 2 ? 1 : 0);
+    put(you, youAt);
+    put(ball, k >= 4 ? at(tracks[2], 1) : youAt, HELD);
+    lines.forEach((ln, i) => draw(i, i < k ? 1 : 0));
+    bar.style.visibility = k >= 1 ? 'visible' : 'hidden';
+    badges.forEach((b, i) => { b.style.opacity = i < k ? '1' : '0'; });
+    rows.forEach((r, i) => { r.classList.remove('now'); r.classList.toggle('later', i >= k && k < 4); });
+  }
+
+  function frame(i, t) {
+    const e = ease(t);
+    if (i === 0) { put(mate, at(tracks[0], e)); if (t >= 1) bar.style.visibility = 'visible'; }
+    if (i === 1) { const pt = at(tracks[1], e); put(you, pt); put(ball, pt, HELD); }
+    if (i === 2) put(mate, at(tracks[2], e));
+    if (i === 3) {
+      const a = at(tracks[1], 1);
+      const b = at(tracks[2], 1);
+      put(ball, { x: a.x + (b.x - a.x) * e, y: a.y + (b.y - a.y) * e }, HELD);
+    }
+    draw(i, e);
+  }
+
+  function say(i) {
+    rows.forEach((r, n) => { r.classList.toggle('now', n === i); if (n <= i) r.classList.remove('later'); });
+    badges[i].style.opacity = '1';
+    now.textContent = `${i + 1} / 4  ${$('strong', rows[i]).textContent}`;
+  }
+
+  function tween(i, mine) {
+    return new Promise((done) => {
+      say(i);
+      const t0 = performance.now();
+      const step = (ts) => {
+        // Superseded by a newer play, or the session was folded underneath it:
+        // a path that is not being rendered has no points to give.
+        if (mine !== run || !svg.getClientRects().length) return done(false);
+        const t = Math.min(1, (ts - t0) / PLAY.dur[i]);
+        frame(i, t);
+        if (t < 1) requestAnimationFrame(step); else done(true);
+      };
+      requestAnimationFrame(step);
+    });
+  }
+
+  const wait = (ms, mine) => new Promise((done) => setTimeout(() => done(mine === run), ms));
+
+  function label(icon, en, zh) {
+    $('.play-ico', btn).textContent = icon;
+    $('.play-lbl', btn).innerHTML = `${en} <em>${zh}</em>`;
+  }
+
+  function finish() {
+    rows.forEach((r) => r.classList.remove('now', 'later'));
+    fig.classList.remove('playing');
+    now.textContent = '';
+    label('▶', 'Play again', '再播一次');
+  }
+
+  // Nothing to play in a folded session: there is no picture, and measuring a
+  // path that is not rendered would cache a length of zero for good.
+  const shown = () => svg.getClientRects().length > 0;
+
+  async function all() {
+    if (!shown()) return;
+    const mine = ++run;
+    pose(0);
+    fig.classList.add('playing', 'played');
+    label('▶', 'Start over', '重新開始');
+    for (let i = 0; i < 4; i++) {
+      if (!(await tween(i, mine))) return;
+      if (!(await wait(PLAY.gap, mine))) return;
+    }
+    finish();
+  }
+
+  /* One move, and then it holds: the row stays lit, the moves after it stay
+     dim and undrawn, and the caption stays up, because the point of playing
+     one move is to stop and talk about it. */
+  async function one(i) {
+    if (!shown()) return;
+    const mine = ++run;
+    pose(i);
+    fig.classList.add('playing', 'played');
+    label('▶', 'Play all', '全部播放');
+    if (!(await tween(i, mine))) return;
+    fig.classList.remove('playing');
+  }
+
+  return { all, one };
+}
+
+/* 自學 only, once, and only for a reader who has not asked for less motion. */
+if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const seen = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (!en.isIntersecting) return;
+      seen.unobserve(en.target);
+      const fig = en.target.closest('.figure');
+      if (document.body.classList.contains('mode-self') && !fig.classList.contains('played')) {
+        playFor(fig).all();
+      }
+    });
+  }, { threshold: 0.75 });
+  $$('.figure[data-anim] svg.play').forEach((svg) => seen.observe(svg));
+}
 
 // ---------------------------------------------------------------- activities
 

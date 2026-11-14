@@ -78,7 +78,9 @@
      figure    a drawing with a numbered legend. `art` names a drawing in
                render.js (FIGURES); each legend line is spoken and glossed.
                `you: true` on a line colours its number orange, for the moves
-               that are Hank's own
+               that are Hank's own. A drawing listed in ANIMATED also PLAYS:
+               the legend lines must then be in the order the moves happen,
+               one line per move, because line n lights up during move n
      steps     a pattern as a row of numbered steps with arrows between them —
                use it wherever the SHAPE of an idea is the point
      timeline  the order of a day as stops on a line: `icon` (a name in ICONS),
