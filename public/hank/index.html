@@ -54,6 +54,10 @@
   <button class="bar-btn bar-btn-zh" id="zhToggle" aria-pressed="false">中文</button>
   <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
           aria-controls="panel" title="Settings 設定" aria-label="Settings 設定">⚙</button>
+
+  <!-- How far down the page the reader is. Decoration for a sighted reader on
+       a long page, so it is hidden from everything else. -->
+  <span class="progress" id="progress" aria-hidden="true"></span>
 </header>
 
 <div class="shell">
@@ -62,6 +66,10 @@
 </div>
 
 <div class="nav-scrim" hidden></div>
+
+<!-- Appears once the reader is well down the page. An ordinary link, so it
+     works without script and from the keyboard. -->
+<a class="to-top" href="#top" aria-label="Back to the top 回到頂端"><span aria-hidden="true">↑</span></a>
 
 <!-- Settings. Opens over the notebook rather than replacing it, so a lesson in
      progress is never lost. Which rows show depends on the mode and on whether
@@ -75,8 +83,8 @@
   <div class="row">
     <label for="voicePick">Voice <em>語音</em></label>
     <select id="voicePick"></select>
-    <p class="row-note">Used by the 🔊 buttons. Choosing one plays a sample.
-      <em>供 🔊 按鈕使用。選擇後會播放一段範例。</em></p>
+    <p class="row-note">Used by the speaker buttons. Choosing one plays a sample.
+      <em>供喇叭按鈕使用。選擇後會播放一段範例。</em></p>
   </div>
 
   <div class="row">

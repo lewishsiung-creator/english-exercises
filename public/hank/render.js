@@ -82,6 +82,101 @@ function shuffled(list) {
   return a;
 }
 
+// ---------------------------------------------------------------- drawings
+
+/* Every picture on this page is drawn here, as inline SVG, and none of it is a
+   photograph or a brand's artwork: court lines, a target, a play diagram and a
+   handful of pictograms. Inline rather than <img> so the strokes take their
+   colour from the stylesheet (and so nothing is downloaded).
+
+   The half court is drawn once, in a 400 x 300 box with the basket at the top,
+   and reused three times: faint behind the cover title, behind session 1's
+   scoreboard, and as the floor of the pick-and-roll diagram. */
+const COURT = `
+  <g class="court-lines" fill="none">
+    <path d="M20 20H380V290H20Z"/>
+    <path d="M152 20V150H248V20"/>
+    <path d="M164 150A36 36 0 0 0 236 150"/>
+    <path d="M164 150A36 36 0 0 1 236 150" stroke-dasharray="5 6"/>
+    <path d="M44 20V70A158.9 158.9 0 0 0 356 70V20"/>
+    <path d="M160 290A40 40 0 0 1 240 290"/>
+    <path d="M184 34H216"/>
+    <circle class="hoop" cx="200" cy="44" r="8"/>
+  </g>`;
+
+const ART = {
+  court: `<svg viewBox="0 0 400 300" aria-hidden="true" focusable="false">${COURT}</svg>`,
+
+  target: `
+    <svg viewBox="0 0 300 300" aria-hidden="true" focusable="false">
+      <g class="court-lines" fill="none">
+        <circle cx="150" cy="150" r="132"/>
+        <circle cx="150" cy="150" r="100"/>
+        <circle cx="150" cy="150" r="68"/>
+        <circle cx="150" cy="150" r="36"/>
+      </g>
+      <circle class="bull" cx="150" cy="150" r="13"/>
+      <g class="arrow" fill="none">
+        <path d="M278 22L158 142"/>
+        <path d="M278 22l-24 3M278 22l-3 24M262 38l-24 3M262 38l-3 24"/>
+      </g>
+    </svg>`,
+};
+
+/* The play Hank says he wants to learn, drawn the way a coach would draw it,
+   with one number on each move. The numbers are the legend's numbers, and the
+   legend's four lines are four of his own collocations — so the diagram is a
+   way of remembering phrases, not a lesson in basketball. Orange is him, white
+   is the teammate; a solid line is a player moving and the dashed one is the
+   ball. */
+const PICKROLL = `
+  <svg class="play" viewBox="0 0 400 300" role="img"
+       aria-label="A diagram of a pick and roll. A teammate sets a screen beside your defender, you drive past it, the teammate rolls toward the basket, and you pass to him.">
+    <defs>
+      <marker id="ah-w" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 0L10 5L0 10z" fill="#ffffff"/></marker>
+      <marker id="ah-o" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 0L10 5L0 10z" fill="#fa5400"/></marker>
+    </defs>
+    ${COURT}
+    <g fill="none" stroke-linecap="round" stroke-width="2.5">
+      <path stroke="#ffffff" d="M240 110L186 210"/>
+      <path stroke="#ffffff" stroke-width="3.5" d="M177.5 205.4L194.5 214.6"/>
+      <path stroke="#ffffff" d="M176 198C172 160 183 108 197 68" marker-end="url(#ah-w)"/>
+      <path stroke="#fa5400" d="M187 252C148 250 116 214 136 160" marker-end="url(#ah-o)"/>
+      <path stroke="#fa5400" stroke-dasharray="2 7" d="M143 149L176 92" marker-end="url(#ah-o)"/>
+    </g>
+    <circle cx="245" cy="100" r="11" fill="#ffffff"/>
+    <circle cx="200" cy="258" r="14" fill="#fa5400"/>
+    <text class="play-you" x="200" y="261.5" text-anchor="middle">YOU</text>
+    <text class="play-x" x="200" y="234" text-anchor="middle">×</text>
+    <g class="play-n">
+      <circle cx="229" cy="166" r="10" fill="#ffffff"/><text x="229" y="170" text-anchor="middle" fill="#111111">1</text>
+      <circle cx="150" cy="271" r="10" fill="#fa5400"/><text x="150" y="275" text-anchor="middle" fill="#111111">2</text>
+      <circle cx="197" cy="140" r="10" fill="#ffffff"/><text x="197" y="144" text-anchor="middle" fill="#111111">3</text>
+      <circle cx="146" cy="104" r="10" fill="#fa5400"/><text x="146" y="108" text-anchor="middle" fill="#111111">4</text>
+    </g>
+  </svg>`;
+
+const FIGURES = { pickroll: PICKROLL };
+
+/* Pictograms for a timeline: one weight, one grid, no fills. */
+const icon = (d) => `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none"
+  stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+const ICONS = {
+  bus: icon('<rect x="3" y="4.5" width="18" height="12.5" rx="3"/><path d="M3 11h18"/><circle cx="7.5" cy="19" r="1.6"/><circle cx="16.5" cy="19" r="1.6"/>'),
+  talk: icon('<path d="M4 5h16v10.5H11l-4.5 4v-4H4z"/><path d="M8 9h8M8 12h5"/>'),
+  bamboo: icon('<rect x="8.5" y="3" width="6" height="18" rx="1.5"/><path d="M8.5 9h6M8.5 15h6"/><path d="M14.5 7c2.6-2.2 5-1.6 6-.4-1.8 2-4 2.2-6 .4z"/>'),
+  target: icon('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/>'),
+  flame: icon('<path d="M12 3c.8 3.2 4.5 4.8 4.5 9a4.5 4.5 0 0 1-9 0c0-2 .9-3.4 2-4.4.2 1.6.9 2.4 1.7 2.6C11 8 11.2 5.4 12 3z"/><path d="M4 21h16"/>'),
+  trap: icon('<circle cx="6.8" cy="9.5" r="1.7"/><circle cx="12" cy="6.6" r="1.7"/><circle cx="17.2" cy="9.5" r="1.7"/><path d="M12 12c-2.9 0-4.9 2.400-4.9 4.800 0 1.700 1.300 2.600 2.800 2.600.9 0 1.400-.4 2.100-.4s1.200.4 2.100.4c1.500 0 2.800-.9 2.800-2.600 0-2.400-2-4.800-4.9-4.800z"/>'),
+  star: icon('<path d="M12 3.2l2.7 5.5 6.1.9-4.4 4.3 1 6.1L12 17.1 6.6 20l1-6.1-4.4-4.3 6.1-.9z"/>'),
+  film: icon('<rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="M8 5v14M16 5v14M3.5 9.7H8M3.5 14.3H8M16 9.7h4.5M16 14.3h4.5"/>'),
+  ball: icon('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18M5.6 5.6c3 3 3 9.8 0 12.8M18.4 5.6c-3 3-3 9.8 0 12.8"/>'),
+  bag: icon('<path d="M5.5 8h13l1 12h-15z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>'),
+  flag: icon('<path d="M5.5 21V4"/><path d="M5.5 5h12.5l-3 4 3 4H5.5"/>'),
+};
+
 // ---------------------------------------------------------------- blocks
 
 let uid = 0;
@@ -113,6 +208,71 @@ const BLOCKS = {
     </div>`,
 
   lead: (b) => `<div class="lead">${pair(b.en, b.zh)}</div>`,
+
+  /* A drawing with a numbered legend. The legend is real text — spoken, glossed
+     and readable by a screen reader — and the picture is what makes the four
+     lines stick. `art` names a drawing in FIGURES. */
+  figure: (b) => `
+    <figure class="figure">
+      ${label(b)}
+      ${hint(b)}
+      <div class="figure-art">${FIGURES[b.art] || ''}</div>
+      <ol class="legend">
+        ${b.items.map((i, n) => `
+          <li class="legend-row${i.you ? ' you' : ''}">
+            <span class="legend-n" aria-hidden="true">${n + 1}</span>
+            <div class="pair" data-zh>
+              <p class="en"><strong>${text(i.en)}</strong>${speakBtn(i.en)}
+                <button class="zh-chip" title="顯示中文">中</button></p>
+              <p class="zh">${text(i.zh)}</p>
+            </div>
+          </li>`).join('')}
+      </ol>
+      ${b.keyEn ? `<figcaption class="figure-key">${text(b.keyEn)}<span>${text(b.keyZh || '')}</span></figcaption>` : ''}
+    </figure>`,
+
+  /* A pattern drawn as a row of numbered steps with arrows between them — the
+     shape of the idea is the point, so it should not be four paragraphs. The
+     step names are signage and show in both languages; the example sentence
+     under each is ordinary text, with its Chinese behind the chip in 教學. */
+  steps: (b) => `
+    <div class="steps">
+      ${label(b)}
+      ${hint(b)}
+      <ol class="steps-row" style="--steps:${b.items.length}">
+        ${b.items.map((i, n) => `
+          <li class="step">
+            <p class="step-n" aria-hidden="true">${n + 1}</p>
+            <h5 class="step-t"><span class="en">${text(i.titleEn)}</span><span class="zh">${text(i.titleZh)}</span></h5>
+            <div class="pair" data-zh>
+              <p class="en">${text(i.en)}${speakBtn(i.en)}
+                <button class="zh-chip" title="顯示中文">中</button></p>
+              <p class="zh">${text(i.zh)}</p>
+            </div>
+          </li>`).join('')}
+      </ol>
+    </div>`,
+
+  /* The order of a day, as stops on a line. Each stop is a pictogram, the
+     sequence word that introduces it in the essay, and a short caption in both
+     languages. Signage, like the focus chips: nothing here hides. */
+  timeline: (b) => `
+    <div class="timeline">
+      ${label(b)}
+      ${hint(b)}
+      <ol class="stops">
+        ${b.items.map((i, n) => `
+          <li class="stop">
+            <span class="stop-icon">${ICONS[i.icon] || ''}</span>
+            <span class="stop-n" aria-hidden="true">${n + 1}</span>
+            <span class="stop-t">
+              ${i.word ? `<span class="stop-word">${text(i.word)}</span>` : ''}
+              <span class="en">${text(i.en)}</span>
+              <span class="zh">${text(i.zh)}</span>
+            </span>
+          </li>`).join('')}
+      </ol>
+    </div>`,
 
   // A pointer to another page in this site. Signage, so it is bilingual at all
   // times and never hides behind a chip.
@@ -294,6 +454,7 @@ const BLOCKS = {
               <span class="zh">${text(it.why.zh)}</span></p>
           </div>`;
       }).join('')}
+      <p class="tally"><span class="done">0</span> / ${b.items.length}</p>
     </div>`,
 
   /* A quiz question about the reading. Unlike `gap` there is no blank to fill,
@@ -325,6 +486,7 @@ const BLOCKS = {
           ${it.why ? `<p class="why"><span class="en">${text(it.why.en)}</span>
             <span class="zh">${text(it.why.zh)}</span></p>` : ''}
         </div>`).join('')}
+      <p class="tally"><span class="done">0</span> / ${b.items.length}</p>
     </div>`,
 
   /* Hank's own sentences, corrected. The mistake is shown as it was said and
@@ -475,26 +637,73 @@ function buildBanner() {
   return `<p class="sample-banner">${text(msg)}</p>`;
 }
 
+/* The cover is a poster: the kicker, the title, one paragraph, and the court
+   drawn faintly behind them. The how-to list used to sit inside it and pushed
+   the first lesson a screen and a half down on a phone, on every visit; it is
+   now its own fold below (buildHow), open until the reader closes it once. */
 function buildCover() {
   const i = NOTEBOOK.intro;
   return `
     <header class="cover" id="top">
+      <div class="cover-art">${ART.court}</div>
       <p class="kicker">${text(NOTEBOOK.kicker)}</p>
       <h1><span class="en">${text(NOTEBOOK.title)}</span>
         <button class="zh-chip" title="顯示中文">中</button>
         <span class="zh">${text(NOTEBOOK.titleZh)}</span></h1>
       ${pair(i.en, i.zh, 'cover-intro')}
-      <div class="goals">
-        ${pair(i.goalsEn, i.goalsZh, 'goals-intro')}
-        <ul>
-          ${i.goals.map((g) => `
-            <li class="pair${g.only ? ` only-${g.only}` : ''}" data-zh>
-              <p class="en">${text(g.en)}</p>
-              <p class="zh">${text(g.zh)}</p>
-            </li>`).join('')}
-        </ul>
-      </div>
     </header>`;
+}
+
+function buildHow() {
+  const i = NOTEBOOK.intro;
+  return `
+    <section class="how" id="how">
+      <h2 class="how-head">
+        <button class="how-btn" aria-expanded="true" aria-controls="how-body">
+          <span class="how-t"><span class="en">${text(i.goalsEn)}</span><span class="zh">${text(i.goalsZh)}</span></span>
+          <span class="fold" aria-hidden="true"></span>
+        </button>
+      </h2>
+      <ul class="how-body" id="how-body">
+        ${i.goals.map((g) => `
+          <li class="pair${g.only ? ` only-${g.only}` : ''}" data-zh>
+            <p class="en">${text(g.en)}</p>
+            <p class="zh">${text(g.zh)}</p>
+          </li>`).join('')}
+      </ul>
+    </section>`;
+}
+
+/* What a session holds, counted from its own blocks so it can never disagree
+   with them. It is a contents line, not a score: nothing here goes up because
+   an answer was right. The one live number is how many phrase cards he has
+   marked 記住了, and that shows in 自學 only. */
+function stats(s) {
+  const count = (t) => s.blocks.filter((b) => b.t === t).reduce((n, b) => n + b.items.length, 0);
+  const out = [];
+  const add = (n, en, zh, known) => { if (n) out.push({ n, en, zh, known }); };
+  add(count('fix'), 'Fixes', '修正');
+  add(count('contrast'), 'Upgrades', '改寫');
+  add(count('phrases'), 'Phrases', '片語', true);
+  add(count('mcq') + count('gap'), 'Questions', '練習題');
+  add(count('discuss'), 'Talking points', '討論題');
+  return out;
+}
+
+function buildPoster(s) {
+  return `
+    <div class="poster${ART[s.art] ? ` poster-${s.art}` : ''}">
+      ${ART[s.art] ? `<div class="poster-art">${ART[s.art]}</div>` : ''}
+      <p class="poster-k">In this lesson <em>這堂課的內容</em></p>
+      <ul class="score">
+        ${stats(s).map((x) => `
+          <li>
+            <span class="score-n">${x.n}</span>
+            <span class="score-l">${text(x.en)}<em>${text(x.zh)}</em></span>
+            ${x.known ? '<span class="score-known">記住了 <b>0</b></span>' : ''}
+          </li>`).join('')}
+      </ul>
+    </div>`;
 }
 
 /* A session. The heading is a button, so the fold works from the keyboard and
@@ -556,13 +765,27 @@ function buildSession(s, open) {
         </button>
       </h2>
       <div class="session-body" id="body-${s.id}">
+        ${buildPoster(s)}
         ${focus}
         ${blocks}
       </div>
     </section>`;
 }
 
+/* The contents list names the sessions and, under whichever of them is open,
+   its parts. A session is ten screens long, and "Session 2" was never where
+   anyone wanted to go — "the collocations in session 2" is. */
 function buildNav() {
+  const parts = (s) => {
+    const list = s.blocks.filter((b) => b.t === 'part' && b.id);
+    if (!list.length) return '';
+    return `
+      <ul class="toc-parts">
+        ${list.map((b) => `
+          <li><a href="#${text(b.id)}" data-target="${text(b.id)}"><span class="n">${text(b.n || '')}</span>
+            <span class="t"><span class="en">${text(b.en)}</span></span></a></li>`).join('')}
+      </ul>`;
+  };
   return `
     <nav class="toc" aria-label="Sessions">
       <p class="toc-head">Sessions 課程</p>
@@ -570,9 +793,10 @@ function buildNav() {
         <li><a href="#top" data-target="top"><span class="n">·</span>
           <span class="t"><span class="en">Start</span><span class="zh">開始</span></span></a></li>
         ${sessions.map((s) => `
-          <li><a href="#${s.id}" data-target="${s.id}"><span class="n">${s.n}</span>
+          <li data-s="${s.id}"><a href="#${s.id}" data-target="${s.id}"><span class="n">${s.n}</span>
             <span class="t"><span class="en">${text(s.en)}</span>
-            ${s.dateEn ? `<span class="zh">${text(s.dateEn)}</span>` : ''}</span></a></li>`).join('')}
+            ${s.dateEn ? `<span class="zh">${text(s.dateEn)}</span>` : ''}</span></a>
+            ${parts(s)}</li>`).join('')}
       </ul>
     </nav>`;
 }
@@ -584,6 +808,7 @@ $('#nav').appendChild(el(buildNav()));
 const doc = $('#doc');
 if (NOTEBOOK.sample) doc.appendChild(el(buildBanner()));
 doc.appendChild(el(buildCover()));
+doc.appendChild(el(buildHow()));
 
 /* Which session a block id lives in. The focus chips link to blocks, so a hash
    arriving from outside — a bookmark, a message, the browser's back button —
@@ -633,7 +858,15 @@ if (wanted && homeOf.has(wanted)) {
 function setFold(section, open) {
   section.classList.toggle('folded', !open);
   $('.session-btn', section).setAttribute('aria-expanded', String(open));
+  // The contents list shows the parts of whichever sessions are open.
+  const entry = $(`.toc li[data-s="${section.id}"]`);
+  if (entry) entry.classList.toggle('open', open);
 }
+
+sessions.forEach((s) => {
+  const section = document.getElementById(s.id);
+  setFold(section, !section.classList.contains('folded'));
+});
 
 /* Two ways to open a session, and they mean different things.
 
@@ -710,6 +943,10 @@ function paintKnown() {
   $$('.phrases').forEach((p) => {
     $('.known-tally .n', p).textContent = $$('.card.known', p).length;
   });
+  $$('.session').forEach((sec) => {
+    const b = $('.score-known b', sec);
+    if (b) b.textContent = new Set($$('.card.known', sec).map((c) => c.dataset.k)).size;
+  });
   const total = new Set($$('.card').map((c) => c.dataset.k)).size;
   const have = new Set($$('.card.known').map((c) => c.dataset.k)).size;
   $('#markinfo').textContent = have
@@ -750,6 +987,17 @@ function setMode(m, remember) {
 paintKnown();
 setMode(TEACHER ? store.get('mode', 'teach') : 'self', false);
 
+/* The how-to list is open until it has been closed once, and that is
+   remembered: a returning reader should land on the lesson, not on the
+   instructions. */
+const how = $('#how');
+function setHow(open, remember) {
+  how.classList.toggle('closed', !open);
+  $('.how-btn', how).setAttribute('aria-expanded', String(open));
+  if (remember) store.set('how', open ? 'open' : 'closed');
+}
+setHow(store.get('how', 'open') === 'open', false);
+
 $$('#modeseg button').forEach((btn) =>
   btn.addEventListener('click', () => setMode(btn.dataset.mode, true)));
 
@@ -761,7 +1009,10 @@ doc.addEventListener('click', (e) => {
 
   // ---- speak
   const say = t.closest('.say');
-  if (say) { e.stopPropagation(); speak(say.dataset.say); return; }
+  if (say) { e.stopPropagation(); speak(say.dataset.say, say); return; }
+
+  // ---- the how-to fold
+  if (t.closest('.how-btn')) { setHow(how.classList.contains('closed'), true); return; }
 
   // ---- a link keeps its ordinary behaviour; one pointing at a session on this
   //      page opens it first, or the jump lands on a folded heading
@@ -892,6 +1143,7 @@ function gapClick(btn) {
     $('.slot', gap).textContent = btn.textContent;
     gap.classList.add('solved');
     btn.classList.add('done');
+    tallyUp(gap.closest('.activity'), '.gap');
   } else {
     wobble(btn);
     btn.classList.add('out');
@@ -908,10 +1160,19 @@ function mcqClick(btn) {
   if (Number(btn.dataset.i) === Number(q.dataset.answer)) {
     q.classList.add('solved');
     btn.classList.add('done');
+    tallyUp(q.closest('.activity'), '.mcq');
   } else {
     wobble(btn);
     btn.classList.add('out');
   }
+}
+
+/* How far through a set of questions he is. A count of what has been done, not
+   a mark: it only ever goes up, and a wrong try does not move it. */
+function tallyUp(act, sel) {
+  const done = $$(`${sel}.solved`, act).length;
+  $('.tally .done', act).textContent = done;
+  if (done === $$(sel, act).length) act.classList.add('all-done');
 }
 
 // Opinion and audit buttons: one choice per row, and clicking it again clears.
@@ -960,12 +1221,24 @@ function loadVoices() {
 loadVoices();
 speechSynthesis.onvoiceschanged = loadVoices;
 
-function speak(sentence) {
+/* The button that was pressed stays lit while its sentence is being read, so
+   on a page with two hundred identical buttons it is clear which one is
+   talking — and that the tap was heard at all, on a phone with the sound off. */
+function quiet() { $$('.say.playing').forEach((b) => b.classList.remove('playing')); }
+
+function speak(sentence, btn) {
   if (!('speechSynthesis' in window)) return;
   speechSynthesis.cancel();
+  quiet();
   const u = new SpeechSynthesisUtterance(sentence);
   if (voice) { u.voice = voice; u.lang = voice.lang; } else { u.lang = 'en-US'; }
   u.rate = Number($('#rate').value);
+  if (btn) {
+    btn.classList.add('playing');
+    const stop = () => btn.classList.remove('playing');
+    u.onend = stop;
+    u.onerror = stop;
+  }
   speechSynthesis.speak(u);
 }
 
@@ -1020,6 +1293,9 @@ $('#showAll').addEventListener('click', () => {
     q.classList.add('solved');
   });
 
+  $$('.gaps').forEach((act) => tallyUp(act, '.gap'));
+  $$('.mcqs').forEach((act) => tallyUp(act, '.mcq'));
+
   $$('.match').forEach((act) => {
     $$('.chip', act).forEach((c) => { c.classList.remove('picked'); c.classList.add('done'); });
     $('.tally .done', act).textContent = $$('.col-a .chip', act).length;
@@ -1061,7 +1337,7 @@ const links = new Map($$('.toc a').map((a) => [a.dataset.target, a]));
 $('#nav').addEventListener('click', (e) => {
   const a = e.target.closest('a');
   if (!a) return;
-  openSession(a.dataset.target);
+  openFor(a.dataset.target);
   closeNav();
 });
 
@@ -1070,6 +1346,7 @@ $('#nav').addEventListener('click', (e) => {
    folded ones are a heading each, so at any moment several straddle a sensible
    trigger band and the observer reports whichever fired last. */
 const marks = [$('#top'), ...$$('.session')];
+const progress = $('#progress');
 
 /* Keep the marked link inside the contents list WITHOUT ever scrolling the
    page. The obvious `a.scrollIntoView({ block: 'nearest' })` is the bug that
@@ -1097,17 +1374,32 @@ function keepLinkVisible(a) {
   else if (link.bottom > view.bottom) box.scrollTop += link.bottom - view.bottom;
 }
 
+/* One pass per scroll event marks three things: the session being read, the
+   part of it being read, and how far down the page the reader is. */
 function markHere() {
-  const line = 90;
+  const line = 110;
   let here = marks[0];
   marks.forEach((m) => { if (m.getBoundingClientRect().top <= line) here = m; });
-  links.forEach((a) => a.classList.remove('here'));
+
+  let part = null;
+  if (here.classList.contains('session') && !here.classList.contains('folded')) {
+    $$('.part-head[id]', here).forEach((p) => { if (p.getBoundingClientRect().top <= line) part = p; });
+  }
+
+  links.forEach((a) => a.classList.remove('here', 'here-part'));
   const a = links.get(here.id);
   if (a) { a.classList.add('here'); keepLinkVisible(a); }
+  const pa = part && links.get(part.id);
+  if (pa) { pa.classList.add('here-part'); keepLinkVisible(pa); }
+
+  const max = document.documentElement.scrollHeight - innerHeight;
+  if (progress) progress.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
+  document.body.classList.toggle('scrolled', scrollY > 700);
 }
 
 markHere();
 addEventListener('scroll', markHere, { passive: true });
+addEventListener('resize', markHere, { passive: true });
 
 const navToggle = $('#navToggle');
 navToggle.addEventListener('click', () => {
@@ -1126,6 +1418,7 @@ document.addEventListener('keydown', (e) => {
   closeNav();
   setPanel(false);
   speechSynthesis.cancel();
+  quiet();
 });
 
 // Arriving on an anchor from outside, or editing the hash by hand.

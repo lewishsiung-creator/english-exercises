@@ -5096,6 +5096,53 @@ The file redefines the same tokens `editorial.css` does, so `style.css` did not
 change. Two rules for the orange: it is never the colour of small text (about
 3.4:1 on white), and a right answer stays green.
 
+### Graphics and navigation (added 2026-11-15)
+
+Asked for "some graphic design" and a UX pass once the page had two sessions
+and had grown to ten screens. Everything is drawn in code as inline SVG —
+there are **no photographs and no brand artwork** — so the strokes take their
+colour from `court.css` and nothing is downloaded.
+
+**Things to look at**
+
+| | |
+| --- | --- |
+| Cover | The half court, faint, behind the title. One drawing (`COURT` in `render.js`) used three times. |
+| Scoreboard | Under each session title: what the lesson holds, counted from its own blocks (`stats()`), over the session's `art` — `court` or `target`. A contents line, not a score; the one live number is 記住了, 自學 only. |
+| `figure` | A drawing with a numbered legend. Session 1's is the pick and roll Hank says he wants to learn, with one number per move — and the four legend lines are four of his own collocations. |
+| `timeline` | A day as stops on a line: a pictogram, the signpost word the essay uses there, a caption. Both sessions open their essay with one. |
+| `steps` | A pattern as numbered tiles with arrows. Replaced four `summary` paragraphs for Experience → Problem → Action Plan → Expected Result, and carries the three moves of the archery story in session 2. |
+
+**Ways to get around**
+
+- **The contents list shows the parts of the open session**, with their own
+  scroll-spy. "Session 2" was never where anyone wanted to go; "the
+  collocations in session 2" is. `setFold()` toggles `open` on the list entry.
+- **A progress line** rides the bottom of the bar, and **↑** appears once the
+  top is 700px away. The arrow is an ordinary link to `#top`.
+- **The how-to list folds**, open until it is closed once (`hank.how`). It used
+  to sit inside the cover and pushed the lesson a screen and a half down on a
+  phone, on every visit.
+- **A folded session is a compact row.** In display capitals each shut lesson
+  was taking a third of a screen to say it was shut.
+- **The bar drops its title on a phone**, where it was being cut to "HANK'S E…".
+
+**Controls that answer back**
+
+- **The speaker is a real button.** It was the 🔊 emoji at half opacity. The
+  emoji is still the button's text; it is set to zero size and the icon is a
+  CSS mask, so it takes the state's colour — grey at rest, ink on hover, orange
+  and pulsing (`.playing`) while that sentence is read. `speak()` takes the
+  button so it can clear the state on `end` and `error`. The copy that said
+  "tap 🔊" now says "the speaker button".
+- **Every question set has a count**, as matching always did: `3 / 8`, turning
+  green with "All done 全部完成". It counts what is finished, never what was
+  right first time, and a wrong try does not move it.
+
+Two things were added to the orange rule while doing this: small orange *type*
+uses the darker `--accent-ink` (5:1 on white), and a numeral sitting *on* orange
+is black, never white.
+
 ### Session 1 — a weekend of movies, basketball and a school festival
 
 14 November 2026. The source is Lewis's own feedback sheet on an essay Hank

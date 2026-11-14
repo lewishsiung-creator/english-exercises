@@ -476,3 +476,554 @@ body.mode-self .card.known .know {
   .lead { font-size: 1.1rem; }
 }
 .goals-intro .zh { font-size: .8rem; letter-spacing: .04em; }
+
+
+/* ====================================================================
+   THE REDESIGN — graphics, navigation, and the small controls
+
+   Added after the page had two sessions on it and had become ten screens
+   long. Three kinds of change, in this order below:
+
+   1. Things to look at: the court behind the cover title, a scoreboard
+      under each session title, a play diagram, timelines, step rows.
+   2. Ways to get around: a reading-progress line, the parts of the open
+      session in the contents list, a way back to the top, a how-to list
+      that folds away.
+   3. Controls that answer back: a speaker button that is a button and
+      lights while it speaks, and a count on every set of questions.
+
+   One addition to the orange rule at the top of this file. Where orange
+   has to carry small TYPE — a signpost word, a marked part — it is the
+   darker --accent-ink, which passes on white. And a numeral that sits ON
+   orange is black, never white.
+   ==================================================================== */
+
+:root { --accent-ink: #c2410c; }
+
+/* ---------------- 1 · the cover, with the court behind it ---------------- */
+
+.cover { position: relative; overflow: hidden; padding-bottom: clamp(30px, 5vw, 48px); }
+.cover > :not(.cover-art) { position: relative; }
+.cover-art {
+  position: absolute;
+  right: -16%;
+  top: -6%;
+  width: min(86%, 620px);
+  pointer-events: none;
+}
+.cover-art svg, .poster-art svg { display: block; width: 100%; height: auto; }
+.court-lines { stroke: #303032; stroke-width: 2; }
+.cover-art .hoop { stroke: var(--accent); stroke-width: 2.5; }
+.cover-intro { margin-bottom: 0; max-width: 34rem; }
+
+/* ---------------- the how-to list, folded away ---------------- */
+
+.how {
+  margin: 12px 0 0;
+  background: var(--navy-soft);
+  border-radius: 16px;
+}
+.how-head { margin: 0; }
+.how-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 22px;
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  border-radius: 16px;
+  cursor: pointer;
+}
+.how-t .zh {
+  display: inline;
+  margin-left: .8em;
+  font-family: var(--font-zh);
+  font-size: .84rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-soft);
+}
+.how-btn .fold {
+  flex: none;
+  width: .55rem;
+  height: .55rem;
+  margin-top: -.25rem;
+  border-right: 2.5px solid var(--ink);
+  border-bottom: 2.5px solid var(--ink);
+  transform: rotate(45deg);
+  transition: transform var(--fast) var(--ease);
+}
+.how.closed .how-btn .fold { transform: rotate(-45deg); margin-top: 0; }
+.how-body { margin: 0; padding: 2px 24px 20px 42px; }
+.how-body li { margin: 0 0 9px; font-size: .96rem; }
+.how-body li::marker { color: var(--accent); }
+.how.closed .how-body { display: none; }
+
+/* ---------------- the scoreboard under a session title ---------------- */
+
+.poster {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 22px;
+  padding: 22px 26px 24px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 20px;
+}
+.poster-art {
+  position: absolute;
+  right: -92px;
+  top: 50%;
+  width: 300px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.poster-court .poster-art { right: -70px; top: -26px; width: 360px; transform: none; }
+.poster .court-lines { stroke: #3a3a3c; }
+.poster .hoop { stroke: var(--accent); stroke-width: 2.5; }
+.bull { fill: var(--accent); }
+.arrow { stroke: #fff; stroke-width: 3; stroke-linecap: round; }
+
+.poster-k {
+  position: relative;
+  margin: 0 0 14px;
+  font-family: var(--font-ui);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #b3b3b5;
+}
+.poster-k em {
+  margin-left: .9em;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: none;
+}
+.score {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 34px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.score li { display: flex; flex-direction: column; min-width: 4.4rem; }
+.score-n {
+  font-family: var(--font-display);
+  font-size: 3.3rem;
+  font-weight: 800;
+  line-height: .92;
+  font-variant-numeric: lining-nums;
+}
+.score-l {
+  margin-top: 7px;
+  font-family: var(--font-ui);
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #e5e5e5;
+}
+.score-l em {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-size: .76rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+  text-transform: none;
+  color: #b3b3b5;
+}
+.score-known { display: none; }
+body.mode-self .score-known {
+  display: block;
+  margin-top: 7px;
+  font-family: var(--font-zh);
+  font-size: .74rem;
+  font-weight: 600;
+  color: #7fd6ac;
+}
+.score-known b { font-variant-numeric: tabular-nums; }
+
+/* ---------------- a drawing with a numbered legend ---------------- */
+
+.figure { margin: 32px 0; }
+.figure-art {
+  padding: clamp(12px, 3vw, 24px);
+  background: var(--ink);
+  border-radius: 20px;
+}
+.figure-art svg { display: block; width: 100%; max-width: 540px; height: auto; margin: 0 auto; }
+.play .court-lines { stroke: #4b4b4d; stroke-width: 1.6; }
+.play .hoop { stroke: var(--accent); stroke-width: 2.2; }
+.play-you { font: 800 8.5px var(--font-ui); letter-spacing: .04em; fill: #111; }
+.play-x { font: 700 24px var(--font-ui); fill: #b3b3b5; }
+.play-n text { font: 800 11.5px var(--font-ui); }
+
+.legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 26px;
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+}
+.legend-row { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; }
+.legend-n {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--ink);
+  background: #fff;
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+.legend-row.you .legend-n { background: var(--accent); box-shadow: none; }
+.legend .en { font-size: 1rem; }
+.figure-key {
+  margin-top: 16px;
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}
+.figure-key span { display: block; font-family: var(--font-zh); }
+
+/* ---------------- a pattern as a row of steps ---------------- */
+
+.steps { margin: 28px 0; }
+.steps-row {
+  display: grid;
+  grid-template-columns: repeat(var(--steps, 4), minmax(0, 1fr));
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.step {
+  position: relative;
+  padding: 16px 16px 18px;
+  background: var(--navy-soft);
+  border-radius: 16px;
+}
+.step:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  top: 20px;
+  right: -20px;
+  width: 20px;
+  font-family: var(--font-ui);
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+  color: var(--accent);
+}
+.step-n {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: .9;
+  color: var(--accent);
+}
+.step-t {
+  margin: 10px 0 8px;
+  font-family: var(--font-ui);
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.step-t .zh {
+  display: block;
+  margin-top: 2px;
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.step .pair .en { font-size: .95rem; line-height: 1.45; }
+
+/* ---------------- a day as stops on a line ---------------- */
+
+.timeline { margin: 26px 0 34px; }
+.stops {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 26px 0;
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 6px 0 0;
+}
+.stop { position: relative; display: flex; flex-direction: column; padding-right: 14px; }
+.stop::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 23px;
+  height: 2px;
+  background: var(--ink);
+}
+.stop:last-child::before { right: calc(100% - 48px); }
+.stop-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--ink);
+}
+.stop-icon svg { width: 24px; height: 24px; }
+.stop-n {
+  position: absolute;
+  left: 35px;
+  top: -6px;
+  display: grid;
+  place-items: center;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--ink);
+  background: var(--accent);
+  box-shadow: 0 0 0 2.5px #fff;
+}
+.stop-t { display: flex; flex-direction: column; margin-top: 11px; }
+.stop-word {
+  font-family: var(--font-ui);
+  font-size: .66rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+.stop .en { margin-top: 3px; font-size: .92rem; font-weight: 700; line-height: 1.3; }
+.stop .zh { display: block; margin-top: 2px; font-size: .8rem; }
+
+/* ---------------- 2 · getting around ---------------- */
+
+/* How far down the page. It rides the bottom edge of the bar. */
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+
+/* The parts of whichever session is open, under its name in the contents. */
+.toc ul.toc-parts { display: none; margin: 0 0 8px; padding: 0 0 0 28px; }
+.toc li.open > ul.toc-parts { display: block; }
+.toc-parts a {
+  grid-template-columns: 1rem 1fr;
+  gap: 8px;
+  padding: 5px 8px;
+  color: var(--ink-faint);
+}
+.toc-parts a .n { font-size: 11px; font-weight: 800; color: var(--ink-faint); }
+.toc-parts a .t .en { font-size: 12.5px; line-height: 1.35; }
+.toc-parts a.here-part { color: var(--ink); }
+.toc-parts a.here-part .t .en { font-weight: 700; }
+.toc-parts a.here-part .n { color: var(--accent-ink); }
+
+/* Back to the top, once the top is a long way off. */
+.to-top {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(18px, env(safe-area-inset-bottom));
+  z-index: 25;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  font-family: var(--font-ui);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  color: #fff;
+  background: var(--ink);
+  box-shadow: 0 6px 18px rgba(17, 17, 17, .22);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity var(--fast) var(--ease), transform var(--fast) var(--ease),
+              background var(--fast) var(--ease);
+}
+body.scrolled .to-top { opacity: 1; pointer-events: auto; transform: none; }
+.to-top:hover { background: #3a3a3c; }
+body.nav-open .to-top { opacity: 0; pointer-events: none; }
+
+/* ---------------- 3 · controls that answer back ---------------- */
+
+/* The speaker. It was an emoji at half opacity, which read as decoration and
+   gave no sign of having been pressed. Now it is a round button with a drawn
+   icon: grey at rest, ink under the pointer, orange and pulsing while its
+   sentence is being read. The emoji is still the button's text, for anything
+   that reads the markup; it is set to zero size and the icon is a mask, so it
+   takes whatever colour the state gives it. */
+.say {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin-left: 8px;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  vertical-align: middle;
+  color: var(--ink);
+  background: var(--navy-soft);
+  border: 0;
+  border-radius: 50%;
+  opacity: 1;
+  cursor: pointer;
+  transition: background var(--fast) var(--ease), color var(--fast) var(--ease),
+              transform var(--fast) var(--ease);
+}
+.say::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 9v6h4l5 4V5L7 9H3z'/%3E%3Cpath d='M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 9v6h4l5 4V5L7 9H3z'/%3E%3Cpath d='M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.say:hover { color: #fff; background: var(--ink); opacity: 1; }
+.say:active { transform: scale(.9); }
+.say-quiet { background: transparent; box-shadow: inset 0 0 0 1.5px var(--rule); }
+.say-quiet:hover { box-shadow: none; }
+.card .say { background: #fff; }
+.card .say-quiet { background: transparent; }
+.card.open .say { background: var(--navy-soft); }
+.card.open .say-quiet { background: transparent; }
+.card .say:hover, .card.open .say:hover { background: var(--ink); }
+.quote .say { filter: none; color: #fff; background: #2e2e30; box-shadow: none; }
+.quote .say:hover { color: var(--ink); background: #fff; }
+
+.say.playing, .card .say.playing, .card.open .say.playing, .quote .say.playing {
+  color: var(--ink);
+  background: var(--accent);
+  box-shadow: none;
+  animation: say-pulse 1.1s ease-in-out infinite;
+}
+@keyframes say-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); }
+  50% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--accent) 0%, transparent); }
+}
+
+/* A count on every set of questions: how many are done, never how many were
+   right first time. It turns green and says so when the set is finished. */
+.activity .tally {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  margin: 14px 0 0;
+  padding: 5px 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: var(--navy-soft);
+  border-radius: var(--pill);
+}
+.activity.all-done .tally { color: var(--good); background: var(--good-soft); font-weight: 700; }
+.activity.all-done .tally::after { content: "✓  All done 全部完成"; margin-left: .5em; font-family: var(--font-zh); }
+
+/* ---------------- phone ---------------- */
+
+@media (max-width: 899px) {
+  .cover-art { right: -34%; top: 2%; width: 118%; opacity: .8; }
+  .poster { padding: 20px 20px 22px; }
+  .poster-art, .poster-court .poster-art { right: -70px; top: -58px; width: 210px; transform: none; opacity: .9; }
+  .score { gap: 16px 26px; }
+  .score-n { font-size: 2.7rem; }
+}
+
+@media (max-width: 760px) {
+  .steps-row { grid-template-columns: 1fr; gap: 30px; }
+  .step { display: grid; grid-template-columns: 2.6rem 1fr; column-gap: 12px; align-items: start; }
+  .step-n { grid-row: 1 / span 2; }
+  .step-t { margin-top: 2px; }
+  .step:not(:last-child)::after { content: "↓"; top: auto; right: auto; left: 22px; bottom: -25px; }
+}
+
+@media (max-width: 620px) {
+  .legend { grid-template-columns: 1fr; }
+  .stops { grid-template-columns: 1fr; gap: 0; }
+  .stop { flex-direction: row; gap: 16px; padding: 0 0 20px; }
+  .stop::before { left: 23px; right: auto; top: 0; bottom: 0; width: 2px; height: auto; }
+  .stop:last-child::before { right: auto; bottom: calc(100% - 48px); }
+  .stop-icon { flex: none; }
+  .stop-t { margin-top: 3px; }
+}
+
+@media (pointer: coarse) {
+  .say { width: 30px; height: 30px; }
+  .say::before { width: 15px; height: 15px; }
+}
+
+@media print {
+  .progress, .to-top, .cover-art, .poster-art { display: none !important; }
+  .poster { background: #fff; color: #111; border: 2px solid #111; }
+  .score-l, .score-l em, .poster-k { color: #111; }
+  .how.closed .how-body { display: block; }
+}
+
+/* Signage inside the how-to heading: one line, in both modes. The global
+   `body.zh-all .zh` would otherwise turn it into a block and drop it a line. */
+.how .how-t .zh, body.zh-all .how .how-t .zh { display: inline; }
+
+/* A folded session is a row to choose from, not a headline. Without this the
+   earlier lessons each took a third of a screen just to say they were shut,
+   and that gets worse with every lesson added. */
+.session.folded { padding-top: 0; }
+.session.folded .session-btn { padding: 18px 0; align-items: center; }
+.session.folded .session-btn .titles .en { font-size: clamp(1.25rem, 2.8vw, 1.7rem); line-height: 1.05; }
+.session.folded .session-btn .titles .zh { font-size: .86rem; margin-top: 4px; }
+.session.folded .session-btn .n { font-size: 1.7rem; margin-top: 0; color: var(--ink-faint); }
+.session.folded .session-btn .date { margin-bottom: 4px; }
+.session.folded .session-btn .fold { margin-top: 0; }
+.session.folded .session-btn:hover .n { color: var(--accent); }
+
+/* On a grey tile the grey speaker disappears; give it the white of the page. */
+.step .say, .starters .say { background: #fff; box-shadow: none; }
+.step .say:hover, .starters .say:hover { background: var(--ink); }
+
+/* On a phone the bar has no room for a title: it was being cut to "HANK'S E…".
+   The cover says it in letters an inch tall, so the bar lets it go, and the
+   contents button keeps the left edge to itself. */
+@media (max-width: 520px) {
+  .bar-title { display: none; }
+  #navToggle { margin-right: auto; }
+}

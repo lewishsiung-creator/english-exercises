@@ -75,6 +75,14 @@
      part      a divider INSIDE one session, for a source that arrives already
                cut into labelled sections
      lead      a framing sentence, opening a session or a part
+     figure    a drawing with a numbered legend. `art` names a drawing in
+               render.js (FIGURES); each legend line is spoken and glossed.
+               `you: true` on a line colours its number orange, for the moves
+               that are Hank's own
+     steps     a pattern as a row of numbered steps with arrows between them —
+               use it wherever the SHAPE of an idea is the point
+     timeline  the order of a day as stops on a line: `icon` (a name in ICONS),
+               `word` (the signpost the essay uses there) and a caption
      link      a pointer to another page in this site
      quote     a short quote, with attribution — set as a poster on this page
      summary   a teaching paragraph, spoken aloud on request. Optional
@@ -154,6 +162,16 @@
    times and "delicious" three), and the revised essay practises what it
    preaches: one "However", one "delicious".
 
+   PICTURES
+   --------
+   A session may carry `art`, the name of a drawing in render.js (ART): it sits
+   behind the scoreboard under the session's title. 'court' and 'target' exist.
+   The scoreboard's numbers are counted from the session's own blocks, so there
+   is nothing to keep in step — add a card and the count moves.
+
+   Every picture is drawn in code. There are no photographs on this page, and
+   no brand's artwork: see court.css.
+
    SAMPLE BANNER
    -------------
    Setting `sample` puts a line across the top saying the content is a
@@ -183,8 +201,8 @@ const NOTEBOOK = {
         zh: '點任何一句英文就會出現中文。上方的「中文」按鈕可以一次全部打開。',
       },
       {
-        en: 'Tap 🔊 to hear a phrase or a sentence, as many times as you like. Say it out loud after the voice.',
-        zh: '點 🔊 可以聽片語或句子的發音，想聽幾次都可以。聽完跟著大聲唸一次。',
+        en: 'Tap the round speaker button beside a phrase or a sentence to hear it, as many times as you like. Say it out loud after the voice.',
+        zh: '點片語或句子旁邊的圓形喇叭按鈕，就能聽發音，想聽幾次都可以。聽完跟著大聲唸一次。',
       },
       {
         only: 'self',
@@ -210,6 +228,7 @@ const NOTEBOOK = {
       dateZh: '2026 年 11 月 14 日',
       en: 'A Weekend of Movies, Basketball, and School Activities',
       zh: '電影、籃球與校園活動的週末',
+      art: 'court',
 
       focus: [
         { en: 'The revised essay', zh: '修改後的文章', to: 's1-a' },
@@ -249,6 +268,20 @@ const NOTEBOOK = {
           zh: '這是誰寫的？',
           bodyEn: 'Yours, one draft later. I kept your original ideas and your writing style, and improved the grammar, the sentence flow, the vocabulary and the storytelling. Read it once for the story. Then read it again and look for the places where it sounds different from what you wrote — Part B explains ten of them.',
           bodyZh: '是你寫的，只是多改了一稿。我保留了你原本的想法和寫作風格，改進的是文法、句子的流暢度、用字，以及說故事的方式。先讀一遍，看故事；再讀一遍，找找看哪些地方和你原本寫的不一樣——B 部分會說明其中十處。',
+        },
+
+        {
+          t: 'timeline',
+          en: 'The weekend, in four stops',
+          zh: '這個週末的四站',
+          hintEn: 'The orange words are the signposts in the essay. They tell a reader where in the weekend they are.',
+          hintZh: '橘色的字是文章裡的「路標」，讓讀者知道現在講到週末的哪一段。',
+          items: [
+            { icon: 'film', word: 'Last week', en: 'A movie with friends', zh: '和朋友看電影' },
+            { icon: 'bag', word: 'After the movie', en: 'Shopping in Xinyi District', zh: '信義區逛街' },
+            { icon: 'ball', word: 'Later that evening', en: 'Two basketball games', zh: '兩場籃球賽' },
+            { icon: 'flag', word: 'Today', en: 'Another school’s festival', zh: '別校的校慶' },
+          ],
         },
 
         {
@@ -409,8 +442,8 @@ const NOTEBOOK = {
           t: 'contrast',
           en: 'Your wording, and the revision',
           zh: '你的寫法，和修改後的寫法',
-          hintEn: 'On the left, the words you used. On the right, the words in the revised essay. Both sides can be played with 🔊. Say the right-hand one out loud.',
-          hintZh: '左邊是你原本用的字，右邊是修改後文章裡的字。兩邊都可以點 🔊 聽。右邊那一個，請大聲唸出來。',
+          hintEn: 'On the left, the words you used. On the right, the words in the revised essay. Both sides have a speaker button. Say the right-hand one out loud.',
+          hintZh: '左邊是你原本用的字，右邊是修改後文章裡的字。兩邊都有喇叭按鈕可以聽。右邊那一個，請大聲唸出來。',
           coldEn: 'You wrote',
           coldZh: '你原本寫的',
           warmEn: 'Revised',
@@ -634,6 +667,24 @@ const NOTEBOOK = {
         },
 
         {
+          t: 'figure',
+          id: 's1-play',
+          art: 'pickroll',
+          en: 'The play you want to learn',
+          zh: '你想學會的那個戰術',
+          hintEn: 'This is the play from your fourth paragraph. It is called a pick and roll, and each number on the court is one of your phrases.',
+          hintZh: '這就是你第四段寫的那個戰術，叫做擋拆（pick and roll）。球場上的每個數字，都對應你的一個片語。',
+          items: [
+            { en: 'A teammate sets a screen.', zh: '隊友幫你設掩護。' },
+            { you: true, en: 'You drive toward the basket.', zh: '你往籃下切入。' },
+            { en: 'He rolls toward the basket.', zh: '他掩護後往籃下移動。' },
+            { you: true, en: 'You pass to an open teammate.', zh: '你把球傳給有空檔的隊友。' },
+          ],
+          keyEn: 'Orange is you. White is your teammate. × is your defender. The dotted line is the ball.',
+          keyZh: '橘色是你，白色是隊友，× 是防守你的人，虛線是球的路線。',
+        },
+
+        {
           t: 'phrases',
           en: 'The school festival',
           zh: '校慶',
@@ -793,36 +844,35 @@ const NOTEBOOK = {
         },
 
         {
-          t: 'summary',
-          n: '1',
-          titleEn: 'Experience',
-          titleZh: '經驗',
-          en: 'We played two basketball games and won one.',
-          zh: '我們打了兩場籃球賽，贏了一場。',
-        },
-        {
-          t: 'summary',
-          n: '2',
-          titleEn: 'Problem',
-          titleZh: '問題',
-          en: 'I missed several layups and didn’t communicate enough.',
-          zh: '我有好幾次上籃沒進，溝通也不夠。',
-        },
-        {
-          t: 'summary',
-          n: '3',
-          titleEn: 'Action Plan',
-          titleZh: '行動計畫',
-          en: 'I will practice driving to the basket and talking to my teammates.',
-          zh: '我會練習切入籃下，也會多和隊友說話。',
-        },
-        {
-          t: 'summary',
-          n: '4',
-          titleEn: 'Expected Result',
-          titleZh: '預期結果',
-          en: 'I hope to become a better point guard and help my team win more games.',
-          zh: '我希望成為更好的控球後衛，幫助球隊贏更多比賽。',
+          t: 'steps',
+          en: 'The four steps',
+          zh: '四個步驟',
+          items: [
+            {
+              titleEn: 'Experience',
+              titleZh: '經驗',
+              en: 'We played two basketball games and won one.',
+              zh: '我們打了兩場籃球賽，贏了一場。',
+            },
+            {
+              titleEn: 'Problem',
+              titleZh: '問題',
+              en: 'I missed several layups and didn’t communicate enough.',
+              zh: '我有好幾次上籃沒進，溝通也不夠。',
+            },
+            {
+              titleEn: 'Action Plan',
+              titleZh: '行動計畫',
+              en: 'I will practice driving to the basket and talking to my teammates.',
+              zh: '我會練習切入籃下，也會多和隊友說話。',
+            },
+            {
+              titleEn: 'Expected Result',
+              titleZh: '預期結果',
+              en: 'I hope to become a better point guard and help my team win more games.',
+              zh: '我希望成為更好的控球後衛，幫助球隊贏更多比賽。',
+            },
+          ],
         },
 
         {
@@ -984,6 +1034,7 @@ const NOTEBOOK = {
       dateZh: '2026 年 11 月 15 日',
       en: 'A Field Trip to the Hunter School in Wulai',
       zh: '烏來獵人學校校外教學',
+      art: 'target',
 
       focus: [
         { en: 'Four sentences, fixed', zh: '四個句子，修過一遍', to: 's2-fix' },
@@ -1076,6 +1127,24 @@ const NOTEBOOK = {
           zh: '改了什麼，沒改什麼',
           bodyEn: 'The ideas, the order and the voice are still yours. Nothing was added that you did not write about. Three things changed: the four repairs from Part A, a few words that are more exact, and fewer repeated words. Read it once for the story. Then read it again and count how many times you can find “However”.',
           bodyZh: '想法、順序和語氣都還是你的，沒有加進任何你沒寫到的事。改的有三件事：A 部分的四個修正、幾個更精確的用字，以及減少重複的字。先讀一遍，看故事；再讀一遍，數數看 However 出現了幾次。',
+        },
+
+        {
+          t: 'timeline',
+          en: 'The day, in eight stops',
+          zh: '這一天的八站',
+          hintEn: 'The orange words are the signposts in the essay. They tell a reader where in the day they are.',
+          hintZh: '橘色的字是文章裡的「路標」，讓讀者知道現在講到這一天的哪一段。',
+          items: [
+            { icon: 'bus', word: 'On the bus', en: 'Singing all the way there', zh: '一路唱歌' },
+            { icon: 'talk', word: 'First', en: 'Atayal words, games and dances', zh: '泰雅語、遊戲和舞蹈' },
+            { icon: 'bamboo', word: 'Next', en: 'Making bamboo rice', zh: '做竹筒飯' },
+            { icon: 'target', word: 'After that', en: 'Trying archery', zh: '射箭' },
+            { icon: 'flame', word: 'After archery', en: 'Barbecuing wild boar', zh: '烤山豬肉' },
+            { icon: 'trap', word: 'After lunch', en: 'Making traps', zh: '做陷阱' },
+            { icon: 'star', word: 'After that', en: 'The show, then mochi', zh: '表演，還有麻糬' },
+            { icon: 'bus', word: 'The whole way back', en: 'Singing again', zh: '又唱了一路' },
+          ],
         },
 
         {
@@ -1227,8 +1296,8 @@ const NOTEBOOK = {
           t: 'contrast',
           en: 'Your sentence, and the revision',
           zh: '你的句子，和修改後的句子',
-          hintEn: 'On the left, your sentence. On the right, the revised one. Both sides can be played with 🔊. Say the right-hand one out loud.',
-          hintZh: '左邊是你的句子，右邊是修改後的句子。兩邊都可以點 🔊 聽。右邊那一句，請大聲唸出來。',
+          hintEn: 'On the left, your sentence. On the right, the revised one. Both sides have a speaker button. Say the right-hand one out loud.',
+          hintZh: '左邊是你的句子，右邊是修改後的句子。兩邊都有喇叭按鈕可以聽。右邊那一句，請大聲唸出來。',
           coldEn: 'You wrote',
           coldZh: '你原本寫的',
           warmEn: 'Revised',
@@ -1725,6 +1794,34 @@ const NOTEBOOK = {
                 { en: 'First, we would… After that, we would…', zh: '首先，我們會……；之後，我們會……' },
                 { en: 'I think everyone would have a great time because…', zh: '我覺得大家都會玩得很開心，因為……' },
               ],
+            },
+          ],
+        },
+
+        {
+          t: 'steps',
+          en: 'The archery story, in three moves',
+          zh: '射箭的故事，三個步驟',
+          hintEn: 'This is why your archery paragraph works. The first topic below asks you to use the same three moves.',
+          hintZh: '這就是你射箭那一段寫得好的原因。下面的第一個題目，就是請你用同樣的三個步驟。',
+          items: [
+            {
+              titleEn: 'What you expected',
+              titleZh: '原本以為',
+              en: 'At first, I thought archery would be easy.',
+              zh: '一開始，我以為射箭很簡單。',
+            },
+            {
+              titleEn: 'What really happened',
+              titleZh: '實際上',
+              en: 'After trying it, though, I realized it was much harder than I had expected.',
+              zh: '不過試了之後，我才發現它比我原本想的難很多。',
+            },
+            {
+              titleEn: 'How it ended',
+              titleZh: '最後',
+              en: 'I finally managed to hit the target.',
+              zh: '我最後終於射中了靶。',
             },
           ],
         },
