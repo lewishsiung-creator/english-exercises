@@ -96,11 +96,11 @@ const NOTEBOOK = {
       },
       {
         en: 'Nothing is saved and nothing is scored. Reloading the page clears it for a fresh run.',
-        zh: '這裡不會儲存也不會計分。重新整理頁面就會清空，可以重新練一次。',
+        zh: '這裡不會儲存紀錄，也不會計分。重新整理頁面就會清空，可以重新練一次。',
       },
       {
         en: 'The newest session is at the top and open; earlier ones sit below it, folded. Tap a session heading to open or close it.',
-        zh: '最新的一堂課在最上面，而且是展開的；之前的課在下面，收合起來。點課程標題就能展開或收合。',
+        zh: '最新的一堂課放在最上面，而且預設展開；之前的課收在下面。點課程標題就能展開或收合。',
       },
     ],
   },
@@ -131,22 +131,22 @@ const NOTEBOOK = {
         {
           t: 'lead',
           en: 'One hour on the hardest kind of management problem: someone who is very good at her job, and whose strengths are now the thing getting in her way.',
-          zh: '一個小時，談的是管理上最難的一種問題：一個很會做事的人，而她的優點如今正好成了她的阻礙。',
+          zh: '一個小時，談的是管理上最難的一種問題：一個很會做事的人，而她的強項如今反而成了她的阻礙。',
         },
 
         {
           t: 'summary',
           en: 'The manager has been with the company for more than twelve years. She is technically strong, thoroughly prepared and hard to discourage — and she has just been promoted into a people-management role. Her professional competence was never the issue. What has not moved is her communication style: she still leads with what she knows, in a job where the measure has quietly changed from what she can do to what the people around her can do.',
-          zh: '這位主管在公司待了超過十二年。她技術扎實、準備充分、不容易被打退——而她剛被升到帶人的職位。她的專業能力從來不是問題，沒有跟著改變的是溝通方式：她仍然以「我知道什麼」為出發點，但在這個職位上，衡量標準已經悄悄從「她能做到什麼」變成「她身邊的人能做到什麼」。',
+          zh: '這位主管在公司待了超過十二年。她技術扎實、準備充分、不容易灰心——而她剛升上帶人的職位。她的專業能力從來不是問題，沒有跟著改變的是溝通方式：她仍然以「我知道什麼」為出發點，但在這個職位上，衡量標準已經悄悄從「她能做到什麼」變成「她身邊的人能做到什麼」。',
         },
 
         {
           t: 'figure',
           fig: 'measure',
           en: 'The measure that changed under her',
-          zh: '在她腳下換掉的那個標準',
+          zh: '在她腳下換掉的那把尺',
           hintEn: 'The last line of the paragraph above, drawn — because it is the reason for everything else in this session.',
-          hintZh: '上面那段的最後一句，畫出來——因為這一堂課其他所有內容，都是從這一句來的。',
+          hintZh: '把上面那段的最後一句畫出來——因為這堂課其他所有內容，都是從這一句長出來的。',
         },
 
         {
@@ -161,11 +161,11 @@ const NOTEBOOK = {
           en: 'The same message, said two ways',
           zh: '同一個訊息，兩種說法',
           hintEn: 'Left is how it landed. Right is how it could have landed. Read both aloud — the difference is not politeness, it is what the other person is invited to do next.',
-          hintZh: '左邊是當下實際造成的效果，右邊是本來可以有的效果。兩邊都念出來——差別不在客氣與否，而在於對方接下來被邀請做什麼。',
+          hintZh: '左邊是當下實際造成的效果，右邊是本來可以有的效果。兩邊都念出來——差別不在客不客氣，而在於這句話邀請對方接下來做什麼。',
           items: [
             {
               caseEn: 'The alignment meeting with the superintendent',
-              caseZh: '與院長的對齊會議',
+              caseZh: '與院長的共識會議',
               cold: {
                 en: 'The numbers have declined. You have not achieved this year’s goal. What are you going to do about it?',
                 zh: '數字下滑了。你們沒有達到今年的目標。你們打算怎麼辦？',
@@ -179,14 +179,14 @@ const NOTEBOOK = {
             },
             {
               caseEn: 'Training the surgeon on the system',
-              caseZh: '指導醫師操作系統',
+              caseZh: '指導醫師操作這套系統',
               cold: {
                 en: 'You’re doing it wrong. Let me demonstrate.',
                 zh: '你做錯了。我示範給你看。',
               },
               warm: {
                 en: 'I can see what you’re trying to do. Let me show you another approach that may make this easier — try it and see how it feels.',
-                zh: '我看得出來你想做什麼。我示範另一種做法，可能會讓這個步驟更順——你試試看感覺如何。',
+                zh: '我看得出來你想做什麼。我示範另一種做法給你看，可能會讓這個步驟更順手——你試試看感覺如何。',
               },
               whyEn: 'Both are aimed at the same correction. Only the second leaves the surgeon willing to try it again in front of her.',
               whyZh: '兩種說法要修正的是同一件事，但只有第二種會讓醫師願意在她面前再試一次。',
@@ -213,7 +213,7 @@ const NOTEBOOK = {
           en: 'Why “tell her to change” will not work',
           zh: '為什麼「叫她改」行不通',
           bodyEn: 'The behaviours she is being asked to change are the behaviours that made her successful for twelve years. From where she stands, the request sounds like being told that what worked was wrong. That is why the conversation has to start with what she keeps — persistence, preparation, standards — and treat leadership as the next use of those strengths rather than a replacement for them.',
-          bodyZh: '現在要她改的那些行為，正是讓她成功了十二年的行為。站在她的角度，這個要求聽起來就像在說她過去做對的事其實是錯的。所以這段對話必須從「哪些要保留」開始——堅持、準備、標準——並且把領導力當成這些優點的下一個用法，而不是取代它們。',
+          bodyZh: '現在要她改的那些行為，正是讓她成功了十二年的行為。站在她的角度，這個要求聽起來就像在說她過去做對的事其實是錯的。所以這段對話必須從「哪些要保留」開始——堅持、準備、標準——並且把領導力當成這些強項的下一個用法，而不是取代它們。',
         },
 
         {
@@ -222,7 +222,7 @@ const NOTEBOOK = {
           en: 'The order of the conversation',
           zh: '這段對話的順序',
           hintEn: 'The same three moves the paragraph above describes, in the order you have to make them.',
-          hintZh: '上面那段講的就是這三步，這裡把必須遵守的順序排出來。',
+          hintZh: '上面那段講的就是這三步，這裡把順序排出來——而這個順序不能跳。',
         },
 
         {
@@ -250,15 +250,15 @@ const NOTEBOOK = {
             },
             {
               en: 'a business alignment meeting',
-              zh: '商業共識／策略對齊會議',
+              zh: '策略共識會議',
               eg: 'A business alignment meeting is not a performance review.',
-              egZh: '策略對齊會議不是績效檢討會。',
+              egZh: '策略共識會議不是績效檢討會。',
             },
             {
               en: 'a discovery-oriented approach',
               zh: '探索式的溝通方式',
               eg: 'She needs a more discovery-oriented approach: discover, understand, discuss, then solve.',
-              egZh: '她需要更偏向探索式的溝通方式：先探索、理解、討論，最後才解決。',
+              egZh: '她的溝通要更偏向探索：先探索、理解、討論，最後才解決。',
             },
             {
               en: 'communication style',
@@ -276,7 +276,7 @@ const NOTEBOOK = {
               en: 'lose sight of the ultimate goal',
               zh: '忘記最終目標',
               eg: 'When she pushes for the number, she loses sight of the ultimate goal.',
-              egZh: '當她一味追著數字，就忘記了最終目標。',
+              egZh: '她一心想把數字衝上來的時候，就忘了最終目標。',
             },
             {
               en: 'a sense of insecurity',
@@ -300,7 +300,7 @@ const NOTEBOOK = {
               en: 'a focused person',
               zh: '很專注的人',
               eg: 'She’s a very focused person — that’s exactly why she gets results.',
-              egZh: '她是一個非常專注的人——這正是她拿得出成績的原因。',
+              egZh: '她是非常專注的人——這正是她拿得出成績的原因。',
             },
           ],
         },
@@ -314,7 +314,7 @@ const NOTEBOOK = {
               en: 'persistent',
               zh: '堅持不懈的',
               eg: 'She’s persistent, which built her career — and which is why old habits are hard to drop.',
-              egZh: '她很堅持，這造就了她的職涯——也正因如此，舊習慣才難以放下。',
+              egZh: '她很堅持，這成就了她的職涯——也正因如此，舊習慣才放不掉。',
             },
             {
               en: 'result-oriented',
@@ -326,7 +326,7 @@ const NOTEBOOK = {
               en: 'strategic',
               zh: '有策略性的',
               eg: 'She’s strategic about the account, but not yet about the relationship.',
-              egZh: '她對客戶的經營很有策略，但對關係還沒有。',
+              egZh: '她經營客戶很有策略，經營關係還沒有。',
             },
             {
               en: 'transition from an individual contributor to a manager',
@@ -354,15 +354,15 @@ const NOTEBOOK = {
             },
             {
               en: 'build someone’s confidence',
-              zh: '建立某人的信心',
+              zh: '建立對方的信心',
               eg: 'A good trainer builds the surgeon’s confidence before correcting the technique.',
               egZh: '好的訓練者會先建立醫師的信心，再修正技術。',
             },
             {
               en: 'make people want to improve',
-              zh: '讓人產生主動改善的意願',
+              zh: '讓人自己想變好',
               eg: 'Constant criticism raises stress; the job is to make people want to improve.',
-              egZh: '不斷的批評只會提高壓力；真正該做的是讓人產生主動改善的意願。',
+              egZh: '一直挑錯只會讓壓力變大；真正該做的，是讓人自己想變好。',
             },
             {
               en: 'focus on helping others become better',
@@ -372,15 +372,15 @@ const NOTEBOOK = {
             },
             {
               en: 'a one-man show',
-              zh: '一個人包辦／個人英雄式表現',
+              zh: '一個人唱獨角戲',
               eg: 'Leadership at this level can’t be a one-man show.',
-              egZh: '到了這個層級，領導不可能是一個人包辦的事。',
+              egZh: '到了這個層級，領導不可能是一個人唱獨角戲。',
             },
             {
               en: 'make the people around you better',
-              zh: '讓周圍的人變得更優秀',
+              zh: '讓身邊的人變得更強',
               eg: 'You don’t have to be the smartest person in the room; you have to make the people around you better.',
-              egZh: '你不必當全場最聰明的人，你要做的是讓周圍的人變得更優秀。',
+              egZh: '你不必當全場最聰明的人，你要做的是讓身邊的人變得更強。',
             },
           ],
         },
@@ -390,7 +390,7 @@ const NOTEBOOK = {
           en: 'Which half goes with which',
           zh: '配對：哪一半接哪一半',
           hintEn: 'Tap a phrase on the left, then its partner on the right.',
-          hintZh: '先點左邊的字詞，再點右邊配對的字詞。',
+          hintZh: '先點左邊的字，再點右邊跟它配對的那個。',
           pairs: [
             { a: 'create', b: 'awareness' },
             { a: 'give', b: 'constructive feedback' },
@@ -409,7 +409,7 @@ const NOTEBOOK = {
           items: [
             {
               text: 'My aim in the conversation is to ___, not to tell her she is wrong.',
-              textZh: '這場對話我的目的是建立她的覺察，而不是告訴她她錯了。',
+              textZh: '這場對話我的目的是建立她的覺察，而不是告訴她「你錯了」。',
               options: ['create awareness', 'prove myself', 'speak up'],
               answer: 0,
               why: {
@@ -439,7 +439,7 @@ const NOTEBOOK = {
             },
             {
               text: 'If the training only ever points out errors, the surgeon’s stress rises and you stop ___.',
-              textZh: '如果訓練從頭到尾只指出錯誤，醫師的壓力會升高，你也就不再讓人產生主動改善的意願了。',
+              textZh: '如果訓練從頭到尾只指出錯誤，醫師的壓力會升高，你也就不再讓人自己想變好了。',
               options: ['making people want to improve', 'being result-oriented', 'giving feedback'],
               answer: 0,
               why: {
@@ -467,7 +467,7 @@ const NOTEBOOK = {
             },
             {
               en: 'Being liked and being effective as a leader usually pull in opposite directions.',
-              zh: '身為領導者，「被喜歡」和「有效」通常是互相拉扯的。',
+              zh: '身為領導者，「讓人喜歡」和「把事情做成」通常是互相拉扯的。',
             },
             {
               en: 'The higher you climb, the fewer people are willing to give you candid feedback.',
@@ -514,7 +514,7 @@ const NOTEBOOK = {
         {
           t: 'task',
           en: 'Two minutes: the conversation you are about to have',
-          zh: '兩分鐘：你接下來要進行的那場對話',
+          zh: '兩分鐘：你接下來要談的那場對話',
           instructionEn: 'Pick a moment and speak for two minutes as if she were sitting opposite you. Reinforce first, then name the next challenge — do not lead with the meeting. Tick each phrase as it lands.',
           instructionZh: '選一個情境，說兩分鐘，就當她正坐在你對面。先肯定，再指出下一個挑戰——不要一開口就談那場會議。用到哪個片語就打勾。',
           prompts: [
@@ -530,7 +530,7 @@ const NOTEBOOK = {
             { en: 'create awareness', zh: '建立覺察' },
             { en: 'empower', zh: '賦能' },
             { en: 'evolve', zh: '進化' },
-            { en: 'make the people around you better', zh: '讓周圍的人變得更優秀' },
+            { en: 'make the people around you better', zh: '讓身邊的人變得更強' },
           ],
           frames: [
             { en: 'You’ve already proved that you can ___. The next challenge is ___.', zh: '你已經證明了你能夠＿＿。下一個挑戰是＿＿。' },
@@ -714,7 +714,7 @@ const NOTEBOOK = {
               en: 'a hidden blocker',
               zh: '潛在障礙',
               eg: 'A hidden blocker is hidden mainly from the person carrying it.',
-              egZh: '潛在障礙主要是對當事人自己隱形。',
+              egZh: '潛在障礙最看不見的，往往是當事人自己。',
             },
             {
               en: 'a blind spot',
@@ -754,7 +754,7 @@ const NOTEBOOK = {
             },
             {
               en: 'serve someone well',
-              zh: '對某人很管用、讓某人受用',
+              zh: '讓人受用、對人很管用',
               eg: 'That belief served you well for twelve years. It doesn’t serve this job.',
               egZh: '那個信念讓你受用了十二年，但它幫不了現在這個職位。',
             },
@@ -794,7 +794,7 @@ const NOTEBOOK = {
               en: 'micromanage',
               zh: '微觀管理、事必躬親',
               eg: 'Her 360 feedback used the word micromanage, and it landed hard.',
-              egZh: '她的 360 回饋裡出現了「微觀管理」這個詞，而這句話打得很重。',
+              egZh: '她的 360 回饋裡出現了「微觀管理」這個詞，而這個詞打得很重。',
             },
             {
               en: 'be pulled into the weeds',
@@ -818,7 +818,7 @@ const NOTEBOOK = {
               en: 'let it go',
               zh: '放下、不再糾結',
               eg: 'It won’t be done the way I’d do it, and I have to let that go.',
-              egZh: '它不會照我的方式完成，而我得放下這件事。',
+              egZh: '這件事不會照我的方式做完，而我得放下。',
             },
             {
               en: 'set someone up to succeed',
@@ -840,7 +840,7 @@ const NOTEBOOK = {
           en: 'Which half goes with which',
           zh: '配對：哪一半接哪一半',
           hintEn: 'Tap a phrase on the left, then its partner on the right.',
-          hintZh: '先點左邊的字詞，再點右邊配對的字詞。',
+          hintZh: '先點左邊的字，再點右邊跟它配對的那個。',
           pairs: [
             { a: 'get in', b: 'your own way' },
             { a: 'own', b: 'the impact' },
@@ -884,7 +884,7 @@ const NOTEBOOK = {
               answer: 0,
               why: {
                 en: 'A blind spot is literal: the piece of the mirror where the car genuinely cannot be seen.',
-                zh: '「盲點」是字面的：後照鏡上那塊真的看不到車的位置。',
+                zh: '「盲點」就是字面上的意思：後照鏡上那塊真的看不到車的位置。',
               },
             },
             {
@@ -1093,7 +1093,7 @@ const NOTEBOOK = {
                 zh: '手術量顯著成長——較去年同期增加 18%。',
               },
               whyEn: '"A lot" is your opinion of the number. The figure is the number. Senior audiences hear the first as padding and the second as evidence, and it costs you nothing to say the second.',
-              whyZh: '「很多」是你對這個數字的感想，數字本身才是數字。高階聽眾會把前者當成填充，把後者當成證據——而說後者並不花你任何力氣。',
+              whyZh: '「很多」是你對那個數字的評價；數字，才是數字。高階聽眾會把前者當成填充，把後者當成證據——而說後者並不花你任何力氣。',
             },
             {
               caseEn: 'Flagging a priority',
@@ -1104,12 +1104,12 @@ const NOTEBOOK = {
                 zh: '這是我們明年的首要任務。',
               },
               whyEn: 'Everything in a leadership deck is "very important" by the third slide, so the phrase has stopped meaning anything. "Top priority" ranks it, and ranking is what they came for.',
-              whyZh: '在領導簡報裡，到第三張投影片為止，每件事都「非常重要」，這個說法已經失去意義。「首要任務」是在排序，而排序正是他們來聽的東西。',
+              whyZh: '領導簡報講到第三張投影片，每件事都已經「非常重要」過一輪，這個說法早就不具任何意義。「首要任務」是在排序，而排序正是他們來聽的東西。',
             },
             {
               caseEn: 'Committing to something',
               caseZh: '做出承諾',
-              cold: { en: 'We will try to lift utilisation at the quieter sites.', zh: '我們會試著提高使用率較低的院所的使用量。' },
+              cold: { en: 'We will try to lift utilisation at the quieter sites.', zh: '我們會試著把使用率偏低的院所拉上來。' },
               warm: {
                 en: 'We’re committed to lifting utilisation to four cases a week.',
                 zh: '我們承諾把使用率提高到每週四台。',
@@ -1218,9 +1218,9 @@ const NOTEBOOK = {
             },
             {
               en: 'Let’s make this happen together.',
-              zh: '讓我們一起把它做成。',
+              zh: '我們一起把這件事做成。',
               eg: 'That’s the plan. Let’s make this happen together.',
-              egZh: '這就是計畫。讓我們一起把它做成。',
+              egZh: '這就是計畫。我們一起把這件事做成。',
             },
             {
               en: 'a clear win',
@@ -1244,9 +1244,9 @@ const NOTEBOOK = {
             },
             {
               en: 'The short answer is …',
-              zh: '簡單地說⋯⋯',
+              zh: '簡單講⋯⋯',
               eg: 'Good question. The short answer is yes, within this budget.',
-              egZh: '好問題。簡單地說：可以，而且在這個預算內。',
+              egZh: '好問題。簡單講：可以，而且在這個預算內。',
             },
             {
               en: 'I’ll get back to you on that.',
@@ -1268,7 +1268,7 @@ const NOTEBOOK = {
           en: 'A one-minute model',
           zh: '一分鐘的示範',
           bodyEn: 'Story. Last month, a colorectal surgeon in Taichung did her 50th robotic case. A year ago she told us she would never switch. What changed? Her patients went home a day earlier, and she saw it. Strategy. That story is happening across Taiwan: volume grew 18% this year, but unevenly — three hospitals account for 60% of cases. Our priority for next year is threefold: expand training in central and southern Taiwan, lift utilisation at under-used sites to four cases a week, and build two new surgeon champions per region. Slides. On the next slide you will see one chart: utilisation by hospital. The key takeaway is simple — our growth opportunity is not new systems, it is the systems we already have. The ask. So what I am asking for today is support for two additional clinical training specialists. If we get this right, more surgeons will have that same experience, and so will their patients. — That runs about one minute. Your own update will be about two and a half times as long: one more piece of evidence, an owner and a timeline for each part of the plan, and a fuller ask.',
-          bodyZh: '故事。上個月，台中一位大腸直腸外科醫師完成了她的第 50 台機器人手術。一年前她跟我們說，她絕對不會換。是什麼改變了？她的病人早一天回家，而且這是她自己看見的。策略。同樣的事正在全台灣發生：今年手術量成長 18%，但成長不平均——三家醫院就佔了六成。我們明年的優先順序有三項：擴大中南部的訓練、把使用率偏低院所提升到每週四台、每區再培養兩位種子醫師。投影片。下一張你會看到一張圖：各院所的使用率。最重要的一點很簡單——我們的成長機會不在新機器，而在已經裝好的機器上。請求。所以我今天要請大家支持的是：再增加兩位臨床訓練專員。如果這件事我們做對了，會有更多醫師經歷同樣的過程，他們的病人也是。——這段大約一分鐘。你自己的簡報大概是它的兩倍半長：多一項證據、計畫的每一部分都有負責人和時程，以及更完整的請求。',
+          bodyZh: '故事。上個月，台中一位大腸直腸外科醫師完成了她的第 50 台機器人手術。一年前她跟我們說，她絕對不會換。是什麼讓她改變？她的病人早一天回家，而且這是她自己看見的。策略。同樣的事正在全台灣發生：今年手術量成長 18%，但成長不平均——三家醫院就佔了六成。我們明年的優先順序有三項：擴大中南部的訓練、把使用率偏低院所提升到每週四台、每區再培養兩位種子醫師。投影片。下一張你會看到一張圖：各院所的使用率。最重要的一點很簡單——我們的成長機會不在新機器，而在已經裝好的機器上。請求。所以我今天要請大家支持的是：再增加兩位臨床訓練專員。如果這件事我們做對了，會有更多醫師經歷同樣的過程，他們的病人也是。——這段大約一分鐘。你自己的簡報大概是它的兩倍半長：多一項證據、計畫的每一部分都有負責人和時程，以及更完整的請求。',
         },
 
         {
@@ -1299,7 +1299,7 @@ const NOTEBOOK = {
               zh: '這份示範到底在請求什麼？這個請求還少了什麼？',
               starters: [
                 { en: 'Two training specialists, but not by when.', zh: '兩位訓練專員，但沒說什麼時候要到位。' },
-                { en: 'Nobody is named as owning the next step.', zh: '沒有人被指定負責下一步。' },
+                { en: 'Nobody is named as owning the next step.', zh: '沒有指定誰負責下一步。' },
                 { en: 'It needs a decision date, not just support.', zh: '它需要一個做決定的日期，而不只是「支持」。' },
               ],
             },
@@ -1368,7 +1368,7 @@ const NOTEBOOK = {
           en: 'Which half goes with which',
           zh: '配對：哪一半接哪一半',
           hintEn: 'Tap a phrase on the left, then its partner on the right.',
-          hintZh: '先點左邊的字詞，再點右邊配對的字詞。',
+          hintZh: '先點左邊的字，再點右邊跟它配對的那個。',
           pairs: [
             { a: 'the key', b: 'takeaway' },
             { a: 'year over', b: 'year' },

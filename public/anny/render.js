@@ -133,7 +133,7 @@ const FIGURES = {
       { en: 'The ask', zh: '請求', earnEn: 'earns Commitment', earnZh: '換到行動' },
     ],
     footEn: 'A report runs the other way: data first, story last if at all, and no ask. That reversal is the whole difference between reporting and leading.',
-    footZh: '報告的順序剛好相反：先數據，故事擺最後、甚至不放，也沒有請求。這個顛倒，就是「報告」和「領導」之間的全部差別。',
+    footZh: '報告的順序剛好相反：先數據，故事擺最後、甚至不放，也沒有請求。而這個顛倒，就是「報告」和「領導」的差別所在。',
   },
 
   /* Session 1. The spine of that hour was an order, and it was split across
@@ -143,21 +143,21 @@ const FIGURES = {
   coach: {
     steps: [
       {
-        en: 'Keep', zh: '先講保留',
+        en: 'Keep', zh: '先講保留什麼',
         list: [
           { en: 'Name the strengths, specifically', zh: '具體說出她的強項' },
           { en: 'Persistence, preparation, standards', zh: '堅持、準備、標準' },
         ],
       },
       {
-        en: 'Reframe', zh: '再轉向',
+        en: 'Reframe', zh: '再把它轉向',
         list: [
           { en: 'Leadership is their next use', zh: '領導力是這些強項的下一個用法' },
           { en: 'Not a replacement for them', zh: '不是用來取代它們' },
         ],
       },
       {
-        en: 'Challenge', zh: '最後指出',
+        en: 'Challenge', zh: '最後指出挑戰',
         list: [
           { en: 'Put the next thing as a question', zh: '把下一個挑戰講成問題' },
           { en: 'A verdict cannot be picked up', zh: '判決，對方接不住' },
@@ -206,7 +206,7 @@ const FIGURES = {
     ],
     /* No "on the left": on a phone the panels stack and there is no left. */
     footEn: 'None of what the job used to measure is a fault, and none of it has to be given up — it is what got her here, and she will need all of it. The scoreboard is simply no longer the one she spent twelve years learning to win on, and nobody told her it had been changed.',
-    footZh: '以前被衡量的那些，沒有一項是缺點，也沒有一項需要放棄——那正是把她帶到這個位置的東西，而且她還會用到。只是計分板已經不是她花十二年學會怎麼贏的那一塊了，而且沒有人告訴過她換了。',
+    footZh: '以前衡量的那些，沒有一項是缺點，也沒有一項需要放棄——那正是把她帶到這個位置的東西，而且她還會用到。只是計分板已經不是她花十二年學會怎麼贏的那一塊了，而且沒有人告訴過她換了。',
   },
 
   /* Session 3. The note above it says two things — where each C breaks, and
