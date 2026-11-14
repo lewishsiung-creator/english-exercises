@@ -42,6 +42,8 @@
      two      a two-column table: `head` of two, then `rows` of two
      clock    the 30-minute plan. Rows carry `from`/`to` in minutes, and the
               timer in the top bar lights the row the meeting is actually in
+     figure   a diagram, named by key. The drawing itself is in render.js so
+              this file stays data; `head` and `lead` are optional
      draft    a loud band saying a section is a proposal, not a schedule. It
               prints, because the failure it guards against is a draft being
               handed round as the plan
@@ -160,6 +162,13 @@ const GUIDE = {
           label: '會前先釐清',
           text: '哪些條件已確認？哪些可以共同決定？希望對方提供建議、負責部分內容，還是共同主導？這三種參與程度需要不同的承諾。',
         },
+
+        {
+          t: 'figure',
+          fig: 'levels',
+          head: '三種參與程度',
+          lead: '上面那句話裡最重要的是這三個詞。它們看起來差不多，實際上是三種完全不同的承諾——今天要確認的就是哪一種。',
+        },
         {
           t: 'clock',
           head: '建議的 30 分鐘討論安排',
@@ -233,6 +242,12 @@ const GUIDE = {
         {
           t: 'p',
           text: '主線：第一天建立共同理解，晚間讓平常少互動的同事真的講到話，第二天把前一天的共識轉成各自帶得回團隊的行動。每一段後面標的是它支持哪一個成果——沒有對應成果的時段，就是可以砍掉或換掉的時段。',
+        },
+
+        {
+          t: 'figure',
+          fig: 'arc',
+          head: '兩天要走的那條線',
         },
         {
           t: 'days',

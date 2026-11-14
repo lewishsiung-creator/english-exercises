@@ -91,9 +91,105 @@ function buildCover() {
     </section>`;
 }
 
+/* ---------------- figures ----------------
+
+   Two things in this guide are shapes rather than sentences, and both were a
+   single clause inside a paragraph: the three levels of involvement she could
+   be asking the other CSD for, and the arc the two days are supposed to make.
+   The first is the decision the whole conversation turns on, and it was eight
+   words long.
+
+   Laid out in HTML and CSS, not drawn as SVG with text inside — text in an
+   SVG does not reflow, does not grow when the reader enlarges type, and
+   cannot be selected or read aloud. The only SVG is the arrow. Same approach
+   as the notebook next door, and the same container query: a figure sizes
+   against its own column, because the window's width is not the question. */
+
+const ARROW = `<svg class="fig-arrow" viewBox="0 0 24 24" aria-hidden="true"><path
+  d="M4 12h14M12 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+  stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+const FIGURES = {
+  /* Section 02. "提供建議、負責部分內容，還是共同主導" is the single most
+     consequential thing to settle today, and it was one clause in a callout.
+     The three are drawn as a rising scale because that is what they are. */
+  levels: {
+    steps: [
+      {
+        t: '提供建議',
+        d: '對方給意見，你做決定。',
+        note: '承諾最輕，也最容易當場答應——所以最容易被誤以為是合作。',
+      },
+      {
+        t: '負責部分內容',
+        d: '對方主責其中一段，那一段他說了算。',
+        note: '要講清楚是哪一段，以及他在那一段裡可以決定什麼。',
+      },
+      {
+        t: '共同主導',
+        d: '從成果到議程一起決定。',
+        note: '責任和功勞都對半。這一種必須有實際影響決策的空間，否則只是名義。',
+      },
+    ],
+    foot: '三種都叫「合作」，但承諾的份量差很多。今天沒有講明是哪一種，雙方會各自想成不同的一種，然後在下一次會議才發現。',
+  },
+
+  /* Section 03. The through-line for the two days, which the paragraph above
+     the table states and the table itself cannot show. */
+  arc: {
+    steps: [
+      {
+        t: '第一天下午',
+        d: '建立共同理解',
+        note: '聽完別人的經驗，知道 2027 年要往哪裡走。',
+      },
+      {
+        t: '第一天晚上',
+        d: '讓平常不講話的人講到話',
+        note: '混桌、輕量的題目、不安排上台。這一段沒有議程才有用。',
+      },
+      {
+        t: '第二天上午',
+        d: '把共識變成帶得回去的行動',
+        note: '每組一個做得出來的方案，講清楚誰負責、什麼時候檢視。',
+      },
+    ],
+    foot: '少了中間那一段，兩天一夜就只是兩個半天的會議——而那正是最常被拿掉的一段。',
+  },
+};
+
+function figSteps(steps) {
+  return steps.map((s, i) => `
+    ${i ? ARROW : ''}
+    <div class="fig-step">
+      <p class="fig-n">${i + 1}</p>
+      <p class="fig-t">${text(s.t)}</p>
+      ${s.d ? `<p class="fig-d">${text(s.d)}</p>` : ''}
+      ${s.note ? `<p class="fig-note">${text(s.note)}</p>` : ''}
+    </div>`).join('');
+}
+
 const BLOCKS = {
 
   lead: (b) => `<p class="lead">${text(b.text)}</p>`,
+
+  /* A figure names its drawing by key. An unknown key says so on the page —
+     a diagram that silently disappears is the kind of thing nobody notices
+     until the meeting. */
+  figure: (b) => {
+    const f = FIGURES[b.fig];
+    if (!f) {
+      console.error(`No figure named "${b.fig}"`);
+      return `<p class="missing">缺少圖解：<code>${text(b.fig)}</code></p>`;
+    }
+    return `
+      <figure class="fig">
+        ${b.head ? `<h3>${text(b.head)}</h3>` : ''}
+        ${b.lead ? `<p class="body">${text(b.lead)}</p>` : ''}
+        <div class="fig-row fig-row-${f.steps.length}">${figSteps(f.steps)}</div>
+        ${f.foot ? `<figcaption class="fig-foot">${text(f.foot)}</figcaption>` : ''}
+      </figure>`;
+  },
 
   p: (b) => `<p class="body">${text(b.text)}</p>`,
 

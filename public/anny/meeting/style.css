@@ -724,6 +724,75 @@ h3 {
   padding: 3px 10px;
 }
 
+/* ---------------- figures ----------------
+
+   Same construction as the notebook's: HTML and CSS, one SVG arrow, and a
+   container query so the figure sizes against its own column rather than the
+   window — at 900px the contents sidebar appears and takes 15rem away, so a
+   wider window can leave a step narrower than it was.
+
+   Quiet on purpose. One grey card per step, the accent on the number only.
+   This page is read under time pressure; a loud diagram would compete with
+   the agenda it is explaining. */
+
+.fig { margin: 26px 0; container-type: inline-size; }
+
+.fig-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+@container (min-width: 520px) {
+  .fig-row-3 { flex-direction: row; gap: 10px; }
+  .fig-row-3 .fig-arrow { transform: none; width: 22px; height: 22px; }
+}
+@container (min-width: 660px) {
+  .fig-row-4 { flex-direction: row; gap: 10px; }
+  .fig-row-4 .fig-arrow { transform: none; width: 22px; height: 22px; }
+}
+
+.fig-step {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 16px 18px;
+  background: var(--card);
+  border-radius: var(--r-card);
+}
+
+.fig-arrow {
+  flex: none;
+  align-self: center;
+  width: 18px;
+  height: 18px;
+  color: var(--ink-faint);
+  transform: rotate(90deg);
+}
+
+.fig-n {
+  margin: 0 0 7px;
+  font-family: var(--font-display);
+  font-size: .82rem;
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  color: var(--gold);
+}
+
+.fig-t { margin: 0; font-size: 1.02rem; font-weight: 600; line-height: 1.45; }
+.fig-d { margin: 5px 0 0; font-size: .92rem; line-height: 1.7; color: var(--ink); }
+.fig-note { margin: 8px 0 0; font-size: .84rem; line-height: 1.7; color: var(--ink-soft); }
+
+.fig-foot {
+  margin: 14px 0 0;
+  font-size: .88rem;
+  line-height: 1.8;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 620px) { .fig-step { padding: 13px 16px; } }
+
 /* ---------------- the agenda under review ----------------
 
    Two columns: the slot as it stands, and the one thing to settle about it
@@ -1036,7 +1105,11 @@ h3 {
   .tbl { min-width: 0; }
   .callout, .goals, .clock-row, .steps li, .asks li, .replies li, .agenda li,
   .script-body, .lines li, .tick, .field, .tbl tr, .day-rows li,
-  .draft { break-inside: avoid; }
+  .draft, .fig, .fig-step { break-inside: avoid; }
+  /* A4 is wide enough for the row, so a diagram prints as it was drawn
+     rather than in the phone's column. */
+  .fig-row { flex-direction: row !important; gap: 8px; }
+  .fig-arrow { transform: none !important; }
   /* The draft band turns itself inside out for paper. On screen it is a black
      panel; printed, that is a page of toner, and most browsers drop the
      background anyway — which would leave white text on white. So on paper it

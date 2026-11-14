@@ -4292,6 +4292,13 @@ decisions table.
   CSD. Each slot is also tagged with which of the three outcomes from section
   01 it serves, which makes the empty tags the useful ones: a slot that serves
   no outcome is a slot to cut.
+- **Two diagrams here too** (14 Nov 2026), built the same way as the
+  notebook's: HTML and CSS with one SVG arrow, sized by a container query
+  against their own column. *三種參與程度* unpacks the single most consequential
+  thing to settle on the day — whether she is asking the other CSD to advise,
+  to own a piece, or to co-lead — which was eight words inside a callout. *兩天
+  要走的那條線* draws the through-line the day-by-day table cannot show. Both
+  were clauses in a paragraph before.
 - **A block type with no builder says so on the page.** The dispatch table used
   to return an empty string for an unknown `t`, and the whole agenda table
   vanished silently the first time it ran. It now renders a loud red marker and
