@@ -160,7 +160,8 @@ function buildEssays(p) {
         </ol>
       </div>`).join('');
 
-    const isPractice = LESSON.practice.year === e.year;
+    // LESSON.practice is a list: a year can have more than one page of practice
+    const practices = [].concat(LESSON.practice).filter((x) => x.year === e.year);
     const derived = xf ? xf.items.filter((x) => x.base === e.id) : [];
 
     return `
@@ -215,11 +216,11 @@ function buildEssays(p) {
           <p class="takeaway-en">${text(e.takeawayEn)}${speakBtn(e.takeawayEn, 'say say-quiet')}</p>
         </div>
 
-        ${isPractice ? `
-          <a class="practice" href="${text(LESSON.practice.href)}">
-            <span class="practice-h">→ ${text(LESSON.practice.label)}</span>
-            <span class="practice-b">${text(LESSON.practice.note)}</span>
-          </a>` : ''}
+        ${practices.map((x) => `
+          <a class="practice" href="${text(x.href)}">
+            <span class="practice-h">→ ${text(x.label)}</span>
+            <span class="practice-b">${text(x.note)}</span>
+          </a>`).join('')}
 
         ${derived.map((x) => `
           <a class="practice" href="#${x.id}">

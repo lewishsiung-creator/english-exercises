@@ -3900,6 +3900,43 @@ family's own (`fam.css`, `teacher.js`, `app.js`, the manifest).
   one's progress was lost.
 - Older sections below still say `/exam-writing/`; they describe it as it was.
 
+### 109 練習單 at `/learn/writing/109/` (2026-11-14)
+
+Lewis sent his paper worksheet for the 109 essay (*Department Store
+Anniversary Sale*, seven pages: A 暖身 to G 換題目寫, then an answer key) and,
+from four options, chose to have it made into a page to do on screen — over
+hosting the PDF, a proofread, or the same sheet for the other six years. The
+essay page's 109 card links down to it, and the page's bar links back.
+
+| Part | On the page |
+| --- | --- |
+| A 暖身 | Four questions; think or say it, then 參考想法 (written for the page — the sheet had none) |
+| B1 字彙配對 | Ten chunks, tap the English then its Chinese; a match is said aloud |
+| B2 片語填空 | Type into the gap, 對答案 or Enter; a miss gives the hint, then 看答案 |
+| C 動作配對 | One sentence at a time, eight jobs to choose from, then the whole table and 想一想 |
+| D 句子排序 | Paragraph 2 under the sheet's letters (a)–(f); the clue words light up after |
+| E 句型練習 | E1–E4, typed, then 參考答案 — "one way to write it", never a mark |
+| F 範文填空 | Tap a gap, then a word; twelve gaps, a word bank that stays in view |
+| G 換題目寫 | A scene, the eleven-row skeleton (109's own keywords as placeholders), the essay with a word count, the self-check |
+| 範 範文全文 | Behind a button, after G, with a link to the sentence-by-sentence essay |
+
+- **The essay is not copied.** Sentences, Chinese and jobs come from
+  `ESSAYS.e109`; `109/sheet.js` holds only the worksheet's own questions.
+  `practice.js` throws if they drift: a cloze that no longer spells the essay,
+  a skeleton row count that is not the sentence count, a job not among the
+  eight options.
+- **Changed from the paper, on purpose.** F's word bank was printed in answer
+  order (packed, lines, discount …), which gives the cloze away; the page sorts
+  it alphabetically. Two answers the key did not list are accepted because they
+  are right: *The tickets sold out* (no *were*) and the while-clause first.
+- **What is typed stays in this browser** (`ewp.109`); 設定 → 清除這頁的作答
+  asks before it wipes. Finishing C sets the essay page's 動作配對 for 109
+  (`ew.done.e109.m`) — it is the same exercise. D does not set 排序, because the
+  sheet only orders the second paragraph.
+- **Teacher device:** 設定 → 全部顯示答案 opens every part answered, for the
+  projector, without touching what anyone typed; 全部收起 puts it back.
+- `noindex`, like the family's other new pages.
+
 ### `/reading/junior-vocab/` — 國中單字, 教育部's 2,000 words
 
 The 高中單字 page's sibling, asked for 2026-11-08: 教育部 108 課綱《英語文參考字
@@ -5540,6 +5577,7 @@ public/robot-helper/      the 113 學年度 writing worksheet
 public/exam-writing/      a redirect to learn/writing/ (moved 2026-11-10)
 public/learn/             英文學習: the top page over the three below and writing/, and only them
 public/learn/writing/     學測英文寫作: the 109–115 學測 essay survey
+public/learn/writing/109/ 109 練習單: Lewis's paper worksheet, done on screen
 public/reading/           three high school texts, with his word tables
 public/reading/vocab/     高中單字: 大考中心's list, Levels 1–2 so far
 public/reading/junior-vocab/  國中單字: 教育部's 2,000 words
@@ -5878,6 +5916,16 @@ compare switch prints the base sentence under each of its own. The renderer
 throws on a mismatch rather than pairing sentence five with sentence six. Its
 `patterns` list (the handout's 關鍵句型與用法) renders under 中文重點, and
 the base essay gets a link down to it automatically.
+
+A year's **練習單** is a folder (`learn/writing/109/`) with a small
+`index.html` and a `sheet.js`; the renderer and styles are shared
+(`learn/writing/practice.js`, `practice.css`) and the page loads
+`../content.js` for the essay. Each sheet part names a `kind` — `warmup`,
+`match`, `gaps`, `jobs`, `order`, `rewrite`, `cloze`, `transfer` — and an
+unknown one throws. For another year: copy the folder, rewrite `sheet.js`
+(the cloze text must spell that year's essay exactly; the skeleton needs one
+row per sentence), and add an entry to `LESSON.practice` in `content.js`,
+which is now a list matched by `year`.
 
 **Landscape Portfolio.** Everything is in
 [`public/landscape-portfolio/content.js`](public/landscape-portfolio/content.js)
