@@ -4169,6 +4169,24 @@ session, as a self-audit Anny marks for her manager and then for herself.
   written for the lesson. The closing `note` block says exactly which is which,
   **on the page** rather than only in the content file — a reader who cannot
   see this README is the one who needs to know.
+- **Two diagrams, laid out rather than drawn** (14 Nov 2026). Two things on
+  this page are shapes, not sentences — the order you deliver a leadership
+  update in, and the three stages of working on a belief — and both were
+  buried in a paragraph. They are figures now, named by key from `content.js`
+  (`{ t: 'figure', fig: 'order' }`) with the drawing itself in `render.js`, so
+  the content file stays pure data. They are **HTML and CSS, not SVG with text
+  inside it**: text in an SVG does not reflow, does not grow when the reader
+  enlarges type, cannot be selected or read aloud, and has to be positioned by
+  hand twice over on a bilingual page. The only SVG is the arrow. Labels show
+  both languages at once, because a diagram is all named things and nothing in
+  one should be behind a tap.
+- **The figures size against their own column, not the window.** A viewport
+  breakpoint gets this wrong in the middle of the range: at 900px the contents
+  sidebar appears and takes 15rem off the column, so a window that just got
+  *wider* leaves each step 109px across. A container query on `.fig` asks the
+  only question that matters, and the two figures carry different thresholds
+  because three steps fit where four do not. Without container-query support
+  they stay a column at every width: taller, never broken.
 - **Readability, measured rather than eyeballed** (13 Nov 2026). Three things
   came out of actually checking the page instead of looking at it. **The body
   was set in the display face** — intuitive.com runs BrownPro for headlines and

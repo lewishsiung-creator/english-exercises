@@ -556,6 +556,15 @@ const NOTEBOOK = {
         },
 
         {
+          t: 'figure',
+          fig: 'stages',
+          en: 'The three stages, as a shape',
+          zh: '三個階段的樣子',
+          hintEn: 'The same thing the paragraph above says, laid out so the order is visible at a glance.',
+          hintZh: '和上面那段文字講的是同一件事，排出來之後順序一眼就看得到。',
+        },
+
+        {
           t: 'cards',
           en: 'The seven hidden blockers',
           zh: '七大心魔',
@@ -1017,6 +1026,15 @@ const NOTEBOOK = {
           zh: '每一個 C 通常壞在哪裡，以及防止它的順序',
           bodyEn: 'The four failures are predictable. Credibility goes when there are numbers everywhere and no "so what". Connection goes when you open straight into data, before anyone knows why they are listening. Clarity goes when a slide carries paragraphs and a chart too small to read. Commitment goes when you finish on "Any questions?" and nobody has been asked for anything. The order that prevents most of this is story, then strategy, then one clear slide, then the ask — which is almost the reverse of how a report is built.',
           bodyZh: '這四種失敗是可以預測的。數字到處都是、卻沒有說出「所以呢」，可信就沒了。一開場就進數據、聽眾還不知道自己為什麼要聽，共鳴就沒了。一張投影片塞滿整段文字和看不清的圖表，清晰就沒了。最後以「有沒有問題？」收尾、卻沒有向任何人提出請求，行動就沒了。能擋掉大部分問題的順序是：先故事、再策略、再一張清楚的投影片、最後提出請求——這幾乎和一般寫報告的順序相反。',
+        },
+
+        {
+          t: 'figure',
+          fig: 'order',
+          en: 'The order you deliver in',
+          zh: '你實際講出來的順序',
+          hintEn: 'Four Cs, but you do not aim at them directly — each one is earned by the step above it.',
+          hintZh: '四個 C 不是直接去追求的，每一個都是靠上面那一步換來的。',
         },
 
         {

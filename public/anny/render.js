@@ -85,8 +85,107 @@ function hint(b) {
   return `<p class="hint">${text(b.hintEn)}<span class="hint-zh">${text(b.hintZh || '')}</span></p>`;
 }
 
+/* ---------------- figures ----------------
+
+   Two things on this page are shapes rather than sentences — the order you
+   deliver a leadership update in, and the three stages of working on a belief
+   — and both were buried in a paragraph. They are diagrams now.
+
+   Laid out in HTML and CSS, NOT drawn as an SVG with text inside it. Text in
+   an SVG does not reflow when the column narrows, does not grow when the
+   reader enlarges type, cannot be selected or read aloud, and has to be
+   positioned by hand twice over on a bilingual page. All four of those matter
+   here, and none of them is worth trading for a drawing. The only SVG is the
+   arrow between steps, which is the one part that really is a picture.
+
+   They live in the renderer so content.js stays pure data: a session names a
+   figure by key and never carries markup. */
+
+const ARROW = `<svg class="fig-arrow" viewBox="0 0 24 24" aria-hidden="true"><path
+  d="M4 12h14M12 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+  stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+const FIGURES = {
+  /* Session 3. The four Cs are already a list on the page; what the list
+     cannot show is that you earn them in an order, and that the order is
+     almost the reverse of how a report is built. That is the figure. */
+  order: {
+    steps: [
+      { en: 'Story', zh: '故事', earnEn: 'earns Connection', earnZh: '換到共鳴' },
+      { en: 'Strategy', zh: '策略', earnEn: 'earns Credibility', earnZh: '換到可信' },
+      { en: 'One slide', zh: '一張投影片', earnEn: 'earns Clarity', earnZh: '換到清晰' },
+      { en: 'The ask', zh: '請求', earnEn: 'earns Commitment', earnZh: '換到行動' },
+    ],
+    footEn: 'A report runs the other way: data first, story last if at all, and no ask. That reversal is the whole difference between reporting and leading.',
+    footZh: '報告的順序剛好相反：先數據，故事擺最後、甚至不放，也沒有請求。這個顛倒，就是「報告」和「領導」之間的全部差別。',
+  },
+
+  /* Session 2. Three stages, two steps each, and the order is the point —
+     which a paragraph states and a diagram shows. */
+  stages: {
+    steps: [
+      {
+        en: 'Uncover', zh: '找出',
+        list: [
+          { en: 'Notice you are stuck', zh: '察覺自己卡住了' },
+          { en: 'Put the belief into words', zh: '把信念說成一句話' },
+        ],
+      },
+      {
+        en: 'Unpack', zh: '剖析',
+        list: [
+          { en: 'Admit the part you play', zh: '承認自己扮演的角色' },
+          { en: 'Trace where it came from', zh: '回溯它從哪裡來' },
+        ],
+      },
+      {
+        en: 'Unblock', zh: '破除',
+        list: [
+          { en: 'Reframe it', zh: '把它轉個念' },
+          { en: 'Change one concrete thing', zh: '具體改變一件事' },
+        ],
+      },
+    ],
+    footEn: 'Most people jump straight to the third box. That is why the change never holds.',
+    footZh: '多數人直接跳到第三格，這就是改變撐不住的原因。',
+  },
+};
+
+function figSteps(steps) {
+  return steps.map((s, i) => `
+    ${i ? ARROW : ''}
+    <div class="fig-step">
+      <p class="fig-n">${i + 1}</p>
+      <p class="fig-t"><span class="en">${text(s.en)}</span><span class="zh">${text(s.zh)}</span></p>
+      ${s.earnEn ? `<p class="fig-earn"><span class="en">${text(s.earnEn)}</span>
+        <span class="zh">${text(s.earnZh)}</span></p>` : ''}
+      ${s.list ? `<ul class="fig-l">${s.list.map((l) => `
+        <li><span class="en">${text(l.en)}</span><span class="zh">${text(l.zh)}</span></li>`).join('')}</ul>` : ''}
+    </div>`).join('');
+}
+
 const BLOCKS = {
   lead: (b) => `<div class="lead">${pair(b.en, b.zh)}</div>`,
+
+  /* A figure names its drawing by key. An unknown key says so on the page
+     rather than rendering nothing — a diagram that silently disappears is the
+     kind of thing nobody notices until the lesson. */
+  figure: (b) => {
+    const f = FIGURES[b.fig];
+    if (!f) {
+      console.error(`No figure named "${b.fig}"`);
+      return `<p class="missing">缺少圖解：<code>${text(b.fig)}</code></p>`;
+    }
+    return `
+      <figure class="fig">
+        ${label(b)}
+        ${hint(b)}
+        <div class="fig-row fig-row-${f.steps.length}">${figSteps(f.steps)}</div>
+        ${f.footEn ? `<figcaption class="fig-foot">
+          <span class="en">${text(f.footEn)}</span>
+          <span class="zh">${text(f.footZh)}</span></figcaption>` : ''}
+      </figure>`;
+  },
 
   quote: (b) => `
     <figure class="quote">
@@ -825,6 +924,10 @@ function keepLinkVisible(a) {
   else if (link.bottom > view.bottom) box.scrollTop += link.bottom - view.bottom;
 }
 
+const progress = $('#progress');
+const toTop = $('#toTop');
+const navToggleLabel = $('#navToggleLabel');
+
 function markHere() {
   const line = 90;
   let here = marks[0];
@@ -832,10 +935,33 @@ function markHere() {
   links.forEach((a) => a.classList.remove('here'));
   const a = links.get(here.id);
   if (a) { a.classList.add('here'); keepLinkVisible(a); }
+
+  /* How far down the page. The contents list answers this on a wide screen,
+     but it only knows about sessions, and one open session is ten screens. */
+  const max = document.documentElement.scrollHeight - innerHeight;
+  progress.style.width = `${max > 0 ? Math.min(100, (scrollY / max) * 100) : 0}%`;
+
+  /* The ☰ is mobile-only, so it can carry the session number for free: where
+     you are, right next to the way to move. */
+  const n = here.classList && here.classList.contains('session')
+    ? $('.session-btn .n', here)
+    : null;
+  navToggleLabel.textContent = n ? n.textContent.trim() : 'Sessions 課程';
+
+  toTop.hidden = scrollY < innerHeight * 1.5;
 }
 
 markHere();
 addEventListener('scroll', markHere, { passive: true });
+addEventListener('resize', markHere, { passive: true });
+
+toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* Folding a session changes the page's height, so the position bar has to be
+   redrawn — otherwise it reads as 70% of a page that is now half as long. */
+$('#doc').addEventListener('click', (e) => {
+  if (e.target.closest('.session-btn')) requestAnimationFrame(markHere);
+});
 
 const navToggle = $('#navToggle');
 navToggle.addEventListener('click', () => {

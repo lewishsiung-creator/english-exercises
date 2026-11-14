@@ -123,7 +123,8 @@ body.zh-all .zh-chip { display: none; }
    — a flipped phrase card, an opened "useful language" list — where a second
    tap would only be in the way. */
 .hint-zh, .prompt .zh, .toc .t .zh, .why .zh, .focus .zh, .role-name .zh,
-.starters .zh, .frames .zh, .tick-t .zh { display: block; }
+.starters .zh, .frames .zh, .tick-t .zh,
+.fig-row .zh, .fig-foot .zh { display: block; }
 
 .pair[data-zh] { cursor: pointer; }
 .pair p { margin: 0; }
@@ -188,6 +189,36 @@ body.zh-all .zh-chip { display: none; }
 .bar-btn-zh[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
 
 @media (min-width: 900px) { #navToggle { display: none; } }
+
+/* Reading position, drawn along the bar's own bottom edge so it takes no
+   height of its own. Same part as the meeting guide carries. */
+.bar-progress {
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  overflow: hidden;
+}
+.bar-progress i { display: block; height: 100%; width: 0; background: var(--gold); }
+
+.totop {
+  position: fixed;
+  right: clamp(14px, 3vw, 26px);
+  bottom: clamp(14px, 3vw, 26px);
+  z-index: 28;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  box-shadow: 0 4px 14px rgba(28, 28, 31, .10);
+  color: var(--ink-soft);
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+}
+.totop[hidden] { display: none; }
+.totop:hover { color: var(--ink); border-color: var(--ink-faint); }
+
+@media print { .bar-progress, .totop { display: none !important; } }
 
 /* ---------------- shell + contents ---------------- */
 
@@ -497,6 +528,102 @@ body.zh-all .session-btn .titles .zh { display: block; }
 }
 
 .summary { margin: 0 0 20px; }
+
+/* Only ever shown when content.js names a figure the renderer does not have.
+   Deliberately ugly, and it prints. */
+.missing {
+  padding: 12px 16px;
+  background: #fde8e4;
+  border: 1px solid #e07a5f;
+  border-radius: var(--r-card);
+  font-size: .85rem;
+  color: #8c2f16;
+}
+
+/* ---------------- figures ----------------
+
+   Two diagrams, laid out in HTML rather than drawn, so they reflow: a row of
+   steps on a wide screen, a column on a phone, with the arrow turning a
+   quarter to follow. The labels are named things, so both languages show at
+   once — nothing in a diagram should be behind a tap.
+
+   Deliberately quiet: one grey card per step, the accent on the step number
+   only, and no borders. A diagram that shouts competes with the exercise it
+   is explaining. */
+
+/* The figure sizes itself against ITS OWN width, not the window's. A viewport
+   breakpoint gets this wrong in the middle of the range: at 900px the contents
+   sidebar appears and takes 15rem off the column, so a window that just got
+   wider leaves each step 109px across. A container query asks the only
+   question that matters — is there room in this column — and the thresholds
+   differ per figure because three steps fit where four do not.
+
+   Without container-query support the row stays a column at every width:
+   taller, never broken. Every current browser has them. */
+.fig { margin: 28px 0; container-type: inline-size; }
+
+.fig-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+@container (min-width: 520px) {
+  .fig-row-3 { flex-direction: row; gap: 10px; }
+  .fig-row-3 .fig-arrow { transform: none; width: 22px; height: 22px; }
+}
+@container (min-width: 660px) {
+  .fig-row-4 { flex-direction: row; gap: 10px; }
+  .fig-row-4 .fig-arrow { transform: none; width: 22px; height: 22px; }
+}
+
+.fig-step {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 16px 18px;
+  background: var(--card);
+  border-radius: var(--r-card);
+}
+
+.fig-arrow {
+  flex: none;
+  align-self: center;
+  width: 18px;
+  height: 18px;
+  color: var(--ink-faint);
+  transform: rotate(90deg);
+}
+
+.fig-n {
+  margin: 0 0 7px;
+  font-family: var(--font-display);
+  font-size: .82rem;
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  color: var(--gold);
+}
+
+.fig-t { margin: 0; font-size: 1.02rem; font-weight: 600; line-height: 1.35; }
+.fig-t .zh { font-size: .86rem; font-weight: 400; color: var(--ink-soft); margin-top: 3px; }
+
+.fig-earn { margin: 9px 0 0; font-size: .78rem; line-height: 1.5; color: var(--ink-faint); }
+.fig-earn .zh { font-size: .92em; }
+
+.fig-l { margin: 10px 0 0; padding-left: 1.05em; }
+.fig-l li { margin: 0 0 6px; font-size: .86rem; line-height: 1.5; color: var(--ink-soft); }
+.fig-l li .zh { font-size: .92em; color: var(--ink-faint); }
+
+.fig-foot {
+  margin: 14px 0 0;
+  font-size: .86rem;
+  line-height: 1.75;
+  color: var(--ink-faint);
+}
+.fig-foot .zh { margin-top: 3px; }
+
+@media (max-width: 620px) { .fig-step { padding: 13px 16px; } }
 
 /* ---------------- note ---------------- */
 
@@ -1143,6 +1270,11 @@ body.zh-all .card-back { display: block; }
   .session-btn { grid-template-columns: 2.4rem 1fr; }
   .sample-banner { break-after: avoid; }
   .cards { grid-template-columns: repeat(2, 1fr); }
+  /* A4 is wide enough for the row, so the diagram prints as it was drawn
+     rather than in the phone's column. */
+  .fig-row { flex-direction: row !important; gap: 8px; }
+  .fig-arrow { transform: none !important; }
+  .fig, .fig-step { break-inside: avoid; }
   .card, .fix, .gap, .ask, .task, .role, .note, .goals { break-inside: avoid; }
   .gap.solved .opts { display: flex; }
   .slot { min-width: 9rem; border-bottom: 1px solid #999; color: transparent; }
