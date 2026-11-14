@@ -1178,11 +1178,43 @@ const NOTEBOOK = {
         },
 
         {
+          t: 'phrases',
+          en: 'When they push back',
+          zh: '被追問、被質疑的時候',
+          items: [
+            {
+              en: 'That’s a fair challenge.',
+              zh: '這個質疑很合理。',
+              eg: 'That’s a fair challenge. Here’s how we see it: the gap is in utilisation, not in demand.',
+              egZh: '這個質疑很合理。我們是這樣看的：缺口在使用率，不在需求。',
+            },
+            {
+              en: 'The short answer is …',
+              zh: '簡單地說⋯⋯',
+              eg: 'Good question. The short answer is yes, within this budget.',
+              egZh: '好問題。簡單地說：可以，而且在這個預算內。',
+            },
+            {
+              en: 'I’ll get back to you on that.',
+              zh: '這一點我會再回覆你。',
+              eg: 'I don’t have the exact figure with me. I’ll get back to you on that by Friday.',
+              egZh: '我手邊沒有確切的數字。這一點我星期五前會再回覆你。',
+            },
+            {
+              en: 'Let’s take that offline.',
+              zh: '這個我們會後再談。',
+              eg: 'That deserves more time than we have. Let’s take that offline so we stay on schedule.',
+              egZh: '這個值得花更多時間談。我們會後再討論，免得耽誤進度。',
+            },
+          ],
+        },
+
+        {
           t: 'note',
-          en: 'A model three-minute update',
-          zh: '一份三分鐘簡報的示範',
-          bodyEn: 'Story. Last month, a colorectal surgeon in Taichung did her 50th robotic case. A year ago she told us she would never switch. What changed? Her patients went home a day earlier, and she saw it. Strategy. That story is happening across Taiwan: volume grew 18% this year, but unevenly — three hospitals account for 60% of cases. Our priority for next year is threefold: expand training in central and southern Taiwan, lift utilisation at under-used sites to four cases a week, and build two new surgeon champions per region. Slides. On the next slide you will see one chart: utilisation by hospital. The key takeaway is simple — our growth opportunity is not new systems, it is the systems we already have. The ask. So what I am asking for today is support for two additional clinical training specialists. If we get this right, more surgeons will have that same experience, and so will their patients.',
-          bodyZh: '故事。上個月，台中一位大腸直腸外科醫師完成了她的第 50 台機器人手術。一年前她跟我們說，她絕對不會換。是什麼改變了？她的病人早一天回家，而且這是她自己看見的。策略。同樣的事正在全台灣發生：今年手術量成長 18%，但成長不平均——三家醫院就佔了六成。我們明年的優先順序有三項：擴大中南部的訓練、把使用率偏低院所提升到每週四台、每區再培養兩位種子醫師。投影片。下一張你會看到一張圖：各院所的使用率。最重要的一點很簡單——我們的成長機會不在新機器，而在已經裝好的機器上。請求。所以我今天要請大家支持的是：再增加兩位臨床訓練專員。如果這件事我們做對了，會有更多醫師經歷同樣的過程，他們的病人也是。',
+          en: 'A one-minute model',
+          zh: '一分鐘的示範',
+          bodyEn: 'Story. Last month, a colorectal surgeon in Taichung did her 50th robotic case. A year ago she told us she would never switch. What changed? Her patients went home a day earlier, and she saw it. Strategy. That story is happening across Taiwan: volume grew 18% this year, but unevenly — three hospitals account for 60% of cases. Our priority for next year is threefold: expand training in central and southern Taiwan, lift utilisation at under-used sites to four cases a week, and build two new surgeon champions per region. Slides. On the next slide you will see one chart: utilisation by hospital. The key takeaway is simple — our growth opportunity is not new systems, it is the systems we already have. The ask. So what I am asking for today is support for two additional clinical training specialists. If we get this right, more surgeons will have that same experience, and so will their patients. — That runs about one minute. Your own update will be about two and a half times as long: one more piece of evidence, an owner and a timeline for each part of the plan, and a fuller ask.',
+          bodyZh: '故事。上個月，台中一位大腸直腸外科醫師完成了她的第 50 台機器人手術。一年前她跟我們說，她絕對不會換。是什麼改變了？她的病人早一天回家，而且這是她自己看見的。策略。同樣的事正在全台灣發生：今年手術量成長 18%，但成長不平均——三家醫院就佔了六成。我們明年的優先順序有三項：擴大中南部的訓練、把使用率偏低院所提升到每週四台、每區再培養兩位種子醫師。投影片。下一張你會看到一張圖：各院所的使用率。最重要的一點很簡單——我們的成長機會不在新機器，而在已經裝好的機器上。請求。所以我今天要請大家支持的是：再增加兩位臨床訓練專員。如果這件事我們做對了，會有更多醫師經歷同樣的過程，他們的病人也是。——這段大約一分鐘。你自己的簡報大概是它的兩倍半長：多一項證據、計畫的每一部分都有負責人和時程，以及更完整的請求。',
         },
 
         {
@@ -1206,6 +1238,15 @@ const NOTEBOOK = {
                 { en: 'Each priority has a number attached to it.', zh: '每一項優先事項後面都接著一個數字。' },
                 { en: 'It says where, how many, and by when.', zh: '它說了在哪裡、多少、到什麼時候。' },
                 { en: 'Nothing in it depends on something we do not control.', zh: '裡面沒有一項是靠我們控制不了的東西。' },
+              ],
+            },
+            {
+              en: 'What exactly is being asked for — and what is still missing from the ask?',
+              zh: '這份示範到底在請求什麼？這個請求還少了什麼？',
+              starters: [
+                { en: 'Two training specialists, but not by when.', zh: '兩位訓練專員，但沒說什麼時候要到位。' },
+                { en: 'Nobody is named as owning the next step.', zh: '沒有人被指定負責下一步。' },
+                { en: 'It needs a decision date, not just support.', zh: '它需要一個做決定的日期，而不只是「支持」。' },
               ],
             },
             {
@@ -1289,8 +1330,8 @@ const NOTEBOOK = {
           t: 'task',
           en: 'Three minutes: your own update',
           zh: '三分鐘：你自己的簡報',
-          instructionEn: 'Pick one real topic — a quarterly result, a new initiative, or a team challenge. Plan the four boxes in notes, not sentences. Then deliver it for three minutes from the notes, record it on your phone, take one piece of feedback, and deliver it again.',
-          instructionZh: '挑一個真實的主題——一季的成果、一項新計畫，或團隊的一個難題。用筆記寫下四個框，不要寫成完整句子。然後看著筆記講三分鐘，用手機錄下來，接受一項回饋，再講一次。',
+          instructionEn: 'Pick one real topic — a quarterly result, a new initiative, or a team challenge. Plan the four boxes in notes, not sentences. Before you speak, choose three things to focus on — the story first, three numbers at most, a clear ask. Then deliver it for three minutes from the notes, record it on your phone, take one piece of feedback, and deliver it again. Last, I will play your regional VP and push back once; answer in a sentence or two.',
+          instructionZh: '挑一個真實的主題——一季的成果、一項新計畫，或團隊的一個難題。用筆記寫下四個框，不要寫成完整句子。開口之前，先選三個這次要注意的重點——先講故事、數字最多三個、明確的請求。然後看著筆記講三分鐘，用手機錄下來，接受一項回饋，再講一次。最後，我會扮演你的區域主管追問一題，用一兩句話回答。',
           prompts: [
             { en: 'A quarterly result you already have the numbers for.', zh: '一個你已經有數字的季度成果。' },
             { en: 'A new initiative you want resourced.', zh: '一項你希望拿到資源的新計畫。' },
@@ -1303,6 +1344,7 @@ const NOTEBOOK = {
             { en: 'The key takeaway is…', zh: '最重要的一點是⋯⋯' },
             { en: 'So what I’m asking for today is…', zh: '所以我今天要請大家支持的是⋯⋯' },
             { en: 'If we get this right, …', zh: '如果這件事我們做對了，⋯⋯' },
+            { en: 'That’s a fair challenge.', zh: '這個質疑很合理。' },
           ],
           frames: [
             { en: 'Story — one person this affected, and what happened: ___', zh: '故事——這件事影響到的一個人，以及發生了什麼：＿＿' },
@@ -1310,6 +1352,14 @@ const NOTEBOOK = {
             { en: 'Slide — if you had one slide, its title would say: ___', zh: '投影片——如果只能有一張，它的標題會寫：＿＿' },
             { en: 'Ask — what you need from this audience: ___', zh: '請求——你需要這群聽眾做什麼：＿＿' },
           ],
+        },
+
+        {
+          t: 'note',
+          en: 'Before our next lesson',
+          zh: '下次上課之前',
+          bodyEn: 'Three things, sent to me two days before we meet so I have time to listen. Take one slide from your next real presentation and rewrite its title as a one-sentence takeaway. Write a three-sentence story opening for that presentation. Then record your three-minute update once more.',
+          bodyZh: '三件事，請在上課前兩天傳給我，我才有時間先聽。從你下一場真正的簡報裡挑一張投影片，把標題改寫成一句話的重點。替那場簡報寫一段三句話的故事開場。然後把你的三分鐘簡報再錄一次。',
         },
 
         /* Sourcing, on the page rather than only in this file. This lesson is
@@ -1320,7 +1370,7 @@ const NOTEBOOK = {
           t: 'note',
           en: 'About the example',
           zh: '關於這個示範',
-          bodyEn: 'The model update above is written for practice and every figure in it is invented — the 18%, the 60%, the four cases a week, the 50th case. Do not reuse them. The exercise is to swap in your own real numbers, which is also the only way the credibility half of this lesson does anything for you. The four Cs are a common business-communication framing rather than one author’s model; the examples, the language and the exercises on this page were written for this lesson.',
+          bodyEn: 'The one-minute model above is written for practice and every figure in it is invented — the 18%, the 60%, the four cases a week, the 50th case. Do not reuse them. The exercise is to swap in your own real numbers, which is also the only way the credibility half of this lesson does anything for you. The four Cs are a common business-communication framing rather than one author’s model; the examples, the language and the exercises on this page were written for this lesson.',
           bodyZh: '上面那份示範是為了練習而寫的，裡面每一個數字都是虛構的——18%、六成、每週四台、第 50 台，都是。請不要沿用。這個練習的重點是換成你自己的真實數字，而這也是這堂課「可信」那一半唯一能對你產生作用的方式。四個 C 是商業溝通常見的歸納方式，不是某一位作者的專屬模型；本頁的例子、語言與練習，都是為這堂課而寫。',
         },
       ],
