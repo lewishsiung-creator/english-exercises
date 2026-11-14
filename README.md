@@ -31,14 +31,15 @@ A2 Key, B1 Preliminary — under one hub at `/cambridge/`.
 One page is not English at all: `/math/` is math practice for Grades 1 to 3,
 built for a child in an American school.
 
-Eleven more pages are not lessons. `/landscape-portfolio/` is a portfolio
+Twelve more pages are not lessons. `/landscape-portfolio/` is a portfolio
 template for a student to fill in with their own work, and `/anny/`, `/aaron/`,
-`/anita/`, `/nikky/`, `/eason/`, `/anna/`, `/ken/`, `/mia/`, `/riva-rex/` and
+`/anita/`, `/nikky/`, `/eason/`, `/anna/`, `/ken/`, `/mia/`, `/hank/`, `/riva-rex/` and
 `/jill/` are notebooks kept for one student each, which grow by one session after every
 lesson rather than being finished and left alone. The first four are adult
 clients; `/eason/` is a teenager moving up to senior high school; `/anna/` is a
-young adult of eighteen to twenty, `/ken/` is a college student and `/mia/`
-a young adult working in a clinic;
+young adult of eighteen to twenty, `/ken/` is a college student, `/mia/`
+a young adult working in a clinic and `/hank/` a Grade 10 student whose
+notebook is also his self-study page;
 `/riva-rex/` is a pair of ten-to-twelve-year-olds taught together, and `/jill/`
 is one child of the same age taught alone.
 
@@ -5032,6 +5033,97 @@ over for a logo on the wall), nothing graphic, nobody who could be taken for one
 of her clients. Pexels asks for no attribution and the photographer is credited
 under each picture anyway; print drops them.
 
+## Hank's Notebook — Grade 10, one-to-one, 自學 and 教學, kept over time
+
+The eleventh notebook, copied from
+[Ken's](#kens-notebook--college-student-one-to-one-kept-over-time) with the
+`hank.` localStorage prefix. Hank is in Grade 10 (高一) in Taiwan, writes at
+about CEFR B1 and plays point guard, and all three are written into the header
+comment of [`public/hank/content.js`](public/hank/content.js): the register is
+Eason's rather than Ken's — short teaching sentences, one idea each — the
+examples come from basketball, school and exams, and the spelling is American.
+
+Two things make it different from every notebook before it.
+
+### It is the first notebook with two modes
+
+Lewis asked for a page "for teaching and studying alone", which is the shape of
+the 國中 pages ([Grammar Notes](#grammar-notes--國中-自學-and-教學-one-grammar-point-at-a-time),
+[Body Words](#body-words--國中-自學-and-教學-the-words-for-what-the-body-makes))
+put on top of a notebook:
+
+| | 自學 | 教學 |
+| --- | --- | --- |
+| Who | Hank, on the plain URL | Lewis, after opening `/hank/#teach` once |
+| Chinese | shown under the English | behind the 中 chips |
+| 中文 switch | hides the Chinese — the self-test | opens all of it |
+| Phrase cards | open, with a 記住了 button and a count | shut until tapped, no button |
+| Kept on the device | the 記住了 marks, under `hank.known` | nothing |
+
+- **`#teach` is claimed before the hash is read as an anchor.** A notebook
+  already uses the hash to open a session, so `claimTeacher()` runs first and
+  strips it with `history.replaceState`; it also runs on `hashchange`, because
+  typing `#teach` onto an open page does not reload it. Nothing may ever be
+  given the id `teach`.
+- **The 中文 switch is not stored.** The mode decides where the Chinese starts.
+  A student who hid it to test himself should not find it missing next visit.
+- **Quiz answers are stored in neither mode.** A reload is a fresh run at the
+  exercises, which is what a student revising wants. Only the 記住了 marks
+  persist, keyed by the card's English — so a phrase that returns in a later
+  session is already marked, and renaming a phrase drops its mark.
+- **A how-to line can belong to one mode.** `intro.goals` entries take
+  `only: 'self'` or `only: 'teach'`, because "the Chinese is showing" is true in
+  one and false in the other.
+- **Every Chinese line is written to be read**, not glimpsed: in 自學 it is on
+  screen most of the time. `court.css` raises the smallest Chinese sizes for
+  the same reason.
+
+### It has its own look — `court.css`
+
+Mid-build Lewis asked for the style of a sportswear brand, and the subject is
+basketball. So this notebook links [`court.css`](public/hank/court.css) where
+the others link `editorial.css`: black on pure white, a heavy condensed sans in
+capitals for every headline (Futura Condensed ExtraBold on Apple devices,
+Impact on Windows, `sans-serif-condensed` on Android — nothing is downloaded),
+Helvetica for reading, pills for anything pressed, a black hero for the cover
+and for the closing quote, and one orange.
+
+It is **design language only** — no brand's name, logo, mark, slogan or
+licensed typeface is on the page or in the repo, the same line that was drawn
+for the hbr.org look on
+[Business Journal](#國際商業期刊導讀--business-journal-reading--adult-teacher-led).
+The file redefines the same tokens `editorial.css` does, so `style.css` did not
+change. Two rules for the orange: it is never the colour of small text (about
+3.4:1 on white), and a right answer stays green.
+
+### Session 1 — a weekend of movies, basketball and a school festival
+
+14 November 2026. The source is Lewis's own feedback sheet on an essay Hank
+wrote: the revised essay, ten key corrections, sixteen collocations with
+Chinese, five discussion questions and a writing focus. It runs A–E in that
+order, and the revised essay, the collocation glosses, their example sentences
+and the five questions are **verbatim** — his handout, not to be improved.
+
+**There is no `fix` block, and this time for a new reason.** The sheet does
+give Hank's original wording, as short fragments beside each revision. But by
+its own account none of the ten is a mistake — each is "more natural" or "more
+precise", and one is "also correct basketball terminology" — and `fix` draws a
+✕ on its left-hand side. So they are a `contrast` block, **You wrote** against
+**Revised**, and they stay fragments: the sheet does not record his full
+sentences and none is reconstructed.
+
+What the page adds to the sheet, so it stays clear what is whose: the Chinese
+for the essay and the examples, an eight-question quiz, two grammar notes
+(`have seen` / `had seen` by the main verb's tense, and `look forward to` +
+`-ing`), a note on writing for a reader who does not play, a matching set and
+an eight-item gap-fill, a second worked example of the
+Experience → Problem → Action Plan → Expected Result pattern on an English
+exam, useful language under each question, and the closing task.
+
+The matching halves are cut after the article — `set a` / `screen`, not `set`
+/ `a screen` — because cut the usual way `run` + `to the basket` and `make` +
+`an open shot` are both good English and would have been marked wrong.
+
 ## Winkle's pages — adult, one-to-one, a hub
 
 `public/winkle/` — **Winkle's Learning Notes · Winkle 的學習筆記** — is a small hub for one
@@ -5661,6 +5753,8 @@ public/anna/              Anna's notebook — the same again, for a young adult
 public/ken/               Ken's notebook — the same, for a college student
 public/mia/               Mia's notebook — the same, for a young adult at work
 public/mia/img/           its four Pexels photographs
+public/hank/              Hank's notebook — the same, for Grade 10, with 自學／教學
+public/hank/court.css     its own look, linked in place of editorial.css
 public/jill/              Jill's notebook — one entry per weekly lesson
 public/junior-high/       國中英語精熟 — 單字 and 文法, one page, Grades 7–9
 public/junior-high-words/    a redirect: the 單字 half's old URL
