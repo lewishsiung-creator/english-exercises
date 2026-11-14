@@ -5124,6 +5124,37 @@ The matching halves are cut after the article — `set a` / `screen`, not `set`
 / `a screen` — because cut the usual way `run` + `to the basket` and `make` +
 `an open shot` are both good English and would have been marked wrong.
 
+### Session 2 — a field trip to the Hunter School in Wulai
+
+15 November 2026. A different kind of source: Hank's own essay, **unrevised**,
+pasted into chat with the instruction to revise it and put it on the page. So
+the revision and every explanation in this session were written for the page
+rather than taken from a handout, and its note says "the ideas, the order and
+the voice are still yours" instead of session 1's "I kept" — that sentence was
+Lewis's own, and this one is not.
+
+It runs A–F, and it opens with the notebook's **first `fix` block**. With the
+whole original in hand the line between the two blocks can be drawn properly:
+
+- **`fix` holds only what is wrong**, verbatim and whole — *This Friday* for a
+  Friday that is over, *played some activities*, a sentence with no verb, and
+  *the food … too delicious*. Four items, because there were four.
+- **`contrast` holds what was correct and is now better** — seven full
+  sentences, *You wrote* against *Revised*, each with the reason.
+
+A `note` takes the one mistake worth a paragraph: 太好吃了 is praise, *too
+delicious* is a complaint, and `so … that` is the structure that was wanted.
+
+**The revision adds no facts.** Where a livelier sentence needed a detail Hank
+did not give, the plainer one was kept, and *wild chickens* is left as he wrote
+it rather than guessed into another animal.
+
+The writing focus is repetition — his essay has *However* four times and
+*delicious* three — and Part E gives him four other connectors and three other
+ways to say a thing tasted good, with a gap-fill on **where** each connector can
+stand (after a comma, at the end of a sentence, at the start of a new one). The
+revised essay keeps exactly one of each word — counted by script, not assumed.
+
 ## Winkle's pages — adult, one-to-one, a hub
 
 `public/winkle/` — **Winkle's Learning Notes · Winkle 的學習筆記** — is a small hub for one

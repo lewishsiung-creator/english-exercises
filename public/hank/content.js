@@ -91,7 +91,7 @@
      mcq       a quiz question about the reading. `why` is optional: leave it
                off where the text above is already the explanation
      fix       something Hank actually wrote or said that is WRONG, with the
-               repair behind a tap. Not used yet — see below
+               repair behind a tap. Session 2 has the first one — see below
      poll      opinion statements — agree / not sure / disagree, no answer
      cards     have it / need it cards, for auditing something. Set
                haveEn/haveZh and needEn/needZh whenever the list is not people
@@ -126,6 +126,33 @@
    pattern, the useful language under each question, and the closing task.
 
    The date is the day the sheet was handed over. The essay itself is undated.
+
+   SESSION 2, WHO REVISED IT, AND THE FIRST `fix`
+   ----------------------------------------------
+   Session 2's source is different in kind: Hank's own essay, unrevised, pasted
+   into chat by Lewis with the instruction to revise it and put it on the page.
+   So the revision, the corrections and every explanation in that session were
+   written for this page rather than taken from a handout — which is why its
+   note says "the ideas, the order and the voice are still yours" and does not
+   say "I kept", the way session 1's (Lewis's own sentence) does.
+
+   Because the whole original is in hand, this session can do what session 1
+   could not, and the line between its two blocks is the rule to keep:
+
+   - `fix` holds ONLY what is wrong, verbatim and whole: "This Friday" for a
+     Friday that is over, "played some activities", a sentence with no verb,
+     and "the food ... too delicious". Four, because there were four.
+   - `contrast` holds what was already correct and is now better: clearer,
+     shorter, or a more exact word. Full sentences on both sides this time.
+
+   The revision adds NO facts. Where a livelier sentence would have needed a
+   detail Hank did not give — what the meat smelled like, how the mochi felt —
+   the plainer sentence was kept. "Wild chickens" is his and is left alone: he
+   may mean 山雞, but the page does not guess at an animal he did not name.
+
+   The session's writing focus is repetition (his essay has "However" four
+   times and "delicious" three), and the revised essay practises what it
+   preaches: one "However", one "delicious".
 
    SAMPLE BANNER
    -------------
@@ -945,6 +972,822 @@ const NOTEBOOK = {
           en: 'I believe these skills will help me become a better point guard and make our team stronger.',
           zh: '我相信這些技巧能讓我成為更好的控球後衛，也讓我們的球隊更強。',
           by: 'the last line of your basketball paragraphs 你寫籃球那幾段的最後一句',
+        },
+      ],
+    },
+
+    // ================================================================ 2
+    {
+      id: 's2',
+      n: 2,
+      dateEn: '15 November 2026',
+      dateZh: '2026 年 11 月 15 日',
+      en: 'A Field Trip to the Hunter School in Wulai',
+      zh: '烏來獵人學校校外教學',
+
+      focus: [
+        { en: 'Four sentences, fixed', zh: '四個句子，修過一遍', to: 's2-fix' },
+        { en: 'too / so', zh: 'too 與 so', to: 's2-too' },
+        { en: 'The revised essay', zh: '修改後的文章', to: 's2-b' },
+        { en: 'Good → better', zh: '從不錯到更好', to: 's2-c' },
+        { en: '16 collocations', zh: '16 個搭配詞', to: 's2-d' },
+        { en: 'Don’t repeat yourself', zh: '不要一直重複', to: 's2-e' },
+        { en: 'Five questions', zh: '五個問題', to: 's2-f' },
+      ],
+
+      blocks: [
+        {
+          t: 'lead',
+          en: 'You wrote about your class field trip to the Hunter School in Wulai: singing on the bus, Atayal words and dances, bamboo rice, archery, wild boar, traps, and a show at the end. This page keeps that essay — four sentences that needed a repair, the revised version, the phrases worth keeping, and one habit to work on.',
+          zh: '你寫了班上去烏來獵人學校校外教學的經過：在車上唱歌、學泰雅語和舞蹈、做竹筒飯、射箭、烤山豬肉、看陷阱，最後還有表演。這一頁把那篇文章留下來——四個需要修正的句子、修改後的版本、值得記下來的片語，以及一個可以改進的習慣。',
+        },
+
+        {
+          t: 'summary',
+          en: 'Three things work well. First, the essay is easy to follow, because everything is in time order and you tell the reader where you are: Next, After archery, After lunch, After that. Second, the archery part is a small story with a turn in it. You thought it would be easy, it was not, and in the end you hit the target. Third, one sentence uses difficult grammar and gets it right: “my throat was starting to hurt because I had been singing so much.”',
+          zh: '有三件事做得很好。第一，文章很容易讀，因為所有事情都照時間順序寫，而且你會告訴讀者現在進行到哪裡：Next、After archery、After lunch、After that。第二，射箭那一段是一個有轉折的小故事：你以為很簡單，結果並不簡單，最後你還是射中了靶。第三，有一句用了比較難的文法，而且用對了：「my throat was starting to hurt because I had been singing so much.」',
+        },
+
+        // ------------------------------------------------------------ A
+        {
+          t: 'part',
+          id: 's2-a',
+          n: 'A',
+          en: 'Four sentences, fixed',
+          zh: '四個句子，修過一遍',
+        },
+
+        {
+          t: 'fix',
+          id: 's2-fix',
+          en: 'Your own sentences, repaired',
+          zh: '你自己的句子，修過一遍',
+          hintEn: 'These four sentences are exactly as you wrote them. Each one has something that needs a repair. Try to find it yourself first, then tap the sentence to check.',
+          hintZh: '這四個句子和你寫的一模一樣，每一句都有一個需要修正的地方。先自己找找看，再點一下句子對答案。',
+          items: [
+            {
+              wrong: 'This Friday, our class went on a school field trip to the Hunter School in Wulai.',
+              right: 'Last Friday, our class went on a field trip to the Hunter School in Wulai.',
+              whyEn: '“This Friday” usually means the Friday that is coming. The trip is finished, so the reader needs “Last Friday”, or simply “On Friday”. “School” can go too: a class trip is already a school trip.',
+              whyZh: 'This Friday 通常指「即將到來的這個星期五」。這趟校外教學已經結束了，所以讀者需要的是 Last Friday，或直接說 On Friday。school 也可以拿掉：班上的校外教學本來就是學校的活動。',
+            },
+            {
+              wrong: 'They also played some activities with us and taught us traditional dances.',
+              right: 'They also played some games with us and taught us traditional dances.',
+              whyEn: 'In English you play a game, but you do an activity. So it is “played some games with us” or “did some activities with us”. The verb and the noun have to match.',
+              whyZh: '英文裡，game 用 play，activity 用 do。所以是「played some games with us」或「did some activities with us」，動詞和名詞要搭配。',
+            },
+            {
+              wrong: 'They showed us two kinds of traps. Small traps and large traps.',
+              right: 'They showed us two kinds of traps: small ones and large ones.',
+              whyEn: '“Small traps and large traps.” has no verb, so it is not a sentence. It is a list that belongs to the sentence before it. Join them with a colon. “Ones” then saves you from writing “traps” three times.',
+              whyZh: '「Small traps and large traps.」沒有動詞，所以不是一個完整的句子，而是屬於前一句的「清單」。用冒號把它接回去。另外用 ones 代替，就不必把 traps 寫三次。',
+            },
+            {
+              wrong: 'However, I finished all my meat before the food was even served because it was just too delicious.',
+              right: 'However, I finished all of my meat before the rest of the food was even served because it was just so delicious.',
+              whyEn: 'Two repairs. The meat is food too, so what had not arrived yet was “the rest of the food”. And “too delicious” says there was a problem with how good it was. You mean it was very good, and the word for that is “so”. The note below explains.',
+              whyZh: '這句有兩個修正。肉本身也是 food，所以還沒上桌的是「the rest of the food」（其他的菜）。另外，too delicious 的意思是「好吃到出問題」；你想說的是「非常好吃」，那要用 so。下面的說明會解釋。',
+            },
+          ],
+        },
+
+        {
+          t: 'note',
+          id: 's2-too',
+          en: 'too delicious, or so delicious?',
+          zh: 'too delicious 還是 so delicious？',
+          bodyEn: 'In Chinese, 太好吃了 is praise. In English, “too” means more than is good, and something bad usually follows: “I was too tired to dance.” “The soup was too hot to drink.” When you only want to say “very, very”, use “so” or “really”: “It was so delicious.” “So” has one more use that is worth learning. Add “that” and you can give the result in the same sentence: “The meat was so delicious that I finished it before lunch was served.” “I was so tired that I already wanted to go home.”',
+          bodyZh: '中文的「太好吃了」是稱讚。但英文的 too 意思是「超過了好的程度」，後面通常跟著不好的結果：「I was too tired to dance.」（太累了，沒辦法跳舞。）「The soup was too hot to drink.」（湯太燙，沒辦法喝。）如果只是想說「非常、非常」，就用 so 或 really：「It was so delicious.」so 還有一個值得學的用法：加上 that，就可以在同一句裡把結果說出來：「The meat was so delicious that I finished it before lunch was served.」「I was so tired that I already wanted to go home.」',
+        },
+
+        // ------------------------------------------------------------ B
+        {
+          t: 'part',
+          id: 's2-b',
+          n: 'B',
+          en: 'The revised version',
+          zh: '修改後的版本',
+        },
+
+        {
+          t: 'note',
+          en: 'What changed, and what did not',
+          zh: '改了什麼，沒改什麼',
+          bodyEn: 'The ideas, the order and the voice are still yours. Nothing was added that you did not write about. Three things changed: the four repairs from Part A, a few words that are more exact, and fewer repeated words. Read it once for the story. Then read it again and count how many times you can find “However”.',
+          bodyZh: '想法、順序和語氣都還是你的，沒有加進任何你沒寫到的事。改的有三件事：A 部分的四個修正、幾個更精確的用字，以及減少重複的字。先讀一遍，看故事；再讀一遍，數數看 However 出現了幾次。',
+        },
+
+        {
+          t: 'summary',
+          n: '1',
+          titleEn: 'The bus, and a welcome',
+          titleZh: '遊覽車上，和抵達之後',
+          en: 'Last Friday, our class went on a field trip to the Hunter School in Wulai. On the bus, we sang songs all the way there, and everyone was having a great time. By the time we got off the bus, though, I was so tired that I already wanted to go home. First, our Atayal hosts taught us some words in their language. They also played some games with us and taught us traditional dances. My friends and I even got up to dance with them. I thought it was pretty fun.',
+          zh: '上個星期五，我們班去烏來的獵人學校校外教學。在車上，我們一路唱歌唱到目的地，每個人都玩得很開心。不過，等到下車的時候，我已經累到想回家了。首先，接待我們的泰雅族人教了我們幾個他們語言裡的單字。他們還和我們玩了一些遊戲，教我們跳傳統舞蹈。我和朋友甚至站起來和他們一起跳。我覺得滿好玩的。',
+        },
+
+        {
+          t: 'summary',
+          n: '2',
+          titleEn: 'Bamboo rice and archery',
+          titleZh: '竹筒飯和射箭',
+          en: 'Next, we learned how to make bamboo rice. We cut the bamboo, put the rice inside, added water, and then steamed it. We did everything by ourselves. After that, we tried archery. At first, I thought archery would be easy and that I could hit the target without much effort. After trying it, though, I realized it was much harder than I had expected. I couldn’t even hit the target with my first three arrows. Then I gradually learned how to control the bow, and I finally managed to hit the target.',
+          zh: '接下來，我們學做竹筒飯。我們砍竹子、把米放進去、加水，然後拿去蒸，全部都是自己動手做的。之後，我們去試射箭。一開始我以為射箭很簡單，不用花什麼力氣就能射中靶。不過試了之後，我才發現它比我原本想的難很多，前三支箭甚至連靶都沒射中。後來我漸漸學會怎麼控制弓，最後終於射中了靶。',
+        },
+
+        {
+          t: 'summary',
+          n: '3',
+          titleEn: 'Wild boar and traps',
+          titleZh: '山豬肉和陷阱',
+          en: 'After archery, we barbecued wild boar. Instead of using a regular grill, they gave each of us a long metal skewer to roast a whole piece of meat on. We had planned to cut the meat into smaller pieces, put it on the table, and eat it later with the vegetables and bamboo rice. However, I finished all of my meat before the rest of the food was even served because it was just so delicious. After lunch, we learned how to make the traps that hunters use in the mountains. They showed us two kinds of traps: small ones and large ones. The small traps are used to catch animals like wild chickens, while the large ones use stronger wire to hold an animal more firmly.',
+          zh: '射箭之後，我們烤山豬肉。他們不是用一般的烤肉架，而是給我們每人一支長長的鐵叉，把一整塊肉串在上面烤。我們原本打算把肉切成小塊、放到桌上，晚一點再配蔬菜和竹筒飯一起吃。可是，其他的菜都還沒上桌，我就把自己的肉全部吃完了，因為實在太好吃了。午餐後，我們學做獵人在山上使用的陷阱。他們給我們看了兩種陷阱：小的和大的。小陷阱用來抓像山雞這樣的動物，大陷阱則用比較粗的鐵絲，把動物套得更牢。',
+        },
+
+        {
+          t: 'summary',
+          n: '4',
+          titleEn: 'The show, and the ride home',
+          titleZh: '表演，和回程',
+          en: 'After that, it was time for the performances. My friend and I went on stage to perform a dance, and some other students sang. Everyone enjoyed the show. Later, we ate mochi with peanut powder, which was really tasty, too. We sang on the bus the whole way back. By the end of the trip, my throat was starting to hurt because I had been singing so much. Even so, I thought the field trip was really fun. I got to try many new things, and I hope we can have another experience like this in the future.',
+          zh: '之後就是表演時間。我和朋友上台表演了一支舞，其他一些同學則唱了歌，大家都看得很開心。後來我們吃了沾花生粉的麻糬，也非常好吃。回程我們在車上一路唱歌。到了這趟行程快結束時，我的喉嚨開始痛了，因為我一直唱個不停。即使如此，我還是覺得這次校外教學非常好玩。我嘗試了很多新的東西，希望以後還能有這樣的體驗。',
+        },
+
+        {
+          t: 'mcq',
+          en: 'Did you get it?',
+          zh: '你讀懂了嗎？',
+          hintEn: 'Eight questions on the revised essay. If the Chinese is showing, hide it first with the 中文 switch. A wrong answer fades and the question stays open, so try again.',
+          hintZh: '關於修改後文章的八個問題。如果中文是開著的，先用「中文」按鈕把它藏起來。答錯的選項會變淡，題目仍然開著，可以再試一次。',
+          items: [
+            {
+              q: 'How did the writer feel when the class got off the bus?',
+              qZh: '全班下車的時候，作者有什麼感覺？',
+              options: [
+                'Excited to start the activities',
+                'So tired that he already wanted to go home',
+                'Hungry and ready for lunch',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'What did the Atayal hosts teach the class first?',
+              qZh: '泰雅族的接待人員最先教了全班什麼？',
+              options: [
+                'Some words in their language',
+                'How to shoot an arrow',
+                'How to set a trap',
+              ],
+              answer: 0,
+            },
+            {
+              q: 'Who made the bamboo rice?',
+              qZh: '竹筒飯是誰做的？',
+              options: [
+                'The hosts made it for the class',
+                'The teachers made it',
+                'The students did everything by themselves',
+              ],
+              answer: 2,
+            },
+            {
+              q: 'What happened with his first three arrows?',
+              qZh: '他的前三支箭怎麼了？',
+              options: [
+                'All three hit the target',
+                'None of them hit the target',
+                'One of them broke',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'What was the original plan for the meat?',
+              qZh: '那塊肉原本的計畫是什麼？',
+              options: [
+                'To cut it up and eat it later with the vegetables and bamboo rice',
+                'To eat it straight from the skewer',
+                'To take it home',
+              ],
+              answer: 0,
+            },
+            {
+              q: 'How are the large traps different from the small ones?',
+              qZh: '大陷阱和小陷阱有什麼不同？',
+              options: [
+                'They are only used for wild chickens',
+                'They are made of bamboo',
+                'They use stronger wire to hold an animal more firmly',
+              ],
+              answer: 2,
+            },
+            {
+              q: 'Why was his throat starting to hurt by the end of the trip?',
+              qZh: '行程快結束時，他的喉嚨為什麼開始痛？',
+              options: [
+                'He had eaten too much mochi',
+                'He had been singing so much',
+                'He had caught a cold in the mountains',
+              ],
+              answer: 1,
+            },
+            {
+              q: 'The last paragraph says: “my throat was starting to hurt… Even so, I thought the field trip was really fun.” What does “Even so” tell the reader?',
+              qZh: '最後一段寫道：「my throat was starting to hurt… Even so, I thought the field trip was really fun.」Even so 告訴讀者什麼？',
+              options: [
+                'The sore throat is the reason the trip was fun',
+                'The trip was fun in spite of the sore throat',
+                'The trip stopped being fun when his throat hurt',
+              ],
+              answer: 1,
+              why: {
+                en: '“Even so” means “that is true, but it does not change what comes next”. His throat really did hurt, and the trip was still fun. It does the same job as “However”, with a little more feeling.',
+                zh: 'Even so 的意思是「那是事實，但不影響接下來要說的事」。他的喉嚨確實痛了，而這趟行程還是很好玩。它的功能和 However 一樣，只是多了一點語氣。',
+              },
+            },
+          ],
+        },
+
+        // ------------------------------------------------------------ C
+        {
+          t: 'part',
+          id: 's2-c',
+          n: 'C',
+          en: 'Good → better',
+          zh: '從不錯到更好',
+        },
+
+        {
+          t: 'lead',
+          en: 'These seven sentences were not wrong. A reader understands every one of them. The revised version is clearer, shorter, or uses a more exact word, so read the reason under each pair.',
+          zh: '這七個句子本來並沒有錯，讀者每一句都看得懂。修改後的版本只是更清楚、更簡短，或用了更精確的字，所以請讀每一組下面的原因。',
+        },
+
+        {
+          t: 'contrast',
+          en: 'Your sentence, and the revision',
+          zh: '你的句子，和修改後的句子',
+          hintEn: 'On the left, your sentence. On the right, the revised one. Both sides can be played with 🔊. Say the right-hand one out loud.',
+          hintZh: '左邊是你的句子，右邊是修改後的句子。兩邊都可以點 🔊 聽。右邊那一句，請大聲唸出來。',
+          coldEn: 'You wrote',
+          coldZh: '你原本寫的',
+          warmEn: 'Revised',
+          warmZh: '修改後',
+          items: [
+            {
+              caseEn: 'Tired before the day began',
+              caseZh: '還沒開始就累了',
+              cold: { en: 'However, when we got off the bus, I already wanted to go home because I was really tired.', zh: '然而，當我們下車時，我已經想回家了，因為我真的很累。' },
+              warm: { en: 'By the time we got off the bus, though, I was so tired that I already wanted to go home.', zh: '不過，等到下車的時候，我已經累到想回家了。' },
+              whyEn: '“By the time” shows that the tiredness built up during the ride. “So tired that” puts the cause and the result in one piece, which is stronger than “because I was really tired” added at the end.',
+              whyZh: 'By the time 表示「累」是在車程中慢慢累積起來的。so tired that 把原因和結果放在同一塊，比在句尾補一句 because I was really tired 更有力。',
+            },
+            {
+              caseEn: 'Who taught you',
+              caseZh: '是誰教你們的',
+              cold: { en: 'When we arrived, the Atayal people taught us some words in their local language.', zh: '我們抵達時，泰雅族人教了我們一些他們當地語言的單字。' },
+              warm: { en: 'First, our Atayal hosts taught us some words in their language.', zh: '首先，接待我們的泰雅族人教了我們幾個他們語言裡的單字。' },
+              whyEn: '“The Atayal people” means the whole people, not the few who welcomed you, so “our Atayal hosts” is more exact. “Local” is not needed: it is simply their language. And you had already arrived in the sentence before, so “First” moves the story on.',
+              whyZh: 'the Atayal people 指的是「整個泰雅族」，不是接待你們的那幾位，所以 our Atayal hosts 比較精確。local 不需要：那就是「他們的語言」。另外，前一句你們已經到了，所以用 First 讓故事往下走。',
+            },
+            {
+              caseEn: 'One “I thought” is enough',
+              caseZh: 'I thought 說一次就夠',
+              cold: { en: 'At first, I thought archery would be easy, and I thought I could hit the target without much effort.', zh: '一開始，我以為射箭很簡單，而且我以為我不用花什麼力氣就能射中靶。' },
+              warm: { en: 'At first, I thought archery would be easy and that I could hit the target without much effort.', zh: '一開始，我以為射箭很簡單，不用花什麼力氣就能射中靶。' },
+              whyEn: 'One “I thought” can carry two ideas. Join them with “and that”: I thought (that) it would be easy and that I could hit the target.',
+              whyZh: '一個 I thought 可以帶兩個想法，用 and that 把它們接起來：I thought (that) it would be easy and that I could hit the target。',
+            },
+            {
+              caseEn: 'Learning little by little',
+              caseZh: '一點一點學會',
+              cold: { en: 'Later, I slowly learned how to control the bow and finally managed to hit the target.', zh: '後來，我慢慢學會怎麼控制弓，最後終於射中了靶。' },
+              warm: { en: 'Then I gradually learned how to control the bow, and I finally managed to hit the target.', zh: '後來我漸漸學會怎麼控制弓，最後終於射中了靶。' },
+              whyEn: 'The same change as in your last essay. “Slowly” is about speed. “Gradually” means step by step, which is how a skill is learned.',
+              whyZh: '和你上一篇文章一樣的修改。slowly 講的是「速度慢」；gradually 是「一步一步地」，學會一項技巧正是這樣的過程。',
+            },
+            {
+              caseEn: 'The tool for the meat',
+              caseZh: '烤肉用的工具',
+              cold: { en: 'Instead of using a normal barbecue grill, they gave each of us a long metal stick to roast a whole piece of meat.', zh: '他們不是用一般的烤肉架，而是給我們每人一根長長的金屬棒來烤一整塊肉。' },
+              warm: { en: 'Instead of using a regular grill, they gave each of us a long metal skewer to roast a whole piece of meat on.', zh: '他們不是用一般的烤肉架，而是給我們每人一支長長的鐵叉，把一整塊肉串在上面烤。' },
+              whyEn: 'A stick you push through food to cook it has its own name: a skewer. “Regular grill” is the usual way to say “normal barbecue grill”. The small word “on” at the end is needed, because you roast the meat on the skewer.',
+              whyZh: '用來把食物串起來烤的那根棒子有自己的名字：skewer。「一般的烤肉架」通常說 regular grill。句尾那個小小的 on 是必要的，因為肉是串「在」鐵叉上烤的。',
+            },
+            {
+              caseEn: 'Two kinds of traps',
+              caseZh: '兩種陷阱',
+              cold: { en: 'Small traps were used to catch animals like wild chickens, while large traps used stronger wire to hold animals more firmly.', zh: '小陷阱被用來抓像山雞這樣的動物，而大陷阱使用較粗的鐵絲把動物套得更牢。' },
+              warm: { en: 'The small traps are used to catch animals like wild chickens, while the large ones use stronger wire to hold an animal more firmly.', zh: '小陷阱用來抓像山雞這樣的動物，大陷阱則用比較粗的鐵絲，把動物套得更牢。' },
+              whyEn: 'You are explaining how the traps work, and that is still true today, so the present tense fits: are used, use. “The” is needed because these are the two kinds you have just named.',
+              whyZh: '你是在說明陷阱「怎麼運作」，這件事到今天仍然成立，所以用現在式：are used、use。另外要加 the，因為這就是你剛剛提到的那兩種陷阱。',
+            },
+            {
+              caseEn: 'Singing all the way home',
+              caseZh: '一路唱回家',
+              cold: { en: 'On the way back, we sang songs on the bus the whole way.', zh: '回程路上，我們在車上一路唱歌。' },
+              warm: { en: 'We sang on the bus the whole way back.', zh: '回程我們在車上一路唱歌。' },
+              whyEn: '“On the way back” and “the whole way” say the same thing twice. “The whole way back” says it once. “Sang songs” can be just “sang”.',
+              whyZh: 'On the way back 和 the whole way 把同一件事說了兩次，用 the whole way back 說一次就夠。sang songs 也可以只說 sang。',
+            },
+          ],
+        },
+
+        // ------------------------------------------------------------ D
+        {
+          t: 'part',
+          id: 's2-d',
+          n: 'D',
+          en: 'Sixteen collocations',
+          zh: '十六個搭配詞',
+        },
+
+        {
+          t: 'lead',
+          en: 'All sixteen are in your essay. Learn each one as a single piece, the same way as last time.',
+          zh: '這十六個都出自你的文章。和上次一樣，把每一組當成「一整塊」來記。',
+        },
+
+        {
+          t: 'phrases',
+          en: 'The trip',
+          zh: '這趟行程',
+          items: [
+            {
+              en: 'go on a field trip',
+              zh: '去校外教學',
+              eg: 'Last Friday, our class went on a field trip to Wulai.',
+              egZh: '上個星期五，我們班去烏來校外教學。',
+            },
+            {
+              en: 'get off the bus',
+              zh: '下車',
+              eg: 'By the time we got off the bus, I was already tired.',
+              egZh: '等到下車的時候，我已經累了。',
+            },
+            {
+              en: 'have a great time',
+              zh: '玩得很開心',
+              eg: 'Everyone was having a great time on the bus.',
+              egZh: '大家在車上都玩得很開心。',
+            },
+            {
+              en: 'the whole way back',
+              zh: '回程一路上',
+              eg: 'We sang on the bus the whole way back.',
+              egZh: '回程我們在車上一路唱歌。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Trying something new',
+          zh: '嘗試新東西',
+          items: [
+            {
+              en: 'learn how to make something',
+              zh: '學會怎麼做某樣東西',
+              eg: 'We learned how to make bamboo rice.',
+              egZh: '我們學會了怎麼做竹筒飯。',
+            },
+            {
+              en: 'try archery',
+              zh: '嘗試射箭',
+              eg: 'After that, we tried archery.',
+              egZh: '之後，我們去試了射箭。',
+            },
+            {
+              en: 'hit the target',
+              zh: '射中靶',
+              eg: 'I couldn’t even hit the target with my first three arrows.',
+              egZh: '我的前三支箭甚至連靶都沒射中。',
+            },
+            {
+              en: 'without much effort',
+              zh: '不費什麼力氣',
+              eg: 'I thought I could hit the target without much effort.',
+              egZh: '我以為不用花什麼力氣就能射中靶。',
+            },
+            {
+              en: 'manage to do something',
+              zh: '終於做到某件事',
+              eg: 'I finally managed to hit the target.',
+              egZh: '我最後終於射中了靶。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Food',
+          zh: '食物',
+          items: [
+            {
+              en: 'make bamboo rice',
+              zh: '做竹筒飯',
+              eg: 'We made bamboo rice by ourselves.',
+              egZh: '我們自己動手做了竹筒飯。',
+            },
+            {
+              en: 'barbecue wild boar',
+              zh: '烤山豬肉',
+              eg: 'After archery, we barbecued wild boar.',
+              egZh: '射箭之後，我們烤了山豬肉。',
+            },
+            {
+              en: 'cut the meat into smaller pieces',
+              zh: '把肉切成小塊',
+              eg: 'We had planned to cut the meat into smaller pieces.',
+              egZh: '我們原本打算把肉切成小塊。',
+            },
+            {
+              en: 'serve the food',
+              zh: '上菜',
+              eg: 'I finished my meat before the rest of the food was served.',
+              egZh: '其他的菜還沒上桌，我就把肉吃完了。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'On stage',
+          zh: '舞台上',
+          items: [
+            {
+              en: 'teach a traditional dance',
+              zh: '教傳統舞蹈',
+              eg: 'Our hosts taught us a traditional dance.',
+              egZh: '接待我們的人教了我們一支傳統舞蹈。',
+            },
+            {
+              en: 'go on stage',
+              zh: '上台',
+              eg: 'My friend and I went on stage together.',
+              egZh: '我和朋友一起上了台。',
+            },
+            {
+              en: 'perform a dance',
+              zh: '表演舞蹈',
+              eg: 'We went on stage to perform a dance.',
+              egZh: '我們上台表演了一支舞。',
+            },
+          ],
+        },
+
+        {
+          t: 'match',
+          en: 'Put the halves together',
+          zh: '把兩半接起來',
+          hintEn: 'Tap a beginning on the left, then its ending on the right. A wrong pair shakes and lets go — try another.',
+          hintZh: '先點左邊的開頭，再點右邊對應的結尾。配錯會晃一下然後放開，再試別的就好。',
+          pairs: [
+            { a: 'go on a field', b: 'trip' },
+            { a: 'get off the', b: 'bus' },
+            { a: 'shoot an', b: 'arrow' },
+            { a: 'hit the target without much', b: 'effort' },
+            { a: 'make bamboo', b: 'rice' },
+            { a: 'cut the meat into smaller', b: 'pieces' },
+            { a: 'go on stage to perform a', b: 'dance' },
+            { a: 'sing on the bus the whole way', b: 'back' },
+          ],
+        },
+
+        {
+          t: 'gap',
+          en: 'Choose the piece that fits',
+          zh: '選出放得進去的那一個',
+          hintEn: 'Eight sentences, one blank each. The reason appears when you get it right.',
+          hintZh: '八個句子，每句一個空格。答對之後，原因就會出現。',
+          items: [
+            {
+              text: '___ Friday, our class went on a field trip to Wulai.',
+              textZh: '上個星期五，我們班去烏來校外教學。',
+              options: ['This', 'Last', 'Next'],
+              answer: 1,
+              why: {
+                en: 'The verb is “went”, so the trip is over. A Friday that is over is “last Friday”.',
+                zh: '動詞是 went，表示這趟行程已經結束。已經過去的星期五是 last Friday。',
+              },
+            },
+            {
+              text: 'I was ___ tired that I already wanted to go home.',
+              textZh: '我累到已經想回家了。',
+              options: ['so', 'too', 'very'],
+              answer: 0,
+              why: {
+                en: 'Only “so” can be followed by “that” and a result: so tired that…, so delicious that…',
+                zh: '只有 so 後面可以接 that 和結果：so tired that…、so delicious that…。',
+              },
+            },
+            {
+              text: 'They also played some ___ with us.',
+              textZh: '他們還和我們玩了一些遊戲。',
+              options: ['activities', 'dances', 'games'],
+              answer: 2,
+              why: {
+                en: 'You play a game. You do an activity, and you do or perform a dance.',
+                zh: 'game 用 play；activity 用 do；dance 用 do 或 perform。',
+              },
+            },
+            {
+              text: 'It was much harder than I ___ expected.',
+              textZh: '它比我原本想的難很多。',
+              options: ['have', 'had', 'was'],
+              answer: 1,
+              why: {
+                en: 'The expecting came before the trying, and the trying is already in the past. One step further back is the past perfect — the same rule as “had seen” in your first essay.',
+                zh: '「預期」發生在「嘗試」之前，而「嘗試」本身已經是過去的事。再往前退一步，就是過去完成式——和你第一篇文章裡的 had seen 是同一條規則。',
+              },
+            },
+            {
+              text: 'I couldn’t ___ hit the target with my first three arrows.',
+              textZh: '我的前三支箭甚至連靶都沒射中。',
+              options: ['even', 'ever', 'either'],
+              answer: 0,
+              why: {
+                en: '“Even” shows surprise at how far something goes. Hitting the target is the easy part, and you could not do even that.',
+                zh: 'even 表示對「程度」感到意外：射中靶本來是最基本的，結果連這個都做不到。',
+              },
+            },
+            {
+              text: 'I finally managed ___ the target.',
+              textZh: '我最後終於射中了靶。',
+              options: ['hitting', 'hit', 'to hit'],
+              answer: 2,
+              why: {
+                en: '“Manage” is followed by to + verb: manage to hit, manage to finish, manage to stay awake.',
+                zh: 'manage 後面接 to + 原形動詞：manage to hit、manage to finish、manage to stay awake。',
+              },
+            },
+            {
+              text: 'We had planned to cut the meat ___ smaller pieces.',
+              textZh: '我們原本打算把肉切成小塊。',
+              options: ['to', 'into', 'in'],
+              answer: 1,
+              why: {
+                en: 'When one thing becomes several pieces, the word is “into”: cut it into pieces, break it into two, divide the class into groups.',
+                zh: '一個東西變成好幾塊時，用 into：cut it into pieces、break it into two、divide the class into groups。',
+              },
+            },
+            {
+              text: 'My throat was starting to hurt because I had been ___ so much.',
+              textZh: '我的喉嚨開始痛了，因為我一直唱個不停。',
+              options: ['sang', 'sung', 'singing'],
+              answer: 2,
+              why: {
+                en: '“Had been + -ing” is for something that went on and on up to a point in the past. You wrote this one correctly yourself.',
+                zh: 'had been + -ing 用來表示「一直持續到過去某個時間點」的動作。這一句是你自己寫對的。',
+              },
+            },
+          ],
+        },
+
+        // ------------------------------------------------------------ E
+        {
+          t: 'part',
+          id: 's2-e',
+          n: 'E',
+          en: 'Say it once, then say it another way',
+          zh: '說過一次，下次換個說法',
+        },
+
+        {
+          t: 'lead',
+          en: 'Your essay used “However” four times and “delicious” three times. A word is strong the first time. By the fourth time, the reader starts counting. The revised version keeps one of each and changes the rest. Here is what to use instead.',
+          zh: '你的文章用了四次 However、三次 delicious。一個字第一次出現時很有力；到了第四次，讀者就開始數了。修改後的版本各只留下一個，其他的都換掉了。以下是可以替換的說法。',
+        },
+
+        {
+          t: 'phrases',
+          en: 'Instead of “However”',
+          zh: '代替 However',
+          items: [
+            {
+              en: 'but',
+              zh: '但是（把兩個子句連在同一句裡）',
+              eg: 'I was tired, but I still danced with them.',
+              egZh: '我很累，但我還是和他們一起跳了舞。',
+            },
+            {
+              en: 'though',
+              zh: '不過（放在句中或句尾，比較口語）',
+              eg: 'After trying it, though, I realized it was much harder than I had expected.',
+              egZh: '不過試了之後，我才發現它比我原本想的難很多。',
+            },
+            {
+              en: 'even so',
+              zh: '即使如此',
+              eg: 'My throat was starting to hurt. Even so, I thought the trip was really fun.',
+              egZh: '我的喉嚨開始痛了。即使如此，我還是覺得這趟行程非常好玩。',
+            },
+            {
+              en: 'although',
+              zh: '雖然（放在句首，後面不要再加 but）',
+              eg: 'Although I was tired, I had a great time.',
+              egZh: '雖然我很累，還是玩得很開心。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Instead of “delicious”',
+          zh: '代替 delicious',
+          items: [
+            {
+              en: 'tasty',
+              zh: '好吃的',
+              eg: 'The mochi with peanut powder was really tasty.',
+              egZh: '沾花生粉的麻糬真的很好吃。',
+            },
+            {
+              en: 'It tasted amazing.',
+              zh: '吃起來超棒。',
+              eg: 'We roasted the meat ourselves, and it tasted amazing.',
+              egZh: '肉是我們自己烤的，吃起來超棒。',
+            },
+            {
+              en: 'I couldn’t stop eating it.',
+              zh: '我停不下來，一直吃。',
+              eg: 'The wild boar was so good that I couldn’t stop eating it.',
+              egZh: '山豬肉好吃到我停不下來。',
+            },
+          ],
+        },
+
+        {
+          t: 'gap',
+          en: 'Which one fits the sentence?',
+          zh: '哪一個放得進這個句子？',
+          hintEn: 'All of these words mean something like “but”. They do not all fit in the same place. Look at the punctuation.',
+          hintZh: '這些字的意思都接近「但是」，但是能放的位置不一樣。注意看標點符號。',
+          items: [
+            {
+              text: 'I was tired, ___ I still danced with them.',
+              textZh: '我很累，但我還是和他們一起跳了舞。',
+              options: ['however', 'but', 'even so'],
+              answer: 1,
+              why: {
+                en: 'After a comma, in the middle of one sentence, use “but”. “However” and “even so” start a new sentence.',
+                zh: '逗號後面、在同一句的中間，要用 but。However 和 even so 則是用來開始一個新的句子。',
+              },
+            },
+            {
+              text: 'Archery looked easy. It was much harder than I had expected, ___.',
+              textZh: '射箭看起來很簡單，不過它比我原本想的難很多。',
+              options: ['but', 'although', 'though'],
+              answer: 2,
+              why: {
+                en: 'Only “though” can sit at the very end of a sentence. It sounds relaxed, the way people speak.',
+                zh: '只有 though 可以放在句子的最後面。這種說法聽起來比較輕鬆，像平常講話的方式。',
+              },
+            },
+            {
+              text: 'My throat was starting to hurt. ___, I thought the trip was really fun.',
+              textZh: '我的喉嚨開始痛了。即使如此，我還是覺得這趟行程非常好玩。',
+              options: ['Even so', 'Although', 'But so'],
+              answer: 0,
+              why: {
+                en: '“Even so” starts a new sentence and takes a comma. “Although” cannot stand alone before a comma like this.',
+                zh: 'Even so 用來開始一個新句子，後面加逗號。Although 不能像這樣單獨放在逗號前面。',
+              },
+            },
+            {
+              text: '___ I was tired, I had a great time.',
+              textZh: '雖然我很累，還是玩得很開心。',
+              options: ['However', 'But', 'Although'],
+              answer: 2,
+              why: {
+                en: '“Although” joins two clauses in one sentence. English uses one connector here, not two — never “Although…, but…”.',
+                zh: 'Although 把兩個子句連在同一句裡。英文在這裡只用一個連接詞，不會用兩個——絕對不寫「Although…, but…」。',
+              },
+            },
+          ],
+        },
+
+        // ------------------------------------------------------------ F
+        {
+          t: 'part',
+          id: 's2-f',
+          n: 'F',
+          en: 'Talk about it',
+          zh: '說說看',
+        },
+
+        {
+          t: 'discuss',
+          en: 'Five follow-up questions',
+          zh: '五個延伸問題',
+          items: [
+            {
+              en: 'Which activity at the Hunter School did you enjoy the most, and why?',
+              zh: '在獵人學校的活動裡，你最喜歡哪一個？為什麼？',
+              starters: [
+                { en: 'The activity I enjoyed the most was…', zh: '我最喜歡的活動是……' },
+                { en: 'What made it fun was…', zh: '它好玩的地方在於……' },
+                { en: 'I had never… before, so…', zh: '我以前從來沒有……過，所以……' },
+              ],
+            },
+            {
+              en: 'You thought archery would be easy, and it was not. Tell me about another time when something was harder than you had expected.',
+              zh: '你以為射箭很簡單，結果並不簡單。說說另一次「比你原本想的還難」的經驗。',
+              starters: [
+                { en: 'At first, I thought… would be easy.', zh: '一開始，我以為……很簡單。' },
+                { en: 'After trying it, though, I realized…', zh: '不過試了之後，我才發現……' },
+                { en: 'In the end, I managed to…', zh: '最後，我終於……' },
+              ],
+            },
+            {
+              en: 'What did you learn about Atayal culture that you did not know before the trip?',
+              zh: '關於泰雅族的文化，你學到了哪些這次去之前不知道的事？',
+              starters: [
+                { en: 'Before the trip, I didn’t know that…', zh: '這次去之前，我不知道……' },
+                { en: 'Our hosts showed us how to…', zh: '接待我們的人示範了怎麼……' },
+                { en: 'What surprised me was…', zh: '讓我驚訝的是……' },
+              ],
+            },
+            {
+              en: 'You finished your meat before the rest of the food was served. What is a food you cannot stop eating, and what makes it so good?',
+              zh: '其他的菜還沒上桌，你就把肉吃完了。有什麼食物是你一吃就停不下來的？它為什麼這麼好吃？',
+              starters: [
+                { en: 'I can’t stop eating…', zh: '我一吃……就停不下來。' },
+                { en: 'It is so… that…', zh: '它……到……' },
+                { en: 'The best one I have ever had was…', zh: '我吃過最好吃的一次是……' },
+              ],
+            },
+            {
+              en: 'If you could plan the next class field trip, where would you go, and what would the class do there?',
+              zh: '如果下一次的校外教學由你來規劃，你會去哪裡？全班會在那裡做什麼？',
+              starters: [
+                { en: 'I would take the class to…', zh: '我會帶全班去……' },
+                { en: 'First, we would… After that, we would…', zh: '首先，我們會……；之後，我們會……' },
+                { en: 'I think everyone would have a great time because…', zh: '我覺得大家都會玩得很開心，因為……' },
+              ],
+            },
+          ],
+        },
+
+        {
+          t: 'task',
+          en: 'Tell it again, without repeating yourself',
+          zh: '再說一次，不要重複',
+          instructionEn: 'Choose one topic. Write six to eight sentences, or say them out loud for about one minute. Two rules: use “However” only once, and do not use the same describing word twice. Use at least three phrases from the tick-list.',
+          instructionZh: '選一個題目，寫六到八句話，或是開口說大約一分鐘。兩條規則：However 只能用一次，而且同一個形容詞不要用兩次。至少用上「目標片語」裡的三個。',
+          prompts: [
+            {
+              en: 'Tell the story of the archery again: what you expected, what really happened, and how it ended.',
+              zh: '把射箭那一段重新說一次：你原本以為怎樣、實際上發生了什麼、最後結果如何。',
+            },
+            {
+              en: 'Describe the lunch at the Hunter School to someone who was not there.',
+              zh: '向一個沒去的人，描述獵人學校的那頓午餐。',
+            },
+            {
+              en: 'Another school trip or class activity you remember well.',
+              zh: '另一次讓你印象深刻的校外教學或班級活動。',
+            },
+            {
+              en: 'Something you tried for the first time this year.',
+              zh: '今年你第一次嘗試的一件事。',
+            },
+          ],
+          checklist: [
+            { en: 'go on a field trip', zh: '去校外教學' },
+            { en: 'learn how to', zh: '學會怎麼……' },
+            { en: 'without much effort', zh: '不費什麼力氣' },
+            { en: 'harder than I had expected', zh: '比我原本想的還難' },
+            { en: 'manage to', zh: '終於做到……' },
+            { en: 'so … that …', zh: '如此……以致於……' },
+            { en: 'even so', zh: '即使如此' },
+            { en: 'have a great time', zh: '玩得很開心' },
+          ],
+          frames: [
+            {
+              en: 'At first, I thought… would be easy.',
+              zh: '一開始，我以為……很簡單。',
+            },
+            {
+              en: 'After trying it, though, I realized it was much harder than I had expected.',
+              zh: '不過試了之後，我才發現它比我原本想的難很多。',
+            },
+            {
+              en: 'It was so… that I…',
+              zh: '它……到我……',
+            },
+            {
+              en: 'Even so, I thought it was really fun.',
+              zh: '即使如此，我還是覺得非常好玩。',
+            },
+          ],
+        },
+
+        {
+          t: 'quote',
+          en: 'I got to try many new things, and I hope we can have another experience like this in the future.',
+          zh: '我嘗試了很多新的東西，希望以後還能有這樣的體驗。',
+          by: 'the last line of your essay 你這篇文章的最後一句',
         },
       ],
     },
