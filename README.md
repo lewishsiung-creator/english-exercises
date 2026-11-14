@@ -4664,6 +4664,42 @@ the honest distinction is that *greedy*, *ambitious* and *driven* describe the
 same engine and differ by whether anyone else ends up with less, which is a
 real fact about English rather than a way of letting a high number off.
 
+**The session posters (14 November 2026).** Asked for as "make the diving
+session into a Nike style too" — the look was already on every session, so
+what was missing was the drawn graphics Hank's page has. `buildPoster()` and
+`stats()` came over from his renderer; all four drawings are new and belong to
+this page.
+
+The counts are **counted from the blocks**, never typed in, so a poster cannot
+drift out of step with the session it describes. `match` keeps its halves under
+`pairs` rather than `items`, which is why the counter takes a key. A row with a
+zero is dropped: an empty `fix` is the honest state of this notebook, but a
+poster announcing "0 CORRECTIONS" reads as a mark out of ten.
+
+Four line drawings, one per lesson, all inline SVG — a whale shark under depth
+lines for the diving trip, a square-sailed boat for the Odyssey, two speech
+bubbles for the self-introduction, and for the quiz a seven-sided chart whose
+inner polygon **is his own seven numbers** rather than a decoration. No brand's
+mark is among them; the look is the design language and nothing else. Hank's
+classes are named after a basketball court, so they are `.art-lines`,
+`.art-draw` and `.art-fill` here instead.
+
+Three things were got wrong first and are worth not repeating:
+
+- **The drawings were authored 300×300 and the panel is a 684×174 band**, so
+  roughly half of each one fell outside it and the boat arrived as a mast with
+  no hull. They are now 360×180, to the band's own proportion, in a box
+  stretched to the panel's full height with the SVG left to fit inside it.
+- **A diver in four strokes reads as a stick figure falling over.** The whale
+  shark replaced him: easier to draw and the better memory of the trip anyway.
+- **The art was ruled straight through TALKING POINTS.** Its left edge is now
+  masked away with a gradient, so the drawing comes out of the black where
+  there is room for it rather than butting against the words.
+
+Below 640px the tiles wrap, the first row runs the full width, and no amount of
+masking saves a drawing lying across it — so the art moves to the bottom-right
+corner, beside the short second row.
+
 
 ## Anna's Notebook — young adult, one-to-one, kept over time
 

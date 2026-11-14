@@ -48,6 +48,134 @@ function speakBtn(sentence, cls = 'say') {
     aria-label="Listen">🔊</button>`;
 }
 
+/* ---------------------------------------------------------------- the art
+
+   One line drawing per session, sitting behind the scoreboard under its title
+   and bleeding off the right-hand edge. Each belongs to its own lesson and
+   nothing else: a descent for the diving trip, a boat for the Odyssey, two
+   speech bubbles for the self-introduction, his own radar chart for the quiz.
+
+   They are drawn here rather than loaded, for the reason every other image on
+   this site is: a file is a request that can fail, and a drawing that can fail
+   is worse than no drawing. No brand's mark is among them — the look is the
+   design language and that is all it is. See court.css.
+
+   `.art-lines` is the faint ground, `.art-draw` the white stroke on top, and
+   `.art-fill` the one thing allowed the orange. Hank's copy calls these
+   `.court-lines` and so on, after basketball; nothing on this page is a court,
+   so they are renamed here and the two files stay independent. */
+const ART = {
+  /* The dive. Depth lines opening out under the surface, and the one thing he
+     actually came back talking about: the whale shark. A person was drawn here
+     first and thrown away — a diver in four strokes reads as a stick figure
+     falling over, and the shark is both easier to draw and the better memory.
+     The orange is its eye, which is the only place on it a single dot belongs. */
+  dive: `
+    <svg viewBox="0 0 360 180" aria-hidden="true" focusable="false">
+      <g class="art-lines" fill="none">
+        <path d="M0 22q22-9 44 0t44 0 44 0 44 0 44 0 44 0 44 0 44 0"/>
+        <path d="M6 60h348M14 100h346M26 140h334M40 176h320"/>
+      </g>
+      <g class="art-draw" fill="none">
+        <path d="M58 100q2-28 48-28h64q52 0 64 28-12 28-64 28h-64q-46 0-48-28z"/>
+        <path d="M234 100l44-26q-9 26 0 52z"/>
+        <path d="M152 72q14-24 34 0"/>
+        <path d="M118 128q-6 22 16 24"/>
+        <path d="M96 86h2M126 84h2M156 84h2M186 86h2M212 90h2"/>
+        <path d="M104 100h2M134 100h2M164 100h2M194 100h2M218 102h2"/>
+        <path d="M96 114h2M126 116h2M156 116h2M186 114h2M212 110h2"/>
+      </g>
+      <circle class="art-fill" cx="76" cy="92" r="4.5"/>
+    </svg>`,
+
+  /* The Odyssey. A square sail, the oldest shape in the story, over water that
+     keeps going after the hull has passed. The star is the one thing he
+     steered by, and the one thing allowed the orange. */
+  voyage: `
+    <svg viewBox="0 0 360 180" aria-hidden="true" focusable="false">
+      <g class="art-lines" fill="none">
+        <path d="M0 134q22-10 44 0t44 0 44 0 44 0 44 0 44 0 44 0 44 0"/>
+        <path d="M0 154q22-10 44 0t44 0 44 0 44 0 44 0 44 0 44 0 44 0"/>
+        <path d="M0 174q22-10 44 0t44 0 44 0 44 0 44 0 44 0 44 0 44 0"/>
+      </g>
+      <g class="art-draw" fill="none">
+        <path d="M148 126h156l-24 28H172z"/>
+        <path d="M226 126V40"/>
+        <path d="M226 50h72l-14 48h-58z"/>
+        <path d="M226 126l-30-16M226 126l30-16"/>
+      </g>
+      <path class="art-fill" d="M168.0 27.0 171.5 37.1 182.3 37.4 173.7 43.9 176.8 54.1 168.0 48.0 159.2 54.1 162.3 43.9 153.7 37.4 164.5 37.1Z"/>
+    </svg>`,
+
+  /* The self-introduction. The same thing said twice — the blunt version
+     behind, the truer one in front with the orange on it. That is the session
+     in one picture, and it is the contrast block without the words. */
+  speech: `
+    <svg viewBox="0 0 360 180" aria-hidden="true" focusable="false">
+      <g class="art-lines" fill="none">
+        <path d="M34 14h142a14 14 0 0 1 14 14v54a14 14 0 0 1-14 14H92l-26 22V96H34a14 14 0 0 1-14-14V28a14 14 0 0 1 14-14z"/>
+        <path d="M44 42h120M44 64h84"/>
+      </g>
+      <g class="art-draw" fill="none">
+        <path d="M144 58h178a14 14 0 0 1 14 14v62a14 14 0 0 1-14 14H206l-28 24v-24h-34a14 14 0 0 1-14-14V72a14 14 0 0 1 14-14z"/>
+        <path d="M164 88h146M164 114h96"/>
+      </g>
+      <circle class="art-fill" cx="286" cy="114" r="8"/>
+    </svg>`,
+
+  /* The quiz. Seven sides, the shape the result arrived on, and the polygon
+     inside it is his own seven numbers rather than a decoration: 0, 5, 88, 5,
+     54, 68, 40, in the order the site listed them. */
+  radar: `
+    <svg viewBox="0 0 360 180" aria-hidden="true" focusable="false">
+      <g class="art-lines" fill="none">
+        <path d="M236.0 71.0 250.9 78.2 254.5 94.2 244.2 107.1 227.8 107.1 217.5 94.2 221.1 78.2Z"/>
+        <path d="M236.0 52.0 265.7 66.3 273.0 98.5 252.5 124.2 219.5 124.2 199.0 98.5 206.3 66.3Z"/>
+        <path d="M236.0 33.0 280.6 54.5 291.6 102.7 260.7 141.4 211.3 141.4 180.4 102.7 191.4 54.5Z"/>
+        <path d="M236.0 14.0 295.4 42.6 310.1 106.9 269.0 158.5 203.0 158.5 161.9 106.9 176.6 42.6Z"/>
+        <path d="M236 90L236.0 14.0M236 90L295.4 42.6M236 90L310.1 106.9M236 90L269.0 158.5M236 90L203.0 158.5M236 90L161.9 106.9M236 90L176.6 42.6"/>
+      </g>
+      <path class="art-fill-line" d="M236.0 80.0 246.4 81.7 302.4 105.1 241.8 102.0 216.2 131.1 182.5 102.2 207.5 67.3Z"/>
+    </svg>`,
+};
+
+/* What is in a lesson, counted from the blocks rather than typed in, so the
+   numbers cannot drift out of step with the session they describe. `match`
+   keeps its pairs under `pairs`, not `items`, which is why the counter takes
+   the key. A row with a zero is left out entirely: an empty `fix` is the
+   honest state of this page, but a poster announcing "0 FIXES" reads as a
+   mark out of ten. */
+function stats(s) {
+  const count = (t, key = 'items') =>
+    s.blocks.filter((b) => b.t === t).reduce((n, b) => n + (b[key] ? b[key].length : 0), 0);
+  const out = [];
+  const add = (n, en, zh) => { if (n) out.push({ n, en, zh }); };
+  add(count('fix'), 'Corrections', '訂正');
+  add(count('phrases'), 'Phrases', '片語');
+  add(count('gap') + count('match', 'pairs'), 'Questions', '練習題');
+  add(count('contrast'), 'Comparisons', '對照');
+  add(count('discuss'), 'Talking points', '討論題');
+  return out;
+}
+
+/* The black panel under a session title: what is inside the lesson, in
+   numerals big enough to read across a room, over the drawing that belongs to
+   it. A session with no `art` still gets its scoreboard. */
+function buildPoster(s) {
+  return `
+    <div class="poster${ART[s.art] ? ` poster-${s.art}` : ''}">
+      ${ART[s.art] ? `<div class="poster-art">${ART[s.art]}</div>` : ''}
+      <p class="poster-k">In this lesson <em>這堂課的內容</em></p>
+      <ul class="score">
+        ${stats(s).map((x) => `
+          <li>
+            <span class="score-n">${x.n}</span>
+            <span class="score-l">${text(x.en)}<em>${text(x.zh)}</em></span>
+          </li>`).join('')}
+      </ul>
+    </div>`;
+}
+
 /* Lists that hold sentence starters, sentence frames or tick-list phrases take
    `{ en, zh }`. Accept a bare string too, so a session written in a hurry still
    renders. */
@@ -468,6 +596,7 @@ function buildSession(s, open) {
         </button>
       </h2>
       <div class="session-body" id="body-${s.id}">
+        ${buildPoster(s)}
         ${focus}
         ${blocks}
       </div>

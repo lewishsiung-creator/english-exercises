@@ -140,6 +140,7 @@ const NOTEBOOK = {
     {
       id: 's1',
       n: 1,
+      art: 'dive',
       date: '2026-08-20',
       dateEn: '20 August 2026',
       dateZh: '2026 年 8 月 20 日',
@@ -634,6 +635,7 @@ const NOTEBOOK = {
     {
       id: 's2',
       n: 2,
+      art: 'voyage',
       date: '2026-09-03',
       dateEn: '3 September 2026',
       dateZh: '2026 年 9 月 3 日',
@@ -1234,6 +1236,7 @@ const NOTEBOOK = {
     {
       id: 's3',
       n: 3,
+      art: 'speech',
       date: '2026-09-06',
       dateEn: '6 September 2026',
       dateZh: '2026 年 9 月 6 日',
@@ -1627,6 +1630,7 @@ const NOTEBOOK = {
     {
       id: 's4',
       n: 4,
+      art: 'radar',
       date: '2026-11-14',
       dateEn: '14 November 2026',
       dateZh: '2026 年 11 月 14 日',

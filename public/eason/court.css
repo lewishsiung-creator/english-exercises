@@ -509,3 +509,157 @@ body { font-size: 17px; line-height: 1.6; }
 .session.folded .session-btn .date { margin-bottom: 4px; }
 .session.folded .session-btn .fold { margin-top: 0; }
 .session.folded .session-btn:hover .n { color: var(--accent); }
+
+/* ====================================================================
+   THE SCOREBOARD UNDER A SESSION TITLE
+   ====================================================================
+
+   A black panel at the head of every open session: what is inside the lesson,
+   counted from the blocks by render.js, in numerals big enough to read across
+   a room — over the one line drawing that belongs to that lesson and nothing
+   else. The art bleeds off the right edge on purpose; a drawing with air all
+   round it is an illustration, and a drawing that runs off the page is a
+   poster. `overflow: hidden` is what makes the bleed safe.
+
+   The drawings carry no brand's mark, the same line as the rest of this file.
+   Hank's copy names these classes after a basketball court; nothing here is a
+   court, so they are `.art-*` instead. */
+
+.poster {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 22px;
+  padding: 22px 26px 24px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 20px;
+}
+/* The art box is the HEIGHT OF THE PANEL, not a square hanging off it. The
+   first version used 300×300 drawings positioned by eye, and the panel is a
+   684×174 band — so most of each drawing fell outside it and the boat arrived
+   as a mast with no hull. The drawings are authored 360×180 to the same
+   proportion as the band, the box is stretched to the panel's full height, and
+   the SVG is left to fit inside it. Nothing is cropped at any width.
+
+   The bleed is the 34px of overhang on the right, which is the whole
+   difference between a poster and a badge. The waves and depth lines are drawn
+   out to the edge of the viewBox so there is something to run off it. */
+.poster-art {
+  position: absolute;
+  right: -30px;
+  top: 0;
+  bottom: 0;
+  width: 316px;
+  pointer-events: none;
+  /* The drawing comes out of the black rather than starting at an edge. The
+     last tile on a wide panel reaches under the art, and a depth line ruled
+     across TALKING POINTS is just a line through the words — so the left of
+     the box is masked away and the picture arrives where there is room for
+     it. It also stops any drawing from looking cut off at the left. */
+  -webkit-mask: linear-gradient(to right, transparent 0, #000 16%);
+  mask: linear-gradient(to right, transparent 0, #000 16%);
+}
+.poster-art svg { width: 100%; height: 100%; }
+
+/* The ground is faint enough to read the numerals over, the drawing on top of
+   it is the white of the page, and exactly one element is allowed the orange. */
+.poster .art-lines { stroke: #3a3a3c; stroke-width: 1.5; }
+.poster .art-draw { stroke: #cacacb; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.poster .art-fill { fill: var(--accent); }
+.poster .art-fill-line {
+  fill: color-mix(in srgb, var(--accent) 22%, transparent);
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.poster-k {
+  position: relative;
+  margin: 0 0 14px;
+  font-family: var(--font-ui);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #b3b3b5;
+}
+.poster-k em {
+  margin-left: .9em;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: none;
+}
+
+.score {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 34px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.score li { display: flex; flex-direction: column; min-width: 4.4rem; }
+.score-n {
+  font-family: var(--font-display);
+  font-size: 3.3rem;
+  font-weight: 800;
+  line-height: .92;
+  font-variant-numeric: lining-nums;
+}
+.score-l {
+  margin-top: 7px;
+  font-family: var(--font-ui);
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #e5e5e5;
+}
+.score-l em {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-size: .76rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+  text-transform: none;
+  color: #b3b3b5;
+}
+
+@media (max-width: 899px) {
+  .poster { padding: 20px 20px 22px; }
+  .poster-art { right: -24px; width: 250px; opacity: .85; }
+  .score { gap: 16px 26px; }
+  .score-n { font-size: 2.7rem; }
+}
+
+/* Once the tiles wrap, the art cannot sit across the middle: on a phone the
+   first row runs the full width and the drawing was being ruled straight
+   through QUESTIONS and COMPARISONS. Below this width the second row is short,
+   so the drawing moves into the gap beside it — bottom right, smaller, with
+   more of its left edge masked away. */
+@media (max-width: 640px) {
+  .poster-art {
+    top: auto;
+    bottom: -6px;
+    height: 124px;
+    width: 206px;
+    right: -20px;
+    opacity: .8;
+    -webkit-mask: linear-gradient(to right, transparent 0, #000 26%);
+    mask: linear-gradient(to right, transparent 0, #000 26%);
+  }
+}
+
+/* In print the panel is a box on white paper, and the drawing goes: it is ink
+   spent on decoration, and the counts are the part worth keeping. */
+@media print {
+  .poster-art { display: none !important; }
+  .poster { background: #fff; color: #111; border: 2px solid #111; }
+  .poster-k, .score-l, .score-l em { color: #111; }
+}
