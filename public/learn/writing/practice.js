@@ -29,6 +29,10 @@
   const shuffle = (a) => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
   // compare typed English loosely: case, curly quotes, spacing and punctuation do not count
   const norm = (s) => String(s).toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9' ]+/g, ' ').replace(/\s+/g, ' ').trim();
+  const ZH = '零一二三四五六七八九十';
+  const zh = (n) => (n <= 10 ? ZH[n] : n < 20 ? '十' + ZH[n - 10] : String(n));   // 十一句, 十二格
+  // a filled gap, without the (decide / return) cue after it, and only the half after →
+  const fill = (q, a) => q.replace(/___(\s*\([^)]*\))?/, a).replace(/^.*→\s*/, '');
   const countWords = (s) => (String(s).match(/[A-Za-z0-9]+(?:['’-][A-Za-z0-9]+)*/g) || []).length;
 
   const E = ESSAYS.find((x) => x.id === SHEET.essay);
@@ -135,7 +139,7 @@
             <span class="pm-n">${k}</span>${esc(zh)}</button></li>`).join('')}
         </ul>
       </div>
-      <p class="pp-status">${all ? '十組都配好了 ✓' : `已配對 ${st.got.size} / ${p.left.length}`}</p>`;
+      <p class="pp-status">${all ? `${zh(p.left.length)}組都配好了 ✓` : `已配對 ${st.got.size} / ${p.left.length}`}</p>`;
   };
 
   B.gaps = (p, st) => `
@@ -163,7 +167,7 @@
     const num = (i) => '①②③④⑤⑥⑦⑧⑨⑩'[i];
     if (st.i >= SENTS.length) {
       return `
-        <p class="pp-good pp-big">十一句都認出來了 ✓</p>
+        <p class="pp-good pp-big">${zh(SENTS.length)}句都認出來了 ✓</p>
         <table class="pj-tab"><thead><tr><th>S</th><th>Sentence</th><th>工作</th></tr></thead><tbody>
           ${SENTS.map((s, i) => `${i === 0 || s.pi !== SENTS[i - 1].pi ? `<tr class="pj-para"><td colspan="3">${esc(E.paras[s.pi].labelZh)}</td></tr>` : ''}
             <tr><td>${i + 1}</td><td lang="en">${esc(s.en)}</td><td class="pj-mv">${num(opt(moveOf(s)))} ${esc(moveOf(s))}</td></tr>`).join('')}
@@ -179,7 +183,7 @@
     return `
       <p class="pp-count">S${st.i + 1}，共 ${SENTS.length} 句 · ${esc(E.paras[s.pi].labelZh)}</p>
       <p class="pj-s" lang="en">${esc(s.en)}${say(s.en)}</p>
-      <div class="pj-opts">${p.moves.map(([zh, en], i) => {
+      <div class="pj-opts" style="--cols:${p.moves.length % 3 === 0 ? 3 : 4}">${p.moves.map(([zh, en], i) => {
         const cls = st.solved && zh === right ? 'right' : st.tried.includes(zh) ? 'no' : '';
         return `<button class="pj-o ${cls}" data-act="job" data-v="${esc(zh)}" ${st.solved || st.tried.includes(zh) ? 'disabled' : ''}>
           <span class="pj-zh">${num(i)} ${esc(zh)}</span><span class="pj-en" lang="en">${esc(en)}</span></button>`;
@@ -230,7 +234,7 @@
           <p class="pr-q" lang="${/[一-鿿]/.test(it.q) ? 'zh-Hant' : 'en'}">${esc(pre)}${field}${esc(post)}</p>
           ${blank ? '' : `<textarea class="pr-in" data-k="${k}" rows="${it.long ? 3 : 2}" autocapitalize="sentences" spellcheck="false" aria-label="${esc(g.id)} 第 ${i + 1} 題">${esc(typed(k))}</textarea>`}
           ${open ? `<div class="pp-ref"><p class="pp-ref-k">${it.open ? '可以這樣寫' : '參考答案'}</p>
-              ${it.a.map((a) => `<p class="pr-a" lang="en">${esc(blank ? it.q.replace('___', a).replace(/^.*→\s*/, '') : a)}${say(blank ? it.q.replace('___', a).replace(/^.*→\s*/, '') : a)}</p>`).join('')}
+              ${it.a.map((a) => `<p class="pr-a" lang="en">${esc(blank ? fill(it.q, a) : a)}${say(blank ? fill(it.q, a) : a)}</p>`).join('')}
               ${same ? `<p class="pp-good">✓ 跟參考答案一樣</p>` : mine && !it.open ? `<p class="pp-note">對照看看：意思一樣、文法對，就是對的。</p>` : ''}
             </div>` : `<button class="pp-btn" data-act="rw" data-k="${k}">看參考答案</button>`}
         </li>`;
@@ -252,7 +256,7 @@
     return `
       <div class="pc-bank" aria-label="Word Bank">${words.map((w) => `<button class="pc-w ${st.miss === w ? 'shake' : ''}" data-act="word" data-v="${esc(w)}" ${used(w) || all ? 'disabled' : ''} lang="en">${esc(w)}</button>`).join('')}</div>
       ${paras}
-      <p class="pp-status">${all ? `十二格都填好了 ✓ ${E.paras.map((q) => say(q.sentences.map((s) => s.en).join(' '), 'say')).join('')}` : st.cur >= 0 ? `第 ${st.cur + 1} 格要填哪個字？` : ''}</p>`;
+      <p class="pp-status">${all ? `${zh(ans.length)}格都填好了 ✓ ${E.paras.map((q) => say(q.sentences.map((s) => s.en).join(' '), 'say')).join('')}` : st.cur >= 0 ? `第 ${st.cur + 1} 格要填哪個字？` : ''}</p>`;
   };
 
   B.transfer = (p) => {
@@ -265,7 +269,7 @@
       lastPi = s.pi;
       return `${head}<li class="pt-r">
         <label for="pt-${i}"><b>${esc(moveOf(s))}</b>${tip ? `<span>${esc(tip)}</span>` : ''}</label>
-        <input id="pt-${i}" class="pt-in" data-k="${k('r' + i)}" value="${esc(typed(k('r' + i)))}" placeholder="109：${esc(eg)}" autocomplete="off" spellcheck="false">
+        <input id="pt-${i}" class="pt-in" data-k="${k('r' + i)}" value="${esc(typed(k('r' + i)))}" placeholder="${esc(SHEET.year)}：${esc(eg)}" autocomplete="off" spellcheck="false">
       </li>`;
     }).join('');
     const text = typed(k('text'));
@@ -279,7 +283,7 @@
 
       <p class="pp-ask">Step 1　先填骨架（關鍵字就好，不用寫完整句子）</p>
       <ol class="pt-rows">${rows}</ol>
-      <div class="pt-cost">${p.cost.map((c, i) => `<label>${esc(c)}<input class="pt-in" data-k="${k('c' + i)}" value="${esc(typed(k('c' + i)))}" autocomplete="off" spellcheck="false"></label>`).join('')}</div>
+      ${p.cost ? `<div class="pt-cost">${p.cost.map((c, i) => `<label>${esc(c)}<input class="pt-in" data-k="${k('c' + i)}" value="${esc(typed(k('c' + i)))}" autocomplete="off" spellcheck="false"></label>`).join('')}</div>` : ''}
 
       <p class="pp-ask">Step 2　寫出完整的兩段（約 ${p.words} words）</p>
       <label class="pt-title">Title<input class="pt-in" data-k="${k('title')}" value="${esc(typed(k('title')))}" autocomplete="off" spellcheck="false"></label>
@@ -328,7 +332,7 @@
         ${E.paras.map((q) => { const t = q.sentences.map((s) => s.en).join(' '); return `<p lang="en">${esc(t)}${say(t)}</p>`; }).join('')}
       </div>
       <a class="practice" href="../#${E.id}"><span class="practice-h">→ 每一句的中文和它的工作</span>
-        <span class="practice-b">學測英文寫作頁上的 ${esc(E.year)} 範文：打開「逐句結構」，十一句的中譯和說明都在那裡。</span></a>` : `
+        <span class="practice-b">學測英文寫作頁上的 ${esc(E.year)} 範文：打開「逐句結構」，${zh(SENTS.length)}句的中譯和說明都在那裡。</span></a>` : `
       <p class="lead">先寫完 G，再看範文——對照自己的兩段，看骨架是不是一樣。</p>
       <button class="pp-btn" data-act="model">看範文全文</button>`;
   }
@@ -496,9 +500,9 @@
     speechSynthesis.speak(u);
   }
   if ('speechSynthesis' in window) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
-  $('#voicePick').addEventListener('change', (e) => { voice = voices.find((v) => v.name === e.target.value) || voice; store.set('voice', e.target.value); speak('The whole place was packed with shoppers.'); });
+  $('#voicePick').addEventListener('change', (e) => { voice = voices.find((v) => v.name === e.target.value) || voice; store.set('voice', e.target.value); speak(SENTS[0].en); });
   $('#rate').value = store.get('rate', '0.95');
-  $('#rate').addEventListener('change', () => { store.set('rate', $('#rate').value); speak('The whole place was packed with shoppers.'); });
+  $('#rate').addEventListener('change', () => { store.set('rate', $('#rate').value); speak(SENTS[0].en); });
 
   /* ---------- 設定 ---------- */
   const panel = $('#panel');

@@ -3937,6 +3937,23 @@ essay page's 109 card links down to it, and the page's bar links back.
   projector, without touching what anyone typed; 全部收起 puts it back.
 - `noindex`, like the family's other new pages.
 
+### 110 練習單 at `/learn/writing/110/` (2026-11-14)
+
+Asked for as 「做 110 的練習單」 the same day. There was no paper sheet this
+time, so every question is new, written on 109's pattern from the 110 essay
+(*Visitors Damaging a Flower Garden*): the same eight parts, B2 and E with
+sentences of their own, and transfer scenes for the same kind of task
+(museum exhibits, a beach, a library). 110 is 圖片描述＋感受反思 rather than a
+story, so C has nine jobs, the skeleton's last two boxes ask for a point of
+view and the two sides of the closing contrast instead of 代價, and the
+self-check is about the zoom-out, *If I were…* and two suggestions.
+
+`practice.js` was made year-neutral for it: counts (十一句, 十二格) come from
+the essay and the sheet, the skeleton's placeholders say the sheet's year,
+`cost` is optional, nine jobs sit three by three, and a gap with a cue —
+`___ (be)` — fills without the cue in the reference answer (109's E3 had
+shown *decided to return (decide / return)*).
+
 ### `/reading/junior-vocab/` — 國中單字, 教育部's 2,000 words
 
 The 高中單字 page's sibling, asked for 2026-11-08: 教育部 108 課綱《英語文參考字
@@ -5603,6 +5620,7 @@ public/exam-writing/      a redirect to learn/writing/ (moved 2026-11-10)
 public/learn/             英文學習: the top page over the three below and writing/, and only them
 public/learn/writing/     學測英文寫作: the 109–115 學測 essay survey
 public/learn/writing/109/ 109 練習單: Lewis's paper worksheet, done on screen
+public/learn/writing/110/ 110 練習單: the same pattern, written for the page
 public/reading/           three high school texts, with his word tables
 public/reading/vocab/     高中單字: 大考中心's list, Levels 1–2 so far
 public/reading/junior-vocab/  國中單字: 教育部's 2,000 words
