@@ -1600,5 +1600,510 @@ const NOTEBOOK = {
         },
       ],
     },
+
+    /* Session 4 is material prepared BEFORE the lesson, like session 2 and
+       unlike sessions 1 and 3. The source is a screenshot Eason shared of an
+       arealme.com seven-sins / seven-virtues quiz, so the fourteen numbers
+       below are his and are quoted exactly; everything else is written for a
+       discussion that has not happened yet. `fix` is empty for that reason —
+       there is nothing of his to correct until the hour exists — and the date
+       is the day it was added.
+
+       The quiz is entertainment and the page says so in its first note. It is
+       used here as a mirror to argue with, because arguing with a description
+       of yourself is the actual language work: hedging, qualifying, saying
+       "only when" and "rather than". A page that treated a fun quiz as a
+       diagnosis would be teaching him something false about evidence as well
+       as something false about himself.
+
+       Two things are deliberate. The lust/chastity pair is taught as
+       vocabulary and nothing else — the words are part of the canonical seven
+       and turn up in books, so they are glossed and left; his score on that
+       pair is not discussed, and no task or question is built on it. And the
+       greed card is not softened into a compliment: the honest distinction is
+       that `greedy` and `ambitious` describe the same drive and differ by
+       whether anyone else loses, which is a real thing about English and not
+       a way of letting a high number off. */
+    {
+      id: 's4',
+      n: 4,
+      date: '2026-11-14',
+      dateEn: '14 November 2026',
+      dateZh: '2026 年 11 月 14 日',
+      en: 'What a fun quiz got right, and what it got wrong',
+      zh: '一個娛樂測驗說對了什麼，又說錯了什麼',
+
+      focus: [
+        { en: 'The seven sins and virtues', zh: '七宗罪與七美德' },
+        { en: 'Your fourteen numbers', zh: '你的十四個數字' },
+        { en: 'Greedy, or ambitious?', zh: '貪婪，還是有企圖心？' },
+        { en: 'Patience, a third time', zh: '耐心，第三次' },
+        { en: 'Arguing with a label', zh: '反駁一個標籤' },
+      ],
+
+      blocks: [
+        {
+          t: 'lead',
+          en: 'You took a quiz for fun and it handed you fourteen numbers. Most of them you will shrug at. One of them — a zero — is the third time in this notebook that the same word has come up, and the other two times it came from you.',
+          zh: '你隨手做了一個測驗，它丟給你十四個數字。大部分你看過就算了。但其中一個——一個零分——是這本筆記裡第三次出現同一個詞，而前兩次，都是你自己說出口的。',
+        },
+
+        {
+          t: 'note',
+          en: 'First, what this quiz is not',
+          zh: '首先，這個測驗不是什麼',
+          bodyEn: 'It is entertainment. The page says so itself at the bottom: 僅供娛樂與自我探索. Nobody checked it against how you actually behave, you answered it in a few minutes, and you could shift any number thirty points by reading a question in a different mood. So it is not evidence and it is not a diagnosis. What it is good for is a mirror you are allowed to argue with — and arguing with a description of yourself, out loud, in English, is one of the harder things you will ever have to do in this language. That is the real work of this lesson. The numbers are only the excuse.',
+          bodyZh: '它是娛樂。網頁自己在最下面就寫了：僅供娛樂與自我探索。沒有人拿它去對照你實際的行為，你幾分鐘就做完了，而且同一道題在不同心情下讀，任何一個數字都可能差上三十分。所以它不是證據，也不是診斷。它真正好用的地方，是當一面「你可以去反駁」的鏡子——而用英文、開口反駁一個對你的描述，是你在這個語言裡會遇到最難的事情之一。那才是這堂課真正在練的東西。數字只是個藉口。',
+        },
+
+        {
+          t: 'part',
+          n: 'A',
+          en: 'The fourteen words',
+          zh: '那十四個字',
+        },
+
+        {
+          t: 'summary',
+          titleEn: 'Where the seven come from',
+          titleZh: '這七個是從哪裡來的',
+          en: 'The seven sins were drawn up by Christian writers more than a thousand years ago as the seven habits that lead to all the others, and they were fixed in most people’s minds by Dante, an Italian poet, who built a whole journey through the afterlife around them. Each sin was given a virtue that undoes it. You do not have to believe any of it to need the words: they are everywhere in English novels, films, games and newspaper headlines, and a writer who calls a character “proud” in that old sense means something much sharper than “pleased with himself”.',
+          zh: '七宗罪是一千多年前由基督教作家整理出來的，被視為會引出其他所有過錯的七種習性；而真正讓它們深植人心的，是義大利詩人但丁——他圍繞著這七項，寫出了一整趟穿越死後世界的旅程。每一宗罪都被配上一項可以化解它的美德。你不需要相信這套說法，但你需要這些字：它們在英文小說、電影、遊戲和新聞標題裡到處都是。而當一個作家用那個古老的意思說某個角色 proud 的時候，他指的東西遠比「對自己很滿意」來得鋒利。',
+        },
+
+        {
+          t: 'phrases',
+          en: 'The seven sins',
+          zh: '七宗罪',
+          items: [
+            {
+              en: 'lust',
+              zh: '色慾；（對權力、名聲的）強烈渴望',
+              eg: 'Outside its old religious meaning, the word survives in “a lust for power” — wanting something so badly that nothing else is weighed.',
+              egZh: '除了宗教上的舊義之外，這個字在 a lust for power（對權力的強烈渴望）這類說法裡活了下來——想要一樣東西想到其他一切都不再被放在天平上。',
+            },
+            {
+              en: 'gluttony',
+              zh: '暴食；過度享用',
+              eg: 'Gluttony is not being hungry. It is carrying on long after you have stopped being hungry.',
+              egZh: 'gluttony 不是肚子餓，而是在早就不餓之後還繼續吃下去。',
+            },
+            {
+              en: 'greed',
+              zh: '貪婪；貪得無厭',
+              eg: 'Greed is wanting more than your share — of money, of attention, of anything.',
+              egZh: 'greed 是想要超過自己該得的那一份——不論是錢、是注意力，還是任何東西。',
+            },
+            {
+              en: 'sloth',
+              zh: '懶惰；怠惰',
+              eg: 'Sloth is the old word for not doing what you know you should. The animal is named after it, not the other way round.',
+              egZh: 'sloth 是「明知道該做卻不做」的古老說法。樹懶是因為這個字而得名，不是反過來。',
+            },
+            {
+              en: 'envy',
+              zh: '嫉妒（想要別人擁有的東西）',
+              eg: 'Envy is wanting what someone else has. Jealousy is being afraid of losing what you already have — English keeps the two apart, and most people mix them up.',
+              egZh: 'envy 是想要別人擁有的東西；jealousy 是害怕失去自己已經擁有的。英文把這兩個字分得很清楚，但大多數人會混用。',
+            },
+            {
+              en: 'wrath',
+              zh: '暴怒；盛怒',
+              eg: 'Wrath is anger with the volume up — the word a book uses, where speech would say “rage”.',
+              egZh: 'wrath 是把音量開到最大的憤怒——書面上會用這個字，口語則會說 rage。',
+            },
+            {
+              en: 'pride',
+              zh: '傲慢（舊義）；自豪（今義）',
+              eg: 'This one has two lives. “I am proud of my sister” is warm; the sin is the other one — needing everyone to see that you were right.',
+              egZh: '這個字有兩種人生。I am proud of my sister 是溫暖的；作為「罪」的那一個則是另一種——需要所有人都看見你是對的。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'The seven virtues',
+          zh: '七美德',
+          items: [
+            {
+              en: 'chastity',
+              zh: '貞潔；（引申）自我克制',
+              eg: 'The old religious term for keeping yourself from one appetite in particular.',
+              egZh: '這是宗教上的舊稱，指的是對某一種慾望特別加以克制。',
+            },
+            {
+              en: 'temperance',
+              zh: '節制；自制',
+              eg: 'Temperance is knowing when to stop, and stopping. It is the opposite of gluttony and the hardest of the seven to fake.',
+              egZh: 'temperance 是知道什麼時候該停，而且真的停下來。它是 gluttony 的相反，也是七項裡最裝不出來的一項。',
+            },
+            {
+              en: 'generosity',
+              zh: '慷慨；大方',
+              eg: 'The traditional word here is “charity”, which has drifted towards meaning donations; “generosity” is what most people say now.',
+              egZh: '傳統上這一項用的字是 charity，但它的意思後來偏向「慈善捐款」；現在多數人會說 generosity。',
+            },
+            {
+              en: 'diligence',
+              zh: '勤勉；用功',
+              eg: 'Diligence is doing the work when nobody is checking whether you did it.',
+              egZh: 'diligence 是在沒有人在檢查的時候，還是把事情做完。',
+            },
+            {
+              en: 'kindness',
+              zh: '仁愛；善意',
+              eg: 'Kindness is not the same as being nice. Nice is how you sound; kind is what it costs you.',
+              egZh: 'kindness 和 nice 不一樣。nice 是你聽起來如何；kind 是這件事讓你付出了什麼。',
+            },
+            {
+              en: 'patience',
+              zh: '耐心',
+              eg: 'Patience is staying useful to someone while they are still getting it wrong.',
+              egZh: 'patience 是在對方還一直做錯的時候，你仍然對他有用。',
+            },
+            {
+              en: 'humility',
+              zh: '謙遜',
+              eg: 'Humility is not thinking less of yourself. It is thinking about yourself less often.',
+              egZh: 'humility 不是把自己看低，而是比較少把心思放在自己身上。',
+            },
+          ],
+        },
+
+        {
+          t: 'match',
+          en: 'Each sin, and the virtue that undoes it',
+          zh: '每一宗罪，以及化解它的那項美德',
+          hintEn: 'Click a sin on the left, then the virtue it is paired with. This is the pairing the quiz used, and it is the traditional one.',
+          hintZh: '先點左邊的罪，再點與它配對的美德。這是測驗所採用的配對，也是傳統上的配對。',
+          pairs: [
+            { a: 'lust', b: 'chastity' },
+            { a: 'gluttony', b: 'temperance' },
+            { a: 'greed', b: 'generosity' },
+            { a: 'sloth', b: 'diligence' },
+            { a: 'envy', b: 'kindness' },
+            { a: 'wrath', b: 'patience' },
+            { a: 'pride', b: 'humility' },
+          ],
+        },
+
+        {
+          t: 'gap',
+          en: 'One word missing',
+          zh: '少了一個字',
+          hintEn: 'Choose the word that fits. The reason is behind the tick.',
+          hintZh: '選出合適的字。理由在打勾之後會出現。',
+          items: [
+            {
+              text: 'He ate the whole thing in four minutes. That was ___, not hunger.',
+              textZh: '他四分鐘就把整份吃完了。那是暴食，不是餓。',
+              options: ['gluttony', 'greed', 'sloth'],
+              answer: 0,
+              why: {
+                en: 'Gluttony is specifically about taking in more than you need — food, usually. Greed is wanting more than your share of anything at all, and sloth is not doing what you should.',
+                zh: 'gluttony 專指「攝取超過自己需要的量」，通常是指吃。greed 是想要超過自己該得的那一份，對象可以是任何東西；sloth 則是該做的事不做。',
+              },
+            },
+            {
+              text: '“___” is almost always an insult. “Ambitious” describes the same drive and is almost always a compliment.',
+              textZh: '「貪婪」幾乎永遠是一句批評，而「有企圖心」講的是同一股衝勁，卻幾乎永遠是一句稱讚。',
+              options: ['Greedy', 'Diligent', 'Humble'],
+              answer: 0,
+              why: {
+                en: 'Only one of the three is an insult in ordinary English. Diligent and humble are both compliments already, so neither can be the contrast the sentence is drawing.',
+                zh: '這三個字裡，只有一個在一般英文中是批評。diligent 和 humble 本來就是稱讚，所以都不可能是這句話想做的對比。',
+              },
+            },
+            {
+              text: 'After he had already won, he could not stop telling everyone it was him. That is ___ — the one the Odyssey punishes hardest.',
+              textZh: '他明明已經贏了，卻還是忍不住要告訴每個人那是他做的。那就是傲慢——《奧德賽》懲罰得最重的那一項。',
+              options: ['pride', 'envy', 'wrath'],
+              answer: 0,
+              why: {
+                en: 'Session 2 of this notebook is the story: Odysseus escapes the Cyclops and then shouts his own name across the water. Envy would be wanting someone else’s win, and wrath would be losing his temper over it.',
+                zh: '這本筆記的第二堂課講的就是這個故事：奧德修斯逃出獨眼巨人的洞穴之後，隔著海面喊出自己的名字。envy 是想要別人的勝利，wrath 則是為了這件事大發脾氣。',
+              },
+            },
+            {
+              text: 'She has no ___ at all. She wants it finished before you have worked out how to start.',
+              textZh: '她一點耐心都沒有。你都還沒想清楚要怎麼開始，她就要你做完了。',
+              options: ['patience', 'humility', 'temperance'],
+              answer: 0,
+              why: {
+                en: 'The complaint is about time — being unwilling to wait while someone works. Humility is about how you hold yourself, and temperance is about knowing when to stop.',
+                zh: '這句抱怨講的是時間——不願意等別人把事情做出來。humility 講的是你怎麼看待自己，temperance 講的是知道何時該停。',
+              },
+            },
+            {
+              text: '___ is doing the work when nobody is checking whether you did it.',
+              textZh: '勤勉，是在沒有人檢查的時候，還是把該做的事做完。',
+              options: ['Diligence', 'Chastity', 'Charity'],
+              answer: 0,
+              why: {
+                en: 'The sentence defines the virtue that undoes sloth. Chastity and charity are the virtues paired with lust and greed, and neither has anything to do with finishing work unsupervised.',
+                zh: '這句話在定義「化解懶惰」的那項美德。chastity 和 charity 分別對應 lust 和 greed，兩者都和「沒人盯著也會把工作做完」無關。',
+              },
+            },
+          ],
+        },
+
+        {
+          t: 'part',
+          n: 'B',
+          en: 'Your fourteen numbers',
+          zh: '你的十四個數字',
+        },
+
+        {
+          t: 'summary',
+          n: '1',
+          titleEn: 'What the quiz liked about you',
+          titleZh: '測驗欣賞你的地方',
+          en: 'Temperance 100. Humility 100. Chastity 85. Gluttony 5, sloth 5. Whatever else the quiz got wrong, that corner of it is consistent, and it matches things in this notebook that were not guesses: ten units of diving theory you could not skim or hand to AI, a self-introduction that named your own weakness before anyone asked for it, and a breathing rhythm you learned to control on purpose. A hundred for self-control and a hundred for humility is a rare pair. Most people who have the first one lose the second.',
+          zh: '節制 100。謙遜 100。貞潔 85。暴食 5，懶惰 5。不管這個測驗其他地方說錯了什麼，這一角是前後一致的，而且和這本筆記裡那些「不是猜的」事情對得上：十個單元的潛水理論，你不能略讀也不能丟給 AI；一篇自我介紹，在沒有人要求之前就先說出自己的弱點；還有一套你刻意練出來、能自己控制的呼吸節奏。自制一百分加上謙遜一百分，是很少見的組合。大多數擁有前者的人，都會失去後者。',
+        },
+
+        {
+          t: 'summary',
+          n: '2',
+          titleEn: 'The number that will surprise you',
+          titleZh: '會讓你意外的那個數字',
+          en: 'Greed 88, against generosity 35. Before you argue with it, notice that English has three words for this and they are not interchangeable. “Greedy” says you want more than your share. “Ambitious” says you want a great deal and intend to earn it. “Driven” says the wanting runs you rather than the other way round. They describe the same engine. Which word is the right one depends almost entirely on a single question: when you get what you want, does anybody else end up with less? That is the question worth bringing to the lesson, and it is not a question a quiz can answer about you.',
+          zh: '貪婪 88，對上慷慨 35。在你反駁之前，先注意一件事：英文裡有三個字在講這件事，而它們並不能互換。greedy 說的是你想要超過自己該得的那一份。ambitious 說的是你想要很多，而且打算靠自己掙來。driven 說的是那股「想要」在推著你走，而不是你在駕馭它。三個字描述的是同一具引擎。哪一個字才對，幾乎完全取決於一個問題：當你拿到你想要的東西時，有沒有別人因此變少？那才是值得帶進課堂的問題，而那也不是一個測驗能替你回答的問題。',
+        },
+
+        {
+          t: 'summary',
+          n: '3',
+          titleEn: 'The cluster at the bottom',
+          titleZh: '底下那一叢',
+          en: 'Wrath 68. Envy 54. Kindness 28. Patience 0. Those four are not four separate results — they are one shape, and it is the same shape session 1 found in you from a completely different direction. Note that it is a cluster about other people. Every number in the top group is about you on your own: what you eat, whether you train, whether you boast. Every number down here only appears when somebody else is in the room.',
+          zh: '暴怒 68。嫉妒 54。仁愛 28。耐心 0。這四個不是四個各自獨立的結果——它們是同一個形狀，而且是第一堂課從完全不同的方向在你身上找到的同一個形狀。注意一件事：這一叢全都跟別人有關。上面那一組的每一個數字，講的都是你一個人的時候：你吃什麼、你練不練、你會不會炫耀。而下面這些數字，只有在房間裡還有另一個人的時候才會出現。',
+        },
+
+        {
+          t: 'link',
+          href: '#s1',
+          en: 'Where this came up the first time',
+          zh: '這件事第一次出現的地方',
+          noteEn: 'Session 1, the diving trip. The second half of that hour was you working out, without being asked, that what frustrates you when you coach your friend is not losing — it is “I already explained it, why haven’t you learned it yet?”',
+          noteZh: '第一堂課，潛水之旅。那一個小時的後半，是你在沒有被問的情況下自己推導出來的：教朋友打遊戲時讓你煩躁的不是輸，而是「我明明講過了，你怎麼還是不會？」',
+        },
+
+        {
+          t: 'note',
+          en: 'Patience, a third time',
+          zh: '耐心，第三次',
+          bodyEn: 'August: you worked out for yourself, talking about a friend you coach, that the thing that gets you is “I already explained it.” September: writing a self-introduction with nobody asking about any of that, you listed patience as the one trait you still needed to work on. November: a quiz that has never met you, knows nothing about the friend or the introduction, and scores that one line at zero. Three sources, none of which was looking at the other two. When that happens it stops being an opinion about you and starts being a fact about you — which is good news, because facts can be worked on and opinions just get argued about. And the tools are on the same chart: temperance 100 and humility 100 are exactly what patience is made of. Being able to stop yourself, and not needing to be the one who is right. You already own both. You just have not pointed them at another person yet.',
+          bodyZh: '八月：你在談一個你指導的朋友時，自己推導出來——真正戳到你的那句話是「我明明講過了」。九月：在寫自我介紹、而且沒有人問起那件事的情況下，你把「耐心」列為自己唯一還需要加強的特質。十一月：一個從沒見過你、對那個朋友和那篇自我介紹一無所知的測驗，把這一項打了零分。三個來源，彼此都沒有看過對方。當這種事發生時，它就不再是一個「對你的看法」，而開始成為一個「關於你的事實」——這其實是好消息，因為事實可以著手處理，而看法只會被拿來爭論。而且工具就在同一張圖上：節制一百分、謙遜一百分，正是耐心的組成材料。能夠讓自己停下來，以及不需要當那個對的人。這兩樣你都已經擁有了。你只是還沒有把它們對準另一個人而已。',
+        },
+
+        {
+          t: 'part',
+          n: 'C',
+          en: 'Saying it better than the quiz did',
+          zh: '說得比測驗更準確',
+        },
+
+        {
+          t: 'contrast',
+          en: 'A score, and a sentence',
+          zh: '一個分數，和一個句子',
+          coldEn: 'The label',
+          coldZh: '標籤的說法',
+          warmEn: 'The truer sentence',
+          warmZh: '更準確的說法',
+          hintEn: 'A number has to apply to all of you at once. A sentence can carry a condition — when, with whom, how often — and that is why the right-hand column is both kinder and more accurate. Read both aloud.',
+          hintZh: '一個數字必須一次套用在你的全部身上；一個句子則可以帶上條件——什麼時候、跟誰、多常。這就是為什麼右邊那一欄既比較厚道，也比較準確。兩邊都請唸出聲。',
+          items: [
+            {
+              caseEn: 'Patience 0',
+              caseZh: '耐心 0 分',
+              cold: {
+                en: 'You have no patience.',
+                zh: '你沒有耐心。',
+              },
+              warm: {
+                en: 'I am patient with things and impatient with people — and only with people who are slower than me at something I am already good at.',
+                zh: '我對「事情」有耐心，對「人」沒有——而且只針對那些在我已經很擅長的事情上比我慢的人。',
+              },
+              whyEn: 'Everything useful is in the conditions. “With people, not things” and “only when I am already good at it” turn a verdict into something you can actually watch for next Tuesday.',
+              whyZh: '所有有用的訊息都在那些條件裡。「是對人不是對事」和「只在我已經很擅長的時候」，把一個判決變成了你下週二真的可以留意的東西。',
+            },
+            {
+              caseEn: 'Greed 88',
+              caseZh: '貪婪 88 分',
+              cold: {
+                en: 'You are greedy.',
+                zh: '你很貪婪。',
+              },
+              warm: {
+                en: 'I want a lot and I am willing to do the work for it. “Ambitious” is the word I would use — though I would have to check that nobody ends up with less when I get it.',
+                zh: '我想要很多，而且願意為此付出努力。我會用「有企圖心」這個說法——不過我得確認一下，當我拿到的時候，有沒有別人因此變少。',
+              },
+              whyEn: 'This is not a nicer word for the same thing. Swapping “greedy” for “ambitious” is only honest if the second half of the sentence is there, and saying that second half out loud is the harder English.',
+              whyZh: '這不是把同一件事換個好聽的說法。把 greedy 換成 ambitious，只有在後半句也說出來時才算誠實——而把後半句說出口，才是比較難的那一段英文。',
+            },
+            {
+              caseEn: 'Kindness 28',
+              caseZh: '仁愛 28 分',
+              cold: {
+                en: 'You are not a kind person.',
+                zh: '你不是一個善良的人。',
+              },
+              warm: {
+                en: 'I am not warm with people I do not know yet. But I have spent whole afternoons reviewing a friend’s recordings so he could play better — I just did it impatiently.',
+                zh: '我對還不熟的人不太熱絡。但我也曾經整個下午都在幫朋友看他的對戰錄影，好讓他打得更好——只是我做的時候沒什麼耐心。',
+              },
+              whyEn: 'The evidence contradicts the number, and you already had the evidence. Kindness that arrives impatiently still cost you an afternoon; the quiz has no way of seeing that, and you do.',
+              whyZh: '證據和那個數字是矛盾的，而那份證據你本來就有。帶著不耐煩的善意，一樣讓你付出了一個下午；測驗沒有辦法看見這件事，但你看得見。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Language for arguing with a description of yourself',
+          zh: '反駁一個對你的描述時可以用的說法',
+          items: [
+            {
+              en: 'There is some truth in that.',
+              zh: '這話有幾分道理。',
+              eg: 'There is some truth in that, but it is not the whole picture.',
+              egZh: '這話有幾分道理，但不是全貌。',
+            },
+            {
+              en: 'That is not quite right.',
+              zh: '這樣說不太準確。',
+              eg: 'That is not quite right — it depends on who I am with.',
+              egZh: '這樣說不太準確——要看我跟誰在一起。',
+            },
+            {
+              en: 'I would say ___ rather than ___.',
+              zh: '我會說是＿＿，而不是＿＿。',
+              eg: 'I would say impatient rather than unkind.',
+              egZh: '我會說是沒耐心，而不是不善良。',
+            },
+            {
+              en: 'Only when ___.',
+              zh: '只有在＿＿的時候才會。',
+              eg: 'Only when I already know how to do the thing myself.',
+              egZh: '只有在那件事我自己已經會做的時候才會。',
+            },
+            {
+              en: 'It depends on ___.',
+              zh: '這要看＿＿。',
+              eg: 'It depends on whether they asked me for help or I offered it.',
+              egZh: '這要看是他們來找我幫忙，還是我自己提議的。',
+            },
+            {
+              en: 'Fair enough, but ___.',
+              zh: '這說得有道理，不過＿＿。',
+              eg: 'Fair enough, but the same thing makes me finish what I start.',
+              egZh: '這說得有道理，不過也正是這一點讓我會把開始的事情做完。',
+            },
+            {
+              en: 'That is the part it got wrong.',
+              zh: '那一部分它就說錯了。',
+              eg: 'The first half is me. That is the part it got wrong.',
+              egZh: '前半段講的是我。那後面那部分它就說錯了。',
+            },
+            {
+              en: 'I used to be, but not so much now.',
+              zh: '我以前是，但現在沒那麼嚴重了。',
+              eg: 'I used to be, but not so much now — junior high me would have scored higher.',
+              egZh: '我以前是，但現在沒那麼嚴重了——國中的我分數會更高。',
+            },
+          ],
+        },
+
+        {
+          t: 'quote',
+          en: 'A score is one number. A sentence can hold a condition.',
+          zh: '一個分數只是一個數字；一個句子可以容得下條件。',
+          by: 'the sentence to keep from this lesson 這堂課最值得留下的一句',
+        },
+
+        {
+          t: 'poll',
+          en: 'Where do you stand?',
+          zh: '你的立場是什麼？',
+          hintEn: 'There is no right answer — take a side and say why.',
+          hintZh: '沒有標準答案：選一邊，並說明理由。',
+          items: [
+            { en: 'A quiz like this can tell you something true about yourself.', zh: '這樣的測驗能告訴你一些關於自己的真話。' },
+            { en: 'Wanting a great deal is fine, as long as you are willing to earn it.', zh: '想要很多沒有問題，只要你願意靠自己掙來。' },
+            { en: 'Patience is a skill you can train, not a personality you are born with.', zh: '耐心是一項可以練的技能，不是天生的性格。' },
+            { en: 'It is better to be kind than to be honest.', zh: '善良比誠實更重要。' },
+            { en: 'Somebody who scores 100 for self-control should find patience easy.', zh: '一個自制力一百分的人，應該會覺得耐心很容易。' },
+          ],
+        },
+
+        {
+          t: 'discuss',
+          en: 'Questions from the session',
+          zh: '課堂上談到的問題',
+          items: [
+            {
+              en: 'Which single number on that chart is most wrong about you, and what would you put instead?',
+              zh: '那張圖上，哪一個數字對你來說最不準？你會換成多少？',
+              starters: [
+                { en: 'The one it got most wrong is ___, because ___.', zh: '它說得最不準的是＿＿，因為＿＿。' },
+                { en: 'I would put it at about ___ instead.', zh: '我會把它改成大概＿＿。' },
+                { en: 'It would be right about me if the question had asked ___.', zh: '如果題目問的是＿＿，那它對我就說對了。' },
+              ],
+            },
+            {
+              en: 'Greed 88 and generosity 35. Is there anybody you are generous with? What makes them different from everybody else?',
+              zh: '貪婪 88，慷慨 35。有沒有哪些人是你會很大方的？他們跟其他人有什麼不同？',
+              starters: [
+                { en: 'I am generous with ___, but not with ___.', zh: '我對＿＿很大方，但對＿＿不會。' },
+                { en: 'What makes the difference is ___.', zh: '造成差別的是＿＿。' },
+                { en: 'I give time more easily than I give ___.', zh: '比起給＿＿，我比較容易給出時間。' },
+              ],
+            },
+            {
+              en: 'Temperance 100 and humility 100, but patience 0. How can the same person score all three?',
+              zh: '節制一百、謙遜一百，耐心卻是零。同一個人怎麼會這三項都是這樣？',
+              starters: [
+                { en: 'I can stop myself when it is about ___, but not when ___.', zh: '當事情跟＿＿有關時我停得下來，但當＿＿的時候就不行。' },
+                { en: 'Maybe patience is not self-control at all. Maybe it is ___.', zh: '也許耐心根本不是自制力。也許它是＿＿。' },
+                { en: 'The difference is that the other two only involve me.', zh: '差別在於，另外兩項只牽涉到我自己。' },
+              ],
+            },
+            {
+              en: 'If you took the same quiz in three years, which number would you most want to have moved, and what would have had to happen?',
+              zh: '如果三年後你再做一次同樣的測驗，你最希望哪一個數字改變？而那之前必須先發生什麼事？',
+              starters: [
+                { en: 'The one I would want to have moved is ___.', zh: '我最希望改變的是＿＿。' },
+                { en: 'For that to happen I would have to ___.', zh: '要做到那樣，我必須＿＿。' },
+                { en: 'I would know it had moved when ___.', zh: '當＿＿的時候，我就知道它真的變了。' },
+              ],
+            },
+          ],
+        },
+
+        {
+          t: 'task',
+          en: 'Homework: the sixth article',
+          zh: '作業：第六篇文章',
+          instructionEn: 'Write a short post for your blog called “What a personality test got right and wrong about me”. Three paragraphs. One on something it got right, with the evidence from your own life that makes you think so. One on something it got wrong, using the language above to say exactly how wrong and in what way — not “that is not me”, but “only when”, “I would say ___ rather than ___”. One on the number you would most like to have moved in three years. This belongs in the 學習歷程 for the same reason the diving post did: it is not what happened to you, it is what you made of it.',
+          instructionZh: '為你的部落格寫一篇短文，題目是〈一個性格測驗說對了我什麼、又說錯了什麼〉。三段。第一段寫它說對的地方，並附上你自己生活裡讓你這樣認為的證據。第二段寫它說錯的地方，用上面那些說法精確指出錯在哪、錯得多離譜——不要只寫「那不是我」，而要用「只有在……的時候」、「我會說是＿＿而不是＿＿」。第三段寫三年後你最希望哪一個數字改變。這篇適合放進學習歷程，理由跟潛水那一篇一樣：重點不是你遇到了什麼，而是你從中做出了什麼。',
+          prompts: [
+            { en: 'Do not defend yourself. Describe yourself more precisely than the quiz did — that is a different job.', zh: '不要替自己辯護。要比測驗更精確地描述自己——那是不一樣的一件事。' },
+            { en: 'Use at least three of the phrases from the last set, and keep the conditions in.', zh: '至少用上最後那組的三個說法，而且要把條件留著。' },
+            { en: 'Include one number it got right. A post that argues with all fourteen convinces nobody.', zh: '寫進一個它說對的數字。一篇十四項全部都要反駁的文章，說服不了任何人。' },
+          ],
+          frames: [
+            { en: 'The one it got right is ___, and I know because ___.', zh: '它說對的是＿＿，我知道是因為＿＿。' },
+            { en: 'It scored me ___ for ___, which is only true when ___.', zh: '它給我的＿＿是＿＿分，而那只有在＿＿的時候才成立。' },
+            { en: 'I would say ___ rather than ___, because ___.', zh: '我會說是＿＿而不是＿＿，因為＿＿。' },
+            { en: 'The number I would most like to have moved in three years is ___.', zh: '三年後我最希望改變的數字是＿＿。' },
+            { en: 'For that to happen, the thing I would have to change is ___.', zh: '要做到那樣，我必須改變的是＿＿。' },
+          ],
+        },
+      ],
+    },
   ],
 };

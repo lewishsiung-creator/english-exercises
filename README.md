@@ -4626,6 +4626,44 @@ three lines Hank's has. Without them the rule would never draw. Two rules the
 orange follows, both inherited: it is never the colour of small text, and a
 right answer stays green.
 
+Session 4 (14 November 2026) is built from a screenshot he shared of a
+seven-sins / seven-virtues quiz on arealme.com — a fourth source type, and the
+second one prepared **before** the lesson rather than after it, so `fix` is
+empty and the date is the day it was added. His fourteen numbers are quoted
+exactly; everything around them is written for an hour that has not happened.
+
+**The page says in its first note that the quiz is entertainment**, because it
+is, and because a notebook whose rule is never to reconstruct a student's
+sentence cannot then treat a five-minute quiz as a diagnosis. It is used as a
+mirror to argue with, which turns the whole session into one language job:
+hedging and qualifying a description of yourself — *only when*, *it depends
+on*, *I'd say ___ rather than ___*. Part C is eight phrase cards of exactly
+that, and the `contrast` block sets three of his scores against the sentence
+that would be both kinder and more accurate.
+
+Part A is vocabulary: the fourteen words, a `match` on the traditional
+pairings, and five gap-fills. The words earn their place — they are all over
+English fiction and headlines, and session 2's Odyssey lesson already taught
+pride in the older, sharper sense, so one gap-fill points back at it.
+
+**Why the session exists.** Patience 0 is the third independent sighting of the
+same word: session 1 has him working out unprompted that coaching a friend
+frustrates him because "I already explained it"; session 3 has him naming
+patience in a self-introduction nobody had asked that question in; and a quiz
+that knows neither scores it zero. Three sources that were not looking at each
+other. The note that says so also points at temperance 100 and humility 100 as
+the two things patience is actually made of — the strengths and the gap are on
+the same chart. A `link` block jumps back to session 1 so the first sighting is
+one tap away.
+
+Two judgement calls are written into the file's header comment. The
+lust/chastity pair is taught as vocabulary and left there — glossed, with a
+non-sexual collocation (*a lust for power*), and no question, task or contrast
+item built on his score. And greed 88 is **not** softened into a compliment:
+the honest distinction is that *greedy*, *ambitious* and *driven* describe the
+same engine and differ by whether anyone else ends up with less, which is a
+real fact about English rather than a way of letting a high number off.
+
 
 ## Anna's Notebook — young adult, one-to-one, kept over time
 
