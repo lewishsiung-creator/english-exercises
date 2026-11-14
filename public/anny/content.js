@@ -116,6 +116,11 @@ const NOTEBOOK = {
       en: 'Coaching a newly promoted manager',
       zh: '指導剛升任的主管',
 
+      /* One line for the cover map: the angle this session takes, not its
+         topic — the topic is the title. The three read as a set, so they are
+         worth checking against each other when a fourth is added. */
+      lens: { en: 'One manager, watched from outside', zh: '一位主管，從外面看' },
+
       focus: [
         { en: 'Feedback that creates awareness', zh: '能建立覺察的回饋' },
         { en: 'Expert → leader', zh: '從專家到領導者' },
@@ -133,6 +138,15 @@ const NOTEBOOK = {
           t: 'summary',
           en: 'The manager has been with the company for more than twelve years. She is technically strong, thoroughly prepared and hard to discourage — and she has just been promoted into a people-management role. Her professional competence was never the issue. What has not moved is her communication style: she still leads with what she knows, in a job where the measure has quietly changed from what she can do to what the people around her can do.',
           zh: '這位主管在公司待了超過十二年。她技術扎實、準備充分、不容易被打退——而她剛被升到帶人的職位。她的專業能力從來不是問題，沒有跟著改變的是溝通方式：她仍然以「我知道什麼」為出發點，但在這個職位上，衡量標準已經悄悄從「她能做到什麼」變成「她身邊的人能做到什麼」。',
+        },
+
+        {
+          t: 'figure',
+          fig: 'measure',
+          en: 'The measure that changed under her',
+          zh: '在她腳下換掉的那個標準',
+          hintEn: 'The last line of the paragraph above, drawn — because it is the reason for everything else in this session.',
+          hintZh: '上面那段的最後一句，畫出來——因為這一堂課其他所有內容，都是從這一句來的。',
         },
 
         {
@@ -536,6 +550,8 @@ const NOTEBOOK = {
       dateZh: '2026 年 11 月 4 日',
       en: 'The beliefs that hold a leader back',
       zh: '拖垮領導力的心魔',
+
+      lens: { en: 'The same person, from inside', zh: '同一個人，從裡面看' },
 
       focus: [
         { en: 'Naming a hidden blocker', zh: '指認潛在障礙' },
@@ -968,6 +984,8 @@ const NOTEBOOK = {
       en: 'The three-minute leadership update',
       zh: '三分鐘的領導簡報',
 
+      lens: { en: 'The room, looking at you', zh: '整個會議室，看著你' },
+
       focus: [
         { en: 'The four Cs', zh: '四個 C' },
         { en: 'Story before numbers', zh: '先講故事，再給數字' },
@@ -1035,6 +1053,15 @@ const NOTEBOOK = {
           zh: '每一個 C 通常壞在哪裡，以及防止它的順序',
           bodyEn: 'The four failures are predictable. Credibility goes when there are numbers everywhere and no "so what". Connection goes when you open straight into data, before anyone knows why they are listening. Clarity goes when a slide carries paragraphs and a chart too small to read. Commitment goes when you finish on "Any questions?" and nobody has been asked for anything. The order that prevents most of this is story, then strategy, then one clear slide, then the ask — which is almost the reverse of how a report is built.',
           bodyZh: '這四種失敗是可以預測的。數字到處都是、卻沒有說出「所以呢」，可信就沒了。一開場就進數據、聽眾還不知道自己為什麼要聽，共鳴就沒了。一張投影片塞滿整段文字和看不清的圖表，清晰就沒了。最後以「有沒有問題？」收尾、卻沒有向任何人提出請求，行動就沒了。能擋掉大部分問題的順序是：先故事、再策略、再一張清楚的投影片、最後提出請求——這幾乎和一般寫報告的順序相反。',
+        },
+
+        {
+          t: 'figure',
+          fig: 'breaks',
+          en: 'Where each C breaks',
+          zh: '四個 C 各自壞在哪裡',
+          hintEn: 'The first half of the paragraph above, as four pairs. There is no order to these — any one of them can go on its own.',
+          hintZh: '上面那段的前半，排成四組對照。這四項之間沒有順序——任何一項都可能單獨失守。',
         },
 
         {

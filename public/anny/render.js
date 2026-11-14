@@ -87,22 +87,38 @@ function hint(b) {
 
 /* ---------------- figures ----------------
 
-   Two things on this page are shapes rather than sentences — the order you
-   deliver a leadership update in, and the three stages of working on a belief
-   — and both were buried in a paragraph. They are diagrams now.
+   Some of what these sessions cover is a shape rather than a sentence — an
+   order you deliver in, a measure that changed, the four ways one thing
+   fails — and each of them was buried in a paragraph. They are diagrams now.
+
+   Three shapes, because three different things are being said. `steps` is a
+   sequence you move along. `pivot` is one thing seen on either side of a
+   single event, where the point is that the two halves are being compared,
+   not performed in turn. `rows` is a set of parallel pairs with no order at
+   all. Drawing all three as a row of arrows would have made them look like
+   the same idea three times, which is exactly what a diagram is supposed to
+   prevent.
 
    Laid out in HTML and CSS, NOT drawn as an SVG with text inside it. Text in
    an SVG does not reflow when the column narrows, does not grow when the
    reader enlarges type, cannot be selected or read aloud, and has to be
    positioned by hand twice over on a bilingual page. All four of those matter
-   here, and none of them is worth trading for a drawing. The only SVG is the
-   arrow between steps, which is the one part that really is a picture.
+   here, and none of them is worth trading for a drawing. The only SVGs are
+   the connectors between panels, which are the parts that really are pictures.
 
    They live in the renderer so content.js stays pure data: a session names a
    figure by key and never carries markup. */
 
 const ARROW = `<svg class="fig-arrow" viewBox="0 0 24 24" aria-hidden="true"><path
   d="M4 12h14M12 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+  stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+/* A fault line, for a `rows` figure: the thing on the left is broken by the
+   thing on the right. It has to read as damage at 20px, which rules out an
+   ✗ (too close to the "wrong answer" mark the exercises use) and a straight
+   line (reads as a divider). A jolt in the middle of a level line does it. */
+const FAULT = `<svg class="fig-fault" viewBox="0 0 24 24" aria-hidden="true"><path
+  d="M2 12h6l2.5-5 2 10 2.5-5h7" fill="none" stroke="currentColor" stroke-width="2"
   stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
 const FIGURES = {
@@ -152,6 +168,87 @@ const FIGURES = {
     footZh: '一開口就談那場會議，她聽到的會是「我過去做對的事其實都是錯的」。句子可以完全一樣，但順序才決定她接不接得住。',
   },
 
+  /* Session 1, and the thesis of the whole session: "the measure has quietly
+     changed from what she can do to what the people around her can do". That
+     sentence is a clause in the middle of the summary paragraph, and it is the
+     reason every other thing in the session is true. It is not a sequence —
+     nobody performs the left-hand side and then the right — so it is drawn as
+     one job on either side of one event. Her own strengths are listed on the
+     left deliberately: nothing there is wrong, and the figure must not read as
+     "stop doing these". */
+  measure: {
+    kind: 'pivot',
+    hingeEn: 'The promotion',
+    hingeZh: '升任之後',
+    sides: [
+      {
+        tagEn: 'What the job used to measure',
+        tagZh: '這份工作以前衡量的是',
+        en: 'What she can do',
+        zh: '她自己做得到什麼',
+        list: [
+          { en: 'Her own technical depth', zh: '她自己的技術深度' },
+          { en: 'How well she prepares', zh: '她準備得多充分' },
+          { en: 'The standard she holds', zh: '她守住的標準' },
+        ],
+      },
+      {
+        tagEn: 'What it measures now',
+        tagZh: '現在衡量的是',
+        en: 'What the people around her can do',
+        zh: '她身邊的人做得到什麼',
+        list: [
+          { en: 'Whether the surgeon gains confidence', zh: '那位醫師有沒有變得更有信心' },
+          { en: 'Whether her team decides without her', zh: '她的團隊能不能自己決定' },
+          { en: 'How much runs when she is not there', zh: '她不在的時候還跑得動多少' },
+        ],
+      },
+    ],
+    /* No "on the left": on a phone the panels stack and there is no left. */
+    footEn: 'None of what the job used to measure is a fault, and none of it has to be given up — it is what got her here, and she will need all of it. The scoreboard is simply no longer the one she spent twelve years learning to win on, and nobody told her it had been changed.',
+    footZh: '以前被衡量的那些，沒有一項是缺點，也沒有一項需要放棄——那正是把她帶到這個位置的東西，而且她還會用到。只是計分板已經不是她花十二年學會怎麼贏的那一塊了，而且沒有人告訴過她換了。',
+  },
+
+  /* Session 3. The note above it says two things — where each C breaks, and
+     the order that prevents it — and only the second half was ever drawn. The
+     four failures are four parallel pairs with no sequence between them, so
+     they get the shape that has no arrows in it. */
+  breaks: {
+    kind: 'rows',
+    keyEn: 'What you were aiming for',
+    keyZh: '你想要的',
+    valEn: 'What loses it',
+    valZh: '失手的原因',
+    rows: [
+      {
+        en: 'Credibility',
+        zh: '可信',
+        breakEn: 'Numbers everywhere and no “so what”.',
+        breakZh: '數字到處都是，卻沒有說出「所以呢」。',
+      },
+      {
+        en: 'Connection',
+        zh: '共鳴',
+        breakEn: 'Opening straight into data, before anyone knows why they are listening.',
+        breakZh: '一開場就進數據，聽眾還不知道自己為什麼要聽。',
+      },
+      {
+        en: 'Clarity',
+        zh: '清晰',
+        breakEn: 'One slide carrying paragraphs, and a chart too small to read.',
+        breakZh: '一張投影片塞滿整段文字，圖表還小到看不清。',
+      },
+      {
+        en: 'Commitment',
+        zh: '行動',
+        breakEn: 'Finishing on “Any questions?” — nobody has been asked for anything.',
+        breakZh: '以「有沒有問題？」收尾——等於沒有向任何人提出請求。',
+      },
+    ],
+    footEn: 'Every one of the four is lost by something the speaker did, which is the good news: a difficult audience is not on this list.',
+    footZh: '這四項的失守，每一項都是講者自己造成的——而這其實是好消息：「聽眾很難搞」並不在這張表上。',
+  },
+
   /* Session 2. Three stages, two steps each, and the order is the point —
      which a paragraph states and a diagram shows. */
   stages: {
@@ -191,9 +288,60 @@ function figSteps(steps) {
       <p class="fig-t"><span class="en">${text(s.en)}</span><span class="zh">${text(s.zh)}</span></p>
       ${s.earnEn ? `<p class="fig-earn"><span class="en">${text(s.earnEn)}</span>
         <span class="zh">${text(s.earnZh)}</span></p>` : ''}
-      ${s.list ? `<ul class="fig-l">${s.list.map((l) => `
-        <li><span class="en">${text(l.en)}</span><span class="zh">${text(l.zh)}</span></li>`).join('')}</ul>` : ''}
+      ${s.list ? figList(s.list) : ''}
     </div>`).join('');
+}
+
+function figList(list) {
+  return `<ul class="fig-l">${list.map((l) => `
+    <li><span class="en">${text(l.en)}</span><span class="zh">${text(l.zh)}</span></li>`).join('')}</ul>`;
+}
+
+/* One job, before and after one event. The hinge carries the event, and it is
+   a separate element rather than a border between the panels so it can be
+   labelled — an unlabelled divider would leave the reader to guess what
+   happened in the middle, which is the one thing the figure is for. */
+function figPivot(f) {
+  const side = (s) => `
+    <div class="fig-side">
+      <p class="fig-tag"><span class="en">${text(s.tagEn)}</span>
+        <span class="zh">${text(s.tagZh)}</span></p>
+      <p class="fig-t"><span class="en">${text(s.en)}</span><span class="zh">${text(s.zh)}</span></p>
+      ${s.list ? figList(s.list) : ''}
+    </div>`;
+  return `
+    <div class="fig-pivot">
+      ${side(f.sides[0])}
+      <div class="fig-hinge">
+        ${ARROW}
+        <p class="fig-hinge-t"><span class="en">${text(f.hingeEn)}</span>
+          <span class="zh">${text(f.hingeZh)}</span></p>
+      </div>
+      ${side(f.sides[1])}
+    </div>`;
+}
+
+/* Parallel pairs, no sequence. The column heads are stated once rather than
+   repeated on every row, and they are read by the screen reader before the
+   rows because they are what makes a bare pair of phrases mean anything. */
+function figRows(f) {
+  return `
+    <div class="fig-rows">
+      <p class="fig-heads">
+        <span class="fig-head"><span class="en">${text(f.keyEn)}</span>
+          <span class="zh">${text(f.keyZh)}</span></span>
+        <span class="fig-head"><span class="en">${text(f.valEn)}</span>
+          <span class="zh">${text(f.valZh)}</span></span>
+      </p>
+      ${f.rows.map((r) => `
+        <div class="fig-line">
+          <p class="fig-key"><span class="en">${text(r.en)}</span>
+            <span class="zh">${text(r.zh)}</span></p>
+          ${FAULT}
+          <p class="fig-val"><span class="en">${text(r.breakEn)}</span>
+            <span class="zh">${text(r.breakZh)}</span></p>
+        </div>`).join('')}
+    </div>`;
 }
 
 const BLOCKS = {
@@ -208,11 +356,14 @@ const BLOCKS = {
       console.error(`No figure named "${b.fig}"`);
       return `<p class="missing">缺少圖解：<code>${text(b.fig)}</code></p>`;
     }
+    const drawing = f.kind === 'pivot' ? figPivot(f)
+      : f.kind === 'rows' ? figRows(f)
+      : `<div class="fig-row fig-row-${f.steps.length}">${figSteps(f.steps)}</div>`;
     return `
       <figure class="fig">
         ${label(b)}
         ${hint(b)}
-        <div class="fig-row fig-row-${f.steps.length}">${figSteps(f.steps)}</div>
+        ${drawing}
         ${f.footEn ? `<figcaption class="fig-foot">
           <span class="en">${text(f.footEn)}</span>
           <span class="zh">${text(f.footZh)}</span></figcaption>` : ''}
@@ -517,6 +668,35 @@ function buildBanner() {
   return `<p class="sample-banner">${text(msg)}</p>`;
 }
 
+/* What the notebook covers, as a row of panels — and the one graphic on the
+   page that is about the page itself. The three sessions are not three
+   separate topics: one watches a manager from outside, the next looks at the
+   same person from inside, the third turns the room on Anny. Each session's
+   lead says so in passing and nothing said it anywhere a reader could see it
+   whole.
+
+   Built from the sessions array, in lesson order, so session 4 adds its own
+   panel and this never has to be remembered. A session with no `lens` is
+   skipped rather than drawn empty, and with fewer than two there is no shape
+   to show, so the whole thing stays off the page. The panels are links: on a
+   phone the contents list is behind the ☰, and this ends up being the fastest
+   way into a session. */
+function buildMap() {
+  const list = NOTEBOOK.sessions.filter((s) => s.lens);
+  if (list.length < 2) return '';
+  return `
+    <nav class="map" aria-label="What the sessions look at 各堂課的角度">
+      ${list.map((s) => `
+        <a class="map-card" href="#${text(s.id)}">
+          <p class="map-n">${text(s.n)}</p>
+          <p class="map-t"><span class="en">${text(s.en)}</span>
+            <span class="zh">${text(s.zh)}</span></p>
+          <p class="map-lens"><span class="en">${text(s.lens.en)}</span>
+            <span class="zh">${text(s.lens.zh)}</span></p>
+        </a>`).join('')}
+    </nav>`;
+}
+
 function buildCover() {
   const i = NOTEBOOK.intro;
   return `
@@ -526,6 +706,7 @@ function buildCover() {
         <button class="zh-chip" title="顯示中文">中</button>
         <span class="zh">${text(NOTEBOOK.titleZh)}</span></h1>
       ${pair(i.en, i.zh, 'cover-intro')}
+      ${buildMap()}
       <div class="goals">
         ${pair(i.goalsEn, i.goalsZh, 'goals-intro')}
         <ul>
@@ -922,6 +1103,14 @@ $('#nav').addEventListener('click', (e) => {
   if (!a) return;
   openSession(a.dataset.target);
   closeNav();
+});
+
+/* The cover map's panels are links into the same sessions and need the same
+   treatment, for the same reason. It is absent when there are too few
+   sessions to draw, so this is guarded. */
+$('.map')?.addEventListener('click', (e) => {
+  const a = e.target.closest('a');
+  if (a) openSession(a.getAttribute('href').slice(1));
 });
 
 /* The bar marks the session being read by measuring rather than with an

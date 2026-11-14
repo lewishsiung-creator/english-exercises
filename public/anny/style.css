@@ -123,8 +123,8 @@ body.zh-all .zh-chip { display: none; }
    — a flipped phrase card, an opened "useful language" list — where a second
    tap would only be in the way. */
 .hint-zh, .prompt .zh, .toc .t .zh, .why .zh, .focus .zh, .role-name .zh,
-.starters .zh, .frames .zh, .tick-t .zh,
-.fig-row .zh, .fig-foot .zh { display: block; }
+.starters .zh, .frames .zh, .tick-t .zh, .map .zh,
+.fig-row .zh, .fig-pivot .zh, .fig-rows .zh, .fig-foot .zh { display: block; }
 
 .pair[data-zh] { cursor: pointer; }
 .pair p { margin: 0; }
@@ -363,6 +363,53 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 .cover h1 .zh { font-size: .95rem; font-weight: 400; margin-top: 8px; }
 
 .cover-intro { margin-bottom: 26px; font-size: 1.06rem; }
+
+/* The cover map: what the sessions look at, one panel each, and a way in.
+   `auto-fit` with a floor does the responsive work on its own — no media
+   query and no container query, so the panels also reflow correctly for the
+   15rem the contents sidebar takes out of the column at 900px, and a fourth
+   session wraps to a second row without anything being rewritten. 13rem is
+   the narrowest a title of this length sets without breaking a word. */
+.map {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 10px;
+  margin-bottom: 26px;
+}
+
+.map-card {
+  display: block;
+  padding: 16px 18px;
+  background: var(--card);
+  border-radius: var(--r-card);
+  text-decoration: none;
+  color: inherit;
+  transition: background .12s, box-shadow .12s;
+}
+.map-card:hover { background: var(--navy-soft); box-shadow: inset 0 0 0 1px var(--navy-line); }
+
+.map-n {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-size: .82rem;
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  color: var(--gold);
+}
+
+.map-t { margin: 0; font-size: .98rem; font-weight: 600; line-height: 1.35; }
+.map-t .zh { font-size: .82rem; font-weight: 400; color: var(--ink-soft); margin-top: 3px; }
+
+.map-lens {
+  margin: 9px 0 0;
+  padding-top: 9px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}
+.map-lens .zh { font-size: .95em; }
 
 .goals {
   padding: 20px 22px;
@@ -623,7 +670,137 @@ body.zh-all .session-btn .titles .zh { display: block; }
 }
 .fig-foot .zh { margin-top: 3px; }
 
-@media (max-width: 620px) { .fig-step { padding: 13px 16px; } }
+/* The pivot. Two panels of equal weight with the event between them, and the
+   two halves must not look like step 1 and step 2 — so there are no numbers,
+   the panels are the same colour, and the connector carries a label. Narrow,
+   it stacks and the arrow turns down; wide, the hinge becomes a column of its
+   own and the arrow points across. 460px is where two panels of this much
+   text stop being columns of single words. */
+.fig-pivot {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.fig-side {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 16px 18px;
+  background: var(--card);
+  border-radius: var(--r-card);
+}
+
+.fig-tag {
+  margin: 0 0 7px;
+  font-family: var(--font-ui);
+  font-size: .76rem;
+  line-height: 1.45;
+  color: var(--ink-faint);
+}
+.fig-tag .zh { font-size: .95em; }
+
+.fig-hinge {
+  flex: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 2px 0;
+}
+.fig-hinge .fig-arrow { transform: rotate(90deg); }
+
+.fig-hinge-t {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: .76rem;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--gold);
+}
+.fig-hinge-t .zh { font-weight: 400; color: var(--ink-faint); }
+
+@container (min-width: 460px) {
+  .fig-pivot { flex-direction: row; gap: 4px; align-items: stretch; }
+  .fig-hinge {
+    flex-direction: column;
+    width: 7.5rem;
+    padding: 0 6px;
+    text-align: center;
+  }
+  .fig-hinge .fig-arrow { transform: none; width: 22px; height: 22px; }
+}
+
+/* Parallel pairs. No numbers and no sequence: the fault line between the two
+   halves of a row is the only mark, and it is the whole claim — this is what
+   loses that. The heads are a flex row that mirrors the rows below, and they
+   disappear when the rows stack, because a column head above a stacked pair
+   labels nothing. */
+.fig-rows { margin-top: 14px; }
+
+.fig-heads { display: none; }
+
+.fig-line {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  padding: 14px 18px;
+  background: var(--card);
+  border-radius: var(--r-card);
+}
+.fig-line + .fig-line { margin-top: 8px; }
+
+.fig-key {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.fig-key .zh { font-size: .86rem; font-weight: 400; color: var(--ink-soft); margin-top: 3px; }
+
+.fig-val {
+  margin: 0;
+  font-size: .9rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.fig-val .zh { font-size: .95em; color: var(--ink-faint); margin-top: 3px; }
+
+.fig-fault {
+  flex: none;
+  align-self: start;
+  width: 22px;
+  height: 22px;
+  color: var(--ink-faint);
+}
+
+@container (min-width: 520px) {
+  .fig-heads {
+    display: flex;
+    gap: 38px;
+    margin: 0 0 8px;
+    padding: 0 18px;
+    font-family: var(--font-ui);
+    font-size: .76rem;
+    line-height: 1.45;
+    color: var(--ink-faint);
+  }
+  /* Matches the row's own 1fr / 20px / 1.35fr, so each head sits over the
+     column it names. The gap accounts for the fault line between them. */
+  .fig-heads .fig-head:first-child { flex: 1 1 0; }
+  .fig-heads .fig-head:last-child { flex: 1.35 1 0; }
+  .fig-heads .zh { font-size: .95em; }
+
+  .fig-line { flex-direction: row; align-items: center; gap: 16px; }
+  .fig-key { flex: 1 1 0; min-width: 0; }
+  .fig-val { flex: 1.35 1 0; min-width: 0; }
+  .fig-fault { align-self: center; }
+}
+
+@media (max-width: 620px) { .fig-step, .fig-side { padding: 13px 16px; } }
 
 /* ---------------- note ---------------- */
 
@@ -1274,7 +1451,20 @@ body.zh-all .card-back { display: block; }
      rather than in the phone's column. */
   .fig-row { flex-direction: row !important; gap: 8px; }
   .fig-arrow { transform: none !important; }
-  .fig, .fig-step { break-inside: avoid; }
+  .fig-pivot { flex-direction: row !important; gap: 4px; }
+  .fig-hinge { flex-direction: column !important; width: 7.5rem; text-align: center; }
+  .fig-heads { display: flex !important; gap: 38px; padding: 0 18px;
+    font-size: 8pt; margin-bottom: 6px; }
+  .fig-heads .fig-head:first-child { flex: 1 1 0; }
+  .fig-heads .fig-head:last-child { flex: 1.35 1 0; }
+  .fig-line { flex-direction: row !important; align-items: center; gap: 16px; }
+  .fig-key { flex: 1 1 0; }
+  .fig-val { flex: 1.35 1 0; }
+  .fig, .fig-step, .fig-side, .fig-line { break-inside: avoid; }
+  /* The map prints. The links do nothing on paper, but the lens lines are
+     written nowhere else, and at the top of a printout it reads as contents. */
+  .map { grid-template-columns: repeat(3, 1fr); }
+  .map-card { break-inside: avoid; }
   .card, .fix, .gap, .ask, .task, .role, .note, .goals { break-inside: avoid; }
   .gap.solved .opts { display: flex; }
   .slot { min-width: 9rem; border-bottom: 1px solid #999; color: transparent; }
