@@ -81,6 +81,10 @@
                that are Hank's own. A drawing listed in ANIMATED also PLAYS:
                the legend lines must then be in the order the moves happen,
                one line per move, because line n lights up during move n
+     photos    photographs in a grid, each with a caption that is spoken and
+               glossed like any other line. `quote` puts a black tile first,
+               for the words that came with them. See PHOTOGRAPHS below before
+               adding one
      steps     a pattern as a row of numbered steps with arrows between them —
                use it wherever the SHAPE of an idea is the point
      timeline  the order of a day as stops on a line: `icon` (a name in ICONS),
@@ -171,8 +175,33 @@
    The scoreboard's numbers are counted from the session's own blocks, so there
    is nothing to keep in step — add a card and the count moves.
 
-   Every picture is drawn in code. There are no photographs on this page, and
-   no brand's artwork: see court.css.
+   Every drawing is made in code, and none is a brand's artwork: see court.css.
+
+   PHOTOGRAPHS
+   -----------
+   Session 2 has five, and they are the only photographs on the page. They came
+   from Hank's mother, by way of Lewis, with one line of hers: when Hank was
+   little she organized the same Atayal experience for his kindergarten
+   classmates. So they are from that EARLIER trip, not from last Friday's, and
+   Part G is built on exactly that — then against now.
+
+   The page is public, so three rules were applied, and any later photograph
+   should meet them too:
+
+   - No other child's face. Eight photographs were sent; the three in which
+     other children can be recognised (a close-up with classmates behind, a
+     group at a table, the group portrait) are NOT in img/ and must not be put
+     there — a file in public/ is reachable by its address whether or not a
+     page shows it. The archery picture is cropped to leave out the people
+     standing at its edge. Lewis can overrule this; it is his call, not the
+     page's, but it has to be a decision rather than a default.
+   - No camera data. Each file went through BMP and back, which drops EXIF.
+   - Captions say what is IN the picture and never who. The page does not
+     decide which child is Hank from a face, and it does not need to: the
+     questions under the photographs ask him.
+
+   Her message is quoted in her own Chinese, with an English translation
+   written for this page. The translation is the page's, not hers.
 
    SAMPLE BANNER
    -------------
@@ -1046,6 +1075,7 @@ const NOTEBOOK = {
         { en: '16 collocations', zh: '16 個搭配詞', to: 's2-d' },
         { en: 'Don’t repeat yourself', zh: '不要一直重複', to: 's2-e' },
         { en: 'Five questions', zh: '五個問題', to: 's2-f' },
+        { en: 'Then and now', zh: '那時候與現在', to: 's2-g' },
       ],
 
       blocks: [
@@ -1878,6 +1908,222 @@ const NOTEBOOK = {
             {
               en: 'Even so, I thought it was really fun.',
               zh: '即使如此，我還是覺得非常好玩。',
+            },
+          ],
+        },
+
+        // ------------------------------------------------------------ G
+        {
+          t: 'part',
+          id: 's2-g',
+          n: 'G',
+          en: 'The first time: your mother’s photos',
+          zh: '第一次：媽媽的照片',
+        },
+
+        {
+          t: 'lead',
+          en: 'Last Friday was not your first Atayal experience. Your mother sent these photos from a trip she organized when you were little. They are a good reason to practice a different kind of sentence: one that compares then and now.',
+          zh: '上個星期五並不是你第一次參加泰雅體驗。媽媽傳來了這些照片，是你小時候她揪團去的那一次。這正好可以用來練習另一種句子：比較「那時候」和「現在」。',
+        },
+
+        {
+          t: 'photos',
+          en: 'Photos from the first trip',
+          zh: '第一次去的照片',
+          hintEn: 'Tap a photo to see it larger. Every caption is in the past tense, and two of them use the passive: was cooked, were aimed.',
+          hintZh: '點照片可以放大。每一句說明都是過去式，其中兩句用了被動語態：was cooked、were aimed。',
+          quote: {
+            en: '“Hank, when you were little, I also got a group together and took a lot of your kindergarten classmates to this Atayal experience.”',
+            zh: '「Hank 你小時候，我也開團揪過你很多幼稚園同學去這個泰雅體驗欸。」',
+            by: 'your mother 你媽媽',
+          },
+          items: [
+            {
+              src: 'img/s2-stone.jpg',
+              w: 750,
+              h: 1000,
+              alt: 'Slices of pork and a row of sausages cooking on a flat, hot stone, with smoke rising.',
+              en: 'The meat was cooked on a hot stone.',
+              zh: '肉是放在熱石板上烤的。',
+            },
+            {
+              src: 'img/s2-clothes.jpg',
+              w: 750,
+              h: 1000,
+              alt: 'A boy wearing a red striped Atayal cloth and a patterned headband, with a guide standing behind him.',
+              en: 'Everyone tried on Atayal clothes and a headband.',
+              zh: '每個人都試穿了泰雅族的服飾和頭帶。',
+            },
+            {
+              src: 'img/s2-string.jpg',
+              w: 750,
+              h: 1000,
+              alt: 'A young man helping a boy tie a string to a thin stick standing in a garden.',
+              en: 'Tying the string needed some help.',
+              zh: '綁繩子需要有人幫忙。',
+            },
+            {
+              src: 'img/s2-archery.jpg',
+              w: 749,
+              h: 1000,
+              alt: 'A child drawing a bow toward a row of paper targets printed with wild boars.',
+              en: 'The arrows were aimed at wild boar targets.',
+              zh: '箭瞄準的是山豬靶。',
+            },
+            {
+              src: 'img/s2-climb.jpg',
+              w: 750,
+              h: 1000,
+              alt: 'A boy in a helmet and a harness hanging from climbing ropes among tall trees, making a peace sign.',
+              en: 'The ropes went high up into the trees.',
+              zh: '繩子一路往上，通到高高的樹上。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Then and now',
+          zh: '那時候與現在',
+          items: [
+            {
+              en: 'when I was little',
+              zh: '我小時候',
+              eg: 'When I was little, my mother took me on a trip like this.',
+              egZh: '我小時候，媽媽帶我參加過像這樣的行程。',
+            },
+            {
+              en: 'back then',
+              zh: '那時候',
+              eg: 'Back then, the meat was cooked on a hot stone.',
+              egZh: '那時候，肉是放在熱石板上烤的。',
+            },
+            {
+              en: 'used to',
+              zh: '以前（現在已經不是了）',
+              eg: 'I used to be much shorter than I am now.',
+              egZh: '我以前比現在矮很多。',
+            },
+            {
+              en: 'had been there before',
+              zh: '（在那之前）已經去過',
+              eg: 'I had been to an Atayal experience before, so some things felt familiar.',
+              egZh: '我之前就參加過泰雅體驗，所以有些東西感覺很熟悉。',
+            },
+            {
+              en: 'get a group together',
+              zh: '揪團、找一群人一起',
+              eg: 'My mother got a group together and took us to the mountains.',
+              egZh: '媽媽揪了一群人，帶我們到山上去。',
+            },
+            {
+              en: 'remind me of',
+              zh: '讓我想起',
+              eg: 'These photos remind me of my first trip.',
+              egZh: '這些照片讓我想起第一次去的時候。',
+            },
+          ],
+        },
+
+        {
+          t: 'note',
+          en: 'used to, or had been?',
+          zh: 'used to 還是 had been？',
+          bodyEn: 'Both look back, but at different things. “Used to” is for something that was true for a long time and is not true now: “I used to be shorter.” “I used to cry on school trips.” “Had been” is for one earlier event that came before another past event: “When we arrived last Friday, I had been there before.” A quick check: if you can add “but not anymore”, use “used to”. If you can add “before that”, use “had been”.',
+          bodyZh: '兩個都是回頭看，但看的東西不一樣。used to 用在「以前有很長一段時間是這樣，現在不是了」：「I used to be shorter.」「I used to cry on school trips.」had been 則用在「比過去某件事更早發生的一件事」：「When we arrived last Friday, I had been there before.」快速檢查法：如果句子後面可以加 but not anymore（但現在不是了），用 used to；如果可以加 before that（在那之前），用 had been。',
+        },
+
+        {
+          t: 'gap',
+          en: 'Then, or now?',
+          zh: '那時候，還是現在？',
+          hintEn: 'Four sentences about the first trip. The reason appears when you get it right.',
+          hintZh: '四個關於第一次去的句子。答對之後，原因就會出現。',
+          items: [
+            {
+              text: 'Back then, the meat ___ cooked on a hot stone.',
+              textZh: '那時候，肉是放在熱石板上烤的。',
+              options: ['is', 'was', 'were'],
+              answer: 1,
+              why: {
+                en: '“Back then” puts the sentence in the past, and “meat” is uncountable, so it takes “was”. The meat did not cook itself: it was cooked.',
+                zh: 'Back then 把句子放在過去；meat 是不可數名詞，所以用 was。肉不會自己烤自己，所以是被動：it was cooked。',
+              },
+            },
+            {
+              text: 'I ___ be much shorter than I am now.',
+              textZh: '我以前比現在矮很多。',
+              options: ['used to', 'use to', 'was used to'],
+              answer: 0,
+              why: {
+                en: '“Used to” + verb is for something true in the past and not true now. It keeps its -d. “Was used to” means something else: being familiar with something.',
+                zh: 'used to + 原形動詞，用在「以前是這樣、現在不是」的事。字尾的 -d 要留著。was used to 是另一個意思：「習慣於」某件事。',
+              },
+            },
+            {
+              text: 'When we arrived last Friday, I ___ been to an Atayal experience before.',
+              textZh: '上個星期五我們抵達時，我之前就已經參加過泰雅體驗了。',
+              options: ['have', 'was', 'had'],
+              answer: 2,
+              why: {
+                en: 'Two past times: arriving last Friday, and the first trip before that. The earlier one takes “had”. This is the third time this rule has turned up in this notebook.',
+                zh: '這裡有兩個過去的時間點：上星期五抵達，以及在那之前的第一次。比較早的那個用 had。這條規則已經是第三次出現在這本筆記裡了。',
+              },
+            },
+            {
+              text: 'These photos remind me ___ my first trip.',
+              textZh: '這些照片讓我想起第一次去的時候。',
+              options: ['about', 'of', 'to'],
+              answer: 1,
+              why: {
+                en: 'A photo, a song or a smell “reminds you of” something. “Remind me to” is different: it comes before a verb, for something you must not forget to do.',
+                zh: '照片、歌曲、氣味「讓你想起」某件事，用 remind you of。remind me to 則不一樣：後面接動詞，用在「提醒我去做」某件事。',
+              },
+            },
+          ],
+        },
+
+        {
+          t: 'discuss',
+          en: 'Four questions about the photos',
+          zh: '關於照片的四個問題',
+          items: [
+            {
+              en: 'Look at the photos. What do you remember about that day, and what had you forgotten?',
+              zh: '看看這些照片。那一天的事你還記得什麼？有哪些是你已經忘記的？',
+              starters: [
+                { en: 'I remember…', zh: '我記得……' },
+                { en: 'I had forgotten that…', zh: '我已經忘了……' },
+                { en: 'I don’t remember… at all.', zh: '我完全不記得……' },
+              ],
+            },
+            {
+              en: 'Which activities did you do both times, and which were new last Friday?',
+              zh: '哪些活動兩次都有做？哪些是上星期五才第一次做的？',
+              starters: [
+                { en: 'Both times, we…', zh: '兩次我們都……' },
+                { en: 'Back then, we…, but this time we…', zh: '那時候我們……，但這次我們……' },
+                { en: 'Last Friday was the first time I…', zh: '上星期五是我第一次……' },
+              ],
+            },
+            {
+              en: 'In one photo, the meat is cooking on a hot stone. Last Friday you used a metal skewer. Which way is better, and why?',
+              zh: '有一張照片裡，肉是放在熱石板上烤的；上星期五你用的是鐵叉。哪一種方式比較好？為什麼？',
+              starters: [
+                { en: 'I prefer…, because…', zh: '我比較喜歡……，因為……' },
+                { en: 'On a stone, the meat…', zh: '放在石板上，肉會……' },
+                { en: 'With a skewer, you can…', zh: '用鐵叉的話，你可以……' },
+              ],
+            },
+            {
+              en: 'Your mother organized that trip for your kindergarten classmates. What would you like to ask her about it?',
+              zh: '那次是媽媽替你的幼稚園同學揪團的。關於那次行程，你想問她什麼？',
+              starters: [
+                { en: 'I would ask her why…', zh: '我會問她為什麼……' },
+                { en: 'I want to know who…', zh: '我想知道誰……' },
+                { en: 'Did I really…?', zh: '我真的……嗎？' },
+              ],
             },
           ],
         },

@@ -1114,3 +1114,151 @@ button.legend-n:hover { transform: scale(1.12); }
 @media (max-width: 620px) {
   .play-now { flex: 1 0 100%; min-height: 2.7em; }
 }
+
+
+/* ====================================================================
+   PHOTOGRAPHS
+
+   A grid of pictures, each a button that opens it larger, under a black
+   tile that carries the words that came with them. Three across on a
+   desk; on a phone the tile and the first picture take the full width and
+   the rest pair up, so five pictures never leave one stranded.
+   ==================================================================== */
+
+.photos { margin: 30px 0 34px; }
+.shots {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.shot figure { margin: 0; }
+.shot-open {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  padding: 0;
+  overflow: hidden;
+  background: var(--navy-soft);
+  border: 0;
+  border-radius: 16px;
+  cursor: zoom-in;
+}
+.shot-open img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s var(--ease);
+}
+.shot-open:hover img { transform: scale(1.035); }
+.shot figcaption { margin-top: 10px; }
+.shot figcaption .en { font-size: .9rem; font-weight: 600; line-height: 1.4; }
+.shot figcaption .zh { font-size: .8rem; margin-top: 3px; }
+
+/* The words that came with the pictures. Black, so everything in it is
+   re-inked, the same as the cover and the closing quote. */
+.shot-say {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 20px 20px 18px;
+  color: #fff;
+  background: var(--ink);
+  border-radius: 16px;
+}
+.shot-say blockquote { margin: 0; }
+.shot-say .en {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.3vw, 1.45rem);
+  font-weight: 800;
+  line-height: 1.08;
+  text-transform: uppercase;
+}
+.shot-say .zh {
+  margin-top: 12px;
+  font-size: .86rem;
+  line-height: 1.6;
+  color: #cacacb;
+}
+.shot-say .zh-chip { color: #cacacb; border-color: #5a5a5c; vertical-align: middle; }
+.shot-say .say { color: #fff; background: #2e2e30; box-shadow: none; }
+.shot-say .say:hover { color: var(--ink); background: #fff; }
+.shot-by {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: #b3b3b5;
+}
+.shot-by::before {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 4px;
+  margin-bottom: 10px;
+  background: var(--accent);
+}
+
+/* A photograph, larger. The dialog is only as big as its picture, so a tap
+   anywhere beside it lands on the backdrop and closes it. */
+.lightbox {
+  max-width: min(92vw, 760px);
+  max-height: 94vh;
+  padding: 0;
+  overflow: visible;
+  color: #fff;
+  background: transparent;
+  border: 0;
+}
+.lightbox::backdrop { background: rgba(17, 17, 17, .9); }
+.lightbox img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 80vh;
+  margin: 0 auto;
+  border-radius: 14px;
+  cursor: default;
+}
+.lightbox-cap {
+  margin: 12px 0 0;
+  font-family: var(--font-ui);
+  font-size: .95rem;
+  font-weight: 600;
+  text-align: center;
+}
+.lightbox-x {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top));
+  right: max(14px, env(safe-area-inset-right));
+  width: 44px;
+  height: 44px;
+  font-size: 17px;
+  line-height: 1;
+  color: var(--ink);
+  background: #fff;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+@media (max-width: 620px) {
+  .shots { grid-template-columns: 1fr 1fr; gap: 14px 10px; }
+  .shot-say { grid-column: 1 / -1; }
+  /* The first picture goes full width and landscape, so the four after it
+     pair up and none is left on a row of its own. */
+  .shot-say + .shot { grid-column: 1 / -1; }
+  .shot-say + .shot .shot-open { aspect-ratio: 4 / 3; }
+}
+
+@media print {
+  .shot-say { color: #111; background: #fff; border: 2px solid #111; }
+  .shot-say .zh, .shot-by { color: #111; }
+  .lightbox { display: none !important; }
+}

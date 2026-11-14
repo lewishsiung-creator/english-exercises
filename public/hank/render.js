@@ -84,9 +84,10 @@ function shuffled(list) {
 
 // ---------------------------------------------------------------- drawings
 
-/* Every picture on this page is drawn here, as inline SVG, and none of it is a
-   photograph or a brand's artwork: court lines, a target, a play diagram and a
-   handful of pictograms. Inline rather than <img> so the strokes take their
+/* Every DRAWING on this page is made here, as inline SVG, and none of it is a
+   brand's artwork: court lines, a target, a play diagram and a handful of
+   pictograms. (The page also carries a few photographs — the `photos` block —
+   and those are files in img/, handled separately.) Inline rather than <img> so the strokes take their
    colour from the stylesheet (and so nothing is downloaded).
 
    The half court is drawn once, in a 400 x 300 box with the basket at the top,
@@ -273,6 +274,45 @@ const BLOCKS = {
       ${b.keyEn ? `<figcaption class="figure-key">${text(b.keyEn)}<span>${text(b.keyZh || '')}</span></figcaption>` : ''}
     </figure>`;
   },
+
+  /* Photographs, in a grid. Each is a button that opens it larger, and each
+     caption is an ordinary line: spoken, glossed, hidden behind the chip in
+     教學. `quote` is optional and puts a black tile at the head of the grid —
+     the words that came WITH the photographs, which are usually the reason
+     they are on the page at all.
+
+     `w` and `h` are the file's real pixels, so the browser keeps the box
+     before the file arrives and nothing below it jumps. */
+  photos: (b) => `
+    <div class="photos">
+      ${label(b)}
+      ${hint(b)}
+      <ul class="shots">
+        ${b.quote ? `
+          <li class="shot-say">
+            <blockquote class="pair" data-zh>
+              <p class="en">${text(b.quote.en)}${speakBtn(b.quote.en, 'say say-quiet')}
+                <button class="zh-chip" title="顯示中文">中</button></p>
+              <p class="zh">${text(b.quote.zh)}</p>
+            </blockquote>
+            <p class="shot-by">— ${text(b.quote.by)}</p>
+          </li>` : ''}
+        ${b.items.map((i) => `
+          <li class="shot">
+            <figure>
+              <button class="shot-open" aria-label="Enlarge the photo 放大照片">
+                <img src="${text(i.src)}" alt="${text(i.alt)}" width="${i.w || 750}" height="${i.h || 1000}"
+                     loading="lazy" decoding="async">
+              </button>
+              <figcaption class="pair" data-zh>
+                <p class="en">${text(i.en)}${speakBtn(i.en)}
+                  <button class="zh-chip" title="顯示中文">中</button></p>
+                <p class="zh">${text(i.zh)}</p>
+              </figcaption>
+            </figure>
+          </li>`).join('')}
+      </ul>
+    </div>`,
 
   /* A pattern drawn as a row of numbered steps with arrows between them — the
      shape of the idea is the point, so it should not be four paragraphs. The
@@ -1054,6 +1094,10 @@ doc.addEventListener('click', (e) => {
   const say = t.closest('.say');
   if (say) { e.stopPropagation(); speak(say.dataset.say, say); return; }
 
+  // ---- a photograph, larger
+  const shot = t.closest('.shot-open');
+  if (shot) { openShot(shot); return; }
+
   // ---- the play: the whole thing, or one move
   const playBtn = t.closest('.play-btn');
   if (playBtn) { playFor(playBtn).all(); return; }
@@ -1144,6 +1188,32 @@ doc.addEventListener('keydown', (e) => {
   const item = e.target.closest('.card, .fix');
   if (item && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); item.click(); }
 });
+
+// ---------------------------------------------------------------- photographs
+
+/* One <dialog> for every photograph on the page. A native dialog brings the
+   backdrop, the focus trap and Escape with it, so all this has to do is fill
+   it in. Where `showModal` does not exist the tap simply does nothing: the
+   photograph is already on the page at a readable size. */
+const lightbox = $('#lightbox');
+
+function openShot(btn) {
+  if (!lightbox || !lightbox.showModal) return;
+  const img = $('img', btn);
+  const cap = $('figcaption .en', btn.closest('figure'));
+  const big = $('img', lightbox);
+  big.src = img.currentSrc || img.src;
+  big.alt = img.alt;
+  // The caption's own text, without the 🔊 and 中 that sit inside the line.
+  $('.lightbox-cap', lightbox).textContent = cap ? cap.firstChild.textContent.trim() : '';
+  lightbox.showModal();
+}
+
+if (lightbox) {
+  // A click on the backdrop lands on the dialog itself; one on the picture or
+  // the caption lands on a child. Either way out is fine except the picture.
+  lightbox.addEventListener('click', (e) => { if (e.target.tagName !== 'IMG') lightbox.close(); });
+}
 
 // ---------------------------------------------------------------- the play, animated
 

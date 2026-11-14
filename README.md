@@ -5122,7 +5122,7 @@ change. Two rules for the orange: it is never the colour of small text (about
 
 Asked for "some graphic design" and a UX pass once the page had two sessions
 and had grown to ten screens. Everything is drawn in code as inline SVG —
-there are **no photographs and no brand artwork** — so the strokes take their
+there is **no brand artwork** and none of it is a photograph — so the strokes take their
 colour from `court.css` and nothing is downloaded.
 
 **Things to look at**
@@ -5192,6 +5192,39 @@ zero would otherwise be cached for good.
 Two things were added to the orange rule while doing this: small orange *type*
 uses the darker `--accent-ink` (5:1 on white), and a numeral sitting *on* orange
 is black, never white.
+
+### Photographs in session 2 (added 2026-11-15)
+
+Lewis sent eight photographs and one line from Hank's mother: when Hank was
+little she had organized this same Atayal experience for his kindergarten
+classmates. So the pictures are from that **earlier** trip, not from last
+Friday's — and that is what Part G is built on. Her message is the black tile
+at the head of the grid, in her own Chinese with a translation written for the
+page; under it are six *then and now* phrase cards, a note on `used to`
+against `had been`, a four-item gap-fill and four questions.
+
+`photos` is a new block: a three-column grid (the tile and the first picture go
+full width on a phone, so five pictures never leave one stranded), each picture
+a button that opens it in a native `<dialog>`, each caption an ordinary line
+with audio and a gloss. The captions are all past tense and two are passive
+(*was cooked*, *were aimed*), because that is the grammar the part is for.
+
+**Five of the eight are on the page, and the other three are not in the repo.**
+The page is public, so:
+
+- **No other child's face.** The three pictures in which other children can be
+  recognised — a close-up with classmates behind, a group at a table, the group
+  portrait — were left out, and are not in `img/` at all: a file under
+  `public/` is reachable by its address whether or not a page shows it. The
+  archery picture is cropped to leave out the people at its edge. This is
+  Lewis's call to overrule, but it has to be a decision, not a default.
+- **No camera data.** Each file goes through BMP and back (`sips`), which has
+  nowhere to keep EXIF. There is no PIL on this machine.
+- **A caption says what is in the picture, never who.** The page does not
+  decide which child is Hank from a face; the questions underneath ask him.
+
+Files are 750 × 1000 at JPEG quality 74, about 200 KB each, `loading="lazy"`
+with real `width`/`height` so nothing below them jumps.
 
 ### Session 1 — a weekend of movies, basketball and a school festival
 
@@ -5883,6 +5916,7 @@ public/mia/               Mia's notebook — the same, for a young adult at work
 public/mia/img/           its four Pexels photographs
 public/hank/              Hank's notebook — the same, for Grade 10, with 自學／教學
 public/hank/court.css     its own look, linked in place of editorial.css
+public/hank/img/          five photographs for session 2 — see the rules there
 public/jill/              Jill's notebook — one entry per weekly lesson
 public/junior-high/       國中英語精熟 — 單字 and 文法, one page, Grades 7–9
 public/junior-high-words/    a redirect: the 單字 half's old URL
