@@ -563,7 +563,7 @@ doc.addEventListener('click', (e) => {
 
   // ---- speak
   const say = t.closest('.say');
-  if (say) { e.stopPropagation(); speak(say.dataset.say); return; }
+  if (say) { e.stopPropagation(); speak(say.dataset.say, say); return; }
 
   // ---- a link keeps its ordinary behaviour; one pointing at a session on this
   //      page opens it first, or the jump lands on a folded heading
@@ -740,12 +740,25 @@ function loadVoices() {
 loadVoices();
 speechSynthesis.onvoiceschanged = loadVoices;
 
-function speak(sentence) {
+/* The button that was pressed stays lit while its sentence is being read, so
+   on a page with hundreds of identical buttons it is clear which one is
+   talking — and that the tap was heard at all, on a phone with the sound off.
+   court.css draws that state; without the class it is simply never drawn. */
+function quiet() { $$('.say.playing').forEach((b) => b.classList.remove('playing')); }
+
+function speak(sentence, btn) {
   if (!('speechSynthesis' in window)) return;
   speechSynthesis.cancel();
+  quiet();
   const u = new SpeechSynthesisUtterance(sentence);
   if (voice) { u.voice = voice; u.lang = voice.lang; } else { u.lang = 'en-US'; }
   u.rate = Number($('#rate').value);
+  if (btn) {
+    btn.classList.add('playing');
+    const stop = () => btn.classList.remove('playing');
+    u.onend = stop;
+    u.onerror = stop;
+  }
   speechSynthesis.speak(u);
 }
 
@@ -862,6 +875,7 @@ document.addEventListener('keydown', (e) => {
   closeNav();
   setPanel(false);
   speechSynthesis.cancel();
+  quiet();
 });
 
 // Arriving on an anchor from outside, or editing the hash by hand.

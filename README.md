@@ -4598,6 +4598,34 @@ built one lesson at a time cannot see that; a notebook can.
 polished, so it carries no record of what he said while producing it, and the
 sentences in it are already correct.
 
+**The sportswear look (14 November 2026).** Asked for in the same three words
+as [Hank's](#hanks-notebook--grade-10-one-to-one-自學-and-教學-kept-over-time), so
+`court.css` is copied here and linked last in place of `../editorial.css`:
+black on pure white, condensed capitals for every headline, pills for anything
+pressed, one orange. The page argues for it itself — in session 3 Eason says he
+feels more confident when he pays attention to how he presents himself, and
+that presenting himself changes how he feels.
+
+**Design language only.** No brand's name, logo, mark, slogan or licensed
+typeface is on the page or in the file, and none should be added: the page is
+public. The display face is whatever heavy condensed sans the device already
+has. The same line as the hbr.org look on `/business-journal/`.
+
+Two things about the copy. It is **trimmed**, not duplicated: Hank's notebook
+has two modes and five block types this one does not, so the rules for the
+自學／教學 switch, the 記住了 buttons, `mcq`, the play diagram, the photographs,
+the scoreboards, the timelines and the step tiles are left out rather than
+carried as dead weight — 511 lines against his 1,264. And it stays a **separate
+file** on purpose, like every notebook's renderer: one student's page should
+never move because another's was edited.
+
+One change outside the stylesheet. `court.css` draws a `.say.playing` state —
+the pressed speaker turns orange and pulses while its sentence is read — so
+`render.js` now passes the button into `speak()` and adds the class, the same
+three lines Hank's has. Without them the rule would never draw. Two rules the
+orange follows, both inherited: it is never the colour of small text, and a
+right answer stays green.
+
 
 ## Anna's Notebook — young adult, one-to-one, kept over time
 

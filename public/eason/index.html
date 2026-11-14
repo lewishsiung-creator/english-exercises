@@ -10,10 +10,11 @@
      of search results. It stays reachable by its URL for them. -->
 <meta name="robots" content="noindex, nofollow">
 
-<!-- Inline SVG mark: an open notebook with a ribbon. The colours must be
-     percent-encoded — a bare "#" would be read as the URL fragment. -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d3f6e'/%3E%3Crect x='16' y='13' width='32' height='38' rx='4' fill='%23f7f6f2'/%3E%3Cpath d='M32 13v38' stroke='%23c2d3e7' stroke-width='2'/%3E%3Cpath d='M40 13v16l4-4 4 4V13z' fill='%23f2c14e'/%3E%3C/svg%3E">
-<meta name="theme-color" content="#f7f6f2">
+<!-- Inline SVG mark: an open notebook on black, with an orange ribbon, so the
+     tab matches the page. The colours must be percent-encoded — a bare "#"
+     would be read as the URL fragment. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111111'/%3E%3Crect x='16' y='13' width='32' height='38' rx='4' fill='%23ffffff'/%3E%3Cpath d='M32 13v38' stroke='%23cacacb' stroke-width='2'/%3E%3Cpath d='M40 13v16l4-4 4 4V13z' fill='%23fa5400'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#ffffff">
 
 <link rel="stylesheet" href="style.css">
 
@@ -22,15 +23,16 @@
      it — this page keeps its own. See ../type.css. -->
 <link rel="stylesheet" href="../type.css">
 
-<!-- The house palette and type, shared by every adult page. Linked AFTER
-     this page's own stylesheet so its token definitions win; nothing in
-     style.css had to change. See ../editorial.css. -->
-<link rel="stylesheet" href="../editorial.css">
 <!-- The house interface, shared by every page in the family: the bar, the
-     controls, the display type and the hairlines. Linked LAST so it wins,
-     and it deliberately sets no body size, no measure and no colour of its
-     own. See ../house.css. -->
+     controls, the display type and the hairlines. It deliberately sets no
+     body size, no measure and no colour of its own. See ../house.css. -->
 <link rel="stylesheet" href="../house.css">
+
+<!-- This page's own look, linked LAST so it wins over all three. It takes the
+     place ../editorial.css has on the other notebooks: a sportswear look —
+     black on white, condensed capitals, one orange — as design language only.
+     See court.css. -->
+<link rel="stylesheet" href="court.css">
 
 </head>
 <body>
