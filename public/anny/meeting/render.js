@@ -64,6 +64,42 @@ function save() {
 
 // ------------------------------------------------------------------ builders
 
+/* ---------------- the cover map ----------------
+
+   The same object as the notebook's cover map next door: one card per part of
+   the document, built from `sections` so it cannot fall out of step with the
+   page. It is not a duplicate of the contents list in the sidebar — that list
+   is a number and a title, it is behind the ☰ on a phone, and the `sub` line
+   of each section (先對焦成果，再討論安排 and the rest) appears nowhere else at
+   all until you have scrolled to that section.
+
+   The 現場操作 mark is derived, not written down: a section carrying any of the
+   four block types that save or run something IS a section she operates during
+   the meeting, and anything hand-tagged here would eventually disagree with
+   the blocks. */
+const TOOL_BLOCKS = new Set(['clock', 'check', 'plan', 'fields']);
+
+function buildMap() {
+  const c = GUIDE.cover;
+  return `
+    <nav class="map-wrap" aria-labelledby="mapHead">
+      <h2 class="map-head" id="mapHead">${text(c.mapHead)}</h2>
+      <div class="map">
+        ${GUIDE.sections.map((s) => {
+          const tool = s.blocks.some((b) => TOOL_BLOCKS.has(b.t));
+          return `
+          <a class="map-card" href="#${text(s.id)}">
+            <p class="map-n">${text(s.n)}</p>
+            <p class="map-t">${text(s.title)}</p>
+            ${s.sub ? `<p class="map-sub">${text(s.sub)}</p>` : ''}
+            ${tool ? '<p class="map-use">現場操作</p>' : ''}
+          </a>`;
+        }).join('')}
+      </div>
+      ${c.mapFoot ? `<p class="map-foot">${text(c.mapFoot)}</p>` : ''}
+    </nav>`;
+}
+
 function buildCover() {
   const c = GUIDE.cover;
   return `
@@ -86,6 +122,8 @@ function buildCover() {
         <p class="callout-label">${text(c.standardHead)}</p>
         <p>${text(c.standard)}</p>
       </div>
+
+      ${buildMap()}
 
       <p class="scope">${text(c.scope)}</p>
     </section>`;

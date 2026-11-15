@@ -435,6 +435,89 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   color: var(--ink-faint);
 }
 
+/* ---------------- the cover map ----------------
+
+   Eight cards, one per section, built by the renderer from `sections`. The
+   grid is `auto-fit` rather than a breakpoint: two across in the measure,
+   one across on a phone, and nothing to keep in step if a ninth section is
+   ever added. 16rem is chosen so the two-column row still fits inside the
+   48rem measure with the gap, and so a title of ten Chinese characters sets
+   on one line.
+
+   A card is a grey ground with no frame, and hovering lifts it to white with
+   a hairline — this palette has one accent and no second colour, so that is
+   what a hover can be made of here. */
+
+.map-wrap { margin: 28px 0 0; }
+
+.map-head {
+  margin: 0 0 12px;
+  font-size: .9rem;
+  font-weight: 600;
+  letter-spacing: normal;
+  color: var(--ink-soft);
+}
+
+.map {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 10px;
+}
+
+.map-card {
+  display: block;
+  padding: 15px 18px 16px;
+  background: var(--card);
+  border-radius: var(--r-card);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: inset 0 0 0 1px transparent;
+  transition: background .12s, box-shadow .12s;
+}
+.map-card:hover { background: var(--paper); box-shadow: inset 0 0 0 1px var(--rule); }
+
+.map-n {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: .8rem;
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  letter-spacing: .04em;
+  color: var(--gold);
+}
+
+.map-t { margin: 0; font-size: 1rem; font-weight: 600; line-height: 1.5; }
+
+.map-sub {
+  margin: 4px 0 0;
+  font-size: .84rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+/* Only on the two sections that save or run something. A tag every card
+   carried would say nothing; two cards out of eight is the information. */
+.map-use {
+  display: inline-block;
+  margin: 10px 0 0;
+  padding: 2px 9px;
+  border: 1px solid var(--here-line);
+  border-radius: var(--r-pill);
+  background: var(--here-soft);
+  font-family: var(--font-ui);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: normal;
+  color: var(--here);
+}
+
+.map-foot {
+  margin: 12px 0 0;
+  font-size: .78rem;
+  line-height: 1.75;
+  color: var(--ink-faint);
+}
+
 /* ---------------- sections ---------------- */
 
 .sec { padding-top: 48px; }
@@ -1105,7 +1188,13 @@ h3 {
   .tbl { min-width: 0; }
   .callout, .goals, .clock-row, .steps li, .asks li, .replies li, .agenda li,
   .script-body, .lines li, .tick, .field, .tbl tr, .day-rows li,
-  .draft, .fig, .fig-step { break-inside: avoid; }
+  .draft, .fig, .fig-step, .map-card { break-inside: avoid; }
+  /* The map prints. It is the only place the eight `sub` lines appear, so on
+     paper it is the contents page — three across, since A4 has the room and
+     the whole cover should still be one sheet. */
+  .map { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .map-card { padding: 10px 12px; }
+  .map-use { background: #fff; }
   /* A4 is wide enough for the row, so a diagram prints as it was drawn
      rather than in the phone's column. */
   .fig-row { flex-direction: row !important; gap: 8px; }

@@ -4361,6 +4361,18 @@ decisions table.
   to own a piece, or to co-lead — which was eight words inside a callout. *兩天
   要走的那條線* draws the through-line the day-by-day table cannot show. Both
   were clauses in a paragraph before.
+- **The cover map, and the one mark on it that is derived rather than written**
+  (15 Nov 2026). The same object as the notebook's cover map: eight cards, one
+  per section, built from `sections` so it cannot fall out of step with the
+  page. It is not the contents list repeated — that list is a number and a
+  title, it is behind the ☰ on a phone, and each section's `sub` line appears
+  nowhere else until you have scrolled to that section. Two cards carry a
+  現場操作 pill, and nothing in `content.js` says which two: a section is marked
+  because it contains one of the four block types that save or run something
+  (`clock`, `check`, `plan`, `fields`), so a hand-written tag can never come to
+  disagree with the blocks. The grid is `auto-fit`, two across in the measure
+  and one on a phone, and it prints three across — on paper it is the contents
+  page.
 - **A block type with no builder says so on the page.** The dispatch table used
   to return an empty string for an unknown `t`, and the whole agenda table
   vanished silently the first time it ran. It now renders a loud red marker and

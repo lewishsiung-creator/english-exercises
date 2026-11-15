@@ -88,6 +88,12 @@ const GUIDE = {
     standardHead: '今天的成功標準',
     standard: '會議結束時，雙方都能清楚說出：我們想達成什麼、我答應負責什麼、下一步是什麼。若只得到「好啊，有需要再找我」，合作方式仍需要進一步確認。',
 
+    /* The heading over the cover map. The map itself is built from `sections`
+       below — each card is a section's number, title and `sub` — so there is
+       no list of parts to keep in step with the page here. */
+    mapHead: '這份指南的八個部分',
+    mapFoot: '標著「現場操作」的兩節，是會議進行中會動的：02 的計時器會自己亮到當下那一段，08 勾選與填寫的內容會留在這台裝置上。',
+
     scope: '使用範圍：整合本次討論內容。議程分析僅針對提供的 13:30–16:00 下午場次；兩天一夜的其他安排尚未提供。文中的新增設計均為建議，並非已確認事項。',
   },
 
