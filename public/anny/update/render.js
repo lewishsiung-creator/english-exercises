@@ -239,6 +239,63 @@ const TYPES = {
       ${s.foot ? `<p class="z-foot">${text(s.foot)}</p>` : ''}
     </div>`,
 
+  /* 開場。原本是一張 AI 做的視覺，現在是一句話加一格排程表。
+     這一頁的工作不是吸睛，是讓台下在三秒內知道「她管的是什麼、卡在哪」——
+     被鎖住的時段是灰的，打開的是藍的，一眼就看得出哪一種比較少。
+     那個道士的笑話沒有不見，它回到她嘴裡：乾淨的畫面配一句自嘲，
+     比畫面自己在耍寶更顯得游刃有餘。 */
+  slots: (s) => {
+    const open = new Set(s.open);
+    const n = s.cols * s.rows;
+    const cells = Array.from({ length: n }, (_, i) =>
+      `<i class="${open.has(i) ? 'on' : ''}"></i>`).join('');
+    return `
+      <div class="z z-slots">
+        <p class="z-eyebrow">${text(s.eyebrow)}</p>
+        <div class="z-slots-row">
+          <h2>${s.lines.map((l) => `<span>${text(l)}</span>`).join('')}</h2>
+          <div class="z-grid" style="--cols:${s.cols}" aria-hidden="true">${cells}</div>
+        </div>
+        ${s.foot ? `<p class="z-foot">${text(s.foot)}</p>` : ''}
+      </div>`;
+  },
+
+  /* 收尾。一樣是「一起往前走」，但走的方向用一條線畫出來，不用日出。
+     最後一個點是空心的，因為 2027 還沒發生——留白比箭頭有說服力。 */
+  path: (s) => {
+    const W = 1000, H = 220, pad = 70;
+    const step = (W - pad * 2) / (s.marks.length - 1);
+    const y = (i) => H - 30 - i * ((H - 90) / (s.marks.length - 1));
+    const pts = s.marks.map((m, i) => [pad + i * step, y(i)]);
+    const d = pts.map((p, i) => `${i ? 'L' : 'M'}${p[0]} ${p[1]}`).join(' ');
+    return `
+      <div class="z z-path">
+        <div class="z-path-head">
+          <h2>${text(s.big)}</h2>
+          <p class="z-sub">${text(s.sub)}</p>
+        </div>
+        <svg class="z-line" viewBox="0 0 ${W} ${H}" aria-hidden="true">
+          <path d="${d}" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round" opacity=".45"/>
+          ${pts.map((p, i) => {
+            const last = i === s.marks.length - 1;
+            const m = s.marks[i];
+            return `
+              <circle cx="${p[0]}" cy="${p[1]}" r="${last ? 11 : 8}"
+                      fill="${last ? 'none' : 'currentColor'}"
+                      stroke="currentColor" stroke-width="2.5"
+                      opacity="${i === 0 ? '.45' : '1'}"/>
+              <text class="pt-k" x="${p[0]}" y="${p[1] - 26}" text-anchor="middle"
+                    opacity="${i === 0 ? '.55' : '1'}">${text(m.k)}</text>
+              ${m.s ? `<text class="pt-s" x="${p[0]}" y="${p[1] + 34}" text-anchor="middle"
+                    opacity="${i === 0 ? '.55' : '.8'}">${text(m.s)}</text>` : ''}`;
+          }).join('')}
+        </svg>
+        ${s.foot ? `<p class="z-foot">${text(s.foot)}</p>` : ''}
+      </div>
+    `;
+  },
+
   asks: (s) => `
     <div class="z z-asks">
       <p class="z-head">${text(s.head)}</p>

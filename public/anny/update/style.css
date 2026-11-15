@@ -348,6 +348,7 @@ body[data-mode="zen"] .dots button.here { background: #6a71ff; }
 .z-statement.t-alert h2 { font-family: var(--en); font-size: 15cqh; color: var(--red); }
 .z-statement.t-alert .z-sub { font-size: 3.4cqh; color: var(--ink); }
 .z-statement.t-blue { background: var(--blue); color: #fff; }
+.z-statement.t-blue .z-sub { color: #c9cbf5; font-size: 2.8cqh; letter-spacing: .12em; }
 .z-statement.t-dark { background: var(--ink); color: #fff; }
 
 /* 四個達成率 */
@@ -445,6 +446,88 @@ body[data-mode="zen"] .dots button.here { background: #6a71ff; }
   font-size: 1.9cqh;
   font-weight: 600;
 }
+
+/* ---------------- 開場：一句話，加一格排程 ----------------
+
+   原本是一張 AI 做的視覺。換成這個版面，是因為台下要在三秒內知道的不是
+   「她很會做圖」，而是「她管的是什麼、卡在哪」。灰的是被鎖住的時段，
+   藍的是打開的——不用標籤，一眼就看得出哪一種比較少。 */
+
+.z-slots { justify-content: center; }
+
+.z-eyebrow {
+  font-size: 2.2cqh;
+  font-weight: 600;
+  letter-spacing: .14em;
+  color: var(--blue);
+  margin-bottom: 4cqh;
+}
+
+.z-slots-row {
+  display: flex;
+  align-items: center;
+  gap: 6cqw;
+}
+
+.z-slots h2 {
+  flex: 1 1 0;
+  margin: 0;
+  font-size: 8.6cqh;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.01em;
+}
+.z-slots h2 span { display: block; }
+
+.z-grid {
+  flex: 0 0 30%;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  gap: .9cqw;
+}
+.z-grid i {
+  display: block;
+  aspect-ratio: 5 / 4;
+  border-radius: 2px;
+  background: #e6e7ea;
+}
+.z-grid i.on { background: var(--blue); }
+
+/* ---------------- 收尾：往前走 ----------------
+
+   一樣是「一起往前走」的意思，但方向用一條線畫出來，不用日出也不用人。
+   最後一個點是空心的，因為 2027 還沒發生。 */
+
+.z-path {
+  background: var(--ink);
+  color: #fff;
+  justify-content: center;
+}
+.z-path-head h2 {
+  margin: 0;
+  font-size: 11cqh;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.01em;
+}
+.z-path .z-sub { margin-top: 1.4cqh; color: #a8a8b2; font-size: 3cqh; }
+.z-line { width: 100%; margin-top: 2cqh; color: #fff; overflow: visible; }
+.z-line text { paint-order: stroke; stroke: var(--ink); stroke-width: 8px; stroke-linejoin: round; }
+.z-line .pt-k {
+  font-family: var(--en), var(--zh);
+  font-size: 30px;
+  font-weight: 700;
+  fill: currentColor;
+}
+.z-line .pt-s {
+  font-family: var(--en), var(--zh);
+  font-size: 22px;
+  fill: currentColor;
+}
+.z-line text { paint-order: stroke; }
+/* SVG 的標籤會畫到 viewBox 外面（overflow: visible），所以底下這行註腳
+   要留出那一截的高度，不然會貼到左下角的 Q3。 */
+.z-path .z-foot { color: #8a8a94; margin-top: 6.5cqh; }
 
 /* 三個請求 */
 .z-asks ol { margin: 0; padding: 0; list-style: none; }
