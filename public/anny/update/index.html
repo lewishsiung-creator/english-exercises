@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Q3 Update — 對照</title>
+<meta name="description" content="A password-protected slide review page for one person.">
+
+<!-- 這一頁的每一個字和每一張圖都在 sealed.js 和 .bin 裡加密著，沒有密碼就只是
+     亂碼。noindex 讓連鎖定畫面都不會出現在搜尋結果裡。 -->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- 行內 SVG 圖示：一把鎖。不用公司的任何標誌。 -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231c1c1f'/%3E%3Cpath d='M22 29v-5a10 10 0 0 1 20 0v5' fill='none' stroke='%23ffffff' stroke-width='4' stroke-linecap='round'/%3E%3Crect x='17' y='29' width='30' height='22' rx='5' fill='%23ffffff'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#1c1c1f">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
+
+<!-- ---------------- 鎖 ---------------- -->
+<section class="lock" id="lock">
+  <div class="lock-box">
+    <p class="lock-kicker">不公開</p>
+    <h1>Q3 Update<span>原版 ／ 改版　對照</span></h1>
+    <p class="lock-note">這一頁只給一個人看。請輸入密碼開啟。</p>
+    <form id="lockForm" autocomplete="off">
+      <label for="pw">密碼</label>
+      <input id="pw" type="password" autocomplete="current-password"
+             autocapitalize="none" spellcheck="false" required>
+      <label class="row-check"><input type="checkbox" id="remember" checked>
+        <span>記住這台裝置</span></label>
+      <button class="lock-btn" type="submit" id="unlockBtn">開啟</button>
+      <p class="lock-msg" id="lockMsg" role="alert"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ---------------- 開啟之後 ---------------- -->
+<div id="app" hidden>
+
+  <header class="bar">
+    <!-- 刻意不寫公司、不寫人名、不寫產品：這一行在 HTML 原始碼裡，
+         是整頁唯一沒有被加密的字。真正的標題在封面那一張，在 sealed.js 裡。 -->
+    <p class="bar-title">Q3 Update<span>對照</span></p>
+
+    <!-- 一顆按鈕，按一次換一個版本。字由 render.js 改寫成「你按下去會看到什麼」。 -->
+    <button id="flip" class="flip" type="button" aria-pressed="false">
+      <span class="flip-k">看原版</span>
+      <span class="flip-s">原版 第 1 頁</span>
+    </button>
+
+    <div class="tools">
+      <button id="notesBtn" class="tool" type="button" aria-pressed="false">講稿</button>
+      <button id="gridBtn" class="tool" type="button" aria-pressed="false">總覽</button>
+      <button id="lockBtn" class="tool" type="button" title="鎖回去並忘記這台裝置">鎖上</button>
+    </div>
+  </header>
+
+  <main id="stage" class="stage" tabindex="-1">
+    <div id="deck" class="deck"></div>
+    <button id="prev" class="edge edge-prev" type="button" aria-label="上一張"></button>
+    <button id="next" class="edge edge-next" type="button" aria-label="下一張"></button>
+  </main>
+
+  <footer class="foot">
+    <p id="where" class="where"></p>
+    <div id="dots" class="dots"></div>
+    <p class="hint">← → 換頁　·　V 換版本　·　N 講稿　·　G 總覽</p>
+  </footer>
+
+  <section id="notes" class="notes" hidden>
+    <p class="notes-h">講稿</p>
+    <div id="notesBody" class="notes-body"></div>
+  </section>
+
+  <div id="grid" class="grid" hidden></div>
+</div>
+
+<script src="sealed.js"></script>
+<script src="render.js"></script>
+</body>
+</html>

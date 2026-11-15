@@ -1,0 +1,626 @@
+/* 一份簡報的兩個版本，對照放映器（樣式）。
+
+   白、近黑、一個藍，沒有第二個顏色；紅、琥珀、綠只出現在達成率上，因為那三個
+   顏色在那裡是資訊，不是裝飾。
+
+   投影片本身用容器查詢單位（cqw / cqh）定字級，所以一張投影片不管放大到全螢幕
+   還是縮成總覽裡的縮圖，比例都一樣——總覽裡的縮圖就是同一份 DOM 縮小，
+   不是另外畫一次。 */
+
+:root {
+  --paper: #ffffff;
+  --ink: #1c1c1f;
+  --muted: #55575c;
+  --faint: #8a8a90;
+  --line: #e3e3e7;
+  --card: #f2f3f5;
+  --blue: #1c23ba;
+  --blue-deep: #141a8c;
+  --green: #187a3a;
+  --amber: #b06a00;
+  --red: #c01d1d;
+
+  --bar: 56px;
+  --foot: 54px;
+
+  --zh: "PingFang TC", "Heiti TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  --en: "Avenir Next", Avenir, "Helvetica Neue", Inter, system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+/* `.grid` sets `display: grid`, which beats the browser's own `[hidden]` rule —
+   without this the overview panel covers the deck from the first paint. */
+[hidden] { display: none !important; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: #26272b;
+  color: var(--ink);
+  font-family: var(--en), var(--zh);
+  -webkit-font-smoothing: antialiased;
+  display: grid;
+  grid-template-rows: var(--bar) 1fr var(--foot);
+  overflow: hidden;
+}
+
+p { margin: 0; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+/* ---------------- 上方列 ---------------- */
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 16px;
+  background: #1c1c1f;
+  color: #fff;
+}
+
+.bar-title {
+  font-family: var(--zh);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .01em;
+  white-space: nowrap;
+}
+.bar-title span {
+  margin-left: 10px;
+  font-weight: 400;
+  font-size: 12px;
+  color: #9a9aa2;
+}
+
+/* 整個對照的核心就是這顆按鈕：它的字永遠寫「你按下去會看到什麼」，
+   而不是「你現在在哪裡」——按鈕寫現在的狀態是最容易按錯的設計。 */
+.flip {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  padding: 7px 18px;
+  background: var(--blue);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: filter .12s, background .12s;
+}
+.flip:hover { filter: brightness(1.15); }
+.flip-k { font-family: var(--zh); font-size: 14px; font-weight: 700; line-height: 1.2; }
+.flip-s { font-family: var(--zh); font-size: 10.5px; color: #c9cbf5; line-height: 1.2; }
+
+body[data-mode="v3"] .flip { background: #3a3a40; }
+body[data-mode="v3"] .flip-s { color: #a9a9b2; }
+
+.tools { display: flex; gap: 8px; }
+.tool {
+  padding: 6px 14px;
+  font-family: var(--zh);
+  font-size: 12.5px;
+  background: transparent;
+  color: #c7c7cf;
+  border: 1px solid #44444c;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.tool[aria-pressed="true"] { background: #fff; color: #1c1c1f; border-color: #fff; }
+
+/* ---------------- 舞台 ---------------- */
+
+.stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  min-height: 0;
+}
+
+.deck {
+  position: relative;
+  width: min(100%, calc((100vh - var(--bar) - var(--foot) - 36px) * 16 / 9));
+  aspect-ratio: 16 / 9;
+  background: var(--paper);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .45);
+  container-type: size;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+.slide.on { display: block; }
+
+.slide-v3 { background: #fff; }
+.slide-v3 img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.v3-flag {
+  position: absolute;
+  left: 2cqw; top: 2cqw;
+  padding: .6cqw 1.4cqw;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--zh);
+  font-size: 1.5cqw;
+  border-radius: 999px;
+}
+
+/* 左右兩邊的大按鈕，滑鼠移過去才看得到 */
+.edge {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 14%;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .15s;
+}
+.edge::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 34px; height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 2px solid #fff;
+  border-width: 2px 2px 0 0;
+  border-radius: 2px;
+}
+.edge-prev { left: 0; }
+.edge-prev::after { transform: rotate(-135deg); }
+.edge-next { right: 0; }
+.edge-next::after { transform: rotate(45deg); }
+.stage:hover .edge { opacity: .35; }
+.edge:hover { opacity: .9 !important; }
+
+/* ---------------- 下方列 ---------------- */
+
+.foot {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 18px;
+  background: #1c1c1f;
+  color: #9a9aa2;
+  font-family: var(--zh);
+  font-size: 12px;
+}
+.where { color: #e6e6ea; font-weight: 600; white-space: nowrap; }
+.hint { margin-left: auto; color: #6c6c76; white-space: nowrap; }
+
+.dots { display: flex; gap: 5px; flex-wrap: wrap; }
+.dots button {
+  width: 9px; height: 9px;
+  padding: 0;
+  background: #45454d;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.dots button.here { background: #fff; }
+body[data-mode="zen"] .dots button.here { background: #6a71ff; }
+
+/* ---------------- 講稿 ---------------- */
+
+.notes {
+  position: fixed;
+  left: 50%; bottom: calc(var(--foot) + 12px);
+  transform: translateX(-50%);
+  width: min(900px, 92vw);
+  max-height: 34vh;
+  overflow: auto;
+  padding: 16px 20px;
+  background: rgba(28, 28, 31, .96);
+  color: #ececf0;
+  border-radius: 12px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, .5);
+  z-index: 20;
+}
+.notes-h {
+  margin-bottom: 6px;
+  font-family: var(--zh);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: #8f8fa0;
+}
+.notes-body {
+  font-family: var(--zh);
+  font-size: 15px;
+  line-height: 1.85;
+  white-space: pre-wrap;
+}
+
+/* ---------------- 總覽 ---------------- */
+
+.grid {
+  position: fixed;
+  inset: var(--bar) 0 0 0;
+  z-index: 30;
+  overflow: auto;
+  padding: 22px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 14px;
+  background: rgba(20, 20, 23, .97);
+}
+.g-cell {
+  display: block;
+  padding: 0;
+  background: #fff;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+}
+.g-cell.here { border-color: #6a71ff; }
+.g-cell img { width: 100%; display: block; }
+/* Direct child only — a cloned slide has its own spans inside it, and a bare
+   `.g-cell span` painted them like the caption strip. */
+.g-cell > span {
+  display: block;
+  padding: 7px 10px;
+  background: #1c1c1f;
+  color: #c7c7cf;
+  font-family: var(--zh);
+  font-size: 11.5px;
+}
+.g-shot {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  container-type: size;
+  overflow: hidden;
+}
+.g-shot > .z { position: absolute; inset: 0; }
+
+/* ================================================================
+   改版的投影片本身
+   ================================================================
+   一張一個訊息，字大到最後一排看得到，其餘的話在講稿裡。
+   所有尺寸都用 cqw / cqh，所以縮圖和全螢幕是同一個版面。 */
+
+.z {
+  width: 100%;
+  height: 100%;
+  padding: 7cqh 7cqw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--paper);
+  font-family: var(--zh);
+}
+
+.z-head {
+  font-size: 2.6cqh;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--muted);
+  margin-bottom: 4cqh;
+}
+
+.z-sub { font-size: 2.8cqh; line-height: 1.6; color: var(--muted); }
+.z-big {
+  font-family: var(--en);
+  font-size: 16cqh;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -.02em;
+  color: var(--blue);
+}
+.z-foot {
+  margin-top: 5cqh;
+  font-size: 2.4cqh;
+  line-height: 1.7;
+  color: var(--faint);
+}
+
+/* 封面 */
+.z-cover { background: var(--blue); color: #fff; justify-content: flex-end; }
+.z-kicker { font-size: 3cqh; font-weight: 600; color: #c9cbf5; }
+.z-h1 {
+  margin: 1cqh 0 0;
+  font-family: var(--en);
+  font-size: 18cqh;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.01em;
+}
+.z-meta { margin-top: 6cqh; font-size: 2.6cqh; line-height: 1.9; color: #c9cbf5; }
+
+/* 一句話 */
+.z-statement { justify-content: center; }
+.z-statement h2 {
+  margin: 0;
+  font-size: 11cqh;
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -.01em;
+}
+.z-statement h2 span { display: block; }
+.z-statement .z-sub { margin-top: 4cqh; }
+.z-statement.t-alert h2 { font-family: var(--en); font-size: 15cqh; color: var(--red); }
+.z-statement.t-alert .z-sub { font-size: 3.4cqh; color: var(--ink); }
+.z-statement.t-blue { background: var(--blue); color: #fff; }
+.z-statement.t-dark { background: var(--ink); color: #fff; }
+
+/* 四個達成率 */
+.z-kpis .z-row { display: flex; gap: 4cqw; }
+.z-kpi { flex: 1; }
+.z-kpi-v {
+  font-family: var(--en);
+  font-size: 14cqh;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -.03em;
+}
+.z-kpi-v i { font-size: .42em; font-style: normal; font-weight: 600; margin-left: .06em; }
+.z-kpi-k { margin-top: 1.6cqh; font-size: 2.8cqh; font-weight: 600; color: var(--muted); }
+.tone-green { color: var(--green); }
+.tone-amber { color: var(--amber); }
+.tone-red { color: var(--red); }
+
+/* 長條圖 */
+.z-chart { justify-content: center; }
+.z-chart-head { display: flex; align-items: baseline; gap: 2.5cqw; }
+.z-chart .z-big { font-size: 13cqh; }
+.z-bars { width: 100%; margin-top: 3cqh; overflow: visible; }
+.bar.past { fill: #d9dade; }
+.bar.now { fill: var(--blue); }
+.bar.ghost { fill: #fff; stroke: var(--blue); stroke-width: 2; stroke-dasharray: 5 4; }
+.bar-v {
+  font-family: var(--en);
+  font-size: 17px;
+  font-weight: 600;
+  fill: var(--faint);
+}
+.bar-v.now { fill: var(--blue); }
+.bar-v.ghost { fill: var(--blue); }
+.bar-x { font-family: var(--en); font-size: 19px; fill: var(--faint); }
+.bar-target { stroke: var(--red); stroke-width: 2; stroke-dasharray: 7 6; }
+.bar-target-t { font-family: var(--zh); font-size: 19px; font-weight: 700; fill: var(--red); }
+
+/* 三個／兩個數字 */
+.z-trio .z-row { display: flex; gap: 5cqw; align-items: flex-start; }
+.z-cell { flex: 1; }
+.z-cell-v {
+  font-family: var(--en);
+  font-size: 12cqh;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -.02em;
+  color: var(--blue);
+}
+.z-cell-v.muted { color: #b9bac0; }
+.z-cell-k { margin-top: 1.4cqh; font-size: 3cqh; font-weight: 600; }
+.z-cell-s { margin-top: .8cqh; font-size: 2.2cqh; color: var(--faint); }
+.z-trio.t-dark { background: var(--ink); color: #fff; }
+.z-trio.t-dark .z-cell-v { color: #fff; }
+.z-trio.t-dark .z-head { color: #9a9aa2; }
+.z-duo .z-row { gap: 8cqw; }
+.z-duo .z-cell { flex: 0 1 34%; }
+
+/* 箭頭 */
+.z-arrow .z-row { display: flex; align-items: center; gap: 4cqw; }
+.z-arrow .z-cell { flex: 0 0 auto; }
+.z-ar { width: 9cqh; height: 9cqh; color: #c9cbd1; }
+
+/* 全出血照片 */
+.z-photo { position: relative; background-size: cover; background-position: center; padding: 0; }
+.z-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(10, 10, 14, .82) 0%, rgba(10, 10, 14, .5) 46%, rgba(10, 10, 14, .1) 78%);
+}
+.z-over { position: relative; padding: 0 7cqw; }
+.z-photo .z-big { color: #fff; font-size: 20cqh; }
+.z-photo .z-sub { color: #e2e2e8; font-size: 3cqh; margin-top: 1cqh; }
+
+.z-full { padding: 0; background: #000; }
+.z-full img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* 照片牆 */
+.z-photos { padding: 6cqh 5cqw; }
+.z-photos .z-head { margin-bottom: 3cqh; }
+.z-wall { flex: 1; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.4cqw; min-height: 0; }
+.z-wall figure {
+  margin: 0;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.z-wall figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 1.6cqh .8cqw .8cqh;
+  background: linear-gradient(transparent, rgba(0, 0, 0, .78));
+  color: #fff;
+  font-size: 1.9cqh;
+  font-weight: 600;
+}
+
+/* 三個請求 */
+.z-asks ol { margin: 0; padding: 0; list-style: none; }
+.z-asks li {
+  display: flex;
+  align-items: baseline;
+  gap: 3cqw;
+  padding: 2.6cqh 0;
+  border-top: 1px solid var(--line);
+}
+.z-asks li:last-child { border-bottom: 1px solid var(--line); }
+.z-ask-k { flex: 0 0 22%; font-size: 2.8cqh; font-weight: 700; color: var(--blue); }
+.z-ask-v { font-size: 4.2cqh; font-weight: 600; line-height: 1.4; }
+.z-draft {
+  margin-top: 3cqh;
+  font-size: 2cqh;
+  color: var(--faint);
+}
+
+.z-missing {
+  justify-content: center;
+  align-items: center;
+  color: var(--red);
+  font-size: 4cqh;
+  font-weight: 700;
+}
+
+/* ---------------- 窄螢幕 ---------------- */
+
+@media (max-width: 760px) {
+  .bar-title span, .hint { display: none; }
+  .foot { gap: 10px; font-size: 11px; }
+  .dots { display: none; }
+  .flip { padding: 6px 14px; }
+}
+
+/* ================================================================
+   鎖
+   ================================================================
+   頁面在開啟之前只有這一塊。body.locked 把 app 擋著（app 本身也帶 hidden），
+   所以即使 JS 壞掉也不會露出半個空殼。 */
+
+body.locked { display: block; overflow: auto; background: #1c1c1f; }
+
+.lock {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--ink);
+}
+
+.lock-box {
+  width: min(420px, 100%);
+  padding: 34px 32px 30px;
+  background: #fff;
+  border-radius: 16px;
+  font-family: var(--zh);
+}
+
+.lock-kicker {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  color: var(--blue);
+  margin-bottom: 10px;
+}
+
+.lock-box h1 {
+  margin: 0 0 14px;
+  font-family: var(--en), var(--zh);
+  font-size: 1.9rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -.01em;
+}
+.lock-box h1 span {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--zh);
+  font-size: .95rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+.lock-note { font-size: .9rem; line-height: 1.8; color: var(--muted); margin-bottom: 20px; }
+
+.lock form label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.lock input[type="password"] {
+  width: 100%;
+  padding: 11px 13px;
+  font: inherit;
+  font-size: 1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.lock input[type="password"]:focus-visible { border-color: var(--blue); }
+
+.row-check {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0 18px !important;
+  font-weight: 400 !important;
+  font-size: .85rem !important;
+  color: var(--muted);
+}
+.row-check input { margin: 0; }
+
+.lock-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--blue);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.lock-btn:hover { filter: brightness(1.12); }
+.lock-btn:disabled { opacity: .6; cursor: default; }
+
+.lock-msg {
+  margin-top: 14px;
+  min-height: 1.4em;
+  font-size: .85rem;
+  color: var(--red);
+}
+
+/* ---------------- 開啟之後的版面 ----------------
+
+   本機版的 bar / stage / foot 直接掛在 body 上，所以 body 就是那個格線容器。
+   上線版多了一層 #app（鎖還沒開之前要能整個藏起來），格線就得跟著搬到 #app，
+   不然三塊會各自散開，手機上尤其明顯。 */
+
+body { display: block; }
+
+#app {
+  height: 100%;
+  display: grid;
+  grid-template-rows: var(--bar) 1fr var(--foot);
+  overflow: hidden;
+}
+
+/* 上方那一排在窄螢幕上不能換行：換行就把投影片擠成一條。 */
+.bar-title, .flip-k, .flip-s, .tool, .where, .hint { white-space: nowrap; }
+.bar-title { overflow: hidden; text-overflow: ellipsis; }
+
+@media (max-width: 760px) {
+  :root { --bar: 50px; --foot: 44px; }
+  .bar { gap: 8px; padding: 0 10px; }
+  .bar-title { font-size: 12.5px; }
+  .flip { padding: 6px 12px; }
+  .flip-k { font-size: 12.5px; }
+  .flip-s { display: none; }
+  .tools { gap: 5px; }
+  .tool { padding: 5px 9px; font-size: 11.5px; }
+  .where { font-size: 11px; }
+  .notes { max-height: 46vh; bottom: calc(var(--foot) + 8px); }
+  .notes-body { font-size: 14px; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); padding: 14px; }
+}
+
+/* 直向手機：16:9 的投影片在直的螢幕上本來就矮，把上下的留白收掉，
+   讓它拿到最大的寬度。 */
+@media (max-width: 760px) and (orientation: portrait) {
+  .stage { padding: 10px; align-content: center; }
+  .deck { width: 100%; }
+}

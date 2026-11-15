@@ -26,3 +26,28 @@ garmin-coach/
 
 # Linguaskill word list: built from a copyrighted book, private artifact only, never commit
 linguaskill-vocab/
+
+# Protein series study page: built from a third-party blog article, private artifact only, never commit
+protein-notes/
+
+# Pacific Market Wire (美台市場快訊): its own repo, deployed straight to Cloudflare Pages
+pacific-market-wire/
+
+# 仁德新田工業區甲工廠房: a broker's property proposal as a web deck, not part of this site, never commit
+rende-factory-deck/
+
+# Picture books for a family member: photos of copyrighted books, private artifact only, never commit
+hudson-books/
+
+# Journal Desk (期刊素材庫): its own repo, deployed straight to Cloudflare Pages
+journal-desk/
+
+# Lesson plans and handouts for one-to-one clients: private, never commit
+lesson-plans/
+
+# 雙 AI 討論: personal local tool (Claude + ChatGPT via his own subscriptions), private history, never commit
+ai-duet/
+
+# 一位學員工作上的簡報原稿、明文圖與逐字稿：不是這個站的內容，只在本機處理，
+# 絕不進版本庫。上線的那一份在 public/anny/update/，整份加密過。
+anny-slides/

@@ -49,11 +49,25 @@
       "runtimeArgs": [
         "-m",
         "http.server",
-        "8481",
+        "8632",
         "--directory",
         "/Users/lewisyhlin/Decks/vicky-modern-art"
       ],
-      "port": 8481
+      "port": 8632
+    },
+    {
+      "name": "aaron-deck",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8578",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "/Users/lewisyhlin/Decks/aaron-leadership"
+      ],
+      "port": 8578
     },
     {
       "name": "hudson-calendar",
@@ -107,6 +121,95 @@
         "cd garmin-coach/site && ./node_modules/.bin/wrangler pages dev --port 8791 --ip 127.0.0.1"
       ],
       "port": 8791
+    },
+    {
+      "name": "pacific-market-wire",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd pacific-market-wire && ./node_modules/.bin/wrangler pages dev --port 8792 --ip 127.0.0.1"
+      ],
+      "port": 8792
+    },
+    {
+      "name": "anny-meeting",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "serve.py",
+        "8018"
+      ],
+      "port": 8018
+    },
+    {
+      "name": "rende-factory-deck",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8633",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "rende-factory-deck/dist"
+      ],
+      "port": 8633
+    },
+    {
+      "name": "hudson-books",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8341",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "hudson-books/site"
+      ],
+      "port": 8341
+    },
+    {
+      "name": "english-exercises-functions",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "journal-desk/node_modules/.bin/wrangler pages dev public --port 8796 --ip 127.0.0.1 --kv COURSE --compatibility-date 2026-08-01"
+      ],
+      "port": 8796
+    },
+    {
+      "name": "journal-desk",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "journal-desk",
+        "run",
+        "dev"
+      ],
+      "port": 8794
+    },
+    {
+      "name": "anny-slides",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8342",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "anny-slides/web"
+      ],
+      "port": 8342
+    },
+    {
+      "name": "ai-duet",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "ai-duet/server.js",
+        "8765"
+      ],
+      "port": 8765
     }
   ]
 }
