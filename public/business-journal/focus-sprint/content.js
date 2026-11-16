@@ -39,6 +39,9 @@ const LESSON = {
   source: {
     en: 'Adapted for class from an interview with Dr. Sahar Yousef, a cognitive neuroscientist at UC Berkeley and founder of the Becoming Superhuman Lab, on The Diary Of A CEO with Steven Bartlett (about 2 hours 16 minutes).',
     zh: '課堂改編自 The Diary Of A CEO 節目（主持人 Steven Bartlett）訪談 UC Berkeley 認知神經科學家、Becoming Superhuman Lab 創辦人 Dr. Sahar Yousef，全長約 2 小時 16 分。',
+    // "Phone Addiction Scientist: Doing This Gives You An Hour Back Every Day!
+    // | Dr Sahar Yousef", The Diary Of A CEO.
+    url: 'https://youtu.be/yePLuwL3FbM',
   },
 
   intro: {

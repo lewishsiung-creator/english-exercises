@@ -482,6 +482,30 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 }
 .source .zh { font-size: .95em; color: var(--ink-faint); margin-top: 2px; }
 
+/* The source's own link, when the article it was adapted from is something a
+   reader can go and watch. Its own line under the credit, teal like every other
+   link on the page, and always bilingual, because the credit above it is — this
+   is where a reader asks "says who?", not a line anyone is being tested on. */
+.source-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-weight: 600;
+  color: var(--navy);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+.source-link em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  margin-left: 7px;
+  color: var(--ink-faint);
+}
+@media (hover: hover) {
+  .source-link:hover em { color: var(--ink-soft); }
+}
+
 /* ---------------- photographs ----------------
 
    One picture opens the lesson and one opens each habit. They are illustration,
@@ -1240,6 +1264,12 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
   /* Everything that waits behind a tap on screen is simply there on paper. */
   .zh, .card-back, .starters, .gloss { display: block !important; }
   .term { border-bottom: 1px solid #999; color: inherit; }
+
+  /* "Watch the interview" is useless on paper, so the handout writes the
+     address out. Nothing else on the page does this: every other link goes
+     somewhere the reader is already sitting. */
+  .source-link { color: #000; border-bottom: 0; font-weight: 400; }
+  .source-link::after { content: ' · ' attr(href); word-break: break-all; }
 
   /* One step to a page, and nothing split across a fold. */
   .step { break-before: page; padding-top: 0; }

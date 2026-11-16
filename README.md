@@ -917,6 +917,18 @@ with the latest the way a front page leads with its top story.
   `--navy` holds the teal and `--gold` the red.
 - **`/wealth-habits/` is a redirect** to `/business-journal/wealth-habits/`,
   carrying its hash, because that URL had already gone out.
+- **The source credit can carry a link.** `source.url` in a reading's
+  `content.js` is optional and adds a *Watch the interview 觀看原始訪談* line
+  under the credit on the cover. Give it only when the source is something the
+  reader can actually open — No. 2 and No. 3 are both *The Diary Of A CEO*
+  episodes on YouTube, while No. 1 is an HBR digest and has none, because a
+  link nobody can follow is worse than no link. Strip the `?si=…` share token
+  before pasting it: that parameter identifies whoever shared the video. On
+  paper the link turns black, loses its underline and **writes its address out
+  beside itself** — the only link in the series that does, since every other
+  one goes somewhere the reader is already sitting, and "Watch the interview"
+  on a printed handout is otherwise a dead end. In presentation mode it rides
+  on the third cover slide, with the goals and the credit.
 - **Two PDFs, on a band under the headline.** A reading becomes a handout by
   printing it, and a teacher needs both halves of that: a *student copy* with
   every blank empty and the answers, reasons and model answers held back, and

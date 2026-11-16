@@ -46,9 +46,16 @@ const LESSON = {
   titleZh: '這篇導讀的中文標題',
   level: 'B1–B2',             // optional; shown after the number in the cover kicker
 
+  /* `url` is optional: give it only when the source is something the reader can
+     go and open — a video, a podcast episode, a page that is not paywalled. It
+     becomes a "Watch the interview 觀看原始訪談" link under the credit, and the
+     printed handout writes the address out beside it. Leave it off for a
+     subscriber-only article: a link nobody can follow is worse than none.
+     Strip any `?si=…` share token before pasting; it tracks whoever shared it. */
   source: {
     en: 'Adapted for class from “The Article’s Original Title”, The Publication, 1 January 2026.',
     zh: '課堂改編自《文章原標題》，刊物名稱，2026/01/01。',
+    // url: 'https://youtu.be/XXXXXXXXXXX',
   },
 
   intro: {

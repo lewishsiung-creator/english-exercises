@@ -514,7 +514,9 @@ function buildCover() {
         </ul>
       </div>
       ${LESSON.source ? `<p class="source">${text(LESSON.source.en)}
-        <span class="zh">${text(LESSON.source.zh)}</span></p>` : ''}
+        <span class="zh">${text(LESSON.source.zh)}</span>
+        ${LESSON.source.url ? `<a class="source-link" href="${text(LESSON.source.url)}"
+          target="_blank" rel="noopener">Watch the interview<em>觀看原始訪談</em></a>` : ''}</p>` : ''}
       ${nextLink(LESSON.steps[0], 'Begin', '開始')}
     </header>`;
 }
