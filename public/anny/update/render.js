@@ -375,8 +375,8 @@ const TYPES = {
         </div>
         <div class="z-region-nums">
           <div>
-            <p class="z-gap">${text(s.gap)}</p>
-            <p class="z-gap-k">Bubble+ 缺口</p>
+            <p class="z-gap${s.gapK ? ' up' : ''}">${text(s.gap)}</p>
+            <p class="z-gap-k">${text(s.gapK || 'Bubble+ 缺口')}</p>
           </div>
           <div>
             <p class="z-region-v">${text(s.now)} <i>/ ${text(s.quota)}</i></p>
