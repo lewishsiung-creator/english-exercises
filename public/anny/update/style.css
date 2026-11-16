@@ -369,6 +369,8 @@ button { font: inherit; color: inherit; }
 .z-trio.t-dark { background: var(--ink); color: #fff; }
 .z-trio.t-dark .z-cell-v { color: #fff; }
 .z-trio.t-dark .z-head { color: #9a9aa2; }
+/* 深色那一張的小字是「怎麼做到」，不是附註，所以不能用 --faint。 */
+.z-trio.t-dark .z-cell-s { color: #a9aab3; }
 /* 深色那一張的註腳是「代價」，不是小字附註，所以比一般 foot 亮一階。 */
 .z-trio.t-dark .z-foot { color: #c9c9d2; font-size: 2.6cqh; max-width: 80%; }
 .z-duo .z-row { gap: 8cqw; }
