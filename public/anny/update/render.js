@@ -451,6 +451,9 @@ function bars(c) {
 let ZEN, state;
 
 async function start(C, say) {
+  /* 記住金鑰的裝置會先自己開一次，之後如果表單又被送出一次（測試時容易發生），
+     沒有這一道就會再建一次投影片，整份變成兩倍。 */
+  if (state) return;
   ZEN = C.ZEN;
 
   const paths = ZEN.slides.flatMap((s) => (s.img ? [s.img] : [])
