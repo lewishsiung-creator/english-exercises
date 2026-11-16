@@ -135,6 +135,12 @@ const src = (p) => IMG[p] || '';
 
 /* 一個 type 一種畫法。沒有畫法的 type 會在畫面上說出來——一張默默消失的
    投影片，是上台前不會發現的那種錯。 */
+/* 條列。沒有項目符號，用一條短線起頭——投影片上的小圓點是簡報軟體的習慣，
+   不是閱讀的需要。 */
+function bullets(items) {
+  return `<ul class="z-ul">${items.map((i) => `<li>${text(i)}</li>`).join('')}</ul>`;
+}
+
 const TYPES = {
 
   cover: (s) => `
@@ -182,6 +188,7 @@ const TYPES = {
             ${i.sub ? `<p class="z-cell-s">${text(i.sub)}</p>` : ''}
           </div>`).join('')}
       </div>
+      ${s.foot ? `<p class="z-foot">${text(s.foot)}</p>` : ''}
     </div>`,
 
   duo: (s) => `
@@ -295,6 +302,105 @@ const TYPES = {
       </div>
     `;
   },
+
+  /* 四個 KPI 平行擺，看起來像「有一項搞砸了」；畫成鏈條，看到的是
+     「瓶頸在第二段」。stop 標的那一節就是今天要講的地方。 */
+  chain: (s) => `
+    <div class="z z-chain">
+      <p class="z-head">${text(s.head)}</p>
+      <div class="z-links">
+        ${s.links.map((l, i) => `
+          ${i ? '<svg class="z-link-ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h14M12 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' : ''}
+          <div class="z-link${l.stop ? ' stop' : ''}">
+            ${l.stop ? '<p class="z-stop">瓶頸</p>' : ''}
+            <p class="z-link-v tone-${text(l.tone)}">${text(l.v)}</p>
+            <p class="z-link-k">${text(l.k)}</p>
+            <p class="z-link-s">${text(l.s)}</p>
+          </div>`).join('')}
+      </div>
+      ${s.foot ? `<p class="z-foot">${text(s.foot)}</p>` : ''}
+    </div>`,
+
+  /* 醫師分層。整條是 Q3 的 456 位，每一段照人數分寬度——所以 dabbler 那一段
+     會長得很誇張，那正是要說的事：池子很大，我們只要從裡面轉 15 位。 */
+  pool: (s) => {
+    const sum = s.tiers.reduce((a, t) => a + t.n, 0);
+    const mv = s.move;
+    return `
+      <div class="z z-pool">
+        <p class="z-head">${text(s.head)}</p>
+        <div class="z-bar">
+          ${s.tiers.map((t, i) => `
+            <div class="z-seg seg-${text(t.tone)}" style="flex:${t.n}">
+              ${i === mv.from ? `<span class="z-move" style="width:${(mv.n / t.n) * 100}%">${mv.n}</span>` : ''}
+              <b>${t.n}</b>
+            </div>`).join('')}
+        </div>
+        <div class="z-tiers">
+          ${s.tiers.map((t) => `
+            <div class="z-tier" style="flex:${t.n}">
+              <p class="z-tier-k">${text(t.k)}</p>
+              <p class="z-tier-s">${text(t.s)}</p>
+            </div>`).join('')}
+        </div>
+        ${s.foot ? `<p class="z-foot">${text(s.foot)}</p>` : ''}
+      </div>`;
+  },
+
+  /* 亞洲排名。名次自己就是訊息，所以名次最大，名字其次。 */
+  rank: (s) => `
+    <div class="z z-rank">
+      <p class="z-head">${text(s.head)}</p>
+      <ol>
+        ${s.items.map((i) => `
+          <li${i.star ? ' class="star"' : ''}>
+            <p class="z-rank-r">${text(i.r)}</p>
+            <div>
+              <p class="z-rank-k">${text(i.k)}</p>
+              <p class="z-rank-s">${text(i.s)}</p>
+            </div>
+          </li>`).join('')}
+      </ol>
+      ${s.foot ? `<p class="z-foot">${text(s.foot)}</p>` : ''}
+    </div>`,
+
+  /* 每一區自己的一張：缺口、要轉幾位、在哪幾家醫院做什麼。
+     todo 的那一區整張打上待補，因為少一個區，台下第一個問的就是它。 */
+  region: (s) => `
+    <div class="z z-region${s.todo ? ' todo' : ''}">
+      <div class="z-region-top">
+        <div>
+          <p class="z-cs">${text(s.cs)}</p>
+          <p class="z-region-h">${text(s.head)}</p>
+        </div>
+        <div class="z-region-nums">
+          <div>
+            <p class="z-gap">${text(s.gap)}</p>
+            <p class="z-gap-k">Bubble+ 缺口</p>
+          </div>
+          <div>
+            <p class="z-region-v">${text(s.now)} <i>/ ${text(s.quota)}</i></p>
+            <p class="z-gap-k">現況 / 目標</p>
+          </div>
+          <div>
+            <p class="z-region-v">${text(s.util.from)} <i>→ ${text(s.util.to)}</i></p>
+            <p class="z-gap-k">使用率</p>
+          </div>
+        </div>
+      </div>
+      <p class="z-need">${text(s.need)}</p>
+      <div class="z-region-cols">
+        <div>
+          <p class="z-col-h">卡在哪</p>
+          ${bullets(s.why)}
+        </div>
+        <div>
+          <p class="z-col-h blue">Q4 要做的</p>
+          ${bullets(s.how)}
+        </div>
+      </div>
+      <p class="z-fill">負責人　｜　名單　｜　檢視日　——　各區自己填</p>
+    </div>`,
 
   asks: (s) => `
     <div class="z z-asks">
