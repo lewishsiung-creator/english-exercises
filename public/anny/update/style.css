@@ -670,11 +670,23 @@ button { font: inherit; color: inherit; }
 }
 
 .z-fill {
+  display: flex;
+  gap: 4cqw;
   margin-top: 4cqh;
   padding-top: 2cqh;
   border-top: 1px solid var(--line);
   font-size: 1.9cqh;
   color: var(--faint);
+}
+.z-fill-c { display: flex; align-items: baseline; gap: .8cqw; }
+.z-fill-c i { font-style: normal; }
+.z-fill-c b { font-weight: 600; color: var(--muted); }
+/* 還沒填的留一條虛線。空格是指令，一句「各區自己填」不是。 */
+.z-fill-c u {
+  display: inline-block;
+  width: 9cqw;
+  text-decoration: none;
+  border-bottom: 1px dashed #b6b7bd;
 }
 
 /* 資料還沒補的那一區：整張壓淡，但不隱藏——少一個區，台下第一個就問它。 */

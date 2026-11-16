@@ -399,7 +399,7 @@ const TYPES = {
           ${bullets(s.how)}
         </div>
       </div>
-      <p class="z-fill">負責人　｜　名單　｜　檢視日　——　各區自己填</p>
+      ${fill(s.own)}
     </div>`,
 
   asks: (s) => `
@@ -418,6 +418,21 @@ const TYPES = {
 
 /* 季度長條圖：原版是一張 Tableau 截圖，上面有兩張表、三十幾個數字。
    這裡只留一件事——每一季都在長，而 Q4 要到哪裡。 */
+/* 區域頁最底下那一行。填得出來的印上去，填不出來的留一條虛線——
+   站在台上看得到空格，比看到一句「各區自己填」有用。 */
+function fill(own) {
+  const o = own || {};
+  const cell = (k, v) => `
+    <span class="z-fill-c">
+      <i>${text(k)}</i>
+      ${v ? `<b>${text(v)}</b>` : '<u></u>'}
+    </span>`;
+  return `
+    <p class="z-fill">
+      ${cell('負責人', o.who)}${cell('名單', o.list)}${cell('檢視日', o.when)}
+    </p>`;
+}
+
 function bars(c) {
   const top = c.max;
   const W = 1000, H = 300, gap = 10;
