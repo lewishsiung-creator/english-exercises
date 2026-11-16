@@ -39,8 +39,8 @@ const LESSON = {
   },
 
   source: {
-    en: 'Adapted for class from an interview with neuroscientist Andrew Huberman on daily health protocols. This lesson is for English-language learning: the health claims are one scientist’s views, as given in a media interview, some remain debated, and nothing here is medical advice.',
-    zh: '課堂改編自神經科學家 Andrew Huberman 談日常健康方案的訪談。本課僅供英語學習使用：文中健康主張為受訪科學家於媒體訪談中的個人觀點，部分仍有爭議，不構成醫療建議。',
+    en: 'Adapted for class from an interview with neuroscientist Andrew Huberman about daily health protocols, on The Diary Of A CEO with Steven Bartlett. This lesson is for English-language learning: the health claims are one scientist’s views, as given in a media interview, some remain debated, and nothing here is medical advice.',
+    zh: '課堂改編自 The Diary Of A CEO 節目（主持人 Steven Bartlett）訪談神經科學家 Andrew Huberman 談日常健康方案。本課僅供英語學習使用：文中健康主張為受訪科學家於媒體訪談中的個人觀點，部分仍有爭議，不構成醫療建議。',
     // "Andrew Huberman: The Real Reason You Can't Get Deep Sleep & Wake Up
     // Exhausted", The Diary Of A CEO.
     url: 'https://youtu.be/MGxcosNuC8k',
