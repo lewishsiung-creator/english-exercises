@@ -283,8 +283,43 @@ button { font: inherit; color: inherit; }
   margin-top: 5cqh;
   font-size: 2.4cqh;
   line-height: 1.7;
-  color: var(--faint);
+  color: var(--muted);
 }
+
+/* ---------------- 視覺母題：手術排程表 ----------------
+
+   整份原本是 17 張各自做得不錯的投影片，但沒有一個重複出現的元素把它們縫起來。
+   這個就是：一格一格的時段，暗的是被鎖住的、亮的是談開的。
+   「Q4 的刀不會來自新系統，會來自把排程打開」——那句主張的樣子就是這個。
+   封面出現一次，講通道那一張再一次，最後一張收起來。
+   低對比、裁出血，是底紋不是插圖；它的工作是被認出來，不是被看。 */
+
+.z-motif {
+  position: absolute;
+  top: -10%;
+  right: -6%;
+  width: 52%;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  gap: .55cqw;
+  pointer-events: none;
+  /* 不要有邊。沒有這一層遮罩它就是一塊貼上去的方形，
+     有了它才是從畫面外延伸進來的一角排程表。 */
+  -webkit-mask-image: linear-gradient(to bottom left, #000 22%, transparent 78%);
+  mask-image: linear-gradient(to bottom left, #000 22%, transparent 78%);
+}
+.z-motif i { display: block; aspect-ratio: 5 / 4; border-radius: 2px; }
+.m-dark i { background: rgba(255, 255, 255, .055); }
+.m-dark i.on { background: rgba(255, 255, 255, .17); }
+.m-light i { background: #eff0f3; }
+.m-light i.on { background: #dcdef4; }
+
+/* 母題在 DOM 的最前面，內容跟著定位就會疊在它上面。 */
+.z-cover, .z-statement.t-blue, .z-asks { position: relative; overflow: hidden; }
+.z-cover > :not(.z-motif),
+.z-statement > :not(.z-motif),
+.z-asks > :not(.z-motif) { position: relative; }
+.z-asks .z-motif { top: 4%; right: -4%; width: 24%; }
 
 /* 封面 */
 .z-cover { background: var(--blue); color: #fff; justify-content: flex-end; }
@@ -293,14 +328,14 @@ button { font: inherit; color: inherit; }
   margin: 1cqh 0 0;
   font-family: var(--en);
   font-size: 18cqh;
-  font-weight: 300;
+  font-weight: 450;
   line-height: 1;
   letter-spacing: -.01em;
 }
 .z-meta { margin-top: 6cqh; font-size: 2.6cqh; line-height: 1.9; color: #c9cbf5; }
 
 /* 一句話 */
-.z-statement { justify-content: center; }
+.z-statement { justify-content: flex-end; }
 .z-statement h2 {
   margin: 0;
   font-size: 11cqh;
@@ -330,27 +365,50 @@ button { font: inherit; color: inherit; }
 .z-kpi-k { margin-top: 1.6cqh; font-size: 2.8cqh; font-weight: 600; color: var(--muted); }
 .tone-green { color: var(--green); }
 .tone-amber { color: var(--amber); }
+/* 還在路上的數字不是警告，是資料——所以是墨色，不是琥珀。
+   整份只有一個地方該是紅的：鏈條斷掉的那一節。 */
+.tone-mute { color: var(--ink); }
 .tone-red { color: var(--red); }
 
 /* 長條圖 */
 .z-chart { justify-content: center; }
 .z-chart-head { display: flex; align-items: baseline; gap: 2.5cqw; }
 .z-chart .z-big { font-size: 13cqh; }
+.z-chart-head .z-sub { flex: 0 1 auto; }
+.z-stats { margin-left: auto; display: flex; gap: 2.6cqw; }
+.z-stat { text-align: right; }
+.z-stat-v {
+  font-family: var(--en);
+  font-size: 4.8cqh;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -.02em;
+  color: var(--blue);
+}
+.z-stat-k { margin-top: .9cqh; font-size: 1.9cqh; color: var(--muted); }
 .z-bars { width: 100%; margin-top: 3cqh; overflow: visible; }
 .bar.past { fill: #d9dade; }
 .bar.now { fill: var(--blue); }
-.bar.ghost { fill: #fff; stroke: var(--blue); stroke-width: 2; stroke-dasharray: 5 4; }
+.bar.ghost { fill: #c3c7ef; }
+.bar-ghost-top { stroke: var(--blue); stroke-width: 2.5; stroke-dasharray: 6 5; }
 .bar-v {
   font-family: var(--en);
   font-size: 17px;
   font-weight: 600;
   fill: var(--faint);
+  /* 預估那根的數字會剛好落在目標線上。白色描邊讓數字把線切斷，
+     而不是兩個東西疊在一起。 */
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 6px;
+  stroke-linejoin: round;
 }
 .bar-v.now { fill: var(--blue); }
 .bar-v.ghost { fill: var(--blue); }
-.bar-x { font-family: var(--en); font-size: 19px; fill: var(--faint); }
-.bar-target { stroke: var(--red); stroke-width: 2; stroke-dasharray: 7 6; }
-.bar-target-t { font-family: var(--zh); font-size: 19px; font-weight: 700; fill: var(--red); }
+.bar-x { font-family: var(--en); font-size: 19px; fill: var(--muted); }
+.bar-x.ghost { font-family: var(--zh); fill: var(--blue); }
+.bar-target { stroke: #b9bac0; stroke-width: 2; stroke-dasharray: 7 6; }
+.bar-target-t { font-family: var(--zh); font-size: 19px; font-weight: 700; fill: var(--muted); }
 
 /* 三個／兩個數字 */
 .z-trio .z-row { display: flex; gap: 5cqw; align-items: flex-start; }
@@ -397,7 +455,14 @@ button { font: inherit; color: inherit; }
 /* 照片牆 */
 .z-photos { padding: 6cqh 5cqw; }
 .z-photos .z-head { margin-bottom: 3cqh; }
-.z-wall { flex: 1; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.4cqw; min-height: 0; }
+.z-wall {
+  flex: 1;
+  display: grid;
+  /* 第一張最有人味（兩位醫師和院徽），給它多一點寬度，五張才不是一排罐頭。 */
+  grid-template-columns: 1.7fr 1fr 1fr 1fr 1fr;
+  gap: 1.4cqw;
+  min-height: 0;
+}
 .z-wall figure {
   margin: 0;
   position: relative;
@@ -405,12 +470,21 @@ button { font: inherit; color: inherit; }
   background-position: center;
   border-radius: 6px;
   overflow: hidden;
+  /* 五張來自不同醫院、不同光線。降一點飽和再蓋一層很淡的藍，
+     它們才看起來是同一件事的五個現場，而不是五張湊在一起的照片。 */
+  filter: saturate(.85);
+}
+.z-wall figure::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(28, 35, 186, .14), rgba(28, 35, 186, .04));
 }
 .z-wall figcaption {
   position: absolute;
   left: 0; right: 0; bottom: 0;
   padding: 1.6cqh .8cqw .8cqh;
-  background: linear-gradient(transparent, rgba(0, 0, 0, .78));
+  background: linear-gradient(transparent, rgba(0, 0, 0, .88));
   color: #fff;
   font-size: 1.9cqh;
   font-weight: 600;
@@ -506,15 +580,20 @@ button { font: inherit; color: inherit; }
 .z-link {
   position: relative;
   flex: 1;
-  padding: 3cqh 1.6cqw 2.6cqh;
+  padding: 4.2cqh 2cqw 3.6cqh;
   background: var(--card);
   border-radius: 10px;
 }
 /* 瓶頸那一節翻成白底加紅框：鏈條上唯一被框起來的地方，就是今天要講的地方。 */
 .z-link.stop {
+  flex: 1.32;
+  margin: -2cqh 0;
+  padding-top: 6.2cqh;
+  padding-bottom: 5.4cqh;
   background: #fff;
   box-shadow: inset 0 0 0 2px var(--red);
 }
+.z-link.stop .z-link-v { font-size: 10cqh; }
 .z-stop {
   position: absolute;
   top: -1.4cqh; left: 1.6cqw;
@@ -527,14 +606,14 @@ button { font: inherit; color: inherit; }
 }
 .z-link-v {
   font-family: var(--en);
-  font-size: 7.4cqh;
+  font-size: 8.4cqh;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -.02em;
 }
-.z-link-k { margin-top: 1.2cqh; font-size: 2.5cqh; font-weight: 600; }
-.z-link-s { margin-top: .4cqh; font-size: 1.9cqh; color: var(--faint); }
-.z-link-ar { flex: 0 0 3.2cqw; align-self: center; color: #c3c4ca; }
+.z-link-k { margin-top: 1.4cqh; font-size: 2.8cqh; font-weight: 600; }
+.z-link-s { margin-top: .5cqh; font-size: 2.1cqh; color: var(--faint); }
+.z-link-ar { flex: 0 0 4.4cqw; align-self: center; color: #8d8f97; }
 
 /* ---------------- 池子 ---------------- */
 
@@ -757,6 +836,8 @@ body.fs #app::after {
 @media print {
   html, body { height: auto; overflow: visible; background: #fff; }
   .bar, .foot, .notes, .grid, .edge, .lock { display: none !important; }
+  /* 「草稿，待確認」是講給她自己聽的；PDF 轉出去就不該再帶著。 */
+  .z-draft { display: none !important; }
 
   #app { display: block; height: auto; overflow: visible; }
   #app::after { display: none; }

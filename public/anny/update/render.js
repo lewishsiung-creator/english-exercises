@@ -145,6 +145,7 @@ const TYPES = {
 
   cover: (s) => `
     <div class="z z-cover">
+      ${motif()}
       <p class="z-kicker">${text(s.kicker)}</p>
       <h1 class="z-h1">${text(s.title)}</h1>
       <div class="z-meta">${s.meta.map((m) => `<p>${text(m)}</p>`).join('')}</div>
@@ -152,6 +153,7 @@ const TYPES = {
 
   statement: (s) => `
     <div class="z z-statement t-${text(s.tone || 'light')}">
+      ${s.tone === 'blue' ? motif() : ''}
       <h2>${s.lines.map((l) => `<span>${text(l)}</span>`).join('')}</h2>
       ${s.sub ? `<p class="z-sub">${text(s.sub)}</p>` : ''}
     </div>`,
@@ -173,6 +175,11 @@ const TYPES = {
       <div class="z-chart-head">
         <p class="z-big">${text(s.big)}</p>
         <p class="z-sub">${text(s.sub)}</p>
+        ${s.stats ? `<div class="z-stats">${s.stats.map((t) => `
+          <div class="z-stat">
+            <p class="z-stat-v">${text(t.v)}</p>
+            <p class="z-stat-k">${text(t.k)}</p>
+          </div>`).join('')}</div>` : ''}
       </div>
       ${bars(s.chart)}
     </div>`,
@@ -270,7 +277,8 @@ const TYPES = {
   /* 收尾。一樣是「一起往前走」，但走的方向用一條線畫出來，不用日出。
      最後一個點是空心的，因為 2027 還沒發生——留白比箭頭有說服力。 */
   path: (s) => {
-    const W = 1000, H = 220, pad = 70;
+    /* pad 從 70 放寬到 115：2027 那一點原本幾乎貼在右緣，沒有呼吸。 */
+    const W = 1000, H = 220, pad = 115;
     const step = (W - pad * 2) / (s.marks.length - 1);
     const y = (i) => H - 30 - i * ((H - 90) / (s.marks.length - 1));
     const pts = s.marks.map((m, i) => [pad + i * step, y(i)]);
@@ -294,7 +302,7 @@ const TYPES = {
                       opacity="${i === 0 ? '.45' : '1'}"/>
               <text class="pt-k" x="${p[0]}" y="${p[1] - 26}" text-anchor="middle"
                     opacity="${i === 0 ? '.55' : '1'}">${text(m.k)}</text>
-              ${m.s ? `<text class="pt-s" x="${p[0]}" y="${p[1] + 34}" text-anchor="middle"
+              ${m.s ? `<text class="pt-s" x="${p[0]}" y="${p[1] + (i && !last ? 54 : 34)}" text-anchor="middle"
                     opacity="${i === 0 ? '.55' : '.8'}">${text(m.s)}</text>` : ''}`;
           }).join('')}
         </svg>
@@ -310,7 +318,7 @@ const TYPES = {
       <p class="z-head">${text(s.head)}</p>
       <div class="z-links">
         ${s.links.map((l, i) => `
-          ${i ? '<svg class="z-link-ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h14M12 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' : ''}
+          ${i ? '<svg class="z-link-ar" viewBox="0 0 32 24" aria-hidden="true"><path d="M2 12h25M20 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>' : ''}
           <div class="z-link${l.stop ? ' stop' : ''}">
             ${l.stop ? '<p class="z-stop">瓶頸</p>' : ''}
             <p class="z-link-v tone-${text(l.tone)}">${text(l.v)}</p>
@@ -404,6 +412,7 @@ const TYPES = {
 
   asks: (s) => `
     <div class="z z-asks">
+      ${s.motif ? motif(9, 6, 'light') : ''}
       <p class="z-head">${text(s.head)}</p>
       <ol>
         ${s.items.map((i) => `
@@ -433,31 +442,58 @@ function fill(own) {
     </p>`;
 }
 
+/* 整份的視覺母題：一格一格的手術排程表。暗的是被鎖住的時段，亮的是談開的。
+   「Q4 的刀不會來自新系統，會來自把排程打開」——那句主張的樣子就是這個，
+   所以它在封面出現一次、在講通道那一張再出現一次、最後一張收起來。
+   亮起來的格子是寫死的，不是隨機：每次打開都要長得一樣。 */
+const MOTIF_ON = [3, 7, 14, 19, 23, 28, 31, 40, 45, 49, 52, 58, 63, 70, 76, 81];
+function motif(cols = 12, rows = 8, tone = 'dark') {
+  const on = new Set(MOTIF_ON);
+  const cells = Array.from({ length: cols * rows },
+    (_, i) => `<i class="${on.has(i) ? 'on' : ''}"></i>`).join('');
+  return `<div class="z-motif m-${tone}" style="--cols:${cols}" aria-hidden="true">${cells}</div>`;
+}
+
 function bars(c) {
   const top = c.max;
   const W = 1000, H = 300, gap = 10;
   const cols = c.years.flatMap((y) => y.vals.map((v) => ({ v, y: y.y, now: y.y === '2026' })));
   const last = c.years[c.years.length - 1];
-  if (last.forecast) cols.push({ v: last.forecast, y: last.y, ghost: true });
+  if (last.forecast) cols.push({ v: last.forecast, ghost: true });
   const bw = (W - gap * (cols.length - 1)) / cols.length;
   const ty = H - (c.target.v / top) * H;
+  const x = (i) => i * (bw + gap);
+
+  /* 年份標在那一年所有長條的正中間，不是第一根底下——靠左看起來像標錯了。 */
+  const spans = [];
+  cols.forEach((d, i) => {
+    const s = spans[spans.length - 1];
+    if (d.y && s && s.y === d.y) s.to = i;
+    else if (d.y) spans.push({ y: d.y, from: i, to: i });
+  });
+
   return `
     <svg class="z-bars" viewBox="0 0 ${W} ${H + 46}" role="img"
          aria-label="2024 到 2026 各季手術量">
       <line class="bar-target" x1="0" y1="${ty}" x2="${W}" y2="${ty}"/>
-      <text class="bar-target-t" x="${W}" y="${ty - 10}" text-anchor="end"
-        >${text(c.target.label)}</text>
+      <text class="bar-target-t" x="0" y="${ty - 13}">${text(c.target.label)}</text>
       ${cols.map((d, i) => {
         const h = (d.v / top) * H;
-        const x = i * (bw + gap);
         const cls = d.ghost ? 'ghost' : d.now ? 'now' : 'past';
+        /* 2024、2025 的數值不標。八個沒有人會讀的數字只會把視線分散掉，
+           而這一張要說的是今年那三根和它們要去的地方。 */
         return `
-          <rect class="bar ${cls}" x="${x}" y="${H - h}" width="${bw}" height="${h}" rx="3"/>
-          <text class="bar-v ${cls}" x="${x + bw / 2}" y="${H - h - 9}"
-            text-anchor="middle">${d.v.toLocaleString()}</text>
-          <text class="bar-x" x="${x + bw / 2}" y="${H + 26}"
-            text-anchor="middle">${d.ghost ? 'Q4 預估' : i % 4 === 0 ? text(d.y) : ''}</text>`;
+          <rect class="bar ${cls}" x="${x(i)}" y="${H - h}" width="${bw}" height="${h}" rx="3"/>
+          ${d.ghost ? `<line class="bar-ghost-top" x1="${x(i)}" y1="${H - h}"
+                             x2="${x(i) + bw}" y2="${H - h}"/>` : ''}
+          ${d.now || d.ghost ? `<text class="bar-v ${cls}" x="${x(i) + bw / 2}"
+                y="${H - h - 10}" text-anchor="middle">${d.v.toLocaleString()}</text>` : ''}`;
       }).join('')}
+      ${spans.map((s) => `
+        <text class="bar-x" x="${(x(s.from) + x(s.to) + bw) / 2}" y="${H + 28}"
+              text-anchor="middle">${text(s.y)}</text>`).join('')}
+      ${last.forecast ? `<text class="bar-x ghost" x="${x(cols.length - 1) + bw / 2}"
+            y="${H + 28}" text-anchor="middle">Q4 預估</text>` : ''}
     </svg>`;
 }
 
