@@ -31,8 +31,9 @@ A2 Key, B1 Preliminary — under one hub at `/cambridge/`.
 One page is not English at all: `/math/` is math practice for Grades 1 to 3,
 built for a child in an American school.
 
-Twelve more pages are not lessons. `/landscape-portfolio/` is a portfolio
-template for a student to fill in with their own work, and `/anny/`, `/aaron/`,
+Thirteen more pages are not lessons. `/landscape-portfolio/` is a portfolio
+template for a student to fill in with their own work, `/tiffanyproposal/` is
+one student's research proposal as a reading page, and `/anny/`, `/aaron/`,
 `/anita/`, `/nikky/`, `/eason/`, `/anna/`, `/ken/`, `/mia/`, `/hank/`, `/riva-rex/` and
 `/jill/` are notebooks kept for one student each, which grow by one session after every
 lesson rather than being finished and left alone. The first four are adult
@@ -4130,6 +4131,53 @@ page with the words taken out.
   template to whoever inherits it, and deleting it and its panel from
   `index.html` is the last step before sending the portfolio out.
 
+## Research Proposal — a student's own writing, as a page
+
+`public/tiffanyproposal/` — Tiffany Chen's research proposal (*Climate-Responsive
+Pedestrian Connectivity in Station-Area Regeneration: Landscape Planning around
+Kaohsiung Main Station and Lessons from Japan*), rebuilt from her PDF of
+16 Nov 2026 as a page to read on a screen and print back to a PDF. The sibling
+of the portfolio above and set in its two colours, deep green and clay, so the
+two read as one application. English only, like the portfolio: no 中 chip, no
+🔊, nothing practised, nothing saved. `noindex, nofollow`.
+
+| Piece | What it does |
+| --- | --- |
+| 📄 Cover | The title page of the PDF: label, title, subtitle, rule, name — and a drawn plan |
+| 🧭 Contents | A rail beside the text on a wide screen, a list under the cover on a narrow one; it marks the chapter being read |
+| ▁ Progress | The bar's bottom edge fills as the document is read |
+| ❓ Questions | The research questions and the central problem, set larger than the text |
+| 📚 References | APA with a hanging indent; each DOI is a link |
+| ⎙ PDF | Title page on its own sheet, then 13 pages — about the length of her own |
+
+### Design notes
+
+- **The words are hers, and none were changed.** `content.js` is the PDF word
+  for word; the only things added are structure marks — which paragraph is a
+  question, which line a sub-heading, where the source set bold (`**…**`) or
+  italics (`*…*`). It was checked against the PDF's extracted text letter by
+  letter and number by number, and the only differences are the PDF's own page
+  numbers. A new revision from her is an edit to that one file.
+- **Three things in the source look unfinished and were left alone**, because
+  they are hers to settle: the chapters run 5 to 15 with no 1 to 4, one
+  reference is dated 2026, and the reference list ends with a note that more
+  documentation "should be incorporated". The file header lists them.
+- **The cover drawing is an idea, not a map.** A station on a green corridor
+  and two walks of the same length away from it, one under trees and one in
+  the open — the comparison section 11.4 describes. Nothing on it is labelled,
+  so it claims nothing about Kaohsiung's actual streets. It is drawn 680 × 190
+  and shown with `slice`, so a phone crops the sides instead of shrinking the
+  whole thing to a thread; everything that matters sits in the middle 420.
+- **The contents never scroll the document.** `mark()` toggles a class and
+  sets one custom property, on the scroll event itself: a pass deferred to an
+  animation frame does not run in a tab that is not being painted, and
+  `scrollIntoView` is what made the notebooks drift.
+- **Print is half the page.** `@page` A4, the cover alone on the first sheet,
+  a heading never left at the foot of a page, a question never cut in two, and
+  the sentence that announces the central problem kept with it
+  (`.para:has(+ .ask)`). The type is set as tightly as her own PDF so the
+  printed copy is not three pages longer than the one she wrote.
+
 ## Anny's Notebook — adult, one-to-one, kept over time
 
 The other adult pages are lessons: built once, taught, done. This one is a
@@ -6074,6 +6122,7 @@ public/family-law/        家事法律英文 — 154 terms in nine themes, plus 
 public/landscape-portfolio/      the portfolio — filled in as the Ando study
 public/landscape-portfolio/content.starter.js  the same page, emptied
 public/landscape-portfolio/img/  4 Commons photographs, 12 SVG drawings, CREDITS.md
+public/tiffanyproposal/   one student's research proposal, word for word from her PDF
 public/health/            Health Notes — bilingual notes, one topic per subject
 public/vicky-course/      Vicky's 上課時間 & 學費說明 — schedule, fees, leave rule
 public/course/            the same page for any student, drawn from the link's #hash

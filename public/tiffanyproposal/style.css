@@ -1,0 +1,412 @@
+/* Tiffany Chen's research proposal — a document, English only.
+
+   The sibling of /landscape-portfolio/ and set in the same two colours, so
+   the portfolio and the proposal read as one application: a deep green for
+   the page's own furniture, a clay for the one thing that should be noticed.
+
+   Design notes:
+
+   - It is read two ways, like the portfolio: scrolled by someone deciding
+     whether to reply, and printed to PDF as the thing actually attached. Both
+     come out of this one stylesheet; the print block at the bottom is half
+     the page, not an afterthought.
+   - One column of text at a reading measure. On a wide screen the contents
+     ride beside it; on a narrow one they sit under the cover and then get
+     out of the way.
+   - The research questions are the only text allowed to be bigger than the
+     text. Everything else is told apart by space, weight and a hairline.
+   - Light only, because it is printed.
+
+   Token names follow the house: house.css reads --gold for the accent and
+   --ink, --paper and --line by name, and the shared footer reads --navy. */
+
+:root {
+  --paper: #f6f5f1;
+  --card: #ffffff;
+  --ink: #1e2622;
+  --ink-soft: #55605a;
+  --ink-faint: #8b948d;
+
+  --navy: #2e4636;          /* the house interactive slot — deep green here */
+  --navy-soft: #e9efe9;
+  --navy-line: #bdd0be;
+
+  --gold: #9a5a38;          /* the house accent slot — clay here */
+  --gold-soft: #f6ece5;
+  --gold-line: #e6cdbc;
+
+  --line: #e2dfd7;
+  --rule: #c9c4b8;
+
+  --font-en: ui-serif, "New York", "Iowan Old Style", Charter, Georgia, "Times New Roman", serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+
+  --bar-h: 56px;
+  --measure: 41rem;
+}
+
+* { box-sizing: border-box; }
+
+/* No root scroll-behavior: smooth. It animates scrolls nobody asked for, and
+   a contents link in a twelve-page document should simply arrive. */
+html { scroll-padding-top: calc(var(--bar-h) + 22px); }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-en);
+  font-size: 18px;
+  line-height: 1.72;
+  -webkit-text-size-adjust: 100%;
+}
+
+.skip { position: absolute; left: -9999px; font-family: var(--font-ui); }
+.skip:focus { left: 12px; top: 12px; z-index: 60; background: var(--card); padding: 10px 16px; border-radius: 8px; }
+
+/* ------------------------------------------------------------------- bar */
+
+.bar {
+  position: sticky; top: 0; z-index: 40;
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  --read: 0;
+}
+.bar-name {
+  margin: 0; min-width: 0;
+  font-family: var(--font-ui);
+  font-size: 14.5px; font-weight: 600; letter-spacing: -.01em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.bar-who { margin-left: .7em; font-weight: 400; color: var(--ink-faint); }
+.bar-btn { flex: none; font-family: var(--font-ui); cursor: pointer; }
+
+/* How far through the document the reader is, as the bar's own bottom edge. */
+.bar::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+  background: var(--gold);
+  transform: scaleX(var(--read)); transform-origin: left;
+}
+
+/* ---------------------------------------------------------------- layout */
+
+.sheet {
+  display: grid;
+  grid-template-columns: 14.5rem minmax(0, var(--measure));
+  justify-content: center;
+  column-gap: clamp(36px, 5vw, 76px);
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 clamp(18px, 4vw, 40px) 5rem;
+}
+
+/* -------------------------------------------------------------- contents */
+
+.toc-k {
+  margin: 0 0 .7rem;
+  font-family: var(--font-ui);
+  font-size: 10.5px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.rail ol, .contents ol { margin: 0; padding: 0; list-style: none; }
+
+.rail {
+  position: sticky;
+  top: calc(var(--bar-h) + 30px);
+  align-self: start;
+  margin-top: clamp(52px, 7.6vw, 84px);
+  max-height: calc(100svh - var(--bar-h) - 52px);
+  overflow-y: auto; scrollbar-width: none;
+  font-family: var(--font-ui);
+}
+.rail::-webkit-scrollbar { display: none; }
+
+.rail a, .contents a {
+  position: relative;
+  display: grid; grid-template-columns: 1.7rem 1fr; align-items: baseline;
+  padding: 6px 8px 6px 12px;
+  color: var(--ink-soft); text-decoration: none;
+  font-size: 13px; line-height: 1.4; letter-spacing: -.005em;
+  border-radius: 8px;
+  transition: color var(--fast, .18s) var(--ease, ease), background var(--fast, .18s) var(--ease, ease);
+}
+.rail a:hover, .contents a:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 4%, transparent); }
+.toc-n { font-size: 11px; font-variant-numeric: tabular-nums; color: var(--ink-faint); }
+
+.rail a.here { color: var(--ink); font-weight: 600; }
+.rail a.here .toc-n { color: var(--gold); }
+.rail a.here::before {
+  content: "";
+  position: absolute; left: 0; top: 7px; bottom: 7px; width: 2px; border-radius: 2px;
+  background: var(--gold);
+}
+
+/* The same list under the cover, for a screen with no room for a rail. */
+.contents {
+  display: none;
+  margin: 2.2rem 0 0;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-ui);
+}
+.contents ol { columns: 2; column-gap: 18px; }
+.contents li { break-inside: avoid; }
+.contents a { font-size: 14px; padding: 8px 6px; grid-template-columns: 1.6rem 1fr; }
+
+/* ----------------------------------------------------------------- cover */
+
+.cover { padding-bottom: 8px; }
+
+.kicker {
+  font-family: var(--font-ui);
+  font-weight: 600; text-transform: uppercase;
+}
+.cover h1 { font-family: var(--font-en); text-wrap: balance; }
+/* "Station-Area" is one word: on a phone the headline was breaking after the
+   hyphen and starting a line with "Area". */
+.cover h1 .nb { white-space: nowrap; }
+
+.cover-sub {
+  margin: 0;
+  font-size: clamp(1.2rem, 2.2vw, 1.42rem);
+  line-height: 1.42;
+  color: var(--ink-soft);
+  letter-spacing: -.008em;
+  text-wrap: balance;
+}
+
+/* The short rule and the name, as on the title page of the PDF. */
+.cover-by {
+  margin: clamp(26px, 3.4vw, 38px) 0 0;
+  padding-top: 16px;
+  position: relative;
+  font-family: var(--font-ui);
+  font-size: .9rem; font-weight: 600; letter-spacing: .01em;
+}
+.cover-by::before {
+  content: "";
+  position: absolute; left: 0; top: 0; width: 56px; height: 2px;
+  background: var(--navy);
+}
+
+.cover-art {
+  display: block;
+  width: 100%;
+  height: clamp(150px, 27vw, 190px);
+  margin: clamp(30px, 4.4vw, 48px) 0 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--card) 55%, transparent);
+}
+.a-grid path  { fill: none; stroke: var(--rule); stroke-width: 1; opacity: .75; }
+.a-band       { fill: none; stroke: var(--navy-soft); stroke-width: 20; }
+.a-station    { fill: var(--card); stroke: var(--navy); stroke-width: 1.5; }
+.a-hill ellipse { fill: none; stroke: var(--navy-line); stroke-width: 1.25; }
+.a-hill ellipse:last-child { stroke: var(--navy); fill: color-mix(in srgb, var(--navy-soft) 70%, transparent); }
+.a-shade      { fill: none; stroke: var(--navy); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.a-sun        { fill: none; stroke: var(--gold); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1 7; }
+.a-tree circle { fill: var(--navy-soft); stroke: var(--navy-line); stroke-width: 1.25; }
+.a-dot        { stroke: var(--paper); stroke-width: 2; }
+.a-dot-shade  { fill: var(--navy); }
+.a-dot-sun    { fill: var(--gold); }
+.a-pin        { fill: var(--navy); }
+
+/* -------------------------------------------------------------- sections */
+
+.sec { padding-top: clamp(3rem, 6vw, 4.4rem); }
+
+.sec-k {
+  margin: 0 0 .5rem;
+  font-family: var(--font-ui);
+  font-size: 11.5px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--gold);
+}
+.sec-h {
+  margin: 0 0 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: clamp(1.6rem, 3vw, 1.95rem);
+  line-height: 1.18;
+  font-weight: 600;
+  letter-spacing: -.016em;
+  text-wrap: balance;
+}
+
+.para { margin: 0 0 1.15em; hanging-punctuation: first; }
+.para strong, .ask strong { font-weight: 650; }
+
+.sub {
+  display: grid; grid-template-columns: 2.9rem 1fr; align-items: baseline;
+  margin: 2.6rem 0 .9rem;
+  font-family: var(--font-ui);
+  font-size: 1.02rem; line-height: 1.35; font-weight: 650; letter-spacing: -.01em;
+}
+.sub-n { font-size: .82rem; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--gold); }
+.sec-h + .sub { margin-top: 0; }
+
+.case {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 .9em;
+  margin: 2.2rem 0 .7rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-ui);
+  font-size: .98rem; line-height: 1.35; font-weight: 600; letter-spacing: -.005em;
+  color: var(--navy);
+}
+.case-n { font-size: .74rem; font-variant-numeric: tabular-nums; letter-spacing: .06em; color: var(--ink-faint); }
+.sub + .case { margin-top: 0; padding-top: 0; border-top: 0; }
+
+/* A research question. */
+.ask {
+  margin: 1.9rem 0 1.2rem;
+  padding: 0 0 0 clamp(16px, 2.4vw, 24px);
+  border-left: 2px solid var(--navy-line);
+}
+.ask-k {
+  margin: 0 0 .45rem;
+  font-family: var(--font-ui);
+  font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.ask p {
+  margin: 0;
+  font-size: 1.1rem; line-height: 1.5; font-weight: 600; letter-spacing: -.006em;
+  text-wrap: pretty;
+}
+.ask-main { border-left-color: var(--navy); margin: 2.1rem 0 2rem; }
+.ask-main .ask-k { color: var(--gold); }
+.ask-main p { font-size: clamp(1.22rem, 2.3vw, 1.4rem); line-height: 1.42; letter-spacing: -.012em; }
+.sec-h + .ask { margin-top: 0; }
+
+.kw {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 0;
+  margin: 1.8rem 0 0;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-ui);
+  font-size: .84rem; line-height: 1.5;
+  color: var(--ink-soft);
+}
+.kw-k {
+  margin-right: 1.1em;
+  font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.kw-i:not(:last-child)::after { content: "·"; margin: 0 .6em; color: var(--rule); }
+
+/* ------------------------------------------------------------ references */
+
+.refs-list { margin: 0; padding: 0; list-style: none; }
+.refs-list li {
+  margin: 0 0 .85rem;
+  padding-left: 1.8em; text-indent: -1.8em;       /* APA's hanging indent */
+  font-size: .9rem; line-height: 1.58;
+  color: var(--ink-soft);
+  overflow-wrap: anywhere;
+}
+.refs-list em { color: var(--ink); }
+.refs-list a {
+  /* A DOI that does not fit the rest of the line moves down whole, as in the
+     PDF, instead of breaking in the middle of its number. */
+  display: inline-block; text-indent: 0;
+  color: var(--navy);
+  text-decoration: none;
+  border-bottom: 1px solid var(--navy-line);
+}
+.refs-list a:hover { border-bottom-color: var(--navy); }
+.refs-note {
+  margin: 1.6rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-size: .86rem; line-height: 1.58;
+  color: var(--ink-faint);
+}
+
+/* ---------------------------------------------------------------- narrow */
+
+@media (max-width: 960px) {
+  .sheet { display: block; max-width: calc(var(--measure) + 2 * clamp(18px, 4vw, 40px)); }
+  .rail { display: none; }
+  .contents { display: block; }
+}
+
+@media (max-width: 620px) {
+  body { font-size: 17px; line-height: 1.68; }
+  .bar-who { display: none; }
+  .contents ol { columns: 1; }
+  .sub { grid-template-columns: 2.6rem 1fr; }
+}
+
+/* ----------------------------------------------------------------- print
+
+   The PDF she attaches. A title page on its own sheet, then the text running
+   on, a chapter never starting at the foot of a page, a question never cut
+   in two. The contents are dropped: a clickable index is no use on paper. */
+
+@page { size: A4; margin: 22mm 22mm 20mm; }
+
+@media print {
+  /* Set as tightly as her own PDF, so the printed copy comes out at about the
+     same length and not three pages longer than the one she wrote. */
+  html, body { background: #fff; font-size: 10.5pt; line-height: 1.47; }
+  .para { margin-bottom: .72em; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .bar, .rail, .contents, .skip, .site-foot { display: none !important; }
+
+  .sheet { display: block; max-width: none; padding: 0; }
+
+  .cover { padding: 52mm 0 0; break-after: page; }
+  .cover h1 { font-size: 27pt; line-height: 1.12; }
+  .cover-sub { font-size: 14.5pt; }
+  .cover-art { height: 46mm; margin-top: 22mm; background: none; }
+
+  .sec { padding-top: 9mm; }
+  .sec:first-of-type { padding-top: 0; }
+  .sec-k, .sec-h, .sub, .case, .ask-k { break-after: avoid; }
+  .sec-h { font-size: 17pt; margin-bottom: 5mm; padding-bottom: 3mm; }
+  .sub { margin-top: 7mm; }
+  .case { margin-top: 6mm; }
+  .ask, .kw, .refs-list li { break-inside: avoid; }
+  .ask p { font-size: 11.5pt; }
+  .ask-main p { font-size: 13pt; }
+  .para { orphans: 3; widows: 3; }
+  /* "This creates the central problem of the research:" stays on the page
+     with the problem it announces. */
+  .para:has(+ .ask) { break-after: avoid; }
+
+  .refs { break-before: page; }
+  .refs-list li { font-size: 9.6pt; }
+  .refs-list a { border-bottom: 0; }
+}
+
+/* ---------------- 站尾 / site footer ---------------- */
+
+.site-foot {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 26px 22px 40px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  line-height: 1.7;
+  color: var(--ink-faint);
+}
+.site-foot p { margin: 0; }
+.site-foot .site-mark { flex: none; line-height: 0; border-radius: 50%; transition: opacity .12s; }
+.site-foot .site-mark img { display: block; width: 34px; height: 34px; }
+.site-foot .site-mark:hover { opacity: .78; }
+.site-foot p a {
+  margin-left: 7px;
+  color: var(--navy);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.site-foot p a:hover { opacity: .7; }
