@@ -5,18 +5,25 @@
    it is English only — no 中 chip, no 🔊, nothing to practise, nothing saved.
 
    THE TEXT IS HERS, REPRODUCED WORD FOR WORD from "Tiffany Chen - Revised
-   Research Proposal.pdf" (16 Nov 2026). Nothing was reworded, cut or added.
-   The only things this file adds are the structure marks: which paragraph is
-   a research question, which line is a sub-heading, and where the source set
-   a phrase in bold (**…**) or a title in italics (*…*).
+   Research Proposal.pdf" (16 Nov 2026). Nothing was reworded or added. The
+   only things this file adds are the structure marks: which paragraph is a
+   research question, which line is a sub-heading, and where the source set a
+   phrase in bold (**…**) or a title in italics (*…*).
 
-   Three things in the source look unfinished and were left exactly as they
+   ONE THING WAS CUT, at Lewis's instruction (16 Nov 2026): the PDF's
+   reference list ends with a note to self — "Additional official project
+   documentation for Toyama Grand Plaza, Kaohsiung Main Station, and the
+   Japanese case studies should be incorporated into the final reference list
+   according to the university's required citation style." It is a reminder,
+   not part of the proposal, and a reader would take it for an unfinished
+   draft. If it is ever wanted back, add it as `refsNote` below `refs`; the
+   renderer still sets it.
+
+   Two things in the source look unfinished and were left exactly as they
    are, because they are hers to settle:
 
      - the chapters are numbered 5 to 15 (there is no Chapter 1 to 4);
-     - one reference is dated 2026 (Toshima City);
-     - the reference list ends with a note that more official documentation
-       "should be incorporated" — kept as `refsNote`, set quietly.
+     - one reference is dated 2026 (Toshima City).
 
    If she sends a new revision, change the words here and nowhere else.
 */
@@ -294,6 +301,4 @@ const PROPOSAL = {
     { text: "Toshima City. (2026). *Minami-Ikebukuro Park*." },
     { text: "Taichung City Government. (2017). *Shinsei Green Waterway*." },
   ],
-
-  refsNote: "Additional official project documentation for Toyama Grand Plaza, Kaohsiung Main Station, and the Japanese case studies should be incorporated into the final reference list according to the university's required citation style.",
 };

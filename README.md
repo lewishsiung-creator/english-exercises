@@ -4148,7 +4148,7 @@ two read as one application. English only, like the portfolio: no 中 chip, no
 | ▁ Progress | The bar's bottom edge fills as the document is read |
 | ❓ Questions | The research questions and the central problem, set larger than the text |
 | 📚 References | APA with a hanging indent; each DOI is a link |
-| ⎙ PDF | Title page on its own sheet, then 13 pages — about the length of her own |
+| ⎙ PDF | Title page on its own sheet, then the text — about the length of her own |
 
 ### Design notes
 
@@ -4158,10 +4158,14 @@ two read as one application. English only, like the portfolio: no 中 chip, no
   italics (`*…*`). It was checked against the PDF's extracted text letter by
   letter and number by number, and the only differences are the PDF's own page
   numbers. A new revision from her is an edit to that one file.
-- **Three things in the source look unfinished and were left alone**, because
-  they are hers to settle: the chapters run 5 to 15 with no 1 to 4, one
-  reference is dated 2026, and the reference list ends with a note that more
-  documentation "should be incorporated". The file header lists them.
+- **One thing was cut, and it is recorded.** The PDF's reference list ends
+  with a note to self that more official documentation "should be
+  incorporated into the final reference list". Lewis had it removed: it is a
+  reminder, not part of the proposal. The file header quotes it in full and
+  says how to put it back (`refsNote`, which the renderer still sets).
+- **Two things in the source look unfinished and were left alone**, because
+  they are hers to settle: the chapters run 5 to 15 with no 1 to 4, and one
+  reference is dated 2026. The file header lists them.
 - **The cover drawing is an idea, not a map.** A station on a green corridor
   and two walks of the same length away from it, one under trees and one in
   the open — the comparison section 11.4 describes. Nothing on it is labelled,
