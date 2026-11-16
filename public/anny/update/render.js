@@ -489,10 +489,18 @@ async function start(C, say) {
     toggle($('#gridBtn'), $('#grid'));
     paintGrid();
   });
+  $('#fsBtn').addEventListener('click', toggleFullscreen);
+  /* 列印之前先把講稿和總覽收起來，不然它們會印在第一頁上面。 */
+  $('#pdfBtn').addEventListener('click', () => {
+    if (!$('#notes').hidden) toggle($('#notesBtn'), $('#notes'));
+    if (!$('#grid').hidden) toggle($('#gridBtn'), $('#grid'));
+    print();
+  });
 
   addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { go(1); e.preventDefault(); }
     else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { go(-1); e.preventDefault(); }
+    else if (e.key === 'f' || e.key === 'F') toggleFullscreen();
     else if (e.key === 'n' || e.key === 'N') toggle($('#notesBtn'), $('#notes'));
     else if (e.key === 'g' || e.key === 'G') { toggle($('#gridBtn'), $('#grid')); paintGrid(); }
     else if (e.key === 'Escape') {
@@ -521,7 +529,9 @@ function show() {
   const i = state.i;
   $$('.slide').forEach((n) => n.classList.toggle('on', +n.dataset.i === i));
 
-  $('#where').textContent = `${i + 1} / ${ZEN.slides.length}`;
+  const at = `${i + 1} / ${ZEN.slides.length}`;
+  $('#where').textContent = at;
+  if ($('#app')) $('#app').dataset.at = at;   // 全螢幕時左下角那個小數字（本機版沒有這一層）
   $$('#dots button').forEach((b, bi) => b.classList.toggle('here', bi === i));
   $('#notesBody').textContent = ZEN.slides[i].notes || '';
 
@@ -537,6 +547,17 @@ function jump(i) {
   state.i = Math.max(0, Math.min(ZEN.slides.length - 1, i));
   show();
 }
+
+/* 上台用的全螢幕。進去之後上下兩條讓開，投影片吃滿整個螢幕；
+   離開用 Esc（瀏覽器自己的），所以只聽 fullscreenchange，不自己記狀態。 */
+function toggleFullscreen() {
+  if (document.fullscreenElement) document.exitFullscreen();
+  else document.documentElement.requestFullscreen?.().catch(() => { /* 使用者拒絕 */ });
+}
+
+document.addEventListener('fullscreenchange', () => {
+  document.body.classList.toggle('fs', !!document.fullscreenElement);
+});
 
 function toggle(btn, box) {
   const open = box.hidden;

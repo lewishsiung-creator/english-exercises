@@ -113,6 +113,7 @@ button { font: inherit; color: inherit; }
   position: absolute;
   inset: 0;
   display: none;
+  container-type: size;
 }
 .slide.on { display: block; }
 
@@ -702,6 +703,76 @@ button { font: inherit; color: inherit; }
   color: var(--red);
   font-size: 4cqh;
   font-weight: 700;
+}
+
+/* ---------------- 全螢幕 ----------------
+
+   上台的時候上下兩條就是干擾：投影片吃滿整個螢幕，位置只留左下角一個小數字。
+   卡片的圓角和陰影也拿掉——那是給瀏覽器看的，不是給投影機看的。 */
+
+body.fs #app { grid-template-rows: 0 1fr 0; }
+body.fs .bar, body.fs .foot { display: none; }
+body.fs .stage { padding: 0; }
+body.fs .deck { border-radius: 0; box-shadow: none; }
+body.fs .notes { bottom: 16px; }
+body.fs .grid { inset: 0; }
+
+/* 全螢幕時還是要知道走到哪了，但只要一個小數字。 */
+body.fs #app::after {
+  content: attr(data-at);
+  position: fixed;
+  left: 14px; bottom: 10px;
+  font-family: var(--en);
+  font-size: 12px;
+  color: #8a8a94;
+  pointer-events: none;
+}
+
+/* ---------------- 列印 ／ 下載 PDF ----------------
+
+   瀏覽器的「儲存為 PDF」就是這一份的 PDF：不另外產一個檔，因為另一個檔會立刻
+   跟頁面對不上。一張投影片一頁，16:9，橫向。
+
+   print-color-adjust: exact 是關鍵——沒有它，深色和藍色的投影片會被印成白底，
+   而那幾張正是整份最重的幾張。 */
+
+@page { size: 297mm 167mm; margin: 0; }
+
+@media print {
+  html, body { height: auto; overflow: visible; background: #fff; }
+  .bar, .foot, .notes, .grid, .edge, .lock { display: none !important; }
+
+  #app { display: block; height: auto; overflow: visible; }
+  #app::after { display: none; }
+  .stage { display: block; padding: 0; min-height: 0; }
+
+  .deck {
+    width: auto; height: auto;
+    aspect-ratio: auto;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+    container-type: normal;
+  }
+
+  /* 每一張都變成一整頁。容器查詢的單位改成以這一張為準，所以字級和螢幕上一樣。 */
+  .slide {
+    display: block !important;
+    position: relative;
+    inset: auto;
+    width: 297mm;
+    height: 167mm;
+    container-type: size;
+    break-after: page;
+    break-inside: avoid;
+    overflow: hidden;
+  }
+  .slide:last-child { break-after: auto; }
+
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
 }
 
 /* ---------------- 窄螢幕 ---------------- */
