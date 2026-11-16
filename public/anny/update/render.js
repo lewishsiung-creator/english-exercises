@@ -1,4 +1,4 @@
-/* 一份簡報的兩個版本，對照放映器。
+/* 一份簡報的放映器。
 
    這一頁上線的每一個字和每一張圖都是密文：文字在 sealed.js，圖在 v3/*.bin 和
    img/*.bin。密碼經 PBKDF2-SHA-256 伸展成 AES-256-GCM 的金鑰，在瀏覽器裡解密；
@@ -11,8 +11,8 @@
    這個檔案刻意不寫這份簡報是誰的、關於什麼：它是整頁唯一沒有加密的部分，
    註解裡多一個名字，就等於替猜密碼的人標好了目標。
 
-   對照按鈕的邏輯：每一張改版投影片記著自己對應原版第幾頁，原版每一頁也記著
-   對應哪一張改版，所以按下去還停在同一個段落，不會跳回第一頁。 */
+   原本這一頁掛著兩份投影片，一顆按鈕來回切。方向定了之後對照就沒有用了，
+   2026-11-16 把舊的那一份拿掉，只留這一份。 */
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -448,19 +448,13 @@ function bars(c) {
 
 // ------------------------------------------------------------------- 開啟之後
 
-const v3file = (n) => `v3/s${String(n).padStart(2, '0')}.jpg`;
-
-let V3, ZEN, state;
+let ZEN, state;
 
 async function start(C, say) {
-  V3 = C.V3;
   ZEN = C.ZEN;
 
-  const paths = [
-    ...V3.slides.map((s) => v3file(s.n)),
-    ...ZEN.slides.flatMap((s) => (s.img ? [s.img] : [])
-      .concat(s.items ? s.items.filter((i) => i.img).map((i) => i.img) : [])),
-  ];
+  const paths = ZEN.slides.flatMap((s) => (s.img ? [s.img] : [])
+    .concat(s.items ? s.items.filter((i) => i.img).map((i) => i.img) : []));
   await openImages([...new Set(paths)], say);
 
   document.body.classList.remove('locked');
@@ -473,26 +467,18 @@ async function start(C, say) {
     if (!draw) console.error(`No drawing for slide type "${s.type}"`);
     const body = draw ? draw(s)
       : `<div class="z z-missing">缺少畫法：<code>${text(s.type)}</code></div>`;
-    deck.appendChild(el(`<section class="slide" data-mode="zen" data-i="${i}">${body}</section>`));
-  });
-  V3.slides.forEach((s, i) => {
-    deck.appendChild(el(`
-      <section class="slide slide-v3" data-mode="v3" data-i="${i}">
-        <img src="${src(v3file(s.n))}" alt="原版第 ${s.n} 頁：${text(s.t)}">
-        ${s.hidden ? '<p class="v3-flag">這一頁在原檔裡是隱藏的</p>' : ''}
-      </section>`));
+    deck.appendChild(el(`<section class="slide" data-i="${i}">${body}</section>`));
   });
 
-  state = { mode: 'zen', zen: 0, v3: 0 };
+  state = { i: 0 };
 
   const dots = $('#dots');
-  for (let i = 0; i < Math.max(ZEN.slides.length, V3.slides.length); i++) {
+  ZEN.slides.forEach((s, i) => {
     const b = el(`<button type="button" aria-label="第 ${i + 1} 張"></button>`);
     b.addEventListener('click', () => jump(i));
     dots.appendChild(b);
-  }
+  });
 
-  $('#flip').addEventListener('click', flipMode);
   $('#prev').addEventListener('click', () => go(-1));
   $('#next').addEventListener('click', () => go(1));
   $('#notesBtn').addEventListener('click', () => toggle($('#notesBtn'), $('#notes')));
@@ -502,9 +488,8 @@ async function start(C, say) {
   });
 
   addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight' || e.key === 'PageDown') { go(1); e.preventDefault(); }
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { go(1); e.preventDefault(); }
     else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { go(-1); e.preventDefault(); }
-    else if (e.key === 'v' || e.key === 'V') flipMode();
     else if (e.key === 'n' || e.key === 'N') toggle($('#notesBtn'), $('#notes'));
     else if (e.key === 'g' || e.key === 'G') { toggle($('#gridBtn'), $('#grid')); paintGrid(); }
     else if (e.key === 'Escape') {
@@ -529,67 +514,24 @@ async function start(C, say) {
   show();
 }
 
-const list = () => (state.mode === 'zen' ? ZEN.slides : V3.slides);
-const at = () => state[state.mode];
-
 function show() {
-  const mode = state.mode, i = at();
-  $$('.slide').forEach((n) => {
-    n.classList.toggle('on', n.dataset.mode === mode && +n.dataset.i === i);
-  });
-  document.body.dataset.mode = mode;
+  const i = state.i;
+  $$('.slide').forEach((n) => n.classList.toggle('on', +n.dataset.i === i));
 
-  const s = list()[i];
-  const flip = $('#flip');
-  flip.setAttribute('aria-pressed', String(mode === 'v3'));
-  $('.flip-k', flip).textContent = mode === 'zen' ? '看原版' : '看改版';
-  $('.flip-s', flip).textContent = mode === 'zen'
-    ? `原版　第 ${V3.slides[mapTo('v3')].n} 頁`
-    : `改版　第 ${mapTo('zen') + 1} 張`;
-
-  $('#where').textContent = mode === 'zen'
-    ? `${ZEN.title}　${i + 1} / ${ZEN.slides.length}`
-    : `${V3.title}　第 ${s.n} 頁 / ${V3.slides.length}　·　${s.t}`;
-
-  $$('#dots button').forEach((b, bi) => {
-    b.hidden = bi >= list().length;
-    b.classList.toggle('here', bi === i);
-    b.title = mode === 'zen' ? `第 ${bi + 1} 張` : `原版第 ${V3.slides[bi]?.n} 頁`;
-  });
-
-  $('#notesBody').textContent = mode === 'zen'
-    ? (s.notes || '')
-    : `對照：改版第 ${mapTo('zen') + 1} 張。${s.hidden ? '這一頁在原檔裡是隱藏的。' : ''}`;
+  $('#where').textContent = `${i + 1} / ${ZEN.slides.length}`;
+  $$('#dots button').forEach((b, bi) => b.classList.toggle('here', bi === i));
+  $('#notesBody').textContent = ZEN.slides[i].notes || '';
 
   paintGrid();
 }
 
-/* 兩邊的對照表。改版記著自己對應原版哪一頁；回來的時候找第一張指向這一頁的
-   改版投影片，找不到才用原版自己記的 zen。 */
-function mapTo(target) {
-  if (target === 'v3') {
-    const want = ZEN.slides[state.zen].v3;
-    const idx = V3.slides.findIndex((v) => v.n === want);
-    return idx < 0 ? 0 : idx;
-  }
-  const page = V3.slides[state.v3];
-  const idx = ZEN.slides.findIndex((z) => z.v3 === page.n);
-  return idx < 0 ? Math.max(0, Math.min(ZEN.slides.length - 1, page.zen - 1)) : idx;
-}
-
-function flipMode() {
-  if (state.mode === 'zen') { state.v3 = mapTo('v3'); state.mode = 'v3'; }
-  else { state.zen = mapTo('zen'); state.mode = 'zen'; }
-  show();
-}
-
 function go(d) {
-  state[state.mode] = Math.max(0, Math.min(list().length - 1, at() + d));
+  state.i = Math.max(0, Math.min(ZEN.slides.length - 1, state.i + d));
   show();
 }
 
 function jump(i) {
-  state[state.mode] = Math.max(0, Math.min(list().length - 1, i));
+  state.i = Math.max(0, Math.min(ZEN.slides.length - 1, i));
   show();
 }
 
@@ -599,22 +541,18 @@ function toggle(btn, box) {
   btn.setAttribute('aria-pressed', String(open));
 }
 
+/* 總覽的縮圖就是同一份 DOM 縮小——容器查詢單位讓它不用另外畫一次。 */
 function paintGrid() {
   const grid = $('#grid');
   if (grid.hidden) return;
   grid.innerHTML = '';
-  list().forEach((s, i) => {
-    const cell = el(`<button type="button" class="g-cell${i === at() ? ' here' : ''}"></button>`);
-    if (state.mode === 'v3') {
-      cell.appendChild(el(`<img src="${src(v3file(s.n))}" alt="">`));
-      cell.appendChild(el(`<span>${s.n}　${text(s.t)}</span>`));
-    } else {
-      const shot = el('<div class="g-shot"></div>');
-      const from = $(`.slide[data-mode="zen"][data-i="${i}"] .z`);
-      if (from) shot.appendChild(from.cloneNode(true));
-      cell.appendChild(shot);
-      cell.appendChild(el(`<span>${i + 1}　${text(s.type)}</span>`));
-    }
+  ZEN.slides.forEach((s, i) => {
+    const cell = el(`<button type="button" class="g-cell${i === state.i ? ' here' : ''}"></button>`);
+    const shot = el('<div class="g-shot"></div>');
+    const from = $(`.slide[data-i="${i}"] .z`);
+    if (from) shot.appendChild(from.cloneNode(true));
+    cell.appendChild(shot);
+    cell.appendChild(el(`<span>${i + 1}　${text(s.type)}</span>`));
     cell.addEventListener('click', () => {
       jump(i);
       toggle($('#gridBtn'), grid);

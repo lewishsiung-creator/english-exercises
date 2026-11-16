@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Q3 Update — 對照</title>
+<title>Q3 Update</title>
 <meta name="description" content="A password-protected slide review page for one person.">
 
 <!-- 這一頁的每一個字和每一張圖都在 sealed.js 和 .bin 裡加密著，沒有密碼就只是
@@ -22,7 +22,7 @@
 <section class="lock" id="lock">
   <div class="lock-box">
     <p class="lock-kicker">不公開</p>
-    <h1>Q3 Update<span>原版 ／ 改版　對照</span></h1>
+    <h1>Q3 Update<span>2026 Q3　→　Q4</span></h1>
     <p class="lock-note">這一頁只給一個人看。請輸入密碼開啟。</p>
     <form id="lockForm" autocomplete="off">
       <label for="pw">密碼</label>
@@ -42,13 +42,7 @@
   <header class="bar">
     <!-- 刻意不寫公司、不寫人名、不寫產品：這一行在 HTML 原始碼裡，
          是整頁唯一沒有被加密的字。真正的標題在封面那一張，在 sealed.js 裡。 -->
-    <p class="bar-title">Q3 Update<span>對照</span></p>
-
-    <!-- 一顆按鈕，按一次換一個版本。字由 render.js 改寫成「你按下去會看到什麼」。 -->
-    <button id="flip" class="flip" type="button" aria-pressed="false">
-      <span class="flip-k">看原版</span>
-      <span class="flip-s">原版 第 1 頁</span>
-    </button>
+    <p class="bar-title">Q3 Update</p>
 
     <div class="tools">
       <button id="notesBtn" class="tool" type="button" aria-pressed="false">講稿</button>
@@ -66,7 +60,7 @@
   <footer class="foot">
     <p id="where" class="where"></p>
     <div id="dots" class="dots"></div>
-    <p class="hint">← → 換頁　·　V 換版本　·　N 講稿　·　G 總覽</p>
+    <p class="hint">← → 換頁　·　N 講稿　·　G 總覽</p>
   </footer>
 
   <section id="notes" class="notes" hidden>

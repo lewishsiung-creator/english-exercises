@@ -75,28 +75,6 @@ button { font: inherit; color: inherit; }
   color: #9a9aa2;
 }
 
-/* 整個對照的核心就是這顆按鈕：它的字永遠寫「你按下去會看到什麼」，
-   而不是「你現在在哪裡」——按鈕寫現在的狀態是最容易按錯的設計。 */
-.flip {
-  margin-left: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1px;
-  padding: 7px 18px;
-  background: var(--blue);
-  border: 0;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: filter .12s, background .12s;
-}
-.flip:hover { filter: brightness(1.15); }
-.flip-k { font-family: var(--zh); font-size: 14px; font-weight: 700; line-height: 1.2; }
-.flip-s { font-family: var(--zh); font-size: 10.5px; color: #c9cbf5; line-height: 1.2; }
-
-body[data-mode="v3"] .flip { background: #3a3a40; }
-body[data-mode="v3"] .flip-s { color: #a9a9b2; }
-
 .tools { display: flex; gap: 8px; }
 .tool {
   padding: 6px 14px;
@@ -137,19 +115,6 @@ body[data-mode="v3"] .flip-s { color: #a9a9b2; }
   display: none;
 }
 .slide.on { display: block; }
-
-.slide-v3 { background: #fff; }
-.slide-v3 img { width: 100%; height: 100%; object-fit: contain; display: block; }
-.v3-flag {
-  position: absolute;
-  left: 2cqw; top: 2cqw;
-  padding: .6cqw 1.4cqw;
-  background: var(--ink);
-  color: #fff;
-  font-family: var(--zh);
-  font-size: 1.5cqw;
-  border-radius: 999px;
-}
 
 /* 左右兩邊的大按鈕，滑鼠移過去才看得到 */
 .edge {
@@ -203,8 +168,7 @@ body[data-mode="v3"] .flip-s { color: #a9a9b2; }
   border-radius: 50%;
   cursor: pointer;
 }
-.dots button.here { background: #fff; }
-body[data-mode="zen"] .dots button.here { background: #6a71ff; }
+.dots button.here { background: #6a71ff; }
 
 /* ---------------- 講稿 ---------------- */
 
@@ -746,7 +710,6 @@ body[data-mode="zen"] .dots button.here { background: #6a71ff; }
   .bar-title span, .hint { display: none; }
   .foot { gap: 10px; font-size: 11px; }
   .dots { display: none; }
-  .flip { padding: 6px 14px; }
 }
 
 /* ================================================================
@@ -868,16 +831,13 @@ body { display: block; }
 }
 
 /* 上方那一排在窄螢幕上不能換行：換行就把投影片擠成一條。 */
-.bar-title, .flip-k, .flip-s, .tool, .where, .hint { white-space: nowrap; }
+.bar-title, .tool, .where, .hint { white-space: nowrap; }
 .bar-title { overflow: hidden; text-overflow: ellipsis; }
 
 @media (max-width: 760px) {
   :root { --bar: 50px; --foot: 44px; }
   .bar { gap: 8px; padding: 0 10px; }
   .bar-title { font-size: 12.5px; }
-  .flip { padding: 6px 12px; }
-  .flip-k { font-size: 12.5px; }
-  .flip-s { display: none; }
   .tools { gap: 5px; }
   .tool { padding: 5px 9px; font-size: 11.5px; }
   .where { font-size: 11px; }
