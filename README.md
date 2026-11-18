@@ -7246,6 +7246,22 @@ here, and the rule that students do not find each other's material stands.
   condensed italic the device already has (Avenir Next Condensed on Apple
   devices), never a downloaded font. The same line as the hbr.org look on
   `/business-journal/` and the sportswear look on `/hank/` and `/eason/`.
+- **The two pages behind the doors wear the same look** (same day), each from
+  its own **`comic.css`, linked after `style.css`** the way `court.css` is on
+  `/hank/`: it only re-points tokens and overrides, so `style.css` is untouched
+  and removing that one `<link>` (and putting the `theme-color` back; on
+  `/museum-trip/` also `data-theme="light"` on `<html>`, which is what switches
+  off that page's dark edition) restores the page as it was. Each file's
+  header lists what it deliberately leaves alone — on `/math/` the question,
+  the digit face, every figure and the help panels' measured colours; on
+  `/museum-trip/` the reading lines, one colour per job (blue listen, orange
+  next, green right), the chapter tints and the photos. The three pages share
+  one night gradient; change it in all three or none.
+  Two things found on `/math/` while doing it, both in `style.css` and both
+  left there: at tablet width the progress bar has **no width** (an auto-margin
+  item in a flex column; `comic.css` sets `width: 100%`, so the bar shows only
+  while `comic.css` is linked), and at 1024 × 768 the number pad's last row
+  sits **below the fold** (it ended at 811px before; `comic.css` adds about 2px).
 - **Adding a door:** copy one `<a class="door …">`, give it a class with its
   own `--panel`, `--ray-a` and `--ray-b` in `style.css`, and draw its picture
   in the same 200 × 130 box — shapes inside `<g class="ink">` get the comic

@@ -24,9 +24,10 @@
   --paper: #fff8e1;
   --yellow: #ffd60a;
   --red: #e23636;
-  --night-1: #2b3bb0;
-  --night-2: #1b2170;
-  --night-3: #0e1038;
+  /* Not too dark at the foot: the ink shadows have to stay visible on it. */
+  --night-1: #3447c4;
+  --night-2: #2632a0;
+  --night-3: #1b2278;
   --words-soft: #4a4763;
   --display: "Avenir Next Condensed", "Arial Narrow", "Roboto Condensed", "Helvetica Neue", Impact, system-ui, sans-serif;
   --en: ui-rounded, "SF Pro Rounded", "Nunito", "Trebuchet MS", system-ui, -apple-system, "Segoe UI", sans-serif;

@@ -1,0 +1,352 @@
+/* Number Lab — the superhero-comic look (2026-11-18, at Lewis's request, to
+   match /learning-corner/).
+
+   Linked AFTER style.css and built the way court.css is on /hank/: it
+   re-points a few of style.css's own tokens and overrides what the tokens
+   cannot reach, so style.css is untouched and removing this one <link> puts
+   the page back exactly as it was.
+
+   What makes the look (the same four things as the Corner):
+   - INK: one near-black for every outline, and a hard shadow of the same
+     ink pushed down-right with no blur;
+   - a night-blue page with halftone dots, and yellow for what belongs to
+     the page itself (title, caption, the lit dot);
+   - slanted heavy capitals for names, never for anything he has to read
+     to answer;
+   - nothing soft: no blurred shadow, no hairline grey border.
+
+   What it deliberately leaves alone, because style.css argues for each:
+   - the QUESTION. .ask, .readout, .opt and .key keep the digit face at
+     their size — "a 6 that could be a 5 is a maths error that was never
+     about maths". Only their frames change;
+   - every figure. They are drawn from --ink, --card, --line-strong and the
+     colour tokens, none of which are re-pointed here, and they always sit
+     on a white card;
+   - the help panels' colours and the marked word inside them (orange for
+     the method, blue for what he did, purple for the key word), whose
+     contrast was measured against those exact backgrounds;
+   - the grown-up panel, beyond its borders: it is a tool, not a page.
+
+   Design language only. No publisher's or team's name, logo, emblem,
+   character, costume, slogan or licensed typeface — the page is public.
+   The display face is whatever heavy condensed italic the device has. */
+
+:root {
+  --c-ink: #14121f;
+  --c-yellow: #ffd60a;
+  --c-red: #e23636;
+  --c-go: #3ddc84;
+  --c-on-night: #e6e9ff;
+  --display: "Avenir Next Condensed", "Arial Narrow", "Roboto Condensed", "Helvetica Neue", Impact, system-ui, sans-serif;
+
+  /* Re-pointed tokens: every border becomes an ink outline and every shadow
+     a hard one. --ink, --card, --line-strong and the colours stay as they
+     are — the figures are drawn from them. */
+  --line: var(--c-ink);
+  --radius: 16px;
+  --shadow: 5px 5px 0 var(--c-ink);
+  --shadow-lift: 7px 7px 0 var(--c-ink);
+  color-scheme: dark;
+}
+
+/* ---------------- the page ---------------- */
+
+body {
+  position: relative;
+  background: /* Not too dark at the foot: the ink shadows have to stay visible on it. */
+    radial-gradient(120% 85% at 50% 0%, #3447c4 0%, #2632a0 52%, #1b2278 100%) fixed;
+}
+
+/* Halftone dots, thinning out from one corner. Never in the way of a tap. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 255, 255, .2) 2px, transparent 2.4px) 0 0 / 16px 16px;
+  -webkit-mask-image: linear-gradient(135deg, #000 0%, transparent 46%, transparent 62%, rgba(0, 0, 0, .7) 100%);
+          mask-image: linear-gradient(135deg, #000 0%, transparent 46%, transparent 62%, rgba(0, 0, 0, .7) 100%);
+}
+.bar, main, .site-foot { position: relative; z-index: 1; }
+
+/* ---------------- the bar ---------------- */
+
+.bar-title {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 1.9rem;
+  line-height: 1;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  color: var(--c-yellow);
+  text-shadow:
+    -2px -2px 0 var(--c-ink), 2px -2px 0 var(--c-ink), -2px 2px 0 var(--c-ink), 2px 2px 0 var(--c-ink),
+    0 -2px 0 var(--c-ink), 0 2px 0 var(--c-ink), -2px 0 0 var(--c-ink), 2px 0 0 var(--c-ink),
+    3px 3px 0 var(--c-red), 4px 4px 0 var(--c-red), 5px 5px 0 var(--c-ink);
+}
+@media (max-width: 430px) {
+  .bar-title { font-size: 1.45rem; }
+}
+
+.bar-btn {
+  border-width: 3px;
+  border-radius: 14px;
+  background: #fff;
+  color: var(--c-ink);
+  box-shadow: 4px 4px 0 var(--c-ink);
+}
+.bar-btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--c-ink); }
+/* The grown-up's button keeps its rule: faint until wanted. */
+.bar-btn-quiet { background: transparent; border-color: transparent; box-shadow: none; }
+
+/* ---------------- text that sits on the night, not on a card ---------------- */
+
+/* "Choose a level", as a comic caption box. */
+.lead {
+  width: fit-content;
+  max-width: 100%;
+  margin: 8px auto 20px;
+  padding: 6px 16px 7px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--c-ink);
+  background: var(--c-yellow);
+  border: 3px solid var(--c-ink);
+  box-shadow: 4px 4px 0 var(--c-ink);
+  rotate: -1deg;
+}
+
+.collection, .progress-text, .intro-blurb, .done-score, .link-quiet { color: var(--c-on-night); }
+.site-foot { color: var(--c-on-night); border-top-color: rgba(255, 255, 255, .22); }
+.site-foot a { color: #a9cdff; }
+
+/* ---------------- choosing cards ---------------- */
+
+.card-grid { gap: 20px; }
+#topicGrid { gap: 14px; }
+@media (min-width: 720px) {
+  #topicGrid { gap: 16px 18px; }
+}
+
+.card {
+  border-width: 4px;
+  box-shadow: 6px 6px 0 var(--c-ink);
+}
+.card:active { transform: translate(4px, 4px); box-shadow: 2px 2px 0 var(--c-ink); }
+
+/* One hero colour per level, where style.css had a pastel: burst rays under
+   printed dots, and the outline is ink whatever the colour. Light enough
+   that ink text on them reads at better than 9 to 1. */
+.tint-green  { --ray-a: #8fe89a; --ray-b: #74d981; }
+.tint-blue   { --ray-a: #8ecbff; --ray-b: #6fb8f7; }
+.tint-purple { --ray-a: #d3b3ff; --ray-b: #c09cfb; }
+.tint-green, .tint-blue, .tint-purple {
+  border-color: var(--c-ink);
+  background:
+    radial-gradient(circle, rgba(20, 18, 31, .13) 1.5px, transparent 1.8px) 0 0 / 10px 10px,
+    repeating-conic-gradient(from 0deg at 50% 50%, var(--ray-a) 0 12deg, var(--ray-b) 12deg 24deg);
+}
+/* A row is long and thin: rays from its icon, not from its middle. */
+.card-row.tint-green, .card-row.tint-blue, .card-row.tint-purple {
+  background:
+    radial-gradient(circle, rgba(20, 18, 31, .13) 1.5px, transparent 1.8px) 0 0 / 10px 10px,
+    repeating-conic-gradient(from 0deg at 44px 50%, var(--ray-a) 0 10deg, var(--ray-b) 10deg 20deg);
+}
+
+/* Level cards tilt a little, like panels pasted by hand. Rows stay level:
+   seven tilted rows is a list that is hard to run an eye down. */
+#gradeGrid .card:nth-child(1) { rotate: -1.2deg; }
+#gradeGrid .card:nth-child(2) { rotate: 1deg; }
+#gradeGrid .card:nth-child(3) { rotate: -.6deg; }
+
+.grade-num,
+.card-row .card-icon,
+.intro-icon {
+  background: #fff;
+  box-shadow: inset 0 0 0 3px var(--c-ink), 3px 3px 0 var(--c-ink);
+}
+.grade-num {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 6px;
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.card-name {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 1.45rem;
+  line-height: 1.1;
+  letter-spacing: .01em;
+}
+/* Capitals for the three level names, which have a number to be known by.
+   Topic names stay as written: he is still learning to read them. */
+#gradeGrid .card-name { text-transform: uppercase; font-size: 1.7rem; }
+.card-row .card-name { font-size: 1.3rem; }
+.card-blurb { color: #2d2a45; font-weight: 600; }
+
+/* Stars: gold needs an ink edge to hold on a coloured panel. */
+.stars-got {
+  color: var(--c-yellow);
+  text-shadow: -1px -1px 0 var(--c-ink), 1px -1px 0 var(--c-ink), -1px 1px 0 var(--c-ink), 1px 1px 0 var(--c-ink);
+}
+.stars-left { color: rgba(20, 18, 31, .38); }
+.card-stars { font-weight: 800; }
+
+.card.is-mastered { border-left-color: var(--c-yellow); box-shadow: inset 3px 0 0 var(--c-ink), 6px 6px 0 var(--c-ink); }
+
+.chip {
+  border-width: 3px;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--c-ink);
+  box-shadow: 3px 3px 0 var(--c-ink);
+}
+
+/* ---------------- show me how, or just practise ---------------- */
+
+.intro-name {
+  margin-top: 14px;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 2.2rem;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--c-yellow);
+  text-shadow:
+    -2px -2px 0 var(--c-ink), 2px -2px 0 var(--c-ink), -2px 2px 0 var(--c-ink), 2px 2px 0 var(--c-ink),
+    0 -2px 0 var(--c-ink), 0 2px 0 var(--c-ink), -2px 0 0 var(--c-ink), 2px 0 0 var(--c-ink),
+    4px 4px 0 var(--c-red), 5px 5px 0 var(--c-ink);
+}
+.intro-blurb { margin-top: 8px; }
+.intro-stars .stars-left { color: rgba(255, 255, 255, .4); }
+
+/* ---------------- the explanation ---------------- */
+
+.dot { width: 14px; height: 14px; background: rgba(255, 255, 255, .28); }
+.dot.is-on { background: var(--c-yellow); box-shadow: 0 0 0 2px var(--c-ink); }
+
+/* ---------------- progress ---------------- */
+
+.progress {
+  /* The width has to be said. On a tablet the play screen is a flex column,
+     and there an item with auto side margins shrinks to its content — which
+     for an empty bar is nothing. (style.css's own bar has no border, so at
+     that size it simply is not there.) */
+  width: 100%;
+  height: 16px;
+  border: 3px solid var(--c-ink);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 3px 3px 0 var(--c-ink);
+}
+.progress-fill { border-radius: 0; background: var(--c-go); }
+/* The framed bar is 8px taller than the bare one. Taken back here, so the
+   number pad sits no lower on a tablet than it did. */
+.progress-text { margin: 6px 0 8px; }
+
+/* ---------------- the question ---------------- */
+
+.q-card {
+  border-width: 4px;
+  box-shadow: 7px 7px 0 var(--c-ink);
+}
+
+.show-me {
+  border: 3px solid var(--c-ink);
+  border-radius: 12px;
+  background: var(--c-yellow);
+  box-shadow: 3px 3px 0 var(--c-ink);
+}
+.show-me:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--c-ink); }
+
+/* ---------------- answering ---------------- */
+
+.opt, .key { box-shadow: 4px 4px 0 var(--c-ink); }
+.opt:active, .key:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--c-ink); }
+.opt.is-on { border-color: var(--c-ink); background: #a9f3c4; }
+.key { border-radius: 14px; }
+.key-soft { background: #ffe98a; }
+.key-go { background: var(--c-go); border-color: var(--c-ink); color: var(--c-ink); }
+
+/* ---------------- feedback ---------------- */
+
+/* The panels keep style.css's own soft orange and blue (the marked word's
+   contrast was measured on them); only the frame turns to ink. */
+.hint, .hint.is-why {
+  border: 3px solid var(--c-ink);
+  border-radius: 14px;
+  box-shadow: 4px 4px 0 var(--c-ink);
+}
+
+/* The one line under the question sits on the night, so it takes the bright
+   end of the same two colours: still green for right, still warm — not
+   alarm red — for another try. */
+.feedback {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.5rem;
+  letter-spacing: .01em;
+}
+.feedback.is-good { color: #6ff0a4; }
+.feedback.is-oops { color: #ffb59c; }
+
+@media (prefers-reduced-motion: reduce) {
+  .is-wobble { outline-color: #ffb59c; }
+}
+
+/* ---------------- finished ---------------- */
+
+.done-title {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 2.6rem;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--c-yellow);
+  text-shadow:
+    -2px -2px 0 var(--c-ink), 2px -2px 0 var(--c-ink), -2px 2px 0 var(--c-ink), 2px 2px 0 var(--c-ink),
+    0 -2px 0 var(--c-ink), 0 2px 0 var(--c-ink), -2px 0 0 var(--c-ink), 2px 0 0 var(--c-ink),
+    4px 4px 0 var(--c-red), 5px 5px 0 var(--c-red), 6px 6px 0 var(--c-ink);
+}
+/* The stars not yet earned are plain ☆ glyphs in the text colour, which is
+   ink and would vanish against the night. */
+.done-stars { margin-top: 12px; color: rgba(255, 255, 255, .55); }
+.done-note { color: #6ff0a4; }
+
+.btn {
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 5px 5px 0 var(--c-ink);
+}
+.btn:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--c-ink); }
+.btn-primary { background: var(--c-go); border-color: var(--c-ink); color: var(--c-ink); }
+.btn-next { background: #ffb020; border-color: var(--c-ink); }
+.btn-small { box-shadow: 3px 3px 0 var(--c-ink); }
+
+/* ---------------- grown-up panel ---------------- */
+
+.sheet { background: rgba(8, 9, 30, .62); }
+.sheet-box {
+  border: 4px solid var(--c-ink);
+  border-bottom: 0;
+  border-radius: 18px 18px 0 0;
+  box-shadow: none;
+}
+/* Inside it, hairlines go back to being hairlines: a table ruled in ink is
+   harder to read, and this is the one part of the page that is a tool. */
+.sheet-box {
+  --line: #e8ddd0;
+  --shadow: 0 3px 0 rgba(44, 36, 64, .14);
+  color-scheme: light;
+}
+.sheet-box .bar-btn { border-color: var(--c-ink); }
+.sheet-box .btn { border-color: var(--c-ink); }

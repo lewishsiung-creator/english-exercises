@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- data-theme="light" switches off style.css's dark edition: the comic look
+     (comic.css) has one edition. -->
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -13,8 +15,12 @@
 <!-- The kids' home-screen star. The site default (../apple-touch-icon.png)
      became Lewis's logo on 2026-11-13; children's pages keep the star. -->
 <link rel="apple-touch-icon" href="../star-icon.png">
-<meta name="theme-color" content="#fff7ea">
+<meta name="theme-color" content="#2632a0">
 <link rel="stylesheet" href="style.css?v=18">
+<!-- The superhero-comic look, to match /learning-corner/ (2026-11-18). Linked
+     last, it only overrides: taking this line out, with data-theme on <html>
+     and the theme-color back to #fff7ea, restores the page as it was. -->
+<link rel="stylesheet" href="comic.css?v=1">
 </head>
 <body>
 

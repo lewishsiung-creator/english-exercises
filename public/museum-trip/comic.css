@@ -1,0 +1,241 @@
+/* Museum Trip — the superhero-comic look (2026-11-18, at Lewis's request, to
+   match /learning-corner/ and /math/).
+
+   Linked AFTER style.css and built the way court.css is on /hank/: it
+   overrides, style.css is untouched, and removing this <link> (plus
+   data-theme="light" on <html> and the theme-color) puts the page back as
+   it was. <html data-theme="light"> is what switches off style.css's dark
+   edition: a comic page has one edition, and it is this one.
+
+   What makes the look (the same four things as the Corner):
+   - INK: one near-black for every outline, and a hard shadow of the same
+     ink pushed down-right with no blur;
+   - a night-blue page with halftone dots, and yellow for what belongs to
+     the page itself (title, progress, the lit dot);
+   - slanted heavy capitals for names and buttons' shouts, never for a line
+     he is reading;
+   - burst rays behind every picture, in that chapter's own colour.
+
+   What it deliberately leaves alone:
+   - the READING. .line .en / .zh keep their face, size and case, and the
+     word-by-word highlight keeps its yellow;
+   - one colour per job: blue = listen, orange = next page, green = right;
+   - each chapter's --tint and --accent, so a child still knows where he is
+     by colour. The rays are mixed from those two;
+   - the scenes and the real photos, their credits, and the grown-up
+     dialog's contents.
+
+   Design language only. No publisher's or team's name, logo, emblem,
+   character, costume, slogan or licensed typeface — the page is public and
+   went to a whole class. The display face is whatever heavy condensed
+   italic the device has. */
+
+:root {
+  --c-ink: #14121f;
+  --c-yellow: #ffd60a;
+  --c-red: #e23636;
+  --c-go: #3ddc84;
+  --c-on-night: #e6e9ff;
+  --c-night-foot: #1b2278;
+  --display: "Avenir Next Condensed", "Arial Narrow", "Roboto Condensed", "Helvetica Neue", Impact, system-ui, sans-serif;
+
+  --radius: 18px;
+  --shadow: 7px 7px 0 var(--c-ink);
+  --shadow-sm: 4px 4px 0 var(--c-ink);
+}
+
+/* ── The page ────────────────────────────────────────── */
+body {
+  position: relative;
+  /* Not too dark at the foot: the ink shadows have to stay visible on it. */
+  background: radial-gradient(120% 85% at 50% 0%, #3447c4 0%, #2632a0 52%, var(--c-night-foot) 100%) fixed;
+}
+/* Halftone dots, thinning out from one corner. Never in the way of a tap. */
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 255, 255, .2) 2px, transparent 2.4px) 0 0 / 16px 16px;
+  -webkit-mask-image: linear-gradient(135deg, #000 0%, transparent 46%, transparent 62%, rgba(0, 0, 0, .7) 100%);
+          mask-image: linear-gradient(135deg, #000 0%, transparent 46%, transparent 62%, rgba(0, 0, 0, .7) 100%);
+}
+.top, .page { position: relative; z-index: 1; }
+
+button:focus-visible, summary:focus-visible { outline-color: var(--c-yellow); }
+
+/* ── Header ──────────────────────────────────────────── */
+.brand {
+  font-family: var(--display); font-style: italic; font-weight: 800; font-size: 22px;
+  letter-spacing: .01em; text-transform: uppercase; color: var(--c-yellow);
+  padding: 2px 6px 4px 0; overflow: visible;
+  text-shadow:
+    -1.5px -1.5px 0 var(--c-ink), 1.5px -1.5px 0 var(--c-ink), -1.5px 1.5px 0 var(--c-ink), 1.5px 1.5px 0 var(--c-ink),
+    3px 3px 0 var(--c-red), 4px 4px 0 var(--c-ink);
+}
+.brand-mark { text-shadow: none; }
+.brand-zh {
+  font-style: normal; font-size: 14px; letter-spacing: .08em; color: var(--c-on-night);
+  text-shadow: none; margin-left: 8px;
+}
+/* Still deliberately faint. */
+.grownup-btn { border-color: rgba(255, 255, 255, .34); color: var(--c-on-night); opacity: .8; }
+
+.chap-t { color: var(--c-on-night); }
+.chap.on { border: 3px solid var(--c-ink); border-radius: 12px; box-shadow: 3px 3px 0 var(--c-ink); }
+.chap.on .chap-t { color: var(--c-ink); }
+.chap .tick { background: var(--c-go); color: var(--c-ink); box-shadow: 0 0 0 2px var(--c-ink); }
+.chap.on .tick { box-shadow: 0 0 0 2px var(--c-ink); }
+.chap-home::after { background: rgba(255, 255, 255, .3); }
+
+.progress { height: 8px; border-radius: 0; background: rgba(255, 255, 255, .22); box-shadow: 0 0 0 2px var(--c-ink); margin: 2px 2px 0; }
+.progress span { border-radius: 0; background: var(--c-yellow) !important; }
+
+/* ── Page & sheet ────────────────────────────────────── */
+.sheet { border: 4px solid var(--c-ink); }
+
+/* Burst rays in the chapter's colour, printed dots on top. The plain tint
+   underneath is what a browser without color-mix() shows. */
+.stage {
+  background: var(--tint);
+  background:
+    radial-gradient(circle, rgba(20, 18, 31, .12) 1.5px, transparent 1.8px) 0 0 / 11px 11px,
+    repeating-conic-gradient(from 0deg at 50% 55%,
+      var(--tint) 0 12deg,
+      color-mix(in srgb, var(--tint) 80%, var(--accent)) 12deg 24deg);
+}
+.stage .g { filter: drop-shadow(3px 4px 0 rgba(20, 18, 31, .55)); }
+
+.tag {
+  color: var(--c-ink); background: var(--tint);
+  border: 2.5px solid var(--c-ink); border-radius: 6px; box-shadow: 3px 3px 0 var(--c-ink);
+  padding: 4px 12px 5px; transform: skew(-6deg);
+}
+
+/* Listen keeps its blue: that is the colour's job on this page. */
+.listen {
+  border: 3px solid var(--c-ink); border-radius: 14px;
+  box-shadow: 4px 4px 0 var(--c-ink);
+  font-family: var(--display); font-style: italic; font-size: 23px; letter-spacing: .02em; text-transform: uppercase;
+}
+.listen:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--c-ink); }
+.listen.compact { border-radius: 14px; }
+
+@media (min-width: 760px) {
+  .kind-story .stage-svg, .kind-end .stage-svg { background: var(--tint); }
+  .kind-story .stage-photo { border: 3px solid var(--c-ink); border-radius: 12px; box-shadow: 4px 4px 0 var(--c-ink); }
+}
+
+.note { border: 3px solid var(--c-ink); border-radius: 14px; box-shadow: var(--shadow-sm); color: var(--ink); }
+.talk summary { color: var(--c-on-night); }
+.talk[open] { border: 3px solid var(--c-ink); border-radius: 14px; }
+.talk[open] summary { color: var(--ink-3); }
+
+/* ── Tiles ───────────────────────────────────────────── */
+.tiles { gap: 16px; }
+.tile { border: 3px solid var(--c-ink); border-radius: 16px; }
+.tile:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--c-ink); }
+.tile-art { box-shadow: inset 0 0 0 2.5px var(--c-ink); }
+.spy .tile[aria-pressed="true"] { box-shadow: inset 0 0 0 3px var(--green), var(--shadow-sm); }
+@media (max-width: 420px) {
+  .tiles { gap: 12px; }
+}
+
+.meter-bar { height: 18px; border: 3px solid var(--c-ink); border-radius: 6px; background: #fff; box-shadow: 3px 3px 0 var(--c-ink); }
+.meter-bar span { border-radius: 0; background: var(--c-yellow); }
+.meter p { color: var(--c-on-night); margin-top: 12px; }
+.meter b { color: #fff; }
+
+/* ── Games ───────────────────────────────────────────── */
+.dot { width: 14px; height: 14px; background: rgba(255, 255, 255, .3); }
+.dot.done { background: var(--c-go); box-shadow: 0 0 0 2px var(--c-ink); }
+.dot.now { background: var(--c-yellow); box-shadow: 0 0 0 2px var(--c-ink); }
+
+.situation, .question { border: 4px solid var(--c-ink); }
+.q-n { box-shadow: inset 0 0 0 2.5px var(--c-ink); color: var(--c-ink); }
+
+.thumb, .opt { border: 3px solid var(--c-ink); border-radius: 16px; }
+.thumb:active, .opt:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--c-ink); }
+
+/* The answer's reason gets a card of its own. Left on the night it would
+   need bright colours, and the read-aloud highlight (a cream band behind the
+   line being spoken) would then wipe those out. On paper, style.css's own
+   green and grey are right as they are. */
+.why {
+  background: var(--card); border: 3px solid var(--c-ink); border-radius: 14px;
+  box-shadow: var(--shadow-sm); padding: 12px 20px 14px;
+}
+.game > .en.reading { background: none; box-shadow: none; }
+.game > .en {
+  font-family: var(--display); font-style: italic; font-size: 38px; line-height: 1; text-transform: uppercase;
+  color: var(--c-yellow);
+  text-shadow:
+    -2px -2px 0 var(--c-ink), 2px -2px 0 var(--c-ink), -2px 2px 0 var(--c-ink), 2px 2px 0 var(--c-ink),
+    4px 4px 0 var(--c-red), 5px 5px 0 var(--c-ink);
+}
+.game > .zh { color: var(--c-on-night); }
+
+.primary-btn, .ghost-btn { border: 3px solid var(--c-ink); border-radius: 14px; box-shadow: var(--shadow-sm); }
+.primary-btn:active, .ghost-btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--c-ink); }
+.ghost-btn { color: var(--ink); }
+
+/* ── End badge ───────────────────────────────────────── */
+.medal { box-shadow: 0 0 0 4px var(--c-ink), 7px 7px 0 2px var(--c-ink); }
+.badge-en { font-family: var(--display); font-style: italic; font-size: 36px; text-transform: uppercase; letter-spacing: .01em; }
+
+/* ── Bottom nav ──────────────────────────────────────── */
+.nav { background: linear-gradient(to top, var(--c-night-foot) 62%, rgba(27, 34, 120, 0)); }
+.arrow { border: 3px solid var(--c-ink); }
+.arrow.prev { border-radius: 16px; color: var(--c-ink); }
+.arrow.next { border-radius: 16px; box-shadow: var(--shadow-sm); }
+.arrow:active { transform: translate(3px, 3px); }
+/* style.css's own "ready" pulse animates a soft glow, which would replace
+   the hard shadow for as long as it runs. Same pulse, comic shadow. */
+.arrow.next.ready, .start-btn { animation-name: ready-comic; }
+@keyframes ready-comic {
+  0%, 100% { box-shadow: 5px 5px 0 var(--c-ink), 0 0 0 0 rgba(255, 214, 10, .55); }
+  50%      { box-shadow: 5px 5px 0 var(--c-ink), 0 0 0 12px rgba(255, 214, 10, 0); }
+}
+.counter { color: var(--c-on-night); }
+
+/* ── Start screen ────────────────────────────────────── */
+.start {
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, .16) 2px, transparent 2.4px) 0 0 / 16px 16px,
+    radial-gradient(120% 85% at 50% 0%, #3447c4 0%, #2632a0 52%, var(--c-night-foot) 100%);
+}
+.start-art { border: 4px solid var(--c-ink); border-radius: 18px; box-shadow: 7px 7px 0 var(--c-ink); rotate: -1deg; }
+.start-home { box-shadow: 0 0 0 3px var(--c-ink), 3px 3px 0 3px var(--c-ink); color: var(--c-ink); }
+.start-kicker { color: var(--c-on-night); margin-top: 26px; }
+.start h1 {
+  margin-top: 8px; gap: 12px;
+  font-family: var(--display); font-style: italic; font-weight: 800;
+  font-size: clamp(50px, 13vw, 76px); line-height: .95; letter-spacing: .01em; text-transform: uppercase;
+  color: var(--c-yellow); rotate: -2deg;
+  text-shadow:
+    -2px -2px 0 var(--c-ink), 2px -2px 0 var(--c-ink), -2px 2px 0 var(--c-ink), 2px 2px 0 var(--c-ink),
+    0 -2px 0 var(--c-ink), 0 2px 0 var(--c-ink), -2px 0 0 var(--c-ink), 2px 0 0 var(--c-ink),
+    4px 4px 0 var(--c-red), 5px 5px 0 var(--c-red), 6px 6px 0 var(--c-red),
+    7px 7px 0 var(--c-ink), 8px 8px 0 var(--c-ink);
+}
+/* 博物館之旅, as a name tag under the title. */
+.start-zh {
+  font-style: normal; font-size: .3em; letter-spacing: .12em; line-height: 1.2;
+  color: var(--c-ink); text-shadow: none;
+  background: #fff; border: 3px solid var(--c-ink); box-shadow: 4px 4px 0 var(--c-ink);
+  padding: .14em .6em .18em; transform: skew(-8deg);
+}
+.start-sub { color: var(--c-on-night); margin-top: 18px; }
+.start-btn {
+  border: 4px solid var(--c-ink); border-radius: 16px;
+  font-family: var(--display); font-style: italic; font-size: 32px; letter-spacing: .02em; text-transform: uppercase;
+}
+.start-btn [lang="zh-Hant"] { font-style: normal; }
+.start-btn:active { transform: translate(3px, 3px); }
+.start-hint { color: var(--c-on-night); }
+.start-notice { border: 3px solid var(--c-ink); border-radius: 14px; }
+
+/* ── Grown-up dialog ─────────────────────────────────── */
+dialog { border: 4px solid var(--c-ink); border-radius: 16px; box-shadow: 8px 8px 0 var(--c-ink); }
+dialog::backdrop { background: rgba(8, 9, 30, .62); }
+
+/* ── Real photos ─────────────────────────────────────── */
+.real-chip { border: 2px solid var(--c-ink); border-radius: 6px; box-shadow: 2px 2px 0 var(--c-ink); color: var(--c-ink); }
