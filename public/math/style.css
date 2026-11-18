@@ -24,10 +24,17 @@
   --purple-soft: #ece5fe;
   --purple-deep: #5b21b6;
   /* Deep enough to be read, not just seen, on their own soft backgrounds:
-     6.3 and 7.2 against them. The mid tones (--orange, --blue) sit at 2.1
-     and 3.2 there, which is a colour you notice and a word you squint at. */
+     6.3 and 5.5 against them. The mid tones (--orange, --blue) sit at 2.1
+     and 3.2 there, which is a colour you notice and a word you squint at.
+
+     The blue is also chosen against the ink it sits next to, not only
+     against its background. --ink is itself a blue-purple, so a deep navy
+     came out as the same hue only more saturated: 50 against the rust's 65,
+     and the blue mark read visibly weaker than the orange one. This brighter
+     blue measures 63, so a marked word is equally findable in both panels.
+     It costs contrast (7.2 down to 5.5) and is still well clear of 4.5. */
   --orange-deep: #9a3412;
-  --blue-deep: #1e40af;
+  --blue-deep: #1d4ed8;
 
   --good: #22a06b;
   --good-soft: #d8f5e8;

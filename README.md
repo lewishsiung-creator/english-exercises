@@ -301,10 +301,16 @@ grade levels, for a child in Grade 1 working up through Grade 3.
   48 explanations carry one. Inside the panel the mark cannot stay purple:
   the panel is already orange for the method or blue for the mistake, and a
   third colour inside a coloured box is noise. So it takes the panel's own
-  hue concentrated (`--orange-deep`, `--blue-deep`, 6.3 and 7.2 against their
+  hue concentrated (`--orange-deep`, `--blue-deep`, 6.3 and 5.5 against their
   own backgrounds — the mid tones sit at 2.1 and 3.2, which is a colour you
   notice and a word you squint at) and drops the stripe, which would be a
-  tint on a tint. Weight carries it without colour: 800 against the panel's
+  tint on a tint. The blue is picked against the **ink beside it**, not only
+  against its background: `--ink` is itself a blue-purple, so the first deep
+  navy came out as the same hue merely more saturated — 50 of colour
+  difference against the rust's 65, and the blue mark read visibly weaker
+  than the orange one for the same job. The brighter blue measures 63, so a
+  marked word is equally findable in both panels. Contrast against a
+  background is the floor, not the test; the test is the word next to it. Weight carries it without colour: 800 against the panel's
   600. Two hints stay unmarked because they are pure arithmetic with no
   method word in them, and marking something anyway would cost the colour its
   meaning everywhere else.
