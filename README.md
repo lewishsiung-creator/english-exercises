@@ -28,10 +28,10 @@ for 國中 students, vocabulary and grammar together at `/junior-high/`, and
 Cambridge's official word lists with Chinese — Starters, Movers and Flyers,
 A2 Key, B1 Preliminary — under one hub at `/cambridge/`.
 
-One page is not English at all: `/math/` is math practice for Grades 1 to 3,
-built for a child in an American school. `/learning-corner/` is that child's front
-door: one page of big doors to `/math/`, `/museum-trip/` and, on a family
-device only, a private page of picture books that is not in this repo.
+One page that was not English at all, `/math/` (maths practice for Grades 1
+to 3, built for a child), has moved to a site of its own together with
+`/museum-trip/` and `/learning-corner/`; those addresses now only forward.
+See "Learning Corner — moved".
 
 Thirteen more pages are not lessons. `/landscape-portfolio/` is a portfolio
 template for a student to fill in with their own work, `/tiffanyproposal/` is
@@ -259,294 +259,12 @@ opposite of the point.
 Settings live under `phonicsGuide.*` in `localStorage`, separate from Sound
 Lab's, so the two pages never mix voice or speed.
 
-## Number Lab — math, Grades 1–3
+## Number Lab — moved
 
-The one page here that is not English. Twenty-one topics across three American
-grade levels, for a child in Grade 1 working up through Grade 3.
-
-| Grade 1 | Grade 2 | Grade 3 |
-| --- | --- | --- |
-| Add to 20 | Add two digits | Times tables |
-| Take away | Subtract two digits | Sharing out |
-| Missing number | Hundreds, tens, ones | Word problems |
-| Tens and ones | Count the money | Fractions |
-| Bigger or smaller | Word problems | Add and subtract to 1000 |
-| Word problems | Time to five minutes | Area and perimeter |
-| What time is it? | Equal groups | Rounding |
-
-### Design notes
-
-- **Every topic can teach itself first.** Tapping a topic offers **Show me
-  how** or **Just practise**. The explanation is three or four steps, one idea
-  each, carried by a picture — counters being pushed together, hops along a
-  number line, blocks, coins, a shaded bar — and ends with one whole example
-  worked through, so he has seen one done before he is asked. It is skippable
-  at any step and never forced, because the tenth run at times tables should
-  not start with a lesson.
-- **The word a step is teaching is marked.** `*Adding* means putting two
-  groups together.` A step in `TEACH` may wrap its key term in asterisks, and
-  `markKeyWords()` turns that into a tinted purple stripe — bold *and*
-  coloured, because colour on its own is a signal a colour-blind reader never
-  gets. 90 marks over 87 steps; 13 steps carry none, because a line that is
-  pure working (`6, 7, 8. So 5 + 3 = 8.`) has no term to teach. Purple: green,
-  red and orange already mean right, wrong and method on the play screen, and
-  a fourth meaning needs a colour of its own or it borrows one of theirs.
-  Three words is the ceiling — the first draft highlighted whole sentences,
-  which is not a highlight. The marker is asterisks rather than HTML so the
-  content file stays plain text, and the text is escaped before the asterisks
-  are read, so a sentence can never put markup on the page by accident. The
-  class is `.term`, not `.key`: `.key` is the number pad's buttons, and the
-  collision silently handed the word the keypad's monospaced face at keypad
-  size.
-- **The help panel marks its key word too, in its own colour.** The same
-  asterisks work in a `hint` and in a `WHY` sentence — 46 hint templates and
-  48 explanations carry one. Inside the panel the mark cannot stay purple:
-  the panel is already orange for the method or blue for the mistake, and a
-  third colour inside a coloured box is noise. So it takes the panel's own
-  hue concentrated (`--orange-deep`, `--blue-deep`, 6.3 and 5.5 against their
-  own backgrounds — the mid tones sit at 2.1 and 3.2, which is a colour you
-  notice and a word you squint at) and drops the stripe, which would be a
-  tint on a tint. The blue is picked against the **ink beside it**, not only
-  against its background: `--ink` is itself a blue-purple, so the first deep
-  navy came out as the same hue merely more saturated — 50 of colour
-  difference against the rust's 65, and the blue mark read visibly weaker
-  than the orange one for the same job. The brighter blue measures 63, so a
-  marked word is equally findable in both panels. Contrast against a
-  background is the floor, not the test; the test is the word next to it.
-- **Each mark carries a shape as well as a colour, and they are different
-  shapes for a reason.** The teaching screen's mark sits on a lilac stripe;
-  the two panel marks are underlined. Not decoration — both panel marks are
-  *lighter* than the ink around them, so with the colour taken away they
-  turn into the palest words in their sentence and the emphasis reads
-  backwards. The teaching mark is safe without an underline because its
-  stripe is already a shape (8 points of lightness below the white card,
-  which survives greyscale). Checked three ways: normal vision, deuteranopia
-  and protanopia — where all three marks hold up on colour alone, the rust
-  simply shifting to olive — and full greyscale, which is what the shapes are
-  for, and what a washed-out screen in sunlight looks like. Weight carries it without colour: 800 against the panel's
-  600. Two hints stay unmarked because they are pure arithmetic with no
-  method word in them, and marking something anyway would cost the colour its
-  meaning everywhere else.
-- **A mark never lands on the answer.** The marks name the method — *make
-  ten*, *count back*, *tens first*, *short hand* — never the number. Checked
-  across every hint and explanation the generators can produce: 0 marks
-  containing the answer. Otherwise the emphasis would quietly become the
-  giveaway that **Show me** is supposed to be.
-- **The explanations are written for a Grade 1 reader at every grade.** The
-  maths gets harder up the levels; the English does not. He is six and reading
-  them himself.
-- **Questions are generated, not written.** Each topic is a `make()` in
-  `content.js` that builds a fresh question every time, so the bank never runs
-  out and nothing can be learned by position. Difficulty lives in the numbers
-  inside that one function and nowhere else.
-- **Every Grade 1 question carries a picture**, which four of the seven
-  topics did not: the sums, the missing number and the comparison were bare
-  symbols. They are **ten frames, not loose counters**, and that is the whole
-  decision — scattered dots can be counted one at a time forever, which is
-  the habit a six-year-old needs to grow out of, while a frame makes 7 + 5
-  *look like* a full ten with two over, so the picture teaches the same
-  make-ten move the hints do. Cells fill left to right and top to bottom
-  across two stacked frames, so the spill past ten is the thing he sees.
-  Subtraction crosses the last few off; a missing number shows the total with
-  the part he has filled in and the rest dashed, which is the question drawn
-  rather than the answer given. Comparing shows both numbers as ten rods
-  above one another, so "both have four tens, so look at the ones" is visible
-  instead of being something the hint has to say. Grade 2 and 3 are
-  unchanged — by then the numbers are too big to count and the point is to
-  work without a picture.
-- **Word problems, one topic a grade.** Everything else here is a bare sum or
-  a picture to read, and an American classroom assesses mostly in prose — a
-  child who can add and cannot read the question gets the question wrong.
-  The Grade 1 kinds are the ones the research names rather than ones I
-  invented: result unknown, change unknown, and comparison, weighted so the
-  last two — where children who can already add come unstuck — are not left
-  to chance.
-- **The Grade 1 ones carry a picture, and that is the audio rule being kept
-  a different way.** Nothing is read aloud, so for a six-year-old reading it
-  himself the picture is what stops one unfamiliar word blocking the whole
-  question. Grade 2 and 3 problems have none: their numbers are too big to
-  count, and by then the reading is the point. Items are drawn five to a row
-  — eighteen apples on one line came out 662px wide, which a 375px phone
-  scales to 16px an apple, too small to count, which is the one thing the
-  picture is for.
-- **The name is repeated rather than replaced by a pronoun.** *Mia has 4
-  apples. Mia gets 3 more.* Working out who "she" refers to is a second
-  comprehension task sitting on top of the maths, and early readers repeat
-  the name for that reason.
-- **The story has to make sense, or he thinks about the story.** A free pick
-  of objects and containers produced cats in boxes and stars on a plate in
-  one question in six, so container problems draw from a packable list only.
-  The same check caught a two-step problem that handed back exactly what it
-  had just taken, and a shop selling bugs.
-- **A topic is not allowed to be easier than its own name.** Left to plain
-  random numbers the skill a topic exists to teach turns up by accident, and
-  measuring it showed how badly: "Add to 20" crossed ten in 46% of questions
-  and handed over a freebie — an addend of 1 or 2 — in 30% of them; "Take
-  away" crossed ten in 25%; carrying and borrowing appeared in 42% and 46% of
-  the Grade 2 questions named after them; "Bigger or smaller" put the same
-  digit in the tens place, the only case where the ones matter at all, 7% of
-  the time; and 39% of the times tables were a ×2 or a ×10. So those
-  generators now pick a *kind* of question first — `weighted()` — and build
-  numbers guaranteed to be that kind. Those weights are the teaching decision
-  and the thing to edit; the easier kinds are kept in, not removed, so a round
-  still has somewhere to breathe. Measured again after: 60%, 55%, 65%, 65%,
-  50%, and ×2/×10 down to 11%.
-- **A missed question comes back.** It used to be thrown away: every round
-  was ten fresh rolls of the dice, so a fact he had missed five times came
-  round no more often than one he could already do. Now it returns on two
-  timescales — about three questions later in the same round, which is close
-  enough to reconstruct and far enough to have to; and seeded into the next
-  round of that topic, three of the ten, spaced and never first. Right first
-  time on the way back moves it up a box, three boxes retires it, missing it
-  again drops it to the bottom. **Nothing on screen marks a question as one
-  he failed before** — being quietly asked again is the point, and "you got
-  this wrong last Tuesday" is a failure state wearing a hat. The grown-up
-  panel has the queue instead.
-- **The queue stores a recipe, not a drawing.** A rendered figure is 5KB on
-  average and 25KB at worst, so a queue holding them would run to megabytes
-  and not fit in `localStorage`. Each figure question carries the call that
-  drew it — `['clock', 6, 50]`, twenty bytes — and it is redrawn on the way
-  back in. `FIGURES` in `content.js` is the one place the recipe and the
-  drawing can drift apart, so there is a check that all 45,000-odd figure
-  questions redraw themselves byte for byte.
-- **The record says what he answered, not just how many tries.** "34 + 27 →
-  82, he said 73" is a missing carry; "attempts: 2" is nothing at all. The
-  wrong answers sit under the question in the log, and a question he had to
-  be shown is marked as such — needing the answer and getting there on the
-  fourth go look identical in an attempt count and are not the same thing.
-- **The hint matches the question it is for.** A question built to need making
-  ten says *"Take 6 from the 9 to make ten. Then 10 + 3"* rather than the
-  generic *"count on 9"*, which is the wrong strategy for that question. This
-  only became possible once the generator knew which kind it had built.
-- **`add1000` and the clock, money, blocks and area topics were left alone**,
-  because measuring them found nothing wrong: three-digit carrying and
-  borrowing already came out at 71% and 70% on their own.
-- **What he does on Tuesday is still there on Thursday.** Each topic card
-  carries its best round ever as stars, mastered topics get a badge and a
-  gold edge, and the level screen totals it: so many stars of 54, so many
-  days of practice. **Nothing in it ever goes down.** The stars are a
-  collection, not a score — a bad round after a good one takes nothing away,
-  and there is deliberately no streak, because a streak that breaks is a
-  failure state wearing a different hat and would turn a day off into a
-  loss. The empty stars are there on purpose, the way a sticker chart has
-  empty squares: faint enough that eighteen untouched topics read as things
-  to collect rather than things already failed.
-- **Mastery is an invitation, not a gate.** Two rounds running at nine or
-  better out of ten earns the badge, and the results screen offers the one
-  topic that follows it — `next` in `content.js`, the same skill a level up.
-  Offered once, when it is earned, then never again. Nothing is locked
-  behind it, and a bad round afterwards does not take it back.
-- **Grade 1 is told what it just did wrong.** A six-year-old's mistakes are
-  not random: there is a short list of wrong methods — counting the number
-  you start on, dropping the ten, running the sum backwards, reading the long
-  hand as the hour — and each one leaves its own number behind. So the first
-  miss on any Grade 1 question reads the number he typed and names the
-  method: `12` answered `2` gets *"The ones are right. But a whole ten went
-  missing."* `WHY` in `content.js` holds one reader per topic, stored as a
-  recipe (`why: ['add', 7, 5]`) for the same reason the drawings are — a
-  missed question has to survive localStorage into tomorrow's review round,
-  and a closure does not. Every reader may return `null`, and usually does: a
-  number that matches no method is a guess, and inventing a reason for a
-  guess teaches him the page is not really reading his answer. Measured at
-  100% of the named wrong methods across 6,000 questions each, 0% of numbers
-  no method produces. Grade 1 only — by Grade 2 the wrong answers stop being
-  legible, because with three digits and two steps too many wrong methods
-  land on the same number. None of them names the answer, so **Show me** is
-  still the only thing that gives it away.
-- **One help slot, two stages.** The diagnosis arrives in the *same* panel
-  the method uses, blue instead of orange, and a second miss replaces it with
-  the method. Two panels at once was the first attempt and it cost 112px,
-  which pushed the bottom row of the number pad off a 375×812 phone — and it
-  asked a six-year-old to read two paragraphs to be told he is one ten short.
-  The panel scrolls itself into view with `block: 'nearest'` when it opens,
-  because a Grade 1 question is a picture, a sum and a keypad with keys big
-  enough for small fingers, which fills a phone screen on its own. Not
-  smoothed: a slide is one more moving thing to follow at the worst moment,
-  and a throttled browser drops `smooth` outright, so the panel would
-  sometimes simply not arrive.
-- **There is a way out of a question he cannot do.** Two misses bring the
-  method up as a hint (one, in Grade 1, after the diagnosis); a third offers
-  **Show me**, which puts the answer on
-  screen and asks him to enter it himself. He gets unstuck, he ends the
-  question by doing the right thing rather than by giving up, and the record
-  says he was given it. Without this, "only a correct answer advances" turns
-  into an infinite failure state on a number-pad question, where unlike the
-  multiple-choice topics there is nothing to guess between — the opposite of
-  the rule it came from. It sits **inside the question card**, not under the
-  feedback line: on a 375×812 phone the hint already ends at y=754 and the
-  feedback at 801, so anything below them is off the bottom of the screen at
-  exactly the moment he needs to find it.
-- **The answer he is typing lives inside the question card.** It used to be a
-  dashed panel below it, the same size and weight as the question itself, so
-  the two competed and it spent about 90px of a phone screen to show one
-  number. It is a slot on an underline now, directly under the sum it is
-  filling in, and when he asks to be shown the answer the order reads
-  straight down: the question, the answer, *now you do it*, the slot.
-- **Topics are rows, not centred cards.** Seven stacked cards ran off the
-  bottom of a phone after three and a half, and four centred lines gave the
-  eye nothing to run down. All seven now fit one screen with the name on a
-  scan line and the stars in a column. The icon sits in a chip because `+`
-  and `−` are flat text glyphs while the rest are full-colour emoji — framed
-  the same, they stop reading as two different kinds of thing.
-- **Mastery is a gold edge down the side of the row.** It was an inset ring
-  sitting just inside the green border, which read as a rendering fault
-  rather than an achievement.
-- **The work column is capped at 520px and centred on a tall screen.** Left
-  to the page's 960px, "5 + 7 = ?" floated alone in a white bar three times
-  the width of the keypad under it, which looked like a mistake on a laptop.
-- **The screen before a round is a heading, not a second copy of the card.**
-  It used to repeat the icon, name and blurb he had just tapped and push the
-  only two things with a job most of the way down the screen. It now shows
-  his best so far — and nothing about what he got wrong, which would be the
-  page telling a six-year-old it remembers him failing — and it leads with
-  the explanation on a topic he has never opened, with practice once he has.
-- **Every drawing either says what it is or is marked decorative.** A
-  `role="img"` with no name is the worst of both — something is announced and
-  has nothing to announce — and all of them were that, inside wrappers that
-  were `aria-hidden` anyway, which with the voice gone left the figures
-  invisible to anything but eyes. Where the figure *is* the question the name
-  carries what a sighted child sees and no further: *"A clock face. The short
-  hand is on the 3. The long hand points to the 12"* leaves reading the time
-  as the question, where "a clock showing 3 o'clock" would not. The word
-  problem pictures are the one deliberate exception and stay decorative,
-  because the sentence beside them already says the same thing and nobody
-  needs it twice.
-- **Nothing is spoken.** This page is silent by choice, which is the one
-  house rule for young learners it does not follow: audio-first exists so a
-  child who cannot yet read is not blocked before the maths starts. The
-  trade is deliberate — every prompt has to carry itself in print, and a
-  drawing does the work a spoken hint would have done.
-- **The rest of the house rules hold.** No timers, and no failure state — a
-  wrong answer wobbles and invites another go, only a correct one advances.
-  After two wrong tries the topic's hint appears; it points at the method
-  (*"Start at 24 and count on 8"*), never at the answer.
-- **A wrong option dims rather than vanishes**, so he can see what he has
-  already ruled out and nothing is taken away as a punishment.
-- **Half the topics are tapped, half are typed** on a number pad — the pad
-  keys are the same size and shape as the option buttons, so the switch is not
-  felt. A physical keyboard works too, for a grown-up sitting alongside.
-- **Numbers are set in a monospaced face, prose is not.** At six a 6 that
-  could be a 5 is a maths error that was never about maths; a sentence in the
-  same face is just harder to read, so `app.js` picks per prompt.
-- **The pictures are drawn, not photographed.** Clocks, base-ten blocks,
-  arrays, fraction bars, coins at true relative size, grid rectangles and
-  number lines are all SVG built in `content.js`, in the page's own palette.
-- **English only**, unlike the rest of the site: he is in an American school,
-  and the vocabulary in the prompts is the vocabulary his teacher uses.
-
-Records live under `math.*` in `localStorage`, separate from the English
-pages: `math.log` is the answer history, capped at 300, `math.review` is the
-queue of questions waiting to come back, capped at 12 a topic, and
-`math.progress` is the stars, badges and days practised — under a kilobyte,
-and the only one of the three the child ever sees. It has its own reset
-button in the panel, well away from the one that clears the log: the stars
-are his, and wiping them by accident while tidying up would be a small
-disaster. Two
-hundred simulated rounds leave them at about 60KB together, so neither is
-near a quota. The 👨‍🏫 panel groups misses by topic rather than by question —
-with generated numbers no single sum repeats often enough to mean anything,
-but "Grade 3 · Times tables, 6 missed" does — and lists the review queue
-under **Coming back**, each item showing how close it is to being retired.
+`/math/` (maths practice for Grades 1 to 3, built for a child rather than a
+student) moved to a site of its own on 2026-11-18, with `/museum-trip/` and
+the front page that led to them. `public/math/index.html` is now only a
+forward. Its notes went with it, to that site's own repository.
 
 ## Confidence and Everyday Life — ages 10–12, teacher-led
 
@@ -6113,7 +5831,10 @@ public/                   Word Play — the site root
 public/404.html           the site-wide not-found page
 public/phonics/           Sound Lab, the phonics practice
 public/phonics-handbook/  自然發音學習手冊, the interactive handbook
-public/math/              Number Lab, the Grades 1–3 math practice
+public/math/              a forward only: Number Lab moved to its own site
+public/museum-trip/       a forward only: Museum Trip moved with it
+public/learning-corner/   a forward only: the front page of that site
+public/lc/                a forward only: its short address
 public/confidence-talk/   the 2026/07/11 class notes, ages 10–12
 public/business-clarity/  the business worksheet
 public/business-clarity/lesson-one/   one lesson's notes — the AI business
@@ -6278,33 +5999,8 @@ quiz, the counts, the contents list and the A–Z view all follow. There is no q
 and no script in `tools/` for this page: the source was a plain two-column PDF
 that `pypdf` reads correctly.
 
-**Number Lab.** There is no question list to edit — every topic is a `make()`
-in [`public/math/content.js`](public/math/content.js) that builds a question
-each time it is called, and the numbers inside that one function are the
-difficulty. Widening Grade 1's addition to twenty-five is one `rnd(1, 9)`.
-
-A question is `{ ask, figure, answer, choices, hint, why }`. Leave `choices`
-off and the number pad is used instead; the answer must then be something the
-pad can type. `hint` points at the method, not the answer, and appears after
-two wrong tries — after one in Grade 1. `why` is optional and Grade 1 only: a
-recipe naming a reader in `WHY`, which turns the wrong number he typed into a
-sentence about the method he used. Readers return `null` whenever the number
-tells them nothing. The drawings — clocks, blocks,
-arrays, fraction bars, coins, grid rectangles, number lines — are functions in
-the same file; each returns an SVG string sized in its own units, and `svg()`
-puts the width and height on it, without which it collapses to nothing.
-
-The explanations are separate, in the `TEACH` block at the foot of the same
-file — one array per topic id, hung onto the topics at the end so a generator
-stays one job and the explanations can be read together, in order, as a
-course. A step is `{ text, figure }`. The rules a new one should follow are written
-above the block; the important one is that the reading level stays at Grade 1
-even where the maths does not — nothing is read aloud, so a step that only
-works said out loud does not work here.
-
-Adding a topic is one object in `G1`, `G2` or `G3` plus its `TEACH` entry; the
-grade screens build themselves from those arrays, and a topic with no
-explanation simply doesn't offer the button.
+**Number Lab** has moved to its own repository (see "Learning Corner — moved");
+how its questions are written is described there.
 
 **Confidence and Everyday Life.** The whole lesson is
 [`public/confidence-talk/content.js`](public/confidence-talk/content.js): a
@@ -6960,7 +6656,6 @@ local-only concern.
 Then open <http://localhost:8000> for Word Play,
 <http://localhost:8000/phonics/> for Sound Lab,
 <http://localhost:8000/phonics-handbook/> for the handbook,
-<http://localhost:8000/math/> for Number Lab,
 <http://localhost:8000/confidence-talk/> for the 10–12 review lesson,
 <http://localhost:8000/business-clarity/> for the business worksheet,
 <http://localhost:8000/business-journal/> for 國際商業期刊導讀,
@@ -7007,79 +6702,12 @@ Pushing to `main` publishes to both, with no further steps:
 - **Cloudflare Pages** — via its GitHub integration (build command: none,
   output directory: `public`)
 
-## Museum Trip — Grade 1, before a class field trip
+## Museum Trip — moved
 
-`/museum-trip/` — a bilingual picture page for six- and seven-year-olds to
-read with a grown-up before a class visit to 國立臺灣歷史博物館 in Tainan on
-Friday 13 November 2026. No child, school or teacher is named on it, and it
-is `noindex`.
-
-Nineteen pages in seven chapters: getting ready (the building, the solar
-"cloud wall", the pool), two 👍/👎 rules games (on the bus, in the museum —
-moved up to second place at Lewis's request), the Story of Taiwan (the
-permanent exhibition's seven units retold in five pages), the Children's
-Hall, an I Spy list to remember, word cards and a picture quiz. The start screen carries one parents' reminder, at Lewis's
-request: 記得讓孩子帶健保卡 (pack the child's NHI card).
-
-### Design notes
-
-- **Kids' house rules**: every English line can be heard — tap Listen or
-  the line itself. **Nothing plays by itself** (Lewis, 2026-11-12): pages
-  and quiz questions are not read aloud on arrival unless a grown-up ticks
-  自動朗讀 in the 大人 panel (key `autoRead`, default off); only the reply
-  to a child's own tap (right / think again) is spoken unasked; a wrong answer wobbles and says "think again", only
-  the right one moves on; big targets, no timers.
-- **The most natural voice on the device**, not a fixed one (2026-11-13; it
-  had been Flo). Premium/Natural > Enhanced > ordinary, American women first
-  (Ava, Zoe, Samantha …), Flo last, macOS novelty voices never. The 大人
-  panel marks the pick ★ 建議 and tells parents how to download Ava.
-- **Bilingual text, English voice only.** The Chinese is always shown, not
-  hidden behind a tap, but it is never spoken: Lewis had the Chinese voice
-  (美佳) taken out on 2026-11-12, the same day the page was built.
-- **Facts come from the museum's own site**, read 12 Nov 2026; the sources are
-  listed at the top of `content.js`. The official exhibition page names no
-  individual objects, so the I Spy list only asks for things sure to be
-  there (the wall, the pool, the public art, the Children's Hall).
-- **Used before the trip, not at the museum.** The children won't have the
-  page with them on the day (Lewis, 2026-11-12), so nothing asks them to tap
-  things as they see them. An I Spy star means "I know to look for it"; the
-  talk prompt asks the grown-up to find out afterwards which ones they found.
-- **Real photos (2026-11-12)**: four freely licensed Wikimedia Commons
-  photos in `public/museum-trip/photos/` (the whole museum, the front, the
-  cloud wall with its English name, an Anping jar shot in the museum), on
-  pages 1, 2, 4 and 10, each with a "Real photo · 真實照片" chip. They are
-  CC BY-SA, so each carries a small credit and the 大人 panel lists the
-  links; credits live in `PHOTOS` in `content.js`. Only use photos whose
-  licence allows reuse — never the museum's own site or a Google image.
-- **A YouTube video for grown-ups** (2026-11-12, Lewis's choice): "The ENTIRE
-  History of Taiwan in 22 Minutes" closes the Story chapter, tagged 給大人看
-  with a note to preview it. A thumbnail until tapped, then the
-  youtube-nocookie player in place; turning the page removes it.
-- **🏠 Home** (首頁, 2026-11-12) leads the chapter strip and brings back the
-  start screen with its NHI-card reminder; "Let's go!" then starts at page 1.
-- The 大人 button is faint on purpose. It holds visitor info, a talk-about-it
-  note, voice/speed/sound-effect settings and a reset for the I Spy stars.
-  `localStorage` keeps only the stars, the pages seen and those settings.
-
-### Interaction design (redesign, 2026-11-12)
-
-- **A start screen** with one big "Let's go!" button. Phones and iPads play
-  no speech or sound before a touch, so without it the first page would sit
-  silent.
-- **Every page is one sheet**: a picture on a chapter-coloured stage, then
-  the words. Each chapter has its own tint, so a child can tell where they
-  are without reading. On a landscape iPad (≥ 760px) picture and words sit
-  side by side and nothing scrolls.
-- **The spoken word lights up** (speech-engine word boundaries). Browsers
-  that send none fall back to lighting the whole line.
-- **The orange Next arrow glows only when the page is done**: read aloud, or
-  its game finished. On game pages it stays soft so it never competes with
-  the green "Next question" button. It always works for a grown-up.
-- Synthesised chimes (no audio files) for right / try again / star, off in
-  the 大人 panel. Chapter chips get a ✓ once every page in them is seen.
-  The last page is a "Museum Explorer" badge with the I Spy star count.
-- Asset links carry `?v=N`; bump it on every change so a returning phone
-  never pairs a new `index.html` with an old cached `app.js`.
+`/museum-trip/` moved to a site of its own on 2026-11-18 (see "Learning
+Corner — moved" below). `public/museum-trip/index.html` is now only a
+forward, so the link that went to a whole class still works. Its notes went
+with it.
 
 ## Vicky's course page — 上課時間 & 學費說明
 
@@ -7111,7 +6739,8 @@ with her art-history decks, which live in their own repo.
   is what iOS uses for every page that names no icon of its own — most of
   the site. The gold star moved to `public/star-icon.png` and is linked by
   name from the children's pages: Word Play (`/`), `/phonics/`,
-  `/phonics-handbook/`, `/math/` and `/museum-trip/`. A new page for young
+  and `/phonics-handbook/` (Number Lab and Museum Trip, which also use it,
+  took a copy with them when they moved). A new page for young
   children should link it the same way; a new adult page needs nothing.
 - **`og:description` is fixed text on `/course/`**: a preview reader never
   gets the #hash, and otherwise quotes the hidden 「這個連結不完整」.
@@ -7215,85 +6844,29 @@ a form where Lewis types a student's name and class time and gets that page.
 - The style is `public/course/course.css`, copied from `/vicky-course/`.
   Vicky's page was left as it is because its URL has already gone out.
 
-## Learning Corner — one child's pages behind one front door
+## Learning Corner — moved
 
-`/learning-corner/` (2026-11-18) is the page a Grade 1 child opens first: three
-big doors, one per page, each in its own colour with its own drawing so the
-right one can be found before the names can be read. It is a family hub, not an
-index of the site — nothing with a student or client in it is ever linked from
-here, and the rule that students do not find each other's material stands.
+On 2026-11-18 Lewis asked for one child's pages — `/learning-corner/` (the
+front page), `/math/` (Number Lab) and `/museum-trip/` — to stand apart from
+his students' pages. They now live in their own **private** repository
+(`learning-corner`, a sibling folder that this repo ignores) and their own
+Cloudflare Pages project; nothing here links to them and nothing there links
+back.
 
-- **Files:** `index.html` (the doors, each a plain link with an inline SVG),
-  `style.css`, `app.js`. No data file: three doors do not need one.
-- **No names.** No child, school or teacher on the page or in the URL, as on
-  `/math/` and `/museum-trip/`. `noindex, nofollow`.
-- **The book door is not in the source.** The picture-book page is a private,
-  link-shared page of copyrighted books that lives outside this repo. This repo
-  is public, so its address is never written here. The family's link to this
-  page carries it after the `#` — `…/lc/#<id>`, where `/lc/` is a short
-  address that only forwards here and keeps the `#` (2026-11-18, asked for so
-  the link is easier to send); the first links handed out were
-  `…/learning-corner/#books=<id>` and that form must keep working. `app.js`
-  checks the id against
-  a strict pattern, appends it to one fixed address and remembers it on that
-  device (`localStorage`, key `corner.books`). Without it the page shows two
-  doors and nothing says a third exists. `#off` makes a device forget.
-  **Do not paste that address or id into this folder, this README or a commit
-  message.**
-- **The look is a superhero comic page** (2026-11-18, asked for as "Marvel
-  Avengers style"): one near-black ink for every outline, hard offset shadows
-  with no blur, halftone dots, burst rays behind each picture, slanted heavy
-  capitals, a slight tilt on each panel, a GO! burst on each door. One theme —
-  no light/dark pair. **Design language only:** no publisher's or team's name,
-  logo, emblem, character, costume, slogan or licensed typeface is on the
-  page, and none may be added; it is public. The display face is the heavy
-  condensed italic the device already has (Avenir Next Condensed on Apple
-  devices), never a downloaded font. The same line as the hbr.org look on
-  `/business-journal/` and the sportswear look on `/hank/` and `/eason/`.
-- **The two pages behind the doors wear the same look** (same day), each from
-  its own **`comic.css`, linked after `style.css`** the way `court.css` is on
-  `/hank/`: it only re-points tokens and overrides, so `style.css` is untouched
-  and removing that one `<link>` (and putting the `theme-color` back; on
-  `/museum-trip/` also `data-theme="light"` on `<html>`, which is what switches
-  off that page's dark edition) restores the page as it was. Each file's
-  header lists what it deliberately leaves alone — on `/math/` the question,
-  the digit face, every figure and the help panels' measured colours; on
-  `/museum-trip/` the reading lines, one colour per job (blue listen, orange
-  next, green right), the chapter tints and the photos. The three pages share
-  one night gradient; change it in all three or none.
-  Two things found on `/math/` while doing it, both in `style.css` and both
-  **fixed there the same day**, so they hold with or without `comic.css`:
-  the progress bar had **no width** at tablet width (an auto-margin item in a
-  flex column — it now says `width: 100%`), and on a tablet on its side the
-  number pad's last row, with 0 and ✓, sat **below the fold** (the stacked
-  question and pad ended at 811px on a 768px screen). A short landscape
-  screen (`min-width: 800px`, `max-height: 940px`, landscape) now puts the
-  question and its help on the left and the pad or choices on the right;
-  nothing is made smaller. Checked across all 21 topics at 1024 × 768: every
-  answer area ends by 462px. Upright tablets, tall windows and phones keep
-  the single column. The 940 is measured — the single column with a hint and
-  feedback showing ends at 938px — so re-measure it if the question card or
-  the pad changes height.
-- **Adding a door:** copy one `<a class="door …">`, give it a class with its
-  own `--panel`, `--ray-a` and `--ray-b` in `style.css`, and draw its picture
-  in the same 200 × 130 box — shapes inside `<g class="ink">` get the comic
-  outline, anything outside it is drawn flat. The grid fills itself for two,
-  three or four.
-- **Kids' rules:** no sound, nothing that can be got wrong, nothing else to
-  tap. The entrance animation scales the doors but never fades them, because a
-  tab opened in the background pauses animations and a faded door would stay
-  invisible.
-- **The way back (`home.js`).** `/math/` and `/museum-trip/` each carry a home
-  button to this page, written into their HTML `hidden` and marked
-  `data-corner-home`. Opening the Corner sets `corner.home` in that device's
-  `localStorage`; `learning-corner/home.js`, loaded by both pages, un-hides the
-  button only where that mark exists. Both pages are also handed out on their
-  own (Museum Trip went to a whole class), and those children see no button.
-  It lives on each page's **first screen only** — Number Lab's level chooser,
-  where it takes the back button's place and gives it up on every other
-  screen, and Museum Trip's start screen, which the 🏠 Home chip brings back —
-  so a round cannot be left by accident. Each page styles its own button
-  (`.bar-home` in `math/style.css`, `.start-home` in `museum-trip/style.css`).
-  A new page under the Corner needs the same three things: the hidden marked
-  link, its own CSS, and the script tag.
-- Asset links are `?v=N` — bump on every change, as on `/museum-trip/`.
+What is left in this repo is four forwards, because the addresses had gone
+out: `public/learning-corner/`, `public/lc/`, `public/math/` and
+`public/museum-trip/`. Each is one `index.html` that sends the visitor on and
+attaches two things after the `#`: whatever was already there (a page number,
+the family's key to the picture-book door), and what the device remembered at
+this address — stars, badges, the review queue, museum chapters, the chosen
+voice — packed as `carry=…`, because a browser keeps those per address. Only
+the keys those three pages own are taken (`math.progress`, `math.review`,
+`museumTrip.*`, `corner.*`); nothing stored by any other page here leaves.
+
+They forward to the project's plain `…pages.dev` address, not to the
+family's domain. That is deliberate: this repo is public and the domain is
+not written in it. The other site sends the plain address on by itself.
+
+**Do not rebuild those pages here**, and do not edit the forwards into
+pages. To change Number Lab, Museum Trip or the front page, work in the
+`learning-corner` repository.

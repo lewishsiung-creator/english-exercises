@@ -4,18 +4,49 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Learning Corner · 學習角</title>
-<!-- A short address for /learning-corner/ (2026-11-18), so the family's link
-     is easier to send and to type. It only forwards. Whatever follows # is
-     carried over untouched, because that is where the family's key to the
-     picture-book door travels (see learning-corner/app.js); it is never sent
-     to the server, and this file must never contain it. A script, not a
-     meta refresh: a refresh would drop the #. -->
+<!-- This page moved to a site of its own on 2026-11-18, at Lewis's request, so
+     that one child's pages do not sit beside his students'. The address had
+     already been handed out, so it stays here as a forward (the standing
+     habit for any address of his that has gone out).
+
+     It forwards with two things attached:
+     - whatever followed the # (a page number, or the family's key to the
+       picture-book door), untouched;
+     - what this device remembered here: his stars and badges, the questions
+       coming back, the museum chapters done, the chosen voice. A browser
+       keeps those per address, so without this a child would arrive at the
+       new address with nothing. They are packed after the # as carry=…,
+       which is never sent to a server, and the new site unpacks them (it
+       never overwrites what is already there).
+
+     Only the keys those pages own are taken. Nothing else stored by this
+     site's other pages leaves. -->
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
-<link rel="apple-touch-icon" href="../star-icon.png">
-<script>location.replace('../learning-corner/' + location.hash);</script>
+<script>
+(function () {
+  var TO = 'https://learning-corner-3ba.pages.dev/';
+  var OWN = /^(math\.(progress|review)|museumTrip\.[A-Za-z0-9]{1,24}|corner\.(home|books))$/;
+  var data = {}, any = false;
+  try {
+    for (var i = 0; i < localStorage.length; i++) {
+      var k = localStorage.key(i);
+      if (OWN.test(k)) { data[k] = localStorage.getItem(k); any = true; }
+    }
+  } catch (e) { /* no storage: forward with nothing to carry */ }
+  var hash = location.hash.slice(1);
+  if (any) {
+    try {
+      var packed = encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(data)))));
+      hash = (hash ? hash + '&' : '') + 'carry=' + packed;
+    } catch (e) { /* forward without it */ }
+  }
+  location.replace(TO + (hash ? '#' + hash : ''));
+})();
+</script>
 </head>
 <body>
-<p><a href="../learning-corner/">Learning Corner · 學習角</a></p>
+<p lang="en">This page has moved: <a href="https://learning-corner-3ba.pages.dev/">Learning Corner · 學習角</a>.</p>
+<p lang="zh-Hant">這一頁搬家了：<a href="https://learning-corner-3ba.pages.dev/">Learning Corner · 學習角</a>。</p>
 </body>
 </html>

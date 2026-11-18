@@ -51,3 +51,8 @@ ai-duet/
 # 一位學員工作上的簡報原稿、明文圖與逐字稿：不是這個站的內容，只在本機處理，
 # 絕不進版本庫。上線的那一份在 public/anny/update/，整份加密過。
 anny-slides/
+
+# Learning Corner: one child's pages (the hub, Number Lab, Museum Trip) as a
+# site of their own, its own repo. Moved out of public/ at Lewis's request so
+# they do not sit beside his students' pages.
+/learning-corner/

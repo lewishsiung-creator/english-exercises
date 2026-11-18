@@ -2,211 +2,51 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Number Lab — Math for Grades 1–3</title>
-<meta name="description" content="Interactive math practice for Grades 1 to 3: addition, place value, time, money, times tables, fractions, area.">
-<!-- Inline SVG icon. The colours must be percent-encoded: a bare "#" would be
-     read as the URL fragment and the icon would silently fail to load. -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233b82d6'/%3E%3Ctext x='32' y='47' font-family='Helvetica,Arial,sans-serif' font-size='38' font-weight='bold' text-anchor='middle' fill='%23ffffff'%3E12%3C/text%3E%3C/svg%3E">
-<!-- The kids' home-screen star. The site default (../apple-touch-icon.png)
-     became Lewis's logo on 2026-11-13; children's pages keep the star. -->
-<link rel="apple-touch-icon" href="../star-icon.png">
-<meta name="apple-mobile-web-app-title" content="Number Lab">
-<meta name="theme-color" content="#2632a0">
-<link rel="stylesheet" href="style.css">
-<!-- The superhero-comic look, to match /learning-corner/ (2026-11-18). Linked
-     last: it re-points a few of style.css's tokens and overrides the rest, so
-     taking this one line out (and the theme-color back to #fff8ef) restores
-     the page as it was. See comic.css. -->
-<link rel="stylesheet" href="comic.css?v=2">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Number Lab</title>
+<!-- This page moved to a site of its own on 2026-11-18, at Lewis's request, so
+     that one child's pages do not sit beside his students'. The address had
+     already been handed out, so it stays here as a forward (the standing
+     habit for any address of his that has gone out).
+
+     It forwards with two things attached:
+     - whatever followed the # (a page number, or the family's key to the
+       picture-book door), untouched;
+     - what this device remembered here: his stars and badges, the questions
+       coming back, the museum chapters done, the chosen voice. A browser
+       keeps those per address, so without this a child would arrive at the
+       new address with nothing. They are packed after the # as carry=…,
+       which is never sent to a server, and the new site unpacks them (it
+       never overwrites what is already there).
+
+     Only the keys those pages own are taken. Nothing else stored by this
+     site's other pages leaves. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<script>
+(function () {
+  var TO = 'https://learning-corner-3ba.pages.dev/math/';
+  var OWN = /^(math\.(progress|review)|museumTrip\.[A-Za-z0-9]{1,24}|corner\.(home|books))$/;
+  var data = {}, any = false;
+  try {
+    for (var i = 0; i < localStorage.length; i++) {
+      var k = localStorage.key(i);
+      if (OWN.test(k)) { data[k] = localStorage.getItem(k); any = true; }
+    }
+  } catch (e) { /* no storage: forward with nothing to carry */ }
+  var hash = location.hash.slice(1);
+  if (any) {
+    try {
+      var packed = encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(data)))));
+      hash = (hash ? hash + '&' : '') + 'carry=' + packed;
+    } catch (e) { /* forward without it */ }
+  }
+  location.replace(TO + (hash ? '#' + hash : ''));
+})();
+</script>
 </head>
 <body>
-
-<a class="skip" href="#main">Skip to content</a>
-
-<header class="bar">
-  <button class="bar-btn" id="backBtn" hidden aria-label="Go back">←</button>
-  <!-- Home, to the family's Learning Corner. Hidden for everyone else: this
-       page is also handed out on its own. ../learning-corner/home.js shows it
-       only on a device that has opened the Corner. It takes the back button's
-       place on the first screen and gives it up everywhere else (style.css),
-       so the top-left button always means "up one level" and a round cannot
-       be left by accident. -->
-  <a class="bar-btn bar-home" href="../learning-corner/" data-corner-home hidden aria-label="Home"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 11.5L12 4l8.5 7.5M6 10v9.5h12V10M10 19.5v-5h4v5"/></svg></a>
-  <h1 class="bar-title" id="barTitle">Number Lab</h1>
-  <button class="bar-btn bar-btn-quiet" id="teacherBtn" aria-label="Grown-up panel">👨‍🏫</button>
-</header>
-
-<main id="main">
-
-  <!-- ============ Screen: choose a grade ============ -->
-  <section class="screen is-active" id="screen-grade">
-    <p class="lead">Choose a level</p>
-    <div class="card-grid" id="gradeGrid"></div>
-    <!-- Everything he has collected. Only ever goes up, and stays hidden
-         until there is something in it. -->
-    <p class="collection" id="collection" hidden></p>
-  </section>
-
-  <!-- ============ Screen: choose a topic ============ -->
-  <section class="screen" id="screen-topic">
-    <p class="lead" id="topicLead">Choose what to practise</p>
-    <div class="card-grid" id="topicGrid"></div>
-  </section>
-
-  <!-- ============ Screen: show me how, or just practise ============ -->
-  <section class="screen" id="screen-intro">
-    <!-- Deliberately not a copy of the card he just tapped. It had the same
-         icon, name and blurb again inside a tall box, which said nothing new
-         and pushed the buttons down the screen. All it owes him is his best
-         so far and the choice. -->
-    <div class="intro-head">
-      <span class="intro-icon" id="introIcon" aria-hidden="true"></span>
-      <h2 class="intro-name" id="introName"></h2>
-      <p class="intro-blurb" id="introBlurb"></p>
-      <p class="intro-stars" id="introStars" hidden></p>
-    </div>
-    <!-- Order and emphasis are set in openTopic(): the explanation leads on a
-         topic he has never opened, and practice leads once he has. -->
-    <div class="intro-actions" id="introActions">
-      <button class="btn btn-big" id="showMeBtn">👀 Show me how</button>
-      <button class="btn btn-big" id="practiseBtn">▶️ Start</button>
-    </div>
-  </section>
-
-  <!-- ============ Screen: the explanation ============ -->
-  <section class="screen" id="screen-teach">
-    <!-- Named from the start: renderStep() replaces this, but until it runs
-         a role="img" with no name is the very thing being avoided. -->
-    <p class="dots" id="teachDots" role="img" aria-label="Step 1"></p>
-
-    <div class="q-card">
-      <div class="fig-wrap" id="teachFig"></div>
-      <p class="teach-text" id="teachText" aria-live="polite"></p>
-    </div>
-
-    <div class="teach-actions">
-      <button class="btn btn-big btn-primary" id="teachNext">Next</button>
-    </div>
-    <button class="link-quiet" id="teachSkip">Skip to the questions</button>
-  </section>
-
-  <!-- ============ Screen: the questions ============ -->
-  <section class="screen" id="screen-play">
-    <div class="progress" aria-hidden="true">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
-    <p class="progress-text" id="progressText" aria-live="polite"></p>
-
-    <div class="q-card">
-      <div class="fig-wrap" id="figWrap"></div>
-      <p class="ask" id="ask"></p>
-
-      <!-- The way out of a question he cannot do. Inside the card on purpose:
-           on a 375×812 phone the hint already ends at y=754 and the feedback
-           line at 801, so anything below them is off the bottom of the
-           screen — exactly when he most needs to find it. -->
-      <button class="show-me" id="showMeAnswer" hidden>🙋 Show me</button>
-      <div class="solution" id="solution" hidden>
-        <p class="solution-answer" id="solutionAnswer"></p>
-        <p class="solution-do">Now you do it.</p>
-      </div>
-
-      <!-- What he has typed, inside the question rather than in a box of its
-           own below it. As a separate dashed panel it was the same size and
-           weight as the question itself, so the two competed and it cost
-           ~90px of a phone screen to show one number. -->
-      <output class="readout" id="readout" hidden></output>
-    </div>
-
-    <div class="answer" id="answer"></div>
-
-    <!-- One help slot, two stages. A Grade 1 mistake puts what he just did in
-       here first (blue), and a second mistake replaces it with the method
-       (orange). Two panels at once cost 112px, which on a 375×812 phone
-       pushed the bottom row of the number pad off the screen — and a
-       six-year-old should not have to read two paragraphs to be told he is
-       one ten short. -->
-  <p class="hint" id="hint" hidden aria-live="polite"></p>
-    <p class="feedback" id="feedback" role="status" aria-live="assertive"></p>
-  </section>
-
-  <!-- ============ Screen: finished ============ -->
-  <section class="screen" id="screen-done">
-    <div class="done-emoji" id="doneEmoji">🎉</div>
-    <p class="done-title" id="doneTitle">All done!</p>
-    <p class="done-stars" id="doneStars"></p>
-    <p class="done-score" id="doneScore"></p>
-    <p class="done-note" id="doneNote" hidden></p>
-    <div class="done-actions">
-      <button class="btn btn-primary" id="againBtn">Go again</button>
-      <button class="btn" id="changeBtn">Practise something else</button>
-      <button class="btn btn-next" id="nextTopicBtn" hidden></button>
-    </div>
-  </section>
-
-</main>
-
-<!-- ============ Grown-up panel (an overlay, so a round in progress survives) ============ -->
-<div class="sheet" id="teacherSheet" hidden>
-  <div class="sheet-box" role="dialog" aria-modal="true" aria-labelledby="teacherHeading">
-    <div class="sheet-head">
-      <h2 id="teacherHeading">Grown-ups</h2>
-      <button class="bar-btn" id="teacherClose" aria-label="Close panel">✕</button>
-    </div>
-
-    <div class="sheet-body">
-      <section class="block">
-        <h3>This session</h3>
-        <p class="stat-row" id="teacherStats">Nothing yet.</p>
-      </section>
-
-      <section class="block">
-        <h3>Needs practice</h3>
-        <p class="muted" id="teacherWeakEmpty">Nothing missed yet.</p>
-        <ul class="weak-list" id="teacherWeak"></ul>
-      </section>
-
-      <section class="block">
-        <h3>Coming back <span class="count" id="teacherReviewCount"></span></h3>
-        <p class="muted" id="teacherReviewEmpty">Nothing waiting — he has not
-          missed anything, or everything he missed has stuck since.</p>
-        <ul class="weak-list" id="teacherReview"></ul>
-      </section>
-
-      <section class="block">
-        <h3>Every answer</h3>
-        <div class="log-wrap">
-          <table class="log" id="teacherLog">
-            <thead>
-              <tr><th>Question</th><th>Topic</th><th>Tries</th></tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="block">
-        <div class="block-actions">
-          <button class="btn btn-small" id="logClear">Clear session record</button>
-          <button class="btn btn-small" id="progressClear">Reset stars and badges</button>
-        </div>
-      </section>
-    </div>
-  </div>
-</div>
-
-<!-- Site footer. Identical on every page, so a reader who lands on any one
-     sheet can find the rest. -->
-<footer class="site-foot">
-  <a class="site-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener"
-     aria-label="Lewis Biz English"><img src="../logo.png" alt="" width="34" height="34"></a>
-  <p>更多教材與課程 · More materials and lessons<a href="https://lewistoeic.com/"
-    target="_blank" rel="noopener">lewistoeic.com</a></p>
-</footer>
-
-<script src="content.js"></script>
-<script src="app.js"></script>
-<script src="../learning-corner/home.js?v=1"></script>
+<p lang="en">This page has moved: <a href="https://learning-corner-3ba.pages.dev/math/">Number Lab</a>.</p>
+<p lang="zh-Hant">這一頁搬家了：<a href="https://learning-corner-3ba.pages.dev/math/">Number Lab</a>。</p>
 </body>
 </html>
