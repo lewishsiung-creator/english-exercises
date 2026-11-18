@@ -601,59 +601,59 @@ const WHY = {
   add(given, a, b) {
     const n = Number(given), answer = a + b;
     if (!Number.isFinite(n)) return null;
-    if (n === a || n === b) return `${n} is one of the two numbers on its own. Both of them go together.`;
+    if (n === a || n === b) return `${n} is one of the two numbers *on its own*. Both of them go together.`;
     /* The make-ten mistake — the ones right and a whole ten gone — is the
        commonest wrong answer in first-grade addition, so it is read first.
        It collides with "subtracted instead" whenever one of the numbers is
        exactly 5 (5 + 9: nine take five, and fourteen minus its ten, are both
        4), and when the same number can be read two ways the generous reading
        wins: this one tells him the part he got right. */
-    if (answer > 10 && n === answer - 10) return `The ones are right. But a whole ten went missing. Look again — the first ten is full, and ${answer - 10} more sit underneath.`;
-    if (n === Math.abs(a - b)) return `${n} is what you get by taking away. This one says +. It gets bigger, not smaller.`;
-    if (n === a * b) return `${n} is ${a} lots of ${b}. The + sign only means put the two piles together.`;
-    if (n === answer - 1) return `One short. Count on from ${a}. The first number you say is ${a + 1}, not ${a}.`;
-    if (n === answer + 1) return `One too many. Count on ${b} times from ${a} and then stop.`;
+    if (answer > 10 && n === answer - 10) return `The ones are right. But *a whole ten* went missing. Look again — the first ten is full, and ${answer - 10} more sit underneath.`;
+    if (n === Math.abs(a - b)) return `${n} is what you get by *taking away*. This one says +. It gets bigger, not smaller.`;
+    if (n === a * b) return `${n} is ${a} *lots of* ${b}. The + sign only means put the two piles together.`;
+    if (n === answer - 1) return `*One short.* Count on from ${a}. The first number you say is ${a + 1}, not ${a}.`;
+    if (n === answer + 1) return `*One too many.* Count on ${b} times from ${a} and then stop.`;
     return null;
   },
 
   take(given, a, b) {
     const n = Number(given), answer = a - b, ones = a % 10;
     if (!Number.isFinite(n)) return null;
-    if (n === a + b) return `${n} is what you get by adding. The − sign sends ${b} of them away. It gets smaller.`;
-    if (n === a) return `${a} is what you started with. ${b} of them still have to go.`;
-    if (n === b) return `${b} is what you took away. Not what is left behind.`;
+    if (n === a + b) return `${n} is what you get by *adding*. The − sign sends ${b} of them away. It gets smaller.`;
+    if (n === a) return `${a} is what you *started with*. ${b} of them still have to go.`;
+    if (n === b) return `${b} is what you *took away*. Not what is left behind.`;
     // Smaller-from-larger: 13 − 5 done as 5 − 3, because 3 − 5 "cannot" be
     // done. He has to go down through the ten instead.
-    if (a > 10 && b > ones && n === b - ones) return `You took the ${ones} off the ${b}. It goes the other way round. You have ${a}. Drop ${ones} to land on 10, then ${b - ones} more.`;
-    if (n === answer + 1) return `One too many left. That takes ${b - 1} away. The question takes ${b}.`;
-    if (n === answer - 1) return `One too few left. You went one step past. Take away ${b}, not ${b + 1}.`;
+    if (a > 10 && b > ones && n === b - ones) return `You took the ${ones} off the ${b}. It goes the *other way round*. You have ${a}. Drop ${ones} to land on 10, then ${b - ones} more.`;
+    if (n === answer + 1) return `*One too many* left. That takes ${b - 1} away. The question takes ${b}.`;
+    if (n === answer - 1) return `*One too few* left. You went one step past. Take away ${b}, not ${b + 1}.`;
     return null;
   },
 
   missing(given, total, known) {
     const n = Number(given), answer = total - known;
     if (!Number.isFinite(n)) return null;
-    if (n === total) return `${total} is the total. That is where you finish. The box is the part missing out of it.`;
-    if (n === known) return `${known} is the part you can already see. The box is the rest of it.`;
-    if (n === total + known) return `${n} is both numbers added. One of them is already inside the ${total}. So this time it comes off.`;
-    if (n === answer + 1) return `One too many. Count from ${known} up to ${total}. How many steps is that?`;
-    if (n === answer - 1) return `One short. Count from ${known} up to ${total}. The last step counts too.`;
+    if (n === total) return `${total} is *the total*. That is where you finish. The box is the part missing out of it.`;
+    if (n === known) return `${known} is the part you can *already see*. The box is the rest of it.`;
+    if (n === total + known) return `${n} is *both numbers added*. One of them is already inside the ${total}. So this time it comes off.`;
+    if (n === answer + 1) return `*One too many.* Count from ${known} up to ${total}. How many steps is that?`;
+    if (n === answer - 1) return `*One short.* Count from ${known} up to ${total}. The last step counts too.`;
     return null;
   },
 
   blocks(given, value) {
     const n = Number(given), t = Math.floor(value / 10), o = value % 10;
     if (!Number.isFinite(n)) return null;
-    if (t !== o && n === o * 10 + t) return `The tens and ones are the wrong way round. There are ${t} tall rods. So the ${t} goes in front.`;
-    if (n === t + o) return `You added the two digits. But ${t} rods are not ${t}. Each rod is ten, so they are ${t * 10} already.`;
+    if (t !== o && n === o * 10 + t) return `The tens and ones are the *wrong way round*. There are ${t} tall rods. So the ${t} goes in front.`;
+    if (n === t + o) return `You added the *two digits*. But ${t} rods are not ${t}. Each rod is ten, so they are ${t * 10} already.`;
     if (n === t) return o === 0
-      ? `${t} is how many rods there are. Not how many blocks. One rod is worth ten.`
-      : `${t} is how many rods there are. Each one is worth ten. So they come to ${t * 10}.`;
+      ? `${t} is *how many rods* there are. Not how many blocks. One rod is worth ten.`
+      : `${t} is how many rods there are. Each one is *worth ten*. So they come to ${t * 10}.`;
     if (n === o) return o === 0
-      ? `There are no loose ones here. It is all rods. And a rod is worth ten.`
-      : `${o} is just the loose ones. The ${t} rods count too. They are ${t * 10}.`;
-    if (Math.abs(n - value) === 10) return `One rod out. Count the tall ones again — there are ${t}.`;
-    if (Math.abs(n - value) === 1) return `One loose block out. There are ${o} sitting on their own.`;
+      ? `There are *no loose ones* here. It is all rods. And a rod is worth ten.`
+      : `${o} is just the *loose ones*. The ${t} rods count too. They are ${t * 10}.`;
+    if (Math.abs(n - value) === 10) return `*One rod out.* Count the tall ones again — there are ${t}.`;
+    if (Math.abs(n - value) === 1) return `*One loose block* out. There are ${o} sitting on their own.`;
     return null;
   },
 
@@ -662,14 +662,14 @@ const WHY = {
     if (given === '=') {
       if (a === b) return null;
       return ta === tb
-        ? `These two are not the same. The tens match, so look at the ones.`
-        : `These two are not the same. One of them has more tens.`;
+        ? `These two are not the same. The *tens match*, so look at the *ones*.`
+        : `These two are not the same. One of them has *more tens*.`;
     }
-    if (a === b) return `Look again, digit by digit. Same tens. Same ones.`;
+    if (a === b) return `Look again, *digit by digit*. Same tens. Same ones.`;
     // Everything left is the right comparison pointing the wrong way, which
     // is a reading mistake and not a number one — so it gets the mouth back.
-    if (ta === tb) return `The mouth always opens at the bigger number. Both of these have ${ta} tens. So the ones decide it: ${a % 10} against ${b % 10}.`;
-    return `The mouth always opens at the bigger number. Count the tens first — ${ta} tens against ${tb} tens.`;
+    if (ta === tb) return `The *mouth* always opens at the bigger number. Both of these have ${ta} tens. So the ones decide it: ${a % 10} against ${b % 10}.`;
+    return `The *mouth* always opens at the bigger number. Count the tens first — ${ta} tens against ${tb} tens.`;
   },
 
   clock(given, h, m) {
@@ -677,14 +677,14 @@ const WHY = {
     const nextH = h === 12 ? 1 : h + 1;
     if (gm === m && gh === nextH) {
       return m === 30
-        ? `Half past, but a whole hour on. The short hand sits between two numbers. The hour is the one it has gone past.`
-        : `The minutes are right. Look at the short hand again. It points straight at a number. That one is the hour.`;
+        ? `Half past, but a whole hour on. The *short hand* sits between two numbers. The hour is the one it has gone past.`
+        : `The minutes are right. Look at the *short hand* again. It points straight at a number. That one is the hour.`;
     }
-    if (gm === m) return `The minutes are right. The hour comes from the short hand, the stubby one.`;
+    if (gm === m) return `The minutes are right. The hour comes from the *short hand*, the stubby one.`;
     if (gh === h) {
-      return `The hour is right. Now the long hand. Straight up is o’clock. Straight down is half past.`;
+      return `The hour is right. Now the *long hand*. Straight up is o’clock. Straight down is half past.`;
     }
-    return `Short hand first. That one is the hour. Then the long hand. Straight up is o’clock, straight down is half past.`;
+    return `*Short hand* first. That one is the hour. Then the long hand. Straight up is o’clock, straight down is half past.`;
   },
 
   /* Word problems. What goes wrong here is almost never the adding — it is
@@ -694,32 +694,32 @@ const WHY = {
     if (!Number.isFinite(n)) return null;
 
     if (kind === 'join') {
-      if (n === Math.abs(a - b)) return `That is what you get by taking away. In this story more of them arrive. The number has to grow.`;
-      if (n === a) return `${a} is how many there were to start with. Then ${b} more turned up.`;
-      if (Math.abs(n - (a + b)) === 1) return `So close — one out. Start at ${a}. Count on ${b} more, carefully.`;
+      if (n === Math.abs(a - b)) return `That is what you get by *taking away*. In this story more of them arrive. The number has to grow.`;
+      if (n === a) return `${a} is how many there were *to start with*. Then ${b} more turned up.`;
+      if (Math.abs(n - (a + b)) === 1) return `So close — one out. Start at ${a}. *Count on* ${b} more, carefully.`;
       return null;
     }
 
     if (kind === 'take') {
-      if (n === a + b) return `That is both numbers added. This story gives ${b} of them away. What is left is smaller than ${a}.`;
-      if (n === a) return `${a} is how many there were before. ${b} of them have gone.`;
-      if (Math.abs(n - (a - b)) === 1) return `One out. Start at ${a} and count back ${b}.`;
+      if (n === a + b) return `That is *both numbers added*. This story gives ${b} of them away. What is left is smaller than ${a}.`;
+      if (n === a) return `${a} is how many there were *before*. ${b} of them have gone.`;
+      if (Math.abs(n - (a - b)) === 1) return `One out. Start at ${a} and *count back* ${b}.`;
       return null;
     }
 
     if (kind === 'compare') {
-      if (n === a + b) return `That is the two rows added together. The question asks how many extra. Only the ones hanging off the end.`;
-      if (n === a) return `${a} is the whole top row. The extra ones have nobody underneath them.`;
-      if (n === b) return `${b} is the short row. Count the ones left over on the long row instead.`;
-      if (Math.abs(n - (a - b)) === 1) return `One out. Line the rows up. Count only the ones sticking out at the end.`;
+      if (n === a + b) return `That is the two rows *added together*. The question asks how many extra. Only the ones hanging off the end.`;
+      if (n === a) return `${a} is the *whole top row*. The extra ones have nobody underneath them.`;
+      if (n === b) return `${b} is the *short row*. Count the ones left over on the long row instead.`;
+      if (Math.abs(n - (a - b)) === 1) return `One out. Line the rows up. Count only the ones *sticking out* at the end.`;
       return null;
     }
 
     // The change is the unknown: a is where it ended up, b where it began.
-    if (n === a) return `${a} is how many there are now. The question is how many arrived.`;
-    if (n === b) return `${b} is how many there were at the start, before any came.`;
-    if (n === a + b) return `That is both numbers added. But the ${b} is already inside the ${a}. So this one comes off instead.`;
-    if (Math.abs(n - (a - b)) === 1) return `One out. Count up from ${b}. The ${b} itself does not count. Start with the next one.`;
+    if (n === a) return `${a} is how many there are *now*. The question is how many *arrived*.`;
+    if (n === b) return `${b} is how many there were *at the start*, before any came.`;
+    if (n === a + b) return `That is both numbers added. But the ${b} is *already inside* the ${a}. So this one comes off instead.`;
+    if (Math.abs(n - (a - b)) === 1) return `One out. Count up from ${b}. The ${b} itself *does not count*. Start with the next one.`;
     return null;
   },
 };
@@ -767,7 +767,7 @@ const G1 = [
           redraw: ['frame', 'add', a, b],
           why: ['add', a, b],
           answer: String(a + b),
-          hint: `Take ${10 - a} from the ${b} to make ten. Then 10 + ${b - (10 - a)}.`,
+          hint: `Take ${10 - a} from the ${b} to *make ten*. Then 10 + ${b - (10 - a)}.`,
         };
       }
 
@@ -780,7 +780,7 @@ const G1 = [
           redraw: ['frame', 'add', a, b],
           why: ['add', a, b],
           answer: String(a + b),
-          hint: `Start at ${a} and count on ${b} more.`,
+          hint: `Start at ${a} and *count on* ${b} more.`,
         };
       }
 
@@ -818,7 +818,7 @@ const G1 = [
           redraw: ['frame', 'take', a, b],
           why: ['take', a, b],
           answer: String(a - b),
-          hint: `Take ${a - 10} away to get down to 10. Then take ${b - (a - 10)} more.`,
+          hint: `Take ${a - 10} away to get *down to 10*. Then take ${b - (a - 10)} more.`,
         };
       }
 
@@ -831,7 +831,7 @@ const G1 = [
           redraw: ['frame', 'take', a, b],
           why: ['take', a, b],
           answer: String(a - b),
-          hint: `Start at ${a} and count back ${b}.`,
+          hint: `Start at ${a} and *count back* ${b}.`,
         };
       }
 
@@ -844,7 +844,7 @@ const G1 = [
         redraw: ['frame', 'take', a, b],
         why: ['take', a, b],
         answer: String(a - b),
-        hint: `The ten stays. Just take ${b} from the ${a - 10}.`,
+        hint: `*The ten stays.* Just take ${b} from the ${a - 10}.`,
       };
     },
   },
@@ -868,8 +868,8 @@ const G1 = [
         why: ['missing', total, known],
         answer: String(flip ? total - a : a),
         hint: flip
-          ? `How far is it from ${a} up to ${total}?`
-          : `Take ${total - a} away from ${total}.`,
+          ? `*How far* is it from ${a} up to ${total}?`
+          : `Take ${total - a} *away* from ${total}.`,
       };
     },
   },
@@ -888,7 +888,7 @@ const G1 = [
           why: ['blocks', value],
           ask: 'How many in all?',
           answer: String(value),
-          hint: `Each tall rod is 10. Count the rods first, then the little ones.`,
+          hint: `Each *tall rod* is 10. Count the rods first, then the little ones.`,
         };
       }
       const t = Math.floor(value / 10), o = value % 10;
@@ -926,15 +926,15 @@ const G1 = [
         const oa = rnd(0, 9);
         a = t * 10 + oa;
         b = t * 10 + otherThan(oa, 0, 9);
-        hint = `Both have ${t} tens, so the ones decide it.`;
+        hint = `Both have ${t} tens, so *the ones decide* it.`;
       } else if (kind === 'differentTens') {
         const ta = rnd(1, 9);
         a = ta * 10 + rnd(0, 9);
         b = otherThan(ta, 1, 9) * 10 + rnd(0, 9);
-        hint = 'Look at the tens first. More tens wins.';
+        hint = 'Look at the *tens first*. More tens wins.';
       } else {
         a = b = rnd(10, 99);
-        hint = 'Look carefully — these two are the same number.';
+        hint = 'Look carefully — these two are *the same number*.';
       }
 
       return {
@@ -973,7 +973,7 @@ const G1 = [
           redraw: ['story', 'join', a, b, it.icon],
           why: ['story', 'join', a, b],
           answer: String(a + b),
-          hint: `${a} and ${b} more. Count them all.`,
+          hint: `${a} and ${b} more. *Count them all.*`,
         };
       }
 
@@ -986,7 +986,7 @@ const G1 = [
           redraw: ['story', 'take', a, b, it.icon],
           why: ['story', 'take', a, b],
           answer: String(a - b),
-          hint: `Start with ${a}. Take ${b} away. Count what is left.`,
+          hint: `Start with ${a}. Take ${b} away. Count what is *left*.`,
         };
       }
 
@@ -1000,7 +1000,7 @@ const G1 = [
           redraw: ['story', 'compare', a, b, it.icon],
           why: ['story', 'compare', a, b],
           answer: String(a - b),
-          hint: 'The rows are lined up. Count the extra ones on the end.',
+          hint: 'The rows are *lined up*. Count the extra ones on the end.',
         };
       }
 
@@ -1018,7 +1018,7 @@ const G1 = [
         redraw: ['story', 'compare', total, start, it.icon],
         why: ['story', 'grow', total, start],
         answer: String(total - start),
-        hint: `Count up from ${start} to ${total}.`,
+        hint: `*Count up* from ${start} to ${total}.`,
       };
     },
   },
@@ -1046,7 +1046,7 @@ const G1 = [
           timeText(h === 1 ? 12 : h - 1, m === 0 ? 30 : 0),
         ),
         answer: timeText(h, m),
-                hint: 'The short hand tells the hour. The long hand tells the minutes.',
+                hint: 'The *short hand* tells the hour. The *long hand* tells the minutes.',
       };
     },
   },
@@ -1073,7 +1073,7 @@ const G2 = [
         return {
           ask: `${a} + ${b} = ?`,
           answer: String(a + b),
-          hint: `${oa} + ${ob} is ${oa + ob} — that is a whole ten and ${(oa + ob) % 10} left over.`,
+          hint: `${oa} + ${ob} is ${oa + ob} — that is *a whole ten* and ${(oa + ob) % 10} left over.`,
         };
       }
 
@@ -1083,7 +1083,7 @@ const G2 = [
       return {
         ask: `${a} + ${b} = ?`,
         answer: String(a + b),
-        hint: `Add the tens first: ${ta * 10} + ${tb * 10}. Then the ones.`,
+        hint: `Add the *tens first*: ${ta * 10} + ${tb * 10}. Then the ones.`,
       };
     },
   },
@@ -1105,7 +1105,7 @@ const G2 = [
         return {
           ask: `${a} − ${b} = ?`,
           answer: String(a - b),
-          hint: `${oa} is too small to take ${ob} from. Break a ten open: ${oa + 10} − ${ob}.`,
+          hint: `${oa} is too small to take ${ob} from. *Break a ten* open: ${oa + 10} − ${ob}.`,
         };
       }
 
@@ -1115,7 +1115,7 @@ const G2 = [
       return {
         ask: `${a} − ${b} = ?`,
         answer: String(a - b),
-        hint: 'Take away the tens first, then the ones.',
+        hint: 'Take away the *tens first*, then the ones.',
       };
     },
   },
@@ -1141,7 +1141,7 @@ const G2 = [
           // The same digit read in each of the other two places.
           choices: options(worth, digit, digit * 10, digit * 100),
           answer: String(worth),
-          hint: `The ${digit} is sitting in the ${place} place.`,
+          hint: `The ${digit} is sitting in the *${place}* place.`,
         };
       }
       return {
@@ -1149,7 +1149,7 @@ const G2 = [
           redraw: ['blocks', value],
         ask: 'How many in all?',
         answer: String(value),
-        hint: 'Each big square is 100, each tall rod is 10.',
+        hint: 'Each *big square* is 100, each *tall rod* is 10.',
       };
     },
   },
@@ -1172,7 +1172,7 @@ const G2 = [
         redraw: ['coins', bag],
         ask: 'How many cents?',
         answer: String(total),
-        hint: 'Count the big coins first, then add the small ones.',
+        hint: 'Count the *big coins* first, then add the small ones.',
       };
     },
   },
@@ -1195,7 +1195,7 @@ const G2 = [
         return {
           ask: `${who} has ${a} ${it.many}. ${who} gets ${b} more. How many now?`,
           answer: String(a + b),
-          hint: `Add the tens first, then the ones.`,
+          hint: `Add the *tens first*, then the ones.`,
         };
       }
 
@@ -1205,7 +1205,7 @@ const G2 = [
         return {
           ask: `There are ${a} ${it.many}. ${b} are taken away. How many are left?`,
           answer: String(a - b),
-          hint: `Start at ${a} and take away ${b}.`,
+          hint: `Start at ${a} and *take away* ${b}.`,
         };
       }
 
@@ -1218,7 +1218,7 @@ const G2 = [
         return {
           ask: `A ${sold.one} costs ${cost}¢. ${who} pays ${paid}¢. How much change?`,
           answer: String(paid - cost),
-          hint: `Count up from ${cost}¢ to ${paid}¢.`,
+          hint: `*Count up* from ${cost}¢ to ${paid}¢.`,
         };
       }
 
@@ -1233,7 +1233,7 @@ const G2 = [
       return {
         ask: `${who} has ${a} ${it.many}. ${who} gets ${b} more. Then ${who} gives ${c} away. How many now?`,
         answer: String(a + b - c),
-        hint: `First work out ${a} + ${b}. Then take ${c} off that.`,
+        hint: `*First* work out ${a} + ${b}. *Then* take ${c} off that.`,
       };
     },
   },
@@ -1257,7 +1257,7 @@ const G2 = [
         ask: 'What time is it?',
         choices: shuffle([right, ...wrong]),
         answer: right,
-                hint: 'Count the long hand round in fives.',
+                hint: 'Count the long hand round in *fives*.',
       };
     },
   },
@@ -1275,7 +1275,7 @@ const G2 = [
           redraw: ['array', rows, cols],
           ask: 'How many counters?',
           answer: String(rows * cols),
-          hint: `There are ${rows} rows with ${cols} in each row.`,
+          hint: `There are ${rows} rows with ${cols} in *each row*.`,
         };
       }
       return {
@@ -1283,7 +1283,7 @@ const G2 = [
         redraw: ['array', rows, cols],
         ask: `${rows} rows of ${cols} = ?`,
         answer: String(rows * cols),
-        hint: `Add ${cols} to itself ${rows} times.`,
+        hint: `Add ${cols} to itself ${rows} *times*.`,
       };
     },
   },
@@ -1318,7 +1318,7 @@ const G3 = [
       return {
         ask: `${a} × ${b} = ?`,
         answer: String(a * b),
-        hint: `${a} × ${b - 1} is ${a * (b - 1)}. One more group of ${a} gets you there.`,
+        hint: `${a} × ${b - 1} is ${a * (b - 1)}. *One more group* of ${a} gets you there.`,
       };
     },
   },
@@ -1334,7 +1334,7 @@ const G3 = [
       return {
         ask: `${b * q} ÷ ${b} = ?`,
         answer: String(q),
-        hint: `How many ${b}s make ${b * q}?`,
+        hint: `*How many* ${b}s make ${b * q}?`,
       };
     },
   },
@@ -1358,7 +1358,7 @@ const G3 = [
         return {
           ask: `There are ${r} ${box.many}. Each ${box.one} has ${c} ${it.many}. How many ${it.many} in all?`,
           answer: String(r * c),
-          hint: `${r} groups of ${c}. That is ${r} × ${c}.`,
+          hint: `${r} *groups of* ${c}. That is ${r} × ${c}.`,
         };
       }
 
@@ -1366,7 +1366,7 @@ const G3 = [
         return {
           ask: `${r * c} ${it.many} go into ${r} ${box.many}. How many in each ${box.one}?`,
           answer: String(c),
-          hint: `Share ${r * c} out between ${r} ${box.many}.`,
+          hint: `*Share* ${r * c} out between ${r} ${box.many}.`,
         };
       }
 
@@ -1374,7 +1374,7 @@ const G3 = [
         return {
           ask: `There are ${r * c} ${it.many}. Each ${box.one} holds ${c}. How many ${box.many}?`,
           answer: String(r),
-          hint: `How many ${c}s make ${r * c}?`,
+          hint: `*How many* ${c}s make ${r * c}?`,
         };
       }
 
@@ -1382,7 +1382,7 @@ const G3 = [
       return {
         ask: `${r} ${box.many} have ${c} ${it.many} each. ${who} takes ${eaten} away. How many are left?`,
         answer: String(r * c - eaten),
-        hint: `First ${r} × ${c}. Then take ${eaten} off.`,
+        hint: `*First* ${r} × ${c}. *Then* take ${eaten} off.`,
       };
     },
   },
@@ -1405,7 +1405,7 @@ const G3 = [
           // drops it.
           choices: options(`${k}/${n}`, `${n - k}/${n}`, `${k + 1}/${n}`, `${k}/${n + 1}`),
           answer: `${k}/${n}`,
-                    hint: `The bottom number is how many equal parts there are: ${n}.`,
+                    hint: `The *bottom number* is how many equal parts there are: ${n}.`,
         };
       }
       let n2 = pick([2, 3, 4, 5, 6, 8]), k2 = rnd(1, n2 - 1);
@@ -1415,7 +1415,7 @@ const G3 = [
         ask: `Which is bigger, ${k}/${n} or ${k2}/${n2}?`,
         choices: shuffle([`${k}/${n}`, `${k2}/${n2}`]),
         answer: bigger,
-        hint: 'Picture each one as a bar. Which bar has more shaded in?',
+        hint: 'Picture each one as a bar. Which bar has *more shaded* in?',
       };
     },
   },
@@ -1430,14 +1430,14 @@ const G3 = [
         return {
           ask: `${a} + ${b} = ?`,
                     answer: String(a + b),
-          hint: 'Hundreds, then tens, then ones.',
+          hint: '*Hundreds*, then *tens*, then *ones*.',
         };
       }
       const a = rnd(300, 999), b = rnd(110, a - 50);
       return {
         ask: `${a} − ${b} = ?`,
                 answer: String(a - b),
-        hint: 'If the top digit is too small, borrow from next door.',
+        hint: 'If the top digit is too small, *borrow* from next door.',
       };
     },
   },
@@ -1454,7 +1454,7 @@ const G3 = [
           redraw: ['rect', w, h],
           ask: 'What is the area?',
           answer: String(w * h),
-          hint: 'Area is the squares inside: length times width.',
+          hint: '*Area* is the squares inside: length times width.',
         };
       }
       return {
@@ -1462,7 +1462,7 @@ const G3 = [
         redraw: ['rect', w, h],
         ask: 'What is the perimeter?',
         answer: String(2 * (w + h)),
-        hint: 'Perimeter is the walk all the way round: add all four sides.',
+        hint: '*Perimeter* is the walk all the way round: add all four sides.',
       };
     },
   },
@@ -1485,7 +1485,7 @@ const G3 = [
           ask: `Round ${v} to the nearest ten.`,
           choices: options(answer, lo === answer ? lo + 10 : lo, v),
           answer: String(answer),
-          hint: `Is ${v} closer to ${lo} or to ${lo + 10}?`,
+          hint: `Is ${v} *closer to* ${lo} or to ${lo + 10}?`,
         };
       }
       let v = rnd(105, 989);
@@ -1498,7 +1498,7 @@ const G3 = [
         ask: `Round ${v} to the nearest hundred.`,
         choices: options(answer, lo === answer ? lo + 100 : lo, Math.round(v / 10) * 10),
         answer: String(answer),
-        hint: `Is ${v} closer to ${lo} or to ${lo + 100}?`,
+        hint: `Is ${v} *closer to* ${lo} or to ${lo + 100}?`,
       };
     },
   },

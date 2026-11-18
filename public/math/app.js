@@ -369,8 +369,8 @@ el('showMeBtn').addEventListener('click', () => {
 el('practiseBtn').addEventListener('click', () => startRound(state.topic));
 el('teachSkip').addEventListener('click', () => startRound(state.topic));
 
-/* A step may mark the word it is actually teaching *like this* in
-   content.js. Bold and tinted, not tinted alone: colour on its own is a
+/* A teaching step, a hint and a wrong-answer explanation may all mark the
+   word they are actually about *like this* in content.js. Bold and tinted, not tinted alone: colour on its own is a
    signal that does not reach a colour-blind reader, and this page is read by
    a six-year-old who is still working out which words are the important
    ones. Escaped first, so the content file stays plain text and cannot put
@@ -469,7 +469,7 @@ function askQuestion() {
   el('feedback').className = 'feedback';
   el('hint').hidden = true;
   el('hint').className = 'hint';
-  el('hint').textContent = q.hint || '';
+  el('hint').innerHTML = markKeyWords(q.hint || '');
 
   buildAnswer(q);
 }
@@ -579,7 +579,7 @@ el('showMeAnswer').addEventListener('click', () => {
   // He has given up on this one, so the slot goes back to the method: that
   // is what lets him copy the answer out and still learn something.
   if (q.hint) {
-    el('hint').textContent = q.hint;
+    el('hint').innerHTML = markKeyWords(q.hint);
     el('hint').className = 'hint';
     el('hint').hidden = false;
   }
@@ -627,11 +627,11 @@ function judge(given, node) {
 
     const wasHidden = el('hint').hidden;
     if (why) {
-      el('hint').textContent = why;
+      el('hint').innerHTML = markKeyWords(why);
       el('hint').className = 'hint is-why';
       el('hint').hidden = false;
     } else if (q.hint && state.attempts >= (atOnce ? 1 : 2)) {
-      el('hint').textContent = q.hint;
+      el('hint').innerHTML = markKeyWords(q.hint);
       el('hint').className = 'hint';
       el('hint').hidden = false;
     }

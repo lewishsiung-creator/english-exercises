@@ -23,6 +23,11 @@
   --purple: #8b5cf6;
   --purple-soft: #ece5fe;
   --purple-deep: #5b21b6;
+  /* Deep enough to be read, not just seen, on their own soft backgrounds:
+     6.3 and 7.2 against them. The mid tones (--orange, --blue) sit at 2.1
+     and 3.2 there, which is a colour you notice and a word you squint at. */
+  --orange-deep: #9a3412;
+  --blue-deep: #1e40af;
 
   --good: #22a06b;
   --good-soft: #d8f5e8;
@@ -660,6 +665,21 @@ main {
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
+
+/* The same mark inside the help panel. It cannot stay purple there: the
+   panel is already orange for the method or blue for the mistake, and a
+   third colour inside a coloured box is just noise. So it takes the panel's
+   own hue, concentrated — "the important part of this", not a new kind of
+   thing — and drops the stripe, which would be a tint on top of a tint.
+   Weight carries it without colour: 800 against the panel's 600. */
+.hint .term {
+  color: var(--orange-deep);
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hint.is-why .term { color: var(--blue-deep); }
 
 .feedback {
   margin: 14px 0 0;

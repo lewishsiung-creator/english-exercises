@@ -296,6 +296,23 @@ grade levels, for a child in Grade 1 working up through Grade 3.
   class is `.term`, not `.key`: `.key` is the number pad's buttons, and the
   collision silently handed the word the keypad's monospaced face at keypad
   size.
+- **The help panel marks its key word too, in its own colour.** The same
+  asterisks work in a `hint` and in a `WHY` sentence — 46 hint templates and
+  48 explanations carry one. Inside the panel the mark cannot stay purple:
+  the panel is already orange for the method or blue for the mistake, and a
+  third colour inside a coloured box is noise. So it takes the panel's own
+  hue concentrated (`--orange-deep`, `--blue-deep`, 6.3 and 7.2 against their
+  own backgrounds — the mid tones sit at 2.1 and 3.2, which is a colour you
+  notice and a word you squint at) and drops the stripe, which would be a
+  tint on a tint. Weight carries it without colour: 800 against the panel's
+  600. Two hints stay unmarked because they are pure arithmetic with no
+  method word in them, and marking something anyway would cost the colour its
+  meaning everywhere else.
+- **A mark never lands on the answer.** The marks name the method — *make
+  ten*, *count back*, *tens first*, *short hand* — never the number. Checked
+  across every hint and explanation the generators can produce: 0 marks
+  containing the answer. Otherwise the emphasis would quietly become the
+  giveaway that **Show me** is supposed to be.
 - **The explanations are written for a Grade 1 reader at every grade.** The
   maths gets harder up the levels; the English does not. He is six and reading
   them himself.
