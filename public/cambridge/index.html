@@ -78,6 +78,15 @@ main.wrap { padding-bottom: 40px; }
   .stop .txt { align-items: flex-start; }
   .stop .herelabel { order: 3; }          /* after the name, so every stop's text lines up */
 }
+/* teacher: one faint gear, as on the young learners page. An icon saved to the home
+   screen keeps its own storage apart from Safari and has no address bar for #teach,
+   so a teacher device is switched on here instead (2026-11-18). */
+.gear { position: fixed; right: max(12px, env(safe-area-inset-right, 0px)); bottom: max(12px, env(safe-area-inset-bottom, 0px)); width: 48px; height: 48px; border: 0; border-radius: 50%; background: transparent; color: var(--muted); opacity: .35; font-size: 22px; z-index: 30; }
+.gear:hover, .gear:focus-visible { opacity: .9; }
+.panel .state { font: 600 15px/1.5 var(--font-zh); color: var(--ink); }
+.panel .row { display: flex; flex-wrap: wrap; gap: 10px; }
+.panel ul { margin: 0; padding-left: 1.2em; font-size: 14px; line-height: 1.7; color: var(--muted); }
+.panel ul a { color: var(--ink); }
 </style>
 </head>
 <body>
@@ -120,7 +129,7 @@ main.wrap { padding-bottom: 40px; }
       <h2>Starters, Movers, Flyers</h2>
       <div class="also">Young Learners</div>
       <p>兒童三級，同一份字表分三個等級。先聽再看：每個字都能點了聽，能畫成圖的字配上圖案。</p>
-      <div class="facts"><span><b>1,407</b>個字</span><span><b>3</b>個等級</span><span><b>362</b>個有圖</span></div>
+      <div class="facts"><span><b>1,407</b>個字</span><span><b>3</b>個等級</span><span><b>480</b>個有圖</span></div>
       <span class="go">打開 ›</span>
     </a></li>
     <li><a class="exam" href="a2-key/">
@@ -146,6 +155,18 @@ main.wrap { padding-bottom: 40px; }
   <a class="cam-mark" href="https://lewistoeic.com/" target="_blank" rel="noopener" aria-label="Lewis Biz English"><img src="../logo.png" alt="" width="34" height="34"></a>
   <p>更多教材與課程 · <a href="https://lewistoeic.com/" target="_blank" rel="noopener">lewistoeic.com</a></p>
 </footer>
+
+<button class="gear" id="gear" aria-label="老師設定">⚙</button>
+<dialog class="panel" id="tpanel">
+  <h2>老師設定</h2>
+  <label>老師裝置</label>
+  <p class="state" id="tstate"></p>
+  <p>開啟後，A2 Key 和 B1 Preliminary 會出現「自學／教學」、「投影」和「指定」（本週指定學習單字）。從主畫面圖示打開時，網址列不能加 #teach，請在這裡開啟。</p>
+  <div class="row" style="justify-content:flex-start"><button class="btn primary" id="tonbtn">這台裝置設為老師版</button><button class="btn" id="toffbtn">改回學生版</button></div>
+  <label>兒童三級</label>
+  <ul><li>老師工具在 <a href="young-learners/">Starters／Movers／Flyers</a> 頁面右下角淡淡的 ⚙，不必另外開啟。</li></ul>
+  <div class="row"><button class="btn" id="tclose">關閉</button></div>
+</dialog>
 
 <script>
   // 你在這裡: the list this browser opened last (each page writes cam.last when it opens)
@@ -174,6 +195,28 @@ main.wrap { padding-bottom: 40px; }
     try { n = Object.values(JSON.parse(localStorage.getItem(el.dataset.store + '.marks') || '{}')).filter(v => v === 'k').length; } catch (e) {}
     if (n) el.innerHTML = `<b>${n.toLocaleString()}</b>個記住了`;
   });
+
+  // 老師裝置: the same flag #teach sets on each list (a2k.teacher / b1p.teacher), set from here
+  const LISTS = ['a2k', 'b1p'];
+  const isTeacher = () => { try { return LISTS.some(k => localStorage.getItem(k + '.teacher') === 'true'); } catch (e) { return false; } };
+  const tpanel = document.getElementById('tpanel');
+  function showT() {
+    const on = isTeacher();
+    document.getElementById('tstate').textContent = on ? '✓ 這台裝置現在是老師版。' : '這台裝置現在是學生版。';
+    document.getElementById('tonbtn').hidden = on; document.getElementById('toffbtn').hidden = !on;
+  }
+  function setT(on) {
+    try { LISTS.forEach(k => {
+      if (on) { localStorage.setItem(k + '.teacher', 'true'); localStorage.setItem(k + '.mode', '"teach"'); }
+      else { localStorage.removeItem(k + '.teacher'); localStorage.setItem(k + '.mode', '"self"'); }
+    }); } catch (e) {}
+    showT();
+  }
+  document.getElementById('gear').addEventListener('click', () => { showT(); tpanel.showModal(); });
+  document.getElementById('tonbtn').addEventListener('click', () => setT(true));
+  document.getElementById('toffbtn').addEventListener('click', () => setT(false));
+  document.getElementById('tclose').addEventListener('click', () => tpanel.close());
+  tpanel.addEventListener('click', ev => { if (ev.target === tpanel) tpanel.close(); });
 </script>
 </body>
 </html>
