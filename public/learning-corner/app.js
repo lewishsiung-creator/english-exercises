@@ -4,14 +4,18 @@
    for the family only. This repo is public, so its address must never be
    written here. Instead the family's link to this page carries it:
 
-       …/learning-corner/#books=<the id at the end of the book page's link>
+       …/lc/#<the id at the end of the book page's link>
+
+   (/lc/ is a short address that forwards here and keeps the #. The first
+   links handed out were …/learning-corner/#books=<id>; that form still
+   works and always must.)
 
    Whatever follows # is never sent to the server and appears in no log. The
    id is also remembered on that device (localStorage), so the door stays
    after a reload or a visit by the plain address. Opened anywhere else, the
    page shows the other doors and nothing says a third exists.
 
-   To make a device forget it:   …/learning-corner/#books=off
+   To make a device forget it:   …/lc/#off
 
    The id is checked against a strict pattern and only ever appended to one
    fixed address, so a made-up link cannot point the door somewhere else. */
@@ -43,9 +47,13 @@
     } catch (e) { /* nothing to do */ }
   }
 
+  /* Two spellings: the bare #<id> (and #off), and the older #books=<id>. */
   function fromLink() {
-    var m = /(?:^#|&)books=([^&]*)/.exec(location.hash);
-    return m ? m[1] : null;
+    var h = location.hash;
+    var m = /(?:^#|&)books=([^&]*)/.exec(h);
+    if (m) return m[1];
+    var bare = h.slice(1);
+    return (bare === 'off' || OK.test(bare)) ? bare : null;
   }
 
   function show() {

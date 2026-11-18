@@ -7230,10 +7230,14 @@ here, and the rule that students do not find each other's material stands.
 - **The book door is not in the source.** The picture-book page is a private,
   link-shared page of copyrighted books that lives outside this repo. This repo
   is public, so its address is never written here. The family's link to this
-  page carries it after the `#` (`#books=<id>`), `app.js` checks the id against
+  page carries it after the `#` — `…/lc/#<id>`, where `/lc/` is a short
+  address that only forwards here and keeps the `#` (2026-11-18, asked for so
+  the link is easier to send); the first links handed out were
+  `…/learning-corner/#books=<id>` and that form must keep working. `app.js`
+  checks the id against
   a strict pattern, appends it to one fixed address and remembers it on that
   device (`localStorage`, key `corner.books`). Without it the page shows two
-  doors and nothing says a third exists. `#books=off` makes a device forget.
+  doors and nothing says a third exists. `#off` makes a device forget.
   **Do not paste that address or id into this folder, this README or a commit
   message.**
 - **The look is a superhero comic page** (2026-11-18, asked for as "Marvel
