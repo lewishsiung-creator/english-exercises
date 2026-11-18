@@ -7236,12 +7236,23 @@ here, and the rule that students do not find each other's material stands.
   doors and nothing says a third exists. `#books=off` makes a device forget.
   **Do not paste that address or id into this folder, this README or a commit
   message.**
+- **The look is a superhero comic page** (2026-11-18, asked for as "Marvel
+  Avengers style"): one near-black ink for every outline, hard offset shadows
+  with no blur, halftone dots, burst rays behind each picture, slanted heavy
+  capitals, a slight tilt on each panel, a GO! burst on each door. One theme —
+  no light/dark pair. **Design language only:** no publisher's or team's name,
+  logo, emblem, character, costume, slogan or licensed typeface is on the
+  page, and none may be added; it is public. The display face is the heavy
+  condensed italic the device already has (Avenir Next Condensed on Apple
+  devices), never a downloaded font. The same line as the hbr.org look on
+  `/business-journal/` and the sportswear look on `/hank/` and `/eason/`.
 - **Adding a door:** copy one `<a class="door …">`, give it a class with its
-  own `--tint` and `--accent` (light and dark) in `style.css`, and draw its
-  picture in the same 200 × 130 box. The grid fills itself for two, three or
-  four.
+  own `--panel`, `--ray-a` and `--ray-b` in `style.css`, and draw its picture
+  in the same 200 × 130 box — shapes inside `<g class="ink">` get the comic
+  outline, anything outside it is drawn flat. The grid fills itself for two,
+  three or four.
 - **Kids' rules:** no sound, nothing that can be got wrong, nothing else to
-  tap. The entrance animation moves the doors but never fades them, because a
+  tap. The entrance animation scales the doors but never fades them, because a
   tab opened in the background pauses animations and a faded door would stay
   invisible.
 - **The way back (`home.js`).** `/math/` and `/museum-trip/` each carry a home
