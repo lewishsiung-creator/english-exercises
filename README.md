@@ -29,7 +29,9 @@ Cambridge's official word lists with Chinese — Starters, Movers and Flyers,
 A2 Key, B1 Preliminary — under one hub at `/cambridge/`.
 
 One page is not English at all: `/math/` is math practice for Grades 1 to 3,
-built for a child in an American school.
+built for a child in an American school. `/learning-corner/` is that child's front
+door: one page of big doors to `/math/`, `/museum-trip/` and, on a family
+device only, a private page of picture books that is not in this repo.
 
 Thirteen more pages are not lessons. `/landscape-portfolio/` is a portfolio
 template for a student to fill in with their own work, `/tiffanyproposal/` is
@@ -7212,3 +7214,34 @@ a form where Lewis types a student's name and class time and gets that page.
   it. The bank card is part of that fixed text, the same for every student.
 - The style is `public/course/course.css`, copied from `/vicky-course/`.
   Vicky's page was left as it is because its URL has already gone out.
+
+## Learning Corner — one child's pages behind one front door
+
+`/learning-corner/` (2026-11-18) is the page a Grade 1 child opens first: three
+big doors, one per page, each in its own colour with its own drawing so the
+right one can be found before the names can be read. It is a family hub, not an
+index of the site — nothing with a student or client in it is ever linked from
+here, and the rule that students do not find each other's material stands.
+
+- **Files:** `index.html` (the doors, each a plain link with an inline SVG),
+  `style.css`, `app.js`. No data file: three doors do not need one.
+- **No names.** No child, school or teacher on the page or in the URL, as on
+  `/math/` and `/museum-trip/`. `noindex, nofollow`.
+- **The book door is not in the source.** The picture-book page is a private,
+  link-shared page of copyrighted books that lives outside this repo. This repo
+  is public, so its address is never written here. The family's link to this
+  page carries it after the `#` (`#books=<id>`), `app.js` checks the id against
+  a strict pattern, appends it to one fixed address and remembers it on that
+  device (`localStorage`, key `corner.books`). Without it the page shows two
+  doors and nothing says a third exists. `#books=off` makes a device forget.
+  **Do not paste that address or id into this folder, this README or a commit
+  message.**
+- **Adding a door:** copy one `<a class="door …">`, give it a class with its
+  own `--tint` and `--accent` (light and dark) in `style.css`, and draw its
+  picture in the same 200 × 130 box. The grid fills itself for two, three or
+  four.
+- **Kids' rules:** no sound, nothing that can be got wrong, nothing else to
+  tap. The entrance animation moves the doors but never fades them, because a
+  tab opened in the background pauses animations and a faded door would stay
+  invisible.
+- Asset links are `?v=N` — bump on every change, as on `/museum-trip/`.
