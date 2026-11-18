@@ -19,6 +19,12 @@
 (function () {
   'use strict';
 
+  /* Opening this page at all marks the device as the family's, which is what
+     lets /math/ and /museum-trip/ show their way back here (see home.js).
+     Other children are handed those pages directly and never come through
+     this one, so they never see that button. */
+  try { localStorage.setItem('corner.home', '1'); } catch (e) { /* no storage, no button */ }
+
   var KEY = 'corner.books';
   var BASE = 'https://claude.ai/artifact/';
   var OK = /^[A-Za-z0-9_-]{8,64}$/;

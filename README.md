@@ -7244,4 +7244,17 @@ here, and the rule that students do not find each other's material stands.
   tap. The entrance animation moves the doors but never fades them, because a
   tab opened in the background pauses animations and a faded door would stay
   invisible.
+- **The way back (`home.js`).** `/math/` and `/museum-trip/` each carry a home
+  button to this page, written into their HTML `hidden` and marked
+  `data-corner-home`. Opening the Corner sets `corner.home` in that device's
+  `localStorage`; `learning-corner/home.js`, loaded by both pages, un-hides the
+  button only where that mark exists. Both pages are also handed out on their
+  own (Museum Trip went to a whole class), and those children see no button.
+  It lives on each page's **first screen only** — Number Lab's level chooser,
+  where it takes the back button's place and gives it up on every other
+  screen, and Museum Trip's start screen, which the 🏠 Home chip brings back —
+  so a round cannot be left by accident. Each page styles its own button
+  (`.bar-home` in `math/style.css`, `.start-home` in `museum-trip/style.css`).
+  A new page under the Corner needs the same three things: the hidden marked
+  link, its own CSS, and the script tag.
 - Asset links are `?v=N` — bump on every change, as on `/museum-trip/`.

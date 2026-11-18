@@ -369,7 +369,21 @@ svg { display: block; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .start { background: linear-gradient(180deg, #1e2f45 0%, #17151c 70%); }
 }
-.start-card { width: 100%; max-width: 520px; text-align: center; }
+.start-card { position: relative; width: 100%; max-width: 520px; text-align: center; }
+/* The way home to the Learning Corner, on a family device only (see the note
+   in index.html). It sits on the corner of the cover picture, the way the
+   "real photo" chip sits on a photo, so it costs the screen no height. */
+.start-home {
+  position: absolute; top: 12px; left: 12px; z-index: 1;
+  width: 52px; height: 52px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--card); color: var(--ink-2);
+  box-shadow: var(--shadow-sm), 0 0 0 2px var(--line);
+}
+.start-home[hidden] { display: none; }
+.start-home svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.start-home:active { transform: scale(.94); }
+.start-home:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
 .start-art { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
 .start-art svg { width: 100%; height: auto; }
 .start-kicker { margin: 22px 0 0; font-weight: 800; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); }

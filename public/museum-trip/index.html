@@ -14,7 +14,7 @@
      became Lewis's logo on 2026-11-13; children's pages keep the star. -->
 <link rel="apple-touch-icon" href="../star-icon.png">
 <meta name="theme-color" content="#fff7ea">
-<link rel="stylesheet" href="style.css?v=17">
+<link rel="stylesheet" href="style.css?v=18">
 </head>
 <body>
 
@@ -39,6 +39,11 @@
      phones and iPads, which will not play anything before a touch. -->
 <div class="start" id="start">
   <div class="start-card">
+    <!-- Home, to the family's Learning Corner. Hidden for everyone else: this
+         page went to a whole class. ../learning-corner/home.js shows it only
+         on a device that has opened the Corner. It lives on this start screen
+         only, which the 🏠 Home chip always brings back. -->
+    <a class="start-home" href="../learning-corner/" data-corner-home hidden aria-label="Learning Corner 學習角"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 11.5L12 4l8.5 7.5M6 10v9.5h12V10M10 19.5v-5h4v5"/></svg></a>
     <div class="start-art" id="startArt"></div>
     <p class="start-kicker" lang="en">Field trip · 校外教學</p>
     <h1><span lang="en">Museum Trip</span><span class="start-zh" lang="zh-Hant">博物館之旅</span></h1>
@@ -100,5 +105,6 @@
 
 <script src="content.js?v=17"></script>
 <script src="app.js?v=17"></script>
+<script src="../learning-corner/home.js?v=1"></script>
 </body>
 </html>

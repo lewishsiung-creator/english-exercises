@@ -21,6 +21,13 @@
 
 <header class="bar">
   <button class="bar-btn" id="backBtn" hidden aria-label="Go back">←</button>
+  <!-- Home, to the family's Learning Corner. Hidden for everyone else: this
+       page is also handed out on its own. ../learning-corner/home.js shows it
+       only on a device that has opened the Corner. It takes the back button's
+       place on the first screen and gives it up everywhere else (style.css),
+       so the top-left button always means "up one level" and a round cannot
+       be left by accident. -->
+  <a class="bar-btn bar-home" href="../learning-corner/" data-corner-home hidden aria-label="Home"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 11.5L12 4l8.5 7.5M6 10v9.5h12V10M10 19.5v-5h4v5"/></svg></a>
   <h1 class="bar-title" id="barTitle">Number Lab</h1>
   <button class="bar-btn bar-btn-quiet" id="teacherBtn" aria-label="Grown-up panel">👨‍🏫</button>
 </header>
@@ -195,5 +202,6 @@
 
 <script src="content.js"></script>
 <script src="app.js"></script>
+<script src="../learning-corner/home.js?v=1"></script>
 </body>
 </html>

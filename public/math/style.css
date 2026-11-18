@@ -112,6 +112,19 @@ body {
 
 .bar-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(44, 36, 64, .12); }
 
+/* The way home to the Learning Corner, on a family device only (see the note
+   in index.html). A link dressed as a bar button. It shows on the first
+   screen, where there is no back button, and steps aside whenever there is
+   one: two buttons side by side up there would be one too many on a phone. */
+.bar-home { display: grid; place-items: center; text-decoration: none; }
+.bar-home svg {
+  width: 26px; height: 26px;
+  fill: none; stroke: currentColor; stroke-width: 2.2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.bar-home[hidden],
+#backBtn:not([hidden]) + .bar-home { display: none; }
+
 /* Anything bright sitting in a child's eyeline all lesson becomes one more
    thing to tap. The grown-up's buttons stay faint until they are wanted. */
 .bar-btn-quiet {
