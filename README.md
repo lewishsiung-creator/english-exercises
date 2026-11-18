@@ -7258,10 +7258,18 @@ here, and the rule that students do not find each other's material stands.
   next, green right), the chapter tints and the photos. The three pages share
   one night gradient; change it in all three or none.
   Two things found on `/math/` while doing it, both in `style.css` and both
-  left there: at tablet width the progress bar has **no width** (an auto-margin
-  item in a flex column; `comic.css` sets `width: 100%`, so the bar shows only
-  while `comic.css` is linked), and at 1024 × 768 the number pad's last row
-  sits **below the fold** (it ended at 811px before; `comic.css` adds about 2px).
+  **fixed there the same day**, so they hold with or without `comic.css`:
+  the progress bar had **no width** at tablet width (an auto-margin item in a
+  flex column — it now says `width: 100%`), and on a tablet on its side the
+  number pad's last row, with 0 and ✓, sat **below the fold** (the stacked
+  question and pad ended at 811px on a 768px screen). A short landscape
+  screen (`min-width: 800px`, `max-height: 940px`, landscape) now puts the
+  question and its help on the left and the pad or choices on the right;
+  nothing is made smaller. Checked across all 21 topics at 1024 × 768: every
+  answer area ends by 462px. Upright tablets, tall windows and phones keep
+  the single column. The 940 is measured — the single column with a hint and
+  feedback showing ends at 938px — so re-measure it if the question card or
+  the pad changes height.
 - **Adding a door:** copy one `<a class="door …">`, give it a class with its
   own `--panel`, `--ray-a` and `--ray-b` in `style.css`, and draw its picture
   in the same 200 × 130 box — shapes inside `<g class="ink">` get the comic

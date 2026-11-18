@@ -406,6 +406,11 @@ main {
 /* ---------------- progress ---------------- */
 
 .progress {
+  /* The width has to be said. On a tablet the play screen is a flex column
+     (and, on its side, a grid), and there an item with auto side margins
+     shrinks to its content — which for an empty bar is nothing. Without this
+     the bar was simply not there at tablet width. */
+  width: 100%;
   height: 8px;
   border-radius: 999px;
   background: rgba(44, 36, 64, .12);
@@ -455,6 +460,43 @@ main {
     justify-content: center;
   }
   #screen-play.is-active .progress { margin-bottom: 0; }
+}
+
+/* A tablet on its side: wide, and short. Stacked, the question and the number
+   pad together ran to about 810px, so on a 1024 × 768 iPad — less once the
+   browser's own bars are counted — the pad's bottom row, with 0 and the ✓ he
+   needs for every single answer, was below the edge of the screen, and the
+   hint under that. Here they sit side by side instead: the question on the
+   left with its help underneath it, the pad or the choices on the right,
+   where a hand already is. Nothing is made smaller to fit.
+
+   Only for a short landscape screen. A tablet held upright and a tall
+   laptop window have the height for the single column, and keep it. The
+   940px is measured, not chosen: the single column with a hint and the
+   feedback line showing ends at 938px. */
+@media (min-width: 800px) and (max-height: 940px) and (orientation: landscape) {
+  #screen-play.is-active {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 348px;
+    /* progress · its label · the question · hint · feedback · whatever is
+       left. The last row takes the slack, so a short question keeps its
+       help tucked under it instead of being spread down the pad's height. */
+    grid-template-rows: auto auto auto auto auto 1fr;
+    column-gap: 28px;
+    align-content: center;
+    max-width: 900px;
+  }
+  #screen-play .progress,
+  #screen-play .progress-text { grid-column: 1 / -1; }
+  #screen-play .q-card   { grid-column: 1; grid-row: 3; }
+  #screen-play .hint     { grid-column: 1; grid-row: 4; }
+  #screen-play .feedback { grid-column: 1; grid-row: 5; }
+  #screen-play .answer {
+    grid-column: 2;
+    grid-row: 3 / 7;
+    align-self: start;
+    margin-top: 0;
+  }
 }
 
 .q-card {
