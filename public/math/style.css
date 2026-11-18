@@ -684,6 +684,17 @@ main {
   background: none;
   padding: 0;
   margin: 0;
+  /* A shape, not just a colour. Both panel marks are *lighter* than the ink
+     around them — vivid in colour, but with the colour taken away they turn
+     into the palest words in the sentence, so the emphasis reads backwards.
+     The teaching screen is safe without this because its mark sits on a
+     stripe, which is already a shape. Here the underline is that shape.
+     (Checked against deuteranopia and protanopia too, where all three marks
+     hold up on colour alone — this is for the grey end of the range, and for
+     a washed-out screen in sunlight.) */
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
 }
 
 .hint.is-why .term { color: var(--blue-deep); }

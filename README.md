@@ -310,7 +310,18 @@ grade levels, for a child in Grade 1 working up through Grade 3.
   difference against the rust's 65, and the blue mark read visibly weaker
   than the orange one for the same job. The brighter blue measures 63, so a
   marked word is equally findable in both panels. Contrast against a
-  background is the floor, not the test; the test is the word next to it. Weight carries it without colour: 800 against the panel's
+  background is the floor, not the test; the test is the word next to it.
+- **Each mark carries a shape as well as a colour, and they are different
+  shapes for a reason.** The teaching screen's mark sits on a lilac stripe;
+  the two panel marks are underlined. Not decoration — both panel marks are
+  *lighter* than the ink around them, so with the colour taken away they
+  turn into the palest words in their sentence and the emphasis reads
+  backwards. The teaching mark is safe without an underline because its
+  stripe is already a shape (8 points of lightness below the white card,
+  which survives greyscale). Checked three ways: normal vision, deuteranopia
+  and protanopia — where all three marks hold up on colour alone, the rust
+  simply shifting to olive — and full greyscale, which is what the shapes are
+  for, and what a washed-out screen in sunlight looks like. Weight carries it without colour: 800 against the panel's
   600. Two hints stay unmarked because they are pure arithmetic with no
   method word in them, and marking something anyway would cost the colour its
   meaning everywhere else.
