@@ -281,6 +281,21 @@ grade levels, for a child in Grade 1 working up through Grade 3.
   worked through, so he has seen one done before he is asked. It is skippable
   at any step and never forced, because the tenth run at times tables should
   not start with a lesson.
+- **The word a step is teaching is marked.** `*Adding* means putting two
+  groups together.` A step in `TEACH` may wrap its key term in asterisks, and
+  `markKeyWords()` turns that into a tinted purple stripe — bold *and*
+  coloured, because colour on its own is a signal a colour-blind reader never
+  gets. 90 marks over 87 steps; 13 steps carry none, because a line that is
+  pure working (`6, 7, 8. So 5 + 3 = 8.`) has no term to teach. Purple: green,
+  red and orange already mean right, wrong and method on the play screen, and
+  a fourth meaning needs a colour of its own or it borrows one of theirs.
+  Three words is the ceiling — the first draft highlighted whole sentences,
+  which is not a highlight. The marker is asterisks rather than HTML so the
+  content file stays plain text, and the text is escaped before the asterisks
+  are read, so a sentence can never put markup on the page by accident. The
+  class is `.term`, not `.key`: `.key` is the number pad's buttons, and the
+  collision silently handed the word the keypad's monospaced face at keypad
+  size.
 - **The explanations are written for a Grade 1 reader at every grade.** The
   maths gets harder up the levels; the English does not. He is six and reading
   them himself.

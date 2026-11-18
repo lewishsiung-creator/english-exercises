@@ -644,6 +644,23 @@ main {
   to { opacity: 1; transform: none; }
 }
 
+/* The word a teaching step is actually about. Purple: the play screen has
+   already spent green on right, red on wrong and orange on the method, and a
+   fourth meaning needs a colour of its own or it borrows one of theirs. The
+   tint is a soft highlighter stripe rather than a block, so a sentence with
+   two marked words still reads as a sentence. Named `term` because `.key`
+   is the number pad's buttons. */
+.term {
+  color: var(--purple-deep);
+  font-weight: 800;
+  background: var(--purple-soft);
+  border-radius: 6px;
+  padding: 1px 5px;
+  margin: 0 -1px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
 .feedback {
   margin: 14px 0 0;
   min-height: 1.7em;

@@ -369,6 +369,19 @@ el('showMeBtn').addEventListener('click', () => {
 el('practiseBtn').addEventListener('click', () => startRound(state.topic));
 el('teachSkip').addEventListener('click', () => startRound(state.topic));
 
+/* A step may mark the word it is actually teaching *like this* in
+   content.js. Bold and tinted, not tinted alone: colour on its own is a
+   signal that does not reach a colour-blind reader, and this page is read by
+   a six-year-old who is still working out which words are the important
+   ones. Escaped first, so the content file stays plain text and cannot put
+   markup on the page by accident.
+
+   `term`, not `key`: the number pad's buttons are `.key` already, and a
+   second meaning for that name quietly handed the word the keypad's
+   monospaced face at keypad size. */
+const markKeyWords = (text) =>
+  esc(text).replace(/\*([^*]+)\*/g, '<b class="term">$1</b>');
+
 function renderStep() {
   const steps = state.topic.teach;
   const step = steps[state.step];
@@ -376,7 +389,7 @@ function renderStep() {
 
   el('teachFig').innerHTML = step.figure || '';
   el('teachFig').hidden = !step.figure;
-  el('teachText').textContent = step.text;
+  el('teachText').innerHTML = markKeyWords(step.text);
 
   // The dots are the only progress indicator on this screen, so they carry
   // the text equivalent rather than being hidden outright.
