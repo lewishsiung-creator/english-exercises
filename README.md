@@ -6798,6 +6798,26 @@ a form where Lewis types a student's name and class time and gets that page.
   預覽 opens the page full-screen; on a computer the preview fills the
   window's height beside the form, with a 手機 / 全寬 switch (手機 first, since
   students read it on phones); text boxes grow as he types.
+- **新學員 / 舊學員續課** (2026-11-21). Lewis set the form's two purposes:
+  tell a new student how the course is arranged and what it costs; show a
+  returning student what is done and when the next course starts, and
+  encourage them to go on. The form now opens with 「這份連結給誰」 (key `k`):
+  - **新學員:** the finished-course box is hidden (and left out of the link),
+    the date reads 「第一堂課日期」, only the welcome templates show.
+  - **舊學員續課:** 已完成的課程 + 已完成時數 + 「下一期課程開始日期」, the recap
+    template, and 老學員優惠 filled in on switching (only when he has set no
+    prices of his own; switching back removes it).
+  - The page for a returning student is headed 「下一期課程 & 學費說明」 and
+    opens (after the note) with **學習成果**: the hours in large type, the
+    dates with 「約 N 個月」, and a navy 「下一期課程 … 開始」 strip.
+  - **優惠期限** (key `dl`, optional) shows under the plans and again in
+    下一步.
+  - **下一步** ends every page: tell Lewis the plan on LINE, he confirms the
+    time, then pay. Text only for now — no LINE link yet (he has none set).
+  - Short links answer with a tiny page carrying their own preview text, so
+    LINE shows 「Vicky 的下一期課程安排」 / 「Amy 的上課時間 & 學費說明」 and
+    the hours and next date, then send the browser on to /course/#d=….
+  - Vicky's hand-built page got 學習成果, 下一步 and the renewal heading too.
 - **Design pass** (2026-11-13, "as a top-tier web designer"): the refinements
   sit at the end of `course.css`. Section titles in ink with a copper bar;
   cards lifted by shadow; goals as a check list; a line icon per fact

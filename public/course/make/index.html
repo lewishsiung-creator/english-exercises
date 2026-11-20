@@ -26,7 +26,7 @@
 <title>課程說明頁產生器｜Lewis Biz English</title>
 <meta name="theme-color" content="#2f3c7e">
 <link rel="icon" href="../../logo.png">
-<link rel="stylesheet" href="../course.css?v=8">
+<link rel="stylesheet" href="../course.css?v=10">
 <link rel="stylesheet" href="../../type.css">
 <style>
 body { background: var(--paper); }
@@ -60,10 +60,29 @@ input, textarea {
 }
 textarea { resize: vertical; min-height: 64px; line-height: 1.55; }
 /* dates: the phone's own date picker, looking like the other boxes */
-.two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+.two > div { min-width: 0; }
+/* a date box can't shrink below its own digits, so on a phone they stack */
+@media (max-width: 430px) { .two { grid-template-columns: 1fr; gap: 0; } }
 .two label { margin-top: 14px; }
 input[type="date"] { -webkit-appearance: none; appearance: none; min-height: 44px; text-align: left; }
 input[type="date"]::-webkit-date-and-time-value { text-align: left; }
+/* who the link is for: two big choices */
+.who { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.who label { margin: 0; cursor: pointer; position: relative; }
+.who input { position: absolute; top: 0; left: 0; width: 1px; height: 1px; padding: 0; opacity: 0; pointer-events: none; }
+.who span {
+  display: block; height: 100%;
+  padding: 12px 14px; border-radius: 14px;
+  border: 1.5px solid var(--line); background: #fff;
+  transition: border-color .15s, background .15s;
+}
+.who b { display: block; font-size: 16px; }
+.who small { display: block; font-weight: 400; font-size: 13px; color: var(--ink-faint); line-height: 1.45; margin-top: 2px; }
+.who input:checked + span { border-color: var(--navy); background: #f2f3fa; box-shadow: inset 0 0 0 1px var(--navy); }
+.who input:focus-visible + span { outline: 2px solid var(--navy); outline-offset: 2px; }
+form.mode-new .only-renew, form.mode-renew .only-new { display: none !important; }
+
 /* the three dates sit together in a tinted box: done, then next */
 .dates { margin-top: 16px; padding: 12px 14px 8px; border-radius: 14px; background: var(--paper); }
 .dates .group { margin: 0; font-size: 14px; font-weight: 700; color: var(--ink); }
@@ -211,6 +230,14 @@ details .btns { margin-top: 8px; }
       <p class="status">要給另一位學員做新的連結，請取消勾選，或到下面「編輯舊連結」按「清空表單」。</p>
     </section>
     <section>
+      <h2>這份連結給誰</h2>
+      <div class="who" role="radiogroup" aria-label="這份連結給誰">
+        <label><input type="radio" name="k" value="new" checked><span><b>新學員</b><small>課程怎麼安排、學費怎麼算</small></span></label>
+        <label><input type="radio" name="k" value="renew"><span><b>舊學員續課</b><small>回顧已完成的課程，鼓勵繼續上</small></span></label>
+      </div>
+    </section>
+
+    <section>
       <h2>學員</h2>
       <label for="n">學員姓名<span class="req">*</span></label>
       <input id="n" placeholder="例如：Vicky Hung" autocapitalize="words" autocorrect="off" spellcheck="false" enterkeyhint="next">
@@ -230,7 +257,7 @@ details .btns { margin-top: 8px; }
       <label for="m">上課方式</label>
       <input id="m" value="ZOOM 線上會議" enterkeyhint="next">
 
-      <div class="dates">
+      <div class="dates only-renew">
         <p class="group">已完成的課程<span class="hint">選填・這一期已經上完的課</span></p>
         <div class="two">
           <div><label for="sd">開始日期</label><input id="sd" type="date"></div>
@@ -238,10 +265,10 @@ details .btns { margin-top: 8px; }
         </div>
         <label for="hr">已完成時數<span class="hint">選填，例如 20</span></label>
         <input id="hr" inputmode="decimal" placeholder="例如：20" enterkeyhint="next">
-        <label for="nd">下一期課程開始日期<span class="hint">選填</span></label>
-        <input id="nd" type="date">
-        <button type="button" class="clear-dates" id="cleardates">清除日期</button>
       </div>
+      <label for="nd"><span id="nd-label">第一堂課日期</span><span class="hint">選填</span></label>
+      <input id="nd" type="date">
+      <button type="button" class="clear-dates" id="cleardates">清除日期</button>
     </section>
 
     <section>
@@ -249,11 +276,12 @@ details .btns { margin-top: 8px; }
       <label for="w">放在頁面最上方<span class="hint">選填。空一行分段，**粗體**</span></label>
       <textarea id="w" rows="6" placeholder="例如：&#10;Hi Vicky,&#10;&#10;From 2026/03/07 to 2026/11/10, we’ve completed **20 hours of class** together!"></textarea>
       <div class="btns">
-        <button type="button" class="btn" data-note="welcome">新學員範本（英文）</button>
-        <button type="button" class="btn" data-note="welcomeZh">新學員範本（中文）</button>
-        <button type="button" class="btn" data-note="recap">進度回顧範本</button>
+        <button type="button" class="btn only-new" data-note="welcome">歡迎範本（英文）</button>
+        <button type="button" class="btn only-new" data-note="welcomeZh">歡迎範本（中文）</button>
+        <button type="button" class="btn only-renew" data-note="recap">進度回顧範本</button>
       </div>
-      <p class="status" style="margin-top:10px">新學員範本：開始上課前的歡迎，有英文和中文兩版。進度回顧範本：給 Vicky 的那段話。套用後，把 YYYY/MM/DD 和 __ 換成實際的日期與時數。最後會自動加上「— Lewis」。</p>
+      <p class="status only-new" style="margin-top:10px">開始上課前的歡迎，有英文和中文兩版；第一堂課的日期會自動帶入。最後會自動加上「— Lewis」。</p>
+      <p class="status only-renew" style="margin-top:10px">給 Vicky 的那段話；已完成課程的日期和時數會自動帶入，沒填的請把 YYYY/MM/DD 和 __ 換成實際的內容。最後會自動加上「— Lewis」。</p>
     </section>
 
     <section>
@@ -264,9 +292,12 @@ details .btns { margin-top: 8px; }
       <div id="plans"></div>
       <div class="btns">
         <button type="button" class="btn" id="add">＋ 新增方案</button>
-        <button type="button" class="btn" id="loyal">套用老學員優惠</button>
+        <button type="button" class="btn only-renew" id="loyal">套用老學員優惠</button>
       </div>
       <p class="status" style="margin-top:10px">優惠價留空，就只顯示原價。</p>
+
+      <label for="dl">優惠期限<span class="hint">選填，請學員在這天前確認</span></label>
+      <input id="dl" type="date">
     </section>
 
     <section>
@@ -384,21 +415,59 @@ details .btns { margin-top: 8px; }
   function digits(s) { return Number(String(s).replace(/[^\d.]/g, '')) || 0; }
   function lines(s) { return s.split('\n').map(function (l) { return l.trim(); }).filter(Boolean); }
 
+  // ---- new student / returning student ----
+  function mode() {
+    var r = document.querySelector('input[name="k"]:checked');
+    return r ? r.value : 'new';
+  }
+  function showMode() {
+    var renew = mode() === 'renew';
+    $('f').classList.toggle('mode-renew', renew);
+    $('f').classList.toggle('mode-new', !renew);
+    $('nd-label').textContent = renew ? '下一期課程開始日期' : '第一堂課日期';
+  }
+  function loyal(on) {
+    // a returning student gets the thank-you price unless he has set his own
+    var rows = [].slice.call($('plans').querySelectorAll('.plan-row'));
+    if (on) {
+      if ($('x').value.trim() || rows.some(function (r) { return r.querySelector('.ps').value.trim(); })) return;
+      $('x').value = LOYAL.x;
+      rows.forEach(function (r) {
+        var v = LOYAL.sale[digits(r.querySelector('.ph').value)];
+        if (v) r.querySelector('.ps').value = v;
+      });
+    } else {
+      if ($('x').value.trim() === LOYAL.x) $('x').value = '';
+      rows.forEach(function (r) {
+        var v = LOYAL.sale[digits(r.querySelector('.ph').value)];
+        if (v && digits(r.querySelector('.ps').value) === v) r.querySelector('.ps').value = '';
+      });
+    }
+    grow($('x'));
+  }
+  document.querySelectorAll('input[name="k"]').forEach(function (r) {
+    r.addEventListener('change', function () { showMode(); loyal(mode() === 'renew'); update(); });
+  });
+
   function collect() {
     var plans = [];
     $('plans').querySelectorAll('.plan-row').forEach(function (r) {
       var h = digits(r.querySelector('.ph').value), pr = digits(r.querySelector('.pp').value);
       if (h && pr) plans.push([h, r.querySelector('.pt').value.trim(), pr, digits(r.querySelector('.ps').value)]);
     });
+    var renew = mode() === 'renew';
     return {
       v: 1,
+      k: mode(),
       n: $('n').value.trim(),
       t: $('t').value.trim(),
       m: $('m').value.trim(),
-      s: $('sd').value,
-      e: $('ed').value,
+      // the finished course only belongs on a returning student's page
+      s: renew ? $('sd').value : '',
+      e: renew ? $('ed').value : '',
+      h: renew ? $('hr').value.trim() : '',
       ns: $('nd').value,
-      h: $('hr').value.trim(),
+      dl: $('dl').value,
       i: lines($('i').value),
       g: lines($('g').value),
       x: $('x').value.trim(),
@@ -478,7 +547,7 @@ details .btns { margin-top: 8px; }
     var badDates = d.s && d.e && d.e < d.s;
     $('ed').classList.toggle('bad', !!badDates);
     if (badDates) missing.push('結束日期要在開始日期之後');
-    var badNext = d.ns && (d.e || d.s) && d.ns < (d.e || d.s);
+    var badNext = d.k === 'renew' && d.ns && (d.e || d.s) && d.ns < (d.e || d.s);
     $('nd').classList.toggle('bad', !!badNext);
     if (badNext) missing.push('下一期開始日期要在已完成課程之後');
     $('w').classList.toggle('bad', false);
@@ -524,6 +593,11 @@ details .btns { margin-top: 8px; }
     $('sd').value = d.s || '';
     $('ed').value = d.e || '';
     $('nd').value = d.ns || '';
+    $('dl').value = d.dl || '';
+    // links made before the switch existed: a finished course means returning
+    var k = d.k === 'renew' || d.k === 'new' ? d.k : (d.s || d.e || d.h ? 'renew' : 'new');
+    document.querySelector('input[name="k"][value="' + k + '"]').checked = true;
+    showMode();
     $('hr').value = d.h || '';
     $('i').value = (d.i || []).join('\n');
     $('g').value = (d.g || []).join('\n');

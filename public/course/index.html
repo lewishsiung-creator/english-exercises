@@ -28,6 +28,10 @@
          "N 小時"; labelled 已完成時數 since 2026-11-21)
        p plans [[hours, span text, price, sale price or 0], …]
        x the sentence above the plans (may be empty)
+       k "new" | "renew" — who the page is for (2026-11-21). Missing: a link
+         with s/e/h is a returning student's. Renew shows 學習成果 and the
+         heading 下一期課程 & 學費說明.
+       dl the offer deadline, "YYYY-MM-DD" (optional)
        w Lewis's note at the top, one string per paragraph (optional;
          **bold** allowed; signed 「— Lewis」 automatically) -->
 <meta name="robots" content="noindex, nofollow">
@@ -63,7 +67,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&text=%E2%80%94%20Lewis&display=swap">
-<link rel="stylesheet" href="course.css?v=8">
+<link rel="stylesheet" href="course.css?v=10">
 <link rel="stylesheet" href="../type.css">
 </head>
 <body>
@@ -71,7 +75,7 @@
 <header class="hero">
   <div class="wrap">
     <div class="brand"><img src="../logo.png" alt=""><span class="en">Lewis Biz English · 1-on-1 課程</span></div>
-    <h1>上課時間 &amp; 學費說明</h1>
+    <h1 id="title">上課時間 &amp; 學費說明</h1>
     <p class="for" id="name"></p>
     <a class="about" href="https://campsite.bio/lewistoeic" target="_blank" rel="noopener">關於 Lewis 教練 →</a>
   </div>
@@ -95,6 +99,16 @@
 
   <section class="note" id="note" hidden></section>
 
+  <!-- a returning student: what is already done, and when the next one starts -->
+  <section class="done" id="s-done" hidden>
+    <h2>學習成果</h2>
+    <div class="stats">
+      <div class="stat" id="st-hours"><div class="num" id="st-h"></div><div class="lbl">已完成時數</div></div>
+      <div class="stat" id="st-range"><div class="range multi" id="st-r"></div><div class="lbl" id="st-span">已完成課程期間</div></div>
+    </div>
+    <div class="next-strip" id="st-next"><span class="lbl">下一期課程</span><strong id="st-n"></strong><span class="go">開始</span></div>
+  </section>
+
   <section id="about">
     <h2 id="about-h">客製化課程說明</h2>
     <div id="info-wrap">
@@ -112,9 +126,7 @@
     <div class="facts">
       <div class="fact i-time"><div class="k">上課時間</div><div class="v multi" id="time"></div></div>
       <div class="fact i-mode"><div class="k">上課方式</div><div class="v multi" id="mode"></div></div>
-      <div class="fact i-end" id="done-f"><div class="k">已完成課程</div><div class="v multi" id="done"></div></div>
-      <div class="fact i-hours" id="hours-f"><div class="k">已完成時數</div><div class="v" id="hours"></div></div>
-      <div class="fact i-start" id="next-f"><div class="k">下一期課程開始</div><div class="v" id="next"></div></div>
+      <div class="fact i-start" id="next-f"><div class="k" id="next-k">第一堂課</div><div class="v" id="next"></div></div>
     </div>
   </section>
 
@@ -124,6 +136,7 @@
     <h3><span class="en">1-on-1</span> 課程選項</h3>
     <p class="lead" id="intro"></p>
     <div class="plans" id="plans"></div>
+    <div class="deadline" id="deadline" hidden><span class="i" aria-hidden="true">⏰</span><p id="dl-text"></p></div>
 
     <div class="callout ask"><span class="i" aria-hidden="true">💡</span><p><strong>請主動告知您想安排的課程選項。</strong></p></div>
     <div class="perks">
@@ -166,6 +179,17 @@
       <div class="when late">2 日內</div>
       <p>若於 2 日內告知，會針對您的課程進度額外準備學習內容，供您學習，不另行補課。</p>
     </div>
+  </section>
+
+  <section class="next" id="s-next">
+    <h2>下一步</h2>
+    <ol class="steps">
+      <li>用 <span class="en">LINE</span> 告訴我您選擇的<strong>課程方案</strong>，例如「20 小時課程」。</li>
+      <li>我會和您確認<strong id="nx-time">上課時間</strong>。</li>
+      <li>依照上方「付款方式」完成轉帳，並告知<strong>帳號末五碼</strong>。</li>
+    </ol>
+    <p class="nx-dl" id="nx-dl" hidden></p>
+    <p class="nx-close" id="nx-close">期待和您一起上課！</p>
   </section>
 
   </div>
@@ -258,10 +282,15 @@ document.querySelectorAll('.copy').forEach(function (b) {
     var d = decode(location.hash);
     document.getElementById('missing').hidden = !!d;
     document.getElementById('page').hidden = !d;
-    if (!d) { set('name', ''); document.title = '上課時間 & 學費說明｜Lewis Biz English'; return; }
+    if (!d) { set('name', ''); set('title', '上課時間 & 學費說明'); document.title = '上課時間 & 學費說明｜Lewis Biz English'; return; }
 
     var name = str(d.n);
-    document.title = '上課時間 & 學費說明｜' + name;
+    // returning or new: links made before the switch count as returning when
+    // they carry a finished course
+    var renew = d.k === 'renew' || (d.k !== 'new' && !!(d.s || d.e || d.h));
+    var heading = renew ? '下一期課程 & 學費說明' : '上課時間 & 學費說明';
+    set('title', heading);
+    document.title = heading + '｜' + name;
     set('name', name);
     var first = name.split(/\s+/)[0];
     set('about-h', (/^[A-Za-z]/.test(first) ? first.toUpperCase() : first) + ' 客製化課程說明');
@@ -300,17 +329,27 @@ document.querySelectorAll('.copy').forEach(function (b) {
 
     set('time', str(d.t));
     set('mode', str(d.m) || 'ZOOM 線上會議');
-    // s–e: the course already finished; ns: when the next one starts
-    var s = day(d.s), e = day(d.e);
-    set('done', s && e ? s + ' –\n' + e : s ? s + ' 起' : e ? '至 ' + e : '');
-    document.getElementById('done-f').hidden = !(s || e);
+    // ns: the first class (new) or the next course's first day (returning)
     var ns = day(d.ns);
+    set('next-k', renew ? '下一期課程開始' : '第一堂課');
     set('next', ns);
     document.getElementById('next-f').hidden = !ns;
-    // hours: a plain number reads "20 小時"; anything else as he typed it
-    var h = str(d.h);
-    set('hours', /^\d+(\.\d+)?$/.test(h) ? h + ' 小時' : h);
-    document.getElementById('hours-f').hidden = !h;
+
+    // 學習成果 (returning only): s–e the finished course, h its hours
+    var s = renew ? day(d.s) : '', e = renew ? day(d.e) : '', h = renew ? str(d.h) : '';
+    var hb = document.getElementById('st-h');
+    hb.textContent = '';
+    if (/^\d+(\.\d+)?$/.test(h)) { hb.appendChild(document.createTextNode(h)); hb.appendChild(el('small', null, '小時')); }
+    else hb.textContent = h;
+    document.getElementById('st-hours').hidden = !h;
+    set('st-r', s && e ? s + ' –\n' + e : s ? s + ' 起' : e ? '至 ' + e : '');
+    var months = 0;
+    if (d.s && d.e && s && e) months = Math.round((new Date(d.e) - new Date(d.s)) / 864e5 / 30.44);
+    set('st-span', months >= 1 ? '已完成課程期間・約 ' + months + ' 個月' : '已完成課程期間');
+    document.getElementById('st-range').hidden = !(s || e);
+    set('st-n', ns);
+    document.getElementById('st-next').hidden = !(renew && ns);
+    document.getElementById('s-done').hidden = !(renew && (s || e || h));
     // an odd one out at the end of the two-column grid takes the full width
     var shown = [].filter.call(document.querySelectorAll('.facts .fact'), function (f) {
       f.classList.remove('wide'); return !f.hidden;
@@ -357,6 +396,15 @@ document.querySelectorAll('.copy').forEach(function (b) {
       box.appendChild(card);
     });
     box.hidden = !box.children.length;
+
+    // 優惠期限: the same date in the fees and in 下一步
+    var dl = day(d.dl), anySale = plans.some(function (p) { return p.sale && p.sale < p.price; });
+    set('dl-text', dl ? (anySale ? '以上優惠價請於 ' : '以上方案價格請於 ') + dl + '前確認。' : '');
+    document.getElementById('deadline').hidden = !dl;
+    set('nx-dl', dl ? '請於 ' + dl + '前回覆，保留' + (anySale ? '優惠價' : '這個價格') + '。' : '');
+    document.getElementById('nx-dl').hidden = !dl;
+    set('nx-time', renew ? '下一期的上課時間' : '上課時間');
+    set('nx-close', renew ? '期待繼續和您一起進步！' : '期待和您一起上課！');
   }
 
   render();
