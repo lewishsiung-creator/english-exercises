@@ -6764,9 +6764,10 @@ a form where Lewis types a student's name and class time and gets that page.
   next start before the finished course, blocks the link. Templates fill
   themselves: the recap's From … to … from `s`/`e`, a welcome's first class
   from `ns`.
-- **上課時數** (optional, key `h`, same day) shows under 上課安排 as
-  「20 小時」 when it is a plain number, as typed otherwise; it also fills the
-  recap template's `__ hours`. When 上課安排 has an odd number of boxes the
+- **已完成時數** (optional, key `h`; called 上課時數 until 2026-11-21, when
+  Lewis made it the finished course's hours and it moved into the dates box)
+  shows under 上課安排 as 「20 小時」 when it is a plain number, as typed
+  otherwise; it also fills the recap template's `__ hours`. When 上課安排 has an odd number of boxes the
   last one runs full width.
 - **給學員的話** (optional, key `w`) is a note at the top of the page, signed
   「— Lewis」 automatically: paragraphs split by a blank line, `**bold**`

@@ -24,7 +24,8 @@
        s, e the finished course's first and last day · ns the next course's
          first day (all optional, "YYYY-MM-DD"; Lewis made s/e mean the
          finished course on 2026-11-21)
-       h hours of class (optional; a plain number shows as "N 小時")
+       h hours of class completed (optional; a plain number shows as
+         "N 小時"; labelled 已完成時數 since 2026-11-21)
        p plans [[hours, span text, price, sale price or 0], …]
        x the sentence above the plans (may be empty)
        w Lewis's note at the top, one string per paragraph (optional;
@@ -112,8 +113,8 @@
       <div class="fact i-time"><div class="k">上課時間</div><div class="v multi" id="time"></div></div>
       <div class="fact i-mode"><div class="k">上課方式</div><div class="v multi" id="mode"></div></div>
       <div class="fact i-end" id="done-f"><div class="k">已完成課程</div><div class="v multi" id="done"></div></div>
+      <div class="fact i-hours" id="hours-f"><div class="k">已完成時數</div><div class="v" id="hours"></div></div>
       <div class="fact i-start" id="next-f"><div class="k">下一期課程開始</div><div class="v" id="next"></div></div>
-      <div class="fact i-hours" id="hours-f"><div class="k">上課時數</div><div class="v" id="hours"></div></div>
     </div>
   </section>
 
