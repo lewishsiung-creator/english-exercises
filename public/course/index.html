@@ -21,7 +21,9 @@
      Hash format: #d=<base64url of UTF-8 JSON>, keys kept short so the link
      stays pasteable into LINE:
        v 1 · n name · t time · m mode · i info lines · g goals lines
-       s start date · e end date (both optional, "YYYY-MM-DD")
+       s, e the finished course's first and last day · ns the next course's
+         first day (all optional, "YYYY-MM-DD"; Lewis made s/e mean the
+         finished course on 2026-11-21)
        h hours of class (optional; a plain number shows as "N 小時")
        p plans [[hours, span text, price, sale price or 0], …]
        x the sentence above the plans (may be empty)
@@ -109,8 +111,8 @@
     <div class="facts">
       <div class="fact i-time"><div class="k">上課時間</div><div class="v multi" id="time"></div></div>
       <div class="fact i-mode"><div class="k">上課方式</div><div class="v multi" id="mode"></div></div>
-      <div class="fact i-start" id="start-f"><div class="k">開始日期</div><div class="v" id="start"></div></div>
-      <div class="fact i-end" id="end-f"><div class="k">結束日期</div><div class="v" id="end"></div></div>
+      <div class="fact i-end" id="done-f"><div class="k">已完成課程</div><div class="v multi" id="done"></div></div>
+      <div class="fact i-start" id="next-f"><div class="k">下一期課程開始</div><div class="v" id="next"></div></div>
       <div class="fact i-hours" id="hours-f"><div class="k">上課時數</div><div class="v" id="hours"></div></div>
     </div>
   </section>
@@ -297,11 +299,13 @@ document.querySelectorAll('.copy').forEach(function (b) {
 
     set('time', str(d.t));
     set('mode', str(d.m) || 'ZOOM 線上會議');
-    [['s', 'start'], ['e', 'end']].forEach(function (k) {
-      var t = day(d[k[0]]);
-      set(k[1], t);
-      document.getElementById(k[1] + '-f').hidden = !t;
-    });
+    // s–e: the course already finished; ns: when the next one starts
+    var s = day(d.s), e = day(d.e);
+    set('done', s && e ? s + ' –\n' + e : s ? s + ' 起' : e ? '至 ' + e : '');
+    document.getElementById('done-f').hidden = !(s || e);
+    var ns = day(d.ns);
+    set('next', ns);
+    document.getElementById('next-f').hidden = !ns;
     // hours: a plain number reads "20 小時"; anything else as he typed it
     var h = str(d.h);
     set('hours', /^\d+(\.\d+)?$/.test(h) ? h + ' 小時' : h);

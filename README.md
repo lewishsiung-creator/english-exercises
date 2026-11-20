@@ -6756,11 +6756,14 @@ a form where Lewis types a student's name and class time and gets that page.
   optional 優惠價, 期限說明). 「套用老學員優惠」 fills in what Vicky got: the
   June 2026 sentence and $16,000 / $28,000. A live preview sits beside it, and
   「編輯舊連結」 reads a link back into the form.
-- **開始日期 / 結束日期** (optional, keys `s` and `e`, added 2026-11-13) use
-  the phone's own date picker and show under 上課安排 with the weekday, as
-  2026/12/01（二）. An end before the start blocks the link. Dates already
-  in the form go straight into a note template's YYYY/MM/DD (start first,
-  then end).
+- **Dates** (optional, the phone's own date picker). Since 2026-11-21 they
+  are grouped: 「已完成的課程」 開始日期 / 結束日期 (keys `s`, `e`) is the
+  course already finished, and 「下一期課程開始日期」 (key `ns`) is when the
+  next one starts. The page shows 「已完成課程」 as a range and 「下一期課程開始」,
+  each with the weekday, as 2026/12/01（二）. An end before the start, or a
+  next start before the finished course, blocks the link. Templates fill
+  themselves: the recap's From … to … from `s`/`e`, a welcome's first class
+  from `ns`.
 - **上課時數** (optional, key `h`, same day) shows under 上課安排 as
   「20 小時」 when it is a plain number, as typed otherwise; it also fills the
   recap template's `__ hours`. When 上課安排 has an odd number of boxes the
