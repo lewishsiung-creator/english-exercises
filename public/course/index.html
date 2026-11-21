@@ -20,7 +20,8 @@
 
      Hash format: #d=<base64url of UTF-8 JSON>, keys kept short so the link
      stays pasteable into LINE:
-       v 1 · n name · t time · m mode · i info lines · g goals lines
+       v 1 · n name · t time · m mode (ignored since 2026-11-21: always ZOOM)
+       i info lines · g goals lines
        s, e the finished course's first and last day · ns the next course's
          first day (all optional, "YYYY-MM-DD"; Lewis made s/e mean the
          finished course on 2026-11-21)
@@ -328,7 +329,7 @@ document.querySelectorAll('.copy').forEach(function (b) {
     document.getElementById('about').hidden = !info.length && !goals.length;
 
     set('time', str(d.t));
-    set('mode', str(d.m) || 'ZOOM 線上會議');
+    set('mode', 'ZOOM 線上會議');   // always ZOOM (Lewis, 2026-11-21); an old link's `m` is ignored
     // ns: the first class (new) or the next course's first day (returning)
     var ns = day(d.ns);
     set('next-k', renew ? '下一期課程開始' : '第一堂課');

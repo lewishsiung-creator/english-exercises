@@ -67,6 +67,11 @@ textarea { resize: vertical; min-height: 64px; line-height: 1.55; }
 .two label { margin-top: 14px; }
 input[type="date"] { -webkit-appearance: none; appearance: none; min-height: 44px; text-align: left; }
 input[type="date"]::-webkit-date-and-time-value { text-align: left; }
+/* 上課方式 is always ZOOM (Lewis, 2026-11-21): shown, not asked */
+.fixed-mode { margin: 14px 0 0; font-size: 14px; color: var(--ink-soft); }
+.fixed-mode strong { color: var(--ink); }
+.fixed-mode .hint { font-weight: 400; color: var(--ink-faint); margin-left: 6px; font-size: 13px; }
+
 /* 上課時間: the seven days sit in one row */
 .chips .row.days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; }
 .chips .row.days .chip { justify-content: center; padding: 5px 0; }
@@ -280,8 +285,7 @@ details .btns { margin-top: 8px; }
       <div class="chips" id="time-chips" aria-label="選上課時間"></div>
       <input id="t" placeholder="例如：每週二早上 8:00 – 9:00 am" enterkeyhint="next">
 
-      <label for="m">上課方式</label>
-      <input id="m" value="ZOOM 線上會議" enterkeyhint="next">
+      <p class="fixed-mode">上課方式：<strong><span class="en">ZOOM</span> 線上會議</strong><span class="hint">固定</span></p>
 
       <div class="dates only-renew">
         <p class="group">已完成的課程<span class="hint">選填・這一期已經上完的課</span></p>
@@ -651,7 +655,6 @@ details .btns { margin-top: 8px; }
       k: mode(),
       n: $('n').value.trim(),
       t: $('t').value.trim(),
-      m: $('m').value.trim(),
       // the finished course only belongs on a returning student's page
       s: renew ? $('sd').value : '',
       e: renew ? $('ed').value : '',
@@ -780,7 +783,6 @@ details .btns { margin-top: 8px; }
     $('n').value = d.n || '';
     $('t').value = d.t || '';
     readWhen(d.t || ''); drawWhen();
-    $('m').value = d.m || 'ZOOM 線上會議';
     $('sd').value = d.s || '';
     $('ed').value = d.e || '';
     $('nd').value = d.ns || '';

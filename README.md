@@ -6808,6 +6808,8 @@ a form where Lewis types a student's name and class time and gets that page.
   (`INFO`, same day): 職務 (several, one line: 「職務：主管／經理、業務」),
   產業 (運動用品業 added on request), 英文程度, 工作上用英文 — the last three
   one answer each, where a second tap replaces the first in place.
+- **上課方式** is fixed: always 「ZOOM 線上會議」 (Lewis, 2026-11-21). The
+  form shows it as a line, not a field; the page ignores an old link's `m`.
 - **上課時間 chips** (same day): 星期 (several), 開始時間 (grouped 早上 / 中午 /
   下午 / 晚上), 每次上課 1 / 1.5 / 2 小時, or 「每次上課時間另外約定」. They
   write the box in Vicky's wording, 「每週二、四早上 8:00 – 9:00 am」 (am/pm on
