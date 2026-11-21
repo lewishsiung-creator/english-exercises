@@ -67,6 +67,24 @@ textarea { resize: vertical; min-height: 64px; line-height: 1.55; }
 .two label { margin-top: 14px; }
 input[type="date"] { -webkit-appearance: none; appearance: none; min-height: 44px; text-align: left; }
 input[type="date"]::-webkit-date-and-time-value { text-align: left; }
+/* 學習目標: common workplace goals, one tap to add or remove */
+.chips { margin: 2px 0 10px; }
+.chips .grp { margin: 10px 0 6px; font-size: 12.5px; font-weight: 700; color: var(--ink-faint); letter-spacing: .04em; }
+.chips .grp:first-child { margin-top: 0; }
+.chips .row { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  appearance: none; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 5px;
+  min-height: 36px; padding: 5px 11px 5px 9px;
+  border: 1px solid var(--line); border-radius: var(--pill);
+  background: #fff; color: var(--ink);
+  font: 500 14px var(--font-zh); text-align: left;
+}
+.chip::before { content: "+"; font: 700 14px var(--font-ui); color: var(--ink-faint); width: 10px; text-align: center; }
+.chip[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+.chip[aria-pressed="true"]::before { content: "✓"; color: var(--gold); }
+@media (hover: hover) { .chip:hover { border-color: var(--navy); } }
+
 /* who the link is for: two big choices */
 .who { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .who label { margin: 0; cursor: pointer; position: relative; }
@@ -245,8 +263,9 @@ details .btns { margin-top: 8px; }
       <label for="i">學員相關資訊<span class="hint">選填，一行一項</span></label>
       <textarea id="i" rows="2" placeholder="例如：長榮大學美術學系（副教授）"></textarea>
 
-      <label for="g">學習目標<span class="hint">選填，一行一項</span></label>
-      <textarea id="g" rows="3" placeholder="例如：&#10;提升英語交談的自在感&#10;英語授課 (Contemporary Art)"></textarea>
+      <label for="g">學習目標<span class="hint">點選常見目標，或自己輸入</span></label>
+      <div class="chips" id="goal-chips" aria-label="常見學習目標"></div>
+      <textarea id="g" rows="2" placeholder="點上面的目標會自動加在這裡；也可以自己輸入，一行一項。例如：英語授課 (Contemporary Art)"></textarea>
     </section>
 
     <section>
@@ -414,6 +433,40 @@ details .btns { margin-top: 8px; }
   }
   function digits(s) { return Number(String(s).replace(/[^\d.]/g, '')) || 0; }
   function lines(s) { return s.split('\n').map(function (l) { return l.trim(); }).filter(Boolean); }
+
+  // ---- 學習目標: common goals for working adults, picked by tapping ----
+  // Each tap adds the goal as a line in the box below (or takes it out);
+  // the box stays editable for anything not on the list.
+  var GOALS = [
+    ['口說與溝通', ['提升英語交談的自在感', '說得更流暢、更自然', '改善發音與語調', '聽懂不同國家的口音', '閒聊與建立人脈（Small Talk）']],
+    ['會議與簡報', ['英文會議中主動發言', '英文簡報更有自信', '英文電話與視訊會議', '商務談判與說服']],
+    ['書寫', ['撰寫專業的英文 Email', '英文報告與文件']],
+    ['客戶與出差', ['與外國客戶、廠商溝通', '出差與海外工作']],
+    ['求職與考試', ['英文面試準備', '多益（TOEIC）成績提升']]
+  ];
+  GOALS.forEach(function (g) {
+    var head = document.createElement('div'); head.className = 'grp'; head.textContent = g[0];
+    var row = document.createElement('div'); row.className = 'row';
+    g[1].forEach(function (t) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.textContent = t; b.setAttribute('aria-pressed', 'false');
+      b.onclick = function () {
+        var cur = lines($('g').value), i = cur.indexOf(t);
+        if (i < 0) cur.push(t); else cur.splice(i, 1);
+        $('g').value = cur.join('\n');
+        grow($('g')); syncGoals(); update();
+      };
+      row.appendChild(b);
+    });
+    $('goal-chips').appendChild(head); $('goal-chips').appendChild(row);
+  });
+  function syncGoals() {
+    var cur = lines($('g').value);
+    $('goal-chips').querySelectorAll('.chip').forEach(function (b) {
+      b.setAttribute('aria-pressed', cur.indexOf(b.textContent) >= 0 ? 'true' : 'false');
+    });
+  }
+  $('g').addEventListener('input', syncGoals);
 
   // ---- new student / returning student ----
   function mode() {
@@ -601,6 +654,7 @@ details .btns { margin-top: 8px; }
     $('hr').value = d.h || '';
     $('i').value = (d.i || []).join('\n');
     $('g').value = (d.g || []).join('\n');
+    syncGoals();
     $('x').value = d.x || '';
     $('w').value = (d.w || []).join('\n\n');
     setPlans((d.p && d.p.length) ? d.p : DEFAULT_PLANS);
