@@ -260,8 +260,9 @@ details .btns { margin-top: 8px; }
       <label for="n">學員姓名<span class="req">*</span></label>
       <input id="n" placeholder="例如：Vicky Hung" autocapitalize="words" autocorrect="off" spellcheck="false" enterkeyhint="next">
 
-      <label for="i">學員相關資訊<span class="hint">選填，一行一項</span></label>
-      <textarea id="i" rows="2" placeholder="例如：長榮大學美術學系（副教授）"></textarea>
+      <label for="i">學員相關資訊<span class="hint">點選，或自己輸入</span></label>
+      <div class="chips" id="info-chips" aria-label="常見學員資訊"></div>
+      <textarea id="i" rows="2" placeholder="點上面的選項會自動加在這裡；也可以自己輸入，一行一項。例如：長榮大學美術學系（副教授）"></textarea>
 
       <label for="g">學習目標<span class="hint">點選常見目標，或自己輸入</span></label>
       <div class="chips" id="goal-chips" aria-label="常見學習目標"></div>
@@ -434,39 +435,62 @@ details .btns { margin-top: 8px; }
   function digits(s) { return Number(String(s).replace(/[^\d.]/g, '')) || 0; }
   function lines(s) { return s.split('\n').map(function (l) { return l.trim(); }).filter(Boolean); }
 
-  // ---- 學習目標: common goals for working adults, picked by tapping ----
-  // Each tap adds the goal as a line in the box below (or takes it out);
-  // the box stays editable for anything not on the list.
-  var GOALS = [
-    ['口說與溝通', ['提升英語交談的自在感', '說得更流暢、更自然', '改善發音與語調', '聽懂不同國家的口音', '閒聊與建立人脈（Small Talk）']],
-    ['會議與簡報', ['英文會議中主動發言', '英文簡報更有自信', '英文電話與視訊會議', '商務談判與說服']],
-    ['書寫', ['撰寫專業的英文 Email', '英文報告與文件']],
-    ['客戶與出差', ['與外國客戶、廠商溝通', '出差與海外工作']],
-    ['求職與考試', ['英文面試準備', '多益（TOEIC）成績提升']]
+  // ---- tap-to-pick lines for 學員相關資訊 and 學習目標 ----
+  // Each tap adds a line to the box below it (or takes it out); the box stays
+  // editable for anything not on the list. A group with a label writes
+  // "職務：業務"; a `one` group keeps a single answer, so tapping another
+  // replaces it where it stands.
+  var INFO = [
+    { name: '職務', label: '職務', one: true, items: ['主管／經理', '業務', '行銷／公關', '工程師／研發', '專案管理', '人資', '財務／會計', '採購／供應鏈', '客服', '教師／教授', '醫療人員', '創業者／老闆', '學生'] },
+    { name: '產業', label: '產業', one: true, items: ['科技業', '半導體', '製造業', '醫療／生技', '金融業', '貿易', '教育', '服務業'] },
+    { name: '英文程度', label: '英文程度', one: true, items: ['初級（A2）', '中級（B1）', '中高級（B2）', '高級（C1）'] },
+    { name: '工作上用英文', label: '工作上用英文', one: true, items: ['每天', '每週幾次', '偶爾', '目前還不需要'] }
   ];
-  GOALS.forEach(function (g) {
-    var head = document.createElement('div'); head.className = 'grp'; head.textContent = g[0];
-    var row = document.createElement('div'); row.className = 'row';
-    g[1].forEach(function (t) {
-      var b = document.createElement('button');
-      b.type = 'button'; b.className = 'chip'; b.textContent = t; b.setAttribute('aria-pressed', 'false');
-      b.onclick = function () {
-        var cur = lines($('g').value), i = cur.indexOf(t);
-        if (i < 0) cur.push(t); else cur.splice(i, 1);
-        $('g').value = cur.join('\n');
-        grow($('g')); syncGoals(); update();
-      };
-      row.appendChild(b);
+  var GOALS = [
+    { name: '口說與溝通', items: ['提升英語交談的自在感', '說得更流暢、更自然', '改善發音與語調', '聽懂不同國家的口音', '閒聊與建立人脈（Small Talk）'] },
+    { name: '會議與簡報', items: ['英文會議中主動發言', '英文簡報更有自信', '英文電話與視訊會議', '商務談判與說服'] },
+    { name: '書寫', items: ['撰寫專業的英文 Email', '英文報告與文件'] },
+    { name: '客戶與出差', items: ['與外國客戶、廠商溝通', '出差與海外工作'] },
+    { name: '求職與考試', items: ['英文面試準備', '多益（TOEIC）成績提升'] }
+  ];
+  var pickers = [];
+  function picker(boxId, chipsId, groups) {
+    var box = $(boxId), wrap = $(chipsId);
+    function line(g, t) { return g.label ? g.label + '：' + t : t; }
+    function sync() {
+      var cur = lines(box.value);
+      wrap.querySelectorAll('.chip').forEach(function (b) {
+        b.setAttribute('aria-pressed', cur.indexOf(b.dataset.line) >= 0 ? 'true' : 'false');
+      });
+    }
+    groups.forEach(function (g) {
+      var head = document.createElement('div'); head.className = 'grp'; head.textContent = g.name + (g.one ? '（選一個）' : '');
+      var row = document.createElement('div'); row.className = 'row';
+      g.items.forEach(function (t) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'chip'; b.textContent = t; b.dataset.line = line(g, t);
+        b.setAttribute('aria-pressed', 'false');
+        b.onclick = function () {
+          var cur = lines(box.value), me = line(g, t), i = cur.indexOf(me);
+          if (i >= 0) cur.splice(i, 1);
+          else if (g.one) {
+            var j = -1;
+            g.items.forEach(function (o) { var k = cur.indexOf(line(g, o)); if (k >= 0) j = k; });
+            if (j >= 0) cur[j] = me; else cur.push(me);
+          } else cur.push(me);
+          box.value = cur.join('\n');
+          grow(box); sync(); update();
+        };
+        row.appendChild(b);
+      });
+      wrap.appendChild(head); wrap.appendChild(row);
     });
-    $('goal-chips').appendChild(head); $('goal-chips').appendChild(row);
-  });
-  function syncGoals() {
-    var cur = lines($('g').value);
-    $('goal-chips').querySelectorAll('.chip').forEach(function (b) {
-      b.setAttribute('aria-pressed', cur.indexOf(b.textContent) >= 0 ? 'true' : 'false');
-    });
+    box.addEventListener('input', sync);
+    pickers.push(sync);
   }
-  $('g').addEventListener('input', syncGoals);
+  picker('i', 'info-chips', INFO);
+  picker('g', 'goal-chips', GOALS);
+  function syncGoals() { pickers.forEach(function (f) { f(); }); }
 
   // ---- new student / returning student ----
   function mode() {
