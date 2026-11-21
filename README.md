@@ -6798,6 +6798,33 @@ a form where Lewis types a student's name and class time and gets that page.
   預覽 opens the page full-screen; on a computer the preview fills the
   window's height beside the form, with a 手機 / 全寬 switch (手機 first, since
   students read it on phones); text boxes grow as he types.
+- **Customer-relationship pass** (2026-11-21, all seven points Lewis approved):
+  - **下一期重點** (key `f`, returning only): picked from this student's own
+    學習目標 in the form, shown after 學習成果 as numbered copper cards.
+  - **推薦方案** (`r` hours, `rr` reason): his pick gets a copper 「Lewis 推薦」
+    badge and a 💬 「我的建議」 line with the reason (four quick reasons to tap,
+    or his own). The cheapest-per-hour badge stays on another card, and gives
+    way when both would land on the same one.
+  - **課程須知** on every page (and Vicky's): taught by Lewis himself, the
+    one-month replay, prepaid / valid for courses starting by 2027-12-31, and
+    「課程開始後恕不退費」 — from lewistoeic.com/course_packages; he asked for
+    the refund rule to be on the page.
+  - **Order:** a new student reads 學費說明 → 下一步 → 付款方式 → 請假規則 →
+    課程須知 (the bank account after the decision); a returning student keeps
+    付款方式 before 下一步. 下一步 says 上方/下方 to match.
+  - **Open tracking:** the short link's page sends a beacon to
+    `/api/seen/<code>` (count, first, last). Lewis's own devices — any browser
+    holding his passcode — and link previews are not counted. The form shows
+    「學員已打開 N 次・最近一次 …」 when a short link is loaded.
+  - **LINE 訊息:** the form writes a message to go with the link (new or
+    returning wording, the deadline if set); `{連結}` becomes the short link.
+    「複製 LINE 訊息」 in the link box, 「複製訊息」 in the phone bar. Editing
+    the box stops it being rewritten until the form is cleared or reloaded.
+  - **學員清單** at `/course/list/` (passcode): every short link, newest
+    first, with new/returning, opens, and a status (未設定 / 已傳送 / 已回覆 /
+    已付款 / 結案, KV `st:<code>`); 「該跟進了」 when 已傳送 for over 3 days.
+    「編輯」 opens the form at `#edit=<code>`. Names and kinds are kept in each
+    link's KV metadata so the list needn't read every page.
 - **學習目標 chips** (2026-11-21): common goals for working adults — 32 in six
   groups since the second round that day (口說與溝通, 會議與簡報, 領導與管理,
   閱讀與書寫, 客戶與出差, 求職與考試), several at once, each a tap
@@ -6883,6 +6910,7 @@ a form where Lewis types a student's name and class time and gets that page.
   - Local test: `journal-desk/node_modules/.bin/wrangler pages dev public
     --port 8796 --kv COURSE` from the repo root (local KV, separate from the
     live one).
+- **`/course/list/`** is Lewis's student list (see the customer-relationship pass above).
 - **`/course/`** holds no student. The form writes everything into the link as
   `#d=<base64url JSON>` (format documented at the top of
   `public/course/index.html`), so making a page for a new student needs **no

@@ -7,7 +7,11 @@
 
    KV keys
      link:<code>  the same base64url text the long link carries after #d=
-                  metadata { created, updated } (ms)
+                  metadata { created, updated (ms), n name, k new|renew }
+     seen:<code>  { count, first, last } — times the student opened it
+                  (2026-11-21; not counted on Lewis's own devices)
+     st:<code>    { s, at } — where Lewis is with this student: sent,
+                  replied, paid, closed (his 學員清單)
      auth         { salt, hash } of Lewis's passcode — never the passcode
 
    Making or changing a link needs the passcode (header x-course-pass).
@@ -53,14 +57,26 @@ export async function checkPass(request, env) {
   return 'wrong';
 }
 
+export function readHash(h) {
+  try {
+    let b = String(h).replace(/-/g, '+').replace(/_/g, '/');
+    while (b.length % 4) b += '=';
+    const bin = atob(b);
+    return JSON.parse(new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0))));
+  } catch { return null; }
+}
+
 // The link text must be what /course/ can draw: base64url of UTF-8 JSON with a name.
 export function validHash(h) {
   if (typeof h !== 'string' || !/^[A-Za-z0-9_-]{8,30000}$/.test(h)) return false;
-  try {
-    let b = h.replace(/-/g, '+').replace(/_/g, '/');
-    while (b.length % 4) b += '=';
-    const bin = atob(b);
-    const d = JSON.parse(new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0))));
-    return !!(d && typeof d === 'object' && typeof d.n === 'string' && d.n.trim());
-  } catch { return false; }
+  const d = readHash(h);
+  return !!(d && typeof d === 'object' && typeof d.n === 'string' && d.n.trim());
+}
+
+// returning or new, as /course/ decides it
+export const isRenew = (d) => d.k === 'renew' || (d.k !== 'new' && !!(d.s || d.e || d.h));
+
+export async function authError(request, env) {
+  const a = await checkPass(request, env);
+  return a === 'ok' || a === 'set' ? null : json({ error: a }, 401);
 }

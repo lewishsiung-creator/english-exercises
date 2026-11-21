@@ -520,3 +520,37 @@ section.next ol.steps li { color: var(--ink); }
 /* 下一步 with one step left (a returning student): no lone number */
 ol.steps.single li { padding-left: 0; }
 ol.steps.single li::before { display: none; }
+
+/* ---------- customer-relationship pass (2026-11-21) ---------- */
+
+/* 下一期重點: numbered, in the page's copper */
+ol.focus-list { list-style: none; counter-reset: fo; margin: 4px 0 0; padding: 0; display: grid; gap: 10px; }
+ol.focus-list li {
+  counter-increment: fo; position: relative;
+  padding: 12px 14px 12px 50px; border-radius: 14px;
+  background: linear-gradient(160deg, #fbf3e7, #f6ead8);
+  font-weight: 600;
+}
+ol.focus-list li::before {
+  content: counter(fo);
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  width: 24px; height: 24px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--copper); color: #fff; font: 700 13px var(--font-ui);
+}
+
+/* Lewis's recommended plan, and why */
+.plan.rec .badge { background: var(--copper); box-shadow: 0 4px 10px -4px rgba(192,133,64,.6); }
+.plan.rec { border-color: var(--copper); background: linear-gradient(180deg, #fbf4ea, #fff 60%); }
+.rec-note {
+  display: flex; gap: 10px; align-items: flex-start;
+  margin-top: 4px; padding: 12px 16px; border-radius: 12px;
+  background: #fbf4ea; border: 1px solid #f0dcc0; font-size: 15.5px;
+}
+.rec-note p { margin: 0; color: var(--ink-soft); }
+.rec-note strong { display: block; color: var(--ink); }
+
+/* 課程須知 */
+ul.notes-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+ul.notes-list li { font-size: 15.5px; color: var(--ink-soft); padding-left: 14px; border-left: 3px solid rgba(47,60,126,.25); }
+ul.notes-list li strong { display: block; color: var(--ink); font-size: 16px; }

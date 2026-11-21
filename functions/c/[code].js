@@ -1,4 +1,4 @@
-import { CODE } from '../_course.js';
+import { CODE, readHash, isRenew } from '../_course.js';
 
 // /c/<code> → /course/#d=…
 //
@@ -12,15 +12,6 @@ import { CODE } from '../_course.js';
 
 const esc = (t) => String(t).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 
-function read(h) {
-  try {
-    let b = h.replace(/-/g, '+').replace(/_/g, '/');
-    while (b.length % 4) b += '=';
-    const bin = atob(b);
-    return JSON.parse(new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0))));
-  } catch { return null; }
-}
-
 const md = (iso) => {
   const m = /^\d{4}-(\d{2})-(\d{2})$/.exec(iso || '');
   return m ? `${+m[1]}/${+m[2]}` : '';
@@ -29,7 +20,7 @@ const md = (iso) => {
 export async function onRequestGet({ request, params, env }) {
   const h = CODE.test(params.code) ? await env.COURSE.get('link:' + params.code) : null;
   const to = new URL('/course/' + (h ? '#d=' + h : ''), request.url);
-  const d = h ? read(h) : null;
+  const d = h ? readHash(h) : null;
   if (!d) {
     return new Response(null, {
       status: 302,
@@ -39,7 +30,7 @@ export async function onRequestGet({ request, params, env }) {
 
   const name = String(d.n || '').trim();
   const first = name.split(/\s+/)[0] || name;
-  const renew = d.k === 'renew' || (d.k !== 'new' && !!(d.s || d.e || d.h));
+  const renew = isRenew(d);
   const title = renew ? `${first} 的下一期課程安排` : `${first} 的上課時間 & 學費說明`;
   let desc;
   if (renew) {
@@ -65,7 +56,14 @@ export async function onRequestGet({ request, params, env }) {
 <meta property="og:image:height" content="600">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#2f3c7e">
-<script>location.replace(${JSON.stringify(to.href)});</script>
+<script>
+// count the open (not on Lewis's own devices, which remember his passcode),
+// then go on to the page
+try {
+  if (!localStorage.getItem('course-pass') && navigator.sendBeacon) navigator.sendBeacon(${JSON.stringify('/api/seen/' + params.code)});
+} catch (e) {}
+location.replace(${JSON.stringify(to.href)});
+</script>
 </head><body style="background:#2f3c7e">
 <noscript><p style="color:#fff;font-family:sans-serif;padding:24px"><a style="color:#f4b63f" href="${esc(to.href)}">打開課程說明</a></p></noscript>
 </body></html>`;

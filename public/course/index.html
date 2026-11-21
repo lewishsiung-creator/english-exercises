@@ -34,6 +34,8 @@
          heading 下一期課程 & 學費說明.
        dl the offer deadline, "YYYY-MM-DD" (optional)
        q class size 2 or 3 (optional; plan prices are then per person)
+       f 下一期重點 lines (returning only) · r recommended plan's hours ·
+       rr why, one sentence (all optional, 2026-11-21)
        w Lewis's note at the top, one string per paragraph (optional;
          **bold** allowed; signed 「— Lewis」 automatically) -->
 <meta name="robots" content="noindex, nofollow">
@@ -69,7 +71,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&text=%E2%80%94%20Lewis&display=swap">
-<link rel="stylesheet" href="course.css?v=12">
+<link rel="stylesheet" href="course.css?v=14">
 <link rel="stylesheet" href="../type.css">
 </head>
 <body>
@@ -111,6 +113,13 @@
     <div class="next-strip" id="st-next"><span class="lbl">下一期課程</span><strong id="st-n"></strong><span class="go">開始</span></div>
   </section>
 
+  <!-- a returning student: what the next course will work on -->
+  <section class="focus" id="s-focus" hidden>
+    <h2>下一期重點</h2>
+    <p class="lead">接下來的課程，我們會專注在：</p>
+    <ol class="focus-list" id="focus"></ol>
+  </section>
+
   <section id="about">
     <h2 id="about-h">客製化課程說明</h2>
     <div id="info-wrap">
@@ -135,9 +144,10 @@
   <section id="s-fee">
     <h2>學費說明</h2>
     <p class="lead">網站公告學費：<a href="https://lewistoeic.com/course_packages/" target="_blank" rel="noopener">客製化課程方案 · Course Packages</a></p>
-    <h3><span class="en">1-on-1</span> 課程選項</h3>
+    <h3 id="opt-h"><span class="en">1-on-1</span> 課程選項</h3>
     <p class="lead" id="intro"></p>
     <div class="plans" id="plans"></div>
+    <div class="rec-note" id="rec-note" hidden><span class="i" aria-hidden="true">💬</span><p><strong id="rec-h"></strong><span id="rec-why"></span></p></div>
     <div class="deadline" id="deadline" hidden><span class="i" aria-hidden="true">⏰</span><p id="dl-text"></p></div>
 
     <div class="callout ask"><span class="i" aria-hidden="true">💡</span><p><strong>請主動告知您想安排的課程選項。</strong></p></div>
@@ -183,12 +193,22 @@
     </div>
   </section>
 
+  <section class="notes" id="s-notes">
+    <h2>課程須知</h2>
+    <ul class="notes-list">
+      <li><strong>Lewis 親自授課</strong>所有課程皆由 Lewis 老師親自授課，品質與進度全程把關。</li>
+      <li><strong>課程回放</strong>若因故無法準時上線，可於該堂課結束後一個月內，無限次觀看課程回放影片，不影響學習進度。</li>
+      <li><strong>預付方案</strong>一次預付，分次使用；本方案費用適用於 2027 年 12 月 31 日前開課之課程。</li>
+      <li><strong>退費規定</strong>課程開始後恕不退費。</li>
+    </ul>
+  </section>
+
   <section class="next" id="s-next">
     <h2>下一步</h2>
     <ol class="steps" id="nx-steps">
       <li class="nx-new">用 <span class="en">LINE</span> 告訴我您選擇的<strong>課程方案</strong>，例如「20 小時課程」。</li>
       <li class="nx-new">我會和您確認<strong id="nx-time">上課時間</strong>。</li>
-      <li>依照上方「付款方式」完成轉帳，並告知<strong>帳號末五碼</strong>。</li>
+      <li>依照<span id="nx-where">上方</span>「付款方式」完成轉帳，並告知<strong>帳號末五碼</strong>。</li>
     </ol>
     <p class="nx-dl" id="nx-dl" hidden></p>
     <p class="nx-close" id="nx-close">期待和您一起上課！</p>
@@ -352,6 +372,19 @@ document.querySelectorAll('.copy').forEach(function (b) {
     set('st-n', ns);
     document.getElementById('st-next').hidden = !(renew && ns);
     document.getElementById('s-done').hidden = !(renew && (s || e || h));
+
+    // 下一期重點 (returning only)
+    var focus = renew ? lines(d.f) : [], fl = document.getElementById('focus');
+    fl.textContent = '';
+    focus.forEach(function (t) { fl.appendChild(el('li', null, t)); });
+    document.getElementById('s-focus').hidden = !focus.length;
+
+    // Order: a new student reads what to do right after the fees, then how
+    // to pay; a returning student, who knows the way, ends on 下一步.
+    var order = renew ? ['s-fee', 's-pay', 's-leave', 's-notes', 's-next'] : ['s-fee', 's-next', 's-pay', 's-leave', 's-notes'];
+    var host = document.getElementById('s-fee').parentNode;
+    order.forEach(function (id) { host.appendChild(document.getElementById(id)); });
+    set('nx-where', renew ? '上方' : '下方');
     // an odd one out at the end of the two-column grid takes the full width
     var shown = [].filter.call(document.querySelectorAll('.facts .fact'), function (f) {
       f.classList.remove('wide'); return !f.hidden;
@@ -373,10 +406,15 @@ document.querySelectorAll('.copy').forEach(function (b) {
     // the plan that is cheapest per hour is marked — only when it alone is
     var rates = plans.map(function (p) { return p.rate; }), best = Math.min.apply(null, rates);
     var marked = plans.length > 1 && rates.filter(function (r) { return r === best; }).length === 1;
+    // Lewis's own pick (r hours) leads; the cheapest-per-hour badge stays on
+    // another card, and gives way when they are the same card
+    var rec = num(d.r), recPlan = plans.filter(function (p) { return p.hours === rec; })[0];
     plans.forEach(function (p) {
       var hours = p.hours, span = p.span, price = p.price, sale = p.sale;
-      var card = el('div', 'plan' + (marked && p.rate === best ? ' best' : ''));
-      if (marked && p.rate === best) card.appendChild(el('div', 'badge', '每小時最划算'));
+      var isRec = recPlan === p, isBest = marked && p.rate === best;
+      var card = el('div', 'plan' + (isRec ? ' best rec' : isBest ? ' best' : ''));
+      if (isRec) card.appendChild(el('div', 'badge', 'Lewis 推薦'));
+      else if (isBest) card.appendChild(el('div', 'badge', '每小時最划算'));
       card.appendChild(el('div', 'hours', hours + ' 小時課程'));
       if (span) card.appendChild(el('div', 'span', span));
       if (group) card.appendChild(el('div', 'span group', group + ' 人課程・以下為每人費用'));
@@ -400,6 +438,16 @@ document.querySelectorAll('.copy').forEach(function (b) {
       box.appendChild(card);
     });
     box.hidden = !box.children.length;
+
+    // 推薦方案: a line under the plans saying which, and why
+    var why = str(d.rr);
+    set('rec-h', recPlan ? '我的建議：' + recPlan.hours + ' 小時課程' : '');
+    set('rec-why', recPlan && why ? why : '');
+    document.getElementById('rec-note').hidden = !recPlan;
+    var oh = document.getElementById('opt-h');
+    oh.textContent = '';
+    if (group) oh.textContent = group + ' 人課程選項';
+    else { oh.appendChild(el('span', 'en', '1-on-1')); oh.appendChild(document.createTextNode(' 課程選項')); }
 
     // 優惠期限: the same date in the fees and in 下一步
     var dl = day(d.dl), anySale = plans.some(function (p) { return p.sale && p.sale < p.price; });

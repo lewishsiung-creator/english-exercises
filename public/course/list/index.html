@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- Lewis's 學員清單: every short link he has made with /course/make/, newest
+     first — who it is for, new or returning, whether the student has opened
+     it (and when last), and where he is with them (已傳送 / 已回覆 / 已付款 /
+     結案). Asked for 2026-11-21 as part of a customer-relationship pass.
+
+     Everything comes from /api/c with his passcode (the same one the form
+     uses, remembered in this browser); nothing about a student is in this
+     file. A link already sent but not answered for a few days is flagged
+     「該跟進了」. -->
+<meta name="robots" content="noindex, nofollow">
+<title>學員清單｜Lewis Biz English</title>
+<meta name="theme-color" content="#2f3c7e">
+<link rel="icon" href="../../logo.png">
+<link rel="stylesheet" href="../course.css?v=14">
+<link rel="stylesheet" href="../../type.css">
+<style>
+body { background: var(--paper); }
+.top {
+  background: radial-gradient(70% 160% at 100% 0%, rgba(244,182,63,.16), rgba(244,182,63,0) 60%), var(--navy);
+  color: #fff; padding: 18px max(20px, env(safe-area-inset-right)) 18px max(20px, env(safe-area-inset-left));
+}
+.top .row { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
+.top img { width: 32px; height: 32px; border-radius: 50%; }
+.top h1 { margin: 0; font-size: 19px; letter-spacing: .02em; }
+.top a { margin-left: auto; color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; padding: 8px 14px; border: 1px solid rgba(255,255,255,.35); border-radius: var(--pill); white-space: nowrap; }
+.wrapl { max-width: 900px; margin: 0 auto; padding: 18px max(16px, env(safe-area-inset-left)) calc(48px + env(safe-area-inset-bottom)); }
+
+.summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+.sum { background: #fff; border-radius: 16px; padding: 12px 14px; box-shadow: 0 1px 2px rgba(29,32,51,.04), 0 10px 30px -18px rgba(29,32,51,.22); }
+.sum b { display: block; font: 700 26px/1.1 var(--font-ui); color: var(--navy); }
+.sum span { font-size: 13px; color: var(--ink-faint); font-weight: 600; }
+.sum.warn b { color: #b2551b; }
+@media (max-width: 560px) { .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.filters button { appearance: none; border: 1px solid var(--line); background: #fff; border-radius: var(--pill); padding: 7px 14px; font: 600 14px var(--font-zh); color: var(--ink-soft); cursor: pointer; min-height: 38px; }
+.filters button[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+.card { background: #fff; border-radius: 18px; padding: 16px 18px; margin-bottom: 12px; box-shadow: 0 1px 2px rgba(29,32,51,.04), 0 10px 30px -18px rgba(29,32,51,.22); }
+.card.follow { box-shadow: inset 4px 0 0 #e08a3c, 0 1px 2px rgba(29,32,51,.04), 0 10px 30px -18px rgba(29,32,51,.22); }
+.card .head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.card .name { font-size: 18px; font-weight: 700; }
+.tag { font-size: 12.5px; font-weight: 700; padding: 2px 10px; border-radius: var(--pill); }
+.tag.new { background: #eef0f8; color: var(--navy); }
+.tag.renew { background: #fbf3e7; color: #8a6a43; }
+.tag.follow { background: #fde9d9; color: #b2551b; }
+.meta { margin: 6px 0 10px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+.meta .seen-no { color: var(--ink-faint); }
+.meta .seen-yes { color: #1f7a4d; font-weight: 600; }
+.stat-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.stat-row button { appearance: none; border: 1px solid var(--line); background: #fff; border-radius: var(--pill); padding: 6px 12px; font: 600 13.5px var(--font-zh); color: var(--ink-soft); cursor: pointer; min-height: 36px; }
+.stat-row button[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+.stat-row button[data-s="paid"][aria-pressed="true"] { background: #1f7a4d; border-color: #1f7a4d; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.actions a, .actions button { appearance: none; border: 1px solid var(--line); background: #fff; color: var(--ink); text-decoration: none; border-radius: var(--pill); padding: 8px 14px; font: 600 14px var(--font-zh); cursor: pointer; min-height: 40px; display: inline-flex; align-items: center; }
+.actions .primary { background: var(--navy); border-color: var(--navy); color: #fff; }
+.empty, .msg { text-align: center; color: var(--ink-soft); padding: 40px 16px; }
+.msg.warn { color: #b0202a; }
+.msg button { margin-top: 12px; appearance: none; border: 0; background: var(--navy); color: #fff; border-radius: var(--pill); padding: 10px 18px; font: 600 15px var(--font-zh); cursor: pointer; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="row">
+    <img src="../../logo.png" alt="">
+    <h1>學員清單</h1>
+    <a href="../make/">＋ 做新的連結</a>
+  </div>
+</header>
+
+<div class="wrapl">
+  <div class="summary" id="summary" hidden>
+    <div class="sum"><b id="n-all">0</b><span>全部連結</span></div>
+    <div class="sum warn"><b id="n-follow">0</b><span>該跟進了</span></div>
+    <div class="sum"><b id="n-replied">0</b><span>已回覆</span></div>
+    <div class="sum"><b id="n-paid">0</b><span>已付款</span></div>
+  </div>
+  <div class="filters" id="filters" hidden>
+    <button type="button" data-f="all" aria-pressed="true">全部</button>
+    <button type="button" data-f="follow" aria-pressed="false">該跟進</button>
+    <button type="button" data-f="new" aria-pressed="false">新學員</button>
+    <button type="button" data-f="renew" aria-pressed="false">舊學員續課</button>
+    <button type="button" data-f="open" aria-pressed="false">未結案</button>
+  </div>
+  <div id="list"></div>
+</div>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var STATUS = [['', '未設定'], ['sent', '已傳送'], ['replied', '已回覆'], ['paid', '已付款'], ['closed', '結案']];
+  var DAY = 864e5, links = [], filter = 'all';
+
+  function getPass() { try { return localStorage.getItem('course-pass') || ''; } catch (e) { return ''; } }
+  function savePass(p) { try { localStorage.setItem('course-pass', p); } catch (e) {} }
+  function forgetPass() { try { localStorage.removeItem('course-pass'); } catch (e) {} }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function when(ms) {
+    if (!ms) return '';
+    var t = new Date(ms);
+    return (t.getMonth() + 1) + '/' + t.getDate() + '（' + '日一二三四五六'.charAt(t.getDay()) + '）' + t.getHours() + ':' + ('0' + t.getMinutes()).slice(-2);
+  }
+  // sent, and either never opened or not answered for 3 days
+  function needsFollow(l) {
+    var s = l.st && l.st.s;
+    if (s !== 'sent') return false;
+    return Date.now() - (l.st.at || 0) > 3 * DAY;
+  }
+
+  function message(text, warn, retry) {
+    var box = $('list'); box.textContent = '';
+    var p = el('div', 'msg' + (warn ? ' warn' : ''), text);
+    if (retry) { var b = el('button', null, '輸入密碼'); b.type = 'button'; b.onclick = load; p.appendChild(el('br')); p.appendChild(b); }
+    box.appendChild(p);
+  }
+
+  function load() {
+    var pass = getPass();
+    if (!pass) {
+      pass = (prompt('請輸入短連結密碼（和表單用的是同一組）。') || '').trim();
+      if (!pass) return message('需要密碼才能看到學員清單。', false, true);
+    }
+    message('載入中…');
+    fetch('/api/c', { headers: { 'x-course-pass': pass } }).then(function (r) {
+      return r.json().catch(function () { return { error: 'down' }; }).then(function (j) { return { ok: r.ok, j: j }; });
+    }).then(function (res) {
+      if (!res.ok) {
+        if (res.j.error === 'wrong' || res.j.error === 'short' || res.j.error === 'need') { forgetPass(); return message('密碼不對，請再試一次。', true, true); }
+        return message('學員清單只能在 Cloudflare 的網址上使用。', true);
+      }
+      savePass(pass);
+      links = res.j.links || [];
+      draw();
+    }, function () { message('連不上，請確認網路後重新整理。', true); });
+  }
+
+  function setStatus(l, s) {
+    var prev = l.st;
+    l.st = s ? { s: s, at: Date.now() } : null;
+    draw();
+    fetch('/api/status/' + l.code, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-course-pass': getPass() },
+      body: JSON.stringify({ s: s })
+    }).then(function (r) { if (!r.ok) throw r; }).catch(function () {
+      l.st = prev; draw(); alert('沒有存到，請再試一次。');
+    });
+  }
+
+  function copy(text, b) {
+    var label = b.textContent;
+    function done(ok) { b.textContent = ok ? '已複製 ✓' : '請手動複製'; setTimeout(function () { b.textContent = label; }, 1800); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
+    else done(false);
+  }
+
+  function draw() {
+    $('summary').hidden = $('filters').hidden = !links.length;
+    $('n-all').textContent = links.length;
+    $('n-follow').textContent = links.filter(needsFollow).length;
+    $('n-replied').textContent = links.filter(function (l) { return l.st && l.st.s === 'replied'; }).length;
+    $('n-paid').textContent = links.filter(function (l) { return l.st && l.st.s === 'paid'; }).length;
+
+    var box = $('list'); box.textContent = '';
+    if (!links.length) return message('還沒有任何短連結。到表單做第一個吧！');
+    var shown = links.filter(function (l) {
+      var s = l.st && l.st.s;
+      return filter === 'all' || (filter === 'follow' && needsFollow(l)) || filter === l.k ||
+        (filter === 'open' && s !== 'paid' && s !== 'closed');
+    });
+    if (!shown.length) box.appendChild(el('div', 'empty', '這個分類目前沒有學員。'));
+    shown.forEach(function (l) {
+      var c = el('div', 'card' + (needsFollow(l) ? ' follow' : ''));
+      var head = el('div', 'head');
+      head.appendChild(el('span', 'name', l.n || '（沒有名字）'));
+      head.appendChild(el('span', 'tag ' + (l.k === 'renew' ? 'renew' : 'new'), l.k === 'renew' ? '舊學員續課' : '新學員'));
+      if (needsFollow(l)) head.appendChild(el('span', 'tag follow', '該跟進了'));
+      c.appendChild(head);
+
+      var meta = el('div', 'meta');
+      meta.appendChild(document.createTextNode('建立 ' + when(l.created) + (l.updated && l.updated - l.created > 6e4 ? '・更新 ' + when(l.updated) : '')));
+      meta.appendChild(el('br'));
+      if (l.seen && l.seen.count) meta.appendChild(el('span', 'seen-yes', '學員已打開 ' + l.seen.count + ' 次・最近 ' + when(l.seen.last)));
+      else meta.appendChild(el('span', 'seen-no', '學員還沒打開'));
+      if (l.st && l.st.s) { meta.appendChild(el('br')); meta.appendChild(document.createTextNode('狀態更新於 ' + when(l.st.at))); }
+      c.appendChild(meta);
+
+      var row = el('div', 'stat-row');
+      STATUS.forEach(function (st) {
+        var b = el('button', null, st[1]); b.type = 'button'; b.dataset.s = st[0];
+        b.setAttribute('aria-pressed', ((l.st && l.st.s) || '') === st[0] ? 'true' : 'false');
+        b.onclick = function () { setStatus(l, st[0]); };
+        row.appendChild(b);
+      });
+      c.appendChild(row);
+
+      var act = el('div', 'actions');
+      var ed = el('a', 'primary', '編輯'); ed.href = '../make/#edit=' + l.code; act.appendChild(ed);
+      var op = el('a', null, '打開頁面'); op.href = '/c/' + l.code; op.target = '_blank'; op.rel = 'noopener'; act.appendChild(op);
+      var cp = el('button', null, '複製連結'); cp.type = 'button';
+      cp.onclick = function () { copy(location.origin + '/c/' + l.code, cp); };
+      act.appendChild(cp);
+      c.appendChild(act);
+      box.appendChild(c);
+    });
+  }
+
+  $('filters').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    filter = b.dataset.f;
+    $('filters').querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    draw();
+  });
+  load();
+})();
+</script>
+</body>
+</html>

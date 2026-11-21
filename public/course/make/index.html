@@ -26,7 +26,7 @@
 <title>課程說明頁產生器｜Lewis Biz English</title>
 <meta name="theme-color" content="#2f3c7e">
 <link rel="icon" href="../../logo.png">
-<link rel="stylesheet" href="../course.css?v=12">
+<link rel="stylesheet" href="../course.css?v=14">
 <link rel="stylesheet" href="../../type.css">
 <style>
 body { background: var(--paper); }
@@ -67,6 +67,21 @@ textarea { resize: vertical; min-height: 64px; line-height: 1.55; }
 .two label { margin-top: 14px; }
 input[type="date"] { -webkit-appearance: none; appearance: none; min-height: 44px; text-align: left; }
 input[type="date"]::-webkit-date-and-time-value { text-align: left; }
+/* customer-relationship pass (2026-11-21) */
+.top .to-list { color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; padding: 8px 14px; border: 1px solid rgba(255,255,255,.35); border-radius: var(--pill); white-space: nowrap; }
+.top .to-list:hover { background: rgba(255,255,255,.1); }
+@media (max-width: 900px) { .top .to-list { margin-left: auto; } }
+.editing .seen { font-size: 14px; color: #8a5a14; font-weight: 600; }
+.msg-l { margin-top: 14px; }
+#msg { font-size: 14.5px; }
+@media (max-width: 900px) {
+  .bar.bar { flex-direction: column; align-items: stretch; gap: 6px; }
+  .bar .status { text-align: left; }
+  .bar-btns { display: grid; grid-template-columns: auto 1fr 1fr; gap: 8px; }
+  .bar-btns .btn { padding-left: 10px; padding-right: 10px; }
+  .layout { padding-bottom: calc(150px + env(safe-area-inset-bottom)) !important; }
+}
+
 /* 上課方式 is always ZOOM (Lewis, 2026-11-21): shown, not asked */
 .fixed-mode { margin: 14px 0 0; font-size: 14px; color: var(--ink-soft); }
 .fixed-mode strong { color: var(--ink); }
@@ -246,6 +261,7 @@ details .btns { margin-top: 8px; }
     <img src="../../logo.png" alt="">
     <h1>課程說明頁產生器</h1>
     <p>填好學員資料 → 複製連結 → 用 LINE 傳給學員</p>
+    <a class="to-list" href="../list/">學員清單 →</a>
   </div>
 </header>
 
@@ -254,6 +270,7 @@ details .btns { margin-top: 8px; }
   <form id="f" autocomplete="off" novalidate>
     <section class="editing" id="editing" hidden>
       <p><strong>正在編輯短連結</strong> <code id="ed-code"></code></p>
+      <p class="seen" id="ed-seen" hidden></p>
       <label class="chk"><input type="checkbox" id="keep" checked><span>複製時更新這個連結（學員打開原本的連結，就會看到新內容）</span></label>
       <p class="status">要給另一位學員做新的連結，請取消勾選，或到下面「編輯舊連結」按「清空表單」。</p>
     </section>
@@ -277,6 +294,12 @@ details .btns { margin-top: 8px; }
       <label for="g">學習目標<span class="hint">（可多選）點選常見目標，或自己輸入</span></label>
       <div class="chips" id="goal-chips" aria-label="常見學習目標"></div>
       <textarea id="g" rows="2" placeholder="點上面的目標會自動加在這裡；也可以自己輸入，一行一項。例如：英語授課 (Contemporary Art)"></textarea>
+
+      <div class="only-renew">
+        <label for="fo">下一期重點<span class="hint">（可多選）從學習目標點選，或自己輸入</span></label>
+        <div class="chips" id="focus-chips" aria-label="下一期重點"></div>
+        <textarea id="fo" rows="2" placeholder="例如：會議中主動發言"></textarea>
+      </div>
     </section>
 
     <section>
@@ -328,6 +351,12 @@ details .btns { margin-top: 8px; }
       </div>
       <p class="status" style="margin-top:10px">優惠價留空，就只顯示原價。</p>
 
+      <label>推薦方案<span class="hint">選填，點一個方案</span></label>
+      <div class="chips" id="rec-chips" aria-label="推薦方案"></div>
+      <label for="rr">推薦理由<span class="hint">一句話，點選或自己寫</span></label>
+      <div class="chips" id="why-chips" aria-label="推薦理由"></div>
+      <input id="rr" placeholder="例如：最符合您的目標與上課頻率" enterkeyhint="next">
+
       <label for="dl">優惠期限<span class="hint">選填，請學員在這天前確認</span></label>
       <input id="dl" type="date">
     </section>
@@ -355,6 +384,9 @@ details .btns { margin-top: 8px; }
         <button type="button" class="btn only-narrow" id="close">← 回到表單</button>
       </div>
       <p class="status" id="status"></p>
+      <label for="msg" class="msg-l">LINE 訊息<span class="hint">可以修改；{連結} 會換成短連結</span></label>
+      <textarea id="msg" rows="3"></textarea>
+      <div class="btns"><button type="button" class="btn primary" id="copym">複製 LINE 訊息</button></div>
     </div>
     <div class="frame-h">預覽（學員看到的樣子）
       <span class="seg" role="group" aria-label="預覽寬度">
@@ -367,8 +399,11 @@ details .btns { margin-top: 8px; }
 
   <div class="bar">
     <p class="status" id="status2"></p>
-    <button type="button" class="btn" id="show">預覽</button>
-    <button type="button" class="btn primary" id="copy2">複製連結</button>
+    <div class="bar-btns">
+      <button type="button" class="btn" id="show">預覽</button>
+      <button type="button" class="btn" id="copy2">複製連結</button>
+      <button type="button" class="btn primary" id="copym2">複製訊息</button>
+    </div>
   </div>
 
 </div>
@@ -715,6 +750,78 @@ details .btns { margin-top: 8px; }
     group('方案（可多選）', PACKAGES.map(function (k) { return ['pkg', String(k.hours), '']; }));
   })();
 
+  // ---- 下一期重點: picked from this student's own goals ----
+  function drawFocus() {
+    var goals = lines($('g').value), cur = lines($('fo').value), wrap = $('focus-chips');
+    wrap.textContent = '';
+    if (!goals.length) {
+      var p = document.createElement('p'); p.className = 'status'; p.style.margin = '0 0 6px';
+      p.textContent = '先在上面選學習目標，這裡就會出現可以點的選項。';
+      wrap.appendChild(p); return;
+    }
+    var row = document.createElement('div'); row.className = 'row';
+    goals.forEach(function (t) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.textContent = t;
+      b.setAttribute('aria-pressed', cur.indexOf(t) >= 0 ? 'true' : 'false');
+      b.onclick = function () {
+        var c = lines($('fo').value), i = c.indexOf(t);
+        if (i >= 0) c.splice(i, 1); else c.push(t);
+        $('fo').value = c.join('\n'); grow($('fo')); update();
+      };
+      row.appendChild(b);
+    });
+    wrap.appendChild(row);
+  }
+
+  // ---- 推薦方案: one of the plans below, and a sentence why ----
+  var recHours = 0;
+  var WHYS = ['最符合您的目標與上課頻率', '時數足夠，看得到明顯進步', '每小時單價最划算', '期限較長，時間安排更有彈性'];
+  function drawRec() {
+    var wrap = $('rec-chips'), hours = [];
+    $('plans').querySelectorAll('.plan-row').forEach(function (r) {
+      var h = digits(r.querySelector('.ph').value);
+      if (h && hours.indexOf(h) < 0) hours.push(h);
+    });
+    if (recHours && hours.indexOf(recHours) < 0) recHours = 0;
+    wrap.textContent = '';
+    var row = document.createElement('div'); row.className = 'row';
+    hours.forEach(function (h) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.textContent = h + ' 小時';
+      b.setAttribute('aria-pressed', h === recHours ? 'true' : 'false');
+      b.onclick = function () { recHours = recHours === h ? 0 : h; update(); };
+      row.appendChild(b);
+    });
+    wrap.appendChild(row);
+    $('why-chips').querySelectorAll('.chip').forEach(function (b) {
+      b.setAttribute('aria-pressed', $('rr').value.trim() === b.textContent ? 'true' : 'false');
+    });
+  }
+  (function buildWhy() {
+    var row = document.createElement('div'); row.className = 'row';
+    WHYS.forEach(function (t) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.textContent = t;
+      b.onclick = function () { $('rr').value = $('rr').value.trim() === t ? '' : t; update(); };
+      row.appendChild(b);
+    });
+    $('why-chips').appendChild(row);
+  })();
+
+  // ---- the LINE message that goes with the link ----
+  // Written for him until he edits it; {連結} becomes the short link.
+  var msgEdited = false;
+  function md(iso) { var m = /^\d{4}-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? (+m[1]) + '/' + (+m[2]) : ''; }
+  function writeMsg() {
+    var first = $('n').value.trim().split(/\s+/)[0] || '__', renew = mode() === 'renew', dl = md($('dl').value);
+    var body = renew
+      ? '這是我們下一期的課程安排，也整理了這段時間的學習成果，方便的時候看一下 🙂'
+      : '這是為您整理的上課安排與學費說明，方便的時候看一下 🙂';
+    return first + ' 您好！' + body + (dl ? '\n優惠保留到 ' + dl + '，有任何問題都可以直接問我。' : '\n有任何問題都可以直接問我。') + '\n{連結}';
+  }
+  $('msg').addEventListener('input', function () { msgEdited = true; });
+
   function collect() {
     var plans = [];
     $('plans').querySelectorAll('.plan-row').forEach(function (r) {
@@ -738,6 +845,9 @@ details .btns { margin-top: 8px; }
       x: $('x').value.trim(),
       w: paras($('w').value),
       q: people() > 1 ? people() : undefined,
+      f: renew ? lines($('fo').value) : [],
+      r: recHours && plans.some(function (p) { return p[0] === recHours; }) ? recHours : undefined,
+      rr: recHours ? $('rr').value.trim() : '',
       p: plans
     };
   }
@@ -769,10 +879,19 @@ details .btns { margin-top: 8px; }
   function getPass() { try { return localStorage.getItem('course-pass') || ''; } catch (e) { return ''; } }
   function savePass(p) { try { localStorage.setItem('course-pass', p); } catch (e) {} }
   function forgetPass() { try { localStorage.removeItem('course-pass'); } catch (e) {} }
+  function showSeen(sn) {
+    var p = $('ed-seen');
+    if (!sn || !sn.count) { p.textContent = '學員還沒有打開過這個連結。'; p.hidden = false; return; }
+    var t = new Date(sn.last), w = '日一二三四五六'.charAt(t.getDay());
+    p.textContent = '學員已打開 ' + sn.count + ' 次・最近一次 ' + (t.getMonth() + 1) + '/' + t.getDate() + '（' + w + '）' +
+      t.getHours() + ':' + ('0' + t.getMinutes()).slice(-2);
+    p.hidden = false;
+  }
   function setEditing(e) {
     editing = e;
     $('editing').hidden = !e;
     if (e) { $('ed-code').textContent = '/c/' + e.code; $('keep').checked = true; }
+    else $('ed-seen').hidden = true;
   }
   // → Promise of { url, code } — or { url: long link, fallback } when the API isn't there
   function makeShort() {
@@ -805,6 +924,9 @@ details .btns { margin-top: 8px; }
 
   function update() {
     drawPlanChips();
+    drawFocus();
+    drawRec();
+    if (!msgEdited) { $('msg').value = writeMsg(); grow($('msg')); }
     var d = collect();
     var missing = [];
     $('n').classList.toggle('bad', false);
@@ -835,7 +957,7 @@ details .btns { margin-top: 8px; }
     var target = editing && $('keep').checked ? editing.code : null;
     $('link').value = missing.length ? '' : ready ? shortUrl(last.code) : SHORT ? '' : url;
     $('copy').disabled = $('open').disabled = !!missing.length;
-    $('copy2').disabled = !!missing.length;
+    $('copy2').disabled = $('copym').disabled = $('copym2').disabled = !!missing.length;
     ['status', 'status2'].forEach(function (id) {
       var st = $(id), wide = id === 'status';
       st.className = 'status' + (missing.length ? ' warn' : '');
@@ -872,6 +994,10 @@ details .btns { margin-top: 8px; }
     $('x').value = d.x || '';
     $('w').value = (d.w || []).join('\n\n');
     size = d.q === 2 || d.q === 3 ? d.q : 1;
+    $('fo').value = (d.f || []).join('\n');
+    recHours = +d.r || 0;
+    $('rr').value = d.rr || '';
+    msgEdited = false;
     setPlans((d.p && d.p.length) ? d.p : DEFAULT_PLANS);
     update();
     document.querySelectorAll('textarea').forEach(grow);
@@ -929,6 +1055,7 @@ details .btns { margin-top: 8px; }
         fill(d);
         last = { h: curH, code: m[1] };
         setEditing({ code: m[1], name: (d.n || '').trim() });
+        showSeen(j.seen);
         update();
         $('old').value = '';
       }, cannotRead);
@@ -944,10 +1071,11 @@ details .btns { margin-top: 8px; }
   // The clipboard is written inside the tap even though the short link
   // arrives a moment later — iPhone Safari only allows that through a
   // ClipboardItem holding a promise; elsewhere writeText after the fetch works.
-  function copyLink(b) {
+  function copyLink(b, wrap) {
     if (!longUrl) return;
+    var label = b.textContent;
     var job = SHORT ? makeShort() : Promise.resolve({ url: longUrl });
-    var text = job.then(function (r) { return r.url; });
+    var text = job.then(function (r) { return wrap ? wrap(r.url) : r.url; });
     var wrote;
     if (window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
       wrote = navigator.clipboard.write([new ClipboardItem({
@@ -961,7 +1089,7 @@ details .btns { margin-top: 8px; }
       wrote = Promise.reject('no clipboard');
     }
     b.textContent = '產生中…';
-    function say(msg) { b.textContent = msg; setTimeout(function () { b.textContent = '複製連結'; }, 2200); }
+    function say(msg) { b.textContent = msg; setTimeout(function () { b.textContent = label; }, 2200); }
     job.then(function (r) {
       update();
       if (r.fallback) $('link').value = r.url;
@@ -977,12 +1105,18 @@ details .btns { margin-top: 8px; }
       var msg = err === 'wrong' ? '密碼不對，請再按一次「複製連結」重新輸入。'
         : err === 'short' ? '密碼至少要 6 個字，請再按一次「複製連結」。'
         : err === 'cancel' ? '' : '沒有產生連結，請再試一次。';
-      say('複製連結');
+      say(label);
       if (msg) ['status', 'status2'].forEach(function (id) { $(id).className = 'status warn'; $(id).textContent = msg; });
     });
   }
   $('copy').onclick = function () { copyLink($('copy')); };
   $('copy2').onclick = function () { copyLink($('copy2')); };
+  function wrapMsg(url) {
+    var m = $('msg').value;
+    return m.indexOf('{連結}') >= 0 ? m.replace('{連結}', url) : m.replace(/\s*$/, '') + '\n' + url;
+  }
+  $('copym').onclick = function () { copyLink($('copym'), wrapMsg); };
+  $('copym2').onclick = function () { copyLink($('copym2'), wrapMsg); };
 
   // phone: the preview opens over the form, and closes back to it
   $('show').onclick = function () { document.body.classList.add('pv'); };
@@ -1000,6 +1134,9 @@ details .btns { margin-top: 8px; }
   $('open').onclick = function () { window.open(longUrl, '_blank', 'noopener'); };
 
   fill({});
+  // opened from 學員清單 as …/make/#edit=<code>: load that link
+  var ed = /#edit=([a-hjkmnp-z2-9]{7})$/.exec(location.hash);
+  if (ed) { $('old').value = location.origin + '/c/' + ed[1]; $('load').click(); history.replaceState(null, '', location.pathname); }
 })();
 </script>
 </body>
