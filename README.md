@@ -6808,6 +6808,16 @@ a form where Lewis types a student's name and class time and gets that page.
   (`INFO`, same day): 職務 (several, one line: 「職務：主管／經理、業務」),
   產業 (運動用品業 added on request), 英文程度, 工作上用英文 — the last three
   one answer each, where a second tap replaces the first in place.
+- **學費方案 chips** (2026-11-21): 上課人數 1 / 2 / 3 and the three packages
+  from lewistoeic.com/course_packages (read that day) — 10 小時 12 週,
+  20 小時 22 週, 40 小時 40 週 — at the site's prices per person
+  (1 人 18,000 / 30,000 / 56,000; 2 人 12,000 / 20,000 / 36,000; 3 人
+  11,400 / 18,000 / 32,000). `PACKAGES` in the form; update it when the site
+  changes. A tap adds or removes the package's row; the rows stay editable,
+  and 「＋ 自訂方案」 adds one by hand. Changing the class size re-prices rows
+  still at the official price and drops the one-person 老學員優惠. A class of
+  2 or 3 goes in the link as `q`, and the plan cards then say
+  「N 人課程・以下為每人費用」 and 「每人平均每小時」.
 - **上課方式** is fixed: always 「ZOOM 線上會議」 (Lewis, 2026-11-21). The
   form shows it as a line, not a field; the page ignores an old link's `m`.
 - **上課時間 chips** (same day): 星期 (several), 開始時間 (grouped 早上 / 中午 /

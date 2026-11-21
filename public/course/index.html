@@ -33,6 +33,7 @@
          with s/e/h is a returning student's. Renew shows 學習成果 and the
          heading 下一期課程 & 學費說明.
        dl the offer deadline, "YYYY-MM-DD" (optional)
+       q class size 2 or 3 (optional; plan prices are then per person)
        w Lewis's note at the top, one string per paragraph (optional;
          **bold** allowed; signed 「— Lewis」 automatically) -->
 <meta name="robots" content="noindex, nofollow">
@@ -68,7 +69,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&text=%E2%80%94%20Lewis&display=swap">
-<link rel="stylesheet" href="course.css?v=10">
+<link rel="stylesheet" href="course.css?v=11">
 <link rel="stylesheet" href="../type.css">
 </head>
 <body>
@@ -363,6 +364,7 @@ document.querySelectorAll('.copy').forEach(function (b) {
 
     var box = document.getElementById('plans');
     box.textContent = '';
+    var group = d.q === 2 || d.q === 3 ? d.q : 0;   // 2- or 3-person class: prices are per person
     var plans = (Array.isArray(d.p) ? d.p : []).filter(Array.isArray).map(function (p) {
       var hours = num(p[0]), price = num(p[2]), sale = num(p[3]);
       return { hours: hours, span: str(p[1]), price: price, sale: sale,
@@ -377,6 +379,7 @@ document.querySelectorAll('.copy').forEach(function (b) {
       if (marked && p.rate === best) card.appendChild(el('div', 'badge', '每小時最划算'));
       card.appendChild(el('div', 'hours', hours + ' 小時課程'));
       if (span) card.appendChild(el('div', 'span', span));
+      if (group) card.appendChild(el('div', 'span group', group + ' 人課程・以下為每人費用'));
       var pay = price;
       if (sale && sale < price) {
         var was = el('div', 'was', '原價 ');
@@ -393,7 +396,7 @@ document.querySelectorAll('.copy').forEach(function (b) {
         only.appendChild(document.createTextNode(money(price)));
         card.appendChild(only);
       }
-      card.appendChild(el('div', 'per', '平均每小時 ' + money(pay / hours)));
+      card.appendChild(el('div', 'per', (group ? '每人平均每小時 ' : '平均每小時 ') + money(pay / hours)));
       box.appendChild(card);
     });
     box.hidden = !box.children.length;

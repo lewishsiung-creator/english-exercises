@@ -26,7 +26,7 @@
 <title>課程說明頁產生器｜Lewis Biz English</title>
 <meta name="theme-color" content="#2f3c7e">
 <link rel="icon" href="../../logo.png">
-<link rel="stylesheet" href="../course.css?v=10">
+<link rel="stylesheet" href="../course.css?v=11">
 <link rel="stylesheet" href="../../type.css">
 <style>
 body { background: var(--paper); }
@@ -319,9 +319,11 @@ details .btns { margin-top: 8px; }
       <label for="x">方案上方的說明<span class="hint">選填</span></label>
       <textarea id="x" rows="2" placeholder="例如：2026 年 6 月開始，學費已做調整。"></textarea>
 
+      <div class="chips" id="plan-chips" aria-label="選學費方案"></div>
+      <p class="status" style="margin:0 0 4px">點選後會在下面列出方案，價格照網站公告；也可以再修改，或加上優惠價。</p>
       <div id="plans"></div>
       <div class="btns">
-        <button type="button" class="btn" id="add">＋ 新增方案</button>
+        <button type="button" class="btn" id="add">＋ 自訂方案</button>
         <button type="button" class="btn only-renew" id="loyal">套用老學員優惠</button>
       </div>
       <p class="status" style="margin-top:10px">優惠價留空，就只顯示原價。</p>
@@ -376,9 +378,17 @@ details .btns { margin-top: 8px; }
   var $ = function (id) { return document.getElementById(id); };
   var BASE = new URL('../', location.href).href;   // …/course/
 
+  // The packages on lewistoeic.com/course_packages (read 2026-11-21): price
+  // per person by class size, and how long each may take.
+  var PACKAGES = [
+    { hours: 10, span: '12 週內完成課程（約 3 個月）', price: { 1: 18000, 2: 12000, 3: 11400 } },
+    { hours: 20, span: '22 週內完成課程（約 6 個月）', price: { 1: 30000, 2: 20000, 3: 18000 } },
+    { hours: 40, span: '40 週內完成課程（約 9 個月）', price: { 1: 56000, 2: 36000, 3: 32000 } }
+  ];
+  function pkg(h) { return PACKAGES.filter(function (k) { return k.hours === h; })[0]; }
   var DEFAULT_PLANS = [
-    [10, '12 週內完成課程（約 3 個月）', 18000, ''],
-    [20, '22 週內完成課程（約 6 個月）', 30000, '']
+    [10, PACKAGES[0].span, 18000, ''],
+    [20, PACKAGES[1].span, 30000, '']
   ];
   // What Vicky got: the June 2026 price rise, with a thank-you price.
   var LOYAL = {
@@ -624,6 +634,7 @@ details .btns { margin-top: 8px; }
     // a returning student gets the thank-you price unless he has set his own
     var rows = [].slice.call($('plans').querySelectorAll('.plan-row'));
     if (on) {
+      if (people() !== 1) return;
       if ($('x').value.trim() || rows.some(function (r) { return r.querySelector('.ps').value.trim(); })) return;
       $('x').value = LOYAL.x;
       rows.forEach(function (r) {
@@ -642,6 +653,67 @@ details .btns { margin-top: 8px; }
   document.querySelectorAll('input[name="k"]').forEach(function (r) {
     r.addEventListener('change', function () { showMode(); loyal(mode() === 'renew'); update(); });
   });
+
+  // ---- 學費方案: class size, then the packages, picked with a tap ----
+  var size = 1;
+  function people() { return size; }
+  function rowsByHours(h) {
+    return [].filter.call($('plans').querySelectorAll('.plan-row'), function (r) { return digits(r.querySelector('.ph').value) === h; });
+  }
+  function drawPlanChips() {
+    $('plan-chips').querySelectorAll('.chip').forEach(function (c) {
+      var on = c.dataset.k === 'size' ? +c.dataset.v === size : rowsByHours(+c.dataset.v).length > 0;
+      c.setAttribute('aria-pressed', on ? 'true' : 'false');
+      if (c.dataset.k === 'pkg') {
+        var k = pkg(+c.dataset.v);
+        c.textContent = k.hours + ' 小時・$' + k.price[size].toLocaleString('en-US');
+      }
+    });
+  }
+  function setSize(n) {
+    var old = size; size = n;
+    // the official price follows the class size; a price he typed himself stays
+    PACKAGES.forEach(function (k) {
+      rowsByHours(k.hours).forEach(function (r) {
+        if (digits(r.querySelector('.pp').value) === k.price[old]) r.querySelector('.pp').value = k.price[n];
+        // the thank-you prices are one-person prices
+        var sv = digits(r.querySelector('.ps').value);
+        if (n !== 1 && sv && sv === LOYAL.sale[k.hours]) r.querySelector('.ps').value = '';
+      });
+    });
+    if (n !== 1 && $('x').value.trim() === LOYAL.x) $('x').value = '';
+  }
+  (function buildPlanChips() {
+    var wrap = $('plan-chips');
+    function group(name, chips) {
+      var head = document.createElement('div'); head.className = 'grp'; head.textContent = name;
+      var row = document.createElement('div'); row.className = 'row';
+      chips.forEach(function (c) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'chip'; b.textContent = c[2];
+        b.dataset.k = c[0]; b.dataset.v = c[1];
+        b.onclick = function () {
+          if (c[0] === 'size') setSize(+c[1]);
+          else {
+            var k = pkg(+c[1]), rs = rowsByHours(k.hours);
+            if (rs.length) rs.forEach(function (r) { r.remove(); });
+            else {
+              planRow([k.hours, k.span, k.price[size], '']);
+              // keep the cards in order of hours
+              var all = [].slice.call($('plans').querySelectorAll('.plan-row'));
+              all.sort(function (x, y) { return digits(x.querySelector('.ph').value) - digits(y.querySelector('.ph').value); })
+                 .forEach(function (r) { $('plans').appendChild(r); });
+            }
+          }
+          drawPlanChips(); update();
+        };
+        row.appendChild(b);
+      });
+      wrap.appendChild(head); wrap.appendChild(row);
+    }
+    group('上課人數（選一個）', [['size', '1', '1 人'], ['size', '2', '2 人'], ['size', '3', '3 人']]);
+    group('方案（可多選）', PACKAGES.map(function (k) { return ['pkg', String(k.hours), '']; }));
+  })();
 
   function collect() {
     var plans = [];
@@ -665,6 +737,7 @@ details .btns { margin-top: 8px; }
       g: lines($('g').value),
       x: $('x').value.trim(),
       w: paras($('w').value),
+      q: people() > 1 ? people() : undefined,
       p: plans
     };
   }
@@ -731,6 +804,7 @@ details .btns { margin-top: 8px; }
   }
 
   function update() {
+    drawPlanChips();
     var d = collect();
     var missing = [];
     $('n').classList.toggle('bad', false);
@@ -797,6 +871,7 @@ details .btns { margin-top: 8px; }
     syncGoals();
     $('x').value = d.x || '';
     $('w').value = (d.w || []).join('\n\n');
+    size = d.q === 2 || d.q === 3 ? d.q : 1;
     setPlans((d.p && d.p.length) ? d.p : DEFAULT_PLANS);
     update();
     document.querySelectorAll('textarea').forEach(grow);

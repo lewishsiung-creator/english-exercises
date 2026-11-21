@@ -513,3 +513,6 @@ section.next ol.steps li { color: var(--ink); }
 .nx-close { margin: 16px 0 0; font-weight: 700; color: var(--navy); font-size: 17px; }
 
 @media print { .next-strip { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+
+/* a 2- or 3-person class: the size under the plan's length */
+.plan .span.group { color: var(--navy); font-weight: 600; }
