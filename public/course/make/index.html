@@ -73,6 +73,9 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 @media (max-width: 900px) { .top .to-list { margin-left: auto; } }
 .editing .seen { font-size: 14px; color: #8a5a14; font-weight: 600; }
 .msg-l { margin-top: 14px; }
+.msg-head { display: flex; align-items: flex-end; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+.msg-head .msg-l { margin-bottom: 0; }
+.msg-head .seg { margin-left: auto; display: inline-flex; }
 #msg { font-size: 14.5px; }
 @media (max-width: 900px) {
   .bar.bar { flex-direction: column; align-items: stretch; gap: 6px; }
@@ -384,7 +387,13 @@ details .btns { margin-top: 8px; }
         <button type="button" class="btn only-narrow" id="close">← 回到表單</button>
       </div>
       <p class="status" id="status"></p>
-      <label for="msg" class="msg-l">LINE 訊息<span class="hint">可以修改；{連結} 會換成短連結</span></label>
+      <div class="msg-head">
+        <label for="msg" class="msg-l">LINE 訊息<span class="hint">可以修改；{連結} 會換成短連結</span></label>
+        <span class="seg" role="group" aria-label="訊息語言" id="msg-lang">
+          <button type="button" data-lang="zh" aria-pressed="true">中文</button>
+          <button type="button" data-lang="en" aria-pressed="false">English</button>
+        </span>
+      </div>
       <textarea id="msg" rows="3"></textarea>
       <div class="btns"><button type="button" class="btn primary" id="copym">複製 LINE 訊息</button></div>
     </div>
@@ -811,15 +820,33 @@ details .btns { margin-top: 8px; }
 
   // ---- the LINE message that goes with the link ----
   // Written for him until he edits it; {連結} becomes the short link.
-  var msgEdited = false;
+  // In Chinese or English (the English one added the same day, on request).
+  var msgEdited = false, msgLang = 'zh';
+  var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   function md(iso) { var m = /^\d{4}-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? (+m[1]) + '/' + (+m[2]) : ''; }
+  function mdEn(iso) { var m = /^\d{4}-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? MONTHS[+m[1] - 1] + ' ' + (+m[2]) : ''; }
   function writeMsg() {
-    var first = $('n').value.trim().split(/\s+/)[0] || '__', renew = mode() === 'renew', dl = md($('dl').value);
+    var first = $('n').value.trim().split(/\s+/)[0] || '__', renew = mode() === 'renew';
+    if (msgLang === 'en') {
+      var dle = mdEn($('dl').value);
+      return 'Hi ' + first + '! ' + (renew
+        ? 'Here\u2019s the plan for our next course, along with a look back at your progress so far. Take a look whenever you have a moment \ud83d\ude42'
+        : 'Here\u2019s your class schedule and course fee details. Take a look whenever you have a moment \ud83d\ude42') +
+        (dle ? '\nThis offer is valid until ' + dle + '. Feel free to message me with any questions.' : '\nFeel free to message me with any questions.') + '\n{連結}';
+    }
+    var dl = md($('dl').value);
     var body = renew
       ? '這是我們下一期的課程安排，也整理了這段時間的學習成果，方便的時候看一下 🙂'
       : '這是為您整理的上課安排與學費說明，方便的時候看一下 🙂';
     return first + ' 您好！' + body + (dl ? '\n優惠保留到 ' + dl + '，有任何問題都可以直接問我。' : '\n有任何問題都可以直接問我。') + '\n{連結}';
   }
+  $('msg-lang').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b || b.dataset.lang === msgLang) return;
+    if (msgEdited && !confirm('切換語言會換掉你改過的訊息，要繼續嗎？')) return;
+    msgLang = b.dataset.lang; msgEdited = false;
+    $('msg-lang').querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    update();
+  });
   $('msg').addEventListener('input', function () { msgEdited = true; });
 
   function collect() {

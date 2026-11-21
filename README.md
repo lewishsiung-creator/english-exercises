@@ -6820,6 +6820,8 @@ a form where Lewis types a student's name and class time and gets that page.
     returning wording, the deadline if set); `{連結}` becomes the short link.
     「複製 LINE 訊息」 in the link box, 「複製訊息」 in the phone bar. Editing
     the box stops it being rewritten until the form is cleared or reloaded.
+    A 中文 / English switch above the box (English added the same day, on
+    request); switching rewrites the message, asking first if he edited it.
   - **學員清單** at `/course/list/` (passcode): every short link, newest
     first, with new/returning, opens, and a status (未設定 / 已傳送 / 已回覆 /
     已付款 / 結案, KV `st:<code>`); 「該跟進了」 when 已傳送 for over 3 days.
