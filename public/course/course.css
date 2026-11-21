@@ -554,3 +554,117 @@ ol.focus-list li::before {
 ul.notes-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 ul.notes-list li { font-size: 15.5px; color: var(--ink-soft); padding-left: 14px; border-left: 3px solid rgba(47,60,126,.25); }
 ul.notes-list li strong { display: block; color: var(--ink); font-size: 16px; }
+
+/* =====================================================================
+   Visual pass (2026-11-21). One meaning per colour:
+     navy   — what matters and what to do
+     copper — Lewis himself: his recommendation, his focus, his offer
+     green  — money saved
+     amber  — a date to keep (only the deadline, only in 下一步)
+   Everything else sits on white.
+   ===================================================================== */
+:root { --ink-faint: #6b6f84; }   /* small grey labels: readable outdoors (AA) */
+
+/* line icons in place of emoji, drawn in the current text colour */
+.ic {
+  display: inline-block; flex: none; width: 18px; height: 18px;
+  background: currentColor;
+  -webkit-mask: var(--ic) center / contain no-repeat; mask: var(--ic) center / contain no-repeat;
+}
+.ic-bulb  { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z'/%3E%3C/svg%3E"); }
+.ic-gift  { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='8' width='18' height='4' rx='1'/%3E%3Cpath d='M5 12v8h14v-8M12 8v12M12 8c-2-4-6-4-6-1.5S10 8 12 8zM12 8c2-4 6-4 6-1.5S14 8 12 8z'/%3E%3C/svg%3E"); }
+.ic-chat  { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z'/%3E%3C/svg%3E"); }
+.ic-clock { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E"); }
+
+/* 學習成果: navy numbers on a pale navy, the next start as the navy tile */
+.stats { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); }
+@media (max-width: 420px) { .stats { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); } }
+.stat { background: #f4f5fb; border: 1px solid rgba(47,60,126,.08); }
+.stat .num { color: var(--navy); font-size: 42px; }
+.stat .range { font: 700 18px/1.4 var(--font-ui); color: var(--navy); }
+.stat .lbl { color: var(--ink-soft); }
+.stat.next {
+  grid-column: 1 / -1;
+  background:
+    radial-gradient(120% 160% at 100% 0%, rgba(244,182,63,.22), rgba(244,182,63,0) 55%),
+    linear-gradient(135deg, var(--navy), var(--navy-deep));
+  border: 0; color: #fff; justify-content: center;
+}
+.stat.next .lbl { color: rgba(255,255,255,.75); }
+.stat.next .date { font: 700 22px/1.3 var(--font-zh); color: var(--gold); }
+.stats .stat:only-child { grid-column: 1 / -1; }
+@media (min-width: 760px) {
+  .stats { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1.4fr); }
+  .stat.next { grid-column: auto; }
+}
+
+/* 學員相關資訊 as tags; goals with this term's focus marked */
+.itags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
+.itag { display: inline-flex; align-items: baseline; gap: 6px; padding: 5px 12px; border-radius: var(--pill); background: #f4f5fb; font-size: 15px; font-weight: 600; }
+.itag small { font-size: 12.5px; font-weight: 600; color: var(--ink-faint); }
+.goals-note { font-size: 14px; color: var(--ink-soft); margin: 0 0 8px; }
+.pill {
+  display: inline-block; margin: 0 4px; padding: 1px 9px; border-radius: var(--pill);
+  background: var(--copper); color: #fff; font-size: 12px; font-weight: 700; vertical-align: 1px; white-space: nowrap;
+}
+ol.goals li.focus { font-weight: 700; }
+ol.goals li .pill { margin-left: 8px; }
+
+/* 推薦 note: copper, Lewis speaking */
+.rec-note { align-items: flex-start; }
+.rec-note .ic { color: var(--copper); margin-top: 3px; }
+
+/* the next thing to tell Lewis: a plain navy line, no box */
+p.ask { display: flex; align-items: center; gap: 8px; margin: 16px 0 0; color: var(--navy); font-size: 15.5px; }
+p.ask .ic { color: var(--navy); }
+p.ask strong { color: var(--navy); }
+
+/* 特別優惠: white, outlined; the gift in copper */
+.perks { background: #fff; border: 1px solid var(--line); }
+.perks-h { display: flex; align-items: center; gap: 8px; }
+.perks-h .ic { color: var(--copper); }
+.perks li { border-left-color: rgba(192,133,64,.35); }
+
+/* 上課規則與須知: one card, two parts */
+#s-leave h3 { margin: 18px 0 4px; color: var(--ink); font-size: 15px; letter-spacing: .04em; }
+#s-leave h3:first-of-type { margin-top: 0; }
+#s-leave .notes-list { margin-top: 8px; }
+
+/* 下一步: the page ends on a strong navy card */
+section.next {
+  background:
+    radial-gradient(90% 120% at 100% 0%, rgba(244,182,63,.2), rgba(244,182,63,0) 55%),
+    linear-gradient(135deg, var(--navy), var(--navy-deep));
+  border: 0; color: #fff;
+  box-shadow: 0 18px 40px -20px rgba(35,46,102,.65);
+}
+section.next > h2 { color: #fff; font-size: 21px; }
+section.next > h2::before { background: var(--gold); }
+section.next ol.steps li { color: rgba(255,255,255,.9); }
+section.next ol.steps li strong { color: #fff; }
+section.next ol.steps li::before { background: var(--gold); color: var(--navy-deep); }
+section.next .nx-dl {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(244,182,63,.14); color: var(--gold); border: 1px solid rgba(244,182,63,.4);
+}
+section.next .nx-dl::before {
+  content: ""; width: 18px; height: 18px; flex: none; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+section.next .nx-close { color: var(--gold); font-size: 18px; }
+
+/* footer: his mark and a signature, answering the hero */
+footer.foot {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  padding-top: 18px; text-align: left; color: var(--ink-soft);
+}
+footer.foot img { width: 36px; height: 36px; border-radius: 50%; }
+footer.foot strong { display: block; color: var(--ink); font-size: 15px; }
+footer.foot span { font-size: 13px; }
+footer.foot a { padding: 0; }
+/* the hours tile keeps "20 小時" on one line on a phone */
+.stats { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); }
+@media (max-width: 420px) { .stats { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); } .stat { padding: 14px 14px; } }
+@media (min-width: 760px) { .stats { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1.4fr); } }
+.stat .num { white-space: nowrap; font-size: 40px; }

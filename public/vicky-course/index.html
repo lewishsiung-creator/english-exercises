@@ -61,7 +61,7 @@
 
 <!-- The look lives in ../course/course.css, shared with every page the
      course form makes, so a change there reaches Vicky's page too. -->
-<link rel="stylesheet" href="../course/course.css?v=14">
+<link rel="stylesheet" href="../course/course.css?v=16">
 <link rel="stylesheet" href="../type.css">
 </head>
 <body>
@@ -77,7 +77,7 @@
 
 <nav class="jump" aria-label="頁面段落">
   <div class="wrap">
-    <a href="#s-time">上課安排</a><a href="#s-fee">學費說明</a><a href="#s-pay">付款方式</a><a href="#s-leave">請假規則</a>
+    <a href="#s-time">上課安排</a><a href="#s-fee">學費說明</a><a href="#s-pay">付款方式</a><a href="#s-leave">上課規則</a>
   </div>
 </nav>
 
@@ -99,14 +99,14 @@
     <h2>學習成果</h2>
     <div class="stats">
       <div class="stat"><div class="num">20<small>小時</small></div><div class="lbl">已完成時數</div></div>
-      <div class="stat"><div class="range">2026/03/07（六） –<br>2026/11/10（二）</div><div class="lbl">已完成課程期間・約 8 個月</div></div>
+      <div class="stat"><div class="range">2026/3/7 – 11/10</div><div class="lbl">已完成課程期間・約 8 個月</div></div>
     </div>
   </section>
 
   <section>
-    <h2>VICKY 客製化課程說明</h2>
+    <h2>Vicky 的客製化課程</h2>
     <h3>學員相關資訊</h3>
-    <p>長榮大學美術學系（副教授）</p>
+    <div class="itags"><span class="itag">長榮大學美術學系（副教授）</span></div>
     <h3>學習目標</h3>
     <ol class="goals">
       <li>提升英語交談的自在感</li>
@@ -146,9 +146,9 @@
       </div>
     </div>
 
-    <div class="callout ask"><span class="i" aria-hidden="true">💡</span><p><strong>請主動告知您想安排的課程選項。</strong></p></div>
+    <p class="ask"><span class="ic ic-bulb" aria-hidden="true"></span><strong>請主動告知您想安排的課程選項。</strong></p>
     <div class="perks">
-      <div class="perks-h"><span aria-hidden="true">🎁</span> 特別優惠</div>
+      <div class="perks-h"><span class="ic ic-gift" aria-hidden="true"></span>特別優惠</div>
       <ul>
         <li><strong>上課重點筆記</strong>關於您的課程，我會另外提供上課重點筆記。</li>
         <li><strong><span class="en">LINE</span> 線上解惑</strong>只要是與英文相關的問題，您可以直接傳訊給我，晚上 9 點前，我都會盡快回答您的疑惑，提供協助。</li>
@@ -178,7 +178,8 @@
   </section>
 
   <section id="s-leave">
-    <h2>請假規則</h2>
+    <h2>上課規則與須知</h2>
+    <h3>請假</h3>
     <div class="rule">
       <div class="when ok">2 日前</div>
       <p>如需請假或更動上課時間，<span class="hl">請於 2 日前告知</span>，我會配合另外安排時間。</p>
@@ -187,10 +188,7 @@
       <div class="when late">2 日內</div>
       <p>若於 2 日內告知，會針對您的課程進度額外準備學習內容，供您學習，不另行補課。</p>
     </div>
-  </section>
-
-  <section class="notes" id="s-notes">
-    <h2>課程須知</h2>
+    <h3>課程須知</h3>
     <ul class="notes-list">
       <li><strong>Lewis 親自授課</strong>所有課程皆由 Lewis 老師親自授課，品質與進度全程把關。</li>
       <li><strong>預付方案</strong>一次預付，分次使用；本方案費用適用於 2027 年 12 月 31 日前開課之課程。</li>
@@ -209,7 +207,10 @@
 </div>
 </main>
 
-<footer><a href="https://lewistoeic.com/" target="_blank" rel="noopener">Lewis 多益職場力</a> · #職場英語教練</footer>
+<footer class="foot">
+  <img src="../logo.png" alt="">
+  <div><strong class="en">Lewis Biz English</strong><span>職場英語教練・<a href="https://lewistoeic.com/" target="_blank" rel="noopener">Lewis 多益職場力</a></span></div>
+</footer>
 
 <script>
 // The jump bar scrolls without touching the address: on /course/ the

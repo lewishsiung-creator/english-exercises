@@ -6798,6 +6798,19 @@ a form where Lewis types a student's name and class time and gets that page.
   預覽 opens the page full-screen; on a computer the preview fills the
   window's height beside the form, with a 手機 / 全寬 switch (手機 first, since
   students read it on phones); text boxes grow as he types.
+- **Visual pass** (2026-11-21, after the customer-relationship pass; notes at
+  the end of `course.css`). One meaning per colour: navy = what matters and
+  what to do, copper = Lewis himself (his recommendation, focus, offer),
+  green = money saved, amber = the deadline only; everything else on white.
+  Emoji gave way to line icons (`.ic-bulb`, `.ic-gift`, `.ic-chat`). Each fact
+  is said once: the next start only in 學習成果 (a navy tile beside the hours
+  and the dates), the deadline only in 下一步, and 下一期重點 is marked with a
+  copper 「下一期重點」 pill inside the goals list (the separate section went).
+  下一步 is the closing navy card. 請假規則 and 課程須知 became one card,
+  「上課規則與須知」 (jump link 「上課規則」). 「Vicky 的客製化課程」 instead of
+  the upper-case name; 學員相關資訊 as tags; dates shortened to
+  「2026/3/7 – 11/10」 and 「11 月 17 日（二）」; the small grey labels darkened
+  for contrast; the footer carries his logo. Vicky's page matches by hand.
 - **Customer-relationship pass** (2026-11-21, all seven points Lewis approved):
   - **下一期重點** (key `f`, returning only): picked from this student's own
     學習目標 in the form, shown after 學習成果 as numbered copper cards.
