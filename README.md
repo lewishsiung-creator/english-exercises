@@ -6806,7 +6806,8 @@ a form where Lewis types a student's name and class time and gets that page.
     or his own). The cheapest-per-hour badge stays on another card, and gives
     way when both would land on the same one.
   - **課程須知** on every page (and Vicky's): taught by Lewis himself, the
-    one-month replay, prepaid / valid for courses starting by 2027-12-31, and
+    one-month replay (group classes only — shown just when `q` is 2 or 3, his
+    correction the same day), prepaid / valid for courses starting by 2027-12-31, and
     「課程開始後恕不退費」 — from lewistoeic.com/course_packages; he asked for
     the refund rule to be on the page.
   - **Order:** a new student reads 學費說明 → 下一步 → 付款方式 → 請假規則 →

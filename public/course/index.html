@@ -197,7 +197,7 @@
     <h2>課程須知</h2>
     <ul class="notes-list">
       <li><strong>Lewis 親自授課</strong>所有課程皆由 Lewis 老師親自授課，品質與進度全程把關。</li>
-      <li><strong>課程回放</strong>若因故無法準時上線，可於該堂課結束後一個月內，無限次觀看課程回放影片，不影響學習進度。</li>
+      <li id="n-replay" hidden><strong>課程回放（團體課程）</strong>若因故無法準時上線，可於該堂課結束後一個月內，無限次觀看課程回放影片，不影響學習進度。</li>
       <li><strong>預付方案</strong>一次預付，分次使用；本方案費用適用於 2027 年 12 月 31 日前開課之課程。</li>
       <li><strong>退費規定</strong>課程開始後恕不退費。</li>
     </ul>
@@ -444,6 +444,8 @@ document.querySelectorAll('.copy').forEach(function (b) {
     set('rec-h', recPlan ? '我的建議：' + recPlan.hours + ' 小時課程' : '');
     set('rec-why', recPlan && why ? why : '');
     document.getElementById('rec-note').hidden = !recPlan;
+    // the replay is for group classes only (Lewis, 2026-11-21)
+    document.getElementById('n-replay').hidden = !group;
     var oh = document.getElementById('opt-h');
     oh.textContent = '';
     if (group) oh.textContent = group + ' 人課程選項';
