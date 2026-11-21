@@ -6807,6 +6807,11 @@ a form where Lewis types a student's name and class time and gets that page.
   (`INFO`, same day): 職務, 產業, 英文程度, 工作上用英文 — one answer each,
   written as 「職務：業務」, and a second tap in the same group replaces the
   first where it stands.
+- **上課時間 chips** (same day): 星期 (several), 開始時間 (grouped 早上 / 中午 /
+  下午 / 晚上), 每次上課 1 / 1.5 / 2 小時, or 「每次上課時間另外約定」. They
+  write the box in Vicky's wording, 「每週二、四早上 8:00 – 9:00 am」 (am/pm on
+  both ends when the class crosses noon); the box stays editable, and a link
+  loaded back is read into the chips when its time follows that pattern.
 - **新學員 / 舊學員續課** (2026-11-21). Lewis set the form's two purposes:
   tell a new student how the course is arranged and what it costs; show a
   returning student what is done and when the next course starts, and
