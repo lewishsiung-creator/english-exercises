@@ -516,3 +516,7 @@ section.next ol.steps li { color: var(--ink); }
 
 /* a 2- or 3-person class: the size under the plan's length */
 .plan .span.group { color: var(--navy); font-weight: 600; }
+
+/* 下一步 with one step left (a returning student): no lone number */
+ol.steps.single li { padding-left: 0; }
+ol.steps.single li::before { display: none; }

@@ -6841,6 +6841,8 @@ a form where Lewis types a student's name and class time and gets that page.
     下一步.
   - **下一步** ends every page: tell Lewis the plan on LINE, he confirms the
     time, then pay. Text only for now — no LINE link yet (he has none set).
+    For a returning student only the paying step shows, unnumbered (his
+    call, same day); Vicky's page matches.
   - Short links answer with a tiny page carrying their own preview text, so
     LINE shows 「Vicky 的下一期課程安排」 / 「Amy 的上課時間 & 學費說明」 and
     the hours and next date, then send the browser on to /course/#d=….

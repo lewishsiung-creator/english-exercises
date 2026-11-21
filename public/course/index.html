@@ -69,7 +69,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&text=%E2%80%94%20Lewis&display=swap">
-<link rel="stylesheet" href="course.css?v=11">
+<link rel="stylesheet" href="course.css?v=12">
 <link rel="stylesheet" href="../type.css">
 </head>
 <body>
@@ -185,9 +185,9 @@
 
   <section class="next" id="s-next">
     <h2>下一步</h2>
-    <ol class="steps">
-      <li>用 <span class="en">LINE</span> 告訴我您選擇的<strong>課程方案</strong>，例如「20 小時課程」。</li>
-      <li>我會和您確認<strong id="nx-time">上課時間</strong>。</li>
+    <ol class="steps" id="nx-steps">
+      <li class="nx-new">用 <span class="en">LINE</span> 告訴我您選擇的<strong>課程方案</strong>，例如「20 小時課程」。</li>
+      <li class="nx-new">我會和您確認<strong id="nx-time">上課時間</strong>。</li>
       <li>依照上方「付款方式」完成轉帳，並告知<strong>帳號末五碼</strong>。</li>
     </ol>
     <p class="nx-dl" id="nx-dl" hidden></p>
@@ -408,6 +408,9 @@ document.querySelectorAll('.copy').forEach(function (b) {
     set('nx-dl', dl ? '請於 ' + dl + '前回覆，保留' + (anySale ? '優惠價' : '這個價格') + '。' : '');
     document.getElementById('nx-dl').hidden = !dl;
     set('nx-time', renew ? '下一期的上課時間' : '上課時間');
+    // a returning student already knows to say which plan and when: only paying is left
+    document.querySelectorAll('#nx-steps .nx-new').forEach(function (li) { li.hidden = renew; });
+    document.getElementById('nx-steps').classList.toggle('single', renew);
     set('nx-close', renew ? '期待繼續和您一起進步！' : '期待和您一起上課！');
   }
 
