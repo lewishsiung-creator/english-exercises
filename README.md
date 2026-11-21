@@ -6798,8 +6798,9 @@ a form where Lewis types a student's name and class time and gets that page.
   預覽 opens the page full-screen; on a computer the preview fills the
   window's height beside the form, with a 手機 / 全寬 switch (手機 first, since
   students read it on phones); text boxes grow as he types.
-- **學習目標 chips** (2026-11-21): fifteen common goals for working adults in
-  five groups (口說與溝通, 會議與簡報, 書寫, 客戶與出差, 求職與考試), each a tap
+- **學習目標 chips** (2026-11-21): common goals for working adults — 32 in six
+  groups since the second round that day (口說與溝通, 會議與簡報, 領導與管理,
+  閱讀與書寫, 客戶與出差, 求職與考試), several at once, each a tap
   to add or remove as a line in the 學習目標 box, which stays editable for
   anything else. Lewis asked for picking instead of typing. The list is
   `GOALS` in `public/course/make/index.html`; a chip shows as picked whenever
