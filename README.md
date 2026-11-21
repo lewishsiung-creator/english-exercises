@@ -6804,9 +6804,9 @@ a form where Lewis types a student's name and class time and gets that page.
   anything else. Lewis asked for picking instead of typing. The list is
   `GOALS` in `public/course/make/index.html`; a chip shows as picked whenever
   its exact text is a line in the box. 學員相關資訊 works the same way
-  (`INFO`, same day): 職務, 產業, 英文程度, 工作上用英文 — one answer each,
-  written as 「職務：業務」, and a second tap in the same group replaces the
-  first where it stands.
+  (`INFO`, same day): 職務 (several, one line: 「職務：主管／經理、業務」),
+  產業 (運動用品業 added on request), 英文程度, 工作上用英文 — the last three
+  one answer each, where a second tap replaces the first in place.
 - **上課時間 chips** (same day): 星期 (several), 開始時間 (grouped 早上 / 中午 /
   下午 / 晚上), 每次上課 1 / 1.5 / 2 小時, or 「每次上課時間另外約定」. They
   write the box in Vicky's wording, 「每週二、四早上 8:00 – 9:00 am」 (am/pm on

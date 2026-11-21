@@ -443,12 +443,12 @@ details .btns { margin-top: 8px; }
 
   // ---- tap-to-pick lines for 學員相關資訊 and 學習目標 ----
   // Each tap adds a line to the box below it (or takes it out); the box stays
-  // editable for anything not on the list. A group with a label writes
-  // "職務：業務"; a `one` group keeps a single answer, so tapping another
-  // replaces it where it stands.
+  // editable for anything not on the list. A group with a label writes one
+  // line, 「職務：主管／經理、業務」 (several answers joined by 、); a `one`
+  // group keeps a single answer, so tapping another replaces it in place.
   var INFO = [
-    { name: '職務', label: '職務', one: true, items: ['主管／經理', '業務', '行銷／公關', '工程師／研發', '專案管理', '人資', '財務／會計', '採購／供應鏈', '客服', '教師／教授', '醫療人員', '創業者／老闆', '學生'] },
-    { name: '產業', label: '產業', one: true, items: ['科技業', '半導體', '製造業', '醫療／生技', '金融業', '貿易', '教育', '服務業'] },
+    { name: '職務', label: '職務', items: ['主管／經理', '業務', '行銷／公關', '工程師／研發', '專案管理', '人資', '財務／會計', '採購／供應鏈', '客服', '教師／教授', '醫療人員', '創業者／老闆', '學生'] },
+    { name: '產業', label: '產業', one: true, items: ['科技業', '半導體', '製造業', '醫療／生技', '金融業', '貿易', '運動用品業', '教育', '服務業'] },
     { name: '英文程度', label: '英文程度', one: true, items: ['初級（A2）', '中級（B1）', '中高級（B2）', '高級（C1）'] },
     { name: '工作上用英文', label: '工作上用英文', one: true, items: ['每天', '每週幾次', '偶爾', '目前還不需要'] }
   ];
@@ -462,31 +462,51 @@ details .btns { margin-top: 8px; }
   var pickers = [];
   function picker(boxId, chipsId, groups) {
     var box = $(boxId), wrap = $(chipsId);
-    function line(g, t) { return g.label ? g.label + '：' + t : t; }
+    var SEP = '、';
+    // a labelled group lives on one line, "label：a、b"; the line's index or -1
+    function find(cur, g) {
+      for (var i = 0; i < cur.length; i++) if (cur[i].indexOf(g.label + '：') === 0) return i;
+      return -1;
+    }
+    function picked(cur, g) {
+      if (!g.label) return g.items.filter(function (t) { return cur.indexOf(t) >= 0; });
+      var i = find(cur, g);
+      return i < 0 ? [] : cur[i].slice(g.label.length + 1).split(SEP).map(function (x) { return x.trim(); }).filter(Boolean);
+    }
     function sync() {
       var cur = lines(box.value);
-      wrap.querySelectorAll('.chip').forEach(function (b) {
-        b.setAttribute('aria-pressed', cur.indexOf(b.dataset.line) >= 0 ? 'true' : 'false');
+      groups.forEach(function (g) {
+        var on = picked(cur, g);
+        g.chips.forEach(function (b) { b.setAttribute('aria-pressed', on.indexOf(b.textContent) >= 0 ? 'true' : 'false'); });
       });
     }
     groups.forEach(function (g) {
-      var head = document.createElement('div'); head.className = 'grp'; head.textContent = g.name + (g.one ? '（選一個）' : '');
+      var head = document.createElement('div'); head.className = 'grp'; head.textContent = g.name + (g.one ? '（選一個）' : g.label ? '（可多選）' : '');
       var row = document.createElement('div'); row.className = 'row';
+      g.chips = [];
       g.items.forEach(function (t) {
         var b = document.createElement('button');
-        b.type = 'button'; b.className = 'chip'; b.textContent = t; b.dataset.line = line(g, t);
+        b.type = 'button'; b.className = 'chip'; b.textContent = t;
         b.setAttribute('aria-pressed', 'false');
         b.onclick = function () {
-          var cur = lines(box.value), me = line(g, t), i = cur.indexOf(me);
-          if (i >= 0) cur.splice(i, 1);
-          else if (g.one) {
-            var j = -1;
-            g.items.forEach(function (o) { var k = cur.indexOf(line(g, o)); if (k >= 0) j = k; });
-            if (j >= 0) cur[j] = me; else cur.push(me);
-          } else cur.push(me);
+          var cur = lines(box.value);
+          if (!g.label) {                       // a plain line per item
+            var k = cur.indexOf(t);
+            if (k >= 0) cur.splice(k, 1); else cur.push(t);
+          } else {                              // one "label：…" line
+            var on = picked(cur, g), i = find(cur, g), j = on.indexOf(t);
+            if (j >= 0) on.splice(j, 1);
+            else if (g.one) on = [t];
+            else { on.push(t); on.sort(function (x, y) { return g.items.indexOf(x) - g.items.indexOf(y); }); }
+            var me = g.label + '：' + on.join(SEP);
+            if (!on.length) { if (i >= 0) cur.splice(i, 1); }
+            else if (i >= 0) cur[i] = me;
+            else cur.push(me);
+          }
           box.value = cur.join('\n');
           grow(box); sync(); update();
         };
+        g.chips.push(b);
         row.appendChild(b);
       });
       wrap.appendChild(head); wrap.appendChild(row);
