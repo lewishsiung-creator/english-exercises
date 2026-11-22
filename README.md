@@ -3503,6 +3503,34 @@ What was measured and changed, so a later edit does not undo it:
   panel is not cut off by Safari's address bar.
 - On a phone the word cards' meta row is tightened so 「複製連結」 stays on it.
 
+### Unit 13: three exam question types (2026-11-22)
+
+Lewis said that from now on new material goes straight onto this page, in
+the page's own format (text with 中, glossed words, questions with 看文中線索,
+a word list). The first batch was four photos of a workbook's Unit 13: a
+綜合測驗 (HeroRATs, five blanks), a 文意選填 (mandala colouring books, ten
+blanks sharing ten choices) and a 混合題 (the Datan algal reef, four opinions,
+questions 24–27). The photos had no translation and no key, so the titles,
+every 中譯, the answers, the explanations, the glossed words, the word lists
+and the talk prompts are this page's; the English and the questions are the
+workbook's. They sit after Review, as texts 06–08, labelled `Unit 13 · …`.
+
+- **Blank numbers are keys.** `BLANKS` is one table for the whole page, so
+  Unit 13's blanks are `n: 1301`–`1315` with `show:` the workbook's 1–15; a
+  later unit should take 1401… and so on. `vocab` rows use the same key in
+  `after:`.
+- **文意選填** blanks carry `bank: 'mandala'` and take their ten choices from
+  `RD.banks`; a word already placed greys out in the open blanks and says
+  where it went. Their `need` (what kind of word the gap wants) is shown for a
+  wrong pick that has no reason of its own.
+- **混合題** is a new block, `t: 'mixed'`: `type: 'word' | 'phrase'` reuses the
+  spelling field (any form in `answer` is accepted; `need` is the hint on a
+  miss) and `type: 'multi'` is choose-all-that-apply with 檢查 (it says how many
+  are missing, or why a pick is wrong). Both take `ev`, keyed `<passage>-m<i>`.
+- A paragraph can have `who` (the speaker), drawn as a boxed opinion.
+- A fact-check note says the 2021 referendum failed and the terminal went
+  ahead on the 1.2 km offshore plan.
+
 ### `/reading/vocab/` — 高中單字, 大考中心's list
 
 A subpage of the reading page, linked from its cover: 大考中心《高中英文參考詞彙表

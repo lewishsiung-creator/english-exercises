@@ -53,13 +53,21 @@ const store = {
 
 // ------------------------------------------------------------------- pieces
 
-const LETTERS = 'ABCD';
+const LETTERS = 'ABCDEFGHIJ';   // ten for a 文意選填 bank
 
 /* The blanks, by number, so a filled slot can find its word wherever it is. */
 const BLANKS = {};
 RD.passages.forEach((p) => p.parts.forEach((pt) => pt.blocks.forEach((b) => {
-  if (b.t === 'text') b.paras.forEach((para) => (para.blanks || []).forEach((q) => { BLANKS[q.n] = q; }));
+  if (b.t === 'text') b.paras.forEach((para) => (para.blanks || []).forEach((q) => {
+    // a 文意選填 blank takes its choices from the shared bank
+    if (q.bank && !q.options) q.options = RD.banks[q.bank];
+    BLANKS[q.n] = q;
+  }));
 })));
+
+/* The number a student sees. Unit 13's blanks are keyed 1301–1315 so they
+   cannot meet the other texts' 11–15; `show` is the workbook's own number. */
+const shown = (n) => (BLANKS[n] && BLANKS[n].show) || n;
 
 /* Everything in the teacher's lists, so the review can say what a word means
    instead of each wrong option needing a sentence written for it. */
@@ -101,7 +109,7 @@ function pair(en, zh, cls = '') {
 }
 
 function slot(n) {
-  return `<span class="slot" data-n="${n}" aria-label="第 ${n} 題空格"><span class="slot-n">${n}</span></span>`;
+  return `<span class="slot" data-n="${n}" aria-label="第 ${shown(n)} 題空格"><span class="slot-n">${shown(n)}</span></span>`;
 }
 
 /* Finds each word of a passage once, at its first appearance. Nothing is marked
@@ -186,13 +194,14 @@ const BLOCKS = {
       <div class="passage">
         ${b.paras.map((p, i) => `
           <div class="pair para" data-zh>
+            ${p.who ? `<p class="who">${text(p.who)}</p>` : ''}
             <p class="en">${inline(p.en, spots[i])}
               <span class="para-tools">${say(p.en)} ${chip()}</span></p>
             <p class="zh">${inlineZh(p.zh)}</p>
           </div>
           ${(p.blanks || []).map((q) => `
-            <div class="q cloze" data-n="${q.n}" data-answer="${q.answer}">
-              <p class="q-n">第 ${q.n} 題</p>
+            <div class="q cloze" data-n="${q.n}" data-answer="${q.answer}"${q.bank ? ` data-bank="${text(q.bank)}"` : ''}${q.need ? ` data-need="${text(q.need)}"` : ''}>
+              <p class="q-n">第 ${shown(q.n)} 題</p>
               ${options(q, 'choice-row')}
             </div>`).join('')}`).join('')}
       </div>`;
@@ -227,6 +236,52 @@ const BLOCKS = {
           ${options(q, 'choice-list')}
           ${q.ev ? '<button class="ev-go">看文中線索 <span aria-hidden="true">↑</span></button>' : ''}
         </div>`).join('')}
+    </div>`,
+
+  /* 混合題 (Unit 13): a word or phrase to write, and a choose-all-that-apply.
+     The written ones reuse the spelling round's field and buttons; the
+     choose-all ones keep their picks until 檢查 is pressed. Each has `ev`
+     like a 閱讀測驗 question. */
+  mixed: (b, passage) => `
+    <div class="activity">
+      ${b.items.map((q, n) => {
+        const evAttr = q.ev ? ` data-ev="${text(passage.id)}-m${n}" data-num="${q.n}"` : '';
+        const stem = `<div class="q-stem"><span class="q-num">${q.n}</span>${pair(q.en, q.zh)}</div>`;
+        const ev = q.ev ? '<button class="ev-go">看文中線索 <span aria-hidden="true">↑</span></button>' : '';
+        if (q.type === 'multi') {
+          return `
+            <div class="q mx-multi" data-answers="${q.answers.join(',')}"${evAttr}>
+              ${stem}
+              <div class="choice choice-list">
+                ${q.options.map((o, i) => `
+                  <button class="opt" data-i="${i}" data-no="${text((q.no || {})[i])}" aria-pressed="false">
+                    <span class="opt-k">${LETTERS[i]}</span><span class="opt-t">${text(o)}</span>
+                  </button>`).join('')}
+              </div>
+              <button class="s-btn mx-check">檢查 <em>Check</em></button>
+              <p class="no" hidden></p>
+              <p class="why">${text(q.why)}</p>
+              ${ev}
+            </div>`;
+        }
+        const first = q.answer[0];
+        return `
+          <div class="q spell mx-write" data-word="${text(first)}" data-alt="${text(q.answer.join('|'))}" data-hint="1"${q.need ? ` data-need="${text(q.need)}"` : ''}${evAttr}>
+            ${stem}
+            <p class="en r-line"><input class="s-in" type="text" aria-label="寫出答案"
+              placeholder="${text(first[0])}…" style="width:${Math.max(first.length + 4, 12)}ch"
+              autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+              enterkeyhint="done"></p>
+            <div class="s-btns">
+              <button class="s-btn s-check">檢查 <em>Check</em></button>
+              <button class="s-btn s-hint">再給一個字母 <em>Hint</em></button>
+              <button class="s-btn s-show">看答案 <em>Show</em></button>
+            </div>
+            <p class="no" hidden></p>
+            <p class="why"><strong>${text(first)}</strong> ${text(q.why)}</p>
+            ${ev}
+          </div>`;
+      }).join('')}
     </div>`,
 
   /* The author's word beside a plain one. The plain column is what a student
@@ -453,13 +508,13 @@ function wrapRange(root, start, end, key) {
 
 function markEvidence() {
   RD.passages.forEach((p) => p.parts.forEach((pt) => pt.blocks.forEach((b) => {
-    if (b.t !== 'mcq') return;
+    if (b.t !== 'mcq' && b.t !== 'mixed') return;
     const paras = $$(`#${p.id} .passage .para > .en`);
     b.items.forEach((q, n) => (q.ev || []).forEach((quote) => {
       const root = paras.find((r) => textRuns(r).all.includes(quote));
       if (!root) { console.warn(`reading: "${quote}" is not in ${p.id}`); return; }
       const at = textRuns(root).all.indexOf(quote);
-      wrapRange(root, at, at + quote.length, `${p.id}-${n + 1}`);
+      wrapRange(root, at, at + quote.length, b.t === 'mixed' ? `${p.id}-m${n}` : `${p.id}-${n + 1}`);
     }));
   })));
 }
@@ -519,9 +574,11 @@ function fillBlank(n) {
 
 function solve(q) {
   const opts = $$('.opt', q);
+  const right = (q.dataset.answers || q.dataset.answer || '').split(',');
   opts.forEach((b) => {
     b.disabled = true;
-    b.classList.toggle('is-answer', b.dataset.i === q.dataset.answer);
+    b.classList.remove('picked');
+    b.classList.toggle('is-answer', right.includes(b.dataset.i));
   });
   const no = $('.no', q);
   no.hidden = true;
@@ -531,7 +588,25 @@ function solve(q) {
   const rs = $('.r-slot', q);
   if (rs) { rs.textContent = rs.dataset.fill; rs.classList.add('filled'); }
   const field = $('.s-in', q);
-  if (field) { field.value = q.dataset.word; field.disabled = true; }
+  if (field) {
+    // a 混合題 answer typed in another accepted form (hot potato / a hot potato) stays as typed
+    const kept = (q.dataset.alt || '').split('|').some((w) => w && plain(field.value) === plain(w));
+    if (!kept) field.value = q.dataset.word;
+    field.disabled = true;
+  }
+  if (q.dataset.bank) markUsed(q.dataset.bank);
+}
+
+/* 文意選填: a word already placed is greyed in the blanks still open, and says
+   where it went. It stays pressable, so the explanation can still be read. */
+function markUsed(bank) {
+  const used = {};
+  $$(`.q.cloze[data-bank="${bank}"].solved`).forEach((s) => { used[s.dataset.answer] = shown(s.dataset.n); });
+  $$(`.q.cloze[data-bank="${bank}"]:not(.solved) .opt`).forEach((b) => {
+    const at = used[b.dataset.i];
+    b.classList.toggle('used', at != null);
+    if (at != null) b.dataset.no = `這個字已經用在第 ${at} 題了。`;
+  });
 }
 
 /* A miss is remembered for this round only, so the page can offer the question
@@ -574,7 +649,31 @@ function choose(q, btn) {
   if (q.classList.contains('solved') || btn.disabled) return;
   if (btn.dataset.i === q.dataset.answer) { solve(q); roundDone(q); partDone(q); return; }
   btn.classList.add('is-wrong');
-  miss(q, btn.dataset.no);
+  miss(q, btn.dataset.no || q.dataset.need || '再讀一次空格前後。');
+}
+
+/* 混合題, choose all that apply: a pick toggles; 檢查 says what is missing or
+   which pick is wrong, and only the exact set closes it. */
+function toggleMulti(q, btn) {
+  if (q.classList.contains('solved')) return;
+  btn.classList.toggle('picked');
+  btn.setAttribute('aria-pressed', String(btn.classList.contains('picked')));
+  btn.classList.remove('is-wrong');
+}
+function checkMulti(q) {
+  if (q.classList.contains('solved')) return;
+  const right = q.dataset.answers.split(',');
+  const picked = $$('.opt.picked', q).map((b) => b.dataset.i);
+  if (!picked.length) { miss(q, '先選出你的答案，可以選不只一個。'); return; }
+  const wrong = picked.find((i) => !right.includes(i));
+  if (wrong != null) {
+    const b = $(`.opt[data-i="${wrong}"]`, q);
+    b.classList.add('is-wrong');
+    miss(q, b.dataset.no || '有一個選錯了。');
+    return;
+  }
+  if (picked.length < right.length) { miss(q, `選的都對，但還少了 ${right.length - picked.length} 個。`); return; }
+  solve(q); partDone(q);
 }
 
 /* Curly and straight apostrophes are the same letter to a student on a phone. */
@@ -585,8 +684,9 @@ function plain(s) {
 function checkSpelling(q) {
   const typed = $('.s-in', q).value;
   if (!plain(typed)) return;
-  if (plain(typed) === plain(q.dataset.word)) { solve(q); roundDone(q); partDone(q); return; }
-  miss(q, '還不對，再試一次，或按「再給一個字母」。');
+  const ok = (q.dataset.alt || q.dataset.word).split('|').some((w) => plain(typed) === plain(w));
+  if (ok) { solve(q); roundDone(q); partDone(q); return; }
+  miss(q, q.dataset.need ? `還不對。${q.dataset.need}` : '還不對，再試一次，或按「再給一個字母」。');
 }
 
 function giveLetter(q) {
@@ -632,7 +732,8 @@ function resetQuestion(q) {
   q.classList.remove('solved', 'wobble', 'missed', 'parked');
   $$('.opt', q).forEach((b) => {
     b.disabled = false;
-    b.classList.remove('is-answer', 'is-wrong');
+    b.classList.remove('is-answer', 'is-wrong', 'picked', 'used');
+    b.setAttribute('aria-pressed', 'false');
   });
   $('.no', q).hidden = true;
 
@@ -661,7 +762,7 @@ function clearAll() {
   $$('.again').forEach((a) => { a.hidden = true; });
   $$('.slot').forEach((s) => {
     s.classList.remove('filled');
-    s.innerHTML = `<span class="slot-n">${s.dataset.n}</span>`;
+    s.innerHTML = `<span class="slot-n">${shown(s.dataset.n)}</span>`;
   });
   $$('.unlocked').forEach((w) => w.classList.remove('unlocked'));
   $$('.pair.open').forEach((p) => p.classList.remove('open'));
@@ -694,7 +795,11 @@ doc.addEventListener('click', (e) => {
   if (gloss) { toggleGloss(gloss); return; }
 
   const opt = e.target.closest('.opt');
+  if (opt && opt.closest('.mx-multi')) { toggleMulti(opt.closest('.q'), opt); return; }
   if (opt) { choose(opt.closest('.q'), opt); return; }
+
+  const mxCheck = e.target.closest('.mx-check');
+  if (mxCheck) { checkMulti(mxCheck.closest('.q')); return; }
 
   const evGo = e.target.closest('.ev-go');
   if (evGo) { showEvidence(evGo.closest('.q')); return; }

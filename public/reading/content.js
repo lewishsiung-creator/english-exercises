@@ -34,17 +34,17 @@
 const RD = {
   kicker: 'High School Reading',
   titleZh: '高中英文閱讀',
-  title: 'Three Texts, Read Closely',
+  title: 'Texts, Read Closely',
   intro: {
-    zh: '三篇文章，一次讀一篇。先試著直接讀英文，點虛線字看字義，整段卡住再點「中」。讀完後，最後一節可以複習單字、片語和搭配詞。',
-    en: 'Three texts, one at a time. Read the English first, tap a dotted word for its meaning, and open the 中 only when a whole paragraph has stopped you. The last section reviews the words, phrases and collocations.',
+    zh: '一次讀一篇。先試著直接讀英文，點虛線字看字義，整段卡住再點「中」。前三篇後面有寫作句型和四關單字複習；Unit 13 的三篇是學測題型練習：綜合測驗、文意選填和混合題。',
+    en: 'One text at a time. Read the English first, tap a dotted word for its meaning, and open the 中 only when a whole paragraph has stopped you. The first three texts are followed by writing patterns and a word review; the three Unit 13 texts practise exam question types.',
   },
   /* What a student can do after this page, and how to pace it. Shown on the
      cover as three short columns, like the word pages' plan. */
   plan: [
     { k: '讀完以後', v: '你會更會抓文章的主旨、判斷作者的立場、從上下文猜生字——這些正是學測閱讀測驗和克漏字在考的能力。' },
     { k: '每次讀多久', v: '一篇大約 30 分鐘：先讀英文、做閱讀測驗，看不懂再看中譯。最後的四關複習大約 20 分鐘。' },
-    { k: '要多久', v: '三篇加上複習，一週內就能做完。隔幾天再回來做一次四關複習，答錯過的字會記得更牢。' },
+    { k: '要多久', v: '前三篇加上複習，一週內就能做完。隔幾天再回來做一次四關複習，答錯過的字會記得更牢。Unit 13 的三篇每篇約 15 分鐘。' },
   ],
 
 
@@ -54,8 +54,13 @@ const RD = {
     { href: 'junior-vocab/', zh: '國中單字：教育部 2,000 字 →', en: 'The junior-high curriculum list' },
   ],
   sourceNote: {
-    zh: '三篇文章的英文與中譯、字彙表和寫作句型來自老師提供的資料，第二篇的原文在第二段中途中斷。閱讀測驗、第三篇的選項、筆記與單字複習是本頁另外編寫的，不是原出處的題目。',
-    en: 'The English and Chinese of the three texts, the word tables and the writing patterns come from material supplied by the teacher; the second text breaks off partway through its second paragraph. The questions, the choices for the third text, the notes and the review were written for this page and are not from the original source.',
+    zh: '前三篇文章的英文與中譯、字彙表和寫作句型來自老師提供的資料，第二篇的原文在第二段中途中斷。閱讀測驗、第三篇的選項、筆記與單字複習是本頁另外編寫的，不是原出處的題目。Unit 13 三篇的英文和題目來自老師提供的練習本；標題、中譯、答案與解說、字彙表和討論題是本頁編寫的。',
+    en: 'The English and Chinese of the first three texts, the word tables and the writing patterns come from material supplied by the teacher; the second text breaks off partway through its second paragraph. The questions, the choices for the third text, the notes and the review were written for this page. In Unit 13, the English and the questions come from a workbook supplied by the teacher; the titles, translations, answers, explanations, word lists and discussion prompts were written for this page.',
+  },
+
+  /* A 文意選填 text's blanks all share one set of choices, named by `bank`. */
+  banks: {
+    mandala: ['cope', 'examining', 'positive', 'manage', 'achieving', 'noticed', 'feature', 'relaxed', 'indicate', 'focus'],
   },
 
   passages: [
@@ -879,6 +884,541 @@ const RD = {
                 { zh: '確認偏誤會讓我們忽略事實。', text: '___ bias can make us ignore the facts.', answer: 'confirmation', key: 'confirmation bias' },
                 { zh: '我們應該優先處理重要的工作。', text: 'We should ___ important work.', answer: 'prioritize', key: 'prioritize' },
                 { zh: '這次旅行強化了她對自己的信心。', text: 'The trip ___ her belief in herself.', answer: 'strengthened', key: 'strengthen one’s belief' },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    // ======================================================= Unit 13 (2026-11-22)
+    /* Three texts from a workbook's Unit 13, sent by Lewis as photos, with
+       neither a translation nor an answer key: the English and the questions
+       are the workbook's, word for word; the titles, every 中譯, the answers,
+       the explanations, the glossed words, the word lists and the discussion
+       prompts are this page's own.
+
+       Their blanks are numbered 1301–1315 so they cannot collide with the
+       other texts' 11–15; `show` is the number the workbook prints. In the
+       文意選填 text every blank has the same ten choices (`bank`), and a
+       choice already used greys out in the others. */
+
+    // ---------------------------------------------------- Unit 13 · 綜合測驗
+    {
+      id: 'herorats',
+      label: 'Unit 13 · 綜合測驗',
+      icon: '🐀',
+      en: 'HeroRATs: The Rats That Find Landmines',
+      zh: '英雄鼠：會找地雷的老鼠',
+      sub: '老鼠和非洲的地雷有什麼關係？一位以前養過寵物鼠的人給了答案。',
+      words: [
+        { w: 'landmine', find: 'landmines', pos: 'n.', zh: '地雷' },
+        { w: 'more than its fair share of', pos: 'phr.', zh: '多得超乎尋常的……' },
+        { w: 'deadly', pos: 'adj.', zh: '致命的' },
+        { w: 'device', find: 'devices', pos: 'n.', zh: '裝置' },
+        { w: 'come across', find: 'came across', pos: 'phr.', zh: '偶然發現' },
+        { w: 'gerbil', find: 'gerbils', pos: 'n.', zh: '沙鼠' },
+        { w: 'rodent', find: 'rodents', pos: 'n.', zh: '齧齒動物' },
+        { w: 'trainability', pos: 'n.', zh: '容易訓練的程度' },
+        { w: 'giant pouched rat', find: 'giant pouched rats', pos: 'n.', zh: '非洲巨頰囊鼠' },
+        { w: 'sniff out', pos: 'phr.', zh: '嗅出；聞出來' },
+        { w: 'trigger', find: 'triggering', pos: 'v.', zh: '引發；觸發' },
+        { w: 'Mozambique', pos: 'n.', zh: '莫三比克（非洲東南部國家）' },
+        { w: 'pose', pos: 'v.', zh: '構成（威脅、問題）' },
+        { w: 'heroic', pos: 'adj.', zh: '英勇的' },
+      ],
+      vocab: {
+        themeEn: 'Animals That Help',
+        themeZh: '幫助人類的動物',
+        words: [
+          { w: 'landmine', pos: 'n.', zh: '地雷', use: 'clear landmines', useZh: '清除地雷' },
+          { w: 'deadly', pos: 'adj.', zh: '致命的', use: 'a deadly disease', useZh: '致命的疾病', star: true },
+          { w: 'device', pos: 'n.', zh: '裝置；設備', use: 'an electronic device', useZh: '電子裝置', star: true },
+          { w: 'detect', pos: 'v.', zh: '偵測；察覺', use: 'detect danger', useZh: '察覺危險', star: true, after: 1302 },
+          { w: 'inspire', pos: 'v.', zh: '啟發；激勵', use: 'inspire young people', useZh: '啟發年輕人', star: true },
+          { w: 'intelligence', pos: 'n.', zh: '智力；聰明才智', use: 'artificial intelligence', useZh: '人工智慧', star: true },
+          { w: 'trigger', pos: 'v.', zh: '引發；觸發', use: 'trigger an explosion', useZh: '引發爆炸', star: true },
+          { w: 'threat', pos: 'n.', zh: '威脅', use: 'a major threat', useZh: '重大威脅', star: true },
+          { w: 'estimate', pos: 'v.', zh: '估計', use: 'It is estimated that…', useZh: '據估計……', star: true, after: 1305 },
+        ],
+        phrases: [
+          { w: 'have to do with', zh: '和……有關', eg: 'What does this question have to do with me?', star: true },
+          { w: 'thanks to', zh: '多虧了；由於', eg: 'Thanks to your help, we finished on time.', star: true, after: 1301 },
+          { w: 'come across', zh: '偶然遇到；偶然發現', eg: 'I came across an old photo of my parents.', star: true },
+          { w: 'sniff out', zh: '嗅出；查出', eg: 'The dog sniffed out the hidden food.' },
+          { w: 'be free of', zh: '沒有……的', eg: 'The streets are free of traffic on Sunday mornings.', star: true, after: 1303 },
+          { w: 'pose a threat to', zh: '對……構成威脅', eg: 'Plastic waste poses a threat to sea animals.', star: true },
+          { w: 'for years to come', zh: '在未來許多年', eg: 'This bridge will be used for years to come.' },
+        ],
+        terms: [
+          { w: 'giant pouched rat', zh: '非洲巨頰囊鼠' },
+          { w: 'HeroRAT', zh: '英雄鼠；APOPO 訓練來偵測地雷的老鼠' },
+        ],
+      },
+      parts: [
+        {
+          id: 'rats-text',
+          zh: '原文與綜合測驗',
+          en: 'The text, with five blanks',
+          blocks: [
+            {
+              t: 'lead',
+              zh: '綜合測驗：每段下面就是這一段的空格。先讀完整段再選，答對了，答案會填回英文和中譯裡。',
+              en: 'The choices sit under the paragraph they belong to. Read the whole paragraph first.',
+            },
+            {
+              t: 'text',
+              paras: [
+                {
+                  en: 'What do rats have to do with landmines in Africa, a place with more than its fair share of these deadly devices? __1301.__ a man named Bart Weetjens, who used to keep rats as pets, the answer is “a lot.” When Weetjens later began researching the problem of landmines on the African continent, he came across some research that examined how gerbils could use their sense of smell to __1302.__ landmines. This inspired him to explore whether other small rodents could perform similar tasks. Recalling the intelligence and trainability of his pet rats, Weetjens decided to form an organization called APOPO, which trains giant pouched rats to sniff out landmines. These rats, often called “HeroRATs,” are lightweight enough to avoid triggering explosions while detecting buried mines.',
+                  zh: '老鼠和非洲的地雷有什麼關係？非洲這片土地上，這種致命裝置多得超乎尋常。__1301.__ 一位名叫巴特‧維金斯（Bart Weetjens）、以前養過老鼠當寵物的男子，答案是「關係可大了」。後來維金斯開始研究非洲大陸的地雷問題時，偶然讀到一項研究，探討沙鼠如何利用嗅覺來 __1302.__ 地雷。這啟發他去探索其他小型齧齒動物是否也能做類似的工作。想起自己的寵物鼠既聰明又好訓練，維金斯決定成立一個名為 APOPO 的組織，訓練非洲巨頰囊鼠嗅出地雷。這些老鼠常被稱為「英雄鼠」（HeroRATs），牠們的體重夠輕，在偵測埋在地下的地雷時不會引爆。',
+                  blanks: [
+                    {
+                      n: 1301, show: 1,
+                      zhFill: '多虧了',
+                      options: ['In addition to', 'Thanks to', 'In terms of', 'Apart from'],
+                      answer: 1,
+                      no: {
+                        0: 'in addition to 是「除了……之外，還有」，後面接的是另一件事，不是原因。',
+                        2: 'in terms of 是「就……而言」，「就這個人而言，答案是關係很大」說不通。',
+                        3: 'apart from 是「除了……以外」，意思不合。',
+                      },
+                      why: '前一句問老鼠和地雷有什麼關係，這一句說答案是「關係可大了」，而原因就是這個人。thanks to + 人／事 ＝ 多虧了、由於。',
+                    },
+                    {
+                      n: 1302, show: 2,
+                      zhFill: '偵測',
+                      options: ['depress', 'endure', 'interpret', 'detect'],
+                      answer: 3,
+                      no: {
+                        0: 'depress 是「使沮喪」，和地雷無關。',
+                        1: 'endure 是「忍受」，沙鼠不是在忍受地雷。',
+                        2: 'interpret 是「解讀、詮釋」，對象通常是話語、資料或作品。',
+                      },
+                      why: '用嗅覺來「偵測」地雷。這一段的最後一句 while detecting buried mines 也是線索。',
+                    },
+                  ],
+                },
+                {
+                  en: 'APOPO began operating in 2003, and since then, it has greatly helped the African country of Mozambique become __1303.__. Despite the good work __1304.__ by APOPO, landmines still pose a major threat to many people. It has been __1305.__ that millions of landmines still exist in more than sixty countries. Hopefully, APOPO and its heroic rats will continue to fight this deadly problem for many years to come.',
+                  zh: 'APOPO 從 2003 年開始運作，從那時起，它大大幫助了非洲國家莫三比克成為 __1303.__ 的國家。儘管 APOPO __1304.__ 了這麼多好事，地雷仍然對許多人構成重大威脅。據 __1305.__，目前仍有數百萬顆地雷存在於六十多個國家。希望 APOPO 和牠英勇的老鼠們，在未來許多年都能繼續對抗這個致命的問題。',
+                  blanks: [
+                    {
+                      n: 1303, show: 3,
+                      zhFill: '沒有地雷',
+                      options: ['free of landmines', 'full of explosives', 'rid of protection', 'clear of controversies'],
+                      answer: 0,
+                      no: {
+                        1: '幫助一個國家變成「充滿炸藥」，方向完全相反。',
+                        2: 'rid of protection 是「擺脫保護」，說不通。',
+                        3: 'clear of controversies 是「沒有爭議」，和地雷無關。',
+                      },
+                      why: 'APOPO 是清除地雷的組織，所以是幫莫三比克變成「沒有地雷」：be free of + N. ＝ 沒有……的。（莫三比克在 2015 年宣布境內已無已知的地雷區。）',
+                    },
+                    {
+                      n: 1304, show: 4,
+                      zhFill: '正在做',
+                      options: ['to do', 'doing', 'is done', 'being done'],
+                      answer: 3,
+                      no: {
+                        0: 'to do 是「將要做的」，但這裡說的是 APOPO 已經在做的事。',
+                        1: 'doing 是主動。好工作不會自己做事，是「被」APOPO 做。',
+                        2: 'is done 是完整的動詞。放在名詞 the good work 後面，這個子句就有兩個動詞了。',
+                      },
+                      why: 'the good work (that is) being done by APOPO：工作「被」APOPO 做，而且還在進行，所以用被動進行的分詞 being done 修飾前面的名詞。',
+                    },
+                    {
+                      n: 1305, show: 5,
+                      zhFill: '估計',
+                      options: ['puzzled', 'persisted', 'estimated', 'raised'],
+                      answer: 2,
+                      no: {
+                        0: 'puzzle 是「使困惑」，It has been puzzled that… 不是正確的說法。',
+                        1: 'persist 是不及物動詞，不能用被動。',
+                        3: 'It has been raised that… 不是常見的說法。',
+                      },
+                      why: 'It has been estimated that… ＝ 據估計……。後面的 millions of landmines 是一個數字，正是「估計」出來的。',
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'rats-notes',
+          zh: '讀懂題型',
+          en: 'How the questions work',
+          blocks: [
+            {
+              t: 'note',
+              zh: '綜合測驗：五題考五種能力',
+              en: 'Five blanks, five skills',
+              bodyZh: '第 1 題考轉承語（前後的因果）、第 2 題考單字、第 3 題考搭配（be free of）、第 4 題考文法（分詞修飾名詞）、第 5 題考句型（It is estimated that）。做錯的時候，先想想這一題考的是哪一種，下次就知道要看哪裡。',
+            },
+          ],
+        },
+        {
+          id: 'rats-list',
+          zh: '字彙表',
+          en: 'Word list',
+          blocks: [{ t: 'vocab' }],
+        },
+        {
+          id: 'rats-talk',
+          zh: '想一想、說說看',
+          en: 'Talk about it',
+          blocks: [
+            {
+              t: 'talk',
+              items: [
+                { en: 'Besides finding landmines, what other jobs could trained animals do to help people?', zh: '除了找地雷，經過訓練的動物還能做哪些幫助人的工作？' },
+                { en: 'Would you feel comfortable working with rats? Why or why not?', zh: '你願意和老鼠一起工作嗎？為什麼？' },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
+    // ---------------------------------------------------- Unit 13 · 文意選填
+    {
+      id: 'mandalas',
+      label: 'Unit 13 · 文意選填',
+      icon: '🎨',
+      en: 'Mandala Coloring Books',
+      zh: '曼陀羅著色本',
+      sub: '大人也愛塗色？曼陀羅著色本為什麼能讓人放鬆，又能看出一個人的心情。',
+      words: [
+        { w: 'associate', pos: 'v.', zh: '把……聯想在一起' },
+        { w: 'mandala', find: 'mandala', pos: 'n.', zh: '曼陀羅（圓形對稱的宗教圖案）' },
+        { w: 'supposedly', find: 'Supposedly', pos: 'adv.', zh: '據說；據稱' },
+        { w: 'encircled', pos: 'adj.', zh: '圍成圓形的' },
+        { w: 'geometric', pos: 'adj.', zh: '幾何的' },
+        { w: 'spiritual awakening', pos: 'n.', zh: '心靈的覺醒' },
+        { w: 'reveal', pos: 'v.', zh: '顯露；透露' },
+        { w: 'state of mind', pos: 'n.', zh: '心理狀態' },
+        { w: 'experiment with', pos: 'phr.', zh: '嘗試；實驗' },
+        { w: 'dull', find: 'Dull', pos: 'adj.', zh: '暗沉的；不鮮豔的' },
+        { w: 'In contrast', pos: 'phr.', zh: '相反地' },
+        { w: 'psychoanalyst', pos: 'n.', zh: '精神分析學家' },
+        { w: 'symmetrical', pos: 'adj.', zh: '對稱的' },
+        { w: 'than meets the eye', pos: 'phr.', zh: '（there is more to … than meets the eye）比表面看起來更有深意' },
+      ],
+      vocab: {
+        themeEn: 'Art and the Mind',
+        themeZh: '藝術與心靈',
+        words: [
+          { w: 'associate', pos: 'v.', zh: '把……聯想在一起', use: 'associate A with B', useZh: '把 A 和 B 聯想在一起', star: true },
+          { w: 'feature', pos: 'v.', zh: '以……為特色；有……', use: 'feature bright colors', useZh: '以鮮豔的色彩為特色', star: true, after: 1306 },
+          { w: 'spiritual', pos: 'adj.', zh: '心靈的；精神上的', use: 'spiritual growth', useZh: '心靈成長', star: true },
+          { w: 'reveal', pos: 'v.', zh: '顯露；透露', use: 'reveal the truth', useZh: '揭露真相', star: true },
+          { w: 'cope', pos: 'v.', zh: '應付；處理', use: 'cope with stress', useZh: '應付壓力', star: true, after: 1307 },
+          { w: 'experiment', pos: 'v.', zh: '嘗試；做實驗', use: 'experiment with new ideas', useZh: '嘗試新點子', star: true },
+          { w: 'indicate', pos: 'v.', zh: '顯示；表明', use: 'indicate a problem', useZh: '顯示出問題', star: true, after: 1312 },
+          { w: 'psychology', pos: 'n.', zh: '心理學', use: 'modern psychology', useZh: '現代心理學', star: true },
+          { w: 'symmetrical', pos: 'adj.', zh: '對稱的', use: 'a symmetrical design', useZh: '對稱的設計' },
+        ],
+        phrases: [
+          { w: 'be seen as', zh: '被視為', eg: 'Reading is often seen as a quiet hobby.', star: true },
+          { w: 'state of mind', zh: '心理狀態', eg: 'Music can change your state of mind.', star: true },
+          { w: 'find out about', zh: '了解；查明', eg: 'I want to find out about summer camps.', star: true },
+          { w: 'tell a lot about', zh: '透露很多關於……的事', eg: 'Your shoes can tell a lot about you.' },
+          { w: 'in contrast', zh: '相反地；對比之下', eg: 'My sister is quiet. In contrast, I talk all the time.', star: true },
+          { w: 'more than meets the eye', zh: '比表面看起來更複雜、更有深意', eg: 'There is more to this story than meets the eye.', star: true },
+        ],
+        terms: [
+          { w: 'mandala', zh: '曼陀羅；源自印度宗教、圓形對稱的圖案' },
+          { w: 'psychoanalyst', zh: '精神分析學家' },
+        ],
+      },
+      parts: [
+        {
+          id: 'mandala-text',
+          zh: '原文與文意選填',
+          en: 'The text, with ten blanks',
+          blocks: [
+            {
+              t: 'lead',
+              zh: '文意選填：十個空格共用同一組十個選項，每個字只用一次。先看空格前後需要什麼詞性，再從同一類裡挑意思通的。已經用掉的字會變灰。',
+              en: 'Ten blanks share one set of ten choices, and each is used once. Decide what kind of word the blank needs first.',
+            },
+            {
+              t: 'text',
+              paras: [
+                {
+                  en: 'People usually associate coloring books with children; however, mandala coloring books have become popular among adults. Supposedly pictures of the universe, mandalas __1306.__ a variety of encircled geometric patterns and, according to many Indian religions, are seen as a spiritual awakening. They are believed to assist people to __1307.__ with the emotional issues of everyday life and, through the coloring of them, reveal their state of mind.',
+                  zh: '人們通常把著色本和小孩聯想在一起；然而，曼陀羅著色本卻在大人之間流行了起來。曼陀羅據說是宇宙的圖像，__1306.__ 各式各樣圍成圓形的幾何圖案；在許多印度宗教中，它被視為一種心靈的覺醒。人們相信，曼陀羅能幫助人 __1307.__ 日常生活中的情緒問題，而透過替它們著色，也能顯露出一個人的心理狀態。',
+                  blanks: [
+                    { n: 1306, show: 6, bank: 'mandala', zhFill: '有著', need: '空格前是主詞 mandalas，後面是受詞 a variety of…：這裡需要一個現在式的動詞。', answer: 6,
+                      why: 'feature 當動詞是「以……為特色、有……」：曼陀羅的特色是各式各樣圍成圓形的幾何圖案。' },
+                    { n: 1307, show: 7, bank: 'mandala', zhFill: '應付', need: '空格前有 to、後面接 with：需要一個原形動詞，而且能和 with 搭配。', answer: 0,
+                      why: 'cope with ＝ 應付、處理：幫助人們應付日常生活中的情緒問題。' },
+                  ],
+                },
+                {
+                  en: 'For people who need help to __1308.__ stress or who want to find out about their feelings, mandala coloring books have proven to be useful. By letting people experiment with different colors within a range of black-and-white designs, for example, they help people feel __1309.__. It’s also interesting to note that you can tell a lot about how a person is feeling by __1310.__ the colors that he or she chooses. Dull colors are said to express negative emotions while bright colors suggest a person is experiencing more __1311.__ emotions. For example, a bright red might __1312.__ that the person is feeling confident. In contrast, a dull red suggests that he or she is experiencing fear.',
+                  zh: '對於需要幫忙 __1308.__ 壓力，或想了解自己感受的人來說，曼陀羅著色本已被證明很有用。例如，讓人們在各種黑白圖案裡嘗試不同的顏色，能幫助他們感到 __1309.__。另一件有趣的事是，__1310.__ 一個人選的顏色，就能看出很多他當下的感受。據說暗沉的顏色表達負面情緒，明亮的顏色則代表這個人正感受到比較 __1311.__ 的情緒。例如，鮮紅色可能 __1312.__ 這個人感到自信；相反地，暗紅色則表示他或她正感到恐懼。',
+                  blanks: [
+                    { n: 1308, show: 8, bank: 'mandala', zhFill: '紓解', need: '空格前是 to，後面接受詞 stress：需要一個原形的及物動詞。', answer: 3,
+                      why: 'manage stress ＝ 管理、紓解壓力。cope 也和壓力有關，但它要接 with，已經用在第 7 題了。' },
+                    { n: 1309, show: 9, bank: 'mandala', zhFill: '放鬆', need: 'feel 後面要接形容詞，描述一種感覺。', answer: 7,
+                      why: 'feel relaxed ＝ 感到放鬆。這段一開始就說它幫助需要紓解壓力的人。' },
+                    { n: 1310, show: 10, bank: 'mandala', zhFill: '藉由觀察', need: '介系詞 by 後面要接動名詞（V-ing）。', answer: 1,
+                      why: 'by examining the colors ＝ 藉由仔細看他選的顏色。另一個 V-ing（achieving）意思不通：「達成顏色」說不過去。' },
+                    { n: 1311, show: 11, bank: 'mandala', zhFill: '正面', need: 'more ___ emotions：需要一個修飾 emotions 的形容詞，而且和前面的 negative 相反。', answer: 2,
+                      why: 'dull colors 表達 negative emotions，bright colors 表示 more positive emotions，一負一正，while 就是對比的線索。' },
+                    { n: 1312, show: 12, bank: 'mandala', zhFill: '顯示', need: '助動詞 might 後面接原形動詞，而且後面還接了 that 子句。', answer: 8,
+                      why: 'indicate that… ＝ 顯示、表明……：鮮紅色可能顯示這個人很有自信。下一句的 suggests that 意思一樣。' },
+                  ],
+                },
+                {
+                  en: 'Some believe that mandalas can help people __1313.__ their minds, and these designs have become part of modern psychology. One of those people was the famous psychoanalyst Carl Jung, who lived from 1875 to 1961. It was during times of his own personal growth that Jung __1314.__ that he drew mandalas. He associated mandalas with his mind gaining new understanding as well as __1315.__ peace. As you can see, there is a lot more to these symmetrical designs than meets the eye!',
+                  zh: '有些人相信曼陀羅能幫助人們 __1313.__ 心思，這些圖案也已經成為現代心理學的一部分。其中一位就是著名的精神分析學家卡爾‧榮格（Carl Jung），他生於 1875 年，卒於 1961 年。榮格 __1314.__，自己正是在個人成長的時期會畫曼陀羅。他把曼陀羅和自己的心靈獲得新的理解、以及 __1315.__ 平靜聯想在一起。由此可見，這些對稱的圖案遠比表面看起來的更有深意！',
+                  blanks: [
+                    { n: 1313, show: 13, bank: 'mandala', zhFill: '集中', need: 'help people ___ their minds：help 後面接原形動詞，受詞是 minds。', answer: 9,
+                      why: 'focus their minds ＝ 集中心思、專注。' },
+                    { n: 1314, show: 14, bank: 'mandala', zhFill: '注意到', need: '主詞 Jung 後面需要一個過去式動詞，而且後面接 that 子句。', answer: 5,
+                      why: 'It was during … that Jung noticed that he drew mandalas：榮格注意到自己在個人成長的時期會畫曼陀羅。選項裡唯一的過去式就是 noticed。' },
+                    { n: 1315, show: 15, bank: 'mandala', zhFill: '達到', need: 'as well as 前面是 gaining，後面也要是 V-ing，兩邊對稱。', answer: 4,
+                      why: 'gaining new understanding as well as achieving peace：獲得新的理解，也達到內心的平靜。achieve peace 是常見的搭配。' },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'mandala-notes',
+          zh: '讀懂題型',
+          en: 'How the questions work',
+          blocks: [
+            {
+              t: 'note',
+              zh: '文意選填：先把十個選項分類',
+              en: 'Sort the ten choices first',
+              bodyZh: '動作之前先分類：原形動詞 cope、manage、indicate、focus（feature 也能當動詞）；V-ing examining、achieving；過去式 noticed；形容詞 positive、relaxed。看到空格，先判斷需要哪一類，通常只剩兩三個可選，再看意思。最後剩下的那一兩題，用刪去法也能完成。',
+            },
+          ],
+        },
+        {
+          id: 'mandala-list',
+          zh: '字彙表',
+          en: 'Word list',
+          blocks: [{ t: 'vocab' }],
+        },
+        {
+          id: 'mandala-talk',
+          zh: '想一想、說說看',
+          en: 'Talk about it',
+          blocks: [
+            {
+              t: 'talk',
+              items: [
+                { en: 'What do you do when you feel stressed? Does it help you focus?', zh: '你覺得有壓力的時候會做什麼？它能幫你專心嗎？' },
+                { en: 'Do you agree that the colors people choose can show how they feel? Give an example.', zh: '你同意一個人選的顏色能看出他的心情嗎？舉個例子。' },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
+    // ------------------------------------------------------ Unit 13 · 混合題
+    {
+      id: 'datan-reef',
+      label: 'Unit 13 · 混合題',
+      icon: '🪸',
+      en: 'The Datan Algal Reef: Four Opinions',
+      zh: '大潭藻礁：四種看法',
+      sub: '要保護七千五百年的藻礁，還是蓋天然氣接收站？四個人，四種立場，其中兩個人改變了想法。',
+      words: [
+        { w: 'algal reef', pos: 'n.', zh: '藻礁' },
+        { w: 'referendum', pos: 'n.', zh: '公民投票；公投' },
+        { w: 'liquefied natural gas', pos: 'n.', zh: '液化天然氣' },
+        { w: 'terminal', pos: 'n.', zh: '接收站；（交通的）總站' },
+        { w: 'fascinating', pos: 'adj.', zh: '迷人的；令人著迷的' },
+        { w: 'eel', find: 'eels', pos: 'n.', zh: '鰻魚' },
+        { w: 'campaign', find: 'campaigned', pos: 'v.', zh: '從事（社會）運動；奔走' },
+        { w: 'deliberate', pos: 'adj.', zh: '蓄意的；故意的' },
+        { w: 'wreck', pos: 'v.', zh: '毀壞；破壞' },
+        { w: 'marvel', pos: 'n.', zh: '奇觀；令人驚嘆的事物' },
+        { w: 'dependence', pos: 'n.', zh: '依賴' },
+        { w: 'energy security', pos: 'n.', zh: '能源安全' },
+        { w: 'sympathize with', find: 'sympathized with', pos: 'v.', zh: '同情；認同' },
+        { w: 'mankind', pos: 'n.', zh: '人類' },
+        { w: 'reliance', pos: 'n.', zh: '依賴' },
+        { w: 'carbon emissions', pos: 'n.', zh: '碳排放' },
+        { w: 'the lesser of two evils', pos: 'phr.', zh: '兩害相權取其輕' },
+        { w: 'biodiversity', pos: 'n.', zh: '生物多樣性' },
+        { w: 'concede', pos: 'v.', zh: '（不情願地）承認' },
+        { w: 'compromise', pos: 'n.', zh: '折衷方案；妥協' },
+        { w: 'kill two birds with one stone', find: 'kills two birds with one stone', pos: 'phr.', zh: '一石二鳥' },
+        { w: 'boost', find: 'boosting', pos: 'v.', zh: '提升；增強' },
+      ],
+      vocab: {
+        themeEn: 'Energy and the Environment',
+        themeZh: '能源與環境',
+        words: [
+          { w: 'referendum', pos: 'n.', zh: '公民投票', use: 'hold a referendum', useZh: '舉行公投' },
+          { w: 'construction', pos: 'n.', zh: '建造；工程', use: 'under construction', useZh: '施工中', star: true },
+          { w: 'deliberate', pos: 'adj.', zh: '蓄意的；故意的', use: 'a deliberate act', useZh: '蓄意的行為', star: true },
+          { w: 'dependence', pos: 'n.', zh: '依賴', use: 'dependence on coal', useZh: '對燃煤的依賴', star: true },
+          { w: 'sympathize', pos: 'v.', zh: '同情；認同', use: 'sympathize with someone', useZh: '同情、認同某人', star: true },
+          { w: 'urgently', pos: 'adv.', zh: '迫切地', use: 'urgently need help', useZh: '迫切需要幫助', star: true },
+          { w: 'emission', pos: 'n.', zh: '排放；排放物', use: 'carbon emissions', useZh: '碳排放', star: true },
+          { w: 'concede', pos: 'v.', zh: '（不情願地）承認；讓步', use: 'concede defeat', useZh: '認輸' },
+          { w: 'compromise', pos: 'n.', zh: '妥協；折衷方案', use: 'reach a compromise', useZh: '達成妥協', star: true },
+          { w: 'boost', pos: 'v.', zh: '提升；增強', use: 'boost the economy', useZh: '提振經濟', star: true },
+        ],
+        phrases: [
+          { w: 'take part in', zh: '參加', eg: 'Over 200 students took part in the debate.', star: true },
+          { w: 'campaign against', zh: '發起運動反對……', eg: 'The students campaigned against plastic straws.' },
+          { w: 'reduce one’s dependence on', zh: '減少對……的依賴', eg: 'We should reduce our dependence on our phones.', star: true },
+          { w: 'come to realize', zh: '漸漸明白', eg: 'I came to realize that my parents were right.', star: true },
+          { w: 'the lesser of two evils', zh: '兩害相權取其輕', eg: 'Taking the bus in the rain was the lesser of two evils.' },
+          { w: 'kill two birds with one stone', zh: '一石二鳥', eg: 'Biking to school kills two birds with one stone: it saves money and keeps me fit.', star: true },
+          { w: 'give up the fight', zh: '放棄抗爭', eg: 'The villagers refused to give up the fight for their river.' },
+        ],
+        terms: [
+          { w: 'algal reef', zh: '藻礁；由殼狀珊瑚藻長時間堆積而成的礁體' },
+          { w: 'liquefied natural gas (LNG)', zh: '液化天然氣' },
+          { w: 'energy security', zh: '能源安全' },
+        ],
+      },
+      parts: [
+        {
+          id: 'datan-text',
+          zh: '原文',
+          en: 'The text',
+          blocks: [
+            {
+              t: 'lead',
+              zh: '混合題：先讀完四個人的意見，邊讀邊記下每個人是支持還是反對、有沒有改變想法。',
+              en: 'Read all four opinions first. Note who is for the terminal, who is against it, and who has changed their mind.',
+            },
+            {
+              t: 'text',
+              paras: [
+                {
+                  en: 'The Datan algal reef is located in Taoyuan. Taiwanese citizens took part in a referendum on whether to allow the construction of a liquefied natural gas (LNG) terminal to continue at this location. Here are four people’s opinions on the matter.',
+                  zh: '大潭藻礁位於桃園。台灣民眾曾參加一場公投，決定是否讓液化天然氣（LNG）接收站在這個地點繼續興建。以下是四個人對這件事的看法。',
+                },
+                {
+                  who: 'Ms. Li',
+                  en: 'The Datan algal reef is a fascinating natural wonder that is full of fish, eels, crabs, and even sea turtles. That’s why I campaigned strongly against the construction of the LNG terminal. It’s a deliberate act of environmental damage that will wreck a 7,500-year-old marvel. People argue that continuing to use coal will be bad for this country. I understand that we need to reduce our dependence on it, but in my opinion, destroying the reef would be far worse.',
+                  zh: '大潭藻礁是令人著迷的自然奇景，裡面有許多魚、鰻魚、螃蟹，甚至還有海龜。所以我強烈反對興建液化天然氣接收站。這是蓄意破壞環境的行為，會毀掉一個已有七千五百年歷史的奇觀。有人說繼續使用燃煤對這個國家不好。我了解我們需要減少對燃煤的依賴，但我認為，摧毀藻礁會糟糕得多。',
+                },
+                {
+                  who: 'Mr. Wang',
+                  en: 'I have worked with the government on the Datan project for many years. I realize the issue is a hot potato that many people disagree about, but I can honestly say we have tried our best to limit the impact the LNG terminal will have on the algal reef. By building the terminal 1.2 kilometers out to sea, we will protect 90% of the reef environment from any effects at all. The simple fact is that we need to strengthen our energy security, and this is the way to do it.',
+                  zh: '我和政府合作推動大潭計畫已經很多年了。我知道這個議題是個燙手山芋，很多人意見不同，但我可以誠實地說，我們已經盡力降低接收站對藻礁的影響。把接收站蓋在離岸 1.2 公里的海上，就能讓 90% 的藻礁環境完全不受影響。事實很簡單：我們必須加強能源安全，而這就是做法。',
+                },
+                {
+                  who: 'Ms. Bai',
+                  en: 'For many years, I strongly sympathized with those who want to save the wonderful algal reef and all the beautiful creatures that call it home. However, I have come to realize that global warming is the biggest threat that mankind faces. Therefore, I now know that solving the energy crisis is more important. We urgently need to reduce this island’s reliance on coal so that we can cut carbon emissions, and liquefied natural gas is the best way to achieve this goal. Quite simply, constructing the LNG terminal is the lesser of two evils.',
+                  zh: '多年來，我非常認同那些想拯救這片美麗藻礁、以及所有以它為家的美麗生物的人。然而，我後來體認到，全球暖化才是人類面臨的最大威脅。因此，我現在明白解決能源危機更重要。我們迫切需要減少這座島嶼對燃煤的依賴，才能減少碳排放，而液化天然氣是達成這個目標最好的方法。簡單來說，興建液化天然氣接收站是兩害相權取其輕。',
+                },
+                {
+                  who: 'Mr. Chen',
+                  en: 'I campaigned hard against the government’s initial plans to build the LNG terminal at the Datan algal reef. I argued that the biodiversity of the reef was far more important than the need to produce electricity. However, given the revised plans to move the terminal further away from the coast, I concede that it is time to give up the fight. It’s a reasonable compromise that kills two birds with one stone: it allows us to protect the majority of the creatures in the reef while boosting Taiwan’s energy security.',
+                  zh: '我曾努力反對政府最初在大潭藻礁興建液化天然氣接收站的計畫。我主張藻礁的生物多樣性遠比發電的需求重要。然而，既然修正後的計畫把接收站移到離海岸更遠的地方，我承認是時候放棄抗爭了。這是一個合理的折衷方案，可以一石二鳥：既能保護藻礁裡大多數的生物，又能提升台灣的能源安全。',
+                },
+              ],
+            },
+            {
+              t: 'note',
+              zh: '查證：公投結果',
+              en: 'Fact check',
+              bodyZh: '文中的公投是 2021 年 12 月 18 日的「珍愛藻礁」公投，結果沒有通過，接收站依照外推到離岸約 1.2 公里的修正方案繼續興建。四個人的意見是題目設計的人物，不是真實受訪者。',
+            },
+          ],
+        },
+        {
+          id: 'datan-quiz',
+          zh: '混合題',
+          en: 'Questions 24–27',
+          blocks: [
+            {
+              t: 'lead',
+              zh: '第 24–25 題：從文章裡找出最適當的單字，必要時改變詞性，每格只填一個字。第 26 題寫出片語。第 27 題可以選不只一個。',
+              en: '24–25: one word from the text, in the right form. 26: write the phrase. 27: choose all that apply.',
+            },
+            {
+              t: 'mixed',
+              items: [
+                {
+                  n: 24, type: 'word',
+                  en: 'Both Mr. Wang and Mr. Chen acknowledge that constructing the LNG terminal further out to sea will ensure the ___ of most of the algal reef.',
+                  zh: '王先生和陳先生都承認，把接收站蓋到更遠的海上，可以確保大部分藻礁的 ___。',
+                  answer: ['protection'],
+                  need: '兩個人都用了同一個動詞，找到它，再想想 the ___ of 中間要放什麼詞性。',
+                  why: 'the ___ of 中間要放名詞：protect → protection。王先生說 we will protect 90% of the reef，陳先生說 it allows us to protect the majority of the creatures。',
+                  ev: ['we will protect 90% of the reef environment from any effects at all', 'it allows us to protect the majority of the creatures in the reef'],
+                },
+                {
+                  n: 25, type: 'word',
+                  en: 'While both Ms. Li and Ms. Bai reference the need for a ___ in Taiwan’s use of coal, the latter believes that it is a more pressing concern.',
+                  zh: '雖然李女士和白女士都提到台灣需要 ___ 燃煤的使用，但後者（白女士）認為這是更迫切的問題。',
+                  answer: ['reduction'],
+                  need: '兩位女士講到燃煤時用了同一個動詞，a ___ in 中間要放名詞。',
+                  why: 'a reduction in + N. ＝ ……的減少：reduce → reduction。李女士說 we need to reduce our dependence on it，白女士說 We urgently need to reduce this island’s reliance on coal。',
+                  ev: ['we need to reduce our dependence on it', 'We urgently need to reduce this island’s reliance on coal'],
+                },
+                {
+                  n: 26, type: 'phrase',
+                  en: 'Which phrase in the opinions means “a problem that is difficult to deal with and causes a lot of disagreement”?',
+                  zh: '四段意見裡，哪一個片語的意思是「難以處理、又引起很多爭議的問題」？（簡答）',
+                  answer: ['a hot potato', 'hot potato'],
+                  need: '找「很多人意見不同」的那一句：後面緊接著 that many people disagree about。',
+                  why: 'hot potato 字面是「燙的馬鈴薯」，拿在手上燙手、又丟不掉，就是中文的「燙手山芋」。後面的 that many people disagree about 正好在解釋它。',
+                  ev: ['the issue is a hot potato that many people disagree about'],
+                },
+                {
+                  n: 27, type: 'multi',
+                  en: 'Who have changed their minds about the siting of the LNG terminal at the Datan algal reef?',
+                  zh: '誰改變了自己對大潭藻礁接收站選址的看法？（多選）',
+                  options: ['Ms. Li', 'Mr. Wang', 'Ms. Bai', 'Mr. Chen'],
+                  answers: [2, 3],
+                  no: {
+                    0: '李女士從頭到尾都反對興建，沒有改變。',
+                    1: '王先生一直都在推動這個計畫，沒有改變。',
+                  },
+                  why: '白女士和陳先生。兩人都用了「過去……，However, 現在……」的結構：白女士 For many years, I strongly sympathized… However, I have come to realize…；陳先生 I campaigned hard against… However, … I concede…。',
+                  ev: ['However, I have come to realize that global warming is the biggest threat that mankind faces.', 'I concede that it is time to give up the fight'],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'datan-notes',
+          zh: '讀懂結構',
+          en: 'How the text is built',
+          blocks: [
+            {
+              t: 'note',
+              zh: '找「改變想法」：看 However',
+              en: 'Spotting a change of mind',
+              bodyZh: '改變想法的人通常先說過去（For many years…、I campaigned hard against…），再用 However 轉到現在。第 27 題就是在考這個轉折。另外，第 24、25 題都是「文中用動詞，題目要名詞」：protect → protection、reduce → reduction，這是混合題常見的改詞性。',
+            },
+          ],
+        },
+        {
+          id: 'datan-list',
+          zh: '字彙表',
+          en: 'Word list',
+          blocks: [{ t: 'vocab' }],
+        },
+        {
+          id: 'datan-talk',
+          zh: '想一想、說說看',
+          en: 'Talk about it',
+          blocks: [
+            {
+              t: 'talk',
+              items: [
+                { en: 'Which of the four people do you agree with most? Why?', zh: '四個人當中，你最同意誰？為什麼？' },
+                { en: 'Is it ever right to damage nature to get cleaner energy? Give a reason.', zh: '為了更乾淨的能源而破壞自然，有可能是對的嗎？說出一個理由。' },
               ],
             },
           ],
