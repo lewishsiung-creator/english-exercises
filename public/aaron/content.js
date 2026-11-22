@@ -523,5 +523,415 @@ const NOTEBOOK = {
         },
       ],
     },
+
+    // ================================================================ 2
+    {
+      id: 's2',
+      n: 2,
+      en: 'It depends — advice with its conditions attached',
+      zh: '看情況——把條件說清楚的建議',
+
+      focus: [
+        { en: 'Fuelling a session', zh: '訓練前後的補給' },
+        { en: 'Conditional advice', zh: '有條件的建議' },
+        { en: 'Hedging', zh: '保留語氣' },
+        { en: 'Reading a label', zh: '看營養標示' },
+      ],
+
+      blocks: [
+        {
+          t: 'lead',
+          en: 'A short nutrition note about what to eat before and after lifting — and, underneath it, a register worth stealing: how to give a recommendation without pretending it holds for everyone.',
+          zh: '一份談重訓前後該吃什麼的簡短營養筆記——而藏在底下的，是一種值得偷學的語氣：怎麼給出建議，又不假裝它對每個人都成立。',
+        },
+
+        {
+          t: 'summary',
+          en: 'Read the note twice. The first time for the numbers: how much, how long before, what with. The second time for the sentences, because almost none of them is a flat instruction. Every recommendation in it arrives with the condition under which it holds, and that is the harder thing to do in English.',
+          zh: '這份筆記讀兩次。第一次讀數字：吃多少、提前多久、配什麼。第二次讀句子——因為裡面幾乎沒有一句是直接的命令。每一條建議出現時，都附帶了它成立的條件；而用英文做到這件事，是比較難的那一半。',
+        },
+
+        {
+          t: 'note',
+          en: 'The bottom line',
+          zh: '結論',
+          bodyEn: 'Puffed rice is a convenient, easily digested carbohydrate source. It works before training as energy and after training alongside protein. Whether you need it at all depends on three things: when you last ate, how hard the session is, and how much carbohydrate you are getting across the whole day. It is a tool, not a food you have to eat.',
+          bodyZh: '米香是方便、容易消化的碳水來源。重訓前可以當能量，重訓後可以搭配蛋白質。但你到底需不需要補，取決於三件事：上一餐是什麼時候、這次訓練有多重、以及你一整天的碳水攝取量。它是工具，不是非吃不可的食物。',
+        },
+
+        {
+          t: 'contrast',
+          en: 'The flat version, and the one with its conditions',
+          zh: '直說的版本，與附上條件的版本',
+          coldEn: 'Said flat',
+          coldZh: '直接斷言',
+          warmEn: 'Said with its conditions',
+          warmZh: '附上成立條件',
+          hintEn: 'Both columns are good English. The left one is not wrong — it is just claiming more than it can back up.',
+          hintZh: '左右兩欄都是道地的英文。左邊並沒有錯，只是它宣稱的比它撐得住的還多。',
+          items: [
+            {
+              caseEn: 'What to eat before training',
+              caseZh: '訓練前吃什麼',
+              cold: {
+                en: 'Eat 30 grams of puffed rice before every workout.',
+                zh: '每次訓練前都吃 30 克米香。',
+              },
+              warm: {
+                en: 'If your last meal was more than three hours ago, try 25 to 50 grams about 30 to 60 minutes before.',
+                zh: '如果你上一餐已經超過三小時，可以試試在訓練前 30 到 60 分鐘吃 25 到 50 克。',
+              },
+              whyEn: 'The condition is doing the work. “If your last meal was more than three hours ago” tells the listener how to decide for themselves, which a flat number never does — and it makes the advice survive the day they ate at eleven.',
+              whyZh: '真正在做事的是那個條件。「如果你上一餐已經超過三小時」告訴對方怎麼自己判斷，而一個光禿禿的數字永遠做不到這件事——而且它讓這條建議在「那天十一點才吃過」的情況下依然站得住。',
+            },
+            {
+              caseEn: 'Whether a post-workout snack is needed',
+              caseZh: '練完到底要不要補',
+              cold: {
+                en: 'You must eat carbohydrates within thirty minutes of finishing.',
+                zh: '你必須在練完三十分鐘內補充碳水。',
+              },
+              warm: {
+                en: 'If you are having a meal within the next hour or two, an extra snack is usually unnecessary.',
+                zh: '如果你接下來一兩個小時內就會吃正餐，額外再吃通常沒有必要。',
+              },
+              whyEn: '“Must” and “within thirty minutes” are a rule; “usually unnecessary” is a judgement. The second one is harder to say and much harder to argue with.',
+              whyZh: 'must 和 within thirty minutes 是規定；usually unnecessary 是判斷。第二種比較難說出口，但也難被反駁得多。',
+            },
+            {
+              caseEn: 'Trying something for the first time',
+              caseZh: '第一次嘗試',
+              cold: {
+                en: 'It is easy to digest, so you will be fine.',
+                zh: '它很好消化，所以你不會有問題。',
+              },
+              warm: {
+                en: 'Start with a smaller portion to assess how your stomach handles it.',
+                zh: '先從較小的份量開始，看看你的腸胃反應如何。',
+              },
+              whyEn: '“You will be fine” is a promise about someone else’s body. “Start smaller to assess” hands the test back to the person it belongs to, and costs the speaker nothing if it goes badly.',
+              whyZh: '「你不會有問題」是在替別人的身體打包票。「先從小份量開始評估」把測試交還給它該屬於的人，而且萬一不順利，說話的人也不必承擔。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Fuelling and recovery',
+          zh: '補給與恢復',
+          items: [
+            {
+              en: 'a carbohydrate source',
+              zh: '碳水來源',
+              eg: 'Puffed rice is a convenient carbohydrate source, not an essential food.',
+              egZh: '米香是方便的碳水來源，不是必需的食物。',
+            },
+            {
+              en: 'replenish muscle glycogen',
+              zh: '補充肌糖原',
+              eg: 'Carbohydrates after training help replenish muscle glycogen.',
+              egZh: '訓練後的碳水有助於補充肌糖原。',
+            },
+            {
+              en: 'muscle protein synthesis',
+              zh: '肌肉蛋白質合成',
+              eg: 'Protein supports muscle protein synthesis; carbohydrate does not.',
+              egZh: '蛋白質支持肌肉蛋白質合成，碳水則不會。',
+            },
+            {
+              en: 'high-quality protein',
+              zh: '高品質蛋白質',
+              eg: 'Whey or chicken breast both count as high-quality protein.',
+              egZh: '乳清或雞胸肉都算高品質蛋白質。',
+            },
+            {
+              en: 'digestive tolerance',
+              zh: '腸胃耐受度',
+              eg: 'Start with a smaller portion to assess your digestive tolerance.',
+              egZh: '先從較小的份量開始，評估你的腸胃耐受度。',
+            },
+            {
+              en: 'fasted training',
+              zh: '空腹訓練',
+              eg: 'Before fasted training, 25 to 40 grams is a reasonable place to start.',
+              egZh: '空腹訓練前，25 到 40 克是個合理的起點。',
+            },
+            {
+              en: 'a high-volume session',
+              zh: '高訓練量的一次訓練',
+              eg: 'On a high-volume session you may want more carbohydrate, especially if you are training again later.',
+              egZh: '在訓練量高的那一次，碳水可以多一點，尤其是當天稍後還有其他運動。',
+            },
+            {
+              en: 'body recomposition',
+              zh: '增肌減脂',
+              eg: 'For body recomposition, total calories matter more than the timing of one snack.',
+              egZh: '以增肌減脂來說，總熱量比某一次點心的時間點重要得多。',
+            },
+            {
+              en: 'total daily calorie intake',
+              zh: '全天總熱量攝取',
+              eg: 'Total daily calorie intake comes first; everything else is an adjustment.',
+              egZh: '全天總熱量攝取是第一順位，其他都只是微調。',
+            },
+            {
+              en: 'the nutrition label',
+              zh: '營養標示',
+              eg: 'These figures are estimates — go by the nutrition label on the packet.',
+              egZh: '這些數字是估算值——請以包裝上的營養標示為準。',
+            },
+            {
+              en: 'prioritize',
+              zh: '以……為優先',
+              eg: 'Prioritize calories, protein and recovery before worrying about timing.',
+              egZh: '在煩惱時間點之前，先把熱量、蛋白質與恢復排在前面。',
+            },
+            {
+              en: 'a tool, not a requirement',
+              zh: '是工具，不是規定',
+              eg: 'Treat the snack as a tool, not a requirement.',
+              egZh: '把這份點心當成工具，而不是規定。',
+            },
+          ],
+        },
+
+        {
+          t: 'phrases',
+          en: 'Saying it with conditions',
+          zh: '把條件說出來',
+          items: [
+            {
+              en: 'it depends on',
+              zh: '取決於',
+              eg: 'Whether you need it depends on when you last ate.',
+              egZh: '你需不需要，取決於你上一餐是什麼時候。',
+            },
+            {
+              en: 'may not be necessary',
+              zh: '不一定需要',
+              eg: 'If you have just eaten, an extra snack may not be necessary.',
+              egZh: '如果你剛吃過，額外再吃一份不一定需要。',
+            },
+            {
+              en: 'is usually unnecessary',
+              zh: '通常沒有必要',
+              eg: 'With a meal coming soon, it is usually unnecessary.',
+              egZh: '如果正餐很快就要吃了，通常沒有必要。',
+            },
+            {
+              en: 'start with a smaller portion',
+              zh: '從較小的份量開始',
+              eg: 'The first time, start with a smaller portion.',
+              egZh: '第一次嘗試時，從較小的份量開始。',
+            },
+            {
+              en: 'to assess',
+              zh: '以評估……',
+              eg: 'Try it once to assess how you feel afterwards.',
+              egZh: '先試一次，評估之後的感覺如何。',
+            },
+            {
+              en: 'within the next hour or two',
+              zh: '在接下來一兩個小時內',
+              eg: 'If you are eating within the next hour or two, skip it.',
+              egZh: '如果你接下來一兩個小時內就會吃，那就跳過。',
+            },
+            {
+              en: 'there is no hard rule',
+              zh: '沒有硬性規定',
+              eg: 'For most people training once a day, there is no hard rule about the thirty-minute window.',
+              egZh: '對多數一天只訓練一次的人來說，三十分鐘的黃金時間並沒有硬性規定。',
+            },
+            {
+              en: 'go by (something)',
+              zh: '以……為準',
+              eg: 'These are estimates — go by the packet.',
+              egZh: '這些是估算值，請以包裝上的為準。',
+            },
+          ],
+        },
+
+        {
+          t: 'note',
+          en: 'Where the numbers came from',
+          zh: '這些數字是哪來的',
+          bodyEn: 'The gram figures in the note are estimates for plain puffed rice. A packet with syrup, oil or other ingredients is a different food with different numbers, so the label on the thing you are actually holding beats any figure in any note — including this one. Worth saying out loud, because “about 23 to 28 grams of carbohydrate” reads like a measurement and is not one.',
+          bodyZh: '筆記裡的公克數，是針對單純米香的估算值。加了糖漿、油或其他配料的產品，是另一種食物、另一組數字；所以你手上那包的標示，永遠勝過任何筆記裡的數字——包括這一份。這件事值得講出來，因為「大約 23 到 28 克碳水」看起來像一個量測結果，其實不是。',
+        },
+
+        {
+          t: 'match',
+          en: 'Match the phrase',
+          zh: '配對片語',
+          hintEn: 'Click the Chinese on the left, then its English partner on the right.',
+          hintZh: '先點左邊的中文，再點右邊對應的英文。',
+          pairs: [
+            { a: '補充肌糖原', b: 'replenish muscle glycogen' },
+            { a: '肌肉蛋白質合成', b: 'muscle protein synthesis' },
+            { a: '腸胃耐受度', b: 'digestive tolerance' },
+            { a: '空腹訓練', b: 'fasted training' },
+            { a: '增肌減脂', b: 'body recomposition' },
+            { a: '通常沒有必要', b: 'is usually unnecessary' },
+            { a: '沒有硬性規定', b: 'there is no hard rule' },
+            { a: '以……為準', b: 'go by something' },
+          ],
+        },
+
+        {
+          t: 'gap',
+          en: 'Finish the sentence',
+          zh: '完成句子',
+          items: [
+            {
+              text: 'Carbohydrate after a session helps ___, while protein supports the rebuilding.',
+              textZh: '訓練後的碳水有助於補充肌糖原，蛋白質則支持修復重建。',
+              options: ['replenish muscle glycogen', 'assess digestive tolerance', 'prioritize total calories'],
+              answer: 0,
+              why: {
+                en: 'The second half contrasts carbohydrate with protein, so the first half has to be the job carbohydrate actually does. The other two belong to this lesson but not to this sentence.',
+                zh: '後半句把碳水和蛋白質對比，所以前半句必須是碳水真正負責的工作。另外兩個是這堂課的字，但不是這句話的。',
+              },
+            },
+            {
+              text: 'The first time you try it, ___ to see how your stomach handles it.',
+              textZh: '第一次嘗試的時候，先從較小的份量開始，看看腸胃反應如何。',
+              options: ['start with a smaller portion', 'go by the nutrition label', 'there is no hard rule'],
+              answer: 0,
+              why: {
+                en: 'The clause after the comma is the purpose, so the blank has to be the action it is the purpose of. Only the first option is something you do.',
+                zh: '逗號後面是目的，所以空格必須是「為了這個目的而做的動作」。三個選項中只有第一個是一個動作。',
+              },
+            },
+            {
+              text: 'If you are eating a full meal ___, an extra snack is usually unnecessary.',
+              textZh: '如果你接下來一兩個小時內就會吃正餐，額外再吃通常沒有必要。',
+              options: ['within the next hour or two', 'on a high-volume session', 'for body recomposition'],
+              answer: 0,
+              why: {
+                en: 'The sentence turns on timing: the snack is redundant because the meal is close. Only the first option is a time.',
+                zh: '這句話的關鍵是時間：點心之所以多餘，是因為正餐很近。三個選項裡只有第一個是時間。',
+              },
+            },
+            {
+              text: 'These gram figures are estimates, so ___ on the packet you actually bought.',
+              textZh: '這些公克數是估算值，所以請以你實際買的那包上面的營養標示為準。',
+              options: ['go by the nutrition label', 'replenish muscle glycogen', 'start with a smaller portion'],
+              answer: 0,
+              why: {
+                en: '“Go by X” means take X as the authority. It is the phrase you want whenever your own number might be wrong.',
+                zh: 'go by X 的意思是「以 X 為準」。每當你自己給的數字可能不對時，就是用這個片語的時候。',
+              },
+            },
+            {
+              text: 'Whether you need anything before lifting ___ when you last ate.',
+              textZh: '你在重訓前需不需要吃東西，取決於你上一餐是什麼時候。',
+              options: ['depends on', 'goes by', 'prioritizes'],
+              answer: 0,
+              why: {
+                en: '“Depend on” introduces the condition an answer rests on. “Go by” is about which source to trust, which is a different job.',
+                zh: 'depend on 帶出「答案取決於什麼條件」。go by 講的是「該相信哪個來源」，是另一回事。',
+              },
+            },
+            {
+              text: 'For most people training once a day, ___ about eating within thirty minutes of finishing.',
+              textZh: '對多數一天只訓練一次的人來說，練完三十分鐘內必須進食這件事並沒有硬性規定。',
+              options: ['there is no hard rule', 'it may not be necessary', 'it depends on'],
+              answer: 0,
+              why: {
+                en: 'The sentence needs a subject and a verb after the comma, and only the first option supplies both. The other two would need rewriting around them.',
+                zh: '逗號後面需要一個完整的主詞加動詞，三個選項裡只有第一個兩者都有。另外兩個得把整句重寫才接得上。',
+              },
+            },
+          ],
+        },
+
+        {
+          t: 'poll',
+          en: 'Where do you stand?',
+          zh: '你的立場是什麼？',
+          hintEn: 'There is no right answer — take a side and say why.',
+          hintZh: '沒有標準答案：選一邊，並說明理由。',
+          items: [
+            { en: 'Advice that comes with conditions sounds less confident, and that costs you credibility.', zh: '附帶條件的建議聽起來比較沒把握，而這會讓你失去說服力。' },
+            { en: 'Most nutrition advice online is a flat rule pretending to be a finding.', zh: '網路上多數的營養建議，都是一條規定假裝成一個研究結果。' },
+            { en: 'If something is only worth a few per cent, it is not worth thinking about.', zh: '如果一件事只影響幾個百分點，那就不值得花心思。' },
+            { en: 'I would rather be told “it depends” than be given a number that is wrong for me.', zh: '我寧願被告知「看情況」，也不要拿到一個對我而言是錯的數字。' },
+          ],
+        },
+
+        {
+          t: 'discuss',
+          en: 'Talk it through',
+          zh: '一起討論',
+          items: [
+            {
+              en: 'Think of advice you give often at work. What condition does it quietly assume — and what happens to it when that condition is not true?',
+              zh: '想一個你在工作上常給的建議。它默默假設了什麼條件？當那個條件不成立時，這條建議會變成什麼？',
+              starters: [
+                { en: 'I often tell people to…, and it assumes…', zh: '我常跟人說要……，而它預設了……' },
+                { en: 'It stops working the moment…', zh: '只要一……，它就失效了。' },
+                { en: 'I should probably say it as “if…, then…” instead.', zh: '我大概應該改成「如果……，就……」這樣說。' },
+              ],
+            },
+            {
+              en: 'Is there a difference between sounding uncertain and being honest about what you do not know?',
+              zh: '「聽起來沒把握」和「誠實說出自己不知道的部分」，有差別嗎？',
+              starters: [
+                { en: 'To me the difference is…', zh: '對我來說，差別在於……' },
+                { en: 'It depends who is listening — with… I would…', zh: '這要看聽的人是誰——對……我會……' },
+                { en: 'The version that sounds weak is the one that…', zh: '聽起來軟弱的那個版本，問題在於它……' },
+              ],
+            },
+            {
+              en: 'The note says the snack is a tool, not a requirement. What else in your routine have you been treating as a requirement?',
+              zh: '這份筆記說那份點心是工具，不是規定。你的日常裡還有什麼，被你當成了規定？',
+              starters: [
+                { en: 'I have been treating… as something I have to do.', zh: '我一直把……當成非做不可的事。' },
+                { en: 'If I dropped it, what would actually change is…', zh: '如果我不做了，真正會改變的是……' },
+                { en: 'It became a rule because…', zh: '它變成一條規定，是因為……' },
+              ],
+            },
+          ],
+        },
+
+        {
+          t: 'link',
+          href: '#s1',
+          en: 'The session this follows from',
+          zh: '這堂課接續的上一堂',
+          noteEn: 'Session 1 ended on the same move: maximum effort is not always optimal effort. Zone 2, deload weeks and “do more” are all there, and the vocabulary of training load sits alongside this one.',
+          noteZh: '第一堂的結尾是同一個轉折：最大努力不等於最佳努力。心率第二區、減量週、「做更多」都在那裡，訓練量的詞彙也和這一堂是一組的。',
+        },
+
+        {
+          t: 'task',
+          en: 'Homework: rewrite a flat rule',
+          zh: '作業：把一條硬規定改寫成有條件的建議',
+          instructionEn: 'Find one piece of advice you give — at work, at the gym, to your family — that you normally say as a flat rule. Write it twice: once the way you usually say it, then once with the condition it actually depends on. Send both versions on LINE and we will compare them next time.',
+          instructionZh: '找一條你常給的建議——工作上、健身房裡、對家人都可以——是你平常會直接當成規定說出口的。把它寫兩次：一次照你平常的說法，一次加上它真正依賴的條件。兩個版本都用 LINE 傳給我，下次一起比較。',
+          prompts: [
+            { en: 'Something you say at work.', zh: '你在工作上會說的一句。' },
+            { en: 'Something you say about training or food.', zh: '你在訓練或飲食上會說的一句。' },
+            { en: 'Something you were told once and have repeated ever since.', zh: '一句你曾經被告知、之後就一直複述的話。' },
+          ],
+          checklist: [
+            { en: 'it depends on', zh: '取決於' },
+            { en: 'may not be necessary', zh: '不一定需要' },
+            { en: 'is usually unnecessary', zh: '通常沒有必要' },
+            { en: 'start with a smaller portion', zh: '從較小的份量開始' },
+            { en: 'to assess', zh: '以評估……' },
+            { en: 'within the next hour or two', zh: '在接下來一兩個小時內' },
+            { en: 'there is no hard rule', zh: '沒有硬性規定' },
+            { en: 'go by (something)', zh: '以……為準' },
+          ],
+          frames: [
+            { en: 'The flat version: ___.', zh: '直說的版本：＿＿。' },
+            { en: 'If ___, then ___.', zh: '如果＿＿，那就＿＿。' },
+            { en: 'Whether you need it depends on ___.', zh: '你需不需要，取決於＿＿。' },
+            { en: 'If ___, it is usually unnecessary.', zh: '如果＿＿，通常沒有必要。' },
+          ],
+        },
+      ],
+    },
   ],
 };

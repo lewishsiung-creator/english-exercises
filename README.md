@@ -4305,6 +4305,25 @@ question — how to design a life rather than maximise output. It carries twenty
 expressions from that hour, six gap-fill sentences, and the homework the session
 ended on.
 
+Session 2 is built from a short bilingual nutrition note of Lewis's own — when
+to eat puffed rice around lifting. The numbers are the surface; the lesson is
+the register underneath them, because almost nothing in that note is a flat
+instruction. Every recommendation arrives with the condition it holds under,
+so the `contrast` block runs *said flat* against *said with its conditions*
+three times, and the second phrase set is the hedging language itself (`it
+depends on`, `may not be necessary`, `is usually unnecessary`, `there is no
+hard rule`, `go by`). The homework asks him to rewrite one flat rule he gives
+often. A `link` block points back at session 1, which ended on the same move.
+
+Two things were changed on the way in. The source note is addressed to Lewis
+and names his weight and his body-composition goal; on a page shared with a
+client that is his data and not the lesson, so it is generalised to "someone
+whose goal is to lose fat while keeping muscle". And the note's own caveat —
+that the gram figures are estimates, and a packet with syrup is a different
+food — is kept as a `note` rather than dropped, for the same reason the
+AMPK/mTOR note in session 1 is: a number that reads like a measurement and is
+not one should say so.
+
 **The sessions here carry no date**, the way
 [Anna's](#annas-notebook--young-adult-one-to-one-kept-over-time) do, so order in the array
 is the only record of sequence. `dateEn`/`dateZh` stay optional in the
