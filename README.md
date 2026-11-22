@@ -4382,10 +4382,19 @@ panels it falls to about 3.3:1, so there it is for rules, numerals and display
 sizes only. And a right answer stays **green**: red is the loudest colour on
 this page and a correct answer is not the place for it.
 
-The sub-page at `/aaron/book-club/` does **not** link it and keeps the
-editorial look, so the page changes appearance when you follow the link out.
-That is a deliberate stopping point, not an oversight — the guide is material
-about four books that happens to live under this notebook.
+The sub-page at `/aaron/book-club/` links it too, so following the link out no
+longer changes the clothes. It has elements the notebook does not — its books
+fold on `.step-btn` rather than `.session-btn`, and it carries a breadcrumb, a
+book card and the closing strands — so `blacktop.css` ends with a section for
+those names. They match nothing on the notebook, which is how `house.css`
+already carries its notebook-only rules: inert where they do not apply.
+
+One correction worth knowing about if you add a page to this set. The guide's
+own stylesheet draws its book number as a filled chip, and overriding the
+colour alone left a red numeral sitting in a black box — the notebook sets
+its session numbers bare, in the margin. Changing the face of something that
+was drawn as a chip means clearing the `background`, the `border-radius` and
+the `padding` too, not just the `color`.
 
 ## Anita's Notebook — adult, one-to-one, kept over time
 
@@ -6022,6 +6031,7 @@ public/anny/              Anny's notebook — one entry per discussion
 public/anny/meeting/      her co-planning guide for a team meeting — not a lesson
 public/aaron/             Aaron's notebook — same machinery, its own sessions
 public/aaron/blacktop.css its own look, linked in place of editorial.css
+                          (the book-club sub-page links it too)
 public/aaron/book-club/   the four-book discussion guide, under that notebook
 public/anita/             Anita's notebook — same machinery again, two sessions
 public/nikky/             Nikky's notebook — the same, with the scroll fix in

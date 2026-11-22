@@ -404,10 +404,122 @@ body { background: var(--paper); font-size: 17px; line-height: 1.6; }
 .site-foot { border-top: 2px solid var(--ink); }
 .site-foot a { color: var(--accent); }
 
+/* ====================================================================
+   The book guide at /aaron/book-club/
+
+   That page is the same wardrobe one level down, so it links this file too.
+   It has elements the notebook does not — books fold on `.step-btn` rather
+   than `.session-btn`, and it carries a breadcrumb, a book card and the
+   closing strands. Those selectors match nothing on the notebook, so the
+   whole block is inert there.
+   ==================================================================== */
+
+/* ---------------- the breadcrumb, on the black cover ---------------- */
+
+.cover .crumbs { letter-spacing: .16em; }
+.cover .back { color: #ffffff; }
+.cover .back:hover { color: var(--accent); text-decoration: none; }
+.cover .crumb-go { color: var(--accent); }
+.cover .crumb-zh { color: #b9b6ae; }
+
+.cover .source { color: #a5a5aa; }
+.cover .source .zh { color: #8e8e93; }
+
+/* ---------------- a book, folded ---------------- */
+
+.step-btn { border-bottom: 4px solid var(--ink); padding-bottom: 20px; }
+.step-btn:hover { border-bottom-color: var(--accent); }
+.step.folded .step-btn { border-bottom: 1px solid var(--rule); }
+
+/* The guide's own stylesheet draws this as a filled chip. The notebook one
+   level up sets its session numbers as a bare numeral in the margin, so this
+   one sheds the box to match. */
+.step-btn .n {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -.04em;
+  color: var(--accent);
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  text-align: right;
+  margin-top: .1rem;
+}
+.step-btn .titles .en {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 5vw, 3rem);
+  font-weight: 900;
+  line-height: .96;
+  letter-spacing: -.035em;
+  text-transform: uppercase;
+}
+.step-btn:hover .titles .en { color: var(--ink); }
+/* A book's Chinese title is its name and stays visible, as it always has. */
+.step-btn .titles .zh { font-weight: 600; color: var(--ink-soft); margin-top: 6px; }
+.step-btn .fold { border-color: var(--ink); border-width: 2.5px; margin-top: .9rem; }
+
+/* The one line a shut book still shows. */
+.step-tag {
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.step-tag .zh { text-transform: none; letter-spacing: 0; font-weight: 400; }
+
+/* ---------------- the book card ---------------- */
+
+.book { border: 1.5px solid var(--line); border-radius: 2px; }
+.book-by {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.book-by-label { color: var(--accent); font-weight: 800; letter-spacing: .16em; }
+
+.book-for { border-radius: 2px; border-left: 5px solid var(--accent); }
+.book-for-label { color: var(--accent); font-weight: 800; letter-spacing: .14em; }
+
+/* ---------------- a glossary card's definitions ---------------- */
+
+.term-def-zh { border-top-color: var(--rule); }
+
+/* ---------------- the question number ---------------- */
+
+.ask-n {
+  background: var(--ink);
+  color: #ffffff;
+  border-radius: 2px;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+/* ---------------- the closing strands ---------------- */
+
+.strands a { border-radius: 2px; border: 1.5px solid var(--line); }
+.strands a:hover { border-color: var(--ink); background: var(--navy-soft); }
+.strands .n {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -.03em;
+  color: #ffffff;
+  background: var(--ink);
+  border-radius: 2px;
+  padding: 6px 0;
+}
+.strands .t .en { font-weight: 600; }
+.strands-foot { font-weight: 600; letter-spacing: .04em; }
+
 /* ---------------- phone ---------------- */
 
 @media (max-width: 899px) {
-  .session-btn .n { font-size: 2rem; margin-top: .15rem; }
+  .session-btn .n, .step-btn .n { font-size: 2rem; margin-top: .15rem; }
   .bar { gap: 8px; }
   .bar-title span { display: none; }
 }
@@ -420,8 +532,9 @@ body { background: var(--paper); font-size: 17px; line-height: 1.6; }
 @media print {
   .cover, .cross { background: #fff; color: #111; border: 2px solid #111; }
   .cover .zh, .cover-intro, .goals li, .goals-intro, .kicker,
-  .cross-en, .cross-zh, .cross-note, .cross-note-zh { color: #111; }
-  .focus li { background: #fff; color: #111; border: 1px solid #111; }
+  .cross-en, .cross-zh, .cross-note, .cross-note-zh,
+  .cover .back, .cover .crumb-zh, .cover .source, .cover .source .zh { color: #111; }
+  .focus li, .ask-n, .strands .n { background: #fff; color: #111; border: 1px solid #111; }
   .focus li .zh { color: #111; }
   .toc a.here { background: #fff; color: #111; }
 }

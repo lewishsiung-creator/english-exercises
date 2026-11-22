@@ -12,11 +12,11 @@
      it is kept out of search results too. It stays reachable by its URL. -->
 <meta name="robots" content="noindex, nofollow">
 
-<!-- Inline SVG mark: four books on a shelf. The colours must be
-     percent-encoded — a bare "#" would be read as the URL fragment and the
-     icon would silently fail to load. -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d3f6e'/%3E%3Crect x='14' y='16' width='7' height='32' rx='2' fill='%23ffffff'/%3E%3Crect x='24' y='16' width='7' height='32' rx='2' fill='%23f2c14e'/%3E%3Crect x='34' y='16' width='7' height='32' rx='2' fill='%23ffffff'/%3E%3Crect x='44' y='16' width='7' height='32' rx='2' fill='%23f2c14e'/%3E%3C/svg%3E">
-<meta name="theme-color" content="#f7f6f2">
+<!-- Inline SVG mark: four books on a shelf, in the page's own black and red.
+     The colours must be percent-encoded — a bare "#" would be read as the URL
+     fragment and the icon would silently fail to load. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='3' fill='%230c0c0d'/%3E%3Crect x='14' y='16' width='7' height='32' fill='%23f4f2ee'/%3E%3Crect x='24' y='16' width='7' height='32' fill='%23c8102e'/%3E%3Crect x='34' y='16' width='7' height='32' fill='%23f4f2ee'/%3E%3Crect x='44' y='16' width='7' height='32' fill='%23c8102e'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f4f2ee">
 
 <link rel="stylesheet" href="style.css">
 
@@ -25,15 +25,18 @@
      it — this page keeps its own. See ../../type.css. -->
 <link rel="stylesheet" href="../../type.css">
 
-<!-- The house palette and type, shared by every adult page. Linked AFTER
-     this page's own stylesheet so its token definitions win; nothing in
-     style.css had to change. See ../../editorial.css. -->
-<link rel="stylesheet" href="../../editorial.css">
 <!-- The house interface, shared by every page in the family: the bar, the
-     controls, the display type and the hairlines. Linked LAST so it wins,
-     and it deliberately sets no body size, no measure and no colour of its
-     own. See ../../house.css. -->
+     controls, the display type and the hairlines. It deliberately sets no
+     body size, no measure and no colour of its own. See ../../house.css. -->
 <link rel="stylesheet" href="../../house.css">
+
+<!-- The notebook's look, one level up, in the slot ../../editorial.css fills
+     on other pages — so there is no editorial.css here. Linked LAST so every
+     rule wins. This page is part of Aaron's notebook, so it wears the same
+     clothes; the file carries a section for the elements only this page has.
+     Design language only: no brand's name, mark, logo or slogan is in it.
+     See ../blacktop.css. -->
+<link rel="stylesheet" href="../blacktop.css">
 
 </head>
 <body>
