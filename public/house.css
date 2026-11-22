@@ -318,6 +318,16 @@
   margin-bottom: 8px;
 }
 
+/* Two of the five notebooks carry no date, so their headings start straight at
+   the title and the eyebrow's 26px is not there to be cleared. The number and
+   the chevron come up by that much, or they hang a line below the title they
+   are meant to sit beside. Keyed on the date's absence rather than on a page,
+   so a notebook that gains or loses dates needs nothing here — and so the
+   three dated ones are untouched. The same two values hold at phone width:
+   the eyebrow is the same height there, so there is no second pair to tune. */
+.session-btn:not(:has(.date)) .n { margin-top: .3rem; }
+.session-btn:not(:has(.date)) .fold { margin-top: 1rem; }
+
 .session-btn .titles .en {
   font-size: clamp(1.6rem, 3vw, 2.1rem);
   line-height: 1.14;

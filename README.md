@@ -4299,11 +4299,22 @@ The second notebook, on the same machinery as
 and stylesheet, a new content file, and one entry per discussion in `sessions`.
 Everything in the design notes above applies here too.
 
-Session 1 (17 August 2026) is a discussion of the book *Retire Often* that ran
+Session 1 is a discussion of the book *Retire Often* that ran
 from careers into sleep, training loads and side projects, and converged on one
 question — how to design a life rather than maximise output. It carries twenty
 expressions from that hour, six gap-fill sentences, and the homework the session
 ended on.
+
+**The sessions here carry no date**, the way
+[Anna's](#annas-notebook--young-adult-one-to-one-kept-over-time) do, so order in the array
+is the only record of sequence. `dateEn`/`dateZh` stay optional in the
+renderer: add them to one entry and that entry gets its date line and its
+contents-list subtitle back. With no date, the contents list falls back to the
+session's Chinese title rather than leaving the second line blank — navigation
+is scaffolding here and stays bilingual. The practical consequence is for
+editing, not for reading: a lesson taught between two that are already in the
+array goes in its right place in the array, not at the bottom, and everything
+after it is renumbered.
 
 Two things are new in this copy of the renderer:
 
@@ -5889,6 +5900,15 @@ One trap, paid for once: a file path written inside the opening comment with a
 star and a slash together ends the comment. It swallowed the `:root` block, and
 every radius on every page computed to zero while `--pill` resolved to nothing.
 The symptom looks like a specificity problem and is not one.
+
+The notebook session heading is the one place here that branches on content
+rather than on page. The number and the chevron are positioned to clear the
+date eyebrow above the title, which is 26px tall; on the two notebooks whose
+sessions carry no date they were left hanging a line low. So
+`.session-btn:not(:has(.date))` brings both up. Keyed on the date's absence
+rather than on `/aaron/` and `/anna/`, so a notebook that gains or loses dates
+needs no change here and the three dated ones are untouched — and the same two
+values hold at phone width, since the eyebrow is the same height there.
 
 ## Layout
 

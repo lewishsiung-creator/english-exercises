@@ -12,6 +12,12 @@
      anchor (/aaron/#s3). The teacher panel opens the lot.
    - Which sessions are open is NOT remembered between loads. A reload is a
      clean start, the same as every other page here: the newest lesson, open.
+   - Sessions here are UNDATED, so the array's order is the only record of
+     sequence. `dateEn`/`dateZh` are optional: present, they draw the date line
+     in the heading and the contents-list subtitle for that entry; absent, the
+     date line is omitted rather than left as an empty element taking up space,
+     and the contents list falls back to the session's Chinese title so that
+     navigation stays bilingual.
 
    The only state kept in localStorage is device settings — the chosen voice,
    the speed, and whether Chinese starts visible.
@@ -439,7 +445,7 @@ function buildSession(s, open) {
         <button class="session-btn" aria-expanded="${open}" aria-controls="body-${s.id}">
           <span class="n">${s.n}</span>
           <span class="titles">
-            <span class="date">${text(s.dateEn)}<em>${text(s.dateZh || '')}</em></span>
+            ${s.dateEn ? `<span class="date">${text(s.dateEn)}<em>${text(s.dateZh || '')}</em></span>` : ''}
             <span class="en">${text(s.en)}</span>
             <span class="zh">${text(s.zh)}</span>
           </span>
@@ -463,7 +469,7 @@ function buildNav() {
         ${ordered.map((s) => `
           <li><a href="#${s.id}" data-target="${s.id}"><span class="n">${s.n}</span>
             <span class="t"><span class="en">${text(s.en)}</span>
-            <span class="zh">${text(s.dateEn)}</span></span></a></li>`).join('')}
+            <span class="zh">${text(s.dateEn || s.zh)}</span></span></a></li>`).join('')}
       </ul>
     </nav>`;
 }

@@ -7,13 +7,20 @@
 
    ADDING A SESSION
    ----------------
-   Copy the last entry in `sessions`, change `id`, `n`, `date` and the titles,
-   and rewrite the blocks. Put it at the BOTTOM of the array — the array stays
-   chronological and `n` counts up with it. The PAGE reads the other way round:
+   Copy the last entry in `sessions`, change `id`, `n` and the titles, and
+   rewrite the blocks. Put it at the BOTTOM of the array — the array stays in
+   teaching order and `n` counts up with it. The PAGE reads the other way round:
    the renderer reverses the array, so the newest session is at the top, open,
    with the earlier ones below it and folded away. The contents list, the
    numbering and the anchors all come from the array, so there is nothing else
    to keep in step.
+
+   THESE SESSIONS CARRY NO DATE, so ORDER IN THE ARRAY is the only record of
+   sequence. `dateEn`/`dateZh` are optional in this renderer — add them to an
+   entry and the date line and the contents-list subtitle come back for that
+   entry alone; leave them out and nothing empty is drawn. A lesson taught
+   between two that are already here goes in its right place in the array, not
+   at the bottom, and everything after it is renumbered.
 
    `id` must be unique and URL-safe: it becomes the anchor, so
    /aaron/#s2 opens session 2 with the rest folded.
@@ -106,9 +113,6 @@ const NOTEBOOK = {
     {
       id: 's1',
       n: 1,
-      date: '2026-08-17',
-      dateEn: '17 August 2026',
-      dateZh: '2026 年 8 月 17 日',
       en: 'Designing a life, not maximising output',
       zh: '設計人生，而不是把產出最大化',
 
