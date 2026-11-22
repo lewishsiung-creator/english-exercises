@@ -4334,6 +4334,40 @@ The AMPK/mTOR note is written as *what was said in class*, with a line saying
 the physiology was not checked afterwards. A notebook is a record; a record that
 quietly upgrades a half-remembered claim into a fact is worse than no record.
 
+### It has its own look — `blacktop.css`
+
+Lewis asked for the style of a premium basketball label, and Aaron's first
+session runs through training loads, deload weeks and Zone 2. So this notebook
+links [`blacktop.css`](public/aaron/blacktop.css) where most others link
+`editorial.css`: near-black and bone, one red, a heavy grotesque in capitals
+tracked tight for every headline, a black panel for the cover and for the link
+out, and **square corners** — `--pill` drops from 980px to 2px, which is the
+single biggest difference on screen.
+
+It is **design language only** — no brand's name, wordmark, logo, silhouette,
+number, slogan, print or licensed typeface is on the page or in the repo, the
+same line drawn for `court.css` on [Hank's](#hanks-notebook--grade-10-one-to-one-自學-and-教學-kept-over-time)
+and for the hbr.org look on Business Journal. The display face is whatever
+heavy grotesque the device already has; nothing is downloaded.
+
+**It is not a recolour of `court.css`.** That page is white-ground, orange,
+pills, rounded; this one is its opposite number — the ground carries weight,
+the corners are cut, the rules are thick, the accent is red. Both are
+sportswear and neither is the other. Like `court.css` it redefines the same
+tokens `editorial.css` does, so `style.css` did not change, and
+`editorial.css` is simply not linked here.
+
+Two rules for the red. At `#c8102e` on bone it is about 5.8:1, so unlike the
+orange on Hank's page it **is** allowed to set small text — but on the black
+panels it falls to about 3.3:1, so there it is for rules, numerals and display
+sizes only. And a right answer stays **green**: red is the loudest colour on
+this page and a correct answer is not the place for it.
+
+The sub-page at `/aaron/book-club/` does **not** link it and keeps the
+editorial look, so the page changes appearance when you follow the link out.
+That is a deliberate stopping point, not an oversight — the guide is material
+about four books that happens to live under this notebook.
+
 ## Anita's Notebook — adult, one-to-one, kept over time
 
 The third notebook, copied from
@@ -5849,7 +5883,12 @@ one palette, `intuitive.css` gives Anny's two the company livery she asked for,
 and [`public/house.css`](public/house.css) gives them all one
 **interface**. It was worked out on `/anita/` in October 2026 and taken
 site-wide once Lewis had looked at it. Thirty-six pages link it, last, after
-their own stylesheet.
+their own stylesheet — with two exceptions, `/hank/` and `/aaron/`, which link
+one more file after it. Both are notebooks with a look of their own
+(`court.css`, `blacktop.css`), and both take the slot `editorial.css` fills
+elsewhere rather than fighting the interface: they redefine the same tokens, so
+what they change is the palette, the display face and the geometry, not the
+behaviour.
 
 Two references, kept apart because they answer different questions. **Editorial
 (HBR)** decides what is big and what is quiet: a display serif headline set
@@ -5963,6 +6002,7 @@ public/intuitive.css      the Intuitive palette — Anny's two pages only
 public/anny/              Anny's notebook — one entry per discussion
 public/anny/meeting/      her co-planning guide for a team meeting — not a lesson
 public/aaron/             Aaron's notebook — same machinery, its own sessions
+public/aaron/blacktop.css its own look, linked in place of editorial.css
 public/aaron/book-club/   the four-book discussion guide, under that notebook
 public/anita/             Anita's notebook — same machinery again, two sessions
 public/nikky/             Nikky's notebook — the same, with the scroll fix in

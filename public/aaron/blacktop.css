@@ -1,0 +1,427 @@
+/* Aaron's look — a blacktop page.
+
+   Lewis asked for this notebook in the style of a premium basketball
+   sportswear label, and Aaron's first session runs through training loads,
+   deload weeks and Zone 2, so the page is set the way that kind of label sets
+   its own: near-black and bone, one red, square corners, and display type that
+   is heavy and tracked tight rather than decorative.
+
+   DESIGN LANGUAGE ONLY. No brand's name, wordmark, logo, silhouette, number,
+   slogan, print or licensed typeface is on this page or in this file, and none
+   should be added. The page is reachable by URL and the same line applies here
+   as on /hank/ and on the hbr.org look of /business-journal/: a palette, a
+   geometry and a type hierarchy are not a mark. The display face is whatever
+   heavy grotesque the device already has.
+
+   NOT A COPY OF court.css. That page is the other half of the same wardrobe —
+   white ground, orange, pills, rounded. This one is its opposite number: the
+   ground carries weight, the corners are cut square (--pill drops from 980px
+   to 2px, which is the single biggest difference you will see), the rules are
+   thick, and the accent is red. Both are sportswear; neither is the other.
+
+   Linked LAST, after style.css, ../type.css and ../house.css. It takes the
+   slot ../editorial.css has on the other notebooks and redefines the same
+   token names, so not one line of style.css had to change: everything that
+   says var(--navy) comes out near-black, and everything that says var(--gold)
+   comes out red.
+
+   Two rules the red follows. At #c8102e on bone it is about 5.8:1, so unlike
+   the orange on /hank/ it IS allowed to set small text — but on the black
+   panels it drops to about 3.3:1, so there it is for rules, numerals and
+   display sizes only, never a caption. And a right answer stays GREEN. No
+   amount of styling should make a correct answer red, which on this page is
+   the loudest colour there is. */
+
+:root {
+  /* ground and ink. Bone rather than pure white: the black panels are large,
+     and paper this warm keeps the page off the harsh end of the contrast. */
+  --paper:      #f4f2ee;
+  --card:       #ffffff;
+  --ink:        #0c0c0d;
+  --ink-soft:   #46464a;
+  --ink-faint:  #6e6e73;
+
+  /* the interactive face is ink */
+  --navy:       #0c0c0d;
+  --navy-soft:  #eceae5;
+  --navy-line:  #c4c1ba;
+
+  /* labels take the red: on this page an eyebrow is the loud thing */
+  --gold:       #c8102e;
+  --gold-soft:  #fbeaed;
+  --gold-line:  #c8102e;
+
+  /* the one colour */
+  --accent:     #c8102e;
+
+  /* right answers stay green */
+  --good:       #0b7a4b;
+  --good-soft:  #e7f3ec;
+  --good-line:  #8cc9ab;
+
+  /* hairlines */
+  --line:       #dedbd5;
+  --rule:       #b9b6ae;
+
+  /* Read in a grotesque; shout in the heaviest one the device has. Nothing in
+     the stack carries Chinese, so a Chinese headline falls through to
+     --font-zh at the same weight, which is what is wanted. */
+  --font-en:      "Helvetica Neue", Helvetica, Arial, "Segoe UI", system-ui, sans-serif;
+  --font-serif:   var(--font-en);
+  --font-display: "Helvetica Neue", "Arial Black", Helvetica, Arial,
+                  system-ui, var(--font-zh);
+
+  /* Square. This one line does more of the work than the palette does. */
+  --pill: 2px;
+
+  --measure: 44rem;
+}
+
+body { background: var(--paper); font-size: 17px; line-height: 1.6; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------------- the bar ---------------- */
+
+.bar {
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  border-bottom: 2px solid var(--ink);
+}
+.bar-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+}
+.bar-title span {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.bar-btn {
+  border-radius: 2px;
+  border-width: 1.5px;
+  font-weight: 600;
+}
+.bar-btn-zh[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); }
+
+/* ---------------- contents ---------------- */
+
+.toc-head {
+  color: var(--ink);
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+.toc a { border-radius: 2px; }
+.toc a.here { background: var(--ink); color: #fff; border-left-color: var(--accent); }
+.toc a.here .n, .toc a.here .t .zh { color: #b9b6ae; }
+.toc a.here .t .en { color: #fff; font-weight: 700; }
+
+/* ---------------- the cover: a black panel ----------------
+
+   The one dark block on the page. Everything inside it has to be re-inked,
+   because every colour the cover's children inherit was chosen for bone. */
+
+.cover {
+  margin: clamp(16px, 3vw, 28px) 0 0;
+  padding: clamp(36px, 6vw, 64px) clamp(22px, 4.5vw, 44px) clamp(32px, 5vw, 48px);
+  background: var(--ink);
+  color: #ffffff;
+  border-radius: 2px;
+  border-bottom: 6px solid var(--accent);
+}
+
+.kicker {
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: .2em;
+  margin-bottom: clamp(14px, 2vw, 20px);
+}
+.kicker::before {
+  content: "";
+  display: inline-block;
+  width: 30px;
+  height: 5px;
+  margin-right: 12px;
+  vertical-align: middle;
+  background: var(--accent);
+}
+
+.cover h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 9.5vw, 5.4rem);
+  font-weight: 900;
+  line-height: .9;
+  letter-spacing: -.035em;
+  text-transform: uppercase;
+  margin-bottom: clamp(20px, 3vw, 30px);
+}
+.cover h1 .zh {
+  font-family: var(--font-zh);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: .04em;
+  text-transform: none;
+  color: #b9b6ae;
+  margin-top: 16px;
+}
+
+.cover-intro { color: #e4e2de; font-size: 1.08rem; letter-spacing: 0; }
+.cover .zh { color: #a5a5aa; }
+.cover .zh-chip { color: #b9b6ae; border-color: #4a4a4e; vertical-align: middle; }
+.cover .zh-chip:hover { color: var(--ink); background: #fff; border-color: #fff; }
+
+.goals { border-left: 5px solid var(--accent); border-radius: 0; }
+.goals-intro { color: #ffffff; font-weight: 800; letter-spacing: .14em; }
+.goals li { color: #ffffff; }
+.goals li::marker { color: var(--accent); }
+
+/* ---------------- sessions ---------------- */
+
+.session-btn { border-bottom: 4px solid var(--ink); padding-bottom: 20px; }
+.session-btn:hover { border-bottom-color: var(--accent); }
+.session.folded .session-btn { border-bottom: 1px solid var(--rule); }
+
+.session-btn .n {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -.04em;
+  color: var(--accent);
+  /* The display face sits differently from the serif numeral this replaces,
+     and these headings carry no date, so it is aligned to the title's cap. */
+  margin-top: .1rem;
+}
+.session-btn .date { color: var(--ink-faint); font-weight: 700; letter-spacing: .16em; }
+.session-btn .titles .en {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 5vw, 3rem);
+  font-weight: 900;
+  line-height: .96;
+  letter-spacing: -.035em;
+  text-transform: uppercase;
+}
+.session-btn:hover .titles .en { color: var(--ink); }
+.session-btn .titles .zh { font-weight: 500; color: var(--ink-soft); margin-top: 10px; }
+.session-btn .fold { border-color: var(--ink); border-width: 2.5px; margin-top: .9rem; }
+
+.focus li {
+  background: var(--ink);
+  color: #ffffff;
+  border-radius: 2px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  font-size: .72rem;
+}
+.focus li .zh {
+  color: #b9b6ae;
+  opacity: 1;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: .78rem;
+}
+
+/* ---------------- text ---------------- */
+
+.lead {
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -.005em;
+  color: var(--ink);
+}
+.lead .zh { font-weight: 400; }
+
+.label {
+  font-family: var(--font-display);
+  font-size: .9rem;
+  font-weight: 900;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.label .en { padding-left: 14px; border-left: 4px solid var(--accent); }
+.label .zh {
+  font-weight: 500;
+  letter-spacing: 0;
+  padding-left: 18px;
+  color: var(--ink-soft);
+}
+
+.summary { border-left: 4px solid var(--ink); padding-left: 18px; }
+
+.note {
+  background: var(--navy-soft);
+  border: 0;
+  border-left: 5px solid var(--accent);
+  border-radius: 2px;
+}
+.note h4 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.note h4 .zh { font-weight: 500; letter-spacing: 0; text-transform: none; }
+
+/* ---------------- the link to another page ---------------- */
+
+.cross {
+  background: var(--ink);
+  border: 0;
+  border-radius: 2px;
+}
+.cross:hover { background: #26262a; }
+.cross-go { color: var(--accent); }
+.cross-en {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+.cross-zh { color: #b9b6ae; }
+.cross-note { color: #cfcdc8; }
+.cross-note-zh { color: #a5a5aa; }
+
+/* ---------------- phrase cards ----------------
+
+   A tile on the bone, no frame, the way a product grid is laid out; an open
+   card turns white inside a black line. */
+
+.card {
+  background: var(--navy-soft);
+  border: 1.5px solid transparent;
+  border-radius: 2px;
+  padding: 14px 16px;
+}
+.card:hover { border-color: var(--rule); box-shadow: none; transform: none; }
+.card.open { background: #fff; border-color: var(--ink); }
+.card-en { font-weight: 700; }
+.card-back { border-top-color: var(--rule); }
+.card-eg { font-style: normal; }
+
+/* ---------------- two columns, compared ---------------- */
+
+.cx { border: 1.5px solid var(--line); border-radius: 2px; padding: 18px 20px; background: var(--card); }
+.cx-case {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.cx-case .zh { font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--ink-soft); }
+.cx-side { border-left-width: 5px; }
+.cx-cold { border-left-color: var(--rule); }
+.cx-warm { border-left-color: var(--accent); }
+.cx-tag { font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
+.cx-tag em { text-transform: none; letter-spacing: 0; font-weight: 400; }
+.cx-warm .cx-tag { color: var(--accent); }
+.cx-warm .en { font-weight: 700; }
+
+/* ---------------- things you press ---------------- */
+
+.chip {
+  border-radius: 2px;
+  border-width: 1.5px;
+  font-family: var(--font-en);
+  font-weight: 500;
+}
+.chip.picked,
+.chip.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+.chip.on em { color: #b9b6ae; }
+/* Green stays green: a right answer is not the place for the loud colour. */
+.chip.done { background: var(--good-soft); border-color: var(--good-line); color: var(--good); }
+
+.slot { border-bottom-color: var(--accent); }
+.gap, .task, .ask { border-radius: 2px; }
+.gap, .task { border-width: 1.5px; }
+.task { border-color: var(--ink); }
+.ask { border-left-width: 4px; border-left-color: var(--accent); }
+
+/* The one filled button inside a session. */
+.reveal {
+  color: #fff;
+  background: var(--ink);
+  border: 1.5px solid var(--ink);
+  border-radius: 2px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: 7px 18px;
+}
+.reveal:hover { color: #fff; background: #26262a; border-color: #26262a; }
+.reveal[aria-expanded="true"] { color: var(--ink); background: transparent; border-color: var(--ink); }
+
+.starters li, .frames li { font-style: normal; color: var(--ink); border-radius: 2px; }
+.frames li { border-left: 5px solid var(--ink); background: var(--navy-soft); }
+
+.prompt { border-radius: 2px; }
+.prompt.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+.prompt.on .en { color: #fff; }
+.prompt.on .zh { color: #b9b6ae; }
+
+.tick { border-radius: 2px; }
+.checklist-head {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: .06em;
+  color: var(--ink);
+}
+
+.poll-btns .chip { text-transform: uppercase; letter-spacing: .04em; font-weight: 700; }
+.poll-btns .chip em { text-transform: none; letter-spacing: 0; font-weight: 400; }
+
+.tally { font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+
+/* ---------------- settings ---------------- */
+
+.panel {
+  background: color-mix(in srgb, var(--paper) 95%, transparent);
+  border-radius: 2px;
+}
+.panel-head h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+}
+.panel-head h2 span { text-transform: none; letter-spacing: 0; font-weight: 500; }
+.panel-btn { min-height: 42px; border-radius: 2px; font-weight: 700; }
+
+/* ---------------- the footer ---------------- */
+
+.site-foot { border-top: 2px solid var(--ink); }
+.site-foot a { color: var(--accent); }
+
+/* ---------------- phone ---------------- */
+
+@media (max-width: 899px) {
+  .session-btn .n { font-size: 2rem; margin-top: .15rem; }
+  .bar { gap: 8px; }
+  .bar-title span { display: none; }
+}
+
+/* ---------------- print ----------------
+
+   The black panels are a screen idea. On paper they would drink a classroom
+   printer's toner for nothing, so the cover comes back as a framed block. */
+
+@media print {
+  .cover, .cross { background: #fff; color: #111; border: 2px solid #111; }
+  .cover .zh, .cover-intro, .goals li, .goals-intro, .kicker,
+  .cross-en, .cross-zh, .cross-note, .cross-note-zh { color: #111; }
+  .focus li { background: #fff; color: #111; border: 1px solid #111; }
+  .focus li .zh { color: #111; }
+  .toc a.here { background: #fff; color: #111; }
+}
