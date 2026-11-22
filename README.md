@@ -2341,6 +2341,44 @@ phone, and the cards follow a swipe. The fix that matters if this is copied:
 `main#doc { min-width: 0 }`. Without it the sideways strip widens the grid
 column, and the whole page with it.
 
+### `/family-law/handbook/` — Client Meeting, behind the same password
+
+Added 2026-11-22. Dennis has to explain to a client, a foreign reinsurer's
+Taipei representative office, which clauses of their draft employee handbook
+must change under Taiwan law. The meeting is in English, with their Hong Kong
+HR team. The page holds the problems clause by clause, answers to the legal
+questions in the draft's Word comments, likely questions, cue cards, a
+role-play and a follow-up email. Lewis asked for it to sit beside the meeting
+page under the same password, and for the two pages **not** to link to each
+other. Neither page is linked from `/family-law/`. The client is named only
+inside the sealed content, never in the path or the lock screen.
+
+```
+private/family-law-handbook/content.mjs         plaintext — git-ignored
+private/family-law-handbook/handbook-*.docx     the client's draft + its Chinese translation
+public/family-law/handbook/sealed.js            the encrypted copy
+```
+
+```bash
+node tools/seal.mjs private/family-law-handbook/content.mjs public/family-law/handbook/sealed.js private/family-law-meeting/.pass
+```
+
+**One password, one key.** The seal reads the password from the *meeting*
+page's `.pass`. `sealed.js` began as a copy of the meeting page's, so the
+seal kept its salt. The same password therefore derives the same key, and a
+device that ticked 「記住這台裝置」 on either page opens both. The renderer is
+a copy of the meeting page's: the other speaker is labelled Client 客戶. In
+storage, `key`, `teacher`, `voice` and `rate` stay under the shared `flm.`
+prefix, and the page's own state (checklist, 中文 switch) is kept under `flh.`.
+⚙ → Lock this device therefore locks both pages.
+
+**The legal content is ours.** No lawyer wrote it. Claude read the draft
+against Taiwan law as in force in November 2026, and each point was checked
+against the official text. The page tells Dennis to go with his own reading
+where it differs. Re-check before reusing any of it, because these rules change
+often (2025–2026 brought new holidays and leave rules, and the workplace
+bullying amendment).
+
 ## Cambridge 核心單字 — the official lists, from Starters to B1 Preliminary
 
 `/cambridge/` is a hub with one page per Cambridge vocabulary list, every word
