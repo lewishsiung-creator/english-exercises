@@ -49,6 +49,8 @@ doc.appendChild(el(`
           <p class="ses-blurb">${text(s.blurbZh)}</p>
           <p class="ses-who">${s.people.map((p) => `<span>${text(p)}</span>`).join('')}
             <span class="ses-min">約 ${text(s.minutes)} 分鐘</span></p>
+          ${s.built && s.english ? `
+            <p class="ses-also"><a href="${text(s.id)}/english/">英文口說複習教材<em lang="en">Speaking review</em></a></p>` : ''}
           ${s.built ? '' : '<span class="soon">尚未整理</span>'}
         </li>`).join('')}
     </ol>

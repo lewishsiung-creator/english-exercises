@@ -42,6 +42,11 @@ const AI_NOTES = {
       people: ['Lewis', 'Gary', 'Minnie'],
       minutes: 70,
       built: true,
+      // A discussion may also have an English half, at <id>/english/: what each
+      // person did well, their own sentences beside a natural version, and
+      // practice. Leave it off when a discussion has no write-up of its English
+      // yet — the list page and the write-up both check before linking.
+      english: true,
     },
   ],
 };

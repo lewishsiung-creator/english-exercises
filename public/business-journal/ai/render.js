@@ -51,6 +51,9 @@ doc.appendChild(el(`
     </p>
     <p class="ai-lead">${text(SESSION.leadZh)}</p>
     <p class="ai-lead ai-lead-soft">${text(SESSION.lead2Zh)}</p>
+    ${AI_NOTES.sessions[N - 1].english ? `
+      <p class="en-back en-go"><a href="english/">英文口說複習教材<em lang="en">Speaking review</em></a>
+        <span>做得好的地方、課堂原句與自然說法、口說練習與作業</span></p>` : ''}
   </header>`));
 
 /* Each part gets the same head, so the page reads as one document rather than

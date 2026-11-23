@@ -516,3 +516,541 @@
   .pr { background: none; border-left-width: 2px; }
   .pr-text { background: none; }
 }
+
+/* ================================================================
+   英文口說複習教材 — the English half of a discussion.
+
+   The register flips back here: this half IS the English, so English leads
+   and the Chinese sits under or beside it. It still never hides — they read
+   this alone, after class, with nobody to tap a chip for them.
+   ================================================================ */
+
+.en-toc {
+  margin: 18px 0 0;
+  padding-left: 1.3rem;
+  max-width: 42rem;
+  font-family: var(--font-zh);
+  font-size: .93rem;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+.en-toc::marker { color: var(--navy); }
+
+/* The honest label on the whole page, stated before the first Original. A
+   transcript is not a quotation, and a rewrite is not what anybody said. */
+.en-caveat {
+  margin: 20px 0 0;
+  max-width: 42rem;
+  padding: 11px 14px;
+  border-left: 3px solid var(--gold);
+  background: var(--gold-soft);
+  font-family: var(--font-zh);
+  font-size: .86rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.en-back { margin: 18px 0 0; font-family: var(--font-ui); font-size: 14px; }
+.en-back a {
+  font-weight: 600;
+  color: var(--navy);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.en-back a em {
+  font-family: var(--font-head);
+  font-style: normal;
+  font-weight: 400;
+  margin-left: 8px;
+  color: var(--ink-faint);
+}
+
+.en-topics {
+  margin: -8px 0 20px;
+  font-family: var(--font-head);
+  font-size: .82rem;
+  color: var(--ink-faint);
+}
+
+/* A heading inside a part. Smaller than .ai-part and with no rule, so the
+   五 parts stay the page's only hard divisions. */
+.en-sub {
+  margin: 30px 0 14px;
+  font-family: var(--font-zh);
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+.en-sub em {
+  font-family: var(--font-head);
+  font-style: normal;
+  font-weight: 400;
+  font-size: .78em;
+  color: var(--ink-faint);
+  margin-left: 9px;
+}
+
+/* ---------------- what they did well ---------------- */
+
+.str-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; counter-reset: str; }
+
+.str {
+  position: relative;
+  padding-left: 30px;
+  max-width: 42rem;
+  counter-increment: str;
+}
+.str::before {
+  content: counter(str);
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+}
+.str-h {
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -.005em;
+}
+.str-h em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  font-size: .85em;
+  color: var(--ink-soft);
+  margin-left: 9px;
+}
+.str-b {
+  margin: 5px 0 0;
+  font-family: var(--font-zh);
+  font-size: .93rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+.str-eg {
+  margin: 7px 0 0;
+  font-family: var(--font-en);
+  font-size: .92rem;
+  color: var(--ink-faint);
+}
+.str-eg em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-size: .85em;
+  margin-left: 7px;
+}
+
+.str-sum {
+  margin: 18px 0 0;
+  max-width: 42rem;
+  padding-left: 14px;
+  border-left: 3px solid var(--navy-line);
+  font-family: var(--font-zh);
+  font-size: .93rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+.str-sum span {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: var(--navy);
+}
+
+/* ---------------- original vs improved ---------------- */
+
+.en-set + .en-set { margin-top: 24px; }
+.en-set-h {
+  margin: 0 0 12px;
+  font-family: var(--font-head);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.en-set-h em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.1em;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-left: 9px;
+}
+
+.pair-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; counter-reset: pr2; }
+
+.pr2 {
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  max-width: 44rem;
+  counter-increment: pr2;
+}
+.pr2:first-child { padding-top: 0; border-top: 0; }
+
+.pr2-about {
+  margin: 0 0 8px;
+  font-family: var(--font-zh);
+  font-size: .86rem;
+  color: var(--ink-faint);
+}
+.pr2-about::before {
+  content: counter(pr2, decimal-leading-zero);
+  margin-right: 8px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  color: var(--gold);
+}
+.pr2-at { margin-left: 8px; font-family: var(--font-ui); font-size: .92em; opacity: .75; }
+
+/* A description list, not a quotation: the Original is labelled as what the
+   transcript caught, so nothing on the page claims to be verbatim speech. */
+.pr2-dl { margin: 0; display: grid; grid-template-columns: 7.5rem 1fr; gap: 6px 14px; align-items: baseline; }
+.pr2-dl dt {
+  font-family: var(--font-zh);
+  font-size: .76rem;
+  font-weight: 700;
+  color: var(--ink-faint);
+}
+.pr2-dl dt em {
+  display: block;
+  font-family: var(--font-head);
+  font-style: normal;
+  font-weight: 400;
+  font-size: .95em;
+  opacity: .8;
+}
+.pr2-dl dd { margin: 0; }
+
+.pr2-was {
+  font-family: var(--font-en);
+  font-size: .97rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.pr2-help { font-family: var(--font-en); font-size: .95rem; color: var(--navy); }
+.pr2-now {
+  font-family: var(--font-en);
+  font-size: 1.04rem;
+  line-height: 1.5;
+  font-weight: 600;
+  color: var(--ink);
+}
+.pr2-zh { font-family: var(--font-zh); font-size: .9rem; line-height: 1.7; color: var(--ink-soft); }
+
+.pr2-pt {
+  margin: 10px 0 0;
+  font-family: var(--font-zh);
+  font-size: .87rem;
+  line-height: 1.7;
+  color: var(--ink-faint);
+}
+.pr2-pt span {
+  margin-right: 8px;
+  font-family: var(--font-ui);
+  font-size: .9em;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+/* ---------------- priorities, goal ---------------- */
+
+.pri-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; max-width: 42rem; }
+.pri-list li {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  gap: 4px 14px;
+  align-items: baseline;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+}
+.pri-list span { font-family: var(--font-head); font-size: .94rem; font-weight: 700; }
+.pri-list em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-size: .9rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.en-goal {
+  margin: 16px 0 0;
+  max-width: 42rem;
+  padding: 12px 15px;
+  border: 1px solid var(--navy-line);
+  border-radius: 3px;
+  background: var(--navy-soft);
+  font-family: var(--font-zh);
+  font-size: .93rem;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.en-goal span {
+  margin-right: 9px;
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+/* ---------------- the shared tables and lists ---------------- */
+
+.en-common tbody th { width: 14rem; }
+.en-common tbody th em {
+  display: block;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  font-size: .84em;
+  color: var(--ink-faint);
+}
+
+.say-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; max-width: 44rem; }
+.say-list li {
+  display: grid;
+  grid-template-columns: 1fr 13rem;
+  gap: 4px 16px;
+  align-items: baseline;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+}
+.say-list span { font-family: var(--font-en); font-size: 1rem; color: var(--ink); }
+.say-list em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-size: .88rem;
+  color: var(--ink-faint);
+}
+.say-list-short span { font-family: var(--font-head); font-size: .96rem; font-weight: 600; }
+
+/* ---------------- speaking tasks ---------------- */
+
+.task-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
+
+.task2 {
+  padding: 16px 18px 18px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--navy);
+  border-radius: 0 4px 4px 0;
+}
+.task2-h { margin: 0 0 10px; display: flex; align-items: baseline; gap: 10px; }
+.task2-who {
+  padding: 2px 10px;
+  border: 1px solid var(--navy-line);
+  border-radius: 10px;
+  background: var(--navy-soft);
+  color: var(--navy);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+}
+.task2-min { font-family: var(--font-ui); font-size: 12px; color: var(--ink-faint); }
+
+.task2-q { margin: 0; font-family: var(--font-en); font-size: 1.08rem; font-weight: 600; line-height: 1.45; }
+.task2-qzh { margin: 5px 0 0; font-family: var(--font-zh); font-size: .9rem; color: var(--ink-soft); }
+
+.task2-model {
+  margin: 13px 0 0;
+  padding: 12px 14px;
+  background: var(--gold-soft);
+  border-radius: 3px;
+}
+.task2-lab {
+  margin: 0 0 7px;
+  font-family: var(--font-zh);
+  font-size: .76rem;
+  font-weight: 700;
+  color: var(--ink-faint);
+}
+.task2-lab em { font-family: var(--font-head); font-style: normal; font-weight: 400; margin-left: 8px; }
+.task2-model p + p { margin-top: 7px; }
+.task2-model p:not(.task2-lab) {
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: .97rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.task2-aim {
+  margin: 11px 0 0;
+  font-family: var(--font-zh);
+  font-size: .84rem;
+  line-height: 1.7;
+  color: var(--ink-faint);
+}
+
+/* ---------------- the quick check ---------------- */
+
+.qz-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; counter-reset: qz; }
+
+.qz { max-width: 44rem; counter-increment: qz; }
+.qz-q {
+  margin: 0 0 9px;
+  font-family: var(--font-zh);
+  font-size: .97rem;
+  font-weight: 700;
+}
+.qz-q::before {
+  content: counter(qz) '.';
+  margin-right: 8px;
+  font-family: var(--font-ui);
+  color: var(--gold);
+}
+
+.qz-opts { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
+.qz-opt {
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  font-family: var(--font-en);
+  font-size: .97rem;
+  line-height: 1.45;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: border-color .12s, background .12s;
+}
+@media (hover: hover) {
+  .qz-opt:not(:disabled):hover { border-color: var(--navy-line); background: var(--navy-soft); }
+}
+.qz-opt:disabled { cursor: default; }
+/* Right is marked on every answered question, wrong only on the one picked:
+   the page shows what the answer is, it does not keep a score. */
+.qz-opt.right { border-color: var(--navy); background: var(--navy-soft); color: var(--navy); font-weight: 600; }
+.qz-opt.wrong { border-color: var(--gold); color: var(--ink-faint); text-decoration: line-through; }
+
+.qz-say { margin: 7px 0 0; font-family: var(--font-zh); font-size: .84rem; color: var(--ink-faint); }
+
+.qz-foot { margin: 22px 0 0; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.qz-count { margin: 0; font-family: var(--font-ui); font-size: .84rem; color: var(--ink-faint); }
+.qz-reset { margin: 0; }
+
+/* ---------------- homework and the last word ---------------- */
+
+.hw-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; max-width: 42rem; }
+.hw-list li {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 4px 14px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.hw-list span { font-family: var(--font-head); font-size: .94rem; font-weight: 700; color: var(--navy); }
+.hw-list em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-size: .92rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.fb { max-width: 44rem; padding: 15px 17px; border: 1px solid var(--line); border-radius: 3px; }
+.fb + .fb { margin-top: 14px; }
+.fb-who {
+  margin: 0 0 8px;
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 10px;
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+}
+.fb-en { margin: 0; font-family: var(--font-en); font-size: .99rem; line-height: 1.6; }
+.fb-en + .fb-en { margin-top: 7px; }
+.fb-zh {
+  margin: 9px 0 0;
+  font-family: var(--font-zh);
+  font-size: .9rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+
+.en-close {
+  margin: 28px 0 0;
+  max-width: 44rem;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+}
+.en-close-h { margin: 0 0 10px; font-family: var(--font-head); font-size: 1.06rem; font-weight: 700; }
+.en-close-h em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  font-size: .85em;
+  color: var(--ink-soft);
+  margin-left: 10px;
+}
+.en-close p:not(.en-close-h) {
+  margin: 0;
+  font-family: var(--font-zh);
+  font-size: .95rem;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+.en-close p + p { margin-top: 9px; }
+
+/* ---------------- narrow screens ---------------- */
+
+@media (max-width: 560px) {
+  .pr2-dl { grid-template-columns: 1fr; gap: 2px; }
+  .pr2-dl dt { margin-top: 7px; }
+  .pr2-dl dt em { display: inline; margin-left: 7px; }
+  .pri-list li, .say-list li, .hw-list li { grid-template-columns: 1fr; }
+  .task2 { padding: 14px 14px 16px; }
+}
+
+/* ---------------- on paper ---------------- */
+
+@media print {
+  .qz-reset { display: none !important; }
+  .qz-opt { border-color: #999; }
+  .task2-model, .en-caveat, .en-goal { background: none; }
+  .str, .pr2, .task2, .qz, .fb { break-inside: avoid; }
+}
+
+/* The write-up's link across to its English half, on the cover. */
+.en-go { margin-top: 22px; }
+.en-go span {
+  display: block;
+  margin-top: 5px;
+  font-family: var(--font-zh);
+  font-size: .85rem;
+  color: var(--ink-faint);
+}
+
+/* The same link on a list card. `.ses h3 a::after` lays an invisible sheet
+   over the whole card so the headline catches a click anywhere on it — which
+   would swallow this link too. Lifting it onto its own layer is what keeps it
+   clickable; without the z-index the card's own link wins every time. */
+.ses-also { position: relative; z-index: 1; margin: 9px 0 0; font-family: var(--font-ui); font-size: 13px; }
+.ses-also a {
+  font-weight: 600;
+  color: var(--navy);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.ses-also a em {
+  font-family: var(--font-head);
+  font-style: normal;
+  font-weight: 400;
+  margin-left: 8px;
+  color: var(--ink-faint);
+  border: 0;
+}
