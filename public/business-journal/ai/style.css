@@ -1,0 +1,518 @@
+/* AI 實務應用交流 — what the write-ups need that the readings' stylesheet does
+   not already give them.
+
+   Loaded last, over ../style.css and the two house layers, and it adds only
+   what is new: the parts of a write-up. Everything shared — the tokens, the
+   bar, the cover, the kicker, .quote, .site-foot — comes from the sheet above
+   and is deliberately not repeated here.
+
+   The register is the difference. A reading hides its Chinese behind a 中 chip
+   because a teacher is sitting beside the student. A write-up is read alone,
+   afterwards, so its Chinese is simply the text and its English is a label on
+   top of it. That inverts the type: Chinese large in the house serif-free
+   face, English small, grey and above or beside it.
+*/
+
+/* ---------------- the page's column ---------------- */
+
+/* The readings' .shell becomes a two-column grid at 900px to make room for
+   their sticky contents sidebar. A write-up has no sidebar, so without this it
+   would be laid out into the 15rem column meant for one. The contents page
+   solves the same problem with .shell-wide; this is the narrower version of
+   that, because a write-up is prose and 64rem is too long a line for it. */
+.shell-notes { max-width: 54rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .shell-notes { grid-template-columns: minmax(0, 1fr); } }
+
+/* minmax(0, …) above and min-width: 0 here are both load-bearing, not belt and
+   braces. A grid item's min-width is `auto`, so it refuses to be narrower than
+   its widest child; the techniques table is deliberately wider than a phone
+   (min-width: 34rem) so that its three columns stay comparable. Without these
+   the table pushes the whole column out to its own width and every line on the
+   page — the headline included — overflows the screen instead of the table
+   scrolling inside its own wrapper. */
+.shell-notes main { max-width: none; min-width: 0; }
+.ai-sec, .tech-wrap { min-width: 0; }
+
+/* ---------------- the head of a page ---------------- */
+
+/* Chinese leads here, so it takes the headline size and the English sits under
+   it — the opposite of a reading's cover, on purpose. */
+.ai-h1 {
+  margin: 10px 0 0;
+  font-family: var(--font-zh);
+  font-size: clamp(1.7rem, 4.6vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+}
+.ai-h1 span {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-head);
+  font-size: .92rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--ink-faint);
+}
+
+/* Who, when, how long — the facts of the room, on one hairline-separated row. */
+.ai-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 0;
+  margin: 16px 0 0;
+  padding: 0;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+.ai-meta span + span { margin-left: 10px; padding-left: 10px; border-left: 1px solid var(--line); }
+
+.ai-lead {
+  margin: 20px 0 0;
+  max-width: 42rem;
+  font-family: var(--font-zh);
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.ai-lead-soft { margin-top: 12px; font-size: .95rem; color: var(--ink-soft); }
+
+/* ---------------- a part ---------------- */
+
+.ai-sec { margin: 44px 0 0; }
+
+.ai-part {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 20px;
+  padding-top: 14px;
+  border-top: 3px solid var(--ink);
+  font-size: 1.12rem;
+  font-weight: 700;
+}
+.ai-part-n {
+  flex: none;
+  font-family: var(--font-head);
+  font-size: .82rem;
+  color: var(--gold);
+}
+.ai-part-t { font-family: var(--font-zh); letter-spacing: -.005em; }
+.ai-part-t em {
+  font-family: var(--font-head);
+  font-style: normal;
+  font-weight: 400;
+  font-size: .72em;
+  color: var(--ink-faint);
+  margin-left: 10px;
+}
+
+/* A closing line under a part: where a claim is limited, or a count given. */
+.ai-foot {
+  margin: 18px 0 0;
+  max-width: 42rem;
+  font-family: var(--font-ui);
+  font-size: .8rem;
+  line-height: 1.65;
+  color: var(--ink-faint);
+}
+.ai-note {
+  margin: 0 0 18px;
+  max-width: 42rem;
+  font-family: var(--font-zh);
+  font-size: .94rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+/* ---------------- the eight points ---------------- */
+
+.pt-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 26px; }
+
+.pt { padding-top: 22px; border-top: 1px solid var(--line); }
+.pt:first-child { padding-top: 0; border-top: 0; }
+
+.pt-n {
+  margin: 0 0 6px;
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+/* The English name leads: it is the thing worth remembering and the thing you
+   would search for a month later. */
+.pt-head {
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: 1.16rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  line-height: 1.25;
+}
+.pt-head em {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  font-size: .82em;
+  color: var(--ink-soft);
+}
+
+.pt-by {
+  margin: 10px 0 0;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+.pt-by span {
+  display: inline-block;
+  margin-right: 5px;
+  padding: 2px 8px;
+  border: 1px solid var(--navy-line);
+  border-radius: 10px;
+  background: var(--navy-soft);
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.pt-body { margin: 12px 0 0; max-width: 42rem; }
+.pt-body p {
+  margin: 0;
+  font-family: var(--font-zh);
+  font-size: .97rem;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.pt-body p + p { margin-top: 8px; }
+
+/* The one line to take away, set off by the teal rule rather than by a box. */
+.pt-key {
+  margin: 14px 0 0;
+  max-width: 42rem;
+  padding-left: 14px;
+  border-left: 3px solid var(--navy-line);
+  font-family: var(--font-zh);
+  font-size: .93rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.pt-key span {
+  margin-right: 8px;
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+/* ---------------- the five techniques ---------------- */
+
+/* A real table: three columns that must line up to be compared at all. It can
+   scroll sideways on a phone rather than crushing the middle column. */
+.tech-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+.tech {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-size: .92rem;
+}
+.tech th, .tech td {
+  padding: 11px 14px 11px 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+.tech thead th {
+  border-bottom: 2px solid var(--ink);
+  font-family: var(--font-ui);
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+.tech tbody th {
+  width: 11rem;
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: var(--ink);
+}
+.tech td { font-family: var(--font-zh); line-height: 1.6; color: var(--ink-soft); }
+.tech .tech-when { width: 10rem; color: var(--ink-faint); }
+
+/* ---------------- the prompts ---------------- */
+
+.pr-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+
+.pr {
+  padding: 16px 18px 18px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--navy);
+  border-radius: 0 4px 4px 0;
+  background: var(--gold-soft);
+}
+
+.pr-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; }
+.pr-head h3 {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.pr-head h3 em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.16em;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  margin-left: 10px;
+}
+.pr-tag {
+  margin-left: auto;
+  font-family: var(--font-head);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+/* The prompt itself, set apart as something to be taken rather than read. */
+.pr-text {
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  font-family: var(--font-zh);
+  font-size: .94rem;
+  line-height: 1.8;
+  color: var(--ink);
+}
+
+.pr-copy {
+  margin: 12px 0 0;
+  padding: 7px 16px;
+  font-family: var(--font-ui);
+  font-size: .82rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--navy);
+  border: 1px solid var(--navy);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity .12s;
+}
+@media (hover: hover) { .pr-copy:hover { opacity: .85; } }
+
+/* ---------------- the three cautions ---------------- */
+
+.cau-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: cau; }
+
+.cau {
+  position: relative;
+  padding-left: 30px;
+  max-width: 42rem;
+  counter-increment: cau;
+}
+.cau::before {
+  content: counter(cau);
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+}
+.cau-t {
+  margin: 0;
+  font-family: var(--font-zh);
+  font-size: .97rem;
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.cau-b {
+  margin: 4px 0 0;
+  font-family: var(--font-zh);
+  font-size: .93rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+/* ---------------- the four levels ---------------- */
+
+/* A ladder, read upwards in ambition: each rung keeps the same shape so the
+   step from one to the next is the only thing that changes. */
+.lv-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+
+.lv {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 4px 16px;
+  align-items: baseline;
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--navy-line);
+  border-radius: 0 4px 4px 0;
+}
+/* Counted from the end, not the start: the ramp marks the top two rungs
+   whatever a later write-up decides a ladder has. Keyed to positions 3 and 4
+   instead, a three-rung ladder would lose its red top and a five-rung one
+   would leave everything above the fourth on the faintest colour. */
+.lv:nth-last-child(2) { border-left-color: var(--navy); }
+.lv:last-child { border-left-color: var(--gold); }
+
+.lv-n {
+  grid-row: 1 / 3;
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.lv-t {
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -.005em;
+}
+.lv-t em {
+  font-family: var(--font-zh);
+  font-style: normal;
+  font-weight: 400;
+  font-size: .86em;
+  color: var(--ink-soft);
+  margin-left: 9px;
+}
+.lv-b {
+  margin: 0;
+  font-family: var(--font-zh);
+  font-size: .9rem;
+  line-height: 1.6;
+  color: var(--ink-faint);
+}
+
+.ai-quote { margin-top: 30px; }
+/* A shade smaller than a reading's pull quote, because this one carries its
+   Chinese underneath rather than standing alone. */
+.ai-quote blockquote { font-size: 1.3rem; }
+/* Load-bearing: the series sheet hides every .zh by default for its 中 chip,
+   and its always-shown list does not include .quote. These write-ups have no
+   chip, so this line is what puts the quote's Chinese on the page at all. */
+.ai-quote .zh {
+  display: block;
+  font-family: var(--font-zh);
+  font-size: .92rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+/* ---------------- the list page ---------------- */
+
+.ses-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 24px; }
+
+.ses { position: relative; padding-top: 22px; border-top: 1px solid var(--line); }
+.ses:first-child { padding-top: 0; border-top: 0; }
+
+.ses-n {
+  margin: 0 0 6px;
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+}
+.ses-n span {
+  margin-left: 10px;
+  font-family: var(--font-zh);
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+
+.ses h3 {
+  margin: 0;
+  font-family: var(--font-zh);
+  font-size: 1.24rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.ses h3 a { color: inherit; text-decoration: none; }
+/* The whole card is the target, the way a story on the contents page is. */
+.ses h3 a::after { content: ''; position: absolute; inset: 0; }
+@media (hover: hover) { .ses h3 a:hover { color: var(--navy); } }
+.ses h3 em {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-head);
+  font-style: normal;
+  font-weight: 600;
+  font-size: .68em;
+  color: var(--ink-faint);
+}
+
+.ses-blurb {
+  margin: 10px 0 0;
+  max-width: 42rem;
+  font-family: var(--font-zh);
+  font-size: .95rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.ses-who { margin: 10px 0 0; font-family: var(--font-ui); font-size: 12px; color: var(--ink-faint); }
+.ses-who span {
+  display: inline-block;
+  margin-right: 5px;
+  padding: 2px 8px;
+  border: 1px solid var(--navy-line);
+  border-radius: 10px;
+  background: var(--navy-soft);
+  color: var(--navy);
+  font-weight: 600;
+}
+.ses-who .ses-min { border: 0; background: none; color: var(--ink-faint); font-weight: 400; padding-left: 4px; }
+
+.ses.todo h3 { color: var(--ink-soft); }
+
+/* ---------------- narrow screens ---------------- */
+
+@media (max-width: 560px) {
+  .ai-part { gap: 9px; font-size: 1.04rem; }
+  .pr { padding: 14px 14px 16px; }
+  .pr-tag { margin-left: 0; }
+  .lv { grid-template-columns: 1fr; gap: 3px; padding: 13px 14px; }
+  .lv-n { grid-row: auto; margin-bottom: 2px; }
+}
+
+/* ---------------- on paper ---------------- */
+
+@media print {
+  .bar, .skip, .pr-copy, .site-foot { display: none !important; }
+  body { font-size: 11pt; background: #fff; color: #000; }
+  .shell { display: block; padding: 0; }
+  main { max-width: none; padding-bottom: 0; }
+  .ai-sec { break-before: auto; }
+  .pt, .pr, .lv, .cau, .ai-quote, .tech tr { break-inside: avoid; }
+  .tech-wrap { overflow: visible; }
+  .tech { min-width: 0; }
+  .pr { background: none; border-left-width: 2px; }
+  .pr-text { background: none; }
+}

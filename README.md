@@ -1022,6 +1022,52 @@ a summary written for the lesson, and then the language work.
   take the whole page down with it — a blank screen with 15KB of correct HTML
   inside it. The element is `.rv-sheet`.
 
+### `/business-journal/ai/` — AI 實務應用交流, and not a lesson
+
+A sub-series of write-ups: what the Monday class said about using AI, one
+discussion at a time, so the people who were in the room can read it again on
+their own. Built like its parent — `sessions.js` is the map, each discussion is
+a folder with a thin `index.html` and a `content.js`, and `hub.js` / `render.js`
+are shared — so adding one is a folder, a file and a line, and nothing else
+moves. It deliberately shares **none** of the lessons' renderer: a write-up has
+no steps, no exercises and no answers to reveal, so there is no teacher panel,
+no presentation mode, no two PDFs and no review sheet. The whole page already
+is the review sheet.
+
+- **The register is inverted, and that is the point.** A reading hides its
+  Chinese behind a 中 chip because a teacher is sitting beside the student;
+  these are read alone, afterwards, so the Chinese is simply the text and
+  carries the headline size, while the English is a label on top of it. The
+  English that survives is the *name* of each idea — AI Think Tank, AI
+  Handoff — because that is what the class actually took away and what someone
+  would search for a month later. There is no 中文 switch on these pages.
+- **`noindex, follow`, unlike the rest of `/business-journal/`.** The readings
+  are teaching material and are meant to be found; these name the people who
+  were in the room. Anyone with the link can read them; a search engine cannot
+  surface them. Nothing links into them from the indexed contents page, which
+  is deliberate — the link is the distribution.
+- **`.shell-notes` exists because the readings' `.shell` becomes a two-column
+  grid at 900px** to hold their sticky sidebar, and a write-up has no sidebar.
+  It also sets `minmax(0, 1fr)` and `min-width: 0`, which are load-bearing
+  rather than belt and braces: a grid item refuses to be narrower than its
+  widest child, and the techniques table is deliberately wider than a phone so
+  its three columns stay comparable. Without them the table pushes the whole
+  column out to its own width and every line on the page — the headline
+  included — overflows the screen instead of the table scrolling in its wrapper.
+- **The source paste's images were dropped.** They were `images.openai.com`
+  links: expiring ChatGPT-session CDN URLs pointing at other publications'
+  article thumbnails. They load today and would not keep loading, and they were
+  never Lewis's to republish. The series' own rule is Pexels or nothing.
+- **The ladder's colour ramp counts from the end** (`:last-child`,
+  `:nth-last-child(2)`), not from positions 3 and 4, so a later write-up whose
+  ladder has three or five rungs still gets its red top and its navy step.
+- **Each 複製指令 button carries its prompt's name in `aria-label`**, since
+  three identically-named buttons are useless in a screen reader's button list,
+  and the confirmation goes to a `.psr` live region as well as to the button's
+  own label — a focused button whose label changes under it is not reliably
+  re-announced, which would have silenced the ⌘C fallback for the people most
+  likely to need it.
+
 Photographs are from [Pexels](https://www.pexels.com/license/), whose licence
 allows commercial use and requires no attribution; the photographers — Lara
 Jameson, Polina Tankilevitch, Ron Lach and William Fortunato — are credited on
