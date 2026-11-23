@@ -2379,6 +2379,19 @@ where it differs. Re-check before reusing any of it, because these rules change
 often (2025–2026 brought new holidays and leave rules, and the workplace
 bullying amendment).
 
+**The practice lesson (2026-11-23).** Lewis and Dennis went through the page
+on the morning of the meeting, which turned out to be online. The Zoom
+captions are kept as `private/family-law-handbook/practice-1123.cc.vtt`. Three
+things came from it. First, Dennis's own point: moving hours between days
+needs flexible working hours (變形工時) agreed at a labor-management meeting,
+or the longer day is overtime. That is now in the overtime part and on one
+cue card, and the page asks him to confirm the industry is a designated one.
+Second, the revised draft is promised "in one week", which fills the `[[date]]`
+slots. Third, Lewis's reading fixes are tips marked 11/23, and the misreadings
+that change the meaning (fourteen/forty, contract/country, punished/published…)
+have their own part under Key words. Cue cards keep no state, so a card was
+inserted. The checklist is still edited in place only.
+
 ## Cambridge 核心單字 — the official lists, from Starters to B1 Preliminary
 
 `/cambridge/` is a hub with one page per Cambridge vocabulary list, every word
