@@ -124,6 +124,30 @@ const NOTE = {
   example: 'better-day',
 };
 
+/* The other thing at the foot: the class's AI discussions, written up at
+   /ai/. Not a reading and not a feature of one, so it is a signpost rather
+   than an explanation — a line saying what is through there, and the way in.
+   It goes above the 重點複習 note because it is somewhere to go, and that note
+   is something to know. */
+const SIDE = {
+  headZh: 'AI 實務應用交流',
+  headEn: 'AI in Practice',
+  whatZh: '課堂上談 AI 的討論記錄，一次一篇：誰分享了什麼、怎麼做的、哪裡要小心。'
+    + '寫給當天在場的人自己回頭看。',
+  goZh: '看記錄',
+  goEn: 'Read the write-ups',
+  href: 'ai/',
+};
+
+function buildSide() {
+  return `
+    <aside class="hub-note hub-side" aria-labelledby="h-side">
+      <h2 class="hub-note-head" id="h-side">${text(SIDE.headEn)}<em>${text(SIDE.headZh)}</em></h2>
+      <p class="hub-note-p hub-side-p">${text(SIDE.whatZh)}</p>
+      <p class="hub-note-eg"><a href="${text(SIDE.href)}">${text(SIDE.goEn)}<em>${text(SIDE.goZh)}</em></a></p>
+    </aside>`;
+}
+
 function buildNote() {
   // The example only appears if that reading is in the map and written. A
   // pinned id could otherwise outlive the reading it names and link to a 404.
@@ -169,6 +193,7 @@ doc.appendChild(el(`
 
 // After the stories, so nothing above it moves and a reader looking for a
 // reading never scrolls past an explanation to reach one.
+doc.appendChild(el(buildSide()));
 doc.appendChild(el(buildNote()));
 
 // ---------------------------------------------------------------- Chinese

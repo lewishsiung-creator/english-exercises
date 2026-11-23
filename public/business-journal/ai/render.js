@@ -60,11 +60,32 @@ function part(n, zh, en) {
     <span class="ai-part-t">${text(zh)}<em lang="en">${text(en)}</em></span></h2>`;
 }
 
+// ------------------------------------------------- the ladder, as the frame
+
+/* The four levels open the write-up rather than closing it, at Lewis's
+   instruction. They are the frame the rest hangs on: a reader who meets them
+   first knows what the eight points are examples OF, and what the discussion
+   concluded before being asked to follow it. */
+doc.appendChild(el(`
+  <section class="ai-sec" aria-labelledby="p1">
+    ${part(1, '這次討論的核心收穫', 'What changed')}
+    <p class="ai-note">${text(SESSION.levelsLeadZh)}</p>
+    <ol class="lv-list">
+      ${SESSION.levels.map((l, i) => `
+        <li class="lv">
+          <p class="lv-n" lang="en">Level ${i + 1}</p>
+          <p class="lv-t"><span lang="en">${text(l.en)}</span><em>${text(l.zh)}</em></p>
+          <p class="lv-b">${text(l.body)}</p>
+        </li>`).join('')}
+    </ol>
+    <p class="ai-foot">${text(SESSION.levelsFootZh)}</p>
+  </section>`));
+
 // -------------------------------------------------------------- the eight
 
 doc.appendChild(el(`
-  <section class="ai-sec" aria-labelledby="p1">
-    ${part(1, '八個 AI 應用重點', 'Eight ways the class is using AI')}
+  <section class="ai-sec" aria-labelledby="p2">
+    ${part(2, '八個 AI 應用重點', 'Eight ways the class is using AI')}
     <ol class="pt-list">
       ${SESSION.points.map((p, i) => `
         <li class="pt">
@@ -81,8 +102,8 @@ doc.appendChild(el(`
 // ----------------------------------------------------------- five to keep
 
 doc.appendChild(el(`
-  <section class="ai-sec" aria-labelledby="p2">
-    ${part(2, '最值得保留的五個實用技巧', 'Five worth keeping')}
+  <section class="ai-sec" aria-labelledby="p3">
+    ${part(3, '最值得保留的五個實用技巧', 'Five worth keeping')}
     <div class="tech-wrap">
       <table class="tech">
         <thead>
@@ -103,8 +124,8 @@ doc.appendChild(el(`
 // --------------------------------------------------------------- prompts
 
 doc.appendChild(el(`
-  <section class="ai-sec" aria-labelledby="p3">
-    ${part(3, '可以直接用的指令範例', 'Prompts you can copy')}
+  <section class="ai-sec" aria-labelledby="p4">
+    ${part(4, '可以直接用的指令範例', 'Prompts you can copy')}
     <p class="ai-note">${text(SESSION.promptsNoteZh)}</p>
     <ol class="pr-list">
       ${SESSION.prompts.map((p, i) => `
@@ -123,8 +144,8 @@ doc.appendChild(el(`
 // -------------------------------------------------------------- cautions
 
 doc.appendChild(el(`
-  <section class="ai-sec" aria-labelledby="p4">
-    ${part(4, '要特別注意的三件事', 'Three things to watch')}
+  <section class="ai-sec" aria-labelledby="p5">
+    ${part(5, '要特別注意的三件事', 'Three things to watch')}
     <p class="ai-note">${text(SESSION.cautionsLeadZh)}</p>
     <ol class="cau-list">
       ${SESSION.cautions.map((c) => `
@@ -135,27 +156,16 @@ doc.appendChild(el(`
     </ol>
   </section>`));
 
-// ---------------------------------------------------------------- levels
+// ----------------------------------------------------------- the last word
 
+/* The quote stays at the end even though the ladder it used to sit under has
+   moved to the front. It is the closing line of the discussion, and a closing
+   line read first is not a closing line. */
 doc.appendChild(el(`
-  <section class="ai-sec" aria-labelledby="p5">
-    ${part(5, '這次討論的核心收穫', 'What changed')}
-    <p class="ai-note">${text(SESSION.levelsLeadZh)}</p>
-    <ol class="lv-list">
-      ${SESSION.levels.map((l, i) => `
-        <li class="lv">
-          <p class="lv-n" lang="en">Level ${i + 1}</p>
-          <p class="lv-t"><span lang="en">${text(l.en)}</span><em>${text(l.zh)}</em></p>
-          <p class="lv-b">${text(l.body)}</p>
-        </li>`).join('')}
-    </ol>
-    <p class="ai-foot">${text(SESSION.levelsFootZh)}</p>
-
-    <figure class="quote ai-quote">
-      <blockquote lang="en"><p>${text(SESSION.quote.en)}</p></blockquote>
-      <p class="zh">${text(SESSION.quote.zh)}</p>
-    </figure>
-  </section>`));
+  <figure class="quote ai-quote">
+    <blockquote lang="en"><p>${text(SESSION.quote.en)}</p></blockquote>
+    <p class="zh">${text(SESSION.quote.zh)}</p>
+  </figure>`));
 
 // ------------------------------------------------------------------ chrome
 

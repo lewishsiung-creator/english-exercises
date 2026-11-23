@@ -1609,6 +1609,15 @@ main { max-width: var(--measure); padding-bottom: 6rem; }
 }
 .hub-note-how { margin-top: 12px; }
 
+/* The signpost to /ai/ wears the same furniture as the note below it, with one
+   difference: its Chinese is the text rather than a translation under an
+   English line, because the write-ups through there are Chinese. */
+.hub-side-p {
+  font-family: var(--font-zh);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
 .hub-note-eg { margin: 15px 0 0; }
 .hub-note-eg a {
   font-family: var(--font-ui);
