@@ -77,7 +77,9 @@
   --measure: 44rem;
 }
 
-body { background: var(--paper); font-size: 17px; line-height: 1.6; }
+/* 1.7, not 1.6. Almost every paragraph on this page can carry a Chinese line
+   under it, and CJK wants more leading than Latin does. */
+body { background: var(--paper); font-size: 17px; line-height: 1.7; }
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
@@ -107,6 +109,24 @@ body { background: var(--paper); font-size: 17px; line-height: 1.6; }
 }
 .bar-btn-zh[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); }
 
+/* The reading position rides the bar's 2px black rule, so it has to be the
+   red: a dark bar filling a dark rule would be invisible, which is the one
+   thing a position indicator may not be. */
+.bar-progress { height: 2px; bottom: -2px; }
+.bar-progress i { background: var(--accent); }
+
+/* Square, like everything else you press here, and inked rather than outlined
+   — it sits over the page rather than in it. */
+.totop {
+  border-radius: 2px;
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(12, 12, 13, .22);
+}
+.totop:hover { background: var(--accent); border-color: var(--accent); color: #ffffff; }
+
 /* ---------------- contents ---------------- */
 
 .toc-head {
@@ -135,6 +155,10 @@ body { background: var(--paper); font-size: 17px; line-height: 1.6; }
 
 .kicker {
   color: #ffffff;
+  /* The eyebrow is Chinese only, and .2em of tracking pulls a Chinese line
+     apart far more than it does a Latin one. Tracked that wide at 12px it had
+     stopped reading as a phrase. */
+  font-size: 13.5px;
   font-weight: 800;
   letter-spacing: .2em;
   margin-bottom: clamp(14px, 2vw, 20px);
@@ -176,6 +200,9 @@ body { background: var(--paper); font-size: 17px; line-height: 1.6; }
 
 .goals { border-left: 5px solid var(--accent); border-radius: 0; }
 .goals-intro { color: #ffffff; font-weight: 800; letter-spacing: .14em; }
+/* 使用方式, on black, was setting at 10.5px — the smallest text on the page,
+   in the place where the page explains itself. */
+.goals-intro .zh { font-size: 13.5px; letter-spacing: .02em; }
 .goals li { color: #ffffff; }
 .goals li::marker { color: var(--accent); }
 
@@ -209,6 +236,11 @@ body { background: var(--paper); font-size: 17px; line-height: 1.6; }
 .session-btn .titles .zh { font-weight: 500; color: var(--ink-soft); margin-top: 10px; }
 .session-btn .fold { border-color: var(--ink); border-width: 2.5px; margin-top: .9rem; }
 
+/* .8rem, not .72. These chips are what a folded session is scanned by, so
+   they are read, not glanced at — and capitals set small and tracked are the
+   hardest thing on the page to read quickly, because the word loses the
+   up-and-down shape the eye recognises it by. Capitals this small need the
+   size back that lowercase could have done without. */
 .focus li {
   background: var(--ink);
   color: #ffffff;
@@ -216,7 +248,8 @@ body { background: var(--paper); font-size: 17px; line-height: 1.6; }
   font-weight: 700;
   letter-spacing: .02em;
   text-transform: uppercase;
-  font-size: .72rem;
+  font-size: .8rem;
+  padding: 6px 13px;
 }
 .focus li .zh {
   color: #b9b6ae;
@@ -224,7 +257,7 @@ body { background: var(--paper); font-size: 17px; line-height: 1.6; }
   font-weight: 400;
   text-transform: none;
   letter-spacing: 0;
-  font-size: .78rem;
+  font-size: .86rem;
 }
 
 /* ---------------- text ---------------- */
@@ -247,11 +280,18 @@ body { background: var(--paper); font-size: 17px; line-height: 1.6; }
   text-transform: uppercase;
   color: var(--ink);
 }
-.label .en { padding-left: 14px; border-left: 4px solid var(--accent); }
+/* The red bar belongs to the whole heading, not to its first line.
+   `.label .en` is inline — that is deliberate, so the 中 chip trails the last
+   word instead of dropping a line — and a border on an inline box is drawn
+   once, at the start of the first line fragment. A label long enough to wrap
+   therefore lost both the bar and the indent on its second line, which on a
+   phone is most of them. Put on the block, one bar covers the English, the
+   wrap and the Chinese, and the indent is the same 18px it always was. */
+.label { padding-left: 14px; border-left: 4px solid var(--accent); }
+.label .en { padding-left: 0; border-left: 0; }
 .label .zh {
   font-weight: 500;
   letter-spacing: 0;
-  padding-left: 18px;
   color: var(--ink-soft);
 }
 
@@ -270,7 +310,9 @@ body { background: var(--paper); font-size: 17px; line-height: 1.6; }
   text-transform: uppercase;
   color: var(--ink);
 }
-.note h4 .zh { font-weight: 500; letter-spacing: 0; text-transform: none; }
+/* Same reason as the contrast tags: a note's Chinese heading is a heading, and
+   an em of a .84rem uppercase label put it at 11px. */
+.note h4 .zh { font-size: 13.5px; font-weight: 500; letter-spacing: 0; text-transform: none; }
 
 /* ---------------- the link to another page ---------------- */
 
@@ -314,6 +356,10 @@ body { background: var(--paper); font-size: 17px; line-height: 1.6; }
 .cx { border: 1.5px solid var(--line); border-radius: 2px; padding: 18px 20px; background: var(--card); }
 .cx-case {
   font-family: var(--font-display);
+  /* .82rem, not the .74 style.css sets: that is 11.8px, and this names the
+     situation both columns are answering — the one line you have to read
+     before the comparison under it means anything. */
+  font-size: .82rem;
   font-weight: 900;
   letter-spacing: -.01em;
   text-transform: uppercase;
@@ -323,8 +369,12 @@ body { background: var(--paper); font-size: 17px; line-height: 1.6; }
 .cx-side { border-left-width: 5px; }
 .cx-cold { border-left-color: var(--rule); }
 .cx-warm { border-left-color: var(--accent); }
-.cx-tag { font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
-.cx-tag em { text-transform: none; letter-spacing: 0; font-weight: 400; }
+/* The two tags carry the whole comparison as soon as the columns stack, which
+   is every phone — so they are the last thing on the page that should be set
+   at 11px in tracked capitals. The Chinese gets an absolute size rather than
+   an em, because an em of a small label is how it ended up at 11px. */
+.cx-tag { font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
+.cx-tag em { font-size: 13px; text-transform: none; letter-spacing: 0; font-weight: 400; }
 .cx-warm .cx-tag { color: var(--accent); }
 .cx-warm .en { font-weight: 700; }
 
@@ -336,6 +386,11 @@ body { background: var(--paper); font-size: 17px; line-height: 1.6; }
   font-family: var(--font-en);
   font-weight: 500;
 }
+/* The Chinese riding under a button's label was 11.5px, and on the poll rows
+   it is the only half of the button a learner who does not know "Not sure"
+   can act on. An absolute size for the same reason as everywhere else here: an
+   em of a small label compounds. */
+.chip em { font-size: 12.5px; }
 .chip.picked,
 .chip.on { background: var(--ink); border-color: var(--ink); color: #fff; }
 .chip.on em { color: #b9b6ae; }
@@ -416,13 +471,17 @@ body { background: var(--paper); font-size: 17px; line-height: 1.6; }
 
 /* ---------------- the breadcrumb, on the black cover ---------------- */
 
-.cover .crumbs { letter-spacing: .16em; }
+/* 13px, not the 12 the guide's own sheet sets. Tracked at .16em on black, and
+   carrying Chinese, 12px had stopped being a readable way back. */
+.cover .crumbs { font-size: 13px; letter-spacing: .16em; }
 .cover .back { color: #ffffff; }
 .cover .back:hover { color: var(--accent); text-decoration: none; }
 .cover .crumb-go { color: var(--accent); }
 .cover .crumb-zh { color: #b9b6ae; }
 
-.cover .source { color: #a5a5aa; }
+/* The line that says where the four books came from — grey, small and on
+   black, which is three disadvantages at once. */
+.cover .source { font-size: .82rem; color: #a5a5aa; }
 .cover .source .zh { color: #8e8e93; }
 
 /* ---------------- a book, folded ---------------- */
@@ -479,10 +538,13 @@ body { background: var(--paper); font-size: 17px; line-height: 1.6; }
   text-transform: uppercase;
   color: var(--ink);
 }
-.book-by-label { color: var(--accent); font-weight: 800; letter-spacing: .16em; }
+/* Both of these were .68rem and .72rem — 10.9px and 11.5px — in tracked
+   capitals, which is the least legible setting a label can have. Capitals this
+   small need back the size lowercase could have done without. */
+.book-by-label { font-size: .78rem; color: var(--accent); font-weight: 800; letter-spacing: .16em; }
 
 .book-for { border-radius: 2px; border-left: 5px solid var(--accent); }
-.book-for-label { color: var(--accent); font-weight: 800; letter-spacing: .14em; }
+.book-for-label { font-size: .78rem; color: var(--accent); font-weight: 800; letter-spacing: .14em; }
 
 /* ---------------- a glossary card's definitions ---------------- */
 
@@ -494,6 +556,7 @@ body { background: var(--paper); font-size: 17px; line-height: 1.6; }
   background: var(--ink);
   color: #ffffff;
   border-radius: 2px;
+  font-size: .78rem;
   font-weight: 800;
   letter-spacing: .08em;
 }
@@ -522,6 +585,13 @@ body { background: var(--paper); font-size: 17px; line-height: 1.6; }
   .session-btn .n, .step-btn .n { font-size: 2rem; margin-top: .15rem; }
   .bar { gap: 8px; }
   .bar-title span { display: none; }
+}
+
+@media (max-width: 620px) {
+  /* The tag's Chinese trails its English on one line, which is right until
+     there is no line left: at phone width "附上成立條件" broke after 成立 and the
+     phrase finished on its own. Its own line keeps it whole. */
+  .cx-tag em { display: block; margin-left: 0; }
 }
 
 /* ---------------- print ----------------

@@ -497,6 +497,11 @@ ordered.forEach((s) => doc.appendChild(el(buildSession(s, s.id === openId))));
 function setFold(section, open) {
   section.classList.toggle('folded', !open);
   $('.session-btn', section).setAttribute('aria-expanded', String(open));
+  /* Folding changes the page's height, so the reading-position bar has to be
+     redrawn — otherwise it reads as 70% of a page that is now half as long.
+     Here rather than on the heading's click handler, so the panel's "Open every
+     session", a link and the print hook are all covered by the one line. */
+  requestAnimationFrame(markHere);
 }
 
 /* Two ways to open a session, and they mean different things.
@@ -818,17 +823,62 @@ $('#nav').addEventListener('click', (e) => {
    trigger band and the observer reports whichever fired last. */
 const marks = [$('#top'), ...$$('.session')];
 
+/* Keep the marked link inside the contents list WITHOUT ever scrolling the
+   page. The obvious `a.scrollIntoView({ block: 'nearest' })` is a trap, and it
+   is the one that made another notebook here drift on its own:
+
+   - `markHere` runs on every scroll event, so it fires dozens of times a
+     second while the reader is scrolling;
+   - `scrollIntoView` scrolls the nearest scrollable ANCESTOR, and when the
+     contents list is not itself scrolling — a short list, which this one is
+     while there are two sessions, or a narrow screen where it is a closed
+     panel — that ancestor is the document; and
+   - it inherits `scroll-behavior: smooth`, so each call starts an animation
+     that outlives the gesture and fights the next one.
+
+   Scrolling the container by hand fixes all three at once: it moves only the
+   contents box, only when the link is actually outside it, and instantly. */
+function keepLinkVisible(a) {
+  const box = a.closest('#nav');
+  if (!box || box.scrollHeight <= box.clientHeight) return;
+  /* Rect deltas rather than offsetTop: the link's offsetParent is whichever
+     ancestor happens to be positioned, which is not reliably the scroll box,
+     and subtracting the wrong origin silently pins scrollTop at 0. */
+  const link = a.getBoundingClientRect();
+  const view = box.getBoundingClientRect();
+  if (link.top < view.top) box.scrollTop -= view.top - link.top;
+  else if (link.bottom > view.bottom) box.scrollTop += link.bottom - view.bottom;
+}
+
+const progress = $('#progress');
+const toTop = $('#toTop');
+const navToggleLabel = $('#navToggleLabel');
+
 function markHere() {
   const line = 90;
   let here = marks[0];
   marks.forEach((m) => { if (m.getBoundingClientRect().top <= line) here = m; });
   links.forEach((a) => a.classList.remove('here'));
   const a = links.get(here.id);
-  if (a) { a.classList.add('here'); a.scrollIntoView({ block: 'nearest' }); }
+  if (a) { a.classList.add('here'); keepLinkVisible(a); }
+
+  /* How far down the page. The contents list answers this on a wide screen,
+     but it only knows about sessions, and one open session is ten screens. */
+  const max = document.documentElement.scrollHeight - innerHeight;
+  progress.style.width = `${max > 0 ? Math.min(100, (scrollY / max) * 100) : 0}%`;
+
+  /* The ☰ is mobile-only, so it can carry the session number for free. */
+  const n = here.classList.contains('session') ? $('.session-btn .n', here) : null;
+  navToggleLabel.textContent = n ? n.textContent.trim() : 'Sessions 課程';
+
+  toTop.hidden = scrollY < innerHeight * 1.5;
 }
 
 markHere();
 addEventListener('scroll', markHere, { passive: true });
+addEventListener('resize', markHere, { passive: true });
+
+toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 
 const navToggle = $('#navToggle');
 navToggle.addEventListener('click', () => {

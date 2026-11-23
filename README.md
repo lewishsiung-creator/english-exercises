@@ -4409,6 +4409,71 @@ its session numbers bare, in the margin. Changing the face of something that
 was drawn as a chip means clearing the `background`, the `border-radius` and
 the `padding` too, not just the `color`.
 
+### The readability pass — and what a change of face costs
+
+`blacktop.css` changes the reading face as well as the palette: the other
+notebooks read in the house serif, this one in a grotesque. A grotesque at the
+same size fits more characters into the same inch, and the column was not
+narrowed to match, so the body text had quietly gone to **83 characters a
+line** against the 60–75 where the eye still finds the start of the next one.
+Everything below follows from measuring the page rather than looking at it, and
+all of it applies to `/aaron/book-club/` too, which had the same shape of
+problem at 77 to 96 characters.
+
+- **A measure for prose, in `ch` rather than `rem`.** The column stays wide
+  because the two-up grids need the room; paragraphs get their own ceiling.
+  The unit is the point: a ceiling in `rem` is a number of *pixels*, so it
+  means a different character count at every size — the 36rem the other
+  notebooks use is 68 characters of body text but 90 of a `.84rem` hint, which
+  was the longest line on the page and also the one meant to be read fastest.
+  `ch` is the width of a `0` in whatever face and size the element is actually
+  set in, so one value holds the lead, the paragraphs and the small print to
+  about 66 each. Deliberately **not** on the list: gap-fill sentences and
+  discussion questions, which still set at about 78. The cost of a long line is
+  paid on the return sweep to the next one, and a single sentence read once and
+  answered never makes it.
+- **The Chinese went from `.82em` to `.88em`.** Traditional Chinese packs far
+  more stroke into an em than Latin does. Under labels that are themselves
+  small and tracked it had fallen to 11px, and 使用方式 on the cover to 10.5px.
+- **Capitals cost legibility and have to buy it back.** This look sets its
+  labels in tracked capitals, which removes the up-and-down shape the eye
+  recognises a word by. Everything doing real work at that setting was raised:
+  the `focus` chips a folded session is scanned by, the two `contrast` tags
+  that carry the whole comparison once the columns stack on a phone, the book
+  card's AUTHOR and WHO IT'S FOR, the question numbers, the breadcrumb. Nothing
+  on either page now sets below 12.5px except the 中 and 🔊 chips, which are
+  deliberately small and already carry a 24px hit area.
+- **The red bar under a section label belongs to the label, not its first
+  line.** `.label .en` is inline so the 中 chip trails the last word, and a
+  border on an inline box is drawn once, at the start of the first fragment —
+  so a label long enough to wrap lost both the bar and the indent on its second
+  line, which on a phone is most of them. Moved to the block.
+
+Two parts were added to both pages, the ones
+[Anny's](#annys-notebook--adult-one-to-one-kept-over-time) notebook already
+carries: a **reading-position bar** on the top bar's own bottom edge (it costs
+no height, and the contents list cannot tell you that you are a third of the
+way into one open session), and a **way back to the top**, which appears after
+a screen and a half. On a phone the ☰ also carries the number of the session
+you are in, because that label was spare. Folding redraws the bar — the hook
+is in `setFold`, not on the heading's click handler, so the panel's *open
+everything*, a link and the print hook are all covered by the one line.
+
+One bug was fixed on the way past. Both pages marked the contents link with
+`a.scrollIntoView({ block: 'nearest' })` on every scroll event — the same call
+that once made Anny's notebook drift on its own, because `scrollIntoView`
+scrolls the nearest scrollable *ancestor*, which is the document whenever the
+contents list is short enough not to scroll, and it inherits
+`scroll-behavior: smooth`. It had not bitten here yet; with two sessions and
+five books the list never overflows, so the sticky link is always already in
+view. It would have, on the fourth session. Replaced with `keepLinkVisible`,
+which scrolls the contents box by hand and only when the link is outside it.
+
+**The other notebooks still have all of this** — `anita`, `anna`, `ken`,
+`jill`, `mia`, `hank` and `nikky` each have the `scrollIntoView` call, no prose
+ceiling and no position bar. They read in the serif, so the measure is less bad
+there, but it is the same three changes to each.
+
 ## Anita's Notebook — adult, one-to-one, kept over time
 
 The third notebook, copied from

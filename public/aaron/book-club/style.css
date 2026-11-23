@@ -71,8 +71,13 @@ body {
 .zh {
   display: none;
   font-family: var(--font-zh);
-  font-size: 0.82em;
-  line-height: 1.7;
+  /* .88, not .82. Traditional Chinese packs far more stroke into an em than
+     Latin does, so it needs a size Latin can do without: at .82 of this page's
+     17px body it set at 13.9px, and under the small labels — a book's
+     "WRITTEN BY", the line naming the source — it fell to 11.6px. Measured,
+     not guessed. Matched to the notebook one level up. */
+  font-size: 0.88em;
+  line-height: 1.75;
   color: var(--ink-soft);
   letter-spacing: .01em;
 }
@@ -170,6 +175,42 @@ body.zh-all .zh-chip { display: none; }
 .bar-btn-zh[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
 
 @media (min-width: 900px) { #navToggle { display: none; } }
+
+/* ---------------- where you are, and the way back ----------------
+
+   The same two parts the notebook one level up carries, for the same reason:
+   one open book runs to several screens, and the contents list can only tell
+   you which book you are in, not how far through it you are. The position
+   rides the bar's own bottom edge so it costs no height, and the way back
+   appears only once there is a way back worth having. */
+
+.bar-progress {
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  overflow: hidden;
+}
+.bar-progress i { display: block; height: 100%; width: 0; background: var(--gold); }
+
+.totop {
+  position: fixed;
+  right: clamp(14px, 3vw, 26px);
+  bottom: clamp(14px, 3vw, 26px);
+  z-index: 28;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  box-shadow: 0 4px 14px rgba(28, 36, 48, .12);
+  color: var(--ink-soft);
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+}
+.totop[hidden] { display: none; }
+.totop:hover { color: var(--ink); border-color: var(--ink-faint); }
+
+@media print { .bar-progress, .totop { display: none !important; } }
 
 /* ---------------- shell + contents ---------------- */
 
@@ -296,6 +337,29 @@ body.zh-all .zh-chip { display: none; }
 }
 
 main { max-width: var(--measure); padding-bottom: 6rem; }
+
+/* Measure, for prose only. The same rule, for the same reason, as the notebook
+   one level up — see ../style.css, which carries the full note.
+
+   Short version: the column is wide because the two-up grids need the room,
+   prose does not, and at that width it was setting at 77 to 96 characters a
+   line against the 60–75 the eye reads without hunting. The ceiling is in `ch`
+   rather than `rem` because a ceiling in pixels means a different number of
+   characters at every size, and this page sets prose at four of them — the
+   lead, a book's paragraphs, the box saying who the book is for, and the small
+   line naming the source. One value holds them all to about 66.
+
+   The callout is constrained by its lines rather than by its box: it IS the
+   pair, so a ceiling on the panel itself would stop the padded colour short of
+   the card edge and read as a mistake. The two lines inside take it instead.
+
+   What is deliberately NOT on the list: the discussion questions, which still
+   set at about 79. Those are read once and answered, one at a time, and the
+   cost of a long line is paid on the return sweep to the next one — which a
+   single sentence never makes. The ceiling is for text you read in sequence. */
+.lead, .summary, .cover-intro, .book-p, .source,
+.hint, .strands-foot,
+.book-for .en, .book-for .zh { max-width: 60ch; }
 
 .cover { padding: 40px 0 10px; }
 

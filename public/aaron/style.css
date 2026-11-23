@@ -76,8 +76,14 @@ body {
 .zh {
   display: none;
   font-family: var(--font-zh);
-  font-size: 0.82em;
-  line-height: 1.7;
+  /* .88, not .82. Traditional Chinese packs far more stroke into an em than
+     Latin does, so it needs a size Latin can do without. At .82 of this page's
+     17px body the Chinese set at 13.9px, and under the labels that are
+     themselves small and tracked — a note heading, a contrast tag, the line on
+     the cover that says 使用方式 — it fell to 11px and 10.5px. Measured, not
+     guessed. It is still plainly the second voice; it is now a readable one. */
+  font-size: 0.88em;
+  line-height: 1.75;
   color: var(--ink-soft);
   letter-spacing: .01em;
 }
@@ -176,6 +182,48 @@ body.zh-all .zh-chip { display: none; }
 
 @media (min-width: 900px) { #navToggle { display: none; } }
 
+/* ---------------- where you are, and the way back ----------------
+
+   Two small parts that only a long page needs, and this one is long: a single
+   open session runs to ten screens on a phone.
+
+   The reading position is drawn along the bar's own bottom edge, so it costs
+   no height. The contents list answers the same question on a wide screen, but
+   only in whole sessions — it cannot tell you that you are a third of the way
+   into one.
+
+   The way back appears once there is a way back worth having. On a phone the
+   contents are folded behind the ☰, so without it the only route to the top of
+   a ten-screen session is a long thumb. */
+
+.bar-progress {
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  overflow: hidden;
+}
+.bar-progress i { display: block; height: 100%; width: 0; background: var(--gold); }
+
+.totop {
+  position: fixed;
+  right: clamp(14px, 3vw, 26px);
+  bottom: clamp(14px, 3vw, 26px);
+  z-index: 28;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  box-shadow: 0 4px 14px rgba(28, 36, 48, .12);
+  color: var(--ink-soft);
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+}
+.totop[hidden] { display: none; }
+.totop:hover { color: var(--ink); border-color: var(--ink-faint); }
+
+@media print { .bar-progress, .totop { display: none !important; } }
+
 /* ---------------- shell + contents ---------------- */
 
 .shell {
@@ -269,6 +317,36 @@ body.zh-all .zh-chip { display: none; }
 /* ---------------- cover ---------------- */
 
 main { max-width: var(--measure); padding-bottom: 6rem; }
+
+/* Measure, for prose only.
+
+   The column is as wide as it is because the two-up grids — phrase cards,
+   matching, the contrast pair — need the room. Prose does not, and at that
+   width it was setting at 83 characters a line, well past the 60–75 where the
+   eye still finds the start of the next line without hunting. This page makes
+   it worse than the other notebooks do: blacktop.css reads in a grotesque
+   rather than the house serif, and a grotesque fits more characters into the
+   same inch. So the grids keep the column and the paragraphs get a ceiling.
+
+   In `ch`, not `rem`, and that is the whole reason this rule can be one line.
+   A fixed ceiling in rem is a number of PIXELS, so it means a different number
+   of characters at every size — 36rem is 68 characters of body text but 90 of
+   a .84rem hint, which is the longest line on the page and also the one that
+   is supposed to be read fastest. `ch` is the width of a "0" in whatever face
+   and size the element itself is set in, so one value holds the line to the
+   same count everywhere: the 1.2rem lead, the body paragraphs and the small
+   print under a label all come out at about 66 characters, or 33 of Chinese.
+
+   A paragraph narrower than the cards under it is the normal shape of a page
+   that has both.
+
+   What is deliberately NOT on the list: the gap-fill sentences and the
+   discussion questions, which still set at about 78. Those are read once and
+   answered, one sentence at a time, and the cost of a long line is paid on the
+   return sweep to the next one — which a single sentence never makes. The
+   ceiling is for text you read in sequence. */
+.lead, .summary, .cover-intro, .note p, .why,
+.hint, .task-how, .cx-why .en, .cx-why .zh { max-width: 60ch; }
 
 .cover { padding: 40px 0 10px; }
 
@@ -643,10 +721,12 @@ body.zh-all .card-back { display: block; }
   text-transform: uppercase;
   color: var(--ink-faint);
 }
-/* An absolute size, not the inherited .82em. .cx-case is .74rem (11.84px) and
-   .82em of that put the Chinese at 9.7px — too small to read on a phone, and
-   these are the session topics, not decoration. */
-.cx-case .zh { text-transform: none; letter-spacing: .02em; font-size: 12px; }
+/* An absolute size, not the inherited em. An em of a label this small put the
+   Chinese at 9.7px — too small to read on a phone, and these are the session
+   topics, not decoration. 13px rather than the 12px it started at: on this
+   page the English above it is set in tracked capitals, which already asks
+   more of the reader than the lowercase it replaced. */
+.cx-case .zh { text-transform: none; letter-spacing: .02em; font-size: 13px; }
 
 .cx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
