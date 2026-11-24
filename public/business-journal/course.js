@@ -82,7 +82,7 @@ const COURSE = {
       sourceZh: 'AI 行情，2026/11/05–11/24 · B1–B2',
       blurbEn: 'Twenty days that held a fall, a record week, a worse fall and a record day — and the English of movement, expectations and reporting somebody else’s market call.',
       blurbZh: '二十天裡裝了一次下跌、一週創紀錄的上漲、一次更深的下跌和一天創紀錄的反彈——以及漲跌動詞、「結果與預期」，和轉述他人看法的英文。',
-      // No `photo` yet — the card guards on it and shows the headline alone.
+      photo: 'img/hero.jpg',
       built: true,
     },
   ],

@@ -58,19 +58,17 @@ const LESSON = {
      them that way. */
   bilingual: true,
 
-  /* No hero photograph yet. Both the cover and the contents-page card guard on
-     the field, so leaving it out shows no picture rather than a broken one. To
-     add one: put the file at panic-rally/img/hero.jpg, restore the block below
-     with the photographer's name, and add `photo: 'img/hero.jpg'` back to this
-     reading's entry in ../course.js. Pexels only, like the rest of the series.
-
-       photo: {
-         src: 'img/hero.jpg',
-         alt: 'A wall of screens showing stock charts and figures in a trading room',
-         by: 'Photographer',
-         pos: '50% 45%',
-       },
-  */
+  /* Chosen over a candlestick chart on purpose. Every stock photograph of a
+     market is neon green and red on black, which would fight a white page set
+     in a serif; this one is a newspaper in daylight, which is what the series
+     looks like and what the lesson is actually about — reading the report
+     rather than watching the tape. 1600x1060, cropped to 16:9 by the figure. */
+  photo: {
+    src: 'img/hero.jpg',
+    alt: 'A man in a suit holding the business section of a newspaper, the page showing charts and share prices',
+    by: 'nappy',
+    pos: '50% 55%',
+  },
 
   /* No `url`: there is no one article to open. The credit names what the
      figures came from instead, and says in both languages what the page is
