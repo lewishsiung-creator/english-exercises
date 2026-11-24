@@ -647,8 +647,9 @@ hundred lines rather than a second copy of twelve hundred.
 
 ## 國際商業期刊導讀 · Business Journal Reading — adult, teacher-led
 
-A series that grows one reading at a time: each takes one article from the
-international business press and turns it into a teacher-led lesson. Built the
+A series that grows one reading at a time: each takes an article from the
+international business press — or, from No. 4, a news story carried across
+several of them — and turns it into a teacher-led lesson. Built the
 way `/ielts-speaking/` and `/grammar/` are — one renderer and one stylesheet for
 the whole series, a map of the readings, and a thin folder per reading.
 
@@ -687,12 +688,35 @@ with the latest the way a front page leads with its top story.
   `--navy` holds the teal and `--gold` the red.
 - **`/wealth-habits/` is a redirect** to `/business-journal/wealth-habits/`,
   carrying its hash, because that URL had already gone out.
+- **No. 4 is the first reading built from a live news story, and the first
+  whose source material had to be corrected before it could go on the page.**
+  Lewis handed over a summary of three weeks on the AI market. Every figure in
+  it was checked against a report before it was written down, and three did not
+  survive: a pair of memory-stock percentages no source matched, a 10-year
+  yield of 5.1% that was really 4.996%, and an SEC investigation that could not
+  be verified at all. The first two were replaced with sourced figures, the
+  third was dropped. The summary also stopped four days before the story did —
+  it had the CEO of Nvidia resigning, but not his reinstatement eleven days
+  later, nor the further 17.5% fall and the record one-day rally that followed
+  — so the reading carries all four acts and the draft's two.
+
+  The lesson that follows is **about English, not about money**: the verbs of
+  movement, a result measured against an expectation, and the hedging that
+  lets you report somebody else's market call without adopting it. The first
+  block in step 1 is a note saying exactly that, `source` says it again in both
+  languages, and the poll's statements are about how markets and news work
+  rather than what anyone should do with their own savings. A reading drawn
+  from the week's figures dates faster than one drawn from an interview; it is
+  written to be read as a record of those twenty days, not as a view on the
+  next twenty.
 - **The source credit can carry a link.** `source.url` in a reading's
   `content.js` is optional and adds a *Watch the interview 觀看原始訪談* line
   under the credit on the cover. Give it only when the source is something the
   reader can actually open — No. 2 and No. 3 are both *The Diary Of A CEO*
-  episodes on YouTube, while No. 1 is an HBR digest and has none, because a
-  link nobody can follow is worse than no link. Strip the `?si=…` share token
+  episodes on YouTube, while No. 1 is an HBR digest and No. 4 is drawn from a
+  dozen reports and a pair of SEC filings, so both have none: a link nobody can
+  follow is worse than no link, and one of twelve is worse still. Strip the
+  `?si=…` share token
   before pasting it: that parameter identifies whoever shared the video. On
   paper the link turns black, loses its underline and **writes its address out
   beside itself** — the only link in the series that does, since every other
