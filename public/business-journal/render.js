@@ -682,7 +682,25 @@ const store = {
 
 const zhToggle = $('#zhToggle');
 
+/* A reading may declare itself bilingual — `bilingual: true` in its
+   content.js — and then its Chinese is shown everywhere, always, and the three
+   switches that would turn it off are taken off the page rather than left
+   sitting there doing nothing when pressed.
+
+   This is a departure from the series' rule, which is Lewis's own: English
+   leads and the Chinese waits behind a tap, because reaching for it is itself
+   part of the exercise. The flag lives in the reading rather than here so the
+   departure stays where it was asked for; No. 1-3 do not set it and are
+   untouched.
+
+   The series preference in localStorage is deliberately NOT written while a
+   reading is bilingual. It is one key shared by the whole series, so writing
+   it here would mean that opening this reading quietly switched the Chinese on
+   in every other one — and left it on. */
+const FIXED_ZH = LESSON.bilingual === true;
+
 function setAllZh(on) {
+  if (FIXED_ZH) on = true;
   document.body.classList.toggle('zh-all', on);
   zhToggle.setAttribute('aria-pressed', String(on));
   $('#zhAll').checked = on;
@@ -693,10 +711,11 @@ function setAllZh(on) {
      the Chinese off in front of the room. */
   const pz = document.getElementById('pZh');
   if (pz) pz.setAttribute('aria-pressed', String(on));
-  store.set('zh', on ? '1' : '0');
+  if (!FIXED_ZH) store.set('zh', on ? '1' : '0');
 }
 
-setAllZh(store.get('zh', '0') === '1');
+if (FIXED_ZH) document.body.classList.add('zh-fixed');
+setAllZh(FIXED_ZH || store.get('zh', '0') === '1');
 zhToggle.addEventListener('click', () => setAllZh(!document.body.classList.contains('zh-all')));
 
 /* One click handler for the whole document. Every interactive part of the

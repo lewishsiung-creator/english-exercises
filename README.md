@@ -709,6 +709,29 @@ with the latest the way a front page leads with its top story.
   from the week's figures dates faster than one drawn from an interview; it is
   written to be read as a record of those twenty days, not as a view on the
   next twenty.
+- **`bilingual: true` makes one reading's Chinese permanent.** The series rule
+  is Lewis's own — English leads, the Chinese waits behind a 中 tap, because
+  reaching for it is part of the exercise — and No. 4 is the one departure
+  from it, at his instruction: it is read once in class and then again alone,
+  weeks later, by someone who wants the twenty days back rather than a
+  comprehension test. The flag sits in that reading's `content.js`, so the
+  departure stays where it was asked for; `render.js` puts `zh-fixed` on
+  `<body>`, forces `zh-all` on, and **does not write the series' stored
+  preference** — one `bj.zh` key is shared by every reading, so writing it here
+  would mean that opening No. 4 quietly switched the Chinese on in No. 1–3 and
+  left it on. All three faces of the 中文 switch (the bar, the teacher panel's
+  checkbox, the presentation bar) are hidden rather than left to do nothing,
+  and the 中 chips go with them. The Chinese also takes 0.88em instead of
+  0.82em, since it is now read straight through rather than glanced at; the
+  colour stays `--ink-soft`, which is 7.46:1 on white, so the English keeps the
+  eye and the page is still an English lesson.
+
+  **The trap, and do not undo it.** A gap-fill's `textZh` is written in the
+  template as a complete sentence with the missing phrase spelled out in
+  Chinese — that is deliberate, because behind a tap it is the hint of last
+  resort. Always visible, it is the answer key printed beside the question. So
+  No. 4's four gap sentences carry ＿＿＿ in the Chinese as well as the English.
+  Any future bilingual reading has to do the same.
 - **The source credit can carry a link.** `source.url` in a reading's
   `content.js` is optional and adds a *Watch the interview 觀看原始訪談* line
   under the credit on the cover. Give it only when the source is something the

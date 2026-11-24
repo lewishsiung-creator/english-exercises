@@ -117,6 +117,27 @@ body.zh-all .zh { display: block; }
 .open .en > .zh-chip { opacity: .35; }
 body.zh-all .zh-chip { display: none; }
 
+/* A bilingual reading (`bilingual: true` in its content.js) has no switch to
+   offer: its Chinese is on and stays on. The three faces of the 中文 switch —
+   the bar's button, the teacher panel's checkbox and the presentation bar's —
+   come off the page rather than sit there doing nothing when pressed. They are
+   hidden rather than removed because render.js still writes to them. */
+body.zh-fixed #zhToggle,
+body.zh-fixed #pZh,
+body.zh-fixed .row-check { display: none; }
+
+/* 0.82em is the size of a hint — a line you glance at once, having asked for
+   it, and then leave. On a bilingual reading the Chinese is read straight
+   through instead, so it takes a size that can be: 0.88em, which is about
+   15px against the English's 17px. Chinese needs the room more than Latin
+   does at small sizes, the strokes being what they are.
+
+   The colour does NOT change with it. #555 on white is 7.46:1, comfortably
+   past AA, and keeping the English a full black is what still makes this an
+   English lesson with the Chinese alongside, rather than two columns of equal
+   weight competing for the eye. */
+body.zh-fixed .zh { font-size: 0.88em; }
+
 /* Lines the learner is not being tested on stay bilingual at all times. Two
    groups qualify: scaffolding that only helps if it is understood (hints, task
    prompts, navigation), and anything already sitting behind a deliberate reveal

@@ -39,6 +39,25 @@ const LESSON = {
   titleZh: '暴跌、反彈，然後再一次',
   level: 'B1–B2',
 
+  /* Bilingual, alone among the readings, at Lewis's instruction. The Chinese
+     is shown everywhere and the 中文 switch comes off the page; render.js
+     reads this flag and keeps the series' stored preference untouched, so the
+     other three readings still open English-first.
+
+     The series rule it departs from is his own — English leads, the Chinese
+     waits behind a tap, because reaching for it is part of the exercise. The
+     reason to depart here is that this reading is also a record: it is read
+     once in class and then again alone, weeks later, by someone who wants the
+     twenty days back rather than a comprehension test.
+
+     ONE THING THIS CHANGES. The gap block's Chinese is written as a complete
+     sentence in the template, missing phrase and all, precisely because it
+     sits behind a tap and is meant to be the hint of last resort. Visible from
+     the start it would simply be the answer key, printed beside the question.
+     So this reading's four gap sentences carry ＿＿ in the Chinese too. Keep
+     them that way. */
+  bilingual: true,
+
   /* No hero photograph yet. Both the cover and the contents-page card guard on
      the field, so leaving it out shows no picture rather than a broken one. To
      add one: put the file at panic-rally/img/hero.jpg, restore the block below
@@ -294,6 +313,86 @@ const LESSON = {
           en: 'Market English is small and repetitive. Learn thirty expressions and you can read almost any report.',
           zh: '市場英文的範圍很小，而且重複性高。學會三十個說法，幾乎任何一篇報導都讀得懂。',
         },
+        /* Nouns first, because they name the things the verbs then move. Every
+           example below is a true sentence about the twenty days in step 1, so
+           the vocabulary and the story hold each other up. */
+        {
+          t: 'phrases',
+          en: 'Core words',
+          zh: '核心單字',
+          items: [
+            {
+              en: 'index',
+              pos: 'n.',
+              zh: '指數（代表整個市場的那個數字）',
+              eg: 'Taiwan’s benchmark index closed below 42,000.',
+              egZh: '台股加權指數收盤跌破 42,000 點。',
+            },
+            {
+              en: 'session',
+              pos: 'n.',
+              zh: '一個交易日（不是「場次」）',
+              eg: 'The index fell 3.2% in a single session.',
+              egZh: '指數在一個交易日之內下跌 3.2%。',
+            },
+            {
+              en: 'shares',
+              pos: 'n.',
+              zh: '股票；持股（美式也說 stock）',
+              eg: 'Memory shares were sold the hardest.',
+              egZh: '記憶體類股被賣得最兇。',
+            },
+            {
+              en: 'revenue',
+              pos: 'n.',
+              zh: '營收（賣出去的總金額，還沒扣成本）',
+              eg: 'Revenue more than doubled from a year earlier.',
+              egZh: '營收比一年前翻了一倍以上。',
+            },
+            {
+              en: 'earnings',
+              pos: 'n.',
+              zh: '財報；（公司的）獲利',
+              eg: 'The whole market was waiting for Nvidia’s earnings.',
+              egZh: '整個市場都在等 Nvidia 的財報。',
+            },
+            {
+              en: 'selloff',
+              pos: 'n.',
+              zh: '賣壓；一波集中的賣出',
+              eg: 'The selloff spread from chipmakers to the whole market.',
+              egZh: '賣壓從晶片廠蔓延到整個市場。',
+            },
+            {
+              en: 'forecast',
+              pos: 'v. / n.',
+              zh: '預估（動詞過去式也可以是 forecast）',
+              eg: 'Analysts had forecast US$109.1 billion.',
+              egZh: '分析師原本預估是 1,091 億美元。',
+            },
+            {
+              en: 'yield',
+              pos: 'n.',
+              zh: '殖利率（債券每年的報酬率）',
+              eg: 'The 10-year yield briefly rose above 5%.',
+              egZh: '10 年期公債殖利率一度升破 5%。',
+            },
+            {
+              en: 'high',
+              pos: 'n.',
+              zh: '高點（相對的 low 是低點）',
+              eg: 'The index is still a fifth below its October high.',
+              egZh: '指數仍比 10 月的高點低了五分之一。',
+            },
+            {
+              en: 'volatility',
+              pos: 'n.',
+              zh: '波動（上下起伏的劇烈程度）',
+              eg: 'Three weeks of volatility left the index lower than it started.',
+              egZh: '三個星期的劇烈波動，讓指數比一開始還低。',
+            },
+          ],
+        },
         {
           t: 'phrases',
           en: 'Movement: down',
@@ -512,7 +611,7 @@ const LESSON = {
           items: [
             {
               text: 'Revenue was more than double a year earlier, so the company comfortably ___.',
-              textZh: '營收比一年前翻了一倍以上，所以公司輕鬆優於預期。',
+              textZh: '營收比一年前翻了一倍以上，所以公司輕鬆＿＿＿。',
               options: ['missed estimates', 'beat expectations', 'was in line with forecasts'],
               answer: 1,
               why: {
@@ -522,7 +621,7 @@ const LESSON = {
             },
             {
               text: 'The shares rose four percent after hours, then ___ before the close.',
-              textZh: '股價在盤後上漲 4%，接著在收盤前漲幅收斂。',
+              textZh: '股價在盤後上漲 4%，接著在收盤前＿＿＿。',
               options: ['extended their losses', 'topped the consensus', 'pared their gains'],
               answer: 2,
               why: {
@@ -532,7 +631,7 @@ const LESSON = {
             },
             {
               text: 'Several banks told clients the fall had gone too far — in their words, the selloff was ___.',
-              textZh: '幾家銀行告訴客戶跌得太過頭了——用他們的話說，這波賣壓反應過度。',
+              textZh: '幾家銀行告訴客戶跌得太過頭了——用他們的話說，這波賣壓是＿＿＿的。',
               options: ['overdone', 'priced in', 'in line with expectations'],
               answer: 0,
               why: {
@@ -542,7 +641,7 @@ const LESSON = {
             },
             {
               text: 'A record gain in points is not a record in percent, because the index ___ than it was in 2002.',
-              textZh: '漲點的紀錄不等於漲幅的紀錄，因為指數現在比 2002 年高得多。',
+              textZh: '漲點的紀錄不等於漲幅的紀錄，因為指數現在比 2002 年＿＿＿。',
               options: ['is much lower', 'is much higher', 'has not changed'],
               answer: 1,
               why: {
