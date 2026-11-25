@@ -27,7 +27,8 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      # Either attempt can be the one that published; see the retry below.
+      url: ${{ steps.deployment.outputs.page_url || steps.retry.outputs.page_url }}
     steps:
       # All four actions are kept on a current major for one reason: the ones
       # that were here ran on Node 20, which GitHub has deprecated. Every run
@@ -54,41 +55,52 @@ jobs:
         with:
           path: public
 
-      # Why this step exists, since it looks like superstition.
-      #
-      # deploy-pages asks the REST artifacts API for the artifact the step
-      # above just uploaded, and on this repo it has three times been answered
-      # "Found 0 artifact(s)" — 24 Nov, and twice on 25 Nov. It treats that
-      # answer as final and fails the run; its backoff covers the polling it
-      # does *after* a deployment is created, not this first lookup.
-      #
-      # It is a visibility delay, not a failed upload. Measured on the 25 Nov
-      # re-run: the artifact was created at 06:34:37 and really existed (29 MB,
-      # unexpired, fetchable through the same REST endpoint a minute later),
-      # and deploy-pages asked at 06:34:37.9 — under a second after — and was
-      # told there were none. So the fix is not to re-upload or to re-run; it
-      # is to not ask until the answer can be right.
-      #
-      # Written as a wait rather than a fixed sleep so that it costs a couple
-      # of seconds on a normal run and still covers a slow one, and so that a
-      # genuine upload failure still fails the run instead of being papered
-      # over by a sleep that was long enough.
-      - name: Wait until the artifact is visible to the API
+      # This is a check, not the fix. It proves the upload really happened,
+      # so that a genuinely broken upload fails here with a clear message
+      # instead of being blamed on the race below. It cannot prove that
+      # deploy-pages will see the artifact, because the two ask different
+      # services: this asks the REST endpoint
+      # /repos/{owner}/{repo}/actions/runs/{run_id}/artifacts, while
+      # deploy-pages calls ListArtifacts on the twirp results service
+      # (src/internal/api-client.js in v5). Measured on run d3b724a: this step
+      # was satisfied on its first check at 06:38:45.24, and deploy-pages was
+      # told "Found 0 artifact(s)" at 06:38:45.58 — a third of a second later.
+      # The twirp view is the one that lags, and a run step cannot query it,
+      # so the retry below is what actually carries the deploy.
+      - name: Check that the artifact was really uploaded
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          for i in $(seq 1 40); do
+          for i in $(seq 1 20); do
             n=$(gh api \
               "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts" \
               --jq '[.artifacts[] | select(.name == "github-pages")] | length')
             if [ "$n" -ge 1 ]; then
-              echo "github-pages artifact visible after $i check(s)"
+              echo "github-pages artifact uploaded (visible to REST after $i check(s))"
               exit 0
             fi
             sleep 3
           done
-          echo "::error::the github-pages artifact never became visible to the API"
+          echo "::error::the github-pages artifact was never uploaded"
           exit 1
 
+      # deploy-pages asks the results service for the artifact and treats a
+      # "Found 0 artifact(s)" as final — its backoff covers the polling it does
+      # after a deployment exists, not this first lookup. On 25 Nov the same
+      # file failed at 06:38 and published at 06:39 with nothing changed, which
+      # is what an intermittent lookup looks like. The site is 29 MB, and the
+      # bigger the upload the longer the lag, which is why it started biting.
+      #
+      # Retrying is safe: the lookup throws inside Deployment.create *before*
+      # any deployment is created, so a failed attempt leaves nothing behind.
       - id: deployment
+        uses: actions/deploy-pages@v5
+        continue-on-error: true
+
+      - name: Wait, then try the deploy once more
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 20
+
+      - id: retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v5

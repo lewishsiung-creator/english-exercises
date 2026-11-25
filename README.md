@@ -7116,10 +7116,28 @@ Two things not to be misled by:
   later time" reads like a GitHub outage and is not one. Re-running does often
   work, which is exactly what makes it look transient when it is not.
 
-The fix is to wait for the artifact to become visible before calling
-`deploy-pages`, rather than to re-upload or re-run. That needs `actions: read`
-in the `permissions:` block — an explicit block denies everything it does not
-list, including the artifacts API the wait step has to ask.
+Waiting for the artifact to become visible **does not fix it**, which was the
+first thing tried. The two do not ask the same service: a `run:` step can only
+reach the REST endpoint
+`/repos/{owner}/{repo}/actions/runs/{run_id}/artifacts`, while `deploy-pages`
+calls `ListArtifacts` on the twirp results service (`src/internal/api-client.js`
+in v5). Run `d3b724a` settled it — the wait step was satisfied on its first
+check at 06:38:45.24, and `deploy-pages` was told "Found 0 artifact(s)" at
+06:38:45.58, a third of a second later. The REST view had caught up; the twirp
+view had not, and a workflow step cannot ask the twirp one.
+
+So the fix is to **let the deploy try twice**: `continue-on-error` on the first
+`deploy-pages`, a 20-second pause, then a second attempt that only runs if the
+first failed. Retrying is safe because the lookup throws inside
+`Deployment.create` *before* a deployment is created, so a failed attempt
+leaves nothing behind. The job's `environment.url` reads
+`steps.deployment.outputs.page_url || steps.retry.outputs.page_url`, since
+either attempt may be the one that published.
+
+The REST wait is kept, demoted to a **check**: it proves the upload itself
+happened, so a genuinely broken upload fails with a clear message instead of
+being blamed on the race. It needs `actions: read` in the `permissions:`
+block — an explicit block denies everything it does not list.
 
 ## Museum Trip — moved
 
