@@ -572,10 +572,13 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
   letter-spacing: .005em;
 }
 
+/* --ink-soft, not --ink-faint: the 音標 is small and set in a fallback face, so
+   at the faint grey it read as decoration rather than as something to use. It
+   still has to sit below the word itself, which is why it is not full --ink. */
 .w-kk {
   font-family: var(--font-kk);
   font-size: .78rem;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
   letter-spacing: .01em;
 }
 
