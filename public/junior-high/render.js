@@ -186,12 +186,47 @@ function buildGradeTabs() {
   }).join('');
 }
 
+/* 怎麼用 is worth a careful read once and is dead weight every time after. On a
+   phone it was measured at 32% of the first screen, and it came back on every
+   grade and every switch between the halves. So it folds, and it remembers:
+   open on a first ever visit, shut from the second on, and whatever the reader
+   last chose from then on. */
+const HOW_KEY = 'jh.how';
+
+/* Resolved once and then kept here, for two reasons. intro() is called twice on
+   every render, one half each, and a function that both reads and writes the
+   store would hand the two halves different answers on a first visit. And the
+   toggle listener below needs something to compare against, because the
+   browser fires toggle for every <details open> it parses — a render looks
+   exactly like a reader opening it. */
+let howState = null;
+
+function howOpen() {
+  if (howState !== null) return howState;
+  try {
+    const v = localStorage.getItem(HOW_KEY);
+    if (v === null) {
+      // First ever visit: show it, and arrange for it to be shut from now on.
+      localStorage.setItem(HOW_KEY, 'shut');
+      howState = true;
+    } else {
+      howState = v === 'open';
+    }
+  } catch (e) {
+    howState = true;          // 無痕視窗
+  }
+  return howState;
+}
+
 function intro(grade, sec) {
   return `
     <section class="intro">
       <h1>${text(grade.zh)}${text(sec.data.label)}<span>${text(grade.label)}</span></h1>
       <p>${text(grade.source || sec.data.source)} · ${text(grade.note)}</p>
-      <p class="how"><b>怎麼用：</b>${sec.how.join('')}</p>
+      <details class="how"${howOpen() ? ' open' : ''}>
+        <summary>怎麼用</summary>
+        <p>${sec.how.join('')}</p>
+      </details>
     </section>`;
 }
 
@@ -225,9 +260,9 @@ function wordRow(w, l, i, grade) {
       <span class="w-n">${i + 1}</span>
 
       <div class="w-main">
-        <div class="w-word">${text(w.w)}${sayBtn(w.w, `朗讀 ${w.w}`)}<span
+        <div class="w-word">${text(w.w)}${w.kk ? `<span
+          class="w-kk">${text(w.kk)}</span>` : ''}${sayBtn(w.w, `朗讀 ${w.w}`)}<span
           class="w-pos">${text(w.pos)}</span></div>
-        ${w.kk ? `<div class="w-kk">${text(w.kk)}</div>` : ''}
       </div>
 
       <div class="w-zh">${text(w.zh)}</div>
@@ -257,6 +292,8 @@ function buildWordsDoc(grade) {
     return `
       <section class="lesson" id="w-${l.id}" data-item="${l.id}">
         <div class="lesson-head">
+          <button class="fold-btn" type="button" aria-expanded="true"
+                  aria-label="收合或展開這一課">▾</button>
           <span class="lesson-code">${text(l.code)}</span>
           <h2>${text(l.title)}</h2>
           <span class="lesson-count">${l.words.length} 字</span>
@@ -264,13 +301,15 @@ function buildWordsDoc(grade) {
             title="這一課的文法：${text(unit.title)}">✎ 文法</a>` : ''}
         </div>
 
-        <p class="lesson-gram"><b>文法重點</b>${text(l.grammar)}</p>
+        <div class="fold">
+          <p class="lesson-gram"><b>文法重點</b>${text(l.grammar)}</p>
 
-        <ul class="words">${l.words.map((w, i) => wordRow(w, l, i, grade)).join('')}</ul>
+          <ul class="words">${l.words.map((w, i) => wordRow(w, l, i, grade)).join('')}</ul>
 
-        <button class="drill-open" data-quiz="${l.id}">📝 小考這一課 —
-          ${text(l.title)}</button>
-        <div class="drill-slot" data-slot="w-${l.id}"></div>
+          <button class="drill-open" data-quiz="${l.id}">📝 小考這一課 —
+            ${text(l.title)}</button>
+          <div class="drill-slot" data-slot="w-${l.id}"></div>
+        </div>
       </section>`;
   }).join('')).join('');
 }
@@ -298,6 +337,8 @@ function buildGrammarDoc(grade) {
     <section class="unit${known ? ' is-known' : ''}" id="g-${u.id}"
              data-item="${u.id}" data-key="${key}">
       <div class="unit-head">
+        <button class="fold-btn" type="button" aria-expanded="true"
+                aria-label="收合或展開這個單元">▾</button>
         <span class="unit-code">${text(u.code)}</span>
         <h2>${text(u.title)}</h2>
         <span class="unit-refs">${u.lessons.map((c) =>
@@ -307,6 +348,7 @@ function buildGrammarDoc(grade) {
                 aria-label="標記為會了" title="會了">✓</button>
       </div>
 
+      <div class="fold">
       <p class="unit-key"><b>一句話重點</b>${withEn(u.key)}</p>
 
       <h3 class="sec-head"><span></span>核心規則</h3>
@@ -339,11 +381,57 @@ function buildGrammarDoc(grade) {
       <button class="drill-open" data-drill="${u.id}">📝 練習這個單元 —
         ${text(u.title)}</button>
       <div class="drill-slot" data-slot="g-${u.id}"></div>
+      </div>
     </section>`;
   }).join('');
 }
 
 // ------------------------------------------------------------------ 畫
+
+/* ---------------------------------------------------------------- 收合
+
+   七年級單字在手機上量到 64,244px —— 79 個螢幕高，一個螢幕看得到 5.4 個字。
+   捲動不是瀏覽，所以每一課和每一個單元都可以收起來，而且窄螢幕預設就是收起來
+   的：一開頁先看到一整個年級的課次清單，點開要讀的那一課。
+
+   寬螢幕不動：那裡有側欄，全部攤開本來就好掃。所以這不是一個「模式」，是同一
+   份內容在兩種螢幕上的預設不同，使用者隨時可以自己開關。
+
+   狀態刻意不存起來。存了之後「我上次把第 3 課關起來」會在幾週後變成莫名其妙的
+   畫面；每次重開都回到乾淨的預設，比較好預期。 */
+
+const narrow = () => matchMedia('(max-width: 780px)').matches;
+
+function setFold(item, open) {
+  item.classList.toggle('is-folded', !open);
+  const btn = $('.fold-btn', item);
+  if (btn) btn.setAttribute('aria-expanded', String(open));
+}
+
+function toggleFold(item) {
+  if (item) setFold(item, item.classList.contains('is-folded'));
+}
+
+/* 任何跳轉的落點都要先打開——側欄、✎文法／📚課次 的互跳、搜尋結果都走這裡。 */
+function unfold(node) {
+  const item = node.closest ? node.closest('.lesson, .unit') : null;
+  if (item) setFold(item, true);
+}
+
+function applyDefaultFold() {
+  const shut = narrow();
+  $$('#doc .lesson, #doc .unit').forEach((item) => setFold(item, !shut));
+}
+
+/* The ☰ button's word is hidden on a phone, so the accessible name has to come
+   from the attribute, not from the span — and the word itself changes with the
+   half (課次 / 文法主題), so it cannot just be hard-coded in the HTML. */
+function setNavLabel() {
+  const label = section.navLabel;
+  $('#navToggleLabel').textContent = label;
+  $('#navToggle').setAttribute('aria-label', label);
+  $('#navToggle').setAttribute('title', label);
+}
 
 function render() {
   buildGradeTabs();
@@ -357,11 +445,12 @@ function render() {
   });
   $('#nav').innerHTML = parts.map((p) => p.nav).join('');
   $('#doc').innerHTML = parts.map((p) => p.doc).join('');
-  $('#navToggleLabel').textContent = section.navLabel;
+  setNavLabel();
   $('#printNote').textContent = section.printNote;
   buildMaskOptions();
   refreshCounts();
   applyOnlyUnknown();
+  applyDefaultFold();
   observeAll();
 }
 
@@ -767,7 +856,7 @@ function setSection(id, { keepGrade = true } = {}) {
   $('#secGrammar').classList.toggle('is-on', id === 'grammar');
   $('#secWords').setAttribute('aria-pressed', String(id === 'words'));
   $('#secGrammar').setAttribute('aria-pressed', String(id === 'grammar'));
-  $('#navToggleLabel').textContent = section.navLabel;
+  setNavLabel();
   $('#printNote').textContent = section.printNote;
 
   /* 只有這一半的年級真的變了才重畫。#doc 裡兩半的 DOM 是一起建的，重畫會把
@@ -810,6 +899,8 @@ function setGrade(id) {
    讓開黏在頂端的列，讓開多少直接讀該元素自己的 scroll-margin-top，不在這裡
    再寫一個數字。 */
 function jumpTo(node) {
+  // 收起來的課要先打開，否則算出來的位置是收合後的，跳過去會落在別的地方。
+  unfold(node);
   const html = document.documentElement;
   const prev = html.style.scrollBehavior;
   html.style.scrollBehavior = 'auto';
@@ -903,6 +994,17 @@ document.addEventListener('click', (e) => {
     return;
   }
 
+  const foldBtn = e.target.closest('.fold-btn');
+  if (foldBtn) { toggleFold(foldBtn.closest('.lesson, .unit')); return; }
+
+  /* 整條標題都可以點，不只那個小箭頭——標題是整頁最大的點擊目標。標題裡本來
+     就有連結和 ✓，那些在上面已經各自 return 了，這裡再擋一次以防萬一。 */
+  const head = e.target.closest('.lesson-head, .unit-head');
+  if (head && !e.target.closest('a, button')) {
+    toggleFold(head.closest('.lesson, .unit'));
+    return;
+  }
+
   const quiz = e.target.closest('[data-quiz]');
   if (quiz) {
     const grade = currentGrade(SECTIONS.words);
@@ -951,6 +1053,25 @@ document.addEventListener('click', (e) => {
 
   if (e.target.closest('.nav-scrim')) document.body.classList.remove('nav-open');
 });
+
+/* 兩半各有一份 怎麼用，開一邊就兩邊都跟著，不然切過去又是攤開的。
+
+   第一個判斷是必要的，不是保險：瀏覽器每畫一次 <details open> 就會發一次
+   toggle，所以「重畫」和「讀者自己點開」長得一模一樣。只有狀態真的跟記著的
+   不同，才是人動的。少了這行，每次重畫都會把讀者的選擇覆寫回去。 */
+document.addEventListener('toggle', (e) => {
+  const d = e.target;
+  if (!d.classList || !d.classList.contains('how')) return;
+  if (d.open === howState) return;
+
+  howState = d.open;
+  try {
+    localStorage.setItem(HOW_KEY, d.open ? 'open' : 'shut');
+  } catch (err) {
+    /* 無痕視窗沒有 localStorage，記不住就算了 */
+  }
+  $$('details.how').forEach((other) => { other.open = d.open; });
+}, true);
 
 $('#navToggle').addEventListener('click', () => {
   const open = document.body.classList.toggle('nav-open');

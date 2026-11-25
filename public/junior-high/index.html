@@ -30,15 +30,18 @@
 <a class="skip" href="#doc">跳到內容</a>
 
 <header class="bar">
-  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav">
-    <span aria-hidden="true">☰</span> <span class="lbl" id="navToggleLabel">課次</span>
+  <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav"
+          title="課次" aria-label="課次">
+    <span class="ico" aria-hidden="true">☰</span><span class="lbl" id="navToggleLabel">課次</span>
   </button>
 
   <!-- The two halves. One page, so switching does not reload and does not lose
        the grade, the mode, or a drill in progress on the other side. -->
   <div class="section-switch" role="group" aria-label="單字或文法">
-    <button class="section-btn is-on" id="secWords" aria-pressed="true" title="單字" aria-label="單字">📚<span class="lbl"> 單字</span></button>
-    <button class="section-btn" id="secGrammar" aria-pressed="false" title="文法" aria-label="文法">✎<span class="lbl"> 文法</span></button>
+    <button class="section-btn is-on" id="secWords" aria-pressed="true" title="單字" aria-label="單字"><span
+      class="ico" aria-hidden="true">📚</span><span class="lbl">單字</span></button>
+    <button class="section-btn" id="secGrammar" aria-pressed="false" title="文法" aria-label="文法"><span
+      class="ico" aria-hidden="true">✎</span><span class="lbl">文法</span></button>
   </div>
 
   <p class="bar-title" id="barTitle">國中英語精熟 <span>Grade 7–9</span></p>
@@ -47,8 +50,10 @@
           aria-controls="search" title="搜尋" aria-label="搜尋">🔍</button>
 
   <div class="mode" role="group" aria-label="使用模式">
-    <button class="mode-btn is-on" id="modeStudy" aria-pressed="true" title="自學模式" aria-label="自學模式">📖<span class="lbl"> 自學</span></button>
-    <button class="mode-btn" id="modeClass" aria-pressed="false" title="教學模式" aria-label="教學模式">👩‍🏫<span class="lbl"> 教學</span></button>
+    <button class="mode-btn is-on" id="modeStudy" aria-pressed="true" title="自學模式" aria-label="自學模式"><span
+      class="ico" aria-hidden="true">📖</span><span class="lbl">自學</span></button>
+    <button class="mode-btn" id="modeClass" aria-pressed="false" title="教學模式" aria-label="教學模式"><span
+      class="ico" aria-hidden="true">👩‍🏫</span><span class="lbl">教學</span></button>
   </div>
 
   <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"

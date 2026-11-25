@@ -2056,6 +2056,80 @@ stay.
   mask lifted, the 🔊, ✓ and practice blocks gone, and 只看還沒打勾的 ignored
   so a 課 prints whole.
 
+### Reading it on a phone
+
+Measured on a 375×812 screen before anything was changed, because the page had
+only ever been judged on a laptop:
+
+| | before | after |
+| --- | --- | --- |
+| 七年級單字, as it opens | 64,244px — **79 screens** | 1,402px — **1.7 screens** |
+| the same, everything expanded | 79 screens | 67 screens |
+| words visible at once | 5.4 | 6.6 |
+| 怎麼用 card, share of first screen | 32% | 22%, and shut after the first visit |
+| 🔊 tap target | 25×18 | 44×30 |
+| ✓ tap target | 26×26 | 44×44 |
+| bar controls | 31×29 and 39×32 | 38–42 tall |
+
+What actually did it:
+
+- **課 and 單元 fold, and on a phone they start folded.** The scroll was the
+  problem, not the content: nobody reads 400 words top to bottom, they go to
+  one 課. Folded, a phone opens on the whole grade as a list. Wide screens are
+  untouched — they have the side nav, and expanded is the right default there.
+  The state is deliberately *not* stored: "I shut 第 3 課 three weeks ago" is a
+  baffling thing to come back to. Anything that jumps — the nav, the ✎/📚
+  cross-links, a search hit — opens its target first, inside `jumpTo()`, so
+  every route in gets the same treatment.
+- **The 課 heading sticks** under the bar and the grade strip, so 28 words deep
+  you still know which 課 you are in, and can shut it from where you are
+  instead of scrolling back. It is below the grade strip in `z-index`, so it
+  slides under rather than over.
+- **怎麼用 is a `<details>`** — open on a first ever visit, shut from the second
+  on. Watch out for one thing here: the browser fires `toggle` for every
+  `<details open>` it *renders*, so a render is indistinguishable from a reader
+  opening it. The listener compares against the state it already holds and only
+  writes when they differ; without that, every re-render overwrote the reader's
+  choice.
+- **The 音標 moved onto the word's own line.** It saved a line in all 400 rows
+  (only 11 words are long enough to still wrap), but the reason to do it was a
+  bug: 遮住英文 blanks `.w-word`, and the 音標 was its *sibling*, so a student
+  testing themselves saw `[ˈfæməlɪ]` sitting under the blanked-out word. Inside
+  `.w-word` the same mask covers it.
+
+### The phone toolbar
+
+It used to drop the words and keep the emoji, which left ☰ 📚 ✎ 🔍 📖 👩‍🏫 ⚙ —
+seven icons reading as one toolbar, when 📚/✎ and 📖/👩‍🏫 are two separate
+settings. It is the other way round now: the words stay, the emoji go, and it
+fits (333px of 375 measured). ☰ keeps its icon and gained the `aria-label` it
+never had — it was the only control on the bar announcing itself as "☰".
+
+**The drawer starts below the bar.** It used to cover the bar completely, so
+once it was open the ☰ that opened it was unreachable and the only way out was
+a tap on the empty strip at the right, which nothing on screen suggested.
+
+### Hit areas, and why two sizes
+
+🔊, ✓ and 中 keep the size they are drawn at and get an invisible `::after`
+centred on them. The default is 44×30, but `.pat-en .say` stays at 24×24 — and
+that exception is the whole point. Everywhere else 🔊 is followed by inert text
+(a 詞性 chip, the 音標, the end of a line) which a hit area may safely overlap;
+inside a 句型 line it has the 中 button 8px away, and two overlapping hit areas
+are worse than one small one, because the loser stops being tappable at all.
+
+`--ink-faint` was `#8a939d`, which measures **2.9:1** — well under AA, and it
+is not decoration: it carries the example translations, the 字數 and the nav
+counts. It is `#6b737d` now, 4.8:1. Two places needed more than the token:
+`.lesson-count` sits on `--paper` and `.row-note` on the tinted panel, which
+cost them enough to land at 4.47 and 4.35, so both take `--ink-soft` instead.
+
+One thing the bar controls need: **`.bar .bar-btn`, not `.bar-btn`.** house.css
+is linked after this page's stylesheet, deliberately, and sets
+`min-height: 32px`. Matching that specificity loses on order, so these rules
+carry the extra `.bar` and win on specificity instead. house.css is shared by
+every notebook in the repo and is not this page's to edit.
+
 ### Where the content comes from
 
 ```bash
