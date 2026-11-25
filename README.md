@@ -7088,16 +7088,38 @@ Two things worth knowing before bumping them again:
   `workflow_run`; this workflow runs on push and `workflow_dispatch`, so they
   buy nothing here.
 
-**The one failure in this workflow's history was not a version problem.** On
-24 Nov a run uploaded its artifact, asked GitHub for it, and got "Found 0
-artifact(s)" with "Is githubstatus.com reporting issues...? Please re-run the
-deployment at a later time." A momentary API fault on GitHub's side; the next
-two pushes published normally with nothing changed. The generic hint in that
-error — "ensure artifacts are uploaded with actions/upload-artifact@v4 or
-later" — is misleading, because `upload-pages-artifact@v3` already used
-`upload-artifact@v4`. Worth remembering before chasing the same red herring
-twice. `deploy-pages@v5` does add backoff and jitter to that polling, which
-should make a repeat less likely.
+### "No artifacts named github-pages were found" — a race, not a version
+
+This failed on 24 Nov and twice on 25 Nov, and the version bump above did not
+fix it, because versions were never the cause. What actually happens:
+
+- The upload **succeeds**. The log says "Finished uploading artifact content to
+  blob storage!" and then "Finalizing artifact upload".
+- The artifact **really exists**. Asked afterwards, the REST API returns it:
+  `gh api repos/{owner}/{repo}/actions/runs/{run_id}/artifacts` gave
+  `total_count` 1, name `github-pages`, 29,239,762 bytes, not expired.
+- `deploy-pages` asked for it **about one second after it was created** —
+  created 06:34:37Z, queried 06:34:38Z — and was told "Found 0 artifact(s)".
+
+So the artifact is not visible to the artifacts API the instant it finalises,
+and `deploy-pages` treats that first answer as final. The site is now 29 MB,
+which is why this started biting: the bigger the upload, the longer the lag.
+The tell is in the history — the last green run before this has **two**
+`github-pages` artifacts, meaning it only passed on a second attempt.
+
+Two things not to be misled by:
+
+- The error's advice, "ensure artifacts are uploaded with
+  `actions/upload-artifact@v4` or later", is a red herring:
+  `upload-pages-artifact@v3` already used `upload-artifact@v4` internally.
+- "Is githubstatus.com reporting issues...? Please re-run the deployment at a
+  later time" reads like a GitHub outage and is not one. Re-running does often
+  work, which is exactly what makes it look transient when it is not.
+
+The fix is to wait for the artifact to become visible before calling
+`deploy-pages`, rather than to re-upload or re-run. That needs `actions: read`
+in the `permissions:` block — an explicit block denies everything it does not
+list, including the artifacts API the wait step has to ask.
 
 ## Museum Trip — moved
 
