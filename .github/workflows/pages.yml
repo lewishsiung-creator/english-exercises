@@ -13,8 +13,9 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  # actions: read is for the wait step near the bottom, which asks this run's
-  # own artifact list whether the upload has become visible yet.
+  # actions: read is for the upload check below, which asks this run's own
+  # artifact list through the REST API. An explicit permissions block denies
+  # everything it does not name, including that endpoint.
   actions: read
 
 # Let a running deploy finish rather than cancelling it mid-publish.
