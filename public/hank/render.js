@@ -944,6 +944,12 @@ function setFold(section, open) {
   // The contents list shows the parts of whichever sessions are open.
   const entry = $(`.toc li[data-s="${section.id}"]`);
   if (entry) entry.classList.toggle('open', open);
+  /* Folding changes the page's height, so the position bar has to be redrawn —
+     otherwise it reads as 70% of a page that is now half as long. Hooked here
+     rather than on the click, so the panel's "open everything", the contents
+     links and the print hook are all covered by this one line. Deferred a
+     frame, which also keeps it clear of the consts declared further down. */
+  requestAnimationFrame(markHere);
 }
 
 sessions.forEach((s) => {
@@ -1653,6 +1659,7 @@ $('#nav').addEventListener('click', (e) => {
    folded ones are a heading each, so at any moment several straddle a sensible
    trigger band and the observer reports whichever fired last. */
 const marks = [$('#top'), ...$$('.session')];
+const navToggleLabel = $('#navToggleLabel');
 const progress = $('#progress');
 
 /* Keep the marked link inside the contents list WITHOUT ever scrolling the
@@ -1702,6 +1709,11 @@ function markHere() {
   const max = document.documentElement.scrollHeight - innerHeight;
   if (progress) progress.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
   document.body.classList.toggle('scrolled', scrollY > 700);
+
+  /* The toggle is mobile-only, so it can carry the session number for
+     free: where you are, right next to the way to move. */
+  const n = here.classList.contains('session') ? $('.session-btn .n', here) : null;
+  navToggleLabel.textContent = n ? n.textContent.trim() : 'Sessions 課程';
 }
 
 markHere();

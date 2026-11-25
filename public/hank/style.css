@@ -277,6 +277,26 @@ body.zh-all .zh-chip { display: none; }
 
 main { max-width: var(--measure); padding-bottom: 6rem; }
 
+/* Hold running prose to a readable column. --measure governs the whole sheet,
+   which is right for the cards and the tables and far too wide for a
+   paragraph: measured at 1280px, the summaries ran 74 characters to the line
+   and the teacher hints 84, where the comfortable range ends around 75.
+
+   In `ch`, not `rem`, because this page sets prose at four different sizes —
+   a lead, a summary, a note and a hint, each a step smaller than the last. A
+   `rem` ceiling is a fixed number of pixels, so it yields a different
+   character count at every one of them, and the smallest type — the hint,
+   already the hardest to read — overruns by the most. `ch` is the width of
+   `0` in the element's own face and size, so a single value holds every block
+   to the same count. 60ch is the number Aaron's notebook uses, so the family
+   measures alike whatever face a page happens to wear.
+
+   Deliberately not applied to the exercise sentences or the discussion
+   questions. The cost of a long line is paid on the return sweep to the start
+   of the next one, and a single sentence read once never makes that sweep. */
+.lead, .summary, .cover-intro, .note p, .why,
+.hint, .task-how { max-width: 60ch; }
+
 .cover { padding: 40px 0 10px; }
 
 /* Set for the Chinese kicker: the tracking that flatters small uppercase Latin

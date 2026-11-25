@@ -26,13 +26,36 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      # All four actions are kept on a current major for one reason: the ones
+      # that were here ran on Node 20, which GitHub has deprecated. Every run
+      # ended with "Node.js 20 is deprecated... being forced to run on Node.js
+      # 24" — a warning today, a hard failure whenever GitHub finishes removing
+      # Node 20 from the runners. The majors below all run Node 24 natively.
+      #
+      # checkout is on v5 rather than v7 deliberately. v6 and v7 only change
+      # how fork pull requests are checked out under pull_request_target and
+      # workflow_run; this workflow runs on push to main and workflow_dispatch,
+      # so that buys nothing here, and v5 already clears the Node 20 problem.
+      - uses: actions/checkout@v5
 
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
 
-      - uses: actions/upload-pages-artifact@v3
+      # v4 stopped including hidden files in the artifact. Checked before
+      # bumping: public/ has no dotfiles at all — no .nojekyll, nothing — so
+      # nothing is silently dropped. If a dotfile is ever added under public/
+      # and it needs to be served, this is the line that will quietly omit it.
+      # (The _template directories are safe: this deploy path serves the
+      # artifact as it is and never runs Jekyll, which is what would otherwise
+      # skip an underscore-prefixed folder.)
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: public
 
+      # v5 also added backoff and jitter to the deployment polling, which is
+      # the exact shape of the one failure in this workflow's history: a run
+      # on 24 Nov asked GitHub for the artifact it had just uploaded, got
+      # "Found 0 artifact(s)" and was told to re-run later. A momentary API
+      # hiccup on GitHub's side, not a fault in this file — the next two
+      # pushes published normally without anything being changed.
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

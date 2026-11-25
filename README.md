@@ -4562,10 +4562,49 @@ five books the list never overflows, so the sticky link is always already in
 view. It would have, on the fourth session. Replaced with `keepLinkVisible`,
 which scrolls the contents box by hand and only when the link is outside it.
 
-**The other notebooks still have all of this** — `anita`, `anna`, `ken`,
-`jill`, `mia`, `hank` and `nikky` each have the `scrollIntoView` call, no prose
-ceiling and no position bar. They read in the serif, so the measure is less bad
-there, but it is the same three changes to each.
+### Rolling it across the other seven
+
+The same pass was then run over `anita`, `anna`, `ken`, `jill`, `mia`, `hank`
+and `nikky`. Reading the seven first was worth it, because the note that used
+to sit here — that all seven had all three problems — was wrong on two counts:
+
+- **Only `anita` still had the `scrollIntoView` call.** The other six already
+  carried `keepLinkVisible` and the comment explaining it; the fix had been
+  made when each was built and only `anita` predated it.
+- **`hank` already had a position bar and a back-to-top of its own**, built
+  into `court.css` as `.progress` (a `scaleX` transform rather than a width)
+  and a `.to-top` anchor shown by a `body.scrolled` class. Different mechanism,
+  same job, so it was left alone.
+
+What *was* missing from all seven was the prose ceiling. Measured at 1280px
+before the change, every one of them ran the summaries at 74 characters to the
+line and the teacher hints at 88 — the same numbers Aaron's page gave, because
+the cause is the same: `--measure` governs the whole sheet, and a sheet that
+holds a table is wider than a paragraph wants to be. They are set in the serif
+rather than Aaron's grotesque, which changes the physical width of the column
+but not the character count, which is the thing that matters.
+
+So the rule is the same rule, at the same number:
+
+```css
+.lead, .summary, .cover-intro, .note p, .why,
+.hint, .task-how { max-width: 60ch; }
+```
+
+`60ch` and not a `rem` value for the reason given above — these pages set prose
+at four sizes, and a pixel ceiling means a different character count at each of
+them. Expressed in `ch`, one number means the same thing on a serif page and a
+grotesque one, which is why the whole family can now share it. After: 61
+characters at the widest block on all seven, down from 88.
+
+`hank` took only the measure and the ☰ label. The other six took the measure,
+the bar, the button, the label and — on `anita` alone — `keepLinkVisible`.
+
+**Still outstanding: `anny` has the same overrun.** It is the house reference
+and it does have all the parts, but its ceiling is the older `36rem` one, which
+covers `.lead`, `.summary`, `.cover-intro` and `.note p` and not `.hint` or
+`.task-how`. Measured at 1280px those two run 81 and 72 characters. One line to
+fix, not done here because `anny` was not in the seven.
 
 ## Anita's Notebook — adult, one-to-one, kept over time
 
@@ -7027,6 +7066,38 @@ Pushing to `main` publishes to both, with no further steps:
 - **GitHub Pages** — via [`.github/workflows/pages.yml`](.github/workflows/pages.yml)
 - **Cloudflare Pages** — via its GitHub integration (build command: none,
   output directory: `public`)
+
+### The actions are kept on a current major
+
+Not for tidiness. The four actions in `pages.yml` were on versions that run on
+Node 20, which GitHub has deprecated, and every run ended with "Node.js 20 is
+deprecated... being forced to run on Node.js 24". A warning now, a failed
+deploy whenever Node 20 finally leaves the runners.
+
+Two things worth knowing before bumping them again:
+
+- `upload-pages-artifact@v4` **stopped including hidden files**. `public/` has
+  no dotfiles at all today, so nothing is lost — but if one is ever added and
+  needs serving, that is the line that will quietly drop it. The `_template`
+  directories are not at risk: this deploy path serves the artifact as it is
+  and never runs Jekyll, which is the thing that would otherwise skip an
+  underscore-prefixed folder. Checked, not assumed:
+  `_template/index.html` returns 200 on the live site.
+- `checkout` is deliberately on `v5`, not `v7`. The later majors only change
+  how fork pull requests are checked out under `pull_request_target` and
+  `workflow_run`; this workflow runs on push and `workflow_dispatch`, so they
+  buy nothing here.
+
+**The one failure in this workflow's history was not a version problem.** On
+24 Nov a run uploaded its artifact, asked GitHub for it, and got "Found 0
+artifact(s)" with "Is githubstatus.com reporting issues...? Please re-run the
+deployment at a later time." A momentary API fault on GitHub's side; the next
+two pushes published normally with nothing changed. The generic hint in that
+error — "ensure artifacts are uploaded with actions/upload-artifact@v4 or
+later" — is misleading, because `upload-pages-artifact@v3` already used
+`upload-artifact@v4`. Worth remembering before chasing the same red herring
+twice. `deploy-pages@v5` does add backoff and jitter to that polling, which
+should make a repeat less likely.
 
 ## Museum Trip — moved
 

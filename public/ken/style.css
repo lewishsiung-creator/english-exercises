@@ -183,6 +183,38 @@ body.zh-all .zh-chip { display: none; }
 
 @media (min-width: 900px) { #navToggle { display: none; } }
 
+/* Reading position, drawn along the bar's own bottom edge so it takes no
+   height of its own. The same part the other notebooks carry. */
+.bar-progress {
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  overflow: hidden;
+}
+.bar-progress i { display: block; height: 100%; width: 0; background: var(--gold); }
+
+/* Several screens with a session open, and on a phone the contents are folded
+   behind the toggle. Appears once there is a way back worth having. */
+.totop {
+  position: fixed;
+  right: clamp(14px, 3vw, 26px);
+  bottom: clamp(14px, 3vw, 26px);
+  z-index: 28;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  box-shadow: 0 4px 14px rgba(28, 28, 31, .10);
+  color: var(--ink-soft);
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+}
+.totop[hidden] { display: none; }
+.totop:hover { color: var(--ink); border-color: var(--ink-faint); }
+
+@media print { .bar-progress, .totop { display: none !important; } }
+
 /* ---------------- shell + contents ---------------- */
 
 .shell {
@@ -276,6 +308,26 @@ body.zh-all .zh-chip { display: none; }
 /* ---------------- cover ---------------- */
 
 main { max-width: var(--measure); padding-bottom: 6rem; }
+
+/* Hold running prose to a readable column. --measure governs the whole sheet,
+   which is right for the cards and the tables and far too wide for a
+   paragraph: measured at 1280px, the summaries ran 74 characters to the line
+   and the teacher hints 88, where the comfortable range ends around 75.
+
+   In `ch`, not `rem`, because this page sets prose at four different sizes — a
+   lead at 18.6px, a summary at 18, a note at 15.4, a hint at 13.4. A `rem`
+   ceiling is a fixed number of pixels, so it yields a different character
+   count at every one of them, and the smallest type — the hint, already the
+   hardest to read — overruns by the most. `ch` is the width of `0` in the
+   element's own face and size, so a single value holds every block to the same
+   count. 60ch is the number Aaron's notebook uses, so the family measures
+   alike whatever face a page happens to wear.
+
+   Deliberately not applied to the exercise sentences or the discussion
+   questions. The cost of a long line is paid on the return sweep to the start
+   of the next one, and a single sentence read once never makes that sweep. */
+.lead, .summary, .cover-intro, .note p, .why,
+.hint, .task-how { max-width: 60ch; }
 
 .cover { padding: 40px 0 10px; }
 

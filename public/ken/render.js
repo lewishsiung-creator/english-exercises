@@ -598,6 +598,12 @@ if (wanted && homeOf.has(wanted)) {
 function setFold(section, open) {
   section.classList.toggle('folded', !open);
   $('.session-btn', section).setAttribute('aria-expanded', String(open));
+  /* Folding changes the page's height, so the position bar has to be redrawn —
+     otherwise it reads as 70% of a page that is now half as long. Hooked here
+     rather than on the click, so the panel's "open everything", the contents
+     links and the print hook are all covered by this one line. Deferred a
+     frame, which also keeps it clear of the consts declared further down. */
+  requestAnimationFrame(markHere);
 }
 
 /* Two ways to open a session, and they mean different things.
@@ -979,6 +985,10 @@ function keepLinkVisible(a) {
   else if (link.bottom > view.bottom) box.scrollTop += link.bottom - view.bottom;
 }
 
+const progress = $('#progress');
+const toTop = $('#toTop');
+const navToggleLabel = $('#navToggleLabel');
+
 function markHere() {
   const line = 90;
   let here = marks[0];
@@ -986,10 +996,30 @@ function markHere() {
   links.forEach((a) => a.classList.remove('here'));
   const a = links.get(here.id);
   if (a) { a.classList.add('here'); keepLinkVisible(a); }
+
+  /* How far down the page. The contents list answers this on a wide screen,
+     but it only knows about whole sessions, and one open session is several
+     screens of reading. */
+  const max = document.documentElement.scrollHeight - innerHeight;
+  progress.style.width = `${max > 0 ? Math.min(100, (scrollY / max) * 100) : 0}%`;
+
+  /* The toggle is mobile-only, so it can carry the session number for free:
+     where you are, right next to the way to move. */
+  const n = here.classList && here.classList.contains('session')
+    ? $('.session-btn .n', here)
+    : null;
+  navToggleLabel.textContent = n ? n.textContent.trim() : 'Sessions 課程';
+
+  toTop.hidden = scrollY < innerHeight * 1.5;
 }
 
 markHere();
 addEventListener('scroll', markHere, { passive: true });
+/* The position bar is a function of the page's height, which changes with the
+   window as well as with the folds. */
+addEventListener('resize', markHere, { passive: true });
+
+toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 
 const navToggle = $('#navToggle');
 navToggle.addEventListener('click', () => {
