@@ -13,6 +13,9 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  # actions: read is for the wait step near the bottom, which asks this run's
+  # own artifact list whether the upload has become visible yet.
+  actions: read
 
 # Let a running deploy finish rather than cancelling it mid-publish.
 concurrency:
@@ -51,11 +54,41 @@ jobs:
         with:
           path: public
 
-      # v5 also added backoff and jitter to the deployment polling, which is
-      # the exact shape of the one failure in this workflow's history: a run
-      # on 24 Nov asked GitHub for the artifact it had just uploaded, got
-      # "Found 0 artifact(s)" and was told to re-run later. A momentary API
-      # hiccup on GitHub's side, not a fault in this file — the next two
-      # pushes published normally without anything being changed.
+      # Why this step exists, since it looks like superstition.
+      #
+      # deploy-pages asks the REST artifacts API for the artifact the step
+      # above just uploaded, and on this repo it has three times been answered
+      # "Found 0 artifact(s)" — 24 Nov, and twice on 25 Nov. It treats that
+      # answer as final and fails the run; its backoff covers the polling it
+      # does *after* a deployment is created, not this first lookup.
+      #
+      # It is a visibility delay, not a failed upload. Measured on the 25 Nov
+      # re-run: the artifact was created at 06:34:37 and really existed (29 MB,
+      # unexpired, fetchable through the same REST endpoint a minute later),
+      # and deploy-pages asked at 06:34:37.9 — under a second after — and was
+      # told there were none. So the fix is not to re-upload or to re-run; it
+      # is to not ask until the answer can be right.
+      #
+      # Written as a wait rather than a fixed sleep so that it costs a couple
+      # of seconds on a normal run and still covers a slow one, and so that a
+      # genuine upload failure still fails the run instead of being papered
+      # over by a sleep that was long enough.
+      - name: Wait until the artifact is visible to the API
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for i in $(seq 1 40); do
+            n=$(gh api \
+              "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts" \
+              --jq '[.artifacts[] | select(.name == "github-pages")] | length')
+            if [ "$n" -ge 1 ]; then
+              echo "github-pages artifact visible after $i check(s)"
+              exit 0
+            fi
+            sleep 3
+          done
+          echo "::error::the github-pages artifact never became visible to the API"
+          exit 1
+
       - id: deployment
         uses: actions/deploy-pages@v5
