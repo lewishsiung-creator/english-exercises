@@ -703,6 +703,24 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
      its sibling, so a reader testing themselves on 單字 saw [ˈfæməlɪ] sitting
      under the blanked-out word — which is the answer. Inside .w-word it is
      covered by the same mask. */
+/* 音標, 🔊 and 詞性 wrap as one piece or not at all.
+
+   八年級 is the reason. Its entries are verb triples — drink (drank, drunk) —
+   and with the 音標 on the same line, 30 of the 289 no longer fit. That by
+   itself is fine: they were two lines before too, because the 音標 had a line
+   of its own. What was not fine is where they broke. Six of them left the word
+   and its 音標 on the first line and dropped a lone 🔊 and a floating 詞性 chip
+   onto the second, which reads as a rendering fault rather than a wrap.
+
+   Held together, a long entry breaks in the one place that makes sense:
+
+     drink (drank, drunk)        come (came, come) [kʌm]
+     [drɪŋk] 🔊 v.                🔊 v.                     ← what it was doing
+
+   七年級 never showed this: its entries are single words, and only 11 of 400
+   wrap at all. */
+.w-tail { white-space: nowrap; }
+
 .w-kk {
   display: inline;
   margin-left: 7px;

@@ -260,9 +260,9 @@ function wordRow(w, l, i, grade) {
       <span class="w-n">${i + 1}</span>
 
       <div class="w-main">
-        <div class="w-word">${text(w.w)}${w.kk ? `<span
+        <div class="w-word">${text(w.w)}<span class="w-tail">${w.kk ? `<span
           class="w-kk">${text(w.kk)}</span>` : ''}${sayBtn(w.w, `朗讀 ${w.w}`)}<span
-          class="w-pos">${text(w.pos)}</span></div>
+          class="w-pos">${text(w.pos)}</span></span></div>
       </div>
 
       <div class="w-zh">${text(w.zh)}</div>

@@ -2091,11 +2091,20 @@ What actually did it:
   opening it. The listener compares against the state it already holds and only
   writes when they differ; without that, every re-render overwrote the reader's
   choice.
-- **The 音標 moved onto the word's own line.** It saved a line in all 400 rows
-  (only 11 words are long enough to still wrap), but the reason to do it was a
-  bug: 遮住英文 blanks `.w-word`, and the 音標 was its *sibling*, so a student
+- **The 音標 moved onto the word's own line.** It saves a line in 394 of
+  七年級's 400 rows and 266 of 八年級's 289, but the reason to do it was a bug:
+  遮住英文 blanks `.w-word`, and the 音標 was its *sibling*, so a student
   testing themselves saw `[ˈfæməlɪ]` sitting under the blanked-out word. Inside
   `.w-word` the same mask covers it.
+
+  八年級 is the half that tests this properly, and it is worth checking any
+  change here against it rather than against 七年級. Its entries are verb
+  triples — `drink (drank, drunk)` — where 七年級 has single words, so it wraps
+  where 七年級 does not. 音標, 🔊 and 詞性 are held together in one `.w-tail`
+  for exactly that reason: without it a long entry kept the word and its 音標
+  on the first line and dropped a lone 🔊 and a floating 詞性 chip onto the
+  second, which reads as a rendering fault. Held together it breaks in the one
+  place that makes sense, and it tightened 七年級 too — 11 wrapped rows to 6.
 
 ### The phone toolbar
 
