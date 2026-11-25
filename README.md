@@ -7134,6 +7134,27 @@ leaves nothing behind. The job's `environment.url` reads
 `steps.deployment.outputs.page_url || steps.retry.outputs.page_url`, since
 either attempt may be the one that published.
 
+Both halves of that were measured, not inferred, on 25 Nov. A throwaway branch
+ran the real workflow with the first `deploy-pages` pointed at an artifact name
+that does not exist, which throws at the same `getArtifactMetadata` line the
+race throws at, and with a real `deploy-pages` as the second attempt. The first
+attempt failed, `continue-on-error` absorbed it, the gate fired, and the second
+attempt reported "Found 1 artifact(s)" and published. The same run counted the
+repo's `github-pages` deployments either side of the failure — 404 before, 404
+after — which is the "leaves nothing behind" claim, held up. Note that the gate
+has to read `steps.deployment.outcome`: `continue-on-error` rewrites a failed
+step's *conclusion* to `success`, and only `outcome` still says `failure`.
+
+Running the real workflow needs the branch added to the `github-pages`
+environment's deployment branch policy, which is `main` only. It was added for
+that one run and removed again.
+
+Then the race obliged by happening on the very next run of `main` (45575349737):
+the upload check saw the artifact on its first ask at 08:20:17.40, the first
+`deploy-pages` was told "Found 0 artifact(s)" half a second later at 08:20:17.90,
+and the retry found it and published at 08:20:38.73. That is the failure this
+whole section is about, caught and carried.
+
 The REST wait is kept, demoted to a **check**: it proves the upload itself
 happened, so a genuinely broken upload fails with a clear message instead of
 being blamed on the race. It needs `actions: read` in the `permissions:`
