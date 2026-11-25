@@ -32,32 +32,32 @@
 <header class="bar">
   <button class="bar-btn" id="navToggle" aria-expanded="false" aria-controls="nav"
           title="課次" aria-label="課次">
-    <span class="ico" aria-hidden="true">☰</span><span class="lbl" id="navToggleLabel">課次</span>
+    <span class="ico"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3.2 5.6h13.6M3.2 10h13.6M3.2 14.4h13.6"/></svg></span><span class="lbl" id="navToggleLabel">課次</span>
   </button>
 
   <!-- The two halves. One page, so switching does not reload and does not lose
        the grade, the mode, or a drill in progress on the other side. -->
   <div class="section-switch" role="group" aria-label="單字或文法">
     <button class="section-btn is-on" id="secWords" aria-pressed="true" title="單字" aria-label="單字"><span
-      class="ico" aria-hidden="true">📚</span><span class="lbl">單字</span></button>
+      class="ico"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.2 5.4h9M7.2 10h9M7.2 14.6h6"/><circle cx="4" cy="5.4" r=".95"/><circle cx="4" cy="10" r=".95"/><circle cx="4" cy="14.6" r=".95"/></svg></span><span class="lbl">單字</span></button>
     <button class="section-btn" id="secGrammar" aria-pressed="false" title="文法" aria-label="文法"><span
-      class="ico" aria-hidden="true">✎</span><span class="lbl">文法</span></button>
+      class="ico"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M12.6 4.4 15.6 7.4"/><path d="M14.1 2.9 17.1 5.9 7.3 15.7H4.3v-3z"/></svg></span><span class="lbl">文法</span></button>
   </div>
 
   <p class="bar-title" id="barTitle">國中英語精熟 <span>Grade 7–9</span></p>
 
   <button class="bar-btn bar-btn-quiet" id="searchToggle" aria-expanded="false"
-          aria-controls="search" title="搜尋" aria-label="搜尋">🔍</button>
+          aria-controls="search" title="搜尋" aria-label="搜尋"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="8.7" cy="8.7" r="4.8"/><path d="M12.3 12.3 17 17"/></svg></button>
 
   <div class="mode" role="group" aria-label="使用模式">
     <button class="mode-btn is-on" id="modeStudy" aria-pressed="true" title="自學模式" aria-label="自學模式"><span
-      class="ico" aria-hidden="true">📖</span><span class="lbl">自學</span></button>
+      class="ico"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 6.3S8.4 4.9 5.5 4.9H3.2v9.8h2.3c2.9 0 4.5 1.4 4.5 1.4s1.6-1.4 4.5-1.4h2.3V4.9h-2.3C11.6 4.9 10 6.3 10 6.3z"/><path d="M10 6.3v9.8"/></svg></span><span class="lbl">自學</span></button>
     <button class="mode-btn" id="modeClass" aria-pressed="false" title="教學模式" aria-label="教學模式"><span
-      class="ico" aria-hidden="true">👩‍🏫</span><span class="lbl">教學</span></button>
+      class="ico"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><rect x="3.2" y="3.2" width="13.6" height="9.4" rx="1.4"/><path d="M6.5 6.6h7M6.5 9.4h4.3"/><path d="M10 12.6v2.2M7.2 17l2.8-2.2 2.8 2.2"/></svg></span><span class="lbl">教學</span></button>
   </div>
 
   <button class="bar-btn bar-btn-quiet" id="panelToggle" aria-expanded="false"
-          aria-controls="panel" title="設定" aria-label="設定">⚙</button>
+          aria-controls="panel" title="設定" aria-label="設定"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3.4 6.4h3.2M10.6 6.4h6M3.4 13.6h6.2M13.6 13.6h3"/><circle cx="8.6" cy="6.4" r="2"/><circle cx="11.6" cy="13.6" r="2"/></svg></button>
 </header>
 
 <div class="search" id="search" hidden>
@@ -110,7 +110,7 @@
   <div class="row">
     <label for="voicePick">朗讀語音</label>
     <select id="voicePick"></select>
-    <p class="row-note">🔊 用的聲音。選一個會先唸一句給你聽。</p>
+    <p class="row-note">朗讀用的聲音。選一個會先唸一句給你聽。</p>
   </div>
 
   <div class="row">

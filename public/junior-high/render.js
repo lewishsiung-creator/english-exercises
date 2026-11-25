@@ -51,9 +51,77 @@ function el(html) {
   return t.content.firstElementChild;
 }
 
+/* ------------------------------------------------------------------ 圖示
+
+   One stroke-built set on a 20×20 box, inheriting currentColor, replacing the
+   emoji the page used to use.
+
+   The emoji were the loudest thing on a deliberately quiet palette — 🔊 alone
+   appears about 56 times on a screen of 單字 — and they were not even a set:
+   📚 is a heavy multi-colour object next to ✎, a hairline glyph, and those two
+   were the halves of a single switch. 👩‍🏫 is worse than inconsistent, it is a
+   ZWJ sequence, so on a system without that ligature it falls apart into two
+   separate emoji; most of the students reading this are on Android.
+
+   Drawn in one weight so they read as one family, and in currentColor so they
+   follow the section skin — teal on 單字, violet on 文法 — without a second
+   copy of anything. */
+
+const ICONS = {
+  speaker: '<path d="M4.5 7.8h2.3L10.6 4.8v10.4L6.8 12.2H4.5z"/>'
+         + '<path d="M13.4 7.9a3.3 3.3 0 0 1 0 4.2"/>',
+  list: '<path d="M7.2 5.4h9M7.2 10h9M7.2 14.6h6"/>'
+      + '<circle cx="4" cy="5.4" r=".95"/><circle cx="4" cy="10" r=".95"/>'
+      + '<circle cx="4" cy="14.6" r=".95"/>',
+  pen: '<path d="M12.6 4.4 15.6 7.4"/>'
+     + '<path d="M14.1 2.9 17.1 5.9 7.3 15.7H4.3v-3z"/>',
+  book: '<path d="M10 6.3S8.4 4.9 5.5 4.9H3.2v9.8h2.3c2.9 0 4.5 1.4 4.5 1.4'
+      + 's1.6-1.4 4.5-1.4h2.3V4.9h-2.3C11.6 4.9 10 6.3 10 6.3z"/>'
+      + '<path d="M10 6.3v9.8"/>',
+  board: '<rect x="3.2" y="3.2" width="13.6" height="9.4" rx="1.4"/>'
+       + '<path d="M6.5 6.6h7M6.5 9.4h4.3"/>'
+       + '<path d="M10 12.6v2.2M7.2 17l2.8-2.2 2.8 2.2"/>',
+  gear: '<circle cx="10" cy="10" r="2.5"/>'
+      + '<path d="M10 3.1v1.8M10 15.1v1.8M16.9 10h-1.8M4.9 10H3.1'
+      + 'M14.9 5.1l-1.3 1.3M6.4 13.6l-1.3 1.3M14.9 14.9l-1.3-1.3M6.4 6.4 5.1 5.1"/>',
+  search: '<circle cx="8.7" cy="8.7" r="4.8"/><path d="M12.3 12.3 17 17"/>',
+  menu: '<path d="M3.2 5.6h13.6M3.2 10h13.6M3.2 14.4h13.6"/>',
+  quiz: '<rect x="4.2" y="2.9" width="11.6" height="14.2" rx="1.6"/>'
+      + '<path d="M7.2 6.8h5.6M7.2 9.8h2.4"/>'
+      + '<path d="m9.9 12.6 1.5 1.5 3.3-3.5"/>',
+};
+
+function icon(name) {
+  return `<svg class="ic" viewBox="0 0 20 20" aria-hidden="true"
+    focusable="false">${ICONS[name]}</svg>`;
+}
+
 function sayBtn(sentence, label = '朗讀') {
   return `<button class="say" data-say="${text(sentence)}" title="${label}"
-    aria-label="${label}">🔊</button>`;
+    aria-label="${label}">${icon('speaker')}</button>`;
+}
+
+/* A sentence with 🔊 after it, with the icon glued to the final word.
+
+   Without this the icon is its own break opportunity, so a sentence that wraps
+   can leave it stranded on a line of its own:
+
+     Their daughter is only five.
+     🔊
+
+   Measured at a 207px example column: 78 of 七年級's 400 examples did that. It
+   is the same fault that was leaving a lone 🔊 under 八年級's verb triples,
+   one level up — that fix glued the word line together, and this is the
+   sentence line.
+
+   Splitting the escaped string is safe: text() produces &amp; and friends,
+   none of which contain a space, so the last space in the escaped string is
+   still a real word boundary. */
+function withSay(sentence, label = '朗讀') {
+  const s = text(sentence);
+  const cut = s.lastIndexOf(' ');
+  const tail = (body) => `<span class="nb">${body}${sayBtn(sentence, label)}</span>`;
+  return cut === -1 ? tail(s) : s.slice(0, cut + 1) + tail(s.slice(cut + 1));
 }
 
 // 打亂一份拷貝，不動原陣列——原陣列是資料檔的內容。
@@ -129,10 +197,10 @@ const SECTIONS = {
     buildDoc: buildWordsDoc,
     search: searchWords,
     how: [
-      '右上角 ⚙ 裡可以把中譯或英文遮起來自己測，遮住的地方點一下就露出來。',
+      '右上角的「設定」裡可以把中譯或英文遮起來自己測，遮住的地方點一下就露出來。',
       '背熟的字按右邊的 ✓，之後可以只看還沒打勾的。',
       '每一課最後有一個小考。',
-      '課次牌旁邊的「✎ 文法」會跳到文法那半的同一個主題。',
+      '課次牌旁邊的「文法」會跳到文法那半的同一個主題。',
     ],
   },
 
@@ -156,8 +224,8 @@ const SECTIONS = {
     how: [
       '每個單元先看「一句話重點」，再看核心規則和句型，',
       '最後把常見錯誤讀過一遍——那一區是這份講義真正的重點。',
-      '右上角 ⚙ 裡可以把句型的中譯或正確寫法遮起來自己測。',
-      '每個單元最後有一個練習，標題旁的 📚 課次牌可以跳到單字那半的同一課。',
+      '右上角的「設定」裡可以把句型的中譯或正確寫法遮起來自己測。',
+      '每個單元最後有一個練習，標題旁的課次牌可以跳到單字那半的同一課。',
     ],
   },
 };
@@ -268,7 +336,7 @@ function wordRow(w, l, i, grade) {
       <div class="w-zh">${text(w.zh)}</div>
 
       <div class="w-ex">
-        <div class="w-en">${text(w.en)}${sayBtn(w.en, '朗讀例句')}</div>
+        <div class="w-en">${withSay(w.en, '朗讀例句')}</div>
         <div class="w-zhex">${text(w.zhEx)}</div>
       </div>
 
@@ -298,7 +366,9 @@ function buildWordsDoc(grade) {
           <h2>${text(l.title)}</h2>
           <span class="lesson-count">${l.words.length} 字</span>
           ${unit ? `<a class="gram-link" href="#g/${grade.id}/${unit.id}"
-            title="這一課的文法：${text(unit.title)}">✎ 文法</a>` : ''}
+            title="這一課的文法：${text(unit.title)}"
+            aria-label="這一課的文法：${text(unit.title)}">${icon('pen')}<span
+            class="lbl"> 文法</span></a>` : ''}
         </div>
 
         <div class="fold">
@@ -306,7 +376,7 @@ function buildWordsDoc(grade) {
 
           <ul class="words">${l.words.map((w, i) => wordRow(w, l, i, grade)).join('')}</ul>
 
-          <button class="drill-open" data-quiz="${l.id}">📝 小考這一課 —
+          <button class="drill-open" data-quiz="${l.id}">${icon('quiz')} 小考這一課 —
             ${text(l.title)}</button>
           <div class="drill-slot" data-slot="w-${l.id}"></div>
         </div>
@@ -343,7 +413,7 @@ function buildGrammarDoc(grade) {
         <h2>${text(u.title)}</h2>
         <span class="unit-refs">${u.lessons.map((c) =>
           `<a class="ref" href="#w/${grade.id}/${lessonAnchor(c)}"
-              title="到單字那半看 ${text(c)}">${text(c)}</a>`).join('')}</span>
+              title="到單字那半看 ${text(c)}">${icon('list')}${text(c)}</a>`).join('')}</span>
         <button class="mark" type="button" aria-pressed="${known}"
                 aria-label="標記為會了" title="會了">✓</button>
       </div>
@@ -358,7 +428,7 @@ function buildGrammarDoc(grade) {
       <ul class="pats">${u.patterns.map((p) => `
         <li class="pat">
           <span class="pat-label">${text(p.label)}</span>
-          <span class="pat-en">${text(p.en)}${sayBtn(p.en)}<button
+          <span class="pat-en">${withSay(p.en)}<button
             class="reveal" type="button">中</button></span>
           <span class="pat-zh">${text(p.zh)}</span>
         </li>`).join('')}</ul>
@@ -373,12 +443,12 @@ function buildGrammarDoc(grade) {
           </div>
           <div class="mis-line mis-good">
             <span class="mis-mark">✓</span>
-            <span class="mis-text">${text(m.good)}</span>${sayBtn(m.good)}
+            <span class="mis-text">${withSay(m.good)}</span>
           </div>
           <p class="mis-why">${withEn(m.why)}</p>
         </li>`).join('')}</ul>
 
-      <button class="drill-open" data-drill="${u.id}">📝 練習這個單元 —
+      <button class="drill-open" data-drill="${u.id}">${icon('quiz')} 練習這個單元 —
         ${text(u.title)}</button>
       <div class="drill-slot" data-slot="g-${u.id}"></div>
       </div>
@@ -684,7 +754,7 @@ function runQuestions(questions, slot, again) {
     body.innerHTML = `
       <p class="q-ask">${text(q.ask)}</p>
       ${q.say
-        ? '<button class="q-hear" type="button">🔊 再聽一次</button>'
+        ? `<button class="q-hear" type="button">${icon('speaker')} 再聽一次</button>`
         : `<p class="q-prompt ${q.promptClass}">${text(q.prompt)}</p>`}
       <ul class="q-opts">${q.opts.map((o) => `
         <li><button class="opt ${q.optClass}" type="button"

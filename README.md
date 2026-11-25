@@ -2133,6 +2133,63 @@ counts. It is `#6b737d` now, 4.8:1. Two places needed more than the token:
 `.lesson-count` sits on `--paper` and `.row-note` on the tinted panel, which
 cost them enough to land at 4.47 and 4.35, so both take `--ink-soft` instead.
 
+### The design pass
+
+A separate look at the page as a piece of design rather than as a set of
+features. The colour system was left alone — an ink ramp plus brand, gold,
+good and bad, each with a soft and a line variant, is a real system and it
+works. Four things were not.
+
+**Emoji were the icon language, and they are not a set.** 📚 is a heavy
+multi-colour object and ✎ is a hairline glyph, and those two were the halves of
+a single switch; 📖 and 👩‍🏫 were the other pair. 🔊 appears about 56 times on a
+screen of 單字, which made the loudest mark on the page also the most repeated
+one, on a palette chosen to be quiet. And 👩‍🏫 is a ZWJ sequence, so on a system
+without that ligature it falls apart into two emoji — most of these readers are
+on Android phones. They are now one stroke-built set on a 20×20 box inheriting
+`currentColor`, which also means they follow the 單字/文法 skin for free.
+
+The settings icon went through two drafts. A literal gear — a circle with eight
+radial ticks — reads as a sunburst at 16px, because there is no room for teeth.
+Sliders read as settings at any size.
+
+**14 type sizes in one view, from 28 rem multipliers.** `.72rem` and `.74rem`
+are 12.24 and 12.58: nobody sees a third of a pixel as hierarchy, they see a
+page that was never resolved. It is six steps now — 11 / 13 / 15 / 17 / 20 / 24
+— with weight and colour carrying the rest. Mapping was nearest-step except
+where role beat arithmetic: the 中譯 and the 例句 round to 17 and were given 15,
+because they are supporting text under a 20px headword, and 17 would have
+flattened the row and made it taller.
+
+Worth knowing if you touch these: **`rem` is relative to the root, which is the
+browser's 16px default, not to the 17px on `body`.** The old multipliers were
+against 16 as well — that is why `.74rem` measured 11.84. The tokens are
+sixteenths for that reason, and they stay in `rem` rather than becoming `px` so
+a reader who has raised their browser's default text size still gets a bigger
+page.
+
+**Line-height was inherited at 1.65 onto things that are one line long.** An
+11px chip in a 19px line box is taller than its own text, which is why the
+lesson head never quite lined up. Labels, numbers and chips are 1.25 now.
+
+**Sixteen border radii**, including `980px` and `999px` — two spellings of
+"fully round" that arrived from different files. This page's own are four:
+chip, control, card, pill. The 980 stays because it is house.css's and the two
+are indistinguishable on screen; an override would change nothing but the
+source.
+
+Three smaller things in the same pass. The measure was about 52 Chinese
+characters a line at 776px, where comfortable is 35–45, so prose blocks cap at
+`--measure`; tables, word rows and headings still use the full column. The two
+zebra stripes measured 1.01 contrast — invisible, and both already had a rule
+between rows, so they are gone rather than strengthened. And `--ink-soft` moved
+a step darker: raising `--ink-faint` to #6b737d for AA had left the two greys
+at 6.1 and 4.8, which is not a ramp.
+
+Three places still need more than `--ink-faint` can give, because they sit on
+`--paper` or on the tinted panel rather than on the card: `.lesson-count`,
+`.row-note` and `.nav-link i` all take `--ink-soft`.
+
 One thing the bar controls need: **`.bar .bar-btn`, not `.bar-btn`.** house.css
 is linked after this page's stylesheet, deliberately, and sets
 `min-height: 32px`. Matching that specificity loses on order, so these rules

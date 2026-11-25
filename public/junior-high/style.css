@@ -27,7 +27,10 @@
   --paper: #f6f7f4;
   --card: #ffffff;
   --ink: #1b2530;
-  --ink-soft: #58636f;
+  /* Pushed a step darker when --ink-faint had to be raised to #6b737d for AA:
+     6.1 against 4.8 left the two greys almost on top of each other, and the
+     ramp is meant to have three rungs, not two. Now 6.8 against 4.8. */
+  --ink-soft: #515c68;
   /* Was #8a939d, which measured 2.9:1 on the card — under the 4.5 AA needs for
      body text, and this token is not decoration: it carries the example
      translations, the word counts and the nav numbers. #6b737d measures 4.8
@@ -59,6 +62,47 @@
 
   --bar-h: 54px;
   --nav-w: 250px;
+
+  /* One type scale, six steps, against the 17px body: roughly
+     11 / 13 / 15 / 17 / 20 / 24. In rem so a phone's 16px body shrinks the
+     whole thing together.
+
+     It replaced 28 separate rem multipliers — .68 .7 .72 .74 .76 .78 .8 .82
+     .84 .85 .86 .88 .9 .92 .95 .96 .98 1 1.02 1.05 1.06 1.1 1.12 1.2 1.22
+     1.24 1.35 — which in one screen produced 14 different sizes, several of
+     them a third of a pixel apart. A reader cannot see a third of a pixel, so
+     those were not hierarchy; they just made the page look unresolved.
+     Hierarchy is carried by these six steps plus weight and colour.
+
+     The fractions are sixteenths, and that is not arbitrary: rem is relative
+     to the ROOT element, which is the browser's 16px default — not to the
+     17px set on body. (The old multipliers were against 16 too, which is why
+     .74rem measured 11.84 and not 12.58.) They stay in rem rather than
+     becoming plain px so that a reader who has raised their browser's default
+     text size still gets a bigger page. */
+  --t-xs: .6875rem;     /* 11 */
+  --t-sm: .8125rem;     /* 13 */
+  --t-md: .9375rem;     /* 15 */
+  --t-base: 1.0625rem;  /* 17 */
+  --t-lg: 1.25rem;      /* 20 */
+  --t-xl: 1.5rem;       /* 24 */
+
+  /* Four radii. There were sixteen, including 999px and a 980px that came from
+     a different file and meant the same thing, and 6/7/8/9 sitting side by
+     side on controls that are next to each other on the bar. Nobody reads a
+     1px difference in a corner as a decision. */
+  --r-chip: 4px;
+  --r-ctl: 8px;
+  --r-card: 10px;
+  --r-pill: 999px;
+
+  /* A line of running prose. Measured: the content column is 776px wide on a
+     laptop, and 核心規則 is set at 15px, so a line was holding about 52 Chinese
+     characters. Comfortable for CJK is 35–45; past that the eye loses the
+     return sweep and re-reads the line it just left. 40em of a 15px character
+     is 600px, which is what this is. It caps the prose only — tables, word
+     rows and headings still use the full column. */
+  --measure: 40em;
 
   /* The grade strip sits under the bar, and the lesson heads stick under both.
      Measured, not guessed: 7px padding each side of a 33px tab plus a hairline.
@@ -143,7 +187,7 @@ body {
   flex: 1;
   min-width: 0;
   margin: 0;
-  font-size: 1rem;
+  font-size: var(--t-base);
   font-weight: 700;
   letter-spacing: .01em;
   white-space: nowrap;
@@ -153,7 +197,7 @@ body {
 .bar-title span {
   margin-left: 8px;
   font-family: var(--font-ui);
-  font-size: .74rem;
+  font-size: var(--t-sm);
   font-weight: 600;
   color: var(--ink-faint);
 }
@@ -163,16 +207,16 @@ body {
   padding: 7px 11px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--r-ctl);
   color: var(--ink);
   font-family: var(--font-zh);
-  font-size: .82rem;
+  font-size: var(--t-sm);
   font-weight: 600;
   line-height: 1.2;
   cursor: pointer;
 }
 .bar-btn:hover { border-color: var(--brand-line); }
-.bar-btn-quiet { padding: 7px 9px; font-size: 1rem; }
+.bar-btn-quiet { padding: 7px 9px; font-size: var(--t-base); }
 
 /* Measured before this: 39x32 for the icon buttons and 31x29 for the switches,
    against a 44x44 phone target on a 54px bar that has the room.
@@ -182,6 +226,9 @@ body {
    .bar-btn { min-height: 32px }. Matching that specificity would lose on order,
    so these carry the extra .bar and win on specificity instead. The house file
    is shared by every notebook in the repo and is not this page's to edit. */
+/* house.css sizes the title, and it was the one thing left off the scale. */
+.bar .bar-title { font-size: var(--t-md); }
+
 .bar .bar-btn { min-height: 42px; }
 .bar .bar-btn-quiet { min-width: 42px; }
 .bar .mode-btn,
@@ -196,16 +243,16 @@ body {
   padding: 2px;
   background: #eceee9;
   border: 1px solid var(--line);
-  border-radius: 9px;
+  border-radius: var(--r-ctl);
 }
 .mode-btn {
   padding: 5px 10px;
   background: none;
   border: 0;
-  border-radius: 7px;
+  border-radius: var(--r-ctl);
   color: var(--ink-soft);
   font-family: var(--font-zh);
-  font-size: .8rem;
+  font-size: var(--t-sm);
   font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
@@ -235,10 +282,10 @@ body {
   padding: 7px 15px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   color: var(--ink-soft);
   font-family: var(--font-zh);
-  font-size: .86rem;
+  font-size: var(--t-md);
   font-weight: 600;
   cursor: pointer;
 }
@@ -247,7 +294,7 @@ body {
   margin-left: 6px;
   font-family: var(--font-ui);
   font-style: normal;
-  font-size: .74rem;
+  font-size: var(--t-sm);
   font-weight: 600;
   color: var(--ink-faint);
 }
@@ -276,16 +323,16 @@ body {
   padding: 9px 13px;
   background: var(--paper);
   border: 1px solid var(--rule);
-  border-radius: 9px;
+  border-radius: var(--r-ctl);
   color: var(--ink);
   font-family: var(--font-zh);
-  font-size: 1rem;
+  font-size: var(--t-base);
 }
 
 .search-count {
   margin: 8px 0 0;
   font-family: var(--font-ui);
-  font-size: .76rem;
+  font-size: var(--t-sm);
   color: var(--ink-faint);
 }
 
@@ -304,18 +351,18 @@ body {
   border-top: 1px solid var(--line);
   color: inherit;
   font-family: var(--font-zh);
-  font-size: .9rem;
+  font-size: var(--t-md);
   text-align: left;
   cursor: pointer;
 }
 .hit:hover { background: var(--brand-soft); }
-.hit b { font-family: var(--font-en); font-size: 1.05rem; }
+.hit b { font-family: var(--font-en); font-size: var(--t-base); }
 .hit span { margin-left: 8px; color: var(--ink-soft); }
 .hit i {
   float: right;
   font-family: var(--font-ui);
   font-style: normal;
-  font-size: .72rem;
+  font-size: var(--t-sm);
   color: var(--ink-faint);
 }
 
@@ -343,7 +390,7 @@ body {
 .nav-book {
   margin: 16px 0 6px;
   font-family: var(--font-ui);
-  font-size: .72rem;
+  font-size: var(--t-sm);
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -359,10 +406,10 @@ body {
   padding: 7px 10px;
   background: none;
   border: 0;
-  border-radius: 8px;
+  border-radius: var(--r-ctl);
   color: var(--ink-soft);
   font-family: var(--font-zh);
-  font-size: .86rem;
+  font-size: var(--t-md);
   text-align: left;
   text-decoration: none;
   cursor: pointer;
@@ -374,7 +421,7 @@ body {
   width: 3.1em;
   font-family: var(--font-ui);
   font-style: normal;
-  font-size: .72rem;
+  font-size: var(--t-sm);
   font-weight: 700;
   color: var(--brand);
 }
@@ -383,8 +430,11 @@ body {
   flex: none;
   font-family: var(--font-ui);
   font-style: normal;
-  font-size: .7rem;
-  color: var(--ink-faint);
+  font-size: var(--t-xs);
+  /* Third place --ink-faint falls short: it sits on --paper, not the card,
+     which costs it the last tenth it needed (4.47 against the 4.5 AA wants).
+     Same answer as .lesson-count and .row-note. */
+  color: var(--ink-soft);
 }
 
 .nav-scrim { display: none; }
@@ -403,28 +453,28 @@ body {
   background: var(--card);
   border: 1px solid var(--line);
   border-left: 4px solid var(--brand);
-  border-radius: 4px 10px 10px 4px;
+  border-radius: var(--r-chip) var(--r-card) var(--r-card) var(--r-chip);
 }
 .intro h1 {
   margin: 0 0 4px;
-  font-size: 1.35rem;
+  font-size: var(--t-xl);
   letter-spacing: .01em;
 }
 .intro h1 span {
   margin-left: 9px;
   font-family: var(--font-ui);
-  font-size: .8rem;
+  font-size: var(--t-sm);
   font-weight: 600;
   color: var(--ink-faint);
 }
-.intro p { margin: 0; font-size: .88rem; color: var(--ink-soft); }
+.intro p { margin: 0; font-size: var(--t-md); color: var(--ink-soft); }
 /* 怎麼用 folds. summary is the whole hit area, so it gets a real height rather
    than the 17px line a bare <summary> would be. */
 .intro .how {
   margin-top: 12px;
   padding-top: 7px;
   border-top: 1px dashed var(--line);
-  font-size: .84rem;
+  font-size: var(--t-md);
 }
 .intro .how summary {
   display: flex;
@@ -451,11 +501,11 @@ body {
   padding: 34px 24px;
   background: var(--card);
   border: 1px dashed var(--rule);
-  border-radius: 12px;
+  border-radius: var(--r-card);
   text-align: center;
 }
-.soon h1 { margin: 0 0 8px; font-size: 1.2rem; }
-.soon p { margin: 0 auto; max-width: 26rem; font-size: .9rem; color: var(--ink-soft); }
+.soon h1 { margin: 0 0 8px; font-size: var(--t-lg); }
+.soon p { margin: 0 auto; max-width: 26rem; font-size: var(--t-md); color: var(--ink-soft); }
 
 
 
@@ -467,17 +517,17 @@ body {
   padding: 2px;
   background: #eceee9;
   border: 1px solid var(--line);
-  border-radius: 9px;
+  border-radius: var(--r-ctl);
 }
 body[data-section="grammar"] .section-switch { background: #eae8f1; }
 .section-btn {
   padding: 5px 11px;
   background: none;
   border: 0;
-  border-radius: 7px;
+  border-radius: var(--r-ctl);
   color: var(--ink-soft);
   font-family: var(--font-zh);
-  font-size: .82rem;
+  font-size: var(--t-sm);
   font-weight: 700;
   white-space: nowrap;
   cursor: pointer;
@@ -533,9 +583,9 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
   align-self: flex-start;
   background: none;
   border: 0;
-  border-radius: 7px;
+  border-radius: var(--r-ctl);
   color: var(--ink-faint);
-  font-size: .9rem;
+  font-size: var(--t-md);
   line-height: 1;
   cursor: pointer;
   transition: transform .15s;
@@ -573,7 +623,7 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
   flex: 1;
   min-width: 0;
   margin: 0;
-  font-size: 1.12rem;
+  font-size: var(--t-lg);
   letter-spacing: .01em;
 }
 
@@ -581,10 +631,10 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
   flex: none;
   padding: 3px 9px;
   background: var(--brand);
-  border-radius: 6px;
+  border-radius: var(--r-ctl);
   color: #fff;
   font-family: var(--font-ui);
-  font-size: .72rem;
+  font-size: var(--t-sm);
   font-weight: 700;
   letter-spacing: .06em;
 }
@@ -593,7 +643,7 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
   flex: none;
   margin-right: 2px;
   font-family: var(--font-ui);
-  font-size: .74rem;
+  font-size: var(--t-sm);
   /* Not --ink-faint. It sits on --paper rather than the card, which costs it
      enough contrast to land at 4.47 — just under AA. */
   color: var(--ink-soft);
@@ -607,10 +657,10 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
   padding: 3px 9px;
   background: var(--card);
   border: 1px solid var(--brand-line);
-  border-radius: 6px;
+  border-radius: var(--r-ctl);
   color: var(--brand);
   font-family: var(--font-zh);
-  font-size: .72rem;
+  font-size: var(--t-sm);
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
@@ -622,15 +672,15 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
   padding: 8px 13px;
   background: var(--gold-soft);
   border-left: 3px solid var(--gold-line);
-  border-radius: 3px 8px 8px 3px;
-  font-size: .85rem;
+  border-radius: var(--r-chip) var(--r-card) var(--r-card) var(--r-chip);
+  font-size: var(--t-md);
   color: var(--ink-soft);
 }
 
 .lesson-gram b {
   margin-right: 8px;
   color: var(--gold);
-  font-size: .78rem;
+  font-size: var(--t-sm);
   letter-spacing: .04em;
 }
 
@@ -645,7 +695,7 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
   padding: 0;
   list-style: none;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--r-card);
   overflow: hidden;
   background: var(--card);
 }
@@ -663,7 +713,11 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
 
 .word:first-child { border-top: 0; }
 
-.word:nth-child(even) { background: #fbfbf9; }
+/* The zebra stripe was #fbfbf9 on #ffffff — a contrast of 1.01, which is to
+   say invisible. The 1px rule between rows already separates them, so this is
+   gone rather than strengthened: at a weight you could actually see, it would
+   fight the ✓ row tint, which is the one stripe on this list that means
+   something. */
 
 .word.is-known { background: var(--good-soft); }
 
@@ -673,7 +727,7 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
   grid-column: 1;
   padding-top: .18em;
   font-family: var(--font-ui);
-  font-size: .74rem;
+  font-size: var(--t-sm);
   color: var(--ink-faint);
   text-align: right;
 }
@@ -682,7 +736,7 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
 
 .w-word {
   font-family: var(--font-en);
-  font-size: 1.24rem;
+  font-size: var(--t-lg);
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: .005em;
@@ -719,13 +773,54 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
 
    七年級 never showed this: its entries are single words, and only 11 of 400
    wrap at all. */
+/* Every icon on the page. One weight, one box, currentColor, so a row of
+   them reads as a set and each one takes the colour of whatever it sits in —
+   which is how they follow the 單字/文法 skin without a second definition. */
+.ic {
+  width: 1.05em;
+  height: 1.05em;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: -.15em;
+}
+
+/* Small type does not want the body's 1.65.
+
+   line-height was set once on body and inherited everywhere it was not
+   overridden, which meant an 11px chip sat in a 19px line box. That makes
+   chips taller than their own text, pushes their backgrounds apart from the
+   baseline they are meant to sit on, and is why the lesson head never quite
+   lined up. Labels, numbers and chips are single-line objects: they want to
+   be about as tall as they are. */
+.w-n,
+.w-pos,
+.w-kk,
+.lesson-code,
+.lesson-count,
+.unit-code,
+.nav-book,
+.ref,
+.gram-link,
+.grade-tab,
+.search-count,
+.bar-btn,
+.mode-btn,
+.section-btn { line-height: 1.25; }
+
 .w-tail { white-space: nowrap; }
+
+/* The final word of a sentence plus the 🔊 that reads it. See withSay(). */
+.nb { white-space: nowrap; }
 
 .w-kk {
   display: inline;
   margin-left: 7px;
   font-family: var(--font-kk);
-  font-size: .78rem;
+  font-size: var(--t-sm);
   font-weight: 400;
   color: var(--ink-soft);
   letter-spacing: .01em;
@@ -737,9 +832,9 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
   margin-left: 7px;
   padding: 1px 6px;
   background: var(--brand-soft);
-  border-radius: 4px;
+  border-radius: var(--r-chip);
   font-family: var(--font-ui);
-  font-size: .68rem;
+  font-size: var(--t-xs);
   font-weight: 700;
   color: var(--brand);
   vertical-align: 2px;
@@ -749,7 +844,7 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
 .w-zh {
   grid-column: 3;
   padding-top: .12em;
-  font-size: .95rem;
+  font-size: var(--t-md);
   line-height: 1.45;
   color: var(--ink);
 }
@@ -758,13 +853,13 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
 
 .w-en {
   font-family: var(--font-en);
-  font-size: .98rem;
+  font-size: var(--t-md);
   line-height: 1.45;
   color: var(--ink-soft);
 }
 
 .w-zhex {
-  font-size: .82rem;
+  font-size: var(--t-sm);
   line-height: 1.5;
   color: var(--ink-faint);
 }
@@ -772,21 +867,24 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
 /* 🔊 — small, quiet, and never in the way of the word itself. */
 
 .say {
-  margin-left: 6px;
-  padding: 1px 4px;
+  margin-left: 5px;
+  padding: 1px 3px;
   background: none;
   border: 0;
-  border-radius: 5px;
-  font-size: .82em;
+  border-radius: var(--r-chip);
+  color: var(--ink-faint);
+  font-size: .92em;
   line-height: 1;
-  opacity: .42;
   cursor: pointer;
-  vertical-align: 1px;
 }
 
-.say:hover { opacity: 1; background: var(--brand-soft); }
+/* A hair lighter than the rest of the set: 🔊 repeats more than any other mark
+   on the page, so it carries its weight differently. */
+.say .ic { stroke-width: 1.5; }
 
-.say.is-on { opacity: 1; }
+.say:hover { color: var(--brand); background: var(--brand-soft); }
+
+.say.is-on { color: var(--brand); }
 
 /* The 會了 mark. Study mode only. */
 
@@ -798,17 +896,23 @@ body[data-section="grammar"] #nav > .sec-words { display: none; }
   height: 26px;
   padding: 0;
   background: none;
-  border: 1.5px solid var(--line);
+  /* A lesson is 28 of these in a column down the right edge, every one of them
+     empty until it is earned. At the old weight that read as a list of things
+     undone rather than as somewhere to tick. It is a target, not a mark: quiet
+     until you touch it, solid once it means something. */
+  border: 1.5px solid var(--rule);
   border-radius: 50%;
   color: transparent;
-  font-size: .8rem;
+  opacity: .45;
+  font-size: var(--t-sm);
   line-height: 1;
   cursor: pointer;
 }
 
-.mark:hover { border-color: var(--good-line); color: var(--good-line); }
+.mark:hover { opacity: 1; border-color: var(--good-line); color: var(--good-line); }
 
 .mark[aria-pressed="true"] {
+  opacity: 1;
   background: var(--good);
   border-color: var(--good);
   color: #fff;
@@ -839,10 +943,10 @@ body.mode-class .mark { display: none; }
   padding: 2px 7px;
   background: var(--card);
   border: 1px solid var(--brand-line);
-  border-radius: 6px;
+  border-radius: var(--r-ctl);
   color: var(--brand);
   font-family: var(--font-zh);
-  font-size: .72rem;
+  font-size: var(--t-sm);
   font-weight: 700;
   line-height: 1.5;
   cursor: pointer;
@@ -869,7 +973,7 @@ body.zh-all .zh-chip { display: none !important; }
 
 .masked {
   background: var(--mask);
-  border-radius: 4px;
+  border-radius: var(--r-chip);
   color: transparent !important;
   cursor: pointer;
   user-select: none;
@@ -921,7 +1025,7 @@ body.zh-all .zh-chip { display: none !important; }
   flex: 1;
   min-width: 0;
   margin: 0;
-  font-size: 1.2rem;
+  font-size: var(--t-lg);
   letter-spacing: .01em;
 }
 
@@ -929,10 +1033,10 @@ body.zh-all .zh-chip { display: none !important; }
   flex: none;
   padding: 3px 9px;
   background: var(--brand);
-  border-radius: 6px;
+  border-radius: var(--r-ctl);
   color: #fff;
   font-family: var(--font-ui);
-  font-size: .72rem;
+  font-size: var(--t-sm);
   font-weight: 700;
   letter-spacing: .06em;
 }
@@ -945,10 +1049,10 @@ body.zh-all .zh-chip { display: none !important; }
   padding: 3px 9px;
   background: var(--card);
   border: 1px solid var(--brand-line);
-  border-radius: 6px;
+  border-radius: var(--r-ctl);
   color: var(--brand);
   font-family: var(--font-ui);
-  font-size: .7rem;
+  font-size: var(--t-xs);
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
@@ -956,7 +1060,6 @@ body.zh-all .zh-chip { display: none !important; }
 
 .ref:hover { background: var(--brand-soft); }
 
-.ref::before { content: '📖 '; }
 
 /* 一句話重點 — the line the whole unit is trying to leave behind, so it sits
    at the top under the heading rather than buried at the foot as in the PDF. */
@@ -966,16 +1069,17 @@ body.zh-all .zh-chip { display: none !important; }
   padding: 12px 16px;
   background: var(--gold-soft);
   border-left: 4px solid var(--gold-line);
-  border-radius: 3px 9px 9px 3px;
-  font-size: .96rem;
+  border-radius: var(--r-chip) var(--r-card) var(--r-card) var(--r-chip);
+  font-size: var(--t-md);
   font-weight: 600;
   line-height: 1.7;
+  max-width: calc(var(--measure) + 32px);   /* + its own padding */
 }
 
 .unit-key b {
   margin-right: 9px;
   color: var(--gold);
-  font-size: .74rem;
+  font-size: var(--t-sm);
   font-weight: 700;
   letter-spacing: .06em;
   vertical-align: 1px;
@@ -984,7 +1088,7 @@ body.zh-all .zh-chip { display: none !important; }
 .sec-head {
   margin: 22px 0 10px;
   font-family: var(--font-ui);
-  font-size: .76rem;
+  font-size: var(--t-sm);
   font-weight: 700;
   letter-spacing: .12em;
   color: var(--ink-faint);
@@ -1007,8 +1111,9 @@ body.zh-all .zh-chip { display: none !important; }
 
 .rules li {
   position: relative;
+  max-width: var(--measure);
   padding: 7px 0 7px 20px;
-  font-size: .95rem;
+  font-size: var(--t-md);
   line-height: 1.8;
 }
 
@@ -1041,7 +1146,7 @@ body.zh-all .zh-chip { display: none !important; }
   list-style: none;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--r-card);
   overflow: hidden;
 }
 
@@ -1056,19 +1161,21 @@ body.zh-all .zh-chip { display: none !important; }
 
 .pat:first-child { border-top: 0; }
 
-.pat:nth-child(even) { background: #fbfbfd; }
+/* No zebra here either: #fbfbfd on white is a contrast of 1.01, and .pat
+   already carries a border-top. A rule between rows does the job a stripe
+   would, without a second system. */
 
 .pat-label {
   font-family: var(--font-ui);
-  font-size: .76rem;
+  font-size: var(--t-sm);
   font-weight: 700;
   color: var(--brand);
   padding-top: .22em;
 }
 
-.pat-en { font-family: var(--font-en); font-size: 1.06rem; line-height: 1.45; }
+.pat-en { font-family: var(--font-en); font-size: var(--t-base); line-height: 1.45; }
 
-.pat-zh { font-size: .88rem; color: var(--ink-soft); padding-top: .12em; }
+.pat-zh { font-size: var(--t-md); color: var(--ink-soft); padding-top: .12em; }
 
 /* 常見錯誤 — the block this page exists for. */
 
@@ -1078,7 +1185,7 @@ body.zh-all .zh-chip { display: none !important; }
   padding: 12px 15px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--r-card);
 }
 
 .mis-line { display: flex; align-items: baseline; gap: 9px; padding: 2px 0; }
@@ -1087,7 +1194,7 @@ body.zh-all .zh-chip { display: none !important; }
   flex: none;
   width: 1.2em;
   font-family: var(--font-ui);
-  font-size: .95rem;
+  font-size: var(--t-md);
   font-weight: 700;
   text-align: center;
 }
@@ -1096,7 +1203,7 @@ body.zh-all .zh-chip { display: none !important; }
 
 .mis-good .mis-mark { color: var(--good); }
 
-.mis-text { font-family: var(--font-en); font-size: 1.06rem; line-height: 1.5; }
+.mis-text { font-family: var(--font-en); font-size: var(--t-base); line-height: 1.5; }
 
 /* Struck through rather than red: the strike survives a black-and-white
    printout, where red is just dark grey. */
@@ -1109,9 +1216,10 @@ body.zh-all .zh-chip { display: none !important; }
   margin: 7px 0 0;
   padding: 7px 0 0 calc(1.2em + 9px);
   border-top: 1px dashed var(--line);
-  font-size: .85rem;
+  font-size: var(--t-md);
   line-height: 1.7;
   color: var(--ink-soft);
+  max-width: var(--measure);
 }
 
 /* ---------------- what gets hidden, and how ----------------
@@ -1127,10 +1235,10 @@ body.zh-all .zh-chip { display: none !important; }
   padding: 2px 8px;
   background: var(--card);
   border: 1px solid var(--brand-line);
-  border-radius: 6px;
+  border-radius: var(--r-ctl);
   color: var(--brand);
   font-family: var(--font-zh);
-  font-size: .7rem;
+  font-size: var(--t-xs);
   font-weight: 700;
   line-height: 1.5;
   cursor: pointer;
@@ -1169,10 +1277,10 @@ body.reveal-all .reveal { display: none !important; }
   padding: 11px;
   background: var(--gold-soft);
   border: 1px solid var(--gold-line);
-  border-radius: 10px;
+  border-radius: var(--r-card);
   color: var(--gold);
   font-family: var(--font-zh);
-  font-size: .9rem;
+  font-size: var(--t-md);
   font-weight: 700;
   cursor: pointer;
 }
@@ -1184,7 +1292,7 @@ body.reveal-all .reveal { display: none !important; }
   padding: 18px;
   background: var(--card);
   border: 1px solid var(--gold-line);
-  border-radius: 10px;
+  border-radius: var(--r-card);
 }
 
 .drill-bar {
@@ -1193,11 +1301,11 @@ body.reveal-all .reveal { display: none !important; }
   gap: 10px;
   margin-bottom: 14px;
   font-family: var(--font-ui);
-  font-size: .76rem;
+  font-size: var(--t-sm);
   color: var(--ink-faint);
 }
 
-.drill-bar .track { flex: 1; height: 5px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.drill-bar .track { flex: 1; height: 5px; background: var(--line); border-radius: var(--r-chip); overflow: hidden; }
 
 .drill-bar .fill { height: 100%; background: var(--gold-line); transition: width .25s; }
 
@@ -1205,23 +1313,23 @@ body.reveal-all .reveal { display: none !important; }
   padding: 3px 8px;
   background: none;
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: var(--r-ctl);
   color: var(--ink-faint);
   font-family: var(--font-zh);
-  font-size: .74rem;
+  font-size: var(--t-sm);
   cursor: pointer;
 }
 
 .q-ask {
   margin: 0 0 6px;
   font-family: var(--font-ui);
-  font-size: .76rem;
+  font-size: var(--t-sm);
   font-weight: 700;
   letter-spacing: .05em;
   color: var(--gold);
 }
 
-.q-prompt { margin: 0 0 15px; font-size: 1.22rem; font-weight: 600; line-height: 1.5; }
+.q-prompt { margin: 0 0 15px; font-size: var(--t-lg); font-weight: 600; line-height: 1.5; }
 
 /* No default face on a prompt or an option: one half asks in English and the
    other in Chinese, so every one of them says which it is. */
@@ -1242,9 +1350,9 @@ body.reveal-all .reveal { display: none !important; }
   padding: 11px 14px;
   background: var(--paper);
   border: 1px solid var(--rule);
-  border-radius: 9px;
+  border-radius: var(--r-ctl);
   color: var(--ink);
-  font-size: 1.02rem;
+  font-size: var(--t-base);
   text-align: left;
   cursor: pointer;
 }
@@ -1267,8 +1375,8 @@ body.reveal-all .reveal { display: none !important; }
   padding: 11px 14px;
   background: var(--good-soft);
   border-left: 3px solid var(--good-line);
-  border-radius: 3px 8px 8px 3px;
-  font-size: .88rem;
+  border-radius: var(--r-chip) var(--r-card) var(--r-card) var(--r-chip);
+  font-size: var(--t-md);
   line-height: 1.7;
   color: var(--ink-soft);
 }
@@ -1277,28 +1385,28 @@ body.reveal-all .reveal { display: none !important; }
 
 .q-done { text-align: center; }
 
-.q-done h3 { margin: 0 0 6px; font-size: 1.1rem; }
+.q-done h3 { margin: 0 0 6px; font-size: var(--t-lg); }
 
-.q-done > p { margin: 0 0 16px; font-size: .88rem; color: var(--ink-soft); }
+.q-done > p { margin: 0 0 16px; font-size: var(--t-md); color: var(--ink-soft); }
 
 .q-again {
   padding: 10px 20px;
   background: var(--brand);
   border: 0;
-  border-radius: 9px;
+  border-radius: var(--r-ctl);
   color: #fff;
   font-family: var(--font-zh);
-  font-size: .92rem;
+  font-size: var(--t-md);
   font-weight: 700;
   cursor: pointer;
 }
 
-.q-review { margin: 0 0 16px; padding: 13px 16px; background: var(--gold-soft); border-radius: 9px; text-align: left; }
+.q-review { margin: 0 0 16px; padding: 13px 16px; background: var(--gold-soft); border-radius: var(--r-ctl); text-align: left; }
 
 .q-review p {
   margin: 0 0 7px;
   font-family: var(--font-ui);
-  font-size: .76rem;
+  font-size: var(--t-sm);
   font-weight: 700;
   letter-spacing: .04em;
   color: var(--gold);
@@ -1306,7 +1414,7 @@ body.reveal-all .reveal { display: none !important; }
 
 .q-review ul { margin: 0; padding: 0; list-style: none; }
 
-.q-review li { font-size: .9rem; line-height: 1.8; }
+.q-review li { font-size: var(--t-md); line-height: 1.8; }
 
 .q-review b { margin-right: 8px; font-family: var(--font-en); color: var(--good); }
 
@@ -1338,11 +1446,11 @@ body.reveal-all .reveal { display: none !important; }
   justify-content: space-between;
   margin-bottom: 16px;
 }
-.panel-head h2 { margin: 0; font-size: 1.05rem; }
+.panel-head h2 { margin: 0; font-size: var(--t-base); }
 .panel-head span {
   margin-left: 7px;
   font-family: var(--font-ui);
-  font-size: .74rem;
+  font-size: var(--t-sm);
   font-weight: 600;
   color: var(--ink-faint);
 }
@@ -1350,9 +1458,9 @@ body.reveal-all .reveal { display: none !important; }
   padding: 5px 9px;
   background: none;
   border: 1px solid var(--line);
-  border-radius: 7px;
+  border-radius: var(--r-ctl);
   color: var(--ink-soft);
-  font-size: .9rem;
+  font-size: var(--t-md);
   cursor: pointer;
 }
 
@@ -1363,16 +1471,16 @@ body.reveal-all .reveal { display: none !important; }
 .panel .row > label {
   display: block;
   margin-bottom: 6px;
-  font-size: .86rem;
+  font-size: var(--t-md);
   font-weight: 700;
 }
-.row-check { display: flex; align-items: center; gap: 9px; cursor: pointer; font-size: .88rem; }
+.row-check { display: flex; align-items: center; gap: 9px; cursor: pointer; font-size: var(--t-md); }
 .row-check input { width: 17px; height: 17px; accent-color: var(--brand); }
 .row-check em {
   display: block;
   font-family: var(--font-ui);
   font-style: normal;
-  font-size: .72rem;
+  font-size: var(--t-sm);
   color: var(--ink-faint);
 }
 .panel select {
@@ -1380,19 +1488,19 @@ body.reveal-all .reveal { display: none !important; }
   padding: 8px 10px;
   background: var(--paper);
   border: 1px solid var(--rule);
-  border-radius: 8px;
+  border-radius: var(--r-ctl);
   font-family: var(--font-zh);
-  font-size: .88rem;
+  font-size: var(--t-md);
 }
 .panel-btn {
   width: 100%;
   padding: 9px;
   background: var(--brand);
   border: 0;
-  border-radius: 8px;
+  border-radius: var(--r-ctl);
   color: #fff;
   font-family: var(--font-zh);
-  font-size: .88rem;
+  font-size: var(--t-md);
   font-weight: 700;
   cursor: pointer;
 }
@@ -1403,7 +1511,7 @@ body.reveal-all .reveal { display: none !important; }
 }
 .row-note {
   margin: 7px 0 0;
-  font-size: .76rem;
+  font-size: var(--t-sm);
   line-height: 1.65;
   /* Same reason as .lesson-count: the panel is tinted, so --ink-faint measures
      4.35 here. These notes are the only explanation some of the switches get,
@@ -1432,7 +1540,7 @@ body.mode-class .panel .row[data-mode="study"] { display: none; }
 
   .bar { gap: 5px; padding: 0 8px; }
   .bar-title { display: none; }        /* the section switch says where you are */
-  .mode-btn, .section-btn { padding: 5px 9px; font-size: .82rem; }
+  .mode-btn, .section-btn { padding: 5px 9px; font-size: var(--t-sm); }
 
   /* It used to be the other way round: the emoji stayed and the words went, so
      a phone showed ☰ 📚 ✎ 🔍 📖 👩‍🏫 ⚙ — seven icons in a row, of which 📚/✎
@@ -1443,6 +1551,13 @@ body.mode-class .panel .row[data-mode="study"] { display: none; }
      and it now carries a real aria-label rather than announcing as "☰". */
   .section-switch .ico,
   .mode .ico { display: none; }
+
+  /* The 課 title went from 17.9 to 20 with the new scale, which is right for a
+     heading and one chip too many for a 375px row — 家庭成員與職業 started
+     breaking across two lines. The cross-link keeps its icon and drops its
+     word; the title it points at is in its aria-label and its tooltip, so
+     nothing is lost, and the heading gets its line back. */
+  .gram-link .lbl { display: none; }
   .bar-btn .lbl { display: none; }
   .bar-btn { padding: 7px 9px; }
 
@@ -1520,7 +1635,7 @@ body.mode-class .panel .row[data-mode="study"] { display: none; }
   .word, .pat, .mis, .rules li { break-inside: avoid; }
   .word { padding: 5pt 0; }
   .words, .pats { border-radius: 0; border-left: 0; border-right: 0; }
-  .word:nth-child(even), .word.is-known, .pat:nth-child(even) { background: none; }
+  .word.is-known { background: none; }
   .intro { border-radius: 0; }
 }
 
@@ -1542,7 +1657,7 @@ body.mode-class .panel .row[data-mode="study"] { display: none; }
   gap: 6px 14px;
   text-align: center;
   font-family: var(--font-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif);
-  font-size: .8rem;
+  font-size: var(--t-sm);
   line-height: 1.7;
   color: var(--ink-faint, var(--ink-soft, #7a8290));
 }
