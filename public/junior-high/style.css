@@ -1522,6 +1522,10 @@ body.reveal-all .reveal { display: none !important; }
 body.mode-study .panel .row[data-mode="class"],
 body.mode-class .panel .row[data-mode="study"] { display: none; }
 
+/* 沒有 ?teach 就沒有模式切換。按鈕還在 DOM 裡（render.js 要對它設 is-on 和
+   aria-pressed，少一個節點就得到處防空值），只是學生看不到也按不到。 */
+body:not(.is-teacher) .mode { display: none; }
+
 
 /* ---------------- narrow screens ---------------- */
 

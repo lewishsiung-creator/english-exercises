@@ -20,6 +20,18 @@
    網址錨點分兩個名字空間：#w/<課次id> 和 #g/<單元id>，另外 #g/for-<課次id>
    是「這一課的文法在哪個單元」。舊的兩個網址就是轉成這些形式送進來的。 */
 
+/* 學生版與教學版是同一個檔案，差別只有網址：?teach 才有老師那一半。
+
+   學生拿到的連結裡沒有模式切換，頁面鎖在自學。這不只是把按鈕藏起來：
+   jh.mode 存在學生自己的瀏覽器裡，按錯一次教學模式就會一直是教學模式，
+   而教學模式會把單字的中譯和文法的正確寫法藏起來——那正是學生自己讀的時候
+   最需要看到的東西。所以沒有 ?teach 的時候連存的值都不讀。
+
+   用 query 而不是 hash，因為 hash 已經是課次的地址（#w/g7、#g/for-...），
+   而且 ?teach 和 #w/g7 可以並存：?teach#w/g7 進教學模式又直接跳到那一課。 */
+const TEACH = new URLSearchParams(location.search).has('teach');
+document.body.classList.toggle('is-teacher', TEACH);
+
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
@@ -1249,6 +1261,6 @@ const savedSection = localStorage.getItem('jh.section');
 if (SECTIONS[savedSection]) setSection(savedSection, { keepGrade: false });
 
 render();
-setMode(localStorage.getItem('jh.mode') === 'class' ? 'class' : 'study');
+setMode(TEACH && localStorage.getItem('jh.mode') === 'class' ? 'class' : 'study');
 
 if (location.hash) goto(location.hash);

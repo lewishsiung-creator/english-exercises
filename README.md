@@ -2013,6 +2013,29 @@ id (`u1`…`u14`) exists in more than one grade. The two old URLs,
 translate their old hashes into this scheme — they had been handed out, so they
 stay.
 
+### The student link and the teacher link
+
+Same file, same anchors; the difference is `?teach`.
+
+| | the plain URL | `?teach` |
+|---|---|---|
+| 自學／教學 switch | not there | in the bar |
+| mode | locked to 自學 | whichever was last used |
+
+The plain URL is what a student is given, and it is not merely the switch
+hidden. `jh.mode` lives in the student's own `localStorage`, so one stray tap
+on 教學 would stick — and 教學 is the mode that hides the 中譯 and the correct
+sentence, which is exactly what someone reading alone needs to see. Without
+`?teach` the stored value is not read at all.
+
+It is a query, not a hash, because the hash is already the address of a 課
+(`#w/b1-l3`). The two compose: `?teach#g/for-b1-l3` opens 教學 on the grammar
+for that 課, which is the link worth keeping for a lesson.
+
+The buttons stay in the DOM and are hidden in CSS — `setMode()` sets `is-on`
+and `aria-pressed` on both of them on every call, and removing the nodes would
+mean guarding each of those.
+
 ### Design notes
 
 - **The palette follows the half** — teal for 單字, violet for 文法, set on
